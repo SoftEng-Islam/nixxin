@@ -563,7 +563,7 @@
                 });
               osProber = false;
               efiSupport = true;
-              gfxmodeEfi = "auto";
+              gfxmodeEfi = "1920x1080";
               devices = [ "nodev" ];
               device = "nodev"; # Let GRUB automatically detect EFI
               extraConfig = ''
