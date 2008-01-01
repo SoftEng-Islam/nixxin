@@ -18,7 +18,7 @@ in {
 
   # Set your time zone.
   time.timeZone = _i18n.timezone;
-  services.timesyncd.enable = true;
+  services.timesyncd.enable = false;
   services.chrony.enable = true;
   # Internationalisation Properties.
   i18n = {
