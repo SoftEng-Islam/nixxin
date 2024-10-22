@@ -1,26 +1,23 @@
 {
-  services.xserver = {
-    enable = true;
-    windowManager.herbstluftwm.enable = true;
-
-    # displayManager = {
-    #   autoLogin.enable = true;
-    #   autoLogin.user = "amper";
-    #   lightdm.enable = true;
-    # };
-
-    layout = "us";
-    xkbVariant = "";
-
-    libinput = {
-      enable = true;
-      mouse.accelProfile = "flat";
-      touchpad.accelProfile = "flat";
-    };
-
-    videoDrivers = [ "amdgpu" ];
-    deviceSection = ''Option "TearFree" "True"'';
-    #displayManager.gdm.enable = true;
-    #desktopManager.gnome.enable = true;
-  };
+	services.xserver = {
+		# Enable the X11 windowing system.
+		enable = true;
+		# Enable the GNOME Desktop Environment.
+		displayManager = {
+			gdm.enable = true;
+			# autoLogin.enable = true;
+			# autoLogin.user = "softeng";
+		};
+		desktopManager.gnome.enable = true;
+		# Configure keymap in X11
+		xkb = { layout = "us"; variant = ""; };
+		windowManager.herbstluftwm.enable = true;
+		libinput = {
+			enable = true;
+			mouse.accelProfile = "flat";
+			touchpad.accelProfile = "flat";
+		};
+		videoDrivers = [ "amdgpu" ];
+		deviceSection = ''Option "TearFree" "True"'';
+	};
 }
