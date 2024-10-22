@@ -6,7 +6,7 @@
     settings = {
       "$mainMod" = "SUPER";
 
-      monitor = ",1920x1080@90,auto,1";
+      monitor = ",1920x1080@60,auto,1";
 
       env = [
         "XDG_CURRENT_DESKTOP,Hyprland"
@@ -23,7 +23,7 @@
       };
 
       input = {
-        kb_layout = "us,ru";
+        kb_layout = "us,eg";
         kb_variant = "lang";
         kb_options = "grp:caps_toggle";
 
