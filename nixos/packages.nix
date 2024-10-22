@@ -132,7 +132,7 @@
 		# cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
 		# nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
 		# bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
-		# git # Distributed version control system
+		git # Distributed version control system
 		# dart-sass # The reference implementation of Sass, written in Dart
 		# Drivers
 		hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
@@ -143,7 +143,7 @@
 		#lm_sensors # For monitoring temperatures and voltages
 		#vulkan-tools # Khronos official Vulkan Tools and Utilities
 		#vulkan-loader # LunarG Vulkan loader
-		#amdvlk # AMD Open Source Driver For Vulkan
+		amdvlk # AMD Open Source Driver For Vulkan
 		#driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
 		#amd-blis # BLAS-compatible library optimized for AMD CPUs
 		#rocmPackages.rocm-smi # System management interface for AMD GPUs supported by ROCm
@@ -155,6 +155,8 @@
 		# opencl-clhpp # OpenCL Host API C++ bindings
 		# opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
 		# clinfo # Print all known information about all available OpenCL platforms and devices in the system
+		rocm-opencl-icd
+		glaxnimate
 		mesa # An open source 3D graphics library
 		# 3D Tools & Applications
 		# blender-hip # 3D Creation/Animation/Publishing System
@@ -168,19 +170,15 @@
 		xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
 		busybox # Tiny versions of common UNIX utilities in a single small executable
 		# flatpak # Linux application sandboxing and distribution framework
+	
 		# Desktop apps
 		audacity
 		chromium
 		telegram-desktop
 		alacritty
 		obs-studio
-		rofi
-		wofi
-		mpv
 		kdenlive
-		discord
 		gparted
-		obsidian
 		zoom-us
 		pcmanfm-qt
 		polymc
@@ -196,14 +194,11 @@
 		neofetch
 		file
 		tree
-		wget
-		git
 		fastfetch
 		htop
 		nix-index
 		unzip
 		scrot
-		ffmpeg
 		light
 		lux
 		mediainfo
@@ -211,8 +206,6 @@
 		zram-generator
 		cava
 		zip
-		ntfs3g
-		yt-dlp
 		brightnessctl
 		swww
 		openssl
@@ -243,18 +236,13 @@
 		hyprland
 		seatd
 		xdg-desktop-portal-hyprland
-		polybar
-		waybar
+		# polybar
+		# waybar
 
 		# Sound
 		pipewire
 		pulseaudio
 		pamixer
-
-		# GPU stuff 
-		amdvlk
-		rocm-opencl-icd
-		glaxnimate
 
 		# Screenshotting
 		grim
