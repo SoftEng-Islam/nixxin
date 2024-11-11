@@ -16,6 +16,7 @@
 		./powermanagement.nix
 
 		# User environment (programs, services, etc.)
+		./programs.nix
 		./env.nix
 		./fonts.nix
 		./user.nix
@@ -28,10 +29,8 @@
 		./security.nix
 		./networkmanager.nix
 		./services.nix
-		./bluetooth.nix
-		./virtmanager.nix
+		#./bluetooth.nix
+		#./virtmanager.nix
 
-		# NixVim setup
-		./nixvim/nixvim.nix
-	]
+	];
 }

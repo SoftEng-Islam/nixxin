@@ -12,18 +12,10 @@
       ./modules/bundle.nix
     ];
 
-  disabledModules = [
-    ./modules/xserver.nix
-  ];
-
-  nixpkgs.overlays = [ inputs.polymc.overlay ];
-  # nix.settings.experimental-features = [ "nix-command" "flakes" ]; # Enabling flakes
-
   nix = {
     package = pkgs.nixStable;
     extraOptions = ''
       experimental-features = nix-command flakes
-      http2 = true
     '';
   };
 
@@ -56,5 +48,6 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "24.05"; # Did you read the comment?
-
+  # system.autoUpgrade.enable = true;
+  # system.autoUpgrade.allowReboot = true;
 }

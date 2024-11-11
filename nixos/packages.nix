@@ -1,272 +1,401 @@
 { pkgs, ... }: {
 	nixpkgs.config = {
-		# rocmSupport = true;
+		rocmSupport = true;
 		allowUnfree = true;
-		permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+	#	permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
 	};
 	environment.systemPackages = with pkgs; [
-		sudo # A command to run commands as root
 		coreutils # The GNU Core Utilities
-		# ----------- Editors ----------- #
-		git
+		sudo # A command to run commands as root
+
+	# Editors
 		curl # A command line tool for transferring files with URL syntax
-		vim # The most popular clone of the VI editor
-		wget # Tool for retrieving files using HTTP, HTTPS, and FTP
 		gedit # Former GNOME text editor
-		vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
-		# ----------- Terminals ----------- #
+		git # Distributed version control system
+		vim # The most popular clone of the VI editor
+		#vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
+		zed-editor # High-performance, multiplayer code editor from the creators of Atom and Tree-sitter
+		wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+
+	# Terminals
 		bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
-		kitty # A modern, hackable, featureful, OpenGL based terminal emulator
+		eza # A modern, maintained replacement for ls
 		foot # A fast, lightweight and minimalistic Wayland terminal emulator
-		zsh # The Z shell
-		zsh-git-prompt # Informative git prompt for zsh
 		fzf # Command-line fuzzy finder written in Go
 		fzf-zsh # wrap fzf to use in oh-my-zsh
-		zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
-		zsh-completions # Additional completion definitions for zsh
+		kitty # A modern, hackable, featureful, OpenGL based terminal emulator
+		oh-my-zsh # A framework for managing your zsh configuration 
+		zsh # The Z shell
 		zsh-autocomplete # Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion
 		zsh-autosuggestions # Fish shell autosuggestions for Zsh
+		zsh-completions # Additional completion definitions for zsh
+		zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
+		zsh-git-prompt # Informative git prompt for zsh
 		zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
-		oh-my-zsh # A framework for managing your zsh configuration 
-		eza # A modern, maintained replacement for ls
-		# ----------- Browsers ----------- #
-		google-chrome # Freeware web browser developed by Google
+
+	# Browsers
 		firefox
-		#microsoft-edge # The web browser from Microsoft
-		# ----------- Networking ----------- #
-		dnsmasq # An integrated DNS, DHCP and TFTP server for small networks
+		google-chrome # Freeware web browser developed by Google
+	#	microsoft-edge # The web browser from Microsoft
+		
+	# Networking
+		networkmanager # Network configuration and management tool
 		dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
 		dhcping # Send DHCP request to find out if a DHCP server is running
-		# firewalld # Firewall daemon with D-Bus interface
-		# firewalld-gui # Firewall daemon with D-Bus interface
+		dnsmasq # An integrated DNS, DHCP and TFTP server for small networks
+		firewalld # Firewall daemon with D-Bus interface
+		firewalld-gui # Firewall daemon with D-Bus interface
+		hostapd # A user space daemon for access point and authentication servers
 		iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
 		iptables # A program to configure the Linux IP packet filtering ruleset
-		iptables-legacy # A program to configure the Linux IP packet filtering ruleset
+		iwd # Wireless daemon for Linux
 		networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
-		trust-dns # A Rust based DNS client, server, and resolver
 		routedns # DNS stub resolver, proxy and router
-		hostapd # A user space daemon for access point and authentication servers
-		# iwd # Wireless daemon for Linux
-		# ----------- Notes ----------- #
+		trust-dns # A Rust based DNS client, server, and resolver
+		mtr # A network diagnostics tool
+	# Notes
 		obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
-		# ----------- Media ----------- #
-		ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
-		openh264 # A codec library which supports H.264 encoding and decoding
-		xvidcore # MPEG-4 video codec for PC
+		
+	# Media
+		aalib # ASCII art graphics library
 		ab-av1 # AV1 re-encoding using ffmpeg, svt-av1 & vmaf
-		svt-av1 # AV1-compliant encoder/decoder library core
-		rav1e # The fastest and safest AV1 encoder
-		libaom # Alliance for Open Media AV1 codec library
-		gst_all_1.gstreamer # Open source multimedia framework
-		gst_all_1.gst-plugins-ugly # Gstreamer Ugly Plugins
-		gst_all_1.gst-plugins-good # GStreamer Good Plugins
-		gst_all_1.gst-plugins-bad # GStreamer Bad Plugins
-		gst_all_1.gst-plugins-rs # GStreamer plugins written in Rust
-		gst_all_1.gst-libav # FFmpeg/libav plugin for GStreamer
-		gst_all_1.gst-plugins-base # Base GStreamer plug-ins and helper libraries
-		mpv # General-purpose media player, fork of MPlayer and mplayer2
-		vlc # Cross-platform media player and streaming server
-		glide-media-player # Linux/macOS media player based on GStreamer and GTK
+		alsa-lib # ALSA, the Advanced Linux Sound Architecture libraries
+		aribb25 # Sample implementation of the ARIB STD-B25 standard
+		avahi # mDNS/DNS-SD implementation
 		clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
-		# ----------- Nix Stuff ----------- #
+		dav1d # A cross-platform AV1 decoder focused on speed and correctness
+		dejavu_fonts # A typeface family based on the Bitstream Vera fonts
+		ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video
+		flac # Library and tools for encoding and decoding the FLAC lossless audio file format
+		fluidsynth # Real-time software synthesizer based on the SoundFont 2 specifications
+		glide-media-player # Linux/macOS media player based on GStreamer and GTK
+		gst_all_1.gst-libav # FFmpeg/libav plugin for GStreamer
+		gst_all_1.gst-plugins-bad # GStreamer Bad Plugins
+		gst_all_1.gst-plugins-base # Base GStreamer plug-ins and helper libraries
+		gst_all_1.gst-plugins-good # GStreamer Good Plugins
+		gst_all_1.gst-plugins-rs # GStreamer plugins written in Rust
+		gst_all_1.gst-plugins-ugly # Gstreamer Ugly Plugins
+		gst_all_1.gstreamer # Open source multimedia framework
+		jack2 # JACK audio connection kit, version 2 with jackdbus
+		libaom # Alliance for Open Media AV1 codec library
+		libass # Portable ASS/SSA subtitle renderer
+		libavc1394 # Programming interface for the 1394 Trade Association AV/C (Audio/Video Control) Digital Interface Command Set
+		libbluray # Library to access Blu-Ray disks for video playback
+		libcaca # A graphics library that outputs text instead of pixels
+		libcdio # A library for OS-independent CD-ROM and CD image access
+		libdc1394 # Capture and control API for IIDC compliant cameras
+		libdvdcss # A library for decrypting DVDs
+		libdvdnav # A library that implements DVD navigation features such as DVD menus
+		libdvdread # A library for reading DVDs
+		libgcrypt # General-purpose cryptographic library
+		libjpeg # A faster (using SIMD) libjpeg implementation
+		libkate # A library for encoding and decoding Kate streams
+		libmicrodns # Minimal mDNS resolver library, used by VLC
+		libmodplug # MOD playing library
+		libmtp # An implementation of Microsoft's Media Transfer Protocol
+		libnfs # NFS client library
+		libogg # Media container library to manipulate Ogg files
+		libopus # Open, royalty-free, highly versatile audio codec
+		libpng # The official reference implementation for the PNG file format with animation patch
+		libpulseaudio # Sound server for POSIX and Win32 systems
+		libraw1394 # Library providing direct access to the IEEE 1394 bus through the Linux 1394 subsystem's raw1394 user space interface
+		librsvg # A small library to render SVG images to Cairo surfaces
+		libsamplerate # Sample Rate Converter for audio
+		libshout # icecast 'c' language bindings
+		libssh2 # A client-side C library implementing the SSH2 protocol
+		libtheora # Library for Theora, a free and open video compression format
+		libtiger # A rendering library for Kate streams using Pango and Cairo
+		libva # An implementation for VA-API (Video Acceleration API)
+		libvorbis # Vorbis audio compression reference implementation
+		libvpx # WebM VP8/VP9 codec SDK
+		lirc # Allows to receive and send infrared signals
+		mpg123 # Fast console MPEG Audio Player and decoder library
+		mpv # General-purpose media player, fork of MPlayer and mplayer2
+		ncurses # Free software emulation of curses in SVR4 and more
+		openh264 # A codec library which supports H.264 encoding and decoding
+		pcsclite # Middleware to access a smart card using SCard API (PC/SC)
+		projectm # Cross-platform Milkdrop-compatible music visualizer
+		protobuf # Google's data interchange format
+		qmplay2 # Qt-based Multimedia player
+		rav1e # The fastest and safest AV1 encoder
+		SDL_image # SDL image library
+		smpeg # MPEG decoding library
+		speex # An Open Source/Free Software patent-free audio compression format designed for speech
+		speexdsp # An Open Source/Free Software patent-free audio compression format designed for speech
+		srt # Secure, Reliable, Transport
+		svt-av1 # AV1-compliant encoder/decoder library core
+		twolame # A MP2 encoder
+		udevil # Mount without password
+		vcdimager # Full-featured mastering suite for authoring, disassembling and analyzing Video CDs and Super Video CDs
+		vlc # Cross-platform media player and streaming server
+		x264 # Library for encoding H264/AVC video streams
+		x265 # Library for encoding H.265/HEVC video streams
+		xvidcore # MPEG-4 video codec for PC
+
+	# gtk & Themes Stuff
+		gtk2 # A multi-platform toolkit for creating graphical user interfaces
+		gtk3 # A multi-platform toolkit for creating graphical user interfaces
+		gtk4 # A multi-platform toolkit for creating graphical user interfaces
+		adw-gtk3 # The theme from libadwaita ported to GTK-3
+
+	# Nix Stuff
 		fmt # Small, safe and fast formatting library
 		nixpkgs-fmt # Nix code formatter for nixpkgs
 		# dpkg # The Debian package manager
 		# rpm # The RPM Package Manager
 		# pacman # A simple library-based package manager
-		# ----------- Icons & Themes ----------- #
+		
+	# Icons & Themes
 		papirus-icon-theme # Pixel perfect icon theme for Linux
-		# ----------- Social ----------- #
+		
+	# Social
 		# discord # All-in-one cross-platform voice and text chat for gamers
-		# ----------- Disks & Partitions #
+		telegram-desktop
+		
+	# Disks & Partitions
+		efibootmgr # A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager
 		fuse3 # Library that allows filesystems to be implemented in user space
 		ntfs3g # FUSE-based NTFS driver with full write support
-		efibootmgr # A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager
-		# ----------- CLI Tools ----------- #
+	# CLI Tools
 		lsof # A tool to list open files
-		# yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
-		# ----------- Hacking & security Tools ----------- #
+		lux # Fast and simple video download library and CLI tool written in Go
+		yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
+	# Hacking & security Tools
 		hashcat # Fast password cracker
 		hashcat-utils # Small utilities that are useful in advanced password cracking
 		hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-		# ----------- Gnome Stuff ----------- #
-		gnome.eog # GNOME image viewer
-		gnome.totem # Movie player for the GNOME desktop based on GStreamer
-		# gnome-usage # A nice way to view information about use of system resources, like memory and disk space
-		# gnome.gpaste # Clipboard management system with GNOME integration
+		
+	# Gnome Stuff
+		gnome-extension-manager # Desktop app for managing GNOME shell extensions
 		gnome-photos # Access, organize and share your photos
+		# gnome-recipes # Recipe management application for GNOME
+		# gnome-usage # A nice way to view information about use of system resources, like memory and disk space
+		gnome.eog # GNOME image viewer
+		gnome.gdm # A program that manages graphical display servers and handles graphical user logins
+		gnome.gnome-chess # Play the classic two-player boardgame of chess
 		gnome.gnome-tweaks # A tool to customize advanced GNOME 3 options
 		gnome.pomodoro # Time management utility for GNOME based on the pomodoro technique
-		# gnome-recipes # Recipe management application for GNOME
-		# gnome-extension-manager # Desktop app for managing GNOME shell extensions
-		# gnome.gnome-chess # Play the classic two-player boardgame of chess
-		# ----------- Hyprland ----------- #
-		# hyprland # A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
-		# hyprland-protocols # Wayland protocol extensions for Hyprland
-		# hyprlandPlugins.hyprexpo # Hyprland workspaces overview plugin
-		# hyprlandPlugins.hyprbars # Plugins can be installed via a plugin entry in the Hyprland NixOS or Home Manager options.
-		# xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
-		# grimblast # A helper for screenshots within Hyprland, based on grimshot
-		# fd # A simple, fast and user-friendly alternative to find
-		# brightnessctl # This program allows you read and control device brightness
-		# swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
-		# matugen # A material you color generation tool
-		# hyprpicker # A wlroots-compatible Wayland color picker that does not suck
-		# slurp # Select a region in a Wayland compositor
-		# wf-recorder # Utility program for screen recording of wlroots-based compositors
-		# wl-clipboard # Command-line copy/paste utilities for Wayland
-		# wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
-		# swappy # A Wayland native snapshot editing tool, inspired by Snappy on macOS
+		gnome.totem # Movie player for the GNOME desktop based on GStreamer
+		
+	# Hyprland
+		ags # A EWW-inspired widget system as a GJS library
+		brightnessctl # This program allows you read and control device brightness
+		fd # A simple, fast and user-friendly alternative to find
+		hyprland # A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+		hyprland-protocols # Wayland protocol extensions for Hyprland
+		hyprlandPlugins.hyprbars # Plugins can be installed via a plugin entry in the Hyprland NixOS or Home Manager options.
+		hyprlandPlugins.hyprexpo # Hyprland workspaces overview plugin
+		hyprpicker # A wlroots-compatible Wayland color picker that does not suck
+		matugen # A material you color generation tool
+		slurp # Select a region in a Wayland compositor
+		swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
+		wf-recorder # Utility program for screen recording of wlroots-based compositors
+		wl-gammarelay-rs # A simple program that provides DBus interface to control display temperature and brightness under wayland without flickering
+		xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
+		matugen # A material you color generation tool
+
+	#  ASUS ROG Laptops
 		# asusctl # A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 		# supergfxctl # A GPU switching utility, mostly for ASUS laptops
-		# Android
+		
+	# Android
 		# waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
-		# Windows
+		scrcpy # Display and control Android devices over USB or TCP/IP
+
+	# Windows
 		#wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
 		#wine64 # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
 		#winetricks # A script to install DLLs needed to work around problems in Wine
-		# Downloaders
-		#qbittorrent # Featureful free software BitTorrent client
-		# Programming Langauges & Frameworks & Tools
-		# rustup # The Rust toolchain installer
-		# cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
-		# nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
-		# bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
-		git # Distributed version control system
-		# dart-sass # The reference implementation of Sass, written in Dart
-		# Drivers
-		hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
-		libva # An implementation for VA-API (Video Acceleration API)
-		libdrm # Direct Rendering Manager library and headers
-		#linuxKernel.packages.linux_6_11.amdgpu-pro # AMDGPU-PRO drivers
-		# gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-		#lm_sensors # For monitoring temperatures and voltages
-		#vulkan-tools # Khronos official Vulkan Tools and Utilities
-		#vulkan-loader # LunarG Vulkan loader
+		
+	# Downloaders
+		qbittorrent # Featureful free software BitTorrent client
+		
+	# Developer Tools
+		# sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
+		rustup # The Rust toolchain installer
+		cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
+		nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
+		bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
+		sassc # A front-end for libsass
+		sass # Tools and Ruby libraries for the CSS3 extension languages: Sass and SCSS
+		dart-sass # The reference implementation of Sass, written in Dart
+		libsass # A C/C++ implementation of a Sass compiler
+		# grass-sass # A Sass compiler written purely in Rust
+		# rsass # Sass reimplemented in rust with nom
+		# bruno # Open-source IDE For exploring and testing APIs.
+		# beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
+		# dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
+		# sqlitebrowser # DB Browser for SQLite
+
+	# Drivers
 		amdvlk # AMD Open Source Driver For Vulkan
-		#driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+		clinfo # Print all known information about all available OpenCL platforms and devices in the system
+		glaxnimate # Simple vector animation program.
+		hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
+		libdrm # Direct Rendering Manager library and headers
+		libva # An implementation for VA-API (Video Acceleration API)
+		mesa # An open source 3D graphics library
+		ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
+		opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
+		opencl-clhpp # OpenCL Host API C++ bindings
+		opencl-headers # Khronos OpenCL headers version 2023.12.14
+		opencl-info # A tool to dump OpenCL platform/device information
+
 		#amd-blis # BLAS-compatible library optimized for AMD CPUs
-		#rocmPackages.rocm-smi # System management interface for AMD GPUs supported by ROCm
+		#driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+		#gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
+		#linuxKernel.packages.linux_6_11.amdgpu-pro # AMDGPU-PRO drivers
+		#lm_sensors # For monitoring temperatures and voltages
+		#rocmPackages.clang-ocl # OpenCL compilation with clang compiler
 		#rocmPackages.clr # AMD Common Language Runtime for hipamd, opencl, and rocclr
 		#rocmPackages.hipcc # Compiler driver utility that calls clang or nvcc
-		#rocmPackages.clang-ocl # OpenCL compilation with clang compiler
+		#rocmPackages.rocm-smi # System management interface for AMD GPUs supported by ROCm
 		#rocmPackages.rocm-thunk # Radeon open compute thunk interface
-		# opencl-info # A tool to dump OpenCL platform/device information
-		# opencl-clhpp # OpenCL Host API C++ bindings
-		# opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
-		# clinfo # Print all known information about all available OpenCL platforms and devices in the system
-		rocm-opencl-icd
-		glaxnimate
-		mesa # An open source 3D graphics library
-		# 3D Tools & Applications
+		#vulkan-loader # LunarG Vulkan loader
+		#vulkan-tools # Khronos official Vulkan Tools and Utilities
+
+	# 3D Tools & Applications
 		# blender-hip # 3D Creation/Animation/Publishing System
-		# ----------- Games ----------- #
+
+	# Games
 		# zeroadPackages.zeroad-unwrapped
 		# zeroadPackages.zeroad-data
-		# System Tools
-		resources # Monitor your system resources and processes
-		# mangohud # A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
-		#openssl # A cryptographic library that implements the SSL and TLS protocols
-		xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
+
+	# System Tools
 		busybox # Tiny versions of common UNIX utilities in a single small executable
-		# flatpak # Linux application sandboxing and distribution framework
+		flatpak # Linux application sandboxing and distribution framework
+		# mangohud # A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
+		openssl # A cryptographic library that implements the SSL and TLS protocols
+		resources # Monitor your system resources and processes
+		xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
 	
-		# Desktop apps
-		audacity
-		chromium
-		telegram-desktop
-		alacritty
-		obs-studio
-		kdenlive
-		gparted
-		zoom-us
-		pcmanfm-qt
-		polymc
+	# Desktop apps
+		anki # Spaced repetition flashcard program
+		# audacity # Sound editor with graphical UI
+		# chromium
+		gparted # Graphical disk partitioning tool
+		# obs-studio # Free and open source software for video recording and live streaming
+		# zoom-us # zoom.us video conferencing application
 
-		# Coding stuff
-		gnumake
-		gcc
-		nodejs
-		python
-		(python3.withPackages (ps: with ps; [ requests ]))
+	# Coding stuff
+		gnumake # A tool to control the generation of non-source files from sources
+		# ant # A Java-based build tool
+		gcc # GNU Compiler Collection, version 13.2.0 (wrapper script)
+		python3 # A high-level dynamically-typed programming language
+		#(python3.withPackages (ps: with ps; [ requests ]))
 
-		# CLI utils
-		neofetch
-		file
-		tree
-		fastfetch
-		htop
-		nix-index
-		unzip
-		scrot
-		light
-		lux
-		mediainfo
-		ranger
-		zram-generator
-		cava
-		zip
-		brightnessctl
-		swww
-		openssl
-		lazygit
-		bluez
-		bluez-tools
+	# CLI utils
+		bluez # Official Linux Bluetooth protocol stack
+		bluez-tools # A set of tools to manage bluetooth devices for linux
+		cava # Console-based Audio Visualizer for Alsa
+		fastfetch # Like neofetch, but much faster because written in C
+		file # A program that shows the type of files
+		htop # An interactive process viewer
+		lazygit # Simple terminal UI for git commands
+		# light # GNU/Linux application to control backlights
+		mediainfo # Supplies technical and tag information about a video or audio file
+		nix-index # A files database for nixpkgs
+		ranger # File manager with minimalistic curses interface
+		tree # Command to produce a depth indented directory listing
+		unzip # An extraction utility for archives compressed in .zip format
+		zip # Compressor/archiver for creating and modifying zipfiles
+		zram-generator # Systemd unit generator for zram devices
 
-		# GUI utils
-		feh
-		imv
-		dmenu
-		screenkey
-		mako
-		gromit-mpx
+	# GUI utils
+		dmenu # A generic, highly customizable, and efficient menu for the X Window System
+		feh # A light-weight image viewer
+		gromit-mpx # Desktop annotation tool
+		imv # A command line image viewer for tiling window managers
+		screenkey # A screencast tool to display your keys inspired by Screenflick
 
-		# Xorg stuff
-		#xterm
-		#xclip
-		#xorg.xbacklight
+	# Notifications
+		libnotify # A library that sends desktop notifications to a notification daemon
+		dunst # Lightweight and customizable notification daemon
+		mako # A lightweight Wayland notification daemon
 
-		# Wayland stuff
-		xwayland
-		wl-clipboard
-		cliphist
+	# Xorg stuff
+		xterm
+		xclip # Tool to access the X clipboard from a console application
+		# xorg.xbacklight
 
-		# WMs and stuff
-		herbstluftwm
-		hyprland
-		seatd
-		xdg-desktop-portal-hyprland
-		# polybar
-		# waybar
+	# Wayland stuff
+		seatd # A minimal seat management daemon, and a universal seat management library
+		xwayland # An X server for interfacing X11 apps with the Wayland protocol
 
-		# Sound
-		pipewire
-		pulseaudio
-		pamixer
+	# Sound
+		pamixer # Pulseaudio command line mixer
+		pipewire # Server and user space API to deal with multimedia pipelines
+		pulseaudio # Sound server for POSIX and Win32 systems
+		pavucontrol # PulseAudio Volume Control
+	# Clipboard
+		cliphist # Wayland clipboard manager
+		gnome.gpaste # Clipboard management system with GNOME integration
+		wl-clipboard # Command-line copy/paste utilities for Wayland
+		fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
 
-		# Screenshotting
-		grim
-		grimblast
-		slurp
-		flameshot
-		swappy
+	# Screenshotting
+		grim # Grab images from a Wayland compositor
+		grimblast # A helper for screenshots within Hyprland, based on grimshot
+		swappy # A Wayland native snapshot editing tool, inspired by Snappy on macOS
+		flameshot # Powerful yet simple to use screenshot software
+		scrot # A command-line screen capture utility
+		wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
 
-		# Other
-		home-manager
-		spice-vdagent
-		libsForQt5.qtstyleplugin-kvantum
-		libsForQt5.qt5ct
-		papirus-nord
-	];
+	# Other
+		bees # Bees is a deduplication tool designed specifically for filesystems that use the Btrfs (B-tree file system).
+		home-manager # A Nix-based user environment configurator
+		libsForQt5.qt5ct # Qt5 Configuration Tool
+		libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra themes
+		# spice-vdagent # Enhanced SPICE integration for linux QEMU guest
 
-	fonts.packages = with pkgs; [
-		jetbrains-mono
-		noto-fonts
-		noto-fonts-emoji
-		twemoji-color-font
-		font-awesome
-		powerline-fonts
-		powerline-symbols
-		(nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+		anyrun # A wayland-native, highly customizable runner
+		axel # Console downloading program with some features for parallel connections for faster downloading
+		bc # GNU software calculator
+		blueberry # Bluetooth configuration tool
+		cairomm # C++ bindings for the Cairo vector graphics library
+		cmake # Cross-platform, open-source build system generator
+		ddcutil # Query and change Linux monitor settings using DDC/CI and USB
+		fish # Smart and user-friendly command line shell
+		fontconfig # A library for font customization and configuration
+		gammastep # Screen color temperature manager
+		gjs # JavaScript bindings for GNOME
+		gnome.gnome-bluetooth
+		gnome.gnome-control-center
+		gnome.gnome-keyring # Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications
+		gobject-introspection # A middleware layer between C libraries and language bindings
+		gojq # Pure Go implementation of jq
+		gtk-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol
+		gtkmm3 # C++ interface to the GTK graphical user interface library
+		haskellPackages.gtksourceview3 # Binding to the GtkSourceView library
+		gtksourceviewmm # C++ wrapper for gtksourceview
+		hypridle # Hyprland's idle daemon
+		hyprlock # Hyprland's GPU-accelerated screen locking utility
+		libdbusmenu-gtk3 # Library for passing menu structures across DBus
+		meson # An open source, fast and friendly build system made in Python
+		nodePackages.npm # a package manager for JavaScript
+		nodePackages.pnpm # Fast, disk space efficient package manager
+		playerctl # Command-line utility and library for controlling media players that implement MPRIS
+		polkit-gnome # A dbus session bus service that is used to bring up authentication dialogs
+		python312Packages.build
+		python312Packages.pillow
+		python312Packages.psutil
+		python312Packages.pywal
+		python312Packages.pywayland
+		python312Packages.setuptools-scm
+		python312Packages.wheel
+		ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
+		rsync # Fast incremental file transfer utility
+		starship # Minimal, blazing fast, and extremely customizable prompt for any shell
+		tesseract # OCR engine
+		tinyxml2 # Simple, small, efficient, C++ XML parser
+		typescript # Superset of JavaScript that compiles to clean JavaScript output
+		upower # D-Bus service for power management
+		webp-pixbuf-loader # WebP GDK Pixbuf Loader library
+		wireplumber #  Modular session / policy manager for PipeWire
+		wlogout # Wayland based logout menu
+		xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
+		xdg-user-dirs-gtk # Companion to xdg-user-dirs that integrates it into the GNOME desktop and GTK applications
+		yad # GUI dialog tool for shell scripts
+		ydotool # Generic Linux command-line automation tool
 	];
 }
