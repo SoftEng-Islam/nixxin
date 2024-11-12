@@ -39,6 +39,7 @@
 	#	microsoft-edge # The web browser from Microsoft
 		
 	# Networking
+		bind # Domain name server
 		networkmanager # Network configuration and management tool
 		dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
 		dhcping # Send DHCP request to find out if a DHCP server is running
@@ -53,10 +54,13 @@
 		routedns # DNS stub resolver, proxy and router
 		trust-dns # A Rust based DNS client, server, and resolver
 		mtr # A network diagnostics tool
+		ethtool # Utility for controlling network drivers and hardware
+
 	# Notes
 		obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
 		
 	# Media
+		ffmpegthumbnailer # A lightweight video thumbnailer
 		aalib # ASCII art graphics library
 		ab-av1 # AV1 re-encoding using ffmpeg, svt-av1 & vmaf
 		alsa-lib # ALSA, the Advanced Linux Sound Architecture libraries
@@ -153,9 +157,16 @@
 		telegram-desktop
 		
 	# Disks & Partitions
+		btrfs-progs # Utilities for the btrfs filesystem
+		e2fsprogs # Tools for creating and checking ext2/ext3/ext4 filesystems
 		efibootmgr # A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager
+		efitools # Tools for manipulating UEFI secure boot platforms
+		exfatprogs # exFAT filesystem userspace utilities
+		f2fs-tools # Userland tools for the f2fs filesystem
 		fuse3 # Library that allows filesystems to be implemented in user space
 		ntfs3g # FUSE-based NTFS driver with full write support
+		duf # Disk Usage/Free Utility
+
 	# CLI Tools
 		lsof # A tool to list open files
 		lux # Fast and simple video download library and CLI tool written in Go
@@ -166,16 +177,16 @@
 		hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
 		
 	# Gnome Stuff
-		gnome-extension-manager # Desktop app for managing GNOME shell extensions
+		# gnome-extension-manager # Desktop app for managing GNOME shell extensions
 		gnome-photos # Access, organize and share your photos
 		# gnome-recipes # Recipe management application for GNOME
 		# gnome-usage # A nice way to view information about use of system resources, like memory and disk space
 		gnome.eog # GNOME image viewer
 		gnome.gdm # A program that manages graphical display servers and handles graphical user logins
 		gnome.gnome-chess # Play the classic two-player boardgame of chess
-		gnome.gnome-tweaks # A tool to customize advanced GNOME 3 options
+		# gnome.gnome-tweaks # A tool to customize advanced GNOME 3 options
 		gnome.pomodoro # Time management utility for GNOME based on the pomodoro technique
-		gnome.totem # Movie player for the GNOME desktop based on GStreamer
+		# gnome.totem # Movie player for the GNOME desktop based on GStreamer
 		
 	# Hyprland
 		ags # A EWW-inspired widget system as a GJS library
@@ -190,6 +201,8 @@
 		slurp # Select a region in a Wayland compositor
 		swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
 		wf-recorder # Utility program for screen recording of wlroots-based compositors
+		gpu-screen-recorder # A screen recorder that has minimal impact on system performance by recording a window using the GPU only
+		gpu-screen-recorder-gtk # GTK frontend for gpu-screen-recorder.
 		wl-gammarelay-rs # A simple program that provides DBus interface to control display temperature and brightness under wayland without flickering
 		xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
 		matugen # A material you color generation tool
@@ -203,9 +216,10 @@
 		scrcpy # Display and control Android devices over USB or TCP/IP
 
 	# Windows
-		#wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-		#wine64 # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-		#winetricks # A script to install DLLs needed to work around problems in Wine
+		wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
+		wine64 # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
+		winetricks # A script to install DLLs needed to work around problems in Wine
+		dxvk # A Vulkan-based translation layer for Direct3D 9/10/11
 		
 	# Downloaders
 		qbittorrent # Featureful free software BitTorrent client
@@ -240,19 +254,8 @@
 		opencl-clhpp # OpenCL Host API C++ bindings
 		opencl-headers # Khronos OpenCL headers version 2023.12.14
 		opencl-info # A tool to dump OpenCL platform/device information
-
-		#amd-blis # BLAS-compatible library optimized for AMD CPUs
-		#driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
 		#gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-		#linuxKernel.packages.linux_6_11.amdgpu-pro # AMDGPU-PRO drivers
-		#lm_sensors # For monitoring temperatures and voltages
-		#rocmPackages.clang-ocl # OpenCL compilation with clang compiler
-		#rocmPackages.clr # AMD Common Language Runtime for hipamd, opencl, and rocclr
-		#rocmPackages.hipcc # Compiler driver utility that calls clang or nvcc
-		#rocmPackages.rocm-smi # System management interface for AMD GPUs supported by ROCm
-		#rocmPackages.rocm-thunk # Radeon open compute thunk interface
-		#vulkan-loader # LunarG Vulkan loader
-		#vulkan-tools # Khronos official Vulkan Tools and Utilities
+
 
 	# 3D Tools & Applications
 		# blender-hip # 3D Creation/Animation/Publishing System
@@ -285,6 +288,7 @@
 		#(python3.withPackages (ps: with ps; [ requests ]))
 
 	# CLI utils
+		gum # Tasty Bubble Gum for your shell
 		bluez # Official Linux Bluetooth protocol stack
 		bluez-tools # A set of tools to manage bluetooth devices for linux
 		cava # Console-based Audio Visualizer for Alsa
@@ -347,6 +351,11 @@
 		libsForQt5.qt5ct # Qt5 Configuration Tool
 		libsForQt5.qtstyleplugin-kvantum # SVG-based Qt5 theme engine plus a config tool and extra themes
 		# spice-vdagent # Enhanced SPICE integration for linux QEMU guest
+		boost # Collection of C++ libraries
+		booster # Fast and secure initramfs generator
+		bpftune # BPF-based auto-tuning of Linux system parameters
+		dos2unix # Convert text files with DOS or Mac line breaks to Unix line breaks and vice versa
+		dosfstools # Utilities for creating and checking FAT and VFAT file systems
 
 		anyrun # A wayland-native, highly customizable runner
 		axel # Console downloading program with some features for parallel connections for faster downloading
