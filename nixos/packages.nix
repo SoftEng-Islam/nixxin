@@ -192,11 +192,21 @@
 		ags # A EWW-inspired widget system as a GJS library
 		brightnessctl # This program allows you read and control device brightness
 		fd # A simple, fast and user-friendly alternative to find
+		hypridle # Hyprland's idle daemon
+		hyprlang # The official implementation library for the hypr config language
+		hyprcursor # The hyprland cursor format, library and utilities
 		hyprland # A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
 		hyprland-protocols # Wayland protocol extensions for Hyprland
 		hyprlandPlugins.hyprbars # Plugins can be installed via a plugin entry in the Hyprland NixOS or Home Manager options.
 		hyprlandPlugins.hyprexpo # Hyprland workspaces overview plugin
+		hyprlock # Hyprland's GPU-accelerated screen locking utility
 		hyprpicker # A wlroots-compatible Wayland color picker that does not suck
+		hyprpaper # A blazing fast wayland wallpaper utility
+		hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
+		hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
+		hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
+		hyprlandPlugins.hyprbars # Hyprland window title plugin
+		hyprlandPlugins.hyprexpo # Hyprland workspaces overview plugin
 		matugen # A material you color generation tool
 		slurp # Select a region in a Wayland compositor
 		swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
@@ -225,7 +235,7 @@
 		qbittorrent # Featureful free software BitTorrent client
 		
 	# Developer Tools
-		# sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
+		sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
 		rustup # The Rust toolchain installer
 		cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
 		nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
@@ -236,11 +246,12 @@
 		libsass # A C/C++ implementation of a Sass compiler
 		# grass-sass # A Sass compiler written purely in Rust
 		# rsass # Sass reimplemented in rust with nom
-		# bruno # Open-source IDE For exploring and testing APIs.
-		# beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
-		# dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
-		# sqlitebrowser # DB Browser for SQLite
-
+		bruno # Open-source IDE For exploring and testing APIs.
+		beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
+		dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
+		sqlitebrowser # DB Browser for SQLite
+		ruby_3_3 # An object-oriented language for quick and easy programming
+		# rubyPackages.execjs
 	# Drivers
 		amdvlk # AMD Open Source Driver For Vulkan
 		clinfo # Print all known information about all available OpenCL platforms and devices in the system
@@ -255,7 +266,6 @@
 		opencl-headers # Khronos OpenCL headers version 2023.12.14
 		opencl-info # A tool to dump OpenCL platform/device information
 		#gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-
 
 	# 3D Tools & Applications
 		# blender-hip # 3D Creation/Animation/Publishing System
@@ -356,7 +366,8 @@
 		bpftune # BPF-based auto-tuning of Linux system parameters
 		dos2unix # Convert text files with DOS or Mac line breaks to Unix line breaks and vice versa
 		dosfstools # Utilities for creating and checking FAT and VFAT file systems
-
+		gvfs # Virtual Filesystem support library
+		mtpfs # FUSE Filesystem providing access to MTP devices
 		anyrun # A wayland-native, highly customizable runner
 		axel # Console downloading program with some features for parallel connections for faster downloading
 		bc # GNU software calculator
@@ -377,8 +388,6 @@
 		gtkmm3 # C++ interface to the GTK graphical user interface library
 		haskellPackages.gtksourceview3 # Binding to the GtkSourceView library
 		gtksourceviewmm # C++ wrapper for gtksourceview
-		hypridle # Hyprland's idle daemon
-		hyprlock # Hyprland's GPU-accelerated screen locking utility
 		libdbusmenu-gtk3 # Library for passing menu structures across DBus
 		meson # An open source, fast and friendly build system made in Python
 		nodePackages.npm # a package manager for JavaScript
