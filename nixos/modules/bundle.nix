@@ -3,8 +3,8 @@
 		# Bootloader configuration
 		./bootloader.nix
 		
-		# Sound settings
-		./sound.nix
+		# Audio settings
+		./audio.nix
 		
 		# Zram configuration
 		./zram.nix
@@ -27,10 +27,15 @@
 
 		# System services and security
 		./security.nix
-		./networkmanager.nix
+		./networking.nix
 		./services.nix
 		#./bluetooth.nix
-		#./virtmanager.nix
+		#./virtualisation.nix
+		./nautilus.nix
+		./locale.nix
+		# ./laptop.nix
+		./home.nix
+		./gnome.nix
 
 	];
 }

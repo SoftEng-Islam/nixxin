@@ -1,10 +1,16 @@
 {
 	programs.zsh.enable = true;
 	programs.xwayland.enable = true;
+	programs.zsh.ohMyZsh.enable = true;
 
-	# Some programs need SUID wrappers, can be configured further or are
-	# started in user sessions.
+	# camera
+	programs.droidcam.enable = true;
+	
+	# dconf
+	programs.dconf.enable = true;
+	
 	programs.mtr.enable = true;
+	
 	programs.gnupg.agent = {
 		enable = true;
 		enableSSHSupport = true;

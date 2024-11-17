@@ -1,13 +1,9 @@
 {
+	# bluetooth
 	hardware.bluetooth = {
-		enable = false;
-		powerOnBoot = true;
-		settings = {
-			General = {
-				Enable = "Source,Sink,Media,Socket";
-				Experimental = true;
-			};
-		};
+		enable = true;
+		powerOnBoot = false;
+		settings.General.Experimental = true; # for gnome-bluetooth percentage
 	};
 	services.blueman.enable = false;
 }

@@ -9,26 +9,27 @@
     ];
 
   boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "usbhid" "usb_storage" "sd_mod" ];
-  boot.initrd.kernelModules = [];
+  boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "/dev/disk/by-uuid/23d7492b-8356-4dc7-b260-91cef5ef31f9";
+    { device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
       fsType = "btrfs";
       options = [ "subvol=@" ];
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/AACE-EA22";
+    { device = "/dev/disk/by-uuid/7FD3-5156";
       fsType = "vfat";
       options = [ "fmask=0077" "dmask=0077" ];
     };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/c7ff631b-1a48-4d3e-baa0-4065376b569b"; }
+    [
+    	# { device = "/dev/disk/by-uuid/c7ff631b-1a48-4d3e-baa0-4065376b569b"; }
     ];
-  fileSystems."/data" = {
+ fileSystems."/data" = {
     device = "/dev/disk/by-partlabel/Data";
     fsType = "auto";
     options = [
@@ -48,7 +49,7 @@
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s16f0u1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;

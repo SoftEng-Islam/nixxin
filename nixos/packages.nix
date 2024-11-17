@@ -2,22 +2,24 @@
 	nixpkgs.config = {
 		rocmSupport = true;
 		allowUnfree = true;
-	#	permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
+		#	permittedInsecurePackages = ["python-2.7.18.8" "electron-25.9.0"];
 	};
 	environment.systemPackages = with pkgs; [
 		coreutils # The GNU Core Utilities
 		sudo # A command to run commands as root
-
+		polkit
+		polkit_gnome
 	# Editors
 		curl # A command line tool for transferring files with URL syntax
 		gedit # Former GNOME text editor
 		git # Distributed version control system
 		vim # The most popular clone of the VI editor
-		#vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
-		zed-editor # High-performance, multiplayer code editor from the creators of Atom and Tree-sitter
+		vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
+		#zed-editor # High-performance, multiplayer code editor from the creators of Atom and Tree-sitter
 		wget # Tool for retrieving files using HTTP, HTTPS, and FTP
-
+		neovim
 	# Terminals
+		nanorc # Improved Nano Syntax Highlighting Files
 		bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
 		eza # A modern, maintained replacement for ls
 		foot # A fast, lightweight and minimalistic Wayland terminal emulator
@@ -32,13 +34,23 @@
 		zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
 		zsh-git-prompt # Informative git prompt for zsh
 		zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
-
 	# Browsers
 		firefox
 		google-chrome # Freeware web browser developed by Google
-	#	microsoft-edge # The web browser from Microsoft
-		
+		microsoft-edge # The web browser from Microsoft
 	# Networking
+		ntp # An implementation of the Network Time Protocol
+		openresolv # A program to manage /etc/resolv.conf
+		radvd # IPv6 Router Advertisement Daemon
+		tcpdump # Network sniffer
+		nssmdns # The mDNS Name Service Switch (NSS) plug-in
+		nmap # A free and open source utility for network discovery and security auditing
+		networkmanagerapplet # NetworkManager control applet for GNOME
+		networkmanager-openconnect # NetworkManager’s OpenConnect plugin
+		wirelesstools # Wireless tools for Linux
+		inetutils # Collection of common network programs
+		ipset # Administration tool for IP sets
+		ipcalc # Simple IP network calculator
 		bind # Domain name server
 		networkmanager # Network configuration and management tool
 		dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
@@ -50,15 +62,15 @@
 		iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
 		iptables # A program to configure the Linux IP packet filtering ruleset
 		iwd # Wireless daemon for Linux
+		iw # Tool to use nl80211
 		networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
 		routedns # DNS stub resolver, proxy and router
 		trust-dns # A Rust based DNS client, server, and resolver
 		mtr # A network diagnostics tool
 		ethtool # Utility for controlling network drivers and hardware
-
+		nettools # A set of tools for controlling the network subsystem in Linux
 	# Notes
 		obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
-		
 	# Media
 		ffmpegthumbnailer # A lightweight video thumbnailer
 		aalib # ASCII art graphics library
@@ -135,38 +147,34 @@
 		x264 # Library for encoding H264/AVC video streams
 		x265 # Library for encoding H.265/HEVC video streams
 		xvidcore # MPEG-4 video codec for PC
-
 	# gtk & Themes Stuff
 		gtk2 # A multi-platform toolkit for creating graphical user interfaces
 		gtk3 # A multi-platform toolkit for creating graphical user interfaces
 		gtk4 # A multi-platform toolkit for creating graphical user interfaces
 		adw-gtk3 # The theme from libadwaita ported to GTK-3
-
 	# Nix Stuff
 		fmt # Small, safe and fast formatting library
 		nixpkgs-fmt # Nix code formatter for nixpkgs
 		# dpkg # The Debian package manager
 		# rpm # The RPM Package Manager
 		# pacman # A simple library-based package manager
-		
 	# Icons & Themes
 		papirus-icon-theme # Pixel perfect icon theme for Linux
-		
 	# Social
 		# discord # All-in-one cross-platform voice and text chat for gamers
 		telegram-desktop
-		
 	# Disks & Partitions
 		btrfs-progs # Utilities for the btrfs filesystem
+		duf # Disk Usage/Free Utility
 		e2fsprogs # Tools for creating and checking ext2/ext3/ext4 filesystems
 		efibootmgr # A Linux user-space application to modify the Intel Extensible Firmware Interface (EFI) Boot Manager
 		efitools # Tools for manipulating UEFI secure boot platforms
 		exfatprogs # exFAT filesystem userspace utilities
 		f2fs-tools # Userland tools for the f2fs filesystem
 		fuse3 # Library that allows filesystems to be implemented in user space
+		mtools # Utilities to access MS-DOS disks
+		nfs-utils # Linux user-space NFS utilities
 		ntfs3g # FUSE-based NTFS driver with full write support
-		duf # Disk Usage/Free Utility
-
 	# CLI Tools
 		lsof # A tool to list open files
 		lux # Fast and simple video download library and CLI tool written in Go
@@ -175,19 +183,18 @@
 		hashcat # Fast password cracker
 		hashcat-utils # Small utilities that are useful in advanced password cracking
 		hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-		
 	# Gnome Stuff
-		# gnome-extension-manager # Desktop app for managing GNOME shell extensions
+		gnome-extension-manager # Desktop app for managing GNOME shell extensions
 		gnome-photos # Access, organize and share your photos
 		# gnome-recipes # Recipe management application for GNOME
 		# gnome-usage # A nice way to view information about use of system resources, like memory and disk space
 		gnome.eog # GNOME image viewer
 		gnome.gdm # A program that manages graphical display servers and handles graphical user logins
 		gnome.gnome-chess # Play the classic two-player boardgame of chess
-		# gnome.gnome-tweaks # A tool to customize advanced GNOME 3 options
+		gnome.gnome-tweaks # A tool to customize advanced GNOME 3 options
 		gnome.pomodoro # Time management utility for GNOME based on the pomodoro technique
 		# gnome.totem # Movie player for the GNOME desktop based on GStreamer
-		
+		gnome.libgnome-keyring
 	# Hyprland
 		ags # A EWW-inspired widget system as a GJS library
 		brightnessctl # This program allows you read and control device brightness
@@ -214,29 +221,27 @@
 		gpu-screen-recorder # A screen recorder that has minimal impact on system performance by recording a window using the GPU only
 		gpu-screen-recorder-gtk # GTK frontend for gpu-screen-recorder.
 		wl-gammarelay-rs # A simple program that provides DBus interface to control display temperature and brightness under wayland without flickering
+		xdg-desktop-portal
 		xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
 		matugen # A material you color generation tool
-
+		loupe # A simple image viewer application written with GTK4 and Rust
 	#  ASUS ROG Laptops
 		# asusctl # A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
 		# supergfxctl # A GPU switching utility, mostly for ASUS laptops
-		
 	# Android
 		# waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
 		scrcpy # Display and control Android devices over USB or TCP/IP
-
 	# Windows
 		wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
 		wine64 # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
 		winetricks # A script to install DLLs needed to work around problems in Wine
 		dxvk # A Vulkan-based translation layer for Direct3D 9/10/11
-		
 	# Downloaders
 		qbittorrent # Featureful free software BitTorrent client
-		
 	# Developer Tools
 		sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
 		rustup # The Rust toolchain installer
+		rust-analyzer # A modular compiler frontend for the Rust language
 		cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
 		nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
 		bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
@@ -266,14 +271,11 @@
 		opencl-headers # Khronos OpenCL headers version 2023.12.14
 		opencl-info # A tool to dump OpenCL platform/device information
 		#gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-
 	# 3D Tools & Applications
 		# blender-hip # 3D Creation/Animation/Publishing System
-
 	# Games
-		# zeroadPackages.zeroad-unwrapped
-		# zeroadPackages.zeroad-data
-
+		zeroadPackages.zeroad-unwrapped
+		zeroadPackages.zeroad-data
 	# System Tools
 		busybox # Tiny versions of common UNIX utilities in a single small executable
 		flatpak # Linux application sandboxing and distribution framework
@@ -281,7 +283,6 @@
 		openssl # A cryptographic library that implements the SSL and TLS protocols
 		resources # Monitor your system resources and processes
 		xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
-	
 	# Desktop apps
 		anki # Spaced repetition flashcard program
 		# audacity # Sound editor with graphical UI
@@ -289,14 +290,12 @@
 		gparted # Graphical disk partitioning tool
 		# obs-studio # Free and open source software for video recording and live streaming
 		# zoom-us # zoom.us video conferencing application
-
 	# Coding stuff
 		gnumake # A tool to control the generation of non-source files from sources
 		# ant # A Java-based build tool
 		gcc # GNU Compiler Collection, version 13.2.0 (wrapper script)
 		python3 # A high-level dynamically-typed programming language
 		#(python3.withPackages (ps: with ps; [ requests ]))
-
 	# CLI utils
 		gum # Tasty Bubble Gum for your shell
 		bluez # Official Linux Bluetooth protocol stack
@@ -314,28 +313,23 @@
 		unzip # An extraction utility for archives compressed in .zip format
 		zip # Compressor/archiver for creating and modifying zipfiles
 		zram-generator # Systemd unit generator for zram devices
-
 	# GUI utils
 		dmenu # A generic, highly customizable, and efficient menu for the X Window System
 		feh # A light-weight image viewer
 		gromit-mpx # Desktop annotation tool
 		imv # A command line image viewer for tiling window managers
 		screenkey # A screencast tool to display your keys inspired by Screenflick
-
 	# Notifications
 		libnotify # A library that sends desktop notifications to a notification daemon
 		dunst # Lightweight and customizable notification daemon
 		mako # A lightweight Wayland notification daemon
-
 	# Xorg stuff
-		xterm
-		xclip # Tool to access the X clipboard from a console application
+		# xterm
+		# xclip # Tool to access the X clipboard from a console application
 		# xorg.xbacklight
-
 	# Wayland stuff
 		seatd # A minimal seat management daemon, and a universal seat management library
 		xwayland # An X server for interfacing X11 apps with the Wayland protocol
-
 	# Sound
 		pamixer # Pulseaudio command line mixer
 		pipewire # Server and user space API to deal with multimedia pipelines
@@ -386,14 +380,14 @@
 		gojq # Pure Go implementation of jq
 		gtk-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol
 		gtkmm3 # C++ interface to the GTK graphical user interface library
-		haskellPackages.gtksourceview3 # Binding to the GtkSourceView library
-		gtksourceviewmm # C++ wrapper for gtksourceview
+	#	haskellPackages.gtksourceview3 # Binding to the GtkSourceView library
+	#	gtksourceviewmm # C++ wrapper for gtksourceview
 		libdbusmenu-gtk3 # Library for passing menu structures across DBus
 		meson # An open source, fast and friendly build system made in Python
 		nodePackages.npm # a package manager for JavaScript
 		nodePackages.pnpm # Fast, disk space efficient package manager
 		playerctl # Command-line utility and library for controlling media players that implement MPRIS
-		polkit-gnome # A dbus session bus service that is used to bring up authentication dialogs
+	#	polkit-gnome # A dbus session bus service that is used to bring up authentication dialogs
 		python312Packages.build
 		python312Packages.pillow
 		python312Packages.psutil
@@ -412,8 +406,17 @@
 		wireplumber #  Modular session / policy manager for PipeWire
 		wlogout # Wayland based logout menu
 		xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-		xdg-user-dirs-gtk # Companion to xdg-user-dirs that integrates it into the GNOME desktop and GTK applications
+	#	xdg-user-dirs-gtk # Companion to xdg-user-dirs that integrates it into the GNOME desktop and GTK applications
 		yad # GUI dialog tool for shell scripts
 		ydotool # Generic Linux command-line automation tool
+	
+	# Dependencies for Google Chrome
+		libGL
+		fontconfig
+		cups
+		glibc
+		gtk3
+		gdk-pixbuf
+		xorg.xprop
 	];
 }

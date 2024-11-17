@@ -1,16 +1,18 @@
-{ pkgs, ... }: {
+{ inputs, lib, pkgs, ... }:
+let username = "softeng";
+
+{
 	users = {
 		defaultUserShell = pkgs.zsh;
-		users.softeng = {
+		users.${username} = {
 			isNormalUser = true;
-			description = "softeng";
+			description = "NixOs Admin";
 			# shell = pkgs.zsh; # Set zsh as the default shell
-			extraGroups = [ "networkmanager" "wheel" "input" "flatpak" "disk" "qemu" "kvm" "i2c" "libvirtd" "sshd" "networkmanager" "wheel" "audio" "video" "root" ];
+			extraGroups = [ "root" "wheel" "input" "audio" "video" "i2c" "disk" "sshd" "flatpak" "networkmanager" "qemu" "kvm" "libvirtd" ];
 			packages = with pkgs; [
-				#  thunderbird
+				thunderbird
 			];
-			};
 		};
-	# Enable automatic login for the user.
-	# services.getty.autologinUser = "softeng";
+	};
+	# services.getty.autologinUser = ${username}; # Enable automatic login for the user.
 }
