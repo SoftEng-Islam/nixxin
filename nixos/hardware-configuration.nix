@@ -27,9 +27,9 @@
 
   swapDevices =
     [
-    	# { device = "/dev/disk/by-uuid/c7ff631b-1a48-4d3e-baa0-4065376b569b"; }
+      { device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e"; }
     ];
- fileSystems."/data" = {
+  fileSystems."/data" = {
     device = "/dev/disk/by-partlabel/Data";
     fsType = "auto";
     options = [

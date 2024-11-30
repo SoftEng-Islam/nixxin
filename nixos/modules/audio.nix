@@ -1,6 +1,6 @@
 {pkgs, ...}: {
 	hardware.pulseaudio.enable = false;
-	sound.enable = true; # Whether to enable ALSA sound.
+	# sound.enable = true; # Whether to enable ALSA sound.
 	# rtkit is optional but recommended
 	security.rtkit.enable = true; # Whether to enable the RealtimeKit system service
 	services.pipewire = {
@@ -10,14 +10,14 @@
 		pulse.enable = true;
 		jack.enable = true;
 		wireplumber.enable = true;
-		extraConfig.pipewire."92-low-latency" = {
-			"context.properties" = {
-				"default.clock.rate" = 44100;
-				"default.clock.quantum" = 512;
-				"default.clock.min-quantum" = 512;
-				"default.clock.max-quantum" = 512;
-			};
-		};
+		# extraConfig.pipewire."92-low-latency" = {
+		# 	"context.properties" = {
+		# 		"default.clock.rate" = 44100;
+		# 		"default.clock.quantum" = 512;
+		# 		"default.clock.min-quantum" = 512;
+		# 		"default.clock.max-quantum" = 512;
+		# 	};
+		# };
 		# use the example session manager (no others are packaged yet so this is enabled by default,
 		# no need to redefine it in your config for now)
 		#media-session.enable = true;

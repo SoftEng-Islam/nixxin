@@ -1,14 +1,15 @@
-{
+{pkgs, ...}: {
 	# Hardware Options
-	hardware.enableAllFirmware = true;
-	hardware.amdgpu.initrd.enable = true;
-	hardware.amdgpu.legacySupport.enable = true;
-	hardware.amdgpu.opencl.enable = true;
-	hardware.amdgpu.amdvlk.enable = true;
-	hardware.amdgpu.amdvlk.support32Bit.enable = true;
-	hardware.opengl.enable = true;
-	hardware.opengl.driSupport = true;
-	hardware.opengl.driSupport32Bit = true;
-	# hardware.pulseaudio.enable = false; # Enable sound with pipewire.
-	# hardware.pulseaudio.support32Bit = false;
+	hardware = {
+		enableAllFirmware = true;
+		amdgpu.amdvlk.enable = true;
+		amdgpu.amdvlk.support32Bit.enable = true;
+		amdgpu.amdvlk.supportExperimental.enable = true;
+		amdgpu.initrd.enable = true;
+		amdgpu.legacySupport.enable = true; # Whether to enable using amdgpu kernel driver instead of radeon for Southern Islands (Radeon HD 7000) series and Sea Islands (Radeon HD 8000) series cards. Note: this removes support for analog video outputs, which is only available in the radeon driver .
+		amdgpu.opencl.enable = true;
+		graphics.enable = true;
+		# pulseaudio.enable = false; # Enable sound with pipewire.
+		# pulseaudio.support32Bit = false;
+	};
 }

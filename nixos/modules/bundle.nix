@@ -21,8 +21,7 @@
 		./fonts.nix
 		./user.nix
 		
-		# X11 and window manager settings
-		./xserver.nix
+		# window manager settings
 		./hyprland.nix
 
 		# System services and security
@@ -31,10 +30,9 @@
 		./services.nix
 		#./bluetooth.nix
 		#./virtualisation.nix
-		./nautilus.nix
+		# ./nautilus.nix
 		./locale.nix
 		# ./laptop.nix
-		./home.nix
 		./gnome.nix
 
 	];
