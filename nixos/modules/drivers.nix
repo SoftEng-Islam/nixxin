@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     amdvlk # AMD Open Source Driver For Vulkan
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
@@ -25,7 +24,6 @@
     opencl-clhpp # OpenCL Host API C++ bindings
     opencl-headers # Khronos OpenCL headers version 2023.12.14
     vkbasalt # Vulkan post processing layer for Linux
-    vkd3d # Direct3D to Vulkan translation library
     vkquake # Vulkan Quake port based on QuakeSpasm
     vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
     vulkan-headers # Vulkan Header files and API registry

@@ -36,7 +36,6 @@
 
   # Include IBus in System Packages
   environment.systemPackages = with pkgs; [ ibus ibus-engines.m17n ];
-
   # Configure Virtual Console
   console = {
     enable = true;
