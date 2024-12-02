@@ -1,9 +1,188 @@
 {
-    "workbench.colorCustomizations": {
-        "editor.selectionBackground": "#3f166f",
-        "editor.selectionHighlightBackground": "#1438659e",
-        "activityBar.background": "#1D3131",
-        "titleBar.activeBackground": "#294544",
-        "titleBar.activeForeground": "#FAFCFC"
+  "editor.fontFamily": "JetBrains Mono",
+  "editor.fontLigatures": true,
+  "editor.fontSize": 17,
+  "editor.lineHeight": 38,
+  "editor.cursorWidth": 3,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorSmoothCaretAnimation": "explicit",
+  "editor.smoothScrolling": true,
+  "editor.renderWhitespace": "all",
+  "editor.minimap.enabled": false,
+  "editor.mouseWheelZoom": true,
+  "editor.occurrencesHighlight": "off",
+  "editor.suggest.localityBonus": true,
+  "editor.inlineSuggest.syntaxHighlightingEnabled": true,
+  // window
+  "window.autoDetectColorScheme": true,
+  "window.titleBarStyle": "custom",
+  // workbench
+  "workbench.preferredDarkColorTheme": "Bearded Theme Monokai Black",
+  "workbench.preferredHighContrastLightColorTheme": "Default High Contrast",
+  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.sideBar.location": "right",
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#3f166f", // Replace with your desired color code
+    "editor.selectionHighlightBackground": "#1438659e" // Optional: for find matches highlight color
+  },
+  // Terminal Settings
+  "terminal.integrated.enableImages": true,
+  "terminal.integrated.fontFamily": "JetBrains Mono",
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.cursorWidth": 2,
+  "terminal.integrated.cursorStyle": "line",
+  "terminal.integrated.cursorStyleInactive": "line",
+  "terminal.integrated.environmentChangesRelaunch": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  // Files and Explorer
+  "files.trimTrailingWhitespace": true,
+  "explorer.confirmDragAndDrop": false,
+  "explorer.confirmDelete": false,
+  "better-comments.highlightPlainText": true,
+  "debug.allowBreakpointsEverywhere": true,
+  "search.seedWithNearestWord": true,
+  // JavaScript and TypeScript
+  "typescript.format.semicolons": "insert",
+  "javascript.format.semicolons": "insert",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  // Linting
+  "css.lint.unknownAtRules": "ignore",
+  "scss.lint.unknownAtRules": "ignore",
+  "less.lint.unknownAtRules": "ignore",
+  // Vite
+  "vite.autoStart": false,
+  "vite.https": false,
+  // Miscellaneous
+  "application.shellEnvironmentResolutionTimeout": 60,
+  "tabnine.experimentalAutoImports": true,
+  // Update Settings
+  "update.showReleaseNotes": false,
+  "update.mode": "manual",
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": true,
+  "terminal.explorerKind": "external",
+  "security.workspace.trust.banner": "never",
+  "security.workspace.trust.untrustedFiles": "open",
+  "explorer.confirmPasteNative": false,
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "none",
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName": true,
+  // ShellScript
+  "[shellscript]": {
+    "editor.defaultFormatter": "foxundermoon.shell-format"
+  },
+  "[nix]": {
+    "editor.formatOnSave": true,
+    "editor.inlayHints.enabled": "on",
+    "editor.tabSize": 4,
+    "editor.insertSpaces": true,
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
+  },
+  "nix.serverPath": "nixd",
+  "nix.enableLanguageServer": true,
+  "nix.serverSettings": {
+    "nixpkgs": {
+      // For flake.
+      // "expr": "import (builtins.getFlake \"/home/lyc/workspace/CS/OS/NixOS/flakes\").inputs.nixpkgs { }   "
+      // This expression will be interpreted as "nixpkgs" toplevel
+      // Nixd provides package, lib completion/information from it.
+      ///
+      // Resource Usage: Entries are lazily evaluated, entire nixpkgs takes 200~300MB for just "names".
+      ///                Package documentation, versions, are evaluated by-need.
+      "expr": "import <nixpkgs> { }"
+    },
+    // settings for 'nixd' LSP
+    "nixd": {
+      "formatting": {
+        // This is the default if ommited.
+        "command": [
+          "nixfmt"
+        ]
+      },
+      "options": {
+        // By default, this entriy will be read from `import <nixpkgs> { }`
+        // You can write arbitary nix expression here, to produce valid "options" declaration result.
+        // Tip: for flake-based configuration, utilize `builtins.getFlake`
+        "nixos": {
+          "expr": "(builtins.getFlake \"/absolute/path/to/flake\").nixosConfigurations.<name>.options"
+        },
+        "home-manager": {
+          "expr": "(builtins.getFlake \"/absolute/path/to/flake\").homeConfigurations.<name>.options"
+        }
+      }
     }
+  },
+  "[conf]": {
+    "editor.formatOnSave": false,
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "javascript.suggest.enabled": true,
+  "javascript.validate.enable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  // IndentRainbow
+  "indentRainbow.indicatorStyle": "light",
+  "indentRainbow.lightIndicatorStyleLineWidth": 2,
+  "indentRainbow.colors": [
+    "rgba(151,208,90,0.59)",
+    "rgba(89,152,127,0.75)",
+    "rgba(182,173,61,0.79)",
+    "rgba(166,51,125,0.89)",
+    "rgba(148,236,6,0.54)",
+    "rgba(203,64,240,0.75)",
+    "rgba(238,214,137,1.0)"
+  ],
+  "workbench.iconTheme": "material-icon-theme",
+  "files.associations": {
+    "*.css": "css"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "workbench.colorTheme": "Bearded Theme Monokai Black",
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "workbench.editor.enablePreview": false,
+  "workbench.settings.openDefaultKeybindings": true,
+  "workbench.colorCustomizations": {
+    "editor.selectionBackground": "#3f166f",
+    "editor.selectionHighlightBackground": "#1438659e",
+    "activityBar.background": "#1D3131",
+    "titleBar.activeBackground": "#294544",
+    "titleBar.activeForeground": "#FAFCFC"
+  }
 }

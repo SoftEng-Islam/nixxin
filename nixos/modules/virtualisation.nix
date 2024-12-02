@@ -1,12 +1,12 @@
-{ pkgs, ... }: {
-	virtualisation = {
-		podman.enable = true;
-		docker.enable = true;
-		libvirtd.enable = true;
-	};
-	programs.virt-manager = {
-		enable = true;
-		package = pkgs.virt-manager;
-	};
+{ pkgs, ... }:
+{
+  virtualisation = {
+    podman.enable = false;
+    docker.enable = false;
+    libvirtd.enable = false;
+  };
+  programs.virt-manager = {
+    enable = false;
+    package = pkgs.virt-manager;
+  };
 }
-

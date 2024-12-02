@@ -1,5 +1,9 @@
-{ pkgs, lib, ... }:
-let name = "softeng"; # the github username
+{
+  pkgs,
+  lib,
+  ...
+}: let
+  name = "Aylur";
 in {
   programs.git = {
     enable = true;
@@ -10,7 +14,7 @@ in {
       github.user = name;
       push.autoSetupRemote = true;
     };
-    userEmail = "softeng.islam@gmail.com";
+    userEmail = "k.demeter@protonmail.com";
     userName = name;
   };
   programs.ssh = {

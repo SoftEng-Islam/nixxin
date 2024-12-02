@@ -1,4 +1,8 @@
-{ inputs, pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  ...
+}: {
   home.packages = with pkgs; [
     inputs.my-shell.packages.${pkgs.system}.astal
     inputs.my-shell.packages.${pkgs.system}.asztal
@@ -55,7 +59,7 @@
       };
 
       input = {
-        kb_layout = "us,eg";
+        kb_layout = "hu,us";
         follow_mouse = 1;
         touchpad = {
           natural_scroll = "yes";

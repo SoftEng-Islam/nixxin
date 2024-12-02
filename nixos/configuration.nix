@@ -1,14 +1,14 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ config, pkgs, ... }: {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./packages.nix
-      ./modules/bundle.nix
-    ];
+{ config, pkgs, ... }:
+{
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./packages.nix
+    ./bundle.nix
+  ];
   # documentation.nixos.enable = false; # .desktop
 
   nix = {
@@ -19,10 +19,13 @@
       max-jobs = 4
       auto-optimise-store = true
     '';
-    settings.experimental-features = [ "nix-command" "flakes" ];
+    settings.experimental-features = [
+      "nix-command"
+      "flakes"
+    ];
   };
 
-  xdg= {
+  xdg = {
     portal = {
       enable = true;
       wlr.enable = true;
@@ -32,8 +35,8 @@
   # qt.platformTheme = "qt5ct";
   # qt.style = "adwaita-dark";
 
-  system.autoUpgrade.enable = true;
-  system.autoUpgrade.allowReboot = true;
+  # system.autoUpgrade.enable = true;
+  # system.autoUpgrade.allowReboot = true;
   # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
 
   # This value determines the NixOS release from which the default

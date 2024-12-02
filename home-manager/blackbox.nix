@@ -1,5 +1,10 @@
-{ pkgs, lib, ...}: {
+{
+  pkgs,
+  lib,
+  ...
+}: {
   imports = [./modules/blackbox.nix];
+
   terminals.blackbox = {
     enable = true;
 

@@ -1,25 +1,23 @@
 {
-	programs = {
-		zsh.enable = true;
-		xwayland.enable = true;
-		zsh.ohMyZsh.enable = true;
-
-		corectrl.enable = true;
-		corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
-		corectrl.gpuOverclock.enable = true;
-		
-
-		# camera
-		droidcam.enable = true;
-		
-		# dconf
-		dconf.enable = true;
-		
-		mtr.enable = true;
-		
-		gnupg.agent = {
-			enable = true;
-			enableSSHSupport = true;
-		};
-	};
+  programs = {
+    corectrl.enable = true;
+    corectrl.gpuOverclock.enable = true;
+    corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
+    dconf.enable = true; # dconf
+    droidcam.enable = true; # camera
+    mtr.enable = true;
+    xwayland.enable = false;
+    zsh.enable = true;
+    zsh.ohMyZsh.enable = true;
+    htop = {
+      enable = true;
+      settings = {
+        tree_view = 1;
+      };
+    };
+    gnupg.agent = {
+      enable = true;
+      enableSSHSupport = true;
+    };
+  };
 }
