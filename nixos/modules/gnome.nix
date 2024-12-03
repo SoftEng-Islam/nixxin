@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
 
@@ -53,7 +52,7 @@
     gnomeExtensions.night-light-slider-updated # Night Light Slider updated for GNOME
     libgnome-keyring # Framework for managing passwords and other secrets
     libsoup_3 # HTTP client/server library for GNOME
-    #__ polkit-gnome __#
+    # Polkit
     polkit # A toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
     polkit_gnome # A dbus session bus service that is used to bring up authentication dialogs
     libsForQt5.polkit-qt # A Qt wrapper around PolKit

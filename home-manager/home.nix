@@ -1,10 +1,10 @@
 { config, pkgs, ... }:
-
-{
+let UserName = "softeng";
+in {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "softeng";
-  home.homeDirectory = "/home/softeng";
+  home.username = UserName;
+  home.homeDirectory = "/home/${UserName}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -23,11 +23,9 @@
     # pkgs.hello
 
     # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
+    # # overrides. You can do that directly here, just don't forget the parentheses.
+    # # Maybe you want to install Nerd Fonts with a limited number of fonts?
+    (pkgs.nerdfonts.override { fonts = [ "hack" "fira-code" ]; })
     # # You can also create simple shell scripts directly inside your
     # # configuration. For example, this adds a command 'my-hello' to your
     # # environment:
@@ -69,6 +67,9 @@
   #
   home.sessionVariables = {
     # EDITOR = "emacs";
+    GTK_IM_MODULE = "ibus";
+    QT_IM_MODULE = "ibus";
+    XMODIFIERS = "@im=ibus";
   };
 
   # Let Home Manager install and manage itself.

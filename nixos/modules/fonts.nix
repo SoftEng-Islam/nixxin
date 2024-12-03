@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   fonts = {
     packages = with pkgs; [
       fira-code # Monospace font with programming ligatures
@@ -21,6 +20,9 @@
       # nerd-fonts.mononoki # Nerd Fonts: Keeps in mind differentiation of characters and resolution sizes
       # nerd-fonts.noto # Nerd Fonts: `0` and `O` very similar, characters are either very curvy or straight lined
       # nerd-fonts.roboto-mono
+      (pkgs.nerdfonts.override {
+        fonts = [ "hack" "fira-code" "jetbrains-mono" ];
+      })
     ];
     fontconfig = {
       enable = true;
@@ -35,7 +37,8 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [
-    fontconfig # Library for font customization and configuration
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      fontconfig # Library for font customization and configuration
+    ];
 }
