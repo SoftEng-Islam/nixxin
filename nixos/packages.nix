@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   nixpkgs.config = {
     rocmSupport = true;
     allowUnfree = true;
@@ -85,6 +84,7 @@
     mtpfs # FUSE Filesystem providing access to MTP devices
     nfs-utils # Linux user-space NFS utilities
     ntfs3g # FUSE-based NTFS driver with full write support
+    hdparm # Tool to get/set ATA/SATA drive parameters under Linux
 
     #__ CLI Tools __#
     lsof # A tool to list open files

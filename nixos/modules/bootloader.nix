@@ -1,13 +1,25 @@
-{
+{ pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" ];
     initrd.kernelModules = [ "amdgpu" ];
+
     loader = {
-      timeout = 2;
-      systemd-boot.enable = true;
+      timeout = 4;
       efi.canTouchEfiVariables = true;
+      systemd-boot.enable = true; # disable to use GRUB instead of systemd-boot
+      # Grub boot
+      grub = {
+        enable = true;
+        efiSupport = true;
+        device =
+          "nodev"; # Ensures GRUB installs only to /boot and doesn't overwrite any disk
+        useOSProber = true;
+        extraConfig = ''
+          GRUB_DISABLE_OS_PROBER=false
+        '';
+      };
     };
     kernelParams = [
       "quiet"
@@ -47,4 +59,5 @@
     plymouth.enable = true;
     plymouth.theme = "bgrt";
   };
+  environment.systemPackages = with pkgs; [ os-prober grub2_efi grub2_full ];
 }
