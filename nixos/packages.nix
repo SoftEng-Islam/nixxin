@@ -85,6 +85,7 @@
     nfs-utils # Linux user-space NFS utilities
     ntfs3g # FUSE-based NTFS driver with full write support
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
+    fio # Flexible IO Tester - an IO benchmark tool
 
     #__ CLI Tools __#
     lsof # A tool to list open files
@@ -189,6 +190,7 @@
     python312Packages.setuptools-scm
     python312Packages.urllib3
     python312Packages.wheel
+    # python312Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
 
     #__ Ruby __#
     ruby_3_3 # An object-oriented language for quick and easy programming
@@ -200,17 +202,18 @@
     #__ Games __#
     # zeroad
 
+    #__ Nodejs & JavaScript Stuff __#
+    nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
+    nodePackages.pnpm # Fast, disk space efficient package manager
+    typescript # Superset of JavaScript that compiles to clean JavaScript output
+
     #__ System Tools __#
     busybox # Tiny versions of common UNIX utilities in a single small executable
     # flatpak # Linux application sandboxing and distribution framework
     mangohud # A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
     openssl # A cryptographic library that implements the SSL and TLS protocols
     resources # Monitor your system resources and processes
-
-    #__ Nodejs & JavaScript Stuff __#
-    nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
-    nodePackages.pnpm # Fast, disk space efficient package manager
-    typescript # Superset of JavaScript that compiles to clean JavaScript output
+    fdupes # Identifies duplicate files residing within specified directories
 
     #__ CLI utils __#
     gum # Tasty Bubble Gum for your shell

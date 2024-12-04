@@ -8,7 +8,7 @@
     loader = {
       timeout = 4;
       efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true; # disable to use GRUB instead of systemd-boot
+      systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
       # Grub boot
       grub = {
         enable = true;
