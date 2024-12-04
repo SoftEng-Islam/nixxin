@@ -10,9 +10,11 @@
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
       # Grub boot
+
       grub = {
         enable = true;
         efiSupport = true;
+        gfxmodeEfi = "1920x1080";
         device =
           "nodev"; # Ensures GRUB installs only to /boot and doesn't overwrite any disk
         useOSProber = true;
@@ -25,10 +27,10 @@
       "quiet"
       "splash"
       "loglevel=3"
-      "radeon.cik_support=0"
+      # "radeon.cik_support=0"
       "radeon.si_support=0"
       "amdgpu.si_support=1"
-      "amdgpu.cik_support=1"
+      # "amdgpu.cik_support=1"
       "amdgpu.dc=1"
       "amdgpu.dpm=1"
       "amdgpu.gpu_recovery=1"

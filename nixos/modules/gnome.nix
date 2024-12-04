@@ -53,6 +53,7 @@
     libsoup_3 # HTTP client/server library for GNOME
 
     gnome-color-manager # Set of graphical utilities for color management to be used in the GNOME desktop
+    eog # GNOME image viewer
 
     # Polkit
     polkit # A toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes

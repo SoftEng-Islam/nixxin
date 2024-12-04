@@ -114,7 +114,6 @@
     wlogout # Wayland based logout menu
     wlr-protocols # Wayland roots protocol extensions
     wlroots # A modular Wayland compositor library
-    loupe # A simple image viewer application written with GTK4 and Rust
     matugen # A material you color generation tool
     wf-recorder # Utility program for screen recording of wlroots-based compositors
 
@@ -242,6 +241,11 @@
     clipman # A simple clipboard manager for Wayland
     fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
 
+    # Image Viewer
+    imv # A command line image viewer for tiling window managers
+    feh # A light-weight image viewer
+    loupe # A simple image viewer application written with GTK4 and Rust
+
     #__ Screenshotting __#
     grim # Grab images from a Wayland compositor
     grimblast # A helper for screenshots within Hyprland, based on grimshot
@@ -254,9 +258,7 @@
     # fcitx5 # Next generation of fcitx
 
     #__ Desktop apps __#
-    feh # A light-weight image viewer
     gromit-mpx # Desktop annotation tool
-    imv # A command line image viewer for tiling window managers
     screenkey # A screencast tool to display your keys inspired by Screenflick
     akira-unstable # Native Linux Design application built in Vala and GTK
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
