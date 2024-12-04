@@ -9,8 +9,8 @@
     # Zram configuration
     ./modules/zram.nix
 
-    # Hardware-specific configurations
-    ./modules/hardware.nix
+    # Hardware & Drivers configurations
+    ./modules/drivers.nix
 
     # Power management settings
     ./modules/powermanagement.nix
@@ -22,7 +22,6 @@
     ./modules/fonts.nix
     ./modules/user.nix
     ./modules/wine.nix
-    ./modules/drivers.nix
     ./modules/media.nix
 
     # window manager settings
