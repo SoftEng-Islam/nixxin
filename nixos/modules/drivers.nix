@@ -6,6 +6,7 @@
     amdgpu.amdvlk.supportExperimental.enable = true;
     amdgpu.initrd.enable = true;
     amdgpu.opencl.enable = true;
+    amdgpu.legacySupport.enable = true;
     cpu.amd.updateMicrocode = true;
     enableAllFirmware = true;
     graphics.enable = true;
@@ -29,6 +30,7 @@
       amd-blis # BLAS-compatible library optimized for AMD CPUs
       amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
       amf # AMD's closed source Advanced Media Framework (AMF) driver
+      aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
       clinfo # Print all known information about all available OpenCL platforms and devices in the system
       dxvk # A Vulkan-based translation layer for Direct3D

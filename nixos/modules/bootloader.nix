@@ -15,8 +15,10 @@
         enable = true;
         efiSupport = true;
         gfxmodeEfi = "1920x1080";
-        device =
-          "nodev"; # Ensures GRUB installs only to /boot and doesn't overwrite any disk
+
+        # List all the devices with their by-id symlinks
+        # ls -l /dev/disk/by-id/
+        device = "/dev/disk/by-id/wwn-0x50014ee601fa520f";
         useOSProber = true;
         extraConfig = ''
           GRUB_DISABLE_OS_PROBER=false
