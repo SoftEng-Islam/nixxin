@@ -1,9 +1,4 @@
-{ inputs
-, lib
-, pkgs
-, ...
-}:
-{
+{ pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
     users.softeng = {
@@ -30,9 +25,7 @@
         "kvm"
         "libvirtd"
       ];
-      packages = with pkgs; [
-        thunderbird
-      ];
+      packages = with pkgs; [ thunderbird ];
     };
   };
   # services.getty.autologinUser = "softeng"; # Enable automatic login for the user.

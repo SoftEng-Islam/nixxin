@@ -4,13 +4,22 @@
     amdgpu.amdvlk.enable = true;
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.initrd.enable = true;
+    amdgpu.initrd.enable = false;
     amdgpu.opencl.enable = true;
     amdgpu.legacySupport.enable = true;
     cpu.amd.updateMicrocode = true;
     enableAllFirmware = true;
     graphics.enable = true;
+    graphics.enable32Bit = true;
+    graphics.extraPackages = with pkgs; [
+      rocmPackages.clr.icd
+      mesa.opencl
+      amdvlk
+      driversi686Linux.amdvlk
+    ];
   };
+  systemd.tmpfiles.rules =
+    [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
   environment = {
     variables = {
       # For AMD GPUs
@@ -19,8 +28,12 @@
       GPU_SINGLE_ALLOC_PERCENT = "50";
       GPU_MAX_USE_SYNC_OBJECTS = "1";
       GPU_FORCE_64BIT_PTR = "1";
+      # As of ROCm 4.5, AMD has disabled OpenCL on Polaris based cards. This can be re-enabled by:
+      ROC_ENABLE_PRE_VEGA = "1";
+      AMD_VULKAN_ICD = "RADV";
     };
     systemPackages = with pkgs; [
+      linux-firmware # Binary firmware collection packaged by kernel.org
       # AMD Stuff
       amdvlk # AMD Open Source Driver For Vulkan
       driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan

@@ -1,13 +1,8 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}:
-{
+{ pkgs, ... }: {
   programs = {
     hyprland.enable = true;
-    hyprlock.enable = false; # Whether to enable hyprlock, Hyprland’s GPU-accelerated screen locking utility.
+    hyprlock.enable =
+      false; # Whether to enable hyprlock, Hyprland’s GPU-accelerated screen locking utility.
     hyprland.xwayland.enable = true; # Whether to enable XWayland.
     hyprland.withUWSM = true;
     uwsm.enable = true;
@@ -17,7 +12,8 @@
     pam.services.astal-auth = { };
   };
   services = {
-    hypridle.enable = false; # Whether to enable hypridle, Hyprland’s idle daemon.
+    hypridle.enable =
+      false; # Whether to enable hypridle, Hyprland’s idle daemon.
   };
   systemd = {
     user.services.polkit-gnome-authentication-agent-1 = {
@@ -27,7 +23,8 @@
       after = [ "graphical-session.target" ];
       serviceConfig = {
         Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        ExecStart =
+          "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
         Restart = "on-failure";
         RestartSec = 1;
         TimeoutStopSec = 10;

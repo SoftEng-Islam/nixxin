@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   networking = {
     networkmanager = {
       enable = true;
@@ -29,9 +28,7 @@
           EnableIPv6 = true;
           RoutePriorityOffset = 300;
         };
-        Settings = {
-          AutoConnect = true;
-        };
+        Settings = { AutoConnect = true; };
       };
     };
   };
@@ -44,12 +41,8 @@
       enable = true;
       settings = {
         # Set Google DNS for IPv4 and IPv6
-        server = [
-          "8.8.8.8"
-          "8.8.4.4"
-          "2001:4860:4860::8888"
-          "2001:4860:4860::8844"
-        ];
+        server =
+          [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
         # Provide DHCP settings (if applicable)
         dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         dhcpLeaseTime = "12h";
@@ -57,6 +50,7 @@
     };
   };
   environment.systemPackages = with pkgs; [
+    linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
     ntp # An implementation of the Network Time Protocol
     openresolv # A program to manage /etc/resolv.conf
     radvd # IPv6 Router Advertisement Daemon

@@ -33,6 +33,7 @@
     pacman # A simple library-based package manager
 
     #__ Terminals __#
+    bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
     foot # A fast, lightweight and minimalistic Wayland terminal emulator
     fish # Smart and user-friendly command line shell
@@ -198,7 +199,7 @@
     rubyPackages.execjs
 
     #__ 3D Tools & Applications __#
-    #blender-hip # 3D Creation/Animation/Publishing System
+    blender-hip # 3D Creation/Animation/Publishing System
 
     #__ Games __#
     # zeroad

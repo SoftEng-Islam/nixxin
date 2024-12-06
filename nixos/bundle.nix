@@ -18,7 +18,7 @@
     # User environment (programs, services, etc.)
     ./modules/nixos.nix
     ./modules/programs.nix
-    ./modules/env.nix
+    ./modules/Environment.nix
     ./modules/fonts.nix
     ./modules/user.nix
     ./modules/wine.nix
@@ -37,6 +37,6 @@
     ./modules/locale.nix
     # ./laptop.nix
     ./modules/gnome.nix
-
+    ./modules/appearance.nix
   ];
 }

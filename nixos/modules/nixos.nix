@@ -1,6 +1,5 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
     nix-index # A files database for nixpkgs
@@ -12,10 +11,5 @@
     alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
     nixd # Feature-rich Nix language server interoperating with C++ nix
     nixdoc # Generate documentation for Nix functions
-
-    # Plymouth Theme For Nixos:
-    plymouth # Boot splash and boot logger
-    nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
-
   ];
 }

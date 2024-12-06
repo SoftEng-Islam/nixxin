@@ -1,5 +1,4 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
   hardware = {
     pulseaudio.enable = false;
     # pulseaudio.enable = false; # Enable sound with pipewire.
@@ -16,10 +15,13 @@
       wireplumber.enable = true;
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
-          "default.clock.rate" = 192000; # Maximum common sample rate for high-quality audio
-          "default.clock.quantum" = 64; # Smallest quantum for the lowest latency
+          "default.clock.rate" =
+            192000; # Maximum common sample rate for high-quality audio
+          "default.clock.quantum" =
+            64; # Smallest quantum for the lowest latency
           "default.clock.min-quantum" = 64;
-          "default.clock.max-quantum" = 1024; # Maximum for flexibility if needed
+          "default.clock.max-quantum" =
+            1024; # Maximum for flexibility if needed
         };
       };
     };
@@ -30,7 +32,8 @@
     '';
   };
   security = {
-    rtkit.enable = true; # Whether to enable the RealtimeKit system service "recommended"
+    rtkit.enable =
+      true; # Whether to enable the RealtimeKit system service "recommended"
     pam.loginLimits = [
       {
         domain = "@audio";
@@ -60,6 +63,7 @@
   };
   environment.systemPackages = with pkgs; [
     alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
+    sof-firmware # Sound Open Firmware
     # pulseaudio # Sound server for POSIX and Win32 systems
     # pulseaudio-ctl # Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils
     pamixer # Pulseaudio command line mixer

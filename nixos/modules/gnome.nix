@@ -27,16 +27,6 @@
         enable = true;
         # Specify GNOME GSettings overrides
         extraGSettingsOverrides = ''
-          [org.gnome.desktop.interface]
-          gtk-theme='Colloid-Dark'
-          icon-theme='Papirus-Dark'
-          color-scheme='prefer-dark'
-          cursor-theme='Breeze_Light'
-          cursor-size=24
-
-          [org.gnome.desktop.wm.preferences]
-          button-layout='close,minimize,maximize:'
-
           [org.gnome.mutter]
           check-alive-timeout=0
         '';
@@ -56,11 +46,9 @@
     gnome-themes-extra
     gnome-tweaks # A tool to customize advanced GNOME 3 options
     gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
-    gnomeExtensions.night-light-slider-updated # Night Light Slider updated for GNOME
     libgnome-keyring # Framework for managing passwords and other secrets
     libsoup_3 # HTTP client/server library for GNOME
 
-    gnome-color-manager # Set of graphical utilities for color management to be used in the GNOME desktop
     eog # GNOME image viewer
 
     # Polkit
