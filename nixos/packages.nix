@@ -202,7 +202,7 @@
     blender-hip # 3D Creation/Animation/Publishing System
 
     #__ Games __#
-    # zeroad
+    zeroad
 
     #__ Nodejs & JavaScript Stuff __#
     nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
