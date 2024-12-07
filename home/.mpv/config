@@ -1,0 +1,7 @@
+# Write your default config options here!
+af-add=scaletempo
+save-position-on-quit
+keep-open
+hwdec=auto-safe
+vo=gpu
+gpu-context=wayland

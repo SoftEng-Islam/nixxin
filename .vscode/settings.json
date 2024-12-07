@@ -6,8 +6,11 @@
     "editor.selectionHighlightBackground": "#1438659e",
 
     "activityBar.background": "#40347b",
+    "activityBar.foreground":"#ffffff",
+    "activityBar.inactiveForeground":"#000000",
     "titleBar.activeBackground": "#40347b",
     "titleBar.activeForeground": "#FAFCFC",
-    "statusBar.background": "#40347b"
+    "statusBar.background": "#260554",
+    "statusBar.border":"#580013"
   }
 }

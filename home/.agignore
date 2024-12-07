@@ -1,0 +1,11 @@
+*.sql
+*.tags*
+*.gemtags*
+*.tmp*
+*.min.js
+*.min.css
+*.plist
+*.pdf
+*.a
+compile_commands.json
+tags

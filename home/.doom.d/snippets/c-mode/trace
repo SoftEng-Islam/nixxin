@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: trace function
+# key: trace
+# --
+#include <linux/trace-helper.h>
+TRACE_CALL_PER_CYCLE(1000000000);
