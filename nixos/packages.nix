@@ -4,6 +4,35 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
+    neovim
+    ouch
+    psmisc
+    sipcalc
+    iperf
+    openssl
+    binutils
+    file
+    wget
+    htop
+    silver-searcher
+    lsof
+    tcpdump
+    tmux
+    rsync
+    git
+    tig
+    python3
+    strace
+    bandwhich
+    iotop
+    man-pages
+    dnsutils
+    netcat
+    mtr
+    whois
+    usbutils
+    pciutils
+
     sudo # A command to run commands as root
     dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
@@ -30,18 +59,6 @@
     dpkg # The Debian package manager
     rpm # The RPM Package Manager
     pacman # A simple library-based package manager
-
-    #__ Terminals __#
-    powerline
-    powerline-fonts
-    powerline-rs
-    bat # Cat(1) clone with syntax highlighting and Git integration
-    eza # A modern, maintained replacement for ls
-    foot # A fast, lightweight and minimalistic Wayland terminal emulator
-    fish # Smart and user-friendly command line shell
-    fzf # Command-line fuzzy finder written in Go
-    kitty # A modern, hackable, featureful, OpenGL based terminal emulator
-    nanorc # Improved Nano Syntax Highlighting Files
 
     #__ gtk & Themes Stuff __#
     adw-gtk3 # The theme from libadwaita ported to GTK-3
@@ -80,6 +97,7 @@
     ntfs3g # FUSE-based NTFS driver with full write support
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool
+    jmtpfs # FUSE filesystem for MTP devices like Android phones
 
     #__ CLI Tools __#
     lsof # A tool to list open files

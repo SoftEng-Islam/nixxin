@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   fonts = {
+    enableDefaultPackages = true;
     packages = with pkgs; [
       fira-code # Monospace font with programming ligatures
       jetbrains-mono # Typeface made for developers

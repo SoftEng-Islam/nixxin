@@ -3,13 +3,12 @@
     zsh = {
       enable = true;
       ohMyZsh.enable = true;
+      enableGlobalCompInit = true;
+      interactiveShellInit = ''
+        source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
+      '';
     };
   };
-  # do this in private dotfiles
-  programs.zsh.enableGlobalCompInit = false;
-  #programs.zsh.interactiveShellInit = ''
-  #  source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
-  #'';
   environment.systemPackages = with pkgs; [
     fzf-zsh # wrap fzf to use in oh-my-zsh
     oh-my-zsh # A framework for managing your zsh configuration

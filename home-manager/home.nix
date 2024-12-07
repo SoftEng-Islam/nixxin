@@ -101,4 +101,9 @@ in {
   gtk.theme.name = "adw-gtk3";
   gtk.iconTheme.package = gruvboxPlus;
   gtk.iconTheme.name = "GruvboxPlus";
+
+  # better eval time
+  manual.html.enable = false;
+  manual.manpages.enable = false;
+  manual.json.enable = false;
 }

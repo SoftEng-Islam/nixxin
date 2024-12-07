@@ -38,6 +38,7 @@
     enable = true;
   };
   environment.systemPackages = with pkgs; [
+    gsettings-desktop-schemas
     playerctl # gsconnect play/pause command
     pamixer # gcsconnect volume control
     dconf-editor

@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  # Video & Audio & Images | graphics & Formats
   environment.systemPackages = with pkgs; [
     kdenlive # Video editor
     # davinci-resolve # Professional video editing, color, effects and audio post-processing
@@ -65,9 +66,18 @@
     gst_all_1.gst-vaapi # Set of VAAPI GStreamer Plug-ins
 
     # Media Players
-    mpv # General-purpose media player, fork of MPlayer and mplayer2
+    # jellyfin
+    jellyfin-media-player
+    playerctl
+    mumble
+    ferdium
+    # mpv # General-purpose media player, fork of MPlayer and mplayer2
+    (mpv.override { scripts = [ mpvScripts.mpris ]; })
     vlc # Cross-platform media player and streaming server
     clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
     glide-media-player # Linux/macOS media player based on GStreamer and GTK
+
+    # Images
+    graphicsmagick # GraphicsMagick is the swiss army knife of image processing
   ];
 }

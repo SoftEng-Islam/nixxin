@@ -6,24 +6,30 @@
       description = "Nixos Admin";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
-        "root"
-        "wheel" # Ability to use sudo for administrative tasks.
-        "input" # Access to input devices like keyboards and mice.
+        "adbusers"
         "audio" # Access to audio devices.
-        "render"
-        "video" # Access to video devices
-        "i2c"
+        "dialout"
         "disk"
+        "docker"
+        "flatpak"
+        "i2c"
+        "input" # Access to input devices like keyboards and mice.
+        "kvm"
+        "libvirtd"
+        "lp" # Manage printers.
+        "network"
+        "networkmanager" # Permissions to manage network connections.
+        "plugdev"
+        "qemu"
+        "render"
+        "root"
         "sshd"
         "storage" # Access to storage devices.
         "uucp" # Access to serial ports and devices connected via serial ports.
-        "lp" # Manage printers.
-        "flatpak"
-        "network"
-        "networkmanager" # Permissions to manage network connections.
-        "qemu"
-        "kvm"
-        "libvirtd"
+        "vboxusers"
+        "video" # Access to video devices
+        "wheel" # Ability to use sudo for administrative tasks.
+        "wireshark"
       ];
       packages = with pkgs; [ thunderbird ];
     };

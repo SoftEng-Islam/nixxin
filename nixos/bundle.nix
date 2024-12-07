@@ -38,7 +38,7 @@
     #./modules/nautilus.nix
     ./modules/locale.nix
     # ./laptop.nix
-
+    ./modules/wezterm.nix
     ./modules/appearance.nix
   ];
 }
