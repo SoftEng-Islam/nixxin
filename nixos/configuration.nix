@@ -8,18 +8,6 @@
     ./packages.nix
     ./bundle.nix
   ];
-  # documentation.nixos.enable = false; # .desktop
-
-  nix = {
-    # package = pkgs.nixStable;
-    package = pkgs.nixVersions.latest;
-    extraOptions = ''
-      sandbox = true
-      max-jobs = 4
-      auto-optimise-store = true
-    '';
-    settings.experimental-features = [ "nix-command" "flakes" ];
-  };
 
   xdg = {
     portal = {

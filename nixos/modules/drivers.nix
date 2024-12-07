@@ -11,6 +11,14 @@
     enableAllFirmware = true;
     graphics.enable = true;
     graphics.enable32Bit = true;
+    amdgpu.amdvlk.settings = {
+      AllowVkPipelineCachingToDisk = 1;
+      EnableVmAlwaysValid = 1;
+      IFH = 0;
+      IdleAfterSubmitGpuMask = 1;
+      ShaderCacheMode = 1;
+    };
+
     graphics.extraPackages = with pkgs; [
       rocmPackages.clr.icd
       mesa.opencl
@@ -33,6 +41,10 @@
       AMD_VULKAN_ICD = "RADV";
     };
     systemPackages = with pkgs; [
+      oclgrind # OpenCL device simulator and debugger
+      amd-ucodegen # Tool to generate AMD microcode files
+      microcode-amd # AMD Processor microcode patch
+      pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
       linux-firmware # Binary firmware collection packaged by kernel.org
       # AMD Stuff
       amdvlk # AMD Open Source Driver For Vulkan
@@ -66,6 +78,8 @@
       opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
       opencl-clhpp # OpenCL Host API C++ bindings
       opencl-headers # Khronos OpenCL headers version 2023.12.14
+      oclgrind # OpenCL device simulator and debugger
+
       rocmPackages.rocm-core
       rocmPackages.rocm-comgr
       rocmPackages.rocm-runtime

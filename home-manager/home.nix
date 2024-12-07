@@ -59,9 +59,9 @@ in {
 
   home.sessionVariables = {
     # EDITOR = "emacs";
-    GTK_IM_MODULE = "ibus";
-    QT_IM_MODULE = "ibus";
-    XMODIFIERS = "@im=ibus";
+    # GTK_IM_MODULE = "ibus";
+    # QT_IM_MODULE = "ibus";
+    # XMODIFIERS = "@im=ibus";
   };
   # Let Home Manager install and manage itself.
   programs = {

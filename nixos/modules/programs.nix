@@ -7,13 +7,9 @@
     droidcam.enable = true; # camera
     mtr.enable = true;
     xwayland.enable = false;
-    zsh.enable = true;
-    zsh.ohMyZsh.enable = true;
     htop = {
       enable = true;
-      settings = {
-        tree_view = 1;
-      };
+      settings = { tree_view = 1; };
     };
     gnupg.agent = {
       enable = true;

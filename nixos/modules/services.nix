@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{
   services = {
     # fstrim.enable = true; # Whether to enable periodic SSD TRIM of mounted partitions in background.
     # tlp.enable = true;
@@ -20,6 +20,7 @@
     fwupd.enable =
       false; # a DBus service that allows applications to update firmware.
     geoclue2.enable = true;
+    colord.enable = true;
 
     # logind
     logind.extraConfig = ''

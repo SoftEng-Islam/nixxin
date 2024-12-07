@@ -33,8 +33,14 @@
       };
     };
   };
-
+  programs.kdeconnect = {
+    package = pkgs.gnomeExtensions.gsconnect;
+    enable = true;
+  };
   environment.systemPackages = with pkgs; [
+    playerctl # gsconnect play/pause command
+    pamixer # gcsconnect volume control
+    dconf-editor
     gdm # A program that manages graphical display servers and handles graphical user logins
     gjs # JavaScript bindings for GNOME
     gnome-bluetooth # Application that lets you manage Bluetooth in the GNOME desktop
@@ -48,7 +54,6 @@
     gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
     libgnome-keyring # Framework for managing passwords and other secrets
     libsoup_3 # HTTP client/server library for GNOME
-
     eog # GNOME image viewer
 
     # Polkit

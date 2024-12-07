@@ -69,6 +69,7 @@
     pamixer # Pulseaudio command line mixer
     pavucontrol # PulseAudio Volume Control
     pipewire # Server and user space API to deal with multimedia pipelines
+    pipecontrol # Pipewire control GUI program in Qt (Kirigami2)
     pulseaudioFull # Sound server for POSIX and Win32 systems
     wireplumber # Modular session / policy manager for PipeWire
   ];

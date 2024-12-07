@@ -16,17 +16,19 @@
     ./modules/powermanagement.nix
 
     # User environment (programs, services, etc.)
+    ./modules/Environment.nix
+    ./modules/Users.nix
     ./modules/nixos.nix
     ./modules/programs.nix
-    ./modules/Environment.nix
     ./modules/fonts.nix
-    ./modules/user.nix
+    ./modules/Gameing.nix
     ./modules/wine.nix
     ./modules/media.nix
 
     # window manager settings
     ./modules/hyprland.nix
-
+    ./modules/gnome.nix
+    ./modules/Hacking.nix
     # System services and security
     ./modules/security.nix
     ./modules/networking.nix
@@ -36,7 +38,7 @@
     #./modules/nautilus.nix
     ./modules/locale.nix
     # ./laptop.nix
-    ./modules/gnome.nix
+
     ./modules/appearance.nix
   ];
 }

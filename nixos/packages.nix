@@ -14,7 +14,6 @@
     pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
     udevil # Mount without password
     geoclue2 # Geolocation framework and some data providers
-    steam-run # Run commands in the same FHS environment that is used for Steam
 
     #__ Editors __#
     curl # A command line tool for transferring files with URL syntax
@@ -33,22 +32,16 @@
     pacman # A simple library-based package manager
 
     #__ Terminals __#
+    powerline
+    powerline-fonts
+    powerline-rs
     bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
     foot # A fast, lightweight and minimalistic Wayland terminal emulator
     fish # Smart and user-friendly command line shell
     fzf # Command-line fuzzy finder written in Go
-    fzf-zsh # wrap fzf to use in oh-my-zsh
     kitty # A modern, hackable, featureful, OpenGL based terminal emulator
     nanorc # Improved Nano Syntax Highlighting Files
-    oh-my-zsh # A framework for managing your zsh configuration
-    zsh # The Z shell
-    zsh-autocomplete # Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion
-    zsh-autosuggestions # Fish shell autosuggestions for Zsh
-    zsh-completions # Additional completion definitions for zsh
-    zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
-    zsh-git-prompt # Informative git prompt for zsh
-    zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
 
     #__ gtk & Themes Stuff __#
     adw-gtk3 # The theme from libadwaita ported to GTK-3
@@ -92,13 +85,6 @@
     lsof # A tool to list open files
     lux # Fast and simple video download library and CLI tool written in Go
     yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
-
-    # Hacking & security Tools
-    hashcat # Fast password cracker
-    hashcat-utils # Small utilities that are useful in advanced password cracking
-    hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-    john # John the Ripper password cracker
-    johnny # Open Source GUI frontend for John the Ripper
 
     #__ Nautilus __#
     nautilus # File Manager
@@ -201,9 +187,6 @@
     #__ 3D Tools & Applications __#
     blender-hip # 3D Creation/Animation/Publishing System
 
-    #__ Games __#
-    zeroad
-
     #__ Nodejs & JavaScript Stuff __#
     nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
     nodePackages.pnpm # Fast, disk space efficient package manager
@@ -212,7 +195,6 @@
     #__ System Tools __#
     busybox # Tiny versions of common UNIX utilities in a single small executable
     # flatpak # Linux application sandboxing and distribution framework
-    mangohud # A Vulkan and OpenGL overlay for monitoring FPS, temperatures, CPU/GPU load and more
     openssl # A cryptographic library that implements the SSL and TLS protocols
     resources # Monitor your system resources and processes
     fdupes # Identifies duplicate files residing within specified directories
@@ -337,9 +319,6 @@
     #__ System and powermanagement utilies __#
     fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     bpftrace # High-level tracing language for Linux eBPF
-    amd-ucodegen # Tool to generate AMD microcode files
-    microcode-amd # AMD Processor microcode patch
-    zram-generator # Systemd unit generator for zram devices
 
     #__ ASUS ROG Laptops __#
     # asusctl # A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
