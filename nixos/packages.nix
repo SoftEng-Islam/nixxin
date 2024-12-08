@@ -174,30 +174,6 @@
     rustc # A safe, concurrent, practical language (wrapper script)
     rustup # The Rust toolchain installer
 
-    #__ Python __#
-    python312 # Python Version 3.12
-    pyenv # Simple Python version management
-    meson # An open source, fast and friendly build system made in Python
-    python312Packages.build
-    python312Packages.cairosvg
-    python312Packages.certifi
-    python312Packages.charset-normalizer
-    python312Packages.click
-    python312Packages.idna
-    python312Packages.loguru
-    python312Packages.markupsafe
-    python312Packages.pillow
-    python312Packages.psutil
-    python312Packages.pycairo
-    python312Packages.pygobject3
-    python312Packages.pywal
-    python312Packages.pywayland
-    python312Packages.requests
-    python312Packages.setuptools-scm
-    python312Packages.urllib3
-    python312Packages.wheel
-    # python312Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-
     #__ Ruby __#
     ruby_3_3 # An object-oriented language for quick and easy programming
     rubyPackages.execjs

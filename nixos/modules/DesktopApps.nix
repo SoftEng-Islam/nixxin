@@ -6,7 +6,11 @@
     inkscape
     mumble
     signal-desktop
-
+    uget
+    motrix
+    qbittorrent
+    qbittorrent-enhanced
+    qbittorrent-nox
     gimp
   ];
 }
