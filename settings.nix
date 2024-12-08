@@ -1,12 +1,12 @@
 { pkgs, ... }: rec {
   system = "x86_64-linux";
-  hostname = "alfheim"; # Hostname
-  username = "serpentian"; # Username
+  hostname = "nixos"; # Hostname
+  username = "softeng"; # Username
   profile = "desktop"; # Select from profiles directory
   timezone = "Europe/Moscow"; # Select timezone
   locale = "en_US.UTF-8"; # Select locale
-  name = "Nikita Zheleztsov"; # Name (git config)
-  email = "n.zheleztsov@proton.me"; # Email (git config)
+  name = "Islam Ahmed"; # Name (git config)
+  email = "softeng.islam@gmail.com"; # Email (git config)
   dotfilesDir = "/home/${username}/.dotfiles"; # Absolute path of the local repo
   theme = "nord"; # Selected theme from themes directory (./themes/)
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
