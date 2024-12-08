@@ -35,5 +35,6 @@
     curl
     wget2
     media-downloader
+
   ];
 }
