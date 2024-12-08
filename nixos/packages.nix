@@ -57,8 +57,8 @@
     #__ Package Managers __#
     # pkg # Package management tool for FreeBSD
     dpkg # The Debian package manager
-    rpm # The RPM Package Manager
-    pacman # A simple library-based package manager
+    # rpm # The RPM Package Manager
+    # pacman # A simple library-based package manager
 
     #__ gtk & Themes Stuff __#
     adw-gtk3 # The theme from libadwaita ported to GTK-3

@@ -16,6 +16,10 @@
     };
   };
   environment.systemPackages = with pkgs; [
+    zsh-better-npm-completion
+    zsh-abbr
+    zsh-fzf-tab
+    zsh-autopair
     zsh-autoenv
     fzf-zsh # wrap fzf to use in oh-my-zsh
     oh-my-zsh # A framework for managing your zsh configuration
@@ -26,6 +30,7 @@
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
     zsh-git-prompt # Informative git prompt for zsh
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
-    zsh-fast-syntax-highlighting
+    # zsh-fast-syntax-highlighting
+    zsh-f-sy-h
   ];
 }
