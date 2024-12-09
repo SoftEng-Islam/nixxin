@@ -27,8 +27,8 @@ imports = [
 
 The configuration is separated into several profiles:
 
-* Personal - personal laptop/desktop
-* Work - work laptop (included in the Personal profile)
+- Personal - personal laptop/desktop
+- Work - work laptop (included in the Personal profile)
 
 Each profile contains a `configuration.nix` for system-level configuration and a
 `home.nix` for user-level configuration. Setting the `profile` variable in
@@ -53,8 +53,54 @@ sudo nixos-generate-config --show-hardware-config > profiles/desktop/hardware-co
 
 > [!WARNING]
 >
-> - Please don't use my hardware configuration, your system won't boot!
+> - Don't use my hardware configuration, your system won't boot!
 >
+
+Now, it's time to configure `settings.nix` (and probably profiles) to your liking.
+Once the variables are set, then switch into the system configuration by running:
+
+```bash
+cd ~/.nixxin
+sudo nixos-rebuild switch --flake .
+```
+
+Home manager can be installed with:
+
+```bash
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+nix-shell '<home-manager>' -A install
+```
+
+If home-manager starts to not cooperate, it may be because the unstable branch
+of nixpkgs is in the Nix channel list. This can be fixed via:
+
+```bash
+nix-channel --add https://nixos.org/channels/nixpkgs-unstable
+nix-channel --update
+```
+
+Home-manager may also not work without re-logging back in after it has been
+installed. Once home-manager is running, the home-manager configuration can be
+installed with:
+
+```bash
+cd ~/.nixxin
+home-manager switch --flake .
+```
+
+## Themes
+
+![Screen](./assets/catppuccin/overview.png)
+
+![Screen2](./assets/gruvbox/overview.png)
+
+![Screen3](./assets/everforest/overview.png)
+
+## Credits
+
+- [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config?tab=readme-ov-file) - The repo structure is heavily inspired by this repo.
+- Also, check out his [NixOS videos](https://piped.video/channel/UCeZyoDTk0J-UPhd7MUktexw), fantastic entry point to NixOS.
 
 Enjoy!
 
