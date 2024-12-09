@@ -7,8 +7,8 @@
 > - Please don't use this script, still under development
 >
 
-This repository is home to the Nix code that builds my systems. Issues, PRs
-and questions are welcome!
+This repository is home to the Nix code that builds my systems.
+Issues, PRs and questions are welcome!
 
 ## Modules
 
@@ -31,13 +31,13 @@ The configuration is separated into several profiles:
 - Work - work laptop (included in the Personal profile)
 
 Each profile contains a `configuration.nix` for system-level configuration and a
-`home.nix` for user-level configuration. Setting the `profile` variable in
-[`flake.nix`](https://github.com/SoftEng-Islam/nixxin/blob/main/flake.nix) automatically sources the correct `configuration.nix` and `home.nix`.
+`home.nix` for user-level configuration.
+Setting the `profile` variable in [`flake.nix`](https://github.com/SoftEng-Islam/nixxin/blob/main/flake.nix) automatically sources the correct `configuration.nix` and `home.nix`.
 
 ## Installation
 
-I suppose, you already installed NixOS. To get this config running, start by
-cloning the repo:
+I suppose, you already installed NixOS.
+To get this config running, start by cloning the repo:
 
 ```bash
 git clone https://github.com/SoftEng-Islam/nixxin.git ~/.nixxin
