@@ -2,12 +2,12 @@
   system = "x86_64-linux";
   hostname = "nixos"; # Hostname
   username = "softeng"; # Username
-  profile = "desktop"; # Select from profiles directory
-  timezone = "Europe/Moscow"; # Select timezone
+  profile = "softeng"; # Select from profiles directory
+  timezone = "Africa/Cairo"; # Select timezone
   locale = "en_US.UTF-8"; # Select locale
   name = "Islam Ahmed"; # Name (git config)
   email = "softeng.islam@gmail.com"; # Email (git config)
-  dotfilesDir = "/home/${username}/.dotfiles"; # Absolute path of the local repo
+  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
   theme = "nord"; # Selected theme from themes directory (./themes/)
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
@@ -26,8 +26,8 @@
   editor = "nvim"; # Default editor
   editorPkg = pkgs.neovim;
   browser =
-    "firefox"; # Default browser; must select one from ./user/app/browser/
-  browserPkg = pkgs.firefox;
+    "microsoft-edge"; # Default browser; must select one from ./user/app/browser/
+  browserPkg = pkgs.microsoft-edge;
   term = "kitty"; # Default terminal command
   termPkg = pkgs.kitty;
 }
