@@ -4,6 +4,7 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
+    sct # Minimal utility to set display colour temperature
     neovim
     ouch
     psmisc
