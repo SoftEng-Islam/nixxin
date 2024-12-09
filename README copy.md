@@ -1,23 +1,3 @@
-<h2 align="center">❄️  AlfheimOS ❄️ </h2>
-
-<p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/palette/macchiato.png" width="400" />
-</p>
-
-<p align="center">
-	<a href="https://github.com/ryan4yin/nix-config/stargazers">
-		<img alt="Stargazers" src="https://img.shields.io/github/stars/serpentian/AlfheimOS?style=for-the-badge&logo=starship&color=C9CBFF&logoColor=D9E0EE&labelColor=302D41"></a>
-    <a href="https://nixos.org/">
-        <img src="https://img.shields.io/badge/NixOS-23.11-informational.svg?style=for-the-badge&logo=nixos&color=F2CDCD&logoColor=D9E0EE&labelColor=302D41"></a>
-</p>
-
-
-This repository is home to the Nix code that builds my systems. Issues, PRs
-and questions are welcome!
-
-If you are from Lemmy or Reddit and want to check config from the screenshot,
-please, go to [this branch](https://github.com/Serpentian/AlfheimOS/tree/catppuccin-reddit);
-
 ## Modules
 
 The config is modular, you can either specify settings inside [`flake.nix`](https://github.com/Serpentian/AlfheimOS/blob/master/flake.nix) or/and
