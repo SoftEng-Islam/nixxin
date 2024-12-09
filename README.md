@@ -1,6 +1,6 @@
 # nixxin
 
-Nixos Enhancement Configurations
+**Nixos** Enhancement Configurations
 
 > [!WARNING]
 >
@@ -99,6 +99,7 @@ home-manager switch --flake .
 
 ## Credits
 
+https://github.com/Serpentian/AlfheimOS
 - [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config?tab=readme-ov-file) - The repo structure is heavily inspired by this repo.
 - Also, check out his [NixOS videos](https://piped.video/channel/UCeZyoDTk0J-UPhd7MUktexw), fantastic entry point to NixOS.
 
