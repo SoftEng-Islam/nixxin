@@ -1,9 +1,7 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    w3m
-  ];
+  home.packages = with pkgs; [ w3m ];
 
   home.file.".w3m/config".text = ''
     inline_img_protocol 4
