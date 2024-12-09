@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    wlsunset # Wayland compositors supporting wlr-gamma-control-unstable-v1.
+    # sct # X11 CLI Minimal utility to set display colour temperature. EX: sct 2000
     shell-gpt # Access ChatGPT from your terminal
     tio
     patool
