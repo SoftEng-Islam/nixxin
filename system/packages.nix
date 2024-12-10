@@ -17,21 +17,20 @@
     silver-searcher # Code-searching tool similar to ack, but faster
     lsof # Tool to list open files
     tcpdump # Network sniffer
-    tmux
-    rsync
-    git
-    tig
-    python3
-    strace
-    bandwhich
-    iotop
-    man-pages
-    dnsutils
-    netcat
-    mtr
-    whois
-    usbutils
-    pciutils
+    tmux # Terminal multiplexer
+    rsync # Fast incremental file transfer utility
+    git # Distributed version control system
+    tig # Text-mode interface for git
+    strace # System call tracer for Linux
+    bandwhich # CLI utility for displaying current network utilization
+    iotop # Tool to find out the processes doing the most IO
+    man-pages # Linux development manual pages
+    dnsutils # Domain name server
+    netcat # Free TLS/SSL implementation
+    mtr # Network diagnostics tool
+    whois # Intelligent WHOIS client from Debian
+    usbutils # Tools for working with USB devices, such as lsusb
+    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
 
     sudo # A command to run commands as root
     dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
@@ -56,7 +55,7 @@
 
     #__ Package Managers __#
     # pkg # Package management tool for FreeBSD
-    dpkg # The Debian package manager
+    # dpkg # The Debian package manager
     # rpm # The RPM Package Manager
     # pacman # A simple library-based package manager
 
@@ -98,17 +97,6 @@
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool
     jmtpfs # FUSE filesystem for MTP devices like Android phones
-
-    #__ CLI Tools __#
-    lsof # A tool to list open files
-    lux # Fast and simple video download library and CLI tool written in Go
-    yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
-
-    #__ Nautilus __#
-    nautilus # File Manager
-    nautilus-python # Python bindings for the Nautilus Extension API
-    # insync-nautilus # This package contains the Python extension and icons for integrating Insync with Nautilus
-    # turtle # A graphical interface for version control intended to run on gnome and nautilus
 
     #__ Wayland Stuff __#
     anyrun # A wayland-native, highly customizable runner
@@ -159,9 +147,6 @@
     #__ Ruby __#
     ruby_3_3 # An object-oriented language for quick and easy programming
     rubyPackages.execjs
-
-    #__ 3D Tools & Applications __#
-    blender-hip # 3D Creation/Animation/Publishing System
 
     #__ Nodejs & JavaScript Stuff __#
     nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
