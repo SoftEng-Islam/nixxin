@@ -16,7 +16,7 @@
       extraConfig.pipewire."92-low-latency" = {
         "context.properties" = {
           "default.clock.rate" =
-            192000; # Maximum common sample rate for high-quality audio
+            48000; # Maximum common sample rate for high-quality audio
           "default.clock.quantum" =
             64; # Smallest quantum for the lowest latency
           "default.clock.min-quantum" = 64;

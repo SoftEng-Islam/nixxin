@@ -124,10 +124,6 @@
     matugen # A material you color generation tool
     wf-recorder # Utility program for screen recording of wlroots-based compositors
 
-    #__ Android __#
-    waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
-    scrcpy # Display and control Android devices over USB or TCP/IP
-
     #__ Developer Tools __#
     at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
     atkmm # C++ wrappers for ATK accessibility toolkit
