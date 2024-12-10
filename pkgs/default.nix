@@ -1,3 +1,1 @@
-{ pkgs }: rec {
-   _nemu = pkgs.callPackage ./nemu.nix {};
-}
+{ pkgs }: rec { _nemu = pkgs.callPackage ./nemu.nix { }; }
