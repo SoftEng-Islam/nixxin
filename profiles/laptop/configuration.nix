@@ -13,6 +13,8 @@
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.loader.efi.canTouchEfiVariables = true;
+  boot.loader.systemd-boot.enable = true;
 
   nixpkgs.overlays =
     import ../../lib/overlays.nix; # Add packages from the pkgs dir
