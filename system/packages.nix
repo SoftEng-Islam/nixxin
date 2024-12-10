@@ -4,19 +4,19 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
-    neovim
-    ouch
-    psmisc
-    sipcalc
-    iperf
-    openssl
-    binutils
-    file
-    wget
-    htop
-    silver-searcher
-    lsof
-    tcpdump
+    neovim # Vim text editor fork focused on extensibility and agility
+    ouch # Command-line utility for easily compressing and decompressing files and directories
+    psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
+    sipcalc # Advanced console ip subnet calculator
+    iperf # Tool to measure IP bandwidth using UDP or TCP
+    openssl # Cryptographic library that implements the SSL and TLS protocols
+    binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
+    file # Program that shows the type of files
+    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
+    htop # Interactive process viewer
+    silver-searcher # Code-searching tool similar to ack, but faster
+    lsof # Tool to list open files
+    tcpdump # Network sniffer
     tmux
     rsync
     git
