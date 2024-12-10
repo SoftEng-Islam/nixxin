@@ -32,6 +32,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    steam-run # Run commands in the same FHS environment that is used for Steam
     (mangohud.override { lowerBitnessSupport = true; })
     gamescope # SteamOS session compositing window manager
     gamemode # Optimise Linux system performance on demand

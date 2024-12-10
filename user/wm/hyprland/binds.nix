@@ -1,22 +1,17 @@
-{ config, pkgs, ... }:
-
 {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
 
     # Mouse bindings.
-    bindm = [
-      "$mod, mouse:272, movewindow"
-      "$mod, mouse:273, resizewindow"
-    ];
+    bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
 
     binde = [
-        ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
-        ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
-        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        "$mod ALT, k, exec, pulsemixer --change-volume +5"
-        "$mod ALT, j, exec, pulsemixer --change-volume -5"
+      ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
+      ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
+      ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
+      ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
+      "$mod ALT, k, exec, pulsemixer --change-volume +5"
+      "$mod ALT, j, exec, pulsemixer --change-volume -5"
     ];
 
     bind = [

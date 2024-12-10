@@ -1,9 +1,7 @@
-{ pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   home.packages = [ pkgs.git ];
   programs.git.enable = true;
-  programs.git.userName = "Nikita Zheleztsov";
-  programs.git.userEmail = "n.zheleztsov@proton.me";
+  programs.git.userName = "Islam Ahemd";
+  programs.git.userEmail = "softeng.islam@gmail.com";
   programs.git.extraConfig = { core.editor = "nvim"; };
 }

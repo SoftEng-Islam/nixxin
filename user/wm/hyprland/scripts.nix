@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   home.packages = with pkgs; [
     playerctl
     (pkgs.writeScriptBin "hyprworkspace" ''
@@ -63,7 +61,7 @@
 
       exec dbus-send                                                \
         --print-reply                                               \
-        --dest="org.mpris.MediaPlayer2.''$(playerctl -l | head -n 1)" \
+        --dest="org.mpris.MediaPlayer2.$(playerctl -l | head -n 1)" \
         /org/mpris/MediaPlayer2                                     \
         "org.mpris.MediaPlayer2.Player.$MEMBER"
     '')

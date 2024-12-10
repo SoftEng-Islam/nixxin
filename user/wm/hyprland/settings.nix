@@ -1,9 +1,7 @@
-{ config, pkgs, settings, inputs, ... }: let
-    details = settings.themeDetails;
+{ config, pkgs, settings, inputs, ... }:
+let details = settings.themeDetails;
 in {
-  home.packages = with pkgs; [
-    inputs.swww.packages.${pkgs.system}.swww
-  ];
+  home.packages = with pkgs; [ inputs.swww.packages.${pkgs.system}.swww ];
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -48,7 +46,7 @@ in {
         special = true;
         brightness = 1.0;
         contrast = 1.0;
-        noise = 0.02;
+        noise = 2.0e-2;
         passes = 3;
         size = 10;
       };
@@ -82,27 +80,23 @@ in {
       ];
     };
 
-    debug = {
-        disable_logs = false;
-    };
+    debug = { disable_logs = false; };
 
     input = {
       kb_layout = "us,ru";
       kb_options = "grp:win_space_toggle";
       follow_mouse = true;
-      touchpad = {
-          natural_scroll = true;
-      };
+      touchpad = { natural_scroll = true; };
     };
 
     device = {
-        name = "logitech-usb-receiver-mouse";
-        sensitivity = -1.0;
+      name = "logitech-usb-receiver-mouse";
+      sensitivity = -1.0;
     };
 
     gestures = {
-        workspace_swipe = true;
-        workspace_swipe_distance = 200;
+      workspace_swipe = true;
+      workspace_swipe_distance = 200;
     };
 
     dwindle = {
