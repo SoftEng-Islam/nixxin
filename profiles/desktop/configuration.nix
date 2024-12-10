@@ -16,7 +16,6 @@
     ../../system/gaming/lutris.nix
     ../../system/gaming/retroarch.nix
     ../../system/gaming/aagl.nix
-    ../../system/gaming/nethack.nix
     ../../system/security/vpn/xray.nix
     (./. + "../../../system/wm" + ("/" + builtins.elemAt settings.wm 0)
       + ".nix")

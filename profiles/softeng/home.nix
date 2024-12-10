@@ -3,7 +3,6 @@
     (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
     # (./. + "../../../user/wm"+("/" + builtins.elemAt settings.wm 1)+".nix")
     ../../themes/stylix.nix
-    ../../user/apps/w3m.nix
     ../../user/apps/spotify.nix
     ../../user/apps/kitty.nix
     ../../user/apps/git.nix
@@ -17,7 +16,6 @@
     ../../user/apps/neofetch
     ../../user/shell/zsh.nix
     ../../user/apps/mangohud.nix
-    ../../user/gaming/nethack.nix
     ../../user/apps/neovim
     ../../user/apps/btop
     ../../user/apps/mpd

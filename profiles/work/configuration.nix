@@ -1,4 +1,4 @@
-{ pkgs, lib, settings, ... }: {
+{ pkgs, settings, ... }: {
   imports = [
     ./hardware-configuration.nix
     ../../themes/stylix.nix
@@ -9,7 +9,6 @@
     ../../system/security/virtualization/general.nix
     ../../system/security/virtualization/nemu
     ../../system/apps/cron.nix
-    ../../system/gaming/nethack.nix
     # ../../system/apps/tlp.nix
     (./. + "../../../system/wm" + ("/" + builtins.elemAt settings.wm 0)
       + ".nix")

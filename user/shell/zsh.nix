@@ -1,9 +1,7 @@
 { settings, config, pkgs, ... }:
 
 {
-  imports = [
-      ./starship.nix
-  ];
+  imports = [ ./starship.nix ];
 
   programs.zsh = {
     enable = true;
@@ -26,13 +24,14 @@
       mv = "mv -v";
       cp = "cp -vr";
       rm = "rm -rv";
-      w3md = "w3m https://lite.duckduckgo.com/lite/";
-      nix-tarantool = "nix develop ${settings.dotfilesDir}/shells/tarantool -c zsh";
+      nix-tarantool =
+        "nix develop ${settings.dotfilesDir}/shells/tarantool -c zsh";
       nix-python = "nix develop ${settings.dotfilesDir}/shells/python -c zsh";
       nix-lampray = "nix develop ${settings.dotfilesDir}/shells/lampray -c zsh";
       nix-invoke = "nix develop ${settings.dotfilesDir}/shells/invoke -c zsh";
       nix-comfy = "nix develop ${settings.dotfilesDir}/shells/comfy -c zsh";
-      neofetch = "neofetch --source ${settings.dotfilesDir}/user/apps/neofetch/snufkin.txt";
+      neofetch =
+        "neofetch --source ${settings.dotfilesDir}/user/apps/neofetch/snufkin.txt";
       ytfzf = "ytfzf -T chafa";
       nekoray = "xhost + local:; sudo nekoray";
       mp = "ncmpcpp";
@@ -42,7 +41,5 @@
     '';
   };
 
-  home.packages = with pkgs; [
-    eza
-  ];
+  home.packages = with pkgs; [ eza ];
 }
