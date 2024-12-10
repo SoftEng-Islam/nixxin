@@ -1,4 +1,5 @@
 { settings, ... }: {
+  # zathura Is Highly customizable and functional PDF viewer
   programs.zathura = {
     enable = true;
     options = {

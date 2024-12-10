@@ -32,7 +32,6 @@
       nix-comfy = "nix develop ${settings.dotfilesDir}/shells/comfy -c zsh";
       neofetch =
         "neofetch --source ${settings.dotfilesDir}/user/apps/neofetch/snufkin.txt";
-      ytfzf = "ytfzf -T chafa";
       nekoray = "xhost + local:; sudo nekoray";
       mp = "ncmpcpp";
     };
