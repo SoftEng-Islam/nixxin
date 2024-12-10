@@ -7,7 +7,6 @@
     ../../system/hardware/desktop/mouse.nix
     ../../system/hardware/desktop/printing.nix
     ../../system/hardware/desktop/boot.nix
-    ../../system/security/desktop/firewall.nix
     ../../system/security/virtualization/general.nix
     ../../system/security/virtualization/nemu
     ../../system/apps/cron.nix
@@ -62,6 +61,31 @@
   # See https://nix.dev/permalink/stub-ld.
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPortRanges = [{
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+      ];
+    allowedUDPPortRanges = [{
+      from = 1714;
+      to = 1764;
+    } # KDE Connect
+      ];
+    # allowedUDPPorts = lib.mkIf settings.enableVPN [51820];
+    allowedUDPPorts = [ 5900 5901 51820 ];
+    allowedTCPPorts = [ 5900 5901 ];
+  };
+
+  # Security
+  security.allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
+  security.sudo.extraConfig =
+    "Defaults        env_reset,pwfeedback"; # show Password as stars in Terminals.
+  #security.selinux = null;
+  security.polkit.enable = true;
+  #security.polkit.debug = true;
 
   # List of globally installed packages.
   environment.systemPackages = with pkgs; [
