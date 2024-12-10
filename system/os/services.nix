@@ -35,15 +35,6 @@
       defaultSession =
         "gnome"; # Set `gnome` or `hyprland` as the default session
     };
-
-    xserver = {
-      enable = true;
-      displayManager = {
-        gdm.enable = true;
-        gdm.wayland = true;
-      };
-      videoDrivers = [ "amdgpu" ];
-    };
   };
   #beesd = {
   #	enable = true;
