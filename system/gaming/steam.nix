@@ -1,15 +1,20 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }: {
+  hardware.xpadneo.enable = true;
 
-{
-    hardware.xpadneo.enable = true;
-    programs.steam = {
-        enable = true;
-        remotePlay.openFirewall = true; # Steam Remote Play.
-        dedicatedServer.openFirewall = true; # Source Dedicated Server.
+  programs = {
+    gamemode = {
+      enable = true;
+      enableRenice = true;
+      settings = { general = { renice = 20; }; };
     };
-
-    programs.steam.package = pkgs.steam.override {
-        extraPkgs = pkgs: with pkgs; [
+    steam = {
+      enable = true;
+      gamescopeSession.enable = true;
+      remotePlay.openFirewall = true; # Steam Remote Play.
+      dedicatedServer.openFirewall = true; # Source Dedicated Server.
+      package = pkgs.steam.override {
+        extraPkgs = pkgs:
+          with pkgs; [
             libgdiplus
             keyutils
             libkrb5
@@ -21,22 +26,14 @@
             xorg.libXi
             xorg.libXinerama
             xorg.libXScrnSaver
-        ];
+          ];
+      };
     };
+  };
 
-    programs.gamemode = {
-        enable = true;
-        enableRenice = true;
-        settings = {
-            general = {
-                renice = 20;
-            };
-        };
-    };
-
-    environment.systemPackages = with pkgs; [
-        (mangohud.override { lowerBitnessSupport = true; })
-        gamescope
-        # gamemode
-    ];
+  environment.systemPackages = with pkgs; [
+    (mangohud.override { lowerBitnessSupport = true; })
+    gamescope # SteamOS session compositing window manager
+    gamemode # Optimise Linux system performance on demand
+  ];
 }

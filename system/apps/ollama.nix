@@ -1,6 +1,6 @@
 { settings, pkgs, ... }: {
   services.ollama = rec {
-    enable = true;
+    enable = false;
 
     openFirewall = true;
     host = "0.0.0.0";
