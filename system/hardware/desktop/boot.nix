@@ -106,6 +106,10 @@
     plymouth.enable = true;
     plymouth.theme = "bgrt";
   };
-  environment.systemPackages = with pkgs; [ os-prober grub2_efi grub2_full ];
-
+  environment.systemPackages = with pkgs; [
+    os-prober
+    grub2_efi
+    grub2_full
+    nixos-grub2-theme
+  ];
 }

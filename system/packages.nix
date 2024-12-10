@@ -150,12 +150,6 @@
     #__ Databases __#
     sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
 
-    #__ Developers Applications __#
-    beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
-    dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
-    sqlitebrowser # DB Browser for SQLite
-    bruno # Open-source IDE For exploring and testing APIs.
-
     #__ C & C++ __#
     clang # A C language family frontend for LLVM (wrapper script)
 
@@ -165,14 +159,6 @@
     rsass # Sass reimplemented in rust with nom
     grass-sass # A Sass compiler written purely in Rust
     sassc # A front-end for libsass
-
-    #__ Rust __#
-    cargo # Downloads your Rust project's dependencies and builds your project
-    cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
-    rust-analyzer # A modular compiler frontend for the Rust language
-    rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
-    rustc # A safe, concurrent, practical language (wrapper script)
-    rustup # The Rust toolchain installer
 
     #__ Ruby __#
     ruby_3_3 # An object-oriented language for quick and easy programming

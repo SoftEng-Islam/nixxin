@@ -68,18 +68,20 @@
 
   security.isolate.enable = false;
   environment.systemPackages = with pkgs; [
-    nixpkgs-review
-    nix-prefetch
+    direnv
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
+    inxi
     nix-bash-completions
-    direnv
     nix-direnv
+    nix-btm
+    nix-doc
     nix-index # A files database for nixpkgs
+    nix-prefetch
     nixfmt-classic # An opinionated formatter for Nix
     nixos-shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
-    inxi
+    nixpkgs-review
     # Nix Formatters:
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
