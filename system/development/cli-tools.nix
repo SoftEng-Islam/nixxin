@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    curl # A command line tool for transferring files with URL syntax
+    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
 
     lsof # A tool to list open files
     lux # Fast and simple video download library and CLI tool written in Go

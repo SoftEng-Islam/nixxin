@@ -50,6 +50,13 @@
     };
   };
   environment.systemPackages = with pkgs; [
+    sipcalc # Advanced console ip subnet calculator
+    iperf # Tool to measure IP bandwidth using UDP or TCP
+    netcat # Free TLS/SSL implementation
+    mtr # Network diagnostics tool
+    tcpdump # Network sniffer
+    bandwhich # CLI utility for displaying current network utilization
+
     linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
     ntp # An implementation of the Network Time Protocol
     openresolv # A program to manage /etc/resolv.conf

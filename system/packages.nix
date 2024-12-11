@@ -4,30 +4,20 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
-    neovim # Vim text editor fork focused on extensibility and agility
     ouch # Command-line utility for easily compressing and decompressing files and directories
+    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
     psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
-    sipcalc # Advanced console ip subnet calculator
-    iperf # Tool to measure IP bandwidth using UDP or TCP
-    openssl # Cryptographic library that implements the SSL and TLS protocols
+
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     file # Program that shows the type of files
-    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
     htop # Interactive process viewer
     silver-searcher # Code-searching tool similar to ack, but faster
     lsof # Tool to list open files
-    tcpdump # Network sniffer
-    tmux # Terminal multiplexer
     rsync # Fast incremental file transfer utility
-    git # Distributed version control system
-    tig # Text-mode interface for git
     strace # System call tracer for Linux
-    bandwhich # CLI utility for displaying current network utilization
     iotop # Tool to find out the processes doing the most IO
     man-pages # Linux development manual pages
     dnsutils # Domain name server
-    netcat # Free TLS/SSL implementation
-    mtr # Network diagnostics tool
     whois # Intelligent WHOIS client from Debian
     usbutils # Tools for working with USB devices, such as lsusb
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
@@ -42,22 +32,6 @@
     pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
     udevil # Mount without password
     geoclue2 # Geolocation framework and some data providers
-
-    #__ Editors __#
-    curl # A command line tool for transferring files with URL syntax
-    gedit # Former GNOME text editor
-    git # Distributed version control system
-    neovim # Vim text editor fork focused on extensibility and agility
-    vim # The most popular clone of the VI editor
-    vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
-    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
-    zed-editor # Zed editor (like vscode)
-
-    #__ Package Managers __#
-    # pkg # Package management tool for FreeBSD
-    # dpkg # The Debian package manager
-    # rpm # The RPM Package Manager
-    # pacman # A simple library-based package manager
 
     #__ gtk & Themes Stuff __#
     adw-gtk3 # The theme from libadwaita ported to GTK-3
@@ -112,51 +86,13 @@
     matugen # A material you color generation tool
     wf-recorder # Utility program for screen recording of wlroots-based compositors
 
-    #__ Developer Tools __#
-    at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
-    atkmm # C++ wrappers for ATK accessibility toolkit
-    bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
-    cairo # A 2D graphics library with support for multiple output devices
-    cairomm # C++ bindings for the Cairo vector graphics library
-    direnv # A shell extension that manages your environment
-    gdk-pixbuf # A library for image loading and manipulation
-    glib # C library of programming buildings blocks
-    gobject-introspection-unwrapped
-    gobject-introspection # A middleware layer between C libraries and language bindings
-    harfbuzz # An OpenType text shaping engine
-    # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
-    llvmPackages_12.bintools # System binary utilities (wrapper script)
-    ninja # Small build system with a focus on speed
-    pango # A library for laying out and rendering of text, with an emphasis on internationalization
-    pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
-    zlib # Lossless data-compression library
-
-    #__ Databases __#
-    sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
-
-    #__ C & C++ __#
-    clang # A C language family frontend for LLVM (wrapper script)
-
-    #__ Sass (Css) __#
-    dart-sass # The reference implementation of Sass, written in Dart
-    libsass # A C/C++ implementation of a Sass compiler
-    rsass # Sass reimplemented in rust with nom
-    grass-sass # A Sass compiler written purely in Rust
-    sassc # A front-end for libsass
-
-    #__ Ruby __#
-    ruby_3_3 # An object-oriented language for quick and easy programming
-    rubyPackages.execjs
-
-    #__ Nodejs & JavaScript Stuff __#
-    nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
-    nodePackages.pnpm # Fast, disk space efficient package manager
-    typescript # Superset of JavaScript that compiles to clean JavaScript output
+    # cryptographic
+    openssl # A cryptographic library that implements the SSL and TLS protocols
+    nettle # Cryptographic library
+    libgcrypt # General-purpose cryptographic library
 
     #__ System Tools __#
     busybox # Tiny versions of common UNIX utilities in a single small executable
-    # flatpak # Linux application sandboxing and distribution framework
-    openssl # A cryptographic library that implements the SSL and TLS protocols
     resources # Monitor your system resources and processes
     fdupes # Identifies duplicate files residing within specified directories
 
@@ -167,7 +103,6 @@
     fastfetch # Like neofetch, but much faster because written in C
     file # A program that shows the type of files
     htop # An interactive process viewer
-    lazygit # Simple terminal UI for git commands
     mediainfo # Supplies technical and tag information about a video or audio file
     ranger # File manager with minimalistic curses interface
     tree # Command to produce a depth indented directory listing
@@ -269,8 +204,7 @@
     webp-pixbuf-loader # WebP GDK Pixbuf Loader library
     clblast # Tuned OpenCL BLAS library
     libbsd
-    nettle
-    libgcrypt
+
     libselinux
     audit
     xmlto

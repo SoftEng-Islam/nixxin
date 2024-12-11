@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   programs.thunar = {
-    enable = false;
+    enable = true;
     plugins = with pkgs.xfce; [ thunar-archive-plugin ];
   };
 }

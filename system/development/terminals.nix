@@ -26,6 +26,10 @@
 
   #__ Terminals __#
   environment.systemPackages = with pkgs; [
+    neovim # Vim text editor fork focused on extensibility and agility
+    vim # The most popular clone of the VI editor
+
+    tmux # Terminal multiplexer
     fzf-zsh # wrap fzf to use in oh-my-zsh
     oh-my-zsh # A framework for managing your zsh configuration
     zsh # The Z shell
