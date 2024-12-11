@@ -1,25 +1,11 @@
+# Edit this configuration file to define what should be installed on
+# your system. Help is available in the configuration.nix(5) man page
+# and in the NixOS manual (accessible by running ‘nixos-help’).
 { pkgs, lib, settings, ... }: {
   imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../system/hardware/sound.nix
-    ../../system/hardware/bluetooth.nix
-    ../../system/hardware/desktop/graphic.nix
-    ../../system/hardware/desktop/mouse.nix
-    ../../system/hardware/desktop/printing.nix
-    ../../system/hardware/desktop/boot.nix
-    ../../system/security/virtualization/general.nix
-    ../../system/security/virtualization/nemu
-    ../../system/apps/cron.nix
-    ../../system/apps/thunar.nix
-    # ../../system/apps/ollama.nix
-    ../../system/gaming/steam.nix
-    ../../system/gaming/lutris.nix
-    ../../system/gaming/retroarch.nix
-    ../../system/gaming/aagl.nix
-    ../../system/security/vpn/xray.nix
-    (./. + "../../../system/wm" + ("/" + builtins.elemAt settings.wm 0)
-      + ".nix")
-    # (./. + "../../../system/wm"+("/" + builtins.elemAt settings.wm 1)+".nix")
+    ../../system/bundle-desktop.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -27,8 +13,6 @@
   nixpkgs.overlays =
     import ../../lib/overlays.nix; # Add packages from the pkgs dir
   nixpkgs.config.allowUnfree = true; # Sorry, Stallman(
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
-
   # Networking
   networking.hostName = settings.hostname;
   networking.networkmanager.enable = true;
@@ -36,7 +20,6 @@
   networking.extraHosts = ''
     127.0.0.1 softeng.home
   '';
-
   # Timezone
   time.timeZone = settings.timezone;
   services.chrony.enable = true;
@@ -51,7 +34,6 @@
     description = settings.username;
     extraGroups = [ "wheel" "gamemode" ];
   };
-
   # Use zsh. TODO: option to flake.nix, several shells.
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
@@ -103,8 +85,24 @@
   # A lot of mpris packages require it.
   services.gvfs.enable = true;
 
+  xdg = {
+    portal = {
+      enable = true;
+      wlr.enable = true;
+    };
+  };
+  # qt.platformTheme = "qt5ct";
+  # qt.style = "adwaita-dark";
+
+  # system.autoUpgrade.enable = true;
+  # system.autoUpgrade.allowReboot = true;
+  # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
+
+  # This value determines the NixOS release from which the default
+  # settings for stateful data, like file locations and database versions
+  # on your system were taken. It‘s perfectly fine and recommended to leave
+  # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "23.11"; # Did you read the comment?
+  system.stateVersion = "24.05"; # Did you read the comment?
 }
-

@@ -2,7 +2,7 @@
   system = "x86_64-linux";
   hostname = "nixos"; # Hostname
   username = "softeng"; # Username
-  profile = "softeng"; # Select from profiles directory
+  profile = "desktop"; # Select from profiles directory
   timezone = "Africa/Cairo"; # Select timezone
   locale = "en_US.UTF-8"; # Select locale
   name = "Islam Ahmed"; # Name (git config)

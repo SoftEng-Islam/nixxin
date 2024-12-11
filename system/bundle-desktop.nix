@@ -3,11 +3,11 @@
     # /android
     ./android/pkgs.nix
     # /apps
-    ./apps/cron.nix
+    # ./apps/cron.nix
     ./apps/desktop-apps.nix
-    ./apps/ollama.nix
-    ./apps/thunar.nix
-    ./apps/tlp.nix
+    # ./apps/ollama.nix
+    # ./apps/thunar.nix
+    # ./apps/tlp.nix
     # /development
     ./development/cli-tools.nix
     ./development/dev-pkgs.nix
@@ -22,16 +22,16 @@
     ./drivers/drivers.nix
     ./drivers/media.nix
     # /gaming
-    ./gaming/aagl.nix
+    # ./gaming/aagl.nix
     ./gaming/gameing.nix
-    ./gaming/lutris.nix
+    # ./gaming/lutris.nix
     ./gaming/steam.nix
     # /hardware
     ./hardware/desktop/audio.nix
     ./hardware/desktop/boot.nix
     ./hardware/desktop/graphic.nix
-    ./hardware/desktop/mouse.nix
-    ./hardware/desktop/printing.nix
+    # ./hardware/desktop/mouse.nix
+    # ./hardware/desktop/printing.nix
     # /os
     ./os/appearance.nix
     ./os/clipboard.nix
@@ -47,14 +47,14 @@
     ./os/users.nix
     ./os/zram.nix
     # /security
-    ./security/vpn/wireguard.nix
-    ./security/vpn/xray.nix
+    # ./security/vpn/wireguard.nix
+    # ./security/vpn/xray.nix
     # /virtualization
-    ./virtualization/general.nix
-    ./virtualization/nemu/default.nix
+    # ./virtualization/general.nix
+    # ./virtualization/nemu/default.nix
     # /window-manager
-    ./window-manager/gnome.nix
-    ./window-manager/hyprland.nix
+    ./wm/gnome.nix
+    ./wm/hyprland.nix
     # /windows
     ./windows/wine.nix
   ];

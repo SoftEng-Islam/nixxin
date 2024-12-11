@@ -4,55 +4,54 @@
 { config, lib, pkgs, modulesPath, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "ahci" "nvme" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "ahci" "ohci_pci" "ehci_pci" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
-  boot.kernelModules = [ "kvm-intel" ];
+  boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/480eeea4-56ae-499f-8a68-70c40317ce8f";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
+    fsType = "btrfs";
+    options = [ "subvol=@" ];
+    label = "root-partition";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/B091-959B";
-      fsType = "vfat";
-    };
-
-  fileSystems."/home" =
-    { device = "/dev/disk/by-uuid/341f7232-66b9-42bd-916f-3a2feb1c8f49";
-      fsType = "ext4";
-    };
-
-  fileSystems."/home/serpentian/Drives/ssd" =
-    {
-        device = "/dev/disk/by-uuid/a0cede19-b4ed-4362-a5ef-17a5c6b3ada3";
-        fsType = "ext4";
-        options = [ "defaults" "users" "exec"];
-    };
-
-  fileSystems."/home/serpentian/Drives/hdd" =
-    {
-        device = "/dev/disk/by-uuid/a5d270f4-5153-4b2a-9931-bd8b3335c906";
-        fsType = "ext4";
-        options = [ "defaults" "users" "exec"];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/7FD3-5156";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+    # label = "boot-partition";
+  };
 
   swapDevices =
-    [ { device = "/dev/disk/by-uuid/3143b8ce-adf7-43d7-aaa3-011d5ad8021a"; }
-    ];
+    [{ device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e"; }];
 
+  fileSystems."/data" = {
+    device = "/dev/disk/by-partlabel/Data";
+    fsType = "auto";
+    options = [
+      "nofail"
+      "nodev"
+      "uid=1000"
+      "gid=1000"
+      "utf8"
+      "umask=022"
+      "exec"
+      "x-gvfs-show"
+    ];
+  };
   # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
   # (the default) this is the recommended approach. When using systemd-networkd it's
   # still possible to use this option, but it's recommended to use it in conjunction
   # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
   networking.useDHCP = lib.mkDefault true;
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
+  # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  hardware.cpu.amd.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 }

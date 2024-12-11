@@ -28,13 +28,10 @@
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.thalheim.io-1:R7msbosLEZKrxk/lKxf9BTjOOH7Ax3H0Qj0/6wiHOgc="
       ];
-
       trusted-users = [ "@wheel" "root" ];
-
       fallback = true;
       warn-dirty = false;
       auto-optimise-store = true;
-
     };
 
     extraOptions = ''
@@ -65,24 +62,23 @@
     };
   };
   programs.command-not-found.enable = false;
-
   security.isolate.enable = false;
   environment.systemPackages = with pkgs; [
     fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     bpftrace # High-level tracing language for Linux eBPF
 
-    direnv
+    direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
-    inxi
-    nix-bash-completions
-    nix-direnv
-    nix-btm
-    nix-doc
+    inxi # Full featured CLI system information tool
+    nix-bash-completions # Bash completions for Nix, NixOS, and NixOps
+    nix-direnv # Fast, persistent use_nix implementation for direnv
+    nix-btm # Rust tool to monitor Nix processes
+    nix-doc # Interactive Nix documentation tool
     nix-index # A files database for nixpkgs
-    nix-prefetch
+    nix-prefetch # Prefetch any fetcher function call, e.g. package sources
     nixfmt-classic # An opinionated formatter for Nix
-    nixos-shell
+    nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
     nixpkgs-review
     # Nix Formatters:
