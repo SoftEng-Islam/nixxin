@@ -1,12 +1,39 @@
 { pkgs, ... }: {
+  imports = [
+    # /android
+    ./android/pkgs.nix
+    # /apps
+    ./apps/cron.nix
+    ./apps/desktop-apps.nix
+    ./apps/ollama.nix
+    ./apps/thunar.nix
+    ./apps/tlp.nix
+    # /development
+    ./development/cli-tools.nix
+    ./development/dev-pkgs.nix
+    ./development/dev-apps.nix
+    ./development/git.nix
+    ./development/hacking.nix
+    ./development/python.nix
+    ./development/rust.nix
+    ./development/spell-checker.nix
+    ./development/terminals.nix
+    # /drivers
+    ./drivers/drivers.nix
+    ./drivers/media.nix
+    # /gaming
+    ./gaming/aagl.nix
+    ./gaming/gameing.nix
+    ./gaming/lutris.nix
+    ./gaming/steam.nix
+    # /hardware
+    ./hardware/bundle.nix
+  ];
   nixpkgs.config = {
     rocmSupport = true;
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
-    ouch # Command-line utility for easily compressing and decompressing files and directories
-    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
-    psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
 
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     file # Program that shows the type of files

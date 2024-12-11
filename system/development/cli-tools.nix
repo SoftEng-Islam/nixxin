@@ -1,5 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    ouch # Command-line utility for easily compressing and decompressing files and directories
+    psmisc # Set of small useful utilities that use the proc filesystem (such as fuser, killall and pstree)
     gum # Tasty Bubble Gum for your shell
     bluez # Official Linux Bluetooth protocol stack
     bluez-tools # A set of tools to manage bluetooth devices for linux
