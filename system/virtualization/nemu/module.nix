@@ -1,10 +1,6 @@
 { config, lib, pkgs, ... }:
-
 with lib;
-
-let
-  cfg = config.programs.nemu;
-
+let cfg = config.programs.nemu;
 in {
   options.programs.nemu = {
     enable = mkOption {
@@ -52,7 +48,7 @@ in {
     };
 
     users = mkOption {
-      default = {};
+      default = { };
       example = {
         username_1 = {
           autoAddVeth = true;
@@ -90,7 +86,7 @@ in {
 
           autoStartVMs = mkOption {
             type = types.listOf types.str;
-            default = [];
+            default = [ ];
             example = [ "vm1" "vm2" "vm3" ];
             description = ''
               List of VMs which will be started automatically for user
@@ -114,36 +110,29 @@ in {
     };
 
     # Add vhost-net, macvtap and usb groups
-    users.groups =
-      optionalAttrs (isString cfg.vhostNetGroup) {
-        "${cfg.vhostNetGroup}" = { };
-      } // optionalAttrs (isString cfg.macvtapGroup) {
-        "${cfg.macvtapGroup}" = { };
-      } // optionalAttrs (isString cfg.usbGroup) {
-        "${cfg.usbGroup}" = { };
-      };
+    users.groups = optionalAttrs (isString cfg.vhostNetGroup) {
+      "${cfg.vhostNetGroup}" = { };
+    } // optionalAttrs (isString cfg.macvtapGroup) {
+      "${cfg.macvtapGroup}" = { };
+    } // optionalAttrs (isString cfg.usbGroup) { "${cfg.usbGroup}" = { }; };
 
     # Add nemu users to kvm, vhost-net, macvtap and usb groups
     users.users = mapAttrs' (user: _:
       nameValuePair "${user}" {
-        extraGroups = [
-          "kvm"
-        ]
+        extraGroups = [ "kvm" ]
           ++ optional (isString cfg.vhostNetGroup) cfg.vhostNetGroup
           ++ optional (isString cfg.macvtapGroup) cfg.macvtapGroup
           ++ optional (isString cfg.usbGroup) cfg.usbGroup;
-      }
-    ) cfg.users;
+      }) cfg.users;
 
     # Add udev rules for vhost-net, macvtap and usb groups
-    services.udev.extraRules =
-      optionalString (isString cfg.vhostNetGroup) ''
-        KERNEL=="vhost-net", MODE="0660", GROUP="${cfg.vhostNetGroup}"
-      '' + optionalString (isString cfg.macvtapGroup) ''
-        SUBSYSTEM=="macvtap", MODE="0660", GROUP="${cfg.macvtapGroup}"
-      '' + optionalString (isString cfg.usbGroup) ''
-        SUBSYSTEM=="usb", MODE="0664", GROUP="${cfg.usbGroup}"
-      '';
+    services.udev.extraRules = optionalString (isString cfg.vhostNetGroup) ''
+      KERNEL=="vhost-net", MODE="0660", GROUP="${cfg.vhostNetGroup}"
+    '' + optionalString (isString cfg.macvtapGroup) ''
+      SUBSYSTEM=="macvtap", MODE="0660", GROUP="${cfg.macvtapGroup}"
+    '' + optionalString (isString cfg.usbGroup) ''
+      SUBSYSTEM=="usb", MODE="0664", GROUP="${cfg.usbGroup}"
+    '';
 
     # Add systemd nemu.target
     systemd.targets.nemu = {
@@ -174,57 +163,54 @@ in {
           ExecStart = "${config.security.wrapperDir}/nemu -c";
         };
         wantedBy = [ "nemu-veth.target" ];
-      }
-    ) (filterAttrs (_: userOpts: userOpts.autoAddVeth == true) cfg.users)
-    // mapAttrs' (user: _:
-      nameValuePair "nemu-uid-${user}" {
-        description = "Get UID for ${user} for nemu daemon";
-        serviceConfig = {
-          Type = "oneshot";
-          User = "${user}";
-          ExecStart = ''
-            /bin/sh -c \
-            "${pkgs.coreutils}/bin/echo DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus > /tmp/nemu-daemon-${user}.env"
-          '';
-        };
-        wantedBy = [ "nemu.target" ];
-      }
-    ) (filterAttrs (_: userOpts: userOpts.autoAddVeth == true) cfg.users)
-    // mapAttrs' (user: _:
-      nameValuePair "nemu-daemon-${user}" {
-        description = "Start nemu daemon for user ${user}";
-        serviceConfig = {
-          Type = "forking";
-          User = "${user}";
-          WorkingDirectory = "/home/${user}";
-          EnvironmentFile = "/tmp/nemu-daemon-${user}.env";
-          ExecStart = "${config.security.wrapperDir}/nemu --daemon";
-        };
-        after = [ "nemu-uid-${user}.service" ];
-        wantedBy = [ "nemu.target" ];
-      }
-    ) (filterAttrs (_: userOpts: userOpts.autoStartDaemon == true) cfg.users)
-    // mapAttrs' (user: userOpts:
-      nameValuePair "nemu-vm-${user}" {
-        description = "Start nemu VMs for user ${user}";
-        serviceConfig = {
-          Type = "oneshot";
-          User = "${user}";
-          WorkingDirectory = "/home/${user}";
-          RemainAfterExit = "yes";
-          ExecStart = "${config.security.wrapperDir}/nemu --start "
-            + concatStringsSep "," userOpts.autoStartVMs;
-          ExecStop = "${config.security.wrapperDir}/nemu --poweroff "
-            + concatStringsSep "," userOpts.autoStartVMs;
-        };
-        after = [
-          "network-online.target"
-          "nemu-veth-${user}.service"
-          "nemu-daemon-${user}.service"
-        ];
-        wantedBy = [ "nemu-vm.target" ];
-      }
-    ) (filterAttrs (_: userOpts: userOpts.autoStartVMs != []) cfg.users);
+      }) (filterAttrs (_: userOpts: userOpts.autoAddVeth == true) cfg.users)
+      // mapAttrs' (user: _:
+        nameValuePair "nemu-uid-${user}" {
+          description = "Get UID for ${user} for nemu daemon";
+          serviceConfig = {
+            Type = "oneshot";
+            User = "${user}";
+            ExecStart = ''
+              /bin/sh -c \
+              "${pkgs.coreutils}/bin/echo DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$UID/bus > /tmp/nemu-daemon-${user}.env"
+            '';
+          };
+          wantedBy = [ "nemu.target" ];
+        }) (filterAttrs (_: userOpts: userOpts.autoAddVeth == true) cfg.users)
+      // mapAttrs' (user: _:
+        nameValuePair "nemu-daemon-${user}" {
+          description = "Start nemu daemon for user ${user}";
+          serviceConfig = {
+            Type = "forking";
+            User = "${user}";
+            WorkingDirectory = "/home/${user}";
+            EnvironmentFile = "/tmp/nemu-daemon-${user}.env";
+            ExecStart = "${config.security.wrapperDir}/nemu --daemon";
+          };
+          after = [ "nemu-uid-${user}.service" ];
+          wantedBy = [ "nemu.target" ];
+        })
+      (filterAttrs (_: userOpts: userOpts.autoStartDaemon == true) cfg.users)
+      // mapAttrs' (user: userOpts:
+        nameValuePair "nemu-vm-${user}" {
+          description = "Start nemu VMs for user ${user}";
+          serviceConfig = {
+            Type = "oneshot";
+            User = "${user}";
+            WorkingDirectory = "/home/${user}";
+            RemainAfterExit = "yes";
+            ExecStart = "${config.security.wrapperDir}/nemu --start "
+              + concatStringsSep "," userOpts.autoStartVMs;
+            ExecStop = "${config.security.wrapperDir}/nemu --poweroff "
+              + concatStringsSep "," userOpts.autoStartVMs;
+          };
+          after = [
+            "network-online.target"
+            "nemu-veth-${user}.service"
+            "nemu-daemon-${user}.service"
+          ];
+          wantedBy = [ "nemu-vm.target" ];
+        }) (filterAttrs (_: userOpts: userOpts.autoStartVMs != [ ]) cfg.users);
   };
 }
 

@@ -27,7 +27,36 @@
     ./gaming/lutris.nix
     ./gaming/steam.nix
     # /hardware
-    ./hardware/bundle.nix
+    ./hardware/desktop/audio.nix
+    ./hardware/desktop/boot.nix
+    ./hardware/desktop/graphic.nix
+    ./hardware/desktop/mouse.nix
+    ./hardware/desktop/printing.nix
+    # /os
+    ./os/appearance.nix
+    ./os/clipboard.nix
+    ./os/environment.nix
+    ./os/locale.nix
+    ./os/networking.nix
+    ./os/nixos.nix
+    ./os/notifications.nix
+    ./os/power-management.nix
+    ./os/programs.nix
+    ./os/screenshots.nix
+    ./os/services.nix
+    ./os/users.nix
+    ./os/zram.nix
+    # /security
+    ./security/vpn/wireguard.nix
+    ./security/vpn/xray.nix
+    # /virtualization
+    ./virtualization/general.nix
+    ./virtualization/nemu/default.nix
+    # /window-manager
+    ./window-manager/gnome.nix
+    ./window-manager/hyprland.nix
+    # /windows
+    ./windows/wine.nix
   ];
   nixpkgs.config = {
     rocmSupport = true;

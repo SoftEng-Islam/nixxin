@@ -13,15 +13,22 @@
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
-      extraConfig.pipewire."92-low-latency" = {
-        "context.properties" = {
-          "default.clock.rate" =
-            48000; # Maximum common sample rate for high-quality audio
-          "default.clock.quantum" =
-            64; # Smallest quantum for the lowest latency
-          "default.clock.min-quantum" = 64;
-          "default.clock.max-quantum" =
-            1024; # Maximum for flexibility if needed
+      pipewire.extraConfig.pipewire = {
+        "10-clock-rate" = {
+          "context.properties" = {
+            "default.clock.allowed-rates" = [ 44100 48000 96000 ];
+          };
+        };
+        "92-low-latency" = {
+          "context.properties" = {
+            "default.clock.rate" =
+              96000; # Maximum common sample rate for high-quality audio
+            "default.clock.quantum" =
+              64; # Smallest quantum for the lowest latency
+            "default.clock.min-quantum" = 64;
+            "default.clock.max-quantum" =
+              1024; # Maximum for flexibility if needed
+          };
         };
       };
     };
