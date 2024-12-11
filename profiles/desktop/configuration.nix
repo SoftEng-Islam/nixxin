@@ -5,11 +5,15 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    ../../themes/stylix.nix
     ../../system/bundle-desktop.nix
+    (./. + "../../../system/wm" + ("/" + builtins.elemAt settings.wm 0)
+      + ".nix")
+    (./. + "../../../system/wm" + ("/" + builtins.elemAt settings.wm 1)
+      + ".nix")
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
-
   nixpkgs.overlays =
     import ../../lib/overlays.nix; # Add packages from the pkgs dir
   nixpkgs.config.allowUnfree = true; # Sorry, Stallman(
@@ -84,7 +88,10 @@
 
   # A lot of mpris packages require it.
   services.gvfs.enable = true;
+  services.upower.enable = true;
 
+  services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
+  services.printing.enable = true;
   xdg = {
     portal = {
       enable = true;

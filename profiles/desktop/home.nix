@@ -1,7 +1,7 @@
 { config, pkgs, settings, ... }: {
   imports = [
     (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
-    # (./. + "../../../user/wm"+("/" + builtins.elemAt settings.wm 1)+".nix")
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
     ../../themes/stylix.nix
     ../../user/apps/spotify.nix
     ../../user/apps/kitty.nix
@@ -31,6 +31,9 @@
   nixpkgs.overlays = import ../../lib/overlays.nix;
   nixpkgs.config.allowUnfree = true; # Sorry, Stallman(
   home.packages = with pkgs; [
+    yubikey-manager
+    teleport
+    openvpn
     sway-contrib.grimshot
     libreoffice-fresh
     obs-studio
@@ -99,5 +102,5 @@
     };
   };
 
-  home.stateVersion = "23.05";
+  home.stateVersion = "24.11";
 }
