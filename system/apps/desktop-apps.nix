@@ -1,5 +1,22 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    gromit-mpx # Desktop annotation tool
+    screenkey # A screencast tool to display your keys inspired by Screenflick
+    akira-unstable # Native Linux Design application built in Vala and GTK
+    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    firefox # Web browser built from Firefox source tree
+    google-chrome # Freeware web browser developed by Google
+    microsoft-edge # The web browser from Microsoft
+    discord # All-in-one cross-platform voice and text chat for gamers
+    zoom-us # zoom.us video conferencing application
+    audacity # Sound editor with graphical UI
+    obs-studio # Free and open source software for video recording and live streaming
+    anki # Spaced repetition flashcard program
+    gparted # Graphical disk partitioning tool
+    telegram-desktop # Telegram Desktop messaging app
+    obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
+    drawio # A desktop application for creating diagrams
+
     ferdium # All your services in one place built by the community
     mumble # Low-latency, high quality voice chat software
     signal-desktop # Private, simple, and secure messenger

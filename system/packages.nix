@@ -96,67 +96,13 @@
     resources # Monitor your system resources and processes
     fdupes # Identifies duplicate files residing within specified directories
 
-    #__ CLI utils __#
-    gum # Tasty Bubble Gum for your shell
-    bluez # Official Linux Bluetooth protocol stack
-    bluez-tools # A set of tools to manage bluetooth devices for linux
-    fastfetch # Like neofetch, but much faster because written in C
-    file # A program that shows the type of files
-    htop # An interactive process viewer
-    mediainfo # Supplies technical and tag information about a video or audio file
-    ranger # File manager with minimalistic curses interface
-    tree # Command to produce a depth indented directory listing
-    unzip # An extraction utility for archives compressed in .zip format
-    zip # Compressor/archiver for creating and modifying zipfiles
-
-    #__ Notifications __#
-    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    libnotify # A library that sends desktop notifications to a notification daemon
-    dunst # Lightweight and customizable notification daemon
-    mako # A lightweight Wayland notification daemon
-
-    #__ Clipboard __#
-    cliphist # Wayland clipboard manager
-    gpaste # Clipboard management system with GNOME integration
-    wl-clipboard # Command-line copy/paste utilities for Wayland
-    clipman # A simple clipboard manager for Wayland
-    fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
-
     # Image Viewer
     imv # A command line image viewer for tiling window managers
     feh # A light-weight image viewer
     loupe # A simple image viewer application written with GTK4 and Rust
 
-    #__ Screenshotting __#
-    grim # Grab images from a Wayland compositor
-    grimblast # A helper for screenshots within Hyprland, based on grimshot
-    swappy # A Wayland native snapshot editing tool, inspired by Snappy on macOS
-    flameshot # Powerful yet simple to use screenshot software
-    scrot # A command-line screen capture utility
-    wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
-
     #__ Keyboard __#
     # fcitx5 # Next generation of fcitx
-
-    #__ Desktop apps __#
-    gromit-mpx # Desktop annotation tool
-    screenkey # A screencast tool to display your keys inspired by Screenflick
-    akira-unstable # Native Linux Design application built in Vala and GTK
-    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
-    firefox # Web browser built from Firefox source tree
-    google-chrome # Freeware web browser developed by Google
-    microsoft-edge # The web browser from Microsoft
-    discord # All-in-one cross-platform voice and text chat for gamers
-    zoom-us # zoom.us video conferencing application
-    audacity # Sound editor with graphical UI
-    obs-studio # Free and open source software for video recording and live streaming
-    anki # Spaced repetition flashcard program
-    gparted # Graphical disk partitioning tool
-    telegram-desktop # Telegram Desktop messaging app
-    obsidian # A powerful knowledge base that works on top of a local folder of plain text Markdown files
-    drawio # A desktop application for creating diagrams
-    qbittorrent # Featureful free software BitTorrent client
-    motrix # A full-featured download manager
 
     #__ xdg Stuff __#
     xdg-dbus-proxy # DBus proxy for Flatpak and others
@@ -210,13 +156,5 @@
     xmlto
     fop
     libdbusmenu
-
-    #__ System and powermanagement utilies __#
-    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
-    bpftrace # High-level tracing language for Linux eBPF
-
-    #__ ASUS ROG Laptops __#
-    # asusctl # A control daemon, CLI tools, and a collection of crates for interacting with ASUS ROG laptops
-    # supergfxctl # A GPU switching utility, mostly for ASUS laptops
   ];
 }

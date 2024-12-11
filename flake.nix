@@ -29,7 +29,6 @@
           pkgs = nixpkgs.legacyPackages.${settings.system};
           modules = [
             (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
-            inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
           ];
@@ -63,11 +62,6 @@
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
-    };
-    plasma-manager = {
-      url = "github:nix-community/plasma-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.home-manager.follows = "home-manager";
     };
   };
 }

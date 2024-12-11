@@ -68,6 +68,9 @@
 
   security.isolate.enable = false;
   environment.systemPackages = with pkgs; [
+    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
+    bpftrace # High-level tracing language for Linux eBPF
+
     direnv
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator

@@ -1,5 +1,17 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    gum # Tasty Bubble Gum for your shell
+    bluez # Official Linux Bluetooth protocol stack
+    bluez-tools # A set of tools to manage bluetooth devices for linux
+    fastfetch # Like neofetch, but much faster because written in C
+    file # A program that shows the type of files
+    htop # An interactive process viewer
+    mediainfo # Supplies technical and tag information about a video or audio file
+    ranger # File manager with minimalistic curses interface
+    tree # Command to produce a depth indented directory listing
+    unzip # An extraction utility for archives compressed in .zip format
+    zip # Compressor/archiver for creating and modifying zipfiles
+
     curl # A command line tool for transferring files with URL syntax
     wget # Tool for retrieving files using HTTP, HTTPS, and FTP
 
