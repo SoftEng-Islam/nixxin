@@ -1,8 +1,5 @@
-{
-  pkgs,
-  config,
-  ...
-}: let
+{ pkgs, config, ... }:
+let
   nerdfonts = pkgs.nerdfonts.override {
     fonts = [
       "Ubuntu"
@@ -48,11 +45,7 @@ in {
       XCURSOR_THEME = cursorTheme.name;
       XCURSOR_SIZE = "${toString cursorTheme.size}";
     };
-    pointerCursor =
-      cursorTheme
-      // {
-        gtk.enable = true;
-      };
+    pointerCursor = cursorTheme // { gtk.enable = true; };
   };
 
   fonts.fontconfig.enable = true;

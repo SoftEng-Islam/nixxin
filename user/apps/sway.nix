@@ -11,19 +11,15 @@ in {
           natural_scroll = "disabled";
         };
       };
-      bars = [];
+      bars = [ ];
       keybindings = {
         "${mod}+Return" = "exec xterm";
         "${mod}+w" = "exec firefox";
         "${alt}+q" = "kill";
         "${mod}+f" = "floating toggle";
       };
-      floating = {
-        modifier = mod;
-      };
-      focus = {
-        followMouse = true;
-      };
+      floating = { modifier = mod; };
+      focus = { followMouse = true; };
     };
   };
 }

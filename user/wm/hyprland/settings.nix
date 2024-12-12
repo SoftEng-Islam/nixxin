@@ -80,11 +80,15 @@ in {
       ];
     };
 
-    debug = { disable_logs = false; };
+    debug = {
+      disable_logs = false;
+      enable_stdout_logs = true;
+    };
 
     input = {
-      kb_layout = "us,ru";
-      kb_options = "grp:win_space_toggle";
+      kb_layout = "us,eg";
+      kb_variant = "lang";
+      kb_options = "grp:alt_shift_toggle";
       follow_mouse = true;
       touchpad = { natural_scroll = true; };
     };
