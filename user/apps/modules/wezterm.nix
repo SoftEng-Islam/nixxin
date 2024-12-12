@@ -1,9 +1,5 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{ pkgs, config, lib, ... }:
+let
   inherit (lib) types;
   inherit (lib.modules) mkIf;
   inherit (lib.options) mkOption mkEnableOption;
@@ -12,26 +8,27 @@
 
   toLuaTable = with builtins;
     value:
-      if isBool value
-      then
-        if value
-        then "true"
-        else "false"
-      else if isString value
-      then toJSON value
-      else if isInt value || isFloat value
-      then toString value
-      else if isList value
-      then ''{ ${concatStringsSep ", " (map toLuaTable value)} }''
-      else if isAttrs value
-      then ''{ ${concatStringsSep ", " (map (k: ''["${k}"] = ${toLuaTable value.${k}}'') (attrNames value))} }''
-      else throw "Unsupported type: ${typeOf value}";
+    if isBool value then
+      if value then "true" else "false"
+    else if isString value then
+      toJSON value
+    else if isInt value || isFloat value then
+      toString value
+    else if isList value then
+      "{ ${concatStringsSep ", " (map toLuaTable value)} }"
+    else if isAttrs value then
+      "{ ${
+        concatStringsSep ", "
+        (map (k: ''["${k}"] = ${toLuaTable value.${k}}'') (attrNames value))
+      } }"
+    else
+      throw "Unsupported type: ${typeOf value}";
 in {
   options.terminals.wezterm = {
     enable = mkEnableOption "wezterm";
     alias = mkOption {
       type = types.listOf types.str;
-      default = [];
+      default = [ ];
     };
     sessionVariable = mkOption {
       type = types.bool;
@@ -43,11 +40,11 @@ in {
     };
     themes = mkOption {
       type = types.attrsOf types.str;
-      default = {};
+      default = { };
     };
     settings = mkOption {
       type = types.attrs;
-      default = {};
+      default = { };
     };
     extraLua = mkOption {
       type = types.str;
@@ -60,8 +57,7 @@ in {
       packages = mkIf pkgs.stdenv.isLinux (let
         term = ''${pkgs.wezterm}/bin/wezterm "$@"'';
         aliases = map (n: pkgs.writeShellScriptBin n term) cfg.alias;
-      in
-        [pkgs.wezterm] ++ aliases);
+      in [ pkgs.wezterm ] ++ aliases);
 
       sessionVariables.TERMINAL = mkIf cfg.sessionVariable "wezterm";
     };
@@ -92,17 +88,12 @@ in {
       local config = ${toLuaTable cfg.settings}
       ${cfg.extraLua}
 
-      ${
-        if cfg.font != null
-        then ''config.font = wezterm.font("${cfg.font}")''
-        else ""
-      }
+      ${if cfg.font != null then
+        ''config.font = wezterm.font("${cfg.font}")''
+      else
+        ""}
 
-      ${
-        if pkgs.stdenv.isLinux
-        then wayland_scheme
-        else ""
-      }
+      ${if pkgs.stdenv.isLinux then wayland_scheme else ""}
 
       return config
     '';

@@ -1,14 +1,10 @@
-{
-  pkgs,
-  lib,
-  ...
-}: {
-  imports = [./modules/blackbox.nix];
+{ pkgs, lib, ... }: {
+  imports = [ ./modules/blackbox.nix ];
 
   terminals.blackbox = {
     enable = true;
 
-    alias = ["xterm" "kgx" "gnome-terminal"];
+    alias = [ "xterm" "kgx" "gnome-terminal" ];
     sessionVariable = true;
 
     settings = {
@@ -21,10 +17,9 @@
       pretty = true;
       theme-light = "Adwaita";
       theme-dark = "Charmful";
-      terminal-padding = with lib.hm.gvariant; let
-        p = mkUint32 18;
-      in
-        mkTuple [p p p p];
+      terminal-padding = with lib.hm.gvariant;
+        let p = mkUint32 18;
+        in mkTuple [ p p p p ];
     };
 
     colors = {

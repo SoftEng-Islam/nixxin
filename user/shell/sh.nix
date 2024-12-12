@@ -1,9 +1,5 @@
-{
-  pkgs,
-  config,
-  lib,
-  ...
-}: let
+{ pkgs, config, lib, ... }:
+let
   aliases = {
     "db" = "distrobox";
     "tree" = "eza --tree";
@@ -32,7 +28,7 @@ in {
   options.shellAliases = with lib;
     mkOption {
       type = types.attrsOf types.str;
-      default = {};
+      default = { };
     };
 
   config.programs = {
@@ -90,40 +86,35 @@ in {
             vi_normal = "block";
           };
 
-          display_errors = {
-            exit_code = false;
-          };
+          display_errors = { exit_code = false; };
 
-          menus = [
-            {
-              name = "completion_menu";
-              only_buffer_difference = false;
-              marker = "? ";
-              type = {
-                layout = "columnar"; # list, description
-                columns = 4;
-                col_padding = 2;
-              };
-              style = {
-                text = "magenta";
-                selected_text = "blue_reverse";
-                description_text = "yellow";
-              };
-            }
-          ];
+          menus = [{
+            name = "completion_menu";
+            only_buffer_difference = false;
+            marker = "? ";
+            type = {
+              layout = "columnar"; # list, description
+              columns = 4;
+              col_padding = 2;
+            };
+            style = {
+              text = "magenta";
+              selected_text = "blue_reverse";
+              description_text = "yellow";
+            };
+          }];
         };
         completions = let
           completion = name: ''
             source ${pkgs.nu_scripts}/share/nu_scripts/custom-completions/${name}/${name}-completions.nu
           '';
-        in
-          names:
-            builtins.foldl'
-            (prev: str: "${prev}\n${str}") ""
-            (map completion names);
+        in names:
+        builtins.foldl' (prev: str: ''
+          ${prev}
+          ${str}'') "" (map completion names);
       in ''
         $env.config = ${conf};
-        ${completions ["cargo" "git" "nix" "npm" "poetry" "curl"]}
+        ${completions [ "cargo" "git" "nix" "npm" "poetry" "curl" ]}
 
         # alias pueue = ${pkgs.pueue}/bin/pueue
         # alias pueued = ${pkgs.pueue}/bin/pueued

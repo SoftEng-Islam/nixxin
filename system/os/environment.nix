@@ -3,6 +3,7 @@
   # find /nix/store -name "something"
   environment = {
     variables = {
+      NIXPKGS_ALLOW_UNFREE = "1";
       # _JAVA_AWT_WM_NONREPARENTING = "1";
       # BEMENU_BACKEND = "wayland";
       # CLUTTER_BACKEND = "wayland";

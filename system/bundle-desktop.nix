@@ -63,6 +63,7 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
+    rar # Utility for RAR archives
 
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     file # Program that shows the type of files
