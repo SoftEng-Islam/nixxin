@@ -31,10 +31,12 @@
   nixpkgs.overlays = import ../../lib/overlays.nix;
   nixpkgs.config.allowUnfree = true; # Sorry, Stallman(
   home.packages = with pkgs; [
-    yubikey-manager
-    teleport
-    openvpn
-    sway-contrib.grimshot
+    qt5.qtgraphicaleffects
+    qt5.qtquickcontrols2
+    yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
+    teleport # Certificate authority and access plane for SSH
+    openvpn # Robust and highly flexible tunneling application
+    sway-contrib.grimshot # Helper for screenshots within sway
     libreoffice-fresh
     obs-studio
     tty-clock

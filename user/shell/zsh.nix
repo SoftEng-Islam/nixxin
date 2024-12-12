@@ -1,6 +1,4 @@
-{ settings, config, pkgs, ... }:
-
-{
+{ settings, pkgs, ... }: {
   imports = [ ./starship.nix ];
 
   programs.zsh = {
