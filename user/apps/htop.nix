@@ -1,8 +1,6 @@
 {
   programs.htop = {
     enable = true;
-    settings = {
-      tree_view = 1;
-    };
+    settings = { tree_view = 1; };
   };
 }

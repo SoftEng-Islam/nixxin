@@ -1,5 +1,5 @@
-{pkgs, ...}: {
-  imports = [./modules/wezterm.nix];
+{ pkgs, ... }: {
+  imports = [ ./wezterm.nix ];
 
   terminals.wezterm = let
     gnome-light = let
@@ -117,7 +117,7 @@
 
       audible_bell = "Disabled";
 
-      default_prog = ["${pkgs.tmux}/bin/tmux"];
+      default_prog = [ "${pkgs.tmux}/bin/tmux" ];
     };
 
     extraLua = ''

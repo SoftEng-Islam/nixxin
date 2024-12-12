@@ -1,6 +1,7 @@
 { pkgs, lib, ... }: {
   xdg = {
     configFile.nvim.source = ../nvim;
+    # configFile.nvim.recursive = true;
     desktopEntries."nvim" = lib.mkIf pkgs.stdenv.isLinux {
       name = "NeoVim";
       comment = "Edit text files";
@@ -27,6 +28,7 @@
     withPython3 = true;
 
     extraPackages = with pkgs; [
+      neovide
       git
       gcc
       gnumake

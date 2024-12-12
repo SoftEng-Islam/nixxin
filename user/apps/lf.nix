@@ -1,9 +1,4 @@
-{
-  inputs,
-  pkgs,
-  lib,
-  ...
-}: {
+{ inputs, pkgs, lib, ... }: {
   xdg.desktopEntries = lib.mkIf pkgs.stdenv.isLinux {
     "lf" = {
       name = "lf";
@@ -11,14 +6,7 @@
     };
   };
 
-  home.packages = with pkgs; [
-    glib
-    fzf
-    bat
-    zip
-    unzip
-    gnutar
-  ];
+  home.packages = with pkgs; [ glib fzf bat zip unzip gnutar ];
 
   programs.lf = {
     enable = true;

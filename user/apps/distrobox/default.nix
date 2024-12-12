@@ -1,10 +1,7 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
-  imports = [./modules/distrobox.nix];
+{ pkgs, config, ... }: {
+  imports = [ ./distrobox.nix ];
 
+  # Wrapper around podman or docker to create and start containers
   programs.distrobox = {
     enable = true;
 
@@ -20,19 +17,17 @@
         ".config/nix"
         ".config/starship.toml"
       ];
-      packages = ["wl-clipboard" "git" "neovim"];
-      nixPackages =
-        config.packages.cli
-        ++ [
-          config.programs.neovim.finalPackage
-          pkgs.nix
-          pkgs.git
-          pkgs.nushell
-        ];
+      packages = [ "wl-clipboard" "git" "neovim" ];
+      nixPackages = config.packages.cli ++ [
+        config.programs.neovim.finalPackage
+        pkgs.nix
+        pkgs.git
+        pkgs.nushell
+      ];
     in {
       Ubuntu = {
         inherit exec symlinks nixPackages;
-        packages = ["nodejs" "npm" "python3-dev" "pipx" "git" "wl-clipboard"];
+        packages = [ "nodejs" "npm" "python3-dev" "pipx" "git" "wl-clipboard" ];
         init = ''
           npm install -g corepack
           corepack enable
@@ -53,22 +48,20 @@
       Arch = {
         inherit exec symlinks;
         img = "docker.io/library/archlinux:latest";
-        packages = packages ++ ["base-devel"];
-        nixPackages =
-          nixPackages
-          ++ [
-            (pkgs.writeShellScriptBin "yay" ''
-              if [[ ! -f /bin/yay ]]; then
-                tmpdir="$HOME/.yay-bin"
-                if [[ -d "$tmpdir" ]]; then sudo rm -r "$tmpdir"; fi
-                git clone https://aur.archlinux.org/yay-bin.git "$tmpdir"
-                cd "$tmpdir"
-                makepkg -si
-                sudo rm -r "$tmpdir"
-              fi
-              /bin/yay $@
-            '')
-          ];
+        packages = packages ++ [ "base-devel" ];
+        nixPackages = nixPackages ++ [
+          (pkgs.writeShellScriptBin "yay" ''
+            if [[ ! -f /bin/yay ]]; then
+              tmpdir="$HOME/.yay-bin"
+              if [[ -d "$tmpdir" ]]; then sudo rm -r "$tmpdir"; fi
+              git clone https://aur.archlinux.org/yay-bin.git "$tmpdir"
+              cd "$tmpdir"
+              makepkg -si
+              sudo rm -r "$tmpdir"
+            fi
+            /bin/yay $@
+          '')
+        ];
       };
     };
   };
