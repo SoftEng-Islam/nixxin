@@ -22,8 +22,6 @@
       mv = "mv -v";
       cp = "cp -vr";
       rm = "rm -rv";
-      nix-tarantool =
-        "nix develop ${settings.dotfilesDir}/shells/tarantool -c zsh";
       nix-python = "nix develop ${settings.dotfilesDir}/shells/python -c zsh";
       nix-lampray = "nix develop ${settings.dotfilesDir}/shells/lampray -c zsh";
       nix-invoke = "nix develop ${settings.dotfilesDir}/shells/invoke -c zsh";

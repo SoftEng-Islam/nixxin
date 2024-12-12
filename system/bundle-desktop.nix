@@ -63,6 +63,7 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
+    brave # Privacy-oriented browser for Desktop and Laptop computers
 
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
     spotify
