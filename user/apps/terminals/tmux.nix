@@ -1,4 +1,5 @@
 { pkgs, ... }:
+# tmux: Terminal multiplexer
 let
   bg = "default";
   fg = "default";

@@ -3,18 +3,13 @@
     (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
     (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
     ../../themes/stylix.nix
-    ../../user/apps/spotify.nix
     ../../user/apps/kitty.nix
     ../../user/apps/git.nix
     ../../user/apps/superfile.nix
     ../../user/apps/zathura.nix
-    ../../user/apps/nemu.nix
     ../../user/apps/cava.nix
-    ../../user/apps/khal.nix
-    ../../user/apps/vdirsyncer.nix
     ../../user/apps/neofetch
     ../../user/shell/zsh.nix
-    ../../user/apps/mangohud.nix
     ../../user/apps/neovim
     ../../user/apps/btop
     ../../user/apps/mpd
@@ -29,7 +24,7 @@
 
   # Add packages from the pkgs dir
   nixpkgs.overlays = import ../../lib/overlays.nix;
-  nixpkgs.config.allowUnfree = true; # Sorry, Stallman(
+  nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     qt5.qtgraphicaleffects
     qt5.qtquickcontrols2

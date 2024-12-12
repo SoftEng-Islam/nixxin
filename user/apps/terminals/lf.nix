@@ -1,4 +1,6 @@
 { inputs, pkgs, lib, ... }: {
+  # lf: Terminal file manager written in Go and heavily inspired by ranger
+
   xdg.desktopEntries = lib.mkIf pkgs.stdenv.isLinux {
     "lf" = {
       name = "lf";

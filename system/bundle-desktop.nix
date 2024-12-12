@@ -63,6 +63,17 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
+
+    (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    spotify
+    # gnome-secrets
+    fragments
+    figma-linux
+    # yabridge
+    # yabridgectl
+    # wine-staging
+    nodejs
+
     rar # Utility for RAR archives
 
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
