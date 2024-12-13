@@ -2,12 +2,10 @@
   imports = [
     # /android
     ./android/pkgs.nix
+
     # /apps
-    # ./apps/cron.nix
     ./apps/desktop-apps.nix
-    # ./apps/ollama.nix
-    # ./apps/thunar.nix
-    # ./apps/tlp.nix
+
     # /development
     ./development/cli-tools.nix
     ./development/dev-pkgs.nix
@@ -18,19 +16,23 @@
     ./development/rust.nix
     ./development/spell-checker.nix
     ./development/terminals.nix
+
     # /drivers
     ./drivers/drivers.nix
     ./drivers/media.nix
+
     # /gaming
     ./gaming/gameing.nix
     # ./gaming/lutris.nix
     ./gaming/steam.nix
+
     # /hardware
     ./hardware/desktop/audio.nix
     ./hardware/desktop/boot.nix
     ./hardware/desktop/graphic.nix
     # ./hardware/desktop/mouse.nix
     # ./hardware/desktop/printing.nix
+
     # /os
     ./os/appearance.nix
     ./os/clipboard.nix
@@ -45,15 +47,15 @@
     ./os/services.nix
     ./os/users.nix
     ./os/zram.nix
-    # /security
-    # ./security/vpn/wireguard.nix
-    # ./security/vpn/xray.nix
+
     # /virtualization
     # ./virtualization/general.nix
     # ./virtualization/nemu/default.nix
+
     # /window-manager
     ./wm/gnome.nix
     ./wm/hyprland.nix
+
     # /windows
     ./windows/wine.nix
   ];

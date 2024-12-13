@@ -2,26 +2,18 @@
   imports = [ ./common/wayland.nix ./common/fonts.nix ];
   programs = {
     uwsm.enable = true;
+    xwayland.enable =
+      false; # Xwayland (an X server for interfacing X11 apps with the Wayland protocol).
     hyprlock.enable = true; # Hyprland’s GPU-accelerated screen locking utility.
     hyprland = {
       enable = true;
-      xwayland.enable = false;
-      withUWSM = true;
+      withUWSM =
+        true; # Launch Hyprland with the UWSM (Universal Wayland Session Manager) session manager.
       package = inputs.hyprland.packages.${pkgs.system}.default;
       portalPackage =
         inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     };
   };
-
-  #    programs.hyprland.package = let
-  #      patch = ./displaylink-custom.patch;
-  #    in
-  #    inputs.hyprland.packages.${pkgs.system}.default.overrideAttrs (self: super: {
-  #      postUnpack = ''
-  #        rm $sourceRoot/subprojects/wlroots-hyprland/patches/nvidia-hardware-cursors.patch
-  #        cp ${patch} $sourceRoot/subprojects/wlroots-hyprland/patches
-  #      '';
-  #    });
 
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];

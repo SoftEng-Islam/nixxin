@@ -10,11 +10,8 @@
     ./hyprland/hyprlock.nix
   ];
 
-  home.packages = with pkgs; [ hyprcursor ];
-
   wayland.windowManager.hyprland = {
     enable = true;
-    xwayland.enable = false;
     package = pkgs.hyprland;
     systemd.enable = true;
     plugins = [
@@ -23,5 +20,5 @@
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
       pkgs.hyprlandPlugins.borders-plus-plus;
   };
-
+  home.packages = with pkgs; [ hyprcursor ];
 }
