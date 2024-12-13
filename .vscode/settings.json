@@ -2,15 +2,19 @@
   "workbench.editor.enablePreview": false,
   "workbench.settings.openDefaultKeybindings": true,
   "workbench.colorCustomizations": {
-    "editor.selectionBackground": "#3f166f",
+    "editor.selectionBackground": "#450093",
     "editor.selectionHighlightBackground": "#1438659e",
 
-    "activityBar.background": "#40347b",
-    "activityBar.foreground":"#ffffff",
-    "activityBar.inactiveForeground":"#000000",
-    "titleBar.activeBackground": "#40347b",
+    "activityBar.background": "#20132c",
+
+    "activityBar.foreground":"#cc00ff",
+    "activityBar.inactiveForeground":"#ffffff",
+
+    "titleBar.activeBackground": "#3f166f",
     "titleBar.activeForeground": "#FAFCFC",
-    "statusBar.background": "#260554",
-    "statusBar.border":"#580013"
+
+
+    "statusBar.background": "#3f166f",
+    "statusBar.border":"#1f1c1d"
   }
 }
