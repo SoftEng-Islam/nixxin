@@ -7,6 +7,5 @@
     signal-desktop # Private, simple, and secure messenger
     slack # Desktop client for Slack
     telegram-desktop # Telegram Desktop messaging app
-
   ];
 }
