@@ -2,7 +2,6 @@
   environment.sessionVariables = {
     # MOZ_DBUS_REMOTE = "1";
     MOZ_ENABLE_WAYLAND = "1"; # Ensure Firefox works well on Wayland
-
   };
   environment.systemPackages = with pkgs; [
     brave # Privacy-oriented browser for Desktop and Laptop computers

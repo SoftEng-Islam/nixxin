@@ -22,7 +22,6 @@
     ./drivers/drivers.nix
     ./drivers/media.nix
     # /gaming
-    # ./gaming/aagl.nix
     ./gaming/gameing.nix
     # ./gaming/lutris.nix
     ./gaming/steam.nix

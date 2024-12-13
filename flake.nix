@@ -50,8 +50,6 @@
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     };
-    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    aagl.inputs.nixpkgs.follows = "nixpkgs";
     superfile.url = "github:yorukot/superfile";
     stylix.url = "github:danth/stylix";
     swww.url = "github:LGFae/swww";

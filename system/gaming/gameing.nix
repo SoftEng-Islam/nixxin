@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  # imports = [ ./aagl.nix ./lutris.nix ./steam.nix ];
+  # imports = [  ./lutris.nix ./steam.nix ];
   environment.systemPackages = with pkgs;
     [
       zeroad # Free, open-source game of ancient warfare
