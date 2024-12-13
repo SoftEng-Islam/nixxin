@@ -1,20 +1,28 @@
 { lib, settings, pkgs, ... }: {
   imports = [
-    ./hyprland/ags.nix
-    ./hyprland/env.nix
-    ./hyprland/binds.nix
-    ./hyprland/scripts.nix
-    ./hyprland/rules.nix
-    ./hyprland/settings.nix
-    ./hyprland/plugins.nix
-    ./hyprland/hyprlock.nix
+    ./ags.nix
+    ./env.nix
+    ./binds.nix
+    ./scripts.nix
+    ./rules.nix
+    ./settings.nix
+    ./plugins.nix
+    ./hyprlock.nix
   ];
+
+  # make stuff work on wayland
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+  };
 
   wayland.windowManager.hyprland = {
     enable = true;
     package = pkgs.hyprland;
     systemd.enable = true;
     plugins = [
+      pkgs.hyprbars
       pkgs.hyprlandPlugins.hyprexpo
       pkgs.hyprlandPlugins.hypr-dynamic-cursors
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
