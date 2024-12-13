@@ -92,8 +92,6 @@
       heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
     };
     sessionVariables = {
-      # MOZ_DBUS_REMOTE = "1";
-      # MOZ_ENABLE_WAYLAND = "1"; # Ensure Firefox works well on Wayland
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
       GTK_USE_PORTAL =
         "1"; # Enables portal-based access for apps like VSCode on Wayland

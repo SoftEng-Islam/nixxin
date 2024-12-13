@@ -111,7 +111,6 @@ with lib.hm.gvariant; {
         "caprine.desktop"
         "teams-for-linux.desktop"
         "discord.desktop"
-        "spotify.desktop"
         "com.usebottles.bottles.desktop"
         "org.gnome.Software.desktop"
       ];

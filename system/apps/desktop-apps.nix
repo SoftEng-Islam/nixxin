@@ -4,9 +4,6 @@
     screenkey # A screencast tool to display your keys inspired by Screenflick
     akira-unstable # Native Linux Design application built in Vala and GTK
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
-    firefox # Web browser built from Firefox source tree
-    google-chrome # Freeware web browser developed by Google
-    microsoft-edge # The web browser from Microsoft
     discord # All-in-one cross-platform voice and text chat for gamers
     zoom-us # zoom.us video conferencing application
     audacity # Sound editor with graphical UI

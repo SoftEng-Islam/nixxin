@@ -36,10 +36,5 @@
     ruby_3_3 # An object-oriented language for quick and easy programming
     rubyPackages.execjs
 
-    #__ Nodejs & JavaScript Stuff __#
-    nodejs_22 # Event-driven I/O framework for the V8 JavaScript engine
-    nodePackages.pnpm # Fast, disk space efficient package manager
-    typescript # Superset of JavaScript that compiles to clean JavaScript output
-
   ];
 }
