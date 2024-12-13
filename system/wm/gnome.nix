@@ -42,25 +42,27 @@
     enable = true;
   };
   environment.systemPackages = with pkgs; [
-    gnome-secrets
     gsettings-desktop-schemas
     playerctl # gsconnect play/pause command
     pamixer # gcsconnect volume control
-    dconf-editor
+
     gdm # A program that manages graphical display servers and handles graphical user logins
     gjs # JavaScript bindings for GNOME
+
+    gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
+    libgnome-keyring # Framework for managing passwords and other secrets
+    libsoup_3 # HTTP client/server library for GNOME
+    eog # GNOME image viewer
+
     gnome-bluetooth # Application that lets you manage Bluetooth in the GNOME desktop
     gnome-chess # Play the classic two-player boardgame of chess
     gnome-control-center # Utilities to configure the GNOME desktop
     gnome-keyring # Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications
     gnome-pomodoro # Time management utility for GNOME based on the pomodoro technique
+    gnome-secrets # Password manager for GNOME which makes use of the KeePass v.4 format
     gnome-settings-daemon # GNOME Settings Daemon
     gnome-themes-extra
     gnome-tweaks # A tool to customize advanced GNOME 3 options
-    gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
-    libgnome-keyring # Framework for managing passwords and other secrets
-    libsoup_3 # HTTP client/server library for GNOME
-    eog # GNOME image viewer
 
     # Polkit
     polkit # A toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
@@ -68,32 +70,17 @@
     libsForQt5.polkit-qt # A Qt wrapper around PolKit
   ];
   environment.gnome.excludePackages =
-    (with pkgs; [ gnome-photos gnome-tour gedit ]) ++ (with pkgs.gnome; [
-      #        cheese # webcam tool
-      #        gnome-music
-      #        epiphany # web browser
-      geary # email reader
-      #        evince # document viewer
+    (with pkgs; [ gnome-photos gedit gnome-tour ]) ++ (with pkgs.gnome; [
+      evince # document viewer
+      epiphany # web browser
+      cheese # webcam tool
+      totem # video player
+      gnome-music
       gnome-characters
-      #        totem # video player
-      tali # poker game
-      iagno # go game
-      hitori # sudoku game
+      geary # email reader
       atomix # puzzle game
+      hitori # sudoku game
+      iagno # go game
+      tali # poker game
     ]);
-
-  #    nixpkgs.overlays = [
-  #        (final: prev: {
-  #        gnome = prev.gnome.overrideScope' (gnomeFinal: gnomePrev: {
-  #            mutter = gnomePrev.mutter.overrideAttrs ( old: {
-  #                src = pkgs.fetchgit {
-  #                    url = "https://gitlab.gnome.org/vanvugt/mutter.git";
-  #                    # GNOME 45: triple-buffering-v4-45
-  #                    rev = "0b896518b2028d9c4d6ea44806d093fd33793689";
-  #                    sha256 = "sha256-mzNy5GPlB2qkI2KEAErJQzO//uo8yO0kPQUwvGDwR4w=";
-  #                };
-  #            } );
-  #        });
-  #        })
-  #    ];
 }

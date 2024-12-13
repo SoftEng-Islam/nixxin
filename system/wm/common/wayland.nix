@@ -7,7 +7,7 @@
       layout = "us,ara";
       options = "grp:win_space_toggle";
     };
-    videoDrivers = [ "amdgpu" "nvidia" ];
+    videoDrivers = [ "amdgpu" ];
     displayManager.startx = { enable = true; };
   };
 }

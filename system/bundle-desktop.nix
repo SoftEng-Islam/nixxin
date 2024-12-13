@@ -65,52 +65,49 @@
   };
   environment.systemPackages = with pkgs; [
 
+    # File Utilities
     rar # Utility for RAR archives
-
-    binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     file # Program that shows the type of files
-    htop # Interactive process viewer
-    silver-searcher # Code-searching tool similar to ack, but faster
     lsof # Tool to list open files
     rsync # Fast incremental file transfer utility
-    strace # System call tracer for Linux
-    iotop # Tool to find out the processes doing the most IO
-    man-pages # Linux development manual pages
-    dnsutils # Domain name server
-    whois # Intelligent WHOIS client from Debian
-    usbutils # Tools for working with USB devices, such as lsusb
-    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
 
+    # Process Management
+    htop # Interactive process viewer
+    iotop # Tool to find out the processes doing the most IO
+
+    # Linux Tools
+    man-pages # Linux development manual pages
+    strace # System call tracer for Linux
     sudo # A command to run commands as root
-    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
-    proot # User-space implementation of chroot, mount --bind and binfmt_misc
+
+    # Hardware & System Utilities
+    binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
+    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
+    usbutils # Tools for working with USB devices, such as lsusb
+    lm_sensors # Tools for reading hardware sensors
+    geoclue2 # Geolocation framework and some data providers
+    udevil # Mount without password
+    corectrl # Control your computer hardware via application profiles
+    whois # Intelligent WHOIS client from Debian
+
+    # Text Search
+    silver-searcher # Code-searching tool similar to ack, but faster
+    ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
+
+    # D-Bus Tools
     dbus # Simple interprocess messaging system
     dbus-broker # Linux D-Bus Message Broker
-    corectrl # Control your computer hardware via application profiles
-    lm_sensors # Tools for reading hardware sensors
-    pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
-    udevil # Mount without password
-    geoclue2 # Geolocation framework and some data providers
 
-    #__ gtk & Themes Stuff __#
+    # Themes & Graphical Interfaces
     adw-gtk3 # The theme from libadwaita ported to GTK-3
     colloid-gtk-theme # A modern and clean Gtk theme
     gtk_engines # Theme engines for GTK 2
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
-    gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
-    gtkmm2 # C++ interface to the GTK graphical user interface library
-    gtkmm3 # C++ interface to the GTK graphical user interface library
-    gtkmm4 # C++ interface to the GTK graphical user interface library
-    gtksourceview
-    kdePackages.breeze
-    kdePackages.qt6ct
     libadwaita # Library to help with developing UI for mobile devices using GTK/GNOME
-    libdbusmenu-gtk3 # Library for passing menu structures across DBus
     papirus-icon-theme # Pixel perfect icon theme for Linux
-    webkitgtk_6_0 # Web content rendering engine, GTK port
 
-    # Disks & Partitions & Files System
+    # Disk, Partition & Filesystem Tools
     # gvfs # Virtual Filesystem support library
     bees # Bees is a deduplication tool designed specifically for filesystems that use the Btrfs (B-tree file system).
     btrfs-progs # Utilities for the btrfs filesystem
@@ -131,7 +128,7 @@
     fio # Flexible IO Tester - an IO benchmark tool
     jmtpfs # FUSE filesystem for MTP devices like Android phones
 
-    #__ Wayland Stuff __#
+    # Wayland Tools
     anyrun # A wayland-native, highly customizable runner
     seatd # A minimal seat management daemon, and a universal seat management library
     slurp # Select a region in a Wayland compositor
@@ -142,28 +139,24 @@
     wlogout # Wayland based logout menu
     wlr-protocols # Wayland roots protocol extensions
     wlroots # A modular Wayland compositor library
-    matugen # A material you color generation tool
     wf-recorder # Utility program for screen recording of wlroots-based compositors
 
-    # cryptographic
+    # Cryptographic Tools
     openssl # A cryptographic library that implements the SSL and TLS protocols
     nettle # Cryptographic library
     libgcrypt # General-purpose cryptographic library
 
-    #__ System Tools __#
+    # System Tools
     busybox # Tiny versions of common UNIX utilities in a single small executable
     resources # Monitor your system resources and processes
     fdupes # Identifies duplicate files residing within specified directories
 
-    # Image Viewer
+    # Image Viewers
     imv # A command line image viewer for tiling window managers
     feh # A light-weight image viewer
     loupe # A simple image viewer application written with GTK4 and Rust
 
-    #__ Keyboard __#
-    # fcitx5 # Next generation of fcitx
-
-    #__ xdg Stuff __#
+    # XDG Tools
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
@@ -174,7 +167,7 @@
     xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
     libxdg_basedir # Implementation of the XDG Base Directory specification
 
-    #__ GNU Stuff __#
+    # GNU Utilities
     autoconf # Part of the GNU Build System
     autoconf-archive # Archive of autoconf m4 macros
     automake # GNU standard-compliant makefile generator
@@ -192,7 +185,7 @@
     libGL # Stub bindings using libglvnd
     libGLU # OpenGL utility library
 
-    #__ Other __
+    # Other Tools
     upower # D-Bus service for power management
     libsForQt5.qt5ct # Qt5 Configuration Tool
     bpftune # BPF-based auto-tuning of Linux system parameters
@@ -201,19 +194,36 @@
     ddcutil # Query and change Linux monitor settings using DDC/CI and USB
     gammastep # Screen color temperature manager
     gojq # Pure Go implementation of jq
-    ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
     rsync # Fast incremental file transfer utility
     starship # Minimal, blazing fast, and extremely customizable prompt for any shell
     tesseract # OCR engine
     tinyxml2 # Simple, small, efficient, C++ XML parser
     webp-pixbuf-loader # WebP GDK Pixbuf Loader library
     clblast # Tuned OpenCL BLAS library
-    libbsd
+    libbsd # Common functions found on BSD systems
+    libselinux # SELinux core library
+    audit # Audit Library
+    xmlto # Front-end to an XSL toolchain
+    fop # XML formatter driven by XSL Formatting Objects (XSL-FO)
+    libdbusmenu # Library for passing menu structures across DBus
 
-    libselinux
-    audit
-    xmlto
-    fop
-    libdbusmenu
+    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
+    dconf-editor # GSettings editor for GNOME
+
+    proot # User-space implementation of chroot, mount --bind and binfmt_misc
+    pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
+
+    # GTK  Stuff
+    gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
+    gtkmm2 # C++ interface to the GTK graphical user interface library
+    gtkmm3 # C++ interface to the GTK graphical user interface library
+    gtkmm4 # C++ interface to the GTK graphical user interface library
+    gtksourceview
+    kdePackages.breeze # Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
+    kdePackages.qt6ct # Qt6 Configuration Tool
+    libdbusmenu-gtk3 # Library for passing menu structures across DBus
+    webkitgtk_6_0 # Web content rendering engine, GTK port
+
+    matugen # A material you color generation tool
   ];
 }

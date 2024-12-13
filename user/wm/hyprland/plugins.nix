@@ -96,4 +96,16 @@
   #     };
   #   };
   # };
+
+  #   "plugin:touch_gestures" = {
+  #   sensitivity = 8.0;
+  #   workspace_swipe_fingers = 3;
+  #   long_press_delay = 400;
+  #   edge_margin = 16;
+  #   hyprgrass-bind = [
+  #     ", edge:r:l, workspace, +1"
+  #     ", edge:l:r, workspace, -1"
+  #     ", edge:d:u, exec, my-shell toggle launcher"
+  #   ];
+  # };
 }
