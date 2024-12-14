@@ -4,14 +4,23 @@
     ./android/pkgs.nix
 
     # /apps
+    ./apps/browsers.nix
+    ./apps/community-apps.nix
     ./apps/desktop-apps.nix
+    ./apps/download-manager.nix
+    ./apps/graphic-apps.nix
+    ./apps/media-player.nix
+    ./apps/nautilus.nix
+    ./apps/office.nix
 
     # /development
     ./development/cli-tools.nix
-    ./development/dev-pkgs.nix
     ./development/dev-apps.nix
+    ./development/dev-pkgs.nix
+    ./development/editors.nix
     ./development/git.nix
     ./development/hacking.nix
+    ./development/javascript.nix
     ./development/python.nix
     ./development/rust.nix
     ./development/spell-checker.nix
@@ -48,16 +57,20 @@
     ./os/users.nix
     ./os/zram.nix
 
+    # /security
+    # ./security/vpn.nix
+
     # /virtualization
     # ./virtualization/general.nix
     # ./virtualization/nemu/default.nix
+
+    # /windows
+    ./windows/wine.nix
 
     # /window-manager
     ./wm/gnome.nix
     ./wm/hyprland.nix
 
-    # /windows
-    ./windows/wine.nix
   ];
   nixpkgs.config = {
     rocmSupport = true;

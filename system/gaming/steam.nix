@@ -1,12 +1,6 @@
 { pkgs, ... }: {
-  hardware.xpadneo.enable = true;
-
   programs = {
-    gamemode = {
-      enable = true;
-      enableRenice = true;
-      settings = { general = { renice = 20; }; };
-    };
+
     steam = {
       enable = true;
       gamescopeSession.enable = true;
@@ -35,6 +29,5 @@
     steam-run # Run commands in the same FHS environment that is used for Steam
     # (mangohud.override { lowerBitnessSupport = true; })
     gamescope # SteamOS session compositing window manager
-    gamemode # Optimise Linux system performance on demand
   ];
 }
