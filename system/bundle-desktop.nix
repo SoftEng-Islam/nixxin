@@ -79,6 +79,7 @@
     man-pages # Linux development manual pages
     strace # System call tracer for Linux
     sudo # A command to run commands as root
+    shfmt # Shell parser and formatter
 
     # Hardware & System Utilities
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
