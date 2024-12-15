@@ -59,7 +59,7 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    #__ Hyprland __#
+    # albert # Fast and flexible keyboard launcher
     ags # A EWW-inspired widget system as a GJS library
     brightnessctl # This program allows you read and control device brightness
     fd # A simple, fast and user-friendly alternative to find

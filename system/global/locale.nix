@@ -35,7 +35,17 @@
   };
 
   # Include IBus in System Packages
-  environment.systemPackages = with pkgs; [ ibus ibus-engines.m17n ];
+  environment.systemPackages = with pkgs; [
+    ibus
+    ibus-engines.m17n
+    # spell-checkers
+    aspell
+    aspellDicts.de
+    aspellDicts.fr
+    aspellDicts.en
+    hunspell
+    hunspellDicts.en-gb-ise
+  ];
   # Configure Virtual Console
   console = {
     enable = true;

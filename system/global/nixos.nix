@@ -40,7 +40,10 @@
       auto-optimise-store = true
     '';
   };
-
+  nixpkgs.config = {
+    rocmSupport = true;
+    allowUnfree = true;
+  };
   systemd.timers.nix-cleanup-gcroots = {
     timerConfig = {
       OnCalendar = [ "weekly" ];
@@ -64,9 +67,6 @@
   programs.command-not-found.enable = false;
   security.isolate.enable = false;
   environment.systemPackages = with pkgs; [
-    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
-    bpftrace # High-level tracing language for Linux eBPF
-
     direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
