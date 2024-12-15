@@ -7,27 +7,35 @@
   locale = "en_US.UTF-8"; # Select locale
   name = "Islam Ahmed"; # Name (git config)
   email = "softeng.islam@gmail.com"; # Email (git config)
-  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
-  theme = "nord"; # Selected theme from themes directory (./themes/)
-  themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
-  # must select one in both ./user/wm/ and ./system/wm/
-  # Note, that first WM is included into work profile
-  # second one includes both.
+  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
 
+  # Editors
+  editor = "nvim"; # Default editor
+  editorPkg = pkgs.neovim;
+  # Web Browsers
+  browser = "microsoft-edge"; # Default browser;
+  browserPkg = pkgs.microsoft-edge;
+  # Terminals
+  term = "kitty"; # Default terminal command
+  termPkg = pkgs.kitty;
+
+  # ---------------------------------
+  # Fonts & Themes & Icons & Cursors
+  # ---------------------------------
+  # Fonts
   font = "JetBrains Mono"; # Selected font
   fontPkg = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
   fontSize = 12; # Font size
-
+  # Themes
+  theme =
+    "nord"; # themes directory (./themes/) ["catppuccin","everforest","gruvbox","nord"]
+  themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
+  # Icons
   icons = "Papirus";
   iconsPkg = pkgs.papirus-icon-theme;
-
-  # Session variables.
-  editor = "nvim"; # Default editor
-  editorPkg = pkgs.neovim;
-  browser =
-    "microsoft-edge"; # Default browser; must select one from ./user/app/browser/
-  browserPkg = pkgs.microsoft-edge;
-  term = "kitty"; # Default terminal command
-  termPkg = pkgs.kitty;
+  # Cursor
+  cursorPackage = pkgs.bibata-cursors;
+  cursorTheme = "Bibata-Modern-Ice"; # Cursor Name
+  cursorSize = 32; # Cursor Size
 }

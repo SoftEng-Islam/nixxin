@@ -13,13 +13,8 @@
     tree # Command to produce a depth indented directory listing
     unzip # An extraction utility for archives compressed in .zip format
     zip # Compressor/archiver for creating and modifying zipfiles
-
-    curl # A command line tool for transferring files with URL syntax
-    wget # Tool for retrieving files using HTTP, HTTPS, and FTP
-
     lsof # A tool to list open files
-    lux # Fast and simple video download library and CLI tool written in Go
-    yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
+    ouch
 
     wlsunset # Wayland compositors supporting wlr-gamma-control-unstable-v1.
     # sct # X11 CLI Minimal utility to set display colour temperature. EX: sct 2000
@@ -28,14 +23,12 @@
     patool
     cheat
     jq
-    foot
     hexyl
-    ouch
     procs
     xcp
-    nurl
-    htop
-    hub
+    nurl # Command-line tool to generate Nix fetcher calls from repository URLs
+    hub # Command-line wrapper for git that makes you better at GitHub
+
     tea
     gh
     yq-go

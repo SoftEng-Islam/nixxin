@@ -4,11 +4,6 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
   };
-  # Desktop Manager
-  # QT
-  # GTK
-  # Terminal
-  # Nautilus
   services = {
     xserver.desktopManager = {
       gnome = {

@@ -23,20 +23,25 @@
       '';
     };
   };
-
-  #__ Terminals __#
   environment.systemPackages = with pkgs; [
-    neovim # Vim text editor fork focused on extensibility and agility
-    vim # The most popular clone of the VI editor
-
+    # Terminal Emulators
+    bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
+    wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
+    foot # A fast, lightweight and minimalistic Wayland terminal emulator
+    fish # Smart and user-friendly command line shell
+    kitty # A modern, hackable, featureful, OpenGL based terminal emulator
     tmux # Terminal multiplexer
+
+    nanorc # Improved Nano Syntax Highlighting Files
+    vim # The most popular clone of the VI editor
+    zsh # The Z shell
+
     fzf-zsh # wrap fzf to use in oh-my-zsh
     oh-my-zsh # A framework for managing your zsh configuration
-    zsh # The Z shell
-    zsh-abbr
+    zsh-abbr # Zsh manager for auto-expanding abbreviations, inspired by fish shell
     zsh-autocomplete # Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion
-    zsh-autoenv
-    zsh-autopair
+    zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
+    zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
     zsh-autosuggestions # Fish shell autosuggestions for Zsh
     zsh-better-npm-completion
     zsh-completions # Additional completion definitions for zsh
@@ -46,20 +51,13 @@
     zsh-git-prompt # Informative git prompt for zsh
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
 
-    # wezterm
-    wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
-
-    powerline
-    powerline-fonts
-    powerline-rs
+    # powerline # Ultimate statusline/prompt utility
+    # powerline-fonts
+    # powerline-rs
     bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
-    foot # A fast, lightweight and minimalistic Wayland terminal emulator
-    fish # Smart and user-friendly command line shell
     fzf # Command-line fuzzy finder written in Go
-    kitty # A modern, hackable, featureful, OpenGL based terminal emulator
-    nanorc # Improved Nano Syntax Highlighting Files
-    tmux
+    htop # Interactive process viewer
   ];
 }
 

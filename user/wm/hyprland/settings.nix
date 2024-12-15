@@ -29,7 +29,7 @@ in {
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
       "ags &"
-      # "hyprctl setcursor Catppuccin-Mocha-Lavender-Cursors 24"
+      "hyprctl setcursor ${settings.cursorTheme}  ${settings.cursorSize}"
     ];
     master = { new_is_master = true; };
 

@@ -6,9 +6,9 @@
   environment.systemPackages = with pkgs; [
     # yabridge
     # yabridgectl
-    # wine64 # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     directx-headers # Official D3D12 headers from Microsoft
     wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
+    wine64 # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     wineasio # ASIO to JACK driver for WINE
     winePackages.fonts
     winePackages.stableFull

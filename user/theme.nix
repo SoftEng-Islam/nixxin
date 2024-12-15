@@ -1,4 +1,4 @@
-{ pkgs, config, ... }:
+{ settings, pkgs, config, ... }:
 let
   nerdfonts = pkgs.nerdfonts.override {
     fonts = [
@@ -21,7 +21,7 @@ let
     size = 11;
   };
   cursorTheme = {
-    name = "Qogir";
+    name = settings.cursorTheme;
     size = 24;
     package = pkgs.qogir-icon-theme;
   };

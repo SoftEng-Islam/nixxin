@@ -77,13 +77,6 @@
     allowUnfree = true;
   };
   environment.systemPackages = with pkgs; [
-
-    # File Utilities
-    rar # Utility for RAR archives
-    file # Program that shows the type of files
-    lsof # Tool to list open files
-    rsync # Fast incremental file transfer utility
-
     # Process Management
     htop # Interactive process viewer
     iotop # Tool to find out the processes doing the most IO
@@ -187,7 +180,6 @@
     automake # GNU standard-compliant makefile generator
     autobuild # Continuous integration tool
     libtool # GNU Libtool, a generic library support script
-    bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
     bc # GNU software calculator
     coreutils # The GNU Core Utilities
     cups # A standards-based printing system for UNIX
