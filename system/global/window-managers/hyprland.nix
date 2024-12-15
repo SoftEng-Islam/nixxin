@@ -1,5 +1,4 @@
 { inputs, pkgs, ... }: {
-  imports = [ ./common/wayland.nix ./common/fonts.nix ];
   programs = {
     uwsm.enable = true;
     xwayland.enable =

@@ -1,6 +1,4 @@
 { pkgs, ... }: {
-  imports = [ ./common/wayland.nix ./common/fonts.nix ];
-
   services.udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
 
   # you can try this command if you have any problem with gnome settings

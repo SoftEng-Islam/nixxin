@@ -1,5 +1,27 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+
+    # Media Players
+    (mpv.override { scripts = [ mpvScripts.mpris ]; })
+    clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
+    glide-media-player # Linux/macOS media player based on GStreamer and GTK
+    jellyfin-media-player # Jellyfin Desktop Client based on Plex Media Player
+    playerctl # Command-line utility and library for controlling media players that implement MPRIS
+    vlc # Cross-platform media player and streaming server
+
+    # Video Editors
+    kdenlive # Video editor
+    # davinci-resolve # Professional video editing, color, effects and audio post-processing
+    # davinci-resolve-studio
+
+    # graphics apps
+    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    drawio # A desktop application for creating diagrams
+    inkscape # Vector graphics editor
+    gimp # GNU Image Manipulation Program
+    blender-hip # 3D Creation/Animation/Publishing System
+    # figma-linux
+
     # Developers Applications
     beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
     dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more

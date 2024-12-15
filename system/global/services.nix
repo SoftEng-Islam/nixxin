@@ -4,23 +4,29 @@
     # tlp.enable = true;
     accounts-daemon.enable = true;
     dbus.implementation = "broker";
-    devmon.enable = true;
     flatpak.enable = false;
-    gvfs.enable = true;
-    libinput.mouse.accelSpeed =
-      "-0.5"; # Enable touchpad support (enabled default in most desktopManager).
+
+    # Enable touchpad support (enabled default in most desktopManager).
+    libinput.mouse.accelSpeed = "-0.5";
+
     openssh.enable = true; # Enable the OpenSSH daemon.
     power-profiles-daemon.enable = true;
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
-    udisks2.enable =
-      true; # a DBus service that allows applications to query and manipulate storage devices.
-    upower.enable =
-      true; # a DBus service that provides power management support to applications.
-    fwupd.enable =
-      false; # a DBus service that allows applications to update firmware.
+
+    # a DBus service that provides power management support to applications.
+    upower.enable = true;
+
+    # a DBus service that allows applications to update firmware.
+    fwupd.enable = false;
+
     geoclue2.enable = true;
     colord.enable = true;
+
+    # automount
+    services.devmon.enable = true;
+    services.gvfs.enable = true;
+    services.udisks2.enable = true;
 
     # logind
     logind.extraConfig = ''

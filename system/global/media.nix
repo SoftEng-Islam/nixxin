@@ -1,9 +1,7 @@
 { pkgs, ... }: {
   # Video & Audio & Images | graphics & Formats
   environment.systemPackages = with pkgs; [
-    kdenlive # Video editor
-    # davinci-resolve # Professional video editing, color, effects and audio post-processing
-    # davinci-resolve-studio
+
     #__ Media __#
     libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
     # ffmpeg # A complete, cross-platform solution to record, convert and stream audio and video

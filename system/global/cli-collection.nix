@@ -79,11 +79,5 @@
     findutils
     ncurses
 
-    # CLI Downloads Utility
-    aria2
-    axel
-    curl
-    wget2
-    media-downloader
   ];
 }
