@@ -81,11 +81,13 @@
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
     nixpkgs-review
+    # Nix language server
+    nixd # Feature-rich Nix language server interoperating with C++ nix
+    nil # Yet another language server for Nix
     # Nix Formatters:
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
-    nixd # Feature-rich Nix language server interoperating with C++ nix
     nixdoc # Generate documentation for Nix functions
   ];
 }

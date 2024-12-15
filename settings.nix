@@ -1,28 +1,33 @@
 { pkgs, ... }: rec {
-  system = "x86_64-linux";
+  # ---- SYSTEM SETTINGS ---- #
+  system = "x86_64-linux"; # system nixos
   hostname = "nixos"; # Hostname
-  username = "softeng"; # Username
-  profile = "desktop"; # Select from profiles directory
+  profile = "desktop"; # select a profile defined from my profiles directory
   timezone = "Africa/Cairo"; # Select timezone
   locale = "en_US.UTF-8"; # Select locale
-  name = "Islam Ahmed"; # Name (git config)
-  email = "softeng.islam@gmail.com"; # Email (git config)
-  wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
-  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
+  bootMode = "uefi"; # uefi or bios
+  bootMountPath =
+    "/boot"; # mount path for efi boot partition; only used for uefi boot mode
+  grubDevice =
+    ""; # device identifier for grub; only used for legacy (bios) boot mode
+  gpuType = "amd"; # amd, intel or nvidia;
 
-  # Editors
-  editor = "nvim"; # Default editor
-  editorPkg = pkgs.neovim;
+  # ----- USER SETTINGS ----- #
+  username = "softeng"; # Username
+  name = "Islam Ahmed"; # Name/identifier
+  email = "softeng.islam@gmail.com"; # Email (git config)
+  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
+  wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
   # Web Browsers
   browser = "microsoft-edge"; # Default browser;
   browserPkg = pkgs.microsoft-edge;
   # Terminals
   term = "kitty"; # Default terminal command
   termPkg = pkgs.kitty;
+  # Editors
+  editor = "nvim"; # Default editor
+  editorPkg = pkgs.neovim;
 
-  # ---------------------------------
-  # Fonts & Themes & Icons & Cursors
-  # ---------------------------------
   # Fonts
   font = "JetBrains Mono"; # Selected font
   fontPkg = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });

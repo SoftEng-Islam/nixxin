@@ -16,5 +16,8 @@
 
     "statusBar.background": "#3f166f",
     "statusBar.border":"#1f1c1d"
+  },
+  "[nix]": {
+    "editor.defaultFormatter": "jnoortheen.nix-ide"
   }
 }
