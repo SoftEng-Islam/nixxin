@@ -48,8 +48,8 @@ in {
     };
 
     bash = {
-      shellAliases = aliases // config.shellAliases;
       enable = true;
+      shellAliases = aliases // config.shellAliases;
       initExtra = "SHELL=${pkgs.bash}";
     };
 

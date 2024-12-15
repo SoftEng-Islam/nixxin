@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  services = { aria2.enable = true; };
   environment.systemPackages = with pkgs; [
     # download managers
     motrix # Full-featured download manager

@@ -77,6 +77,7 @@
     nix-doc # Interactive Nix documentation tool
     nix-index # A files database for nixpkgs
     nix-prefetch # Prefetch any fetcher function call, e.g. package sources
+    nix-prefetch-github
     nixfmt-classic # An opinionated formatter for Nix
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors

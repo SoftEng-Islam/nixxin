@@ -3,13 +3,20 @@
   # find /nix/store -name "something"
   environment = {
     variables = {
+      BUN_INSTALL = "$HOME/.bun";
+      LANG = "en_US.UTF-8";
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+      WAYLAND = "1";
+      QT_QPA_PLATFORM = "wayland;xcb";
+      MOZ_DBUS_REMOTE = "1";
+      MOZ_ENABLE_WAYLAND = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
-      # _JAVA_AWT_WM_NONREPARENTING = "1";
-      # BEMENU_BACKEND = "wayland";
-      # CLUTTER_BACKEND = "wayland";
-      # ECORE_EVAS_ENGINE = "wayland_egl";
-      # ELM_ENGINE = "wayland_egl";
-      # GDK_BACKEND = "wayland";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      BEMENU_BACKEND = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      ECORE_EVAS_ENGINE = "wayland_egl";
+      ELM_ENGINE = "wayland_egl";
+      GDK_BACKEND = "wayland,x11";
       GST_PLUGIN_PATH =
         "/nix/store/01n130457xklp8b00ydwax22l0z3a62j-gst-plugins-base-1.24.3/lib/gstreamer-1.0:/nix/store/2dqc2lqhzacg2mb79677ik426a74axik-gst-plugins-good-1.24.3/lib/gstreamer-1.0:/nix/store/2syk2lmxxwx3cksqfjsb20zf5mdhrxir-gst-plugins-bad-1.24.3/lib/gstreamer-1.0:/nix/store/b88jfk9l912qgwmf98cp1024hmz05pd5-gst-plugins-ugly-1.24.3/lib/gstreamer-1.0:/nix/store/8llhhp5r452dkbz32kb7xxd1qpl5j433-gst-libav-1.24.3/lib/gstreamer-1.0";
       GTK_THEME = "Colloid-Dark";
