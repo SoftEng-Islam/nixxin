@@ -1,14 +1,12 @@
-{config, ...}: let
+{ config, ... }:
+let
   data = config.xdg.dataHome;
   conf = config.xdg.configHome;
   cache = config.xdg.cacheHome;
 in {
-  imports = [
-    ./programs
-    ./shell/starship.nix
-    ./shell/zsh.nix
-    ./shell/zoxide.nix
-  ];
+  imports =
+    [ ./programs ./shell/starship.nix ./shell/zsh.nix ./shell/zoxide.nix ];
+  programs.zoxide.enable = true; # Fast cd command that learns your habits
 
   # add environment variables
   home.sessionVariables = {

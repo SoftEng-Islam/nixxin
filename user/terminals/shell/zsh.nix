@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ config, lib, pkgs, ... }:
 let
   # My shell aliases
   myAliases = {
@@ -8,8 +8,22 @@ let
     l = "eza -lh --icons=auto"; # Long list with icons
     ll = "eza -al --icons";
     lt = "eza -a --tree --level=1 --icons";
+    tree = "eza --tree";
     ld = "eza -lhD --icons=auto"; # Long list directories with icons
     # lt = "eza --icons=auto --tree";  # List folder as tree with icons
+    ":q" = "exit";
+    "q" = "exit";
+
+    "gs" = "git status";
+    "gb" = "git branch";
+    "gch" = "git checkout";
+    "gc" = "git commit";
+    "ga" = "git add";
+    "gr" = "git reset --soft HEAD~1";
+
+    "del" = "gio trash";
+
+    "nix-gc" = "nix-collect-garbage --delete-older-than 7d";
 
     # Handy change directory shortcuts
     ".." = "cd ..";
@@ -29,30 +43,55 @@ let
     jctl = "journalctl -p 3 -xb";
     # Recent installed packages
     rip = "expac --timefmt='%Y-%m-%d %T' '%l	%n %v' | sort | tail -200 | nl";
+    g = "git";
+    grep = "grep --color";
+    ip = "ip --color";
+    # l = "eza -l";
+    la = "eza -la";
+    md = "mkdir -p";
+    ppc = "powerprofilesctl";
+    pf = "powerprofilesctl launch -p performance";
 
-  };
+    us = "systemctl --user"; # mnemonic for user systemctl
+    rs = "sudo systemctl"; # mnemonic for root systemctl
+    cat = if config.programs.bat.enable then "bat" else "cat";
+
+  } // lib.optionalAttrs config.programs.bat.enable { cat = "bat"; };
 in {
   imports = [ ./starship.nix ];
-  networking.firewall.allowedTCPPortRanges = [
-    # wezterm tls server
-    {
-      from = 60000;
-      to = 60010;
-    }
-  ];
+  networking.firewall.allowedTCPPortRanges = if config.enableWezterm then [{
+    from = 60000;
+    to = 60010;
+  }] else
+    [ ];
   programs.zsh = {
     enable = true;
+    autocd = true;
     autosuggestions.async = true;
     autosuggestions.enable = true;
     enableBashCompletion = true;
     enableCompletion = true;
     shellAliases = myAliases;
+    shellGlobalAliases = { eza = "eza --icons --git"; };
     histFile = "~/.zsh_history";
     histSize = "3000";
     enableGlobalCompInit = true;
     ohMyZsh.enable = true;
     zsh-autoenv.enable = true;
-
+    dirHashes = {
+      dl = "$HOME/Downloads";
+      docs = "$HOME/Documents";
+      code = "$HOME/Documents/code";
+      dots = "$HOME/Documents/code/dotfiles";
+      pics = "$HOME/Pictures";
+      vids = "$HOME/Videos";
+      nixpkgs = "$HOME/Documents/code/git/nixpkgs";
+    };
+    dotDir = ".config/zsh";
+    history = {
+      expireDuplicatesFirst = true;
+      path = "${config.xdg.dataHome}/zsh_history";
+    };
     # autosuggestions.strategy = ["history"]; list of (one of "history", "completion", "match_prev_cmd")
     initExtra = ''
       PROMPT=" ◉ %U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f %F{green}→%f "
@@ -60,6 +99,59 @@ in {
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
       bindkey '^P' history-beginning-search-backward
       bindkey '^N' history-beginning-search-forward
+
+            # search history based on what's typed in the prompt
+      autoload -U history-search-end
+      zle -N history-beginning-search-backward-end history-search-end
+      zle -N history-beginning-search-forward-end history-search-end
+      bindkey "^[OA" history-beginning-search-backward-end
+      bindkey "^[OB" history-beginning-search-forward-end
+
+      # C-right / C-left for word skips
+      bindkey "^[[1;5C" forward-word
+      bindkey "^[[1;5D" backward-word
+
+      # C-Backspace / C-Delete for word deletions
+      bindkey "^[[3;5~" forward-kill-word
+      bindkey "^H" backward-kill-word
+
+      # Home/End
+      bindkey "^[[OH" beginning-of-line
+      bindkey "^[[OF" end-of-line
+
+      # open commands in $EDITOR with C-e
+      autoload -z edit-command-line
+      zle -N edit-command-line
+      bindkey "^e" edit-command-line
+
+      # case insensitive tab completion
+      zstyle ':completion:*' completer _complete _ignored _approximate
+      zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+      zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+      zstyle ':completion:*' menu select
+      zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
+      zstyle ':completion:*' verbose true
+
+      # use cache for completions
+      zstyle ':completion:*' use-cache on
+      zstyle ':completion:*' cache-path "$XDG_CACHE_HOME/zsh/.zcompcache"
+      _comp_options+=(globdots)
+
+      # Allow foot to pipe command output
+      function precmd {
+          if ! builtin zle; then
+              print -n "\e]133;D\e\\"
+          fi
+      }
+
+      function preexec {
+          print -n "\e]133;C\e\\"
+      }
+
+      ${lib.optionalString config.services.gpg-agent.enable ''
+        gnupg_path=$(ls $XDG_RUNTIME_DIR/gnupg)
+        export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/$gnupg_path/S.gpg-agent.ssh"
+      ''}
     '';
     interactiveShellInit = ''
       source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
@@ -136,7 +228,6 @@ in {
     zsh-better-npm-completion
     zsh-completions # Additional completion definitions for zsh
     zsh-f-sy-h
-    zsh-fzf-tab
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
     zsh-git-prompt # Informative git prompt for zsh
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
