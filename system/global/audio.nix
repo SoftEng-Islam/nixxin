@@ -13,7 +13,7 @@
       pulse.enable = true;
       jack.enable = true;
       wireplumber.enable = true;
-      pipewire.extraConfig.pipewire = {
+      extraConfig.pipewire = {
         "10-clock-rate" = {
           "context.properties" = {
             "default.clock.allowed-rates" = [ 44100 48000 96000 ];
