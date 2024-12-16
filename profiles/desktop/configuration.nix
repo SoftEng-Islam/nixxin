@@ -17,7 +17,6 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  nixpkgs.config.permittedInsecurePackages = [ "python-2.7.18.8" ];
   # List of globally installed packages.
   environment.systemPackages = with pkgs; [
     home-manager
