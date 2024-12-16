@@ -20,8 +20,8 @@
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-    pythonPackages.pip
-    pythonPackages.aria2p
+    # pythonPackages.pip
+    # pythonPackages.aria2p
     pythonPackages.build
     pythonPackages.cairosvg
     pythonPackages.certifi
