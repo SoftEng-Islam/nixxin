@@ -140,17 +140,6 @@
     feh # A light-weight image viewer
     loupe # A simple image viewer application written with GTK4 and Rust
 
-    # XDG Tools
-    xdg-dbus-proxy # DBus proxy for Flatpak and others
-    xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
-    xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
-    xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
-    xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-    xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
-    libxdg_basedir # Implementation of the XDG Base Directory specification
-
     # GNU Utilities
     autoconf # Part of the GNU Build System
     autoconf-archive # Archive of autoconf m4 macros

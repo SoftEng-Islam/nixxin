@@ -7,6 +7,8 @@
       # HIP_VISIBLE_DEVICES = "0,2";
       # LIBGL_DRI3_ENABLE = "1";
       # SDL_VIDEODRIVER = "wayland";
+      HYPRCURSOR_THEME = settings.cursorTheme;
+      HYPRCURSOR_SIZE = settings.cursorSize;
       _JAVA_AWT_WM_NONREPARENTING = "1";
       BEMENU_BACKEND = "wayland";
       BUN_INSTALL = "$HOME/.bun";
@@ -16,12 +18,16 @@
       EDITOR = settings.editor;
       ELECTRON_ENABLE_WAYLAND = "1";
       ELM_ENGINE = "wayland_egl";
-      GDK_BACKEND = "wayland,x11";
+      WLR_DRM_DEVICES = "/dev/dri/card1";
+      GDK_BACKEND = "wayland,x11,*";
       GTK_THEME = "Colloid-Dark";
       LANG = settings.locale;
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
+      GDK_PIXBUF_MODULE_FILE =
+        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland;xcb";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       RUST_BACKTRACE = "1";
