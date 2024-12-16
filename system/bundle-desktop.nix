@@ -25,7 +25,6 @@
     ./global/git.nix
     ./global/nautilus.nix
     ./global/packages.nix
-    ./global/screenshots.nix
     ./global/wayland.nix
     ./global/xdg.nix
     ./global/security.nix
