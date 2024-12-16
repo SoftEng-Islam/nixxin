@@ -10,15 +10,15 @@
     vlc # Cross-platform media player and streaming server
 
     # Video Editors
-    kdenlive # Video editor
+    #kdenlive # Video editor
     # davinci-resolve # Professional video editing, color, effects and audio post-processing
     # davinci-resolve-studio
 
     # graphics apps
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
-    inkscape # Vector graphics editor
-    gimp # GNU Image Manipulation Program
+    # inkscape # Vector graphics editor
+    #gimp # GNU Image Manipulation Program
     blender-hip # 3D Creation/Animation/Publishing System
     # figma-linux
 
@@ -34,12 +34,12 @@
     ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
     # signal-desktop # Private, simple, and secure messenger
-    slack # Desktop client for Slack
+    # slack # Desktop client for Slack
     telegram-desktop # Telegram Desktop messaging app
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
-    firefox # Web browser built from Firefox source tree
+    # firefox # Web browser built from Firefox source tree
     firefox-beta # Web browser built from Firefox Beta Release source tree
     google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
@@ -47,14 +47,12 @@
     # anki # Spaced repetition flashcard program
     audacity # Sound editor with graphical UI
     gparted # Graphical disk partitioning tool
-    gromit-mpx # Desktop annotation tool
+    # gromit-mpx # Desktop annotation tool
     obs-studio # Free and open source software for video recording and live streaming
     screenkey # A screencast tool to display your keys inspired by Screenflick
 
     # office apps
-    libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
+    # libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
     obsidian # Powerful knowledge base that works on top of a local folder of plain text Markdown files
-    # rnote # Simple drawing application to create handwritten notes
-    xournalpp # Xournal++ is a handwriting Notetaking software with PDF annotation support
   ];
 }

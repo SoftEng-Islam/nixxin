@@ -1,5 +1,10 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    # Editors
+    gedit # Former GNOME text editor
+    vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
+    zed-editor # Zed editor (like vscode)
+    neovim # Vim text editor fork focused on extensibility and agility
     # Linux --------------------------------
     man-pages # Linux development manual pages
     strace # System call tracer for Linux
@@ -139,6 +144,12 @@
     imv # A command line image viewer for tiling window managers
     feh # A light-weight image viewer
     loupe # A simple image viewer application written with GTK4 and Rust
+
+    # Notifications
+    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
+    libnotify # A library that sends desktop notifications to a notification daemon
+    dunst # Lightweight and customizable notification daemon
+    mako # A lightweight Wayland notification daemon
 
     # GNU Utilities
     autoconf # Part of the GNU Build System
