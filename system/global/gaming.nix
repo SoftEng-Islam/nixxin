@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-  imports = [ ./steam.nix ];
   # hardware.xpadneo.enable = true; # Whether to enable the xpadneo driver for Xbox One wireless controllers.
 
   programs = {

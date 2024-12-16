@@ -3,6 +3,11 @@
   # documentation.nixos.enable = lib.mkForce false;
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
+
+  # See https://nix.dev/permalink/stub-ld.
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
+
   nix = {
     # package = pkgs.nixStable;
     package = pkgs.nixVersions.latest;
@@ -37,9 +42,13 @@
       auto-optimise-store = true
     '';
   };
-  nixpkgs.config = {
-    rocmSupport = true;
-    allowUnfree = true;
+
+  nixpkgs = {
+    overlays = import ../../lib/overlays.nix; # Add packages from the pkgs dir
+    config = {
+      rocmSupport = true;
+      allowUnfree = true;
+    };
   };
   systemd.timers.nix-cleanup-gcroots = {
     timerConfig = {

@@ -1,20 +1,35 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   networking = {
     networkmanager = {
       enable = true;
       wifi.powersave = false;
     };
-    hostName = "nixos"; # Define your hostname.
+    hostName = settings.hostname; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
     networkmanager.dns = "dnsmasq";
-    firewall.enable = false;
+
+    firewall = {
+      enable = false;
+      allowedTCPPortRanges = [{
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+        ];
+      allowedUDPPortRanges = [{
+        from = 1714;
+        to = 1764;
+      } # KDE Connect
+        ];
+      # allowedUDPPorts = lib.mkIf settings.enableVPN [51820];
+      allowedUDPPorts = [ 5900 5901 51820 ];
+      allowedTCPPorts = [ 5900 5901 ];
+    };
 
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # useNetworkd = true;
     # wireless.enable = true;
-
     firewall.extraCommands = ''
       iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE
       iptables -A FORWARD -i wlan1 -o eno1 -m state --state RELATED,ESTABLISHED -j ACCEPT
@@ -31,6 +46,9 @@
         Settings = { AutoConnect = true; };
       };
     };
+    # extraHosts = ''
+    #   127.0.0.1 softeng.home
+    # '';
   };
 
   services = {

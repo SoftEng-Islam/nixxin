@@ -25,5 +25,6 @@
     ./global/screenshots.nix
     ./global/wayland.nix
     ./global/xdg.nix
+    ./global/security.nix
   ];
 }

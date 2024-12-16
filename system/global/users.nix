@@ -1,11 +1,12 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
-    users.softeng = {
+    users.${settings.username} = {
       isNormalUser = true;
-      description = "Nixos Admin";
+      description = settings.username;
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
+        "gamemode"
         "adbusers"
         "audio" # Access to audio devices.
         "dialout"

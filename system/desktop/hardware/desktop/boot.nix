@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
+    kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" ];
     initrd.kernelModules = [ "amdgpu" ];

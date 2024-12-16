@@ -1,19 +1,14 @@
-{ pkgs, ... }: {
-  # Environment Variables
-  environment.variables = {
-    EDITOR = "nvim";
-    VISUAL = "nvim";
-  };
+{ settings, pkgs, ... }: {
   services = {
     xserver.desktopManager = {
       gnome = {
         extraGSettingsOverrides = ''
           [org.gnome.desktop.interface]
-          gtk-theme='Colloid-Dark'
-          icon-theme='Papirus-Dark'
-          color-scheme='prefer-dark'
-          cursor-theme='Breeze_Light'
-          cursor-size=24
+          gtk-theme='${settings.gtkTheme}'
+          icon-theme='${settings.iconTheme}'
+          color-scheme='${settings.colorScheme}'
+          cursor-theme='${settings.cursorTheme}'
+          cursor-size=${settings.cursorSize}
 
           [org.gnome.desktop.wm.preferences]
           button-layout='close,minimize,maximize:'

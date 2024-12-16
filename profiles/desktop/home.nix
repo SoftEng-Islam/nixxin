@@ -8,7 +8,12 @@
     (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1))
 
     ../../themes/stylix.nix
-    # ../../../user/
+    ../../user/media
+    ../../user/cava.nix
+    ../../user/curl.nix
+    ../../user/git.nix
+    ../../user/ssh.nix
+    ../../user/superfile.nix
   ];
 
   stylix.targets.hyprland.enable = false;

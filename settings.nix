@@ -16,9 +16,9 @@
   gpuType = "amd"; # amd, intel or nvidia;
 
   # ----- USER SETTINGS ----- #
-  username = "softeng"; # Username
   name = "Islam Ahmed"; # Name/identifier
   email = "softeng.islam@gmail.com"; # Email (git config)
+  username = "softeng"; # Username
   dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
 
@@ -41,12 +41,13 @@
   fontSize = 13; # Font size
 
   # Themes
-  theme =
-    "nord"; # themes directory (./themes/) ["catppuccin","everforest","gruvbox","nord"]
+  theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
+  colorScheme = "prefer-dark";
+  gtkTheme = "Colloid-Dark";
 
   # Icons
-  icons = "Papirus";
+  icons = "Papirus-Dark";
   iconsPkg = pkgs.papirus-icon-theme;
 
   # Cursor

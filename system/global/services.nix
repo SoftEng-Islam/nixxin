@@ -9,13 +9,14 @@
     # Enable touchpad support (enabled default in most desktopManager).
     libinput.mouse.accelSpeed = "-0.5";
 
+    # a DBus service that provides power management support to applications.
+    upower.enable = true;
+    xserver.videoDrivers = [ "displaylink" "modesetting" ];
+
     openssh.enable = true; # Enable the OpenSSH daemon.
     power-profiles-daemon.enable = true;
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
-
-    # a DBus service that provides power management support to applications.
-    upower.enable = true;
 
     # a DBus service that allows applications to update firmware.
     fwupd.enable = false;
@@ -24,9 +25,10 @@
     colord.enable = true;
 
     # automount
-    services.devmon.enable = true;
-    services.gvfs.enable = true;
-    services.udisks2.enable = true;
+    devmon.enable = true;
+    udisks2.enable = true;
+    # A lot of mpris packages require it.
+    gvfs.enable = true;
 
     # logind
     logind.extraConfig = ''

@@ -1,8 +1,4 @@
-{ pkgs, lib, ... }:
-let
-  name = "Islam Ahemd";
-  email = "softeng.islam@gmail.com";
-in {
+{ pkgs, settings, lib, ... }: {
   home.packages = [ pkgs.git ];
   programs.git = {
     enable = true;
@@ -10,11 +6,11 @@ in {
       color.ui = true;
       core.editor = "nvim";
       credential.helper = "store";
-      github.user = name;
+      github.user = settings.name;
       push.autoSetupRemote = true;
     };
-    userEmail = email;
-    userName = name;
+    userEmail = settings.email;
+    userName = settings.name;
   };
   programs.ssh = {
     enable = true;
