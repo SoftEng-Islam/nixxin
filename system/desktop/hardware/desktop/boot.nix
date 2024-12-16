@@ -13,13 +13,14 @@
       # Grub boot
 
       grub = {
-        enable = false;
+        enable = true;
         efiSupport = true;
         gfxmodeEfi = "1920x1080";
-
         # List all the devices with their by-id symlinks
         # ls -l /dev/disk/by-id/
-        device = "nodev";
+        # mirroredBoots = ;
+        # device = "nodev";
+        devices = [ "/dev/disk/by-id/wwn-0x50014ee601fa520f" ];
         # device = "/dev/disk/by-uuid/7FD3-5156";
         useOSProber = true;
         extraConfig = ''

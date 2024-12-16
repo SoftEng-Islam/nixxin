@@ -73,20 +73,22 @@
       };
     };
   };
-  environment.gnome.excludePackages =
-    (with pkgs; [ gnome-photos gedit gnome-tour ]) ++ (with pkgs.gnome; [
-      evince # document viewer
-      epiphany # web browser
-      cheese # webcam tool
-      totem # video player
-      gnome-music
-      gnome-characters
-      geary # email reader
-      atomix # puzzle game
-      hitori # sudoku game
-      iagno # go game
-      tali # poker game
-    ]);
+  environment.gnome.excludePackages = with pkgs; [
+    gnome-photos
+    cheese
+    evince
+    epiphany
+    gedit
+    gnome-tour
+    totem # video player
+    gnome-music
+    gnome-characters
+    geary # email reader
+    atomix # puzzle game
+    hitori # sudoku game
+    iagno # go game
+    tali # poker game
+  ];
 
   environment.systemPackages = with pkgs; [
     gsettings-desktop-schemas

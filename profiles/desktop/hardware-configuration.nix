@@ -16,14 +16,12 @@
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
     fsType = "btrfs";
     options = [ "subvol=@" ];
-    label = "root-partition";
   };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7FD3-5156";
     fsType = "vfat";
     options = [ "fmask=0077" "dmask=0077" ];
-    # label = "boot-partition";
   };
 
   swapDevices =
