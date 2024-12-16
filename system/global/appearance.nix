@@ -5,7 +5,7 @@
         extraGSettingsOverrides = ''
           [org.gnome.desktop.interface]
           gtk-theme='${settings.gtkTheme}'
-          icon-theme='${settings.iconTheme}'
+          icon-theme='${settings.icons}'
           color-scheme='${settings.colorScheme}'
           cursor-theme='${settings.cursorTheme}'
           cursor-size=${settings.cursorSize}
