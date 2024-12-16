@@ -1,5 +1,8 @@
 { ... }: {
   imports = [
+    ./desktop/boot.nix
+    ./global/audio.nix
+    ./global/graphic.nix
     ./global/appearance.nix
     ./global/desktop-apps.nix
     ./global/fonts.nix

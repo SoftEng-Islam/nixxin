@@ -1,6 +1,6 @@
 { pkgs, ... }: {
-  services.xserver.enable = true;
   boot.initrd.kernelModules = [ "amdgpu" ];
+  services.xserver.enable = true;
   services.xserver.videoDrivers = [ "amdgpu" ];
 
   hardware.graphics = {

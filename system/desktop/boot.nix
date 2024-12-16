@@ -9,7 +9,7 @@
     loader = {
       timeout = 4;
       efi.canTouchEfiVariables = true;
-      systemd-boot.enable = true; # disable to use GRUB instead of systemd-boot
+      systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
       # Grub boot
 
       grub = {
@@ -20,8 +20,8 @@
         # ls -l /dev/disk/by-id/
         # mirroredBoots = ;
         # device = "nodev";
-        devices = [ "/dev/disk/by-id/wwn-0x50014ee601fa520f" ];
-        # device = "/dev/disk/by-uuid/7FD3-5156";
+        devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
+        device = "nodev";
         useOSProber = true;
         extraConfig = ''
           GRUB_DISABLE_OS_PROBER=false
