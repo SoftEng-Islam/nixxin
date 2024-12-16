@@ -1,6 +1,6 @@
 { pkgs, ... }: {
   # Download Managers & CLI Downloads Utility
-  services = { aria2.enable.rpcSecretFile = true; };
+
   environment.systemPackages = with pkgs; [
     aria2 # Lightweight, multi-protocol, multi-source, command-line download utility
     ariang # Modern web frontend making aria2 easier to use
