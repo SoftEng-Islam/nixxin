@@ -40,7 +40,7 @@
   programs = {
     uwsm.enable = true;
     xwayland.enable = false; # an X server for interfacing X11 apps.
-    hyprlock.enable = true; # Hyprland’s GPU-accelerated screen locking utility.
+    hyprlock.enable = false;
     hyprland = {
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
