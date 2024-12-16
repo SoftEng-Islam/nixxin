@@ -8,7 +8,7 @@
           icon-theme='${settings.icons}'
           color-scheme='${settings.colorScheme}'
           cursor-theme='${settings.cursorTheme}'
-          cursor-size=${settings.cursorSize}
+          cursor-size=${toString settings.cursorSize}
 
           [org.gnome.desktop.wm.preferences]
           button-layout='close,minimize,maximize:'
