@@ -37,7 +37,7 @@
 
   # Fonts
   font = "JetBrains Mono"; # Selected font
-  fontPkg = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });
+  fontPkg = pkgs.jetbrains-mono; # Typeface made for developers
   fontSize = 13; # Font size
 
   # Themes

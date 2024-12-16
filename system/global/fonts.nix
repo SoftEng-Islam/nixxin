@@ -4,9 +4,7 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       settings.fontPkg
-
       fira-code # Monospace font with programming ligatures
-      jetbrains-mono # Typeface made for developers
       mononoki # Font for programming and code review
       roboto # Roboto family of fonts
       # texlivePackages.fira # Fira fonts with LaTeX support
