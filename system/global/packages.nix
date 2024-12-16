@@ -21,7 +21,6 @@
     pyenv # Simple Python version management
     python3
     pythonPackages.pip
-    pythonPackages.aria2p
     pythonPackages.build
     pythonPackages.cairosvg
     pythonPackages.certifi
