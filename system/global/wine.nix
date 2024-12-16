@@ -13,7 +13,7 @@
     winePackages.fonts
     winePackages.stableFull
     winetricks # A script to install DLLs needed to work around problems in Wine
-    wineWowPackages.waylandFull
+    # wineWowPackages.waylandFull
     libGL # GL Vendor-Neutral Dispatch library
     libGLU # OpenGL utility library
     vulkan-loader # LunarG Vulkan loader
