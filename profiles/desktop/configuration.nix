@@ -92,12 +92,7 @@
 
   services.xserver.videoDrivers = [ "displaylink" "modesetting" ];
   services.printing.enable = true;
-  xdg = {
-    portal = {
-      enable = true;
-      wlr.enable = true;
-    };
-  };
+
   # qt.platformTheme = "qt5ct";
   # qt.style = "adwaita-dark";
 

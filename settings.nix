@@ -27,7 +27,7 @@
   # Editors
   editor = "nvim"; # Default editor
   editorPkg = pkgs.neovim;
-
+  visual = "nvim";
   # Fonts
   font = "JetBrains Mono"; # Selected font
   fontPkg = (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; });

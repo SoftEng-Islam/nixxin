@@ -9,7 +9,6 @@
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
-
     settings = {
       # for nix-direnv
       keep-outputs = true;
@@ -18,7 +17,7 @@
       sandbox = false;
       substituters = [
         "https://nixos.tvix.store"
-
+        "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
         "https://cache.thalheim.io"
       ];
@@ -27,6 +26,7 @@
       trusted-public-keys = [
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cache.thalheim.io-1:R7msbosLEZKrxk/lKxf9BTjOOH7Ax3H0Qj0/6wiHOgc="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       ];
       trusted-users = [ "@wheel" "root" ];
       fallback = true;

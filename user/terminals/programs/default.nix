@@ -1,12 +1,16 @@
 {
   imports = [
+    ./btop
+    ./neofetch
+    ./yazi
+
     ./bat.nix
-    ./btop.nix
     ./cli.nix
     ./git.nix
+    ./htop.nix
+    ./lf.nix
     ./nix.nix
     ./skim.nix
-    ./yazi
     ./xdg.nix
   ];
 }
