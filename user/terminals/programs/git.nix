@@ -1,12 +1,10 @@
-{
-  config,
-  pkgs,
-  ...
-}: let
+{ config, pkgs, ... }:
+let
   cfg = config.programs.git;
-  key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
+  key =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
 in {
-  home.packages = [pkgs.gh];
+  home.packages = [ pkgs.gh ];
 
   # enable scrolling in git diff
   home.sessionVariables.DELTA_PAGER = "less -R";
@@ -25,7 +23,8 @@ in {
     };
 
     aliases = let
-      log = "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
+      log =
+        "log --show-notes='*' --abbrev-commit --pretty=format:'%Cred%h %Cgreen(%aD)%Creset -%C(bold red)%d%Creset %s %C(bold blue)<%an>% %Creset' --graph";
     in {
       a = "add --patch"; # make it a habit to consciosly add hunks
       ad = "add";
@@ -85,7 +84,7 @@ in {
       oops = "checkout --";
     };
 
-    ignores = ["*~" "*.swp" "*result*" ".direnv" "node_modules"];
+    ignores = [ "*~" "*.swp" "*result*" ".direnv" "node_modules" ];
 
     signing = {
       key = "${config.home.homeDirectory}/.ssh/id_ed25519";
@@ -95,7 +94,8 @@ in {
     extraConfig = {
       gpg = {
         format = "ssh";
-        ssh.allowedSignersFile = config.home.homeDirectory + "/" + config.xdg.configFile."git/allowed_signers".target;
+        ssh.allowedSignersFile = config.home.homeDirectory + "/"
+          + config.xdg.configFile."git/allowed_signers".target;
       };
 
       pull.rebase = true;

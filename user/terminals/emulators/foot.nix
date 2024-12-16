@@ -1,8 +1,5 @@
-{
-  pkgs,
-  lib,
-  ...
-}: let
+{ pkgs, lib, ... }:
+let
   colors = {
     dark = {
       foreground = "979eab";
@@ -65,7 +62,9 @@ in {
       };
 
       desktop-notifications = {
-        command = "${lib.getExe pkgs.libnotify} -a \${app-id} -i \${app-id} \${title} \${body}";
+        command = "${
+            lib.getExe pkgs.libnotify
+          } -a \${app-id} -i \${app-id} \${title} \${body}";
       };
 
       scrollback = {
@@ -85,11 +84,7 @@ in {
         beam-thickness = 1;
       };
 
-      colors =
-        {
-          alpha = 0.9;
-        }
-        // colors.dark;
+      colors = { alpha = 0.9; } // colors.dark;
     };
   };
 }

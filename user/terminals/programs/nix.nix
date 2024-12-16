@@ -1,8 +1,4 @@
-{
-  pkgs,
-  self,
-  ...
-}:
+{ pkgs, self, ... }:
 # nix tooling
 {
   home.packages = with pkgs; [
