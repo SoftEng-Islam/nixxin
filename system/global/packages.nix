@@ -20,8 +20,8 @@
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-    # pythonPackages.pip
-    # pythonPackages.aria2p
+    pythonPackages.pip
+    pythonPackages.aria2p
     pythonPackages.build
     pythonPackages.cairosvg
     pythonPackages.certifi
@@ -41,7 +41,7 @@
     pythonPackages.setuptools-scm
     pythonPackages.urllib3
     pythonPackages.wheel
-    # pythonPackages.beautifulsoup4
+    pythonPackages.beautifulsoup4
     # Rust --------------------------------
     cargo # Downloads your Rust project's dependencies and builds your project
     cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
