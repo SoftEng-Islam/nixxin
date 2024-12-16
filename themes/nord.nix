@@ -1,4 +1,4 @@
-{ dir }: {
+{ ... }: {
   themeName = "nord";
   wallpaper = ../non-nix/wallpapers/nord.jpg;
   override = null;

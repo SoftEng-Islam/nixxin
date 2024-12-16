@@ -1,1 +1,29 @@
-{ ... }: { imports = [ ]; }
+{ ... }: {
+  imports = [
+    ./global/appearance.nix
+    ./global/desktop-apps.nix
+    ./global/fonts.nix
+    ./global/locale.nix
+    ./global/networking.nix
+    ./global/power-management.nix
+    ./global/services.nix
+    ./global/wine.nix
+    ./global/zram.nix
+    ./global/cli-collection.nix
+    ./global/drivers.nix
+    ./global/gaming.nix
+    ./global/media.nix
+    ./global/nixos.nix
+    ./global/programs.nix
+    ./global/users.nix
+    ./global/wm.nix
+    ./global/data-transferring.nix
+    ./global/environment.nix
+    ./global/git.nix
+    ./global/nautilus.nix
+    ./global/packages.nix
+    ./global/screenshots.nix
+    ./global/wayland.nix
+    ./global/xdg.nix
+  ];
+}

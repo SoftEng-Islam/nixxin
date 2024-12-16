@@ -37,7 +37,6 @@
       WINEFSYNC = "1";
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
-      XCURSOR_THEME = settings.cursorTheme;
       XKB_DEFAULT_RULES = "evdev";
 
       # Colors #
@@ -82,9 +81,14 @@
         + "$GI_TYPELIB_PATH";
     };
     sessionVariables = {
+      XCURSOR_THEME = settings.cursorTheme;
+      XCURSOR_SIZE = "${toString.settings.cursorSize}";
+
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
-      GTK_USE_PORTAL =
-        "1"; # Enables portal-based access for apps like VSCode on Wayland
+
+      # Enables portal-based access for apps like VSCode on Wayland
+      GTK_USE_PORTAL = "1";
+
       # NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
     };
   };

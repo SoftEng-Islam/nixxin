@@ -1,50 +1,32 @@
 { settings, pkgs, config, ... }:
 let
-  nerdfonts = pkgs.nerdfonts.override {
-    fonts = [
-      "Ubuntu"
-      "UbuntuMono"
-      "CascadiaCode"
-      "FantasqueSansMono"
-      "FiraCode"
-      "Mononoki"
-    ];
-  };
-
   theme = {
     name = "adw-gtk3-dark";
     package = pkgs.adw-gtk3;
-  };
-  font = {
-    name = "Ubuntu Nerd Font";
-    package = nerdfonts;
-    size = 11;
-  };
-  cursorTheme = {
-    name = settings.cursorTheme;
-    size = 24;
-    package = pkgs.qogir-icon-theme;
   };
   iconTheme = {
     name = "MoreWaita";
     package = pkgs.morewaita-icon-theme;
   };
+  font = {
+    name = settings.font;
+    package = settings.fontPkg;
+    size = settings.fontSize;
+  };
+  cursorTheme = {
+    name = settings.cursorTheme;
+    size = settings.cursorSize;
+    package = settings.cursorPackage;
+  };
 in {
   home = {
-    packages = with pkgs; [
-      cantarell-fonts
-      font-awesome
-      theme.package
-      font.package
-      cursorTheme.package
-      iconTheme.package
-      adwaita-icon-theme
-      papirus-icon-theme
-    ];
-    sessionVariables = {
-      XCURSOR_THEME = cursorTheme.name;
-      XCURSOR_SIZE = "${toString cursorTheme.size}";
-    };
+    # packages = with pkgs;
+    #   [
+    #     # cantarell-fonts
+    #     # font-awesome
+    #     # theme.package
+    #     # font.package
+    #   ];
     pointerCursor = cursorTheme // { gtk.enable = true; };
   };
 

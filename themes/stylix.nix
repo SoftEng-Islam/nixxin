@@ -1,4 +1,4 @@
-{ pkgs, lib, settings, config, ... }:
+{ pkgs, lib, settings, ... }:
 let details = settings.themeDetails;
 in {
   stylix = {
@@ -16,9 +16,9 @@ in {
     };
 
     cursor = {
-      size = 32;
-      name = "phinger-cursors-light";
-      package = pkgs.phinger-cursors;
+      size = settings.cursorSize;
+      name = settings.cursorTheme;
+      package = settings.cursorPackage;
     };
 
     targets.nixvim.enable =

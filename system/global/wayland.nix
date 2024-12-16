@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  environment.systemPackages = [ pkgs.wayland pkgs.wl-clipboard ];
+  environment.systemPackages = with pkgs; [ wayland wl-clipboard wayvnc ];
   services.xserver = {
     enable = true;
     xkb = {

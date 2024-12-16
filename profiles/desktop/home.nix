@@ -1,18 +1,14 @@
 { config, pkgs, settings, ... }: {
   imports = [
-    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
-    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
+
+    # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
+    # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
+
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0))
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1))
+
     ../../themes/stylix.nix
-    ../../user/apps/kitty.nix
-    ../../user/apps/git.nix
-    ../../user/apps/superfile.nix
-    ../../user/apps/zathura.nix
-    ../../user/apps/cava.nix
-    ../../user/apps/neofetch
-    ../../user/shell/zsh.nix
-    ../../user/apps/neovim
-    ../../user/apps/btop
-    ../../user/apps/mpd
+    # ../../../user/
   ];
 
   stylix.targets.hyprland.enable = false;
@@ -37,34 +33,34 @@
     packages = with pkgs; [
       qt5.qtgraphicaleffects
       qt5.qtquickcontrols2
-      yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
-      teleport # Certificate authority and access plane for SSH
-      openvpn # Robust and highly flexible tunneling application
-      sway-contrib.grimshot # Helper for screenshots within sway
-      libreoffice-fresh
-      obs-studio
-      tty-clock
-      qbittorrent
-      rtorrent
-      cpulimit
-      swayimg
-      vesktop
-      revolt-desktop
-      telegram-desktop
-      wayvnc
-      drawio
-      gimp
-      mpv
+      # yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
+      # teleport # Certificate authority and access plane for SSH
+      # openvpn # Robust and highly flexible tunneling application
+      # sway-contrib.grimshot # Helper for screenshots within sway
+      # libreoffice-fresh
+      # obs-studio
+      # tty-clock
+      # qbittorrent
+      # rtorrent
+      # cpulimit
+      # swayimg
+      # vesktop
+      # revolt-desktop
+      # telegram-desktop
+
+      # drawio
+      # gimp
+      # mpv
 
       # Overclock
-      dmidecode
-      sysbench
+      # dmidecode
+      # sysbench
 
       # Sometimes needed for work.
-      zoom-us
-      chromium
-      translate-shell
-      tlaplus18
+      # zoom-us
+      # chromium
+      # translate-shell
+      # tlaplus18
 
       # These packages are compulsury.
       # settings.editorPkg
@@ -95,7 +91,7 @@
   };
 
   # Add packages from the pkgs dir
-  nixpkgs.overlays = import ../../lib/overlays.nix;
+  # nixpkgs.overlays = import ../../lib/overlays.nix;
   nixpkgs.config.allowUnfree = true;
 
   xdg.enable = true;
