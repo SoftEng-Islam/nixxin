@@ -20,27 +20,27 @@
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-    pythonPackages.pip
-    pythonPackages.build
-    pythonPackages.cairosvg
-    pythonPackages.certifi
-    pythonPackages.charset-normalizer
-    pythonPackages.click
-    pythonPackages.idna
-    pythonPackages.loguru
-    pythonPackages.markupsafe
-    pythonPackages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-    pythonPackages.pillow
-    pythonPackages.psutil
-    pythonPackages.pycairo
-    pythonPackages.pygobject3
-    pythonPackages.pywal
-    pythonPackages.pywayland
-    pythonPackages.requests
-    pythonPackages.setuptools-scm
-    pythonPackages.urllib3
-    pythonPackages.wheel
-    pythonPackages.beautifulsoup4
+    # pythonPackages.pip
+    # pythonPackages.build
+    # pythonPackages.cairosvg
+    # pythonPackages.certifi
+    # pythonPackages.charset-normalizer
+    # pythonPackages.click
+    # pythonPackages.idna
+    # pythonPackages.loguru
+    # pythonPackages.markupsafe
+    # pythonPackages.opencv-python # Open Computer Vision Library with more than 500 algorithms
+    # pythonPackages.pillow
+    # pythonPackages.psutil
+    # pythonPackages.pycairo
+    # pythonPackages.pygobject3
+    # pythonPackages.pywal
+    # pythonPackages.pywayland
+    # pythonPackages.requests
+    # pythonPackages.setuptools-scm
+    # pythonPackages.urllib3
+    # pythonPackages.wheel
+    # pythonPackages.beautifulsoup4
     # Rust --------------------------------
     cargo # Downloads your Rust project's dependencies and builds your project
     cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
