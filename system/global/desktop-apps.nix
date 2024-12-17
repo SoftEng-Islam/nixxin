@@ -33,7 +33,7 @@
     # community-apps
     discord # All-in-one cross-platform voice and text chat for gamers
     zoom-us # zoom.us video conferencing application
-    ferdium # All your services in one place built by the community
+    # ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
     # signal-desktop # Private, simple, and secure messenger
     # slack # Desktop client for Slack
@@ -42,7 +42,7 @@
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
     firefox-beta # Web browser built from Firefox Beta Release source tree
-    google-chrome # Freeware web browser developed by Google
+    # google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
     # audacity # Sound editor with graphical UI
