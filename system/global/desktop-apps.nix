@@ -15,11 +15,11 @@
     # davinci-resolve-studio
 
     # graphics apps
-    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
-    drawio # A desktop application for creating diagrams
+    #lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    #drawio # A desktop application for creating diagrams
     # inkscape # Vector graphics editor
     #gimp # GNU Image Manipulation Program
-    blender-hip # 3D Creation/Animation/Publishing System
+    #blender-hip # 3D Creation/Animation/Publishing System
     # figma-linux
 
     # Developers Applications
@@ -29,13 +29,13 @@
     bruno # Open-source IDE For exploring and testing APIs.
 
     # community-apps
-    discord # All-in-one cross-platform voice and text chat for gamers
+    #discord # All-in-one cross-platform voice and text chat for gamers
     # zoom-us # zoom.us video conferencing application
-    ferdium # All your services in one place built by the community
+    #ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
     # signal-desktop # Private, simple, and secure messenger
     # slack # Desktop client for Slack
-    telegram-desktop # Telegram Desktop messaging app
+    #telegram-desktop # Telegram Desktop messaging app
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
@@ -45,7 +45,7 @@
     microsoft-edge # The web browser from Microsoft
 
     # anki # Spaced repetition flashcard program
-    audacity # Sound editor with graphical UI
+    # audacity # Sound editor with graphical UI
     gparted # Graphical disk partitioning tool
     # gromit-mpx # Desktop annotation tool
     obs-studio # Free and open source software for video recording and live streaming

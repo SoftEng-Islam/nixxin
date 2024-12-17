@@ -45,7 +45,7 @@
 
   nixpkgs = {
     config = {
-      rocmSupport = true;
+      rocmSupport = false;
       allowUnfree = true;
     };
   };

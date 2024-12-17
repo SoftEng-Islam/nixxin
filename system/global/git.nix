@@ -1,15 +1,12 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    tig # Text-mode interface for git
-
-    git # Distributed version control system
-    lazygit # Simple terminal UI for git commands
-    git-lfs
-    mergiraf
-    tig
-    lazygit
-    git-absorb
-    delta
     bat
+    delta
+    git # Distributed version control system
+    # git-absorb
+    git-lfs
+    # lazygit # Simple terminal UI for git commands
+    mergiraf
+    # tig # Text-mode interface for git
   ];
 }

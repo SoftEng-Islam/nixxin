@@ -1,5 +1,6 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+
     # screenshot
     grim # Grab images from a Wayland compositor
     grimblast # A helper for screenshots within Hyprland, based on grimshot
@@ -21,35 +22,38 @@
     shfmt # Shell parser and formatter
     fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     bpftrace # High-level tracing language for Linux eBPF
+
     # JavaScript --------------------------------
     nodejs_23 # Event-driven I/O framework for the V8 JavaScript engine
     nodePackages.pnpm # Fast, disk space efficient package manager
     typescript # Superset of JavaScript that compiles to clean JavaScript output
+
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-  #  pythonPackages.pip
+    #  pythonPackages.pip
     # pythonPackages.build
-  #  pythonPackages.cairosvg
+    #  pythonPackages.cairosvg
     # pythonPackages.certifi
     # pythonPackages.charset-normalizer
-   # pythonPackages.click
+    # pythonPackages.click
     # pythonPackages.idna
     # pythonPackages.loguru
     # pythonPackages.markupsafe
     # pythonPackages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-  #  pythonPackages.pillow
+    #  pythonPackages.pillow
     # pythonPackages.psutil
- #   pythonPackages.pycairo
-  #  pythonPackages.pygobject3
-  #  pythonPackages.pywal
-   # pythonPackages.pywayland
-  #  pythonPackages.requests
+    #   pythonPackages.pycairo
+    #  pythonPackages.pygobject3
+    #  pythonPackages.pywal
+    # pythonPackages.pywayland
+    #  pythonPackages.requests
     # pythonPackages.setuptools-scm
     # pythonPackages.urllib3
-  #  pythonPackages.wheel
+    #  pythonPackages.wheel
     # pythonPackages.beautifulsoup4
+
     # Rust --------------------------------
     cargo # Downloads your Rust project's dependencies and builds your project
     cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
@@ -57,22 +61,26 @@
     rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
     rustc # A safe, concurrent, practical language (wrapper script)
     rustup # The Rust toolchain installer
+
     # Android --------------------------------
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     scrcpy # Display and control Android devices over USB or TCP/IP
+
     # Hacking --------------------------------
     aircrack-ng # WiFi security auditing tools suite
-    hashcat # Fast password cracker
-    hashcat-utils # Small utilities that are useful in advanced password cracking
+    # hashcat # Fast password cracker
+    # hashcat-utils # Small utilities that are useful in advanced password cracking
     hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-    john # John the Ripper password cracker
-    johnny # Open Source GUI frontend for John the Ripper
+    # john # John the Ripper password cracker
+    # johnny # Open Source GUI frontend for John the Ripper
+
     # clipboard --------------------------------
     cliphist # Wayland clipboard manager
     gpaste # Clipboard management system with GNOME integration
     wl-clipboard # Command-line copy/paste utilities for Wayland
     clipman # A simple clipboard manager for Wayland
     fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
+
     # Process Management --------------------------------
     htop # Interactive process viewer
     iotop # Tool to find out the processes doing the most IO
@@ -149,15 +157,15 @@
     fdupes # Identifies duplicate files residing within specified directories
 
     # Image Viewers
-    imv # A command line image viewer for tiling window managers
-    feh # A light-weight image viewer
-    loupe # A simple image viewer application written with GTK4 and Rust
+    # imv # A command line image viewer for tiling window managers
+    # feh # A light-weight image viewer
+    # loupe # A simple image viewer application written with GTK4 and Rust
 
     # Notifications
-    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    libnotify # A library that sends desktop notifications to a notification daemon
-    dunst # Lightweight and customizable notification daemon
-    mako # A lightweight Wayland notification daemon
+    # notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
+    # libnotify # A library that sends desktop notifications to a notification daemon
+    # dunst # Lightweight and customizable notification daemon
+    # mako # A lightweight Wayland notification daemon
 
     # GNU Utilities
     autoconf # Part of the GNU Build System
@@ -210,7 +218,7 @@
     gtkmm3 # C++ interface to the GTK graphical user interface library
     gtkmm4 # C++ interface to the GTK graphical user interface library
     gtksourceview
-    kdePackages.breeze # Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
+    # kdePackages.breeze # Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
     kdePackages.qt6ct # Qt6 Configuration Tool
     libdbusmenu-gtk3 # Library for passing menu structures across DBus
     webkitgtk_6_0 # Web content rendering engine, GTK port

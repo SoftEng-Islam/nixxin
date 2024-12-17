@@ -14,13 +14,14 @@
       dedicatedServer.openFirewall = true; # Source Dedicated Server.
       package = pkgs.steam.override {
         extraPkgs = pkgs:
-          with pkgs; [
-            keyutils
-            libgdiplus
-            libkrb5
-            libpng
-            libpulseaudio
-            libvorbis
+          with pkgs;
+          [
+            # keyutils
+            # libgdiplus
+            # libkrb5
+            # libpng
+            # libpulseaudio
+            # libvorbis
             # stdenv.cc.cc.lib
             # xorg.libXcursor
             # xorg.libXi

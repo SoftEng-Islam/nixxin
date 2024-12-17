@@ -40,12 +40,12 @@
     ibus
     ibus-engines.m17n
     # spell-checkers
-    aspell
-    aspellDicts.de
-    aspellDicts.fr
-    aspellDicts.en
-    hunspell
-    hunspellDicts.en-gb-ise
+    # aspell
+    # aspellDicts.de
+    # aspellDicts.fr
+    # aspellDicts.en
+    # hunspell
+    # hunspellDicts.en-gb-ise
   ];
   # Configure Virtual Console
   console = {
