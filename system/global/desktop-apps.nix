@@ -17,7 +17,7 @@
     testdisk # Data recovery utilities
 
     # graphics apps
-    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    # lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
     blender-hip # 3D Creation/Animation/Publishing System
     # inkscape # Vector graphics editor
@@ -45,7 +45,7 @@
     google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
-    audacity # Sound editor with graphical UI
+    # audacity # Sound editor with graphical UI
     gparted # Graphical disk partitioning tool
     # gromit-mpx # Desktop annotation tool
     obs-studio # Free and open source software for video recording and live streaming
