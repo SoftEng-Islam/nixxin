@@ -96,7 +96,6 @@
   };
 
   # Add packages from the pkgs dir
-  # nixpkgs.overlays = import ../../lib/overlays.nix;
   nixpkgs.config.allowUnfree = true;
 
   xdg.enable = true;

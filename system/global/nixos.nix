@@ -44,7 +44,6 @@
   };
 
   nixpkgs = {
-    overlays = import ../../lib/overlays.nix; # Add packages from the pkgs dir
     config = {
       rocmSupport = true;
       allowUnfree = true;

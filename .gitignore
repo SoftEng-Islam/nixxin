@@ -1,2 +1,5 @@
 non-nix/avatars/
 non-nix/wallpapers/
+*.log
+*.backup
+node_modules/
