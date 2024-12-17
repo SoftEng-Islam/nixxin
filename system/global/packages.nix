@@ -7,11 +7,13 @@
     flameshot # Powerful yet simple to use screenshot software
     scrot # A command-line screen capture utility
     wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
+
     # Editors
-    gedit # Former GNOME text editor
+    # gedit # Former GNOME text editor
     vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
-    zed-editor # Zed editor (like vscode)
-    neovim # Vim text editor fork focused on extensibility and agility
+    # zed-editor # Zed editor (like vscode)
+    # neovim # Vim text editor fork focused on extensibility and agility
+
     # Linux --------------------------------
     man-pages # Linux development manual pages
     strace # System call tracer for Linux
@@ -27,26 +29,26 @@
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-    # pythonPackages.pip
+    pythonPackages.pip
     # pythonPackages.build
-    # pythonPackages.cairosvg
+    pythonPackages.cairosvg
     # pythonPackages.certifi
     # pythonPackages.charset-normalizer
-    # pythonPackages.click
+    pythonPackages.click
     # pythonPackages.idna
     # pythonPackages.loguru
     # pythonPackages.markupsafe
     # pythonPackages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-    # pythonPackages.pillow
+    pythonPackages.pillow
     # pythonPackages.psutil
-    # pythonPackages.pycairo
-    # pythonPackages.pygobject3
-    # pythonPackages.pywal
-    # pythonPackages.pywayland
-    # pythonPackages.requests
+    pythonPackages.pycairo
+    pythonPackages.pygobject3
+    pythonPackages.pywal
+    pythonPackages.pywayland
+    pythonPackages.requests
     # pythonPackages.setuptools-scm
     # pythonPackages.urllib3
-    # pythonPackages.wheel
+    pythonPackages.wheel
     # pythonPackages.beautifulsoup4
     # Rust --------------------------------
     cargo # Downloads your Rust project's dependencies and builds your project
