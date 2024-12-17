@@ -2,17 +2,17 @@
   services = {
     xserver.desktopManager = {
       gnome = {
-        extraGSettingsOverrides = ''
-          [org.gnome.desktop.interface]
-          gtk-theme='${settings.gtkTheme}'
-          icon-theme='${settings.icons}'
-          color-scheme='${settings.colorScheme}'
-          cursor-theme='${settings.cursorTheme}'
-          cursor-size=${settings.cursorSize}
+        # extraGSettingsOverrides = ''
+        #   [org.gnome.desktop.interface]
+        #   gtk-theme='${settings.gtkTheme}'
+        #   icon-theme='${settings.icons}'
+        #   color-scheme='${settings.colorScheme}'
+        #   cursor-theme='${settings.cursorTheme}'
+        #   cursor-size=${settings.cursorSize}
 
-          [org.gnome.desktop.wm.preferences]
-          button-layout='close,minimize,maximize:'
-        '';
+        #   [org.gnome.desktop.wm.preferences]
+        #   button-layout='close,minimize,maximize:'
+        # '';
       };
     };
   };
