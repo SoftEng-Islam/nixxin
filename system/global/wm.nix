@@ -12,7 +12,7 @@
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'
 
   services = {
-    udev.packages = with pkgs; [ gnome.gnome-settings-daemon ];
+    udev.packages = with pkgs; [ gnome-settings-daemon ];
     hypridle.enable = false; # Hyprland’s idle daemon.
     gnome = {
       # gnome-settings-daemon.enable = true;
