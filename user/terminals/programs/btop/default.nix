@@ -1,4 +1,4 @@
-{ config, settings, pkgs, lib, ... }:
+{ settings, pkgs, lib, ... }:
 let details = settings.themeDetails;
 in {
   imports = lib.optionals (details.btopTheme != null)
