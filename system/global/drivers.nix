@@ -69,10 +69,9 @@
       libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
       libva # An implementation for VA-API (Video Acceleration API)
       libva-utils # A collection of utilities and examples for VA-API
-      mesa
       mesa # An open source 3D graphics library
-      mesa_glu
-      mesa_i686
+      mesa_glu # OpenGL utility library
+      mesa_i686 # Open source 3D graphics library
       mesa-demos # Collection of demos and test programs for OpenGL and Mesa
       ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
       openal # OpenAL alternative
@@ -90,8 +89,8 @@
 
       xorg.xf86videoamdgpu
 
-      # apps
       # lact # Linux AMDGPU Controller
+      corectrl # Control your computer hardware via application profiles
 
     ];
   };

@@ -92,7 +92,6 @@
     lm_sensors # Tools for reading hardware sensors
     geoclue2 # Geolocation framework and some data providers
     udevil # Mount without password
-    corectrl # Control your computer hardware via application profiles
     whois # Intelligent WHOIS client from Debian
 
     # Text Search
@@ -102,15 +101,6 @@
     # D-Bus Tools
     dbus # Simple interprocess messaging system
     dbus-broker # Linux D-Bus Message Broker
-
-    # Themes & Graphical Interfaces
-    adw-gtk3 # The theme from libadwaita ported to GTK-3
-    colloid-gtk-theme # A modern and clean Gtk theme
-    gtk_engines # Theme engines for GTK 2
-    gtk3 # A multi-platform toolkit for creating graphical user interfaces
-    gtk4 # A multi-platform toolkit for creating graphical user interfaces
-    libadwaita # Library to help with developing UI for mobile devices using GTK/GNOME
-    papirus-icon-theme # Pixel perfect icon theme for Linux
 
     # Disk, Partition & Filesystem Tools
     # gvfs # Virtual Filesystem support library

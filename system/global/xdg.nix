@@ -29,6 +29,5 @@
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
     xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
     libxdg_basedir # Implementation of the XDG Base Directory specification
-
   ];
 }

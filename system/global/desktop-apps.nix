@@ -10,16 +10,18 @@
     vlc # Cross-platform media player and streaming server
 
     # Video Editors
-    #kdenlive # Video editor
+    # kdenlive # Video editor
     # davinci-resolve # Professional video editing, color, effects and audio post-processing
     # davinci-resolve-studio
+
+    testdisk # Data recovery utilities
 
     # graphics apps
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
-    # inkscape # Vector graphics editor
-    #gimp # GNU Image Manipulation Program
     blender-hip # 3D Creation/Animation/Publishing System
+    # inkscape # Vector graphics editor
+    # gimp # GNU Image Manipulation Program
     # figma-linux
 
     # Developers Applications
@@ -39,12 +41,10 @@
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
-    # firefox # Web browser built from Firefox source tree
     firefox-beta # Web browser built from Firefox Beta Release source tree
     google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
-    # anki # Spaced repetition flashcard program
     audacity # Sound editor with graphical UI
     gparted # Graphical disk partitioning tool
     # gromit-mpx # Desktop annotation tool
