@@ -1,6 +1,10 @@
 { pkgs, ... }: {
   # Here you will find the hardware and drviers configurations
   hardware = {
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
     amdgpu.amdvlk.enable = true;
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;
@@ -9,8 +13,6 @@
     amdgpu.legacySupport.enable = true;
     cpu.amd.updateMicrocode = true;
     enableAllFirmware = true;
-    graphics.enable = true;
-    graphics.enable32Bit = true;
     amdgpu.amdvlk.settings = {
       AllowVkPipelineCachingToDisk = 1;
       EnableVmAlwaysValid = 1;
@@ -20,14 +22,15 @@
     };
 
     graphics.extraPackages = with pkgs; [
-      # rocmPackages.clr.icd
       mesa.opencl
       amdvlk
       driversi686Linux.amdvlk
     ];
   };
-  # systemd.tmpfiles.rules =
-  #   [ "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}" ];
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [ "amdgpu" ];
+  # xserver.videoDrivers = [ "displaylink" "modesetting" ];
+
   environment = {
     variables = {
       # For AMD GPUs
@@ -36,8 +39,6 @@
       GPU_SINGLE_ALLOC_PERCENT = "50";
       GPU_MAX_USE_SYNC_OBJECTS = "1";
       GPU_FORCE_64BIT_PTR = "1";
-      # As of ROCm 4.5, AMD has disabled OpenCL on Polaris based cards. This can be re-enabled by:
-      # ROC_ENABLE_PRE_VEGA = "1";
       AMD_VULKAN_ICD = "RADV";
     };
     systemPackages = with pkgs; [
@@ -79,23 +80,6 @@
       opencl-clhpp # OpenCL Host API C++ bindings
       opencl-headers # Khronos OpenCL headers version 2023.12.14
       oclgrind # OpenCL device simulator and debugger
-
-      # rocmPackages.rocm-core
-      # rocmPackages.rocm-comgr
-      # rocmPackages.rocm-runtime
-      # rocmPackages.rocm-smi
-      # rocmPackages.rocminfo
-      # rocmPackages.rocm-cmake
-      # rocmPackages.rocm-thunk # Radeon open compute thunk interface
-      # rocmPackages.rocm-device-libs # Set of AMD-specific device-side language runtime libraries
-      # rocmPackages.hip-common
-      # rocmPackages.hipify
-      # rocmPackages.half
-      # rocmPackages.hipcc
-      # rocmPackages.hiprand
-      # rocmPackages.hipsolver
-      # rocmPackages.hsa-amd-aqlprofile-bin # AQLPROFILE library for AMD HSA runtime API extension support
-      # clpeak # Tool which profiles OpenCL devices to find their peak capacities
 
       vkbasalt # Vulkan post processing layer for Linux
       vkquake # Vulkan Quake port based on QuakeSpasm

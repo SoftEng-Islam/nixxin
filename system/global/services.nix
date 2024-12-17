@@ -11,7 +11,6 @@
 
     # a DBus service that provides power management support to applications.
     upower.enable = true;
-    # xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
     openssh.enable = true; # Enable the OpenSSH daemon.
     power-profiles-daemon.enable = true;

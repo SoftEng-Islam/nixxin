@@ -6,7 +6,7 @@ in {
 
   programs.btop = {
     enable = true;
-    package = pkgs.btop.override { rocmSupport = true; };
+    package = pkgs.btop.override { rocmSupport = false; };
     # settings.color_theme = "catppuccin_mocha";
     settings = {
       color_theme =
