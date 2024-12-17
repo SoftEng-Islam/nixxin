@@ -12,8 +12,8 @@
     # Editors
     # gedit # Former GNOME text editor
     vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
-    # zed-editor # Zed editor (like vscode)
-    # neovim # Vim text editor fork focused on extensibility and agility
+    zed-editor # Zed editor (like vscode)
+    neovim # Vim text editor fork focused on extensibility and agility
 
     # Linux --------------------------------
     man-pages # Linux development manual pages
@@ -71,8 +71,8 @@
     # hashcat # Fast password cracker
     # hashcat-utils # Small utilities that are useful in advanced password cracking
     hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-    # john # John the Ripper password cracker
-    # johnny # Open Source GUI frontend for John the Ripper
+    john # John the Ripper password cracker
+    johnny # Open Source GUI frontend for John the Ripper
 
     # clipboard --------------------------------
     cliphist # Wayland clipboard manager
@@ -157,15 +157,15 @@
     fdupes # Identifies duplicate files residing within specified directories
 
     # Image Viewers
-    # imv # A command line image viewer for tiling window managers
-    # feh # A light-weight image viewer
-    # loupe # A simple image viewer application written with GTK4 and Rust
+    imv # A command line image viewer for tiling window managers
+    feh # A light-weight image viewer
+    loupe # A simple image viewer application written with GTK4 and Rust
 
     # Notifications
-    # notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    # libnotify # A library that sends desktop notifications to a notification daemon
-    # dunst # Lightweight and customizable notification daemon
-    # mako # A lightweight Wayland notification daemon
+    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
+    libnotify # A library that sends desktop notifications to a notification daemon
+    dunst # Lightweight and customizable notification daemon
+    mako # A lightweight Wayland notification daemon
 
     # GNU Utilities
     autoconf # Part of the GNU Build System

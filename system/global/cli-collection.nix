@@ -64,6 +64,5 @@
     yq-go
     zip # Compressor/archiver for creating and modifying zipfiles
     zoxide
-
   ];
 }
