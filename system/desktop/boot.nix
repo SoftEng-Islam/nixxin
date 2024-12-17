@@ -106,7 +106,7 @@
     # '';
 
     plymouth.enable = true;
-    plymouth.theme = "bgrt";
+    # plymouth.theme = "bgrt";
   };
   environment.systemPackages = with pkgs; [
     os-prober
