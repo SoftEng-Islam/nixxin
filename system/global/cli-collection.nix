@@ -59,7 +59,7 @@
     ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
 
     rsync # Fast incremental file transfer utility
-    shell-gpt # Access ChatGPT from your terminal
+    # shell-gpt # Access ChatGPT from your terminal
     tea # Gitea official CLI client
     timer # sleep with progress
     tio # Serial console TTY
