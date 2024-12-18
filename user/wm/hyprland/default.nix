@@ -32,5 +32,5 @@
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
       pkgs.hyprlandPlugins.borders-plus-plus;
   };
-  home.packages = with pkgs; [ hyprcursor ];
+  # home.packages = with pkgs; [ hyprcursor ];
 }
