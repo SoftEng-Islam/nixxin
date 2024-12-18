@@ -36,7 +36,7 @@
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     python3
-    python3Packages.openai
+    # python3Packages.openai
     python3Packages.pip
     python3Packages.build
     python3Packages.cairosvg
