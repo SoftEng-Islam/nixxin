@@ -21,10 +21,11 @@
         # mirroredBoots = ;
         # device = "nodev";
         devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
-        device = "nodev";
-        useOSProber = true;
+        device = "nodev"; # Let GRUB automatically detect EFI
+        useOSProber = false;
         extraConfig = ''
-          GRUB_DISABLE_OS_PROBER=false
+          GRUB_DISABLE_OS_PROBER=true
+          GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
         '';
         # extraEntries = ''
         #   menuentry 'Arch Linux' {
