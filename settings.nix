@@ -19,7 +19,7 @@
   name = "Islam Ahmed"; # Name/identifier
   email = "softeng.islam@gmail.com"; # Email (git config)
   username = "softeng"; # Username
-  dotfilesDir = "/home/${username}/.nixxin"; # Absolute path of the local repo
+  dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
 
   # Web Browsers

@@ -40,14 +40,14 @@ I suppose, you already installed NixOS.
 To get this config running, start by cloning the repo:
 
 ```bash
-git clone https://github.com/SoftEng-Islam/nixxin.git ~/.nixxin
+git clone https://github.com/SoftEng-Islam/nixxin.git ~/nixxin
 ```
 
 To get the hardware configuration on a new system, either copy from
 `/etc/nixos/hardware-configuration.nix` or run:
 
 ```bash
-cd ~/.nixxin
+cd ~/nixxin
 sudo nixos-generate-config --show-hardware-config > profiles/desktop/hardware-configuration.nix
 ```
 
@@ -60,7 +60,7 @@ Now, it's time to configure `settings.nix` (and probably profiles) to your likin
 Once the variables are set, then switch into the system configuration by running:
 
 ```bash
-cd ~/.nixxin
+cd ~/nixxin
 sudo nixos-rebuild switch --flake .
 ```
 
@@ -85,7 +85,7 @@ installed. Once home-manager is running, the home-manager configuration can be
 installed with:
 
 ```bash
-cd ~/.nixxin
+cd ~/nixxin
 home-manager switch --flake .
 ```
 
