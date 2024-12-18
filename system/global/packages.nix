@@ -1,6 +1,10 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
 
+    ibus
+    ibus-theme-tools
+    ibus-with-plugins
+
     # screenshot
     grim # Grab images from a Wayland compositor
     grimblast # A helper for screenshots within Hyprland, based on grimshot
