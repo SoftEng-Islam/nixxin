@@ -33,16 +33,16 @@
     # community-apps
     telegram-desktop # Telegram Desktop messaging app
     discord # All-in-one cross-platform voice and text chat for gamers
-    # slack # Desktop client for Slack
-    # signal-desktop # Private, simple, and secure messenger
-    # zoom-us # zoom.us video conferencing application
-    # ferdium # All your services in one place built by the community
+    slack # Desktop client for Slack
+    signal-desktop # Private, simple, and secure messenger
+    zoom-us # zoom.us video conferencing application
+    ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
     firefox-beta # Web browser built from Firefox Beta Release source tree
-    # google-chrome # Freeware web browser developed by Google
+    google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
     # audacity # Sound editor with graphical UI

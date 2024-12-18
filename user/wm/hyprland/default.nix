@@ -5,13 +5,13 @@
 
   imports = [
     ./ags.nix
-    ./env.nix
     ./binds.nix
-    ./scripts.nix
-    ./rules.nix
-    ./settings.nix
-    ./plugins.nix
+    ./env.nix
     ./hyprlock.nix
+    ./plugins.nix
+    ./rules.nix
+    ./scripts.nix
+    ./settings.nix
   ];
 
   # make stuff work on wayland
