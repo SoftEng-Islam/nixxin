@@ -26,7 +26,7 @@
     package = pkgs.hyprland;
     systemd.enable = true;
     plugins = [
-      pkgs.hyprbars
+      pkgs.hyprlandPlugins.hyprbars
       pkgs.hyprlandPlugins.hyprexpo
       pkgs.hyprlandPlugins.hypr-dynamic-cursors
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
