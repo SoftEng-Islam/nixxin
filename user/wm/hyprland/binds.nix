@@ -17,6 +17,7 @@
     bind = [
       # Window/Session actions.
       "$mod, Q, killactive,"
+      "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
       "$mod, delete, exit,"
       "$mod, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
       "$mod, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
