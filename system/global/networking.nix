@@ -10,22 +10,7 @@
     useNetworkd = false;
     networkmanager.dns = "dnsmasq";
 
-    firewall = {
-      enable = false;
-      allowedTCPPortRanges = [{
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-        ];
-      allowedUDPPortRanges = [{
-        from = 1714;
-        to = 1764;
-      } # KDE Connect
-        ];
-      # allowedUDPPorts = lib.mkIf settings.enableVPN [51820];
-      allowedUDPPorts = [ 5900 5901 51820 ];
-      allowedTCPPorts = [ 5900 5901 ];
-    };
+    firewall = { enable = false; };
 
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # useNetworkd = true;

@@ -213,8 +213,6 @@
     gtkmm3 # C++ interface to the GTK graphical user interface library
     gtkmm4 # C++ interface to the GTK graphical user interface library
     gtksourceview
-    # kdePackages.breeze # Artwork, styles and assets for the Breeze visual style for the Plasma Desktop
-    kdePackages.qt6ct # Qt6 Configuration Tool
     libdbusmenu-gtk3 # Library for passing menu structures across DBus
     webkitgtk_6_0 # Web content rendering engine, GTK port
 

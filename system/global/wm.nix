@@ -54,10 +54,6 @@
       portalPackage =
         inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     };
-    kdeconnect = {
-      package = pkgs.gnomeExtensions.gsconnect;
-      enable = true;
-    };
   };
   security = {
     polkit.enable = true;
