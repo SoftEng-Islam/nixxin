@@ -29,7 +29,7 @@ in {
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
       "ags &"
-      "hyprctl setcursor ${settings.cursorTheme}  ${settings.cursorSize}"
+      "hyprctl setcursor ${settings.cursorTheme}  ${toString settings.cursorSize}"
     ];
     master = { new_is_master = true; };
 
