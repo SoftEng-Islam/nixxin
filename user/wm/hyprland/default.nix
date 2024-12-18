@@ -7,7 +7,7 @@
     ./ags.nix
     ./binds.nix
     ./env.nix
-#    ./hyprlock.nix
+    #    ./hyprlock.nix
     ./plugins.nix
     ./rules.nix
     ./scripts.nix
@@ -26,8 +26,8 @@
     package = pkgs.hyprland;
     systemd.enable = true;
     plugins = [
-      pkgs.hyprlandPlugins.hyprbars
-      pkgs.hyprlandPlugins.hyprexpo
+      # pkgs.hyprlandPlugins.hyprbars
+      # pkgs.hyprlandPlugins.hyprexpo
       pkgs.hyprlandPlugins.hypr-dynamic-cursors
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
       pkgs.hyprlandPlugins.borders-plus-plus;
