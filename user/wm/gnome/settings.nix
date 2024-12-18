@@ -6,7 +6,7 @@
       # monospace-font-name = "JetBrains Mono 12";
       # titlebar-font = "JetBrains Mono 12";
     };
-    "/org/gnome/mutter" = {
+    "org/gnome/mutter" = {
       center-new-windows = true;
       experimental-features = "['scale-monitor-framebuffer']";
     };
