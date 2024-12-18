@@ -4,6 +4,7 @@
     enableDefaultPackages = true;
     packages = with pkgs; [
       settings.fontPkg
+      dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review
       roboto # Roboto family of fonts
