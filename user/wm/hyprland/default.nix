@@ -7,7 +7,7 @@
     ./ags.nix
     ./binds.nix
     ./env.nix
-    ./hyprlock.nix
+#    ./hyprlock.nix
     ./plugins.nix
     ./rules.nix
     ./scripts.nix
