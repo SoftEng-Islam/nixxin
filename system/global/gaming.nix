@@ -11,21 +11,19 @@
       remotePlay.openFirewall = true; # Steam Remote Play.
       dedicatedServer.openFirewall = true; # Source Dedicated Server.
       package = pkgs.steam.override {
-        extraPkgs = pkgs:
-          with pkgs;
-          [
-            # keyutils
-            # libgdiplus
-            # libkrb5
-            # libpng
-            # libpulseaudio
-            # libvorbis
-            # stdenv.cc.cc.lib
-            # xorg.libXcursor
-            # xorg.libXi
-            # xorg.libXinerama
-            # xorg.libXScrnSaver
-          ];
+        extraPkgs = [
+          # pkgs.keyutils
+          # pkgs.libgdiplus
+          # pkgs.libkrb5
+          # pkgs.libpng
+          # pkgs.libpulseaudio
+          # pkgs.libvorbis
+          # pkgs.stdenv.cc.cc.lib
+          # pkgs.xorg.libXcursor
+          # pkgs.xorg.libXi
+          # pkgs.xorg.libXinerama
+          # pkgs.xorg.libXScrnSaver
+        ];
       };
     };
   };
