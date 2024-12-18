@@ -110,6 +110,7 @@
     # plymouth.theme = "bgrt";
   };
   environment.systemPackages = with pkgs; [
+    fatcat
     os-prober
     grub2_efi
     grub2_full
