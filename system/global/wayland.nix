@@ -8,6 +8,6 @@
       options = "grp:win_space_toggle";
     };
     videoDrivers = [ "amdgpu" ];
-    displayManager.startx = { enable = true; };
+    displayManager.startx = { enable = false; };
   };
 }

@@ -25,16 +25,22 @@
       localsearch.enable = true;
       tinysparql.enable = true;
     };
-    xserver.desktopManager = {
-      gnome = {
-        enable = true;
-        # Specify GNOME GSettings overrides
-        extraGSettingsOverrides = ''
-          [org.gnome.mutter]
-          check-alive-timeout=0
-        '';
+    displayManager.defaultSession = "gnome";
+    xserver = {
+      displayManager.gdm.wayland = true;
+      displayManager.gdm.enable = true;
+      desktopManager = {
+        gnome = {
+          enable = true;
+          # Specify GNOME GSettings overrides
+          extraGSettingsOverrides = ''
+            [org.gnome.mutter]
+            check-alive-timeout=0
+          '';
+        };
       };
     };
+
   };
 
   programs = {
@@ -95,6 +101,7 @@
     playerctl # gsconnect play/pause command
     pamixer # gcsconnect volume control
 
+    gdm-settings
     gdm # A program that manages graphical display servers and handles graphical user logins
     gjs # JavaScript bindings for GNOME
 
