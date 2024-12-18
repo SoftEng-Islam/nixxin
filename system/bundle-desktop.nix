@@ -27,5 +27,6 @@
     ./global/wayland.nix
     ./global/xdg.nix
     ./global/security.nix
+    ./global/shell.nix
   ];
 }
