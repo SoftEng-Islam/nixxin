@@ -50,7 +50,7 @@
       url = "https://github.com/hyprwm/Hyprland";
       submodules = true;
     };
-    superfile.url = "github:yorukot/superfile";
+    # superfile.url = "github:yorukot/superfile";
     stylix.url = "github:danth/stylix";
     swww.url = "github:LGFae/swww";
     nixvim = {
