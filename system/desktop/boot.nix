@@ -20,7 +20,8 @@
         # ls -l /dev/disk/by-id/
         # mirroredBoots = ;
         # device = "nodev";
-        devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
+        # devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
+        devices = [ "nodev" ];
         device = "nodev"; # Let GRUB automatically detect EFI
         useOSProber = false;
         extraConfig = ''
