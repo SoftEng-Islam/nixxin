@@ -20,16 +20,16 @@
       keep-derivations = true;
       experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
       sandbox = false;
-      substituters = [
-        "https://cache.nixos.org"
-        "https://hyprland.cachix.org"
-        "https://nix-community.cachix.org"
-      ];
-      trusted-substituters = [ "https://nix-community.cachix.org" ];
-      trusted-public-keys = [
-        "nix-community.cachix.org-1:X+Y5RQ2IjGhGib8V1B9aiATLsRHN/2N9UEf5hGBF3rM=;"
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      ];
+      # substituters = [
+      #   "https://cache.nixos.org"
+      #   "https://hyprland.cachix.org"
+      #   "https://nix-community.cachix.org"
+      # ];
+      # trusted-substituters = [ "https://nix-community.cachix.org" ];
+      # trusted-public-keys = [
+      #   "nix-community.cachix.org-1:X+Y5RQ2IjGhGib8V1B9aiATLsRHN/2N9UEf5hGBF3rM=;"
+      #   "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      # ];
       trusted-users = [ "@wheel" "root" ];
       fallback = true;
       warn-dirty = false;
