@@ -23,8 +23,8 @@
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
 
   # Web Browsers
-  browser = "microsoft-edge"; # Default browser;
-  browserPkg = pkgs.microsoft-edge;
+  browser = "brave"; # Default browser;
+  browserPkg = pkgs.brave;
 
   # Terminals
   term = "kitty"; # Default terminal command
