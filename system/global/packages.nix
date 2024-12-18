@@ -38,7 +38,7 @@
     python3
     pythonPackages.openai
     # pythonPackages.pip # Errors
-    pythonPackages.build
+    # pythonPackages.build
     pythonPackages.cairosvg
     pythonPackages.certifi
     pythonPackages.charset-normalizer
