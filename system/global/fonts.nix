@@ -14,7 +14,8 @@
       inter # Typeface specially designed for user interfaces
       noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-emoji # Color emoji font
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
+      noto-fonts-cjk-serif
       google-fonts
     ];
     fontconfig = {
