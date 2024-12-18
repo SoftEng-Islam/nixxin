@@ -8,7 +8,7 @@
     };
 
     background = {
-      path = "screenshot";
+  #    path = "screenshot";
       blur_passes = 3;
       blur_size = 10;
       brightness = 1.0;
