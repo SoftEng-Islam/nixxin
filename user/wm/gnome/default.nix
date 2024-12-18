@@ -1,1 +1,7 @@
-{ imports = [ ./extensions.nix ./autostart.nix ./settings.nix ]; }
+{
+  imports = [
+    # ./autostart.nix
+    #  ./extensions.nix
+    #  ./settings.nix
+  ];
+}
