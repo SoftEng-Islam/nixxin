@@ -38,7 +38,7 @@
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
       XKB_DEFAULT_RULES = "evdev";
-
+      GOPROXY = "direct";
       # Colors #
       Black = "033[30m";
       Red = "033[31m";
