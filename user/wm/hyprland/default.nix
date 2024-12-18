@@ -28,7 +28,7 @@
     plugins = [
       # pkgs.hyprlandPlugins.hyprbars
       # pkgs.hyprlandPlugins.hyprexpo
-      pkgs.hyprlandPlugins.hypr-dynamic-cursors
+      # pkgs.hyprlandPlugins.hypr-dynamic-cursors
     ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
       pkgs.hyprlandPlugins.borders-plus-plus;
   };
