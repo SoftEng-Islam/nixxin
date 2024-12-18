@@ -43,6 +43,5 @@
 
     # Games
     zeroad # Free, open-source game of ancient warfare
-    zeroadPackages
   ];
 }
