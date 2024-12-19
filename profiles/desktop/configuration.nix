@@ -5,9 +5,9 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (./. + "../../system/desktop" + ("/" + builtins.elemAt settings.wm 0)
+    (./. + "../../../system/desktop" + ("/" + builtins.elemAt settings.wm 0)
       + ".nix")
-    (./. + "../../system/desktop" + ("/" + builtins.elemAt settings.wm 1)
+    (./. + "../../../system/desktop" + ("/" + builtins.elemAt settings.wm 1)
       + ".nix")
     ../../themes/stylix.nix
     ../../system/desktop/appearance.nix
