@@ -25,12 +25,11 @@
     enable = true;
     package = pkgs.hyprland;
     systemd.enable = true;
-    plugins = [
-      # pkgs.hyprlandPlugins.hyprbars
-      # pkgs.hyprlandPlugins.hyprexpo
-      # pkgs.hyprlandPlugins.hypr-dynamic-cursors
-    ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
-      pkgs.hyprlandPlugins.borders-plus-plus;
+    plugins = with pkgs; [
+      hyprlandPlugins.hyprbars
+      hyprlandPlugins.hyprexpo
+      hyprlandPlugins.hypr-dynamic-cursors
+    ] ++ lib.optional (settings.themeDetails.bordersPlusPlus) hyprlandPlugins.borders-plus-plus;
   };
   # home.packages = with pkgs; [ hyprcursor ];
 }
