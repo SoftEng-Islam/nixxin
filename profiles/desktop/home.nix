@@ -26,15 +26,15 @@
   home = {
     username = settings.username;
     homeDirectory = "/home/${settings.username}";
-    pointerCursor = {
-      package = settings.cursorPackage;
-      name = settings.cursorTheme;
-      size = settings.cursorSize;
-      gtk.enable = true;
-      x11.enable = true;
-      hyprcursor.enable = true;
-      hyprcursor.size = settings.cursorSize;
-    };
+    # pointerCursor = {
+    #   package = settings.cursorPackage;
+    #   name = settings.cursorTheme;
+    #   size = settings.cursorSize;
+    #   gtk.enable = true;
+    #   x11.enable = true;
+    #   hyprcursor.enable = true;
+    #   hyprcursor.size = settings.cursorSize;
+    # };
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
@@ -65,19 +65,11 @@
       # swayimg
       # vesktop
       # revolt-desktop
-      # telegram-desktop
-
-      # drawio
-      # gimp
-      # mpv
 
       # Overclock
       # dmidecode
       # sysbench
 
-      # Sometimes needed for work.
-      # zoom-us
-      # chromium
       # translate-shell
       # tlaplus18
 
