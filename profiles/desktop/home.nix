@@ -147,21 +147,21 @@
       package = settings.cursorPackage;
     };
 
-    font = {
-      name = settings.fontName;
-      package = settings.fontPackage;
-      size = settings.fontSize;
-    };
+    # font = {
+    #   name = settings.fontName;
+    #   package = settings.fontPackage;
+    #   size = settings.fontSize;
+    # };
 
     iconTheme = {
       name = settings.iconName;
       package = settings.iconPackage;
     };
 
-    theme = {
-      name = lib.mkForce settings.gtkTheme;
-      package = lib.mkForce settings.gtkPackage;
-    };
+    # theme = {
+    #   name = lib.mkForce settings.gtkTheme;
+    #   package = lib.mkForce settings.gtkPackage;
+    # };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
