@@ -169,7 +169,7 @@
   # QT Settings
   qt = {
     enable = true;
-    platformTheme = settings.qtPlatformTheme;
+    platformTheme.name = settings.qtPlatformTheme;
     style.name = settings.qtStyle;
   };
 
