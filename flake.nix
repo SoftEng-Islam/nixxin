@@ -1,6 +1,27 @@
 {
   description = "Softeng Nixxin Configuration";
-
+  inputs = {
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    ags.url = "github:Aylur/ags";
+    hyprland = {
+      type = "git";
+      url = "https://github.com/hyprwm/Hyprland";
+      submodules = true;
+    };
+    # superfile.url = "github:yorukot/superfile";
+    stylix.url = "github:danth/stylix";
+    swww.url = "github:LGFae/swww";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    hyprland-plugins = {
+      url = "github:hyprwm/hyprland-plugins";
+      inputs.hyprland.follows = "hyprland";
+    };
+  };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
@@ -12,8 +33,7 @@
         ${settings.hostname} = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.stylix.nixosModules.stylix
-            (./. + "/profiles" + ("/" + settings.profile)
-              + "/configuration.nix")
+            (./. + "/profiles" + ("/" + settings.profile) + "/configuration.nix")
           ];
           specialArgs = {
             inherit inputs;
@@ -39,27 +59,4 @@
         };
       };
     };
-
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    ags.url = "github:Aylur/ags";
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
-    # superfile.url = "github:yorukot/superfile";
-    stylix.url = "github:danth/stylix";
-    swww.url = "github:LGFae/swww";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    hyprland-plugins = {
-      url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
-    };
-  };
 }

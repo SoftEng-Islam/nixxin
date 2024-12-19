@@ -21,6 +21,7 @@
   username = "softeng"; # Username
   dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
+  defaultSession = "gnome";
 
   # Web Browsers
   browser = "brave"; # Default browser;
