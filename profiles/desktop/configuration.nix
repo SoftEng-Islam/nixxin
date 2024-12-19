@@ -77,7 +77,6 @@
       auto-optimise-store = true
     '';
   };
-
   nixpkgs = {
     config = {
       rocmSupport = false;
