@@ -20,8 +20,7 @@
   qt = {
     enable = true;
     platformTheme = settings.qtPlatformTheme;
-    style.name = settings.qtStyle;
-    style.package = settings.qtPackage;
+    style = settings.qtStyle;
   };
 
   environment.systemPackages = with pkgs; [
