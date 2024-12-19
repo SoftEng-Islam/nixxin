@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -14,6 +14,9 @@
 
       grub = {
         enable = true;
+        fontSize = settings.fontSize;
+        # nix path-info -r nixpkgs#sleek-grub-theme
+        theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
         efiSupport = true;
         gfxmodeEfi = "1920x1080";
         # List all the devices with their by-id symlinks
@@ -115,6 +118,7 @@
     os-prober
     grub2_efi
     grub2_full
+    sleek-grub-theme
     nixos-grub2-theme
   ];
 }

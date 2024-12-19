@@ -38,11 +38,6 @@
   # documentation.nixos.enable = lib.mkForce false;
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
-
-  # See https://nix.dev/permalink/stub-ld.
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
-
   nix = {
     # package = pkgs.nixStable;
     package = pkgs.nixVersions.latest;
@@ -111,6 +106,9 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Services
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services.accounts-daemon.enable = true;
   services.dbus.implementation = "broker";
   services.flatpak.enable = false;
@@ -139,6 +137,12 @@
   services.displayManager.enable = true;
   services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
 
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Programs
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # See https://nix.dev/permalink/stub-ld.
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
   programs.corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
@@ -166,7 +170,6 @@
   # List of globally installed packages.
   environment.systemPackages = with pkgs; [
 
-    # GRUB Themes
     # Plymouth Theme For Nixos:
     plymouth # Boot splash and boot logger
     nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
