@@ -42,6 +42,7 @@
     dnsmasq = {
       # Configure dnsmasq
       enable = true;
+      alwaysKeepRunning = true;
       settings = {
         # Set Google DNS for IPv4 and IPv6
         server =
