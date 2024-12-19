@@ -51,7 +51,7 @@
   gtkPackage = pkgs.adw-gtk3;
 
   # Qt
-  qtPlatformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qt5ct")
+  qtPlatformTheme = "qtct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
   qtStyle = "adwaita-dark";
 
   # Icons
