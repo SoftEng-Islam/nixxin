@@ -5,37 +5,38 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../themes/stylix.nix
     ("../../system/desktop" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
     ("../../system/desktop" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
-    ../../system/desktop/boot.nix
-    ../../system/desktop/audio.nix
+    ../../themes/stylix.nix
     ../../system/desktop/appearance.nix
-    ../../system/desktop/desktop-apps.nix
-    ../../system/desktop/fonts.nix
-    ../../system/desktop/locale.nix
-    ../../system/desktop/networking.nix
-    ../../system/desktop/power-management.nix
-    ../../system/desktop/services.nix
-    ../../system/desktop/wine.nix
-    ../../system/desktop/zram.nix
+    ../../system/desktop/audio.nix
+    ../../system/desktop/boot.nix
     ../../system/desktop/cli-collection.nix
-    ../../system/desktop/drivers.nix
-    ../../system/desktop/gaming.nix
-    ../../system/desktop/media.nix
-    ../../system/desktop/nixos.nix
-    ../../system/desktop/programs.nix
-    ../../system/desktop/users.nix
-    ../../system/desktop/wm.nix
     ../../system/desktop/data-transferring.nix
+    ../../system/desktop/desktop-apps.nix
+    ../../system/desktop/drivers.nix
     ../../system/desktop/environment.nix
+    ../../system/desktop/fonts.nix
+    ../../system/desktop/gaming.nix
     ../../system/desktop/git.nix
+    ../../system/desktop/gnome.nix
+    ../../system/desktop/hyprland.nix
+    ../../system/desktop/locale.nix
+    ../../system/desktop/media.nix
     ../../system/desktop/nautilus.nix
+    ../../system/desktop/networking.nix
+    ../../system/desktop/nixos.nix
     ../../system/desktop/packages.nix
-    ../../system/desktop/wayland.nix
-    ../../system/desktop/xdg.nix
+    ../../system/desktop/power-management.nix
+    ../../system/desktop/programs.nix
     ../../system/desktop/security.nix
+    ../../system/desktop/services.nix
     ../../system/desktop/shell.nix
+    ../../system/desktop/users.nix
+    ../../system/desktop/wayland.nix
+    ../../system/desktop/wine.nix
+    ../../system/desktop/xdg.nix
+    ../../system/desktop/zram.nix
   ];
 
   # Use zsh. TODO: option to flake.nix, several shells.
