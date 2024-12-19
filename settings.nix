@@ -48,7 +48,7 @@
   gtkTheme = "adw-gtk3-dark";
   # Qt Settings
   qtPlatformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qt5ct")
-  qtTheme = "adwaita-dark";
+  qtStyle = "adwaita-dark";
   qtPackage = pkgs.adwaita-qt;
   # Icons
   icons = "Papirus-Dark";
