@@ -107,31 +107,6 @@
   };
   programs.command-not-found.enable = false;
   security.isolate.enable = false;
-  environment.systemPackages = with pkgs; [
-    direnv # Shell extension that manages your environment
-    fmt # Small, safe and fast formatting library
-    home-manager # A Nix-based user environment configurator
-    inxi # Full featured CLI system information tool
-    nix-bash-completions # Bash completions for Nix, NixOS, and NixOps
-    nix-direnv # Fast, persistent use_nix implementation for direnv
-    nix-btm # Rust tool to monitor Nix processes
-    nix-doc # Interactive Nix documentation tool
-    nix-index # A files database for nixpkgs
-    nix-prefetch # Prefetch any fetcher function call, e.g. package sources
-    nix-prefetch-github
-    nixfmt-classic # An opinionated formatter for Nix
-    nixos-shell # Spawns lightweight nixos vms in a shell
-    nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
-    nixpkgs-review
-    # Nix language server
-    nixd # Feature-rich Nix language server interoperating with C++ nix
-    nil # Yet another language server for Nix
-    # Nix Formatters:
-    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
-    alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
-    nixdoc # Generate documentation for Nix functions
-  ];
 
   # Use zsh.
   environment.shells = with pkgs; [ zsh ];
@@ -192,8 +167,33 @@
   # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   # List of globally installed packages.
   environment.systemPackages = with pkgs; [
-    home-manager
-    nix-index
+    direnv # Shell extension that manages your environment
+    fmt # Small, safe and fast formatting library
+    home-manager # A Nix-based user environment configurator
+    inxi # Full featured CLI system information tool
+    nix-bash-completions # Bash completions for Nix, NixOS, and NixOps
+    nix-direnv # Fast, persistent use_nix implementation for direnv
+    nix-btm # Rust tool to monitor Nix processes
+    nix-doc # Interactive Nix documentation tool
+    nix-index # A files database for nixpkgs
+    nix-prefetch # Prefetch any fetcher function call, e.g. package sources
+    nix-prefetch-github
+    nixfmt-classic # An opinionated formatter for Nix
+    nixos-shell # Spawns lightweight nixos vms in a shell
+    nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
+    nixpkgs-review
+    # Nix language server
+    nixd # Feature-rich Nix language server interoperating with C++ nix
+    nil # Yet another language server for Nix
+    # Nix Formatters:
+    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
+    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
+    alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
+    nixdoc # Generate documentation for Nix functions
+
+    # -----------------------------------------------
+    # -----------------------------------------------
+
     pciutils
     go-mtpfs
     ntfs3g
