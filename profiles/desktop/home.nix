@@ -17,6 +17,12 @@
   ];
 
   stylix.targets.hyprland.enable = false;
+  # programs.sagemath.enable = true;
+  services.kdeconnect.enable = false;
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+
+  services.ssh-agent.enable = true;
 
   home = {
     username = settings.username;
@@ -124,11 +130,6 @@
       };
     };
   };
-
-  # programs.sagemath.enable = true;
-  services.kdeconnect.enable = false;
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 
   # disable manuals as nmd fails to build often
   manual = {

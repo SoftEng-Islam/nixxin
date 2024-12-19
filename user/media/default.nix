@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-# media - control and enjoy audio/video
-{
+{ pkgs, ... }: {
   imports = [ ./mpv.nix ./rnnoise.nix ];
   home.packages = with pkgs; [
     # audio control
