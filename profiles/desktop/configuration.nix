@@ -19,8 +19,6 @@
     ../../system/desktop/fonts.nix
     ../../system/desktop/gaming.nix
     ../../system/desktop/git.nix
-    ../../system/desktop/gnome.nix
-    ../../system/desktop/hyprland.nix
     ../../system/desktop/locale.nix
     ../../system/desktop/media.nix
     ../../system/desktop/nautilus.nix
