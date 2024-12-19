@@ -54,5 +54,5 @@
   # Cursor
   cursorPackage = pkgs.bibata-cursors;
   cursorTheme = "Bibata-Modern-Ice"; # Cursor Name
-  cursorSize = 32; # Cursor Size
+  cursorSize = 22; # Cursor Size
 }
