@@ -1,6 +1,6 @@
-{settings ,pkgs,...}:{
-    # you can try this command if you have any problem with gnome settings
-    # dconf reset -f /org/gnome/
+{ settings, pkgs, ... }: {
+  # you can try this command if you have any problem with gnome settings
+  # dconf reset -f /org/gnome/
 
   # Run the following command to disable the Gnome check-alive-timeout or "App Not Responding" dialog:
   # dconf write /org/gnome/mutter/debug/enable-frame-timing false
@@ -8,27 +8,40 @@
 
   # Run this command to Remove window close and minimize buttons in GTK:
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'
-    services.gnome.core-shell.enable = true;
-    services.gnome.core-utilities.enable = true;
-    services.gnome.evolution-data-server.enable = true;
-    services.gnome.glib-networking.enable = true;
-    services.gnome.gnome-keyring.enable = true;
-    services.gnome.gnome-online-accounts.enable = true;
-    services.gnome.localsearch.enable = true;
-    services.gnome.tinysparql.enable = true;
-    services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  services.gnome.core-shell.enable = true;
+  services.gnome.core-utilities.enable = true;
+  services.gnome.evolution-data-server.enable = true;
+  services.gnome.glib-networking.enable = true;
+  services.gnome.gnome-keyring.enable = true;
+  services.gnome.gnome-online-accounts.enable = true;
+  services.gnome.localsearch.enable = true;
+  services.gnome.tinysparql.enable = true;
+  services.udev.packages = with pkgs; [ gnome-settings-daemon ];
 
+  services.displayManager.defaultSession = settings.defaultSession;
+  services.xserver.displayManager.gdm.wayland = true;
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
+    [org.gnome.mutter]
+    check-alive-timeout=0
+  '';
 
-    services.displayManager.defaultSession = settings.defaultSession;
-    services.xserver.displayManager.gdm.wayland = true;
-    services.xserver.displayManager.gdm.enable = true;
-    services.xserver.desktopManager.gnome.enable = true;
-    services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-        [org.gnome.mutter]
-        check-alive-timeout=0
-    '';
+  services.xserver.desktopManager.gnome = {
+    # extraGSettingsOverrides = ''
+    #   [org.gnome.desktop.interface]
+    #   gtk-theme='${settings.gtkTheme}'
+    #   icon-theme='${settings.icons}'
+    #   color-scheme='${settings.colorScheme}'
+    #   cursor-theme='${settings.cursorTheme}'
+    #   cursor-size=${settings.cursorSize}
 
-      environment.gnome.excludePackages = with pkgs; [
+    #   [org.gnome.desktop.wm.preferences]
+    #   button-layout='close,minimize,maximize:'
+    # '';
+  };
+
+  environment.gnome.excludePackages = with pkgs; [
     gnome-photos
     cheese
     evince
@@ -44,7 +57,7 @@
     iagno # go game
     tali # poker game
   ];
-   environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gsettings-desktop-schemas
     playerctl # gsconnect play/pause command
     pamixer # gcsconnect volume control
@@ -72,5 +85,5 @@
     polkit # A toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
     polkit_gnome # A dbus session bus service that is used to bring up authentication dialogs
     libsForQt5.polkit-qt # A Qt wrapper around PolKit
-   ];
+  ];
 }

@@ -4,11 +4,11 @@
   # fc-cache -fv
   # rm -rf ~/.config/ibus
 
-  # fonts.packages = [settings.fontPkg];
+  # fonts.packages = [settings.fontPackage];
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      settings.fontPkg
+      settings.fontPackage
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review

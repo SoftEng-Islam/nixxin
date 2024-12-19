@@ -1,34 +1,43 @@
-{ settings, pkgs, ... }: {
-  services = {
-    xserver.desktopManager = {
-      gnome = {
-        # extraGSettingsOverrides = ''
-        #   [org.gnome.desktop.interface]
-        #   gtk-theme='${settings.gtkTheme}'
-        #   icon-theme='${settings.icons}'
-        #   color-scheme='${settings.colorScheme}'
-        #   cursor-theme='${settings.cursorTheme}'
-        #   cursor-size=${settings.cursorSize}
+{ settings, pkgs, lib, config, ... }: {
 
-        #   [org.gnome.desktop.wm.preferences]
-        #   button-layout='close,minimize,maximize:'
-        # '';
-      };
+  xdg.configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
+
+  # GTK Settings
+  gtk = {
+    enable = true;
+
+    cursorTheme = {
+      name = settings.cursorTheme;
+      size = settings.cursorSize;
+      package = settings.cursorPackage;
     };
+
+    font = {
+      name = settings.fontName;
+      package = settings.fontPackage;
+      size = settings.fontSize;
+    };
+
+    iconTheme = {
+      name = settings.iconName;
+      package = settings.iconPackage;
+    };
+
+    theme = {
+      name = settings.gtkTheme;
+      package = settings.gtkPackage;
+    };
+
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   };
 
+  # QT Settings
   qt = {
     enable = true;
     platformTheme = settings.qtPlatformTheme;
     style = settings.qtStyle;
   };
-
   environment.systemPackages = with pkgs; [
-    # GRUB Themes
-    # Plymouth Theme For Nixos:
-    plymouth # Boot splash and boot logger
-    nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
-
     # Themes & Graphical Interfaces
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces

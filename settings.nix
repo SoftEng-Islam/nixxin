@@ -37,21 +37,26 @@
   visual = "nvim";
 
   # Fonts
-  font = "JetBrains Mono"; # Selected font
-  fontPkg = pkgs.jetbrains-mono; # Typeface made for developers
+  fontName = "JetBrains Mono"; # Selected font
+  fontPackage = pkgs.jetbrains-mono; # Typeface made for developers
   fontSize = 12; # Font size
 
-  # Themes & options
+  # Themes
   theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
   colorScheme = "prefer-dark";
+
+  # GTK
   gtkTheme = "adw-gtk3-dark";
-  # Qt Settings
+  gtkPackage = pkgs.adw-gtk3;
+
+  # Qt
   qtPlatformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qt5ct")
   qtStyle = "adwaita-dark";
+
   # Icons
-  icons = "Papirus-Dark";
-  iconsPkg = pkgs.papirus-icon-theme;
+  iconName = "Papirus-Dark";
+  iconPackage = pkgs.papirus-icon-theme;
 
   # Cursor
   cursorPackage = pkgs.bibata-cursors;

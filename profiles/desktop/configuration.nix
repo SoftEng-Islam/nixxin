@@ -10,7 +10,6 @@
     (./. + "../../../system/desktop" + ("/" + builtins.elemAt settings.wm 1)
       + ".nix")
     ../../themes/stylix.nix
-    ../../system/desktop/appearance.nix
     ../../system/desktop/audio.nix
     ../../system/desktop/boot.nix
     ../../system/desktop/cli-collection.nix
@@ -167,6 +166,12 @@
   # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   # List of globally installed packages.
   environment.systemPackages = with pkgs; [
+
+    # GRUB Themes
+    # Plymouth Theme For Nixos:
+    plymouth # Boot splash and boot logger
+    nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
+
     direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator

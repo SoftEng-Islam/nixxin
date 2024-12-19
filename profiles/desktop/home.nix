@@ -21,6 +21,13 @@
   home = {
     username = settings.username;
     homeDirectory = "/home/${settings.username}";
+    pointerCursor = {
+      package = settings.cursorPackage;
+      name = settings.cursorTheme;
+      size = settings.cursorSize;
+      gtk.enable = true;
+      x11.enable = true;
+    };
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
@@ -129,8 +136,8 @@
   gtk = {
     enable = true;
     iconTheme = {
-      name = settings.icons;
-      package = settings.iconsPkg;
+      name = settings.iconName;
+      package = settings.iconPackage;
     };
   };
 
