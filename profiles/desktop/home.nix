@@ -159,7 +159,7 @@
     };
 
     theme = {
-      name = settings.gtkTheme;
+      name = lib.mkForce settings.gtkTheme;
       package = lib.mkForce settings.gtkPackage;
     };
 
