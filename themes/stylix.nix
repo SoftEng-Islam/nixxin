@@ -21,6 +21,28 @@ in {
       package = settings.cursorPackage;
     };
 
+    fonts = {
+      serif = {
+        package = settings.fontPackage;
+        name = settings.fontName; # Use JetBrains Mono for the serif font
+      };
+
+      sansSerif = {
+        package = settings.fontPackage;
+        name = settings.fontName; # Use JetBrains Mono for the sans-serif font
+      };
+
+      monospace = {
+        package = settings.fontPackage;
+        name = settings.fontName; # JetBrains Mono is a monospace font
+      };
+
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
+      };
+    };
+
     targets.nixvim.enable =
       lib.mkIf (settings.themeDetails.themeName != null) false;
   };
