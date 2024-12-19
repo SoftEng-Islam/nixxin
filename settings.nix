@@ -38,13 +38,13 @@
   # Fonts
   font = "JetBrains Mono"; # Selected font
   fontPkg = pkgs.jetbrains-mono; # Typeface made for developers
-  fontSize = 13; # Font size
+  fontSize = 12; # Font size
 
   # Themes
   theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
   colorScheme = "prefer-dark";
-  gtkTheme = "Colloid-Dark";
+  gtkTheme = "adw-gtk3-dark";
 
   # Icons
   icons = "Papirus-Dark";

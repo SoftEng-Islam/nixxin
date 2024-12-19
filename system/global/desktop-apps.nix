@@ -10,18 +10,18 @@
     vlc # Cross-platform media player and streaming server
 
     # Video Editors
-    # kdenlive # Video editor
+    kdenlive # Video editor
     # davinci-resolve # Professional video editing, color, effects and audio post-processing
     # davinci-resolve-studio
 
     testdisk # Data recovery utilities
 
     # graphics apps
-    # lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
     blender-hip # 3D Creation/Animation/Publishing System
     # inkscape # Vector graphics editor
-    # gimp # GNU Image Manipulation Program
+    gimp # GNU Image Manipulation Program
     # figma-linux
 
     # Developers Applications
