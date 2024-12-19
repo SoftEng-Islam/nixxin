@@ -30,7 +30,7 @@ let
     };
     font = {
       size = settings.fontSize;
-      name = "${settings.font}";
+      name = settings.fontName;
     };
     widget = { opacity = details.opacity * 100; };
   };
