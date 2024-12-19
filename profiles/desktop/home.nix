@@ -159,8 +159,8 @@
     };
 
     theme = {
-      name = lib.mkForce settings.gtkTheme;
-      package = settings.gtkPackage;
+      name = settings.gtkTheme;
+      package = lib.mkForce settings.gtkPackage;
     };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
