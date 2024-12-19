@@ -20,7 +20,7 @@
       ELM_ENGINE = "wayland_egl";
       WLR_DRM_DEVICES = "/dev/dri/card1";
       GDK_BACKEND = "wayland,x11,*";
-      GTK_THEME = "Colloid-Dark";
+      GTK_THEME = settings.gtkTheme;
       LANG = settings.locale;
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
