@@ -16,6 +16,14 @@
       };
     };
   };
+
+  qt = {
+    enable = true;
+    platformTheme = settings.qtPlatformTheme;
+    style.name = settings.qtTheme;
+    style.package = settings.qtPackage;
+  };
+
   environment.systemPackages = with pkgs; [
     # GRUB Themes
     # Plymouth Theme For Nixos:
@@ -33,11 +41,18 @@
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
     colloid-gtk-theme # Modern and clean Gtk theme
 
+    qt6Packages.qtstyleplugin-kvantum
+    qt6Packages.qt6ct
+    libsForQt5.qtstyleplugin-kvantum
+    libsForQt5.qt5ct
+
     # Icons
     gruvbox-dark-icons-gtk
     gruvbox-plus-icons
     papirus-icon-theme # Pixel perfect icon theme for Linux
 
     # QT Themes
+    adwaita-qt
+    adwaita-qt6
   ];
 }

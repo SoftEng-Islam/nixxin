@@ -41,12 +41,15 @@
   fontPkg = pkgs.jetbrains-mono; # Typeface made for developers
   fontSize = 12; # Font size
 
-  # Themes
+  # Themes & options
   theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
   themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
   colorScheme = "prefer-dark";
   gtkTheme = "adw-gtk3-dark";
-
+  # Qt Settings
+  qtPlatformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qt5ct")
+  qtTheme = "adwaita-dark";
+  qtPackage = pkgs.adwaita-qt;
   # Icons
   icons = "Papirus-Dark";
   iconsPkg = pkgs.papirus-icon-theme;
