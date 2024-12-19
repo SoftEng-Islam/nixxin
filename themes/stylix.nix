@@ -42,7 +42,7 @@ in {
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
       };
     };
-
+    targets.grub.enable = false;
     targets.nixvim.enable =
       lib.mkIf (settings.themeDetails.themeName != null) false;
   };

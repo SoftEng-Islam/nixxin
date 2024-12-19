@@ -12,7 +12,6 @@
     ../../user/cava.nix
     ../../user/curl.nix
     ../../user/git.nix
-    ../../user/ssh.nix
     # ../../user/superfile.nix
   ];
 
