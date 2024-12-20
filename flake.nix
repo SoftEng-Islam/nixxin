@@ -94,21 +94,15 @@
 
   };
 
-  outputs = { self, nixpkgs, pkgs, home-manager, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
-      # pkgs = import nixpkgs { system = settings.system; };
+      pkgs = import nixpkgs { system = settings.system; };
 
       mkLib = pkgs: system:
         let
-          lib = pkgs.lib.extend (final: prev: {
-            home-manager = inputs.home-manager.lib.hm;
-            _custom = import ./lib {
-              pkgs = import pkgs { inherit system; };
-              inherit inputs;
-              inherit lib;
-            };
-          });
+          lib = pkgs.lib.extend
+            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
         in lib;
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
