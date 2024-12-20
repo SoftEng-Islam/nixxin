@@ -3,7 +3,8 @@
     defaultUserShell = pkgs.zsh;
     users.${settings.username} = {
       isNormalUser = true;
-      description = settings.username;
+      description = settings.name;
+      home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
         "gamemode"
