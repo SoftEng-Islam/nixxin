@@ -148,7 +148,7 @@
         };
     in {
       nixosConfigurations = {
-        ${settings.username} =
+        ${settings.hostName} =
           mkNixosSystem pkgs settings.system settings.hostName;
       };
     };
