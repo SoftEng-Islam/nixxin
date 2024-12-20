@@ -61,17 +61,14 @@
     smart-splits-nvim.url = "github:mrjones2014/smart-splits.nvim";
     smart-splits-nvim.flake = false;
 
-    zsh-autocomplete.url =
-      "github:wochap/zsh-autocomplete?rev=d52da825c2b60b664f33e8d82fdfc1c3b647b753";
+    zsh-autocomplete.url = "github:wochap/zsh-autocomplete";
     zsh-autocomplete.flake = false;
-    zsh-defer.url =
-      "github:romkatv/zsh-defer?rev=1c75faff4d8584afe090b06db11991c8c8d62055";
+    zsh-defer.url = "github:romkatv/zsh-defer";
     zsh-defer.flake = false;
     zsh-history-substring-search.url =
-      "github:zsh-users/zsh-history-substring-search?rev=8dd05bfcc12b0cd1ee9ea64be725b3d9f713cf64";
+      "github:zsh-users/zsh-history-substring-search";
     zsh-history-substring-search.flake = false;
-    zsh-notify.url =
-      "github:marzocchi/zsh-notify?rev=9c1dac81a48ec85d742ebf236172b4d92aab2f3f";
+    zsh-notify.url = "github:marzocchi/zsh-notify";
     zsh-notify.flake = false;
     zsh-vi-mode.url =
       "github:wochap/zsh-vi-mode?rev=6091e2bc63cd076f94583a6d51eda74980566d28";
@@ -80,57 +77,12 @@
     zsh-pnpm-shell-completion.flake = false;
     figlet-fonts.url = "github:wochap/figlet-fonts";
     figlet-fonts.flake = false;
-    ipwebcam-gst.url =
-      "github:agarciadom/ipwebcam-gst?rev=5a02ffae8597ab1cc7461f096f86ca233f925a07";
+    ipwebcam-gst.url = "github:agarciadom/ipwebcam-gst";
     ipwebcam-gst.flake = false;
-    tmux-sessionx.url =
-      "github:omerxx/tmux-sessionx?rev=ac9b0ec219c2e36ce6beb3f900ef852ba8888095";
-    nnn-cppath.url =
-      "github:raffaem/nnn-cppath?rev=1d3f4f64d43533d203af82c61f4a93afc8d5aaf5";
+    tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+    nnn-cppath.url = "github:raffaem/nnn-cppath";
     nnn-cppath.flake = false;
 
-    # themes
-    dracula-lsd.url =
-      "github:dracula/lsd?rev=75f3305a2bba4dacac82b143a15d278daee28232";
-    dracula-lsd.flake = false;
-    catppuccin-grub.url = "github:catppuccin/grub";
-    catppuccin-grub.flake = false;
-    catppuccin-alacritty.url = "github:catppuccin/alacritty";
-    catppuccin-alacritty.flake = false;
-    catppuccin-amfora.url = "github:catppuccin/amfora";
-    catppuccin-amfora.flake = false;
-    catppuccin-bat.url = "github:catppuccin/bat";
-    catppuccin-bat.flake = false;
-    catppuccin-bottom.url = "github:catppuccin/bottom";
-    catppuccin-bottom.flake = false;
-    catppuccin-dircolors.url = "github:wochap/dircolors";
-    catppuccin-dircolors.flake = false;
-    catppuccin-discord.url = "github:catppuccin/discord";
-    catppuccin-discord.flake = false;
-    catppuccin-kitty.url = "github:catppuccin/kitty";
-    catppuccin-kitty.flake = false;
-    catppuccin-lazygit.url = "github:catppuccin/lazygit";
-    catppuccin-lazygit.flake = false;
-    catppuccin-delta.url = "github:catppuccin/delta";
-    catppuccin-delta.flake = false;
-    catppuccin-neomutt.url = "github:catppuccin/neomutt";
-    catppuccin-neomutt.flake = false;
-    catppuccin-newsboat.url = "github:catppuccin/newsboat";
-    catppuccin-newsboat.flake = false;
-    catppuccin-qutebrowser.url = "github:catppuccin/qutebrowser";
-    catppuccin-qutebrowser.flake = false;
-    catppuccin-zathura.url = "github:catppuccin/zathura";
-    catppuccin-zathura.flake = false;
-    catppuccin-zsh-fsh.url = "github:catppuccin/zsh-fsh";
-    catppuccin-zsh-fsh.flake = false;
-    catppuccin-tmux.url = "github:catppuccin/tmux";
-    catppuccin-tmux.flake = false;
-    catppuccin-mpv.url = "github:catppuccin/mpv";
-    catppuccin-mpv.flake = false;
-    catppuccin-foot.url = "github:catppuccin/foot";
-    catppuccin-foot.flake = false;
-    catppuccin-obs.url = "github:catppuccin/obs";
-    catppuccin-obs.flake = false;
   };
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
