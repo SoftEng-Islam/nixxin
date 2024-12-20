@@ -96,6 +96,7 @@
       # "acpi_osi=Linux"
       # "pci=realloc"
     ];
+
     kernel.sysctl = {
       "net.ipv4.ip_forward" = true; # Enable IPv4 forwarding
       "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding
@@ -104,6 +105,7 @@
       "vm.swappiness" = 60;
       "net.core.rmem_max" = 16777216;
       "net.core.wmem_max" = 16777216;
+      "fs.inotify.max_user_watches" = "1048576";
     };
     # extraModprobeConfig = ''
     # blacklist r8188eu
