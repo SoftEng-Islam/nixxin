@@ -1,6 +1,5 @@
 {
   description = "Softeng Nixxin Configuration";
-
   inputs = {
     # channels
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -93,34 +92,46 @@
     nnn-cppath.flake = false;
 
   };
-
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       pkgs = import nixpkgs { system = settings.system; };
       settings = import (./. + "/settings.nix") { inherit pkgs; };
-
-      mkLib = pkgs: system:
-        let
-          lib = pkgs.lib.extend
-            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
-        in lib;
-      mkNixosSystem = pkgs: system: hostName:
-        pkgs.lib.nixosSystem {
-          system = settings.system;
+    in {
+      nixosConfigurations = {
+        # NixOS configuration entrypoint.
+        # 'nixos-rebuild switch --flake .#hostname
+        ${settings.hostName} = nixpkgs.lib.nixosSystem {
           modules = [
-            inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
+            # inputs.chaotic.nixosModules.default
             inputs.ucodenix.nixosModules.default
-            # ./packages
-            # (./. + "/hosts/${hostName}")
+            # inputs.nur.nixosModules.nur
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
-            # (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
-            home-manager.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
               networking.hostName = settings.hostName;
+            }
+          ];
+          specialArgs = {
+            inherit inputs;
+            inherit settings;
+          };
+        };
+      };
+
+      # Standalone home-manager configuration entrypoint.
+      # 'home-manager switch --flake .#username
+      homeConfigurations = {
+        ${settings.username} = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${settings.system};
+          modules = [
+            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            inputs.stylix.homeManagerModules.stylix
+            inputs.nixvim.homeManagerModules.nixvim
+            {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = settings;
@@ -128,18 +139,11 @@
                 import ./profiles/${settings.profile}/home.nix;
             }
           ];
-          specialArgs = {
+          extraSpecialArgs = {
             inherit inputs;
             inherit settings;
-            inherit system;
-            lib = mkLib pkgs system;
-            nixpkgs = pkgs;
           };
         };
-    in {
-      nixosConfigurations = {
-        ${settings.hostName} = mkNixosSystem inputs.nixpkgs "${settings.system}"
-          "${settings.hostName}";
       };
     };
 }
