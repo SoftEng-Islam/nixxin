@@ -212,6 +212,8 @@
             inputs.nur.nixosModules.nur
             # ./packages
             # (./. + "/hosts/${hostName}")
+            (./. + "/profiles" + ("/" + settings.profile)
+              + "/configuration.nix")
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
@@ -228,8 +230,7 @@
         };
     in {
       nixosConfigurations = {
-        ${settings.username} =
-          mkNixosSystem inputs.nixpkgs "x86_64-linux" "gdesktop";
+        ${settings.username} = mkNixosSystem inputs.nixpkgs;
       };
       homeConfigurations = {
         ${settings.username} = home-manager.lib.homeManagerConfiguration {
