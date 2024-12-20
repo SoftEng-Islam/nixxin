@@ -94,29 +94,29 @@
   };
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      pkgs = import nixpkgs { system = settings.system; };
-      settings = import (./. + "/settings.nix") { inherit pkgs; };
+      pkgs = import nixpkgs { system = mySettings.system; };
+      mySettings = import (./. + "/settings.nix") { inherit pkgs; };
     in {
       nixosConfigurations = {
         # NixOS configuration entrypoint.
         # 'nixos-rebuild switch --flake .#hostname
-        ${settings.hostName} = nixpkgs.lib.nixosSystem {
+        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.stylix.nixosModules.stylix
             # inputs.chaotic.nixosModules.default
             inputs.ucodenix.nixosModules.default
             # inputs.nur.nixosModules.nur
-            (./. + "/profiles" + ("/" + settings.profile)
+            (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
-              networking.hostName = settings.hostName;
+              networking.hostName = mySettings.hostName;
             }
           ];
           specialArgs = {
             inherit inputs;
-            inherit settings;
+            inherit mySettings;
           };
         };
       };
@@ -124,24 +124,24 @@
       # Standalone home-manager configuration entrypoint.
       # 'home-manager switch --flake .#username
       homeConfigurations = {
-        ${settings.username} = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${settings.system};
+        ${mySettings.username} = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${mySettings.system};
           modules = [
-            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.homeManagerModules.stylix
             # inputs.nixvim.homeManagerModules.nixvim
             {
-              # home-manager.users.${settings.username} =
-              #   import ./profiles/${settings.profile}/home.nix;
-              # home-manager.extraSpecialArgs = settings;
+              # home-manager.users.${mySettings.username} =
+              #   import ./profiles/${mySettings.profile}/home.nix;
+              # home-manager.extraSpecialArgs = mySettings;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
             }
           ];
           extraSpecialArgs = {
             inherit inputs;
-            inherit settings;
+            inherit mySettings;
           };
         };
       };

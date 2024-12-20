@@ -1,11 +1,11 @@
-{ settings, pkgs, lib, config, ... }: {
+{ mySettings, pkgs, lib, config, ... }: {
   imports = [
 
     # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
     # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
 
-    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0))
-    (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1))
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt mySettings.wm 0))
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt mySettings.wm 1))
 
     ../../themes/stylix.nix
     ../../user/media
@@ -15,8 +15,8 @@
     # ../../user/superfile.nix
   ];
 
-  users.users.${settings.username}.isNormalUser = true;
-  home-manager.users.${settings.username} = { pkgs, ... }: {
+  users.users.${mySettings.username}.isNormalUser = true;
+  home-manager.users.${mySettings.username} = { pkgs, ... }: {
     # home.packages = [ pkgs.atool pkgs.httpie ];
     programs.bash.enable = true;
     # The state version is required and should stay at the version you
@@ -31,16 +31,16 @@
   programs.home-manager.enable = true;
   services.ssh-agent.enable = true;
   home = {
-    username = settings.username;
-    homeDirectory = "/home/${settings.username}";
+    username = mySettings.username;
+    homeDirectory = "/home/${mySettings.username}";
     # pointerCursor = {
-    #   package = settings.cursorPackage;
-    #   name = settings.cursorTheme;
-    #   size = settings.cursorSize;
+    #   package = mySettings.cursorPackage;
+    #   name = mySettings.cursorTheme;
+    #   size = mySettings.cursorSize;
     #   gtk.enable = true;
     #   x11.enable = true;
     #   hyprcursor.enable = true;
-    #   hyprcursor.size = settings.cursorSize;
+    #   hyprcursor.size = mySettings.cursorSize;
     # };
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
@@ -51,9 +51,9 @@
     #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
     #  /etc/profiles/per-user/softeng/etc/profile.d/hm-session-vars.sh
     sessionVariables = {
-      EDITOR = settings.editor;
-      TERM = settings.term;
-      BROWSER = settings.browser;
+      EDITOR = mySettings.editor;
+      TERM = mySettings.term;
+      BROWSER = mySettings.browser;
     };
     # The home.packages option allows you to install Nix packages into your environment.
     packages = with pkgs; [
@@ -61,8 +61,8 @@
       qt5.qtquickcontrols2
       # These packages are compulsury.
       # settings.editorPkg
-      settings.browserPkg
-      settings.termPkg
+      mySettings.browserPkg
+      mySettings.termPkg
     ];
     # Home Manager is pretty good at managing dotfiles. The primary way to manage
     # plain files is through 'home.file'.
@@ -102,7 +102,7 @@
       desktop = null;
       publicShare = null;
       extraConfig = {
-        XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
+        XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
         XDG_BOOK_DIR = "${config.home.homeDirectory}/Media/Books";
       };
     };
@@ -120,25 +120,25 @@
     enable = true;
 
     cursorTheme = {
-      name = settings.cursorTheme;
-      size = settings.cursorSize;
-      package = settings.cursorPackage;
+      name = mySettings.cursorTheme;
+      size = mySettings.cursorSize;
+      package = mySettings.cursorPackage;
     };
 
     # font = {
-    #   name = settings.fontName;
-    #   package = settings.fontPackage;
-    #   size = settings.fontSize;
+    #   name = mySettings.fontName;
+    #   package = mySettings.fontPackage;
+    #   size = mySettings.fontSize;
     # };
 
     iconTheme = {
-      name = settings.iconName;
-      package = settings.iconPackage;
+      name = mySettings.iconName;
+      package = mySettings.iconPackage;
     };
 
     # theme = {
-    #   name = lib.mkForce settings.gtkTheme;
-    #   package = lib.mkForce settings.gtkPackage;
+    #   name = lib.mkForce mySettings.gtkTheme;
+    #   package = lib.mkForce mySettings.gtkPackage;
     # };
 
     gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
@@ -147,8 +147,8 @@
   # QT Settings
   qt = {
     enable = true;
-    platformTheme.name = settings.qtPlatformTheme;
-    style.name = settings.qtStyle;
+    platformTheme.name = mySettings.qtPlatformTheme;
+    style.name = mySettings.qtStyle;
   };
 
 }

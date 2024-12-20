@@ -42,28 +42,28 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      pkgs = import nixpkgs { system = settings.system; };
-      settings = import (./. + "/settings.nix") { inherit pkgs; };
+      pkgs = import nixpkgs { system = mySettings.system; };
+      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
     in {
       nixosConfigurations = {
-        ${settings.hostName} = nixpkgs.lib.nixosSystem {
-          system = settings.system;
+        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+          system = mySettings.system;
           modules = [
-            (./. + "/profiles" + ("/" + settings.profile)
+            (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
 
             {
               nixpkgs.config.allowUnfree = true;
-              networking.hostName = settings.hostName;
+              networking.hostName = mySettings.hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
-              home-manager.extraSpecialArgs = settings;
-              home-manager.users.${settings.username} =
-                import ./profiles/${settings.profile}/home.nix {
+              home-manager.extraSpecialArgs = mySettings;
+              home-manager.users.${mySettings.username} =
+                import ./profiles/${mySettings.profile}/home.nix {
                   inherit pkgs;
-                  extraSpecialArgs = settings;
+                  extraSpecialArgs = mySettings;
                 };
 
               # Optionally, use home-manager.extraSpecialArgs to pass

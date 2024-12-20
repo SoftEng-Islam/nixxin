@@ -1,13 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ settings, pkgs, ... }: {
+{ mySettings, pkgs, ... }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt settings.wm 0)
+    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 0)
       + ".nix")
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt settings.wm 1)
+    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 1)
       + ".nix")
     ../../themes/stylix.nix
     ../../system/desktop/audio.nix
@@ -110,7 +110,7 @@
   services.xserver.desktopManager.gnome.enable = true;
 
   services.displayManager.enable = true;
-  services.displayManager.defaultSession = settings.defaultSession;
+  services.displayManager.defaultSession = mySettings.defaultSession;
   # services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
 
   # populates contents of /bin and /usr/bin/
