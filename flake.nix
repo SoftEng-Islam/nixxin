@@ -108,7 +108,6 @@
             # inputs.nur.nixosModules.nur
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
-            inputs.home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
@@ -129,6 +128,7 @@
           pkgs = nixpkgs.legacyPackages.${settings.system};
           modules = [
             (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            inputs.home-manager.nixosModules.home-manager
             inputs.stylix.homeManagerModules.stylix
             # inputs.nixvim.homeManagerModules.nixvim
             {
