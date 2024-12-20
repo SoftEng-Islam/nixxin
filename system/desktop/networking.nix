@@ -1,15 +1,19 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+let
+  userName = settings.username;
+  wifiInterface = "wlan0";
+in {
   networking = {
     networkmanager = {
       enable = true;
       wifi.powersave = false;
+      dns = "dnsmasq";
     };
     hostName = settings.hostname; # Define your hostname.
+    # interfaces.${wifiInterface}.useDHCP = true;
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
-    networkmanager.dns = "dnsmasq";
-
     firewall = { enable = false; };
 
     # wireless.enable = true;  # Enables wireless support via wpa_supplicant.

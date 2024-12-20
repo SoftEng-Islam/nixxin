@@ -178,7 +178,6 @@
     adw-gtk3 # Theme from libadwaita ported to GTK-3
     gruvbox-dark-gtk # Gruvbox theme for GTK based desktop environments
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
-    colloid-gtk-theme # Modern and clean Gtk theme
 
     qt6Packages.qtstyleplugin-kvantum
     qt6Packages.qt6ct
