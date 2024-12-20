@@ -3,6 +3,8 @@
     defaultUserShell = pkgs.zsh;
     users.${settings.username} = {
       isNormalUser = true;
+      # isSystemUser = false;
+      # hashedPassword = "";
       description = settings.name;
       home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell

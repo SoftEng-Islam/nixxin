@@ -38,6 +38,8 @@
     zoom-us # zoom.us video conferencing application
     ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
+    # vesktop # Alternate client for Discord with Vencord built-in
+    # revolt-desktop # Open source user-first chat platform
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
@@ -46,8 +48,8 @@
     microsoft-edge # The web browser from Microsoft
 
     # audacity # Sound editor with graphical UI
-    gparted # Graphical disk partitioning tool
     # gromit-mpx # Desktop annotation tool
+    gparted # Graphical disk partitioning tool
     obs-studio # Free and open source software for video recording and live streaming
     screenkey # A screencast tool to display your keys inspired by Screenflick
 
