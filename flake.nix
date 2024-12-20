@@ -123,8 +123,9 @@
               networking.hostName = settings.hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              # home-manager.extraSpecialArgs = settings;
-              home-manager.users.softeng = import ./profiles/desktop/home.nix;
+              home-manager.extraSpecialArgs = settings;
+              home-manager.users.softeng =
+                import ./profiles/${settings.profile}/home.nix;
             }
           ];
           specialArgs = {
