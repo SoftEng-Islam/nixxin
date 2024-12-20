@@ -16,16 +16,32 @@ in {
     useNetworkd = false;
     firewall = { enable = false; };
 
-    # wireless.enable = true;  # Enables wireless support via wpa_supplicant.
     # useNetworkd = true;
-    # wireless.enable = true;
     firewall.extraCommands = ''
       iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE
       iptables -A FORWARD -i wlan1 -o eno1 -m state --state RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i eno1 -o wlan1 -j ACCEPT
     '';
 
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # ~~~~ Wireless Settings ~~~~
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
+    # wireless.enable = false;  # wpa_supplicant.
+
+    # Why IWD Instead of WPA Supplicant?
+    # - Supports WPA2, WPA3, and Enterprise 802.1X authentication.
+    # - Can integrate with NetworkManager and systemd-networkd.
+    # - Provides its own command-line interface (iwctl) for managing Wi-Fi.
+    # - faster and uses fewer resources compared to WPA Supplicant.
     wireless.iwd = {
+      # Example commands manage Wi-Fi connections:
+      #- iwctl
+      #-- device list             # List wireless devices
+      #-- station wlan0 scan      # Scan for networks
+      #-- station wlan0 get-networks  # Show available networks
+      #-- station wlan0 connect SSID  # Connect to a network
+
       enable = true;
       settings = {
         Network = {
