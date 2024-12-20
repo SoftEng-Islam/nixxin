@@ -29,7 +29,6 @@
     ../../system/desktop/shell.nix
     ../../system/desktop/systemd.nix
     ../../system/desktop/users.nix
-    ../../system/desktop/wayland.nix
     ../../system/desktop/wine.nix
     ../../system/desktop/xdg.nix
     ../../system/desktop/zram.nix
@@ -99,7 +98,14 @@
   # Enable the X11 windowing system.
   services.xserver.enable = false;
   services.xserver.displayManager.gdm.wayland = true;
-
+  services.xserver = {
+    xkb = {
+      variant = "";
+      layout = "us,ara";
+      options = "grp:win_space_toggle";
+    };
+    videoDrivers = [ "amdgpu" ];
+  };
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;
@@ -175,7 +181,12 @@
   # system.autoUpgrade.allowReboot = true;
   # system.autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   # List of globally installed packages.
+
   environment.systemPackages = with pkgs; [
+    wayland
+    wl-clipboard
+    wayvnc
+
     # Themes & Graphical Interfaces
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
