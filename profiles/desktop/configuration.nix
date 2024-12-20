@@ -93,6 +93,9 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # Services
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Enable the X11 windowing system.
   services.xserver.enable = false;
   services.xserver.displayManager.gdm.wayland = true;
@@ -105,9 +108,8 @@
   services.displayManager.defaultSession = settings.defaultSession;
   # services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
 
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # Services
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # populates contents of /bin and /usr/bin/
+  services.envfs.enable = true;
   services.accounts-daemon.enable = true;
   services.dbus.implementation = "broker";
   services.flatpak.enable = false;

@@ -93,7 +93,7 @@
       nixosConfigurations = {
         # NixOS configuration entrypoint.
         # 'nixos-rebuild switch --flake .#hostname
-        ${settings.hostname} = nixpkgs.lib.nixosSystem {
+        ${settings.hostName} = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
@@ -107,7 +107,7 @@
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
-              networking.hostName = settings.hostname;
+              networking.hostName = settings.hostName;
             }
           ];
           specialArgs = {

@@ -185,8 +185,11 @@
     catppuccin-obs.flake = false;
   };
 
-  outputs = inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
+      settings = import (./. + "/settings.nix") { inherit pkgs; };
+      pkgs = import nixpkgs { system = settings.system; };
+
       mkLib = pkgs: system:
         let
           lib = pkgs.lib.extend (final: prev: {
@@ -203,24 +206,21 @@
           inherit system;
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            inputs.nur.nixosModules.nur
+            inputs.stylix.nixosModules.stylix
             inputs.chaotic.nixosModules.default
             inputs.ucodenix.nixosModules.default
-            ./overlays
-            ./modules/archetypes
-            ./modules/nixos
-            ./modules/shared
-            ./packages
-            (./. + "/hosts/${hostName}")
+            inputs.nur.nixosModules.nur
+            # ./packages
+            # (./. + "/hosts/${hostName}")
             {
               nixpkgs.config.allowUnfree = true;
-              nixpkgs.config.permittedInsecurePackages =
-                [ "nodejs-14.21.3" "openssl-1.1.1u" "openssl-1.1.1v" ];
-              networking.hostName = hostName;
+              # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
+              networking.hostName = settings.hostName;
             }
           ];
           specialArgs = {
             inherit inputs;
+            inherit settings;
             inherit system;
             lib = mkLib pkgs system;
             nixpkgs = pkgs;
@@ -228,8 +228,22 @@
         };
     in {
       nixosConfigurations = {
-        gdesktop = mkNixosSystem inputs.nixpkgs "x86_64-linux" "gdesktop";
-        glegion = mkNixosSystem inputs.nixpkgs "x86_64-linux" "glegion";
+        ${settings.username} =
+          mkNixosSystem inputs.nixpkgs "x86_64-linux" "gdesktop";
+      };
+      homeConfigurations = {
+        ${settings.username} = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${settings.system};
+          modules = [
+            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            inputs.stylix.homeManagerModules.stylix
+            inputs.nixvim.homeManagerModules.nixvim
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit settings;
+          };
+        };
       };
     };
 }

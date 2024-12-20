@@ -9,7 +9,7 @@ in {
       wifi.powersave = false;
       dns = "dnsmasq";
     };
-    hostName = settings.hostname; # Define your hostname.
+    hostName = settings.hostName; # Define your hostname.
     # interfaces.${wifiInterface}.useDHCP = true;
     nftables.enable = true;
     dhcpcd.enable = false;
