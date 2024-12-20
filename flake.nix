@@ -61,10 +61,7 @@
               home-manager.useUserPackages = false;
               home-manager.extraSpecialArgs = mySettings;
               home-manager.users.${mySettings.username} =
-                import ./profiles/${mySettings.profile}/home.nix {
-                  inherit pkgs;
-                  extraSpecialArgs = mySettings;
-                };
+                import ./profiles/${mySettings.profile}/home.nix;
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
