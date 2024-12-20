@@ -27,6 +27,7 @@
     ../../system/desktop/packages.nix
     ../../system/desktop/power-management.nix
     ../../system/desktop/shell.nix
+    ../../system/desktop/systemd.nix
     ../../system/desktop/users.nix
     ../../system/desktop/wayland.nix
     ../../system/desktop/wine.nix
@@ -78,28 +79,6 @@
       allowUnfree = true;
     };
   };
-  systemd.timers.nix-cleanup-gcroots = {
-    timerConfig = {
-      OnCalendar = [ "weekly" ];
-      Persistent = true;
-    };
-    wantedBy = [ "timers.target" ];
-  };
-  systemd.services.nix-cleanup-gcroots = {
-    serviceConfig = {
-      Type = "oneshot";
-      ExecStart = [
-        # delete automatic gcroots older than 30 days
-        "${pkgs.findutils}/bin/find /nix/var/nix/gcroots/auto /nix/var/nix/gcroots/per-user -type l -mtime +30 -delete"
-        # created by nix-collect-garbage, might be stale
-        "${pkgs.findutils}/bin/find /nix/var/nix/temproots -type f -mtime +10 -delete"
-        # delete broken symlinks
-        "${pkgs.findutils}/bin/find /nix/var/nix/gcroots -xtype l -delete"
-      ];
-    };
-  };
-  programs.command-not-found.enable = false;
-  security.isolate.enable = false;
 
   # Use zsh.
   environment.shells = with pkgs; [ zsh ];
@@ -136,13 +115,13 @@
   '';
   services.displayManager.enable = true;
   services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
-
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Programs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # See https://nix.dev/permalink/stub-ld.
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
+  programs.command-not-found.enable = false;
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
   programs.corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
@@ -163,6 +142,7 @@
   security.allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
   security.polkit.enable = true;
   security.pam.services.astal-auth = { };
+  security.isolate.enable = false;
 
   # system.autoUpgrade.enable = true;
   # system.autoUpgrade.allowReboot = true;

@@ -29,11 +29,11 @@ in {
     # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
     # wireless.enable = false;  # wpa_supplicant.
 
-    # Why IWD Instead of WPA Supplicant?
-    # - Supports WPA2, WPA3, and Enterprise 802.1X authentication.
-    # - Can integrate with NetworkManager and systemd-networkd.
-    # - Provides its own command-line interface (iwctl) for managing Wi-Fi.
-    # - faster and uses fewer resources compared to WPA Supplicant.
+    # Wireless configuration
+    # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
+    # - WPA2, WPA3, and Enterprise authentication.
+    # - Improved performance and resource usage.
+    # - Integration with NetworkManager/systemd-networkd.
     wireless.iwd = {
       # Example commands manage Wi-Fi connections:
       #- iwctl
@@ -41,7 +41,6 @@ in {
       #-- station wlan0 scan      # Scan for networks
       #-- station wlan0 get-networks  # Show available networks
       #-- station wlan0 connect SSID  # Connect to a network
-
       enable = true;
       settings = {
         Network = {
