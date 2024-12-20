@@ -68,7 +68,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     scenefx = {
-      scenefx.url = "github:wlrfx/scenefx";
+      url = "github:wlrfx/scenefx";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     wayfreeze = {
