@@ -16,7 +16,6 @@
     swww.url = "github:LGFae/swww";
     # superfile.url = "github:yorukot/superfile";
 
-    # third party nixpkgs|overlays|modules
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -53,8 +52,10 @@
 
     kitty-scrollback-nvim.url = "github:mikesmithgh/kitty-scrollback.nvim";
     kitty-scrollback-nvim.flake = false;
+
     kitty-smart-scroll.url = "github:yurikhan/kitty-smart-scroll";
     kitty-smart-scroll.flake = false;
+
     kitty-smart-tab.url = "github:yurikhan/kitty-smart-tab";
     kitty-smart-tab.flake = false;
 
@@ -63,23 +64,31 @@
 
     zsh-autocomplete.url = "github:wochap/zsh-autocomplete";
     zsh-autocomplete.flake = false;
+
     zsh-defer.url = "github:romkatv/zsh-defer";
     zsh-defer.flake = false;
+
     zsh-history-substring-search.url =
       "github:zsh-users/zsh-history-substring-search";
     zsh-history-substring-search.flake = false;
+
     zsh-notify.url = "github:marzocchi/zsh-notify";
     zsh-notify.flake = false;
-    zsh-vi-mode.url =
-      "github:wochap/zsh-vi-mode?rev=6091e2bc63cd076f94583a6d51eda74980566d28";
+
+    zsh-vi-mode.url = "github:wochap/zsh-vi-mode";
     zsh-vi-mode.flake = false;
+
     zsh-pnpm-shell-completion.url = "github:g-plane/pnpm-shell-completion";
     zsh-pnpm-shell-completion.flake = false;
+
     figlet-fonts.url = "github:wochap/figlet-fonts";
     figlet-fonts.flake = false;
+
     ipwebcam-gst.url = "github:agarciadom/ipwebcam-gst";
     ipwebcam-gst.flake = false;
+
     tmux-sessionx.url = "github:omerxx/tmux-sessionx";
+
     nnn-cppath.url = "github:raffaem/nnn-cppath";
     nnn-cppath.flake = false;
 
