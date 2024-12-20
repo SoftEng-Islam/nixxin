@@ -42,8 +42,8 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      pkgs = import nixpkgs { system = mySettings.system; };
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
+      pkgs = import nixpkgs { system = mySettings.system; };
     in {
       nixosConfigurations = {
         ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
