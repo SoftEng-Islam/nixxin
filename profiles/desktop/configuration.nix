@@ -5,34 +5,36 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 0)
-      + ".nix")
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 1)
-      + ".nix")
-    ../../themes/stylix.nix
-    ../../system/desktop/audio.nix
-    ../../system/desktop/boot.nix
-    ../../system/desktop/cli-collection.nix
-    ../../system/desktop/data-transferring.nix
-    ../../system/desktop/desktop-apps.nix
-    ../../system/desktop/drivers.nix
-    ../../system/desktop/environment.nix
-    ../../system/desktop/fonts.nix
-    ../../system/desktop/gaming.nix
-    ../../system/desktop/git.nix
-    ../../system/desktop/locale.nix
-    ../../system/desktop/media.nix
-    ../../system/desktop/nautilus.nix
-    ../../system/desktop/networking.nix
-    ../../system/desktop/packages.nix
-    ../../system/desktop/power-management.nix
-    ../../system/desktop/shell.nix
-    ../../system/desktop/systemd.nix
-    ../../system/desktop/users.nix
-    ../../system/desktop/wine.nix
-    ../../system/desktop/xdg.nix
-    ../../system/desktop/zram.nix
-  ];
+  ] ++ builtins.map (wmName: ./. + "../../../system/desktop/" + wmName + ".nix")
+    mySettings.wm ++ [
+      # (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 0)
+      #   + ".nix")
+      # (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 1)
+      #   + ".nix")
+      ../../themes/stylix.nix
+      ../../system/desktop/audio.nix
+      ../../system/desktop/boot.nix
+      ../../system/desktop/cli-collection.nix
+      ../../system/desktop/data-transferring.nix
+      ../../system/desktop/desktop-apps.nix
+      ../../system/desktop/drivers.nix
+      ../../system/desktop/environment.nix
+      ../../system/desktop/fonts.nix
+      ../../system/desktop/gaming.nix
+      ../../system/desktop/git.nix
+      ../../system/desktop/locale.nix
+      ../../system/desktop/media.nix
+      ../../system/desktop/nautilus.nix
+      ../../system/desktop/networking.nix
+      ../../system/desktop/packages.nix
+      ../../system/desktop/power-management.nix
+      ../../system/desktop/shell.nix
+      ../../system/desktop/systemd.nix
+      ../../system/desktop/users.nix
+      ../../system/desktop/wine.nix
+      ../../system/desktop/xdg.nix
+      ../../system/desktop/zram.nix
+    ];
 
   # documentation.nixos.enable = false; # .desktop
   # documentation.nixos.enable = lib.mkForce false;
