@@ -59,10 +59,11 @@
               networking.hostName = settings.hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
+              # home-manager.extraSpecialArgs = settings;
               home-manager.users.${settings.username} =
                 import ./profiles/${settings.profile}/home.nix {
                   inherit pkgs;
-                  settings = settings;
+                  extraSpecialArgs = settings;
                 };
 
               # Optionally, use home-manager.extraSpecialArgs to pass
