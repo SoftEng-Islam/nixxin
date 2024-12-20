@@ -185,7 +185,7 @@
     catppuccin-obs.flake = false;
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
@@ -210,14 +210,23 @@
             inputs.chaotic.nixosModules.default
             inputs.ucodenix.nixosModules.default
             inputs.nur.nixosModules.nur
+            home-manager.nixosModules.home-manager
             # ./packages
             # (./. + "/hosts/${hostName}")
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
+            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
               networking.hostName = settings.hostName;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.users.jdoe = import ./home.nix;
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
             }
           ];
           specialArgs = {
@@ -230,21 +239,8 @@
         };
     in {
       nixosConfigurations = {
-        ${settings.username} = mkNixosSystem inputs.nixpkgs;
-      };
-      homeConfigurations = {
-        ${settings.username} = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${settings.system};
-          modules = [
-            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
-            inputs.stylix.homeManagerModules.stylix
-            inputs.nixvim.homeManagerModules.nixvim
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit settings;
-          };
-        };
+        ${settings.username} =
+          mkNixosSystem pkgs settings.system settings.hostName;
       };
     };
 }

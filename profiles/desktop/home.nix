@@ -14,13 +14,13 @@
     ../../user/git.nix
     # ../../user/superfile.nix
   ];
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = false;
 
   users.users.${settings.username}.isNormalUser = true;
   home-manager.users.${settings.username} = { pkgs, ... }: {
     home.packages = [ pkgs.atool pkgs.httpie ];
     programs.bash.enable = true;
+    useGlobalPkgs = true;
+    useUserPackages = false;
 
     # The state version is required and should stay at the version you
     # originally installed.
@@ -62,18 +62,6 @@
     packages = with pkgs; [
       qt5.qtgraphicaleffects
       qt5.qtquickcontrols2
-      # yubikey-manager # Command line tool for configuring any YubiKey over all USB transports
-      # teleport # Certificate authority and access plane for SSH
-      # openvpn # Robust and highly flexible tunneling application
-      # sway-contrib.grimshot # Helper for screenshots within sway
-      # libreoffice-fresh
-      # obs-studio
-      # tty-clock
-      # qbittorrent
-      # rtorrent
-      # cpulimit
-      # swayimg
-
       # These packages are compulsury.
       # settings.editorPkg
       settings.browserPkg
