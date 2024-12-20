@@ -106,17 +106,17 @@
         in lib;
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
-          inherit system;
+          system = settings.system;
           modules = [
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             inputs.ucodenix.nixosModules.default
-            home-manager.nixosModules.home-manager
             # ./packages
             # (./. + "/hosts/${hostName}")
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
             # (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            home-manager.nixosModules.home-manager
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
@@ -124,7 +124,7 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = settings;
-              home-manager.users.softeng =
+              home-manager.users.${settings.username} =
                 import ./profiles/${settings.profile}/home.nix;
             }
           ];
