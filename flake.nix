@@ -110,9 +110,7 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
-            inputs.chaotic.nixosModules.default
             inputs.ucodenix.nixosModules.default
-            inputs.nur.nixosModules.nur
             home-manager.nixosModules.home-manager
             # ./packages
             # (./. + "/hosts/${hostName}")
