@@ -117,15 +117,14 @@
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
             # (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
-
             {
               nixpkgs.config.allowUnfree = true;
               # nixpkgs.config.permittedInsecurePackages = [ "nodejs-14.21.3" ];
               networking.hostName = settings.hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = settings;
               home-manager.users.softeng = import ./profiles/desktop/home.nix;
-
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
             }
@@ -140,8 +139,8 @@
         };
     in {
       nixosConfigurations = {
-        ${settings.hostName} =
-          mkNixosSystem inputs.nixpkgs settings.system settings.hostName;
+        ${settings.hostName} = mkNixosSystem inputs.nixpkgs "${settings.system}"
+          "${settings.hostName}";
       };
     };
 }
