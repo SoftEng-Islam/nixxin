@@ -96,8 +96,8 @@
 
   outputs = inputs@{ self, nixpkgs, home-manager, ... }:
     let
-      settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
+      settings = import (./. + "/settings.nix") { inherit pkgs; };
 
       mkLib = pkgs: system:
         let
@@ -123,10 +123,8 @@
               networking.hostName = settings.hostName;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = settings;
+              # home-manager.extraSpecialArgs = settings;
               home-manager.users.softeng = import ./profiles/desktop/home.nix;
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
             }
           ];
           specialArgs = {
