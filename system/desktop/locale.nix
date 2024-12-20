@@ -1,10 +1,10 @@
-{ settings, pkgs, ... }: {
+{ mySettings, pkgs, ... }: {
   # Set your time zone.
-  time.timeZone = settings.timezone;
+  time.timeZone = mySettings.timezone;
   services.chrony.enable = true;
   # Internationalisation Properties.
   i18n = {
-    defaultLocale = settings.locale;
+    defaultLocale = mySettings.locale;
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -15,7 +15,7 @@
       LC_PAPER = "en_US.UTF-8";
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
-      LC_ALL = settings.locale;
+      LC_ALL = mySettings.locale;
     };
     # Configure Input Method (IBus for GNOME)
     inputMethod = {

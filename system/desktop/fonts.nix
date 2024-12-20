@@ -1,14 +1,14 @@
-{ settings, pkgs, ... }: {
+{ mySettings, pkgs, ... }: {
   #. Sometimes cached data or corrupt configuration files cause issues.
   # rm -rf ~/.cache/fontconfig
   # fc-cache -fv
   # rm -rf ~/.config/ibus
 
-  # fonts.packages = [settings.fontPackage];
+  # fonts.packages = [mySettings.fontPackage];
   fonts = {
     enableDefaultPackages = true;
     packages = with pkgs; [
-      settings.fontPackage
+      mySettings.fontPackage
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review

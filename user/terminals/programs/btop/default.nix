@@ -1,13 +1,13 @@
-{ settings, pkgs, lib, ... }:
-let details = settings.themeDetails;
+{ mySettings, pkgs, lib, ... }:
+let details = mySettings.themeDetails;
 in {
   imports = lib.optionals (details.btopTheme != null)
-    [ (./. + "/${settings.theme}.nix") ];
+    [ (./. + "/${mySettings.theme}.nix") ];
 
   programs.btop = {
     enable = true;
     package = pkgs.btop.override { rocmSupport = false; };
-    # settings.color_theme = "catppuccin_mocha";
+    # mySettings.color_theme = "catppuccin_mocha";
     settings = {
       color_theme =
         lib.mkIf (details.btopTheme != null) "${details.btopTheme}.theme";

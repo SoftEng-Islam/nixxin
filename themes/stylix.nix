@@ -1,5 +1,5 @@
-{ pkgs, lib, settings, ... }:
-let details = settings.themeDetails;
+{ pkgs, lib, mySettings, ... }:
+let details = mySettings.themeDetails;
 in {
   stylix = {
     enable = true;
@@ -16,25 +16,25 @@ in {
     };
 
     cursor = {
-      size = settings.cursorSize;
-      name = settings.cursorTheme;
-      package = settings.cursorPackage;
+      size = mySettings.cursorSize;
+      name = mySettings.cursorTheme;
+      package = mySettings.cursorPackage;
     };
 
     fonts = {
       serif = {
-        package = settings.fontPackage;
-        name = settings.fontName; # Use JetBrains Mono for the serif font
+        package = mySettings.fontPackage;
+        name = mySettings.fontName; # Use JetBrains Mono for the serif font
       };
 
       sansSerif = {
-        package = settings.fontPackage;
-        name = settings.fontName; # Use JetBrains Mono for the sans-serif font
+        package = mySettings.fontPackage;
+        name = mySettings.fontName; # Use JetBrains Mono for the sans-serif font
       };
 
       monospace = {
-        package = settings.fontPackage;
-        name = settings.fontName; # JetBrains Mono is a monospace font
+        package = mySettings.fontPackage;
+        name = mySettings.fontName; # JetBrains Mono is a monospace font
       };
 
       emoji = {
@@ -43,6 +43,6 @@ in {
       };
     };
     targets.nixvim.enable =
-      lib.mkIf (settings.themeDetails.themeName != null) false;
+      lib.mkIf (mySettings.themeDetails.themeName != null) false;
   };
 }

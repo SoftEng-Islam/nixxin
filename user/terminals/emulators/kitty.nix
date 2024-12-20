@@ -1,4 +1,4 @@
-{ settings, ... }: {
+{ mySettings, ... }: {
   home.file.".config/kitty/vim-mode.lua".text = ''
     local api = vim.api
     local orig_buf = api.nvim_get_current_buf()
@@ -34,8 +34,8 @@
       cursor_underline_thickness = "1.5";
       disable_ligatures = "never";
       editor = "nvim";
-      font_family = settings.font;
-      font_size = settings.fontSize;
+      font_family = mySettings.font;
+      font_size = mySettings.fontSize;
       hide_window_decorations = "titlebar-only";
       inactive_tab_font_style = "normal";
       inactive_text_alpha = "1.0";

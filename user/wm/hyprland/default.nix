@@ -1,4 +1,4 @@
-{ lib, settings, pkgs, ... }: {
+{ lib, mySettings, pkgs, ... }: {
 
   # swww = "swww img";
   # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
@@ -25,11 +25,13 @@
     enable = true;
     package = pkgs.hyprland;
     systemd.enable = true;
-    plugins = with pkgs; [
-      hyprlandPlugins.hyprbars
-      hyprlandPlugins.hyprexpo
-      hyprlandPlugins.hypr-dynamic-cursors
-    ] ++ lib.optional (settings.themeDetails.bordersPlusPlus) hyprlandPlugins.borders-plus-plus;
+    plugins = with pkgs;
+      [
+        hyprlandPlugins.hyprbars
+        hyprlandPlugins.hyprexpo
+        hyprlandPlugins.hypr-dynamic-cursors
+      ] ++ lib.optional (mySettings.themeDetails.bordersPlusPlus)
+      hyprlandPlugins.borders-plus-plus;
   };
   # home.packages = with pkgs; [ hyprcursor ];
 }

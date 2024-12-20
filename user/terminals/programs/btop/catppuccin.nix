@@ -1,5 +1,5 @@
-{ settings, ... }: {
-  home.file.".config/btop/themes/${settings.theme}.theme".text = ''
+{ mySettings, ... }: {
+  home.file.".config/btop/themes/${mySettings.theme}.theme".text = ''
     # Main background, empty for terminal default, need to be empty if you want transparent background
     theme[main_bg]="#1e1e2e"
 

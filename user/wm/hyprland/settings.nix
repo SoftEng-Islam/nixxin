@@ -1,5 +1,5 @@
-{ config, pkgs, settings, inputs, ... }:
-let details = settings.themeDetails;
+{ config, pkgs, mySettings, inputs, ... }:
+let details = mySettings.themeDetails;
 in {
   home.packages = [ inputs.swww.packages.${pkgs.system}.swww ];
 
@@ -29,7 +29,9 @@ in {
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
       "ags &"
-      "hyprctl setcursor ${settings.cursorTheme}  ${toString settings.cursorSize}"
+      "hyprctl setcursor ${mySettings.cursorTheme}  ${
+        toString mySettings.cursorSize
+      }"
     ];
     master = { new_is_master = true; };
 

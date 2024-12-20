@@ -1,6 +1,6 @@
-{ inputs, pkgs, settings, lib, config, ... }:
+{ inputs, pkgs, mySettings, lib, config, ... }:
 let
-  details = settings.themeDetails;
+  details = mySettings.themeDetails;
   asztal =
     pkgs.callPackage ../../../non-nix/ags/default.nix { inherit inputs; };
   agsColors = {
@@ -29,8 +29,8 @@ let
       };
     };
     font = {
-      size = settings.fontSize;
-      name = settings.fontName;
+      size = mySettings.fontSize;
+      name = mySettings.fontName;
     };
     widget = { opacity = details.opacity * 100; };
   };

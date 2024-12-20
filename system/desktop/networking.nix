@@ -1,15 +1,11 @@
-{ settings, pkgs, ... }:
-let
-  userName = settings.username;
-  wifiInterface = "wlan0";
-in {
+{ mySettings, pkgs, ... }: {
   networking = {
     networkmanager = {
       enable = true;
       wifi.powersave = false;
       dns = "dnsmasq";
     };
-    hostName = settings.hostName; # Define your hostname.
+    hostName = mySettings.hostName; # Define your hostname.
     # interfaces.${wifiInterface}.useDHCP = true;
     nftables.enable = true;
     dhcpcd.enable = false;

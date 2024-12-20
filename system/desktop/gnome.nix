@@ -1,4 +1,4 @@
-{ settings, pkgs, ... }: {
+{ pkgs, ... }: {
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
 

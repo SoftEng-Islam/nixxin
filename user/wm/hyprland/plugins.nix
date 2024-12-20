@@ -1,4 +1,4 @@
-{ config, settings, lib, ... }: {
+{ config, mySettings, lib, ... }: {
   wayland.windowManager.hyprland.extraConfig = ''
     bind=$mod,grave,hyprexpo:expo, toggle
     plugin {
@@ -53,7 +53,7 @@
             }
         }
     }
-  '' + lib.optionalString settings.themeDetails.bordersPlusPlus ''
+  '' + lib.optionalString mySettings.themeDetails.bordersPlusPlus ''
     plugin {
       borders-plus-plus {
           add_borders = 2 # 0 - 9
