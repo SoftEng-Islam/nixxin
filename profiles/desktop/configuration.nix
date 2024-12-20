@@ -142,7 +142,6 @@
   # run unpatched dynamic binaries on NixOS
   programs.nix-ld = {
     enable = true;
-    dev.enable = false;
     libraries = with pkgs; [ fontconfig freetype stdenv.cc.cc util-linux ];
   };
   programs.command-not-found.enable = false;
