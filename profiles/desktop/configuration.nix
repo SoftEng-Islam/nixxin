@@ -40,7 +40,7 @@
   # documentation.doc.enable = false;
   nix = {
     # package = pkgs.nixStable;
-    package = pkgs.nixVersions.latest;
+    package = with pkgs; [ nixVersions.latest nixFlakes ];
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
@@ -78,6 +78,7 @@
       sandbox = false
       max-jobs = 4
       auto-optimise-store = true
+      experimental-features = nix-command flakes
     '';
   };
   nixpkgs = {
