@@ -51,6 +51,8 @@
           modules = [
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
 
@@ -60,8 +62,8 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.extraSpecialArgs = mySettings;
-              home-manager.users.${mySettings.username} =
-                import ./profiles/${mySettings.profile}/home.nix;
+              # home-manager.users.${mySettings.username} =
+              # import ./profiles/${mySettings.profile}/home.nix;
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
