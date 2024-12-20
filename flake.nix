@@ -149,7 +149,7 @@
     in {
       nixosConfigurations = {
         ${settings.hostName} =
-          mkNixosSystem pkgs settings.system settings.hostName;
+          mkNixosSystem inputs.nixpkgs settings.system settings.hostName;
       };
     };
 }
