@@ -128,12 +128,12 @@
         ${settings.username} = home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${settings.system};
           modules = [
-            # (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
             inputs.stylix.homeManagerModules.stylix
-            inputs.nixvim.homeManagerModules.nixvim
+            # inputs.nixvim.homeManagerModules.nixvim
             {
-              home-manager.users.${settings.username} =
-                import ./profiles/${settings.profile}/home.nix;
+              # home-manager.users.${settings.username} =
+              #   import ./profiles/${settings.profile}/home.nix;
               # home-manager.extraSpecialArgs = settings;
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
