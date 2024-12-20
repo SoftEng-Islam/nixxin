@@ -85,6 +85,18 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
+  # Enable the X11 windowing system.
+  services.xserver.enable = false;
+  services.xserver.displayManager.gdm.wayland = true;
+
+  # Enable the GNOME Desktop Environment.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+
+  services.displayManager.enable = true;
+  services.displayManager.defaultSession = settings.defaultSession;
+  # services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
+
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Services
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -113,8 +125,6 @@
     HandleLidSwitch=suspend
     HandleLidSwitchExternalPower=ignore
   '';
-  services.displayManager.enable = true;
-  services.displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Programs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

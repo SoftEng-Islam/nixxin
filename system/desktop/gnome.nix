@@ -17,11 +17,6 @@
   services.gnome.localsearch.enable = true;
   services.gnome.tinysparql.enable = true;
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
-
-  services.displayManager.defaultSession = settings.defaultSession;
-  services.xserver.displayManager.gdm.wayland = true;
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.mutter]
     check-alive-timeout=0

@@ -1,4 +1,4 @@
-{ inputs, pkgs, ... }: {
+{ pkgs, ... }: {
   systemd = {
     timers.nix-cleanup-gcroots = {
       timerConfig = {
