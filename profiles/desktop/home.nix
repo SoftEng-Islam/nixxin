@@ -19,8 +19,6 @@
   home-manager.users.${settings.username} = { pkgs, ... }: {
     home.packages = [ pkgs.atool pkgs.httpie ];
     programs.bash.enable = true;
-    useGlobalPkgs = true;
-    useUserPackages = false;
 
     # The state version is required and should stay at the version you
     # originally installed.

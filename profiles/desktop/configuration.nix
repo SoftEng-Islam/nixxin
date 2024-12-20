@@ -213,7 +213,6 @@
     plymouth # Boot splash and boot logger
     nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
 
-    nix-alien
     cached-nix-shell # fast nix-shell scripts
     direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
