@@ -14,15 +14,14 @@
     ../../user/git.nix
     # ../../user/superfile.nix
   ];
-
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = false;
   stylix.targets.hyprland.enable = false;
   # programs.sagemath.enable = true;
   services.kdeconnect.enable = false;
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
-
   services.ssh-agent.enable = true;
-
   home = {
     username = settings.username;
     homeDirectory = "/home/${settings.username}";

@@ -139,8 +139,12 @@
   # Programs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # See https://nix.dev/permalink/stub-ld.
-  programs.nix-ld.enable = true;
-  programs.nix-ld.libraries = with pkgs; [ stdenv.cc.cc ];
+  # run unpatched dynamic binaries on NixOS
+  programs.nix-ld = {
+    enable = true;
+    dev.enable = false;
+    libraries = with pkgs; [ fontconfig freetype stdenv.cc.cc util-linux ];
+  };
   programs.command-not-found.enable = false;
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
@@ -153,7 +157,11 @@
   programs.htop.settings = { tree_view = 1; };
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = true;
-
+  # Required by gnome file managers
+  programs.file-roller.enable = true;
+  programs.gnome-disks.enable = true;
+  # required by libreoffice
+  # programs.java.enable = true;
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Security
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -197,6 +205,8 @@
     plymouth # Boot splash and boot logger
     nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
 
+    nix-alien
+    cached-nix-shell # fast nix-shell scripts
     direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
