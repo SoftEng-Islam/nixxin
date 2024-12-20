@@ -60,7 +60,10 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.users.${settings.username} =
-                import ./profiles/${settings.profile}/home.nix;
+                import ./profiles/${settings.profile}/home.nix {
+                  inherit pkgs;
+                  settings = settings;
+                };
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
