@@ -98,13 +98,11 @@
   # Enable the X11 windowing system.
   services.xserver.enable = false;
   services.xserver.displayManager.gdm.wayland = true;
-  services.xserver = {
-    xkb = {
-      variant = "";
-      layout = "us,ara";
-      options = "grp:win_space_toggle";
-    };
-    videoDrivers = [ "amdgpu" ];
+  services.xserver.videoDrivers = [ "amdgpu" ]; # "displaylink" "modesetting"
+  services.xserver.xkb = {
+    variant = "";
+    layout = "us,ara";
+    options = "grp:win_space_toggle";
   };
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;

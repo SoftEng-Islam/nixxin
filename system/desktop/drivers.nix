@@ -27,9 +27,6 @@
       driversi686Linux.amdvlk
     ];
   };
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  # xserver.videoDrivers = [ "displaylink" "modesetting" ];
 
   environment = {
     variables = {
