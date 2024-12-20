@@ -49,12 +49,12 @@
         ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
           system = mySettings.system;
           modules = [
+            inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.nixosModules.stylix
+
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
-
-            inputs.home-manager.nixosModules.home-manager
-            inputs.stylix.nixosModules.stylix
 
             {
               nixpkgs.config.allowUnfree = true;
