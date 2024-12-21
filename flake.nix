@@ -49,11 +49,6 @@
         import (./. + "/mySettings.nix") {
           pkgs = import pkgs { inherit system; };
         };
-      mkLib = pkgs: system:
-        let
-          lib = pkgs.lib.extend
-            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
-        in lib;
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
           inherit system;
@@ -85,7 +80,6 @@
           specialArgs = {
             inherit inputs;
             inherit system;
-            lib = mkLib pkgs system;
             nixpkgs = pkgs;
           };
         };
@@ -93,7 +87,7 @@
     in {
       nixosConfigurations = {
         ${mySettings.hostName} =
-          mkNixosSystem inputs.nixpkgs mySettings.hostName;
+          mkNixosSystem inputs.nixpkgs mySettings.system mySettings.hostName;
       };
     };
 }
