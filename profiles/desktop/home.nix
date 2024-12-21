@@ -113,9 +113,9 @@
     userDirs = {
       enable = true;
       createDirectories = true;
-      music = "${config.home.homeDirectory}/Media/Music";
-      videos = "${config.home.homeDirectory}/Media/Videos";
-      pictures = "${config.home.homeDirectory}/Media/Pictures";
+      music = "${config.home.homeDirectory}/Music";
+      videos = "${config.home.homeDirectory}/Videos";
+      pictures = "${config.home.homeDirectory}/Pictures";
       download = "${config.home.homeDirectory}/Downloads";
       documents = "${config.home.homeDirectory}/Documents";
       templates = null;
@@ -123,7 +123,7 @@
       publicShare = null;
       extraConfig = {
         XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
-        XDG_BOOK_DIR = "${config.home.homeDirectory}/Media/Books";
+        XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
       };
     };
   };

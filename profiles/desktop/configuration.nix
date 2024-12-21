@@ -153,7 +153,7 @@
   programs.corectrl.enable = true;
   programs.corectrl.gpuOverclock.enable = true;
   programs.corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
-  # programs.dconf.enable = true; # dconf
+  programs.dconf.enable = true; # dconf
   programs.droidcam.enable = true; # camera
   programs.mtr.enable = true;
   programs.xwayland.enable = false;
