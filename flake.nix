@@ -66,7 +66,7 @@
               nixpkgs.config.allowUnfree = true;
               networking.hostName = mySettings.hostName;
               home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = false;
+              home-manager.useUserPackages = true;
               home-manager.extraSpecialArgs = { inherit mySettings; };
               home-manager.users.${mySettings.username} =
                 import ./profiles/${mySettings.profile}/home.nix {
