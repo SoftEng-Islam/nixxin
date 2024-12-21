@@ -53,5 +53,6 @@ in {
     configDir = ../../../non-nix/ags;
   };
 
-  home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
+  home-manager.file.".cache/ags/options-nix.json".text =
+    (builtins.toJSON agsOptions);
 }
