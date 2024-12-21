@@ -52,7 +52,8 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             # Include the NixOS configuration
-            ./configuration.nix
+            (./. + "/profiles" + ("/" + mySettings.profile)
+              + "/configuration.nix")
 
             # Add the Home Manager module for system-level Home Manager
             home-manager.nixosModules.home-manager
