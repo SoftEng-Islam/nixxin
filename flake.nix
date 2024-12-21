@@ -67,12 +67,12 @@
             inputs.home-manager.nixosModules.home-manager
 
             {
+              programs.home-manager.enable = true;
+              home-manager.users.test = { home.packages = [ ]; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
               home-manager.users.${mySettings.username} = import ./home.nix;
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
+              # home-manager.extraSpecialArgs
             }
           ];
           specialArgs = {
