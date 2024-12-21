@@ -69,7 +69,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
-              home-manager.users.jdoe = import ./home.nix;
+              home-manager.users.${mySettings.username} = import ./home.nix;
 
               # Optionally, use home-manager.extraSpecialArgs to pass
               # arguments to home.nix
