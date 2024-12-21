@@ -64,14 +64,14 @@
             inputs.stylix.homeManagerModules.stylix
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
-            inputs.home-manager.nixosModules.home-manager
+            # inputs.home-manager.nixosModules.home-manager
 
             {
               programs.home-manager.enable = true;
               home-manager.users.test = { home.packages = [ ]; };
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = false;
-              home-manager.users.${mySettings.username} = import ./home.nix;
+              # home-manager.users.${mySettings.username} = import ./home.nix;
               # home-manager.extraSpecialArgs
             }
           ];
