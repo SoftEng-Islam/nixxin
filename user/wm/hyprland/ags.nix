@@ -37,7 +37,7 @@ let
   agsOptions = lib.recursiveUpdate agsColors details.ags;
 in {
   imports = [ inputs.ags.homeManagerModules.default ];
-  home-manager.packages = with pkgs; [
+  home.packages = with pkgs; [
     asztal
     bun
     fd
@@ -53,6 +53,5 @@ in {
     configDir = ../../../non-nix/ags;
   };
 
-  home-manager.file.".cache/ags/options-nix.json".text =
-    (builtins.toJSON agsOptions);
+  home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
 }

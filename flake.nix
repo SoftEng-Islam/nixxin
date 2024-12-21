@@ -51,7 +51,7 @@
         pkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            inputs.home-manager.nixosModules.home-manager
+            # inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
             # inputs.nur.nixosModules.nur
             # inputs.chaotic.nixosModules.default
