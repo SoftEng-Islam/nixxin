@@ -43,18 +43,29 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { pkgs, system, lib, ... }@inputs:
     let
-      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs { system = mySettings.system; };
-    in {
-      nixosConfigurations = {
-        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
-          system = mySettings.system;
+      mySettings = import (./. + "/mySettings.nix") {
+        pkgs = import pkgs { inherit system; };
+        inherit inputs;
+        inherit lib;
+      };
+      mkLib = pkgs: system:
+        let
+          lib = pkgs.lib.extend
+            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
+        in lib;
+      mkNixosSystem = pkgs: system: hostName:
+        pkgs.lib.nixosSystem {
+          inherit system;
           modules = [
             inputs.home-manager.nixosModules.home-manager
             inputs.stylix.nixosModules.stylix
-
+            # inputs.nur.nixosModules.nur
+            # inputs.chaotic.nixosModules.default
+            # inputs.ucodenix.nixosModules.default
+            # ./packages
+            # (./. + "/hosts/${hostName}")
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
@@ -62,8 +73,8 @@
             {
               nixpkgs.config.allowUnfree = true;
               networking.hostName = mySettings.hostName;
-              # home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = false;
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = false;
               home-manager.extraSpecialArgs = { inherit mySettings; };
               home-manager.users.${mySettings.username} =
                 import ./profiles/${mySettings.profile}/home.nix {
@@ -72,7 +83,18 @@
                 };
             }
           ];
+          specialArgs = {
+            inherit inputs;
+            inherit system;
+            lib = mkLib pkgs system;
+            nixpkgs = pkgs;
+          };
         };
+
+    in {
+      nixosConfigurations = {
+        ${mySettings.hostName} =
+          mkNixosSystem inputs.nixpkgs mySettings.hostName;
       };
     };
 }

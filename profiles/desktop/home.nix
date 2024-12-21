@@ -4,9 +4,10 @@
     # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 0) + ".nix")
     # (./. + "../../../user/wm" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
 
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt mySettings.wm 0))
+    (./. + "../../../user/wm" + ("/" + builtins.elemAt mySettings.wm 1))
+
     ../../themes/stylix.nix
-    ../../user/wm/gnome
-    ../../user/wm/hyprland
     ../../user/media
     ../../user/cava.nix
     ../../user/curl.nix
