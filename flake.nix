@@ -60,7 +60,7 @@
             # (./. + "/hosts/${hostName}")
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
-            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+            # (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
 
             {
               nixpkgs.config.allowUnfree = true;
