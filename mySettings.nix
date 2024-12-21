@@ -6,6 +6,8 @@
   timezone = "Africa/Cairo"; # Select timezone
   locale = "en_US.UTF-8"; # Select locale
   bootMode = "uefi"; # uefi or bios
+  systemStateVersion = "24.05";
+  homeStateVersion = "24.11";
 
   # mount path for efi boot partition; only used for uefi boot mode
   bootMountPath = "/boot";

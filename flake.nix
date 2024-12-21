@@ -44,7 +44,8 @@
 
   outputs = inputs:
     let
-      mySettings = pkgs: import (./. + "/mySettings.nix") { inherit pkgs; };
+      pkgs = import inputs.nixpkgs { system = mySettings.system; };
+      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
         let
           lib = pkgs.lib.extend (final: prev: {
@@ -59,11 +60,14 @@
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
           inherit system;
-          modules = [ inputs.home-manager.nixosModules.home-manager ];
+          modules = [
+            inputs.home-manager.nixosModules.home-manager
+            (./. + "/profiles" + ("/" + mySettings.profile)
+              + "/configuration.nix")
+          ];
           specialArgs = {
             inherit inputs;
             inherit system;
-            inherit mySettings;
             lib = mkLib pkgs system;
             nixpkgs = pkgs;
           };
