@@ -60,22 +60,8 @@
             # (./. + "/hosts/${hostName}")
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
-            # (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
 
-            {
-              nixpkgs.config.allowUnfree = true;
-              networking.hostName = mySettings.hostName;
-              home-manager = {
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                # extraSpecialArgs = { inherit mySettings; };
-                users.${mySettings.username} =
-                  import ./profiles/${mySettings.profile}/home.nix {
-                    # inherit pkgs;
-                    # mySettings = mySettings; # Explicitly pass it
-                  };
-              };
-            }
           ];
           specialArgs = {
             inherit inputs;
