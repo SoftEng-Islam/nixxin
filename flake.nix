@@ -3,7 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
+    home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
     # `ucodenix` is a Nix flake providing AMD microcode updates for unsupported CPUs.
     ucodenix.url = "github:e-tho/ucodenix";
@@ -12,7 +12,10 @@
     # Efficient animated wallpaper daemon for wayland, controlled at runtime
     swww.url = "github:LGFae/swww";
     # superfile.url = "github:yorukot/superfile";
-
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -40,7 +43,7 @@
     };
   };
 
-  outputs = inputs@{ self, nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = mySettings.system; };
@@ -54,7 +57,7 @@
 
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
-            # (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
 
             {
               nixpkgs.config.allowUnfree = true;
