@@ -65,14 +65,16 @@
             {
               nixpkgs.config.allowUnfree = true;
               networking.hostName = mySettings.hostName;
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.extraSpecialArgs = { inherit mySettings; };
-              home-manager.users.${mySettings.username} =
-                import ./profiles/${mySettings.profile}/home.nix {
-                  inherit pkgs;
-                  mySettings = mySettings; # Explicitly pass it
-                };
+              home-manager = {
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                # extraSpecialArgs = { inherit mySettings; };
+                users.${mySettings.username} =
+                  import ./profiles/${mySettings.profile}/home.nix {
+                    # inherit pkgs;
+                    # mySettings = mySettings; # Explicitly pass it
+                  };
+              };
             }
           ];
           specialArgs = {
