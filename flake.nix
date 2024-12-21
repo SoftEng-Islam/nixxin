@@ -42,42 +42,32 @@
     };
   };
 
-  outputs = inputs:
+  outputs = inputs: system: pkgs:
     let
-      # Import the settings
-      mySettings = import (./. + "/mySettings.nix") {
-        inherit inputs;
-        inherit pkgs;
-      };
-      pkgs = import inputs.nixpkgs { system = mySettings.system; };
-
-      # Function to generate NixOS configurations
-      mkNixosSystem = system: hostName:
-        inputs.nixpkgs.lib.nixosSystem {
+        mySettings = import (./. + "/settings.nix") { inherit pkgs; };
+      mkLib = pkgs: system:
+        let
+          lib = pkgs.lib.extend (final: prev: {
+            home-manager = inputs.home-manager.lib.hm;
+          });
+        in lib;
+      mkNixosSystem = pkgs: system: hostName:
+        pkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            # Enable home-manager as part of NixOS
             inputs.home-manager.nixosModules.home-manager
-            # Optional modules
-            inputs.stylix.nixosModules.stylix
-            # Include the NixOS configuration
-            (./. + "/profiles" + ("/" + mySettings.profile)
-              + "/configuration.nix")
-            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
           ];
-
           specialArgs = {
             inherit inputs;
             inherit system;
-            inherit pkgs;
             inherit mySettings;
+            lib = mkLib pkgs system;
+            nixpkgs = pkgs;
           };
         };
-
     in {
       nixosConfigurations = {
-        "${mySettings.hostName}" =
-          mkNixosSystem mySettings.system mySettings.hostName;
+        ${mySettings.hostName} = mkNixosSystem inputs.nixpkgs ${mySettings.system} ${mySettings.hostName};
       };
     };
 }
