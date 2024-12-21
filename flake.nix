@@ -47,8 +47,14 @@
       mySettings = pkgs: import (./. + "/mySettings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
         let
-          lib = pkgs.lib.extend
-            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
+          lib = pkgs.lib.extend (final: prev: {
+            home-manager = inputs.home-manager.lib.hm;
+            _custom = import ./lib {
+              pkgs = import pkgs { inherit system; };
+              inherit inputs;
+              inherit lib;
+            };
+          });
         in lib;
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
