@@ -48,7 +48,6 @@
       mySettings = pkgs: system:
         import (./. + "/mySettings.nix") {
           pkgs = import pkgs { inherit system; };
-          inherit inputs;
         };
       mkLib = pkgs: system:
         let
@@ -93,7 +92,8 @@
 
     in {
       nixosConfigurations = {
-        mySettings.hostName = mkNixosSystem inputs.nixpkgs mySettings.hostName;
+        ${mySettings.hostName} =
+          mkNixosSystem inputs.nixpkgs mySettings.hostName;
       };
     };
 }
