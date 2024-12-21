@@ -46,7 +46,7 @@
   outputs = inputs:
     let
       pkgs = import inputs.nixpkgs { system = mySettings.system; };
-      mySettings = system: import (./. + "/mySettings.nix") { inherit pkgs; };
+      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
           inherit system;
