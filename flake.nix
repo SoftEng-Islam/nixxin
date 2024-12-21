@@ -44,7 +44,7 @@
 
   outputs = inputs:
     let
-      mySettings = pkgs: import (./. + "/settings.nix") { inherit pkgs; };
+      mySettings = pkgs: import (./. + "/mySettings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
         let
           lib = pkgs.lib.extend
