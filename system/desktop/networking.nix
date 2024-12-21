@@ -4,6 +4,8 @@
       enable = true;
       wifi.powersave = false;
       dns = "dnsmasq";
+      # increase boot speed
+      wifi.backend = "iwd";
     };
     hostName = mySettings.hostName; # Define your hostname.
     # interfaces.${wifiInterface}.useDHCP = true;
@@ -44,7 +46,13 @@
           EnableIPv6 = true;
           RoutePriorityOffset = 300;
         };
-        Settings = { AutoConnect = true; };
+        # MAC address randomization
+        General = {
+          AddressRandomization = "once";
+          AddressRandomizationRange = "full";
+          EnableNetworkConfiguration = true;
+        };
+        Settings.AutoConnect = true;
       };
     };
     # extraHosts = ''
