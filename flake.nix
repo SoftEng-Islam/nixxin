@@ -86,7 +86,7 @@
 
     in {
       nixosConfigurations = {
-        ${mySettings.hostName} =
+        "${mySettings.hostName}" =
           mkNixosSystem inputs.nixpkgs mySettings.system mySettings.hostName;
       };
     };
