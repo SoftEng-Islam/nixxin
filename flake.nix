@@ -42,7 +42,7 @@
     };
   };
 
-  outputs = inputs: system:
+  outputs = inputs:
     let
       mySettings = pkgs: import (./. + "/settings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
