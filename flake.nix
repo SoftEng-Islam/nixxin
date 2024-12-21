@@ -1,6 +1,5 @@
 {
   description = "NixOS configuration";
-
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
@@ -45,8 +44,8 @@
 
   outputs = inputs:
     let
-      pkgs = import inputs.nixpkgs { system = mySettings.system; };
-      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
+      # Import the settings
+      mySettings = import (./. + "/mySettings.nix") { inherit inputs; };
 
       # Function to generate NixOS configurations
       mkNixosSystem = system: hostName:
@@ -57,44 +56,23 @@
             inputs.home-manager.nixosModules.home-manager
             # Optional modules
             inputs.stylix.nixosModules.stylix
-            # inputs.nur.nixosModules.nur
-            # inputs.chaotic.nixosModules.default
-            # inputs.ucodenix.nixosModules.default
-            # Include NixOS configuration
+            # Include the NixOS configuration
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
           ];
 
           specialArgs = {
             inherit inputs;
             inherit system;
             inherit mySettings;
-            nixpkgs = pkgs;
           };
-        };
-
-      # Function to generate home-manager configuration
-      mkHomeManagerSystem = pkgs: system: user:
-        inputs.home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-          inherit system;
-
-          home.username = user;
-          home.stateVersion = "24.11"; # Adjust to your NixOS version
-          modules =
-            [ (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix") ];
         };
 
     in {
       nixosConfigurations = {
         "${mySettings.hostName}" =
-          mkNixosSystem pkgs mySettings.system mySettings.hostName;
-      };
-
-      homeConfigurations = {
-        # Example: Generate home-manager for the `softeng` user
-        softeng = mkHomeManagerSystem pkgs mySettings.system "softeng";
+          mkNixosSystem mySettings.system mySettings.hostName;
       };
     };
 }
-
