@@ -49,8 +49,8 @@
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
 
       # Function to generate NixOS configurations
-      mkNixosSystem = pkgs: system: hostName:
-        pkgs.lib.nixosSystem {
+      mkNixosSystem = system: hostName:
+        inputs.nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
             # Enable home-manager as part of NixOS
