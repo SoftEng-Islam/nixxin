@@ -62,6 +62,8 @@
           inherit system;
           modules = [
             inputs.home-manager.nixosModules.home-manager
+            inputs.stylix.homeManagerModules.stylix
+
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
           ];
