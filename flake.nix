@@ -43,7 +43,7 @@
     };
   };
 
-  outputs = { pkgs, system, ... }@inputs:
+  outputs = inputs@{ pkgs, system, ... }:
     let
       mySettings = import (./. + "/mySettings.nix") {
         pkgs = import pkgs { inherit system; };
