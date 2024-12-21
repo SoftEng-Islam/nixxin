@@ -44,19 +44,16 @@
 
   outputs = inputs: system: pkgs:
     let
-        mySettings = import (./. + "/settings.nix") { inherit pkgs; };
+      mySettings = import (./. + "/settings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
         let
-          lib = pkgs.lib.extend (final: prev: {
-            home-manager = inputs.home-manager.lib.hm;
-          });
+          lib = pkgs.lib.extend
+            (final: prev: { home-manager = inputs.home-manager.lib.hm; });
         in lib;
       mkNixosSystem = pkgs: system: hostName:
         pkgs.lib.nixosSystem {
           inherit system;
-          modules = [
-            inputs.home-manager.nixosModules.home-manager
-          ];
+          modules = [ inputs.home-manager.nixosModules.home-manager ];
           specialArgs = {
             inherit inputs;
             inherit system;
@@ -67,7 +64,8 @@
         };
     in {
       nixosConfigurations = {
-        ${mySettings.hostName} = mkNixosSystem inputs.nixpkgs ${mySettings.system} ${mySettings.hostName};
+        mySettings.hostName =
+          mkNixosSystem inputs.nixpkgs mySettings.system mySettings.hostName;
       };
     };
 }
