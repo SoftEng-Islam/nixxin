@@ -39,6 +39,8 @@
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
   nix = {
+    logLevel = "debug";
+    show-trace = true;
     # package = pkgs.nixStable;
     package = with pkgs; [ nixVersions.latest nixFlakes ];
     gc.automatic = true;
@@ -161,6 +163,7 @@
   programs.htop.settings = { tree_view = 1; };
   programs.gnupg.agent.enable = true;
   programs.gnupg.agent.enableSSHSupport = true;
+
   # Required by gnome file managers
   programs.file-roller.enable = true;
   programs.gnome-disks.enable = true;
