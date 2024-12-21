@@ -49,7 +49,7 @@
       mkLib = pkgs: system:
         let
           lib = pkgs.lib.extend (final: prev: {
-            home-manager = inputs.home-manager.lib.hm;
+            # home-manager = inputs.home-manager.lib.hm;
             _custom = import ./lib {
               pkgs = import pkgs { inherit system; };
               inherit inputs;
