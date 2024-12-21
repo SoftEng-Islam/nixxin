@@ -5,11 +5,11 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 0)
-      + ".nix")
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 1)
-      + ".nix")
     ../../themes/stylix.nix
+
+    ../../system/desktop/gnome.nix
+    ../../system/desktop/hyprland.nix
+
     ../../system/desktop/audio.nix
     ../../system/desktop/boot.nix
     ../../system/desktop/cli-collection.nix
