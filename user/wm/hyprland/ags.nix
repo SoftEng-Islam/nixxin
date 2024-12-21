@@ -37,7 +37,7 @@ let
   agsOptions = lib.recursiveUpdate agsColors details.ags;
 in {
   imports = [ inputs.ags.homeManagerModules.default ];
-  home.packages = with pkgs; [
+  home-manager.packages = with pkgs; [
     asztal
     bun
     fd
