@@ -80,7 +80,7 @@
           inherit system;
 
           home.username = user;
-          home.stateVersion = "23.05"; # Adjust to your NixOS version
+          home.stateVersion = "24.11"; # Adjust to your NixOS version
           modules =
             [ (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix") ];
         };
