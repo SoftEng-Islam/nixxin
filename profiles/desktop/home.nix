@@ -15,9 +15,15 @@
     # ../../user/superfile.nix
   ];
 
+  stylix.targets.hyprland.enable = false;
+  # programs.sagemath.enable = true;
+  services.kdeconnect.enable = false;
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
+  services.ssh-agent.enable = true;
   users.users.${mySettings.username}.isNormalUser = true;
+
   home-manager.users.${mySettings.username} = { pkgs, ... }: {
-    # home.packages = [ pkgs.atool pkgs.httpie ];
     programs.bash.enable = true;
     # The state version is required and should stay at the version you
     # originally installed.
@@ -51,25 +57,9 @@
       gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     };
   };
-
-  stylix.targets.hyprland.enable = false;
-  # programs.sagemath.enable = true;
-  services.kdeconnect.enable = false;
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-  services.ssh-agent.enable = true;
   home = {
     username = mySettings.username;
     homeDirectory = "/home/${mySettings.username}";
-    # pointerCursor = {
-    #   package = mySettings.cursorPackage;
-    #   name = mySettings.cursorTheme;
-    #   size = mySettings.cursorSize;
-    #   gtk.enable = true;
-    #   x11.enable = true;
-    #   hyprcursor.enable = true;
-    #   hyprcursor.size = mySettings.cursorSize;
-    # };
     # Home Manager can also manage your environment variables through
     # 'home.sessionVariables'. These will be explicitly sourced when using a
     # shell provided by Home Manager. If you don't want to manage your shell
