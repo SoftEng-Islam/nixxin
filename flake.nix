@@ -43,10 +43,10 @@
     };
   };
 
-  outputs = inputs@{ self, system, ... }:
+  outputs = inputs: system: pkgs:
     let
       mySettings = import (./. + "/mySettings.nix") {
-        pkgs = import inputs.nixpkgs { inherit system; };
+        pkgs = import pkgs { inherit system; };
         inherit inputs;
       };
       mkLib = pkgs: system:
