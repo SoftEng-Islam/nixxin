@@ -61,11 +61,19 @@
         pkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            inputs.home-manager.nixosModules.home-manager
             inputs.stylix.homeManagerModules.stylix
-
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
+            inputs.home-manager.nixosModules.home-manager
+
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = false;
+              home-manager.users.jdoe = import ./home.nix;
+
+              # Optionally, use home-manager.extraSpecialArgs to pass
+              # arguments to home.nix
+            }
           ];
           specialArgs = {
             inherit inputs;
