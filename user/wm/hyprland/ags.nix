@@ -37,21 +37,23 @@ let
   agsOptions = lib.recursiveUpdate agsColors details.ags;
 in {
   imports = [ inputs.ags.homeManagerModules.default ];
-  home.packages = with pkgs; [
-    asztal
-    bun
-    fd
-    dart-sass
-    gtk3
-    pulsemixer
-    networkmanager
-    pavucontrol
-  ];
+  home-manager = {
+    home.packages = with pkgs; [
+      asztal
+      bun
+      fd
+      dart-sass
+      gtk3
+      pulsemixer
+      networkmanager
+      pavucontrol
+    ];
+    home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
+  };
 
   programs.ags = {
     enable = true;
     configDir = ../../../non-nix/ags;
   };
 
-  home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
 }
