@@ -1,10 +1,6 @@
 { pkgs, ... }: {
   # Here you will find the hardware and drviers configurations
   hardware = {
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-    };
     amdgpu.amdvlk.enable = true;
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;
@@ -21,16 +17,24 @@
       ShaderCacheMode = 1;
     };
 
-    graphics.extraPackages = with pkgs; [
-      mesa.opencl
-      amdvlk
-      driversi686Linux.amdvlk
-    ];
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [ mesa.opencl amdvlk rocmPackages.clr.icd ];
+      # To enable Vulkan support for 32-bit applications, also add:
+      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+    };
   };
 
   environment = {
     variables = {
       # For AMD GPUs
+      OCL_ICD_VENDORS = ''
+        ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
+      '';
+      VK_ICD_FILENAMES = ''
+        ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
+      '';
       GPU_MAX_ALLOC_PERCENT = "50";
       GPU_MAX_HEAP_SIZE = "50";
       GPU_SINGLE_ALLOC_PERCENT = "50";

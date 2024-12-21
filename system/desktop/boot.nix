@@ -102,6 +102,8 @@
       "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "fq";
+      # sets the kernel’s TCP keepalive time to 120 seconds. To see the available parameters, run sysctl -a.
+      "net.ipv4.tcp_keepalive_time" = 120;
       "vm.swappiness" = 60;
       "net.core.rmem_max" = 16777216;
       "net.core.wmem_max" = 16777216;
@@ -111,6 +113,16 @@
     # blacklist r8188eu
     # blacklist rtl8xxxu
     # '';
+
+    # The Linux kernel does not have Rust language support enabled by default.
+    # For kernel versions 6.7 or newer,
+    # experimental Rust support can be enabled.
+    # In a NixOS configuration, set:
+    kernelPatches = [{
+      name = "Rust Support";
+      patch = null;
+      features = { rust = true; };
+    }];
 
     plymouth.enable = true;
     # plymouth.theme = "bgrt";

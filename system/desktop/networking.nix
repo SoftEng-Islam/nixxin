@@ -18,7 +18,8 @@
       iptables -A FORWARD -i wlan1 -o eno1 -m state --state RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i eno1 -o wlan1 -j ACCEPT
     '';
-
+    nameservers =
+      [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~

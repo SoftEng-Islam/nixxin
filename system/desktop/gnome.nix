@@ -9,14 +9,17 @@
   # Run this command to Remove window close and minimize buttons in GTK:
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'
   services.gnome.core-shell.enable = true;
-  services.gnome.core-utilities.enable = true;
+  services.gnome.core-utilities.enable = false; # GNOME without the apps
   services.gnome.evolution-data-server.enable = true;
   services.gnome.glib-networking.enable = true;
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
+  services.gnome.games.enable = false;
   services.gnome.localsearch.enable = true;
-  services.gnome.tinysparql.enable = true;
+  services.gnome.tinysparql.enable = true; # indexing files
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
+  # services.gnome.core-developer-tools.enable = true;
+
   services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
     [org.gnome.mutter]
     check-alive-timeout=0
@@ -66,6 +69,7 @@
     libsoup_3 # HTTP client/server library for GNOME
     eog # GNOME image viewer
 
+    gnome-shell
     gnome-bluetooth # Application that lets you manage Bluetooth in the GNOME desktop
     gnome-chess # Play the classic two-player boardgame of chess
     gnome-control-center # Utilities to configure the GNOME desktop
