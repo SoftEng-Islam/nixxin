@@ -4,8 +4,6 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    # `ucodenix` is a Nix flake providing AMD microcode updates for unsupported CPUs.
-    ucodenix.url = "github:e-tho/ucodenix";
     # System-wide colorscheming and typography for NixOS
     stylix.url = "github:danth/stylix";
     # Efficient animated wallpaper daemon for wayland, controlled at runtime
@@ -42,51 +40,48 @@
     };
   };
 
-  outputs = inputs:
+  outputs = { self, nixpkgs, home-manager }:
     let
-      pkgs = import inputs.nixpkgs { system = mySettings.system; };
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      mkLib = pkgs: system:
-        let
-          lib = pkgs.lib.extend (final: prev: {
-            # home-manager = inputs.home-manager.lib.hm;
-            _custom = import ./lib {
-              pkgs = import pkgs { inherit system; };
-              inherit inputs;
-              inherit lib;
-            };
-          });
-        in lib;
-      mkNixosSystem = pkgs: system: hostName:
-        pkgs.lib.nixosSystem {
-          inherit system;
-          modules = [
-            inputs.stylix.homeManagerModules.stylix
-            (./. + "/profiles" + ("/" + mySettings.profile)
-              + "/configuration.nix")
-            # inputs.home-manager.nixosModules.home-manager
-
-            {
-              programs.home-manager.enable = true;
-              home-manager.users.test = { home.packages = [ ]; };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = false;
-              # home-manager.users.${mySettings.username} = import ./home.nix;
-              # home-manager.extraSpecialArgs
-            }
-          ];
-          specialArgs = {
-            inherit inputs;
-            inherit system;
-            inherit mySettings;
-            lib = mkLib pkgs system;
-            nixpkgs = pkgs;
-          };
-        };
+      pkgs = import nixpkgs { system = settings.system; };
     in {
       nixosConfigurations = {
-        ${mySettings.hostName} =
-          mkNixosSystem inputs.nixpkgs mySettings.system mySettings.hostName;
+        # Define your NixOS host configuration
+        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+          system = mySettings.system;
+          modules = [
+            # Include the NixOS configuration
+            ./configuration.nix
+
+            # Add the Home Manager module for system-level Home Manager
+            home-manager.nixosModules.home-manager
+
+            # Define Home Manager settings here
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+
+              # User-specific Home Manager configuration
+              users.users.${mySettings.username} = {
+                isNormalUser = true;
+                home = "/home/${mySettings.username}";
+                extraGroups = [ "wheel" "video" "audio" ];
+                shell = "/bin/zsh";
+
+                home-manager = {
+                  user = "${mySettings.username}";
+                  home.stateVersion =
+                    "24.11"; # Update this to match your Home Manager version
+                  imports = [
+                    (./. + "/profiles" + ("/" + mySettings.profile)
+                      + "/home.nix")
+                    # Include user-level Home Manager configuration
+                  ];
+                };
+              };
+            }
+          ];
+        };
       };
     };
 }
