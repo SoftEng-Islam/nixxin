@@ -42,9 +42,9 @@
     };
   };
 
-  outputs = inputs: system: pkgs:
+  outputs = inputs: system:
     let
-      mySettings = import (./. + "/settings.nix") { inherit pkgs; };
+      mySettings = pkgs: import (./. + "/settings.nix") { inherit pkgs; };
       mkLib = pkgs: system:
         let
           lib = pkgs.lib.extend
