@@ -68,6 +68,7 @@
           specialArgs = {
             inherit inputs;
             inherit system;
+            inherit mySettings;
             lib = mkLib pkgs system;
             nixpkgs = pkgs;
           };
