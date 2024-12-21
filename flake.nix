@@ -45,7 +45,11 @@
   outputs = inputs:
     let
       # Import the settings
-      mySettings = import (./. + "/mySettings.nix") { inherit inputs; };
+      mySettings = import (./. + "/mySettings.nix") {
+        inherit inputs;
+        inherit pkgs;
+      };
+      pkgs = import inputs.nixpkgs { system = mySettings.system; };
 
       # Function to generate NixOS configurations
       mkNixosSystem = system: hostName:
@@ -65,6 +69,7 @@
           specialArgs = {
             inherit inputs;
             inherit system;
+            inherit pkgs;
             inherit mySettings;
           };
         };
