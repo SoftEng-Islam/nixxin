@@ -39,7 +39,6 @@
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
   nix = {
-    show-trace = true;
     # package = pkgs.nixStable;
     package = with pkgs; [ nixVersions.latest nixFlakes ];
     gc.automatic = true;
