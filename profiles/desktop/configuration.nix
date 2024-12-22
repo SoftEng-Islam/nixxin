@@ -39,8 +39,7 @@
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
   nix = {
-    # package = pkgs.nixStable;
-    package = with pkgs; [ nixVersions.latest nixFlakes ];
+    package = [ pkgs.nixVersions.latest pkgs.nixFlakes ];
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
