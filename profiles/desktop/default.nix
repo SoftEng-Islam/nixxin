@@ -3,10 +3,41 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { mySettings, pkgs, lib, config, ... }: {
   imports = [
-    # Include the results of the hardware scan.
+    # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
-    (./. + "../../../system/desktop" + ("/" + builtins.elemAt mySettings.wm 1)
-      + ".nix")
+    ./themes/stylix.nix
+    ./modules/wm/gnome
+    ./modules/wm/hyprland
+
+    # ./modules/system/android.nix
+    ./modules/system/audio.nix
+    # ./modules/system/beesd.nix
+    ./modules/system/boot.nix
+    ./modules/system/cli-collection.nix
+    ./modules/system/data-transferring.nix
+    ./modules/system/desktop-apps.nix
+    ./modules/system/drivers.nix
+    ./modules/system/environment.nix
+    ./modules/system/fonts.nix
+    ./modules/system/gaming.nix
+    ./modules/system/git.nix
+    ./modules/system/locale.nix
+    ./modules/system/media.nix
+    # ./modules/system/mouse.nix
+    ./modules/system/nautilus.nix
+    ./modules/system/networking.nix
+    ./modules/system/packages.nix
+    ./modules/system/power-management.nix
+    # ./modules/system/printing.nix
+    ./modules/system/shell.nix
+    ./modules/system/systemd.nix
+    ./modules/system/users.nix
+    ./modules/system/wine.nix
+    ./modules/system/xdg.nix
+    ./modules/system/zram.nix
+
+    ./modules/programs/cli
+    ./modules/programs/dev
 
   ];
 
@@ -164,9 +195,9 @@
     # java.enable = true;
   };
 
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # Security
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # ~~~~~~~~~~~~~~~~~~~~~~~~
+  # ~~~~~~~ Security ~~~~~~~
+  # ~~~~~~~~~~~~~~~~~~~~~~~~
   security = {
     # show Password as stars in Terminals.
     sudo.extraConfig = "Defaults        env_reset,pwfeedback";
