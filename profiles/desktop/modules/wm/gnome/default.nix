@@ -85,4 +85,12 @@
     polkit_gnome # A dbus session bus service that is used to bring up authentication dialogs
     libsForQt5.polkit-qt # A Qt wrapper around PolKit
   ];
+
+  home-manager = {
+    imports = [
+      # ./autostart.nix
+      # ./extensions.nix
+      # ./settings.nix
+    ];
+  };
 }
