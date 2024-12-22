@@ -50,10 +50,10 @@
         ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
           system = mySettings.system;
           modules = [
-            inputs.stylix.nixosModules.stylix
             # Include the NixOS configuration
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
+            inputs.stylix.nixosModules.stylix
 
             # Add the Home Manager module for system-level Home Manager
             home-manager.nixosModules.home-manager
