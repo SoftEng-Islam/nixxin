@@ -67,10 +67,9 @@
       # Unicode Characters
       heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
 
-      PKG_CONFIG_PATH =
-        "/nix/store/bj5cf0ysvyjpqdwdjw7rqqd74g0wrdn3-glib-2.80.2-dev/lib/pkgconfig";
+      PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
       GST_PLUGIN_PATH =
-        "/nix/store/01n130457xklp8b00ydwax22l0z3a62j-gst-plugins-base-1.24.3/lib/gstreamer-1.0:/nix/store/2dqc2lqhzacg2mb79677ik426a74axik-gst-plugins-good-1.24.3/lib/gstreamer-1.0:/nix/store/2syk2lmxxwx3cksqfjsb20zf5mdhrxir-gst-plugins-bad-1.24.3/lib/gstreamer-1.0:/nix/store/b88jfk9l912qgwmf98cp1024hmz05pd5-gst-plugins-ugly-1.24.3/lib/gstreamer-1.0:/nix/store/8llhhp5r452dkbz32kb7xxd1qpl5j433-gst-libav-1.24.3/lib/gstreamer-1.0";
+        "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:/nix/store/2dqc2lqhzacg2mb79677ik426a74axik-gst-plugins-good-1.24.3/lib/gstreamer-1.0:/nix/store/2syk2lmxxwx3cksqfjsb20zf5mdhrxir-gst-plugins-bad-1.24.3/lib/gstreamer-1.0:/nix/store/b88jfk9l912qgwmf98cp1024hmz05pd5-gst-plugins-ugly-1.24.3/lib/gstreamer-1.0:/nix/store/8llhhp5r452dkbz32kb7xxd1qpl5j433-gst-libav-1.24.3/lib/gstreamer-1.0";
       GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
         + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
         + "${pkgs.networkmanager}/lib/girepository-1.0:"
@@ -83,17 +82,14 @@
     sessionVariables = {
       XCURSOR_THEME = mySettings.cursorTheme;
       # XCURSOR_SIZE = "${toString.mySettings.cursorSize}";
-
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
-
       # Enables portal-based access for apps like VSCode on Wayland
       GTK_USE_PORTAL = "1";
-
-      # NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
+      NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
+      XDG_DATA_DIRS = [
+        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+        "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+      ];
     };
-    sessionVariables.XDG_DATA_DIRS = [
-      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-    ];
   };
 }
