@@ -1,14 +1,5 @@
 { lib, mySettings, inputs, pkgs, ... }: {
-  imports = [
-    ./ags.nix
-    ./binds.nix
-    ./env.nix
-    # ./hyprlock.nix
-    ./plugins.nix
-    ./rules.nix
-    ./scripts.nix
-    ./settings.nix
-  ];
+
   services.hypridle.enable = false; # Hyprland’s idle daemon.
 
   programs = {
@@ -55,24 +46,37 @@
   # ~~~~~~ Home_Manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  # Make stuff work on wayland
-  home.sessionVariables = {
-    QT_QPA_PLATFORM = "wayland";
-    SDL_VIDEODRIVER = "wayland";
-    XDG_SESSION_TYPE = "wayland";
-  };
+  home-manager = {
+    imports = [
+      ./ags.nix
+      ./binds.nix
+      ./env.nix
+      # ./hyprlock.nix
+      ./plugins.nix
+      ./rules.nix
+      ./scripts.nix
+      ./settings.nix
+    ];
 
-  wayland.windowManager.hyprland = {
-    enable = true;
-    package = pkgs.hyprland;
-    systemd.enable = true;
-    plugins = with pkgs;
-      [
-        hyprlandPlugins.hyprbars
-        hyprlandPlugins.hyprexpo
-        hyprlandPlugins.hypr-dynamic-cursors
-      ] ++ lib.optional (mySettings.themeDetails.bordersPlusPlus)
-      hyprlandPlugins.borders-plus-plus;
+    # Make stuff work on wayland
+    home.sessionVariables = {
+      QT_QPA_PLATFORM = "wayland";
+      SDL_VIDEODRIVER = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+    };
+
+    wayland.windowManager.hyprland = {
+      enable = true;
+      package = pkgs.hyprland;
+      systemd.enable = true;
+      plugins = with pkgs;
+        [
+          hyprlandPlugins.hyprbars
+          hyprlandPlugins.hyprexpo
+          hyprlandPlugins.hypr-dynamic-cursors
+        ] ++ lib.optional (mySettings.themeDetails.bordersPlusPlus)
+        hyprlandPlugins.borders-plus-plus;
+    };
+    # home.packages = with pkgs; [ hyprcursor ];
   };
-  # home.packages = with pkgs; [ hyprcursor ];
 }
