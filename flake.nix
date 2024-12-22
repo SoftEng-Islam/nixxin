@@ -40,14 +40,14 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager }@inputs:
+  outputs = inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs { system = mySettings.system; };
+      pkgs = import inputs.nixpkgs { system = mySettings.system; };
     in {
       nixosConfigurations = {
         # Define your NixOS host configuration
-        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+        ${mySettings.hostName} = pkgs.lib.nixosSystem {
           system = mySettings.system;
           modules = [
             # Include the NixOS configuration
@@ -56,7 +56,7 @@
             inputs.stylix.nixosModules.stylix
 
             # Add the Home Manager module for system-level Home Manager
-            home-manager.nixosModules.home-manager
+            inputs.home-manager.nixosModules.home-manager
 
             # Define Home Manager settings here
             {
