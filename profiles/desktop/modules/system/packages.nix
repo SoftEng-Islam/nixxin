@@ -36,25 +36,9 @@
     nodePackages.pnpm # Fast, disk space efficient package manager
     typescript # Superset of JavaScript that compiles to clean JavaScript output
 
-    # Rust --------------------------------
-    cargo # Downloads your Rust project's dependencies and builds your project
-    cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
-    rust-analyzer # A modular compiler frontend for the Rust language
-    rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
-    rustc # A safe, concurrent, practical language (wrapper script)
-    rustup # The Rust toolchain installer
-
     # Android --------------------------------
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     scrcpy # Display and control Android devices over USB or TCP/IP
-
-    # Hacking --------------------------------
-    aircrack-ng # WiFi security auditing tools suite
-    # hashcat # Fast password cracker
-    # hashcat-utils # Small utilities that are useful in advanced password cracking
-    hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-    john # John the Ripper password cracker
-    johnny # Open Source GUI frontend for John the Ripper
 
     # clipboard --------------------------------
     cliphist # Wayland clipboard manager

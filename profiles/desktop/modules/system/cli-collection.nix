@@ -32,24 +32,20 @@
     gnugrep # GNU implementation of the Unix grep command
     killall
 
-    file # A program that shows the type of files
     findutils # GNU Find Utilities
     gnused # GNU sed, a batch stream editor
     gum # Tasty Bubble Gum for your shell
     hexyl # Command-line hex viewer
     htop # An interactive process viewer
-    hub # Command-line wrapper for git that makes you better at GitHub
     hwinfo # Hardware detection tool from openSUSE
     jq # Lightweight and flexible command-line JSON processor
     libnotify # Library that sends desktop notifications to a notification daemon
 
-    lsof # Tool to list open files
     ncurses # Free software emulation of curses in SVR4 and more
     numbat # High precision scientific calculator with full support for physical units
     nurl # Command-line tool to generate Nix fetcher calls from repository URLs
     ouch # Command-line utility for easily compressing and decompressing files and directories
     pandoc # Conversion between documentation formats
-    patool # portable archive file manager
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     pinentry-curses # GnuPG’s interface to passphrase input
     procs # Modern replacement for ps written in Rust
@@ -58,18 +54,12 @@
     rar # Utility for RAR archives
     ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
 
-    rsync # Fast incremental file transfer utility
     tea # Gitea official CLI client
     timer # sleep with progress
     tio # Serial console TTY
     unar # Archive unpacker program
-    unrar-free # Free utility to extract files from RAR archives
-    unrar-wrapper # Backwards compatibility between unar and unrar
-    unzip # An extraction utility for archives compressed in .zip format
     vivid # Generator for LS_COLORS with support for multiple color themes
     wlsunset # Wayland compositors supporting wlr-gamma-control-unstable-v1.
     yq-go # Portable command-line YAML processor
-    zip # Compressor/archiver for creating and modifying zipfiles
-
   ];
 }
