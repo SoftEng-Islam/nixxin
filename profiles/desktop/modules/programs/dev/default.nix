@@ -1,1 +1,1 @@
-{ imports = [ ./clang ./nix ./python ./web ]; }
+{ imports = [ ./clang ./nix ./python ./rust ./web ]; }
