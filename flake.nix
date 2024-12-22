@@ -40,55 +40,22 @@
     };
   };
 
-  outputs = inputs:
+  outputs = inputs@{ nixpkgs, home-manager, ... }:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       pkgs = import inputs.nixpkgs { system = mySettings.system; };
     in {
-      nixosConfigurations = {
-        # Define your NixOS host configuration
-        ${mySettings.hostName} = inputs.nixpkgs.lib.nixosSystem {
-          system = mySettings.system;
-          modules = [
-            # Include the NixOS configuration
-            (./. + "/profiles" + ("/" + mySettings.profile)
-              + "/configuration.nix")
-            inputs.stylix.nixosModules.stylix
-
-            # Add the Home Manager module for system-level Home Manager
-            inputs.home-manager.nixosModules.home-manager
-
-            # Define Home Manager settings here
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-
-              # User-specific Home Manager configuration
-              users.users.${mySettings.username} = {
-                isNormalUser = true;
-                home = "/home/${mySettings.username}";
-                extraGroups = [ "wheel" "video" "audio" ];
-                shell = "/bin/zsh";
-
-                home-manager = {
-                  user = "${mySettings.username}";
-                  home.stateVersion =
-                    "24.11"; # Update this to match your Home Manager version
-                  imports = [
-                    (./. + "/profiles" + ("/" + mySettings.profile)
-                      + "/home.nix")
-                    # Include user-level Home Manager configuration
-                  ];
-                };
-              };
-            }
-          ];
-          specialArgs = {
-            inherit inputs;
-            inherit mySettings;
-            pkgs = inputs.nixpkgs;
-          };
-        };
+      nixosConfigurations.${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+        modules = [
+          # Include the NixOS configuration
+          (./. + "/profiles" + ("/" + mySettings.profile)
+            + "/configuration.nix")
+          inputs.stylix.nixosModules.stylix
+          {
+            ### Home Manager Integration ###
+            imports = [ home-manager.nixosModules.home-manager ];
+          }
+        ];
       };
     };
 }
