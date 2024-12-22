@@ -86,6 +86,7 @@
           specialArgs = {
             inherit inputs;
             inherit mySettings;
+            pkgs = inputs.nixpkgs;
           };
         };
       };

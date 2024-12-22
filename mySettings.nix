@@ -1,6 +1,6 @@
 { pkgs, ... }: rec {
   # ---- SYSTEM SETTINGS ---- #
-  system = "x86_64-linux"; # system nixos
+  system = "x86_64-linux"; # Replace with your system architecture
   hostName = "nixos"; # Hostname
   profile = "desktop"; # select a profile defined from my profiles directory
   timezone = "Africa/Cairo"; # Select timezone
