@@ -1,0 +1,7 @@
+{
+  imports = [
+    ./files
+    ./wifi
+    #  ./zsh
+  ];
+}
