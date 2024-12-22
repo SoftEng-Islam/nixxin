@@ -47,7 +47,7 @@
     in {
       nixosConfigurations = {
         # Define your NixOS host configuration
-        ${mySettings.hostName} = pkgs.lib.nixosSystem {
+        ${mySettings.hostName} = inputs.nixpkgs.lib.nixosSystem {
           system = mySettings.system;
           modules = [
             # Include the NixOS configuration
