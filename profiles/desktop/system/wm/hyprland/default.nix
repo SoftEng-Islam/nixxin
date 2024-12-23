@@ -24,10 +24,7 @@
     hyprcursor # The hyprland cursor format, library and utilities
     # hyprgui # unstable GUI for configuring Hyprland written in Rust
     hypridle # Hyprland's idle daemon
-    hyprland # A dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     hyprland-protocols # Wayland protocol extensions for Hyprland
-    # hyprlandPlugins.hyprbars # Hyprland window title plugin
-    # hyprlandPlugins.hyprexpo # Hyprland workspaces overview plugin
     hyprlang # The official implementation library for the hypr config language
     hyprlauncher # GUI for launching applications, written in Rust
     hyprlock # Hyprland's GPU-accelerated screen locking utility

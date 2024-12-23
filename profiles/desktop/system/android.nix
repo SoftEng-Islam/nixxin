@@ -1,5 +1,4 @@
 { config, pkgs, lib, inputs, system, ... }:
-
 let
   cfg = config._custom.services.android;
   inherit (config._custom.globals) userName;
@@ -70,7 +69,6 @@ in {
               "-Dorg.gradle.project.android.aapt2FromMavenOverride=${android-sdk}/share/android-sdk/build-tools/30.0.2/aapt2";
           };
         };
-
       };
     };
   };

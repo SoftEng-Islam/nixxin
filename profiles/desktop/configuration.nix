@@ -22,7 +22,6 @@
     ./system/gaming.nix
     ./system/locale.nix
     ./system/media.nix
-    # ./system/mouse.nix
     ./system/nautilus.nix
     ./system/networking.nix
     ./system/packages.nix

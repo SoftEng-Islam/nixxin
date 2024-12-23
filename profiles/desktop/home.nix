@@ -1,4 +1,4 @@
-{ config, pkgs, lib, mySettings, ... }: {
+{ config, lib, mySettings, ... }: {
   imports = [
     ./themes/stylix.nix
     ./home/cli/curl
