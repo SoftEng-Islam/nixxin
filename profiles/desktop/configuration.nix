@@ -34,8 +34,8 @@
     ./system/wine.nix
     ./system/xdg.nix
     ./system/zram.nix
-    ./system/programs/cli
-    ./system/programs/dev
+    ./system/cli
+    ./system/dev
 
   ];
 
