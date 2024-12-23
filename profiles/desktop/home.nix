@@ -1,16 +1,11 @@
 { config, lib, mySettings, ... }: {
   imports = [
     ./themes/stylix.nix
-    ./home/cli/curl
-    ./home/cli/git
-    ./home/dev/web.nix
-    ./home/flags/chrome-flags.nix
-    ./home/flags/code-flags.nix
-    ./home/flags/electron-flags.nix
-    ./home/flags/msedge-flags.nix
 
+    ./home/cli
+    ./home/dev
+    ./home/flags
     ./home/media
-
     ./home/wm/gnome
     ./home/wm/hyprland
 
