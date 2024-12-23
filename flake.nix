@@ -13,6 +13,8 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    aagl.url = "github:ezKEa/aagl-gtk-on-nix";
+    aagl.inputs.nixpkgs.follows = "nixpkgs";
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -50,6 +52,9 @@
           # Include the NixOS configuration
           ./profiles/desktop
           inputs.stylix.nixosModules.stylix
+          inputs.stylix.homeManagerModules.stylix
+          inputs.nixvim.homeManagerModules.nixvim
+
           {
             ### Home Manager Integration ###
             imports = [ home-manager.nixosModules.home-manager ];

@@ -51,7 +51,7 @@ in {
 
   programs.ags = {
     enable = true;
-    configDir = ../../../non-nix/ags;
+    configDir = ../../../../../non-nix/ags;
   };
 
 }
