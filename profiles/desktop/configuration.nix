@@ -6,6 +6,8 @@
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
 
+    ./system/cli
+    ./system/dev
     ./system/wm/gnome
     ./system/wm/hyprland
 
@@ -16,7 +18,6 @@
     ./system/cli-collection.nix
     ./system/data-transferring.nix
     ./system/desktop-apps.nix
-    ./system/drivers.nix
     ./system/environment.nix
     ./system/fonts.nix
     ./system/gaming.nix
@@ -30,12 +31,10 @@
     ./system/shell.nix
     ./system/systemd.nix
     ./system/users.nix
+    # ./system/virtualisation.nix
     ./system/wine.nix
     ./system/xdg.nix
     ./system/zram.nix
-    ./system/cli
-    ./system/dev
-
   ];
 
   # documentation.nixos.enable = false; # .desktop
