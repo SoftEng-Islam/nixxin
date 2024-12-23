@@ -47,26 +47,41 @@
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs.legacyPackages { system = mySettings.system; };
+      pkgs = import nixpkgs { system = mySettings.system; };
     in {
-      nixosConfigurations.${mySettings.hostName} = nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          inherit inputs;
-          inherit mySettings;
+      # NixOS configuration entrypoint.
+      # 'nixos-rebuild switch --flake .#hostname
+      nixosConfigurations = {
+        ${mySettings.hostname} = nixpkgs.lib.nixosSystem {
+          modules = [
+            inputs.stylix.nixosModules.stylix
+            (./. + "/profiles" + ("/" + mySettings.profile)
+              + "/configuration.nix")
+          ];
+          specialArgs = {
+            inherit inputs;
+            inherit mySettings;
+          };
         };
-        modules = [
-          ./profiles/desktop/configuration.nix
-          inputs.home-manager.nixosModules.home-manager
-          inputs.stylix.nixosModules.stylix
-          # inputs.stylix.homeManagerModules.stylix
-          {
-            ### Home Manager Integration ###
-            # imports = [ home-manager.nixosModules.home-manager ];
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.softeng = import ./home.nix;
-          }
-        ];
+      };
+
+      # Standalone home-manager configuration entrypoint.
+      # 'home-manager switch --flake .#username
+      homeConfigurations = {
+        ${mySettings.username} = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${mySettings.system};
+          modules = [
+            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+            inputs.plasma-manager.homeManagerModules.plasma-manager
+            inputs.stylix.homeManagerModules.stylix
+            inputs.nixvim.homeManagerModules.nixvim
+          ];
+          extraSpecialArgs = {
+            inherit inputs;
+            inherit mySettings;
+          };
+        };
       };
     };
+
 }
