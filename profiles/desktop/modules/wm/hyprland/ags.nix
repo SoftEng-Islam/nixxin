@@ -36,20 +36,18 @@ let
   };
   agsOptions = lib.recursiveUpdate agsColors details.ags;
 in {
-  home-manager.users.${mySettings.username} = {
-    imports = [ inputs.ags.homeManagerModules.default ];
-    home.packages = with pkgs; [
-      asztal
-      bun
-      fd
-      dart-sass
-      gtk3
-      pulsemixer
-      networkmanager
-      pavucontrol
-    ];
-    home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
-  };
+  imports = [ inputs.ags.homeManagerModules.default ];
+  home.packages = with pkgs; [
+    asztal
+    bun
+    fd
+    dart-sass
+    gtk3
+    pulsemixer
+    networkmanager
+    pavucontrol
+  ];
+  home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
 
   programs.ags = {
     enable = true;
