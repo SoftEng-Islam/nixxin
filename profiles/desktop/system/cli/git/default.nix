@@ -1,4 +1,4 @@
-{ pkgs, mySettings, lib, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     hub # Command-line wrapper for git that makes you better at GitHub
     delta # Syntax-highlighting pager for git
@@ -10,7 +10,5 @@
     lazygit # Simple terminal UI for git commands
     mergiraf # Syntax-aware git merge driver for a growing collection of programming languages and file formats
     tig # Text-mode interface for git
-
   ];
-
 }
