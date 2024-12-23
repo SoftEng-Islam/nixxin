@@ -20,7 +20,6 @@
     ./modules/system/environment.nix
     ./modules/system/fonts.nix
     ./modules/system/gaming.nix
-    ./modules/system/git.nix
     ./modules/system/locale.nix
     ./modules/system/media.nix
     # ./modules/system/mouse.nix
