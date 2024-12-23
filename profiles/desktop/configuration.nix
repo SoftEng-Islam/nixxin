@@ -9,31 +9,31 @@
     ./system/wm/gnome
     ./system/wm/hyprland
 
-    # ./system/system/android.nix
-    ./system/system/audio.nix
-    # ./system/system/beesd.nix
-    ./system/system/boot.nix
-    ./system/system/cli-collection.nix
-    ./system/system/data-transferring.nix
-    ./system/system/desktop-apps.nix
-    ./system/system/drivers.nix
-    ./system/system/environment.nix
-    ./system/system/fonts.nix
-    ./system/system/gaming.nix
-    ./system/system/locale.nix
-    ./system/system/media.nix
-    # ./system/system/mouse.nix
-    ./system/system/nautilus.nix
-    ./system/system/networking.nix
-    ./system/system/packages.nix
-    ./system/system/power-management.nix
-    # ./system/system/printing.nix
-    ./system/system/shell.nix
-    ./system/system/systemd.nix
-    ./system/system/users.nix
-    ./system/system/wine.nix
-    ./system/system/xdg.nix
-    ./system/system/zram.nix
+    # ./system/android.nix
+    ./system/audio.nix
+    # ./system/beesd.nix
+    ./system/boot.nix
+    ./system/cli-collection.nix
+    ./system/data-transferring.nix
+    ./system/desktop-apps.nix
+    ./system/drivers.nix
+    ./system/environment.nix
+    ./system/fonts.nix
+    ./system/gaming.nix
+    ./system/locale.nix
+    ./system/media.nix
+    # ./system/mouse.nix
+    ./system/nautilus.nix
+    ./system/networking.nix
+    ./system/packages.nix
+    ./system/power-management.nix
+    # ./system/printing.nix
+    ./system/shell.nix
+    ./system/systemd.nix
+    ./system/users.nix
+    ./system/wine.nix
+    ./system/xdg.nix
+    ./system/zram.nix
     ./system/programs/cli
     ./system/programs/dev
 
