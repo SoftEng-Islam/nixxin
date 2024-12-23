@@ -49,10 +49,12 @@
     in {
       nixosConfigurations.${mySettings.hostName} = nixpkgs.lib.nixosSystem {
         modules = [
+          inputs.home-manager.nixosModules.home-manager
+
           # Include the NixOS configuration
           ./profiles/desktop
-          #inputs.stylix.nixosModules.stylix
-          inputs.stylix.homeManagerModules.stylix
+          inputs.stylix.nixosModules.stylix
+          # inputs.stylix.homeManagerModules.stylix
           inputs.nixvim.homeManagerModules.nixvim
 
           {
