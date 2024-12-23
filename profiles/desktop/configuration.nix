@@ -5,39 +5,37 @@
   imports = [
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
-    # inputs.home-manager.nixosModules.home-manager
 
-    # ./modules/wm/gnome
-    # ./modules/wm/hyprland
+    ./system/wm/gnome
+    ./system/wm/hyprland
 
-    # # ./modules/system/android.nix
-    # ./modules/system/audio.nix
-    # # ./modules/system/beesd.nix
-    ./modules/system/boot.nix
-    # ./modules/system/cli-collection.nix
-    # ./modules/system/data-transferring.nix
-    # ./modules/system/desktop-apps.nix
-    # ./modules/system/drivers.nix
-    # ./modules/system/environment.nix
-    # ./modules/system/fonts.nix
-    # ./modules/system/gaming.nix
-    # ./modules/system/locale.nix
-    # ./modules/system/media.nix
-    # # ./modules/system/mouse.nix
-    # ./modules/system/nautilus.nix
-    # ./modules/system/networking.nix
-    # ./modules/system/packages.nix
-    # ./modules/system/power-management.nix
-    # # ./modules/system/printing.nix
-    # ./modules/system/shell.nix
-    # ./modules/system/systemd.nix
-    # ./modules/system/users.nix
-    # ./modules/system/wine.nix
-    # ./modules/system/xdg.nix
-    # ./modules/system/zram.nix
-
-    # ./modules/programs/cli
-    # ./modules/programs/dev
+    # ./system/system/android.nix
+    ./system/system/audio.nix
+    # ./system/system/beesd.nix
+    ./system/system/boot.nix
+    ./system/system/cli-collection.nix
+    ./system/system/data-transferring.nix
+    ./system/system/desktop-apps.nix
+    ./system/system/drivers.nix
+    ./system/system/environment.nix
+    ./system/system/fonts.nix
+    ./system/system/gaming.nix
+    ./system/system/locale.nix
+    ./system/system/media.nix
+    # ./system/system/mouse.nix
+    ./system/system/nautilus.nix
+    ./system/system/networking.nix
+    ./system/system/packages.nix
+    ./system/system/power-management.nix
+    # ./system/system/printing.nix
+    ./system/system/shell.nix
+    ./system/system/systemd.nix
+    ./system/system/users.nix
+    ./system/system/wine.nix
+    ./system/system/xdg.nix
+    ./system/system/zram.nix
+    ./system/programs/cli
+    ./system/programs/dev
 
   ];
 

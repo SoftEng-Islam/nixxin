@@ -1,4 +1,19 @@
 { config, pkgs, lib, mySettings, ... }: {
+  imports = [
+    ./home/cli/curl
+    ./home/cli/git
+    ./home/dev/web.nix
+    ./home/flags/chrome-flags.nix
+    ./home/flags/code-flags.nix
+    ./home/flags/electron-flags.nix
+    ./home/flags/msedge-flags.nix
+
+    ./home/media
+
+    ./home/wm/gnome
+    ./home/wm/hyprland
+
+  ];
   useGlobalPkgs = true;
   useUserPackages = false;
   stylix.targets.hyprland.enable = false;

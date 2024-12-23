@@ -1,9 +1,1 @@
-{
-  imports = [
-    ./curl
-    ./files
-    ./git
-    ./wifi
-    #  ./zsh
-  ];
-}
+{ imports = [ ./files ./git ./wifi ./zsh ]; }
