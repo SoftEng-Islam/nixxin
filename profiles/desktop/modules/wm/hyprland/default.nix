@@ -46,7 +46,7 @@
   # ~~~~~~ Home_Manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-  home-manager = {
+  home-manager.users.${mySettings.username} = {
     imports = [
       ./ags.nix
       ./binds.nix
