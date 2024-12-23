@@ -2,7 +2,7 @@
 let
   details = mySettings.themeDetails;
   asztal =
-    pkgs.callPackage ../../../non-nix/ags/default.nix { inherit inputs; };
+    pkgs.callPackage ../../../../non-nix/ags/default.nix { inherit inputs; };
   agsColors = {
     wallpaper = details.wallpaper;
     theme = {
@@ -36,8 +36,8 @@ let
   };
   agsOptions = lib.recursiveUpdate agsColors details.ags;
 in {
-  imports = [ inputs.ags.homeManagerModules.default ];
-  home-manager = {
+  home-manager.users.${mySettings.username} = {
+    imports = [ inputs.ags.homeManagerModules.default ];
     home.packages = with pkgs; [
       asztal
       bun
