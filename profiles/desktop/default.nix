@@ -212,7 +212,7 @@
     # autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   };
 
-  home-manager = {
+  home-manager.users.${mySettings.username} = {
     stylix.targets.hyprland.enable = false;
 
     programs = {
