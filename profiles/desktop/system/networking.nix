@@ -106,7 +106,6 @@
     bandwhich # CLI utility for displaying current network utilization
     dnsutils # Domain name server
 
-    linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
     ntp # An implementation of the Network Time Protocol
     openresolv # A program to manage /etc/resolv.conf
     radvd # IPv6 Router Advertisement Daemon
