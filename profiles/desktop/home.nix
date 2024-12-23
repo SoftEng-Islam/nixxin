@@ -8,7 +8,6 @@
     ./home/media
     ./home/wm/gnome
     ./home/wm/hyprland
-
   ];
   useGlobalPkgs = true;
   useUserPackages = false;
