@@ -213,9 +213,9 @@
     # autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   };
   home-manager = {
-    imports = [ ./themes/stylix.nix ];
-    useGlobalPkgs = true;
-    useUserPackages = true;
+    # imports = [ ./themes/stylix.nix ];
+    # useGlobalPkgs = true;
+    # useUserPackages = true;
   };
 
   environment.systemPackages = with pkgs; [
