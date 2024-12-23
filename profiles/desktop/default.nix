@@ -46,7 +46,7 @@
   # documentation.doc.enable = false;
 
   nix = {
-    package = with pkgs; [ nixVersions.latest nixFlakes ];
+    package = pkgs.nixVersions.latest;
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
@@ -253,6 +253,15 @@
       };
     };
     home = {
+      # This value determines the Home Manager release that your
+      # configuration is compatible with. This helps avoid breakage
+      # when a new Home Manager release introduces backwards
+      # incompatible changes.
+      #
+      # You can update Home Manager without changing this value. See
+      # the Home Manager release notes for a list of state version
+      # Don't Change The Fucking Version!
+      stateVersion = mySettings.homeStateVersion;
       username = mySettings.username;
       homeDirectory = "/home/${mySettings.username}";
       # Home Manager can also manage your environment variables through
@@ -400,15 +409,4 @@
   # Don't Change The Fucking Version!
   system.stateVersion =
     mySettings.systemStateVersion; # Did you read the comment?
-
-  # This value determines the Home Manager release that your
-  # configuration is compatible with. This helps avoid breakage
-  # when a new Home Manager release introduces backwards
-  # incompatible changes.
-  #
-  # You can update Home Manager without changing this value. See
-  # the Home Manager release notes for a list of state version
-  # Don't Change The Fucking Version!
-  home-manager.users.${mySettings.username}.home.stateVersion =
-    mySettings.homeStateVersion;
 }
