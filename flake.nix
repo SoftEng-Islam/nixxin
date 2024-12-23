@@ -53,10 +53,13 @@
           {
             ### Home Manager Integration ###
             imports = [ home-manager.nixosModules.home-manager ];
+            programs.home-manager.enable = true;
+
           }
         ];
         specialArgs = {
           inherit inputs;
+          # inherit home-manager;
           inherit mySettings;
         };
       };
