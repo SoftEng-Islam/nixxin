@@ -52,7 +52,7 @@
       # NixOS configuration entrypoint.
       # 'nixos-rebuild switch --flake .#hostname
       nixosConfigurations = {
-        ${mySettings.hostname} = nixpkgs.lib.nixosSystem {
+        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.stylix.nixosModules.stylix
             (./. + "/profiles" + ("/" + mySettings.profile)
