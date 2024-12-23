@@ -35,6 +35,7 @@
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
       ];
+      uid = 1000;
       packages = with pkgs; [ thunderbird ];
     };
   };

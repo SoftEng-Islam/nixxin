@@ -7,6 +7,7 @@
   # fonts.packages = [mySettings.fontPackage];
   fonts = {
     enableDefaultPackages = true;
+    fontDir.enable = true;
     packages = with pkgs; [
       mySettings.fontPackage
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts

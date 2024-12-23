@@ -17,6 +17,7 @@
         # common.default = ["gtk"];
         hyprland.default = [ "hyprland" ];
       };
+      extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
     };
   };
   environment.systemPackages = with pkgs; [

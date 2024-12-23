@@ -1,6 +1,7 @@
 { mySettings, pkgs, ... }: {
   # Set your time zone.
   time.timeZone = mySettings.timezone;
+  services.timesyncd.enable = true;
   services.chrony.enable = true;
   # Internationalisation Properties.
   i18n = {

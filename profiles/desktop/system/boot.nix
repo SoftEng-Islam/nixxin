@@ -4,8 +4,7 @@
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" ];
-    initrd.kernelModules = [ "amdgpu" ];
-
+    consoleLogLevel = 0;
     loader = {
       timeout = 4;
       efi.canTouchEfiVariables = true;
@@ -58,29 +57,6 @@
       "quiet"
       "splash"
       "loglevel=3"
-
-      # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=0"
-      "amdgpu.si_support=1"
-
-      # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=1"
-
-      "amdgpu.dc=1"
-      "amdgpu.dpm=1"
-      "amdgpu.gpu_recovery=1"
-      # "amdgpu.runpm=0"
-      # "amdgpu.gttsize=4096"
-      "amdgpu.ppfeaturemask=0xffffffff"
-      # "amdgpu.deep_color=1"
-      # "amdgpu.vm_size=8"
-      # "amdgpu.exp_hw_support=1"
-      # "amdgpu.vm_fragment_size=9"
-      # "amdgpu.vm_fault_stop=2"
-      # "amdgpu.vm_update_mode=3"
-      # "amdgpu.unified_memory=1"
-      # "amdgpu.memory_alloc_mode=2"
 
       # Performance
       "mitigations=off"
