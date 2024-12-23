@@ -4,7 +4,7 @@
       hub # Command-line wrapper for git that makes you better at GitHub
 
     ];
-  home-manager = {
+  home-manager.users.${mySettings.username} = {
 
     home.packages = [ pkgs.git ];
     programs.git = {
