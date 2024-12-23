@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ mySettings, pkgs, ... }: {
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
 
@@ -86,7 +86,7 @@
     libsForQt5.polkit-qt # A Qt wrapper around PolKit
   ];
 
-  home-manager = {
+  home-manager.users.${mySettings.username} = {
     imports = [
       # ./autostart.nix
       # ./extensions.nix
