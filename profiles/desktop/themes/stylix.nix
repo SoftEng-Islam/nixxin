@@ -45,4 +45,5 @@ in {
     targets.nixvim.enable =
       lib.mkIf (mySettings.themeDetails.themeName != null) false;
   };
+
 }

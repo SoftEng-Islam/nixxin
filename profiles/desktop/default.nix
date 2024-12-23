@@ -5,7 +5,6 @@
   imports = [
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
-    ./themes/stylix.nix
     ./modules/wm/gnome
     ./modules/wm/hyprland
 
@@ -213,8 +212,10 @@
   };
 
   home-manager.users.${mySettings.username} = {
+    imports = [ ./themes/stylix.nix ];
     stylix.targets.hyprland.enable = false;
-
+    useGlobalPkgs = true;
+    useUserPackages = false;
     programs = {
       # sagemath.enable = true;
       # Let Home Manager install and manage itself.
@@ -224,34 +225,32 @@
       kdeconnect.enable = false;
       ssh-agent.enable = true;
     };
-    users = {
-      users.${mySettings.username} = { ... }: {
-        isNormalUser = true;
-        programs.bash.enable = true;
-        gtk = {
-          enable = true;
-          cursorTheme = {
-            name = mySettings.cursorTheme;
-            size = mySettings.cursorSize;
-            package = mySettings.cursorPackage;
-          };
-          font = {
-            name = mySettings.fontName;
-            package = mySettings.fontPackage;
-            size = mySettings.fontSize;
-          };
-          iconTheme = {
-            name = mySettings.iconName;
-            package = mySettings.iconPackage;
-          };
-          theme = {
-            name = lib.mkForce mySettings.gtkTheme;
-            package = lib.mkForce mySettings.gtkPackage;
-          };
-          gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-        };
+
+    isNormalUser = true;
+    programs.bash.enable = true;
+    gtk = {
+      enable = true;
+      cursorTheme = {
+        name = mySettings.cursorTheme;
+        size = mySettings.cursorSize;
+        package = mySettings.cursorPackage;
       };
+      font = {
+        name = mySettings.fontName;
+        package = mySettings.fontPackage;
+        size = mySettings.fontSize;
+      };
+      iconTheme = {
+        name = mySettings.iconName;
+        package = mySettings.iconPackage;
+      };
+      theme = {
+        name = lib.mkForce mySettings.gtkTheme;
+        package = lib.mkForce mySettings.gtkPackage;
+      };
+      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
     };
+
     home = {
       stateVersion = mySettings.homeStateVersion;
       username = mySettings.username;

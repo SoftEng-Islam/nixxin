@@ -51,7 +51,7 @@
         modules = [
           # Include the NixOS configuration
           ./profiles/desktop
-          inputs.stylix.nixosModules.stylix
+          #inputs.stylix.nixosModules.stylix
           inputs.stylix.homeManagerModules.stylix
           inputs.nixvim.homeManagerModules.nixvim
 
