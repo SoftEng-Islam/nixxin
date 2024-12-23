@@ -1,5 +1,4 @@
 { pkgs, ... }: {
-  programs.lang-c.enable = true;
   environment.systemPackages = with pkgs; [
     valgrind
 
