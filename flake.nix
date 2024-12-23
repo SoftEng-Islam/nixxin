@@ -2,8 +2,10 @@
   description = "NixOS configuration";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager/master";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # System-wide colorscheming and typography for NixOS
     stylix.url = "github:danth/stylix";
     # Efficient animated wallpaper daemon for wayland, controlled at runtime
@@ -42,31 +44,28 @@
     };
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, ... }:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       pkgs = import inputs.nixpkgs { system = mySettings.system; };
     in {
       nixosConfigurations.${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          inherit inputs;
+          inherit mySettings;
+        };
         modules = [
-          inputs.home-manager.nixosModules.home-manager
-
-          # Include the NixOS configuration
           ./profiles/desktop
+          inputs.home-manager.nixosModules.default
           inputs.stylix.nixosModules.stylix
           # inputs.stylix.homeManagerModules.stylix
           inputs.nixvim.homeManagerModules.nixvim
 
           {
             ### Home Manager Integration ###
-            imports = [ home-manager.nixosModules.home-manager ];
+            # imports = [ home-manager.nixosModules.home-manager ];
           }
         ];
-        specialArgs = {
-          inherit inputs;
-          # inherit home-manager;
-          inherit mySettings;
-        };
       };
     };
 }

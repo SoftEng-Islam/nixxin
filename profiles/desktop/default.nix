@@ -1,10 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ mySettings, pkgs, lib, config, ... }: {
+{ mySettings, pkgs, lib, config, inputs, ... }: {
   imports = [
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
+    inputs.home-manager.nixosModules.default
+    ./main-user.nix
+
     ./modules/wm/gnome
     ./modules/wm/hyprland
 
@@ -38,6 +41,9 @@
     ./modules/programs/dev
 
   ];
+
+  main-user.enable = true;
+  main-user.userName = mySettings.username;
 
   # documentation.nixos.enable = false; # .desktop
   # documentation.nixos.enable = lib.mkForce false;
@@ -211,112 +217,115 @@
     # autoUpgrade.channel = "https://channels.nixos.org/nixos-24.05";
   };
 
-  home-manager.users.${mySettings.username} = {
-    imports = [ ./themes/stylix.nix ];
-    stylix.targets.hyprland.enable = false;
-    useGlobalPkgs = true;
-    useUserPackages = false;
-    programs = {
-      # sagemath.enable = true;
-      # Let Home Manager install and manage itself.
-      home-manager.enable = true;
-    };
-    services = {
-      kdeconnect.enable = false;
-      ssh-agent.enable = true;
-    };
+  home-manager = {
+    # users = { mySettings.username = import ./home.nix; };
+    users.${mySettings.username} = {
+      imports = [ ./themes/stylix.nix ];
+      stylix.targets.hyprland.enable = false;
+      useGlobalPkgs = true;
+      useUserPackages = false;
+      programs = {
+        # sagemath.enable = true;
+        # Let Home Manager install and manage itself.
+        home-manager.enable = true;
+      };
+      services = {
+        kdeconnect.enable = false;
+        ssh-agent.enable = true;
+      };
 
-    isNormalUser = true;
-    programs.bash.enable = true;
-    gtk = {
-      enable = true;
-      cursorTheme = {
-        name = mySettings.cursorTheme;
-        size = mySettings.cursorSize;
-        package = mySettings.cursorPackage;
-      };
-      font = {
-        name = mySettings.fontName;
-        package = mySettings.fontPackage;
-        size = mySettings.fontSize;
-      };
-      iconTheme = {
-        name = mySettings.iconName;
-        package = mySettings.iconPackage;
-      };
-      theme = {
-        name = lib.mkForce mySettings.gtkTheme;
-        package = lib.mkForce mySettings.gtkPackage;
-      };
-      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-    };
-
-    home = {
-      stateVersion = mySettings.homeStateVersion;
-      username = mySettings.username;
-      homeDirectory = "/home/${mySettings.username}";
-      # Home Manager can also manage your environment variables through
-      # 'home.sessionVariables'. These will be explicitly sourced when using a
-      # shell provided by Home Manager. If you don't want to manage your shell
-      # through Home Manager then you have to manually source 'hm-session-vars.sh'
-      # located at either
-      #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-      #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-      #  /etc/profiles/per-user/softeng/etc/profile.d/hm-session-vars.sh
-      sessionVariables = {
-        EDITOR = mySettings.editor;
-        TERM = mySettings.term;
-        BROWSER = mySettings.browser;
-      };
-      # Home Manager is pretty good at managing dotfiles. The primary way to manage
-      # plain files is through 'home.file'.
-      file = {
-        # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-        # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-        # # symlink to the Nix store copy.
-        # ".screenrc".source = dotfiles/screenrc;
-
-        # # You can also set the file content immediately.
-        # ".gradle/gradle.properties".text = ''
-        #   org.gradle.console=verbose
-        #   org.gradle.daemon.idletimeout=3600000
-        # '';
-      };
-    };
-
-    xdg = {
-      enable = true;
-      configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
-      userDirs = {
+      isNormalUser = true;
+      programs.bash.enable = true;
+      gtk = {
         enable = true;
-        createDirectories = true;
-        music = "${config.home.homeDirectory}/Music";
-        videos = "${config.home.homeDirectory}/Videos";
-        pictures = "${config.home.homeDirectory}/Pictures";
-        download = "${config.home.homeDirectory}/Downloads";
-        documents = "${config.home.homeDirectory}/Documents";
-        templates = null;
-        desktop = null;
-        publicShare = null;
-        extraConfig = {
-          XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
-          XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
+        cursorTheme = {
+          name = mySettings.cursorTheme;
+          size = mySettings.cursorSize;
+          package = mySettings.cursorPackage;
+        };
+        font = {
+          name = mySettings.fontName;
+          package = mySettings.fontPackage;
+          size = mySettings.fontSize;
+        };
+        iconTheme = {
+          name = mySettings.iconName;
+          package = mySettings.iconPackage;
+        };
+        theme = {
+          name = lib.mkForce mySettings.gtkTheme;
+          package = lib.mkForce mySettings.gtkPackage;
+        };
+        gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      };
+
+      home = {
+        stateVersion = mySettings.homeStateVersion;
+        username = mySettings.username;
+        homeDirectory = "/home/${mySettings.username}";
+        # Home Manager can also manage your environment variables through
+        # 'home.sessionVariables'. These will be explicitly sourced when using a
+        # shell provided by Home Manager. If you don't want to manage your shell
+        # through Home Manager then you have to manually source 'hm-session-vars.sh'
+        # located at either
+        #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
+        #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
+        #  /etc/profiles/per-user/softeng/etc/profile.d/hm-session-vars.sh
+        sessionVariables = {
+          EDITOR = mySettings.editor;
+          TERM = mySettings.term;
+          BROWSER = mySettings.browser;
+        };
+        # Home Manager is pretty good at managing dotfiles. The primary way to manage
+        # plain files is through 'home.file'.
+        file = {
+          # # Building this configuration will create a copy of 'dotfiles/screenrc' in
+          # # the Nix store. Activating the configuration will then make '~/.screenrc' a
+          # # symlink to the Nix store copy.
+          # ".screenrc".source = dotfiles/screenrc;
+
+          # # You can also set the file content immediately.
+          # ".gradle/gradle.properties".text = ''
+          #   org.gradle.console=verbose
+          #   org.gradle.daemon.idletimeout=3600000
+          # '';
         };
       };
-    };
 
-    # disable manuals as nmd fails to build often
-    manual = {
-      html.enable = false;
-      json.enable = false;
-      manpages.enable = false;
-    };
+      xdg = {
+        enable = true;
+        configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
+        userDirs = {
+          enable = true;
+          createDirectories = true;
+          music = "${config.home.homeDirectory}/Music";
+          videos = "${config.home.homeDirectory}/Videos";
+          pictures = "${config.home.homeDirectory}/Pictures";
+          download = "${config.home.homeDirectory}/Downloads";
+          documents = "${config.home.homeDirectory}/Documents";
+          templates = null;
+          desktop = null;
+          publicShare = null;
+          extraConfig = {
+            XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
+            XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
+          };
+        };
+      };
 
-    # QT Settings
-    qt = {
-      enable = true;
-      platformTheme.name = mySettings.qtPlatformTheme;
-      style.name = mySettings.qtStyle;
+      # disable manuals as nmd fails to build often
+      manual = {
+        html.enable = false;
+        json.enable = false;
+        manpages.enable = false;
+      };
+
+      # QT Settings
+      qt = {
+        enable = true;
+        platformTheme.name = mySettings.qtPlatformTheme;
+        style.name = mySettings.qtStyle;
+      };
     };
   };
 
