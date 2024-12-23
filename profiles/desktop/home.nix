@@ -1,5 +1,6 @@
 { config, pkgs, lib, mySettings, ... }: {
   imports = [
+    ./themes/stylix.nix
     ./home/cli/curl
     ./home/cli/git
     ./home/dev/web.nix
