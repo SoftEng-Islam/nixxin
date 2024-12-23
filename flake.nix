@@ -44,10 +44,10 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      pkgs = import inputs.nixpkgs { system = mySettings.system; };
+      pkgs = import nixpkgs.legacyPackages { system = mySettings.system; };
     in {
       nixosConfigurations.${mySettings.hostName} = nixpkgs.lib.nixosSystem {
         specialArgs = {
@@ -55,15 +55,16 @@
           inherit mySettings;
         };
         modules = [
-          ./profiles/desktop
-          inputs.home-manager.nixosModules.default
+          ./profiles/desktop/configuration.nix
+          inputs.home-manager.nixosModules.home-manager
           inputs.stylix.nixosModules.stylix
           # inputs.stylix.homeManagerModules.stylix
-          inputs.nixvim.homeManagerModules.nixvim
-
           {
             ### Home Manager Integration ###
             # imports = [ home-manager.nixosModules.home-manager ];
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.jdoe = import ./home.nix;
           }
         ];
       };
