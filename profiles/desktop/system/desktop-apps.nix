@@ -31,11 +31,11 @@
     bruno # Open-source IDE For exploring and testing APIs.
 
     # community-apps
-    telegram-desktop # Telegram Desktop messaging app
-    discord # All-in-one cross-platform voice and text chat for gamers
-    slack # Desktop client for Slack
-    signal-desktop # Private, simple, and secure messenger
-    zoom-us # zoom.us video conferencing application
+    # telegram-desktop # Telegram Desktop messaging app
+    # discord # All-in-one cross-platform voice and text chat for gamers
+    # slack # Desktop client for Slack
+    # signal-desktop # Private, simple, and secure messenger
+    # zoom-us # zoom.us video conferencing application
     ferdium # All your services in one place built by the community
     # mumble # Low-latency, high quality voice chat software
     # vesktop # Alternate client for Discord with Vencord built-in
