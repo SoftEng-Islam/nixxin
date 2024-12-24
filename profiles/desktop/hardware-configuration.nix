@@ -69,10 +69,6 @@
       extraPackages = with pkgs; [ mesa.opencl amdvlk rocmPackages.clr.icd ];
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
-
-    hardware.amdgpu.initrd.enable = true;
-    hardware.amdgpu.opencl.enable = true;
-    hardware.amdgpu.amdvlk.enable = true;
   };
 
   systemd.tmpfiles.rules = let
