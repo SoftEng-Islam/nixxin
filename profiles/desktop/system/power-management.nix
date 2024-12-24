@@ -1,5 +1,9 @@
-{ ... }: {
+{ lib, ... }: {
   # Power Management
+
+  services.upower.enable = lib.mkForce true;
+  services.power-profiles-daemon.enable = false;
+
   powerManagement = {
     enable = false;
     # powertop.enable = true; # enable powertop auto tuning on startup.

@@ -125,8 +125,6 @@
 
     # a DBus service that provides power management support to applications.
     openssh.enable = true; # Enable the OpenSSH daemon.
-    upower.enable = lib.mkForce true;
-    power-profiles-daemon.enable = true;
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
 
