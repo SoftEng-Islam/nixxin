@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ mySettings, pkgs, ... }: {
+{ lib, mySettings, pkgs, ... }: {
   imports = [
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
@@ -125,7 +125,7 @@
 
     # a DBus service that provides power management support to applications.
     openssh.enable = true; # Enable the OpenSSH daemon.
-    upower.enable = true;
+    upower.enable = lib.mkForce true;
     power-profiles-daemon.enable = true;
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
