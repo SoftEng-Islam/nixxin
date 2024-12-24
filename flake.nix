@@ -75,7 +75,6 @@
           pkgs = nixpkgs.legacyPackages.${mySettings.system};
           modules = [
             (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
-            inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
           ];
