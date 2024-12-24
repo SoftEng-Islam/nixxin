@@ -8,20 +8,22 @@
       wifi.backend = "iwd";
     };
     hostName = mySettings.hostName; # Define your hostname.
-    # interfaces.${wifiInterface}.useDHCP = true;
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
     firewall = { enable = false; };
-
+    # interfaces.${wifiInterface}.useDHCP = true;
     # useNetworkd = true;
+
+    # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
     firewall.extraCommands = ''
       iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE
-      iptables -A FORWARD -i wlan1 -o eno1 -m state --state RELATED,ESTABLISHED -j ACCEPT
-      iptables -A FORWARD -i eno1 -o wlan1 -j ACCEPT
+      iptables -A FORWARD -i ${mySettings.wlanInterface} -o ${mySettings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
+      iptables -A FORWARD -i ${mySettings.ethernet} -o ${mySettings.wlanInterface} -j ACCEPT
     '';
     nameservers =
       [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
+
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
