@@ -17,13 +17,12 @@
   boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
   boot.kernelModules = [ "fuse" "kvm-amd" "coretemp" ];
   boot.blacklistedKernelModules = [ "k10temp" ];
-  boot.kernelParams = [ "amd_pstate=active" ];
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
-  boot.loader.kernelParams = [
+  boot.kernelParams = [
+    "amd_pstate=active"
     # for Southern Islands (SI i.e. GCN 1) cards
-    "radeon.si_support=0"
-    "amdgpu.si_support=1"
-
+    # "radeon.si_support=0"
+    # "amdgpu.si_support=1"
     # for Sea Islands (CIK i.e. GCN 2) cards
     "radeon.cik_support=0"
     "amdgpu.cik_support=1"
