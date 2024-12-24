@@ -17,7 +17,7 @@
 
     # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
     firewall.extraCommands = ''
-      iptables -t nat -A POSTROUTING -o wlan1 -j MASQUERADE
+      iptables -t nat -A POSTROUTING -o ${mySettings.wlanInterface} -j MASQUERADE
       iptables -A FORWARD -i ${mySettings.wlanInterface} -o ${mySettings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
       iptables -A FORWARD -i ${mySettings.ethernet} -o ${mySettings.wlanInterface} -j ACCEPT
     '';
