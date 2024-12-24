@@ -9,7 +9,7 @@
   systemStateVersion = "24.05";
   homeStateVersion = "24.11";
   ethernet = "eno1";
-  wlanInterface = "wlan1";
+  wlanInterface = "wlan0";
 
   # mount path for efi boot partition; only used for uefi boot mode
   bootMountPath = "/boot";

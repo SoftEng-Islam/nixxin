@@ -105,7 +105,7 @@
 
     xserver.enable = false; # X11 windowing system.
     # Display Manager
-    xserver.displayManager.gdm.enable = false; # x11
+    xserver.displayManager.gdm.enable = true; # x11
     xserver.displayManager.gdm.wayland = true; # wayland
     # Desktop Manager
     xserver.desktopManager.gnome.enable = true;
