@@ -101,23 +101,18 @@
   # Services
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services = {
-    # Enable the X11 windowing system.
-    xserver.enable = false;
-    xserver.displayManager.gdm.wayland = true;
-    xserver.videoDrivers = [ "amdgpu" ]; # "displaylink" "modesetting"
-    xserver.xkb = {
-      variant = "";
-      layout = "us,ara";
-      options = "grp:win_space_toggle";
-    };
+    xserver.excludePackages = with pkgs; [ xterm ];
 
-    # Enable the GNOME Desktop Environment.
-    xserver.displayManager.gdm.enable = true;
+    xserver.enable = false; # X11 windowing system.
+    # Display Manager
+    xserver.displayManager.gdm.enable = false; # x11
+    xserver.displayManager.gdm.wayland = true; # wayland
+    # Desktop Manager
     xserver.desktopManager.gnome.enable = true;
 
+    # Enable the GNOME Desktop Environment.
     displayManager.enable = true;
     displayManager.defaultSession = mySettings.defaultSession;
-    # displayManager.defaultSession = "gnome"; # Set `gnome` or `hyprland`
 
     # populates contents of /bin and /usr/bin/
     envfs.enable = true;

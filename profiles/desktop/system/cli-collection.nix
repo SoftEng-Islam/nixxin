@@ -5,7 +5,6 @@
     # untrunc working_file.mp4 not_working.mp4
     untrunc-anthwlock # Restore a truncated mp4/mov (improved version of ponchio/untrunc)
 
-    # sct # X11 CLI Minimal utility to set display colour temperature. EX: sct 2000
     bashInteractive
     bat # Cat(1) clone with syntax highlighting and Git integration
     bluez # Official Linux Bluetooth protocol stack

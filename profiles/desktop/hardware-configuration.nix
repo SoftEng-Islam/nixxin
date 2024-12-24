@@ -44,7 +44,8 @@
   ];
 
   # services.fstrim.enable = true;
-  services.xserver.videoDrivers = [ "modesetting" ];
+  services.xserver.videoDrivers =
+    [ "amdgpu" ]; # "displaylink" "modesetting" "amdgpu"
 
   hardware = {
     amdgpu.amdvlk.enable = true;

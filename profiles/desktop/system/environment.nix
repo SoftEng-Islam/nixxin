@@ -19,7 +19,7 @@
       ELECTRON_ENABLE_WAYLAND = "1";
       ELM_ENGINE = "wayland_egl";
       WLR_DRM_DEVICES = "/dev/dri/card1";
-      GDK_BACKEND = "wayland,x11,*";
+      GDK_BACKEND = "wayland";
       GTK_THEME = mySettings.gtkTheme;
       LANG = mySettings.locale;
       MOZ_DBUS_REMOTE = "1";
