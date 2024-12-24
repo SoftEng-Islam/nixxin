@@ -1,7 +1,7 @@
 { ... }: {
   # Power Management
   powerManagement = {
-    enable = true;
+    enable = false;
     # powertop.enable = true; # enable powertop auto tuning on startup.
     cpuFreqGovernor =
       "performance"; # Often used values: “ondemand”, “powersave”, “performance”
