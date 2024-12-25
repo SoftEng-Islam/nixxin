@@ -68,7 +68,6 @@ in {
       kitty.enable = true;
       lazygit.enable = true;
       mako.enable = true;
-      plymouth.enable = true;
       nixvim.enable =
         lib.mkIf (mySettings.themeDetails.themeName != null) false;
     };
