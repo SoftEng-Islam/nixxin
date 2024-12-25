@@ -60,6 +60,7 @@
             inputs.stylix.nixosModules.stylix
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
+            { stylix.target.grub.enable = true; }
           ];
           specialArgs = {
             inherit inputs;

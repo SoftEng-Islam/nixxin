@@ -48,8 +48,29 @@ in {
       dark = mySettings.iconNameDark;
       light = mySettings.iconNameLight;
     };
-    targets.nixvim.enable =
-      lib.mkIf (mySettings.themeDetails.themeName != null) false;
+    targets = {
+      bat.enable = true;
+      alacritty.enable = true;
+      avizo.enable = true;
+      btop.enable = true;
+      cava.enable = true;
+      dunst.enable = true;
+      emacs.enable = true;
+      feh.enable = true;
+      firefox.enable = true;
+      fish.enable = true;
+      foot.enable = true;
+      fzf.enable = true;
+      gitui.enable = true;
+      gnome.enable = true;
+      gtk.enable = true;
+      # hyprland.enable = true;
+      kitty.enable = true;
+      lazygit.enable = true;
+      mako.enable = true;
+      plymouth.enable = true;
+      nixvim.enable =
+        lib.mkIf (mySettings.themeDetails.themeName != null) false;
+    };
   };
-
 }
