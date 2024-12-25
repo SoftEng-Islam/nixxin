@@ -68,6 +68,11 @@
         };
       };
 
+      home-manager.settings = {
+        useGlobalPkgs = true;
+        useUserPackages = true; # Install user packages to /etc/profiles
+      };
+
       # Standalone home-manager configuration entrypoint.
       # 'home-manager switch --flake .#username
       homeConfigurations = {
@@ -77,10 +82,6 @@
             (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = false;
-            }
           ];
           extraSpecialArgs = {
             inherit inputs;
