@@ -101,6 +101,7 @@
   # Services
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services = {
+    polkit.agent.enable = true;
     seatd.enable = true;
     # seatd.user = "root";
     # services.seatd.group = "seat";

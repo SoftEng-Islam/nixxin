@@ -45,7 +45,7 @@ in {
     iconTheme = {
       enable = true;
       package = mySettings.iconPackage;
-      dark = mySettings.iconName;
+      dark = mySettings.iconNameDark;
       light = mySettings.iconNameLight;
     };
     targets.nixvim.enable =
