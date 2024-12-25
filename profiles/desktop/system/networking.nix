@@ -7,7 +7,7 @@
       # increase boot speed
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
-    wireless.driver = "8188eu";
+    wireless.driver = "rtl8188eus-aircrack";
     hostName = mySettings.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
