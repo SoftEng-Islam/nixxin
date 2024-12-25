@@ -34,5 +34,13 @@
         TimeoutStopSec = 10;
       };
     };
+    user.services.ibus-daemon = {
+      Service = {
+        ExecStart = "${pkgs.ibus}/bin/ibus-daemon -drx";
+        Restart = "always";
+        RestartSec = 5;
+      };
+      Install = { WantedBy = [ "default.target" ]; };
+    };
   };
 }
