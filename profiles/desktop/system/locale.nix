@@ -36,18 +36,6 @@
     XMODIFIERS = "@im=ibus";
   };
 
-  # Include IBus in System Packages
-  environment.systemPackages = with pkgs; [
-    ibus
-    ibus-engines.m17n
-    # spell-checkers
-    # aspell
-    # aspellDicts.de
-    # aspellDicts.fr
-    # aspellDicts.en
-    # hunspell
-    # hunspellDicts.en-gb-ise
-  ];
   # Configure Virtual Console
   console = {
     enable = true;
@@ -83,4 +71,18 @@
     };
     wantedBy = [ "default.target" ]; # Ensures it starts on user session login
   };
+  # Include IBus in System Packages
+  environment.systemPackages = with pkgs; [
+    ibus
+    ibus-engines.m17n
+    ibus-theme-tools
+    ibus-with-plugins
+    # spell-checkers
+    # aspell
+    # aspellDicts.de
+    # aspellDicts.fr
+    # aspellDicts.en
+    # hunspell
+    # hunspellDicts.en-gb-ise
+  ];
 }
