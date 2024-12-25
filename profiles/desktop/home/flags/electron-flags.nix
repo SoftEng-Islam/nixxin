@@ -8,6 +8,5 @@
       --enable-wayland-ime
       --password-store=gnome-libsecret
     '';
-    mode = "0644"; # Readable by everyone, writable by the user.
   };
 }

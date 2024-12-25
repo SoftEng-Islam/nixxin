@@ -49,7 +49,9 @@
 
   # Themes
   theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
-  themeDetails = import (./. + "/themes/${theme}.nix") { dir = dotfilesDir; };
+  themeDetails = import (./. + "/profiles/desktop/themes/${theme}.nix") {
+    dir = dotfilesDir;
+  };
   colorScheme = "prefer-dark";
 
   # GTK
