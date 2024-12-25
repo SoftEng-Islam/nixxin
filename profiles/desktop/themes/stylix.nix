@@ -42,6 +42,12 @@ in {
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
       };
     };
+    iconTheme = {
+      enable = true;
+      package = mySettings.iconPackage;
+      dark = mySettings.iconName;
+      light = mySettings.iconNameLight;
+    };
     targets.nixvim.enable =
       lib.mkIf (mySettings.themeDetails.themeName != null) false;
   };

@@ -63,7 +63,8 @@
   qtStyle = "adwaita-dark";
 
   # Icons
-  iconName = "Papirus-Dark";
+  iconNameLight = "Papirus";
+  iconNameDark = "Papirus-Dark";
   iconPackage = pkgs.papirus-icon-theme;
 
   # Cursor
