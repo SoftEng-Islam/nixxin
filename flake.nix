@@ -77,6 +77,10 @@
             (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
+            {
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = false;
+            }
           ];
           extraSpecialArgs = {
             inherit inputs;
