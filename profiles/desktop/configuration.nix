@@ -101,6 +101,10 @@
   # Services
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services = {
+    seatd.enable = true;
+    # seatd.user = "root";
+    # services.seatd.group = "seat";
+
     # disable NetworkManager-wait-online.service
 
     xserver.excludePackages = with pkgs; [ xterm ];

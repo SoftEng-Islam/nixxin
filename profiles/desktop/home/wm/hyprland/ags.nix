@@ -2,7 +2,7 @@
 let
   details = mySettings.themeDetails;
   asztal =
-    pkgs.callPackage ../../../../non-nix/ags/default.nix { inherit inputs; };
+    pkgs.callPackage ../../../../../non-nix/ags/default.nix { inherit inputs; };
   agsColors = {
     wallpaper = details.wallpaper;
     theme = {

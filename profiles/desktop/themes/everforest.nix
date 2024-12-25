@@ -1,6 +1,6 @@
 { dir }: {
   themeName = "everforest-dark-hard";
-  wallpaper = ../non-nix/wallpapers/frieren-everforest.jpg;
+  wallpaper = ../../../non-nix/wallpapers/frieren-everforest.jpg;
   override = null;
 
   # Override stylix theme of btop.

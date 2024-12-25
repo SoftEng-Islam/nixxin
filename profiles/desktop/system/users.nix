@@ -27,6 +27,7 @@
         "qemu"
         "render"
         "root"
+        "tty"
         "sshd"
         "storage" # Access to storage devices.
         "uucp" # Access to serial ports and devices connected via serial ports.

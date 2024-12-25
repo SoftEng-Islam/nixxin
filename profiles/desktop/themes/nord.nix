@@ -1,6 +1,6 @@
 { ... }: {
   themeName = "nord";
-  wallpaper = ../non-nix/wallpapers/nord.jpg;
+  wallpaper = ../../../non-nix/wallpapers/nord.jpg;
   override = null;
 
   # Override stylix theme of btop.

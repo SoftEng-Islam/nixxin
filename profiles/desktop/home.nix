@@ -22,28 +22,28 @@
       BROWSER = mySettings.browser;
     };
   };
-  gtk = {
-    enable = true;
-    cursorTheme = {
-      name = mySettings.cursorTheme;
-      size = mySettings.cursorSize;
-      package = mySettings.cursorPackage;
-    };
-    font = {
-      name = mySettings.fontName;
-      package = mySettings.fontPackage;
-      size = mySettings.fontSize;
-    };
-    iconTheme = {
-      name = mySettings.iconName;
-      package = mySettings.iconPackage;
-    };
-    theme = {
-      name = lib.mkForce mySettings.gtkTheme;
-      package = lib.mkForce mySettings.gtkPackage;
-    };
-    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
-  };
+  # gtk = {
+  #   enable = true;
+  #   cursorTheme = {
+  #     name = mySettings.cursorTheme;
+  #     size = mySettings.cursorSize;
+  #     package = mySettings.cursorPackage;
+  #   };
+  #   font = {
+  #     name = mySettings.fontName;
+  #     package = mySettings.fontPackage;
+  #     size = mySettings.fontSize;
+  #   };
+  #   iconTheme = {
+  #     name = mySettings.iconName;
+  #     package = mySettings.iconPackage;
+  #   };
+  #   theme = {
+  #     name = lib.mkForce mySettings.gtkTheme;
+  #     package = lib.mkForce mySettings.gtkPackage;
+  #   };
+  #   gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+  # };
   xdg = {
     enable = true;
     configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;

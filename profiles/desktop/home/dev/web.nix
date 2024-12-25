@@ -10,5 +10,4 @@
       UV_USE_IO_URING = "0";
     };
   };
-  xdg.configFile.".bunfig.toml".source = ./dotfiles/.bunfig.toml;
 }

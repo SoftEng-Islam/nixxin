@@ -1,6 +1,6 @@
 {
   themeName = "gruvbox-material-dark-medium";
-  wallpaper = ../non-nix/wallpapers/dopesmoker_gruvbox.png;
+  wallpaper = ../../../non-nix/wallpapers/dopesmoker_gruvbox.png;
   override = null;
 
   # Override stylix theme of btop.
