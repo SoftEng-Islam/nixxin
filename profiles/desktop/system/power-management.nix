@@ -28,7 +28,7 @@
       RUNTIME_PM_ON_BAT = "auto";
 
       CPU_MIN_PERF_ON_AC = 10;
-      CPU_MAX_PERF_ON_AC = 90;
+      CPU_MAX_PERF_ON_AC = 100;
       CPU_MIN_PERF_ON_BAT = 10;
       CPU_MAX_PERF_ON_BAT = 50;
 

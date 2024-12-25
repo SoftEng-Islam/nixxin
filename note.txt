@@ -1,0 +1,51 @@
+lsmod | grep rtl8xxxu
+sudo modprobe rtl8xxxu
+boot.blacklistedKernelModules = [ "rtl8812au" ];
+lsmod | grep rtl8812au
+sudo modprobe -r rtl8812au
+
+
+
+
+error: builder for '/nix/store/xs4b16a9n1pksq0vbpp25z4ggwaav1lc-wpa_supplicant-2.11.tar.gz.drv' failed with exit code 1;
+       last 14 log lines:
+       > error checking the existence of https://tarballs.nixos.org/sha256/sha256-kS6gb3TjCo42+7aAZNbN/yGNjVkdsPxddd7myBrH/Ao=:
+       > curl: (6) Could not resolve host: tarballs.nixos.org
+       >
+       > trying https://w1.fi/releases/wpa_supplicant-2.11.tar.gz
+       >   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+       >                                  Dload  Upload   Total   Spent    Left  Speed
+       >   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: w1.fi
+       > Warning: Problem : timeout. Will retry in 1 seconds. 3 retries left.
+       >   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: w1.fi
+       > Warning: Problem : timeout. Will retry in 2 seconds. 2 retries left.
+       >   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: w1.fi
+       > Warning: Problem : timeout. Will retry in 4 seconds. 1 retries left.
+       >   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0curl: (6) Could not resolve host: w1.fi
+       > error: cannot download wpa_supplicant-2.11.tar.gz from any mirror
+       For full logs, run 'nix log /nix/store/xs4b16a9n1pksq0vbpp25z4ggwaav1lc-wpa_supplicant-2.11.tar.gz.drv'.
+error: 1 dependencies of derivation '/nix/store/64gml9k39s8466r1yvnsv6xys6vkrgzd-wpa_supplicant-2.11.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/c2qr1y9wdczzvayppii7nhbnw788kx8s-dbus-1.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/5js9n27qxx0a2qa8i64i0ljj1yzrf8xw-system-path.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/i2ziyjm818gk3d1d1h4x2x60xpkyfqxh-udev-rules.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/lxzzy8n8dd3vfiy6ak8z2g04kdhqgcfd-nixos-system-nixos-25.05.20241219.d70bd19.drv' failed to build
+
+
+
+systemctl status iwd
+journalctl -u iwd
+journalctl -u NetworkManager
+sudo iwctl
+sudo dhclient wlan0
+lsmod | grep iwlwifi
+sudo mv wpa_supplicant-2.11.tar.gz /nix/store/xs4b16a9n1pksq0vbpp25z4ggwaav1lc-wpa_supplicant-2.11.tar.gz
+
+
+
+
+#--------------------------------------------------------------------------------------------
+https://nixos.wiki/wiki/Change_root
+
+nixos-install-tools
+
+sudo nixos-enter --root /mnt/@

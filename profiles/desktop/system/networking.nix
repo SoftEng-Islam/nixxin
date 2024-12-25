@@ -5,8 +5,9 @@
       wifi.powersave = false;
       dns = "dnsmasq";
       # increase boot speed
-      wifi.backend = "iwd";
+      # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
+    # networking.wireless.driver = "nl80211,wext"
     hostName = mySettings.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
@@ -16,11 +17,11 @@
     # useNetworkd = true;
 
     # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
-    firewall.extraCommands = ''
-      iptables -t nat -A POSTROUTING -o ${mySettings.wlanInterface} -j MASQUERADE
-      iptables -A FORWARD -i ${mySettings.wlanInterface} -o ${mySettings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
-      iptables -A FORWARD -i ${mySettings.ethernet} -o ${mySettings.wlanInterface} -j ACCEPT
-    '';
+    # firewall.extraCommands = ''
+    #   iptables -t nat -A POSTROUTING -o ${mySettings.wlanInterface} -j MASQUERADE
+    #   iptables -A FORWARD -i ${mySettings.wlanInterface} -o ${mySettings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
+    #   iptables -A FORWARD -i ${mySettings.ethernet} -o ${mySettings.wlanInterface} -j ACCEPT
+    # '';
     nameservers =
       [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
 
@@ -28,7 +29,7 @@
     # ~~~~ Wireless Settings ~~~~
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
-    # wireless.enable = false;  # wpa_supplicant.
+    wireless.enable = false; # Default false # wpa_supplicant.
 
     # Wireless configuration
     # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
@@ -42,7 +43,7 @@
       #-- station wlan0 scan      # Scan for networks
       #-- station wlan0 get-networks  # Show available networks
       #-- station wlan0 connect SSID  # Connect to a network
-      enable = true;
+      enable = false;
       settings = {
         Network = {
           EnableIPv6 = true;
@@ -61,7 +62,6 @@
     #   127.0.0.1 softeng.home
     # '';
   };
-
   services = {
     hostapd.enable = false;
     resolved.enable = false; # systemd DNS resolver daemon, systemd-resolved.
@@ -100,6 +100,8 @@
     #    ];
   };
   environment.systemPackages = with pkgs; [
+    wpa_supplicant
+    wpa_supplicant_gui
     sipcalc # Advanced console ip subnet calculator
     iperf # Tool to measure IP bandwidth using UDP or TCP
     netcat # Free TLS/SSL implementation
