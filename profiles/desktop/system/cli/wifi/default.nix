@@ -9,6 +9,7 @@
     wireshark
     airgorah # WiFi security auditing software mainly based on aircrack-ng tools suite
     xterm
+    macchanger
 
     hcxdumptool # Small tool to capture packets from wlan devices
     hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
