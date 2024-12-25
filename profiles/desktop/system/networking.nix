@@ -7,7 +7,7 @@
       # increase boot speed
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
-    # networking.wireless.driver = "nl80211,wext"
+    # wireless.driver = "nl80211,wext"
     hostName = mySettings.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
@@ -100,6 +100,8 @@
     #    ];
   };
   environment.systemPackages = with pkgs; [
+    linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
+
     wpa_supplicant
     wpa_supplicant_gui
     sipcalc # Advanced console ip subnet calculator

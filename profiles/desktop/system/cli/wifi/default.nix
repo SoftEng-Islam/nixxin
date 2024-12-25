@@ -1,7 +1,5 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
-
     hashcat # Fast password cracker
     hashcat-utils # Small utilities that are useful in advanced password cracking
     john # John the Ripper password cracker
