@@ -1,6 +1,5 @@
 { pkgs, mySettings, ... }: {
   environment.systemPackages = with pkgs; [
-    xterm
 
     qt5.qtgraphicaleffects
     qt5.qtquickcontrols2
