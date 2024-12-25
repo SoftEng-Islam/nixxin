@@ -47,7 +47,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, lib, home-manager, ... }@inputs:
     let
       mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = mySettings.system; };
@@ -61,7 +61,11 @@
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             {
-              stylix.target.grub.enable = true;
+              stylix.image = mySettings.themeDetails.wallpaper;
+              stylix.base16Scheme =
+                lib.mkIf (mySettings.themeDetails.themeName != null)
+                "${pkgs.base16-schemes}/share/themes/${mySettings.themeDetails.themeName}.yaml";
+              stylix.targets.grub.enable = true;
               stylix.targets.plymouth.enable = true;
             }
           ];
