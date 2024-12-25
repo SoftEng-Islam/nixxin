@@ -16,8 +16,10 @@
   ];
   boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
   boot.kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" ];
-  boot.blacklistedKernelModules = [ "k10temp" "rtl8812au" ];
-  # boot.extraModulePackages = with config.boot.kernelPackages; [ rtl8812au ];
+  boot.blacklistedKernelModules =
+    [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
+  boot.extraModulePackages = with config.boot.kernelPackages;
+    [ rtl8188eus-aircrack ];
   boot.kernelParams = [
     "amd_pstate=active"
     # for Southern Islands (SI i.e. GCN 1) cards
