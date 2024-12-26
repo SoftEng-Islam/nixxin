@@ -212,6 +212,8 @@
     wl-clipboard
     wayvnc
 
+    inputs.ignis.packages.${system}.ignis
+
     # Themes & Graphical Interfaces
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
