@@ -1,4 +1,6 @@
-{ mySettings, pkgs, config, ... }: {
+{ mySettings, pkgs, ... }: {
+  systemd.network.wait-online.enable = false;
+  boot.initrd.systemd.network.wait-online.enable = false;
   networking = {
     networkmanager = {
       enable = true;
@@ -43,7 +45,7 @@
       #-- station wlan0 scan      # Scan for networks
       #-- station wlan0 get-networks  # Show available networks
       #-- station wlan0 connect SSID  # Connect to a network
-      enable = true;
+      enable = false;
       settings = {
         Network = {
           EnableIPv6 = true;
