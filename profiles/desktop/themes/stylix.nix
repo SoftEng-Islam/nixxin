@@ -22,21 +22,9 @@ in {
     };
 
     fonts = {
-      serif = {
-        package = mySettings.fontPackage;
-        name = mySettings.fontName; # Use JetBrains Mono for the serif font
-      };
-
-      sansSerif = {
-        package = mySettings.fontPackage;
-        name = mySettings.fontName; # Use JetBrains Mono for the sans-serif font
-      };
-
-      monospace = {
-        package = mySettings.fontPackage;
-        name = mySettings.fontName; # JetBrains Mono is a monospace font
-      };
-
+      serif.name = mySettings.serifFont;
+      sansSerif.name = mySettings.sansSerifFont;
+      monospace.name = mySettings.fontName;
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis

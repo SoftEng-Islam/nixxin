@@ -46,6 +46,9 @@
   fontName = "JetBrains Mono"; # Selected font
   fontPackage = pkgs.jetbrains-mono; # Typeface made for developers
   fontSize = 12; # Font size
+  serifFont = "Noto Serif";
+  sansSerifFont = "Noto Sans";
+  monospaceFont = "JetBrains Mono";
 
   # Themes
   theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
