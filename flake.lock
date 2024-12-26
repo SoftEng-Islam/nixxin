@@ -850,6 +850,24 @@
         "type": "github"
       }
     },
+    "ignis": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1735157137,
+        "narHash": "sha256-b0nB6vh5Zo7+u0bFPBNlv5UMgA0olIdhKuSvPvwP+tU=",
+        "owner": "linkfrg",
+        "repo": "ignis",
+        "rev": "9e82c96a117c5830bc23a138d740b1e973323148",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linkfrg",
+        "repo": "ignis",
+        "type": "github"
+      }
+    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -975,6 +993,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1729256560,
+        "narHash": "sha256-/uilDXvCIEs3C9l73JTACm4quuHUsIHcns1c+cHUJwA=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "4c2fcb090b1f3e5b47eaa7bd33913b574a11e0a0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1734649271,
         "narHash": "sha256-4EVBRhOjMDuGtMaofAIqzJbg4Ql7Ai0PSeuVZTHjyKQ=",
         "owner": "nixos",
@@ -989,7 +1023,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1732238832,
         "narHash": "sha256-sQxuJm8rHY20xq6Ah+GwIUkF95tWjGRd1X8xF+Pkk38=",
@@ -1005,7 +1039,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_4": {
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1732837521,
         "narHash": "sha256-jNRNr49UiuIwaarqijgdTR2qLPifxsVhlJrKzQ8XUIE=",
@@ -1152,8 +1186,9 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "hyprpicker": "hyprpicker",
+        "ignis": "ignis",
         "nix-ld": "nix-ld",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
         "pyprland": "pyprland",
         "stylix": "stylix",
@@ -1170,7 +1205,7 @@
         "flake-utils": "flake-utils_3",
         "gnome-shell": "gnome-shell",
         "home-manager": "home-manager_3",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "systems": "systems_7",
         "tinted-foot": "tinted-foot",
         "tinted-kitty": "tinted-kitty",
@@ -1193,7 +1228,7 @@
     "swww": {
       "inputs": {
         "flake-compat": "flake-compat_6",
-        "nixpkgs": "nixpkgs_4",
+        "nixpkgs": "nixpkgs_5",
         "utils": "utils"
       },
       "locked": {
