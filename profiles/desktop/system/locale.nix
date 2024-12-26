@@ -1,10 +1,7 @@
 { mySettings, pkgs, ... }: {
   #. Sometimes cached data or corrupt configuration files cause issues.
-  # rm -rf ~/.cache/fontconfig
+  # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus
   # fc-cache -fv
-  # rm -rf ~/.config/ibus
-
-  # fonts.packages = [mySettings.fontPackage];
   fonts = {
     enableDefaultPackages = true;
     fontDir.enable = true;
