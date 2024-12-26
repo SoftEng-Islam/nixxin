@@ -19,7 +19,6 @@
     ./system/data-transferring.nix
     ./system/desktop-apps.nix
     ./system/environment.nix
-    ./system/fonts.nix
     ./system/gaming.nix
     ./system/locale.nix
     ./system/media.nix
@@ -223,9 +222,7 @@
     gruvbox-dark-gtk # Gruvbox theme for GTK based desktop environments
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
 
-    qt6Packages.qtstyleplugin-kvantum
     qt6Packages.qt6ct
-    libsForQt5.qtstyleplugin-kvantum
     libsForQt5.qt5ct
 
     # Icons

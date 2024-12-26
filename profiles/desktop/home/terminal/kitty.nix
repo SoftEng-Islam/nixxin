@@ -22,7 +22,6 @@
       size = 10;
       name = "JetBrains Mono";
     };
-
     settings = {
       active_tab_font_style = "bold";
       bold_font = "auto";
@@ -108,5 +107,103 @@
       "ctrl+shift+backspace" = "restore_font_size";
       "ctrl+shift+f6" = "set_font_size 16.0";
     };
+  };
+  home.file.".config/kitty/kitty.conf" = {
+    text = ''
+      # The basic colors
+      foreground           #CDD6F4
+      background           #1E1E2E
+      selection_foreground #1E1E2E
+      selection_background #F5E0DC
+      # Cursor colors
+      cursor            #F5E0DC
+      cursor_text_color #1E1E2E
+      # URL underline color when hovering with mouse
+      url_color #B4BEFE
+
+      # Tab bar colors
+      active_tab_foreground   #11111B
+      active_tab_background   #CBA6F7
+      inactive_tab_foreground #CDD6F4
+      inactive_tab_background #181825
+      # tab_bar_background      #11111B
+
+      # Colors for marks (marked text in the terminal)
+      mark1_foreground #1E1E2E
+      mark1_background #87B0F9
+      mark2_foreground #1E1E2E
+      mark2_background #CBA6F7
+      mark3_foreground #1E1E2E
+      mark3_background #74C7EC
+      # The 16 terminal colors
+      # black
+      color0 #43465A
+      color8 #43465A
+      # red
+      color1 #F38BA8
+      color9 #F38BA8
+      # green
+      color2  #A6E3A1
+      color10 #A6E3A1
+      # yellow
+      color3  #F9E2AF
+      color11 #F9E2AF
+      # blue
+      color4  #87B0F9
+      color12 #87B0F9
+      # magenta
+      color5  #F5C2E7
+      color13 #F5C2E7
+      # cyan
+      color6  #94E2D5
+      color14 #94E2D5
+      # white
+      color7  #CDD6F4
+      color15 #A1A8C9
+
+      # Fonts
+      font_family CaskaydiaCove Nerd Font Mono
+      bold_font auto
+      italic_font auto
+      bold_italic_font auto
+      font_size 12.0
+
+
+      input_delay 0
+      repaint_delay 2
+      sync_to_monitor no
+      wayland_enable_ime no
+
+      # Cursor
+      cursor_shape beam
+      cursor_shape_unfocused beam
+      cursor_beam_thickness 2.5
+      cursor_blink_interval 0.3 ease-in-out
+      cursor_trail 1
+      cursor_trail_decay 0.1 0.4
+      cursor_trail_start_threshold 2
+
+      # Scrollbar
+      scrollback_indicator_opacity 1.0
+      scrollbar yes
+
+      # Windows Customization
+      window_padding_width 14
+      background_opacity 1
+      confirm_os_window_close 0
+      allow_clipboard_access clipboard_sanitize
+      allow_unsafe_paste yes
+
+      # Key binding
+      # Copy selected text to clipboard with Ctrl+C
+      map ctrl+c copy_to_clipboard
+      # Paste from clipboard with Ctrl+V
+      map ctrl+v paste_from_clipboard
+      # Cut selected text to clipboard with Ctrl+X
+      map ctrl+x cut_to_clipboard
+      # Terminate the terminal with Ctrl+Shift+C
+      map ctrl+shift+c send_text all \x03
+
+    '';
   };
 }

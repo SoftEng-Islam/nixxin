@@ -8,6 +8,7 @@
     ./home/media
     ./home/wm/gnome
     ./home/wm/hyprland
+    ./home/terminal
   ];
 
   stylix.targets.hyprland.enable = false;
