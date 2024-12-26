@@ -40,9 +40,7 @@
   };
 
   environment.gnome.excludePackages = with pkgs; [
-    gnome-photos
     cheese
-    evince
     epiphany
     gedit
     gnome-tour
