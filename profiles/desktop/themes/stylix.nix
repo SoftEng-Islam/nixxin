@@ -23,8 +23,11 @@ in {
 
     fonts = {
       serif.name = mySettings.serifFont;
+      serif.package = mySettings.serifPackage;
       sansSerif.name = mySettings.sansSerifFont;
+      sansSerif.package = mySettings.sansSerifPackage;
       monospace.name = mySettings.fontName;
+      monospace.package = mySettings.fontPackage;
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis

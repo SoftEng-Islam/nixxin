@@ -19,6 +19,7 @@
       hack-font # Typeface designed for source code
       inter # Typeface specially designed for user interfaces
       noto-fonts # Beautiful and free fonts for many languages
+
       noto-fonts-emoji # Color emoji font
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
