@@ -54,6 +54,7 @@
     tali # poker game
   ];
   environment.systemPackages = with pkgs; [
+    gnome-text-editor
     gsettings-desktop-schemas
     playerctl # gsconnect play/pause command
     pamixer # gcsconnect volume control

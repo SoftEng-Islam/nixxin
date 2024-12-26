@@ -56,5 +56,6 @@
     # office apps
     # libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
     obsidian # Powerful knowledge base that works on top of a local folder of plain text Markdown files
+    zathura # Highly customizable and functional PDF viewer
   ];
 }

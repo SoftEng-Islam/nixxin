@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  browser = [ "zen" ];
+  browser = [ "brave" ];
   imageViewer = [ "org.gnome.Loupe" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
@@ -12,7 +12,7 @@ let
     }) list);
 
   image = xdgAssociations "image" imageViewer [ "png" "svg" "jpeg" "gif" ];
-  video = xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" ];
+  video = xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" "wmv" "ts" ];
   audio = xdgAssociations "audio" audioPlayer [ "mp3" "flac" "wav" "aac" ];
   browserTypes = (xdgAssociations "application" browser [
     "json"
