@@ -3,11 +3,11 @@
 
   programs = {
     uwsm.enable = true;
-    xwayland.enable = false; # an X server for interfacing X11 apps.
     hyprlock.enable = false;
     hyprland = {
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      xwayland.enable = false;
       package = inputs.hyprland.packages.${pkgs.system}.default;
       portalPackage =
         inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
