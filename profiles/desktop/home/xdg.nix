@@ -1,6 +1,6 @@
 { config, pkgs, ... }:
 let
-  browser = [ "brave" ];
+  browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
@@ -33,9 +33,9 @@ let
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
     "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
     "text/html" = browser;
-    "text/plain" = [ "gnome-text-editor" ];
-    "x-scheme-handler/chrome" = [ "google-chrome" ];
-    "inode/directory" = [ "nautilus" ];
+    "text/plain" = [ "org.gnome.TextEditor" ];
+    # "x-scheme-handler/chrome" = [ "google-chrome" ];
+    # "inode/directory" = [ "nautilus" ];
   } // image // video // audio // browserTypes);
 in {
   xdg = {
