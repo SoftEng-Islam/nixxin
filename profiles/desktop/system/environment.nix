@@ -9,7 +9,7 @@
       # LIBGL_DRI3_ENABLE = "1";
 
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
-      # SDL_VIDEODRIVER = "wayland";
+      SDL_VIDEODRIVER = "wayland";
 
       HYPRCURSOR_THEME = mySettings.cursorTheme;
       HYPRCURSOR_SIZE = mySettings.cursorSize;
