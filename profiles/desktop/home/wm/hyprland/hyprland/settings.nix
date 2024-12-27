@@ -1,7 +1,7 @@
 { config, pkgs, settings, inputs, ... }:
 let details = settings.themeDetails;
 in {
-  home.packages = with pkgs; [ inputs.swww.packages.${pkgs.system}.swww ];
+  home.packages = [ inputs.swww.packages.${pkgs.system}.swww ];
 
   wayland.windowManager.hyprland.settings = {
     monitor = [

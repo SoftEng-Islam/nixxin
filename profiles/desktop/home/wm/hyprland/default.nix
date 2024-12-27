@@ -1,4 +1,4 @@
-{ inputs, config, lib, settings, pkgs, ... }:
+{ inputs, pkgs, ... }:
 # home.file.".config/hypr/hyprland.conf".text =
 #   builtins.readFile ./hypr/hyprland.conf;
 # Make stuff work on wayland
@@ -26,10 +26,11 @@
     package = pkgs.hyprland;
     systemd.enable = true;
     plugins = [
-      pkgs.hyprlandPlugins.hyprexpo
-      pkgs.hyprlandPlugins.hypr-dynamic-cursors
-    ] ++ lib.optional (settings.themeDetails.bordersPlusPlus)
-      pkgs.hyprlandPlugins.borders-plus-plus;
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+    ];
   };
 
 }
