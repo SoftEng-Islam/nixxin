@@ -33,7 +33,7 @@
     python3Packages.wheel
     python3Packages.jinja2
     python3Packages.material-color-utilities
-    python3Packages.materialyoucolor
+    # python3Packages.materialyoucolor
     # Override pallets-sphinx-themes to fix the build
     (python3Packages.pallets-sphinx-themes.overrideAttrs (old: {
       doCheck = false; # Disable build checks
