@@ -6,7 +6,7 @@
     python3
     python3Packages.pip
     # NOTE: add here any python package you need globally
-    python3Packages.materialyoucolor
+    python312Packages.materialyoucolor
     python3Packages.beautifulsoup4
     python3Packages.build
     python3Packages.cairosvg
@@ -33,6 +33,6 @@
     python3Packages.urllib3
     python3Packages.wheel
     python3Packages.jinja2
-    python3Packages.pallets-sphinx-themes
+    python312Packages.pallets-sphinx-themes
   ];
 }
