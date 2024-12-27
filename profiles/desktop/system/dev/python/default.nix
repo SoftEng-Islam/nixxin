@@ -31,7 +31,8 @@
     python3Packages.tzlocal
     python3Packages.urllib3
     python3Packages.wheel
-    # python3Packages.jinja2
+    python3Packages.django
+    # python312Packages.jinja2
     python3Packages.material-color-utilities
     python3Packages.materialyoucolor
     # Override pallets-sphinx-themes to fix the build

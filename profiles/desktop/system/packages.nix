@@ -101,7 +101,7 @@
     weston # Lightweight and functional Wayland compositor
     waypipe # Network proxy for Wayland clients (applications)
     wayland-utils
-
+    wlrctl
     # Cryptographic Tools
     openssl # A cryptographic library that implements the SSL and TLS protocols
     nettle # Cryptographic library
