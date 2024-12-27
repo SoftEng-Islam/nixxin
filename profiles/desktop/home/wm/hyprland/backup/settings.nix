@@ -1,5 +1,5 @@
-{ config, mySettings, ... }:
-let details = mySettings.themeDetails;
+{ config, settings, ... }:
+let details = settings.themeDetails;
 in {
 
   wayland.windowManager.hyprland.settings = {
@@ -28,8 +28,8 @@ in {
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
       "ags &"
-      "hyprctl setcursor ${mySettings.cursorTheme}  ${
-        toString mySettings.cursorSize
+      "hyprctl setcursor ${settings.cursorTheme}  ${
+        toString settings.cursorSize
       }"
     ];
     master = { new_is_master = true; };

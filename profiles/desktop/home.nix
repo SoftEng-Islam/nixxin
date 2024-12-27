@@ -1,4 +1,4 @@
-{ config, lib, mySettings, ... }: {
+{ config, lib, settings, ... }: {
   imports = [
     ./themes/stylix.nix
 
@@ -17,13 +17,13 @@
   stylix.targets.hyprland.enable = false;
 
   home = {
-    username = mySettings.username;
-    homeDirectory = "/home/${mySettings.username}";
-    stateVersion = mySettings.homeStateVersion;
+    username = settings.username;
+    homeDirectory = "/home/${settings.username}";
+    stateVersion = settings.homeStateVersion;
     sessionVariables = {
-      EDITOR = mySettings.editor;
-      TERM = mySettings.term;
-      BROWSER = mySettings.browser;
+      EDITOR = settings.editor;
+      TERM = settings.term;
+      BROWSER = settings.browser;
     };
   };
   # disable manuals as nmd fails to build often
@@ -36,22 +36,22 @@
   # gtk = {
   #   enable = true;
   #   cursorTheme = {
-  #     name = mySettings.cursorTheme;
-  #     size = mySettings.cursorSize;
-  #     package = mySettings.cursorPackage;
+  #     name = settings.cursorTheme;
+  #     size = settings.cursorSize;
+  #     package = settings.cursorPackage;
   #   };
   #   font = {
-  #     name = mySettings.fontName;
-  #     package = mySettings.fontPackage;
-  #     size = mySettings.fontSize;
+  #     name = settings.fontName;
+  #     package = settings.fontPackage;
+  #     size = settings.fontSize;
   #   };
   #   iconTheme = {
-  #     name = mySettings.iconName;
-  #     package = mySettings.iconPackage;
+  #     name = settings.iconName;
+  #     package = settings.iconPackage;
   #   };
   #   theme = {
-  #     name = lib.mkForce mySettings.gtkTheme;
-  #     package = lib.mkForce mySettings.gtkPackage;
+  #     name = lib.mkForce settings.gtkTheme;
+  #     package = lib.mkForce settings.gtkPackage;
   #   };
   #   gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   # };
@@ -59,7 +59,7 @@
   # QT Settings
   qt = {
     enable = true;
-    platformTheme.name = mySettings.qtPlatformTheme;
-    style.name = mySettings.qtStyle;
+    platformTheme.name = settings.qtPlatformTheme;
+    style.name = settings.qtStyle;
   };
 }

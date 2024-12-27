@@ -1,11 +1,11 @@
-{ pkgs, mySettings, ... }: {
+{ pkgs, settings, ... }: {
   environment.systemPackages = with pkgs; [
 
     qt5.qtquickcontrols2
     qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    mySettings.browserPkg
-    mySettings.termPkg
+    settings.browserPkg
+    settings.termPkg
 
     # screenshot
     grim # Grab images from a Wayland compositor

@@ -1,4 +1,4 @@
-{ mySettings, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
 
@@ -11,21 +11,21 @@
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
       SDL_VIDEODRIVER = "wayland";
 
-      HYPRCURSOR_THEME = mySettings.cursorTheme;
-      HYPRCURSOR_SIZE = mySettings.cursorSize;
+      HYPRCURSOR_THEME = settings.cursorTheme;
+      HYPRCURSOR_SIZE = settings.cursorSize;
       _JAVA_AWT_WM_NONREPARENTING = "1";
       BEMENU_BACKEND = "wayland";
       BUN_INSTALL = "$HOME/.bun";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
       CLUTTER_BACKEND = "wayland";
       ECORE_EVAS_ENGINE = "wayland_egl";
-      EDITOR = mySettings.editor;
+      EDITOR = settings.editor;
       ELECTRON_ENABLE_WAYLAND = "1";
       ELM_ENGINE = "wayland_egl";
       WLR_DRM_DEVICES = "/dev/dri/card1";
       GDK_BACKEND = "wayland";
-      GTK_THEME = mySettings.gtkTheme;
-      LANG = mySettings.locale;
+      GTK_THEME = settings.gtkTheme;
+      LANG = settings.locale;
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
@@ -35,7 +35,7 @@
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       RUST_BACKTRACE = "1";
-      VISUAL = mySettings.visual;
+      VISUAL = settings.visual;
       WAYLAND = "1";
       WINEESYNC = "1";
       WINEFSYNC = "1";
@@ -84,8 +84,8 @@
         + "$GI_TYPELIB_PATH";
     };
     sessionVariables = {
-      XCURSOR_THEME = mySettings.cursorTheme;
-      # XCURSOR_SIZE = "${toString.mySettings.cursorSize}";
+      XCURSOR_THEME = settings.cursorTheme;
+      # XCURSOR_SIZE = "${toString.settings.cursorSize}";
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
       # Enables portal-based access for apps like VSCode on Wayland
       GTK_USE_PORTAL = "1";

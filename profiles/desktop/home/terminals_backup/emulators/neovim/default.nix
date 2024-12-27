@@ -1,4 +1,4 @@
-{ mySettings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }: {
   home.packages = with pkgs; [ ripgrep neovide ];
 
   imports = [
@@ -21,8 +21,8 @@
     # UI plugins
     ./plugins/ui/bufferline.nix
     ./plugins/ui/lualine.nix
-  ] ++ lib.optional (mySettings.themeDetails.themeName != null)
-    ./colorscheme/${mySettings.theme}.nix;
+  ] ++ lib.optional (settings.themeDetails.themeName != null)
+    ./colorscheme/${settings.theme}.nix;
 
   programs.nixvim.enable = true;
 }

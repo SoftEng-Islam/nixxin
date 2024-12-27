@@ -1,4 +1,4 @@
-{ mySettings, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -13,7 +13,7 @@
 
       grub = {
         enable = true;
-        fontSize = mySettings.fontSize;
+        fontSize = settings.fontSize;
         # nix path-info -r nixpkgs#sleek-grub-theme
         # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
         efiSupport = true;

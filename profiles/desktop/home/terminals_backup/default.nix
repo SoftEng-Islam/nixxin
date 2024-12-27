@@ -1,4 +1,4 @@
-{ mySettings, config, ... }:
+{ settings, config, ... }:
 let
   data = config.xdg.dataHome;
   conf = config.xdg.configHome;
@@ -20,7 +20,7 @@ in {
     WINEPREFIX = "${data}/wine";
     XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
 
-    EDITOR = "${mySettings.editor}";
+    EDITOR = "${settings.editor}";
     DIRENV_LOG_FORMAT = "";
 
     # auto-run programs using nix-index-database

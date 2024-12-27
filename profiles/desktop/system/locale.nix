@@ -1,4 +1,4 @@
-{ mySettings, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   #. Sometimes cached data or corrupt configuration files cause issues.
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus
   # fc-cache -fv
@@ -6,7 +6,7 @@
     enableDefaultPackages = true;
     fontDir.enable = true;
     packages = with pkgs; [
-      mySettings.fontPackage
+      settings.fontPackage
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review
@@ -29,9 +29,9 @@
       hinting.enable = true;
       hinting.style = "full";
       defaultFonts = {
-        monospace = [ "${mySettings.monospaceFont}" ];
-        sansSerif = [ "${mySettings.sansSerifFont}" ];
-        serif = [ "${mySettings.serifFont}" ];
+        monospace = [ "${settings.monospaceFont}" ];
+        sansSerif = [ "${settings.sansSerifFont}" ];
+        serif = [ "${settings.serifFont}" ];
       };
     };
   };
@@ -40,12 +40,12 @@
   # Internationalisation & Time Zone
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # Set your time zone.
-  time.timeZone = mySettings.timezone;
+  time.timeZone = settings.timezone;
   services.timesyncd.enable = true;
   services.chrony.enable = true;
   # Internationalisation Properties.
   i18n = {
-    defaultLocale = mySettings.locale;
+    defaultLocale = settings.locale;
     extraLocaleSettings = {
       LC_ADDRESS = "en_US.UTF-8";
       LC_IDENTIFICATION = "en_US.UTF-8";
@@ -56,7 +56,7 @@
       LC_PAPER = "en_US.UTF-8";
       LC_TELEPHONE = "en_US.UTF-8";
       LC_TIME = "en_US.UTF-8";
-      LC_ALL = mySettings.locale;
+      LC_ALL = settings.locale;
     };
     # Configure Input Method (IBus for GNOME)
     inputMethod = {

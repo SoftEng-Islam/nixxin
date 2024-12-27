@@ -1,15 +1,15 @@
-{ pkgs, mySettings, lib, ... }: {
+{ pkgs, settings, lib, ... }: {
   programs.git = {
     enable = true;
     extraConfig = {
       color.ui = true;
       core.editor = "nvim";
       credential.helper = "store";
-      github.user = mySettings.name;
+      github.user = settings.name;
       push.autoSetupRemote = true;
     };
-    userEmail = mySettings.email;
-    userName = mySettings.name;
+    userEmail = settings.email;
+    userName = settings.name;
   };
   programs.ssh = {
     enable = true;

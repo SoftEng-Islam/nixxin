@@ -1,9 +1,9 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ inputs, mySettings, pkgs, ... }: {
+{ inputs, settings, pkgs, ... }: {
   imports = [
-    # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
+    # (./. + "../" + ("/" + builtins.elemAt settings.wm 1) + ".nix")
     ./hardware-configuration.nix
     ./xremap.nix
     ./system/cli
@@ -84,7 +84,7 @@
   };
   nixpkgs = {
     config = {
-      rocmSupport = (if mySettings.gpuType == "amd" then true else false);
+      rocmSupport = (if settings.gpuType == "amd" then true else false);
       allowUnfree = true;
     };
   };
@@ -117,7 +117,7 @@
 
     # Enable the GNOME Desktop Environment.
     displayManager.enable = true;
-    displayManager.defaultSession = mySettings.defaultSession;
+    displayManager.defaultSession = settings.defaultSession;
 
     # populates contents of /bin and /usr/bin/
     envfs.enable = true;
@@ -287,5 +287,5 @@
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   # Don't Change The Fucking Version!
   system.stateVersion =
-    mySettings.systemStateVersion; # Did you read the comment?
+    settings.systemStateVersion; # Did you read the comment?
 }

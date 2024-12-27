@@ -54,29 +54,29 @@
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
     let
-      mySettings = import (./. + "/mySettings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs { system = mySettings.system; };
+      settings = import (./. + "/settings.nix") { inherit pkgs; };
+      pkgs = import nixpkgs { system = settings.system; };
     in {
       # NixOS configuration entrypoint.
       # 'nixos-rebuild switch --flake .#hostname
       nixosConfigurations = {
-        ${mySettings.hostName} = nixpkgs.lib.nixosSystem {
+        ${settings.hostName} = nixpkgs.lib.nixosSystem {
           modules = [
             inputs.stylix.nixosModules.stylix
-            (./. + "/profiles" + ("/" + mySettings.profile)
+            (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
             {
 
-              stylix.image = mySettings.themeDetails.wallpaper;
+              stylix.image = settings.themeDetails.wallpaper;
               stylix.base16Scheme =
-                "${pkgs.base16-schemes}/share/themes/${mySettings.themeDetails.themeName}.yaml";
+                "${pkgs.base16-schemes}/share/themes/${settings.themeDetails.themeName}.yaml";
               stylix.targets.grub.enable = true;
               stylix.targets.plymouth.enable = true;
             }
           ];
           specialArgs = {
             inherit inputs;
-            inherit mySettings;
+            inherit settings;
           };
         };
       };
@@ -89,16 +89,16 @@
       # Standalone home-manager configuration entrypoint.
       # 'home-manager switch --flake .#username
       homeConfigurations = {
-        ${mySettings.username} = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${mySettings.system};
+        ${settings.username} = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${settings.system};
           modules = [
-            (./. + "/profiles" + ("/" + mySettings.profile) + "/home.nix")
+            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
           ];
           extraSpecialArgs = {
             inherit inputs;
-            inherit mySettings;
+            inherit settings;
           };
         };
       };

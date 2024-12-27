@@ -1,4 +1,4 @@
-{ config, mySettings, lib, pkgs, ... }:
+{ config, settings, lib, pkgs, ... }:
 let
   browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
@@ -54,7 +54,7 @@ in {
       desktop = null;
       publicShare = null;
       extraConfig = {
-        XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
+        XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
         XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
         XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
       };

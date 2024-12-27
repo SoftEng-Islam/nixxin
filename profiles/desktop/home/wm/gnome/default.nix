@@ -1,4 +1,4 @@
-{ mySettings, ... }: {
+{ settings, ... }: {
   imports = [
     # ./autostart.nix
     # ./extensions.nix

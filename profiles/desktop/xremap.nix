@@ -1,10 +1,10 @@
-{ inputs, mySettings, ... }: {
+{ inputs, settings, ... }: {
   imports = [
     inputs.xremap-flake.nixosModules.default
 
   ];
   users.users.root.password = "1122";
-  users.users.${mySettings.username} = {
+  users.users.${settings.username} = {
     password = "1122";
     isNormalUser = true;
   };
@@ -12,7 +12,7 @@
     # NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap
     withHypr = true;
     serviceMode = "user";
-    userName = mySettings.username;
+    userName = settings.username;
     # Modmap for single key rebinds
     config = {
       keymap = [{

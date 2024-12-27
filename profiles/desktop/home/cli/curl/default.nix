@@ -1,4 +1,4 @@
-{ mySettings, ... }: {
+{ settings, ... }: {
   home.file.".curlrc" = {
     text = ''
       # this is a sample .curlrc file

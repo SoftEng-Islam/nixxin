@@ -1,5 +1,5 @@
-{ pkgs, lib, mySettings, ... }:
-let details = mySettings.themeDetails;
+{ pkgs, lib, settings, ... }:
+let details = settings.themeDetails;
 in {
   stylix = {
     enable = true;
@@ -16,18 +16,18 @@ in {
     };
 
     cursor = {
-      size = mySettings.cursorSize;
-      name = mySettings.cursorTheme;
-      package = mySettings.cursorPackage;
+      size = settings.cursorSize;
+      name = settings.cursorTheme;
+      package = settings.cursorPackage;
     };
 
     fonts = {
-      serif.name = mySettings.serifFont;
-      serif.package = mySettings.serifPackage;
-      sansSerif.name = mySettings.sansSerifFont;
-      sansSerif.package = mySettings.sansSerifPackage;
-      monospace.name = mySettings.fontName;
-      monospace.package = mySettings.fontPackage;
+      serif.name = settings.serifFont;
+      serif.package = settings.serifPackage;
+      sansSerif.name = settings.sansSerifFont;
+      sansSerif.package = settings.sansSerifPackage;
+      monospace.name = settings.fontName;
+      monospace.package = settings.fontPackage;
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
@@ -35,9 +35,9 @@ in {
     };
     iconTheme = {
       enable = true;
-      package = mySettings.iconPackage;
-      dark = mySettings.iconNameDark;
-      light = mySettings.iconNameLight;
+      package = settings.iconPackage;
+      dark = settings.iconNameDark;
+      light = settings.iconNameLight;
     };
     targets = {
       bat.enable = true;
@@ -59,8 +59,7 @@ in {
       kitty.enable = true;
       lazygit.enable = true;
       mako.enable = true;
-      nixvim.enable =
-        lib.mkIf (mySettings.themeDetails.themeName != null) false;
+      nixvim.enable = lib.mkIf (settings.themeDetails.themeName != null) false;
     };
   };
 }
