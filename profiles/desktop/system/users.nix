@@ -1,14 +1,14 @@
-{ mySettings, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
-    groups.uinput.members = [ "${mySettings.username}" ];
-    groups.input.members = [ "${mySettings.username}" ];
-    users.${mySettings.username} = {
+    groups.uinput.members = [ "${settings.username}" ];
+    groups.input.members = [ "${settings.username}" ];
+    users.${settings.username} = {
       isNormalUser = true;
       # isSystemUser = false;
       # hashedPassword = "";
-      description = mySettings.name;
-      home = "/home/${mySettings.username}";
+      description = settings.name;
+      home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
         "gamemode"

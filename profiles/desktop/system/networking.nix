@@ -1,4 +1,4 @@
-{ mySettings, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
   networking = {
@@ -10,7 +10,7 @@
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
     wireless.driver = "rtl8188eus-aircrack";
-    hostName = mySettings.hostName; # Define your hostname.
+    hostName = settings.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
@@ -20,9 +20,9 @@
 
     # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
     # firewall.extraCommands = ''
-    #   iptables -t nat -A POSTROUTING -o ${mySettings.wlanInterface} -j MASQUERADE
-    #   iptables -A FORWARD -i ${mySettings.wlanInterface} -o ${mySettings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
-    #   iptables -A FORWARD -i ${mySettings.ethernet} -o ${mySettings.wlanInterface} -j ACCEPT
+    #   iptables -t nat -A POSTROUTING -o ${settings.wlanInterface} -j MASQUERADE
+    #   iptables -A FORWARD -i ${settings.wlanInterface} -o ${settings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
+    #   iptables -A FORWARD -i ${settings.ethernet} -o ${settings.wlanInterface} -j ACCEPT
     # '';
     nameservers =
       [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
