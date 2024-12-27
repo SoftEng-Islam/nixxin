@@ -50,6 +50,11 @@
       url = "github:hyprland-community/pyprland";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
@@ -93,6 +98,7 @@
           pkgs = nixpkgs.legacyPackages.${settings.system};
           modules = [
             (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
+            inputs.plasma-manager.homeManagerModules.plasma-manager
             inputs.stylix.homeManagerModules.stylix
             inputs.nixvim.homeManagerModules.nixvim
           ];

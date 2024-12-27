@@ -23,13 +23,13 @@
       size = "250, 50";
       outline_thickness = 0;
       dots_size = 0.26;
-      inner_color = "#${config.lib.stylix.colors.base05}";
+      # inner_color = "#${config.lib.stylix.colors.base05}";
       dots_spacing = 0.64;
       dots_center = true;
       fade_on_empty = true;
       placeholder_text = "<i>Password...</i>";
       hide_input = false;
-      check_color = "rgb(40, 200, 250)";
+      # check_color = "rgb(40, 200, 250)";
       position = "0, 50";
       halign = "center";
       valign = "bottom";
