@@ -37,7 +37,6 @@
     pip-audit
     (python3.withPackages (ps: [ ps.jinja2 ]))
     jinja2-cli
-    python312Packages.jinja2
     # python312Packages.jinja2
   ];
 }
