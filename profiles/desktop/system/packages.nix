@@ -1,6 +1,6 @@
 { pkgs, settings, ... }: {
   environment.systemPackages = with pkgs; [
-
+    kdePackages.xdg-desktop-portal-kde
     qt5.qtquickcontrols2
     qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
@@ -121,9 +121,9 @@
     loupe # A simple image viewer application written with GTK4 and Rust
 
     # Notifications
-    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    libnotify # A library that sends desktop notifications to a notification daemon
-    dunst # Lightweight and customizable notification daemon
+    # notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
+    # libnotify # A library that sends desktop notifications to a notification daemon
+    # dunst # Lightweight and customizable notification daemon
     # mako # A lightweight Wayland notification daemon
     # avizo # Neat notification daemon for Wayland
 

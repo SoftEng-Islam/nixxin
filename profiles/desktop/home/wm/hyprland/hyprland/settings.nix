@@ -1,22 +1,20 @@
-{ config, pkgs, settings, inputs, ... }: let
-    details = settings.themeDetails;
+{ config, pkgs, settings, inputs, ... }:
+let details = settings.themeDetails;
 in {
-  home.packages = with pkgs; [
-    inputs.swww.packages.${pkgs.system}.swww
-  ];
+  home.packages = with pkgs; [ inputs.swww.packages.${pkgs.system}.swww ];
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
-      "DP-1, 3440x1440@120, 0x0, 1"
-      "HDMI-A-2,1920x1080@120,3440x100, 1"
-      "HDMI-A-1,3840x2160@120,-300x-2160, 1"
-      #"HDMI-A-1,2560x1440@60,-900x-100, 1.6,transform,3"
-      # "eDP-1,1920x1080@60,0x0, 1"
-      "eDP-1,2560x1600@120,2560x400, 1.6"
-      "DP-3,3840x2160@60,0x0, 1.5"
-      "HEADLESS-2,1920x1080@60,-1920x100, 1"
-      "HEADLESS-3,1280x800@60,1080x1440, 1"
-      "DVI-I-1, 3840x2160@60, 1920x0, 1"
+      # "DP-1, 3440x1440@120, 0x0, 1"
+      # "HDMI-A-2,1920x1080@120,3440x100, 1"
+      # "HDMI-A-1,3840x2160@120,-300x-2160, 1"
+      # #"HDMI-A-1,2560x1440@60,-900x-100, 1.6,transform,3"
+      # # "eDP-1,1920x1080@60,0x0, 1"
+      # "eDP-1,2560x1600@120,2560x400, 1.6"
+      # "DP-3,3840x2160@60,0x0, 1.5"
+      # "HEADLESS-2,1920x1080@60,-1920x100, 1"
+      # "HEADLESS-3,1280x800@60,1080x1440, 1"
+      # "DVI-I-1, 3840x2160@60, 1920x0, 1"
       ",preferred,auto,1"
     ];
 
@@ -24,11 +22,11 @@ in {
       "swww-daemon &"
       "ags &"
       # "hyprctl setcursor Catppuccin-Mocha-Lavender-Cursors 24"
-      "[workspace 2 silent] firefox"
-      "[workspace 3 silent] kitty btop"
-      "[workspace 3 silent] kitty ncmpcpp"
-      "[workspace 3 silent] kitty cava"
-      "steam -nochatui -nofriendsui -silent -vgui"
+      # "[workspace 2 silent] firefox"
+      # "[workspace 3 silent] kitty btop"
+      # "[workspace 3 silent] kitty ncmpcpp"
+      # "[workspace 3 silent] kitty cava"
+      # "steam -nochatui -nofriendsui -silent -vgui"
     ];
 
     general = {
@@ -48,7 +46,7 @@ in {
         special = true;
         brightness = 1.0;
         contrast = 1.0;
-        noise = 0.02;
+        noise = 2.0e-2;
         passes = 3;
         size = 10;
       };
@@ -82,27 +80,23 @@ in {
       ];
     };
 
-    debug = {
-        disable_logs = false;
-    };
+    debug = { disable_logs = false; };
 
     input = {
       kb_layout = "us,ru";
       kb_options = "grp:win_space_toggle";
       follow_mouse = true;
-      touchpad = {
-          natural_scroll = true;
-      };
+      touchpad = { natural_scroll = true; };
     };
 
     device = {
-        name = "logitech-usb-receiver-mouse";
-        sensitivity = -1.0;
+      name = "logitech-usb-receiver-mouse";
+      sensitivity = -1.0;
     };
 
     gestures = {
-        workspace_swipe = true;
-        workspace_swipe_distance = 200;
+      workspace_swipe = true;
+      workspace_swipe_distance = 200;
     };
 
     dwindle = {
