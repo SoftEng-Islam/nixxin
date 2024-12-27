@@ -16,6 +16,7 @@
         "audio" # Access to audio devices.
         "dialout"
         "disk"
+        "transmission"
         "docker"
         "flatpak"
         "i2c"

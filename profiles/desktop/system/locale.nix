@@ -3,7 +3,7 @@
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus
   # fc-cache -fv
   fonts = {
-    enableDefaultPackages = true;
+    enableDefaultPackages = false;
     fontDir.enable = true;
     packages = with pkgs; [
       settings.fontPackage

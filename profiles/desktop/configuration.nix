@@ -193,6 +193,8 @@
   # ~~~~~~~ Security ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~
   security = {
+    # don't ask for password for wheel group
+    sudo.wheelNeedsPassword = false;
     # show Password as stars in Terminals.
     sudo.extraConfig = "Defaults        env_reset,pwfeedback";
     allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
@@ -286,6 +288,5 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   # Don't Change The Fucking Version!
-  system.stateVersion =
-    settings.systemStateVersion; # Did you read the comment?
+  system.stateVersion = settings.systemStateVersion; # Did you read the comment?
 }

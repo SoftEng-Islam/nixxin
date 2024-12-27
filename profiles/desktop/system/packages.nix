@@ -5,6 +5,7 @@
     qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
     qt5.full
+
     settings.browserPkg
     settings.termPkg
 

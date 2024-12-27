@@ -66,11 +66,23 @@
       # 'nixos-rebuild switch --flake .#hostname
       nixosConfigurations = {
         ${settings.hostName} = nixpkgs.lib.nixosSystem {
+          specialArgs = {
+            inherit inputs;
+            inherit settings;
+          };
           modules = [
             inputs.stylix.nixosModules.stylix
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
+            inputs.home-manager.nixosModules.home-manager
             {
+
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              home-manager.backupFileExtension = "backup";
+              home-manager.users.${settings.username} = import
+                (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");
 
               stylix.image = settings.themeDetails.wallpaper;
               stylix.base16Scheme =
@@ -79,16 +91,8 @@
               stylix.targets.plymouth.enable = true;
             }
           ];
-          specialArgs = {
-            inherit inputs;
-            inherit settings;
-          };
-        };
-      };
 
-      home-manager.settings = {
-        useGlobalPkgs = true;
-        useUserPackages = true; # Install user packages to /etc/profiles
+        };
       };
 
       # Standalone home-manager configuration entrypoint.
