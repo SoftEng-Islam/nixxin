@@ -1,12 +1,16 @@
 { mySettings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
+
   environment = {
     variables = {
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
       # LIBGL_DRI3_ENABLE = "1";
+
+      # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
       # SDL_VIDEODRIVER = "wayland";
+
       HYPRCURSOR_THEME = mySettings.cursorTheme;
       HYPRCURSOR_SIZE = mySettings.cursorSize;
       _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -28,7 +32,7 @@
       GDK_PIXBUF_MODULE_FILE =
         "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      QT_QPA_PLATFORM = "wayland;xcb";
+      QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
       RUST_BACKTRACE = "1";
       VISUAL = mySettings.visual;

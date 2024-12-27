@@ -7,6 +7,7 @@
     XDG_RUNTIME_DIR = "/run/user/1000";
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     XDG_SESSION_TYPE = "wayland";
+
   };
   xdg = {
     portal = {
