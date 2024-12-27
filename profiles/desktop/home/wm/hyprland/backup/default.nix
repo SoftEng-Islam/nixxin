@@ -1,10 +1,46 @@
-{
-  wayland.windowManager.hyprland.settings = {
-    "$mod" = "SUPER";
+{ lib, mySettings, pkgs, ... }: {
+  # swww = "swww img";
+  # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
+  imports = [
+    # ./ags.nix
+    # ./binds.nix
+    # ./env.nix
+    # # ./hyprlock.nix
+    # ./plugins.nix
+    # ./rules.nix
+    # ./scripts.nix
+    # ./settings.nix
+  ];
 
+  # Make stuff work on wayland
+  home.sessionVariables = {
+    QT_QPA_PLATFORM = "wayland";
+    SDL_VIDEODRIVER = "wayland";
+    XDG_SESSION_TYPE = "wayland";
+  };
+
+  wayland.windowManager.hyprland = {
+    enable = true;
+    package = pkgs.hyprland;
+    systemd.enable = true;
+    plugins = with pkgs;
+      [
+        hyprlandPlugins.hyprbars
+        hyprlandPlugins.hyprexpo
+        hyprlandPlugins.hypr-dynamic-cursors
+      ] ++ lib.optional (mySettings.themeDetails.bordersPlusPlus)
+      hyprlandPlugins.borders-plus-plus;
+  };
+  wayland.windowManager.hyprland.settings = {
+    env = [
+      "XDG_CURRENT_DESKTOP,Hyprland"
+      "XDG_SESSION_DEKSTOP,Hyprland"
+      "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+    ];
+
+    "$mod" = "SUPER";
     # Mouse bindings.
     bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-
     binde = [
       ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
       ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
@@ -13,7 +49,6 @@
       "$mod ALT, k, exec, pulsemixer --change-volume +5"
       "$mod ALT, j, exec, pulsemixer --change-volume -5"
     ];
-
     bind = [
       # Window/Session actions.
       "$mod, Q, killactive,"
@@ -148,7 +183,50 @@
       "Ctrl $mod Alt, R, exec, hyprctl reload; killall ags ydotool; ags &"
     ];
   };
+  layerrule = [
+    "blur, waybar"
+    "blur, swaync-control-center"
+    "blur, gtk-layer-shell"
+    "xray 1, gtk-layer-shell"
+    "xray 1, waybar"
+    "ignorezero, waybar"
+    "ignorezero, gtk-layer-shell"
+    "ignorealpha 0.5, swaync-control-center"
+  ];
+
+  windowrule = [ "float,title:^(swayimg)(.*)$" ];
+  windowrulev2 = [
+    "keepaspectratio,class:^(firefox)$,title:^(Picture-in-Picture)$"
+    "noborder,class:^(firefox)$,title:^(Picture-in-Picture)$"
+    "pin,class:^(firefox)$,title:^(Firefox)$"
+    "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
+    "float,class:^(firefox)$,title:^(Firefox)$"
+    "float,class:^(firefox)$,title:^(Picture-in-Picture)$"
+
+    "float,class:^(floating)$,title:^(kitty)$"
+    "size 50% 50%,class:^(floating)$,title:^(kitty)$"
+    "center,class:^(floating)$,title:^(kitty)$"
+
+    "float,class:^(moe.launcher.the-honkers-railway-launcher)$"
+    "float,class:^(lutris)$"
+    "size 1664 1005,class:^(lutris)$"
+    "center,class:^(lutris)$"
+
+    "fullscreen,class:^steam_appd+$"
+    "monitor 0,class:^steam_app_d+$"
+    "workspace 10,class:^steam_app_d+$"
+  ];
+
+  workspace =
+    [ "special,gapsin:24,gapsout:64" "10,border:false,rounding:false" ];
   wayland.windowManager.hyprland.extraConfig = ''
+      source=~/.cache/ignis/material/dark_colors-hyprland.conf
+      env = QT_QPA_PLATFORM,wayland
+      env = QT_QPA_PLATFORMTHEME,qt5ct
+      env = GTK_THEME,Material
+
+      exec-once = ignis init
+
     # Fullscreen screenshot
     # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
     bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit

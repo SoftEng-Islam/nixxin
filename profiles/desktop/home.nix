@@ -7,7 +7,7 @@
     ./home/flags
     ./home/media
     ./home/wm/gnome
-    ./home/wm/hyprland
+    # ./home/wm/hyprland
     ./home/terminal
     ./home/xdg.nix
   ];

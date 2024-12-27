@@ -1,7 +1,6 @@
-{ config, pkgs, mySettings, inputs, ... }:
+{ config, mySettings, ... }:
 let details = mySettings.themeDetails;
 in {
-  home.packages = [ inputs.swww.packages.${pkgs.system}.swww ];
 
   wayland.windowManager.hyprland.settings = {
     monitor = [
@@ -54,9 +53,10 @@ in {
 
       # no_cursor_warps = false;
       # layout = "dwindle";
-
-      "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
-      "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
+      "col.active_border" = "$primary";
+      "col.inactive_border" = "rgb(000000)";
+      # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
+      # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
     };
     input = {
       kb_layout = "us,eg";

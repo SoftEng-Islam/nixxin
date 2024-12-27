@@ -1,4 +1,10 @@
 { pkgs, inputs, ... }: {
+  # Run Hyprland in a nested session for testing within GNOME:
+  # Install waypipe and weston: These tools allow you to run Wayland compositors inside existing Wayland/X11 sessions.
+  # Start Nested Hyprland: Inside GNOME, run:
+  # `weston --socket=wayland-1 &`
+  # `WAYLAND_DISPLAY=wayland-1 Hyprland`
+
   services.hypridle.enable = false; # Hyprland’s idle daemon.
 
   programs = {

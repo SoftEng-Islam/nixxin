@@ -98,6 +98,8 @@
     wlr-protocols # Wayland roots protocol extensions
     wlroots # A modular Wayland compositor library
     wf-recorder # Utility program for screen recording of wlroots-based compositors
+    weston # Lightweight and functional Wayland compositor
+    waypipe # Network proxy for Wayland clients (applications)
 
     # Cryptographic Tools
     openssl # A cryptographic library that implements the SSL and TLS protocols
