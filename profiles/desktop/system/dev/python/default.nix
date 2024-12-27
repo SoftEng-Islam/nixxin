@@ -35,11 +35,11 @@
     # python3Packages.material-color-utilities
     # python3Packages.materialyoucolor
     # Override pallets-sphinx-themes to fix the build
-    (python3Packages.pallets-sphinx-themes.overrideAttrs (old: {
-      doCheck = false; # Disable build checks
-      doInstallCheck = false; # Disable install checks
-      buildInputs = (old.buildInputs or [ ])
-        ++ [ python3Packages.wheel ]; # Add wheel
-    }))
+    # (python3Packages.pallets-sphinx-themes.overrideAttrs (old: {
+    #   doCheck = false; # Disable build checks
+    #   doInstallCheck = false; # Disable install checks
+    #   buildInputs = (old.buildInputs or [ ])
+    #     ++ [ python3Packages.wheel ]; # Add wheel
+    # }))
   ];
 }
