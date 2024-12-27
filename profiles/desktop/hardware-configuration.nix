@@ -50,6 +50,7 @@
     [ "amdgpu" ]; # "displaylink" "modesetting" "amdgpu"
 
   hardware = {
+    uinput.enable = true;
     amdgpu.amdvlk.enable = true;
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;

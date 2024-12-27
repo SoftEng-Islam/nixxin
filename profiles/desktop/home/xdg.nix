@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, mySettings, lib, pkgs, ... }:
 let
   browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
@@ -40,20 +40,32 @@ let
 in {
   xdg = {
     enable = true;
+    configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
     cacheHome = config.home.homeDirectory + "/.local/cache";
+    userDirs = {
+      enable = true;
+      createDirectories = true;
+      music = "${config.home.homeDirectory}/Music";
+      videos = "${config.home.homeDirectory}/Videos";
+      pictures = "${config.home.homeDirectory}/Pictures";
+      download = "${config.home.homeDirectory}/Downloads";
+      documents = "${config.home.homeDirectory}/Documents";
+      dev = "${config.home.homeDirectory}/Dev";
+      templates = null;
+      desktop = null;
+      publicShare = null;
+      extraConfig = {
+        XDG_DOTFILES_DIR = "${mySettings.dotfilesDir}";
+        XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
+        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+      };
+    };
 
     mimeApps = {
       enable = true;
       defaultApplications = associations;
     };
 
-    userDirs = {
-      enable = true;
-      createDirectories = true;
-      extraConfig = {
-        XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
-      };
-    };
   };
 
   home.packages = [

@@ -1,6 +1,8 @@
 { mySettings, pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
+    groups.uinput.members = [ "${mySettings.username}" ];
+    groups.input.members = [ "${mySettings.username}" ];
     users.${mySettings.username} = {
       isNormalUser = true;
       # isSystemUser = false;

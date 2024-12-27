@@ -10,20 +10,19 @@
   };
   services.xremap = {
     # NOTE: since this sample configuration does not have any DE, xremap needs to be started manually by systemctl --user start xremap
+    withHypr = true;
     serviceMode = "user";
     userName = mySettings.username;
+    # Modmap for single key rebinds
+    config = {
+      keymap = [{
+        name = "vscode";
+        remap.SUPER-c = { launch = [ "code" ]; };
+      }];
+      modmap = [{
+        name = "Global";
+        remap = { "SUPER_L-q" = "Esc"; }; # globally remap CapsLock to Esc
+      }];
+    };
   };
-
-  # Modmap for single key rebinds
-  services.xremap.config.modmap = [{
-    name = "Global";
-    remap = { "SUPER_L-q" = "Esc"; }; # globally remap CapsLock to Esc
-  }];
-
-  # Keymap for key combo rebinds
-  services.xremap.config.keymap = [{
-    name = "Example ctrl-u > pageup rebind";
-    remap = { "C-u" = "PAGEUP"; };
-  }];
-
 }
