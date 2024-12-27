@@ -32,17 +32,12 @@
     python3Packages.urllib3
     python3Packages.wheel
     python3Packages.django
-    # python312Packages.jinja2
-    (python3.withPackages (ps: [ ps.jinja2 ]))
     python3Packages.material-color-utilities
     python3Packages.materialyoucolor
     pip-audit
-    python3Packages.pallets-sphinx-themes
-    (python3Packages.jinja2.overrideAttrs (old: {
-      doCheck = false; # Disable build checks
-      doInstallCheck = false; # Disable install checks
-      buildInputs = (old.buildInputs or [ ])
-        ++ [ python3Packages.wheel ]; # Add wheel
-    }))
+    (python3.withPackages (ps: [ ps.jinja2 ]))
+    jinja2-cli
+    python312Packages.jinja2
+    # python312Packages.jinja2
   ];
 }
