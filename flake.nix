@@ -6,6 +6,8 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    xremap-flake.url = "github:xremap/nix-flake";
+
     # System-wide colorscheming and typography for NixOS
     stylix.url = "github:danth/stylix";
     # Efficient animated wallpaper daemon for wayland, controlled at runtime
@@ -23,8 +25,10 @@
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    ignis.url = "github:linkfrg/ignis";
-
+    ignis = {
+      url = "github:linkfrg/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-ld = {
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -62,6 +66,7 @@
             (./. + "/profiles" + ("/" + mySettings.profile)
               + "/configuration.nix")
             {
+
               stylix.image = mySettings.themeDetails.wallpaper;
               stylix.base16Scheme =
                 "${pkgs.base16-schemes}/share/themes/${mySettings.themeDetails.themeName}.yaml";

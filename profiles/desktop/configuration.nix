@@ -5,7 +5,7 @@
   imports = [
     # (./. + "../" + ("/" + builtins.elemAt mySettings.wm 1) + ".nix")
     ./hardware-configuration.nix
-
+    ./xremap.nix
     ./system/cli
     ./system/dev
     ./system/wm/gnome
