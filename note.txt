@@ -49,3 +49,171 @@ https://nixos.wiki/wiki/Change_root
 nixos-install-tools
 
 sudo nixos-enter --root /mnt/@
+
+
+
+#------------------------------------------------------------------------------------------------
+ignis init
+2024-12-27 18:41:47 [WARNING] (python3:78663): Gtk-WARNING **: 18:41:47.092: Theme parser error: gtk.css:51:1-61: Failed to import: Error opening file /home/softeng/.cache/ignis/material/gtk.css: No such file or directory
+2024-12-27 18:41:47 [INFO] Using configuration file: /home/softeng/.config/ignis/config.py
+2024-12-27 18:41:51 [ERROR] ModuleNotFoundError: No module named 'jinja2'
+Traceback (most recent call last):
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/bin/.ignis-wrapped", line 5, in <module>
+    main()
+    └ <function main at 0x7ff93c825760>
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/main.py", line 12, in main
+    cli(prog_name="ignis")
+    └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           │    │     │       └ {'prog_name': 'ignis'}
+           │    │     └ ()
+           │    └ <function BaseCommand.main at 0x7ff93b287560>
+           └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         │    │      └ <click.core.Context object at 0x7ff938121f40>
+         │    └ <function MultiCommand.invoke at 0x7ff9391087c0>
+         └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+           │               │       │       │      └ <click.core.Context object at 0x7ff93c82c530>
+           │               │       │       └ <function Command.invoke at 0x7ff939108180>
+           │               │       └ <Command init>
+           │               └ <click.core.Context object at 0x7ff93c82c530>
+           └ <function MultiCommand.invoke.<locals>._process_result at 0x7ff93c825120>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           │   │      │    │           │   └ {'config': '~/.config/ignis/config.py', 'debug': False}
+           │   │      │    │           └ <click.core.Context object at 0x7ff93c82c530>
+           │   │      │    └ <function init at 0x7ff930c12340>
+           │   │      └ <Command init>
+           │   └ <function Context.invoke at 0x7ff93b286ac0>
+           └ <click.core.Context object at 0x7ff93c82c530>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+                       │       └ {'config': '~/.config/ignis/config.py', 'debug': False}
+                       └ ()
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/cli.py", line 90, in init
+    run_app(config_path, debug)
+    │       │            └ False
+    │       └ '/home/softeng/.config/ignis/config.py'
+    └ <function run_app at 0x7ff930c12980>
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/app.py", line 498, in run_app
+    app.run(None)
+    │   └ <function Application.run at 0x7ff939114b80>
+    └ <app.IgnisApp object at 0x7ff930aef4c0 (ignis+app+IgnisApp at 0x1128d790)>
+
+  File "/nix/store/7900bpaxa8bsqpmklfls8ng11wr7a20m-python3.12-pygobject-3.50.0/lib/python3.12/site-packages/gi/overrides/Gio.py", line 42, in run
+    return Gio.Application.run(self, *args, **kwargs)
+           │   │           │   │      │       └ {}
+           │   │           │   │      └ (None,)
+           │   │           │   └ <app.IgnisApp object at 0x7ff930aef4c0 (ignis+app+IgnisApp at 0x1128d790)>
+           │   │           └ gi.FunctionInfo(run, bound=None)
+           │   └ <class 'gi.repository.Gio.Application'>
+           └ <IntrospectionModule 'Gio' from '/nix/store/26hcp8h792wl0h52c5r94qakhvk6q717-glib-2.82.1/lib/girepository-1.0/Gio-2.0.typelib'>
+
+> File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/app.py", line 336, in do_activate
+    __import__(config_filename)
+               └ 'config'
+
+  File "/home/softeng/.config/ignis/config.py", line 3, in <module>
+    from modules.control_center import control_center
+
+  File "/home/softeng/.config/ignis/modules/control_center/__init__.py", line 4, in <module>
+    from .quick_settings import quick_settings
+
+  File "/home/softeng/.config/ignis/modules/control_center/quick_settings.py", line 5, in <module>
+    from .dark_mode import dark_mode_button
+
+  File "/home/softeng/.config/ignis/modules/control_center/dark_mode.py", line 1, in <module>
+    from services.material import MaterialService
+
+  File "/home/softeng/.config/ignis/services/material/__init__.py", line 1, in <module>
+    from .service import MaterialService
+
+  File "/home/softeng/.config/ignis/services/material/service.py", line 4, in <module>
+    from jinja2 import Template
+
+ModuleNotFoundError: No module named 'jinja2'
+2024-12-27 18:41:51 [ERROR] AnotherNotificationDaemonRunningError: Another notification daemon is already running: mako
+Traceback (most recent call last):
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/bin/.ignis-wrapped", line 5, in <module>
+    main()
+    └ <function main at 0x7ff93c825760>
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/main.py", line 12, in main
+    cli(prog_name="ignis")
+    └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1157, in __call__
+    return self.main(*args, **kwargs)
+           │    │     │       └ {'prog_name': 'ignis'}
+           │    │     └ ()
+           │    └ <function BaseCommand.main at 0x7ff93b287560>
+           └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1078, in main
+    rv = self.invoke(ctx)
+         │    │      └ <click.core.Context object at 0x7ff938121f40>
+         │    └ <function MultiCommand.invoke at 0x7ff9391087c0>
+         └ <OrderedGroup cli>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1688, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+           │               │       │       │      └ <click.core.Context object at 0x7ff93c82c530>
+           │               │       │       └ <function Command.invoke at 0x7ff939108180>
+           │               │       └ <Command init>
+           │               └ <click.core.Context object at 0x7ff93c82c530>
+           └ <function MultiCommand.invoke.<locals>._process_result at 0x7ff93c825120>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 1434, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+           │   │      │    │           │   └ {'config': '~/.config/ignis/config.py', 'debug': False}
+           │   │      │    │           └ <click.core.Context object at 0x7ff93c82c530>
+           │   │      │    └ <function init at 0x7ff930c12340>
+           │   │      └ <Command init>
+           │   └ <function Context.invoke at 0x7ff93b286ac0>
+           └ <click.core.Context object at 0x7ff93c82c530>
+
+  File "/nix/store/4kzggiqkbcybnkggizk2a9pw8zfd2zr9-python3.12-click-8.1.7/lib/python3.12/site-packages/click/core.py", line 783, in invoke
+    return __callback(*args, **kwargs)
+                       │       └ {'config': '~/.config/ignis/config.py', 'debug': False}
+                       └ ()
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/cli.py", line 90, in init
+    run_app(config_path, debug)
+    │       │            └ False
+    │       └ '/home/softeng/.config/ignis/config.py'
+    └ <function run_app at 0x7ff930c12980>
+
+  File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/app.py", line 498, in run_app
+    app.run(None)
+    │   └ <function Application.run at 0x7ff939114b80>
+    └ <app.IgnisApp object at 0x7ff930aef4c0 (ignis+app+IgnisApp at 0x1128d790)>
+
+  File "/nix/store/7900bpaxa8bsqpmklfls8ng11wr7a20m-python3.12-pygobject-3.50.0/lib/python3.12/site-packages/gi/overrides/Gio.py", line 42, in run
+    return Gio.Application.run(self, *args, **kwargs)
+           │   │           │   │      │       └ {}
+           │   │           │   │      └ (None,)
+           │   │           │   └ <app.IgnisApp object at 0x7ff930aef4c0 (ignis+app+IgnisApp at 0x1128d790)>
+           │   │           └ gi.FunctionInfo(run, bound=None)
+           │   └ <class 'gi.repository.Gio.Application'>
+           └ <IntrospectionModule 'Gio' from '/nix/store/26hcp8h792wl0h52c5r94qakhvk6q717-glib-2.82.1/lib/girepository-1.0/Gio-2.0.typelib'>
+
+> File "/nix/store/64kj64ijfgjyvsjmyn12kfi0ndq3kp2f-ignis-0.3.dev0+date=20241225_9e82c96/lib/python3.12/site-packages/ignis/services/notifications/service.py", line 96, in __on_name_lost
+    raise AnotherNotificationDaemonRunningError(name)
+          │                                     └ 'mako'
+          └ <class 'ignis.exceptions.AnotherNotificationDaemonRunningError'>
+
+ignis.exceptions.AnotherNotificationDaemonRunningError: Another notification daemon is already running: mako

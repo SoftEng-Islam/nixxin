@@ -5,15 +5,12 @@
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
 
-  services.hypridle.enable = false; # Hyprland’s idle daemon.
-
   programs = {
     uwsm.enable = true;
-    hyprlock.enable = false;
+    hyprlock.enable = true;
     hyprland = {
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
-      systemd.enable = true;
       xwayland.enable = false;
       package = inputs.hyprland.packages.${pkgs.system}.default;
       portalPackage =

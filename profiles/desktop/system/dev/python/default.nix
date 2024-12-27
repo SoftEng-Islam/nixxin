@@ -33,6 +33,7 @@
     python3Packages.wheel
     python3Packages.django
     # python312Packages.jinja2
+    (python3.withPackages (ps: [ ps.jinja2 ]))
     python3Packages.material-color-utilities
     python3Packages.materialyoucolor
     # Override pallets-sphinx-themes to fix the build
