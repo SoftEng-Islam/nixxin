@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, settings, ... }:
 
 {
   wayland.windowManager.hyprland.settings = {
     env = [
-      "HYPRCURSOR_THEME,phinger-cursors-light"
+      "HYPRCURSOR_THEME,${settings.cursorTheme}"
       "HYPRCURSOR_SIZE,32"
       "XDG_CURRENT_DESKTOP,Hyprland"
       "XDG_SESSION_TYPE,wayland"
