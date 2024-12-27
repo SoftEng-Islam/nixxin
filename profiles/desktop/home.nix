@@ -12,9 +12,11 @@
     ./home/xdg.nix
   ];
 
+  # Let Home Manager install and manage itself.
+  programs.home-manager.enable = true;
   stylix.targets.hyprland.enable = false;
-  home = {
 
+  home = {
     username = mySettings.username;
     homeDirectory = "/home/${mySettings.username}";
     stateVersion = mySettings.homeStateVersion;
@@ -24,6 +26,13 @@
       BROWSER = mySettings.browser;
     };
   };
+  # disable manuals as nmd fails to build often
+  manual = {
+    html.enable = false;
+    json.enable = false;
+    manpages.enable = false;
+  };
+
   # gtk = {
   #   enable = true;
   #   cursorTheme = {
@@ -47,19 +56,10 @@
   #   gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
   # };
 
-  # disable manuals as nmd fails to build often
-  manual = {
-    html.enable = false;
-    json.enable = false;
-    manpages.enable = false;
-  };
-
   # QT Settings
   qt = {
     enable = true;
     platformTheme.name = mySettings.qtPlatformTheme;
     style.name = mySettings.qtStyle;
   };
-  # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
 }

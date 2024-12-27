@@ -50,7 +50,6 @@ in {
       pictures = "${config.home.homeDirectory}/Pictures";
       download = "${config.home.homeDirectory}/Downloads";
       documents = "${config.home.homeDirectory}/Documents";
-      dev = "${config.home.homeDirectory}/Dev";
       templates = null;
       desktop = null;
       publicShare = null;
