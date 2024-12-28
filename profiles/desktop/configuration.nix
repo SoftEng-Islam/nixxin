@@ -290,6 +290,34 @@
     git
     vim
 
+    # productivity
+    hugo # static site generator
+    glow # markdown previewer in terminal
+    iotop # io monitoring
+    iftop # network monitoring
+
+    # system tools
+    sysstat
+    lm_sensors # for `sensors` command
+    ethtool
+    pciutils # lspci
+    usbutils # lsusb
+
+    # Development
+    # MicroTex Deps
+    tinyxml-2
+    gtkmm3
+    gtksourceviewmm
+    cairomm
+
+    # Other
+    graphviz
+
+    # system call monitoring
+    strace # system call monitoring
+    ltrace # library call monitoring
+    lsof # list open files
+
     # QT & KDE Stuff
     adwaita-qt
     adwaita-qt6
@@ -302,6 +330,18 @@
     qt5.qtgraphicaleffects
     qt5.qtquickcontrols2
     qt6Packages.qt6ct
+    libsForQt5.qwt
+
+    # GTK
+    webp-pixbuf-loader
+    gtk-layer-shell
+    gtk3
+    gtksourceview3
+    upower
+    yad
+    ydotool
+    gobject-introspection
+    wrapGAppsHook
 
     # screenshot
     grim # Grab images from a Wayland compositor

@@ -40,6 +40,8 @@
   };
 
   environment.gnome.excludePackages = with pkgs; [
+    gjs
+    gjs.dev
     cheese
     epiphany
     gedit
