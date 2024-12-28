@@ -21,6 +21,16 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       google-fonts
+      (nerdfonts.override {
+        fonts = [
+          "Cousine"
+          "InconsolataLGC"
+          "Iosevka"
+          "JetBrainsMono"
+          "Noto"
+          "Tinos"
+        ];
+      })
     ];
     fontconfig = {
       enable = true;
@@ -29,9 +39,13 @@
       hinting.enable = true;
       hinting.style = "full";
       defaultFonts = {
-        monospace = [ "${settings.monospaceFont}" ];
-        sansSerif = [ "${settings.sansSerifFont}" ];
-        serif = [ "${settings.serifFont}" ];
+        # monospace = [ "${settings.monospaceFont}" ];
+        # sansSerif = [ "${settings.sansSerifFont}" ];
+        # serif = [ "${settings.serifFont}" ];
+        serif = [ "Tinos Nerd Font" "Liberation Serif" ];
+        sansSerif = [ "Noto Nerd Font" "Liberation Sans" ];
+        monospace = [ "Iosevka Nerd Font" ];
+        emoji = [ "Noto Color Emoji" ];
       };
     };
   };

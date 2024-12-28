@@ -11,6 +11,7 @@
       home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
+        "adbusers"
         "gamemode"
         "adbusers"
         "audio" # Access to audio devices.

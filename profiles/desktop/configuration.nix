@@ -52,7 +52,8 @@
       sandbox = false;
       keep-outputs = true;
       keep-derivations = true;
-      experimental-features = [ "nix-command" "flakes" "pipe-operators" ];
+      experimental-features =
+        [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       # substituters = [
       #   "https://cache.nixos.org"
       #   "https://hyprland.cachix.org"
@@ -163,7 +164,7 @@
   # Programs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   programs = {
-
+    nh = { enable = true; };
     # See https://nix.dev/permalink/stub-ld.
     # run unpatched dynamic binaries on NixOS
     nix-ld = {
@@ -364,6 +365,97 @@
     shfmt # Shell parser and formatter
     fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     bpftrace # High-level tracing language for Linux eBPF
+
+    # Audio.
+    ladspaPlugins
+    calf
+    lsp-plugins
+    easyeffects
+    alsa-utils
+
+    # Development Tools.
+    jetbrains-toolbox
+    git
+    nodejs_20
+    meson
+    gcc13
+    cmake
+    pkg-config
+    glib.dev
+    glib
+    glibc.dev
+    gobject-introspection.dev
+    pango.dev
+    harfbuzz.dev
+    cairo.dev
+    gdk-pixbuf.dev
+    atk.dev
+    libpulseaudio.dev
+    typescript
+    ninja
+    nixStatic.dev
+    node2nix
+    nil
+    sublime4
+    mlocate
+
+    # Session.
+    polkit
+    polkit_gnome
+    dconf
+    killall
+    gnome.gnome-keyring
+    wayvnc
+    evtest
+    gnome.zenity
+    linux-pam
+    cliphist
+    sudo
+    xwaylandvideobridge
+
+    # Wayland.
+    xdg-desktop-portal-hyprland
+    xwayland
+    brightnessctl
+    ydotool
+    swww
+    hyprpaper
+    fcitx5
+    wlsunset
+    wtype
+    wl-clipboard
+    xorg.xhost
+    wev
+    wf-recorder
+    ffmpeg_5-full
+    mkvtoolnix-cli
+    vulkan-tools
+    libva-utils
+    wofi
+    libqalculate
+    sunshine
+    moonlight-qt
+    xfce.thunar
+    wayland-scanner
+    waypipe
+
+    gtk3
+    gtk3.dev
+    libappindicator-gtk3.dev
+    libnotify.dev
+    gtk4
+    gtk4.dev
+    gjs
+    gjs.dev
+    gtksourceview
+    gtksourceview.dev
+    xdg-desktop-portal-gtk
+    tk
+
+    # Latex
+    texliveFull
+    texlive.combined.scheme-full
+    latexRes-package
 
     # JavaScript --------------------------------
     nodejs_23 # Event-driven I/O framework for the V8 JavaScript engine

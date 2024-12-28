@@ -43,6 +43,8 @@
       WLR_VSYNC = "1";
       XKB_DEFAULT_RULES = "evdev";
       GOPROXY = "direct";
+
+      QUOTING_STYLE = "literal";
       # Colors #
       Black = "033[30m";
       Red = "033[31m";
