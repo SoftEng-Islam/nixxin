@@ -311,12 +311,14 @@
     kdePackages.xdg-desktop-portal-kde
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5ct
+    libsForQt5.qt5ct # Qt5 Configuration Tool
+    libsForQt5.qwt
     qt5.full
     qt5.qtgraphicaleffects
     qt5.qtquickcontrols2
+    qt6.qtwayland
+    qt6ct
     qt6Packages.qt6ct
-    libsForQt5.qwt
 
     # GTK  Stuff & Themes & Graphical Interfaces
     adw-gtk3 # Theme from libadwaita ported to GTK-3
@@ -341,7 +343,6 @@
     libadwaita # Library to help with developing UI for mobile devices using GTK/GNOME
     libappindicator-gtk3.dev
     libdbusmenu-gtk3 # Library for passing menu structures across DBus
-    libnotify.dev
     tk
     upower
     webkitgtk_6_0 # Web content rendering engine, GTK port
@@ -402,17 +403,6 @@
     pkg-config
     tinyxml-2
     typescript
-
-    # Wayland.
-    brightnessctl
-    fcitx5
-    libqalculate
-    libva-utils
-    mkvtoolnix-cli
-    sunshine
-    wev
-    wlsunset
-    wtype
 
     # Latex
     texliveFull
@@ -476,24 +466,32 @@
     fio # Flexible IO Tester - an IO benchmark tool
     jmtpfs # FUSE filesystem for MTP devices like Android phones
 
-    # Wayland Tools
+    # Wayland
     anyrun # A wayland-native, highly customizable runner
+    brightnessctl
+    fcitx5 # Next generation of fcitx
+    libqalculate # Advanced calculator library
+    libva-utils # Collection of utilities and examples for VA-API
+    mkvtoolnix-cli # Cross-platform tools for Matroska
     seatd # A minimal seat management daemon, and a universal seat management library
     slurp # Select a region in a Wayland compositor
     swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
     uwsm # Universal wayland session manager
-    wayland
-    wayland-utils
+    wayland # Core Wayland window system code and protocol
+    wayland-utils # Wayland utilities (wayland-info)
     waypipe # Network proxy for Wayland clients (applications)
-    wayvnc
+    wayvnc # VNC server for wlroots based Wayland compositors
     weston # Lightweight and functional Wayland compositor
+    wev # Wayland event viewer
     wf-recorder # Utility program for screen recording of wlroots-based compositors
     wl-gammactl # Contrast, brightness, and gamma adjustments for Wayland
     wl-gammarelay-rs # A simple program that provides DBus interface to control display temperature and brightness under wayland without flickering
     wlogout # Wayland based logout menu
     wlr-protocols # Wayland roots protocol extensions
-    wlrctl
+    wlrctl # Command line utility for miscellaneous wlroots Wayland extensions
     wlroots # A modular Wayland compositor library
+    wlsunset # Day/night gamma adjustments for Wayland
+    wtype # xdotool type for wayland
 
     # Cryptographic Tools
     openssl # A cryptographic library that implements the SSL and TLS protocols
@@ -511,8 +509,9 @@
     loupe # A simple image viewer application written with GTK4 and Rust
 
     # Notifications
-    # notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    # libnotify # A library that sends desktop notifications to a notification daemon
+    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
+    libnotify # A library that sends desktop notifications to a notification daemon
+    libnotify.dev # Library that sends desktop notifications to a notification daemon
     # dunst # Lightweight and customizable notification daemon
     # mako # A lightweight Wayland notification daemon
     # avizo # Neat notification daemon for Wayland
@@ -536,7 +535,6 @@
 
     # Other Tools
     upower # D-Bus service for power management
-    libsForQt5.qt5ct # Qt5 Configuration Tool
     bpftune # BPF-based auto-tuning of Linux system parameters
     axel # Console downloading program with some features for parallel connections for faster downloading
     cmake # Cross-platform, open-source build system generator

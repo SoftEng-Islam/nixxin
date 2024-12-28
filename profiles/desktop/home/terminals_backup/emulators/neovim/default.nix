@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }: {
-  home.packages = with pkgs; [ ripgrep neovide ];
+  home.packages = with pkgs; [ neovide ];
 
   imports = [
     ./autocmds.nix

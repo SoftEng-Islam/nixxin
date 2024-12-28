@@ -21,7 +21,6 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       google-fonts
-      # nerd-fonts
     ];
     fontconfig = {
       enable = true;

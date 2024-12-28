@@ -42,7 +42,6 @@ in {
     asztal
     bun
     fd
-    dart-sass
     gtk3
     pulsemixer
     networkmanager

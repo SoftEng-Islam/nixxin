@@ -38,7 +38,6 @@
     htop # An interactive process viewer
     hwinfo # Hardware detection tool from openSUSE
     jq # Lightweight and flexible command-line JSON processor
-    libnotify # Library that sends desktop notifications to a notification daemon
 
     ncurses # Free software emulation of curses in SVR4 and more
     numbat # High precision scientific calculator with full support for physical units

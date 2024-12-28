@@ -6,7 +6,6 @@
     unrar
 
     # misc
-    libnotify
     sshfs
 
     # utils
@@ -15,7 +14,6 @@
     fd
     file
     jaq
-    ripgrep
   ];
 
   programs = {

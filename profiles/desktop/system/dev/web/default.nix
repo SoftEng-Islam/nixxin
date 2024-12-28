@@ -2,7 +2,6 @@
   environment.systemPackages = with pkgs; [
     bun
     corepack_20 # yarn, pnpm
-    dart-sass
     deno
     hugo
     netlify-cli
