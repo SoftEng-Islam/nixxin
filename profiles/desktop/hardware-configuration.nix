@@ -150,6 +150,13 @@
   };
 
   environment.systemPackages = with pkgs; [
+    rocmPackages.hip-common
+    rocmPackages.hipblas
+    rocmPackages.hipcc
+    rocmPackages.hipcub
+    rocmPackages.hipfft
+    rocmPackages.hipify
+    rocmPackages.hiprand
 
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
@@ -201,12 +208,5 @@
     # lact # Linux AMDGPU Controller
     corectrl # Control your computer hardware via application profiles
 
-    rocmPackages.hipcc
-    rocmPackages.hip-common
-    rocmPackages.hiprand
-    rocmPackages.hipblas
-    rocmPackages.hipfft
-    rocmPackages.hipcub
-    rocmPackages.hipify
   ];
 }

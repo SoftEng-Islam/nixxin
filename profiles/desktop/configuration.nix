@@ -40,6 +40,7 @@
   # documentation.nixos.enable = lib.mkForce false;
   # documentation.info.enable = false;
   # documentation.doc.enable = false;
+  environment.localBinInPath = true;
 
   nix = {
     package = pkgs.nixVersions.latest;
@@ -101,6 +102,7 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services = {
     tumbler.enable = true;
+    acpid.enable = true;
 
     seatd.enable = true;
     # seatd.user = "root";
@@ -207,6 +209,11 @@
     polkit.enable = true;
     pam.services.astal-auth = { };
     isolate.enable = false;
+    sudo.configFile = ''
+      root   ALL=(ALL:ALL) SETENV: ALL
+      %wheel ALL=(ALL:ALL) SETENV: ALL
+      celes  ALL=(ALL:ALL) SETENV: ALL
+    '';
   };
 
   system = {

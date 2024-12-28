@@ -55,6 +55,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
+    anyrun.url = "github:Kirottu/anyrun";
   };
 
   outputs = { self, nixpkgs, home-manager, ... }@inputs:
