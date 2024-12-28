@@ -100,6 +100,8 @@
   # Services
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   services = {
+    tumbler.enable = true;
+
     seatd.enable = true;
     # seatd.user = "root";
     # services.seatd.group = "seat";
@@ -122,7 +124,11 @@
     # populates contents of /bin and /usr/bin/
     envfs.enable = true;
     accounts-daemon.enable = true;
-    dbus.implementation = "broker";
+    dbus = {
+      enable = true;
+      packages = [ pkgs.dconf ];
+      implementation = "broker";
+    };
     flatpak.enable = false;
 
     # Enable touchpad support (enabled default in most desktopManager).
@@ -173,7 +179,7 @@
     dconf.enable = true; # dconf
     droidcam.enable = true; # camera
     mtr.enable = true;
-    xwayland.enable = false; # to run x11 on Wayland
+    fuse.userAllowOther = true;
 
     htop.enable = true;
     htop.settings = { tree_view = 1; };

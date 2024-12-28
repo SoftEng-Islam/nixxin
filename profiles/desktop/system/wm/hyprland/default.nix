@@ -8,11 +8,12 @@
   programs = {
     uwsm.enable = true;
     hyprlock.enable = true;
+    xwayland.enable = true;
     hyprland = {
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.default;
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
     };
@@ -25,6 +26,10 @@
     fd # A simple, fast and user-friendly alternative to find
     gpu-screen-recorder # A screen recorder that has minimal impact on system performance by recording a window using the GPU only
     gpu-screen-recorder-gtk # GTK frontend for gpu-screen-recorder.
+    gtk-engine-murrine # for gtk themes
+    libsForQt5.qt5ct
+    qt6ct
+    qt6.qtwayland
     # hyprcursor # The hyprland cursor format, library and utilities
     # hyprgui # unstable GUI for configuring Hyprland written in Rust
     # hypridle # Hyprland's idle daemon

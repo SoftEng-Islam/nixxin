@@ -70,17 +70,25 @@
       enable = true;
       enable32Bit = true;
       # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages = with pkgs; [ mesa.opencl amdvlk rocmPackages.clr.icd ];
+      extraPackages = with pkgs; [
+        mesa.opencl
+        amdvlk
+        rocmPackages.clr.icd
+        libva
+        libva-utils
+      ];
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
   };
-
   systemd.tmpfiles.rules = let
     rocmEnv = pkgs.symlinkJoin {
       name = "rocm-combined";
       paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
     };
-  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+  ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
