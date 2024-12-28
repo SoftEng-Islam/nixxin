@@ -82,8 +82,8 @@
                 inherit inputs;
                 inherit settings;
               };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
+              # home-manager.useGlobalPkgs = true;
+              # home-manager.useUserPackages = false;
               home-manager.backupFileExtension = "backup";
               home-manager.users.${settings.username} = import
                 (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");

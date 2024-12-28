@@ -42,6 +42,9 @@
   # documentation.doc.enable = false;
   environment.localBinInPath = true;
 
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = false;
+
   nix = {
     package = pkgs.nixVersions.latest;
     gc.automatic = true;
