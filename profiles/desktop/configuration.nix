@@ -417,7 +417,6 @@
     # Latex
     texliveFull
     texlive.combined.scheme-full
-    latexRes-package
 
     # JavaScript --------------------------------
     nodejs_23 # Event-driven I/O framework for the V8 JavaScript engine
