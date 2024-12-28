@@ -164,7 +164,7 @@
   # Programs
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   programs = {
-    nh = { enable = true; };
+    nh.enable = true;
     # See https://nix.dev/permalink/stub-ld.
     # run unpatched dynamic binaries on NixOS
     nix-ld = {
@@ -229,16 +229,6 @@
     settings.browserPkg
     settings.termPkg
 
-    # Themes & Graphical Interfaces
-    gtk3 # A multi-platform toolkit for creating graphical user interfaces
-    gtk4 # A multi-platform toolkit for creating graphical user interfaces
-    gtk_engines # Theme engines for GTK 2
-    libadwaita # Library to help with developing UI for mobile devices using GTK/GNOME
-
-    adw-gtk3 # Theme from libadwaita ported to GTK-3
-    gruvbox-dark-gtk # Gruvbox theme for GTK based desktop environments
-    gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
-
     # Icons
     gruvbox-dark-icons-gtk
     gruvbox-plus-icons
@@ -249,38 +239,38 @@
     nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
 
     # nix related
-    #
     # it provides the command `nom` works just like `nix`
     # with more details log output
-    nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
     cached-nix-shell # fast nix-shell scripts
     direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
     inxi # Full featured CLI system information tool
     nix-bash-completions # Bash completions for Nix, NixOS, and NixOps
-    nixos-install-tools # The essential commands from the NixOS installer as a package
-    nix-direnv # Fast, persistent use_nix implementation for direnv
     nix-btm # Rust tool to monitor Nix processes
+    nix-direnv # Fast, persistent use_nix implementation for direnv
     nix-doc # Interactive Nix documentation tool
     nix-index # A files database for nixpkgs
+    nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
     nix-prefetch # Prefetch any fetcher function call, e.g. package sources
     nix-prefetch-github
     nixfmt-classic # An opinionated formatter for Nix
+    nixos-install-tools # The essential commands from the NixOS installer as a package
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
     nixpkgs-review
+
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix
     nil # Yet another language server for Nix
+
     # Nix Formatters:
-    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
     nixdoc # Generate documentation for Nix functions
-
-    # -----------------------------------------------
-    # -----------------------------------------------
+    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
+    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
+    nixStatic.dev # Powerful package manager that makes package management reliable and reproducible
+    node2nix # Generate Nix expressions to build NPM packages
 
     pciutils
     go-mtpfs
@@ -304,13 +294,6 @@
     pciutils # lspci
     usbutils # lsusb
 
-    # Development
-    # MicroTex Deps
-    tinyxml-2
-    gtkmm3
-    gtksourceviewmm
-    cairomm
-
     # Other
     graphviz
 
@@ -333,16 +316,37 @@
     qt6Packages.qt6ct
     libsForQt5.qwt
 
-    # GTK
-    webp-pixbuf-loader
+    # GTK  Stuff & Themes & Graphical Interfaces
+    adw-gtk3 # Theme from libadwaita ported to GTK-3
+    gjs
+    gjs.dev
+    gobject-introspection
+    gruvbox-dark-gtk # Gruvbox theme for GTK based desktop environments
+    gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette
+    gtk_engines # Theme engines for GTK 2
     gtk-layer-shell
-    gtk3
+    gtk3 # A multi-platform toolkit for creating graphical user interfaces
+    gtk3.dev
+    gtk4 # A multi-platform toolkit for creating graphical user interfaces
+    gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
+    gtk4.dev
+    gtkmm2 # C++ interface to the GTK graphical user interface library
+    gtkmm3 # C++ interface to the GTK graphical user interface library
+    gtkmm4 # C++ interface to the GTK graphical user interface library
+    gtksourceview
+    gtksourceview.dev
     gtksourceview3
+    libadwaita # Library to help with developing UI for mobile devices using GTK/GNOME
+    libappindicator-gtk3.dev
+    libdbusmenu-gtk3 # Library for passing menu structures across DBus
+    libnotify.dev
+    tk
     upower
+    webkitgtk_6_0 # Web content rendering engine, GTK port
+    webp-pixbuf-loader
+    wrapGAppsHook
     yad
     ydotool
-    gobject-introspection
-    wrapGAppsHook
 
     # screenshot
     grim # Grab images from a Wayland compositor
@@ -353,7 +357,6 @@
     wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
 
     # Editors
-    # gedit # Former GNOME text editor
     vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
     zed-editor # Zed editor (like vscode)
     neovim # Vim text editor fork focused on extensibility and agility
@@ -373,84 +376,48 @@
     easyeffects
     alsa-utils
 
-    # Development Tools.
-    jetbrains-toolbox
-    git
-    nodejs_20
-    meson
-    gcc13
+    # Development.
+    atk.dev
+    cairo.dev
     cmake
-    pkg-config
-    glib.dev
+    gcc13
+    gdk-pixbuf.dev
+    git
     glib
+    glib.dev
     glibc.dev
     gobject-introspection.dev
-    pango.dev
+    gtksourceviewmm
     harfbuzz.dev
-    cairo.dev
-    gdk-pixbuf.dev
-    atk.dev
+    jetbrains-toolbox
     libpulseaudio.dev
-    typescript
-    ninja
-    nixStatic.dev
-    node2nix
-    nil
-    sublime4
+    meson
     mlocate
+    ninja
+    nodejs_20
+    pango.dev
+    pkg-config
+    tinyxml-2
+    typescript
 
     # Session.
-    polkit
-    polkit_gnome
     dconf
     killall
-    gnome.gnome-keyring
     wayvnc
     evtest
     gnome.zenity
     linux-pam
-    cliphist
-    sudo
-    xwaylandvideobridge
 
     # Wayland.
-    xdg-desktop-portal-hyprland
-    xwayland
     brightnessctl
-    ydotool
-    swww
-    hyprpaper
     fcitx5
+    libqalculate
+    libva-utils
+    mkvtoolnix-cli
+    sunshine
+    wev
     wlsunset
     wtype
-    wl-clipboard
-    xorg.xhost
-    wev
-    wf-recorder
-    ffmpeg_5-full
-    mkvtoolnix-cli
-    vulkan-tools
-    libva-utils
-    wofi
-    libqalculate
-    sunshine
-    moonlight-qt
-    xfce.thunar
-    wayland-scanner
-    waypipe
-
-    gtk3
-    gtk3.dev
-    libappindicator-gtk3.dev
-    libnotify.dev
-    gtk4
-    gtk4.dev
-    gjs
-    gjs.dev
-    gtksourceview
-    gtksourceview.dev
-    xdg-desktop-portal-gtk
-    tk
 
     # Latex
     texliveFull
@@ -600,16 +567,6 @@
 
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
     pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
-
-    # GTK  Stuff
-    gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
-    gtkmm2 # C++ interface to the GTK graphical user interface library
-    gtkmm3 # C++ interface to the GTK graphical user interface library
-    gtkmm4 # C++ interface to the GTK graphical user interface library
-    gtksourceview
-    libdbusmenu-gtk3 # Library for passing menu structures across DBus
-    webkitgtk_6_0 # Web content rendering engine, GTK port
-
     matugen # A material you color generation tool
 
     # developers packages
@@ -631,20 +588,20 @@
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
     zlib # Lossless data-compression library
 
-    #__ Databases __#
+    # Databases
     sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
 
-    #__ C & C++ __#
+    # C & C++
     clang # A C language family frontend for LLVM (wrapper script)
 
-    #__ Sass (Css) __#
+    # Sass (Css)
     dart-sass # The reference implementation of Sass, written in Dart
     libsass # A C/C++ implementation of a Sass compiler
     rsass # Sass reimplemented in rust with nom
     grass-sass # A Sass compiler written purely in Rust
     sassc # A front-end for libsass
 
-    #__ Ruby __#
+    # Ruby
     ruby_3_3 # An object-oriented language for quick and easy programming
     rubyPackages.execjs
   ];
