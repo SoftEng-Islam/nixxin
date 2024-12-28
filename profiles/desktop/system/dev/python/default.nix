@@ -6,7 +6,6 @@
     python3
     python3Packages.pip
     # NOTE: add here any python package you need globally
-    python-xwaykeyz
     python3Packages.beautifulsoup4
     python3Packages.build
     python3Packages.cairosvg

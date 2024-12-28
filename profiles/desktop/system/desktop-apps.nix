@@ -20,9 +20,10 @@
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
     blender-hip # 3D Creation/Animation/Publishing System
-    # inkscape # Vector graphics editor
     gimp # GNU Image Manipulation Program
-    # figma-linux
+    # inkscape # Vector graphics editor
+    # figma-linux # Unofficial Electron-based Figma desktop app for Linux
+    # darktable # Virtual lighttable and darkroom for photographers
 
     # Developers Applications
     beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
