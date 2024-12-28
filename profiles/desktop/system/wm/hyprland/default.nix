@@ -8,11 +8,11 @@
   programs = {
     uwsm.enable = true;
     hyprlock.enable = true;
-    xwayland.enable = true;
+    xwayland.enable = false;
     hyprland = {
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
-      xwayland.enable = true;
+      xwayland.enable = false;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage =
         inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;

@@ -446,7 +446,7 @@
     dbus-broker # Linux D-Bus Message Broker
 
     # Disk, Partition & Filesystem Tools
-    # gvfs # Virtual Filesystem support library
+    gvfs # Virtual Filesystem support library
     bees # Bees is a deduplication tool designed specifically for filesystems that use the Btrfs (B-tree file system).
     btrfs-progs # Utilities for the btrfs filesystem
     dos2unix # Convert text files with DOS or Mac line breaks to Unix line breaks and vice versa
