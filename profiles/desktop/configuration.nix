@@ -24,7 +24,6 @@
     ./system/media.nix
     ./system/nautilus.nix
     ./system/networking.nix
-    ./system/packages.nix
     ./system/power-management.nix
     # ./system/printing.nix
     ./system/shell.nix
