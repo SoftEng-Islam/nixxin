@@ -21,16 +21,12 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       google-fonts
-      (nerdfonts.override {
-        fonts = [
-          "Cousine"
-          "InconsolataLGC"
-          "Iosevka"
-          "JetBrainsMono"
-          "Noto"
-          "Tinos"
-        ];
-      })
+      nerd-fonts.Cousine
+      nerd-fonts.InconsolataLGC
+      nerd-fonts.Iosevka
+      nerd-fonts.JetBrainsMono
+      nerd-fonts.Noto
+      nerd-fonts.Tinos
     ];
     fontconfig = {
       enable = true;
