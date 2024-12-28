@@ -52,6 +52,12 @@ in {
   programs.ags = {
     enable = true;
     configDir = ../../../../../../non-nix/ags;
+    extraPackages = with pkgs; [
+      gtksourceview
+      gnome.gvfs
+      webkitgtk
+      accountsservice
+    ];
   };
 
   home.file.".cache/ags/options-nix.json".text = (builtins.toJSON agsOptions);
