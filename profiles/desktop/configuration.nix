@@ -361,7 +361,8 @@
     zed-editor # Zed editor (like vscode)
     neovim # Vim text editor fork focused on extensibility and agility
 
-    # Linux --------------------------------
+    # Linux
+    linux-pam # Pluggable Authentication Modules, a flexible mechanism for authenticating user
     man-pages # Linux development manual pages
     strace # System call tracer for Linux
     sudo # A command to run commands as root
@@ -399,14 +400,6 @@
     pkg-config
     tinyxml-2
     typescript
-
-    # Session.
-    dconf
-    killall
-    wayvnc
-    evtest
-    gnome.zenity
-    linux-pam
 
     # Wayland.
     brightnessctl
