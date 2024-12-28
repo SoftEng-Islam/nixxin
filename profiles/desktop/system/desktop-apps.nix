@@ -16,7 +16,7 @@
 
     testdisk # Data recovery utilities
 
-    # graphics apps
+    # Graphics Apps
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     drawio # A desktop application for creating diagrams
     blender-hip # 3D Creation/Animation/Publishing System
@@ -31,16 +31,16 @@
     sqlitebrowser # DB Browser for SQLite
     bruno # Open-source IDE For exploring and testing APIs.
 
-    # community-apps
-    # telegram-desktop # Telegram Desktop messaging app
-    # discord # All-in-one cross-platform voice and text chat for gamers
-    # slack # Desktop client for Slack
-    # signal-desktop # Private, simple, and secure messenger
-    # zoom-us # zoom.us video conferencing application
+    # Community Apps
     ferdium # All your services in one place built by the community
+    # discord # All-in-one cross-platform voice and text chat for gamers
     # mumble # Low-latency, high quality voice chat software
-    # vesktop # Alternate client for Discord with Vencord built-in
     # revolt-desktop # Open source user-first chat platform
+    # signal-desktop # Private, simple, and secure messenger
+    # slack # Desktop client for Slack
+    # telegram-desktop # Telegram Desktop messaging app
+    # vesktop # Alternate client for Discord with Vencord built-in
+    # zoom-us # zoom.us video conferencing application
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
@@ -54,7 +54,7 @@
     obs-studio # Free and open source software for video recording and live streaming
     screenkey # A screencast tool to display your keys inspired by Screenflick
 
-    # office apps
+    # Office Apps
     # libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
     obsidian # Powerful knowledge base that works on top of a local folder of plain text Markdown files
     zathura # Highly customizable and functional PDF viewer
