@@ -21,7 +21,7 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
       google-fonts
-      nerd-fonts
+      # nerd-fonts
     ];
     fontconfig = {
       enable = true;
@@ -30,10 +30,10 @@
       hinting.enable = true;
       hinting.style = "full";
       defaultFonts = {
-        monospace = [ "${settings.monospaceFont}" ];
-        sansSerif = [ "${settings.sansSerifFont}" ];
-        serif = [ "${settings.serifFont}" ];
         emoji = [ "Noto Color Emoji" ];
+        serif = [ "${settings.serifFont}" ];
+        sansSerif = [ "${settings.sansSerifFont}" ];
+        monospace = [ "${settings.monospaceFont}" ];
       };
     };
   };
