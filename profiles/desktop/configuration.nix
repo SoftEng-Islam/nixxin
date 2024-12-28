@@ -274,35 +274,16 @@
     nixStatic.dev # Powerful package manager that makes package management reliable and reproducible
     node2nix # Generate Nix expressions to build NPM packages
 
-    pciutils
     go-mtpfs
-    ntfs3g
-    inetutils
-    lsof
-    wget
-    git
-    vim
 
     # productivity
-    hugo # static site generator
-    glow # markdown previewer in terminal
-    iotop # io monitoring
-    iftop # network monitoring
-
-    # system tools
-    sysstat
-    lm_sensors # for `sensors` command
-    ethtool
-    pciutils # lspci
-    usbutils # lsusb
+    # hugo # static site generator
+    # glow # markdown previewer in terminal
+    # iotop # io monitoring
+    # iftop # network monitoring
 
     # Other
-    graphviz
-
-    # system call monitoring
-    strace # system call monitoring
-    ltrace # library call monitoring
-    lsof # list open files
+    # graphviz
 
     # QT & KDE Stuff
     adwaita-qt
@@ -364,14 +345,21 @@
     zed-editor # Zed editor (like vscode)
     neovim # Vim text editor fork focused on extensibility and agility
 
-    # Linux
+    vim
+
+    # Linux & system call monitoring
+    bpftrace # High-level tracing language for Linux eBPF
+    ethtool # Utility for controlling network drivers and hardware
+    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     linux-pam # Pluggable Authentication Modules, a flexible mechanism for authenticating user
+    lm_sensors # for `sensors` command
+    lsof # list open files
+    ltrace # library call monitoring
     man-pages # Linux development manual pages
+    shfmt # Shell parser and formatter
     strace # System call tracer for Linux
     sudo # A command to run commands as root
-    shfmt # Shell parser and formatter
-    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
-    bpftrace # High-level tracing language for Linux eBPF
+    sysstat # Collection of performance monitoring tools for Linux (such as sar, iostat and pidstat)
 
     # Audio.
     ladspaPlugins
@@ -386,7 +374,6 @@
     cmake
     gcc13
     gdk-pixbuf.dev
-    git
     glib
     glib.dev
     glibc.dev
@@ -399,14 +386,11 @@
     mlocate
     ninja
     nodejs_20
-    pango.dev
-    pkg-config
     tinyxml-2
-    typescript
 
     # Latex
-    texliveFull
-    texlive.combined.scheme-full
+    texliveFull # TeX Live environment
+    texlive.combined.scheme-full # TeX Live environment for scheme-full
 
     # JavaScript --------------------------------
     nodejs_23 # Event-driven I/O framework for the V8 JavaScript engine
@@ -558,7 +542,6 @@
     dconf-editor # GSettings editor for GNOME
 
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
-    pciutils # A collection of programs for inspecting and manipulating configuration of PCI devices
     matugen # A material you color generation tool
 
     # developers packages
@@ -577,6 +560,7 @@
     llvmPackages_12.bintools # System binary utilities (wrapper script)
     ninja # Small build system with a focus on speed
     pango # A library for laying out and rendering of text, with an emphasis on internationalization
+    pango.dev
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
     zlib # Lossless data-compression library
 
