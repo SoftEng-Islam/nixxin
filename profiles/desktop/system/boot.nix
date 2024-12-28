@@ -3,7 +3,7 @@
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    supportedFilesystems = [ "ntfs" ];
+    supportedFilesystems = [ "ntfs" "nfs" ];
     consoleLogLevel = 0;
     loader = {
       timeout = 4;

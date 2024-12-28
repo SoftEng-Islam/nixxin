@@ -15,7 +15,8 @@
     "radeon"
   ];
   boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-  boot.kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" ];
+  boot.kernelModules =
+    [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
   boot.blacklistedKernelModules =
     [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
   boot.extraModulePackages = with config.boot.kernelPackages;
@@ -132,9 +133,10 @@
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system}";
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   environment.variables = {
     # For AMD GPUs
+    LIBVA_DRIVER_NAME = "amdgpu";
+    VDPAU_DRIVER = "amdgpu";
     OCL_ICD_VENDORS = ''
       ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
     '';
