@@ -55,6 +55,15 @@
     WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
     NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
   };
+  xdg.desktopEntries."org.gnome.Settings" = {
+    name = "Settings";
+    comment = "Gnome Control Center";
+    icon = "org.gnome.Settings";
+    exec =
+      "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
+    categories = [ "X-Preferences" ];
+    terminal = false;
+  };
   home-manager.users.${settings.username} = {
     # home.file.".config/hypr/hyprland.conf".text = builtins.readFile ./hypr/hyprland.conf;
     # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
@@ -80,15 +89,6 @@
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails
       ];
-      xdg.desktopEntries."org.gnome.Settings" = {
-        name = "Settings";
-        comment = "Gnome Control Center";
-        icon = "org.gnome.Settings";
-        exec =
-          "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-        categories = [ "X-Preferences" ];
-        terminal = false;
-      };
 
       settings = {
         monitor = [
