@@ -9,6 +9,7 @@
     hyprlock.enable = true;
     # xwayland.enable = true;
     hyprland = {
+      # xwayland.enable = true;
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
       # xwayland.enable = true;
@@ -17,20 +18,35 @@
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
       # make sure to also set the portal package, so that they are in sync
       portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland.override {
+          inherit (pkgs) mesa;
+        };
     };
   };
 
-  home-manager.users.${settings.username} = {
-    # home.file.".config/hypr/hyprland.conf".text =
-    #   builtins.readFile ./hypr/hyprland.conf;
-    # Make stuff work on wayland
+  services = {
+    # Applications messaging system
+    dbus = {
+      enable = true;
+      packages = with pkgs; [
+        gcr # crypto services (from gnome)
+        dconf # settings daemon (from gnome)
+      ];
+    };
+  };
 
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
+    MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
+    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
+    WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+    NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
+  };
+  home-manager.users.${settings.username} = {
+    # home.file.".config/hypr/hyprland.conf".text = builtins.readFile ./hypr/hyprland.conf;
     # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
     # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
-    # home.file.".config/hypr/scripts/hyprlock-time.sh".source =
-    #   ./hypr/scripts/hyprlock-time.sh;
+    # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
     imports = [
       ./hyprland/ags.nix
       ./hyprland/env.nix
@@ -43,12 +59,10 @@
     ];
     wayland.windowManager.hyprland = {
       enable = true;
-      package = pkgs.hyprland;
-      systemd.enable = true;
+      # package = pkgs.hyprland;
+      # systemd.enable = true;
       plugins = [
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
-        "/absolute/path/to/plugin.so"
-
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails

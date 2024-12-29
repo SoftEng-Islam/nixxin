@@ -7,7 +7,6 @@
     XDG_RUNTIME_DIR = "/run/user/1000";
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     XDG_SESSION_TYPE = "wayland";
-
   };
   xdg = {
     portal = {
@@ -18,8 +17,10 @@
         # common.default = ["gtk"];
         hyprland.default = [ "hyprland" ];
       };
-      extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
-      configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
+      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+      configPackages = with pkgs; [ xdg-desktop-portal-gtk ];
+      # extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
+      # configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
   environment.systemPackages = with pkgs; [
