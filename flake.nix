@@ -33,7 +33,11 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland.url = "github:hyprwm/Hyprland/?submodules=true";
+    hyprland = {
+      url = "github:hyprwm/Hyprland/?submodules=true";
+      inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+    };
+
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";

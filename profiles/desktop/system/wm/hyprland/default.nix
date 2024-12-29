@@ -7,9 +7,9 @@
   programs = {
     uwsm.enable = true;
     hyprlock.enable = true;
-    # xwayland.enable = true;
+    xwayland.enable = true;
     hyprland = {
-      # xwayland.enable = true;
+      xwayland.enable = true;
       enable = true;
       withUWSM = true; # Launch Hyprland with the UWSM session manager.
       # xwayland.enable = true;
