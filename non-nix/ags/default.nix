@@ -1,5 +1,5 @@
-{ inputs, writeShellScript, system, stdenv, cage, swww, esbuild, dart-sass, fd
-, fzf, brightnessctl, accountsservice, slurp, wf-recorder, wl-clipboard, wayshot
+{ inputs, writeShellScript, system, stdenv, swww, esbuild, dart-sass, fd, fzf
+, brightnessctl, accountsservice, slurp, wf-recorder, wl-clipboard, wayshot
 , swappy, hyprpicker, pavucontrol, networkmanager, gtk3, which, }:
 let
   name = "asztal";
