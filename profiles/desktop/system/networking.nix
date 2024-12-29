@@ -77,7 +77,7 @@
           [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
         # Provide DHCP settings (if applicable)
         dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
-        dhcpLeaseTime = "12h";
+        # dhcpLeaseTime = "12h";
       };
     };
   };
