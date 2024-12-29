@@ -163,7 +163,7 @@
       tab_bar_background      #11111B
 
       # Windows Customization
-      window_margin_width 15
+      #window_margin_width 15
       remember_window_size no
       window_padding_width 14
       background_opacity 1
