@@ -101,9 +101,7 @@
       background           #1E1E2E
       selection_foreground #1E1E2E
       selection_background #F5E0DC
-      # Cursor colors
-      cursor            #F5E0DC
-      cursor_text_color #1E1E2E
+
 
       # URL underline color when hovering with mouse
       url_color #0087bd
@@ -112,13 +110,6 @@
       url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
       underline_hyperlinks always
       copy_on_select yes
-
-      # Tab bar colors
-      active_tab_foreground   #11111B
-      active_tab_background   #CBA6F7
-      inactive_tab_foreground #CDD6F4
-      inactive_tab_background #181825
-      # tab_bar_background      #11111B
 
       # Fonts
       font_family CaskaydiaCove Nerd Font Mono
@@ -135,6 +126,8 @@
       mouse_hide_wait 1
 
       # Cursor
+      cursor #9151ff
+      cursor_text_color #1E1E2E
       cursor_shape beam
       cursor_shape_unfocused beam
       cursor_beam_thickness 2.5
@@ -151,7 +144,7 @@
       tab_bar_edge top
       tab_bar_margin_width 0.0
       tab_bar_margin_height 0.0 0.0
-      tab_bar_style fade # fade slant separator powerline
+      tab_bar_style slant
       tab_bar_align left
       tab_bar_min_tabs 1
       tab_switch_strategy previous
@@ -161,12 +154,13 @@
       tab_activity_symbol none
       tab_title_max_length 30
       tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
-      active_tab_foreground   #000
-      active_tab_background   #eee
       active_tab_font_style   bold-italic
-      inactive_tab_foreground #444
-      inactive_tab_background #999
       inactive_tab_font_style normal
+      active_tab_foreground   #11111B
+      active_tab_background   #CBA6F7
+      inactive_tab_foreground #CDD6F4
+      inactive_tab_background #181825
+      tab_bar_background      #11111B
 
       # Windows Customization
       window_margin_width 15
