@@ -19,9 +19,10 @@ in {
     ];
 
     exec-once = [
-      "exec-once = dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY XDG_SESSION_DESKTOP=Hyprland XDG_CURRENT_DESKTOP=Hyprland XDG_SESSION_TYPE=wayland"
+      #"exec-once = dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY XDG_SESSION_DESKTOP=Hyprland XDG_CURRENT_DESKTOP=Hyprland XDG_SESSION_TYPE=wayland"
       "swww-daemon &"
       "ags &"
+
       # "hyprctl setcursor Catppuccin-Mocha-Lavender-Cursors 24"
       # "[workspace 2 silent] firefox"
       # "[workspace 3 silent] kitty btop"

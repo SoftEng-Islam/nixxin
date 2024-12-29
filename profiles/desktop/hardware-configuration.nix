@@ -160,6 +160,10 @@
     rocmPackages.hipify
     rocmPackages.hiprand
 
+    libGLX
+    libGLU
+    libGL
+
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
     microcode-amd # AMD Processor microcode patch
