@@ -33,15 +33,16 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland";
-      submodules = true;
-    };
+    hyprland.url = "github:hyprwm/Hyprland/?submodules=true";
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
       inputs.hyprland.follows = "hyprland";
     };
+
+    # hyprspace.url = "github:hyprspace/hyprspace";
+    # hyprspace.inputs.flake-parts.follows = "flake-parts";
+    # hyprspace.inputs.nixpkgs.follows = "nixpkgs";
+
     hyprpicker = {
       url = "github:hyprwm/hyprpicker";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -117,5 +118,4 @@
         };
       };
     };
-
 }
