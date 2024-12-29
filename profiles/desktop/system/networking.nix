@@ -81,6 +81,13 @@
       };
     };
   };
+  systemd.services.dnsmasq = {
+    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "5s"; # Add a 5-second delay before restarting.
+    };
+  };
   networking.hosts = {
     #    "0.0.0.0" = [
     #      "overseauspider.yuanshen.com"
