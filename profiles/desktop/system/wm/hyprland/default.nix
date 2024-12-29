@@ -4,18 +4,19 @@
   # Start Nested Hyprland: Inside GNOME, run:
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
+  services.xserver.displayManager.startx.enable = true;
   programs = {
-    uwsm.enable = true;
-    hyprlock.enable = true;
-    xwayland.enable = true;
+    uwsm.enable = false;
+    hyprlock.enable = false;
+    xwayland.enable = false;
     hyprland = {
-      xwayland.enable = true;
+      xwayland.enable = false;
       enable = true;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       # xwayland.enable = true;
       # set the flake package
       package =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # make sure to also set the portal package, so that they are in sync
       portalPackage =
         inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland.override {
@@ -34,7 +35,19 @@
       ];
     };
   };
+  services.greetd = {
+    enable = true;
+    settings.default_session = {
+      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
+    };
+    # settings.default_session.command = pkgs.writeShellScript "greeter" ''
+    #   export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
+    #   export XCURSOR_THEME=Qogir
+    #   ${asztal}/bin/greeter
+    # '';
+  };
 
+  systemd.tmpfiles.rules = [ "d '/var/cache/greeter' - greeter greeter - -" ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
     MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
@@ -60,19 +73,35 @@
     wayland.windowManager.hyprland = {
       enable = true;
       # package = pkgs.hyprland;
-      # systemd.enable = true;
+      systemd.enable = true;
       plugins = [
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails
       ];
+      xdg.desktopEntries."org.gnome.Settings" = {
+        name = "Settings";
+        comment = "Gnome Control Center";
+        icon = "org.gnome.Settings";
+        exec =
+          "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
+        categories = [ "X-Preferences" ];
+        terminal = false;
+      };
+
+      settings = {
+        monitor = [
+          # "eDP-1, 1920x1080, 0x0, 1"
+          # "HDMI-A-1, 2560x1440, 1920x0, 1"
+          ",preferred,auto,1"
+        ];
+      };
     };
   };
 
   environment.systemPackages = with pkgs; [
     uwsm # Universal wayland session manager
-
     # albert # Fast and flexible keyboard launcher
     ags # A EWW-inspired widget system as a GJS library
     brightnessctl # This program allows you read and control device brightness

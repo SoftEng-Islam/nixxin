@@ -54,6 +54,7 @@
       sandbox = false;
       keep-outputs = true;
       keep-derivations = true;
+      builders-use-substitutes = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [

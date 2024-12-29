@@ -14,13 +14,11 @@
       wlr.enable = true;
       xdgOpenUsePortal = true;
       config = {
-        # common.default = ["gtk"];
-        hyprland.default = [ "hyprland" ];
+        common.default = [ "gtk" ];
+        hyprland.default = [ "gtk" "hyprland" ];
       };
-      extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
-      configPackages = with pkgs; [ xdg-desktop-portal-gtk ];
-      # extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
-      # configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
+      extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
+      configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
   environment.systemPackages = with pkgs; [
