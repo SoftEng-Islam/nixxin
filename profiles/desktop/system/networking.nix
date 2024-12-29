@@ -5,7 +5,7 @@
     networkmanager = {
       enable = true;
       wifi.powersave = false;
-      dns = "dnsmasq";
+      dns = "none"; # "none" or "dnsmasq"
       # increase boot speed
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
@@ -76,8 +76,8 @@
         server =
           [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
         # Provide DHCP settings (if applicable)
+        dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
-        dhcp-range = "10.42.0.10,10.42.0.100,12h";
         # dhcpLeaseTime = "12h";
       };
     };

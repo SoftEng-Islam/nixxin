@@ -188,6 +188,27 @@
       scrollback_indicator_opacity 1.0
       scrollbar yes
 
+      # Tab bar
+      tab_bar_edge top
+      tab_bar_margin_width 0.0
+      tab_bar_margin_height 0.0 0.0
+      tab_bar_style fade # fade slant separator powerline
+      tab_bar_align left
+      tab_bar_min_tabs 1
+      tab_switch_strategy previous
+      tab_fade 0.25 0.5 0.75 1
+      tab_separator " ┇"
+      tab_powerline_style angled
+      tab_activity_symbol none
+      tab_title_max_length 30
+      tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+      active_tab_foreground   #000
+      active_tab_background   #eee
+      active_tab_font_style   bold-italic
+      inactive_tab_foreground #444
+      inactive_tab_background #999
+      inactive_tab_font_style normal
+
       # Windows Customization
       window_margin_width 15
       remember_window_size no
