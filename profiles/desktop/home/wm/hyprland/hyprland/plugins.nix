@@ -2,7 +2,7 @@
 
 {
   wayland.windowManager.hyprland.extraConfig = ''
-    bind=$mod,grave,hyprexpo:expo, toggle
+    bind=$mod,grave,toggleexpo
     plugin {
         hyprexpo {
             columns = 3
