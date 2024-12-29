@@ -114,9 +114,9 @@
 
     # disable NetworkManager-wait-online.service
 
-    xserver.excludePackages = with pkgs; [ xterm ];
+    # xserver.excludePackages = with pkgs; [ xterm ];
 
-    xserver.enable = false; # X11 windowing system.
+    xserver.enable = true; # X11 windowing system.
     # Display Manager
     xserver.displayManager.gdm.enable = true; # x11
     xserver.displayManager.gdm.wayland = true; # wayland

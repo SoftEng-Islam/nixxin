@@ -72,8 +72,9 @@
     ];
     wayland.windowManager.hyprland = {
       enable = true;
-      # package = pkgs.hyprland;
-      systemd.enable = true;
+      package =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      systemd.enable = false;
       plugins = [
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
         inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
