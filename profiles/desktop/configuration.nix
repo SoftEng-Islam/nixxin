@@ -463,7 +463,6 @@
     seatd # A minimal seat management daemon, and a universal seat management library
     slurp # Select a region in a Wayland compositor
     swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
-    uwsm # Universal wayland session manager
     wayland # Core Wayland window system code and protocol
     wayland-utils # Wayland utilities (wayland-info)
     waypipe # Network proxy for Wayland clients (applications)

@@ -10,7 +10,7 @@
     # xwayland.enable = true;
     hyprland = {
       enable = true;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      withUWSM = true; # Launch Hyprland with the UWSM session manager.
       # xwayland.enable = true;
       # set the flake package
       package =
@@ -57,6 +57,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    uwsm # Universal wayland session manager
+
     # albert # Fast and flexible keyboard launcher
     ags # A EWW-inspired widget system as a GJS library
     brightnessctl # This program allows you read and control device brightness
