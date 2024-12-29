@@ -1,4 +1,4 @@
-{ pkgs, inputs, system, ... }: {
+{ pkgs, inputs, settings, ... }: {
   # Run Hyprland in a nested session for testing within GNOME:
   # Install waypipe and weston: These tools allow you to run Wayland compositors inside existing Wayland/X11 sessions.
   # Start Nested Hyprland: Inside GNOME, run:
@@ -22,7 +22,7 @@
     };
   };
 
-  home-manager.users.${system.username} = {
+  home-manager.users.${settings.username} = {
     # home.file.".config/hypr/hyprland.conf".text =
     #   builtins.readFile ./hypr/hyprland.conf;
     # Make stuff work on wayland
