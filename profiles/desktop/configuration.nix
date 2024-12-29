@@ -271,7 +271,7 @@
     nixdoc # Generate documentation for Nix functions
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-    nixStatic.dev # Powerful package manager that makes package management reliable and reproducible
+    # nixStatic.dev # Powerful package manager that makes package management reliable and reproducible
     node2nix # Generate Nix expressions to build NPM packages
 
     go-mtpfs
