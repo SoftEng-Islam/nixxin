@@ -23,6 +23,12 @@ in {
       "swww-daemon &"
       "ags &"
 
+      # exec-once = dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+      # exec-once = dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
+      # exec-once = dconf write /org/gnome/desktop/interface/document-font-name "'Noto Sans Medium 11'"
+      # exec-once = dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
+      # exec-once = dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
+
       # "hyprctl setcursor Catppuccin-Mocha-Lavender-Cursors 24"
       # "[workspace 2 silent] firefox"
       # "[workspace 3 silent] kitty btop"

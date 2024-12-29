@@ -11,11 +11,15 @@
     # xwayland.enable = true;
     hyprland = {
       enable = true;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       # xwayland.enable = true;
-      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      # set the flake package
+      package =
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+      # make sure to also set the portal package, so that they are in sync
       portalPackage =
-        inputs.hyprland.packages.${pkgs.system}.xdg-desktop-portal-hyprland;
+        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+
     };
   };
   environment.systemPackages = with pkgs; [

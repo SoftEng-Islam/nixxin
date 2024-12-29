@@ -195,9 +195,12 @@
     # Required by gnome file managers
     file-roller.enable = true;
     gnome-disks.enable = true;
-
     # required by libreoffice
     # java.enable = true;
+  };
+  home-manager.users.${settings.username} = {
+    programs.kitty.enable = true; # required for the default Hyprland config
+    wayland.windowManager.hyprland.enable = true; # enable Hyprland
   };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~
