@@ -48,14 +48,14 @@
     # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
     # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
     imports = [
-      ./hyprland/ags.nix
-      ./hyprland/env.nix
-      ./hyprland/binds.nix
-      ./hyprland/scripts.nix
-      ./hyprland/rules.nix
-      ./hyprland/settings.nix
-      ./hyprland/plugins.nix
-      ./hyprland/hyprlock.nix
+      # ./hyprland/ags.nix
+      # ./hyprland/env.nix
+      # ./hyprland/binds.nix
+      # ./hyprland/scripts.nix
+      # ./hyprland/rules.nix
+      # ./hyprland/settings.nix
+      # ./hyprland/plugins.nix
+      # ./hyprland/hyprlock.nix
     ];
     wayland.windowManager.hyprland = {
       enable = true;
