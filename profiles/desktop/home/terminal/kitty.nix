@@ -1,4 +1,4 @@
-{ settings, ... }: {
+{ ... }: {
   home.file.".config/kitty/vim-mode.lua".text = ''
     local api = vim.api
     local orig_buf = api.nvim_get_current_buf()
@@ -26,7 +26,6 @@
   #   active_tab_font_style = "bold";
   #   bold_font = "auto";
   #   bold_italic_font = "auto";
-  #   confirm_os_window_close = 0;
   #   cursor_blink_interval = "-1";
   #   cursor_shape = "underline";
   #   cursor_stop_blinking_after = 0;
@@ -92,20 +91,6 @@
   #   "ctrl+shift+8" = "eighth_window";
   #   "ctrl+shift+9" = "ninth_window";
   #   "ctrl+shift+0" = "tenth_window";
-
-  #   "ctrl+shift+right" = "next_tab";
-  #   "ctrl+shift+left" = "previous_tab";
-  #   "ctrl+shift+t" = "new_tab";
-  #   "ctrl+shift+q" = "close_tab";
-  #   "ctrl+shift+l" = "next_layout";
-  #   "ctrl+shift+." = "move_tab_forward";
-  #   "ctrl+shift+," = "move_tab_backward";
-  #   "ctrl+shift+alt+t" = "set_tab_title";
-
-  #   "ctrl+shift+equal" = "increase_font_size";
-  #   "ctrl+shift+minus" = "decrease_font_size";
-  #   "ctrl+shift+backspace" = "restore_font_size";
-  #   "ctrl+shift+f6" = "set_font_size 16.0";
   # };
   # };
   home.file.".config/kitty/kitty.conf".text = ''
@@ -119,8 +104,14 @@
       # Cursor colors
       cursor            #F5E0DC
       cursor_text_color #1E1E2E
+
       # URL underline color when hovering with mouse
-      url_color #B4BEFE
+      url_color #0087bd
+      url_style curly
+      detect_urls yes
+      url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
+      underline_hyperlinks always
+      copy_on_select yes
 
       # Tab bar colors
       active_tab_foreground   #11111B
@@ -128,39 +119,6 @@
       inactive_tab_foreground #CDD6F4
       inactive_tab_background #181825
       # tab_bar_background      #11111B
-
-      # Colors for marks (marked text in the terminal)
-      mark1_foreground #1E1E2E
-      mark1_background #87B0F9
-      mark2_foreground #1E1E2E
-      mark2_background #CBA6F7
-      mark3_foreground #1E1E2E
-      mark3_background #74C7EC
-      # The 16 terminal colors
-      # black
-      color0 #43465A
-      color8 #43465A
-      # red
-      color1 #F38BA8
-      color9 #F38BA8
-      # green
-      color2  #A6E3A1
-      color10 #A6E3A1
-      # yellow
-      color3  #F9E2AF
-      color11 #F9E2AF
-      # blue
-      color4  #87B0F9
-      color12 #87B0F9
-      # magenta
-      color5  #F5C2E7
-      color13 #F5C2E7
-      # cyan
-      color6  #94E2D5
-      color14 #94E2D5
-      # white
-      color7  #CDD6F4
-      color15 #A1A8C9
 
       # Fonts
       font_family CaskaydiaCove Nerd Font Mono
@@ -170,10 +128,11 @@
       font_size 12.0
 
 
-      input_delay 0
-      repaint_delay 2
-      sync_to_monitor no
+      input_delay 3
+      repaint_delay 10
+      sync_to_monitor yes
       wayland_enable_ime no
+      mouse_hide_wait 1
 
       # Cursor
       cursor_shape beam
