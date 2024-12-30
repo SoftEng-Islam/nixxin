@@ -6,13 +6,13 @@
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
   services.xserver.displayManager.startx.enable = false;
   programs = {
-    uwsm.enable = true;
+    uwsm.enable = false;
     hyprlock.enable = false;
     xwayland.enable = true;
     hyprland = {
       xwayland.enable = true;
       enable = true;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       package = pkgs.hyprland;
       # set the flake package
       # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
@@ -50,7 +50,7 @@
       enable = true;
       # package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      systemd.enable = false;
+      systemd.enable = true;
       # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
       # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
       # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
@@ -60,6 +60,7 @@
         hyprlandPlugins.hyprbars
         hyprlandPlugins.hyprexpo
         hyprlandPlugins.hyprtrails
+        hyprlandPlugins.hypr-dynamic-cursors
       ];
 
       settings = {
