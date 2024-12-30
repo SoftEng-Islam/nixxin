@@ -102,6 +102,7 @@
             inherit inputs;
             inherit settings;
             inherit self;
+            inherit impurity;
           };
           modules = [
             inputs.stylix.nixosModules.stylix
