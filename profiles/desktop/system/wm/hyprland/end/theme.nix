@@ -9,12 +9,12 @@ in {
       XCURSOR_THEME = cursor-theme;
       XCURSOR_SIZE = "24";
     };
-    pointerCursor = {
-      package = cursor-package;
-      name = cursor-theme;
-      size = 24;
-      gtk.enable = true;
-    };
+    # pointerCursor = {
+    #   package = cursor-package;
+    #   name = cursor-theme;
+    #   size = 24;
+    #   gtk.enable = true;
+    # };
   };
 
   gtk = {
