@@ -1,8 +1,7 @@
 let
   username = "end";
   homeDirectory = "/home/end";
-in
-{ pkgs, impurity, ... }: {
+in { pkgs, impurity, ... }: {
   imports = [
     # Cachix
     # ./cachix.nix
@@ -27,14 +26,10 @@ in
       NIXPKGS_ALLOW_UNFREE = "1";
       NIXPKGS_ALLOW_INSECURE = "1";
     };
-    sessionPath = [
-      "$HOME/.local/bin"
-    ];
+    sessionPath = [ "$HOME/.local/bin" ];
   };
 
-  xdg.userDirs = {
-    createDirectories = true;
-  };
+  xdg.userDirs = { createDirectories = true; };
 
   gtk = {
     font = {
@@ -53,13 +48,10 @@ in
         "file://${homeDirectory}/.config/ags"
         "file://${homeDirectory}/.config/hypr"
         "file://${homeDirectory}/GitHub"
-        "file:///mnt/Windows"
+        # "file:///mnt/Windows"
       ];
     };
   };
 
-  programs = {
-    home-manager.enable = true;
-  };
-  home.stateVersion = "23.11"; # this must be the version at which you have started using the program
+  programs = { home-manager.enable = true; };
 }
