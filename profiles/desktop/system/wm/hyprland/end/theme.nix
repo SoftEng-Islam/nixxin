@@ -1,4 +1,4 @@
-{ pkgs, settings, inputs, ... }:
+{ pkgs, settings, lib, inputs, ... }:
 let
   gtk-theme = settings.gtkTheme;
 
@@ -93,8 +93,8 @@ in {
 
   gtk = {
     enable = true;
-    font.name = "Rubik";
-    theme.name = gtk-theme;
+    font.name = settings.sansSerifFont;
+    theme.name = lib.mkForce gtk-theme;
     cursorTheme = {
       name = cursor-theme;
       package = cursor-package;
