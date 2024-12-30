@@ -112,13 +112,11 @@
             {
               environment.systemPackages = with pkgs;
                 [ inputs.ignis.packages.${system}.ignis ];
-              # use it as an overlay
-              #nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
 
               # Impurity
-              imports = [ inputs.impurity.nixosModules.impurity ];
-              inputs.impurity.configRoot = self;
-              inputs.impurity.enable = true;
+              imports = [ impurity.nixosModules.impurity ];
+              impurity.configRoot = self;
+              impurity.enable = true;
 
               _module.args = { username = settings.username; };
 
