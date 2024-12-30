@@ -148,7 +148,7 @@
           ];
 
         };
-      }.extendModules { modules = [{ impurity.enable = true; }]; };
+      };
 
       # Standalone home-manager configuration entrypoint.
       # 'home-manager switch --flake .#username
