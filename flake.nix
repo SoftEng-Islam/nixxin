@@ -62,10 +62,6 @@
       url = "github:/InioX/Matugen";
       # ref = "refs/tags/matugen-v0.10.0"
     };
-    more-waita = {
-      url = "github:somepaulo/MoreWaita";
-      flake = false;
-    };
     # hyprspace.url = "github:hyprspace/hyprspace";
     # hyprspace.inputs.flake-parts.follows = "flake-parts";
     # hyprspace.inputs.nixpkgs.follows = "nixpkgs";
