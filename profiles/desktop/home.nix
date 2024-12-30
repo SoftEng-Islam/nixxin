@@ -57,8 +57,8 @@
 
   # QT Settings
   qt = {
-    # enable = true;
-    # platformTheme.name = settings.qtPlatformTheme;
-    # style.name = settings.qtStyle;
+    enable = true;
+    platformTheme.name = settings.qtPlatformTheme;
+    style.name = settings.qtStyle;
   };
 }

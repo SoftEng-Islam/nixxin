@@ -33,6 +33,11 @@
   };
 
   environment.systemPackages = with pkgs; [
+
+    adwaita-qt6
+    adw-gtk3
+    material-symbols
+
     uwsm # Universal wayland session manager
     # albert # Fast and flexible keyboard launcher
     # ags # A EWW-inspired widget system as a GJS library

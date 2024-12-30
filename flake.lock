@@ -1663,22 +1663,6 @@
         "type": "github"
       }
     },
-    "more-waita": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735552495,
-        "narHash": "sha256-ypOrvVerVRZlBaZ5NoJVAh4w63A7TLTeaZ0jsxMLI5c=",
-        "owner": "somepaulo",
-        "repo": "MoreWaita",
-        "rev": "c37791fdcf9205c027e681e247b2fc20994a16f6",
-        "type": "github"
-      },
-      "original": {
-        "owner": "somepaulo",
-        "repo": "MoreWaita",
-        "type": "github"
-      }
-    },
     "nix-darwin": {
       "inputs": {
         "nixpkgs": [
@@ -2189,7 +2173,6 @@
         "ignis": "ignis",
         "impurity": "impurity",
         "matugen": "matugen",
-        "more-waita": "more-waita",
         "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
