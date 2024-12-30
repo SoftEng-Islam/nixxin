@@ -1,6 +1,7 @@
 { settings, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
+    #initrd.systemd.dbus.enable = false;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" "nfs" ];

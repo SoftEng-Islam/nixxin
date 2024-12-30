@@ -29,6 +29,7 @@
         "networkmanager" # Permissions to manage network connections.
         "plugdev"
         "qemu"
+        "nixos"
         "render"
         "root"
         "tty"

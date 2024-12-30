@@ -8,10 +8,10 @@
     };
     xremap-flake.url = "github:xremap/nix-flake";
 
-    nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
+    #nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
 
     # only needed if you use as a package set:
-    nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
+    #nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
 
     # System-wide colorscheming and typography for NixOS
     stylix.url = "github:danth/stylix";
@@ -87,8 +87,11 @@
               + "/configuration.nix")
             inputs.home-manager.nixosModules.home-manager
             {
+              environment.systemPackages = with pkgs; [
+                inputs.ignis.packages.${system}.ignis
+              ];
               # use it as an overlay
-              nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
+              #nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit settings;

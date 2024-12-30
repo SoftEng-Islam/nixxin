@@ -1,52 +1,29 @@
-{ pkgs, inputs, settings, ... }: {
+{ pkgs, settings, ... }: {
   # Run Hyprland in a nested session for testing within GNOME:
   # Install waypipe and weston: These tools allow you to run Wayland compositors inside existing Wayland/X11 sessions.
   # Start Nested Hyprland: Inside GNOME, run:
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
-  services.xserver.displayManager.startx.enable = true;
+  services.xserver.displayManager.startx.enable = false;
   programs = {
-    uwsm.enable = false;
+    uwsm.enable = true;
     hyprlock.enable = false;
-    xwayland.enable = false;
+    xwayland.enable = true;
     hyprland = {
-      xwayland.enable = false;
+      xwayland.enable = true;
       enable = true;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      package = pkgs.hyprland;
       # set the flake package
-      package =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # make sure to also set the portal package, so that they are in sync
-      portalPackage =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland.override {
-          inherit (pkgs) mesa;
-        };
+      # portalPackage =
+      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland.override {
+      #     inherit (pkgs) mesa;
+      #   };
     };
   };
 
-  services = {
-    # Applications messaging system
-    dbus = {
-      enable = true;
-      packages = with pkgs; [
-        gcr # crypto services (from gnome)
-        dconf # settings daemon (from gnome)
-      ];
-    };
-  };
-  services.greetd = {
-    enable = true;
-    settings.default_session = {
-      command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd Hyprland";
-    };
-    # settings.default_session.command = pkgs.writeShellScript "greeter" ''
-    #   export XKB_DEFAULT_LAYOUT=${config.services.xserver.xkb.layout}
-    #   export XCURSOR_THEME=Qogir
-    #   ${asztal}/bin/greeter
-    # '';
-  };
-
-  systemd.tmpfiles.rules = [ "d '/var/cache/greeter' - greeter greeter - -" ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
     MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
@@ -71,14 +48,18 @@
     ];
     wayland.windowManager.hyprland = {
       enable = true;
-      package =
-        inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      # package = pkgs.hyprland;
+      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
       systemd.enable = false;
-      plugins = [
-        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
-        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
-        inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails
+      plugins = with pkgs; [
+        hyprlandPlugins.borders-plus-plus
+        hyprlandPlugins.hyprbars
+        hyprlandPlugins.hyprexpo
+        hyprlandPlugins.hyprtrails
       ];
 
       settings = {

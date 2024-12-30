@@ -15,8 +15,26 @@ sudo mv wpa_supplicant-2.11.tar.gz /nix/store/xs4b16a9n1pksq0vbpp25z4ggwaav1lc-w
 
 #--------------------------------------------------------------------------------------------
 https://nixos.wiki/wiki/Change_root
-nixos-install-tools
+
+sudo mount --types proc /proc /mnt/proc
+sudo mount --rbind /sys /mnt/sys
+sudo mount --rbind /dev /mnt/dev
+sudo mount --make-rslave /mnt/sys
+sudo mount --make-rslave /mnt/dev
+
+sudo mount -o bind /dev /mnt/dev
+sudo mount -o bind /proc /mnt/proc
+sudo mount -o bind /sys /mnt/sys
+sudo mount /dev/sda1 /mnt/@/boot
+
+export NIXOS_SWITCH_USE_DIRTY_ENV=1
+
 sudo nixos-enter --root /mnt/@
+export SUDO_USER=
+nixos-rebuild boot --flake .#nixos
+nixos-install-tools
+sudo umount -l /mnt
+
 
 
 

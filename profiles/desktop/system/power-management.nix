@@ -2,7 +2,7 @@
   # Power Management
 
   services.upower.enable = lib.mkForce true;
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
 
   powerManagement = {
     enable = false;
@@ -13,7 +13,7 @@
     # cpufreq.max = 2200000;
   };
   services.tlp = {
-    enable = false;
+    enable = true;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";

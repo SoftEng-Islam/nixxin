@@ -208,19 +208,19 @@
   # ~~~~~~~ Security ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~
   security = {
+    sudo.enable = true;
     # don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
     # show Password as stars in Terminals.
     sudo.extraConfig = "Defaults        env_reset,pwfeedback";
     allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
     polkit.enable = true;
-    pam.services.astal-auth = { };
     isolate.enable = false;
-    sudo.configFile = ''
-      root   ALL=(ALL:ALL) SETENV: ALL
-      %wheel ALL=(ALL:ALL) SETENV: ALL
-      celes  ALL=(ALL:ALL) SETENV: ALL
-    '';
+    #sudo.configFile = ''
+    #  root   ALL=(ALL:ALL) SETENV: ALL
+    #  %wheel ALL=(ALL:ALL) SETENV: ALL
+    #  celes  ALL=(ALL:ALL) SETENV: ALL
+    #'';
   };
 
   system = {
@@ -230,7 +230,8 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.ignis.packages.${system}.ignis
+    #inputs.ignis.packages.${system}.ignis
+    wayland
 
     settings.browserPkg
     settings.termPkg
@@ -330,7 +331,7 @@
     libdbusmenu-gtk3 # Library for passing menu structures across DBus
     tk
     upower
-    webkitgtk_6_0 # Web content rendering engine, GTK port
+    #webkitgtk_6_0 # Web content rendering engine, GTK port
     webp-pixbuf-loader
     wrapGAppsHook
     yad
