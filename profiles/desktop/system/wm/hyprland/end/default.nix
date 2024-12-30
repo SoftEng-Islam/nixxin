@@ -1,6 +1,7 @@
+{ settings, ... }:
 let
-  username = "end";
-  homeDirectory = "/home/end";
+  username = settings.username;
+  homeDirectory = "/home/${settings.username}";
 in { pkgs, impurity, ... }: {
   imports = [
     # Cachix
