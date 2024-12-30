@@ -116,9 +116,9 @@
               #nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
 
               # Impurity
-              imports = [ impurity.nixosModules.impurity ];
-              impurity.configRoot = self;
-              impurity.enable = true;
+              imports = [ inputs.impurity.nixosModules.impurity ];
+              inputs.impurity.configRoot = self;
+              inputs.impurity.enable = true;
 
               _module.args = { username = settings.username; };
 
