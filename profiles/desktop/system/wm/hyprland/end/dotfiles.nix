@@ -1,12 +1,14 @@
-{ impurity, ... }: {
+{ impurity, ... }:
+let link = impurity.link;
+in {
   xdg.configFile = {
-    "ags".source = impurity.link ./.config/ags;
-    "fish".source = impurity.link ./.config/fish;
-    "foot".source = impurity.link ./.config/foot;
-    "fuzzel".source = impurity.link ./.config/fuzzel;
-    "mpv".source = impurity.link ./.config/mpv;
-    "thorium-flags.conf".source = impurity.link ./.config/thorium-flags.conf;
-    "starship.toml".source = impurity.link ./.config/starship.toml;
+    "ags".source = link ./.config/ags;
+    "fish".source = link ./.config/fish;
+    "foot".source = link ./.config/foot;
+    "fuzzel".source = link ./.config/fuzzel;
+    "mpv".source = link ./.config/mpv;
+    "thorium-flags.conf".source = link ./.config/thorium-flags.conf;
+    "starship.toml".source = link ./.config/starship.toml;
   };
 }
 

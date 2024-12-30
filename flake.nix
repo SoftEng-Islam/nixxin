@@ -93,9 +93,15 @@
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
+      homeDir = self + /homes;
+      # create an alias for the home-manager nixos module
+      hm = home-manager.nixosModules.home-manager;
+      # if a host uses home-manager, then it can simply import this list
+      homes = [ homeDir hm ];
+      impurity = inputs.impurity;
     in {
       # NixOS configuration entrypoint.
-      # 'nixos-rebuild switch --flake .#hostname
+      # 'sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
         ${settings.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {
@@ -138,31 +144,12 @@
                 targets.plymouth.enable = true;
               };
             }
-          ];
-
+          ] ++ homes;
         };
         "${settings.hostName}-impure" =
           self.nixosConfigurations.${settings.hostName}.extendModules {
             modules = [{ impurity.enable = true; }];
           };
-      };
-
-      # Standalone home-manager configuration entrypoint.
-      # 'home-manager switch --flake .#username
-      homeConfigurations = {
-        ${settings.username} = home-manager.lib.homeManagerConfiguration {
-          pkgs = nixpkgs.legacyPackages.${settings.system};
-          modules = [
-            (./. + "/profiles" + ("/" + settings.profile) + "/home.nix")
-            inputs.plasma-manager.homeManagerModules.plasma-manager
-            inputs.stylix.homeManagerModules.stylix
-            inputs.nixvim.homeManagerModules.nixvim
-          ];
-          extraSpecialArgs = {
-            inherit inputs;
-            inherit settings;
-          };
-        };
       };
     };
 }
