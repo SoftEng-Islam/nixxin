@@ -144,6 +144,10 @@
           ];
 
         };
+        "${settings.hostName}-impure" =
+          self.nixosConfigurations.${settings.hostName}.extendModules {
+            modules = [{ impurity.enable = true; }];
+          };
       };
 
       # Standalone home-manager configuration entrypoint.
