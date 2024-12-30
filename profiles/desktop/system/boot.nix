@@ -4,7 +4,7 @@
     #initrd.systemd.dbus.enable = false;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    supportedFilesystems = [ "ntfs" "nfs" ];
+    supportedFilesystems = [ "ntfs" "nfs" "btrfs" "ext4" "fat32" ];
     consoleLogLevel = 0;
     loader = {
       timeout = 4;

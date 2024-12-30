@@ -41,9 +41,6 @@
   # documentation.doc.enable = false;
   environment.localBinInPath = true;
 
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = false;
-
   nix = {
     package = pkgs.nixVersions.latest;
     gc.automatic = true;
@@ -59,11 +56,12 @@
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [
         "https://cache.nixos.org"
+        "https://cuda-maintainers.cachix.org"
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
-        "https://cuda-maintainers.cachix.org"
-        "https://nixpkgs-wayland.cachix.org"
+        "https://nix-gaming.cachix.org"
         "https://nixpkgs-python.cachix.org"
+        "https://nixpkgs-wayland.cachix.org"
       ];
       # trusted-substituters = [ "https://nix-community.cachix.org" ];
       trusted-public-keys = [
@@ -115,14 +113,16 @@
     # disable NetworkManager-wait-online.service
 
     # xserver.excludePackages = with pkgs; [ xterm ];
-
-    xserver.enable = true; # X11 windowing system.
-    # Display Manager
-    xserver.displayManager.gdm.enable = true; # x11
-    xserver.displayManager.gdm.wayland = true; # wayland
-    # Desktop Manager
-    xserver.desktopManager.gnome.enable = true;
-
+    xserver = {
+      enable = true;
+      displayManager.startx.enable = true;
+      displayManager.gdm.enable = true; # x11
+      displayManager.gdm.wayland = true; # wayland
+      desktopManager.gnome = {
+        enable = true;
+        extraGSettingsOverridePackages = [ pkgs.nautilus-open-any-terminal ];
+      };
+    };
     # Enable the GNOME Desktop Environment.
     displayManager.enable = true;
     displayManager.defaultSession = settings.defaultSession;
@@ -161,6 +161,17 @@
       HandleLidSwitch=suspend
       HandleLidSwitchExternalPower=ignore
     '';
+
+    greetd = {
+      enable = true;
+      settings = {
+        default_session = {
+          command =
+            "${pkgs.greetd.tuigreet}/bin/tuigreet --time --remember --cmd Hyprland";
+          user = "greeter";
+        };
+      };
+    };
   };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

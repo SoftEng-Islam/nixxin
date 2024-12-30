@@ -4,25 +4,18 @@
   # Start Nested Hyprland: Inside GNOME, run:
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
-  services.xserver.displayManager.startx.enable = false;
-  programs = {
-    uwsm.enable = false;
-    hyprlock.enable = false;
-    xwayland.enable = true;
-    hyprland = {
-      xwayland.enable = true;
-      enable = true;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
-      package = pkgs.hyprland;
-      # set the flake package
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      # make sure to also set the portal package, so that they are in sync
-      # portalPackage =
-      #   inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland.override {
-      #     inherit (pkgs) mesa;
-      #   };
-    };
-  };
+  # services.xserver.displayManager.startx.enable = false;
+  # programs = {
+  #   uwsm.enable = false;
+  #   hyprlock.enable = false;
+  #   xwayland.enable = true;
+  #   hyprland = {
+  #     xwayland.enable = true;
+  #     enable = true;
+  #     withUWSM = false; # Launch Hyprland with the UWSM session manager.
+  #     package = pkgs.hyprland;
+  #   };
+  # };
 
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
@@ -36,33 +29,7 @@
     # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
     # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
     # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
-    imports = [
-      ./hyprland/ags.nix
-      ./hyprland/env.nix
-      ./hyprland/binds.nix
-      ./hyprland/scripts.nix
-      ./hyprland/rules.nix
-      ./hyprland/settings.nix
-      ./hyprland/plugins.nix
-      ./hyprland/hyprlock.nix
-    ];
-    wayland.windowManager.hyprland = {
-      enable = true;
-      # package = pkgs.hyprland;
-      # package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.default;
-      systemd.enable = true;
-      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprbars
-      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprexpo
-      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
-      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.hyprtrails
-      plugins = with pkgs; [
-        hyprlandPlugins.borders-plus-plus
-        # hyprlandPlugins.hyprbars
-        hyprlandPlugins.hyprexpo
-        hyprlandPlugins.hyprtrails
-        hyprlandPlugins.hypr-dynamic-cursors
-      ];
-    };
+    imports = [ ./hyprland/end ];
   };
 
   environment.systemPackages = with pkgs; [

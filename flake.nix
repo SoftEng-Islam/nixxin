@@ -93,7 +93,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, impurity, hyprland, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
@@ -120,10 +120,15 @@
               home-manager.extraSpecialArgs = {
                 inherit inputs;
                 inherit settings;
+                inherit self impurity;
               };
-              # home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = false;
-              home-manager.backupFileExtension = "backup";
+              home-manager.useGlobalPkgs = true;
+              home-manager.useUserPackages = true;
+              # tell home-manager to be as verbose as possible
+              home-manager.verbose = true;
+              # move existing files to the .old suffix rather than failing
+              # with a very long error message about it
+              home-manager.backupFileExtension = "old";
               home-manager.users.${settings.username} = import
                 (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");
 

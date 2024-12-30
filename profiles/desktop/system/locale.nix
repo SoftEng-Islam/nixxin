@@ -63,6 +63,8 @@
     inputMethod = {
       enable = true;
       type = "ibus";
+      enabled = "fcitx5";
+      fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-with-addons ];
       # ibus.engines = [
       #   "m17n:en"  # English (US)
       #   "m17n:ara"     # Arabic using m17n engine
