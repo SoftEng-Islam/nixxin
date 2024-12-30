@@ -119,6 +119,8 @@
               impurity.configRoot = self;
               impurity.enable = true;
 
+              _module.args = { username = settings.username; };
+
               home-manager = {
                 extraSpecialArgs = {
                   inherit inputs;
