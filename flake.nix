@@ -117,7 +117,7 @@
               # Impurity
               imports = [ impurity.nixosModules.impurity ];
               impurity.configRoot = self;
-              impurity.enable = true;
+              # impurity.enable = true;
 
               _module.args = { username = settings.username; };
 
