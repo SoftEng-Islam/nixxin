@@ -117,30 +117,37 @@
                 [ inputs.ignis.packages.${system}.ignis ];
               # use it as an overlay
               #nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                inherit settings;
-                inherit self impurity;
-              };
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              # tell home-manager to be as verbose as possible
-              home-manager.verbose = true;
-              # move existing files to the .old suffix rather than failing
-              # with a very long error message about it
-              home-manager.backupFileExtension = "old";
-              home-manager.users.${settings.username} = import
-                (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");
 
-              stylix.image = settings.themeDetails.wallpaper;
-              stylix.base16Scheme =
-                "${pkgs.base16-schemes}/share/themes/${settings.themeDetails.themeName}.yaml";
-              stylix.targets.grub.enable = true;
-              stylix.targets.plymouth.enable = true;
+              # Impurity
+              imports = [ impurity.nixosModules.impurity ];
+              impurity.configRoot = self;
+              impurity.enable = true;
+
+              home-manager = {
+                extraSpecialArgs = {
+                  inherit inputs;
+                  inherit settings;
+                  inherit self impurity;
+                };
+                useGlobalPkgs = true;
+                useUserPackages = true;
+                verbose = true;
+                backupFileExtension = "old";
+                users.${settings.username} = import
+                  (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");
+              };
+
+              stylix = {
+                image = settings.themeDetails.wallpaper;
+                base16Scheme =
+                  "${pkgs.base16-schemes}/share/themes/${settings.themeDetails.themeName}.yaml";
+                targets.grub.enable = true;
+                targets.plymouth.enable = true;
+              };
             }
           ];
 
-        };
+        }.extendModules { modules = [{ impurity.enable = true; }]; };
       };
 
       # Standalone home-manager configuration entrypoint.
