@@ -93,11 +93,9 @@
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
-      homeDir = self + /homes;
       # create an alias for the home-manager nixos module
       hm = home-manager.nixosModules.home-manager;
       # if a host uses home-manager, then it can simply import this list
-      homes = [ homeDir hm ];
       impurity = inputs.impurity;
     in {
       # NixOS configuration entrypoint.
@@ -144,7 +142,7 @@
                 targets.plymouth.enable = true;
               };
             }
-          ] ++ homes;
+          ] ++ hm;
         };
         "${settings.hostName}-impure" =
           self.nixosConfigurations.${settings.hostName}.extendModules {
