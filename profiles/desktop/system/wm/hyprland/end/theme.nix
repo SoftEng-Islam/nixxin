@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, settings, inputs, ... }:
 let
   gtk-theme = "adw-gtk3-dark";
 
@@ -26,16 +26,17 @@ let
   google-fonts = (pkgs.google-fonts.override {
     fonts = [
       # Sans
-      "Gabarito" "Lexend"
+      "Gabarito"
+      "Lexend"
       # Serif
-      "Chakra Petch" "Crimson Text"
+      "Chakra Petch"
+      "Crimson Text"
     ];
   });
 
-  cursor-theme = "Bibata-Modern-Classic";
-  cursor-package = pkgs.bibata-cursors;
-in
-{
+  cursor-theme = settings.cursorTheme;
+  cursor-package = settings.cursorPackage;
+in {
   home = {
     packages = with pkgs; [
       # themes
@@ -86,9 +87,7 @@ in
       #     }
       #   '';
       # };
-      ".local/share/icons/MoreWaita" = {
-        source = "${moreWaita}/share/icons";
-      };
+      ".local/share/icons/MoreWaita" = { source = "${moreWaita}/share/icons"; };
     };
   };
 
@@ -111,6 +110,6 @@ in
 
   qt = {
     enable = true;
-    platformTheme = "kde";
+    platformTheme = settings.qtPlatformTheme;
   };
 }
