@@ -88,7 +88,6 @@
     nautilus-open-any-terminal
     pamixer # gcsconnect volume control
     playerctl # gsconnect play/pause command
-    rubik
     twitter-color-emoji
 
     # Polkit

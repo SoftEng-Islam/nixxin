@@ -33,11 +33,6 @@ in {
   xdg.userDirs = { createDirectories = true; };
 
   gtk = {
-    font = {
-      name = "Rubik";
-      package = pkgs.google-fonts.override { fonts = [ "Rubik" ]; };
-      size = 11;
-    };
     gtk3 = {
       bookmarks = [
         "file://${homeDirectory}/Downloads"
@@ -53,6 +48,4 @@ in {
       ];
     };
   };
-
-  programs = { home-manager.enable = true; };
 }
