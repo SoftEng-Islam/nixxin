@@ -1,6 +1,6 @@
 { pkgs, settings, inputs, ... }:
 let
-  gtk-theme = "adw-gtk3-dark";
+  gtk-theme = settings.gtkTheme;
 
   moreWaita = pkgs.stdenv.mkDerivation {
     name = "MoreWaita";

@@ -318,7 +318,6 @@
     qt6Packages.qt6ct
 
     # GTK  Stuff & Themes & Graphical Interfaces
-    adw-gtk3 # Theme from libadwaita ported to GTK-3
     gjs
     gjs.dev
     gobject-introspection
