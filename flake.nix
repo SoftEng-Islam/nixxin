@@ -38,6 +38,8 @@
       url = "github:Mic92/nix-ld";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    impurity.url = "github:outfoxxed/impurity.nix";
+    thorium.url = "github:end-4/nix-thorium";
     hyprland = {
       url = "github:hyprwm/Hyprland/?submodules=true";
       inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
@@ -45,9 +47,25 @@
 
     hyprland-plugins = {
       url = "github:hyprwm/hyprland-plugins";
-      inputs.hyprland.follows = "hyprland";
+      # inputs.hyprland.follows = "hyprland";
     };
-
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts";
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
+    gross = {
+      url = "github:fufexan/gross";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+    matugen = {
+      url = "github:/InioX/Matugen";
+      # ref = "refs/tags/matugen-v0.10.0"
+    };
+    more-waita = {
+      url = "github:somepaulo/MoreWaita";
+      flake = false;
+    };
     # hyprspace.url = "github:hyprspace/hyprspace";
     # hyprspace.inputs.flake-parts.follows = "flake-parts";
     # hyprspace.inputs.nixpkgs.follows = "nixpkgs";
@@ -65,10 +83,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.home-manager.follows = "home-manager";
     };
-    anyrun.url = "github:Kirottu/anyrun";
+    firefox-gnome-theme = {
+      url = "github:rafaelmardojai/firefox-gnome-theme";
+      flake = false;
+    };
+    anyrun = {
+      url = "github:Kirottu/anyrun";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = { self, nixpkgs, home-manager, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, hyprland, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
@@ -80,6 +105,7 @@
           specialArgs = {
             inherit inputs;
             inherit settings;
+            inherit self;
           };
           modules = [
             inputs.stylix.nixosModules.stylix
@@ -87,9 +113,8 @@
               + "/configuration.nix")
             inputs.home-manager.nixosModules.home-manager
             {
-              environment.systemPackages = with pkgs; [
-                inputs.ignis.packages.${system}.ignis
-              ];
+              environment.systemPackages = with pkgs;
+                [ inputs.ignis.packages.${system}.ignis ];
               # use it as an overlay
               #nixpkgs.overlays = [ inputs.nixpkgs-wayland.overlay ];
               home-manager.extraSpecialArgs = {

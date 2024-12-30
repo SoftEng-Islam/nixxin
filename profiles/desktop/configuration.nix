@@ -389,7 +389,6 @@
     libpulseaudio.dev
     meson
     mlocate
-    ninja
     nodejs_20
     tinyxml-2
 
@@ -561,7 +560,6 @@
     harfbuzz # An OpenType text shaping engine
     # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     llvmPackages_12.bintools # System binary utilities (wrapper script)
-    ninja # Small build system with a focus on speed
     pango # A library for laying out and rendering of text, with an emphasis on internationalization
     pango.dev
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)

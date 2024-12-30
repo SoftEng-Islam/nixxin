@@ -22,6 +22,7 @@ in {
       #"exec-once = dbus-update-activation-environment --systemd DISPLAY XAUTHORITY WAYLAND_DISPLAY XDG_SESSION_DESKTOP=Hyprland XDG_CURRENT_DESKTOP=Hyprland XDG_SESSION_TYPE=wayland"
       "swww-daemon &"
       "ags &"
+      "hyprpm reload"
 
       # exec-once = dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
       # exec-once = dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"

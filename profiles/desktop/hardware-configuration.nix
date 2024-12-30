@@ -114,8 +114,10 @@
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
-    fsType = "auto";
+    # fsType = "auto";
+    fsType = "ntfs-3g";
     options = [
+      "rw"
       "nofail"
       "nodev"
       "uid=1000"
