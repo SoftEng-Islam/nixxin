@@ -93,7 +93,6 @@
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
-      impurity = inputs.impurity;
     in {
       # NixOS configuration entrypoint.
       # 'sudo nixos-rebuild switch --flake .#YourHostname
@@ -106,6 +105,7 @@
             inherit impurity;
           };
           modules = [
+            inputs.impurity.nixosModules.impurity
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + "/profiles" + ("/" + settings.profile)
