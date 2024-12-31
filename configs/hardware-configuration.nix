@@ -166,6 +166,8 @@
     rocmPackages.hipify
     rocmPackages.hiprand
 
+    zluda
+
     libGLX
     libGLU
     libGL
