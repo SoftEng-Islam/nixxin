@@ -28,12 +28,77 @@
     WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
     NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
   };
+
   home-manager = {
     extraSpecialArgs = { inherit inputs settings self; };
     users.${settings.username} = ./end;
   };
 
   environment.systemPackages = with pkgs; [
+
+    # gui
+    blueberry
+    d-spy
+    # figma-linux
+    # kolourpaint
+    # github-desktop
+    icon-library
+    qt5.qtimageformats
+    yad
+
+    # tools
+    bat
+    eza
+    fd
+    ripgrep
+    fzf
+    socat
+    jq
+    gojq
+    acpi
+    libnotify
+    killall
+    zip
+    unzip
+    starship
+    showmethekey
+    ydotool
+
+    # theming tools
+    gradience
+
+    # hyprland
+    brightnessctl
+    cliphist
+    fuzzel
+    grim
+    hyprpicker
+    tesseract
+    imagemagick
+    pavucontrol
+    playerctl
+    swappy
+    swaylock-effects
+    swayidle
+    slurp
+    swww
+    wayshot
+    wlsunset
+    wl-clipboard
+    wf-recorder
+
+    # langs
+    nodejs
+    gjs
+    bun
+    cargo
+    go
+    gcc
+    typescript
+    eslint
+    # very important stuff
+    # uwuify
+
     adwaita-qt6
     adw-gtk3
     material-symbols
