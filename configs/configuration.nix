@@ -3,7 +3,7 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { self, inputs, config, settings, pkgs, ... }: {
   imports = [
-    ./hardware-configuration.nix
+    ./hardware.nix
     ./packages.nix
     ./stylix
     ./modules/cli

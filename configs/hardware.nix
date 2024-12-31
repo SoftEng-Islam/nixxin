@@ -75,6 +75,7 @@
         mesa.opencl
         amdvlk
         rocmPackages.clr.icd
+        rocmPackages.rocm-runtime
         libva
         libva-utils
         inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
