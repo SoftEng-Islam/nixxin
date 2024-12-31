@@ -112,12 +112,12 @@ in {
           contrast = 1;
         };
         # Shadow
-        drop_shadow = false;
-        shadow_ignore_window = true;
+        # drop_shadow = false;
+        # shadow_ignore_window = true;
         shadow_range = 20;
-        shadow_offset = "0 2";
+        # shadow_offset = "0 2";
         shadow_render_power = 2;
-        "col.shadow" = "rgba(0000001A)";
+        # "col.shadow" = "rgba(0000001A)";
 
         # Dim
         dim_inactive = false;
