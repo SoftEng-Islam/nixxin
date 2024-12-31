@@ -124,7 +124,12 @@
               _module.args = { username = settings.username; };
 
               home-manager = {
-                extraSpecialArgs = { inherit inputs settings self impurity; };
+                extraSpecialArgs = {
+                  inherit inputs;
+                  inherit settings;
+                  inherit self;
+                  inherit impurity;
+                };
                 useGlobalPkgs = true;
                 useUserPackages = true;
                 verbose = true;
