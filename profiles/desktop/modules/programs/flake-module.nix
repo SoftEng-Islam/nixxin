@@ -101,7 +101,6 @@
 
         "*.gitignore"
         "*.gitmodules"
-        "home-manager/modules/waybar.css"
         "home/.Xresources"
         "home/.agignore"
         "home/.config/autorandr/*"

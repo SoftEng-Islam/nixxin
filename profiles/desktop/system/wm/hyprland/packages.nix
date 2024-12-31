@@ -1,9 +1,6 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     # gui
-    blueberry
-    d-spy
-    icon-library
     qt5.qtimageformats
     yad
 

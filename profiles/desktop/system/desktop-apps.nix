@@ -4,6 +4,9 @@
     # figma-linux
     # kolourpaint
     # github-desktop
+    # blueberry
+    d-spy
+    icon-library
 
     # Media Players
     (mpv.override { scripts = [ mpvScripts.mpris ]; })

@@ -1,12 +1,8 @@
-{ config, pkgs, ... }:
-
-{
+{ config, pkgs, ... }: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
-
     # Mouse bindings.
     bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-
     binde = [
       ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
       ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
@@ -15,14 +11,31 @@
       "$mod ALT, k, exec, pulsemixer --change-volume +5"
       "$mod ALT, j, exec, pulsemixer --change-volume -5"
     ];
-
     bind = [
       # Window/Session actions.
       "$mod, Q, killactive,"
-      "$mod, W, fullscreen, 1"
-      "$mode SHIFT, W, fullscreen,"
-      "$mod, E, togglefloating,"
+      "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
       "$mod, delete, exit,"
+      "$mod, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
+      "$mod, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
+      "$mod, Z, exec, Zed" # Launch Zed (editor)
+      # "$mod Alt, E, exec, thunar" # Launch Thunar (file manager)
+      "$mod, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
+      # Launch GNOME Settings
+      "Ctrl $mod, V, exec, pavucontrol" # Launch pavucontrol (volume mixer)
+      "Ctrl Shift, Escape, exec, gnome-system-monitor" # Launch GNOME System monitor
+      "Ctrl $mod, Slash, exec, pkill anyrun || anyrun" # Toggle fallback launcher: anyrun
+      "$mod Alt, Slash, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
+
+      ''
+        $mod, I, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center
+      ''
+
+      # Positioning mode
+      "$mod Alt, Space, togglefloating,"
+      "$mod, F, fullscreen, 0"
+      # "$mod, D, fullscreen, 1"
+      "$mode SHIFT, F, fullscreen,"
 
       # Dwindle
       "$mod, O, togglesplit,"
@@ -32,7 +45,7 @@
       "$mod, Escape, exec, hyprlock"
 
       # Application shortcuts.
-      "$mod, Return, exec, kitty"
+      "$mod, T, exec, kitty" # Launch kitty (terminal)
       "$mod SHIFT, Return, exec, kitty --class floating"
 
       # Special workspace
@@ -54,7 +67,7 @@
 
       # Music control
       "$mod ALT, m, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute"
-      ", XF86AudioMicMute, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute"
+      ",XF86AudioMicMute, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute"
       ",XF86AudioMute, exec, pulsemixer --id $(pulsemixer --list-sinks | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute"
       "$mod ALT, l, exec, hyprmusic next"
       "$mod ALT, h, exec, hyprmusic previous"
@@ -70,6 +83,10 @@
 
       # Move monitor focus.
       "$mod, TAB, focusmonitor, +1"
+
+      #/# bind = Ctrl+Super, ←/→,, # Workspace: focus left/right
+      "Ctrl $mod, Right, workspace, +1"
+      "Ctrl $mod, Left, workspace, -1"
 
       # Switch workspaces.
       "$mod, 1,exec,hyprworkspace 1"
@@ -104,9 +121,44 @@
       "$mod SHIFT, 0, movetoworkspace, 10"
       "$mod CTRL SHIFT, l, movetoworkspace, r+1"
       "$mod CTRL SHIFT, h, movetoworkspace, r-1"
+
+      # Move active window to a workspace silent.
+      "$mod SHIFT, 1, movetoworkspacesilent, 1"
+      "$mod SHIFT, 2, movetoworkspacesilent, 2"
+      "$mod SHIFT, 3, movetoworkspacesilent, 3"
+      "$mod SHIFT, 4, movetoworkspacesilent, 4"
+      "$mod SHIFT, 5, movetoworkspacesilent, 5"
+      "$mod SHIFT, 6, movetoworkspacesilent, 6"
+      "$mod SHIFT, 7, movetoworkspacesilent, 7"
+      "$mod SHIFT, 8, movetoworkspacesilent, 8"
+      "$mod SHIFT, 9, movetoworkspacesilent, 9"
+      "$mod SHIFT, 0, movetoworkspacesilent, 10"
+
+      #/# bind = Super+Shift, Page_↑/↓,, # Window: move to workspace left/right
+      "$mod Alt, Page_Down, movetoworkspace, +1"
+      "$mod Alt, Page_Up, movetoworkspace, -1"
+      "$mod Shift, Page_Down, movetoworkspace, +1"
+      "$mod Shift, Page_Up, movetoworkspace, -1"
+    ];
+    bindr = [
+      "Ctrl $mod , R, exec, killall ags ydotool; ags &"
+      "Ctrl $mod Alt, R, exec, hyprctl reload; killall ags ydotool; ags &"
     ];
   };
   wayland.windowManager.hyprland.extraConfig = ''
+      source=~/.cache/ignis/material/dark_colors-hyprland.conf
+      env = QT_QPA_PLATFORM,wayland
+      env = QT_QPA_PLATFORMTHEME,qt5ct
+      env = GTK_THEME,Material
+
+      exec-once = ignis init
+
+    # Fullscreen screenshot
+    # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
+    bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
+    bind = $mod+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area # Screen snip
+    bindl=,Print, exec, mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
+
     # will switch to a submap called resize
     bind=$mod,R,exec,echo -n "Resize" > /tmp/hypr_submap
     bind=$mod,R,submap,resize
