@@ -1,24 +1,19 @@
-{ pkgs, ... }:
-{
+{ pkgs, ... }: {
 
-  home = {
-    packages = with pkgs; with nodePackages_latest; with gnome; with libsForQt5; [
-      i3 # gaming
-      sway
+  environment.systemPackages = with pkgs;
+  # with nodePackages_latest;
+  # with gnome;
+  # with libsForQt5;
 
+    [
       # gui
       blueberry
-      (mpv.override { scripts = [ mpvScripts.mpris ]; })
       d-spy
-      dolphin
-      figma-linux
-      kolourpaint
-      github-desktop
-      gnome.nautilus
+      # figma-linux
+      # kolourpaint
+      # github-desktop
       icon-library
-      dconf-editor
       qt5.qtimageformats
-      vlc
       yad
 
       # tools
@@ -31,22 +26,16 @@
       jq
       gojq
       acpi
-      ffmpeg
       libnotify
       killall
       zip
       unzip
-      glib
-      foot
-      kitty
       starship
       showmethekey
-      vscode
       ydotool
 
       # theming tools
       gradience
-      gnome-tweaks
 
       # hyprland
       brightnessctl
@@ -80,5 +69,5 @@
       # very important stuff
       # uwuify
     ];
-  };
+
 }

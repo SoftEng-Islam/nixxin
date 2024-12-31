@@ -28,8 +28,10 @@
     WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
     NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
   };
-  home-manager.extraSpecialArgs = { inherit inputs settings self impurity; };
-  home-manager.users.${settings.username} = ./end;
+  home-manager = {
+    extraSpecialArgs = { inherit inputs settings self; };
+    users.${settings.username} = ./end;
+  };
 
   environment.systemPackages = with pkgs; [
     adwaita-qt6

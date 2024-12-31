@@ -241,9 +241,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    #inputs.ignis.packages.${system}.ignis
     wayland
-
     settings.browserPkg
     settings.termPkg
 

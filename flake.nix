@@ -89,7 +89,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, impurity, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
@@ -102,10 +102,8 @@
             inherit inputs;
             inherit settings;
             inherit self;
-            inherit impurity;
           };
           modules = [
-            inputs.impurity.nixosModules.impurity
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + "/profiles" + ("/" + settings.profile)
@@ -115,20 +113,11 @@
                 inputs.ignis.packages.${system}.ignis
                 inputs.ags.packages.${system}.default
               ];
-
-              # Impurity
-              imports = [ impurity.nixosModules.impurity ];
-              impurity.configRoot = self;
-              impurity.enable = true;
-
-              _module.args = { username = settings.username; };
-
               home-manager = {
                 extraSpecialArgs = {
                   inherit inputs;
                   inherit settings;
                   inherit self;
-                  inherit impurity;
                 };
                 useGlobalPkgs = true;
                 useUserPackages = true;
@@ -148,10 +137,6 @@
             }
           ];
         };
-        "${settings.hostName}-impure" =
-          self.nixosConfigurations.${settings.hostName}.extendModules {
-            modules = [{ impurity.enable = true; }];
-          };
       };
     };
 }

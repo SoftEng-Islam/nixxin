@@ -78,7 +78,6 @@
     gnome-text-editor
     gnome-themes-extra
     gnome-tweaks # A tool to customize advanced GNOME 3 options
-    gnome.nautilus-python
     gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
     gsettings-desktop-schemas
     lexend
