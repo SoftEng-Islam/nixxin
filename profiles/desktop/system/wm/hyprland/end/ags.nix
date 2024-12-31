@@ -1,7 +1,5 @@
-{ pkgs, ... }: {
-  # imports = [
-  #   inputs.ags.homeManagerModules.default
-  # ];
+{ inputs, pkgs, ... }: {
+  imports = [ inputs.ags.homeManagerModules.default ];
 
   home.packages = with pkgs; [
     ollama

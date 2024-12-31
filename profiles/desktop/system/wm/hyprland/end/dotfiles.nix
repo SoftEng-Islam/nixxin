@@ -1,5 +1,5 @@
-{ impurity, ... }:
-let link = impurity.link;
+{ inputs, ... }:
+let link = inputs.impurity.nixosModules.impurity.link;
 in {
   xdg.configFile = {
     "ags".source = link ./.config/ags;
