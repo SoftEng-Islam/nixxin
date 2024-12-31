@@ -7,7 +7,7 @@ in {
   home = {
     sessionVariables = {
       XCURSOR_THEME = cursor-theme;
-      XCURSOR_SIZE = "24";
+      XCURSOR_SIZE = toString.settings.cursorSize;
     };
     # pointerCursor = {
     #   package = cursor-package;
