@@ -49,10 +49,7 @@
     nixdoc # Generate documentation for Nix functions
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-    # nixStatic # Powerful package manager that makes package management reliable and reproducible
     node2nix # Generate Nix expressions to build NPM packages
-
-    go-mtpfs
 
     # productivity
     # hugo # static site generator
@@ -168,23 +165,23 @@
     texliveFull # TeX Live environment
     texlive.combined.scheme-full # TeX Live environment for scheme-full
 
-    # JavaScript --------------------------------
+    # JavaScript
     nodejs_23 # Event-driven I/O framework for the V8 JavaScript engine
     nodePackages.pnpm # Fast, disk space efficient package manager
     typescript # Superset of JavaScript that compiles to clean JavaScript output
 
-    # Android --------------------------------
+    # Android
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     scrcpy # Display and control Android devices over USB or TCP/IP
 
-    # clipboard --------------------------------
+    # clipboard
     cliphist # Wayland clipboard manager
     gpaste # Clipboard management system with GNOME integration
     wl-clipboard # Command-line copy/paste utilities for Wayland
     clipman # A simple clipboard manager for Wayland
     fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
 
-    # Process Management --------------------------------
+    # Process Management
     htop # Interactive process viewer
     iotop # Tool to find out the processes doing the most IO
 
@@ -225,6 +222,7 @@
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool
     jmtpfs # FUSE filesystem for MTP devices like Android phones
+    go-mtpfs # Simple FUSE filesystem for mounting Android devices as a MTP device
 
     # Wayland
     anyrun # A wayland-native, highly customizable runner
