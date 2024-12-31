@@ -11,18 +11,14 @@ let
 
     exec ${hyprland}/bin/Hyprland
   '';
-in
-{
-  home.packages = with pkgs; [
-    launcher
-    adoptopenjdk-jre-bin
-  ];
+in {
 
   xdg.desktopEntries."org.gnome.Settings" = {
     name = "Settings";
     comment = "Gnome Control Center";
     icon = "org.gnome.Settings";
-    exec = "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
+    exec =
+      "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome.gnome-control-center}/bin/gnome-control-center";
     categories = [ "X-Preferences" ];
     terminal = false;
   };
@@ -362,9 +358,7 @@ in
         "noanim, sideright"
         "noanim, sideleft"
       ];
-      source = [
-        "./colors.conf"
-      ];
+      source = [ "./colors.conf" ];
     };
   };
 }

@@ -68,6 +68,8 @@
     gradience
 
     # hyprland
+    launcher
+    temurin-jre-bin
     brightnessctl
     cliphist
     fuzzel
