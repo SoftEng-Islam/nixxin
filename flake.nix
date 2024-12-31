@@ -26,6 +26,10 @@
       url = "github:ezKEa/aagl-gtk-on-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    astal = {
+      url = "github:aylur/astal";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     ags = {
       url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -89,11 +93,34 @@
     };
   };
 
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs = { self, nixpkgs, astal, ags, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
     in {
+
+      packages.${settings.system}.default = pkgs.stdenvNoCC.mkDerivation rec {
+        name = "astal";
+        src = ./.;
+
+        nativeBuildInputs = [
+          ags.packages.${settings.system}.default
+          pkgs.wrapGAppsHook
+          pkgs.gobject-introspection
+        ];
+
+        buildInputs = with astal.packages.${settings.system}; [
+          astal3
+          io
+          # any other package
+        ];
+
+        installPhase = ''
+          mkdir -p $out/bin
+          ags bundle app.ts $out/bin/${name}
+        '';
+      };
+
       # NixOS configuration entrypoint.
       # 'sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
