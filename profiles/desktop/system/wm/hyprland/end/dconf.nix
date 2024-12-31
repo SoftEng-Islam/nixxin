@@ -1,13 +1,12 @@
-{ lib, ... }: with lib.hm.gvariant; {
+{ lib, ... }:
+with lib.hm.gvariant; {
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "en" ]) ];
       xkb-options = [ "terminate:ctrl_alt_bksp" ];
     };
 
-    "org/gnome/desktop/interface" = {
-      show-battery-percentage = true;
-    };
+    "org/gnome/desktop/interface" = { show-battery-percentage = true; };
 
     "org/gnome/desktop/peripherals/touchpad" = {
       tap-to-click = true;
@@ -33,9 +32,7 @@
       ];
     };
 
-    "org/gnome/desktop/session" = {
-      idle-delay = mkUint32 0;
-    };
+    "org/gnome/desktop/session" = { idle-delay = mkUint32 0; };
 
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Alt>q" ];
@@ -53,11 +50,11 @@
     };
 
     "org/gnome/shell/keybindings" = {
-      switch-to-application-1 = [];
-      switch-to-application-2 = [];
-      switch-to-application-3 = [];
-      switch-to-application-4 = [];
-      switch-to-application-5 = [];
+      switch-to-application-1 = [ ];
+      switch-to-application-2 = [ ];
+      switch-to-application-3 = [ ];
+      switch-to-application-4 = [ ];
+      switch-to-application-5 = [ ];
     };
 
     "org/gnome/desktop/wm/preferences" = {
@@ -75,7 +72,9 @@
     };
 
     "org/gnome/settings-daemon/plugins/media-keys" = {
-      custom-keybindings = [ "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/" ];
+      custom-keybindings = [
+        "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+      ];
       mic-mute = [ "AudioMicMute" ];
       next = [ "AudioNext" ];
       play = [ "AudioPlay" ];
@@ -88,11 +87,12 @@
       www = [ "<Super>w" ];
     };
 
-    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
-      command = "xterm";
-      name = "term";
-    };
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" =
+      {
+        binding = "<Super>Return";
+        command = "xterm";
+        name = "term";
+      };
 
     "org/gnome/settings-daemon/plugins/power" = {
       idle-dim = false;
@@ -117,25 +117,21 @@
       ];
     };
 
-    "org/gnome/shell/app-switcher" = {
-      current-workspace-only = false;
-    };
+    "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
 
     "org/gnome/shell/keybindings" = {
       toggle-application-view = [ "<Super>r" ];
     };
 
-    "system/locale" = {
-      region = "hu_HU.UTF-8";
-    };
+    "system/locale" = { region = "en_US.UTF-8"; };
 
     "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-      terminal = "foot";
+      terminal = "kitty";
     };
 
     "org/virt-manager/virt-manager/connections" = {
-      autoconnect = ["qemu:///system"];
-        uris = ["qemu:///system"];
+      autoconnect = [ "qemu:///system" ];
+      uris = [ "qemu:///system" ];
     };
   };
 }

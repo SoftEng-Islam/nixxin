@@ -107,12 +107,14 @@
           };
           modules = [
             inputs.stylix.nixosModules.stylix
+            inputs.home-manager.nixosModules.home-manager
             (./. + "/profiles" + ("/" + settings.profile)
               + "/configuration.nix")
-            inputs.home-manager.nixosModules.home-manager
             {
-              environment.systemPackages = with pkgs;
-                [ inputs.ignis.packages.${system}.ignis ];
+              environment.systemPackages = with pkgs; [
+                inputs.ignis.packages.${system}.ignis
+                inputs.ags.packages.${system}.default
+              ];
 
               # Impurity
               imports = [ impurity.nixosModules.impurity ];
