@@ -1,6 +1,5 @@
 { settings, inputs, pkgs, ... }: {
   home-manager.users.${settings.username} = {
-
     imports = [ inputs.anyrun.homeManagerModules.default ];
     programs.anyrun = {
       enable = true;
