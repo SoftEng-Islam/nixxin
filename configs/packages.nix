@@ -170,10 +170,6 @@
     nodePackages.pnpm # Fast, disk space efficient package manager
     typescript # Superset of JavaScript that compiles to clean JavaScript output
 
-    # Android
-    waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
-    scrcpy # Display and control Android devices over USB or TCP/IP
-
     # clipboard
     cliphist # Wayland clipboard manager
     gpaste # Clipboard management system with GNOME integration
