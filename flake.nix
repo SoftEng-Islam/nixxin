@@ -8,30 +8,20 @@
     };
     xremap-flake.url = "github:xremap/nix-flake";
 
-    #nixpkgs-wayland.url = "github:nix-community/nixpkgs-wayland";
-
-    # only needed if you use as a package set:
-    #nixpkgs-wayland.inputs.nixpkgs.follows = "nixpkgs";
-
     # System-wide colorscheming and typography for NixOS
     stylix.url = "github:danth/stylix";
+
     # Efficient animated wallpaper daemon for wayland, controlled at runtime
     swww.url = "github:LGFae/swww";
+
     # superfile.url = "github:yorukot/superfile";
+
     nixvim = {
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     aagl = {
       url = "github:ezKEa/aagl-gtk-on-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    astal = {
-      url = "github:aylur/astal";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    ags = {
-      url = "github:Aylur/ags";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     ignis = {
@@ -115,17 +105,9 @@
             {
               environment.systemPackages = with pkgs; [
                 inputs.ignis.packages.${system}.ignis
-                inputs.ags.packages.${system}.default
+                # inputs.ags.packages.${system}.default
                 inputs.hyprland.packages.${system}.hyprland
               ];
-
-              stylix = {
-                image = settings.themeDetails.wallpaper;
-                base16Scheme =
-                  "${pkgs.base16-schemes}/share/themes/${settings.themeDetails.themeName}.yaml";
-                targets.grub.enable = true;
-                targets.plymouth.enable = true;
-              };
             }
           ];
         };

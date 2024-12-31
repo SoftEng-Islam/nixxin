@@ -2,11 +2,11 @@
 let details = settings.themeDetails;
 in {
   stylix = {
+    image = details.wallpaper;
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
     enable = true;
     polarity = "dark";
-    image = details.wallpaper;
-    base16Scheme = lib.mkIf (details.themeName != null)
-      "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
     override = lib.mkIf (details.override != null) details.override;
     opacity = {
       terminal = details.opacity;
@@ -40,9 +40,9 @@ in {
       light = settings.iconNameLight;
     };
     targets = {
-      bat.enable = true;
       alacritty.enable = true;
       avizo.enable = true;
+      bat.enable = true;
       btop.enable = true;
       cava.enable = true;
       dunst.enable = true;
@@ -54,7 +54,9 @@ in {
       fzf.enable = true;
       gitui.enable = true;
       gnome.enable = true;
+      grub.enable = true;
       gtk.enable = true;
+      plymouth.enable = true;
       # hyprland.enable = true;
       kitty.enable = true;
       lazygit.enable = true;
