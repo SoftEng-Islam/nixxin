@@ -16,7 +16,7 @@ in {
     ./hyprland.nix
     ./mimelist.nix
     # ./starship.nix
-    ./sway.nix
+    # ./sway.nix
     ./theme.nix
   ];
 
