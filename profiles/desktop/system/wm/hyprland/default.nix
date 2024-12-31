@@ -1,4 +1,4 @@
-{ pkgs, settings, ... }: {
+{ inputs, self, impurity, pkgs, settings, ... }: {
   # Run Hyprland in a nested session for testing within GNOME:
   # Install waypipe and weston: These tools allow you to run Wayland compositors inside existing Wayland/X11 sessions.
   # Start Nested Hyprland: Inside GNOME, run:
@@ -29,6 +29,8 @@
     # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
     # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
     # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
+    extraSpecialArgs = { inherit inputs settings self impurity; };
+
     imports = [ ./end ];
   };
 
