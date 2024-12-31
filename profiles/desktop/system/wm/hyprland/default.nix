@@ -32,15 +32,12 @@
   home-manager.users.${settings.username} = ./end;
 
   environment.systemPackages = with pkgs; [
-
     adwaita-qt6
     adw-gtk3
     material-symbols
 
-    uwsm # Universal wayland session manager
     # albert # Fast and flexible keyboard launcher
-    # ags # A EWW-inspired widget system as a GJS library
-    brightnessctl # This program allows you read and control device brightness
+    uwsm # Universal wayland session manager
     fd # A simple, fast and user-friendly alternative to find
     gpu-screen-recorder # A screen recorder that has minimal impact on system performance by recording a window using the GPU only
     gpu-screen-recorder-gtk # GTK frontend for gpu-screen-recorder.

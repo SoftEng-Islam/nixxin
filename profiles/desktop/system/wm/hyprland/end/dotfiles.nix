@@ -1,7 +1,6 @@
-{ impurity, ... }:
-let link = impurity.link;
-in {
-  xdg.configFile = {
+{ impurity, ... }: {
+  xdg.configFile = let link = impurity.link;
+  in {
     "ags".source = link ./.config/ags;
     "fish".source = link ./.config/fish;
     "foot".source = link ./.config/foot;
