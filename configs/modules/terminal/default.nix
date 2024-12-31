@@ -5,7 +5,7 @@
   programs.zsh.enable = true;
   home-manager.users.${settings.username} = {
     imports = [
-      #  ./alacritty.nix
+      # ./alacritty.nix
       # ./tmux.nix
       ./kitty.nix
       ./foot.nix
