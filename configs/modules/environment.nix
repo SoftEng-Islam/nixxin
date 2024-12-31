@@ -11,8 +11,6 @@
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
       SDL_VIDEODRIVER = "wayland";
 
-      HYPRCURSOR_THEME = settings.cursorTheme;
-      HYPRCURSOR_SIZE = settings.cursorSize;
       _JAVA_AWT_WM_NONREPARENTING = "1";
       BEMENU_BACKEND = "wayland";
       BUN_INSTALL = "$HOME/.bun";
@@ -22,15 +20,17 @@
       EDITOR = settings.editor;
       ELECTRON_ENABLE_WAYLAND = "1";
       ELM_ENGINE = "wayland_egl";
-      WLR_DRM_DEVICES = "/dev/dri/card1";
       GDK_BACKEND = "wayland";
+      GDK_PIXBUF_MODULE_FILE =
+        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+      GOPROXY = "direct";
       GTK_THEME = settings.gtkTheme;
+      HYPRCURSOR_SIZE = settings.cursorSize;
+      HYPRCURSOR_THEME = settings.cursorTheme;
       LANG = settings.locale;
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
-      GDK_PIXBUF_MODULE_FILE =
-        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
@@ -39,30 +39,29 @@
       WAYLAND = "1";
       WINEESYNC = "1";
       WINEFSYNC = "1";
+      WLR_DRM_DEVICES = "/dev/dri/card1";
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
       XKB_DEFAULT_RULES = "evdev";
-      GOPROXY = "direct";
 
-      QUOTING_STYLE = "literal";
       # Colors #
       Black = "033[30m";
-      Red = "033[31m";
-      Green = "033[32m";
-      Yellow = "033[33m";
       Blue = "033[34m";
-      Magenta = "033[35m";
       Cyan = "033[36m";
+      Green = "033[32m";
+      Magenta = "033[35m";
+      Red = "033[31m";
       White = "033[37m";
+      Yellow = "033[33m";
       # Bright (Bold) Colors:
       B_Black = "033[90m";
-      B_Red = "033[91m";
-      B_Green = "033[92m";
-      B_Yellow = "033[93m";
       B_Blue = "033[94m";
-      B_Magenta = "033[95m";
       B_Cyan = "033[96m";
+      B_Green = "033[92m";
+      B_Magenta = "033[95m";
+      B_Red = "033[91m";
       B_White = "033[97m";
+      B_Yellow = "033[93m";
       # text format
       nc = "033[0m";
       bold = "033[1m";
@@ -73,9 +72,11 @@
       # Unicode Characters
       heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
 
+      QUOTING_STYLE = "literal";
+
       PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
       GST_PLUGIN_PATH =
-        "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:/nix/store/2dqc2lqhzacg2mb79677ik426a74axik-gst-plugins-good-1.24.3/lib/gstreamer-1.0:/nix/store/2syk2lmxxwx3cksqfjsb20zf5mdhrxir-gst-plugins-bad-1.24.3/lib/gstreamer-1.0:/nix/store/b88jfk9l912qgwmf98cp1024hmz05pd5-gst-plugins-ugly-1.24.3/lib/gstreamer-1.0:/nix/store/8llhhp5r452dkbz32kb7xxd1qpl5j433-gst-libav-1.24.3/lib/gstreamer-1.0";
+        "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
       GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
         + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
         + "${pkgs.networkmanager}/lib/girepository-1.0:"
