@@ -5,17 +5,17 @@
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
   # services.xserver.displayManager.startx.enable = false;
-  # programs = {
-  #   uwsm.enable = false;
-  #   hyprlock.enable = false;
-  #   xwayland.enable = true;
-  #   hyprland = {
-  #     xwayland.enable = true;
-  #     enable = true;
-  #     withUWSM = false; # Launch Hyprland with the UWSM session manager.
-  #     package = pkgs.hyprland;
-  #   };
-  # };
+  programs = {
+    uwsm.enable = false;
+    # hyprlock.enable = false;
+    # xwayland.enable = true;
+    hyprland = {
+      # xwayland.enable = true;
+      # enable = true;
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      # package = pkgs.hyprland;
+    };
+  };
 
   # home.file.".config/hypr/hyprland.conf".text = builtins.readFile ./hypr/hyprland.conf;
   # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
@@ -105,7 +105,6 @@
     material-symbols
 
     # albert # Fast and flexible keyboard launcher
-    uwsm # Universal wayland session manager
     fd # A simple, fast and user-friendly alternative to find
     gpu-screen-recorder # A screen recorder that has minimal impact on system performance by recording a window using the GPU only
     gpu-screen-recorder-gtk # GTK frontend for gpu-screen-recorder.
