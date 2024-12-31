@@ -358,7 +358,7 @@ in {
         "noanim, sideright"
         "noanim, sideleft"
       ];
-      source = [ "./colors.conf" ];
+      # source = [ "./colors.conf" ];
     };
   };
 }
