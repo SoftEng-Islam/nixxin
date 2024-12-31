@@ -2,7 +2,42 @@
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 { self, inputs, config, settings, pkgs, ... }: {
-  imports = [ ./hardware-configuration.nix ];
+  imports = [
+    ./hardware-configuration.nix
+    ./packages.nix
+    ./stylix
+    ./modules/cli
+    ./modules/dev
+    ./modules/flags
+    ./modules/media
+    ./modules/terminal
+    ./modules/wm/gnome
+    ./modules/wm/hyprland
+
+    ./modules/android.nix
+    ./modules/anyrun.nix
+    ./modules/applications.nix
+    ./modules/audio.nix
+    ./modules/boot.nix
+    ./modules/cli-collection.nix
+    ./modules/codex.nix
+    ./modules/data-transferring.nix
+    ./modules/dconf.nix
+    ./modules/default-apps.nix
+    ./modules/environment.nix
+    ./modules/gaming.nix
+    ./modules/locale.nix
+    ./modules/nautilus.nix
+    ./modules/networking.nix
+    ./modules/power-management.nix
+    ./modules/systemd.nix
+    ./modules/users.nix
+    ./modules/virtualisation.nix
+    ./modules/wine.nix
+    ./modules/xdg.nix
+    ./modules/xremap.nix
+    ./modules/zram.nix
+  ];
   documentation.dev.enable = true;
   documentation.doc.enable = true;
   documentation.info.enable = true;
