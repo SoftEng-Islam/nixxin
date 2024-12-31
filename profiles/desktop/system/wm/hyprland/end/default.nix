@@ -1,4 +1,4 @@
-{ settings, ... }:
+{ settings, impurity, ... }:
 let
   username = settings.username;
   homeDirectory = "/home/${settings.username}";
