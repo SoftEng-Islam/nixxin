@@ -118,19 +118,6 @@
                 inputs.ags.packages.${system}.default
                 inputs.hyprland.packages.${system}.hyprland
               ];
-              home-manager = {
-                extraSpecialArgs = {
-                  inherit inputs;
-                  inherit settings;
-                  inherit self;
-                };
-                useGlobalPkgs = true;
-                useUserPackages = true;
-                verbose = true;
-                backupFileExtension = "old";
-                users.${settings.username} = import
-                  (./. + "/profiles" + ("/" + settings.profile) + "/home.nix");
-              };
 
               stylix = {
                 image = settings.themeDetails.wallpaper;

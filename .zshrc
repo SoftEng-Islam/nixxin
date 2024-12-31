@@ -1,1 +1,0 @@
-/home/softeng/Linuxuration/home/.zshrc
