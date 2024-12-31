@@ -1,6 +1,20 @@
 { pkgs, ... }: {
   # Collection of useful CLI apps
   environment.systemPackages = with pkgs; [
+    # archives
+    zip
+    unzip
+    unrar
+
+    # misc
+    sshfs
+
+    # utils
+    du-dust
+    duf
+    fd
+    file
+    jaq
 
     # untrunc working_file.mp4 not_working.mp4
     untrunc-anthwlock # Restore a truncated mp4/mov (improved version of ponchio/untrunc)

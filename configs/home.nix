@@ -76,20 +76,13 @@
   programs.deno.enable = true;
   programs.nixfmt.enable = true;
   programs.shellcheck.enable = true;
-  settings.formatter.shellcheck.options =
-    [ "--external-sources" "--source-path=SCRIPTDIR" ];
-
   programs.shfmt.enable = true;
   programs.rustfmt.enable = true;
-  settings.formatter.shfmt.includes = [
-    "*.envrc"
-    "*.envrc.private-template"
-    "*.bashrc"
-    "*.bash_profile"
-    "*.bashrc.load"
-  ];
   programs.ruff.format = true;
   programs.ruff.check = true;
+  programs.bat.enable = true;
+  programs.eza.enable = true;
+  programs.ssh.enable = true;
   # gtk = {
   #   enable = true;
   #   cursorTheme = {
