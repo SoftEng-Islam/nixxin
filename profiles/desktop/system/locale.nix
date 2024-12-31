@@ -3,6 +3,8 @@
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus
   # fc-cache -fv
   fonts = {
+    enableFontDirCache = true; # Enables font directory cache.
+    fontconfig.cacheDirectories = [ "/var/cache/fontconfig" ];
     enableDefaultPackages = false;
     fontDir.enable = true;
     packages = with pkgs; [
@@ -63,7 +65,7 @@
     inputMethod = {
       enable = true;
       type = "ibus";
-      enabled = "fcitx5";
+      # enabled = "fcitx5";
       fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-with-addons ];
       # ibus.engines = [
       #   "m17n:en"  # English (US)
