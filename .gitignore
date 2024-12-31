@@ -3,3 +3,6 @@ non-nix/wallpapers/
 *.log
 *.backup
 node_modules/
+__pycache__
+fishd.tmp*
+venv

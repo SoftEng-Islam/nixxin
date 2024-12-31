@@ -31,7 +31,6 @@ in {
   };
 
   wayland.windowManager.hyprland = {
-    enable = true;
     settings = {
       env = [
         "GTK_IM_MODULE, fcitx"

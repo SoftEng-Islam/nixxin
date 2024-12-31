@@ -1,6 +1,10 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
 
+    # figma-linux
+    # kolourpaint
+    # github-desktop
+
     # Media Players
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
     clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
