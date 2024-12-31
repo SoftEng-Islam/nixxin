@@ -1,16 +1,12 @@
-{ inputs, pkgs, ... }: {
+{ inputs, pkgs, settings, ... }: {
   home = {
-    sessionVariables = {
-      BROWSER = "firefox";
-    };
+    sessionVariables = { BROWSER = settings.browser; };
 
     file."firefox-gnome-theme" = {
       target = ".mozilla/firefox/default/chrome/firefox-gnome-theme";
       source = inputs.firefox-gnome-theme;
     };
-    packages = with pkgs; [
-      libsForQt5.plasma-browser-integration
-    ];
+    packages = with pkgs; [ libsForQt5.plasma-browser-integration ];
   };
 
   programs.firefox = {
@@ -38,9 +34,6 @@
         @import "firefox-gnome-theme/userContent.css";
       '';
     };
-    nativeMessagingHosts = [
-      pkgs.plasma-browser-integration
-      pkgs.browserpass
-    ];
+    nativeMessagingHosts = [ pkgs.plasma-browser-integration pkgs.browserpass ];
   };
 }
