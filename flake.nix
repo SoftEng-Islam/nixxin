@@ -89,7 +89,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, home-manager, impurity, hyprland, ... }@inputs:
+  outputs = { self, nixpkgs, impurity, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
