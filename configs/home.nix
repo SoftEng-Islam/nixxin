@@ -1,4 +1,4 @@
-{ self, inputs, settings, config, pkgs, ... }: {
+{ self, inputs, settings, ... }: {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ home-manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,10 +40,10 @@
         UV_USE_IO_URING = "0";
 
         # clean up ~
-        LESSHISTFILE = "${config.xdg.cacheHome}/less/history";
-        LESSKEY = "${config.xdg.configHome}/less/lesskey";
+        # LESSHISTFILE = "/home/${settings.username}/less/history";
+        # LESSKEY = "/home/${settings.username}/less/lesskey";
 
-        WINEPREFIX = "${config.xdg.dataHome}/wine";
+        WINEPREFIX = "/home/${settings.username}/wine";
         XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
 
         DIRENV_LOG_FORMAT = "";
