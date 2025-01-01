@@ -88,7 +88,7 @@
     };
     sessionVariables = {
       XCURSOR_THEME = settings.cursorTheme;
-      XCURSOR_SIZE = "${settings.cursorSize}";
+      # XCURSOR_SIZE = "${settings.cursorSize}";
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
       # Enables portal-based access for apps like VSCode on Wayland
       GTK_USE_PORTAL = "1";
