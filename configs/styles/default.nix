@@ -78,7 +78,7 @@ in {
     };
     gtk = {
       enable = true;
-      gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+      gtk2.configLocation = "/home/${settings.username}/.config/gtk-2.0/gtkrc";
       cursorTheme = {
         name = settings.cursorTheme;
         size = settings.cursorSize;
