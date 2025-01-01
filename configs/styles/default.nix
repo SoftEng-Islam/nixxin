@@ -3,6 +3,7 @@ let details = settings.themeDetails;
 in {
   stylix = {
     enable = true;
+    image = details.wallpaper;
     targets = {
       grub.enable = true;
       plymouth.enable = true;
@@ -10,7 +11,6 @@ in {
   };
   home-manager.users.${settings.username} = {
     stylix = {
-      image = details.wallpaper;
       base16Scheme =
         "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
       enable = true;
