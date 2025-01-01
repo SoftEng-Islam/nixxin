@@ -100,8 +100,7 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
-            (./. + "/profiles" + ("/" + settings.profile)
-              + "/configuration.nix")
+            (./. + "/configs/configuration.nix")
             {
               environment.systemPackages = with pkgs; [
                 inputs.ignis.packages.${system}.ignis
