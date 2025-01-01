@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ lib, pkgs, ... }:
 let
   # My shell aliases
   myAliases = {
@@ -54,9 +54,8 @@ let
 
     us = "systemctl --user"; # mnemonic for user systemctl
     rs = "sudo systemctl"; # mnemonic for root systemctl
-    cat = if config.programs.bat.enable then "bat" else "cat";
-
-  } // lib.optionalAttrs config.programs.bat.enable { cat = "bat"; };
+    cat = "bat";
+  };
 in {
   imports = [ ./starship.nix ];
   options.shellAliases = with lib;
@@ -64,20 +63,15 @@ in {
       type = types.attrsOf types.str;
       default = { };
     };
-  networking.firewall.allowedTCPPortRanges = if config.enableWezterm then [{
-    from = 60000;
-    to = 60010;
-  }] else
-    [ ];
 
   programs = {
     bash = {
       enable = true;
-      shellAliases = myAliases // config.shellAliases;
+      shellAliases = myAliases;
       initExtra = "SHELL=${pkgs.bash}";
     };
     nushell = {
-      shellAliases = myAliases // config.shellAliases;
+      shellAliases = myAliases;
       enable = true;
       environmentVariables = {
         PROMPT_INDICATOR_VI_INSERT = "  ";
@@ -87,8 +81,6 @@ in {
         NIXPKGS_ALLOW_UNFREE = "1";
         NIXPKGS_ALLOW_INSECURE = "1";
         SHELL = "${pkgs.nushell}/bin/nu";
-        EDITOR = config.home.sessionVariables.EDITOR;
-        VISUAL = config.home.sessionVariables.VISUAL;
       };
       extraConfig = let
         conf = builtins.toJSON {
@@ -160,7 +152,7 @@ in {
       autosuggestions.enable = true;
       enableBashCompletion = true;
       enableCompletion = true;
-      shellAliases = myAliases // config.shellAliases;
+      shellAliases = myAliases;
       shellGlobalAliases = { eza = "eza --icons --git"; };
       histFile = "~/.zsh_history";
       histSize = "3000";
@@ -177,10 +169,7 @@ in {
         nixpkgs = "$HOME/Documents/code/git/nixpkgs";
       };
       dotDir = ".config/zsh";
-      history = {
-        expireDuplicatesFirst = true;
-        path = "${config.xdg.dataHome}/zsh_history";
-      };
+      history = { expireDuplicatesFirst = true; };
       # autosuggestions.strategy = ["history"]; list of (one of "history", "completion", "match_prev_cmd")
       initExtra = ''
         SHELL=${pkgs.zsh}/bin/zsh
@@ -237,11 +226,6 @@ in {
         function preexec {
             print -n "\e]133;C\e\\"
         }
-
-        ${lib.optionalString config.services.gpg-agent.enable ''
-          gnupg_path=$(ls $XDG_RUNTIME_DIR/gnupg)
-          export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/gnupg/$gnupg_path/S.gpg-agent.ssh"
-        ''}
       '';
       interactiveShellInit = ''
         source ${pkgs.zsh-nix-shell}/share/zsh-nix-shell/nix-shell.plugin.zsh
@@ -295,5 +279,4 @@ in {
       ];
     };
   };
-
 }
