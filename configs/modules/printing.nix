@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ ... }:
 {
   # hardware.sane.enable = false;
   # services.printing = {
