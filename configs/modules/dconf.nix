@@ -1,5 +1,6 @@
-{ settings, lib, ... }: {
-  home-manager.users.${settings.username} = with lib.hm.gvariant; {
+{ settings, lib, ... }:
+with lib.hm.gvariant; {
+  home-manager.users.${settings.username} = {
     dconf.settings = {
       "org/gnome/desktop/input-sources" = {
         sources = [ (mkTuple [ "xkb" "en" ]) ];
