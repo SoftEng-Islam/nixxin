@@ -169,7 +169,7 @@
     rocmPackages.hipify
     rocmPackages.hiprand
 
-    zluda # ZLUDA - CUDA on Intel GPUs
+    # zluda # ZLUDA - CUDA on Intel GPUs
     libGLX # GL Vendor-Neutral Dispatch library
     libGLU # OpenGL utility library
     libGL # GL Vendor-Neutral Dispatch library
