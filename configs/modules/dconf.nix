@@ -1,6 +1,5 @@
 { settings, lib, ... }:
-with lib.home-manager.gvariant; {
-
+with lib.hm.gvariant; {
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "en" ]) ];
