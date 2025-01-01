@@ -120,7 +120,6 @@
     direnv # A shell extension that manages your environment
     deadnix
     statix
-    self.packages.${pkgs.system}.repl
     # nix related
     # it provides the command `nom` works just like `nix`
     # with more details log output
