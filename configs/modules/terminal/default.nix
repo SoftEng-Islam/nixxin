@@ -1,6 +1,5 @@
 { settings, pkgs, ... }: {
   imports = [
-    ./btop
     ./wezterm
 
     # ./alacritty.nix
