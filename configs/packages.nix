@@ -18,39 +18,6 @@
     plymouth # Boot splash and boot logger
     nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
 
-    # nix related
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
-    cached-nix-shell # fast nix-shell scripts
-    direnv # Shell extension that manages your environment
-    fmt # Small, safe and fast formatting library
-    home-manager # A Nix-based user environment configurator
-    inxi # Full featured CLI system information tool
-    nix-bash-completions # Bash completions for Nix, NixOS, and NixOps
-    nix-btm # Rust tool to monitor Nix processes
-    nix-direnv # Fast, persistent use_nix implementation for direnv
-    nix-doc # Interactive Nix documentation tool
-    nix-index # A files database for nixpkgs
-    nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
-    nix-prefetch # Prefetch any fetcher function call, e.g. package sources
-    nix-prefetch-github
-    nixfmt-classic # An opinionated formatter for Nix
-    nixos-install-tools # The essential commands from the NixOS installer as a package
-    nixos-shell # Spawns lightweight nixos vms in a shell
-    nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
-    nixpkgs-review
-
-    # Nix language server
-    nixd # Feature-rich Nix language server interoperating with C++ nix
-    nil # Yet another language server for Nix
-
-    # Nix Formatters:
-    alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
-    nixdoc # Generate documentation for Nix functions
-    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
-    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-    node2nix # Generate Nix expressions to build NPM packages
-
     # productivity
     # hugo # static site generator
     # glow # markdown previewer in terminal
@@ -318,7 +285,6 @@
     bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
     cairo # A 2D graphics library with support for multiple output devices
     cairomm # C++ bindings for the Cairo vector graphics library
-    direnv # A shell extension that manages your environment
     gdk-pixbuf # A library for image loading and manipulation
     glib # C library of programming buildings blocks
     gobject-introspection-unwrapped

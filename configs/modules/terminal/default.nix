@@ -1,14 +1,15 @@
 { settings, pkgs, ... }: {
-  imports = [ ./zsh.nix ./shell.nix ];
+  imports = [
+    ./btop
+    ./zsh.nix
+    ./shell.nix
+    # ./alacritty.nix
+    # ./tmux.nix
+    ./kitty.nix
+    ./foot.nix
+  ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  home-manager.users.${settings.username} = {
-    imports = [
-      # ./alacritty.nix
-      # ./tmux.nix
-      ./kitty.nix
-      ./foot.nix
-    ];
-  };
+  # home-manager.users.${settings.username} = {};
 }
