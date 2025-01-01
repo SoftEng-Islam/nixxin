@@ -66,22 +66,23 @@ in {
     xdg = {
       enable = true;
       configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
-      cacheHome = config.home.homeDirectory + "/.local/cache";
+      cacheHome = "/home/${settings.username}/.local/cache";
       userDirs = {
         enable = true;
         createDirectories = true;
-        music = "${config.home.homeDirectory}/Music";
-        videos = "${config.home.homeDirectory}/Videos";
-        pictures = "${config.home.homeDirectory}/Pictures";
-        download = "${config.home.homeDirectory}/Downloads";
-        documents = "${config.home.homeDirectory}/Documents";
+        music = "/home/${settings.username}/Music";
+        videos = "/home/${settings.username}/Videos";
+        pictures = "/home/${settings.username}/Pictures";
+        download = "/home/${settings.username}/Downloads";
+        documents = "/home/${settings.username}/Documents";
         templates = null;
         desktop = null;
         publicShare = null;
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-          XDG_BOOK_DIR = "${config.home.homeDirectory}/Books";
-          XDG_SCREENSHOTS_DIR = "${config.xdg.userDirs.pictures}/Screenshots";
+          XDG_BOOK_DIR = "/home/${settings.username}/Books";
+          XDG_SCREENSHOTS_DIR =
+            "/home/${settings.username}/pictures/Screenshots";
         };
       };
 
