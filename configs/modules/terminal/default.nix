@@ -1,8 +1,6 @@
 { settings, pkgs, ... }: {
   imports = [
     ./btop
-    ./neovim
-    ./nvim
     ./wezterm
 
     # ./alacritty.nix
