@@ -83,7 +83,7 @@
     };
   };
 
-  outputs = { self, nixpkgs, astal, ags, ... }@inputs:
+  outputs = { self, nixpkgs, ignis, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
