@@ -1,4 +1,21 @@
-{ settings, ... }: {
+{ settings, pkgs, ... }: {
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+
+    # we'll call compinit in home-manager zsh module
+    enableGlobalCompInit = false;
+    promptInit = "";
+
+    # prefer to use home-manager dircolors module
+    enableLsColors = false;
+  };
+  environment.systemPackages = with pkgs; [
+    # completions and manpage install
+    zsh-abbr
+    # completions
+    zsh-completions
+  ];
   home-manager.users.${settings.username}.home.file."./.zshrc".txt = ''
     # If you come from bash you might have to change your $PATH.
     export PATH=$HOME/bin:/usr/local/bin:$PATH

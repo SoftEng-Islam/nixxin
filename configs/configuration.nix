@@ -6,7 +6,7 @@
     ./hardware.nix
     ./home.nix
     ./packages.nix
-    ./stylix
+    ./styles
     ./modules/cli
     ./modules/dev
     ./modules/flags
