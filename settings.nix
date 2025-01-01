@@ -53,10 +53,9 @@
   sansSerifPackage = pkgs.noto-fonts-cjk-serif;
 
   # Themes
-  theme = "nord"; # ["catppuccin","everforest","gruvbox","nord"]
-  themeDetails = import (./. + "/profiles/desktop/themes/${theme}.nix") {
-    dir = dotfilesDir;
-  };
+  theme = "nord"; # ["gruvbox","nord"]
+  themeDetails =
+    import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
   colorScheme = "prefer-dark";
 
   # GTK
