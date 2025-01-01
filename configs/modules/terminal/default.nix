@@ -12,7 +12,7 @@
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  home-manager.users.${settings.username} = { imports = [ ./shell.nix ]; };
+  # home-manager.users.${settings.username} = { imports = [ ./shell.nix ]; };
   environment.systemPackages = with pkgs; [
     # Terminal Emulators
     bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
