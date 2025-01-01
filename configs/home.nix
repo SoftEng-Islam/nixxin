@@ -2,7 +2,7 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ home-manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  home-manager = {
+  home-manager.users.${settings.username} = {
     # users.${settings.username} = import (./. + "/home.nix");
     extraSpecialArgs = {
       inherit inputs;
