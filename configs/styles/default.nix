@@ -1,7 +1,12 @@
 { pkgs, config, lib, settings, ... }:
 let details = settings.themeDetails;
 in {
-
+  stylix = {
+    targets = {
+      grub.enable = true;
+      plymouth.enable = true;
+    };
+  };
   home-manager.users.${settings.username} = {
     stylix = {
       image = details.wallpaper;
@@ -56,9 +61,7 @@ in {
         fzf.enable = true;
         gitui.enable = true;
         gnome.enable = true;
-        grub.enable = true;
         gtk.enable = true;
-        plymouth.enable = true;
         # hyprland.enable = true;
         kitty.enable = true;
         lazygit.enable = true;
