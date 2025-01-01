@@ -1,9 +1,14 @@
 { settings, pkgs, ... }: {
   imports = [
     ./btop
+    ./neovim
+    ./nvim
+    ./wezterm
+
+    # ./alacritty.nix
+    ./foot.nix
     ./zsh.nix
     ./shell.nix
-    # ./alacritty.nix
     # ./tmux.nix
     ./kitty.nix
     ./foot.nix

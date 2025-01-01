@@ -167,11 +167,10 @@
     rocmPackages.hipify
     rocmPackages.hiprand
 
-    zluda
-
-    libGLX
-    libGLU
-    libGL
+    zluda # ZLUDA - CUDA on Intel GPUs
+    libGLX # GL Vendor-Neutral Dispatch library
+    libGLU # OpenGL utility library
+    libGL # GL Vendor-Neutral Dispatch library
 
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files

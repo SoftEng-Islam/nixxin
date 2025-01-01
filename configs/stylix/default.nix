@@ -1,4 +1,4 @@
-{ pkgs, lib, settings, ... }:
+{ pkgs, config, lib, settings, ... }:
 let details = settings.themeDetails;
 in {
   stylix = {
@@ -64,4 +64,41 @@ in {
       nixvim.enable = lib.mkIf (settings.themeDetails.themeName != null) false;
     };
   };
+  gtk = {
+    enable = true;
+    gtk2.configLocation = "${config.xdg.configHome}/gtk-2.0/gtkrc";
+    cursorTheme = {
+      name = settings.cursorTheme;
+      size = settings.cursorSize;
+      package = settings.cursorPackage;
+    };
+    font = {
+      name = settings.fontName;
+      package = settings.fontPackage;
+      size = settings.fontSize;
+    };
+    iconTheme = {
+      name = settings.iconName;
+      package = settings.iconPackage;
+    };
+    theme = {
+      name = lib.mkForce settings.gtkTheme;
+      package = lib.mkForce settings.gtkPackage;
+    };
+    gtk3 = {
+      bookmarks = [
+        "file:///home/${settings.username}/Downloads"
+        "file:///home/${settings.username}/Documents"
+        "file:///home/${settings.username}/Pictures"
+        "file:///home/${settings.username}/Music"
+        "file:///home/${settings.username}/Videos"
+        "file:///home/${settings.username}/.config"
+        "file:///home/${settings.username}/.config/ags"
+        "file:///home/${settings.username}/.config/hypr"
+        "file:///home/${settings.username}/GitHub"
+        "file:///mnt/Windows"
+      ];
+    };
+  };
+
 }
