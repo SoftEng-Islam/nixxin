@@ -84,11 +84,6 @@ in {
         size = settings.cursorSize;
         package = settings.cursorPackage;
       };
-      font = {
-        name = settings.fontName;
-        package = settings.fontPackage;
-        size = settings.fontSize;
-      };
       iconTheme = {
         name = settings.iconName;
         package = settings.iconPackage;
