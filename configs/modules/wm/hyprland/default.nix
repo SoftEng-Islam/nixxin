@@ -36,7 +36,7 @@ in {
     NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
   };
 
-  home-manager = {
+  home-manager.users.${settings.username} = {
     # users.${settings.username} = ./end;
     wayland.windowManager.hyprland = {
       settings = {
