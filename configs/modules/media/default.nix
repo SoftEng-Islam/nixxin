@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   home-manager.users.${settings.username} = {
 
     imports = [ ./mpv.nix ./rnnoise.nix ];
