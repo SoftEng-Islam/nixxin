@@ -93,19 +93,19 @@ in {
         name = lib.mkForce settings.gtkTheme;
         package = lib.mkForce settings.gtkPackage;
       };
+      gtk3 = {
+        bookmarks = [
+          "file:///home/${settings.username}/Downloads"
+          "file:///home/${settings.username}/Documents"
+          "file:///home/${settings.username}/Pictures"
+          "file:///home/${settings.username}/Music"
+          "file:///home/${settings.username}/Videos"
+          "file:///home/${settings.username}/.config"
+          "file:///home/${settings.username}/Dev"
+          "file:///home/${settings.username}/GitHub"
+          # "file:///mnt/Windows"
+        ];
+      };
     };
-  };
-  home-manager.gtk3 = {
-    bookmarks = [
-      "file:///home/${settings.username}/Downloads"
-      "file:///home/${settings.username}/Documents"
-      "file:///home/${settings.username}/Pictures"
-      "file:///home/${settings.username}/Music"
-      "file:///home/${settings.username}/Videos"
-      "file:///home/${settings.username}/.config"
-      "file:///home/${settings.username}/Dev"
-      "file:///home/${settings.username}/GitHub"
-      # "file:///mnt/Windows"
-    ];
   };
 }
