@@ -2,6 +2,7 @@
 let details = settings.themeDetails;
 in {
   stylix = {
+    enable = true;
     targets = {
       grub.enable = true;
       plymouth.enable = true;
