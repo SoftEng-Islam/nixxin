@@ -64,12 +64,6 @@ in {
       type = types.attrsOf types.str;
       default = { };
     };
-  networking.firewall.allowedTCPPortRanges = if config.enableWezterm then [{
-    from = 60000;
-    to = 60010;
-  }] else
-    [ ];
-
   programs = {
     bash = {
       enable = true;
@@ -295,7 +289,6 @@ in {
       ];
     };
   };
-
   environment.systemPackages = with pkgs; [
     # Terminal Emulators
     bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
