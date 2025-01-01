@@ -64,6 +64,12 @@ in {
       type = types.attrsOf types.str;
       default = { };
     };
+  networking.firewall.allowedTCPPortRanges = if config.enableWezterm then [{
+    from = 60000;
+    to = 60010;
+  }] else
+    [ ];
+
   programs = {
     bash = {
       enable = true;
