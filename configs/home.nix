@@ -19,7 +19,6 @@
     stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
     programs.bat.enable = true;
-    programs.deno.enable = true;
     programs.eza.enable = true;
     programs.ssh.enable = true;
     home = {
