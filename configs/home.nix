@@ -19,20 +19,9 @@
     stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
     programs.bat.enable = true;
-    programs.clang-format.enable = true;
-    programs.deadnix.enable = true;
     programs.deno.enable = true;
     programs.eza.enable = true;
-    programs.hclfmt.enable = true;
-    programs.nixfmt.enable = true;
-    programs.ruff.check = true;
-    programs.ruff.format = true;
-    programs.rustfmt.enable = true;
-    programs.shellcheck.enable = true;
-    programs.shfmt.enable = true;
     programs.ssh.enable = true;
-    programs.stylua.enable = true;
-    programs.yamlfmt.enable = true;
     home = {
       username = settings.username;
       homeDirectory = "/home/${settings.username}";
@@ -70,20 +59,6 @@
       html.enable = false;
       json.enable = false;
       manpages.enable = false;
-    };
-    programs.mypy.directories = {
-      "tasks" = {
-        directory = ".";
-        modules = [ ];
-        files = [ "**/tasks.py" ];
-        extraPythonPackages =
-          [ pkgs.python3.pkgs.deploykit pkgs.python3.pkgs.invoke ];
-      };
-      "machines/eva/modules/prometheus" = { };
-      "openwrt" = { };
-      "home-manager/modules/neovim" = {
-        options = [ "--ignore-missing-imports" ];
-      };
     };
   };
 }
