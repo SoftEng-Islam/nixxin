@@ -14,7 +14,7 @@
     # completions
     zsh-completions
   ];
-  home-manager.users.${settings.username}.home.file."./.zshrc".txt = ''
+  home-manager.users.${settings.username}.home.file.".zshrc".txt = ''
     # If you come from bash you might have to change your $PATH.
     export PATH=$HOME/bin:/usr/local/bin:$PATH
     export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
