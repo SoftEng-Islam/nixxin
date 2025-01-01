@@ -12,7 +12,7 @@
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "old";
+    # backupFileExtension = "old";
     stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
     programs.bat.enable = true;
