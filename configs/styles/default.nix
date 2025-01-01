@@ -79,19 +79,10 @@ in {
     gtk = {
       enable = true;
       gtk2.configLocation = "/home/${settings.username}/.config/gtk-2.0/gtkrc";
-      cursorTheme = {
-        name = settings.cursorTheme;
-        size = settings.cursorSize;
-        package = settings.cursorPackage;
-      };
-      iconTheme = {
-        name = settings.iconName;
-        package = settings.iconPackage;
-      };
-      theme = {
-        name = lib.mkForce settings.gtkTheme;
-        package = lib.mkForce settings.gtkPackage;
-      };
+      # theme = {
+      #   name = lib.mkForce settings.gtkTheme;
+      #   package = lib.mkForce settings.gtkPackage;
+      # };
       gtk3 = {
         bookmarks = [
           "file:///home/${settings.username}/Downloads"
