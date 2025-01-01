@@ -159,6 +159,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    llvmPackages.mlir # Multi-Level IR Compiler Framework
+
     rocmPackages.hip-common
     rocmPackages.hipblas
     rocmPackages.hipcc

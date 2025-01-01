@@ -39,14 +39,9 @@
         # https://github.com/NixOS/nixpkgs/issues/314713
         UV_USE_IO_URING = "0";
 
-        # clean up ~
-        # LESSHISTFILE = "/home/${settings.username}/less/history";
-        # LESSKEY = "/home/${settings.username}/less/lesskey";
-
-        WINEPREFIX = "/home/${settings.username}/wine";
-        XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
-
-        DIRENV_LOG_FORMAT = "";
+        # WINEPREFIX = "/home/${settings.username}/wine";
+        # XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
+        # DIRENV_LOG_FORMAT = "";
 
         # auto-run programs using nix-index-database
         NIX_AUTO_RUN = "1";

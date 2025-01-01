@@ -1,0 +1,13 @@
+      > /tmp/nix-build-rocmlir-rock-6.0.2.drv-0/source/mlir/include/mlir/Conversion/TosaToRock/TosaToRock.h:21:10: fatal error: 'mlir/Conversion/RocMLIRPasses.h.inc' file not found
+       > #include "mlir/Conversion/RocMLIRPasses.h.inc"
+       >          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+       > 1 error generated.
+       > [2896/3047] Building CXX object mlir/lib/Dialect/Rock/Transforms/CMakeFiles/obj.MLIRRockTransforms.dir/GridwiseGemmToBlockwise.cpp.o
+       > [2897/3047] Building CXX object mlir/lib/Dialect/Rock/Transforms/CMakeFiles/obj.MLIRRockTransforms.dir/ThreadwiseGemmLowering.cpp.o
+       > [2898/3047] Building CXX object mlir/lib/Dialect/Rock/Transforms/CMakeFiles/obj.MLIRRockTransforms.dir/TransformToMemref.cpp.o
+       > ninja: build stopped: subcommand failed.
+       For full logs, run 'nix log /nix/store/ixk4d3vr9x99zf93cpskqyym5pb0k2f5-rocmlir-rock-6.0.2.drv'.
+error: 1 dependencies of derivation '/nix/store/hc2a11bifpzvbr9dj1la93czf4qhvrfr-miopen-6.0.2.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/wqdrg3qf6j3qdvi43a6x2kc9i6gdbr68-zluda-3.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/gn0dnivn4mh12ajz1bnsix0bkrrk0ibf-system-path.drv' failed to build
+error: 1 dependencies of derivation '/nix/store/id4jxpk9ifw93zl85sy48n1d476npd99-nixos-system-nixos-25.05.20241219.d70bd19.drv' failed to build
