@@ -2,10 +2,10 @@
   # Power Management
 
   services.upower.enable = lib.mkForce true;
-  services.power-profiles-daemon.enable = false;
+  services.power-profiles-daemon.enable = true;
 
   powerManagement = {
-    enable = false;
+    enable = true;
     # powertop.enable = true; # enable powertop auto tuning on startup.
     cpuFreqGovernor =
       "performance"; # Often used values: “ondemand”, “powersave”, “performance”
@@ -13,7 +13,7 @@
     # cpufreq.max = 2200000;
   };
   services.tlp = {
-    enable = true;
+    enable = false;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
