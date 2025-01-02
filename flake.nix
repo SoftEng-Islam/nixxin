@@ -101,13 +101,6 @@
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + "/configs/configuration.nix")
-            {
-              environment.systemPackages = with pkgs; [
-                inputs.ignis.packages.${system}.ignis
-                # inputs.ags.packages.${system}.default
-                inputs.hyprland.packages.${system}.hyprland
-              ];
-            }
           ];
         };
       };

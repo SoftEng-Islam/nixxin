@@ -117,9 +117,7 @@
     stateVersion = settings.systemStateVersion;
   };
   environment.systemPackages = with pkgs; [
-    direnv # A shell extension that manages your environment
-    deadnix
-    statix
+
     # nix related
     # it provides the command `nom` works just like `nix`
     # with more details log output
@@ -141,6 +139,8 @@
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
     nixpkgs-review
+    statix # nvim-lint
+    deadnix
 
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix

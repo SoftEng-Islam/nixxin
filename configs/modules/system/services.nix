@@ -15,7 +15,7 @@
     # xserver.excludePackages = with pkgs; [ xterm ];
     xserver = {
       enable = true;
-      displayManager.startx.enable = true;
+      displayManager.startx.enable = false;
       displayManager.gdm.enable = true; # x11
       displayManager.gdm.wayland = true; # wayland
       desktopManager.gnome = {

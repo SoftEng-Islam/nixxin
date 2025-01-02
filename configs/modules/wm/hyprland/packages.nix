@@ -1,5 +1,9 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
+    # inputs.ags.packages.${system}.default
+    inputs.ignis.packages.${system}.ignis
+    inputs.hyprland.packages.${system}.hyprland
+
     # gui
     qt5.qtimageformats
     yad
