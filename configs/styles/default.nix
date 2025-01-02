@@ -1,15 +1,24 @@
-{ pkgs, config, lib, settings, ... }:
+{ pkgs, lib, settings, ... }:
 let details = settings.themeDetails;
 in {
   stylix = {
     enable = true;
     image = details.wallpaper;
+    polarity = "dark";
+    override = lib.mkIf (details.override != null) details.override;
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
+    opacity = {
+      terminal = details.opacity;
+      applications = details.opacity;
+      desktop = details.opacity;
+      popups = details.opacity;
+    };
     cursor = {
       size = settings.cursorSize;
       name = settings.cursorTheme;
       package = settings.cursorPackage;
     };
-
     fonts = {
       serif.name = settings.serifFont;
       serif.package = settings.serifPackage;
@@ -22,33 +31,30 @@ in {
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
       };
     };
-    polarity = "dark";
-
     targets = {
       console.enable = true;
+      feh.enable = true;
+      fish.enable = true;
       gnome.enable = true;
+      grub.enable = true;
       gtk.enable = true;
       nixos-icons.enable = true;
-      grub.enable = true;
-      fish.enable = true;
-      feh.enable = true;
       plymouth.enable = true;
     };
   };
   home-manager.users.${settings.username} = {
     stylix = {
-      base16Scheme =
-        "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
       enable = true;
       polarity = "dark";
       override = lib.mkIf (details.override != null) details.override;
+      base16Scheme =
+        "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
       opacity = {
         terminal = details.opacity;
         applications = details.opacity;
         desktop = details.opacity;
         popups = details.opacity;
       };
-
       iconTheme = {
         enable = true;
         package = settings.iconPackage;
