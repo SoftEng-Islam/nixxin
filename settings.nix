@@ -61,8 +61,9 @@
   accentColor = "purple";
   colorScheme = "prefer-dark";
   themeName = "gruvbox"; # ["gruvbox","nord"]
-  themeDetails = "${dotfilesDir}/configs/styles/${themeName}.nix";
-
+  # themeDetails = import "${dotfilesDir}/configs/styles/${themeName}.nix";
+  themeDetails =
+    builtins.path { path = "${dotfilesDir}/configs/styles/${themeName}.nix"; };
   # GTK
   gtkTheme = "adw-gtk3-dark";
   gtkPackage = pkgs.adw-gtk3;
