@@ -22,8 +22,16 @@ in {
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
       };
     };
+    polarity = "dark";
+
     targets = {
+      console.enable = true;
+      gnome.enable = true;
+      gtk.enable = true;
+      nixos-icons.enable = true;
       grub.enable = true;
+      fish.enable = true;
+      feh.enable = true;
       plymouth.enable = true;
     };
   };
@@ -48,7 +56,6 @@ in {
         light = settings.iconNameLight;
       };
       targets = {
-        nixos-icons.enable = true;
         alacritty.enable = true;
         avizo.enable = true;
         bat.enable = true;
