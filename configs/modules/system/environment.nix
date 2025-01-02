@@ -15,10 +15,14 @@
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
       # LIBGL_DRI3_ENABLE = "1";
+      LIBGL_ALWAYS_INDIRECT = "1";
+
       HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
 
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
       WAYLAND = "1";
+      WAYLAND_DISPLAY = "wayland-0";
+
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";
       CLUTTER_BACKEND = "wayland";
@@ -42,35 +46,36 @@
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
+      QT_PLATFORM_PLUGIN = "wayland";
 
       WINEESYNC = "1";
       WINEFSYNC = "1";
 
       WLR_DRM_DEVICES = "/dev/dri/card1";
-      WLR_DRM_NO_ATOMIC = "1";
-      WLR_VSYNC = "1";
+      WLR_DRM_NO_ATOMIC = "0";
+      WLR_VSYNC = "0";
 
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
 
       # Colors #
-      Black = "033[30m";
-      Blue = "033[34m";
-      Cyan = "033[36m";
-      Green = "033[32m";
-      Magenta = "033[35m";
-      Red = "033[31m";
-      White = "033[37m";
-      Yellow = "033[33m";
-      # Bright (Bold) Colors:
-      B_Black = "033[90m";
-      B_Blue = "033[94m";
-      B_Cyan = "033[96m";
-      B_Green = "033[92m";
-      B_Magenta = "033[95m";
-      B_Red = "033[91m";
-      B_White = "033[97m";
-      B_Yellow = "033[93m";
+      # Black = "033[30m";
+      # Blue = "033[34m";
+      # Cyan = "033[36m";
+      # Green = "033[32m";
+      # Magenta = "033[35m";
+      # Red = "033[31m";
+      # White = "033[37m";
+      # Yellow = "033[33m";
+      # # Bright (Bold) Colors:
+      # B_Black = "033[90m";
+      # B_Blue = "033[94m";
+      # B_Cyan = "033[96m";
+      # B_Green = "033[92m";
+      # B_Magenta = "033[95m";
+      # B_Red = "033[91m";
+      # B_White = "033[97m";
+      # B_Yellow = "033[93m";
       # text format
       nc = "033[0m";
       bold = "033[1m";

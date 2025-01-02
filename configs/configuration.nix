@@ -122,6 +122,8 @@
   };
   environment.systemPackages = with pkgs; [
 
+    dbus-user-session
+
     gdm
 
     # nix related
