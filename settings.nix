@@ -23,14 +23,15 @@
   name = "Islam Ahmed"; # Name/identifier
   email = "softeng.islam@gmail.com"; # Email (git config)
   username = "softeng"; # Username
-  dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
+  dotfilesDir = builtins.path { path = "/home/${username}/nixxin"; };
+  # dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   defaultSession = "gnome";
 
   # Web Browsers
-  browser = "brave"; # Default browser;
+  browser = "brave"; # Default Browser;
   browserPkg = pkgs.brave;
 
   # Terminals
@@ -60,9 +61,7 @@
   accentColor = "purple";
   colorScheme = "prefer-dark";
   themeName = "gruvbox"; # ["gruvbox","nord"]
-  themeDetails = import "${dotfilesDir}/configs/styles/${themeName}.nix" {
-    dir = dotfilesDir;
-  };
+  themeDetails = "${dotfilesDir}/configs/styles/${themeName}.nix";
 
   # GTK
   gtkTheme = "adw-gtk3-dark";
