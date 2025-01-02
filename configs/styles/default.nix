@@ -1,7 +1,7 @@
 { pkgs, lib, settings, ... }: {
   stylix = {
     enable = true;
-    image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
+    # image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
     polarity = "dark";
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml";
