@@ -18,6 +18,7 @@
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
+      portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
   };
 

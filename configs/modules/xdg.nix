@@ -86,21 +86,11 @@ in {
             "/home/${settings.username}/pictures/Screenshots";
         };
       };
-
       mimeApps = {
         enable = true;
         defaultApplications = associations;
       };
-
     };
-
-    home.packages = [
-      # used by `gio open` and xdp-gtk
-      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-        foot "$@"
-      '')
-      pkgs.xdg-utils
-    ];
   };
 
   environment.systemPackages = with pkgs; [

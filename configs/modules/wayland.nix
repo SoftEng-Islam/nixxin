@@ -18,8 +18,7 @@
     wlogout # Wayland based logout menu
     wlr-protocols # Wayland roots protocol extensions
     wlrctl # Command line utility for miscellaneous wlroots Wayland extensions
-    wlroots_0_18
-    # wlroots # A modular Wayland compositor library
+    wlroots # A modular Wayland compositor library
     wlsunset # Day/night gamma adjustments for Wayland
     wtype # xdotool type for wayland
   ];
