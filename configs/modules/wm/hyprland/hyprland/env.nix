@@ -1,7 +1,7 @@
 { config, pkgs, settings, ... }: {
   wayland.windowManager.hyprland.settings = {
     env = [
-      "HYPRCURSOR_SIZE,32"
+      "HYPRCURSOR_SIZE,${toString settings.cursorSize}"
       "HYPRCURSOR_THEME,${settings.cursorTheme}"
       "MOZ_ENABLE_WAYLAND,1"
       "QT_AUTO_SCREEN_SCALE_FACTOR,1"

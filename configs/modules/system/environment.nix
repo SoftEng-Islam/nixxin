@@ -7,9 +7,10 @@
       EDITOR = settings.editor;
       VISUAL = settings.visual;
       GTK_THEME = settings.gtkTheme;
-      HYPRCURSOR_SIZE = settings.cursorSize;
       HYPRCURSOR_THEME = settings.cursorTheme;
+      HYPRCURSOR_SIZE = toString settings.cursorSize;
       LANG = settings.locale;
+      XKB_DEFAULT_RULES = "evdev";
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
@@ -48,8 +49,6 @@
       WLR_DRM_DEVICES = "/dev/dri/card1";
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
-
-      XKB_DEFAULT_RULES = "evdev";
 
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";

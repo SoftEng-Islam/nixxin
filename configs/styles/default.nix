@@ -4,6 +4,24 @@ in {
   stylix = {
     enable = true;
     image = details.wallpaper;
+    cursor = {
+      size = settings.cursorSize;
+      name = settings.cursorTheme;
+      package = settings.cursorPackage;
+    };
+
+    fonts = {
+      serif.name = settings.serifFont;
+      serif.package = settings.serifPackage;
+      sansSerif.name = settings.sansSerifFont;
+      sansSerif.package = settings.sansSerifPackage;
+      monospace.name = settings.fontName;
+      monospace.package = settings.fontPackage;
+      emoji = {
+        package = pkgs.noto-fonts-emoji;
+        name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
+      };
+    };
     targets = {
       grub.enable = true;
       plymouth.enable = true;
@@ -23,24 +41,6 @@ in {
         popups = details.opacity;
       };
 
-      cursor = {
-        size = settings.cursorSize;
-        name = settings.cursorTheme;
-        package = settings.cursorPackage;
-      };
-
-      fonts = {
-        serif.name = settings.serifFont;
-        serif.package = settings.serifPackage;
-        sansSerif.name = settings.sansSerifFont;
-        sansSerif.package = settings.sansSerifPackage;
-        monospace.name = settings.fontName;
-        monospace.package = settings.fontPackage;
-        emoji = {
-          package = pkgs.noto-fonts-emoji;
-          name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
-        };
-      };
       iconTheme = {
         enable = true;
         package = settings.iconPackage;
@@ -48,6 +48,7 @@ in {
         light = settings.iconNameLight;
       };
       targets = {
+        nixos-icons.enable = true;
         alacritty.enable = true;
         avizo.enable = true;
         bat.enable = true;
