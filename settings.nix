@@ -59,9 +59,9 @@
   styleMode = "dark"; # "dark" or "light"
   accentColor = "purple";
   colorScheme = "prefer-dark";
-  theme = "gruvbox"; # ["gruvbox","nord"]
+  themeName = "gruvbox"; # ["gruvbox","nord"]
   themeDetails =
-    import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
+    import (./. + "/configs/styles/${themeName}.nix") { dir = dotfilesDir; };
 
   # GTK
   gtkTheme = "adw-gtk3-dark";

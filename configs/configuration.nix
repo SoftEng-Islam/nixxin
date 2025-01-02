@@ -6,7 +6,7 @@
     ./hardware.nix
     ./home.nix
     ./packages.nix
-#    ./styles
+    ./styles
     ./modules/cli
     ./modules/dev
     ./modules/flags
@@ -21,12 +21,13 @@
     ./modules/system/locale.nix
     ./modules/system/networking.nix
     ./modules/system/power-management.nix
+    ./modules/system/programs.nix
+    ./modules/system/security.nix
+    ./modules/system/services.nix
     ./modules/system/systemd.nix
     ./modules/system/users.nix
     ./modules/system/virtualisation.nix
     ./modules/system/zram.nix
-    ./modules/system/programs.nix
-    ./modules/system/services.nix
 
     ./modules/android.nix
     ./modules/anyrun.nix
