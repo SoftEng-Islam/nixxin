@@ -1,7 +1,7 @@
 { settings, pkgs, ... }: {
   home-manager.users.${settings.username} = {
 
-    imports = [ ./mpv.nix ./rnnoise.nix ];
+    #imports = [ ./mpv.nix ./rnnoise.nix ];
     home.packages = with pkgs; [
       # audio control
       pulsemixer

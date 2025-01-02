@@ -52,11 +52,15 @@
   sansSerifFont = "Noto Sans";
   sansSerifPackage = pkgs.noto-fonts-cjk-serif;
 
-  # Themes
-  theme = "nord"; # ["gruvbox","nord"]
-  themeDetails =
-    import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
+  # ~~~~~~~~~~~~~~~~
+  # ~~~~ Styles ~~~~
+  # ~~~~~~~~~~~~~~~~
+  fontAntialiasing = "grayscale";
+  styleMode = "dark"; # "dark" or "light"
+ # theme = "gruvbox"; # ["gruvbox","nord"]
+  accentColor = "purple";
   colorScheme = "prefer-dark";
+#  themeDetails = import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
 
   # GTK
   gtkTheme = "adw-gtk3-dark";

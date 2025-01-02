@@ -3,11 +3,11 @@
     ./wezterm
 
     # ./alacritty.nix
-    ./foot.nix
+  #  ./foot.nix
     ./zsh.nix
     # ./tmux.nix
     ./kitty.nix
-    ./foot.nix
+ #   ./foot.nix
   ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;

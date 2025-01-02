@@ -2,20 +2,7 @@
   "workbench.editor.enablePreview": false,
   "workbench.settings.openDefaultKeybindings": true,
   "workbench.colorCustomizations": {
-    "editor.selectionBackground": "#450093",
-    "editor.selectionHighlightBackground": "#1438659e",
 
-    "activityBar.background": "#20132c",
-
-    "activityBar.foreground":"#cc00ff",
-    "activityBar.inactiveForeground":"#ffffff",
-
-    "titleBar.activeBackground": "#3f166f",
-    "titleBar.activeForeground": "#FAFCFC",
-
-
-    "statusBar.background": "#3f166f",
-    "statusBar.border":"#1f1c1d"
   },
   "[nix]": {
     "editor.defaultFormatter": "jnoortheen.nix-ide"

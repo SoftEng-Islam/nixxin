@@ -6,7 +6,7 @@
     ./hardware.nix
     ./home.nix
     ./packages.nix
-    ./styles
+#    ./styles
     ./modules/cli
     ./modules/dev
     ./modules/flags
@@ -25,6 +25,8 @@
     ./modules/system/users.nix
     ./modules/system/virtualisation.nix
     ./modules/system/zram.nix
+    ./modules/system/programs.nix
+    ./modules/system/services.nix
 
     ./modules/android.nix
     ./modules/anyrun.nix
@@ -118,6 +120,8 @@
     stateVersion = settings.systemStateVersion;
   };
   environment.systemPackages = with pkgs; [
+
+    gdm
 
     # nix related
     # it provides the command `nom` works just like `nix`

@@ -15,7 +15,7 @@
     # xserver.excludePackages = with pkgs; [ xterm ];
     xserver = {
       enable = true;
-      displayManager.startx.enable = false;
+      displayManager.startx.enable = true;
       displayManager.gdm.enable = true; # x11
       displayManager.gdm.wayland = true; # wayland
       desktopManager.gnome = {
@@ -48,12 +48,5 @@
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
     udisks2.enable = true;
-
-    # logind
-    # logind.extraConfig = ''
-    #   HandlePowerKey=ignore
-    #   HandleLidSwitch=suspend
-    #   HandleLidSwitchExternalPower=ignore
-    # '';
   };
 }
