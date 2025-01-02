@@ -36,6 +36,7 @@
     ./modules/default-apps.nix
     ./modules/gaming.nix
     ./modules/nautilus.nix
+    ./modules/wayland.nix
     ./modules/wine.nix
     ./modules/xdg.nix
     ./modules/xremap.nix
