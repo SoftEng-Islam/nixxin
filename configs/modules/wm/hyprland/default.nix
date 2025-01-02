@@ -11,18 +11,18 @@ in {
   # `weston --socket=wayland-1 &`
   # `WAYLAND_DISPLAY=wayland-1 Hyprland`
   # services.xserver.displayManager.startx.enable = false;
-  # programs = {
-  #   uwsm.enable = false;
-  #   hyprlock.enable = false;
-  #   xwayland.enable = true;
-  #   hyprland = {
-  #     enable = true;
-  #     package = pkgs.hyprland;
-  #     xwayland.enable = true;
-  #     systemd.enable = true;
-  #     withUWSM = false; # Launch Hyprland with the UWSM session manager.
-  #   };
-  # };
+  programs = {
+    uwsm.enable = false;
+    hyprlock.enable = false;
+    xwayland.enable = false;
+    hyprland = {
+      enable = true;
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      systemd.enable = true;
+      xwayland.enable = false;
+      package = with pkgs; [ inputs.hyprland.packages.${system}.hyprland ];
+    };
+  };
 
   # home.file.".config/hypr/hyprland.conf".text = builtins.readFile ./hypr/hyprland.conf;
   # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
@@ -39,6 +39,7 @@ in {
   home-manager.users.${settings.username} = {
     # users.${settings.username} = ./end;
     wayland.windowManager.hyprland = {
+      enable = true;
       settings = {
         debug = {
           disable_logs = false;
@@ -56,7 +57,6 @@ in {
         };
         general = {
           layout = "dwindle";
-
           gaps_in = 8;
           gaps_out = 16;
           border_size = 2;

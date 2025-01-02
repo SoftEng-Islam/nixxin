@@ -39,8 +39,8 @@
 
   # Editors
   editor = "nvim"; # Default editor
-  editorPkg = pkgs.neovim;
   visual = "nvim";
+  editorPkg = pkgs.neovim;
 
   # Fonts
   fontName = "JetBrains Mono"; # Selected font
@@ -57,10 +57,11 @@
   # ~~~~~~~~~~~~~~~~
   fontAntialiasing = "grayscale";
   styleMode = "dark"; # "dark" or "light"
- # theme = "gruvbox"; # ["gruvbox","nord"]
   accentColor = "purple";
   colorScheme = "prefer-dark";
-#  themeDetails = import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
+  theme = "gruvbox"; # ["gruvbox","nord"]
+  themeDetails =
+    import (./. + "/configs/styles/${theme}.nix") { dir = dotfilesDir; };
 
   # GTK
   gtkTheme = "adw-gtk3-dark";

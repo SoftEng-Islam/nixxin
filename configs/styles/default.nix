@@ -1,7 +1,6 @@
 { pkgs, lib, settings, ... }:
-# let details = settings.themeDetails;
-#in
-{
+let details = settings.themeDetails;
+in {
   stylix = {
     enable = true;
     # image = details.wallpaper;
@@ -9,10 +8,10 @@
     # override = lib.mkIf (details.override != null) details.override;
     base16Scheme = "${pkgs.base16-schemes}/share/themes/nord.yaml";
     opacity = {
-     # terminal = details.opacity;
-     # applications = details.opacity;
-     # desktop = details.opacity;
-     # popups = details.opacity;
+      terminal = details.opacity;
+      applications = details.opacity;
+      desktop = details.opacity;
+      popups = details.opacity;
     };
     cursor = {
       size = settings.cursorSize;
@@ -45,15 +44,6 @@
   home-manager.users.${settings.username} = {
     stylix = {
       enable = true;
-      polarity = "dark";
-      # override = lib.mkIf (details.override != null) details.override;
-      # base16Scheme = "${pkgs.base16-schemes}/share/themes/${details.themeName}.yaml";
-      opacity = {
-        #terminal = details.opacity;
-        #applications = details.opacity;
-        #desktop = details.opacity;
-        #popups = details.opacity;
-      };
       iconTheme = {
         enable = true;
         package = settings.iconPackage;
