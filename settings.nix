@@ -60,6 +60,9 @@
   colorScheme = "prefer-dark";
   fontAntialiasing = "grayscale";
   styleMode = "dark"; # "dark" or "light"
+  rounding = 25;
+  opacity = 0.9;
+  shadow = true;
 
   # GTK
   gtkTheme = "adw-gtk3-dark";

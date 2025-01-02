@@ -1,6 +1,4 @@
-{ inputs, self, pkgs, config, settings, ... }:
-let details = settings.themeDetails;
-in {
+{ inputs, pkgs, config, settings, ... }: {
   # swww = "swww img";
   # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
   imports = [ ./packages.nix ];
@@ -88,7 +86,7 @@ in {
         decoration = {
           dim_special = 0.5;
           # dim_inactive = false;
-          rounding = details.rounding;
+          rounding = settings.rounding;
           blur = {
             enabled = true;
             special = true;
@@ -105,7 +103,7 @@ in {
             offset = "2 2";
             ignore_window = false;
           };
-          drop_shadow = details.shadow;
+          drop_shadow = settings.shadow;
           "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
           # shadow_ignore_window = false;
           # shadow_offset = "2 2";

@@ -1,10 +1,4 @@
-{ pkgs, lib, settings, ... }:
-let
-  opacity = 0.9;
-  # rounding = 25;
-  # shadow = true;
-  # bordersPlusPlus = false;
-in {
+{ pkgs, lib, settings, ... }: {
   stylix = {
     enable = true;
     image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
@@ -12,10 +6,10 @@ in {
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml";
     opacity = {
-      terminal = opacity;
-      applications = opacity;
-      desktop = opacity;
-      popups = opacity;
+      terminal = settings.opacity;
+      applications = settings.opacity;
+      desktop = settings.opacity;
+      popups = settings.opacity;
     };
     cursor = {
       size = settings.cursorSize;
@@ -74,8 +68,7 @@ in {
         kitty.enable = true;
         lazygit.enable = true;
         mako.enable = true;
-        nixvim.enable =
-          lib.mkIf (settings.themeDetails.themeName != null) false;
+        nixvim.enable = lib.mkIf (settings.themeName != null) false;
       };
     };
     qt = {
