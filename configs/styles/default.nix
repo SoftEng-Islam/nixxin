@@ -1,6 +1,5 @@
 { pkgs, lib, settings, ... }:
 let
-  themeName = "gruvbox-dark-hard";
   opacity = 0.9;
   # rounding = 25;
   # shadow = true;
@@ -11,8 +10,8 @@ in {
     image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
     polarity = "dark";
     override = null;
-    btopTheme = "gruvbox_dark_v2";
-    base16Scheme = "${pkgs.base16-schemes}/share/themes/${themeName}.yaml";
+    base16Scheme =
+      "${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml";
     opacity = {
       terminal = opacity;
       applications = opacity;
