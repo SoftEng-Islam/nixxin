@@ -48,6 +48,7 @@ in {
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
     XDG_SESSION_TYPE = "wayland";
   };
+
   xdg = {
     portal = {
       enable = true;
