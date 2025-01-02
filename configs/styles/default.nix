@@ -9,7 +9,6 @@ in {
     enable = true;
     image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
     polarity = "dark";
-    override = null;
     base16Scheme =
       "${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml";
     opacity = {

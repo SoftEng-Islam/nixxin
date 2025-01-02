@@ -19,7 +19,7 @@ in {
       enable = true;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
-      package = with pkgs; [ inputs.hyprland.packages.${system}.hyprland ];
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
     };
   };
 
@@ -39,7 +39,7 @@ in {
     # users.${settings.username} = ./end;
     wayland.windowManager.hyprland = {
       enable = true;
-      package = with pkgs; [ inputs.hyprland.packages.${system}.hyprland ];
+      package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
       systemd.enableXdgAutostart = true;
       settings = {
