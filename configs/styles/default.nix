@@ -1,18 +1,23 @@
 { pkgs, lib, settings, ... }:
-let details = settings.themeDetails;
+let
+  themeName = "gruvbox-dark-hard";
+  opacity = 0.9;
+  # rounding = 25;
+  # shadow = true;
+  # bordersPlusPlus = false;
 in {
   stylix = {
     enable = true;
-    image = details.wallpaper;
+    image = "${settings.dotfilesDir}/configs/styles/wallpapers/gruvbox.png";
     polarity = "dark";
-    override = lib.mkIf (details.override != null) details.override;
-    base16Scheme =
-      "${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml";
+    override = null;
+    btopTheme = "gruvbox_dark_v2";
+    base16Scheme = "${pkgs.base16-schemes}/share/themes/${themeName}.yaml";
     opacity = {
-      terminal = details.opacity;
-      applications = details.opacity;
-      desktop = details.opacity;
-      popups = details.opacity;
+      terminal = opacity;
+      applications = opacity;
+      desktop = opacity;
+      popups = opacity;
     };
     cursor = {
       size = settings.cursorSize;

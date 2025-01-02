@@ -56,14 +56,12 @@
   # ~~~~~~~~~~~~~~~~
   # ~~~~ Styles ~~~~
   # ~~~~~~~~~~~~~~~~
-  fontAntialiasing = "grayscale";
-  styleMode = "dark"; # "dark" or "light"
   accentColor = "purple";
   colorScheme = "prefer-dark";
+  fontAntialiasing = "grayscale";
+  styleMode = "dark"; # "dark" or "light"
   themeName = "gruvbox"; # ["gruvbox","nord"]
-  # themeDetails = import "${dotfilesDir}/configs/styles/${themeName}.nix";
-  themeDetails =
-    builtins.path { path = "${dotfilesDir}/configs/styles/${themeName}.nix"; };
+
   # GTK
   gtkTheme = "adw-gtk3-dark";
   gtkPackage = pkgs.adw-gtk3;
