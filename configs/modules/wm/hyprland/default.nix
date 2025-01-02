@@ -18,7 +18,6 @@ in {
     hyprland = {
       enable = true;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
-      systemd.enable = true;
       xwayland.enable = false;
       package = with pkgs; [ inputs.hyprland.packages.${system}.hyprland ];
     };
@@ -40,6 +39,7 @@ in {
     # users.${settings.username} = ./end;
     wayland.windowManager.hyprland = {
       enable = true;
+      systemd.enable = true;
       settings = {
         debug = {
           disable_logs = false;

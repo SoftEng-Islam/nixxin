@@ -270,22 +270,6 @@
         "type": "github"
       }
     },
-    "firefox-gnome-theme": {
-      "flake": false,
-      "locked": {
-        "lastModified": 1735511798,
-        "narHash": "sha256-U9WjPisByrvw8Kt6Ufg9kLrvg7uHPsFSyG93GR3I1iE=",
-        "owner": "rafaelmardojai",
-        "repo": "firefox-gnome-theme",
-        "rev": "097c98cb4a7568f6f83a43e37950c08b575dd126",
-        "type": "github"
-      },
-      "original": {
-        "owner": "rafaelmardojai",
-        "repo": "firefox-gnome-theme",
-        "type": "github"
-      }
-    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -436,26 +420,6 @@
     "flake-parts_2": {
       "inputs": {
         "nixpkgs-lib": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1733312601,
-        "narHash": "sha256-4pDvzqnegAfRkPwO3wmwBhVi/Sye1mzps0zHWYnP88c=",
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "rev": "205b12d8b7cd4802fbcb8e8ef6a0f1408781a4f9",
-        "type": "github"
-      },
-      "original": {
-        "owner": "hercules-ci",
-        "repo": "flake-parts",
-        "type": "github"
-      }
-    },
-    "flake-parts_3": {
-      "inputs": {
-        "nixpkgs-lib": [
           "nixvim",
           "nixpkgs"
         ]
@@ -474,7 +438,7 @@
         "type": "github"
       }
     },
-    "flake-parts_4": {
+    "flake-parts_3": {
       "inputs": {
         "nixpkgs-lib": "nixpkgs-lib"
       },
@@ -699,29 +663,6 @@
         "owner": "GNOME",
         "ref": "47.2",
         "repo": "gnome-shell",
-        "type": "github"
-      }
-    },
-    "gross": {
-      "inputs": {
-        "flake-parts": [
-          "flake-parts"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1698945515,
-        "narHash": "sha256-c3PpMckBQpVrNmhslN+mY/CZ5DIOLSWxA3ZQsDgTAOg=",
-        "owner": "fufexan",
-        "repo": "gross",
-        "rev": "68de266681bf070372270db822990dfbfe8250b1",
-        "type": "github"
-      },
-      "original": {
-        "owner": "fufexan",
-        "repo": "gross",
         "type": "github"
       }
     },
@@ -1924,7 +1865,7 @@
       "inputs": {
         "devshell": "devshell",
         "flake-compat": "flake-compat_4",
-        "flake-parts": "flake-parts_3",
+        "flake-parts": "flake-parts_2",
         "git-hooks": "git-hooks",
         "home-manager": "home-manager_2",
         "nix-darwin": "nix-darwin",
@@ -1968,29 +1909,6 @@
       "original": {
         "owner": "NuschtOS",
         "repo": "search",
-        "type": "github"
-      }
-    },
-    "plasma-manager": {
-      "inputs": {
-        "home-manager": [
-          "home-manager"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1735049224,
-        "narHash": "sha256-fWUd9kyXdepphJ7cCzOsuSo7l0kbFCkUqfgKqZyFZzE=",
-        "owner": "nix-community",
-        "repo": "plasma-manager",
-        "rev": "d16bbded0ae452bc088489e7dca3ef58d8d1830b",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "plasma-manager",
         "type": "github"
       }
     },
@@ -2120,9 +2038,6 @@
       "inputs": {
         "aagl": "aagl",
         "anyrun": "anyrun",
-        "firefox-gnome-theme": "firefox-gnome-theme",
-        "flake-parts": "flake-parts_2",
-        "gross": "gross",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
@@ -2133,7 +2048,6 @@
         "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_3",
         "nixvim": "nixvim",
-        "plasma-manager": "plasma-manager",
         "pyprland": "pyprland",
         "stylix": "stylix",
         "swww": "swww",
@@ -2673,7 +2587,7 @@
       "inputs": {
         "crane": "crane",
         "devshell": "devshell_2",
-        "flake-parts": "flake-parts_4",
+        "flake-parts": "flake-parts_3",
         "home-manager": "home-manager_4",
         "hyprland": "hyprland_3",
         "nixpkgs": "nixpkgs_10",
