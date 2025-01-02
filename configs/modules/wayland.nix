@@ -1,10 +1,7 @@
 { pkgs, ... }: {
+
   environment.systemPackages = with pkgs; [
-    anyrun # A wayland-native, highly customizable runner
-    brightnessctl
-    fcitx5 # Next generation of fcitx
     libqalculate # Advanced calculator library
-    libva-utils # Collection of utilities and examples for VA-API
     mkvtoolnix-cli # Cross-platform tools for Matroska
     seatd # A minimal seat management daemon, and a universal seat management library
     slurp # Select a region in a Wayland compositor

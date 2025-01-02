@@ -1,10 +1,6 @@
 { pkgs, ... }: {
   # Collection of useful CLI apps
   environment.systemPackages = with pkgs; [
-    # archives
-    zip
-    unzip
-    unrar
 
     # misc
     sshfs

@@ -116,7 +116,7 @@
   };
   # Include IBus in System Packages
   environment.systemPackages = with pkgs; [
-
+    fcitx5
     fontconfig # Library for font customization and configuration
     ibus
     ibus-engines.m17n

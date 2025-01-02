@@ -32,7 +32,6 @@
       git
       gcc
       gnumake
-      unzip
       wget
       curl
       tree-sitter

@@ -4,45 +4,55 @@
 
   environment = {
     variables = {
-      # GLFW_IM_MODULE = "ibus";
-      # HIP_VISIBLE_DEVICES = "0,2";
-      # LIBGL_DRI3_ENABLE = "1";
-      HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-      # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
-      SDL_VIDEODRIVER = "wayland";
-
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-      BEMENU_BACKEND = "wayland";
-      BUN_INSTALL = "$HOME/.bun";
-      CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
-      CLUTTER_BACKEND = "wayland";
-      ECORE_EVAS_ENGINE = "wayland_egl";
       EDITOR = settings.editor;
-      ELECTRON_ENABLE_WAYLAND = "1";
-      ELM_ENGINE = "wayland_egl";
-      GDK_BACKEND = "wayland";
-      GDK_PIXBUF_MODULE_FILE =
-        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
-      GOPROXY = "direct";
+      VISUAL = settings.visual;
       GTK_THEME = settings.gtkTheme;
       HYPRCURSOR_SIZE = settings.cursorSize;
       HYPRCURSOR_THEME = settings.cursorTheme;
       LANG = settings.locale;
+
+      # GLFW_IM_MODULE = "ibus";
+      # HIP_VISIBLE_DEVICES = "0,2";
+      # LIBGL_DRI3_ENABLE = "1";
+      HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+
+      # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
+      WAYLAND = "1";
+      SDL_VIDEODRIVER = "wayland";
+      BEMENU_BACKEND = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      GDK_BACKEND = "wayland";
+      ELM_ENGINE = "wayland_egl";
+      ECORE_EVAS_ENGINE = "wayland_egl";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
+      ELECTRON_ENABLE_WAYLAND = "1";
+
+      BUN_INSTALL = "$HOME/.bun";
+
+      GDK_PIXBUF_MODULE_FILE =
+        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+
+      GOPROXY = "direct";
+
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
       NIXPKGS_ALLOW_UNFREE = "1";
+
       QT_AUTO_SCREEN_SCALE_FACTOR = "1";
       QT_QPA_PLATFORM = "wayland";
       QT_QPA_PLATFORMTHEME = "qt5ct";
-      RUST_BACKTRACE = "1";
-      VISUAL = settings.visual;
-      WAYLAND = "1";
+
       WINEESYNC = "1";
       WINEFSYNC = "1";
+
       WLR_DRM_DEVICES = "/dev/dri/card1";
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
+
       XKB_DEFAULT_RULES = "evdev";
+
+      RUST_BACKTRACE = "1";
+      CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
 
       # Colors #
       Black = "033[30m";

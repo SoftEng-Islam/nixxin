@@ -19,9 +19,6 @@
     gojq
     acpi
     libnotify
-    killall
-    zip
-    unzip
     starship
     showmethekey
     ydotool
@@ -31,7 +28,6 @@
 
     # hyprland
     temurin-jre-bin
-    brightnessctl
     cliphist
     fuzzel
     grim

@@ -200,7 +200,6 @@
     libdrm # Direct Rendering Manager library and headers
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva # An implementation for VA-API (Video Acceleration API)
-    libva-utils # A collection of utilities and examples for VA-API
     mesa # An open source 3D graphics library
     mesa_glu # OpenGL utility library
     mesa_i686 # Open source 3D graphics library
