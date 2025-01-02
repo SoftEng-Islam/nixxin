@@ -39,7 +39,9 @@ in {
     # users.${settings.username} = ./end;
     wayland.windowManager.hyprland = {
       enable = true;
+      package = with pkgs; [ inputs.hyprland.packages.${system}.hyprland ];
       systemd.enable = true;
+      systemd.enableXdgAutostart = true;
       settings = {
         debug = {
           disable_logs = false;
