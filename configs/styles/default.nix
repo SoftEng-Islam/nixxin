@@ -13,8 +13,7 @@ in {
     enable = true;
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
-    # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-
+    # base16Scheme = ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
     base16Scheme = base24;
 
     opacity = {
