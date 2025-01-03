@@ -1,5 +1,8 @@
-{ settings, lib, ... }:
-with lib; {
+{ settings, lib, pkgs, ... }:
+let
+  mkTuple = pkgs.lib.mkTuple;
+  mkUint32 = pkgs.lib.mkUint32;
+in {
   dconf.settings = {
     "org/gnome/desktop/input-sources" = {
       sources = [ (mkTuple [ "xkb" "en" ]) ];

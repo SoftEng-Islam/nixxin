@@ -106,6 +106,12 @@ in {
           "file:///home/${settings.username}/GitHub"
           # "file:///mnt/Windows"
         ];
+        extraCss = ''
+          headerbar, .titlebar,
+          .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
+            border-radius: 0;
+          }
+        '';
       };
     };
   };
