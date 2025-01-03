@@ -4,8 +4,9 @@
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
     # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-    base16Scheme =
-      "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
+    base16Scheme = builtins.path {
+      path = "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
+    };
     opacity = {
       terminal = settings.opacity;
       applications = settings.opacity;
