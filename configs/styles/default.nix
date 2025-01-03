@@ -4,7 +4,7 @@
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
     # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-    base16Scheme = pkgs.fetchFile {
+    base16Scheme = builtins.fetchFile {
       url =
         "file:///home/${settings.username}/nixxin/configs/styles/base24.yaml";
     };
