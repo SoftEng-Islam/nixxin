@@ -4,10 +4,10 @@ let
   mkUint32 = pkgs.lib.mkUint32;
 in {
   dconf.settings = {
-    "org/gnome/desktop/input-sources" = {
-      sources = [ (mkTuple [ "xkb" "en" ]) ];
-      xkb-options = [ "terminate:alt_shift" ];
-    };
+    # "org/gnome/desktop/input-sources" = {
+    #   sources = [ (mkTuple [ "xkb" "en" ]) ];
+    #   xkb-options = [ "terminate:alt_shift" ];
+    # };
 
     "org/gnome/desktop/interface" = { show-battery-percentage = true; };
 
@@ -35,7 +35,7 @@ in {
       ];
     };
 
-    "org/gnome/desktop/session" = { idle-delay = mkUint32 0; };
+    # "org/gnome/desktop/session" = { idle-delay = mkUint32 0; };
 
     "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Alt>q" ];
