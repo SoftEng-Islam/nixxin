@@ -1,13 +1,13 @@
 { pkgs, lib, settings, ... }: {
+  environment.etc = {
+    "base24.yaml".source =
+      "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
+  };
   stylix = {
     enable = true;
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
     # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-    environment.etc = {
-      "base24.yaml".source =
-        "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
-    };
     base16Scheme = "/etc/base24.yaml";
     opacity = {
       terminal = settings.opacity;
