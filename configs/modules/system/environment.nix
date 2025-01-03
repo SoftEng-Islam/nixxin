@@ -14,7 +14,7 @@
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
-      # LIBGL_DRI3_ENABLE = "1";
+      LIBGL_DRI3_ENABLE = "1";
       LIBGL_ALWAYS_INDIRECT = "1";
 
       HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
