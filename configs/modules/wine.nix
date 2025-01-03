@@ -20,6 +20,7 @@
     wineWowPackages.waylandFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     libGL # GL Vendor-Neutral Dispatch library
     libGLU # OpenGL utility library
+    libGLX # GL Vendor-Neutral Dispatch library
     vulkan-loader # LunarG Vulkan loader
     vkd3d-proton # A fork of VKD3D, which aims to implement the full Direct3D 12 API on top of Vulkan
     vkd3d # Direct3D to Vulkan translation library

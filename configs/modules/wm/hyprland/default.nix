@@ -74,10 +74,10 @@
 
           # no_cursor_warps = false;
           # layout = "dwindle";
-          "col.active_border" = "$primary";
-          "col.inactive_border" = "rgb(000000)";
-          # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
-          # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
+          #"col.active_border" = "$primary";
+          #"col.inactive_border" = "rgb(000000)";
+          "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
+          "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
         };
         input = {
           kb_layout = "us,eg";
@@ -112,8 +112,8 @@
             offset = "2 2";
             ignore_window = false;
           };
-          drop_shadow = settings.shadow;
-          "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
+          # drop_shadow = settings.shadow;
+          # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
           # shadow_ignore_window = false;
           # shadow_offset = "2 2";
           # shadow_range = 20;

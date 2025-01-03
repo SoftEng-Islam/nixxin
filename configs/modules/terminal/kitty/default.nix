@@ -89,14 +89,15 @@
       font_size 12.0
 
 
-      kitty -o allow_remote_control=yes
 
 
       input_delay 3
+      kitty -o allow_remote_control=yes
+      mouse_hide_wait 1
       repaint_delay 10
       sync_to_monitor yes
       wayland_enable_ime no
-      mouse_hide_wait 1
+      window_decorations none
 
       # Cursor
       cursor_shape beam

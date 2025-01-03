@@ -1,6 +1,4 @@
-{ config, pkgs, settings, inputs, ... }:
-let details = settings.themeDetails;
-in {
+{ config, pkgs, settings, inputs, ... }: {
   home.packages = [ inputs.swww.packages.${pkgs.system}.swww ];
 
   wayland.windowManager.hyprland.settings = {
@@ -35,7 +33,7 @@ in {
 
     decoration = {
       dim_special = 0.5;
-      rounding = details.rounding;
+      rounding = settings.rounding;
       blur = {
         enabled = true;
         special = true;
@@ -46,7 +44,7 @@ in {
         size = 10;
       };
 
-      drop_shadow = details.shadow;
+      drop_shadow = settings.shadow;
       shadow_ignore_window = false;
       shadow_offset = "2 2";
       shadow_range = 20;
@@ -78,15 +76,10 @@ in {
     debug = { disable_logs = false; };
 
     input = {
-      kb_layout = "us,ru";
-      kb_options = "grp:win_space_toggle";
+      kb_layout = "us,eg";
+      kb_options = "grp:alt_shift_toggle";
       follow_mouse = true;
       touchpad = { natural_scroll = true; };
-    };
-
-    device = {
-      name = "logitech-usb-receiver-mouse";
-      sensitivity = -1.0;
     };
 
     gestures = {

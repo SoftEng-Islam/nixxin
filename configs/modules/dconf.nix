@@ -21,18 +21,18 @@ in {
         disabled = [ "org.gnome.Boxes.desktop" ];
         enabled = [ "org.gnome.Weather.desktop" ];
         sort-order = [
-          "org.gnome.Contacts.desktop"
-          "org.gnome.Documents.desktop"
-          "org.gnome.Nautilus.desktop"
-          "org.gnome.Calendar.desktop"
-          "org.gnome.Calculator.desktop"
-          "org.gnome.Software.desktop"
-          "org.gnome.Settings.desktop"
-          "org.gnome.clocks.desktop"
-          "org.gnome.design.IconLibrary.desktop"
-          "org.gnome.seahorse.Application.desktop"
-          "org.gnome.Weather.desktop"
-          "org.gnome.Boxes.desktop"
+          # "org.gnome.Contacts.desktop"
+          # "org.gnome.Documents.desktop"
+          # "org.gnome.Nautilus.desktop"
+          # "org.gnome.Calendar.desktop"
+          # "org.gnome.Calculator.desktop"
+          # "org.gnome.Software.desktop"
+          # "org.gnome.Settings.desktop"
+          # "org.gnome.clocks.desktop"
+          # "org.gnome.design.IconLibrary.desktop"
+          # "org.gnome.seahorse.Application.desktop"
+          # "org.gnome.Weather.desktop"
+          # "org.gnome.Boxes.desktop"
         ];
       };
 
@@ -109,15 +109,10 @@ in {
         favorite-apps = [
           "firefox.desktop"
           "org.gnome.Nautilus.desktop"
-          "org.gnome.Calendar.desktop"
           "obsidian.desktop"
-          "transmission-gtk.desktop"
           "caprine.desktop"
-          "teams-for-linux.desktop"
           "discord.desktop"
           "spotify.desktop"
-          "com.usebottles.bottles.desktop"
-          "org.gnome.Software.desktop"
         ];
       };
 

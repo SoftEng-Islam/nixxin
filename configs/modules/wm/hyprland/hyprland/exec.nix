@@ -6,7 +6,8 @@
       # "swww img ~/Downloads/nixos-chan.png"
       "wl-paste --type text --watch cliphist store"
       "wl-paste --type image --watch cliphist store"
-      "ags &"
+      #"ags &"
+      "ignis init"
       "hyprctl setcursor ${settings.cursorTheme}  ${
         toString settings.cursorSize
       }"
