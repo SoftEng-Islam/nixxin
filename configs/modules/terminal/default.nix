@@ -1,24 +1,15 @@
-{ settings, pkgs, ... }: {
-  imports = [
-    ./wezterm
-
-    # ./alacritty.nix
-    #  ./foot.nix
-    ./zsh.nix
-    # ./tmux.nix
-    ./kitty
-  ];
+{ pkgs, ... }: {
+  imports = [ ./wezterm ./zsh.nix ./kitty ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
-  # home-manager.users.${settings.username} = { imports = [ ./shell.nix ]; };
   environment.systemPackages = with pkgs; [
     # Terminal Emulators
     bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
-    fish # Smart and user-friendly command line shell
-    foot # A fast, lightweight and minimalistic Wayland terminal emulator
+    #fish # Smart and user-friendly command line shell
+    #foot # A fast, lightweight and minimalistic Wayland terminal emulator
     kitty # A modern, hackable, featureful, OpenGL based terminal emulator
-    tmux # Terminal multiplexer
+    #tmux # Terminal multiplexer
     wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
 
     nanorc # Improved Nano Syntax Highlighting Files
