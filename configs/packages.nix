@@ -2,6 +2,7 @@
   environment.systemPackages = with pkgs; [
     settings.browserPkg
     settings.termPkg
+    settings.cursorPackage
 
     # Icons
     gruvbox-dark-icons-gtk

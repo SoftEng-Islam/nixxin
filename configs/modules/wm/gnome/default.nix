@@ -66,7 +66,6 @@
     yelp # Help view
   ];
   environment.systemPackages = with pkgs; [
-    bibata-cursors
     eog # GNOME image viewer
     gdm # A program that manages graphical display servers and handles graphical user logins
     gdm-settings
@@ -75,7 +74,7 @@
     gnome-bluetooth # Application that lets you manage Bluetooth in the GNOME desktop
     gnome-chess # Play the classic two-player boardgame of chess
     gnome-control-center # Utilities to configure the GNOME desktop
-    gnome-extension-manager
+    #gnome-extension-manager
     gnome-keyring # Collection of components in GNOME that store secrets, passwords, keys, certificates and make them available to applications
     gnome-pomodoro # Time management utility for GNOME based on the pomodoro technique
     gnome-secrets # Password manager for GNOME which makes use of the KeePass v.4 format
@@ -84,7 +83,7 @@
     gnome-text-editor
     gnome-themes-extra
     gnome-tweaks # A tool to customize advanced GNOME 3 options
-    gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
+    #gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
     gsettings-desktop-schemas
     lexend
     libgnome-keyring # Framework for managing passwords and other secrets
