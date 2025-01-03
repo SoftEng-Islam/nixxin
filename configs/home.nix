@@ -12,7 +12,7 @@
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = false;
-    backupFileExtension = "bk";
+    backupFileExtension = null;
   };
 
   home-manager.users.${settings.username} = {

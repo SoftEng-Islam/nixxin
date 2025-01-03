@@ -1,11 +1,11 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   # Enable DXVK in Wine:
   # WINEPREFIX=~/.wine winecfg
   # Go to the Libraries tab, add d3d11 and dxgi, and set them to "native."
   # Optional: Enable 32-bit Wine for older games
   # Add this if you want a 32-bit Wine prefix:
   environment.variables = {
-    WINEPREFIX = "~/.wine";
+    WINEPREFIX = "/home/${settings.username}/.wine";
     WINEARCH = "win32"; # Set Wine architecture to 32-bit
   };
   environment.systemPackages = with pkgs; [
