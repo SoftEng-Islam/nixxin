@@ -27,7 +27,7 @@
       icon-theme='${settings.iconNameDark}'
       color-scheme='${settings.colorScheme}'
       cursor-theme='${settings.cursorTheme}'
-      cursor-size=${settings.cursorSize}
+      cursor-size=${toString settings.cursorSize}
       scaling-factor=1
 
       [org.gnome.desktop.wm.preferences]

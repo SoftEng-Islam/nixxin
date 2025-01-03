@@ -1,6 +1,6 @@
 { pkgs, lib, settings, ... }:
 let
-  base24 = pkgs.fetchFile {
+  base24 = builtins.fetchurl {
     url =
       "file:///home/${settings.username}/nixxin/configs/styles/base24.yaml"; # Local path to the file
     # To generate the sha256
