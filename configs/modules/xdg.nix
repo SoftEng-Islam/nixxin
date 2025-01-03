@@ -6,8 +6,8 @@ let
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
   editor = [ "code.desktop" ];
-  fileManager = "org.gnome.Nautilus.desktop";
-  torrentApp = "org.qbittorrent.qBittorrent.desktop";
+  fileManager = [ "org.gnome.Nautilus.desktop" ];
+  torrentApp = [ "org.qbittorrent.qBittorrent.desktop" ];
 
   xdgAssociations = type: program: list:
     builtins.listToAttrs (map (e: {
