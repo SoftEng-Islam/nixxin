@@ -24,7 +24,7 @@
     extraGSettingsOverrides = ''
       [org.gnome.desktop.interface]
       gtk-theme='${settings.gtkTheme}'
-      icon-theme='${settings.icons}'
+      icon-theme='${settings.iconNameDark}'
       color-scheme='${settings.colorScheme}'
       cursor-theme='${settings.cursorTheme}'
       cursor-size=${settings.cursorSize}
