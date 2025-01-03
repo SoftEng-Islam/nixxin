@@ -35,7 +35,15 @@
   };
 
   home-manager.users.${settings.username} = {
-    # users.${settings.username} = ./end;
+    imports = [
+      ./hyprland/binds.nix
+      ./hyprland/env.nix
+      ./hyprland/exec.nix
+      ./hyprland/monitor.nix
+      ./hyprland/rules.nix
+      ./hyprland/scripts.nix
+      ./hyprland/settings.nix
+    ];
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
