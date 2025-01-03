@@ -5,7 +5,7 @@ let
   imageViewer = [ "org.gnome.Loupe" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
-  editor = "code.desktop";
+  editor = [ "code.desktop" ];
   fileManager = "org.gnome.Nautilus.desktop";
   torrentApp = "org.qbittorrent.qBittorrent.desktop";
 
