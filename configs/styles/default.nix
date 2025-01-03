@@ -1,13 +1,17 @@
 { pkgs, lib, settings, ... }: {
+  environment.etc."base24.yaml".source =
+    "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
+
   stylix = {
     enable = true;
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
     # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-    base16Scheme = builtins.fetchFile {
-      url =
-        "file:///home/${settings.username}/nixxin/configs/styles/base24.yaml";
+    base16Scheme = pkgs.writeTextFile {
+      name = "base24.yaml";
+      text = builtins.readFile "/etc/base24.yaml";
     };
+
     opacity = {
       terminal = settings.opacity;
       applications = settings.opacity;
