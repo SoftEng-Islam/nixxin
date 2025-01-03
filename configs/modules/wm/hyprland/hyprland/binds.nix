@@ -146,12 +146,17 @@
     ];
   };
   wayland.windowManager.hyprland.extraConfig = ''
-      source=~/.cache/ignis/material/dark_colors-hyprland.conf
-      env = QT_QPA_PLATFORM,wayland
-      env = QT_QPA_PLATFORMTHEME,qt5ct
-      env = GTK_THEME,Material
+    #  source=~/.cache/ignis/material/dark_colors-hyprland.conf
 
-      exec-once = ignis init
+    # ignis
+    bind = $mainMod, X, exec, ignis toggle ignis_LAUNCHER
+    bind = $mainMod, M, exec, ignis toggle ignis_POWERMENU
+    bind = ALT, F4, exec, ignis toggle ignis_POWERMENU
+    bind = $mainMod, R, exec, ~/.config/ignis/scripts/recording.py start
+    bind = $mainMod SHIFT, R, exec, ~/.config/ignis/scripts/recording.py continue
+    bind = $mainMod, T, exec, ~/.config/ignis/scripts/recording.py stop
+    bind = $mainMod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
+
 
     # Fullscreen screenshot
     # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
