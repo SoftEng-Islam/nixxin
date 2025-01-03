@@ -57,6 +57,9 @@
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
+      jinja2Package = pkgs.callPackage import (./. + "./configs/drvs/jinja.nix")
+        { }; # Adjust this path
+
     in {
       # NixOS configuration entrypoint.
       # 'sudo nixos-rebuild switch --flake .#YourHostname
@@ -66,6 +69,8 @@
             inherit inputs;
             inherit settings;
             inherit self;
+            inherit jinja2Package; # Make sure it's passed here
+
           };
           modules = [
             inputs.stylix.nixosModules.stylix
@@ -74,5 +79,7 @@
           ];
         };
       };
+      # Expose jinja2 package in the outputs for access
+      packages.jinja2 = jinja2Package; # Add the jinja2 package to flake outputs
     };
 }

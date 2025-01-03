@@ -1,5 +1,8 @@
-{ settings, pkgs, ... }: {
+{ self, settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+
+    self.packages.jinja2 # Add your custom package to the system packages
+
     settings.browserPkg
     settings.termPkg
     settings.cursorPackage
