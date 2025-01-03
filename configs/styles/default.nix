@@ -75,11 +75,11 @@ in {
         gitui.enable = true;
         gnome.enable = true;
         gtk.enable = true;
-        # hyprland.enable = true;
         kitty.enable = true;
         lazygit.enable = true;
         mako.enable = true;
         nixvim.enable = lib.mkIf (settings.themeName != null) false;
+        # hyprland.enable = true;
       };
     };
     qt = {

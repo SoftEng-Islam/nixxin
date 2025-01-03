@@ -36,7 +36,6 @@
     ./modules/codex.nix
     ./modules/data-transferring.nix
     ./modules/dconf.nix
-    ./modules/default-apps.nix
     ./modules/gaming.nix
     ./modules/nautilus.nix
     ./modules/wayland.nix

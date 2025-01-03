@@ -1,9 +1,13 @@
 { config, settings, lib, pkgs, ... }:
 let
+  # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
+  editor = "code.desktop";
+  fileManager = "org.gnome.Nautilus.desktop";
+  torrentApp = "org.qbittorrent.qBittorrent.desktop";
 
   xdgAssociations = type: program: list:
     builtins.listToAttrs (map (e: {
@@ -11,9 +15,29 @@ let
       value = program;
     }) list);
 
+  editors = xdgAssociations "editor" editor [
+    "text/english"
+    "text/plain"
+    "text/x-makefile"
+    "text/x-c++hdr"
+    "text/x-c++src"
+    "text/x-chdr"
+    "text/x-csrc"
+    "text/x-java"
+    "text/x-moc"
+    "text/x-pascal"
+    "text/x-tcl"
+    "text/x-tex"
+    "application/x-shellscript"
+    "text/x-c"
+    "text/x-c++"
+  ];
+  filesManager = xdgAssociations "file" fileManager [ "inode/directory" ];
+  torrent = xdgAssociations "torrents" torrentApp [ "x-scheme-handler/magnet" ];
   image = xdgAssociations "image" imageViewer [ "png" "svg" "jpeg" "gif" ];
   video = xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" "wmv" "ts" ];
   audio = xdgAssociations "audio" audioPlayer [ "mp3" "flac" "wav" "aac" ];
+
   browserTypes = (xdgAssociations "application" browser [
     "json"
     "x-extension-htm"
@@ -36,7 +60,8 @@ let
     "text/plain" = [ "org.gnome.TextEditor" ];
     # "x-scheme-handler/chrome" = [ "google-chrome" ];
     # "inode/directory" = [ "nautilus" ];
-  } // image // video // audio // browserTypes);
+  } // editors // filesManager // torrent // image // video // audio
+    // browserTypes);
 
 in {
   environment.variables = {
@@ -86,6 +111,16 @@ in {
             "/home/${settings.username}/pictures/Screenshots";
         };
       };
+      desktopEntries."org.gnome.Settings" = {
+        name = "Settings";
+        comment = "Gnome Control Center";
+        icon = "org.gnome.Settings";
+        exec =
+          "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
+        categories = [ "X-Preferences" ];
+        terminal = false;
+      };
+
       mimeApps = {
         enable = true;
         defaultApplications = associations;
