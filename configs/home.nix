@@ -2,8 +2,8 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ home-manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-#programs.home-manager.enable = true;  
-home-manager = {
+  #programs.home-manager.enable = true;
+  home-manager = {
     extraSpecialArgs = {
       inherit inputs;
       inherit settings;
@@ -12,10 +12,10 @@ home-manager = {
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = false;
-    backupFileExtension = "bakup";
+    backupFileExtension = "back";
   };
- 
- home-manager.users.${settings.username} = {
+
+  home-manager.users.${settings.username} = {
     # users.${settings.username} = import (./. + "/home.nix");
     stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
