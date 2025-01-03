@@ -20,22 +20,22 @@
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # services.gnome.core-developer-tools.enable = true;
 
-  services.xserver.desktopManager.gnome.extraGSettingsOverrides = ''
-    [org.gnome.mutter]
-    check-alive-timeout=0
-  '';
   services.xserver.desktopManager.gnome = {
-    # extraGSettingsOverrides = ''
-    #   [org.gnome.desktop.interface]
-    #   gtk-theme='${settings.gtkTheme}'
-    #   icon-theme='${settings.icons}'
-    #   color-scheme='${settings.colorScheme}'
-    #   cursor-theme='${settings.cursorTheme}'
-    #   cursor-size=${settings.cursorSize}
+    extraGSettingsOverrides = ''
+      [org.gnome.desktop.interface]
+      gtk-theme='${settings.gtkTheme}'
+      icon-theme='${settings.icons}'
+      color-scheme='${settings.colorScheme}'
+      cursor-theme='${settings.cursorTheme}'
+      cursor-size=${settings.cursorSize}
+      scaling-factor=1
 
-    #   [org.gnome.desktop.wm.preferences]
-    #   button-layout='close,minimize,maximize:'
-    # '';
+      [org.gnome.desktop.wm.preferences]
+      button-layout='close,minimize,maximize:'
+
+      [org.gnome.mutter]
+      check-alive-timeout=0
+    '';
   };
 
   home-manager.users.${settings.username} = {
