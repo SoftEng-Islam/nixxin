@@ -52,8 +52,8 @@
       WINEFSYNC = "1";
 
       WLR_DRM_DEVICES = "/dev/dri/card1";
-      WLR_DRM_NO_ATOMIC = "0";
-      WLR_VSYNC = "0";
+      WLR_DRM_NO_ATOMIC = "1";
+      WLR_VSYNC = "1";
 
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
