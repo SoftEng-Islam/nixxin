@@ -3,59 +3,56 @@
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
-    python3
+    python313Full
 
-    # NOTE: add here any python package you need globally
-    (python3.withPackages (ps:
-      with ps; [
-        pip
-        beautifulsoup4
-        build
-        cairosvg
-        certifi
-        charset-normalizer
-        click
-        dbus-python
-        django
-        html2text
-        i3ipc
-        icalendar
-        idna
-        lockfile
-        loguru
-        markupsafe
-        material-color-utilities
-        materialyoucolor
-        opencv-python # Open Computer Vision Library with more than 500 algorithms
-        pillow
-        psutil
-        pycairo
-        pygobject3
-        pynvim # required by nvim
-        pytz
-        pywal
-        pywayland
-        pywlroots
-        requests
-        setuptools
-        setuptools-scm
-        sv-ttk
-        systemd
-        tkinter
-        tzlocal
-        urllib3
-        virtualenv
-        watchdog
-        wheel
-      ]))
+    python313Packages.pip
+    python313Packages.beautifulsoup4
+    python313Packages.build
+    python313Packages.cairosvg
+    python313Packages.certifi
+    python313Packages.charset-normalizer
+    python313Packages.click
+    python313Packages.dbus-python
+    python313Packages.django
+    python313Packages.html2text
+    python313Packages.i3ipc
+    python313Packages.icalendar
+    python313Packages.idna
+    python313Packages.lockfile
+    python313Packages.loguru
+    python313Packages.markupsafe
+    python313Packages.material-color-utilities
+    python313Packages.materialyoucolor
+    python313Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
+    python313Packages.pillow
+    python313Packages.psutil
+    python313Packages.pycairo
+    python313Packages.pygobject3
+    python313Packages.pynvim # required by nvim
+    python313Packages.pytz
+    python313Packages.pywal
+    python313Packages.pywayland
+    python313Packages.pywlroots
+    python313Packages.requests
+    python313Packages.setuptools
+    python313Packages.setuptools-scm
+    python313Packages.sv-ttk
+    python313Packages.systemd
+    python313Packages.tkinter
+    python313Packages.tzlocal
+    python313Packages.urllib3
+    python313Packages.virtualenv
+    python313Packages.watchdog
+    python313Packages.wheel
+    python313Packages.ruff
+    python313Packages.mypy
+    python313Packages.jinja2
 
-    (python3.withPackages (ps: [ ps.jinja2 ]))
     cairo.dev
     dbus.dev
     glib.dev
     gobject-introspection
     gobject-introspection.dev
-    jinja2-cli
     libffi.dev
     linuxHeaders
     pip-audit

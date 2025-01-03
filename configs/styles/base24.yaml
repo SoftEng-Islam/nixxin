@@ -3,11 +3,11 @@ name: "One Dark"
 author: "FredHappyface (https://github.com/fredHappyface)"
 variant: "dark"
 palette:
-  base00: "#2e3440"  # Background (Nord Polar Night)
+  base00: "#1d2028"  # Background (Nord Polar Night)
   base01: "#3b4252"  # Lighter Background (Nord Polar Night)
   base02: "#4c566a"  # Selection Background (Nord Polar Night)
   base03: "#5c6370"  # Comments/Secondary Text
-  base04: "#abb2bf"  # Light Text (Nord Frost)
+  base04: "#ffffff"  # Light Text (Nord Frost)
   base05: "#e5e9f0"  # Foreground (Nord Frost)
   base06: "#eceff4"  # Bright Foreground (Nord Frost)
   base07: "#ffffff"  # Brightest Text
@@ -19,7 +19,7 @@ palette:
   base0D: "#81a1c1"  # Blue (Nord Frost)
   base0E: "#b48ead"  # Purple (Nord Aurora)
   base0F: "#8f3f71"  # Darker Purple (Gruvbox-inspired)
-  base10: "#242931"  # Extra Dark Background
+  base10: "#2e3440"  # Extra Dark Background
   base11: "#1d2028"  # Extra Extra Dark Background
   base12: "#ff5e5e"  # Vibrant Red (Gruvbox-inspired)
   base13: "#f4a261"  # Vibrant Orange (Gruvbox-inspired)

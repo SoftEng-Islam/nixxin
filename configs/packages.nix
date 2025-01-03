@@ -117,6 +117,7 @@
     gtksourceviewmm
     harfbuzz.dev
     jetbrains-toolbox
+    libpulseaudio
     libpulseaudio.dev
     meson
     mlocate
