@@ -1,11 +1,21 @@
-{ pkgs, lib, settings, ... }: {
+{ pkgs, lib, settings, ... }:
+let
+  base24 = pkgs.fetchFile {
+    url =
+      "file:///home/${settings.username}/nixxin/configs/styles/base24.yaml"; # Local path to the file
+    # To generate the sha256
+    # sha256sum /path/to/your/file.yaml
+    sha256 =
+      "ae7a46b06878dd184cf62b30f3a762a3902a177644363b65333e81bf8e0b5e8b"; # The hash you got
+  };
+in {
   stylix = {
     enable = true;
     image = ./wallpapers/gruvbox.png;
     polarity = "dark";
     # ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
-    base16Scheme =
-      "/home/${settings.username}/nixxin/configs/styles/base24.yaml";
+
+    base16Scheme = base24;
 
     opacity = {
       terminal = settings.opacity;
