@@ -41,7 +41,6 @@
         # https://github.com/NixOS/nixpkgs/issues/314713
         UV_USE_IO_URING = "0";
 
-        WINEPREFIX = "/home/${settings.username}/wine";
         XAUTHORITY = "$XDG_RUNTIME_DIR/Xauthority";
         DIRENV_LOG_FORMAT = "";
 
