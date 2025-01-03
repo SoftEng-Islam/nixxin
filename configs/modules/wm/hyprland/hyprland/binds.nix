@@ -149,13 +149,13 @@
     #  source=~/.cache/ignis/material/dark_colors-hyprland.conf
 
     # ignis
-    bind = $mainMod, X, exec, ignis toggle ignis_LAUNCHER
-    bind = $mainMod, M, exec, ignis toggle ignis_POWERMENU
+    bind = $mod, X, exec, ignis toggle ignis_LAUNCHER
+    bind = $mod, M, exec, ignis toggle ignis_POWERMENU
     bind = ALT, F4, exec, ignis toggle ignis_POWERMENU
-    bind = $mainMod, R, exec, ~/.config/ignis/scripts/recording.py start
-    bind = $mainMod SHIFT, R, exec, ~/.config/ignis/scripts/recording.py continue
-    bind = $mainMod, T, exec, ~/.config/ignis/scripts/recording.py stop
-    bind = $mainMod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
+    bind = $mod, R, exec, ~/.config/ignis/scripts/recording.py start
+    bind = $mod SHIFT, R, exec, ~/.config/ignis/scripts/recording.py continue
+    bind = $mod, T, exec, ~/.config/ignis/scripts/recording.py stop
+    bind = $mod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
 
     # Fullscreen screenshot

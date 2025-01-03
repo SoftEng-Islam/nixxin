@@ -53,8 +53,6 @@
           disable_logs = false;
           enable_stdout_logs = true;
         };
-        master = { new_is_master = true; };
-
         dwindle = {
           # keep floating dimentions while tiling
           pseudotile = true;
