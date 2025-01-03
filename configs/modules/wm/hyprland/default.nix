@@ -42,7 +42,6 @@
       ./hyprland/monitor.nix
       ./hyprland/rules.nix
       ./hyprland/scripts.nix
-      ./hyprland/settings.nix
     ];
     wayland.windowManager.hyprland = {
       enable = true;

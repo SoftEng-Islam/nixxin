@@ -10,25 +10,9 @@
 
     windowrule = [ "float,title:^(swayimg)(.*)$" ];
     windowrulev2 = [
-      "keepaspectratio,class:^(firefox)$,title:^(Picture-in-Picture)$"
-      "noborder,class:^(firefox)$,title:^(Picture-in-Picture)$"
-      "pin,class:^(firefox)$,title:^(Firefox)$"
-      "pin,class:^(firefox)$,title:^(Picture-in-Picture)$"
-      "float,class:^(firefox)$,title:^(Firefox)$"
-      "float,class:^(firefox)$,title:^(Picture-in-Picture)$"
-
       "float,class:^(floating)$,title:^(kitty)$"
       "size 50% 50%,class:^(floating)$,title:^(kitty)$"
       "center,class:^(floating)$,title:^(kitty)$"
-
-      "float,class:^(moe.launcher.the-honkers-railway-launcher)$"
-      "float,class:^(lutris)$"
-      "size 1664 1005,class:^(lutris)$"
-      "center,class:^(lutris)$"
-
-      "fullscreen,class:^steam_appd+$"
-      "monitor 0,class:^steam_app_d+$"
-      "workspace 10,class:^steam_app_d+$"
     ];
 
     workspace =
