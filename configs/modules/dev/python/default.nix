@@ -51,6 +51,8 @@
     python3Packages.jinja2-ansible-filters
     python3Packages.jinja2-pluralize
 
+    python3Packages.pallets-sphinx-themes
+
     cairo.dev
     dbus.dev
     glib.dev
