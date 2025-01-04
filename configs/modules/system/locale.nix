@@ -7,6 +7,7 @@
     fontDir.enable = true;
     packages = with pkgs; [
       settings.fontPackage
+
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review
@@ -15,11 +16,15 @@
       font-awesome # Font Awesome - OTF font
       hack-font # Typeface designed for source code
       inter # Typeface specially designed for user interfaces
-      noto-fonts # Beautiful and free fonts for many languages
 
+      noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-emoji # Color emoji font
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
+
+      nerd-fonts.monaspace
+      nerd-fonts.jetbrains-mono
+
       google-fonts
     ];
     fontconfig = {

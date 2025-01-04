@@ -44,7 +44,7 @@
 
   # Fonts
   fontName = "JetBrains Mono"; # Selected font
-  fontPackage = pkgs.jetbrains-mono; # Typeface made for developers
+  fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
   monospaceFont = fontName;
   fontSize = 12; # Font size
   serifFont = "Noto Serif";

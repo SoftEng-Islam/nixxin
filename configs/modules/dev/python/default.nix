@@ -1,19 +1,4 @@
-{ pkgs, ... }:
-let
-  pythonWithOverrides = pkgs.python312.override {
-    packageOverrides = python-self: python-super: {
-      pallets-sphinx-themes = python-super.pallets-sphinx-themes.overrideAttrs
-        (old: {
-          buildPhase = ''
-            echo "Skipping buildPhase"
-          '';
-          installPhase = ''
-            echo "Skipping installPhase"
-          '';
-        });
-    };
-  };
-in {
+{ pkgs, ... }: {
   environment.variables = {
     PYENV_ROOT = "$HOME/.pyenv";
     PATH = "$PYENV_ROOT/bin:$PATH";
@@ -22,15 +7,15 @@ in {
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
-    pipx
-    python312Full
-    python312Packages.virtualenv
-    python312Packages.babel
-    python312Packages.beautifulsoup4
-    python312Packages.build
-    python312Packages.cairosvg
-    python312Packages.certifi
-    python312Packages.charset-normalizer
+    pipx # Install and run Python applications in isolated environments
+    python312Full # High-level dynamically-typed programming language
+    python312Packages.virtualenv # Tool to create isolated Python environments
+    python312Packages.babel # Collection of internationalizing tools
+    python312Packages.beautifulsoup4 # HTML and XML parser
+    python312Packages.build # Simple, correct PEP517 package builder
+    python312Packages.cairosvg # SVG converter based on Cairo
+    python312Packages.certifi # Python package for providing Mozilla's CA Bundle
+    python312Packages.charset-normalizer # Python module for encoding and language detection
     python312Packages.click
     python312Packages.dbus-python
     python312Packages.django
@@ -74,17 +59,14 @@ in {
     python312Packages.types-requests
     python312Packages.wheel
 
-    # python313Packages.jinja2
-    pythonWithOverrides
-    (pythonWithOverrides.withPackages
-      (ps: with ps; [ jinja2 babel beautifulsoup4 ]))
-
     bzip2
+    bzip2.dev
     cairo.dev
     dbus.dev
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
     gcc
+    gdbm.dev
     glib.dev
     gobject-introspection
     gobject-introspection.dev
@@ -92,17 +74,21 @@ in {
     libffi.dev
     libtool # GNU Libtool, a generic library support script
     linuxHeaders
+    ncurses.dev
     openssl
+    openssl.dev
     pip-audit
     pkg-config
+    readline.dev
     sqlite
+    sqlite.dev
     systemd.dev # System and service manager for Linux
+    tk.dev
     wrapGAppsHook
     xz
+    xz.dev
     zlib
     zlib-ng
     zlib.dev
-    zlib
-    bzip2
   ];
 }

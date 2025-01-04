@@ -1,4 +1,4 @@
-{ config, settings, lib, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
