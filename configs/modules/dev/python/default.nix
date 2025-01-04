@@ -52,7 +52,20 @@
     python3Packages.watchdog
     python3Packages.wheel
 
-    python3Packages.jinja2
+    (python3.override {
+      packageOverrides = python-self: python-super: {
+        pallets-sphinx-themes = python-super.pallets-sphinx-themes.overrideAttrs
+          (old: {
+            buildPhase = ''
+              echo "Skipping buildPhase"
+            '';
+            installPhase = ''
+              echo "Skipping installPhase"
+            '';
+          });
+      };
+    })
+
     python3Packages.jinja2-git
     python3Packages.jinja2-time
     python3Packages.jinja2-ansible-filters
@@ -69,10 +82,11 @@
     linuxHeaders
     pip-audit
     pkg-config
-    systemd.dev
+    systemd.dev # System and service manager for Linux
     wrapGAppsHook
-    devtoolbox
-    libtool
+    devtoolbox # Development tools at your fingertips
+    libtool # GNU Libtool, a generic library support script
+    fakeroot # Give a fake root environment through LD_PRELOAD
 
   ];
 }
