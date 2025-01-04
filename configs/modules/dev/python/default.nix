@@ -14,6 +14,10 @@ let
     };
   };
 in {
+  environment.variables = {
+    PYENV_ROOT = "$HOME/.pyenv";
+    PATH = "$PYENV_ROOT/bin:$PATH";
+  };
   environment.systemPackages = with pkgs; [
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
@@ -68,6 +72,8 @@ in {
     python3Packages.watchdog
     python3Packages.types-requests
     python3Packages.wheel
+
+    # python313Packages.jinja2
 
     pythonWithOverrides
     (pythonWithOverrides.withPackages
