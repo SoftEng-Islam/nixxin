@@ -92,7 +92,6 @@ in {
     libffi.dev
     libtool # GNU Libtool, a generic library support script
     linuxHeaders
-    make
     openssl
     pip-audit
     pkg-config
