@@ -23,7 +23,7 @@
       noto-fonts-cjk-serif
 
       jetbrains-mono
-
+      nerd-fonts.caskaydia-cove
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
 
