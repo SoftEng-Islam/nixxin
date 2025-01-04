@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./wezterm.nix ./zsh.nix ./kitty ];
+  imports = [ ./wezterm ./zsh.nix ./kitty ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
