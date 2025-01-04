@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-  pythonWithOverrides = pkgs.python313.override {
+  pythonWithOverrides = pkgs.python312.override {
     packageOverrides = python-self: python-super: {
       pallets-sphinx-themes = python-super.pallets-sphinx-themes.overrideAttrs
         (old: {
@@ -23,56 +23,56 @@ in {
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     pipx
-    python313Full
-    python313Packages.virtualenv
-    python313Packages.babel
-    python313Packages.beautifulsoup4
-    python313Packages.build
-    python313Packages.cairosvg
-    python313Packages.certifi
-    python313Packages.charset-normalizer
-    python313Packages.click
-    python313Packages.dbus-python
-    python313Packages.django
-    python313Packages.flit-core
-    python313Packages.html2text
-    python313Packages.i3ipc
-    python313Packages.icalendar
-    python313Packages.idna
-    python313Packages.installer
-    python313Packages.lockfile
-    python313Packages.loguru
-    python313Packages.markupsafe
-    python313Packages.material-color-utilities
-    python313Packages.materialyoucolor
-    python313Packages.mypy
-    python313Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-    python313Packages.pillow
-    python313Packages.pip
-    python313Packages.psutil
-    python313Packages.pycairo
-    python313Packages.pygobject-stubs
-    python313Packages.pygobject3
-    python313Packages.pynvim # required by nvim
-    python313Packages.pytest
-    python313Packages.pytz
-    python313Packages.pywal
-    python313Packages.pywayland
-    python313Packages.pywlroots
-    python313Packages.requests
-    python313Packages.ruff
-    python313Packages.setuptools
-    python313Packages.setuptools-scm
-    python313Packages.sv-ttk
-    python313Packages.systemd
-    python313Packages.tkinter
-    python313Packages.trio
-    python313Packages.tzlocal
-    python313Packages.urllib3
-    python313Packages.virtualenv
-    python313Packages.watchdog
-    python313Packages.types-requests
-    python313Packages.wheel
+    python312Full
+    python312Packages.virtualenv
+    python312Packages.babel
+    python312Packages.beautifulsoup4
+    python312Packages.build
+    python312Packages.cairosvg
+    python312Packages.certifi
+    python312Packages.charset-normalizer
+    python312Packages.click
+    python312Packages.dbus-python
+    python312Packages.django
+    python312Packages.flit-core
+    python312Packages.html2text
+    python312Packages.i3ipc
+    python312Packages.icalendar
+    python312Packages.idna
+    python312Packages.installer
+    python312Packages.lockfile
+    python312Packages.loguru
+    python312Packages.markupsafe
+    python312Packages.material-color-utilities
+    python312Packages.materialyoucolor
+    python312Packages.mypy
+    python312Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
+    python312Packages.pillow
+    python312Packages.pip
+    python312Packages.psutil
+    python312Packages.pycairo
+    python312Packages.pygobject-stubs
+    python312Packages.pygobject3
+    python312Packages.pynvim # required by nvim
+    python312Packages.pytest
+    python312Packages.pytz
+    python312Packages.pywal
+    python312Packages.pywayland
+    python312Packages.pywlroots
+    python312Packages.requests
+    python312Packages.ruff
+    python312Packages.setuptools
+    python312Packages.setuptools-scm
+    python312Packages.sv-ttk
+    python312Packages.systemd
+    python312Packages.tkinter
+    python312Packages.trio
+    python312Packages.tzlocal
+    python312Packages.urllib3
+    python312Packages.virtualenv
+    python312Packages.watchdog
+    python312Packages.types-requests
+    python312Packages.wheel
 
     # python313Packages.jinja2
     pythonWithOverrides
