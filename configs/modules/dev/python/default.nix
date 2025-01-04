@@ -1,4 +1,19 @@
-{ pkgs, ... }: {
+{ pkgs, ... }:
+let
+  pythonWithOverrides = pkgs.python3.override {
+    packageOverrides = python-self: python-super: {
+      pallets-sphinx-themes = python-super.pallets-sphinx-themes.overrideAttrs
+        (old: {
+          buildPhase = ''
+            echo "Skipping buildPhase"
+          '';
+          installPhase = ''
+            echo "Skipping installPhase"
+          '';
+        });
+    };
+  };
+in {
   environment.systemPackages = with pkgs; [
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
@@ -50,28 +65,12 @@
     python3Packages.urllib3
     python3Packages.virtualenv
     python3Packages.watchdog
+    python3Packages.types-requests
     python3Packages.wheel
 
-    (python3.override {
-      packageOverrides = python-self: python-super: {
-        pallets-sphinx-themes = python-super.pallets-sphinx-themes.overrideAttrs
-          (old: {
-            buildPhase = ''
-              echo "Skipping buildPhase"
-            '';
-            installPhase = ''
-              echo "Skipping installPhase"
-            '';
-          });
-      };
-    })
-
-    python3Packages.jinja2-git
-    python3Packages.jinja2-time
-    python3Packages.jinja2-ansible-filters
-    python3Packages.jinja2-pluralize
-    python3Packages.types-requests
-    python3Packages.pallets-sphinx-themes
+    pythonWithOverrides
+    (pythonWithOverrides.withPackages
+      (ps: with ps; [ jinja2 babel beautifulsoup4 ]))
 
     cairo.dev
     dbus.dev
