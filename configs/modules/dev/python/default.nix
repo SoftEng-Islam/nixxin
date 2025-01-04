@@ -43,6 +43,7 @@ in {
     python3Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
     python3Packages.pillow
     python3Packages.pip
+    pipx
     python3Packages.psutil
     python3Packages.pycairo
     python3Packages.pygobject-stubs
@@ -74,18 +75,18 @@ in {
 
     cairo.dev
     dbus.dev
+    devtoolbox # Development tools at your fingertips
+    fakeroot # Give a fake root environment through LD_PRELOAD
     glib.dev
     gobject-introspection
     gobject-introspection.dev
     libffi.dev
+    libtool # GNU Libtool, a generic library support script
     linuxHeaders
     pip-audit
     pkg-config
     systemd.dev # System and service manager for Linux
     wrapGAppsHook
-    devtoolbox # Development tools at your fingertips
-    libtool # GNU Libtool, a generic library support script
-    fakeroot # Give a fake root environment through LD_PRELOAD
 
   ];
 }
