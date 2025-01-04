@@ -1,4 +1,5 @@
-{pkgs, ...}: let
+{ settings, pkgs, ... }:
+let
   bg = "default";
   fg = "default";
   bg2 = "brightblack";
@@ -46,26 +47,19 @@
   in "#[reverse,fg=${accent}] ${format} #(${icon}) ";
 
   battery = let
-    percentage = pkgs.writeShellScript "percentage" (
-      if pkgs.stdenv.isDarwin
-      then ''
+    percentage = pkgs.writeShellScript "percentage"
+      (if pkgs.stdenv.isDarwin then ''
         echo $(pmset -g batt | grep -o "[0-9]\+%" | tr '%' ' ')
-      ''
-      else ''
+      '' else ''
         path="/org/freedesktop/UPower/devices/DisplayDevice"
         echo $(${pkgs.upower}/bin/upower -i $path | grep -o "[0-9]\+%" | tr '%' ' ')
-      ''
-    );
-    state = pkgs.writeShellScript "state" (
-      if pkgs.stdenv.isDarwin
-      then ''
-        echo $(pmset -g batt | awk '{print $4}')
-      ''
-      else ''
-        path="/org/freedesktop/UPower/devices/DisplayDevice"
-        echo $(${pkgs.upower}/bin/upower -i $path | grep state | awk '{print $2}')
-      ''
-    );
+      '');
+    state = pkgs.writeShellScript "state" (if pkgs.stdenv.isDarwin then ''
+      echo $(pmset -g batt | awk '{print $4}')
+    '' else ''
+      path="/org/freedesktop/UPower/devices/DisplayDevice"
+      echo $(${pkgs.upower}/bin/upower -i $path | grep state | awk '{print $2}')
+    '');
     icon = pkgs.writeShellScript "icon" ''
       percentage=$(${percentage})
       state=$(${state})
@@ -105,41 +99,40 @@
 
   separator = "#[fg=${fg}]|";
 in {
-  programs.tmux = {
-    enable = true;
-    plugins = with pkgs.tmuxPlugins; [
-      vim-tmux-navigator
-      yank
-    ];
-    prefix = "C-Space";
-    baseIndex = 1;
-    escapeTime = 0;
-    keyMode = "vi";
-    mouse = true;
-    shell = "${pkgs.nushell}/bin/nu";
-    extraConfig = ''
-      set-option -sa terminal-overrides ",xterm*:Tc"
-      bind v copy-mode
-      bind-key -T copy-mode-vi v send-keys -X begin-selection
-      bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
-      bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
-      bind-key b set-option status
-      bind '"' split-window -v -c "#{pane_current_path}"
-      bind % split-window -h -c "#{pane_current_path}"
+  home-manager.users.${settings.username} = {
+    programs.tmux = {
+      enable = true;
+      plugins = with pkgs.tmuxPlugins; [ vim-tmux-navigator yank ];
+      prefix = "C-Space";
+      baseIndex = 1;
+      escapeTime = 0;
+      keyMode = "vi";
+      mouse = true;
+      shell = "${pkgs.nushell}/bin/nu";
+      extraConfig = ''
+        set-option -sa terminal-overrides ",xterm*:Tc"
+        bind v copy-mode
+        bind-key -T copy-mode-vi v send-keys -X begin-selection
+        bind-key -T copy-mode-vi C-v send-keys -X rectangle-toggle
+        bind-key -T copy-mode-vi y send-keys -X copy-selection-and-cancel
+        bind-key b set-option status
+        bind '"' split-window -v -c "#{pane_current_path}"
+        bind % split-window -h -c "#{pane_current_path}"
 
-      set-option -g default-terminal "screen-256color"
-      set-option -g status-right-length 100
-      set-option -g @indicator_color "yellow"
-      set-option -g @window_color "magenta"
-      set-option -g @main_accent "blue"
-      set-option -g pane-active-border fg=black
-      set-option -g pane-border-style fg=black
-      set-option -g status-style "bg=${bg} fg=${fg}"
-      set-option -g status-left "${indicator}"
-      set-option -g status-right "${git} ${pwd} ${separator} ${battery} ${time}"
-      set-option -g window-status-current-format "${current_window}"
-      set-option -g window-status-format "${window_status}"
-      set-option -g window-status-separator ""
-    '';
+        set-option -g default-terminal "screen-256color"
+        set-option -g status-right-length 100
+        set-option -g @indicator_color "yellow"
+        set-option -g @window_color "magenta"
+        set-option -g @main_accent "blue"
+        set-option -g pane-active-border fg=black
+        set-option -g pane-border-style fg=black
+        set-option -g status-style "bg=${bg} fg=${fg}"
+        set-option -g status-left "${indicator}"
+        set-option -g status-right "${git} ${pwd} ${separator} ${battery} ${time}"
+        set-option -g window-status-current-format "${current_window}"
+        set-option -g window-status-format "${window_status}"
+        set-option -g window-status-separator ""
+      '';
+    };
   };
 }

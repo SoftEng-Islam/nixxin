@@ -31,10 +31,10 @@
     ];
     fontconfig = {
       enable = true;
-      antialias = true;
-      cache32Bit = true;
-      hinting.enable = true;
-      hinting.style = "full";
+      # antialias = true;
+      # cache32Bit = true;
+      # hinting.enable = true;
+      # hinting.style = "full";
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
         serif = [ "${settings.serifFont}" ];
