@@ -45,7 +45,7 @@
     python3Packages.wheel
     python3Packages.ruff
     python3Packages.mypy
-    # python3Packages.jinja2
+    python3Packages.jinja2
     python3Packages.jinja2-git
     python3Packages.jinja2-time
     python3Packages.jinja2-ansible-filters
