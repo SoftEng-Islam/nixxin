@@ -6,11 +6,11 @@
   environment.systemPackages = with pkgs; [
     # Terminal Emulators
     bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
-    #fish # Smart and user-friendly command line shell
-    #foot # A fast, lightweight and minimalistic Wayland terminal emulator
     kitty # A modern, hackable, featureful, OpenGL based terminal emulator
     tmux # Terminal multiplexer
     wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
+    # fish # Smart and user-friendly command line shell
+    # foot # A fast, lightweight and minimalistic Wayland terminal emulator
 
     nanorc # Improved Nano Syntax Highlighting Files
     vim # The most popular clone of the VI editor

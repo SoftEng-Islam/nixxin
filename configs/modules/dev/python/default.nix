@@ -101,6 +101,7 @@ in {
     xz
     zlib
     zlib-ng
+    zlib.dev
     zlib
     bzip2
   ];
