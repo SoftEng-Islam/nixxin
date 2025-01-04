@@ -100,6 +100,8 @@ in {
     wrapGAppsHook
     xz
     zlib
-
+    zlib-ng
+    zlib
+    bzip2
   ];
 }

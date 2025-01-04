@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./zsh.nix ./kitty ];
+  imports = [ ./wezterm.nix ./zsh.nix ./kitty ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
@@ -9,7 +9,7 @@
     #fish # Smart and user-friendly command line shell
     #foot # A fast, lightweight and minimalistic Wayland terminal emulator
     kitty # A modern, hackable, featureful, OpenGL based terminal emulator
-    #tmux # Terminal multiplexer
+    tmux # Terminal multiplexer
     wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
 
     nanorc # Improved Nano Syntax Highlighting Files
