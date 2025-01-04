@@ -22,6 +22,8 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
 
+      jetbrains-mono
+
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
 
