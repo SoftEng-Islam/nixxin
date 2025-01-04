@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   # ~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ Security ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~
@@ -17,4 +17,8 @@
     #  celes  ALL=(ALL:ALL) SETENV: ALL
     #'';
   };
+  environment.systemPackages = with pkgs; [
+    openvpn # Robust and highly flexible tunneling application
+    protonvpn-cli # Linux command-line client for ProtonVPN
+  ];
 }

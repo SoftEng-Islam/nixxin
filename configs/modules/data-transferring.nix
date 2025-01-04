@@ -12,7 +12,7 @@
 
     motrix # Full-featured download manager
     qbittorrent # Featureful free software BitTorrent client
-
+    libtorrent-rasterbar # C++ BitTorrent implementation focusing on efficiency and scalability
     ariang # Modern web frontend making aria2 easier to use
     media-downloader # Qt/C++ GUI front end for yt-dlp and others
     persepolis # GUI for aria2
