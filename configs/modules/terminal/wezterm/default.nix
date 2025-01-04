@@ -35,7 +35,7 @@
       };
       extraConfig = ''
         return {
-          font = wezterm.font("${settings.fontName}"),
+          font = wezterm.font("${settings.TerminalsFontName}"),
           font_size = 16.0,
           color_scheme = "Tomorrow Night",
           hide_tab_bar_if_only_one_tab = true,

@@ -67,7 +67,7 @@
       copy_on_select yes
 
       # Fonts
-      font_family CaskaydiaCove Nerd Font Mono
+      font_family ${settings.TerminalsFontName}
       bold_font auto
       italic_font auto
       bold_italic_font auto

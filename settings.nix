@@ -44,7 +44,7 @@
 
   # Fonts
   fontName = "JetBrainsMonoNL Nerd Font Mono"; # Selected Font
-  TerminalsFontName = "caskaydia-cove";
+  TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
   fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
   monospaceFont = fontName;
   fontSize = 12; # Font size
