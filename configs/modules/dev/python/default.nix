@@ -27,6 +27,7 @@
     python3Packages.psutil
     python3Packages.pycairo
     python3Packages.pygobject3
+    python3Packages.pygobject-stubs
     python3Packages.pynvim # required by nvim
     python3Packages.pytz
     python3Packages.pywal
@@ -50,7 +51,7 @@
     python3Packages.jinja2-time
     python3Packages.jinja2-ansible-filters
     python3Packages.jinja2-pluralize
-
+    python3Packages.types-requests
     python3Packages.pallets-sphinx-themes
 
     cairo.dev
