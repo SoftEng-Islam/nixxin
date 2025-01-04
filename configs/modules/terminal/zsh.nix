@@ -1,12 +1,22 @@
 { settings, pkgs, ... }: {
+  # enable zsh autocompletion for system packages (systemd, etc)
+  environment.pathsToLink = [ "/share/zsh" ];
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
+    autosuggestions.enable = true;
     # we'll call compinit in home-manager zsh module
     enableGlobalCompInit = false;
     promptInit = "";
     # prefer to use home-manager dircolors module
     enableLsColors = false;
+    syntaxHighlighting = {
+      enable = true;
+      patterns = { "rm -rf *" = "fg=black,bg=red"; };
+      styles = { "alias" = "fg=magenta"; };
+      highlighters = [ "main" "brackets" "pattern" ];
+    };
   };
   environment.systemPackages = with pkgs; [
     # completions and manpage install
@@ -31,9 +41,13 @@
     # ------------------------ #
     # Load custom theme
     # source ~/.oh-my-zsh/themes/theme.zsh-theme
-    PROMPT=$'%{\e[0;95m%}%B┌─[%b%{\e[0m%}%{\e[1;33m%}%n%{\e[1;95m%}@%{\e[0m%}%{\e[0;32m%}%m%{\e[0;95m%}%B]%b%{\e[0m%} %b%{\e[0;95m%}%B(%b%{\e[1;33m%}%~%{\e[0;95m%}%B)%b%{\e[0m%}
-    %{\e[0;95m%}%B└─%B(%{\e[1;94m%}$%{\e[0;95m%}%B) <$(git_prompt_info)>%{\e[0m%}%b '
-    PS2=$' \e[0;34m%}%B>%{\e[0m%}%b'
+
+    PROMPT=" ◉ %U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f
+     %F{green}→%f "
+    RPROMPT="%F{red}▂%f%F{yellow}▄%f%F{green}▆%f%F{cyan}█%f%F{blue}▆%f%F{magenta}▄%f%F{white}▂%f"
+    [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+    bindkey '^P' history-beginning-search-backward
+    bindkey '^N' history-beginning-search-forward
 
 
     # Which plugins would you like to load?
@@ -88,7 +102,7 @@
       zle redisplay
     }
     # Keybindings
-    bindkey -e  # Use emacs mode (default)
+    # bindkey -e  # Use emacs mode (default)
     zle -N fzf-history-widget
     # bindkey '^P' fzf-history-widget  # Bind Ctrl+P to trigger fzf history search
 
