@@ -35,7 +35,7 @@
       };
       extraConfig = ''
         return {
-          font = wezterm.font("JetBrains Mono"),
+          font = wezterm.font("${settings.fontName}"),
           font_size = 16.0,
           color_scheme = "Tomorrow Night",
           hide_tab_bar_if_only_one_tab = true,
