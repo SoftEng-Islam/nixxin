@@ -73,9 +73,6 @@
       bold_italic_font auto
       font_size 12.0
 
-
-
-
       input_delay 3
       kitty -o allow_remote_control=yes
       mouse_hide_wait 1
