@@ -43,7 +43,7 @@
   editorPkg = pkgs.neovim;
 
   # Fonts
-  fontName = "JetBrains Mono"; # Selected font
+  fontName = "JetBrainsMonoNL Nerd Font Mono"; # Selected Font
   fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
   monospaceFont = fontName;
   fontSize = 12; # Font size
