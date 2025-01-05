@@ -14,8 +14,12 @@
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
-      LIBGL_DRI3_ENABLE = "1";
-      LIBGL_ALWAYS_INDIRECT = "1";
+      # LIBGL_DRI3_ENABLE = "1";
+      # LIBGL_ALWAYS_INDIRECT = "1";
+
+      # WLR_DRM_DEVICES = "/dev/dri/card1";
+      # WLR_DRM_NO_ATOMIC = "1";
+      # WLR_VSYNC = "1";
 
       HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
 
@@ -50,10 +54,6 @@
 
       WINEESYNC = "1";
       WINEFSYNC = "1";
-
-      WLR_DRM_DEVICES = "/dev/dri/card1";
-      WLR_DRM_NO_ATOMIC = "1";
-      WLR_VSYNC = "1";
 
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
