@@ -1,4 +1,5 @@
 { pkgs, ... }: {
+  imports = [ ./jinja2.nix ];
   environment.variables = {
     PYENV_ROOT = "$HOME/.pyenv";
     PATH = "$PYENV_ROOT/bin:$PATH";

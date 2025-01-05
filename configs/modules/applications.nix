@@ -1,36 +1,4 @@
 { pkgs, ... }: {
-
-  nixpkgs.overlays = [
-    (self: super: {
-      davinci-resolve = super.davinci-resolve.overrideAttrs (old: {
-        buildInputs = old.buildInputs ++ [
-          pkgs.gcc
-          pkgs.cmake
-          pkgs.meson
-          pkgs.gtk4
-          pkgs.libsecret
-          pkgs.fontconfig
-          pkgs.dbus
-        ];
-
-        nativeBuildInputs = old.nativeBuildInputs ++ [ pkgs.pkgconfig ];
-
-        # Configure flags to fix build issues
-        configureFlags = [ "-Dwarn_cflags=" ];
-
-        # Ensure fontconfig has writable cache directories
-        preBuild = ''
-          export FONTCONFIG_PATH=${pkgs.fontconfig}/etc/fonts
-          mkdir -p $HOME/.cache/fontconfig
-          export XDG_CACHE_HOME=$HOME/.cache
-        '';
-
-        # Skip tests if necessary to avoid timeouts
-        doCheck = false;
-      });
-    })
-  ];
-
   environment.systemPackages = with pkgs; [
 
     # figma-linux
@@ -50,7 +18,7 @@
 
     # Video Editors
     kdenlive # Video editor
-    davinci-resolve # Professional video editing, color, effects and audio post-processing
+    # davinci-resolve # Professional video editing, color, effects and audio post-processing
     # davinci-resolve-studio # Professional video editing, color, effects and audio post-processing
 
     testdisk # Data recovery utilities
