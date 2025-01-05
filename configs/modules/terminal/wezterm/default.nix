@@ -30,7 +30,7 @@
           color_scheme = scheme_for_appearance(get_appearance()),
           default_cursor_style = 'SteadyBar',
           enable_scroll_bar = true,
-          font_size = 10,
+          font_size = ${settings.TerminalsFontSize},
           hide_tab_bar_if_only_one_tab = true,
           scrollback_lines = 10000,
           window_background_opacity = 0.9,

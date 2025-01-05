@@ -71,7 +71,7 @@
       bold_font auto
       italic_font auto
       bold_italic_font auto
-      font_size 12.0
+      font_size ${settings.TerminalsFontSize}
 
       input_delay 3
       kitty -o allow_remote_control=yes

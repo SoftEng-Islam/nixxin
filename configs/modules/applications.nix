@@ -18,8 +18,8 @@
 
     # Video Editors
     kdenlive # Video editor
-    # davinci-resolve # Professional video editing, color, effects and audio post-processing
-    # davinci-resolve-studio
+    davinci-resolve # Professional video editing, color, effects and audio post-processing
+    davinci-resolve-studio # Professional video editing, color, effects and audio post-processing
 
     testdisk # Data recovery utilities
 

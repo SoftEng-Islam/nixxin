@@ -44,7 +44,6 @@
 
   # Fonts
   fontName = "JetBrainsMonoNL Nerd Font Mono"; # Selected Font
-  TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
   fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
   monospaceFont = fontName;
   fontSize = 12; # Font size
@@ -52,6 +51,8 @@
   serifPackage = pkgs.noto-fonts-cjk-sans;
   sansSerifFont = "Noto Sans";
   sansSerifPackage = pkgs.noto-fonts-cjk-serif;
+  TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
+  TerminalsFontSize = 18; # Font size
 
   # ~~~~~~~~~~~~~~~~
   # ~~~~ Styles ~~~~
