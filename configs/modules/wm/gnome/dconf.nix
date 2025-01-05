@@ -1,8 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let
-  mkTuple = pkgs.lib.mkTuple;
-  mkUint32 = pkgs.lib.mkUint32;
-in {
+{ settings, pkgs, ... }: {
   home-manager.users.${settings.username} = {
     dconf.settings = {
       # "org/gnome/desktop/input-sources" = {
