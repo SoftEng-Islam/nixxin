@@ -73,6 +73,9 @@
       bold_italic_font auto
       font_size ${settings.TerminalsFontSize}
 
+
+      adjust_line_height  10%
+      adjust_column_width 0
       input_delay 3
       kitty -o allow_remote_control=yes
       mouse_hide_wait 1
