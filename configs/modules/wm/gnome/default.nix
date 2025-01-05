@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [ ./autostart.nix ./dconf.nix ./extensions.nix ];
+  imports = [ ./dconf.nix ./extensions.nix ];
 
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
@@ -37,6 +37,17 @@
 
       [org.gnome.mutter]
       check-alive-timeout=0
+    '';
+  };
+
+  home-manager.users.${settings.username} = {
+    # Autostart
+    home.file.".config/autostart/input-remapper.desktop".text = ''
+      [Desktop Entry]
+      Name=InputRemapperAutoload
+      Type=Application
+      Exec=input-remapper-control --command autoload
+      Terminal=true
     '';
   };
 
