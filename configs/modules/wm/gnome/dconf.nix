@@ -59,7 +59,13 @@ with lib.gvariant; {
         ];
       };
 
-      # "org/gnome/desktop/session" = { idle-delay = mkUint32 0; };
+      # Disabling Idle Timeout: If you wish to disable the idle timeout entirely, you can set idle-delay to 0.
+      # gsettings get org.gnome.desktop.session idle-delay
+      "org/gnome/desktop/session" = {
+        # you can set the idle-delay to 300 seconds (5 minutes) or
+        # 0 to Disable:
+        idle-delay = mkUint32 0;
+      };
 
       "org/gnome/desktop/wm/keybindings" = {
         close = [ "<Alt>q" ];
