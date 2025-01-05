@@ -42,15 +42,19 @@
     # Load custom theme
     # source ~/.oh-my-zsh/themes/theme.zsh-theme
 
+    # Enable prompt substitution
+    setopt prompt_subst
 
-    # PROMPT=$'%{\e[0;95m%}%B┌─[%b%{\e[0m%}%{\e[1;33m%}%n%{\e[1;95m%}@%{\e[0m%}%{\e[0;32m%}%m%{\e[0;95m%}%B]%b%{\e[0m%} %b%{\e[0;95m%}%B(%b%{\e[1;33m%}%~%{\e[0;95m%}%B)%b%{\e[0m%}
-    # %{\e[0;95m%}%B└─%B(%{\e[1;94m%}$%{\e[0;95m%}%B) <$(git_prompt_info)>%{\e[0m%}%b '
-    # PS2=$' \e[0;34m%}%B>%{\e[0m%}%b'
+    # Set the Git prompt info using vcs_info
+    autoload -Uz vcs_info
+    precmd() { vcs_info }
+    zstyle ':vcs_info:git:*' formats '(%b)' # Customize how Git branch info is shown
+    zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
-    PROMPT="%U%F{magenta}%n%f%u@%U%F{blue}%m%f%u:%F{yellow}%~%f
-    %F{green}$%f "
-    RPROMPT="%F{red}▂%f%F{yellow}▄%f%F{green}▆%f%F{cyan}█%f%F{blue}▆%f%F{magenta}▄%f%F{white}▂%f"
-
+    # Define the PROMPT
+    PROMPT=$'[%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b]=> (%F{yellow}%~%f) \\${vcs_info_msg_0_}\n%F{green}$%f '
+    # Define the RPROMPT (right prompt)
+    RPROMPT=$'%F{red}RPROMPT%f'
 
     [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
     bindkey '^P' history-beginning-search-backward
