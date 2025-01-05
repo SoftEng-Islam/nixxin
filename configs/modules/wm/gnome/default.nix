@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [ ./autostart.nix ./dconf.nix ./extensions.nix ./settings.nix ];
+  imports = [ ./autostart.nix ./dconf.nix ./extensions.nix ];
 
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/

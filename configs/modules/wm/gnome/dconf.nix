@@ -1,10 +1,24 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
-      # "org/gnome/desktop/input-sources" = {
-      #   sources = [ (mkTuple [ "xkb" "en" ]) ];
-      #   xkb-options = [ "terminate:alt_shift" ];
-      # };
+      "/org/gnome/desktop/interface" = {
+        # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
+        # document-font-name = "JetBrains Mono 12";
+        # monospace-font-name = "JetBrains Mono 12";
+        # titlebar-font = "JetBrains Mono 12";
+      };
+      "org/gnome/mutter" = {
+        center-new-windows = true;
+        experimental-features = "['scale-monitor-framebuffer']";
+      };
+
+      # gsettings reset org.gnome.desktop.input-sources sources
+      # gsettings get org.gnome.desktop.input-sources sources
+      "org/gnome/desktop/input-sources" = {
+        sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "eg" ]) ];
+        xkb-options = [ "terminate:alt_shift" ];
+      };
 
       "org/gnome/desktop/interface" = { show-battery-percentage = true; };
 
@@ -14,7 +28,20 @@
       };
 
       "org/gnome/desktop/search-providers" = {
-        disabled = [ "org.gnome.Boxes.desktop" ];
+        disabled = [
+          "org.gnome.Boxes.desktop"
+          "org.gnome.Contacts.desktop"
+          "org.gnome.Documents.desktop"
+          "org.gnome.Nautilus.desktop"
+          "org.gnome.Calendar.desktop"
+          "org.gnome.Calculator.desktop"
+          "org.gnome.Software.desktop"
+          "org.gnome.Settings.desktop"
+          "org.gnome.clocks.desktop"
+          "org.gnome.design.IconLibrary.desktop"
+          "org.gnome.seahorse.Application.desktop"
+          "org.gnome.Weather.desktop"
+        ];
         enabled = [ "org.gnome.Weather.desktop" ];
         sort-order = [
           # "org.gnome.Contacts.desktop"
