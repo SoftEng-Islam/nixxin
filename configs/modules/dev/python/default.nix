@@ -1,8 +1,14 @@
 { pkgs, ... }: {
-  imports = [ ./jinja2.nix ];
-  environment.variables = {
+  # imports = [ ./jinja2.nix ];
+  # Set environment variables for pyenv
+  environment.sessionVariables = {
     PYENV_ROOT = "$HOME/.pyenv";
     PATH = "$PYENV_ROOT/bin:$PATH";
+    # Flags to help pyenv find dependencies
+    CPPFLAGS =
+      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
+    LDFLAGS =
+      "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
   };
   environment.systemPackages = with pkgs; [
     # Python --------------------------------
@@ -59,6 +65,7 @@
     python312Packages.watchdog
     python312Packages.types-requests
     python312Packages.wheel
+    # python312Packages.
 
     bzip2
     bzip2.dev
@@ -69,17 +76,21 @@
     gcc
     gdbm.dev
     glib.dev
+    gnumake
     gobject-introspection
     gobject-introspection.dev
     libffi
     libffi.dev
     libtool # GNU Libtool, a generic library support script
     linuxHeaders
+    ncurses
     ncurses.dev
     openssl
     openssl.dev
     pip-audit
     pkg-config
+    pyenv
+    readline
     readline.dev
     sqlite
     sqlite.dev
