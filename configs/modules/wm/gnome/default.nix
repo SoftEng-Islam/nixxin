@@ -41,7 +41,7 @@
   home-manager.users.${settings.username} = {
     imports = [
       # ./autostart.nix
-      # ./extensions.nix
+      ./extensions.nix
       # ./settings.nix
     ];
   };

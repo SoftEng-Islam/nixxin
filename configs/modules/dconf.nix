@@ -107,12 +107,14 @@ in {
 
       "org/gnome/shell" = {
         favorite-apps = [
-          "firefox.desktop"
           "org.gnome.Nautilus.desktop"
+          "brave-browser"
           "obsidian.desktop"
-          "caprine.desktop"
-          "discord.desktop"
-          "spotify.desktop"
+          "org.qbittorrent.qBittorrent.desktop"
+          "code.desktop"
+          # "firefox.desktop"
+          # "discord.desktop"
+          # "spotify.desktop"
         ];
       };
 

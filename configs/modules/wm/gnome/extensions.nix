@@ -1,32 +1,26 @@
 { pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
+  environment.systemPackages = with pkgs; [
     gnome-tweaks
     gnomeExtensions.appindicator
     gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
   ];
 
+  # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
+  # gnome-extensions list --enabled
   dconf.settings = {
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
         "blur-my-shell@aunetx"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "flypie@schneegans.github.com" # Must be downloaded manually!
-        "user-theme@gnome-shell-extensions.gcampax.github.com"
-        "useless-gaps@pimsnel.com" # Waiting to be updated at Nix. Manually.
+        "dash-to-dock@micxgx.gmail.com"
+        "pomodoro@arun.codito.in"
       ];
     };
 
-    "org/gnome/shell/extensions/user-theme" = {
-      # name = "Catppuccin-Mocha-Standard-Lavender-Dark";
-    };
-
-    "org/gnome/shell/extensions/flypie" = {
-      # font = "JetBrains Mono 12";
-      # label-font = "JetBrains Mono 10";
-    };
     "org/gnome/shell/extensions/blur-my-shell/overview" = {
       style-components = 3;
     };
