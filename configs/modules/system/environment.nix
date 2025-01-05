@@ -2,6 +2,8 @@
   # Environment Variables
   # find /nix/store -name "something"
 
+  # /nix/store/jxhvcy7ckv5nzqqb1rxl72wv09dxa84x-gstreamer-1.24.7/lib/../libexec/gstreamer-1.0/gst-plugin-scanner -l /nix/store/r4qg6d6jybpyj4kjql45a5c42lwnyz25-localsearch-3.8.1/libexec/.localsearch-3-wrapped
+
   environment = {
     variables = {
       EDITOR = settings.editor;
@@ -101,9 +103,9 @@
         + "$GI_TYPELIB_PATH";
     };
     sessionVariables = {
-      FONTCONFIG_PATH = "/etc/fonts";
-      FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
-      XDG_CACHE_HOME = "/tmp/.cache";
+      # FONTCONFIG_PATH = "/etc/fonts";
+      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
+      # XDG_CACHE_HOME = "/tmp/.cache";
       XCURSOR_THEME = settings.cursorTheme;
       XCURSOR_SIZE = toString settings.cursorSize;
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
