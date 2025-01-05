@@ -1,5 +1,5 @@
-{
-  dconf.settings = {
+{ settings, ... }: {
+  home-manager.users.${settings.username}.dconf.settings = {
     "/org/gnome/desktop/interface" = {
       # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
       # document-font-name = "JetBrains Mono 12";

@@ -1,4 +1,6 @@
 { settings, pkgs, ... }: {
+  imports = [ ./autostart.nix ./dconf.nix ./extensions.nix ./settings.nix ];
+
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
 
@@ -36,14 +38,6 @@
       [org.gnome.mutter]
       check-alive-timeout=0
     '';
-  };
-
-  home-manager.users.${settings.username} = {
-    imports = [
-      # ./autostart.nix
-      ./extensions.nix
-      # ./settings.nix
-    ];
   };
 
   environment.gnome.excludePackages = with pkgs; [
