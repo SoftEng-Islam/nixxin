@@ -2,7 +2,6 @@
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ home-manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  #programs.home-manager.enable = true;
   home-manager = {
     extraSpecialArgs = {
       inherit inputs;
@@ -16,7 +15,6 @@
   };
 
   home-manager.users.${settings.username} = {
-    # users.${settings.username} = import (./. + "/home.nix");
     stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
 
