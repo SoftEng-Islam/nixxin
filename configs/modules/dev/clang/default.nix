@@ -4,6 +4,9 @@
 
     # build tools
     cmake
+    cmake-format
+    cmake-language-server
+    cmakeCurses
     gcc
     gnumake
     ninja

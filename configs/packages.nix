@@ -48,6 +48,8 @@
     gtk-layer-shell
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk3.dev
+    gtk-doc
+    gtk-server
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
     gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
     gtk4.dev
@@ -107,7 +109,6 @@
     # Development.
     atk.dev
     cairo.dev
-    cmake
     gcc13
     gdk-pixbuf.dev
     glib
@@ -227,7 +228,6 @@
     upower # D-Bus service for power management
     bpftune # BPF-based auto-tuning of Linux system parameters
     axel # Console downloading program with some features for parallel connections for faster downloading
-    cmake # Cross-platform, open-source build system generator
     ddcutil # Query and change Linux monitor settings using DDC/CI and USB
     gammastep # Screen color temperature manager
     gojq # Pure Go implementation of jq

@@ -101,6 +101,9 @@
         + "$GI_TYPELIB_PATH";
     };
     sessionVariables = {
+      FONTCONFIG_PATH = "/etc/fonts";
+      FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
+      XDG_CACHE_HOME = "/tmp/.cache";
       XCURSOR_THEME = settings.cursorTheme;
       XCURSOR_SIZE = toString settings.cursorSize;
       # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
