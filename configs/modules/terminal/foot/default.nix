@@ -49,8 +49,9 @@ in {
 
     settings = {
       main = {
-        font =
-          "${settings.TerminalsFontName}:size=${settings.TerminalsFontSize}";
+        font = "${settings.TerminalsFontName}:size=${
+            toString settings.TerminalsFontSize
+          }";
         horizontal-letter-offset = 0;
         vertical-letter-offset = 0;
         pad = "4x4 center";
