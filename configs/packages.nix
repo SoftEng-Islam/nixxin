@@ -1,4 +1,25 @@
 { settings, pkgs, ... }: {
+
+  nixpkgs.overlays = [
+    (self: super: {
+      gjs = super.gjs.overrideAttrs (old: {
+        buildInputs = old.buildInputs
+          ++ [ pkgs.gcc pkgs.meson pkgs.cmake pkgs.gtk4 ];
+
+        # Disable the warning flag that causes issues
+        configureFlags = [ "-Dwarn_cflags=" ];
+
+        # Increase the timeout multiplier for tests
+        checkPhase = ''
+          MESON_TEST_TIMEOUT_MULTIPLIER=5 meson test --timeout-multiplier=5
+        '';
+
+        # Uncomment the following line to skip tests entirely if needed
+        # doCheck = false;
+      });
+    })
+  ];
+
   environment.systemPackages = with pkgs; [
     settings.browserPkg
     settings.termPkg
@@ -39,8 +60,6 @@
     qt6Packages.qt6ct
 
     # GTK  Stuff & Themes & Graphical Interfaces
-    gjs
-    gjs.dev
     gobject-introspection
     gruvbox-dark-gtk # Gruvbox theme for GTK based desktop environments
     gruvbox-gtk-theme # GTK theme based on the Gruvbox colour palette

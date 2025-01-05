@@ -48,7 +48,6 @@
 
     # langs
     nodejs
-    gjs
     bun
     cargo
     go
