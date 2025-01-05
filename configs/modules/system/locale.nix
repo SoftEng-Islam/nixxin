@@ -32,7 +32,7 @@
     fontconfig = {
       enable = true;
       # antialias = true;
-      # cache32Bit = true;
+      cache32Bit = true;
       # hinting.enable = true;
       # hinting.style = "full";
       defaultFonts = {

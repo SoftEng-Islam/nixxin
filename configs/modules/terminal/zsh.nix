@@ -54,7 +54,7 @@
     # Define the PROMPT
     PROMPT=$'[%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b]=> (%F{yellow}%~%f) ''${vcs_info_msg_0_} \n%F{green}$%f '
     # Define the RPROMPT (right prompt)
-    RPROMPT=$'%F{red}RPROMPT%f'
+    # RPROMPT=$'%F{red}RPROMPT%f'
 
     [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
     bindkey '^P' history-beginning-search-backward
