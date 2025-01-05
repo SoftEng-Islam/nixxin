@@ -74,8 +74,8 @@
       font_size ${toString settings.TerminalsFontSize}
 
 
-      adjust_line_height  10%
-      adjust_column_width 0
+      adjust_line_height  30%
+      adjust_column_width 5%
       input_delay 3
       kitty -o allow_remote_control=yes
       mouse_hide_wait 1

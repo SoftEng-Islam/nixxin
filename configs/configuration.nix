@@ -56,7 +56,6 @@
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
-    binaryCaches = [ "https://cache.nixos.org/" ];
     settings = {
       # for nix-direnv
       sandbox = false;

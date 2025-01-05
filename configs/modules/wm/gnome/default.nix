@@ -74,8 +74,8 @@
     eog # GNOME image viewer
     gdm # A program that manages graphical display servers and handles graphical user logins
     gdm-settings
-    # gjs # JavaScript bindings for GNOME
-    # gjs.dev
+    gjs # JavaScript bindings for GNOME
+    gjs.dev
     gnome-bluetooth # Application that lets you manage Bluetooth in the GNOME desktop
     gnome-chess # Play the classic two-player boardgame of chess
     gnome-control-center # Utilities to configure the GNOME desktop
