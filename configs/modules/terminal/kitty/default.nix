@@ -11,7 +11,7 @@
 
       # Cursor colors
       cursor #9151ff
-      cursor_text_color #1E1E2E
+      cursor_text_color #f4a261
 
       # Kitty window border colors
       active_border_color #545862
@@ -22,11 +22,11 @@
       macos_titlebar_color #1e2129
 
       # Tab bar colors
-      tab_bar_background #ffffff
-      active_tab_background #ff5e5e
-      active_tab_foreground #121417
+      tab_bar_background #1E1E2E
+      active_tab_background #282c34
+      active_tab_foreground #ff5e5e
       inactive_tab_background #3f4859
-      inactive_tab_foreground #6c7686
+      inactive_tab_foreground #c49cdb
 
       # The 16 terminal colors
       # normal
@@ -122,6 +122,7 @@
       confirm_os_window_close 0
       allow_clipboard_access clipboard_sanitize
       allow_unsafe_paste yes
+      hide_window_decorations yes
 
       # Key binding
       # Copy selected text to clipboard with Ctrl+C
