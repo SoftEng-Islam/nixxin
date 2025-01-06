@@ -1,5 +1,4 @@
-non-nix/avatars/
-non-nix/wallpapers/
+configs/styles/wallpapers/
 *.log
 *.backup
 node_modules/

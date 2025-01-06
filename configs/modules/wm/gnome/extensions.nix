@@ -16,10 +16,11 @@
     "org/gnome/shell" = {
       disable-user-extensions = false;
       enabled-extensions = [
+        "dash-to-dock@micxgx.gmail.com"
         "blur-my-shell@aunetx"
         "appindicatorsupport@rgcjonas.gmail.com"
-        "dash-to-dock@micxgx.gmail.com"
         "pomodoro@arun.codito.in"
+        "netspeedsimplified@prateekmedia.extension"
       ];
     };
 

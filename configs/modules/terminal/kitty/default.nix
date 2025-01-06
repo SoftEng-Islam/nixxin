@@ -18,15 +18,15 @@
       inactive_border_color #3f4451
 
       # OS Window titlebar colors
-      wayland_titlebar_color #282c34
-      macos_titlebar_color #282c34
+      wayland_titlebar_color #1e2129
+      macos_titlebar_color #1e2129
 
       # Tab bar colors
-      active_tab_background #282c34
-      active_tab_foreground #abb2bf
-      inactive_tab_background #3f4451
-      inactive_tab_foreground #9196a1
-      tab_bar_background #3f4451
+      tab_bar_background #ffffff
+      active_tab_background #ff5e5e
+      active_tab_foreground #121417
+      inactive_tab_background #3f4859
+      inactive_tab_foreground #6c7686
 
       # The 16 terminal colors
       # normal
@@ -52,10 +52,10 @@
       # extended base16 colors
       color16 #d18f52
       color17 #bf4034
-      color18 #3f4451
-      color19 #4f5666
-      color20 #9196a1
-      color21 #e6e6e6
+      color18 #2e3440
+      color19 #3f4859
+      color20 #6c7686
+      color21 #d8dee9
 
 
       # URL underline color when hovering with mouse
@@ -132,7 +132,6 @@
       map ctrl+x cut_to_clipboard
       # Terminate the terminal with Ctrl+Shift+C
       map ctrl+shift+c send_text all \x03
-
     '';
   };
 }
