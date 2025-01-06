@@ -1,1 +1,1 @@
-{ imports = [ ./curl ./files ./git ./wifi ]; }
+{ imports = [ ./curl ./git ./wifi ]; }

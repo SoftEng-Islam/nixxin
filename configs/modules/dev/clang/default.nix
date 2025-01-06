@@ -1,6 +1,14 @@
 { pkgs, ... }: {
+
+  environment.variables = {
+    # Use gcc for compilation
+    # CC="${pkgs.gcc}/bin/gcc";
+    # CXX="${pkgs.gcc}/bin/c++"";
+    CC = "${pkgs.clang}/bin/clang";
+    CXX = "${pkgs.clang}/bin/clang++";
+  };
   environment.systemPackages = with pkgs; [
-    valgrind
+    valgrind # Valgrind is an award-winning instrumentation framework for building dynamic analysis tools.
 
     # build tools
     cmake

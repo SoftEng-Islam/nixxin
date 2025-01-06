@@ -1,25 +1,4 @@
 { settings, pkgs, ... }: {
-
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     gjs = super.gjs.overrideAttrs (old: {
-  #       buildInputs = old.buildInputs
-  #         ++ [ pkgs.gcc pkgs.meson pkgs.cmake pkgs.gtk4 ];
-
-  #       # Disable the warning flag that causes issues
-  #       configureFlags = [ "-Dwarn_cflags=" ];
-
-  #       # Increase the timeout multiplier for tests
-  #       checkPhase = ''
-  #         MESON_TEST_TIMEOUT_MULTIPLIER=5 meson test --timeout-multiplier=5
-  #       '';
-
-  #       # Uncomment the following line to skip tests entirely if needed
-  #       # doCheck = false;
-  #     });
-  #   })
-  # ];
-
   environment.systemPackages = with pkgs; [
     settings.browserPkg
     settings.termPkg
@@ -128,7 +107,6 @@
     # Development.
     atk.dev
     cairo.dev
-    gcc13
     gdk-pixbuf.dev
     glib
     glib.dev
@@ -235,7 +213,6 @@
     bc # GNU software calculator
     coreutils # The GNU Core Utilities
     cups # A standards-based printing system for UNIX
-    gcc # GNU Compiler Collection, version 13.2.0 (wrapper script)
     gdb # The GNU Project debugger
     glibc # The GNU C Library
     gnuchess # GNU Chess engine

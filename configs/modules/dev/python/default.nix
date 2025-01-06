@@ -1,8 +1,12 @@
 { pkgs, ... }: {
-  # imports = [ ./jinja2.nix ];
+  imports = [ ./globalEnv.nix ];
   # Set environment variables for pyenv
   environment.sessionVariables = {
 
+    # PIP_PREFIX = "$(pwd)/_build/pip_packages";
+    # PYTHONPATH = "$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH";
+
+    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     LDFLAGS = "-L/nix/store -L$HOME/.nix-profile/lib -L/usr/lib";
     CPPFLAGS = "-I/nix/store -I$HOME/.nix-profile/include";
@@ -32,13 +36,13 @@
     python312Packages.cairosvg # SVG converter based on Cairo
     python312Packages.certifi # Python package for providing Mozilla's CA Bundle
     python312Packages.charset-normalizer # Python module for encoding and language detection
-    python312Packages.click
-    python312Packages.dbus-python
-    python312Packages.django
-    python312Packages.flit-core
-    python312Packages.html2text
-    python312Packages.i3ipc
-    python312Packages.icalendar
+    python312Packages.click # The "Command Line Interactive Controller for Kubernetes"
+    python312Packages.dbus-python # Python DBus bindings
+    python312Packages.django # High-level Python Web framework that encourages rapid development and clean, pragmatic design
+    python312Packages.flit-core # Distribution-building parts of Flit. See flit package for more information
+    python312Packages.html2text # Convert HTML to plain text
+    python312Packages.i3ipc # Improved Python library to control i3wm and sway
+    python312Packages.icalendar # Parser/generator of iCalendar files
     python312Packages.idna
     python312Packages.installer
     python312Packages.lockfile
@@ -48,41 +52,46 @@
     python312Packages.materialyoucolor
     python312Packages.mypy
     python312Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-    python312Packages.pillow
+    python312Packages.pillow # Friendly PIL fork (Python Imaging Library)
     python312Packages.pip
     python312Packages.psutil
     python312Packages.pycairo
     python312Packages.pygobject-stubs
     python312Packages.pygobject3
     python312Packages.pynvim # required by nvim
-    python312Packages.pytest
-    python312Packages.pytz
-    python312Packages.pywal
-    python312Packages.pywayland
-    python312Packages.pywlroots
-    python312Packages.requests
+    python312Packages.pytest # Framework for writing tests
+    python312Packages.pytz # World timezone definitions, modern and historical
+    python312Packages.pywal # Generate and change colorschemes on the fly. A 'wal' rewrite in Python 3
+    python312Packages.pywayland # Python bindings to wayland using cffi
+    python312Packages.pywlroots # Python bindings to wlroots using cffi
+    python312Packages.requests # HTTP library for Python
+    python312Packages.requests-download
+    python312Packages.requests-file
     python312Packages.ruff
-    python312Packages.setuptools
-    python312Packages.setuptools-scm
-    python312Packages.sv-ttk
-    python312Packages.systemd
-    python312Packages.tkinter
-    python312Packages.trio
-    python312Packages.tzlocal
-    python312Packages.urllib3
-    python312Packages.virtualenv
-    python312Packages.watchdog
-    python312Packages.types-requests
-    python312Packages.wheel
-    # python312Packages.
+    # python312Packages.ruff-api
+    # python312Packages.ruff-lsp
+    # python312Packages.ruffus
+    python312Packages.setuptools # Utilities to facilitate the installation of Python packages
+    python312Packages.setuptools-scm # Handles managing your python package versions in scm metadata
+    python312Packages.sv-ttk # Gorgeous theme for Tkinter/ttk, based on the Sun Valley visual style
+    python312Packages.systemd # Python module for native access to the systemd facilities
+    python312Packages.tkinter # Standard Python interface to the Tcl/Tk GUI toolkit
+    python312Packages.trio # Async/await-native I/O library for humans and snake people
+    python312Packages.tzlocal # Tzinfo object for the local timezone
+    python312Packages.urllib3 # Powerful, user-friendly HTTP client for Python
+    python312Packages.virtualenv # Tool to create isolated Python environments
+    python312Packages.watchdog # Python API and shell utilities to monitor file system events
+    python312Packages.types-requests # Typing stubs for requests
+    python312Packages.wheel # Built-package format for Python
+    python312Packages.jinja2
 
-    bzip2
+    bzip2 # High-quality data compression program
     bzip2.dev
+    cairo
     cairo.dev
     dbus.dev
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
-    gcc
     gdbm
     gdbm.dev
     glib.dev
@@ -113,7 +122,6 @@
     pkgconf
     pyenv
     base16-schemes
-    cmake
     readline
     readline.dev
     sqlite
@@ -134,5 +142,21 @@
     zlib-ng
     zlib-ng.dev
     buildLinux
+    git
+    gcc
+    clang
+    c-ares
+    gnumake
+    cmake
+    nghttp2
+    autoconf
+    automake
+    libtool
+    readline
+    ncurses
+    openssl
+    icu
+    zlib
+    lz4
   ];
 }

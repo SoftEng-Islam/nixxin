@@ -35,7 +35,9 @@
     ./modules/cli-collection.nix
     ./modules/codex.nix
     ./modules/data-transferring.nix
+    ./modules/files.nix
     ./modules/gaming.nix
+    ./modules/misc.nix
     ./modules/nautilus.nix
     ./modules/wayland.nix
     ./modules/wine.nix

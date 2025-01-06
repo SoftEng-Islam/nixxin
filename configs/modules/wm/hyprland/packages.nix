@@ -51,7 +51,6 @@
     bun
     cargo
     go
-    gcc
     typescript
     eslint
     # very important stuff
