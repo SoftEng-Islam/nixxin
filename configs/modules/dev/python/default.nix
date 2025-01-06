@@ -98,18 +98,11 @@
     gnumake
     gobject-introspection
     gobject-introspection.dev
-    libbz2-dev
     libffi
     libffi-dev
     libffi.dev
-    liblzma-dev
-    libncurses5-dev
-    libncursesw5-dev
-    libreadline-dev
-    libsqlite3-dev
-    libssl-dev
     libtool # GNU Libtool, a generic library support script
-    libuuid-dev
+    libuuid
     linuxHeaders
     makeWrapper
     ncurses
