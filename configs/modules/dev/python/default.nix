@@ -21,6 +21,8 @@
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
+    python-setup-hook
+    pychess # Advanced GTK chess client written in Python
     pipx # Install and run Python applications in isolated environments
     python312Full # High-level dynamically-typed programming language
     python312Packages.virtualenv # Tool to create isolated Python environments
@@ -74,7 +76,6 @@
     python312Packages.wheel
     # python312Packages.
 
-    build-essential
     bzip2
     bzip2.dev
     cairo.dev
@@ -109,7 +110,10 @@
     openssl.dev
     pip-audit
     pkg-config
+    pkgconf
     pyenv
+    base16-schemes
+    cmake
     readline
     readline.dev
     sqlite
@@ -126,8 +130,9 @@
     xz
     xz.dev
     zlib
-    zlib-ng
     zlib.dev
-    zlib1g-dev
+    zlib-ng
+    zlib-ng.dev
+    buildLinux
   ];
 }
