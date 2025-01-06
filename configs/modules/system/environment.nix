@@ -89,7 +89,8 @@
       heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
 
       QUOTING_STYLE = "literal";
-
+      PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
+      # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
       # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
       GST_PLUGIN_PATH =
         "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";

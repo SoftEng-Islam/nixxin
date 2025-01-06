@@ -8,7 +8,6 @@
     CPPFLAGS = "-I/nix/store -I$HOME/.nix-profile/include";
     # CFLAGS="-I$(nix eval --raw nixpkgs.openssl.dev)/include";
     # LDFLAGS="-L$(nix eval --raw nixpkgs.openssl.out)/lib";
-    PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
     PYTHON_CFLAGS = "$CPPFLAGS";
     PYTHON_LDFLAGS = "$LDFLAGS";
 
@@ -75,6 +74,7 @@
     python312Packages.wheel
     # python312Packages.
 
+    build-essential
     bzip2
     bzip2.dev
     cairo.dev
@@ -88,10 +88,21 @@
     gnumake
     gobject-introspection
     gobject-introspection.dev
+    libbluetooth-dev
+    libbz2-dev
     libffi
+    libffi-dev
     libffi.dev
+    liblzma-dev
+    libncurses5-dev
+    libncursesw5-dev
+    libreadline-dev
+    libsqlite3-dev
+    libssl-dev
     libtool # GNU Libtool, a generic library support script
+    libuuid-dev
     linuxHeaders
+    makeWrapper
     ncurses
     ncurses.dev
     openssl
@@ -117,5 +128,6 @@
     zlib
     zlib-ng
     zlib.dev
+    zlib1g-dev
   ];
 }
