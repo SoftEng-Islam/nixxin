@@ -1,4 +1,4 @@
-configs/styles/wallpapers/
+# configs/styles/wallpapers/
 *.log
 *.backup
 node_modules/
