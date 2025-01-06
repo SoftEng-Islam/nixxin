@@ -21,13 +21,27 @@
       wayland_titlebar_color #1e2129
       macos_titlebar_color #1e2129
 
-      # Tab bar colors
-      # tab_bar_background #282c34
+      # Tab bar
       tab_bar_background none
-      active_tab_background #282c34
+      active_tab_background #3f4451
       active_tab_foreground #ff5e5e
-      inactive_tab_background #3f4859
+      inactive_tab_background #282c34
       inactive_tab_foreground #c49cdb
+      active_tab_font_style   bold
+      inactive_tab_font_style normal
+      tab_bar_align left
+      tab_bar_edge top
+      tab_bar_margin_height 0.0 0.0
+      tab_bar_margin_width 0.0
+      tab_bar_min_tabs 1
+      tab_bar_style separator
+      tab_separator " ┇ "
+      tab_switch_strategy previous
+      tab_title_max_length 25
+      tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+
+
+
 
       # The 16 terminal colors
       # normal
@@ -57,7 +71,6 @@
       color19 #3f4859
       color20 #6c7686
       color21 #d8dee9
-
 
       # URL underline color when hovering with mouse
       url_color #0087bd
@@ -100,20 +113,6 @@
       # Scrollbar
       scrollback_indicator_opacity 1.0
       scrollbar yes
-
-      # Tab bar
-      active_tab_font_style   bold-italic
-      inactive_tab_font_style normal
-      tab_bar_align left
-      tab_bar_edge top
-      tab_bar_margin_height 0.0 0.0
-      tab_bar_margin_width 0.0
-      tab_bar_min_tabs 1
-      tab_bar_style separator
-      tab_separator " ┇ "
-      tab_switch_strategy previous
-      tab_title_max_length 25
-      tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
 
       # Windows Customization
       #window_margin_width 15
