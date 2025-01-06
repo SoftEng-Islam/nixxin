@@ -22,7 +22,7 @@
       macos_titlebar_color #1e2129
 
       # Tab bar colors
-      tab_bar_background #1E1E2E
+      tab_bar_background #282c34
       active_tab_background #282c34
       active_tab_foreground #ff5e5e
       inactive_tab_background #3f4859
@@ -98,6 +98,8 @@
       scrollbar yes
 
       # Tab bar
+      tab_bar_style separator
+      tab_separator " ┇ "
       tab_bar_edge top
       tab_bar_margin_width 0.0
       tab_bar_margin_height 0.0 0.0
