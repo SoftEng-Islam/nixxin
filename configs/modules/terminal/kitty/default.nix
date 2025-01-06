@@ -14,8 +14,8 @@
       cursor_text_color #f4a261
 
       # Kitty window border colors
-      active_border_color #545862
-      inactive_border_color #3f4451
+      # active_border_color #545862
+      # inactive_border_color #3f4451
 
       # OS Window titlebar colors
       wayland_titlebar_color #1e2129
