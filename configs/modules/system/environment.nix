@@ -90,7 +90,7 @@
 
       QUOTING_STYLE = "literal";
 
-      PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
+      # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
       GST_PLUGIN_PATH =
         "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
       GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
