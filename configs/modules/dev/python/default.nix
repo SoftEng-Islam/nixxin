@@ -98,7 +98,6 @@
     gnumake
     gobject-introspection
     gobject-introspection.dev
-    libbluetooth-dev
     libbz2-dev
     libffi
     libffi-dev
