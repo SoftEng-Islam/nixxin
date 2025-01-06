@@ -2,13 +2,21 @@
   # imports = [ ./jinja2.nix ];
   # Set environment variables for pyenv
   environment.sessionVariables = {
+
+    PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
+    LDFLAGS = "-L/nix/store -L$HOME/.nix-profile/lib -L/usr/lib";
+    CPPFLAGS = "-I/nix/store -I$HOME/.nix-profile/include";
+    # CFLAGS="-I$(nix eval --raw nixpkgs.openssl.dev)/include";
+    # LDFLAGS="-L$(nix eval --raw nixpkgs.openssl.out)/lib";
+    PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
+    PYTHON_CFLAGS = "$CPPFLAGS";
+    PYTHON_LDFLAGS = "$LDFLAGS";
+
     PYENV_ROOT = "$HOME/.pyenv";
     PATH = "$PYENV_ROOT/bin:$PATH";
     # Flags to help pyenv find dependencies
-    CPPFLAGS =
-      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
-    LDFLAGS =
-      "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
+    # CPPFLAGS = "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
+    # LDFLAGS = "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
   };
   environment.systemPackages = with pkgs; [
     # Python --------------------------------
@@ -74,6 +82,7 @@
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
     gcc
+    gdbm
     gdbm.dev
     glib.dev
     gnumake
@@ -95,8 +104,14 @@
     sqlite
     sqlite.dev
     systemd.dev # System and service manager for Linux
+    tk
     tk.dev
     wrapGAppsHook
+    xorg.libICE
+    xorg.libSM
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
     xz
     xz.dev
     zlib
