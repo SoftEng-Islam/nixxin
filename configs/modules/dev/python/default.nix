@@ -1,4 +1,11 @@
-{ pkgs, ... }: {
+{ lib, pkgs, ... }:
+let
+  ldLibraryPaths = [
+    "/nix/store/ybjcla5bhj8g1y84998pn4a2drfxybkv-gcc-13.3.0-lib/lib"
+    "/nix/store/kz93cs2wy6w2q7q20wmhx6mc9n9dwicq-pipewire-1.2.6-jack/lib"
+    # Add other necessary paths here
+  ];
+in {
   # imports = [ ./globalEnv.nix ];
   # Set environment variables for pyenv
   environment.sessionVariables = {
@@ -6,7 +13,8 @@
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
     # PYTHONPATH = "$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH";
 
-    LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+    # LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+    LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     LDFLAGS = "-L/nix/store -L$HOME/.nix-profile/lib -L/usr/lib";
     CPPFLAGS = "-I/nix/store -I$HOME/.nix-profile/include";
