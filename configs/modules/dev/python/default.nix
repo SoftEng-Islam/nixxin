@@ -2,18 +2,16 @@
 let
   ldLibraryPaths = [
     "${pkgs.stdenv.cc.cc.lib}/lib"
-    "${pkgs.pipewire.lib}/lib"
+    "${pkgs.pipewire}/lib"
     # Add other necessary paths here
   ];
 in {
   # imports = [ ./globalEnv.nix ];
-  # Set environment variables for pyenv
+  # Set environment variables for Python
   environment.sessionVariables = {
-
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
     # PYTHONPATH = "$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH";
 
-    # LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
     LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     LDFLAGS = "-L/nix/store -L$HOME/.nix-profile/lib -L/usr/lib";
@@ -98,7 +96,7 @@ in {
     zlib
     lz4
     pypy3
-    (python3.withPackages (subpkgs: with subpkgs; [ requests ])).env
+    (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
     (python3.withPackages (ps:
       with ps; [
         # Python packages
@@ -153,6 +151,6 @@ in {
         virtualenv # Tool to create isolated Python environments
         watchdog # Python API and shell utilities to monitor file system events
         wheel # Built-package format for Python
-      ])).env
+      ]))
   ];
 }

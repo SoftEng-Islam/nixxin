@@ -35,7 +35,8 @@ let
   filesManager = xdgAssociations "file" fileManager [ "inode/directory" ];
   torrent = xdgAssociations "torrents" torrentApp [ "x-scheme-handler/magnet" ];
   image = xdgAssociations "image" imageViewer [ "png" "svg" "jpeg" "gif" ];
-  video = xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" "wmv" "ts" ];
+  video =
+    xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" "wmv" "ts" "webm" ];
   audio = xdgAssociations "audio" audioPlayer [ "mp3" "flac" "wav" "aac" ];
 
   browserTypes = (xdgAssociations "application" browser [
