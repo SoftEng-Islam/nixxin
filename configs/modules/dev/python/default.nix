@@ -48,7 +48,7 @@
     libtool # GNU Libtool, a generic library support script
     libuuid
     linuxHeaders
-    makeWrapper
+    # makeWrapper
     ncurses
     ncurses.dev
     openssl
@@ -66,18 +66,13 @@
     tk
     tk.dev
     wrapGAppsHook
-    xorg.libICE
-    xorg.libSM
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
     xz
     xz.dev
     zlib
     zlib.dev
     zlib-ng
     zlib-ng.dev
-    buildLinux
+    # buildLinux
     git
     gcc
     clang
