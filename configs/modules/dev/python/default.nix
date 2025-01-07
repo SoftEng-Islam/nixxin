@@ -9,17 +9,26 @@ in {
   # imports = [ ./globalEnv.nix ];
   # Set environment variables for Python
   environment.sessionVariables = {
-    # PIP_PREFIX = "$(pwd)/_build/pip_packages";
+    PYENV_ROOT = "$HOME/.pyenv";
+    # pyenv flags to be able to install Python
+    CPPFLAGS =
+      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
+    CXXFLAGS =
+      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
+    CFLAGS = "-I${pkgs.openssl.dev}/include";
+    LDFLAGS =
+      "-L${pkgs.zlib.out}/lib -L${pkgs.libffi.out}/lib -L${pkgs.readline.out}/lib -L${pkgs.bzip2.out}/lib -L${pkgs.openssl.out}/lib";
+    CONFIGURE_OPTS = "-with-openssl=${pkgs.openssl.dev}";
+    PYENV_VIRTUALENV_DISABLE_PROMPT = "1";
     PYTHONPATH = "${pkgs.python3.sitePackages}:$PYTHONPATH";
-    CPPFLAGS = "-I${pkgs.readline.dev}/include";
-    LDFLAGS = "-L${pkgs.readline.dev}/lib";
     LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     PYTHON_CFLAGS = "$CPPFLAGS";
     PYTHON_LDFLAGS = "$LDFLAGS";
-
-    PYENV_ROOT = "$HOME/.pyenv";
     PATH = "$PYENV_ROOT/bin:$PATH";
+    # PIP_PREFIX = "$(pwd)/_build/pip_packages";
+    # CPPFLAGS = "-I${pkgs.readline.dev}/include";
+    # LDFLAGS = "-L${pkgs.readline.dev}/lib";
     # Flags to help pyenv find dependencies
     # CPPFLAGS = "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl.dev}/include";
     # LDFLAGS = "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
