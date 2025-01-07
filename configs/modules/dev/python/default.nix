@@ -22,11 +22,11 @@
     # LDFLAGS = "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
   };
   environment.systemPackages = with pkgs; [
-    # Python --------------------------------
+    # Python
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     pyenv.out
-    python-setup-hook
+
     pychess # Advanced GTK chess client written in Python
     pipx # Install and run Python applications in isolated environments
     python312Full # High-level dynamically-typed programming language
@@ -126,7 +126,6 @@
         opencv-python # Open Computer Vision Library with more than 500 algorithms
         pandas
         pillow # Friendly PIL fork (Python Imaging Library)
-        pip
         pip
         psutil
         pycairo
