@@ -97,7 +97,6 @@ in {
     systemd.dev # System and service manager for Linux
     tk
     tk.dev
-    wrapGAppsHook
     xz
     xz.dev
     zlib

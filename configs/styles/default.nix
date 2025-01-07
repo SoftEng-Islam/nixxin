@@ -44,7 +44,8 @@ in {
       feh.enable = true;
       fish.enable = true;
       gnome.enable = true;
-      grub.enable = true;
+      grub.enable = false;
+      regreet.enable = true;
       gtk.enable = true;
       nixos-icons.enable = true;
       plymouth.enable = true;
@@ -67,14 +68,10 @@ in {
         cava.enable = true;
         dunst.enable = true;
         emacs.enable = true;
-        feh.enable = true;
         firefox.enable = true;
-        fish.enable = true;
         foot.enable = true;
         fzf.enable = true;
         gitui.enable = true;
-        gnome.enable = true;
-        gtk.enable = true;
         kitty.enable = true;
         lazygit.enable = true;
         mako.enable = true;
