@@ -15,15 +15,15 @@
 
     motrix # Full-featured download manager
     qbittorrent # Featureful free software BitTorrent client
-    (writeShellScriptBin "qbittorrent" ''
-      export QT_LOGGING_RULES="qt.gui.imageio.warning=false"
-      export QT_NETWORK_LOGGING_RULES="qt.network.http2.warning=false"
-      exec /run/current-system/sw/bin/qbittorrent "$@"
-    '')
+    # (writeShellScriptBin "qbittorrent" ''
+    #   export QT_LOGGING_RULES="qt.gui.imageio.warning=false"
+    #   export QT_NETWORK_LOGGING_RULES="qt.network.http2.warning=false"
+    #   exec /run/current-system/sw/bin/qbittorrent "$@"
+    # '')
     libtorrent-rasterbar # C++ BitTorrent implementation focusing on efficiency and scalability
-    ariang # Modern web frontend making aria2 easier to use
-    media-downloader # Qt/C++ GUI front end for yt-dlp and others
-    persepolis # GUI for aria2
+    # ariang # Modern web frontend making aria2 easier to use
+    # media-downloader # Qt/C++ GUI front end for yt-dlp and others
+    # persepolis # GUI for aria2
     varia # Simple download manager based on aria2 and libadwaita
   ];
 }

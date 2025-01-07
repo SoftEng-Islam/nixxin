@@ -135,9 +135,12 @@ with lib.gvariant; {
       };
 
       "org/gnome/shell" = {
+        # find /nix/store/ -name "*qbittorrent*.desktop"
         favorite-apps = [
           "org.gnome.Nautilus.desktop"
-          "brave-browser"
+          "brave-browser.desktop"
+          "google-chrome.desktop"
+          "microsoft-edge.desktop"
           "obsidian.desktop"
           "org.qbittorrent.qBittorrent.desktop"
           "code.desktop"

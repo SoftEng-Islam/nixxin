@@ -105,12 +105,12 @@ in {
         templates = null;
         desktop = null;
         publicShare = null;
-        extraConfig = {
-          XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-          XDG_BOOK_DIR = "/home/${settings.username}/Books";
-          XDG_SCREENSHOTS_DIR =
-            "/home/${settings.username}/pictures/Screenshots";
-        };
+        # extraConfig = {
+        #   XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
+        #   XDG_BOOK_DIR = "/home/${settings.username}/Books";
+        #   XDG_SCREENSHOTS_DIR =
+        #     "/home/${settings.username}/pictures/Screenshots";
+        # };
       };
       desktopEntries."org.gnome.Settings" = {
         name = "Settings";
@@ -121,7 +121,6 @@ in {
         categories = [ "X-Preferences" ];
         terminal = false;
       };
-
       mimeApps = {
         enable = true;
         defaultApplications = associations;
