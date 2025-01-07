@@ -25,66 +25,11 @@
     # Python --------------------------------
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
+    pyenv.out
     python-setup-hook
     pychess # Advanced GTK chess client written in Python
     pipx # Install and run Python applications in isolated environments
     python312Full # High-level dynamically-typed programming language
-    python312Packages.virtualenv # Tool to create isolated Python environments
-    python312Packages.babel # Collection of internationalizing tools
-    python312Packages.beautifulsoup4 # HTML and XML parser
-    python312Packages.build # Simple, correct PEP517 package builder
-    python312Packages.cairosvg # SVG converter based on Cairo
-    python312Packages.certifi # Python package for providing Mozilla's CA Bundle
-    python312Packages.charset-normalizer # Python module for encoding and language detection
-    python312Packages.click # The "Command Line Interactive Controller for Kubernetes"
-    python312Packages.dbus-python # Python DBus bindings
-    python312Packages.django # High-level Python Web framework that encourages rapid development and clean, pragmatic design
-    python312Packages.flit-core # Distribution-building parts of Flit. See flit package for more information
-    python312Packages.html2text # Convert HTML to plain text
-    python312Packages.i3ipc # Improved Python library to control i3wm and sway
-    python312Packages.icalendar # Parser/generator of iCalendar files
-    python312Packages.idna
-    python312Packages.installer
-    python312Packages.lockfile
-    python312Packages.loguru
-    python312Packages.markupsafe
-    python312Packages.material-color-utilities
-    python312Packages.materialyoucolor
-    python312Packages.mypy
-    python312Packages.opencv-python # Open Computer Vision Library with more than 500 algorithms
-    python312Packages.pillow # Friendly PIL fork (Python Imaging Library)
-    python312Packages.pip
-    python312Packages.psutil
-    python312Packages.pycairo
-    python312Packages.pygobject-stubs
-    python312Packages.pygobject3
-    python312Packages.pynvim # required by nvim
-    python312Packages.pytest # Framework for writing tests
-    python312Packages.pytz # World timezone definitions, modern and historical
-    python312Packages.pywal # Generate and change colorschemes on the fly. A 'wal' rewrite in Python 3
-    python312Packages.pywayland # Python bindings to wayland using cffi
-    python312Packages.pywlroots # Python bindings to wlroots using cffi
-    python312Packages.requests # HTTP library for Python
-    python312Packages.requests-download
-    python312Packages.requests-file
-    python312Packages.ruff
-    # python312Packages.ruff-api
-    # python312Packages.ruff-lsp
-    # python312Packages.ruffus
-    python312Packages.setuptools # Utilities to facilitate the installation of Python packages
-    python312Packages.setuptools-scm # Handles managing your python package versions in scm metadata
-    python312Packages.sv-ttk # Gorgeous theme for Tkinter/ttk, based on the Sun Valley visual style
-    python312Packages.systemd # Python module for native access to the systemd facilities
-    python312Packages.tkinter # Standard Python interface to the Tcl/Tk GUI toolkit
-    python312Packages.trio # Async/await-native I/O library for humans and snake people
-    python312Packages.tzlocal # Tzinfo object for the local timezone
-    python312Packages.urllib3 # Powerful, user-friendly HTTP client for Python
-    python312Packages.virtualenv # Tool to create isolated Python environments
-    python312Packages.watchdog # Python API and shell utilities to monitor file system events
-    python312Packages.types-requests # Typing stubs for requests
-    python312Packages.wheel # Built-package format for Python
-    python312Packages.jinja2
-
     bzip2 # High-quality data compression program
     bzip2.dev
     cairo
@@ -99,7 +44,6 @@
     gobject-introspection
     gobject-introspection.dev
     libffi
-    libffi-dev
     libffi.dev
     libtool # GNU Libtool, a generic library support script
     libuuid
@@ -150,5 +94,63 @@
     icu
     zlib
     lz4
+    pypy3
+    (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
+    (python312.withPackages (ps:
+      with ps; [
+        # Python packages
+        babel # Collection of internationalizing tools
+        beautifulsoup4 # HTML and XML parser
+        build # Simple, correct PEP517 package builder
+        cairosvg # SVG converter based on Cairo
+        certifi # Python package for providing Mozilla's CA Bundle
+        charset-normalizer # Python module for encoding and language detection
+        click # The "Command Line Interactive Controller for Kubernetes"
+        dbus-python # Python DBus bindings
+        django # High-level Python Web framework that encourages rapid development and clean, pragmatic design
+        flit-core # Distribution-building parts of Flit. See flit package for more information
+        html2text # Convert HTML to plain text
+        i3ipc # Improved Python library to control i3wm and sway
+        icalendar # Parser/generator of iCalendar files
+        idna
+        installer
+        jinja2
+        lockfile
+        loguru
+        markupsafe
+        material-color-utilities
+        materialyoucolor
+        matplotlib
+        mypy
+        numpy
+        opencv-python # Open Computer Vision Library with more than 500 algorithms
+        pandas
+        pillow # Friendly PIL fork (Python Imaging Library)
+        pip
+        pip
+        psutil
+        pycairo
+        pygobject-stubs
+        pygobject3
+        pynvim # required by nvim
+        pytest # Framework for writing tests
+        pytz # World timezone definitions, modern and historical
+        pywal # Generate and change colorschemes on the fly. A 'wal' rewrite in Python 3
+        pywayland # Python bindings to wayland using cffi
+        pywlroots # Python bindings to wlroots using cffi
+        ruff
+        setuptools # Utilities to facilitate the installation of Python packages
+        setuptools-scm # Handles managing your python package versions in scm metadata
+        sv-ttk # Gorgeous theme for Tkinter/ttk, based on the Sun Valley visual style
+        systemd # Python module for native access to the systemd facilities
+        tkinter # Standard Python interface to the Tcl/Tk GUI toolkit
+        trio # Async/await-native I/O library for humans and snake people
+        types-requests # Typing stubs for requests
+        tzlocal # Tzinfo object for the local timezone
+        urllib3 # Powerful, user-friendly HTTP client for Python
+        virtualenv # Tool to create isolated Python environments
+        watchdog # Python API and shell utilities to monitor file system events
+        wheel # Built-package format for Python
+      ]))
   ];
 }
