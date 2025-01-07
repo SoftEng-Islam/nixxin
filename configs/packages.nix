@@ -4,6 +4,8 @@
     settings.termPkg
     settings.cursorPackage
 
+    gdm
+
     # Icons
     gruvbox-dark-icons-gtk
     gruvbox-plus-icons

@@ -22,6 +22,7 @@ in {
     CONFIGURE_OPTS = "-with-openssl=${pkgs.openssl_3_3.dev}";
     PYENV_VIRTUALENV_DISABLE_PROMPT = "1";
     PYTHONPATH = "${pkgs.python3.sitePackages}:$PYTHONPATH";
+    PYTHONHOME = "${pkgs.python3}";
     LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     PYTHON_CFLAGS = "$CPPFLAGS";
@@ -36,6 +37,11 @@ in {
     # LDFLAGS = "-L${pkgs.zlib.dev}/lib -L${pkgs.libffi.dev}/lib -L${pkgs.readline.dev}/lib -L${pkgs.bzip2.dev}/lib -L${pkgs.openssl.dev}/lib";
   };
   environment.systemPackages = with pkgs; [
+    (pkgs.writeShellScriptBin "python" ''
+      export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+      exec ${pkgs.python3}/bin/python "$@"
+    '')
+    poetry
     python312Full # High-level dynamically-typed programming language
     python310
     python314
@@ -101,6 +107,7 @@ in {
     (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
     (python3.withPackages (ps:
       with ps; [
+        psutils
         # Python packages
         babel # Collection of internationalizing tools
         beautifulsoup4 # HTML and XML parser
