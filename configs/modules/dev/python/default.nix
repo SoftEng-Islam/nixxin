@@ -95,7 +95,7 @@
     zlib
     lz4
     pypy3
-    (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
+    (python3.withPackages (subpkgs: with subpkgs; [ requests ])).env
     (python312.withPackages (ps:
       with ps; [
         # Python packages
@@ -151,6 +151,6 @@
         virtualenv # Tool to create isolated Python environments
         watchdog # Python API and shell utilities to monitor file system events
         wheel # Built-package format for Python
-      ]))
+      ])).env
   ];
 }
