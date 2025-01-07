@@ -52,10 +52,10 @@
 
       # Tab bar
       tab_bar_background none
-      active_tab_background #3f4451
+      active_tab_background #282c34
       active_tab_foreground #ff5e5e
-      inactive_tab_background #282c34
-      inactive_tab_foreground #c49cdb
+      inactive_tab_background #3f4451
+      inactive_tab_foreground #744f89
       active_tab_font_style   bold
       inactive_tab_font_style normal
       tab_bar_align left

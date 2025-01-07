@@ -11,11 +11,10 @@ in {
   environment.sessionVariables = {
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
     # PYTHONPATH = "$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH";
-
+    CPPFLAGS = "-I${pkgs.readline.dev}/include";
+    LDFLAGS = "-L${pkgs.readline.dev}/lib";
     LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
-    LDFLAGS = "-L/nix/store -L$HOME/.nix-profile/lib -L/usr/lib";
-    CPPFLAGS = "-I/nix/store -I$HOME/.nix-profile/include";
     # CFLAGS="-I$(nix eval --raw nixpkgs.openssl.dev)/include";
     # LDFLAGS="-L$(nix eval --raw nixpkgs.openssl.out)/lib";
     PYTHON_CFLAGS = "$CPPFLAGS";
@@ -66,6 +65,7 @@ in {
     base16-schemes
     readline
     readline.dev
+    libedit
     sqlite
     sqlite.dev
     systemd.dev # System and service manager for Linux
@@ -89,7 +89,6 @@ in {
     autoconf
     automake
     libtool
-    readline
     ncurses
     openssl
     icu
