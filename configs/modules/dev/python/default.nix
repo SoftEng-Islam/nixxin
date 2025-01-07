@@ -10,13 +10,11 @@ in {
   # Set environment variables for Python
   environment.sessionVariables = {
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
-    # PYTHONPATH = "$PIP_PREFIX/${pkgs.python3.sitePackages}:$PYTHONPATH";
+    PYTHONPATH = "${pkgs.python3.sitePackages}:$PYTHONPATH";
     CPPFLAGS = "-I${pkgs.readline.dev}/include";
     LDFLAGS = "-L${pkgs.readline.dev}/lib";
     LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
     PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
-    # CFLAGS="-I$(nix eval --raw nixpkgs.openssl.dev)/include";
-    # LDFLAGS="-L$(nix eval --raw nixpkgs.openssl.out)/lib";
     PYTHON_CFLAGS = "$CPPFLAGS";
     PYTHON_LDFLAGS = "$LDFLAGS";
 
@@ -31,7 +29,6 @@ in {
     meson # An open source, fast and friendly build system made in Python
     pyenv # Simple Python version management
     pyenv.out
-
     pychess # Advanced GTK chess client written in Python
     pipx # Install and run Python applications in isolated environments
     python312Full # High-level dynamically-typed programming language
