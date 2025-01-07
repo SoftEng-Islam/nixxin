@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./globalEnv.nix ];
+  # imports = [ ./globalEnv.nix ];
   # Set environment variables for pyenv
   environment.sessionVariables = {
 
@@ -96,7 +96,7 @@
     lz4
     pypy3
     (python3.withPackages (subpkgs: with subpkgs; [ requests ])).env
-    (python312.withPackages (ps:
+    (python3.withPackages (ps:
       with ps; [
         # Python packages
         babel # Collection of internationalizing tools
