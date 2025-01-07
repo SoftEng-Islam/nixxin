@@ -50,38 +50,29 @@ in {
     automake
     base16-schemes
     bzip2 # High-quality data compression program
-    bzip2.dev
     c-ares
     cairo
-    cairo.dev
     clang
     cmake
-    dbus.dev
+    dbus
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
     gcc
     gdbm
-    gdbm.dev
     git
-    glib.dev
     gnumake
     gobject-introspection
-    gobject-introspection.dev
     icu
     libedit
     libffi
-    libffi.dev
-    libtool
     libtool # GNU Libtool, a generic library support script
     libuuid
     linuxHeaders
     lz4
     meson # An open source, fast and friendly build system made in Python
     ncurses
-    ncurses.dev
     nghttp2
     openssl
-    openssl.dev
     pip-audit
     pipx # Install and run Python applications in isolated environments
     pkg-config
@@ -91,18 +82,12 @@ in {
     pyenv.out
     pypy3
     readline
-    readline.dev
     sqlite
-    sqlite.dev
-    systemd.dev # System and service manager for Linux
     tk
-    tk.dev
     xz
-    xz.dev
     zlib
-    zlib-ng
-    zlib-ng.dev
     zlib.dev
+    zlib-ng
     (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
     (python3.withPackages (ps:
       with ps; [

@@ -111,7 +111,6 @@
     cairo.dev
     gdk-pixbuf.dev
     glib
-    glib.dev
     glibc.dev
     gobject-introspection.dev
     gtksourceviewmm
