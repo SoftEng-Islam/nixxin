@@ -1,8 +1,8 @@
 { lib, pkgs, ... }:
 let
   ldLibraryPaths = [
-    "/nix/store/ybjcla5bhj8g1y84998pn4a2drfxybkv-gcc-13.3.0-lib/lib"
-    "/nix/store/kz93cs2wy6w2q7q20wmhx6mc9n9dwicq-pipewire-1.2.6-jack/lib"
+    "${pkgs.stdenv.cc.cc.lib}/lib"
+    "${pkgs.pipewire.lib}/lib"
     # Add other necessary paths here
   ];
 in {
