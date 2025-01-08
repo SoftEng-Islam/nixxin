@@ -2,6 +2,8 @@
   home-manager.users.${settings.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
       # include ~/.config/kitty/base24.conf
+      # include ~/.config/eww/scripts/colors/colors-kitty.conf
+
       # The 16 terminal colors
       # normal
       color0 #282c34

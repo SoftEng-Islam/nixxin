@@ -71,10 +71,12 @@
 
           # no_cursor_warps = false;
           # layout = "dwindle";
-          #"col.active_border" = "$primary";
+          col.active_border = "$primary";
+          col.inactive_border = "rgb(000000)";
+
           #"col.inactive_border" = "rgb(000000)";
-          "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
-          "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
+          # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
+          # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
         };
         input = {
           kb_layout = "us,eg";
@@ -95,26 +97,23 @@
           rounding = settings.rounding;
           blur = {
             enabled = true;
+            xray = true;
             special = true;
             brightness = 1.0;
             contrast = 1.0;
             noise = 2.0e-2;
-            passes = 3;
-            size = 10;
+            passes = 4;
+            size = 12;
             new_optimizations = true;
           };
           shadow = {
-            range = 20;
-            render_power = 3;
+            enabled = true;
+            range = 30;
+            render_power = 4;
             offset = "2 2";
             ignore_window = false;
+            col.shadow = "rgb(000000)";
           };
-          # drop_shadow = settings.shadow;
-          # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
-          # shadow_ignore_window = false;
-          # shadow_offset = "2 2";
-          # shadow_range = 20;
-          # shadow_render_power = 3;
         };
         animations = {
           enabled = true;
@@ -137,7 +136,6 @@
             "specialWorkspace, 1, 5, workIn, slidevert"
           ];
         };
-        binds = { allow_workspace_cycles = true; };
         gestures = {
           workspace_swipe = true;
           workspace_swipe_distance = 200;
@@ -145,7 +143,6 @@
           workspace_swipe_invert = false;
           workspace_swipe_forever = true;
         };
-
         misc = {
           vrr = 2;
           force_default_wallpaper = -1;
@@ -155,7 +152,30 @@
           render_ahead_of_time = false;
           disable_hyprland_logo = true;
         };
-        windowrule = [ "float, ^(imv)$" "float, ^(mpv)$" ];
+        extraConfig = ''
+          source=~/.config/eww/scripts/colors/colors-hyprland.conf
+          exec-once = ~/.config/eww/scripts/start.sh
+          #exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+          #exec-once = swww init
+          #exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+          # exec-once = telegram-desktop -startintray
+
+          $EWW_SCRIPTS = ~/.config/eww/scripts
+          bind = $mainMod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh
+          bind = $mainMod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh
+          bind = $mainMod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh
+          bind = $mainMod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh
+          bind = $mainMod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh
+          bind = $mainMod, U, exec, $EWW_SCRIPTS/picker.sh
+
+          $script = ~/.config/eww/scripts/toggle_osd.sh
+          # Sink volume raise
+          bind = ,XF86AudioRaiseVolume, exec, $script --up
+          # Sink volume lower
+          bind = ,XF86AudioLowerVolume, exec, $script --down
+          # Sink volume toggle mute
+          bind = ,XF86AudioMute, exec, $script --toggle
+        '';
       };
     };
   };

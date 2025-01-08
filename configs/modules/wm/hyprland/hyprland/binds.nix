@@ -1,8 +1,9 @@
-{ config, pkgs, ... }: {
+{ ... }: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
     # Mouse bindings.
     bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
+    binds = { allow_workspace_cycles = true; };
     binde = [
       ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
       ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
