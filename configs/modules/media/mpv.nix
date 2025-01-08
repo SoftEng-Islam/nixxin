@@ -10,7 +10,7 @@
       cache-default = 4000000;
       sub-auto = "fuzzy"; # Automatically load subtitles with a similar name
       # sub-file-paths = "~/subtitles";  # Add a custom directory for subtitles
-      sub-font-size = "36"; # Set font size for subtitles
+      sub-font-size = "30"; # Set font size for subtitles
       sub-border-size = "3"; # Set border size for readability
     };
   };

@@ -5,6 +5,5 @@
     home.file.".config/eww".source = ./eww;
     home.file.".config/gtklock".source = ./gtklock;
     home.file.".config/fish".source = ./fish;
-    home.dir.".config/fish".source = ./fish;
   };
 }

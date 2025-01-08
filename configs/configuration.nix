@@ -130,6 +130,11 @@
     ];
   };
 
+  # for home-manager, use programs.bash.initExtra instead
+  programs.bash.interactiveShellInit = ''
+    source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
+  '';
+
   # ~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ System ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~
