@@ -1,4 +1,13 @@
 { pkgs, ... }: {
+  environment.variables = {
+    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    QT_QPA_PLATFORMTHEME = "qt5ct";
+    QT_PLATFORM_PLUGIN = "wayland";
+
+    # Force QT to use wayland
+    QT_QPA_PLATFORM = "wayland;xcb";
+
+  };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
     adwaita-qt

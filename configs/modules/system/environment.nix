@@ -47,12 +47,8 @@
 
       MOZ_DBUS_REMOTE = "1";
       MOZ_ENABLE_WAYLAND = "1";
+      EGL_PLATFORM = "wayland";
       NIXPKGS_ALLOW_UNFREE = "1";
-
-      QT_AUTO_SCREEN_SCALE_FACTOR = "1";
-      QT_QPA_PLATFORM = "wayland";
-      QT_QPA_PLATFORMTHEME = "qt5ct";
-      QT_PLATFORM_PLUGIN = "wayland";
 
       WINEESYNC = "1";
       WINEFSYNC = "1";

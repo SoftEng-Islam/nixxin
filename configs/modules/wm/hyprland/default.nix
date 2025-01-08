@@ -71,10 +71,9 @@
 
           # no_cursor_warps = false;
           # layout = "dwindle";
-          col.active_border = "$primary";
-          col.inactive_border = "rgb(000000)";
-
-          #"col.inactive_border" = "rgb(000000)";
+          # col.active_border = "$primary";
+          # col.inactive_border = "rgb(000000)";
+          # "col.inactive_border" = "rgb(000000)";
           # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
           # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
         };
@@ -112,7 +111,7 @@
             render_power = 4;
             offset = "2 2";
             ignore_window = false;
-            col.shadow = "rgb(000000)";
+            # col.shadow = "rgb(000000)";
           };
         };
         animations = {
@@ -152,21 +151,21 @@
           render_ahead_of_time = false;
           disable_hyprland_logo = true;
         };
+        source = [ "~/.config/eww/scripts/colors/colors-hyprland.conf" ];
         extraConfig = ''
-          source=~/.config/eww/scripts/colors/colors-hyprland.conf
           exec-once = ~/.config/eww/scripts/start.sh
-          #exec-once=/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+          #exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
           #exec-once = swww init
           #exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
           # exec-once = telegram-desktop -startintray
 
           $EWW_SCRIPTS = ~/.config/eww/scripts
-          bind = $mainMod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh
-          bind = $mainMod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh
-          bind = $mainMod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh
-          bind = $mainMod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh
-          bind = $mainMod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh
-          bind = $mainMod, U, exec, $EWW_SCRIPTS/picker.sh
+          bind = $mod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh
+          bind = $mod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh
+          bind = $mod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh
+          bind = $mod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh
+          bind = $mod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh
+          bind = $mod, U, exec, $EWW_SCRIPTS/picker.sh
 
           $script = ~/.config/eww/scripts/toggle_osd.sh
           # Sink volume raise

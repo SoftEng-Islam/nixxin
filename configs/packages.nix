@@ -1,10 +1,10 @@
 { settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    gdm
+
     settings.browserPkg
     settings.termPkg
     settings.cursorPackage
-
-    gdm
 
     # Icons
     gruvbox-dark-icons-gtk
