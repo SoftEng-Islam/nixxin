@@ -32,11 +32,11 @@
     ./modules/android.nix
     ./modules/anyrun.nix
     ./modules/applications.nix
-    ./modules/cli-collection.nix
     ./modules/codex.nix
     ./modules/data-transferring.nix
     ./modules/files.nix
     ./modules/gaming.nix
+    ./modules/gtk.nix
     ./modules/misc.nix
     ./modules/nautilus.nix
     ./modules/wayland.nix
@@ -129,7 +129,6 @@
       pkgs.vulkan-tools
     ];
   };
-  gtk.iconCache.enable = true;
 
   # ~~~~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ System ~~~~~~~
