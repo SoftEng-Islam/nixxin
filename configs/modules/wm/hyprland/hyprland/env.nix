@@ -1,4 +1,4 @@
-{ config, pkgs, settings, ... }: {
+{ settings, ... }: {
   wayland.windowManager.hyprland.settings = {
     env = [
       "HYPRCURSOR_SIZE,${toString settings.cursorSize}"

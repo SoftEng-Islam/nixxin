@@ -15,9 +15,12 @@
       }"
 
       # "ags &"
-      # "ignis init"
 
-      "~/.config/eww/scripts/start.sh"
+      # To start ignis
+      "ignis init"
+
+      # To start eww
+      # "~/.config/eww/scripts/start.sh"
 
       # Apps To Start
       # "telegram-desktop -startintray"
