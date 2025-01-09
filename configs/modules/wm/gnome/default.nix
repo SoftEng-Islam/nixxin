@@ -92,7 +92,6 @@
     libgnome-keyring # Framework for managing passwords and other secrets
     libsoup_3 # HTTP client/server library for GNOME
     nautilus-open-any-terminal
-    pamixer # gcsconnect volume control
     playerctl # gsconnect play/pause command
     twitter-color-emoji
 

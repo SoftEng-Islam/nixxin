@@ -8,7 +8,6 @@
     jq
     swww
     gtklock
-    pamixer
     grimblast
     wf-recorder
     python3Packages.requests
