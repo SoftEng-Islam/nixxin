@@ -21,8 +21,7 @@
     aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     aagl.inputs.nixpkgs.follows = "nixpkgs";
 
-    ignis.url = "github:linkfrg/ignis";
-
+    # ignis.url = "github:linkfrg/ignis";
     # ignis.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-ld.url = "github:Mic92/nix-ld";

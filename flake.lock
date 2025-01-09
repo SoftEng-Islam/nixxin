@@ -1480,6 +1480,24 @@
         "type": "github"
       }
     },
+    "ignis": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2"
+      },
+      "locked": {
+        "lastModified": 1736287997,
+        "narHash": "sha256-KYqNGujJrkRh3QKakKW2IlHgO08oe6rZVrjlHND6yXg=",
+        "owner": "linkfrg",
+        "repo": "ignis",
+        "rev": "3aeb1a4d48dff9fa9e678ff68f442b58aed10435",
+        "type": "github"
+      },
+      "original": {
+        "owner": "linkfrg",
+        "repo": "ignis",
+        "type": "github"
+      }
+    },
     "impurity": {
       "locked": {
         "lastModified": 1689836741,
@@ -1731,11 +1749,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1736012469,
-        "narHash": "sha256-/qlNWm/IEVVH7GfgAIyP6EsVZI6zjAx1cV5zNyrs+rI=",
+        "lastModified": 1729256560,
+        "narHash": "sha256-/uilDXvCIEs3C9l73JTACm4quuHUsIHcns1c+cHUJwA=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "8f3e1f807051e32d8c95cd12b9b421623850a34d",
+        "rev": "4c2fcb090b1f3e5b47eaa7bd33913b574a11e0a0",
         "type": "github"
       },
       "original": {
@@ -2038,6 +2056,7 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "hyprpicker": "hyprpicker",
+        "ignis": "ignis",
         "impurity": "impurity",
         "matugen": "matugen",
         "nix-ld": "nix-ld",
