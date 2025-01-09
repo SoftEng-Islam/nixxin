@@ -53,7 +53,7 @@
     anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ignis, ... }@inputs:
+  outputs = { self, nixpkgs, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
       pkgs = import nixpkgs { system = settings.system; };
