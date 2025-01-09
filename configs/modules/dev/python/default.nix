@@ -90,8 +90,7 @@ in {
     zlib-ng
 
     # Python Packages
-    python3Packages.jinja2
-    python3Packages.jinja2-git
+    # python3Packages.jinja2
     (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
     (python3.withPackages (ps:
       with ps; [

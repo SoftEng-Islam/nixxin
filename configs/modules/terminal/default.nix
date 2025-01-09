@@ -1,5 +1,11 @@
 { pkgs, ... }: {
-  imports = [ ./wezterm ./zsh.nix ./kitty ./foot ./tmux.nix ];
+  imports = [
+    # ./wezterm
+    ./zsh.nix
+    ./kitty
+    ./foot
+    # ./tmux.nix
+  ];
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
@@ -7,8 +13,8 @@
     # Terminal Emulators
     bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
     kitty # A modern, hackable, featureful, OpenGL based terminal emulator
-    tmux # Terminal multiplexer
-    wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
+    # tmux # Terminal multiplexer
+    # wezterm # GPU-accelerated cross-platform terminal emulator and multiplexer
     fish # Smart and user-friendly command line shell
     foot # A fast, lightweight and minimalistic Wayland terminal emulator
 
