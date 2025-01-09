@@ -1480,24 +1480,6 @@
         "type": "github"
       }
     },
-    "ignis": {
-      "inputs": {
-        "nixpkgs": "nixpkgs_2"
-      },
-      "locked": {
-        "lastModified": 1735157137,
-        "narHash": "sha256-b0nB6vh5Zo7+u0bFPBNlv5UMgA0olIdhKuSvPvwP+tU=",
-        "owner": "linkfrg",
-        "repo": "ignis",
-        "rev": "9e82c96a117c5830bc23a138d740b1e973323148",
-        "type": "github"
-      },
-      "original": {
-        "owner": "linkfrg",
-        "repo": "ignis",
-        "type": "github"
-      }
-    },
     "impurity": {
       "locked": {
         "lastModified": 1689836741,
@@ -2056,7 +2038,6 @@
         "hyprland": "hyprland",
         "hyprland-plugins": "hyprland-plugins",
         "hyprpicker": "hyprpicker",
-        "ignis": "ignis",
         "impurity": "impurity",
         "matugen": "matugen",
         "nix-ld": "nix-ld",
