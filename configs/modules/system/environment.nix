@@ -26,8 +26,8 @@
       HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
 
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
-      WAYLAND = "1";
-      WAYLAND_DISPLAY = "wayland-0";
+      # WAYLAND = "1";
+      # WAYLAND_DISPLAY = "wayland-0";
 
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";
