@@ -94,7 +94,7 @@
       sync_to_monitor yes
       terminal_select_modifiers shift
       wayland_enable_ime no
-      window_decorations none
+      #window_decorations none
 
       # Cursor
       cursor_shape beam
