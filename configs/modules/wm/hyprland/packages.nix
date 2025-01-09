@@ -1,18 +1,6 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
     # inputs.ags.packages.${system}.default
-    (inputs.ignis.packages.${system}.ignis.overrideAttrs (oldAttrs: {
-      propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ])
-        ++ (with pkgs;
-          [
-            (python312.withPackages (ppkgs: [
-              ppkgs.materialyoucolor
-              ppkgs.pillow
-              ppkgs.jinja2
-              # Library names
-            ]))
-          ]);
-    }))
 
     inputs.hyprland.packages.${system}.hyprland
 
