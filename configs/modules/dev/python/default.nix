@@ -88,6 +88,7 @@ in {
     zlib
     zlib.dev
     zlib-ng
+    click # The "Command Line Interactive Controller for Kubernetes"
 
     # Python Packages
     # python3Packages.jinja2
@@ -102,7 +103,6 @@ in {
         cairosvg # SVG converter based on Cairo
         certifi # Python package for providing Mozilla's CA Bundle
         charset-normalizer # Python module for encoding and language detection
-        click # The "Command Line Interactive Controller for Kubernetes"
         dbus-python # Python DBus bindings
         django # High-level Python Web framework that encourages rapid development and clean, pragmatic design
         flit-core # Distribution-building parts of Flit. See flit package for more information
