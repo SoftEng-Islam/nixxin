@@ -40,20 +40,20 @@
   home-manager.users.${settings.username} = {
     # fake a tray to let apps start
     # https://github.com/nix-community/home-manager/issues/2064
-    # systemd.user.targets.tray = {
-    #   Unit = {
-    #     Description = "Home Manager System Tray";
-    #     Requires = [ "graphical-session-pre.target" ];
-    #   };
-    # };
-    # systemd.user.targets.wayland-session = {
-    #   Unit = {
-    #     Description = "wayland compositor session";
-    #     Documentation = [ "man:systemd.special(7)" ];
-    #     BindsTo = [ "graphical-session.target" ];
-    #     Wants = [ "graphical-session-pre.target" ];
-    #     After = [ "graphical-session-pre.target" ];
-    #   };
-    # };
+    systemd.user.targets.tray = {
+      Unit = {
+        Description = "Home Manager System Tray";
+        Requires = [ "graphical-session-pre.target" ];
+      };
+    };
+    systemd.user.targets.wayland-session = {
+      Unit = {
+        Description = "wayland compositor session";
+        Documentation = [ "man:systemd.special(7)" ];
+        BindsTo = [ "graphical-session.target" ];
+        Wants = [ "graphical-session-pre.target" ];
+        After = [ "graphical-session-pre.target" ];
+      };
+    };
   };
 }

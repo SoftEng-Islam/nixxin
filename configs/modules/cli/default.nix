@@ -21,9 +21,9 @@
 
     bashInteractive
     bat # Cat(1) clone with syntax highlighting and Git integration
-    bluez # Official Linux Bluetooth protocol stack
-    bluez-tools # A set of tools to manage bluetooth devices for linux
-    bottom # Cross-platform graphical process/system monitor with a customizable interface
+    # bluez # Official Linux Bluetooth protocol stack
+    # bluez-tools # A set of tools to manage bluetooth devices for linux
+    # bottom # Cross-platform graphical process/system monitor with a customizable interface
     brightnessctl # This program allows you read and control device brightness
     cava # Console-based Audio Visualizer for Alsa
     cheat # Create and view interactive cheatsheets on the command-line

@@ -10,7 +10,7 @@
     };
     verbose = true;
     useGlobalPkgs = true;
-    useUserPackages = false;
+    useUserPackages = true;
     backupFileExtension = null;
   };
 

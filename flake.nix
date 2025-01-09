@@ -59,7 +59,7 @@
       pkgs = import nixpkgs { system = settings.system; };
     in {
       # NixOS configuration entrypoint.
-      # 'sudo nixos-rebuild switch --flake .#YourHostname
+      # sudo nixos-rebuild switch --flake .#YourHostname --allow-dirty
       nixosConfigurations = {
         ${settings.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {

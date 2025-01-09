@@ -1,7 +1,7 @@
 { inputs, pkgs, config, settings, ... }: {
   # swww = "swww img";
   # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
-  imports = [ ./packages.nix ];
+  imports = [ ./packages.nix ./eww ];
 
   # Run Hyprland in a nested session for testing within GNOME:
   # Install waypipe and weston: These tools allow you to run Wayland compositors inside existing Wayland/X11 sessions.
