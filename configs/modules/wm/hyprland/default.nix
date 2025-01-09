@@ -152,29 +152,7 @@
           disable_hyprland_logo = true;
         };
         source = [ "~/.config/eww/scripts/colors/colors-hyprland.conf" ];
-        extraConfig = ''
-          exec-once = ~/.config/eww/scripts/start.sh
-          #exec-once = /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-          #exec-once = swww init
-          #exec-once = dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-          # exec-once = telegram-desktop -startintray
-
-          $EWW_SCRIPTS = ~/.config/eww/scripts
-          bind = $mod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh
-          bind = $mod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh
-          bind = $mod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh
-          bind = $mod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh
-          bind = $mod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh
-          bind = $mod, U, exec, $EWW_SCRIPTS/picker.sh
-
-          $script = ~/.config/eww/scripts/toggle_osd.sh
-          # Sink volume raise
-          bind = ,XF86AudioRaiseVolume, exec, $script --up
-          # Sink volume lower
-          bind = ,XF86AudioLowerVolume, exec, $script --down
-          # Sink volume toggle mute
-          bind = ,XF86AudioMute, exec, $script --toggle
-        '';
+        # extraConfig = "";
       };
     };
   };

@@ -1,6 +1,8 @@
 { ... }: {
   wayland.windowManager.hyprland.settings = {
     "$mod" = "SUPER";
+    "$EWW_SCRIPTS" = "~/.config/eww/scripts";
+    "$script" = "~/.config/eww/scripts/toggle_osd.sh";
     # Mouse bindings.
     bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
     binds = { allow_workspace_cycles = true; };
@@ -140,6 +142,20 @@
       "$mod Alt, Page_Up, movetoworkspace, -1"
       "$mod Shift, Page_Down, movetoworkspace, +1"
       "$mod Shift, Page_Up, movetoworkspace, -1"
+
+      "$mod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh"
+      "$mod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh"
+      "$mod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh"
+      "$mod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh"
+      "$mod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh"
+      "$mod, U, exec, $EWW_SCRIPTS/picker.sh"
+
+      # Sink volume raise
+      ",XF86AudioRaiseVolume, exec, $script --up"
+      # Sink volume lower
+      ",XF86AudioLowerVolume, exec, $script --down"
+      # Sink volume toggle mute
+      ",XF86AudioMute, exec, $script --toggle"
     ];
     bindr = [
       "Ctrl $mod , R, exec, killall ags ydotool; ags &"
