@@ -37,7 +37,6 @@
     nodePackages_latest.prettier
     nodePackages_latest.sass
     nodePackages_latest.serve
-    nodePackages_latest.socket.io
     nodePackages_latest.svgo
     nodePackages_latest.tailwindcss
     nodePackages_latest.ts-node
