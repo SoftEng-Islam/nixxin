@@ -7,6 +7,18 @@
   # environment.localBinInPath = true;
   environment = {
     variables = {
+      # Add Ignis, Python, npm, yarn, and Sass paths
+      PATH = [
+        "${pkgs.nodejs}/bin"
+        "${pkgs.npm}/bin"
+        "${pkgs.python3}/bin"
+        "${pkgs.sass}/bin"
+        "${pkgs.yarn}/bin"
+        "$HOME/.bun/bin"
+        "$HOME/.cache/ignis/bin" # If Ignis places executables here
+        "$HOME/.npm-global/bin"
+        "$HOME/.npm-packages/bin"
+      ];
       EDITOR = settings.editor;
       VISUAL = settings.visual;
       GTK_THEME = settings.gtkTheme;

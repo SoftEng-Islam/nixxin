@@ -1,16 +1,9 @@
 { settings, pkgs, ... }: {
   environment.variables = {
-    PATH =
-      "${pkgs.nodejs}/bin:${pkgs.yarn}/bin:${pkgs.npm}/bin:$HOME/.npm-global/bin:$PATH:$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
-    #  npm set prefix ~/.npm-global
+    # npm set prefix ~/.npm-global
     # Then, append your PATH with $HOME/.npm-global/bin.
     NPM_CONFIG_PREFIX = "/home/${settings.username}/.npm-global";
-    # PATH = "/home/${settings.username}/.npm-global/bin:${config.environment.variables.PATH}";
   };
-  # Append npm-global to PATH
-  # environment.extraInitCommands = ''
-  #   export PATH=$HOME/.npm-global/bin:$PATH
-  # '';
   environment.systemPackages = with pkgs; [
     corepack_latest # yarn, pnpm
     nodejs_latest # Event-driven I/O framework for the V8 JavaScript engine
