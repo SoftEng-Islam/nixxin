@@ -13,6 +13,7 @@
                   certifi
                   charset-normalizer
                   click
+                  xlib
                   idna
                   jinja2
                   loguru

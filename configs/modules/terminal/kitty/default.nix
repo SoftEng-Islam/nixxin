@@ -53,7 +53,7 @@
       macos_titlebar_color #1e2129
 
       # Tab bar
-      tab_bar_background none
+      tab_bar_background #31343c
       active_tab_background #282c34
       active_tab_foreground #ff5e5e
       inactive_tab_background #3f4451
@@ -62,8 +62,8 @@
       inactive_tab_font_style normal
       tab_bar_align left
       tab_bar_edge top
-      tab_bar_margin_height 0.0 0.0
-      tab_bar_margin_width 0.0
+      tab_bar_margin_height 1.0 1.0
+      tab_bar_margin_width 1.0
       tab_bar_min_tabs 1
       tab_bar_style separator
       tab_separator " ┇ "
