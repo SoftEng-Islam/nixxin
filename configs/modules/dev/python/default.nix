@@ -5,10 +5,23 @@ let
     "${pkgs.pipewire}/lib"
     # Add other necessary paths here
   ];
+  python-final = (pkgs.python.withPackages (ps:
+    with ps; [
+      pip
+      pynvim # required by nvim
+      # NOTE: add here any python package you need globally
+      html2text
+      icalendar
+      pytz
+      tzlocal
+    ]));
 in {
   # imports = [ ./globalEnv.nix ];
   # Set environment variables for Python
   environment.sessionVariables = {
+    # HACK: so pylint can resolve modules
+    # PYTHONPATH = [ "${python-final}/lib/python3.11/site-packages" "$PYTHONPATH" ];
+
     # PYENV_ROOT = "$HOME/.pyenv";
     PYENV_ROOT = "${pkgs.pyenv}";
     # pyenv flags to be able to install Python
@@ -41,7 +54,13 @@ in {
       export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
       exec ${pkgs.python3}/bin/python "$@"
     '')
+
+    pipx
     poetry
+    pipenv
+    python-launcher
+    python-qt
+
     python312Full # High-level dynamically-typed programming language
     python310
     python314
@@ -74,7 +93,6 @@ in {
     nghttp2
     openssl
     pip-audit
-    pipx # Install and run Python applications in isolated environments
     pkg-config
     pkgconf
     pychess # Advanced GTK chess client written in Python
@@ -90,8 +108,9 @@ in {
     zlib-ng
     click # The "Command Line Interactive Controller for Kubernetes"
 
+    # python3Packages.tzlocal
+
     # Python Packages
-    # python3Packages.jinja2
     (python3.withPackages (subpkgs: with subpkgs; [ requests ]))
     (python3.withPackages (ps:
       with ps; [

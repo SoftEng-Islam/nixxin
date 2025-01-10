@@ -25,7 +25,7 @@
     # nodePackages_latest.eslint
     # nodePackages_latest.firebase-tools
     # nodePackages_latest.gulp
-    # nodePackages_latest.http-server
+    nodePackages_latest.http-server
     # nodePackages_latest.jsdoc
     # nodePackages_latest.jshint
     nodePackages_latest.node2nix
@@ -34,7 +34,7 @@
     nodePackages_latest.npm-check-updates
     nodePackages_latest.pnpm # Fast, disk space efficient package manager
     # nodePackages_latest.postcss
-    # nodePackages_latest.prettier
+    nodePackages_latest.prettier
     # nodePackages_latest.sass
     # nodePackages_latest.serve
     # nodePackages_latest.svgo
@@ -44,4 +44,23 @@
     # nodePackages_latest.vue-cli
     # nodePackages_latest.vue-language-server
   ];
+
+  home-manager.users.${settings.users} = {
+    home.sessionVariables = {
+      PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
+      NODE_PATH = "$HOME/.npm-packages/lib/node_modules:$NODE_PATH";
+
+      # Fixes `bad interpreter: Text file busy`
+      # https://github.com/NixOS/nixpkgs/issues/314713
+      UV_USE_IO_URING = "0";
+    };
+
+    home.file = {
+      ".npmrc".source = ./.npmrc;
+      ".npm-packages/.keep".text = "";
+      ".npm-packages/lib/.keep".text = "";
+    };
+
+    xdg.configFile.".bunfig.toml".source = ./.bunfig.toml;
+  };
 }

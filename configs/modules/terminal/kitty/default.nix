@@ -4,14 +4,14 @@
       # include ~/.config/kitty/base24.conf
       # The 16 terminal colors
       # normal
-      color0 #1e2129  # Darker background for comments
+      color0 #282c34  # Darker background for comments
       color1 #e05561
       color2 #8cc265
       color3 #e6b965
       color4 #4aa5f0
       color5 #c162de
       color6 #42b3c2
-      color7 #abb2bf  # Lighter color for regular text
+      color7 #4255c2  # Lighter color for regular text
 
       # bright
       color8 #4f5666
@@ -33,7 +33,7 @@
 
       # The basic colors
       background #1e2129  # Changed to a darker background
-      foreground #abb2bf  # Light color for text
+      foreground #aeb1b7  # Light color for text
 
       # Cursor colors
       cursor #9151ff
@@ -45,7 +45,7 @@
 
       # Tab bar
       tab_bar_background #31343c
-      active_tab_background #282c34
+      active_tab_background #1e2129
       active_tab_foreground #ff5e5e
       inactive_tab_background #3f4451
       inactive_tab_foreground #744f89

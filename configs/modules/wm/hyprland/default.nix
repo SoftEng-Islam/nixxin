@@ -149,7 +149,7 @@
           render_ahead_of_time = false;
           disable_hyprland_logo = true;
         };
-        # source = [ "~/.config/eww/scripts/colors/colors-hyprland.conf" ];
+        # source = [ "~/.cache/ignis/material/dark_colors-hyprland.conf" ];
         # extraConfig = "";
       };
     };
