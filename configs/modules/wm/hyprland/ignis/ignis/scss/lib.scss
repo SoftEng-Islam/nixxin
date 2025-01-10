@@ -1,5 +1,5 @@
-@use "mixins/hover";
-@use "colors";
+@use "./mixins/hover.scss";
+@use "./colors.scss";
 
 .rec-unset {
     * {
@@ -13,7 +13,7 @@
 
 tooltip {
     all: unset;
-    background-color: $surface;
+    background-color: colors.$surface;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
 }
