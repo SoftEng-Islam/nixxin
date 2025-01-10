@@ -15,7 +15,7 @@
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
         "$HOME/.bun/bin"
-        "$HOME/.cache/ignis/bin" # If Ignis places executables here
+        "$HOME/.cache/ignis/bin"
         "$HOME/.npm-global/bin"
         "$HOME/.npm-packages/bin"
         "$PYENV_ROOT/bin:$PATH"
