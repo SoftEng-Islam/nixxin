@@ -1,5 +1,5 @@
 @use "./mixins/hover.scss";
-@use "./colors.scss";
+// @use "./colors.scss";
 
 .rec-unset {
     * {
@@ -22,7 +22,7 @@ tooltip {
     padding: 0.75rem 1rem;
     border-radius: 1rem;
     font-size: 1.35rem;
-    background-color: $primaryContainer;
+    background-color: colors.$primaryContainer;
 }
 
 .material-slider {
@@ -35,14 +35,14 @@ tooltip {
 
 .material-slider trough,
 .material-slider trough highlight {
-    background-color: $secondaryContainer;
+    background-color: colors.$secondaryContainer;
     border-radius: 1rem;
     min-height: 1rem;
 }
 
 
 .material-slider trough highlight {
-    background-color: $primary;
+    background-color: colors.$primary;
 }
 
 .material-slider-icon {
@@ -63,6 +63,6 @@ tooltip {
 }
 
 .hover-surface {
-    @include hover.hover($surface);
+    @include hover.hover(colors.$surface);
     transition: 0.3s;
 }
