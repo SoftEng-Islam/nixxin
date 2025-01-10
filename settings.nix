@@ -4,6 +4,7 @@
   hostName = "nixos"; # Hostname
   profile = "desktop"; # select a profile defined from my profiles directory
   timezone = "Africa/Cairo"; # Select timezone
+  timeFormat = 12;
   locale = "en_US.UTF-8"; # Select locale
   bootMode = "uefi"; # uefi or bios
   systemStateVersion = "24.05";
@@ -21,13 +22,14 @@
 
   # ----- USER SETTINGS ----- #
   name = "Islam Ahmed"; # Name/identifier
-  email = "softeng.islam@gmail.com"; # Email (git config)
   username = "softeng"; # Username
+  email = "softeng.islam@gmail.com"; # Email (git config)
+
   dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
+
+  defaultSession = "hyprland"; # hyprland or gnome
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
-  wmType =
-    if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-  defaultSession = "hyprland";
+  # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # Web Browsers
   browser = "brave"; # Default Browser;
