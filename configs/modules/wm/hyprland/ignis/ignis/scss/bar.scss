@@ -5,13 +5,13 @@
     margin: 0;
     border-radius: 0;
     transition: 0.3s;
-    background-color: rgba($surface, 0.3);
+    background-color: rgba(#1a1112, 0.3);
 }
 
 .clock {
-    @include hover.hover($surface);
+    @include hover.hover(#1a1112);
     color: $onSurface;
-    background-color: $surface;
+    background-color: #1a1112;
     font-size: 1.5rem;
     border-radius: 1rem;
     padding: 0 0.75rem;
@@ -21,10 +21,10 @@
 
     &.active {
         background-color: $primary;
-        color: $surface;
+        color: #1a1112;
 
         .record-indicator {
-            color: $surface;
+            color: #1a1112;
         }
 
         @include hover.hover($primary)
@@ -63,7 +63,7 @@
 .workspaces {
     border-radius: 1rem;
     padding: 0.5rem;
-    background-color: $surface;
+    background-color: #1a1112;
     margin: 0 0.5rem;
     margin-left: 0;
 }
@@ -123,7 +123,7 @@
 
 .battery-scale trough,
 .battery-scale trough highlight {
-    background: $surface;
+    background: #1a1112;
     border-radius: 1rem;
     min-height: 1.3rem;
     min-width: 5rem;

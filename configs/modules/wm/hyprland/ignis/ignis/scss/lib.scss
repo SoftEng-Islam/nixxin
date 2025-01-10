@@ -12,7 +12,7 @@
 
 tooltip {
     all: unset;
-    background-color: $surface;
+    background-color: #1a1112;
     padding: 0.5rem 1rem;
     border-radius: 1rem;
 }
@@ -62,6 +62,6 @@ tooltip {
 }
 
 .hover-surface {
-    @include hover.hover($surface);
+    @include hover.hover(#1a1112);
     transition: 0.3s;
 }

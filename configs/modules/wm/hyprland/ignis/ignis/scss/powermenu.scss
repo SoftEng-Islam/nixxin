@@ -6,7 +6,7 @@
 }
 
 .powermenu-button {
-    @include hover.hover($surfaceContainer);
+    @include hover.hover(#1a1112Container);
     transition: 0.3s;
     border-radius: 10rem;
     min-width: 8rem;
@@ -14,7 +14,7 @@
 
     &:focus {
         @include hover.hover($primary);
-        color: $surface;
+        color: #1a1112;
     }
 }
 
