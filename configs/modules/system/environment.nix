@@ -10,7 +10,7 @@
       # Add Ignis, Python, npm, yarn, and Sass paths
       PATH = [
         "${pkgs.nodejs}/bin"
-        "${pkgs.npm}/bin"
+        "${pkgs.nodePackages.npm}/bin"
         "${pkgs.python3}/bin"
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
