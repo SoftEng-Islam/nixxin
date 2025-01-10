@@ -1,3 +1,4 @@
+@use "../colors";
 @use "mixins/hover";
 @use "mixins/window";
 
@@ -6,15 +7,15 @@
 }
 
 .powermenu-button {
-    @include hover.hover($surfaceContainer);
+    @include hover.hover(colors.$surfaceContainer);
     transition: 0.3s;
     border-radius: 10rem;
     min-width: 8rem;
     min-height: 8rem;
 
     &:focus {
-        @include hover.hover($primary);
-        color: $surface;
+        @include hover.hover(colors.$primary);
+        color: colors.$surface;
     }
 }
 

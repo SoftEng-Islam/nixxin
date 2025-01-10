@@ -1,3 +1,4 @@
+@use "../colors";
 @use "mixins/hover";
 @use "mixins/window";
 
@@ -6,10 +7,10 @@
     min-width: 25rem;
 
     & .notification-close {
-        @include hover.hover($surface);
+        @include hover.hover(colors.$surface);
     }
 
     & .notification-action {
-        @include hover.hover($surfaceContainer);
+        @include hover.hover(colors.$surfaceContainer);
     }
 }

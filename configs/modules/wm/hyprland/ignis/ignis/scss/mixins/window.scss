@@ -1,8 +1,10 @@
+@use "../../colors";
+
 @mixin window {
-    background-color: $surface;
+    background-color: colors.$surface;
     border-radius: 1rem;
     padding: 1rem;
-    color: $onSurface;
-    box-shadow: 0 0 4px 2px $shadow;
+    color: colors.$onSurface;
+    box-shadow: 0 0 4px 2px colors.$shadow;
     margin: 1rem;
 }

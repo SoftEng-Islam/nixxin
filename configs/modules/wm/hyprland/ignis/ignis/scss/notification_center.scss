@@ -1,7 +1,8 @@
+@use "../colors";
 @use "mixins/hover";
 
 .notification-center {
-    background-color: $surfaceContainerLow;
+    background-color: colors.$surfaceContainerLow;
     border-radius: 1.5rem 1.5rem 1rem 1rem;
     padding: 1rem;
 }
@@ -11,15 +12,15 @@
 }
 
 .notification {
-    background-color: $surfaceContainerHigh;
+    background-color: colors.$surfaceContainerHigh;
     border-radius: 1rem;
     padding: 1rem;
     margin-top: 1rem;
 }
 
 .notification-count {
-    background-color: $tertiary;
-    color: $onTertiary;
+    background-color: colors.$tertiary;
+    color: colors.$onTertiary;
     min-width: 2rem;
     font-size: 1.5rem;
     border-radius: 2rem;
@@ -31,8 +32,8 @@
 }
 
 .notification-close {
-    @include hover.hover($surfaceContainerHigh);
-    color: $onSurface;
+    @include hover.hover(colors.$surfaceContainerHigh);
+    color: colors.$onSurface;
     border-radius: 1rem;
     padding: 0.25rem;
     margin-left: 0.5rem;
@@ -40,15 +41,15 @@
 }
 
 .notification-clear-all {
-    @include hover.hover($surfaceContainerHigh);
+    @include hover.hover(colors.$surfaceContainerHigh);
     transition: 0.3s;
     border-radius: 1rem;
     padding: 0.25rem 1rem;
 }
 
 .notification-action {
-    color: $primary;
-    @include hover.hover($surfaceContainerHighest);
+    color: colors.$primary;
+    @include hover.hover(colors.$surfaceContainerHighest);
     border-radius: 0.5rem;
     padding: 0.25rem 0.25rem;
     transition: 0.3s;
@@ -60,9 +61,9 @@
 }
 
 .notification-center-info-label {
-    color: $onSurfaceVariant;
+    color: colors.$onSurfaceVariant;
 }
 
 .notification-body {
-    color: $onSurfaceVariant;
+    color: colors.$onSurfaceVariant;
 }

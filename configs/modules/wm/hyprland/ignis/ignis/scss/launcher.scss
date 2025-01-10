@@ -1,3 +1,4 @@
+@use "../colors";
 @use "mixins/hover";
 @use "mixins/window";
 
@@ -12,7 +13,7 @@
 
 .launcher-search-box {
     padding: 0.75rem 1rem;
-    background-color: $surfaceContainer;
+    background-color: colors.$surfaceContainer;
     border-radius: 1rem;
     min-width: 30rem;
 }
@@ -23,15 +24,15 @@
 
 .launcher-app {
     all: unset;
-    @include hover.hover($surface);
+    @include hover.hover(colors.$surface);
     border-radius: 1rem;
     padding: 0.5rem 0.25rem;
-    border: 2px solid $surface;
+    border: 2px solid colors.$surface;
     margin-top: 0.25rem;
     transition: 0.3s;
-
+    
     &:focus {
-        border: 2px solid $primary;
+        border: 2px solid colors.$primary;
     }
 }
 
