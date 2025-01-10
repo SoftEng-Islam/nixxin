@@ -23,7 +23,7 @@ in {
     # PYTHONPATH = [ "${python-final}/lib/python3.11/site-packages" "$PYTHONPATH" ];
 
     # PYENV_ROOT = "$HOME/.pyenv";
-    PYENV_ROOT = "${pkgs.pyenv}";
+    # PYENV_ROOT = "${pkgs.pyenv}";
     # pyenv flags to be able to install Python
     CPPFLAGS =
       "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl_3_3.dev}/include";
@@ -41,7 +41,6 @@ in {
     PYTHON_CFLAGS = "$CPPFLAGS";
     PYTHON_LDFLAGS = "$LDFLAGS";
     PYTHON_CONFIGURE_OPTS = "--enable-shared";
-    PATH = "$PYENV_ROOT/bin:$PATH";
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
     # CPPFLAGS = "-I${pkgs.readline.dev}/include";
     # LDFLAGS = "-L${pkgs.readline.dev}/lib";
@@ -97,7 +96,6 @@ in {
     pkgconf
     pychess # Advanced GTK chess client written in Python
     pyenv # Simple Python version management
-    pyenv.out
     pypy3
     readline
     sqlite
