@@ -20,7 +20,7 @@
     }
 
     .qs-button {
-        @include hover.hover(#1a1112ContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         color: $onSurface;
         min-height: 2.4rem;
         border-radius: 1.2rem;
@@ -29,7 +29,7 @@
 
         &.active {
             @include hover.hover($primary);
-            color: #1a1112;
+            color: $surface;
         }
 
     }
@@ -39,7 +39,7 @@
     }
 
     .control-center-menu {
-        background-color: #1a1112ContainerHigh;
+        background-color: $surfaceContainerHigh;
         border-radius: 1rem;
         padding: 1rem;
         margin-top: 1rem;
@@ -68,7 +68,7 @@
 
     .record-cancel-button,
     .record-start-button {
-        color: #1a1112;
+        color: $surface;
         border-radius: 1rem;
         padding: 0.25rem 0.75rem;
         font-size: 0.95rem;
@@ -76,7 +76,7 @@
     }
 
     .record-cancel-button {
-        @include hover.hover(#1a1112ContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         color: $onSurface;
         border: 1px solid $primary;
     }
@@ -86,7 +86,7 @@
     }
 
     .volume-entry {
-        @include hover.hover(#1a1112ContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
@@ -115,7 +115,7 @@
     }
 
     .user-settings {
-        @include hover.hover(#1a1112ContainerHighest);
+        @include hover.hover($surfaceContainerHighest);
         color: $onSurface;
         border-radius: 2rem;
         min-width: 2.35rem;
@@ -126,7 +126,7 @@
 
     .user-power {
         @include hover.hover($primary);
-        color: #1a1112;
+        color: $surface;
         border-radius: 1.5rem;
         min-width: 2.35rem;
         margin: 0.4rem 0rem;
@@ -143,7 +143,7 @@
     }
 
     .network-item {
-        @include hover.hover(#1a1112ContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;

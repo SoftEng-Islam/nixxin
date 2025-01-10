@@ -1,10 +1,9 @@
-@use "../../.local/cache/ignis/material/dark_colors.scss";
+@use "./scss/colors.scss";
 
 @use "scss/mixins/window.scss";
 @use "scss/mixins/hover.scss";
 
 @use "scss/lib.scss";
-
 
 @use "scss/bar.scss";
 @use "scss/control_center.scss";

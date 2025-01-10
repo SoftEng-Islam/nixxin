@@ -1,7 +1,7 @@
 @use "mixins/hover";
 
 .notification-center {
-    background-color: #1a1112ContainerLow;
+    background-color: $surfaceContainerLow;
     border-radius: 1.5rem 1.5rem 1rem 1rem;
     padding: 1rem;
 }
@@ -11,7 +11,7 @@
 }
 
 .notification {
-    background-color: #1a1112ContainerHigh;
+    background-color: $surfaceContainerHigh;
     border-radius: 1rem;
     padding: 1rem;
     margin-top: 1rem;
@@ -31,7 +31,7 @@
 }
 
 .notification-close {
-    @include hover.hover(#1a1112ContainerHigh);
+    @include hover.hover($surfaceContainerHigh);
     color: $onSurface;
     border-radius: 1rem;
     padding: 0.25rem;
@@ -40,7 +40,7 @@
 }
 
 .notification-clear-all {
-    @include hover.hover(#1a1112ContainerHigh);
+    @include hover.hover($surfaceContainerHigh);
     transition: 0.3s;
     border-radius: 1rem;
     padding: 0.25rem 1rem;
@@ -48,7 +48,7 @@
 
 .notification-action {
     color: $primary;
-    @include hover.hover(#1a1112ContainerHighest);
+    @include hover.hover($surfaceContainerHighest);
     border-radius: 0.5rem;
     padding: 0.25rem 0.25rem;
     transition: 0.3s;

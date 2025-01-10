@@ -6,10 +6,10 @@
     min-width: 25rem;
 
     & .notification-close {
-        @include hover.hover(#1a1112);
+        @include hover.hover($surface);
     }
 
     & .notification-action {
-        @include hover.hover(#1a1112Container);
+        @include hover.hover($surfaceContainer);
     }
 }

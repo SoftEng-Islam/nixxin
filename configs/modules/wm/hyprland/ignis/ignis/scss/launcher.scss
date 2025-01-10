@@ -12,7 +12,7 @@
 
 .launcher-search-box {
     padding: 0.75rem 1rem;
-    background-color: #1a1112Container;
+    background-color: $surfaceContainer;
     border-radius: 1rem;
     min-width: 30rem;
 }
@@ -23,10 +23,10 @@
 
 .launcher-app {
     all: unset;
-    @include hover.hover(#1a1112);
+    @include hover.hover($surface);
     border-radius: 1rem;
     padding: 0.5rem 0.25rem;
-    border: 2px solid #1a1112;
+    border: 2px solid $surface;
     margin-top: 0.25rem;
     transition: 0.3s;
 
