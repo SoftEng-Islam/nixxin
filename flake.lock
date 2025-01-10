@@ -1101,26 +1101,6 @@
         "type": "github"
       }
     },
-    "ignis": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1736287997,
-        "narHash": "sha256-KYqNGujJrkRh3QKakKW2IlHgO08oe6rZVrjlHND6yXg=",
-        "owner": "linkfrg",
-        "repo": "ignis",
-        "rev": "3aeb1a4d48dff9fa9e678ff68f442b58aed10435",
-        "type": "github"
-      },
-      "original": {
-        "owner": "linkfrg",
-        "repo": "ignis",
-        "type": "github"
-      }
-    },
     "ixx": {
       "inputs": {
         "flake-utils": [
@@ -1573,7 +1553,6 @@
         "home-manager": "home-manager",
         "hyprland": "hyprland",
         "hyprpicker": "hyprpicker",
-        "ignis": "ignis",
         "matugen": "matugen",
         "nix-ld": "nix-ld",
         "nixpkgs": "nixpkgs_2",
