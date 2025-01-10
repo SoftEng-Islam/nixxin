@@ -27,7 +27,7 @@
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-  defaultSession = "gnome";
+  defaultSession = "hyprland";
 
   # Web Browsers
   browser = "brave"; # Default Browser;
