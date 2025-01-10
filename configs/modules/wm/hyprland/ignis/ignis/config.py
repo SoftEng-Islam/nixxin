@@ -1,7 +1,9 @@
 from ignis.utils import Utils
 from ignis.app import IgnisApp
 from ignis.services.wallpaper import WallpaperService
-from ignis.services.material.util import render_templates
+from jinja2 import Environment, FileSystemLoader
+import os
+
 from modules import (
     Bar,
     ControlCenter,
@@ -11,6 +13,18 @@ from modules import (
     Powermenu,
     Settings,
 )
+
+# Custom template rendering function
+def render_templates(output_dir, templates_dir, user_data):
+    env = Environment(loader=FileSystemLoader(templates_dir))
+    os.makedirs(output_dir, exist_ok=True)
+
+    for template_name in os.listdir(templates_dir):
+        if template_name.endswith(".scss"):
+            template = env.get_template(template_name)
+            rendered_content = template.render(user_data)
+            with open(os.path.join(output_dir, template_name), "w") as f:
+                f.write(rendered_content)
 
 # Initialize Ignis and Wallpaper
 app = IgnisApp.get_default()
@@ -28,19 +42,18 @@ render_templates(
         "primary_paletteKeyColor": "#ff0000",
         "secondary_paletteKeyColor": "#00ff00",
         "tertiary_paletteKeyColor": "#0000ff",
-        # Add more color values here
         "background": "#121212",
         "onBackground": "#ffffff",
-        # Add all necessary variables here...
         "dark_mode": "true",
+        # Add more color variables here
     },
 )
 
 # GNOME and Hyprland Settings
 Utils.exec_sh("gsettings set org.gnome.desktop.interface gtk-theme Material")
-Utils.exec_sh("gsettings set org.gnome.desktop.interface icon-theme Papirus")
+Utils.exec_sh("gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark")
 Utils.exec_sh(
-    'gsettings set org.gnome.desktop.interface font-name "JetBrains Mono Regular 11"'
+    'gsettings set org.gnome.desktop.interface font-name "JetBrainsMonoNL Nerd Font Mono 11"'
 )
 Utils.exec_sh("hyprctl reload")
 

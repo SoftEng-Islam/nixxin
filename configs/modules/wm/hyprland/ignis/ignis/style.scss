@@ -1,5 +1,7 @@
-// @use "../../.cache/ignis/material/colors" as colors;
+// Run This command If you have Problem
+// sass-migrator module --migrate-deps ./style.scss
 
+@use "../../.cache/ignis/material/colors" as colors;
 @use "scss/mixins/window" as window;
 @use "scss/mixins/hover" as hover;
 
