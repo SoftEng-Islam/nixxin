@@ -1,39 +1,48 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
+  environment.variables = {
+    #  npm set prefix ~/.npm-global
+    # Then, append your PATH with $HOME/.npm-global/bin.
+    NPM_CONFIG_PREFIX = "/home/${settings.username}/.npm-global";
+    # PATH = "/home/${settings.username}/.npm-global/bin:${config.environment.variables.PATH}";
+  };
+  # Append npm-global to PATH
+  # environment.extraInitCommands = ''
+  #   export PATH=$HOME/.npm-global/bin:$PATH
+  # '';
   environment.systemPackages = with pkgs; [
+    corepack_latest # yarn, pnpm
+    nodejs_latest # Event-driven I/O framework for the V8 JavaScript engine
     bun
-    corepack_20 # yarn, pnpm
+
     deno
     hugo
     netlify-cli
-    nodejs_latest # Event-driven I/O framework for the V8 JavaScript engine
     typescript # Superset of JavaScript that compiles to clean JavaScript output
     pnpm-shell-completion
 
-    (nodePackages_latest (with ps; [
-      autoprefixer
-      eas-cli
-      eslint
-      firebase-tools
-      gulp
-      http-server
-      jsdoc
-      jshint
-      node2nix
-      nodemon
-      npm
-      npm-check-updates
-      pnpm # Fast, disk space efficient package manager
-      postcss
-      prettier
-      sass
-      serve
-      socket.io
-      svgo
-      tailwindcss
-      ts-node
-      uglify-js
-      vue-cli
-      vue-language-server
-    ]))
+    nodePackages_latest.autoprefixer
+    nodePackages_latest.eas-cli
+    nodePackages_latest.eslint
+    nodePackages_latest.firebase-tools
+    nodePackages_latest.gulp
+    nodePackages_latest.http-server
+    nodePackages_latest.jsdoc
+    nodePackages_latest.jshint
+    nodePackages_latest.node2nix
+    nodePackages_latest.nodemon
+    nodePackages_latest.npm
+    nodePackages_latest.npm-check-updates
+    nodePackages_latest.pnpm # Fast, disk space efficient package manager
+    nodePackages_latest.postcss
+    nodePackages_latest.prettier
+    nodePackages_latest.sass
+    nodePackages_latest.serve
+    nodePackages_latest.socket.io
+    nodePackages_latest.svgo
+    nodePackages_latest.tailwindcss
+    nodePackages_latest.ts-node
+    nodePackages_latest.uglify-js
+    nodePackages_latest.vue-cli
+    nodePackages_latest.vue-language-server
   ];
 }
