@@ -51,28 +51,6 @@
     easyeffects
     alsa-utils
 
-    # Development.
-    atk.dev
-    cairo.dev
-    gdk-pixbuf.dev
-    glib
-    glibc.dev
-    gobject-introspection.dev
-    gtksourceviewmm
-    harfbuzz.dev
-    jetbrains-toolbox
-    libpulseaudio
-    libpulseaudio.dev
-    meson
-    mlocate
-    nodejs_20
-    tinyxml-2
-    pango
-    gdk-pixbuf
-    libdbusmenu-gtk3
-    libgcc
-    glibc
-
     # Latex
     texliveFull # TeX Live environment
     texlive.combined.scheme-full # TeX Live environment for scheme-full
@@ -165,7 +143,6 @@
     coreutils # The GNU Core Utilities
     cups # A standards-based printing system for UNIX
     gdb # The GNU Project debugger
-    glibc # The GNU C Library
     gnuchess # GNU Chess engine
     gnumake # A tool to control the generation of non-source files from sources
     libGL # Stub bindings using libglvnd
@@ -198,21 +175,42 @@
     matugen # A material you color generation tool
 
     # developers packages
+    # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
+    atk.dev
     atkmm # C++ wrappers for ATK accessibility toolkit
     bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
     cairo # A 2D graphics library with support for multiple output devices
+    cairo.dev
     cairomm # C++ bindings for the Cairo vector graphics library
     gdk-pixbuf # A library for image loading and manipulation
+    gdk-pixbuf.dev
     glib # C library of programming buildings blocks
-    gobject-introspection-unwrapped
+    glib-networking
+    glib.dev
+    glibc
+    glibc_memusage
+    glibc.dev
+    glibtool
     gobject-introspection # A middleware layer between C libraries and language bindings
+    gobject-introspection-unwrapped
+    gobject-introspection.dev
+    gtksourceviewmm
     harfbuzz # An OpenType text shaping engine
-    # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
+    harfbuzz.dev
+    jetbrains-toolbox
+    libdbusmenu-gtk3
+    libgcc
+    libpulseaudio
+    libpulseaudio.dev
     llvmPackages_12.bintools # System binary utilities (wrapper script)
+    meson
+    mlocate
+    nodejs_20
     pango # A library for laying out and rendering of text, with an emphasis on internationalization
     pango.dev
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
+    tinyxml-2
     zlib # Lossless data-compression library
 
     # Databases

@@ -11,7 +11,7 @@
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = null;
+    backupFileExtension = "old"; # null
   };
 
   home-manager.users.${settings.username} = {

@@ -1,4 +1,4 @@
-{ settings, pkgs, ... }: {
+{ config, settings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
 
@@ -13,6 +13,9 @@
       HYPRCURSOR_SIZE = toString settings.cursorSize;
       LANG = settings.locale;
       XKB_DEFAULT_RULES = "evdev";
+
+      # Add the glib bin path to the PATH variable
+      PATH = "${pkgs.glib.dev}/bin:${config.environment.variables.PATH}";
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
