@@ -4,7 +4,7 @@
   imports = [
     ./packages.nix
     # ./eww
-    ./ignis
+    # ./ignis
   ];
 
   programs = {
