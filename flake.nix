@@ -34,8 +34,8 @@
     hyprland.url = "github:hyprwm/Hyprland/?submodules=true";
     hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
 
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
     # hyprspace.url = "github:hyprspace/hyprspace";
     # hyprspace.inputs.flake-parts.follows = "flake-parts";

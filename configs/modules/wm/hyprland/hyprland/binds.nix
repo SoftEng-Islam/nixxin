@@ -16,6 +16,7 @@
     ];
     bind = [
       # Window/Session actions.
+      "$mod, grave, hyprexpo:expo, toggle" # can be: toggle, off/disable or on/enable
       "$mod, Q, killactive,"
       "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
       "$mod, delete, exit,"
@@ -166,7 +167,7 @@
     #  source=~/.cache/ignis/material/dark_colors-hyprland.conf
 
     # ignis
-    bind = $mod, X, exec, ignis toggle ignis_LAUNCHER
+    bind = $mod, A, exec, ignis toggle ignis_LAUNCHER
     bind = $mod, M, exec, ignis toggle ignis_POWERMENU
     bind = ALT, F4, exec, ignis toggle ignis_POWERMENU
     bind = $mod, R, exec, ~/.config/ignis/scripts/recording.py start

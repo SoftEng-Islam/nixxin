@@ -1,11 +1,7 @@
 { inputs, pkgs, settings, ... }: {
   # swww = "swww img";
   # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
-  imports = [
-    ./packages.nix
-    # ./eww
-    ./ignis
-  ];
+  imports = [ ./packages.nix ./ignis ];
 
   programs = {
     uwsm.enable = false;
@@ -46,6 +42,7 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
       systemd.enableXdgAutostart = true;
+      plugins = [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars ];
       settings = {
         debug = {
           disable_logs = false;
@@ -149,6 +146,21 @@
           render_ahead_of_time = false;
           disable_hyprland_logo = true;
         };
+        plugin = {
+          hyprexpo = {
+            columns = 3;
+            gap_size = 5;
+            bg_col = "rgb(111111)";
+            workspace_method =
+              "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+            enable_gesture = true; # laptop touchpad
+            gesture_fingers = 3; # 3 or 4
+            gesture_distance = 300; # how far is the "max"
+            gesture_positive =
+              true; # positive = swipe down. Negative = swipe up.
+          };
+        };
+
         # source = [ "~/.cache/ignis/material/dark_colors-hyprland.conf" ];
         # extraConfig = "";
       };
