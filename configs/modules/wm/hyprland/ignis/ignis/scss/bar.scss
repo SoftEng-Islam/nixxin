@@ -1,3 +1,5 @@
+@use "mixins/hover";
+
 .bar-widget {
     padding: 0.4rem 1rem;
     margin: 0;
@@ -7,7 +9,7 @@
 }
 
 .clock {
-    @include hover($surface);
+    @include hover.hover($surface);
     color: $onSurface;
     background-color: $surface;
     font-size: 1.5rem;
@@ -25,7 +27,7 @@
             color: $surface;
         }
 
-        @include hover($primary)
+        @include hover.hover($primary)
     }
 }
 
@@ -67,7 +69,7 @@
 }
 
 .workspace {
-    @include hover($primaryContainer);
+    @include hover.hover($primaryContainer);
     border-radius: 1rem;
     margin: 0 0.25rem;
     min-width: 0.7rem;
@@ -75,7 +77,7 @@
     transition: 0.3s;
 
     &.active {
-        @include hover($primary);
+        @include hover.hover($primary);
         min-width: 2rem;
     }
 }

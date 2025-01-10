@@ -1,5 +1,8 @@
+@use "mixins/hover";
+@use "mixins/window";
+
 .control-center {
-    @include window;
+    @include window.window;
     min-width: 28rem;
     padding: 0;
 
@@ -17,7 +20,7 @@
     }
     
     .qs-button {
-        @include hover($surfaceContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         color: $onSurface;
         min-height: 2.4rem;
         border-radius: 1.2rem;
@@ -25,7 +28,7 @@
         padding: 0.3rem 0.8rem;
     
         &.active {
-            @include hover($primary);
+            @include hover.hover($primary);
             color: $surface;
         }
     
@@ -73,17 +76,17 @@
     }
     
     .record-cancel-button {
-        @include hover($surfaceContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         color: $onSurface;
         border: 1px solid $primary;
     }
     
     .record-start-button {
-        @include hover($primary);
+        @include hover.hover($primary);
     }
     
     .volume-entry {
-        @include hover($surfaceContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
@@ -112,7 +115,7 @@
     }
     
     .user-settings {
-        @include hover($surfaceContainerHighest);
+        @include hover.hover($surfaceContainerHighest);
         color: $onSurface;
         border-radius: 2rem;
         min-width: 2.35rem;
@@ -122,7 +125,7 @@
     }
     
     .user-power {
-        @include hover($primary);
+        @include hover.hover($primary);
         color: $surface;
         border-radius: 1.5rem;
         min-width: 2.35rem;
@@ -140,7 +143,7 @@
     }
     
     .network-item {
-        @include hover($surfaceContainerHigh);
+        @include hover.hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
