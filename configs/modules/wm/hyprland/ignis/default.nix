@@ -3,34 +3,34 @@
     [
       (inputs.ignis.packages.${system}.ignis.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ])
-          ++ (with pkgs;
-            [
-              (python312.withPackages (ppkgs:
-                with ppkgs; [
-                  mypy
-                  ruff
-                  types-requests
-                  certifi
-                  charset-normalizer
-                  click
-                  xlib
-                  idna
-                  jinja2
-                  loguru
-                  markupsafe
-                  material-color-utilities
-                  materialyoucolor
-                  pillow
-                  pycairo
-                  pygobject-stubs
-                  pygobject3
-                  requests
-                  setuptools
-                  setuptools-scm
-                  urllib3
-                  # Library Names
-                ]))
-            ]);
+          ++ (with pkgs; [
+            dart-sass
+            (python312.withPackages (ppkgs:
+              with ppkgs; [
+                mypy
+                ruff
+                types-requests
+                certifi
+                charset-normalizer
+                click
+                xlib
+                idna
+                jinja2
+                loguru
+                markupsafe
+                material-color-utilities
+                materialyoucolor
+                pillow
+                pycairo
+                pygobject-stubs
+                pygobject3
+                requests
+                setuptools
+                setuptools-scm
+                urllib3
+                # Library Names
+              ]))
+          ]);
       }))
     ];
   home-manager.users.${settings.username} = {
