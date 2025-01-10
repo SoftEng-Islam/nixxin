@@ -54,7 +54,7 @@
       # https://github.com/NixOS/nixpkgs/issues/314713
       UV_USE_IO_URING = "0";
     };
-
+    home.sessionPath = [ "$HOME/.npm-global/bin:$PATH" ];
     home.file = {
       ".npmrc".source = ./.npmrc;
       ".npm-packages/.keep".text = "";

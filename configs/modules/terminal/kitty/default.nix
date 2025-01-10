@@ -4,14 +4,14 @@
       # include ~/.config/kitty/base24.conf
       # The 16 terminal colors
       # normal
-      color0 #282c34
+      color0 #3d4046
       color1 #e05561
       color2 #8cc265
       color3 #e6b965
-      color4 #4aa5f0
-      color5 #c162de
-      color6 #42b3c2
-      color7 #4255c2
+      color4 #4ae5f0
+      color5 #6283de
+      color6 #6642c2
+      color7 #c242a8
 
       # bright
       color8 #4f5666
