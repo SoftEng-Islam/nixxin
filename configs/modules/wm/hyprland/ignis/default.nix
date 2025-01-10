@@ -36,6 +36,5 @@
   home-manager.users.${settings.username} = {
     home.file.".config/ignis".source = ./ignis;
     home.file.".local/share/themes/Material".source = ./Material;
-    # home.sessionPath = [];
   };
 }

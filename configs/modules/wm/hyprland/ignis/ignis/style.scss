@@ -1,7 +1,3 @@
-* {
-    font-family: JetBrainsMono;
-    font-weight: bold;
-}
 @use "../../.cache/ignis/material/colors.scss";
 
 @use "scss/mixins/window.scss";
@@ -18,3 +14,9 @@
 @use "scss/settings.scss";
 @use "scss/powermenu.scss";
 @use "scss/notification_center.scss";
+
+
+* {
+    font-family: "JetBrainsMonoNL Nerd Font Mono";
+    font-weight: bold;
+}
