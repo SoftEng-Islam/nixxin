@@ -122,7 +122,7 @@
     };
   };
   # Append npm-global to PATH
-  environment.extraInitCommands = ''
-    export PATH=$HOME/.npm-global/bin:$PATH
-  '';
+  # environment.extraInitCommands = ''
+  #   export PATH=$HOME/.npm-global/bin:$PATH
+  # '';
 }
