@@ -20,28 +20,28 @@
     typescript # Superset of JavaScript that compiles to clean JavaScript output
     pnpm-shell-completion
 
-    nodePackages_latest.autoprefixer
+    # nodePackages_latest.autoprefixer
     nodePackages_latest.eas-cli
-    nodePackages_latest.eslint
-    nodePackages_latest.firebase-tools
-    nodePackages_latest.gulp
-    nodePackages_latest.http-server
-    nodePackages_latest.jsdoc
-    nodePackages_latest.jshint
+    # nodePackages_latest.eslint
+    # nodePackages_latest.firebase-tools
+    # nodePackages_latest.gulp
+    # nodePackages_latest.http-server
+    # nodePackages_latest.jsdoc
+    # nodePackages_latest.jshint
     nodePackages_latest.node2nix
     nodePackages_latest.nodemon
     nodePackages_latest.npm
     nodePackages_latest.npm-check-updates
     nodePackages_latest.pnpm # Fast, disk space efficient package manager
-    nodePackages_latest.postcss
-    nodePackages_latest.prettier
-    nodePackages_latest.sass
-    nodePackages_latest.serve
-    nodePackages_latest.svgo
-    nodePackages_latest.tailwindcss
-    nodePackages_latest.ts-node
-    nodePackages_latest.uglify-js
-    nodePackages_latest.vue-cli
-    nodePackages_latest.vue-language-server
+    # nodePackages_latest.postcss
+    # nodePackages_latest.prettier
+    # nodePackages_latest.sass
+    # nodePackages_latest.serve
+    # nodePackages_latest.svgo
+    # nodePackages_latest.tailwindcss
+    # nodePackages_latest.ts-node
+    # nodePackages_latest.uglify-js
+    # nodePackages_latest.vue-cli
+    # nodePackages_latest.vue-language-server
   ];
 }

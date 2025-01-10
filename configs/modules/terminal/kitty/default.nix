@@ -2,18 +2,16 @@
   home-manager.users.${settings.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
       # include ~/.config/kitty/base24.conf
-      # include ~/.config/eww/scripts/colors/colors-kitty.conf
-
       # The 16 terminal colors
       # normal
-      color0 #282c34
+      color0 #1e2129  # Darker background for comments
       color1 #e05561
       color2 #8cc265
       color3 #e6b965
       color4 #4aa5f0
       color5 #c162de
       color6 #42b3c2
-      color7 #abb2bf
+      color7 #abb2bf  # Lighter color for regular text
 
       # bright
       color8 #4f5666
@@ -33,22 +31,15 @@
       color20 #6c7686
       color21 #d8dee9
 
-
       # The basic colors
-      background #282c34
-      foreground #abb2bf
-      selection_background #abb2bf
-      selection_foreground #282c34
+      background #1e2129  # Changed to a darker background
+      foreground #abb2bf  # Light color for text
 
       # Cursor colors
       cursor #9151ff
       cursor_text_color #f4a261
 
       # Kitty window border colors
-      # active_border_color #545862
-      # inactive_border_color #3f4451
-
-      # OS Window titlebar colors
       wayland_titlebar_color #1e2129
       macos_titlebar_color #1e2129
 
@@ -86,17 +77,7 @@
       bold_italic_font auto
       font_size ${toString settings.TerminalsFontSize}
 
-      input_delay 3
-      kitty -o allow_remote_control=yes
-      mouse_hide_wait 1
-      repaint_delay 10
-      strip_trailing_spaces never
-      sync_to_monitor yes
-      terminal_select_modifiers shift
-      wayland_enable_ime no
-      #window_decorations none
-
-      # Cursor
+      # Cursor settings
       cursor_shape beam
       cursor_shape_unfocused beam
       cursor_beam_thickness 3
@@ -106,7 +87,7 @@
       cursor_trail_start_threshold 2
       cursor_stop_blinking_after 0
 
-      # Scrollbar
+      # Scrollbar settings
       scrollback_indicator_opacity 1.0
       scrollbar yes
 
@@ -119,15 +100,15 @@
       allow_unsafe_paste yes
       hide_window_decorations yes
 
-      # Key binding
-      # Copy selected text to clipboard with Ctrl+C
+      # Key bindings for common actions
       map ctrl+c copy_to_clipboard
-      # Paste from clipboard with Ctrl+V
       map ctrl+v paste_from_clipboard
-      # Cut selected text to clipboard with Ctrl+X
       map ctrl+x cut_to_clipboard
-      # Terminate the terminal with Ctrl+Shift+C
       map ctrl+shift+c send_text all \x03
+
+      # Set a color for comments (ensure they stand out clearly in the terminal)
+      # You might need to set a specific color for comments in your editor (like Vim or Bash).
+      highlight Comment ctermfg=Green guifg=#6c7686  # Lighter green for comments
     '';
   };
 }
