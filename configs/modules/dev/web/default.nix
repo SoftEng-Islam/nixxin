@@ -45,7 +45,7 @@
     # nodePackages_latest.vue-language-server
   ];
 
-  home-manager.users.${settings.users} = {
+  home-manager.users.${settings.username} = {
     home.sessionVariables = {
       PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
       NODE_PATH = "$HOME/.npm-packages/lib/node_modules:$NODE_PATH";
