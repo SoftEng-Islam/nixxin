@@ -5,14 +5,36 @@
     deno
     hugo
     netlify-cli
-    nodePackages.prettier
-    nodePackages.eas-cli
-    nodePackages.firebase-tools
-    nodePackages.gulp
-    nodePackages.http-server
-    nodePackages.node2nix
-    nodePackages.nodemon
-    nodePackages.ts-node
-    typescript
+    nodejs_latest # Event-driven I/O framework for the V8 JavaScript engine
+    typescript # Superset of JavaScript that compiles to clean JavaScript output
+    pnpm-shell-completion
+
+    (nodePackages_latest (ps:
+      with ps; [
+        autoprefixer
+        eas-cli
+        eslint
+        firebase-tools
+        gulp
+        http-server
+        jsdoc
+        jshint
+        node2nix
+        nodemon
+        npm
+        npm-check-updates
+        pnpm # Fast, disk space efficient package manager
+        postcss
+        prettier
+        sass
+        serve
+        socket.io
+        svgo
+        tailwindcss
+        ts-node
+        uglify-js
+        vue-cli
+        vue-language-server
+      ]))
   ];
 }

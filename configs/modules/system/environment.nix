@@ -14,6 +14,9 @@
       LANG = settings.locale;
       XKB_DEFAULT_RULES = "evdev";
 
+      NPM_CONFIG_PREFIX = "/home/${settings.username}/.npm-global";
+      # PATH = "/home/${settings.username}/.npm-global/bin:${config.environment.variables.PATH}";
+
       # Add the glib bin path to the PATH variable
       # PATH = "${pkgs.glib.dev}/bin:${config.environment.variables.PATH}";
 
@@ -118,4 +121,8 @@
       ];
     };
   };
+  # Append npm-global to PATH
+  environment.extraInitCommands = ''
+    export PATH=$HOME/.npm-global/bin:$PATH
+  '';
 }
