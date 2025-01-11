@@ -1,8 +1,7 @@
 { inputs, settings, pkgs, ... }: {
-  environment.systemPackages = with pkgs;
-    [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-    ];
+  environment.systemPackages = [
+    # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+  ];
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
       inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
