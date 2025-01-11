@@ -11,7 +11,7 @@
         disable_splash_rendering = true;
         enable_swallow = false;
         focus_on_activate = false;
-        force_default_wallpaper = 0;
+        force_default_wallpaper = -1; # -1 or 0 or 1
         initial_workspace_tracking = false;
         middle_click_paste = false;
         mouse_move_enables_dpms = true;

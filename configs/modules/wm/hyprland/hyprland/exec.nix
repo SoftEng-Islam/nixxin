@@ -2,8 +2,9 @@
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
+        "swww-daemon --format xrgb &"
+        "ignis init"
         # "swww init"
-        # "swww-daemon --format xrgb &"
         # "swww-daemon"
         # "swww img ~/Downloads/nixos-chan.png"
 
@@ -34,10 +35,6 @@
         "hyprctl setcursor ${settings.cursorTheme}  ${
           toString settings.cursorSize
         }"
-
-        # To start ignis
-        "ignis init"
-
         # Apps To Start
         # "telegram-desktop -startintray"
       ];

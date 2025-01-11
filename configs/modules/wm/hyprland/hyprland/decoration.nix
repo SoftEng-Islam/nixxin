@@ -26,6 +26,7 @@
           ignore_window = true;
           # col.shadow = rgba(00000070)
           # col.shadow_inactive = rgba(00000020)
+          # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
         };
 
         #=> Dim
