@@ -30,7 +30,7 @@
           gaps_workspaces = 50;
           border_size = 4;
           resize_on_border = true;
-          "col.inactive_border" = "rgba(9e9e9e40)";
+          "col.inactive_border" = "rgba(9e9e9e60)";
           #=> Active Borders
           # col.active_border="rgba(3584E4ff)"; # Blue
           # col.active_border="rgba(2190A4ff)"; # Teal

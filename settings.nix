@@ -56,6 +56,9 @@
   TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
   TerminalsFontSize = 18; # Font size
 
+  # Hyprland
+  rounding = 15;
+
   # ~~~~~~~~~~~~~~~~
   # ~~~~ Styles ~~~~
   # ~~~~~~~~~~~~~~~~
@@ -64,7 +67,6 @@
   colorScheme = "prefer-dark";
   fontAntialiasing = "grayscale";
   styleMode = "dark"; # "dark" or "light"
-  rounding = 25;
   opacity = 0.9;
   shadow = true;
 
