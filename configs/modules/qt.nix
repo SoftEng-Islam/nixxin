@@ -6,7 +6,6 @@
 
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland;xcb";
-
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff

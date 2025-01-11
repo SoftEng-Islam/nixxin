@@ -141,6 +141,7 @@
   hardware.cpu.amd.updateMicrocode =
     lib.mkDefault config.hardware.enableRedistributableFirmware;
   environment.variables = {
+    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # For AMD GPUs
     LIBVA_DRIVER_NAME = "amdgpu";
     VDPAU_DRIVER = "amdgpu";

@@ -20,12 +20,9 @@
   # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
   # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
   # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
-  environment.sessionVariables = {
-    NIXOS_OZONE_WL = "1"; # hint electron apps to use wayland
-    MOZ_ENABLE_WAYLAND = "1"; # ensure enable wayland for Firefox
-    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-    WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
-    NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
+  environment.variables = {
+    HYPRCURSOR_THEME = settings.cursorTheme;
+    HYPRCURSOR_SIZE = toString settings.cursorSize;
   };
 
   home-manager.users.${settings.username} = {

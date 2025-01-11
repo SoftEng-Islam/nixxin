@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ config, settings, lib, pkgs, ... }:
 let
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
@@ -66,15 +66,26 @@ let
 
 in {
   environment.variables = {
-    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.softeng.uid}";
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
-    # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
-    XDG_PICTURES_DIR = "~/Pictures";
-    XDG_RUNTIME_DIR = "/run/user/1000";
-    XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
-    XDG_SESSION_TYPE = "wayland";
-  };
+    XDG_RUNTIME_DIR =
+      "/run/user/${toString config.users.users.${settings.username}.uid}";
 
+    XDG_PICTURES_DIR = "~/Pictures";
+    XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
+
+    XDG_SESSION_TYPE = "wayland";
+
+    # XDG_CACHE_HOME = "/tmp/.cache";
+
+    # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+    # XDG_RUNTIME_DIR = "/run/user/1000";
+  };
+  environment.sessionVariables = {
+    XDG_DATA_DIRS = [
+      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+    ];
+  };
   xdg = {
     portal = {
       enable = true;

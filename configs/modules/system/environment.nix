@@ -23,8 +23,6 @@
       EDITOR = settings.editor;
       VISUAL = settings.visual;
       GTK_THEME = settings.gtkTheme;
-      HYPRCURSOR_THEME = settings.cursorTheme;
-      HYPRCURSOR_SIZE = toString settings.cursorSize;
       LANG = settings.locale;
       XKB_DEFAULT_RULES = "evdev";
 
@@ -33,14 +31,12 @@
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
-      # LIBGL_DRI3_ENABLE = "1";
-      # LIBGL_ALWAYS_INDIRECT = "1";
+      LIBGL_DRI3_ENABLE = "1";
+      LIBGL_ALWAYS_INDIRECT = "1";
 
-      # WLR_DRM_DEVICES = "/dev/dri/card1";
-      # WLR_DRM_NO_ATOMIC = "1";
-      # WLR_VSYNC = "1";
-
-      HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+      WLR_DRM_DEVICES = "/dev/dri/card1";
+      WLR_DRM_NO_ATOMIC = "1";
+      WLR_VSYNC = "1";
 
       # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
       # WAYLAND = "1";
@@ -117,19 +113,20 @@
         + "$GI_TYPELIB_PATH";
     };
     sessionVariables = {
-      # FONTCONFIG_PATH = "/etc/fonts";
-      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
-      # XDG_CACHE_HOME = "/tmp/.cache";
       XCURSOR_THEME = settings.cursorTheme;
       XCURSOR_SIZE = toString settings.cursorSize;
-      # WLR_NO_HARDWARE_CURSORS = 1; # IF your cursor becomes invisible
+
+      WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
+      WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+      NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
+
+      # FONTCONFIG_PATH = "/etc/fonts";
+      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
+
       # Enables portal-based access for apps like VSCode on Wayland
       GTK_USE_PORTAL = "1";
+
       NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
-      XDG_DATA_DIRS = [
-        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-        "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-      ];
     };
   };
 }

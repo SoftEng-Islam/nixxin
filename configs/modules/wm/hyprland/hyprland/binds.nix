@@ -22,7 +22,7 @@
       "$mod, delete, exit,"
       "$mod, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
       "$mod, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
-      "$mod, Z, exec, Zed" # Launch Zed (editor)
+      # "$mod, Z, exec, Zed" # Launch Zed (editor)
       # "$mod Alt, E, exec, thunar" # Launch Thunar (file manager)
       "$mod, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
       # Launch GNOME Settings
@@ -175,50 +175,10 @@
     bind = $mod, T, exec, ~/.config/ignis/scripts/recording.py stop
     bind = $mod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
-
     # Fullscreen screenshot
     # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
     bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
     bind = $mod+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area # Screen snip
     bindl=,Print, exec, mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
-
-    # will switch to a submap called resize
-    bind=$mod,R,exec,echo -n "Resize" > /tmp/hypr_submap
-    bind=$mod,R,submap,resize
-
-    # will start a submap called "resize"
-    submap=resize
-
-    # sets repeatable binds for resizing the active window
-    binde=,l,resizeactive,30 0
-    binde=,h,resizeactive,-30 0
-    binde=,k,resizeactive,0 -30
-    binde=,j,resizeactive,0 30
-
-    # use reset to go back to the global submap
-    bind=,escape,exec,truncate -s 0 /tmp/hypr_submap
-    bind=,escape,submap,reset
-
-    # will reset the submap, meaning end the current one and return to the global one
-    submap=reset
-
-    bind=$mod,A,exec,echo -n "Launch" > /tmp/hypr_submap
-    bind=$mod,A,submap,launch
-
-    submap=launch
-    bind=,F,exec,firefox
-    bind=,D,exec,neovide --no-vsync
-
-    bind=,escape,exec,truncate -s 0 /tmp/hypr_submap
-    bind=,escape,submap,reset
-
-    # Note, that after launching app submap immediately exits.
-    bind=,F,exec,truncate -s 0 /tmp/hypr_submap
-    bind=,F,submap,reset
-    bind=,D,exec,truncate -s 0 /tmp/hypr_submap
-    bind=,D,submap,reset
-
-    # will reset the submap, meaning end the current one and return to the global one
-    submap=reset
   '';
 }
