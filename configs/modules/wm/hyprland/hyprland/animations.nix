@@ -38,15 +38,40 @@
           "md2, 0.4, 0, 0.2, 1" # MD2: quick but smooth transition
         ];
         animation = [
-          "windows, 1, 6, wind, slide"
-          "windowsIn, 1, 6, winIn, slide"
-          "windowsOut, 1, 5, winOut, slide"
-          "windowsMove, 1, 5, wind, slide"
-          "border, 1, 1, liner"
-          "borderangle, 1, 30, liner, loop"
-          "fade, 1, 10, default"
-          "workspaces, 1, 5, wind"
-          "specialWorkspace, 1, 5, workIn, slidevert"
+          # Window transitions
+          "windows, 1, 6, wind, slide" # Default window transition
+          "windowsIn, 1, 6, winIn, slide" # Window entering transition
+          "windowsOut, 1, 5, winOut, slide" # Window exiting transition
+          "windowsMove, 1, 5, wind, slide" # Window move transition
+          "windows, 1, 3, md3_decel, popin 60%" # Window pop-in with deceleration
+
+          # Border transitions
+          "border, 1, 1, liner" # Basic border transition
+          "borderangle, 1, 30, liner, loop" # Animated border angle transition
+
+          # Fade transitions
+          "fade, 1, 10, default" # Simple fade transition
+          "fade, 1, 3, md3_decel" # Fade with deceleration
+          "fadeLayersIn, 1, 2, menu_decel" # Fade layers in with deceleration
+          "fadeLayersOut, 1, 4.5, menu_accel" # Fade layers out with acceleration
+
+          # Workspace transitions
+          "workspaces, 1, 5, wind" # Workspace transition
+          "specialWorkspace, 1, 5, workIn, slidevert" # Special workspace transition with slide
+          "specialWorkspace, 1, 3, md3_decel, slidefadevert 15%" # Special workspace with deceleration and slide fade
+          "specialWorkspace, 1, 3, md3_decel, slidevert" # Special workspace with deceleration and slide
+
+          # Layer transitions
+          "layers, 1, 2, md3_decel, slide" # Layer transition with deceleration
+          "layersIn, 1, 3, menu_decel, slide" # Layers entering with deceleration
+          "layersOut, 1, 1.6, menu_accel" # Layers exiting with acceleration
+
+          # Workspaces transitions with soft acceleration
+          "workspaces, 1, 2.5, softAcDecel, slide" # Soft acceleration workspace transition
+
+          # Additional workspace transitions with menu effects
+          "workspaces, 1, 7, menu_decel, slide" # Workspace transition with deceleration
+          "workspaces, 1, 7, menu_decel, slidefade 15%" # Workspace transition with fade effect
         ];
       };
     };
