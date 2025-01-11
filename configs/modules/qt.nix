@@ -1,11 +1,13 @@
 { pkgs, ... }: {
   environment.variables = {
-    QT_AUTO_SCREEN_SCALE_FACTOR = "1";
+    # Enable automatic screen scaling for Qt applications
+    QT_AUTO_SCREEN_SCALE_FACTOR = "2";
     QT_QPA_PLATFORMTHEME = "qt5ct";
     QT_PLATFORM_PLUGIN = "wayland";
-
+    # Set the scale factor for Qt applications
+    QT_SCALE_FACTOR = "2";
     # Force QT to use wayland
-    QT_QPA_PLATFORM = "wayland;xcb";
+    QT_QPA_PLATFORM = "wayland";
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff

@@ -10,10 +10,6 @@
 
         # Disable window decoration for Wayland Qt applications
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
-        # Enable automatic screen scaling for Qt applications
-        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        # Set the scale factor for Qt applications
-        "QT_SCALE_FACTOR,1"
 
         # env = EDITOR,vim # Set the default editor (uncomment to use vim)
 
