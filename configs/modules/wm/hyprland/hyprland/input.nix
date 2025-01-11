@@ -3,16 +3,34 @@
     wayland.windowManager.hyprland = {
       settings.input = {
         kb_layout = "us,eg";
-        kb_variant = "lang";
+        kb_variant = ",qwerty";
         kb_options = "grp:alt_shift_toggle";
-        follow_mouse = true;
+        follow_mouse = 1;
+        numlock_by_default = true;
+        repeat_rate = 30;
+        repeat_delay = 250;
+        sensitivity = -0.5; # Adjust pointer sensitivity (speed)
+        special_fallthrough = true;
+        float_switch_override_focus = false;
+        left_handed = false;
         touchpad = {
-          natural_scroll = "yes";
+          clickfinger_behavior = true;
           disable_while_typing = true;
-          drag_lock = true;
+          drag_lock = false;
+          middle_button_emulation = true;
+          natural_scroll = "yes";
+          scroll_factor = 0.5;
+          tap-to-click = true;
         };
-        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-        float_switch_override_focus = 2;
+        # below for devices with touchdevice ie. touchscreen
+        touchdevice = {
+          # enabled = true
+        };
+        # below is for table see link above for proper variables
+        tablet = {
+          # transform = 0
+          # left_handed = 0
+        };
       };
     };
   };
