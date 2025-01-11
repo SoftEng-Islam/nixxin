@@ -76,7 +76,7 @@ in {
     XDG_PICTURES_DIR = "~/Pictures";
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
 
-    # XDG_CACHE_HOME = "~/.cache";
+    XDG_CACHE_HOME = "/home/${settings.username}/.cache";
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
@@ -102,7 +102,8 @@ in {
     xdg = {
       enable = true;
       configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
-      cacheHome = "/home/${settings.username}/.local/cache";
+      # cacheHome = "/home/${settings.username}/.local/cache";
+      cacheHome = "/home/${settings.username}/.cache";
       userDirs = {
         enable = true;
         createDirectories = true;
