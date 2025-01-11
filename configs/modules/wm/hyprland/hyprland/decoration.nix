@@ -27,6 +27,11 @@
           # col.shadow = rgba(00000070)
           # col.shadow_inactive = rgba(00000020)
         };
+
+        #=> Dim
+        dim_inactive = true;
+        dim_strength = 0.2;
+        dim_special = 0;
       };
     };
   };
