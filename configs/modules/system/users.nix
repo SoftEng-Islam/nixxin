@@ -11,6 +11,7 @@
       home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
+        "softeng"
         "adbusers"
         "gamemode"
         "adbusers"
