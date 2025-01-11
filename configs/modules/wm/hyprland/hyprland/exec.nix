@@ -3,11 +3,12 @@
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         # "swww init"
-        "swww-daemon --format xrgb &"
+        # "swww-daemon --format xrgb &"
+        "swww-daemon"
         # "swww img ~/Downloads/nixos-chan.png"
 
         # Input method
-        "fcitx5"
+        # "fcitx5"
 
         # Core components (authentication, lock screen, notification daemon)
         "gnome-keyring-daemon --start --components=secrets"

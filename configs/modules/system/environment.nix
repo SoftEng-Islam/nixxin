@@ -24,6 +24,7 @@
         "$HOME/.local/bin"
         "$HOME/.local/share/pnpm"
         "/run/current-system/sw/bin"
+
       ];
 
       NVM_DIR = "$HOME/.nvm";

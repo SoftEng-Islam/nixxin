@@ -10,7 +10,7 @@
     wayland-utils # Wayland utilities (wayland-info)
     waypipe # Network proxy for Wayland clients (applications)
     wayvnc # VNC server for wlroots based Wayland compositors
-    weston # Lightweight and functional Wayland compositor
+    # weston # Lightweight and functional Wayland compositor
     wev # Wayland event viewer
     wf-recorder # Utility program for screen recording of wlroots-based compositors
     wl-gammactl # Contrast, brightness, and gamma adjustments for Wayland
