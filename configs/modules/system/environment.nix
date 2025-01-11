@@ -7,7 +7,8 @@
   # environment.localBinInPath = true;
   environment = {
     variables = {
-      # Add Ignis, Python, npm, yarn, and Sass paths
+      # Customizes the PATH environment variable to include directories for tools like Node.js,
+      # Python, Sass, Yarn, Bun, and Ignis.
       PATH = [
         "${pkgs.nodejs}/bin"
         "${pkgs.nodePackages.npm}/bin"
@@ -20,10 +21,14 @@
         "$HOME/.npm-packages/bin"
         "$PYENV_ROOT/bin:$PATH"
       ];
+
+      # Set the default editors for CLI-based tools.
       EDITOR = settings.editor;
       VISUAL = settings.visual;
-      GTK_THEME = settings.gtkTheme;
+
+      # Defines the system language.
       LANG = settings.locale;
+      # Configures X keyboard settings.
       XKB_DEFAULT_RULES = "evdev";
 
       # Add the glib bin path to the PATH variable
@@ -31,9 +36,12 @@
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
+
+      # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
       LIBGL_ALWAYS_INDIRECT = "1";
 
+      # Adjusts DRM devices, vsync, and atomic modes.
       WLR_DRM_DEVICES = "/dev/dri/card1";
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
@@ -42,65 +50,47 @@
       # WAYLAND = "1";
       # WAYLAND_DISPLAY = "wayland-0";
 
+      # Set backend rendering to Wayland.
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";
-      CLUTTER_BACKEND = "wayland";
       GDK_BACKEND = "wayland";
+
+      CLUTTER_BACKEND = "wayland";
       ELM_ENGINE = "wayland_egl";
       ECORE_EVAS_ENGINE = "wayland_egl";
-      _JAVA_AWT_WM_NONREPARENTING = "1";
       ELECTRON_ENABLE_WAYLAND = "1";
 
-      BUN_INSTALL = "$HOME/.bun";
+      # Java-specific setting for better compatibility with Wayland.
+      _JAVA_AWT_WM_NONREPARENTING = "1";
 
       GDK_PIXBUF_MODULE_FILE =
         "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
 
-      GOPROXY = "direct";
-
       MOZ_DBUS_REMOTE = "1";
+      # Enables Wayland for Mozilla apps and EGL.
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
+
+      # Enables support for non-free (proprietary) software in NixOS.
       NIXPKGS_ALLOW_UNFREE = "1";
 
+      # Optimize Wine performance.
       WINEESYNC = "1";
       WINEFSYNC = "1";
 
+      # Enables Rust backtraces for debugging.
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
 
-      # Colors #
-      # Black = "033[30m";
-      # Blue = "033[34m";
-      # Cyan = "033[36m";
-      # Green = "033[32m";
-      # Magenta = "033[35m";
-      # Red = "033[31m";
-      # White = "033[37m";
-      # Yellow = "033[33m";
-      # # Bright (Bold) Colors:
-      # B_Black = "033[90m";
-      # B_Blue = "033[94m";
-      # B_Cyan = "033[96m";
-      # B_Green = "033[92m";
-      # B_Magenta = "033[95m";
-      # B_Red = "033[91m";
-      # B_White = "033[97m";
-      # B_Yellow = "033[93m";
-      # text format
-      nc = "033[0m";
-      bold = "033[1m";
-      italic = "033[3m";
-      underline = "033[4m";
-      strikeThrough = "033[9m";
-      RESET = "033[0m"; # Reset color
-      # Unicode Characters
-      heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
+      GOPROXY = "direct";
+      BUN_INSTALL = "$HOME/.bun";
 
       QUOTING_STYLE = "literal";
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
       # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
+
+      # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
       GST_PLUGIN_PATH =
         "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
       GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
@@ -119,6 +109,8 @@
       WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
       WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
       NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
+
+      GTK_THEME = settings.gtkTheme;
 
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";

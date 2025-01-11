@@ -1,0 +1,27 @@
+# Colors #
+# Black = "033[30m";
+# Blue = "033[34m";
+# Cyan = "033[36m";
+# Green = "033[32m";
+# Magenta = "033[35m";
+# Red = "033[31m";
+# White = "033[37m";
+# Yellow = "033[33m";
+# # Bright (Bold) Colors:
+# B_Black = "033[90m";
+# B_Blue = "033[94m";
+# B_Cyan = "033[96m";
+# B_Green = "033[92m";
+# B_Magenta = "033[95m";
+# B_Red = "033[91m";
+# B_White = "033[97m";
+# B_Yellow = "033[93m";
+# text format
+nc = "033[0m";
+bold = "033[1m";
+italic = "033[3m";
+underline = "033[4m";
+strikeThrough = "033[9m";
+RESET = "033[0m"; # Reset color
+# Unicode Characters
+heart = "u2764"; # `echo -e "\u2764" Outputs a heart symbol (❤)`
