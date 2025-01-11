@@ -3,7 +3,7 @@
     wayland.windowManager.hyprland = {
       settings.input = {
         kb_layout = "us,eg";
-        # kb_variant = ",qwerty";
+        kb_variant = "";
         kb_options = "grp:alt_shift_toggle";
         follow_mouse = 1;
         numlock_by_default = true;
