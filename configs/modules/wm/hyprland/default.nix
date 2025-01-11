@@ -39,38 +39,87 @@
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
       systemd.enableXdgAutostart = true;
-      plugins = [
-        inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-        # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      ];
       settings = {
+        binds = {
+          # This allows cycling through workspaces when reaching the last one.
+          allow_workspace_cycles = true;
+          scroll_event_delay = 0;
+          workspace_back_and_forth = false;
+          pass_mouse_when_bound = false;
+        };
+        # render section for Hyprland >= v0.42.0
+        render = {
+          # Controls explicit synchronization for rendering.
+          # `0`: Disabled.
+          # `1`: Enabled, but only for clients that explicitly request it.
+          # `2`: Always enabled.
+          explicit_sync = 2;
+
+          # helpful on systems with modern GPUs to avoid tearing when interacting with displays.
+          # `0` = disable
+          # `1` = Enabled only when explicitly required
+          # `2` = Always enabled.
+          explicit_sync_kms = 2;
+
+          # Direct scan-out can improve performance and reduce latency by skipping the compositor and allowing the display to render directly. However, it may not always work depending on hardware, drivers, or specific applications. Setting this to false disables it entirely.
+          direct_scanout = true; # true or false
+        };
         debug = {
           disable_logs = false;
           enable_stdout_logs = true;
         };
         dwindle = {
-          # keep floating dimentions while tiling
           pseudotile = true;
+          smart_split = true;
           preserve_split = true;
-          force_split = 2;
-          split_width_multiplier = 1.5;
-          # no_gaps_when_only = "yes";
+          smart_resizing = true;
+          special_scale_factor = 0.8;
+          # no_gaps_when_only = 0;
+        };
+        master = {
+          new_status = "master";
+          new_on_top = 1;
+          mfact = 0.5;
+          smart_resizing = true;
+          new_on_active = true;
+          drop_at_cursor = true;
         };
         general = {
           layout = "dwindle";
-          gaps_in = 8;
-          gaps_out = 16;
-          border_size = 2;
-          allow_tearing = true;
-          resize_on_border = true;
 
-          # no_cursor_warps = false;
-          # layout = "dwindle";
+          # This just allows the `immediate` window rule to work
+          allow_tearing = true;
+
+          no_focus_fallback = true;
+          gaps_in = 5;
+          gaps_out = 8;
+          gaps_workspaces = 50;
+          border_size = 4;
+          resize_on_border = true;
+          col.inactive_border = "rgba(9e9e9e40)";
+          #=> Active Borders
+          # col.active_border="rgba(3584E4ff)"; # Blue
+          # col.active_border="rgba(2190A4ff)"; # Teal
+          # col.active_border="rgba(3A944Aff)"; # Greesn
+          # col.active_border="rgba(C88800ff)"; # Yellow
+          # col.active_border="rgba(ED5B00ff)"; # Ornage
+          col.active_border = "rgba(E62D42ff)"; # Red
+          # col.active_border="rgba(D56199ff)"; # Pink
+          # col.active_border="rgba(9141ACff)"; # Purple
+          # col.active_border="rgba(6F8396ff)"; # Slate
+
+          #=> Active Border with graid colors
+          # col.active_border="rgba(673ab7ff) rgba(E62D42ff) 45deg";
+
           # col.active_border = "$primary";
-          # col.inactive_border = "rgb(000000)";
-          # "col.inactive_border" = "rgb(000000)";
           # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
           # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
+        };
+        cursor = {
+          no_hardware_cursors = false;
+          enable_hyprcursor = true;
+          warp_on_change_workspace = true;
+          no_warps = true;
         };
         input = {
           kb_layout = "us,eg";
@@ -86,27 +135,30 @@
           float_switch_override_focus = 2;
         };
         decoration = {
-          dim_special = 0.5;
-          # dim_inactive = false;
           rounding = settings.rounding;
           blur = {
-            enabled = true;
+            enabled = false;
             xray = true;
+            ignore_opacity = true;
             special = true;
-            brightness = 1.0;
-            contrast = 1.0;
-            noise = 2.0e-2;
-            passes = 4;
-            size = 12;
             new_optimizations = true;
+            size = 6;
+            passes = 2;
+            brightness = 1;
+            noise = 1.0e-2;
+            contrast = 1;
+            popups = true;
+            popups_ignorealpha = 0.6;
           };
+
           shadow = {
             enabled = true;
-            range = 30;
-            render_power = 4;
-            offset = "2 2";
-            ignore_window = false;
-            # col.shadow = "rgb(000000)";
+            range = 20;
+            offset = "0 2";
+            render_power = 2;
+            ignore_window = true;
+            # col.shadow = rgba(00000070)
+            # col.shadow_inactive = rgba(00000020)
           };
         };
         animations = {
@@ -132,13 +184,17 @@
         };
         gestures = {
           workspace_swipe = true;
-          workspace_swipe_distance = 200;
-          workspace_swipe_fingers = 3;
-          workspace_swipe_invert = false;
-          workspace_swipe_forever = true;
+          workspace_swipe_distance = 700;
+          workspace_swipe_fingers = 4;
+          workspace_swipe_cancel_ratio = 0.2;
+          workspace_swipe_min_speed_to_force = 5;
+          workspace_swipe_direction_lock = true;
+          workspace_swipe_direction_lock_threshold = 10;
+          workspace_swipe_create_new = true;
         };
         misc = {
           vrr = 2;
+          vfr = true;
           force_default_wallpaper = -1;
           animate_manual_resizes = true;
           animate_mouse_windowdragging = true;
@@ -146,21 +202,6 @@
           render_ahead_of_time = false;
           disable_hyprland_logo = true;
         };
-        plugin = {
-          # hyprexpo = {
-          #   columns = 3;
-          #   gap_size = 5;
-          #   bg_col = "rgb(111111)";
-          #   workspace_method =
-          #     "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
-          #   enable_gesture = true; # laptop touchpad
-          #   gesture_fingers = 3; # 3 or 4
-          #   gesture_distance = 300; # how far is the "max"
-          #   gesture_positive =
-          #     true; # positive = swipe down. Negative = swipe up.
-          # };
-        };
-
         # source = [ "~/.cache/ignis/material/dark_colors-hyprland.conf" ];
         # extraConfig = "";
       };

@@ -84,26 +84,13 @@
     SAVEHIST=2500
     setopt appendhistory
 
-    # -- pnpm --
-    export PNPM_HOME="/home/softeng/.local/share/pnpm"
-    case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
-    esac
-    # -- pnpm end --
-
     # -- nvm --
-    export NVM_DIR="$HOME/.nvm"
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
     # -- nvm end --
 
     # bun completions
     [ -s "/home/softeng/.bun/_bun" ] && source "/home/softeng/.bun/_bun"
-    # -- bun --
-    export BUN_INSTALL="$HOME/.bun"
-    export PATH="$BUN_INSTALL/bin:$PATH"
-    # -- bun end --
 
     # Set-up FZF key bindings (CTRL R for fuzzy history finder)
     source <(fzf --zsh)
@@ -136,23 +123,6 @@
     # under VCS as dirty. This makes repository status check for large repositories
     # much, much faster.
     DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-    # Ignore commands that start with spaces and duplicates.
-    export HISTCONTROL=ignoreboth
-
-    # Don't add certain commands to the history file.
-    export HISTIGNORE="&:[bf]g:c:clear:history:exit:q:pwd:* --help"
-
-    # Use custom `less` colors for `man` pages.
-    export LESS_TERMCAP_md="$(
-      tput bold 2>/dev/null
-      tput setaf 2 2>/dev/null
-    )"
-    export LESS_TERMCAP_me="$(tput sgr0 2>/dev/null)"
-
-    # Make new shells get the history lines from all previous
-    # shells instead of the default "last window closed" history.
-    export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
     # The following line to use case-sensitive completion.
     CASE_SENSITIVE="false"

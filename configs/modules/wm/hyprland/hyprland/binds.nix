@@ -5,7 +5,6 @@
     "$script" = "~/.config/eww/scripts/toggle_osd.sh";
     # Mouse bindings.
     bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
-    binds = { allow_workspace_cycles = true; };
     binde = [
       ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
       ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"

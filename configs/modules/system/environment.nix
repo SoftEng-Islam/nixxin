@@ -1,4 +1,4 @@
-{ config, settings, pkgs, ... }: {
+{ config, lib, settings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
 
@@ -9,7 +9,7 @@
     variables = {
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun, and Ignis.
-      PATH = [
+      PATH = lib.unique [
         "${pkgs.nodejs}/bin"
         "${pkgs.nodePackages.npm}/bin"
         "${pkgs.python3}/bin"
@@ -19,12 +19,35 @@
         "$HOME/.cache/ignis/bin"
         "$HOME/.npm-global/bin"
         "$HOME/.npm-packages/bin"
-        "$PYENV_ROOT/bin:$PATH"
+        "/run/wrappers/bin"
+        "${pkgs.glib.dev}/bin"
+        "$HOME/.local/bin"
+        "$HOME/.local/share/pnpm"
       ];
 
+      NVM_DIR = "$HOME/.nvm";
+      PNPM_HOME = "/home/softeng/.local/share/pnpm";
       # Set the default editors for CLI-based tools.
       EDITOR = settings.editor;
       VISUAL = settings.visual;
+
+      # Ignore commands that start with spaces and duplicates.
+      HISTCONTROL = "ignoreboth";
+
+      # Don't add certain commands to the history file.
+      HISTIGNORE = "&:[bf]g:c:clear:history:exit:q:pwd:* --help";
+
+      # Use custom `less` colors for `man` pages.
+      LESS_TERMCAP_md = ''
+        $(
+              tput bold 2>/dev/null
+              tput setaf 2 2>/dev/null
+            )'';
+      LESS_TERMCAP_me = "$(tput sgr0 2>/dev/null)";
+
+      # Make new shells get the history lines from all previous
+      # shells instead of the default "last window closed" history.
+      PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
 
       # Defines the system language.
       LANG = settings.locale;
