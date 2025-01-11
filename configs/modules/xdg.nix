@@ -69,13 +69,12 @@ in {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
     XDG_RUNTIME_DIR =
       "/run/user/${toString config.users.users.${settings.username}.uid}";
-
     XDG_PICTURES_DIR = "~/Pictures";
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
 
     XDG_SESSION_TYPE = "wayland";
 
-    # XDG_CACHE_HOME = "/tmp/.cache";
+    XDG_CACHE_HOME = "~/.cache";
 
     # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
     # XDG_RUNTIME_DIR = "/run/user/1000";

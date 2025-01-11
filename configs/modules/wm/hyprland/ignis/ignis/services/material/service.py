@@ -16,7 +16,7 @@ from ignis.services.wallpaper import CACHE_WALLPAPER_PATH
 from ignis.options import options
 from user_options import user_options
 
-from .constants import MATERIAL_CACHE_DIR, TEMPLATES, SAMPLE_WALL
+from .constants import MATERIAL_CACHE_DIR, TEMPLATES, default_wallpaper
 from .util import rgba_to_hex, calculate_optimal_size
 
 app = IgnisApp.get_default()
@@ -36,8 +36,8 @@ class MaterialService(BaseService):
         )
 
     def __on_colors_not_found(self) -> None:
-        options.wallpaper.set_wallpaper_path(SAMPLE_WALL)
-        self.generate_colors(SAMPLE_WALL)
+        options.wallpaper.set_wallpaper_path(default_wallpaper)
+        self.generate_colors(default_wallpaper)
         Utils.exec_sh_async("hyprctl reload")
 
     def get_colors_from_img(self, path: str, dark_mode: bool) -> dict[str, str]:

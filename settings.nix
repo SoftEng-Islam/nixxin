@@ -57,7 +57,7 @@
   TerminalsFontSize = 18; # Font size
 
   # Hyprland
-  rounding = 15;
+  rounding = 10;
 
   # ~~~~~~~~~~~~~~~~
   # ~~~~ Styles ~~~~
