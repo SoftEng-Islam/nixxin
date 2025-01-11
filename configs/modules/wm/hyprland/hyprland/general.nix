@@ -30,14 +30,14 @@
           gaps_workspaces = 50;
           border_size = 4;
           resize_on_border = true;
-          col.inactive_border = "rgba(9e9e9e40)";
+          #col.inactive_border = "rgba(9e9e9e40)";
           #=> Active Borders
           # col.active_border="rgba(3584E4ff)"; # Blue
           # col.active_border="rgba(2190A4ff)"; # Teal
           # col.active_border="rgba(3A944Aff)"; # Greesn
           # col.active_border="rgba(C88800ff)"; # Yellow
           # col.active_border="rgba(ED5B00ff)"; # Ornage
-          col.active_border = "rgba(E62D42ff)"; # Red
+          #col.active_border = "rgba(E62D42ff)"; # Red
           # col.active_border="rgba(D56199ff)"; # Pink
           # col.active_border="rgba(9141ACff)"; # Purple
           # col.active_border="rgba(6F8396ff)"; # Slate

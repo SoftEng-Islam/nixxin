@@ -16,7 +16,7 @@
       ];
       bind = [
         # Window/Session actions.
-        "$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
+        #"$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
         "$mod, Q, killactive,"
         "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
         "$mod, delete, exit,"
