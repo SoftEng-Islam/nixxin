@@ -37,7 +37,7 @@
           # col.active_border="rgba(3A944Aff)"; # Greesn
           # col.active_border="rgba(C88800ff)"; # Yellow
           # col.active_border="rgba(ED5B00ff)"; # Ornage
-          #col.active_border = "rgba(E62D42ff)"; # Red
+          "col.active_border" = "rgba(E62D42ff)"; # Red
           # col.active_border="rgba(D56199ff)"; # Pink
           # col.active_border="rgba(9141ACff)"; # Purple
           # col.active_border="rgba(6F8396ff)"; # Slate
