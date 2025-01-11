@@ -8,7 +8,7 @@
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
     ];
-    wayland.windowManager.hyprland.settings.plugin = {
+    wayland.windowManager.hyprland.extraConfig = ''
       hyprexpo = {
         columns = 3;
         gap_size = 5;
@@ -33,10 +33,10 @@
         col.text = "rgba(DCE3EEFF)";
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        # hyprbars-button = rgb(ff4040), 20, , hyprctl dispatch killactive
-        # hyprbars-button = rgb(eeee11), 20, , hyprctl dispatch fullscreen 1
-        # hyprbars-button = rgb(eeee21), 20, , hyprctl dispatch togglefloating
+        hyprbars-button = rgb(ff4040), 20, , hyprctl dispatch killactive
+        hyprbars-button = rgb(eeee11), 20, , hyprctl dispatch fullscreen 1
+        hyprbars-button = rgb(eeee21), 20, , hyprctl dispatch togglefloating
       };
-    };
+    '';
   };
 }

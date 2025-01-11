@@ -4,7 +4,7 @@
       exec-once = [
         # "swww init"
         # "swww-daemon --format xrgb &"
-        "swww-daemon"
+        # "swww-daemon"
         # "swww img ~/Downloads/nixos-chan.png"
 
         # Input method
@@ -25,8 +25,8 @@
         # "hypridle"
 
         # Clipboard: history
-        # "clipman store &"
-        # "wl-paste --watch cliphist store &"
+        "clipman store &"
+        "wl-paste --watch cliphist store &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
 
