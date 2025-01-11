@@ -60,6 +60,25 @@
       ECORE_EVAS_ENGINE = "wayland_egl";
       ELECTRON_ENABLE_WAYLAND = "1";
 
+      # Configure the cursor theme and size for graphical sessions.
+      XCURSOR_THEME = settings.cursorTheme;
+      XCURSOR_SIZE = toString settings.cursorSize;
+
+      # Optimize rendering and disable hardware cursors for Wayland-based compositors.
+      WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
+      WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+
+      GTK_THEME = settings.gtkTheme;
+
+      # FONTCONFIG_PATH = "/etc/fonts";
+      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
+
+      # Enables portal-based access for apps like VSCode to integrate better with Wayland.
+      GTK_USE_PORTAL = "1";
+
+      NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
+      NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
+
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
@@ -102,23 +121,6 @@
         + "${pkgs.gst_all_1.gst-plugins-ugly}/lib/girepository-1.0:"
         + "$GI_TYPELIB_PATH";
     };
-    sessionVariables = {
-      XCURSOR_THEME = settings.cursorTheme;
-      XCURSOR_SIZE = toString settings.cursorSize;
-
-      WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-      WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
-      NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
-
-      GTK_THEME = settings.gtkTheme;
-
-      # FONTCONFIG_PATH = "/etc/fonts";
-      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
-
-      # Enables portal-based access for apps like VSCode on Wayland
-      GTK_USE_PORTAL = "1";
-
-      NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
-    };
+    # sessionVariables = { };
   };
 }
