@@ -1,8 +1,29 @@
 { inputs, pkgs, settings, ... }: {
   # swww = "swww img";
   # effect = "--transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2";
-  imports = [ ./packages.nix ./ignis ];
+  imports = [
+    ./packages.nix
+    ./ignis
 
+    ./hyprland/source.nix
+    ./hyprland/monitor.nix
+    ./hyprland/keybinding.nix
+    ./hyprland/env.nix
+    ./hyprland/exec.nix
+    ./hyprland/input.nix
+    ./hyprland/binds.nix
+    ./hyprland/animations.nix
+    ./hyprland/cursor.nix
+    ./hyprland/decoration.nix
+    ./hyprland/general.nix
+    ./hyprland/gestures.nix
+    ./hyprland/misc.nix
+    ./hyprland/render.nix
+    ./hyprland/rules.nix
+    ./hyprland/scripts.nix
+    # ./hyprland/hyprlock.conf
+    # ./hyprland/plugins.nix
+  ];
   programs = {
     uwsm.enable = false;
     hyprlock.enable = false;
@@ -36,26 +57,6 @@
   };
 
   home-manager.users.${settings.username} = {
-    imports = [
-      ./hyprland/source.nix
-      ./hyprland/monitor.nix
-      ./hyprland/keybinding.nix
-      ./hyprland/env.nix
-      ./hyprland/exec.nix
-      ./hyprland/input.nix
-      ./hyprland/binds.nix
-      ./hyprland/animations.nix
-      ./hyprland/cursor.nix
-      ./hyprland/decoration.nix
-      ./hyprland/general.nix
-      ./hyprland/gestures.nix
-      ./hyprland/misc.nix
-      ./hyprland/render.nix
-      ./hyprland/rules.nix
-      ./hyprland/scripts.nix
-      # ./hyprland/hyprlock.conf
-      # ./hyprland/plugins.nix
-    ];
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
