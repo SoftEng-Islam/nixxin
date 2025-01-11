@@ -34,5 +34,4 @@ for monitor in range(Utils.get_n_monitors()):
 Launcher()
 Powermenu()
 OSD()
-
 Settings()
