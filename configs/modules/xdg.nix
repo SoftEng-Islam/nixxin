@@ -67,17 +67,16 @@ let
 in {
   environment.variables = {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
-    XDG_RUNTIME_DIR =
-      "/run/user/${toString config.users.users.${settings.username}.uid}";
+    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.username}.uid}";
+    # XDG_RUNTIME_DIR = "/run/user/1000";
+
+    XDG_SESSION_TYPE = "wayland";
+    # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+
     XDG_PICTURES_DIR = "~/Pictures";
     XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
 
-    XDG_SESSION_TYPE = "wayland";
-
-    XDG_CACHE_HOME = "~/.cache";
-
-    # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
-    # XDG_RUNTIME_DIR = "/run/user/1000";
+    # XDG_CACHE_HOME = "~/.cache";
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
