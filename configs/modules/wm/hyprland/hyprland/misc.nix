@@ -18,7 +18,7 @@
         new_window_takes_over_fullscreen = 2;
         swallow_regex = "(foot|kitty|allacritty|Alacritty)";
         # frame pre-rendering
-        render_ahead_of_time = true;
+        render_ahead_of_time = false;
       };
     };
   };
