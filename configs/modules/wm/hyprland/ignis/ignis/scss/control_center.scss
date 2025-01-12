@@ -11,15 +11,15 @@
         padding: 1rem;
         margin-bottom: 1rem;
     }
-    
+
     .qs-main-box {
         margin-top: 0.5rem;
     }
-    
+
     .user {
         margin-top: 1rem;
     }
-    
+
     .qs-button {
         @include hover.hover(colors.$surfaceContainerHigh);
         color: colors.$onSurface;
@@ -27,25 +27,25 @@
         border-radius: 1.2rem;
         transition: 0.3s;
         padding: 0.3rem 0.8rem;
-    
+
         &.active {
             @include hover.hover(colors.$primary);
             color: colors.$surface;
         }
-    
+
     }
-    
+
     .qs-button-label {
         margin-left: 0.5rem;
     }
-    
+
     .control-center-menu {
         background-color: colors.$surfaceContainerHigh;
         border-radius: 1rem;
         padding: 1rem;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
-    
+        height: 50rem; // test
         separator {
             margin: 0.5rem 0;
         }
@@ -54,11 +54,11 @@
     .control-center-menu-last-row {
         margin-bottom: 0;
     }
-    
+
     .record-icon {
         color: colors.$error;
     }
-    
+
     .record-dropdown {
         button {
             all: unset;
@@ -66,7 +66,7 @@
             font-size: 0.9rem;
         }
     }
-    
+
     .record-cancel-button,
     .record-start-button {
         color: colors.$surface;
@@ -75,46 +75,46 @@
         font-size: 0.95rem;
         transition: 0.3s;
     }
-    
+
     .record-cancel-button {
         @include hover.hover(colors.$surfaceContainerHigh);
         color: colors.$onSurface;
         border: 1px solid colors.$primary;
     }
-    
+
     .record-start-button {
         @include hover.hover(colors.$primary);
     }
-    
+
     .volume-entry {
         @include hover.hover(colors.$surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
     }
-    
+
     .volume-entry-list-header-label {
         font-size: 1.35rem;
         margin-left: 0.5rem;
     }
-    
+
     .volume-entry-list-header-box {
         margin-bottom: 0.75rem;
     }
-    
+
     .user-name-box {
         margin-left: 0.5rem;
     }
-    
+
     .user-name {
         font-size: 1.2rem;
     }
-    
+
     .user-name-secondary {
         color: colors.$onSurfaceVariant;
         font-size: 0.9rem;
     }
-    
+
     .user-settings {
         @include hover.hover(colors.$surfaceContainerHighest);
         color: colors.$onSurface;
@@ -124,7 +124,7 @@
         margin-right: 0.5rem;
         transition: 0.3s;
     }
-    
+
     .user-power {
         @include hover.hover(colors.$primary);
         color: colors.$surface;
@@ -133,16 +133,16 @@
         margin: 0.4rem 0rem;
         transition: 0.3s;
     }
-    
+
     .network-header-box {
         margin-bottom: 0.5rem;
     }
-    
+
     .network-header-label {
         font-size: 1.35rem;
         margin-left: 0.75rem;
     }
-    
+
     .network-item {
         @include hover.hover(colors.$surfaceContainerHigh);
         transition: 0.3s;
@@ -158,7 +158,7 @@
             color: colors.$onSurfaceVariant;
         }
     }
-    
+
     .volume-entry-label {
         margin-left: 0.5rem;
         margin-right: 1rem;

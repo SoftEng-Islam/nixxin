@@ -2,8 +2,6 @@
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.settings = {
       "$mod" = "SUPER";
-      "$EWW_SCRIPTS" = "~/.config/eww/scripts";
-      "$script" = "~/.config/eww/scripts/toggle_osd.sh";
       # Mouse bindings.
       bindm = [ "$mod, mouse:272, movewindow" "$mod, mouse:273, resizewindow" ];
       binde = [
@@ -19,18 +17,23 @@
         #"$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
         "$mod, Q, killactive,"
         "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
-        "$mod, delete, exit,"
+        "Ctrl $mod, delete, exec, hyprctl dispatch exit" # Logout
+        "Ctrl Alt, delete, exec, reboot" # Reboot System
+        "Ctrl Shift, Escape, exec, resources" # Launch GNOME System monitor
+
         "$mod, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
         "$mod, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
-        # "$mod, Z, exec, Zed" # Launch Zed (editor)
-        # "$mod Alt, E, exec, thunar" # Launch Thunar (file manager)
         "$mod, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
-        # Launch GNOME Settings
         "Ctrl $mod, V, exec, pavucontrol" # Launch pavucontrol (volume mixer)
-        "Ctrl Shift, Escape, exec, gnome-system-monitor" # Launch GNOME System monitor
-        "Ctrl $mod, Slash, exec, pkill anyrun || anyrun" # Toggle fallback launcher: anyrun
-        "$mod Alt, Slash, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
 
+        # Disabled Temporery
+        # "Ctrl $mod, Slash, exec, pkill anyrun || anyrun" # Toggle fallback launcher: anyrun
+
+        # fuzzel Configuration File
+        # XDG_CONFIG_HOME/fuzzel/fuzzel.ini
+        "$mod, exec, pkill anyrun || fuzzel -b 000000ff -t ffffff90 --use-bold --icon-theme=Papirus-Dark" # Toggle fallback launcher: fuzzel
+
+        # Launch Gnome Control Center
         ''
           $mod, I, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center
         ''
@@ -113,19 +116,16 @@
         "$mod, mouse:274, killactive,"
 
         # Move active window to a workspace.
-        "$mod SHIFT, 1, movetoworkspace, 1"
-        "$mod SHIFT, 2, movetoworkspace, 2"
-        "$mod SHIFT, 3, movetoworkspace, 3"
-        "$mod SHIFT, 4, movetoworkspace, 4"
-        "$mod SHIFT, 5, movetoworkspace, 5"
-        "$mod SHIFT, 6, movetoworkspace, 6"
-        "$mod SHIFT, 7, movetoworkspace, 7"
-        "$mod SHIFT, 8, movetoworkspace, 8"
-        "$mod SHIFT, 9, movetoworkspace, 9"
-        "$mod SHIFT, 0, movetoworkspace, 10"
-        "$mod CTRL SHIFT, l, movetoworkspace, r+1"
-        "$mod CTRL SHIFT, h, movetoworkspace, r-1"
-
+        "$mod ALT, 1, movetoworkspace, 1"
+        "$mod ALT, 2, movetoworkspace, 2"
+        "$mod ALT, 3, movetoworkspace, 3"
+        "$mod ALT, 4, movetoworkspace, 4"
+        "$mod ALT, 5, movetoworkspace, 5"
+        "$mod ALT, 6, movetoworkspace, 6"
+        "$mod ALT, 7, movetoworkspace, 7"
+        "$mod ALT, 8, movetoworkspace, 8"
+        "$mod ALT, 9, movetoworkspace, 9"
+        "$mod ALT, 0, movetoworkspace, 10"
         # Move active window to a workspace silent.
         "$mod SHIFT, 1, movetoworkspacesilent, 1"
         "$mod SHIFT, 2, movetoworkspacesilent, 2"
@@ -137,26 +137,17 @@
         "$mod SHIFT, 8, movetoworkspacesilent, 8"
         "$mod SHIFT, 9, movetoworkspacesilent, 9"
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
+        # Move active window to a workspace with Arrows.
+        "$mod CTRL ALT, Up, movetoworkspace, r+1"
+        "$mod CTRL ALT, Down, movetoworkspace, r-1"
+        "$mod Ctrl ALT, Right, movetoworkspace, +1"
+        "$mod Ctrl ALT, Left, movetoworkspace, -1"
 
         #/# bind = Super+Shift, Page_↑/↓,, # Window: move to workspace left/right
         "$mod Alt, Page_Down, movetoworkspace, +1"
         "$mod Alt, Page_Up, movetoworkspace, -1"
         "$mod Shift, Page_Down, movetoworkspace, +1"
         "$mod Shift, Page_Up, movetoworkspace, -1"
-
-        # "$mod, F, exec, $EWW_SCRIPTS/select_wallpaper.sh"
-        # "$mod SHIFT, F, exec, $EWW_SCRIPTS/generate_wallpaper.sh"
-        # "$mod, Z, exec, $EWW_SCRIPTS/toggle_launcher.sh"
-        # "$mod, X, exec, $EWW_SCRIPTS/toggle_control_center.sh"
-        # "$mod, M, exec, $EWW_SCRIPTS/toggle_powermenu.sh"
-        # "$mod, U, exec, $EWW_SCRIPTS/picker.sh"
-
-        # # Sink volume raise
-        # ",XF86AudioRaiseVolume, exec, $script --up"
-        # # Sink volume lower
-        # ",XF86AudioLowerVolume, exec, $script --down"
-        # # Sink volume toggle mute
-        # ",XF86AudioMute, exec, $script --toggle"
       ];
       bindr = [
         "Ctrl $mod , R, exec, killall ags ydotool; ags &"

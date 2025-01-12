@@ -69,7 +69,7 @@ in {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
     # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.username}.uid}";
     # XDG_RUNTIME_DIR = "/run/user/1000";
-
+    # XDG_CONFIG_HOME = "";
     XDG_SESSION_TYPE = "wayland";
     # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
 
@@ -97,6 +97,16 @@ in {
       configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
+
+  # ----  Under Test ---- #
+  # xdg.configFile = {
+  #   "fish".source = ./.config/fish;
+  #   "foot".source = ./.config/foot;
+  #   "fuzzel".source = ./.config/fuzzel;
+  #   "mpv".source = ./.config/mpv;
+  #   "thorium-flags.conf".source = ./.config/thorium-flags.conf;
+  #   "starship.toml".source = ./.config/starship.toml;
+  # };
 
   home-manager.users.${settings.username} = {
     xdg = {
