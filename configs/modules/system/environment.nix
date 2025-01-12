@@ -47,10 +47,6 @@
             )'';
       LESS_TERMCAP_me = "$(tput sgr0 2>/dev/null)";
 
-      # Make new shells get the history lines from all previous
-      # shells instead of the default "last window closed" history.
-      PROMPT_COMMAND = "history -a; $PROMPT_COMMAND";
-
       # Defines the system language.
       LANG = settings.locale;
       # Configures X keyboard settings.

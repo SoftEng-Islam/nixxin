@@ -124,6 +124,11 @@
     # much, much faster.
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
+
+    # Make new shells get the history lines from all previous
+    # shells instead of the default "last window closed" history.
+    # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
+
     # The following line to use case-sensitive completion.
     CASE_SENSITIVE="false"
     # Uncomment the following line to use hyphen-insensitive completion.
