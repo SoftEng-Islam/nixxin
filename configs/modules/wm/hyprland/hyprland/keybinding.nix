@@ -14,7 +14,7 @@
       ];
       bind = [
         # Window/Session actions.
-        #"$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
+        # "$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
         "$mod, Q, killactive,"
         "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
         "Ctrl $mod, delete, exec, hyprctl dispatch exit" # Logout
@@ -31,7 +31,7 @@
 
         # fuzzel Configuration File
         # XDG_CONFIG_HOME/fuzzel/fuzzel.ini
-        ",$mod, exec, fuzzel -b 000000ff -t ffffff90 --use-bold --icon-theme=Papirus-Dark" # Toggle fallback launcher: fuzzel
+        "$mod,D, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
 
         # Launch Gnome Control Center
         ''
