@@ -91,17 +91,19 @@ home-manager switch --flake .
 
 ## Themes
 
-![Screen](./assets/catppuccin/overview.png)
+<!-- ![Screen](./assets/catppuccin/overview.png)
 
 ![Screen2](./assets/gruvbox/overview.png)
 
-![Screen3](./assets/everforest/overview.png)
+![Screen3](./assets/everforest/overview.png) -->
+
+## Errors
+
+```bash
+    journalctl -xe | grep home-manager
+```
 
 ## Credits
-
-https://github.com/Serpentian/AlfheimOS
-- [librephoenix/nixos-config](https://github.com/librephoenix/nixos-config?tab=readme-ov-file) - The repo structure is heavily inspired by this repo.
-- Also, check out his [NixOS videos](https://piped.video/channel/UCeZyoDTk0J-UPhd7MUktexw), fantastic entry point to NixOS.
 
 Enjoy!
 

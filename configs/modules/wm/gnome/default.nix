@@ -17,8 +17,8 @@
   services.gnome.gnome-keyring.enable = true;
   services.gnome.gnome-online-accounts.enable = true;
   services.gnome.games.enable = false;
-  services.gnome.localsearch.enable = true;
-  services.gnome.tinysparql.enable = true; # indexing files
+  services.gnome.localsearch.enable = false;
+  services.gnome.tinysparql.enable = false; # indexing files
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # services.gnome.core-developer-tools.enable = true;
 
