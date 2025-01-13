@@ -1,50 +1,74 @@
 { pkgs, ... }: rec {
-  # ---- SYSTEM SETTINGS ---- #
+  # ------------------ #
+  # ---- SETTINGS ---- #
+  # ------------------ #
   system = "x86_64-linux"; # Replace with your system architecture
   hostName = "nixos"; # Hostname
-  profile = "desktop"; # select a profile defined from my profiles directory
-  timezone = "Africa/Cairo"; # Select timezone
-  timeFormat = 12;
-  locale = "en_US.UTF-8"; # Select locale
-  bootMode = "uefi"; # uefi or bios
   systemStateVersion = "24.05";
   homeStateVersion = "24.11";
-  ethernet = "eno1";
-  wlanInterface = "wlp0s19f2u5";
+  profile = "desktop"; # select a profile defined from my profiles directory
 
+  # ---- Boot ---- #
+  bootMode = "uefi"; # uefi or bios
   # mount path for efi boot partition; only used for uefi boot mode
   bootMountPath = "/boot";
-
   # device identifier for grub; only used for legacy (bios) boot mode
   grubDevice = "";
 
+  # ---- Date/Time & Languages ---- #
+  timezone = "Africa/Cairo"; # Select timezone
+  timeFormat = 12;
+  locale = "en_US.UTF-8"; # Select locale
+  mainlanguage = "English"; # Select Your Language
+  languages = [ "arabic" "france" ]; # Add Other Languages that you know
+
+  # ---- Networks ---- #
+  ethernet = "eno1";
+  wlanInterface = "wlp0s19f2u5";
+
+  # ---- Hardware ---- #
   gpuType = "amd"; # amd, intel or nvidia;
+  # APU = "amd";
+  # CPU = "amd";
+  # StorageType = "";
 
-  # ----- USER SETTINGS ----- #
-  name = "Islam Ahmed"; # Name/identifier
-  username = "softeng"; # Username
-  email = "softeng.islam@gmail.com"; # Email (git config)
-
+  # ---- Dotfiles Inforamtions ---- #
   dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
 
+  # ---- Window/Desktop Managers ---- #
   defaultSession = "hyprland"; # hyprland or gnome
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
   # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
+  # ----------------------------- #
+  # ----- USER Inforamtions ----- #
+  # ----------------------------- #
+  name = "Islam Ahmed"; # Name/identifier
+  username = "softeng"; # Username
+  email = "softeng.islam@gmail.com"; # Email (git config)
+
+  # ---------------------- #
   # ---- Web Browsers ---- #
+  # ---------------------- #
   browser = "brave"; # Default Browser;
   browserPkg = pkgs.brave;
 
-  # ---- Terminals ---- #
+  # ---------------------- #
+  # ---- Terminals ------- #
+  # ---------------------- #
   term = "kitty"; # Default terminal command
   termPkg = pkgs.kitty;
 
-  # ---- Editors ---- #
+  # ---------------------- #
+  # ---- Editors --------- #
+  # ---------------------- #
   editor = "nvim"; # Default editor
   visual = "nvim";
   editorPkg = pkgs.neovim;
 
-  # ---- Fonts ---- #
+  # ---------------------- #
+  # ---- Fonts ----------- #
+  # ---------------------- #
   fontAntialiasing = "grayscale";
   fontName = "JetBrainsMonoNL Nerd Font Mono"; # Selected Font
   fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
@@ -57,13 +81,17 @@
   TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
   TerminalsFontSize = 18; # Font size
 
-  # ---- Styles ---- #
+  # ------------------------ #
+  # ----- Styles ----------- #
+  # ------------------------ #
   # Blue, Teal, Greesn, Yellow, Ornage, Red, Pink, Purple, Slate
   accentColor = "red";
   themeName = "nixxin";
+
   # ---- Mode ---- #
   styleMode = "dark"; # "dark" or "light"
   colorScheme = "prefer-dark";
+
   # ---- Window Properties ---- #
   opacity = 0.9; # The windows Opacity
   shadow = true; # enable shadow for Hyprland
