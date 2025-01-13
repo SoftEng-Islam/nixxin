@@ -1,11 +1,8 @@
 { config, lib, settings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
-
-  # /nix/store/jxhvcy7ckv5nzqqb1rxl72wv09dxa84x-gstreamer-1.24.7/lib/../libexec/gstreamer-1.0/gst-plugin-scanner -l /nix/store/r4qg6d6jybpyj4kjql45a5c42lwnyz25-localsearch-3.8.1/libexec/.localsearch-3-wrapped
-
-  # environment.localBinInPath = true;
   environment = {
+    localBinInPath = true;
     variables = {
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun, and Ignis.
