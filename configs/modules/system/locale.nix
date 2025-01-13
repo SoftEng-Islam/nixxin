@@ -81,10 +81,10 @@
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
     GLFW_IM_MODULE = "ibus";
-    GTK_IM_MODULE = "fcitx";
-    INPUT_METHOD = "fcitx";
-    QT_IM_MODULE = "fcitx";
     SDL_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    INPUT_METHOD = "fcitx";
     XMODIFIERS = "@im=fcitx";
   };
 
