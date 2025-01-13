@@ -31,20 +31,21 @@
   wm = [ "hyprland" "gnome" ]; # Selected window manager or desktop environment;
   # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
-  # Web Browsers
+  # ---- Web Browsers ---- #
   browser = "brave"; # Default Browser;
   browserPkg = pkgs.brave;
 
-  # Terminals
+  # ---- Terminals ---- #
   term = "kitty"; # Default terminal command
   termPkg = pkgs.kitty;
 
-  # Editors
+  # ---- Editors ---- #
   editor = "nvim"; # Default editor
   visual = "nvim";
   editorPkg = pkgs.neovim;
 
-  # Fonts
+  # ---- Fonts ---- #
+  fontAntialiasing = "grayscale";
   fontName = "JetBrainsMonoNL Nerd Font Mono"; # Selected Font
   fontPackage = pkgs.nerd-fonts.jetbrains-mono; # Typeface made for developers
   monospaceFont = fontName;
@@ -56,34 +57,32 @@
   TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
   TerminalsFontSize = 18; # Font size
 
-  # Hyprland
-  rounding = 10;
-
-  # ~~~~~~~~~~~~~~~~
-  # ~~~~ Styles ~~~~
-  # ~~~~~~~~~~~~~~~~
-  themeName = "gruvbox-dark-hard";
-  accentColor = "purple";
-  colorScheme = "prefer-dark";
-  fontAntialiasing = "grayscale";
+  # ---- Styles ---- #
+  # Blue, Teal, Greesn, Yellow, Ornage, Red, Pink, Purple, Slate
+  accentColor = "red";
+  themeName = "nixxin";
+  # ---- Mode ---- #
   styleMode = "dark"; # "dark" or "light"
-  opacity = 0.9;
-  shadow = true;
+  colorScheme = "prefer-dark";
+  # ---- Window Properties ---- #
+  opacity = 0.9; # The windows Opacity
+  shadow = true; # enable shadow for Hyprland
+  rounding = 10; # rounding corners for Hyprland windwos
 
-  # GTK
+  # ---- GTK ---- #
   gtkTheme = "adw-gtk3-dark";
   gtkPackage = pkgs.adw-gtk3;
 
-  # Qt
+  # ---- Qt ---- #
   qtPlatformTheme = "kde"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
   qtStyle = "adwaita-dark";
 
-  # Icons
+  # ---- Icons ---- #
   iconNameLight = "Papirus";
   iconNameDark = "Papirus-Dark";
   iconPackage = pkgs.papirus-icon-theme;
 
-  # Cursor
+  # ---- Cursor ---- #
   cursorPackage = pkgs.bibata-cursors;
   cursorTheme = "Bibata-Modern-Ice"; # Cursor Name
   cursorSize = 24; # Cursor Size
