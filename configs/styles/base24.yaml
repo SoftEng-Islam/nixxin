@@ -3,12 +3,12 @@ name: "One Dark"
 author: "FredHappyface (https://github.com/fredHappyface)"
 variant: "dark"
 palette:
-  base11: "#121417"  # Extra Extra Dark Background (Deep contrast for focus areas)
+  base11: "#121317"  # Extra Extra Dark Background (Deep contrast for focus areas)
   base10: "#1e2129"  # Extra Dark Background (Darker but less harsh)
-  base00: "#1e2129"  # Background (Slightly lighter for easier contrast)
-  base01: "#2e3440"  # Lighter Background (Nord Polar Night)
-  base02: "#6c7686"  # Selection Background (Improved for visibility)
-  base03: "#aeb1b7"  # Comments/Secondary Text (More distinct but subdued)
+  base00: "#2e3440"  # Background (Slightly lighter for easier contrast)
+  base01: "#3e4046"  # Lighter Background (Nord Polar Night)
+  base02: "#aeb1b7"  # Selection Background (Improved for visibility)
+  base03: "#d8dee9"  # Comments/Secondary Text (More distinct but subdued)
   base04: "#f5f7fc"  # Light Text (Keep for high contrast)
   base05: "#f5f7fc"  # Foreground (Slightly toned down for less strain)
   base06: "#f5f7fc"  # Bright Foreground (Improved for readability)
