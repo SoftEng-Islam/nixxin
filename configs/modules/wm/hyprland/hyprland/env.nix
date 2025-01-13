@@ -13,17 +13,6 @@
 
         # env = EDITOR,vim # Set the default editor (uncomment to use vim)
 
-        # --------- Input method --------- #
-        # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-        # "QT_IM_MODULE, fcitx"
-        # "XMODIFIERS, @im=fcitx"
-        # env = GTK_IM_MODULE, wayland   # Crashes electron apps in xwayland
-        # env = GTK_IM_MODULE, fcitx     # My Gtk apps no longer require this to work with fcitx5 hmm
-
-        # "SDL_IM_MODULE, fcitx"
-        # "GLFW_IM_MODULE, ibus"
-        # "INPUT_METHOD, fcitx"
-
         # --------- Themes --------- #
         # Set the platform theme for Qt5 and Qt6 applications
         # env = QT_QPA_PLATFORM, wayland;xcb

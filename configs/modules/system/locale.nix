@@ -68,8 +68,7 @@
     # Configure Input Method (IBus for GNOME)
     inputMethod = {
       enable = true;
-      type = "ibus";
-      # enabled = "fcitx5";
+      type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
       fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-with-addons ];
       # ibus.engines = [
       #   "m17n:en"  # English (US)
@@ -79,10 +78,14 @@
   };
 
   # Environment Variables for Input Method
+  # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
-    # GTK_IM_MODULE = "ibus";
-    # QT_IM_MODULE = "ibus";
-    # XMODIFIERS = "@im=ibus";
+    GLFW_IM_MODULE = "ibus";
+    GTK_IM_MODULE = "fcitx";
+    INPUT_METHOD = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    SDL_IM_MODULE = "fcitx";
+    XMODIFIERS = "@im=fcitx";
   };
 
   # Configure Virtual Console
@@ -123,11 +126,16 @@
   # Include IBus in System Packages
   environment.systemPackages = with pkgs; [
     fcitx5
+    fcitx5-skk-qt
+    fcitx5-m17n
+    fcitx5-configtool
+    fcitx5-fluent
+    fcitx5-gtk
     fontconfig # Library for font customization and configuration
-    ibus
-    ibus-engines.m17n
-    ibus-theme-tools
-    ibus-with-plugins
+    # ibus
+    # ibus-engines.m17n
+    # ibus-theme-tools
+    # ibus-with-plugins
     # spell-checkers
     # aspell
     # aspellDicts.de

@@ -8,7 +8,7 @@
         # "swww img ~/Downloads/nixos-chan.png"
 
         # Input method
-        # "fcitx5"
+        "fcitx5"
 
         # Core components (authentication, lock screen, notification daemon)
         "gnome-keyring-daemon --start --components=secrets"
