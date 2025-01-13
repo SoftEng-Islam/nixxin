@@ -3,7 +3,7 @@ name: "One Dark"
 author: "FredHappyface (https://github.com/fredHappyface)"
 variant: "dark"
 palette:
-  base00: "#2e3440"  # Background (Slightly lighter for easier contrast)
+  base00: "#2e3440"  # Default Background
   base01: "#3e4046"  # Lighter Background (Nord Polar Night)
   base02: "#aeb1b7"  # Selection Background (Improved for visibility)
   base03: "#d8dee9"  # Comments/Secondary Text (More distinct but subdued)

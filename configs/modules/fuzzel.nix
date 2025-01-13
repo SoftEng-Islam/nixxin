@@ -1,4 +1,8 @@
 { settings, config, pkgs, ... }: {
+  environment.systemPackages = with pkgs;
+    [
+      fuzzel # Wayland-native application launcher, similar to rofi’s drun mode
+    ];
   home-manager.users.${settings.username} = {
     home.file.".config/fuzzel/fuzzel.ini" = {
       executable = true;
