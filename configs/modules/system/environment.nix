@@ -2,7 +2,7 @@
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
-    localBinInPath = true;
+    # localBinInPath = false;
     variables = {
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun, and Ignis.

@@ -6,6 +6,8 @@
     iotop # io monitoring
     iftop # network monitoring
 
+    calc # C-style arbitrary precision calculator
+
     # misc
     sshfs
 

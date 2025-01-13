@@ -35,6 +35,7 @@
     ./modules/codex.nix
     ./modules/data-transferring.nix
     ./modules/files.nix
+    ./modules/fuzzel.nix
     ./modules/gaming.nix
     ./modules/gtk.nix
     ./modules/misc.nix

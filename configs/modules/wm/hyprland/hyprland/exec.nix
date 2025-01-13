@@ -2,10 +2,9 @@
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.settings = {
       exec-once = [
-        "swww-daemon --format xrgb &"
         "ignis init"
+        # "swww-daemon --format xrgb &"
         # "swww init"
-        # "swww-daemon"
         # "swww img ~/Downloads/nixos-chan.png"
 
         # Input method
