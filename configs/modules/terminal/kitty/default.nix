@@ -1,54 +1,54 @@
-{ settings, ... }: {
+{ settings, config, ... }: {
   home-manager.users.${settings.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
       # include ~/.config/kitty/base24.conf
       # The 16 terminal colors
       # normal
-      color0 #3d4046
-      color1 #e05561
-      color2 #8cc265
-      color3 #e6b965
-      color4 #4ae5f0
-      color5 #6283de
-      color6 #6642c2
-      color7 #c242a8
+      color0 ${config.lib.stylix.colors.base01}
+      color1 ${config.lib.stylix.colors.base08}
+      color2 ${config.lib.stylix.colors.base0B}
+      color3 ${config.lib.stylix.colors.base09}
+      color4 ${config.lib.stylix.colors.base0C}
+      color5 ${config.lib.stylix.colors.base0D}
+      color6 ${config.lib.stylix.colors.base0E}
+      color7 ${config.lib.stylix.colors.base0F}
 
       # bright
-      color8 #4f5666
-      color9 #ff616e
-      color10 #a5e075
-      color11 #f0a45d
-      color12 #4dc4ff
-      color13 #de73ff
-      color14 #4cd1e0
-      color15 #ffffff
+      color8 ${config.lib.stylix.colors.base02}
+      color9 ${config.lib.stylix.colors.base12}
+      color10 ${config.lib.stylix.colors.base14}
+      color11 ${config.lib.stylix.colors.base13}
+      color12 ${config.lib.stylix.colors.base15}
+      color13 ${config.lib.stylix.colors.base17}
+      color14 ${config.lib.stylix.colors.base16}
+      color15 ${config.lib.stylix.colors.base04}
 
       # extended base16 colors
-      color16 #d18f52
-      color17 #bf4034
-      color18 #2e3440
-      color19 #3f4859
-      color20 #6c7686
-      color21 #d8dee9
+      color16 ${config.lib.stylix.colors.base0A}
+      color17 ${config.lib.stylix.colors.base12}
+      color18 ${config.lib.stylix.colors.base00}
+      color19 ${config.lib.stylix.colors.base01}
+      color20 ${config.lib.stylix.colors.base02}
+      color21 ${config.lib.stylix.colors.base03}
 
       # The basic colors
-      background #1e2129
-      foreground #aeb1b7
+      background ${config.lib.stylix.colors.base11}
+      foreground ${config.lib.stylix.colors.base05}
 
       # Cursor colors
-      cursor #9151ff
-      cursor_text_color #f4a261
+      cursor ${settings.accentColor}
+      cursor_text_color ${config.lib.stylix.colors.base0A}
 
       # Kitty window border colors
       wayland_titlebar_color #1e2129
       macos_titlebar_color #1e2129
 
       # Tab bar
-      tab_bar_background #31343c
-      active_tab_background #1e2129
-      active_tab_foreground #ff5e5e
-      inactive_tab_background #3f4451
-      inactive_tab_foreground #744f89
+      tab_bar_background ${config.lib.stylix.colors.base01}
+      active_tab_background ${config.lib.stylix.colors.base11}
+      active_tab_foreground ${settings.accentColor}
+      inactive_tab_background ${config.lib.stylix.colors.base02}
+      inactive_tab_foreground ${config.lib.stylix.colors.base0D}
       active_tab_font_style   bold
       inactive_tab_font_style normal
       tab_bar_align left
@@ -63,7 +63,7 @@
       tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
 
       # URL underline color when hovering with mouse
-      url_color #0087bd
+      url_color # ${config.lib.stylix.colors.base0B}
       url_style curly
       detect_urls yes
       url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
@@ -108,7 +108,7 @@
 
       # Set a color for comments (ensure they stand out clearly in the terminal)
       # You might need to set a specific color for comments in your editor (like Vim or Bash).
-      highlight Comment ctermfg=Green guifg=#6c7686  # Lighter green for comments
+      highlight Comment ctermfg=Green guifg=${config.lib.stylix.colors.base02}  # Lighter green for comments
     '';
   };
 }

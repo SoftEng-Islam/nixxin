@@ -3,27 +3,27 @@ name: "One Dark"
 author: "FredHappyface (https://github.com/fredHappyface)"
 variant: "dark"
 palette:
-  base11: "#121317"  # Extra Extra Dark Background (Deep contrast for focus areas)
-  base10: "#1e2129"  # Extra Dark Background (Darker but less harsh)
   base00: "#2e3440"  # Background (Slightly lighter for easier contrast)
   base01: "#3e4046"  # Lighter Background (Nord Polar Night)
   base02: "#aeb1b7"  # Selection Background (Improved for visibility)
   base03: "#d8dee9"  # Comments/Secondary Text (More distinct but subdued)
-  base04: "#f5f7fc"  # Light Text (Keep for high contrast)
-  base05: "#f5f7fc"  # Foreground (Slightly toned down for less strain)
-  base06: "#f5f7fc"  # Bright Foreground (Improved for readability)
-  base07: "#f5f7fc"  # Brightest Text (High readability, soft white)
-  base08: "#bf616a"  # Red (Nord Aurora)
-  base09: "#d08770"  # Orange (Nord Aurora)
-  base0A: "#ebcb8b"  # Yellow (Nord Aurora)
-  base0B: "#a3be8c"  # Green (Nord Aurora)
-  base0C: "#88c0d0"  # Cyan (Nord Frost)
-  base0D: "#81a1c1"  # Blue (Nord Frost)
-  base0E: "#b48ead"  # Purple (Nord Aurora)
-  base0F: "#8f3f71"  # Darker Purple (Gruvbox-inspired)
-  base12: "#ff5e5e"  # Vibrant Red (Gruvbox-inspired)
-  base13: "#f4a261"  # Vibrant Orange (Gruvbox-inspired)
-  base14: "#a8d080"  # Vibrant Green (Gruvbox-inspired)
-  base15: "#5ec8db"  # Vibrant Cyan (Gruvbox-inspired)
-  base16: "#4e98f0"  # Vibrant Blue
+  base04: "#f4f4f4"  # Light Text (Keep for high contrast)
+  base05: "#e1e2e6"  # Foreground (Slightly toned down for less strain)
+  base06: "#f4f4f4"  # Bright Foreground (Improved for readability)
+  base07: "#e1e2e6"  # Brightest Text (High readability, soft white)
+  base08: "#e05561"  # Red
+  base09: "#f0a45d"  # Orange
+  base0A: "#ebcb8b"  # Yellow
+  base0B: "#8cc265"  # Green
+  base0C: "#4ae5f0"  # Cyan
+  base0D: "#0087bd"  # Blue
+  base0E: "#6642c2"  # Purple
+  base0F: "#c242a8"  # Dark Pink
+  base10: "#1e2129"  # Extra Dark Background (Darker but less harsh)
+  base11: "#121317"  # Extra Extra Dark Background (Deep contrast for focus areas)
+  base12: "#ff5e5e"  # Red
+  base13: "#f4a261"  # Orange
+  base14: "#a8d080"  # Green
+  base15: "#5ec8db"  # Cyan
+  base16: "#4e98f0"  # Blue
   base17: "#c49cdb"  # Soft Purple
