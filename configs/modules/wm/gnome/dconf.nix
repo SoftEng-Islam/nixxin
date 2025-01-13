@@ -101,6 +101,7 @@ with lib.gvariant; {
         dynamic-workspaces = false;
         edge-tiling = true;
         num-workspaces = 6;
+        check-alive-timeout = 0;
         workspaces-only-on-primary = true;
       };
 
