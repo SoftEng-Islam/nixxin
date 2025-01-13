@@ -3,29 +3,31 @@ name: "nixxin"
 author: "Islam Ahmed (https://github.com/softeng)"
 variant: "dark"
 palette:
-  base00: "#1d1d1d"  # Default Background
-  base01: "#91816c"  # Lighter Background (Nord Polar Night)
-  base02: "#aeb1b7"  # Selection Background (Improved for visibility)
-  base03: "#d8dee9"  # Comments/Secondary Text (More distinct but subdued)
-  base04: "#f4f4f4"  # Light Text (Keep for high contrast)
-  base05: "#e1e2e6"  # Foreground (Slightly toned down for less strain)
-  base06: "#f4f4f4"  # Bright Foreground (Improved for readability)
-  base07: "#e1e2e6"  # Brightest Text (High readability, soft white)
+  base00: "#101010"  # Default background (darker, near-black)
+  base01: "#1a1a1a"  # Slightly lighter background
+  base02: "#303030"  # Selection background
+  base03: "#474747"  # Secondary text
+  base04: "#5c5c5c"  # Lighter neutral
+  base05: "#f0f0f0"  # Foreground - sharp text
+  base06: "#ffffff"  # Bright foreground - pure white
+  base07: "#d8d8d8"  # Brightest text - soft gray-white
 
-  base08: "#e05561"  # Red
-  base09: "#f0a45d"  # Orange
-  base0A: "#ebcb8b"  # Yellow
-  base0B: "#8cc265"  # Green
-  base0C: "#4ae5f0"  # Cyan
-  base0D: "#0087bd"  # Blue
-  base0E: "#6642c2"  # Purple
-  base0F: "#c242a8"  # Dark Pink
+  # Primary colors
+  base08: "#ff1e2b"  # Red - intense
+  base09: "#ff7f3b"  # Orange - bold
+  base0A: "#ffbf00"  # Yellow - vibrant
+  base0B: "#a4e500"  # Green - neon-like
+  base0C: "#00e5b0"  # Cyan - vivid
+  base0D: "#00aaff"  # Blue - striking
+  base0E: "#d95cff"  # Purple - electric
+  base0F: "#ff4080"  # Pink - bold and eye-catching
 
-  base10: "#1e2129"  # Extra Dark Background (Darker but less harsh)
-  base11: "#121317"  # Extra Extra Dark Background (Deep contrast for focus areas)
-  base12: "#ff5e5e"  # Red
-  base13: "#f4a261"  # Orange
-  base14: "#a8d080"  # Green
-  base15: "#5ec8db"  # Cyan
-  base16: "#4e98f0"  # Blue
-  base17: "#c49cdb"  # Soft Purple
+  # Bright colors
+  base10: "#8f4f4f"  # Maroon - deeper red
+  base11: "#ff3f40"  # Bright red
+  base12: "#c0d700"  # Bright green
+  base13: "#ffb040"  # Bright orange
+  base14: "#00d8a0"  # Bright cyan
+  base15: "#4080ff"  # Bright blue
+  base16: "#a040ff"  # Bright purple
+  base17: "#ff6fcf"  # Bright pink
