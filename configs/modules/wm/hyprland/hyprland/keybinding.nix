@@ -31,7 +31,7 @@
 
         # fuzzel Configuration File
         # XDG_CONFIG_HOME/fuzzel/fuzzel.ini
-        "$mod,D, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
+        "$mod,D, exec, pkill anyrun || fuzzel --icon-theme=Papirus-Dark" # Toggle fallback launcher: fuzzel
 
         # Launch Gnome Control Center
         ''
