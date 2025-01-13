@@ -25,8 +25,6 @@
         # "hypridle"
 
         # Clipboard: history
-        # "clipman store &"
-        # "wl-paste --watch cliphist store &"
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
 

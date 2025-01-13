@@ -28,8 +28,6 @@
 
     # hyprland
     temurin-jre-bin
-    cliphist
-    fuzzel
     grim
     hyprpicker
     tesseract
@@ -43,7 +41,6 @@
     swww
     wayshot
     wlsunset
-    wl-clipboard
     wf-recorder
 
     # langs

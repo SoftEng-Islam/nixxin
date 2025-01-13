@@ -56,9 +56,9 @@
     texlive.combined.scheme-full # TeX Live environment for scheme-full
 
     # clipboard
-    # cliphist # Wayland clipboard manager
-    # gpaste # Clipboard management system with GNOME integration
+    cliphist # Wayland clipboard manager
     wl-clipboard # Command-line copy/paste utilities for Wayland
+    # gpaste # Clipboard management system with GNOME integration
     # clipman # A simple clipboard manager for Wayland
 
     # Process Management
