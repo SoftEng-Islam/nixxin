@@ -51,7 +51,6 @@
   documentation.info.enable = true;
   documentation.man.enable = true;
   documentation.nixos.enable = true;
-  environment.localBinInPath = true;
   # ~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ nix ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~
