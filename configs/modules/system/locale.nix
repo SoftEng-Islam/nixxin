@@ -79,12 +79,12 @@
   # Environment Variables for Input Method
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
-    # GLFW_IM_MODULE = "ibus";
-    # SDL_IM_MODULE = "fcitx";
-    # GTK_IM_MODULE = "fcitx";
-    # QT_IM_MODULE = "fcitx";
-    # INPUT_METHOD = "fcitx";
-    # XMODIFIERS = "@im=fcitx";
+    GLFW_IM_MODULE = "ibus";
+    SDL_IM_MODULE = "fcitx";
+    GTK_IM_MODULE = "fcitx";
+    QT_IM_MODULE = "fcitx";
+    INPUT_METHOD = "fcitx";
+    XMODIFIERS = "@im=fcitx";
   };
 
   # Configure Virtual Console

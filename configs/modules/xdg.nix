@@ -111,7 +111,7 @@ in {
   home-manager.users.${settings.username} = {
     xdg = {
       enable = true;
-      configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
+      # configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
       # cacheHome = "/home/${settings.username}/.local/cache";
       cacheHome = "/home/${settings.username}/.cache";
       userDirs = {

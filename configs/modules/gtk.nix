@@ -3,7 +3,7 @@
   home-manager.users.${settings.username} = {
     gtk = {
       enable = true;
-      gtk2.configLocation = "/home/${settings.username}/.config/gtk-2.0/gtkrc";
+      # gtk2.configLocation = "/home/${settings.username}/.config/gtk-2.0/gtkrc";
       # theme = {
       #   name = lib.mkForce settings.gtkTheme;
       #   package = lib.mkForce settings.gtkPackage;

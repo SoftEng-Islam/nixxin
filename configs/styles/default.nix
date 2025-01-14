@@ -17,10 +17,10 @@ in {
     base16Scheme = base24;
 
     opacity = {
-      terminal = settings.opacity;
-      applications = settings.opacity;
-      desktop = settings.opacity;
-      popups = settings.opacity;
+      # terminal = settings.opacity;
+      # applications = settings.opacity;
+      # desktop = settings.opacity;
+      # popups = settings.opacity;
     };
     cursor = {
       size = settings.cursorSize;
@@ -43,7 +43,7 @@ in {
       console.enable = true;
       feh.enable = true;
       fish.enable = true;
-      gnome.enable = true;
+      gnome.enable = false;
       grub.enable = false;
       regreet.enable = false;
       gtk.enable = false;
@@ -75,7 +75,7 @@ in {
         kitty.enable = true;
         lazygit.enable = true;
         # mako.enable = true;
-        nixvim.enable = lib.mkIf (settings.themeName != null) false;
+        nixvim.enable = false;
         # hyprland.enable = true;
       };
     };
