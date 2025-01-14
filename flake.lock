@@ -1129,11 +1129,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1736434077,
-        "narHash": "sha256-fTK2HK1NT2jkqGjFiKn5ZwpGwvObpabSzpxgdB6lDqA=",
+        "lastModified": 1736794550,
+        "narHash": "sha256-MG2Dj5H0tfGqQJNcDBYclXFgdsxSAkdTarKfYqptIdo=",
         "owner": "linkfrg",
         "repo": "ignis",
-        "rev": "42d38a3a0fb2fb3cd32a5f39b3fef35e7c39ff36",
+        "rev": "ae0af78d26c68a86de12f0fc4ab3c88fbdae5b02",
         "type": "github"
       },
       "original": {

@@ -103,7 +103,7 @@
   # Material
   # adw-gtk3-dark
   gtkTheme = "Material";
-  gtkPackage = pkgs.adw-gtk3;
+  # gtkPackage = pkgs.adw-gtk3;
 
   # ---- Qt ---- #
   qtPlatformTheme = "kde"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
