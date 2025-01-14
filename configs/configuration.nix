@@ -62,8 +62,8 @@
     settings = {
       # for nix-direnv
       sandbox = false;
-      keep-outputs = true;
-      keep-derivations = true;
+      keep-outputs = false;
+      keep-derivations = false;
       builders-use-substitutes = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
