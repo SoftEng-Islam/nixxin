@@ -3,18 +3,27 @@
     home.file.".config/kitty/kitty.conf".text = ''
       # include ~/.config/kitty/base24.conf
       # Scheme by nixxin
-      # background #1d1d1d
-      # foreground #91816c
-      # selection_background #91816c
-      # selection_foreground #1d1d1d
-      # url_color #8b7b68
-      # cursor #91816c
-      # active_border_color #857564
-      # inactive_border_color #1d1d1d
-      # active_tab_background #1d1d1d
-      # active_tab_foreground #91816c
-      # inactive_tab_background #1d1d1d
-      # inactive_tab_foreground #8b7b68
+      # The basic colors
+      background #${config.lib.stylix.colors.base01}
+      foreground #${config.lib.stylix.colors.base07}
+
+      # Cursor colors
+      cursor #${settings.accentColor}
+      cursor_text_color #${config.lib.stylix.colors.base0A}
+
+      # selection_background #${config.lib.stylix.colors.base04}
+      # selection_foreground #${config.lib.stylix.colors.base06}
+
+      # url_color #${config.lib.stylix.colors.base11}
+      # cursor #${config.lib.stylix.colors.base11}
+
+      active_border_color #${config.lib.stylix.colors.base11}
+      active_tab_background #${config.lib.stylix.colors.base01}
+      active_tab_foreground #${config.lib.stylix.colors.base11}
+      inactive_border_color #${config.lib.stylix.colors.base03}
+      inactive_tab_background #${config.lib.stylix.colors.base02}
+      inactive_tab_foreground #${config.lib.stylix.colors.base10}
+      tab_bar_background #${config.lib.stylix.colors.base01}
 
       # normal
       color0 #${config.lib.stylix.colors.base01}
@@ -44,24 +53,11 @@
       color20 #${config.lib.stylix.colors.base02}
       color21 #${config.lib.stylix.colors.base03}
 
-      # The basic colors
-      background #${config.lib.stylix.colors.base11}
-      foreground #${config.lib.stylix.colors.base05}
-
-      # Cursor colors
-      cursor #${settings.accentColor}
-      cursor_text_color #${config.lib.stylix.colors.base0A}
-
       # Kitty window border colors
       wayland_titlebar_color #1e2129
       macos_titlebar_color #1e2129
 
       # Tab bar
-      tab_bar_background #${config.lib.stylix.colors.base01}
-      active_tab_background #${config.lib.stylix.colors.base11}
-      active_tab_foreground ${settings.accentColor}
-      inactive_tab_background #${config.lib.stylix.colors.base02}
-      inactive_tab_foreground #${config.lib.stylix.colors.base0D}
       active_tab_font_style   bold
       inactive_tab_font_style normal
       tab_bar_align left
@@ -76,7 +72,6 @@
       tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
 
       # URL underline color when hovering with mouse
-      url_color #${config.lib.stylix.colors.base0B}
       url_style curly
       detect_urls yes
       url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh

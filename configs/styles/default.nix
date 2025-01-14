@@ -43,10 +43,10 @@ in {
       console.enable = true;
       feh.enable = true;
       fish.enable = true;
-      # gnome.enable = false;
-      # grub.enable = false;
-      # regreet.enable = false;
-      # gtk.enable = false;
+      gnome.enable = false;
+      grub.enable = false;
+      regreet.enable = false;
+      gtk.enable = false;
       nixos-icons.enable = true;
       plymouth.enable = true;
     };
