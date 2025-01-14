@@ -1,6 +1,34 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   gtk.iconCache.enable = true;
-
+  home-manager.users.${settings.username} = {
+    gtk = {
+      enable = true;
+      gtk2.configLocation = "/home/${settings.username}/.config/gtk-2.0/gtkrc";
+      # theme = {
+      #   name = lib.mkForce settings.gtkTheme;
+      #   package = lib.mkForce settings.gtkPackage;
+      # };
+      gtk3 = {
+        bookmarks = [
+          "file:///home/${settings.username}/Downloads"
+          "file:///home/${settings.username}/Documents"
+          "file:///home/${settings.username}/Pictures"
+          "file:///home/${settings.username}/Music"
+          "file:///home/${settings.username}/Videos"
+          "file:///home/${settings.username}/.config"
+          "file:///home/${settings.username}/Dev"
+          "file:///home/${settings.username}/GitHub"
+          # "file:///mnt/Windows"
+        ];
+        extraCss = ''
+          headerbar, .titlebar,
+          .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
+            border-radius: 0;
+          }
+        '';
+      };
+    };
+  };
   environment.systemPackages = with pkgs; [
     # GTK  Stuff & Themes & Graphical Interfaces
     gobject-introspection

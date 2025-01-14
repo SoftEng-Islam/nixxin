@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   environment.variables = {
     # Enable automatic screen scaling for Qt applications
     QT_AUTO_SCREEN_SCALE_FACTOR = "2";
@@ -8,6 +8,13 @@
     QT_SCALE_FACTOR = "2";
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
+  };
+  home-manager.users.${settings.username} = {
+    qt = {
+      enable = true;
+      platformTheme.name = settings.qtPlatformTheme;
+      style.name = settings.qtStyle;
+    };
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
