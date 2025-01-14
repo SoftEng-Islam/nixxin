@@ -45,8 +45,8 @@ in {
       fish.enable = true;
       gnome.enable = true;
       grub.enable = false;
-      regreet.enable = true;
-      gtk.enable = true;
+      regreet.enable = false;
+      gtk.enable = false;
       nixos-icons.enable = true;
       plymouth.enable = true;
     };
@@ -61,20 +61,20 @@ in {
         light = settings.iconNameLight;
       };
       targets = {
-        alacritty.enable = true;
+        # alacritty.enable = true;
         avizo.enable = true;
         bat.enable = true;
         btop.enable = true;
-        cava.enable = true;
-        dunst.enable = true;
-        emacs.enable = true;
+        # cava.enable = true;
+        # dunst.enable = true;
+        # emacs.enable = true;
         firefox.enable = true;
         foot.enable = true;
         fzf.enable = true;
         gitui.enable = true;
-        kitty.enable = true;
+        kitty.enable = false;
         lazygit.enable = true;
-        mako.enable = true;
+        # mako.enable = true;
         nixvim.enable = lib.mkIf (settings.themeName != null) false;
         # hyprland.enable = true;
       };
