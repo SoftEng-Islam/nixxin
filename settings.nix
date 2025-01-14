@@ -100,7 +100,9 @@
   rounding = 10; # rounding corners for Hyprland windwos
 
   # ---- GTK ---- #
-  gtkTheme = "adw-gtk3-dark";
+  # Material
+  # adw-gtk3-dark
+  gtkTheme = "Material";
   gtkPackage = pkgs.adw-gtk3;
 
   # ---- Qt ---- #
