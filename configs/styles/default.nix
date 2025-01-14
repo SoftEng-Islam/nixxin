@@ -6,7 +6,7 @@ let
     # To generate the sha256
     # sha256sum /path/to/your/file.yaml
     sha256 =
-      "f0b5c1843aef3934d8a9b90c2bcaa524309d5d16f75ce38c7f100c56c9a33fd7"; # The hash you got
+      "0d45d05a8a46e7b9f04129e2a19dd17daf218ad02ba6afc88efcc490dbfbb4d1"; # The hash you got
   };
 in {
   stylix = {
