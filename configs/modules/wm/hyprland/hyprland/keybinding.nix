@@ -17,21 +17,21 @@
         # "$mod, grave, overview:toggle, toggle" # can be: toggle, off/disable or on/enable
         "$mod, Q, killactive,"
         "$mod Shift , Q, exec, hyprctl kill" # Pick and kill a window
-        "Ctrl $mod, delete, exec, hyprctl dispatch exit" # Logout
+        "$mod Ctrl, delete, exec, hyprctl dispatch exit" # Logout
         "Ctrl Alt, delete, exec, reboot" # Reboot System
         "Ctrl Shift, Escape, exec, resources" # Launch GNOME System monitor
 
         "$mod, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
         "$mod, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
         "$mod, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
-        "Ctrl $mod, V, exec, pavucontrol" # Launch pavucontrol (volume mixer)
+        "$mod Ctrl, V, exec, pavucontrol" # Launch pavucontrol (volume mixer)
 
         # Disabled Temporery
         # "Ctrl $mod, Slash, exec, pkill anyrun || anyrun" # Toggle fallback launcher: anyrun
 
         # fuzzel Configuration File
         # XDG_CONFIG_HOME/fuzzel/fuzzel.ini
-        "$mod,D, exec, pkill anyrun || fuzzel --icon-theme=Papirus-Dark" # Toggle fallback launcher: fuzzel
+        "$mod,D, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
 
         # Launch Gnome Control Center
         ''
@@ -56,12 +56,8 @@
         "$mod SHIFT, Return, exec, kitty --class floating"
 
         # Special workspace
-        "$mod, S, togglespecialworkspace"
-        "$mod SHIFT, S, movetoworkspacesilent, special"
-
-        # Launcher
-        # "$mod, A, exec, rofi -show drun -kb-cancel Super_L"
-        "$mod SHIFT, A, exec, ags -t launcher"
+        #"$mod, S, togglespecialworkspace"
+        #"$mod SHIFT, S, movetoworkspacesilent, special"
 
         # Move window focus with vim keys.
         "$mod, h, movefocus, l"
@@ -123,6 +119,7 @@
         "$mod ALT, 8, movetoworkspace, 8"
         "$mod ALT, 9, movetoworkspace, 9"
         "$mod ALT, 0, movetoworkspace, 10"
+
         # Move active window to a workspace silent.
         "$mod SHIFT, 1, movetoworkspacesilent, 1"
         "$mod SHIFT, 2, movetoworkspacesilent, 2"
@@ -134,6 +131,7 @@
         "$mod SHIFT, 8, movetoworkspacesilent, 8"
         "$mod SHIFT, 9, movetoworkspacesilent, 9"
         "$mod SHIFT, 0, movetoworkspacesilent, 10"
+
         # Move active window to a workspace with Arrows.
         "$mod CTRL ALT, Up, movetoworkspace, r+1"
         "$mod CTRL ALT, Down, movetoworkspace, r-1"
@@ -147,8 +145,9 @@
         "$mod Shift, Page_Up, movetoworkspace, -1"
       ];
       bindr = [
-        "Ctrl $mod , R, exec, killall ags ydotool; ags &"
-        "Ctrl $mod Alt, R, exec, hyprctl reload; killall ags ydotool; ags &"
+        # Restart Ignis
+        "Ctrl $mod , R, exec, killall ignis ydotool; ignis init &"
+        "Ctrl $mod Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &"
       ];
     };
     wayland.windowManager.hyprland.extraConfig = ''
@@ -163,16 +162,14 @@
       bind = $mod, T, exec, ~/.config/ignis/scripts/recording.py stop
       bind = $mod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
+      # Screenshot Area
+      bind = $mod SHIFT, S, exec, ~/.config/hypr/scripts/grimblast.sh --freeze copy area # Screen snip
+      bind = $mod SHIFT, z, exec, wl-copy < $(grimshot --notify save area $XDG_PICTURES_DIR/Screenshots/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png'))
 
-        # Screenshot
-        bind = $mod SHIFT, z, exec, wl-copy < $(grimshot --notify save area $XDG_PICTURES_DIR/Screenshots/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png'))
-        # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
-        bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
-        bind = $mod+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area # Screen snip
-        bindl=,Print, exec, mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
-
-
-
+      # Screenshot Full Screen
+      # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
+      bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
+      bindl= ,Print, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
     '';
   };
 }

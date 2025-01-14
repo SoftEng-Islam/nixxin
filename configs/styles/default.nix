@@ -80,4 +80,12 @@ in {
       };
     };
   };
+  environment.systemPackages = with pkgs; [
+    # Icons
+    papirus-icon-theme # Pixel perfect icon theme for Linux
+
+    # Plymouth Theme For Nixos:
+    plymouth # Boot splash and boot logger
+    nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
+  ];
 }

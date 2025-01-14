@@ -1,19 +1,12 @@
 { settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    gdm
 
+    # ---- Settings.nix Packages ---- #
     settings.browserPkg
     settings.termPkg
     settings.cursorPackage
 
-    # Icons
-    papirus-icon-theme # Pixel perfect icon theme for Linux
-
-    # Plymouth Theme For Nixos:
-    plymouth # Boot splash and boot logger
-    nixos-bgrt-plymouth # BGRT theme with a spinning NixOS logo
-
-    # screenshot
+    # ---- Screenshot ---- #
     grim # Grab images from a Wayland compositor
     grimblast # A helper for screenshots within Hyprland, based on grimshot
     swappy # A Wayland native snapshot editing tool, inspired by Snappy on macOS
@@ -21,39 +14,35 @@
     scrot # A command-line screen capture utility
     wayshot # A native, blazing-fast screenshot tool for wlroots based compositors such as sway and river
 
-    # Editors
+    # ---- Editors ---- #
     vscode # Open source source code editor developed by Microsoft for Windows, Linux and macOS
     zed-editor # Zed editor (like vscode)
     neovim # Vim text editor fork focused on extensibility and agility
 
-    # clipboard
+    # ---- clipboard ---- #
     cliphist # Wayland clipboard manager
     wl-clipboard # Command-line copy/paste utilities for Wayland
     # gpaste # Clipboard management system with GNOME integration
     # clipman # A simple clipboard manager for Wayland
 
-    # Process Management
+    # ---- Process Management ---- #
     htop # Interactive process viewer
     iotop # Tool to find out the processes doing the most IO
 
-    # Hardware & System Utilities
-    binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
-    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
-    usbutils # Tools for working with USB devices, such as lsusb
-    lm_sensors # Tools for reading hardware sensors
-    geoclue2 # Geolocation framework and some data providers
-    udevil # Mount without password
-    whois # Intelligent WHOIS client from Debian
-
-    # Text Search
+    # ---- Text Search ---- #
     silver-searcher # Code-searching tool similar to ack, but faster
     ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
 
-    # D-Bus Tools
+    # ---- D-Bus ---- #
     dbus # Simple interprocess messaging system
     dbus-broker # Linux D-Bus Message Broker
 
-    # Disk, Partition & Filesystem Tools
+    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
+    dconf-editor # GSettings editor for GNOME
+    proot # User-space implementation of chroot, mount --bind and binfmt_misc
+    matugen # A material you color generation tool
+
+    # ---- Disks & Filesystem ---- #
     gvfs # Virtual Filesystem support library
     bees # Bees is a deduplication tool designed specifically for filesystems that use the Btrfs (B-tree file system).
     btrfs-progs # Utilities for the btrfs filesystem
@@ -75,22 +64,17 @@
     jmtpfs # FUSE filesystem for MTP devices like Android phones
     go-mtpfs # Simple FUSE filesystem for mounting Android devices as a MTP device
 
-    # Cryptographic Tools
+    # ---- Cryptographic ---- #
     openssl # A cryptographic library that implements the SSL and TLS protocols
     nettle # Cryptographic library
     libgcrypt # General-purpose cryptographic library
 
-    # System Tools
-    busybox # Tiny versions of common UNIX utilities in a single small executable
-    resources # Monitor your system resources and processes
-    fdupes # Identifies duplicate files residing within specified directories
-
-    # Image Viewers
+    # ---- Image Viewers ---- #
     imv # A command line image viewer for tiling window managers
     feh # A light-weight image viewer
     loupe # A simple image viewer application written with GTK4 and Rust
 
-    # Notifications
+    # ---- Notifications ---- #
     notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
     libnotify # A library that sends desktop notifications to a notification daemon
     libnotify.dev # Library that sends desktop notifications to a notification daemon
@@ -98,7 +82,7 @@
     # mako # A lightweight Wayland notification daemon
     # avizo # Neat notification daemon for Wayland
 
-    # GNU Utilities
+    # ---- GNU Utilities ---- #
     autoconf # Part of the GNU Build System
     autoconf-archive # Archive of autoconf m4 macros
     automake # GNU standard-compliant makefile generator
@@ -132,12 +116,6 @@
     xmlto # Front-end to an XSL toolchain
     fop # XML formatter driven by XSL Formatting Objects (XSL-FO)
     libdbusmenu # Library for passing menu structures across DBus
-
-    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
-    dconf-editor # GSettings editor for GNOME
-
-    proot # User-space implementation of chroot, mount --bind and binfmt_misc
-    matugen # A material you color generation tool
 
     # developers packages
     # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)

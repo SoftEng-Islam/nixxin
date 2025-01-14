@@ -22,7 +22,9 @@
     # davinci-resolve-studio # Professional video editing, color, effects and audio post-processing
     # shotcut
 
-    testdisk # Data recovery utilities
+    # ---- Utilities ---- #
+    testdisk # Data Recovery Utilities
+    resources # Monitor your system resources and processes
 
     # Graphics Apps
     lunacy # Free design software that keeps your flow with AI tools and built-in graphics
