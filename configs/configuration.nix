@@ -24,6 +24,7 @@
     ./modules/system/programs.nix
     ./modules/system/security.nix
     ./modules/system/services.nix
+    ./modules/system/system-utilities.nix
     ./modules/system/systemd.nix
     ./modules/system/users.nix
     ./modules/system/virtualisation.nix
