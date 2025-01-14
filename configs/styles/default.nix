@@ -72,7 +72,7 @@ in {
         foot.enable = true;
         fzf.enable = true;
         gitui.enable = true;
-        kitty.enable = false;
+        kitty.enable = true;
         lazygit.enable = true;
         # mako.enable = true;
         nixvim.enable = lib.mkIf (settings.themeName != null) false;

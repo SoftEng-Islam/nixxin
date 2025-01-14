@@ -79,5 +79,9 @@
     pipecontrol # Pipewire control GUI program in Qt (Kirigami2)
     pulseaudioFull # Sound server for POSIX and Win32 systems
     wireplumber # Modular session / policy manager for PipeWire
+    ladspaPlugins # LADSPA format audio plugins
+    calf # Set of high quality open source audio plugins for musicians
+    lsp-plugins # Collection of open-source audio plugins
+    easyeffects # Audio effects for PipeWire applications
   ];
 }

@@ -7,8 +7,6 @@
     settings.cursorPackage
 
     # Icons
-    gruvbox-dark-icons-gtk
-    gruvbox-plus-icons
     papirus-icon-theme # Pixel perfect icon theme for Linux
 
     # Plymouth Theme For Nixos:
@@ -28,8 +26,6 @@
     zed-editor # Zed editor (like vscode)
     neovim # Vim text editor fork focused on extensibility and agility
 
-    vim
-
     # Linux & system call monitoring
     bpftrace # High-level tracing language for Linux eBPF
     ethtool # Utility for controlling network drivers and hardware
@@ -43,17 +39,6 @@
     strace # System call tracer for Linux
     sudo # A command to run commands as root
     sysstat # Collection of performance monitoring tools for Linux (such as sar, iostat and pidstat)
-
-    # Audio.
-    ladspaPlugins
-    calf
-    lsp-plugins
-    easyeffects
-    alsa-utils
-
-    # Latex
-    texliveFull # TeX Live environment
-    texlive.combined.scheme-full # TeX Live environment for scheme-full
 
     # clipboard
     cliphist # Wayland clipboard manager

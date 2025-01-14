@@ -21,7 +21,6 @@
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
 
-      jetbrains-mono
       nerd-fonts.caskaydia-cove
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
@@ -132,6 +131,7 @@
     fcitx5-fluent
     fcitx5-gtk
     fontconfig # Library for font customization and configuration
+
     # ibus
     # ibus-engines.m17n
     # ibus-theme-tools
@@ -143,5 +143,9 @@
     # aspellDicts.en
     # hunspell
     # hunspellDicts.en-gb-ise
+
+    # Latex
+    texliveFull # TeX Live environment
+    texlive.combined.scheme-full # TeX Live environment for scheme-full
   ];
 }
