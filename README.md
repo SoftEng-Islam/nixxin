@@ -97,8 +97,21 @@ home-manager switch --flake .
 
 ![Screen3](./assets/everforest/overview.png) -->
 
+## Extra
+
+to Update the Input Use the following command to update just one input:
+```bash
+    sudo nix flake lock --update-input <input-name>
+```
+Replace <input-name> with the name of the input you want to update.
+Example:
+```bash
+    sudo nix flake lock --update-input hyprland
+```
+
 ## Errors
 
+use `journalctl` to find problems:
 ```bash
     journalctl -xe | grep home-manager
 ```

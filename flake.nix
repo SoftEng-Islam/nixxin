@@ -28,7 +28,7 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    ignis.url = "github:linkfrg/ignis";
+    ignis.url = "github:linkfrg/ignis/?submodules=true";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprland.url = "github:hyprwm/Hyprland/?submodules=true";

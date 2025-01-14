@@ -63,9 +63,6 @@
         # "$mod, A, exec, rofi -show drun -kb-cancel Super_L"
         "$mod SHIFT, A, exec, ags -t launcher"
 
-        # Screenshot
-        "$mod SHIFT, z, exec, wl-copy < $(grimshot --notify save area $XDG_PICTURES_DIR/Screenshots/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png'))"
-
         # Move window focus with vim keys.
         "$mod, h, movefocus, l"
         "$mod, l, movefocus, r"
@@ -166,11 +163,16 @@
       bind = $mod, T, exec, ~/.config/ignis/scripts/recording.py stop
       bind = $mod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
-      # Fullscreen screenshot
-      # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
-      bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
-      bind = $mod+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area # Screen snip
-      bindl=,Print, exec, mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
+
+        # Screenshot
+        bind = $mod SHIFT, z, exec, wl-copy < $(grimshot --notify save area $XDG_PICTURES_DIR/Screenshots/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png'))
+        # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
+        bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
+        bind = $mod+Shift, S, exec, ~/.config/ags/scripts/grimblast.sh --freeze copy area # Screen snip
+        bindl=,Print, exec, mkdir -p ~/Pictures/Screenshots && ~/.config/ags/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
+
+
+
     '';
   };
 }
