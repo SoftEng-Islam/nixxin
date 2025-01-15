@@ -125,12 +125,12 @@ in {
         templates = null;
         desktop = null;
         publicShare = null;
-        extraConfig = {
-          XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-          XDG_BOOK_DIR = "/home/${settings.username}/Books";
-          XDG_SCREENSHOTS_DIR =
-            "/home/${settings.username}/Pictures/Screenshots";
-        };
+        # extraConfig = {
+        #   XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
+        #   XDG_BOOK_DIR = "/home/${settings.username}/Books";
+        #   XDG_SCREENSHOTS_DIR =
+        #     "/home/${settings.username}/Pictures/Screenshots";
+        # };
       };
       desktopEntries."org.gnome.Settings" = {
         name = "Settings";
