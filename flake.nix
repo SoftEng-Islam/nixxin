@@ -30,7 +30,6 @@
 
     ignis.url = "github:linkfrg/ignis";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
-    ignis.submodules = true;
 
     hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
