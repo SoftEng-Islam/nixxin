@@ -3,7 +3,7 @@ with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
       "/org/gnome/desktop/interface" = {
-        show-battery-percentage = true;
+        # show-battery-percentage = true;
         # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
         # document-font-name = "JetBrains Mono 12";
         # monospace-font-name = "JetBrains Mono 12";
