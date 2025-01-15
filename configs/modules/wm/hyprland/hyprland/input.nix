@@ -12,7 +12,7 @@
         # numlock_by_default = true;
         repeat_rate = 30;
         repeat_delay = 250;
-        sensitivity = -0.5; # Adjust pointer sensitivity (speed)
+        sensitivity = -0.7; # Adjust pointer sensitivity (speed)
         # special_fallthrough = true;
         float_switch_override_focus = false;
         left_handed = false;
