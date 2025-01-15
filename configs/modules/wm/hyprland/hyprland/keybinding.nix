@@ -157,19 +157,27 @@
       bind = $mod, A, exec, ignis toggle ignis_LAUNCHER
       bind = $mod, M, exec, ignis toggle ignis_POWERMENU
       bind = ALT, F4, exec, ignis toggle ignis_POWERMENU
+      # ---- ignis Recording ---- #
       bind = $mod, R, exec, ~/.config/ignis/scripts/recording.py start
       bind = $mod SHIFT, R, exec, ~/.config/ignis/scripts/recording.py continue
-      bind = $mod, T, exec, ~/.config/ignis/scripts/recording.py stop
-      bind = $mod SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
+      bind = $mod R, T, exec, ~/.config/ignis/scripts/recording.py stop
+      bind = $mod R SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
-      # Screenshot Area
-      bind = $mod SHIFT, S, exec, ~/.config/hypr/scripts/grimblast.sh --freeze copy area # Screen snip
-      bind = $mod SHIFT, z, exec, wl-copy < $(grimshot --notify save area $XDG_PICTURES_DIR/Screenshots/$(TZ=utc date +'screenshot_%Y-%m-%d-%H%M%S.%3N.png'))
-
-      # Screenshot Full Screen
-      # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
+      # ---- Screen snip ---- #
+      bind = $mod SHIFT, S, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png --freeze area # Screen snip
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
+
+      # ---- Full Screenshot ---- #
       bindl= ,Print, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
+
+      # You can Enable these if you want:
+      # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
+      # bind = Super+Shift,T,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png" # Screen snip to text >> clipboard
+      # bind = Ctrl+Super+Shift,S,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png" # [hidden]
+
+
+      # ---- Color picker ---- #
+      bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
     '';
   };
 }

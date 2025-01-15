@@ -1,11 +1,11 @@
 { pkgs, inputs, ... }: {
   environment.systemPackages = with pkgs; [
-    # inputs.ags.packages.${system}.default
-
+    # Install Hyprland from Inputes (latest version)
     inputs.hyprland.packages.${system}.hyprland
+    # A wlroots-compatible Wayland color picker that does not suck
+    inputs.hyprpicker.packages.${system}.hyprpicker
 
     # gui
-    qt5.qtimageformats
     yad
 
     # tools
@@ -29,7 +29,6 @@
     # hyprland
     temurin-jre-bin
     grim
-    hyprpicker
     tesseract
     imagemagick
     pavucontrol
@@ -71,7 +70,6 @@
     # hyprlock # Hyprland's GPU-accelerated screen locking utility
     # hyprnotify # DBus Implementation of Freedesktop Notification spec for 'hyprctl notify'
     # hyprpaper # A blazing fast wayland wallpaper utility
-    # hyprpicker # A wlroots-compatible Wayland color picker that does not suck
     # hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
     # hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
     # hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
