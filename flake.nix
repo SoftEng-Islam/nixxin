@@ -28,12 +28,13 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    ignis.url = "github:linkfrg/ignis";
-    ignis.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/Hyprland";
+    ignis = {
+      url = "github:linkfrg/ignis";
+      inputs.nixpkgs.follows = "nixpkgs";
+      submodules = true;
+    };
+    hyprland.url = "github:hyprwm/Hyprland/?submodules=true";
     hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
-    hyprland.submodules = true;
 
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
