@@ -3,6 +3,7 @@ with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
       "/org/gnome/desktop/interface" = {
+        show-battery-percentage = true;
         # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
         # document-font-name = "JetBrains Mono 12";
         # monospace-font-name = "JetBrains Mono 12";
@@ -10,7 +11,12 @@ with lib.gvariant; {
       };
       "org/gnome/mutter" = {
         center-new-windows = true;
+        check-alive-timeout = 0;
+        dynamic-workspaces = false;
+        edge-tiling = true;
         experimental-features = "['scale-monitor-framebuffer']";
+        num-workspaces = 6;
+        workspaces-only-on-primary = true;
       };
 
       # gsettings reset org.gnome.desktop.input-sources sources
@@ -19,8 +25,6 @@ with lib.gvariant; {
         sources = [ (mkTuple [ "xkb" "us" ]) (mkTuple [ "xkb" "eg" ]) ];
         xkb-options = [ "terminate:alt_shift" ];
       };
-
-      "org/gnome/desktop/interface" = { show-battery-percentage = true; };
 
       "org/gnome/desktop/peripherals/touchpad" = {
         tap-to-click = true;
@@ -64,7 +68,7 @@ with lib.gvariant; {
       "org/gnome/desktop/session" = {
         # you can set the idle-delay to 300 seconds (5 minutes) or
         # 0 to Disable:
-        idle-delay = mkUint32 0;
+        idle-delay = mkUint32 settings.idleDelay;
       };
 
       "org/gnome/desktop/wm/keybindings" = {
@@ -74,15 +78,26 @@ with lib.gvariant; {
         move-to-workspace-3 = [ "<Shift><Super>3" ];
         move-to-workspace-4 = [ "<Shift><Super>4" ];
         move-to-workspace-5 = [ "<Shift><Super>5" ];
+        move-to-workspace-6 = [ "<Shift><Super>6" ];
+        move-to-workspace-7 = [ "<Shift><Super>7" ];
+        move-to-workspace-8 = [ "<Shift><Super>8" ];
+        move-to-workspace-9 = [ "<Shift><Super>9" ];
+        move-to-workspace-10 = [ "<Shift><Super>0" ];
         switch-to-workspace-1 = [ "<Super>1" ];
         switch-to-workspace-2 = [ "<Super>2" ];
         switch-to-workspace-3 = [ "<Super>3" ];
         switch-to-workspace-4 = [ "<Super>4" ];
         switch-to-workspace-5 = [ "<Super>5" ];
-        toggle-fullscreen = [ "<Super>g" ];
+        switch-to-workspace-6 = [ "<Super>6" ];
+        switch-to-workspace-7 = [ "<Super>7" ];
+        switch-to-workspace-8 = [ "<Super>8" ];
+        switch-to-workspace-9 = [ "<Super>9" ];
+        switch-to-workspace-10 = [ "<Super>0" ];
+        toggle-fullscreen = [ "<Super>f" ];
       };
 
       "org/gnome/shell/keybindings" = {
+        toggle-application-view = [ "<Super>r" ];
         switch-to-application-1 = [ ];
         switch-to-application-2 = [ ];
         switch-to-application-3 = [ ];
@@ -95,14 +110,6 @@ with lib.gvariant; {
         num-workspaces = 5;
         resize-with-right-button = true;
         focus-mode = "sloppy";
-      };
-
-      "org/gnome/mutter" = {
-        dynamic-workspaces = false;
-        edge-tiling = true;
-        num-workspaces = 6;
-        check-alive-timeout = 0;
-        workspaces-only-on-primary = true;
       };
 
       "org/gnome/settings-daemon/plugins/media-keys" = {
@@ -152,10 +159,6 @@ with lib.gvariant; {
       };
 
       "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
-
-      "org/gnome/shell/keybindings" = {
-        toggle-application-view = [ "<Super>r" ];
-      };
 
       "system/locale" = { region = "en_US.UTF-8"; };
 

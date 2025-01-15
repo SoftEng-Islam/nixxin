@@ -8,6 +8,10 @@
   homeStateVersion = "24.11";
   profile = "desktop"; # select a profile defined from my profiles directory
 
+  # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
+  # 0 to Disable:
+  idleDelay = 0;
+
   # ---- Boot ---- #
   bootMode = "uefi"; # uefi or bios
   # mount path for efi boot partition; only used for uefi boot mode

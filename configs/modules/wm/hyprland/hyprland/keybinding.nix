@@ -164,22 +164,25 @@
       bind = $mod SHIFT, S, exec, mkdir -p ~/Pictures/Area && ~/.config/hypr/scripts/grimblast.sh --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
 
+      # ---- Full Screenshot ---- #
+      bindl= ,Print, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
 
       # bind = $mainMod SHIFT, S, exec, grimblast --notify --freeze copysave area
       # bind = $mainMod, S, exec, grimblast --notify --freeze copysave output
       # bind = ,PRINT, exec, grimblast --notify --freeze copysave output
-
-      # ---- Full Screenshot ---- #
-      bindl= ,Print, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
 
       # You can Enable these if you want:
       # bindl= ,Print, exec, grim - | wl-copy # Screenshot >> clipboard
       # bind = Super+Shift,T,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png" # Screen snip to text >> clipboard
       # bind = Ctrl+Super+Shift,S,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png" # [hidden]
 
-
       # ---- Color picker ---- #
       bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
+
+      # Media binds
+      bind = ,XF86AudioRaiseVolume, exec, pamixer -i 5 && ignis open ignis_OSD
+      bind = ,XF86AudioLowerVolume, exec, pamixer -d 5 && ignis open ignis_OSD
+      bind = ,XF86AudioMute, exec, pamixer -t && ignis open ignis_OSD
     '';
   };
 }
