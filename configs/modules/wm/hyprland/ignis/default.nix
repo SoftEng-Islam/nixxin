@@ -7,6 +7,7 @@
             dart-sass
             (python312.withPackages (ppkgs:
               with ppkgs; [
+
                 mypy
                 ruff
                 types-requests
