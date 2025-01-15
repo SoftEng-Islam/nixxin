@@ -1,6 +1,6 @@
 { config, settings, lib, pkgs, ... }:
 let
-  cacheInHome = "~/.cache";
+  cacheInHome = "/home/${settings.username}/.cache";
 
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
