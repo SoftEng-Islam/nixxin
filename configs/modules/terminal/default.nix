@@ -46,6 +46,5 @@
     bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
     fzf # Command-line fuzzy finder written in Go
-    htop # Interactive process viewer
   ];
 }

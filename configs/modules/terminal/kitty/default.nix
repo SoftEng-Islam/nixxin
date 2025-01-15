@@ -4,11 +4,11 @@
       include ~/.local/cache/ignis/material/dark_colors-kitty.conf
 
       # ---- basic colors ---- #
-      background #${config.lib.stylix.colors.base01}
-      foreground #${config.lib.stylix.colors.base07}
+      # background #${config.lib.stylix.colors.base01}
+      # foreground #${config.lib.stylix.colors.base07}
 
       # ---- Cursor colors ---- #
-      cursor #${settings.accentColor}
+      #cursor #${settings.accentColor}
       cursor_text_color #${config.lib.stylix.colors.base0A}
       # selection_background #${config.lib.stylix.colors.base04}
       # selection_foreground #${config.lib.stylix.colors.base06}
@@ -18,31 +18,31 @@
 
       active_border_color #${config.lib.stylix.colors.base11}
       active_tab_background #${config.lib.stylix.colors.base01}
-      active_tab_foreground #${config.lib.stylix.colors.base11}
+      active_tab_foreground #${config.lib.stylix.colors.base05}
       inactive_border_color #${config.lib.stylix.colors.base03}
       inactive_tab_background #${config.lib.stylix.colors.base02}
-      inactive_tab_foreground #${config.lib.stylix.colors.base10}
+      inactive_tab_foreground #${config.lib.stylix.colors.base04}
       tab_bar_background #${config.lib.stylix.colors.base01}
 
       # normal
-      color0 #${config.lib.stylix.colors.base01}
-      color1 #${config.lib.stylix.colors.base08}
-      color2 #${config.lib.stylix.colors.base0B}
-      color3 #${config.lib.stylix.colors.base09}
-      color4 #${config.lib.stylix.colors.base0C}
-      color5 #${config.lib.stylix.colors.base0D}
-      color6 #${config.lib.stylix.colors.base0E}
-      color7 #${config.lib.stylix.colors.base0F}
+      #color0 #${config.lib.stylix.colors.base01}
+      #color1 #${config.lib.stylix.colors.base08}
+      #color2 #${config.lib.stylix.colors.base0B}
+      #color3 #${config.lib.stylix.colors.base09}
+      #color4 #${config.lib.stylix.colors.base0C}
+      #color5 #${config.lib.stylix.colors.base0D}
+      #color6 #${config.lib.stylix.colors.base0E}
+      #color7 #${config.lib.stylix.colors.base0F}
 
       # bright
-      color8 #${config.lib.stylix.colors.base02}
-      color9 #${config.lib.stylix.colors.base12}
-      color10 #${config.lib.stylix.colors.base14}
-      color11 #${config.lib.stylix.colors.base13}
-      color12 #${config.lib.stylix.colors.base15}
-      color13 #${config.lib.stylix.colors.base17}
-      color14 #${config.lib.stylix.colors.base16}
-      color15 #${config.lib.stylix.colors.base04}
+      #color8 #${config.lib.stylix.colors.base02}
+      #color9 #${config.lib.stylix.colors.base12}
+      #color10 #${config.lib.stylix.colors.base14}
+      #color11 #${config.lib.stylix.colors.base13}
+      #color12 #${config.lib.stylix.colors.base15}
+      #color13 #${config.lib.stylix.colors.base17}
+      #color14 #${config.lib.stylix.colors.base16}
+      #color15 #${config.lib.stylix.colors.base04}
 
       # extended base16 colors
       color16 #${config.lib.stylix.colors.base0A}

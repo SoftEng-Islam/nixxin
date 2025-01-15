@@ -23,9 +23,6 @@
     mtr.enable = true;
     fuse.userAllowOther = true;
 
-    htop.enable = true;
-    htop.settings = { tree_view = 1; };
-
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
 

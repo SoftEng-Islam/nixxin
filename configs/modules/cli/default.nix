@@ -51,7 +51,6 @@
     gnused # GNU sed, a batch stream editor
     gum # Tasty Bubble Gum for your shell
     hexyl # Command-line hex viewer
-    htop # An interactive process viewer
     hwinfo # Hardware detection tool from openSUSE
     jq # Lightweight and flexible command-line JSON processor
 

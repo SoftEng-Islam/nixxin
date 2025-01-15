@@ -1,5 +1,7 @@
 { config, settings, lib, pkgs, ... }:
 let
+  cacheInHome = "/home/${settings.username}/.local/cache";
+
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
@@ -72,11 +74,11 @@ in {
     # XDG_CONFIG_HOME = "";
     XDG_SESSION_TYPE = "wayland";
     # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+    XDG_CONFIG_HOME = "/home/${settings.username}/.config";
+    XDG_PICTURES_DIR = "/home/${settings.username}/Pictures";
+    XDG_SCREENSHOTS_DIR = "/home/${settings.username}/Pictures/Screenshots";
 
-    XDG_PICTURES_DIR = "~/Pictures";
-    XDG_SCREENSHOTS_DIR = "~/Pictures/Screenshots";
-
-    XDG_CACHE_HOME = "/home/${settings.username}/.cache";
+    XDG_CACHE_HOME = cacheInHome;
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
@@ -112,8 +114,7 @@ in {
     xdg = {
       enable = true;
       configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
-      cacheHome = "/home/${settings.username}/.local/cache";
-      # cacheHome = "/home/${settings.username}/.cache";
+      cacheHome = cacheInHome;
       userDirs = {
         enable = true;
         createDirectories = true;
@@ -125,12 +126,12 @@ in {
         templates = null;
         desktop = null;
         publicShare = null;
-        # extraConfig = {
-        #   XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-        #   XDG_BOOK_DIR = "/home/${settings.username}/Books";
-        #   XDG_SCREENSHOTS_DIR =
-        #     "/home/${settings.username}/Pictures/Screenshots";
-        # };
+        extraConfig = {
+          XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
+          XDG_BOOK_DIR = "/home/${settings.username}/Books";
+          XDG_SCREENSHOTS_DIR =
+            "/home/${settings.username}/Pictures/Screenshots";
+        };
       };
       # desktopEntries."org.gnome.Settings" = {
       #   name = "Settings";

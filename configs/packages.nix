@@ -25,13 +25,9 @@
     # gpaste # Clipboard management system with GNOME integration
     # clipman # A simple clipboard manager for Wayland
 
-    # ---- Process Management ---- #
-    htop # Interactive process viewer
-    iotop # Tool to find out the processes doing the most IO
-
     # ---- Text Search ---- #
-    silver-searcher # Code-searching tool similar to ack, but faster
-    ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
+    # silver-searcher # Code-searching tool similar to ack, but faster
+    # ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
 
     # ---- D-Bus ---- #
     dbus # Simple interprocess messaging system

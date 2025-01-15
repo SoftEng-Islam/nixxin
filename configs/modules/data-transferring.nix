@@ -14,12 +14,6 @@
     yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
 
     motrix # Full-featured download manager
-    qbittorrent # Featureful free software BitTorrent client
-    # (writeShellScriptBin "qbittorrent" ''
-    #   export QT_LOGGING_RULES="qt.gui.imageio.warning=false"
-    #   export QT_NETWORK_LOGGING_RULES="qt.network.http2.warning=false"
-    #   exec /run/current-system/sw/bin/qbittorrent "$@"
-    # '')
     libtorrent-rasterbar # C++ BitTorrent implementation focusing on efficiency and scalability
     # ariang # Modern web frontend making aria2 easier to use
     # media-downloader # Qt/C++ GUI front end for yt-dlp and others

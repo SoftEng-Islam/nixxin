@@ -7,10 +7,12 @@
     ./home.nix
     ./packages.nix
     ./styles
+    ./modules/btop
     ./modules/cli
     ./modules/dev
     ./modules/flags
     ./modules/media
+    ./modules/qbittorrent
     ./modules/terminal
     ./modules/wm/gnome
     ./modules/wm/hyprland
