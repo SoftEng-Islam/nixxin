@@ -28,11 +28,9 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    ignis.url = "github:linkfrg/ignis";
-    ignis.inputs.nixpkgs.follows = "nixpkgs";
-
-    hyprland.url = "github:hyprwm/Hyprland/?submodules=true";
+    hyprland.url = "github:hyprwm/Hyprland";
     hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+    hyprland.submodules = true;
 
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
@@ -47,11 +45,14 @@
     pyprland.url = "github:hyprland-community/pyprland";
     pyprland.inputs.nixpkgs.follows = "nixpkgs";
 
-    # A Material You Color Generation Tool
-    matugen.url = "github:/InioX/Matugen";
+    ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
+    ignis.inputs.nixpkgs.follows = "nixpkgs";
 
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
+    # A Material You Color Generation Tool
+    # matugen.url = "github:/InioX/Matugen";
+
+    # anyrun.url = "github:Kirottu/anyrun";
+    # anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

@@ -6,7 +6,6 @@
           ++ (with pkgs; [
             dart-sass
             libpulseaudio
-            gnome.gnome-volume-control # Add the Gvc library here
             (python312.withPackages (ppkgs:
               with ppkgs; [
                 mypy
