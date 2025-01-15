@@ -2,10 +2,7 @@ system: "base24"
 name: "nixxin"
 author: "Islam Ahmed (https://github.com/SoftEng-Islam)"
 variant: "dark"
-# Colours Overview:
-# https://github.com/tinted-theming/base24/blob/main/styling.md
 palette:
-  # BaseNN - Terminal/Colour - Text Editor
   base00: "#101010" # (Background) - Default background (darker, near-black)
   base01: "#202020" # (Black - Lighter Background) (Used for status bars)
   base02: "#303030" # (Bright Black) - Selection background

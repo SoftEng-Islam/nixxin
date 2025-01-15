@@ -6,7 +6,7 @@ let
     # To Generate The sha256
     # sha256sum ~/nixxin/configs/styles/base24.yaml
     sha256 =
-      "cd52c2efd7b8dc00efc0ba635d896361b383cda6c8fc3b5ee7856190a49bf246"; # The hash you got
+      "9a620063282acb2d9cf10bef76d71471e6df41b4b8aa1b3fe79efbe74ba9bdb7"; # The hash you got
   };
 in {
   stylix = {
