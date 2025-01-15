@@ -31,7 +31,6 @@
     ./modules/system/zram.nix
 
     ./modules/android.nix
-    ./modules/anyrun.nix
     ./modules/applications.nix
     ./modules/codex.nix
     ./modules/data-transferring.nix

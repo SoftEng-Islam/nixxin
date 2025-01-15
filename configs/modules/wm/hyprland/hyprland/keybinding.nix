@@ -26,12 +26,9 @@
         "$mod, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
         "$mod Ctrl, V, exec, pavucontrol" # Launch pavucontrol (volume mixer)
 
-        # Disabled Temporery
-        # "Ctrl $mod, Slash, exec, pkill anyrun || anyrun" # Toggle fallback launcher: anyrun
-
         # fuzzel Configuration File
         # XDG_CONFIG_HOME/fuzzel/fuzzel.ini
-        "$mod,D, exec, pkill anyrun || fuzzel" # Toggle fallback launcher: fuzzel
+        "$mod,D, exec, fuzzel" # Toggle fallback launcher: fuzzel
 
         # Launch Gnome Control Center
         ''

@@ -68,7 +68,6 @@
         "noanim, walker" # Disable animations for walker
         "noanim, selection" # Disable animations for selection
         "noanim, overview" # Disable animations for overview
-        "noanim, anyrun" # Disable animations for anyrun
         "noanim, indicator.*" # Disable animations for indicator layers
         "noanim, osk" # Disable animations for on-screen keyboard
         "noanim, hyprpicker" # Disable animations for hyprpicker
