@@ -5,12 +5,12 @@
         kb_layout = "us,eg";
         # kb_variant = "";
         kb_options = "grp:alt_shift_toggle";
-        follow_mouse = 1;
-        numlock_by_default = true;
+        # follow_mouse = 1;
+        # numlock_by_default = true;
         repeat_rate = 30;
         repeat_delay = 250;
         sensitivity = -0.5; # Adjust pointer sensitivity (speed)
-        special_fallthrough = true;
+        # special_fallthrough = true;
         float_switch_override_focus = false;
         left_handed = false;
         touchpad = {

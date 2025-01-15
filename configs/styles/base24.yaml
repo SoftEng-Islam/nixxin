@@ -1,29 +1,32 @@
 system: "base24"
 name: "nixxin"
-author: "Islam Ahmed (https://github.com/softeng)"
+author: "Islam Ahmed (https://github.com/SoftEng-Islam)"
 variant: "dark"
+# Colours Overview:
+# https://github.com/tinted-theming/base24/blob/main/styling.md
 palette:
-  base00: "#101010" # Default background (darker, near-black)
-  base01: "#1a1a1a" # Slightly lighter background
-  base02: "#303030" # Selection background
-  base03: "#474747" # Secondary text
-  base04: "#5c5c5c" # Lighter neutral
-  base05: "#f0f0f0" # Foreground - sharp text
-  base06: "#ffffff" # Bright foreground - pure white
-  base07: "#d8d8d8" # Brightest text - soft gray-white
-  base08: "#ff1e2b" # Red - intense
-  base09: "#ff7f3b" # Orange - bold
-  base0A: "#ffbf00" # Yellow - vibrant
-  base0B: "#a4e500" # Green - neon-like
-  base0C: "#00e5b0" # Cyan - vivid
-  base0D: "#00aaff" # Blue - striking
-  base0E: "#d95cff" # Purple - electric
-  base0F: "#ff4080" # Pink - bold and eye-catching
-  base10: "#8f4f4f" # Maroon - deeper red
-  base11: "#ff3f40" # Bright red
-  base12: "#c0d700" # Bright green
-  base13: "#ffb040" # Bright orange
-  base14: "#00d8a0" # Bright cyan
-  base15: "#4080ff" # Bright blue
-  base16: "#a040ff" # Bright purple
-  base17: "#ff6fcf" # Bright pink
+  # BaseNN - Terminal/Colour - Text Editor
+  base00: "#101010" # (Background) - Default background (darker, near-black)
+  base01: "#202020" # (Black - Lighter Background) (Used for status bars)
+  base02: "#303030" # (Bright Black) - Selection background
+  base03: "#404040" # (Grey) - Comments, Invisibles, Line Highlighting
+  base04: "#505050" # (Light Grey) - Dark Foreground (Used for status bars)
+  base05: "#909090" # (Foreground) - Default Foreground, Caret, Delimiters, Operators
+  base06: "#ffefef" # (White) - Light Foreground (Not often used)
+  base07: "#ffffef" # (Bright White) - The Lightest Foreground (Not often used)
+  base08: "#ff1e2b" # (Red) - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+  base09: "#ff7f3b" # (Orange) - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+  base0A: "#ffbf00" # (Yellow) - Classes, Markup Bold, Search Text Background
+  base0B: "#a4e500" # (Green) - Strings, Inherited Class, Markup Code, Diff Inserted
+  base0C: "#00e5b0" # (Cyan) - Support, Regular Expressions, Escape Characters, Markup Quotes
+  base0D: "#00aaff" # (Blue) - Functions, Methods, Attribute IDs, Headings
+  base0E: "#d95cff" # (Purple) - Keywords, Storage, Selector, Markup Italic, Diff Changed
+  base0F: "#ff4080" # (Dark Red or Brown) - Deprecated Highlighting for Methods and Functions, Opening/Closing Embedded Language Tags, e.g., <?php ?>
+  base10: "#1e1e1e" # (Darker Black) - Darker Background
+  base11: "#0e0e0e" # (Darkest Black) - The Darkest Background
+  base12: "#ff3f40" # (Bright Red)
+  base13: "#ffb040" # (Bright Yellow)
+  base14: "#c0d700" # (Bright Green)
+  base15: "#00d8a0" # (Bright Cyan)
+  base16: "#4080ff" # (Bright Blue)
+  base17: "#a040ff" # (Bright Purple)
