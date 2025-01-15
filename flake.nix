@@ -49,9 +49,6 @@
 
     # A Material You Color Generation Tool
     matugen.url = "github:/InioX/Matugen";
-
-    anyrun.url = "github:Kirottu/anyrun";
-    anyrun.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

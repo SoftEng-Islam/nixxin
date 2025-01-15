@@ -3223,4 +3223,4 @@ geary-conversation-viewer#conversation_viewer searchbar > revealer > box { backg
 
 .budgie-panel.vertical #tasklist-button { min-height: 32px; }
 
-@import url("../../../../../.cache/ignis/material/gtk.css");
+@import url("../../../../../.local/cache/ignis/material/gtk.css");
