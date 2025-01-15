@@ -1,16 +1,15 @@
 { settings, config, ... }: {
   home-manager.users.${settings.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
-      # include ~/.config/kitty/base24.conf
-      # Scheme by nixxin
-      # The basic colors
+      include ~/.local/cache/ignis/material/dark_colors-kitty.conf
+
+      # ---- basic colors ---- #
       background #${config.lib.stylix.colors.base01}
       foreground #${config.lib.stylix.colors.base07}
 
-      # Cursor colors
+      # ---- Cursor colors ---- #
       cursor #${settings.accentColor}
       cursor_text_color #${config.lib.stylix.colors.base0A}
-
       # selection_background #${config.lib.stylix.colors.base04}
       # selection_foreground #${config.lib.stylix.colors.base06}
 

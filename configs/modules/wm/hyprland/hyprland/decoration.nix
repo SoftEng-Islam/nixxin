@@ -3,8 +3,10 @@
     wayland.windowManager.hyprland = {
       settings.decoration = {
         rounding = settings.rounding;
+
+        # ---- Blur ---- #
         blur = {
-          enabled = false;
+          enabled = settings.blur;
           xray = true;
           ignore_opacity = true;
           special = true;
@@ -18,8 +20,9 @@
           popups_ignorealpha = 0.6;
         };
 
+        # ---- Shadow ---- #
         shadow = {
-          enabled = true;
+          enabled = settings.shadow;
           range = 20;
           offset = "0 2";
           render_power = 2;
@@ -29,8 +32,8 @@
           # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
         };
 
-        #=> Dim
-        dim_inactive = true;
+        # ---- Dim ---- #
+        dim_inactive = settings.dim_inactive;
         dim_strength = 0.2;
         dim_special = 0;
       };
