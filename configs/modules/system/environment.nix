@@ -13,7 +13,7 @@
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
         "$HOME/.bun/bin"
-        "$HOME/.cache/ignis/bin"
+        #"$HOME/.cache/ignis/bin"
         "$HOME/.npm-global/bin"
         "$HOME/.npm-packages/bin"
         "/run/wrappers/bin"
@@ -21,7 +21,6 @@
         "$HOME/.local/bin"
         "$HOME/.local/share/pnpm"
         "/run/current-system/sw/bin"
-
       ];
 
       NVM_DIR = "$HOME/.nvm";
