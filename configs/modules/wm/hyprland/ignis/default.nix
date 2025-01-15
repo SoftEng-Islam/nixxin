@@ -5,6 +5,7 @@
         propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ])
           ++ (with pkgs; [
             dart-sass
+            libpulseaudio
             (python312.withPackages (ppkgs:
               with ppkgs; [
 
