@@ -164,7 +164,7 @@
       bind = $mod R SHIFT, T, exec, ~/.config/ignis/scripts/recording.py pause
 
       # ---- Screen snip ---- #
-      bind = $mod SHIFT, S, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png --freeze area # Screen snip
+      bind = $mod SHIFT, S, exec, mkdir -p ~/Pictures/Area && ~/.config/hypr/scripts/grimblast.sh --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
 
       # ---- Full Screenshot ---- #
