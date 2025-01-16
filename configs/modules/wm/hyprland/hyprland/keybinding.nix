@@ -53,11 +53,32 @@
         # ---------------------- #
         # ---- $main + Ctrl ---- #
         # ---------------------- #
-        "$main Ctrl, delete, exec, hyprctl dispatch exit" # Logout
-        "$main Ctrl, exec, pavucontrol" # Launch pavucontrol (volume mixer)
-        "$main Ctrl, exec, hyprctl kill" # Pick and kill an Active Window
+        "$main Ctrl, K, exec, hyprctl kill" # Pick and kill an Active Window
+        "$main Ctrl, L, exec, hyprctl dispatch exit" # Logout
+        "$main Ctrl, P, exec, pavucontrol" # Launch pavucontrol (volume mixer)
+        "$main Ctrl, T, exec, kitty --class floating"
 
-        "$main SHIFT, Enter, exec, kitty --class floating"
+        # --------------------- #
+        # ---- $main + Alt ---- #
+        # --------------------- #
+
+        # ----------------------- #
+        # ---- $main + Shift ---- #
+        # ----------------------- #
+
+        # --------------------- #
+        # ---- $main + Tag ---- #
+        # --------------------- #
+        "$main, , exec, " # $main + ~
+        "$main, , exec, " # $main + <
+        "$main, , exec, " # $main + >
+        "$main, , exec, " # $main + /?
+        "$main, , exec, " # $main + ;:
+        "$main, , exec, " # $main + '"
+        "$main, , exec, " # $main + [
+        "$main, , exec, " # $main + ]
+        "$main, , exec, " # $main + `=`
+        "$main, , exec, " # $main + `_`
 
         # Launch Gnome Control Center
         ''
