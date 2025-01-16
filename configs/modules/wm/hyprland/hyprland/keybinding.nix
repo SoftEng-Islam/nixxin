@@ -159,20 +159,8 @@
       bind = $main CTRL, U, swapwindow, u # u: up
       bind = $main CTRL, D, swapwindow, d # d: down
 
-      # --------------------- #
-      # ---- Media Stuff ---- #
-      # --------------------- #
-      # Music control
-      $main ALT, m, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute
-      $main ALT, l, exec, hyprmusic next
-      $main ALT, h, exec, hyprmusic previous
-      $main ALT, p, exec, hyprmusic play-pause
-
-      # ----------------------------------------------------- #
       binde = , XF86MonBrightnessUp, exec, brightnessctl s +5%
       binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
-      binde = $main ALT, k, exec, pulsemixer --change-volume +5
-      binde = $main ALT, j, exec, pulsemixer --change-volume -5
 
       # ------------------------- #
       # ---- Mouse Shortcuts ---- #
@@ -218,7 +206,9 @@
       # ---- Color picker ---- #
       bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
 
-      # Media binds
+      # --------------------- #
+      # ---- Media binds ---- #
+      # --------------------- #
       bind = ,XF86AudioRaiseVolume, exec, pamixer -i 5 && ignis open ignis_OSD
       bind = ,XF86AudioLowerVolume, exec, pamixer -d 5 && ignis open ignis_OSD
       bind = ,XF86AudioMute, exec, pamixer -t && ignis open ignis_OSD
