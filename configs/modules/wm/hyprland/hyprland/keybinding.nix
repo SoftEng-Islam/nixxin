@@ -31,7 +31,7 @@
       bind = $main, W, exec, brave &
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, resources &
-      bind = $main, T, exec, kitty" # Launch kitty (terminal)
+      bind = $main, T, exec, kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
       # bind = $main, I, exec,
