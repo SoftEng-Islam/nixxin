@@ -3,7 +3,7 @@
     programs.btop = {
       enable = true;
       settings = {
-        color_theme = "rose-pine";
+        # color_theme = "rose-pine";
         # theme_background = false;
       };
     };
