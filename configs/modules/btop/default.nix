@@ -3,10 +3,12 @@
     programs.btop = {
       enable = true;
       settings = {
-        # color_theme = "Default";
+        color_theme = "rose-pine";
         # theme_background = false;
       };
     };
+    # btop themes
+    home.file.".config/btop/themes".source = ./themes;
   };
   environment.systemPackages = with pkgs;
     [
