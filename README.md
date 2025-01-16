@@ -116,6 +116,19 @@ use `journalctl` to find problems:
     journalctl -xe | grep home-manager
 ```
 
+use chmod u+w /to/path if you have permissions errors:
+Error:
+```bash
+PermissionError: [Errno 13] Permission denied: '/home/softeng/.cache/ignis/wallpaper'
+```
+
+Fix:
+```bash
+chmod u+w /home/softeng/.cache/ignis/wallpaper
+ls -ld /home/softeng/.cache/ignis/wallpaper
+```
+
+
 ## Credits
 
 Enjoy!

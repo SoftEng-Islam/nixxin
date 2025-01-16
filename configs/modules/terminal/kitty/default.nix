@@ -61,8 +61,8 @@
       inactive_tab_font_style normal
       tab_bar_align left
       tab_bar_edge top
-      tab_bar_margin_height 1.0 1.0
-      tab_bar_margin_width 1.0
+      # tab_bar_margin_height 1.0 1.0
+      # tab_bar_margin_width 1.0
       tab_bar_min_tabs 1
       tab_bar_style separator
       tab_separator " ┇ "
