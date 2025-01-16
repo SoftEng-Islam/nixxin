@@ -41,8 +41,8 @@ in {
     };
     targets = {
       console.enable = true;
-      feh.enable = true;
-      fish.enable = true;
+      # feh.enable = true;
+      # fish.enable = true;
       gnome.enable = false;
       grub.enable = false;
       regreet.enable = false;
@@ -62,18 +62,18 @@ in {
       };
       targets = {
         # alacritty.enable = true;
-        avizo.enable = true;
-        bat.enable = true;
-        btop.enable = true;
+        # avizo.enable = true;
+        # bat.enable = true;
+        # btop.enable = true;
         # cava.enable = true;
         # dunst.enable = true;
         # emacs.enable = true;
-        firefox.enable = true;
-        foot.enable = true;
-        fzf.enable = true;
-        gitui.enable = true;
-        kitty.enable = true;
-        lazygit.enable = true;
+        # firefox.enable = true;
+        # foot.enable = true;
+        # fzf.enable = true;
+        # gitui.enable = true;
+        # kitty.enable = true;
+        # lazygit.enable = true;
         # mako.enable = true;
         # nixvim.enable = false;
         # hyprland.enable = true;
