@@ -1,8 +1,9 @@
 { settings, ... }: {
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.settings = {
-      # ---- Main Key
+      # ---- Main Key ---- #
       "$main" = "SUPER";
+
       # ---- Bind flags ---- #
       # => bind supports flags in this format:
       # bind[flags] = ...
@@ -25,35 +26,35 @@
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
-      # ---- First Row ---- #
+      #=> First Row:
       bind = $main, Q, killactive,
       bind = $main, W, exec, brave &
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, resources &
       bind = $main, T, exec, kitty" # Launch kitty (terminal)
-      bind = $main, Y, exec,
-      bind = $main, U, exec,
-      bind = $main, I, exec,
+      # bind = $main, Y, exec,
+      # bind = $main, U, exec,
+      # bind = $main, I, exec,
       bind = $main, O, togglesplit,
       bind = $main, P, pseudo,
-      # ---- Second Row ---- #
-      bind = $main, A, exec,
-      bind = $main, S, exec,
+      #=> Second Row:
+      # bind = $main, A, exec,
+      # bind = $main, S, exec,
       bind = $main, D, exec, fuzzel # Toggle fallback launcher: fuzzel
       bind = $main, F, fullscreen, 0
-      bind = $main, G, exec,
-      bind = $main, H, exec,
-      bind = $main, J, exec,
-      bind = $main, K, exec,
+      # bind = $main, G, exec,
+      # bind = $main, H, exec,
+      # bind = $main, J, exec,
+      # bind = $main, K, exec,
       bind = $main, L, exec, hyprlock # Lock screen
-      # ---- Third Row ---- #
-      bind = $main, Z, exec,
+      #=> Third Row:
+      # bind = $main, Z, exec,
       bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)
-      bind = $main, V, exec,
-      bind = $main, B, exec,
-      bind = $main, N, exec,
-      bind = $main, M, exec,
+      # bind = $main, V, exec,
+      # bind = $main, B, exec,
+      # bind = $main, N, exec,
+      # bind = $main, M, exec,
 
       # ---------------------- #
       # ---- $main + Ctrl ---- #
@@ -74,19 +75,18 @@
       # --------------------- #
       # ---- $main + Tag ---- #
       # --------------------- #
-      bind = $main, , exec, # $main + ~
-      bind = $main, , exec, # $main + <
-      bind = $main, , exec, # $main + >
-      bind = $main, , exec, # $main + /?
-      bind = $main, , exec, # $main + ;:
-      bind = $main, , exec, # $main + '"
-      bind = $main, , exec, # $main + [
-      bind = $main, , exec, # $main + ]
-      bind = $main, , exec, # $main + `=`
-      bind = $main, , exec, # $main + `_`
-
-      # Launch Gnome Control Center
-      bind = $main G, C, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center
+      #=> Launch Gnome Control Center
+      bind = $main, grave, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center # $main + ~
+      # bind = $main, , exec, # $main + <
+      # bind = $main, , exec, # $main + >
+      # bind = $main, , exec, # $main + /?
+      # bind = $main, , exec, # $main + \|
+      # bind = $main, , exec, # $main + ;:
+      # bind = $main, , exec, # $main + '"
+      # bind = $main, , exec, # $main + [
+      # bind = $main, , exec, # $main + ]
+      # bind = $main, , exec, # $main + `=`
+      # bind = $main, , exec, # $main + `_`
 
       # ---- Positioning Mode ---- #
       bind = $main SHIFT, F, fullscreen,
@@ -184,17 +184,16 @@
       bindm = $main, mouse:272, movewindow # $main + `Left` Click
       bindm = $main, mouse:273, resizewindow # $main + `Right` Click
 
-
-      # Restart Ignis
-      bindr = $main Ctrl , R, exec, killall ignis ydotool; ignis init &
-      bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
-
+      # --------------- #
       # ---- ignis ---- #
+      # --------------- #
       bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       bind = $main, M, exec, ignis toggle ignis_POWERMENU
       bind = ALT, F4, exec, ignis toggle ignis_POWERMENU
-
-      # ---- ignis Recording ---- #
+      #=> Restart Ignis
+      bindr = $main Ctrl , R, exec, killall ignis ydotool; ignis init &
+      bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
+      #=> ignis Recording
       bind = $main, R, exec, ~/.config/ignis/scripts/recording.py start
       bind = $main SHIFT, R, exec, ~/.config/ignis/scripts/recording.py continue
       bind = $main R, T, exec, ~/.config/ignis/scripts/recording.py stop
