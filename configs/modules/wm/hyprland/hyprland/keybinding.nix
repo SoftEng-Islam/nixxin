@@ -5,8 +5,7 @@
       "$main" = "SUPER";
 
       # Mouse bindings.
-      bindm =
-        [ "$main, mouse:272, movewindow" "$main, mouse:273, resizewindow" ];
+      # bindm = [ ];
 
       binde = [
         # ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
@@ -157,14 +156,6 @@
         "$main CTRL, U, swapwindow, u" # u: up
         "$main CTRL, D, swapwindow, d" # d: down
 
-        # ------------------------- #
-        # ---- Mouse Shortcuts ---- #
-        # ------------------------- #
-        # Scroll through monitor workspaces with mod + scroll
-        "$main, mouse_down, workspace, r-1"
-        "$main, mouse_up, workspace, r+1"
-        "$main, mouse:274, killactive," # $main + `Click On Mouse Scroll Button` to kill window
-
         # --------------------- #
         # ---- Media Stuff ---- #
         # --------------------- #
@@ -174,13 +165,24 @@
         "$main ALT, h, exec, hyprmusic previous"
         "$main ALT, p, exec, hyprmusic play-pause"
       ];
-      bindr = [
-        # Restart Ignis
-        "Ctrl $main , R, exec, killall ignis ydotool; ignis init &"
-        "Ctrl $main Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &"
-      ];
+      # bindr = [];
     };
     wayland.windowManager.hyprland.extraConfig = ''
+      # ------------------------- #
+      # ---- Mouse Shortcuts ---- #
+      # ------------------------- #
+      # Scroll through monitor workspaces with mod + scroll
+      bind = $main, mouse_down, workspace, r-1
+      bind = $main, mouse_up, workspace, r+1
+      bind = $main, mouse:274, killactive, # $main + `Click On Mouse Scroll Button` to kill window
+      bindm = $main, mouse:272, movewindow # $main + `Left` Click
+      bindm = $main, mouse:273, resizewindow # $main + `Right` Click
+
+
+      # Restart Ignis
+      bindr = $main Ctrl , R, exec, killall ignis ydotool; ignis init &
+      bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
+
       # ---- ignis ---- #
       bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       bind = $main, M, exec, ignis toggle ignis_POWERMENU
