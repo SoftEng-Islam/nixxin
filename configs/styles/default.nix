@@ -75,7 +75,7 @@ in {
         kitty.enable = true;
         lazygit.enable = true;
         mako.enable = true;
-        nixvim.enable = false;
+        nixvim.enable = true;
         hyprland.enable = true;
       };
     };

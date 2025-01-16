@@ -15,7 +15,6 @@
   };
 
   home-manager.users.${settings.username} = {
-    stylix.targets.hyprland.enable = false;
     programs.home-manager.enable = true;
 
     programs.bat.enable = true;
