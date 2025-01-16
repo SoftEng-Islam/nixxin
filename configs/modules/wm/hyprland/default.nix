@@ -20,8 +20,8 @@
     ./hyprland/misc.nix
     ./hyprland/render.nix
     ./hyprland/rules.nix
-    ./hyprland/scripts.nix
-    # ./hyprland/hyprlock.conf
+    # ./hyprland/scripts.nix
+    # ./hyprland/hyprlock.nix
     # ./hyprland/plugins.nix
   ];
   programs = {

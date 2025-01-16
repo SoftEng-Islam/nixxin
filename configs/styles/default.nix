@@ -15,7 +15,6 @@ in {
     polarity = "dark";
     # base16Scheme = ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
     base16Scheme = base24;
-
     opacity = {
       # terminal = settings.opacity;
       # applications = settings.opacity;

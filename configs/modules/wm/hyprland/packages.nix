@@ -34,8 +34,6 @@
     pavucontrol
     playerctl
     swappy
-    swaylock-effects
-    swayidle
     slurp
     swww
     wayshot
@@ -63,7 +61,6 @@
     gtk-engine-murrine # for gtk themes
     hyprcursor # The hyprland cursor format, library and utilities
     # hyprgui # unstable GUI for configuring Hyprland written in Rust
-    # hypridle # Hyprland's idle daemon
     # hyprland-protocols # Wayland protocol extensions for Hyprland
     # hyprlang # The official implementation library for the hypr config language
     # hyprlauncher # GUI for launching applications, written in Rust

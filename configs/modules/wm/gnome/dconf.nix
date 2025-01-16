@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ settings, lib, ... }:
 with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
@@ -82,7 +82,6 @@ with lib.gvariant; {
         move-to-workspace-7 = [ "<Shift><Super>7" ];
         move-to-workspace-8 = [ "<Shift><Super>8" ];
         move-to-workspace-9 = [ "<Shift><Super>9" ];
-        move-to-workspace-10 = [ "<Shift><Super>0" ];
         switch-to-workspace-1 = [ "<Super>1" ];
         switch-to-workspace-2 = [ "<Super>2" ];
         switch-to-workspace-3 = [ "<Super>3" ];
@@ -92,17 +91,12 @@ with lib.gvariant; {
         switch-to-workspace-7 = [ "<Super>7" ];
         switch-to-workspace-8 = [ "<Super>8" ];
         switch-to-workspace-9 = [ "<Super>9" ];
-        switch-to-workspace-10 = [ "<Super>0" ];
         toggle-fullscreen = [ "<Super>f" ];
       };
 
       "org/gnome/shell/keybindings" = {
         toggle-application-view = [ "<Super>r" ];
-        switch-to-application-1 = [ ];
-        switch-to-application-2 = [ ];
-        switch-to-application-3 = [ ];
-        switch-to-application-4 = [ ];
-        switch-to-application-5 = [ ];
+        # switch-to-application-1 = [ ];
       };
 
       "org/gnome/desktop/wm/preferences" = {
@@ -159,7 +153,6 @@ with lib.gvariant; {
       };
 
       "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
-
       "system/locale" = { region = "en_US.UTF-8"; };
 
       "com/github/stunkymonkey/nautilus-open-any-terminal" = {
