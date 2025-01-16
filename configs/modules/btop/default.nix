@@ -8,7 +8,7 @@
       };
     };
     # btop themes
-    home.file.".config/btop/themes".source = ./themes;
+    # home.file.".config/btop/themes".source = ./themes;
   };
   environment.systemPackages = with pkgs;
     [
