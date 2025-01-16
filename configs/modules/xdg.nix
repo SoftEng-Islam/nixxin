@@ -71,14 +71,16 @@ in {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
     # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.username}.uid}";
     # XDG_RUNTIME_DIR = "/run/user/1000";
-    # XDG_CONFIG_HOME = "";
-    XDG_SESSION_TYPE = "wayland";
+
+    # Don't set this var
     # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+
+    XDG_SESSION_TYPE = "wayland";
+
+    XDG_CACHE_HOME = cacheInHome;
     XDG_CONFIG_HOME = "/home/${settings.username}/.config";
     XDG_PICTURES_DIR = "/home/${settings.username}/Pictures";
     XDG_SCREENSHOTS_DIR = "/home/${settings.username}/Pictures/Screenshots";
-
-    XDG_CACHE_HOME = cacheInHome;
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
