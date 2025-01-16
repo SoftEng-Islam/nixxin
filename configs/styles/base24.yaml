@@ -3,14 +3,14 @@ name: "nixxin"
 author: "Islam Ahmed (https://github.com/SoftEng-Islam)"
 variant: "dark"
 palette:
-  base00: "#101010" # (Background) - Default background (darker, near-black)
-  base01: "#202020" # (Black - Lighter Background) (Used for status bars)
-  base02: "#303030" # (Bright Black) - Selection background
-  base03: "#404040" # (Grey) - Comments, Invisibles, Line Highlighting
-  base04: "#505050" # (Light Grey) - Dark Foreground (Used for status bars)
-  base05: "#909090" # (Foreground) - Default Foreground, Caret, Delimiters, Operators
-  base06: "#ffefef" # (White) - Light Foreground (Not often used)
-  base07: "#ffffef" # (Bright White) - The Lightest Foreground (Not often used)
+  base00: "#191724" # (Background) - Default background (darker, near-black)
+  base01: "#1f1d2e" # (Black - Lighter Background) (Used for status bars)
+  base02: "#26233a" # (Bright Black) - Selection background
+  base03: "#6e6a86" # (Grey) - Comments, Invisibles, Line Highlighting
+  base04: "#908caa" # (Light Grey) - Dark Foreground (Used for status bars)
+  base05: "#e0def4" # (Foreground) - Default Foreground, Caret, Delimiters, Operators
+  base06: "#e0def4" # (White) - Light Foreground (Not often used)
+  base07: "#524f67" # (Bright White) - The Lightest Foreground (Not often used)
   base08: "#ff1e2b" # (Red) - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
   base09: "#ff7f3b" # (Orange) - Integers, Boolean, Constants, XML Attributes, Markup Link Url
   base0A: "#ffbf00" # (Yellow) - Classes, Markup Bold, Search Text Background

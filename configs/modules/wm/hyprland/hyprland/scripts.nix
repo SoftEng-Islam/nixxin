@@ -1,7 +1,6 @@
 { settings, ... }: {
   home-manager.users.${settings.username} = {
     home.file.".config/hypr/scripts/hyprlock-time.sh".text = ''
-
       #!/bin/bash
 
       current_hour=$(date +"%H")
