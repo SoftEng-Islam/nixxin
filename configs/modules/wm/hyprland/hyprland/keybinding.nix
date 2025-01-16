@@ -3,171 +3,177 @@
     wayland.windowManager.hyprland.settings = {
       # ---- Main Key
       "$main" = "SUPER";
-
-      # Mouse bindings.
-      # bindm = [ ];
-
-      binde = [
-        # ", XF86AudioRaiseVolume, exec, pulsemixer --change-volume +5"
-        # ", XF86AudioLowerVolume, exec, pulsemixer --change-volume -5"
-        ", XF86MonBrightnessUp, exec, brightnessctl s +5%"
-        ", XF86MonBrightnessDown, exec, brightnessctl s 5%-"
-        "$main ALT, k, exec, pulsemixer --change-volume +5"
-        "$main ALT, j, exec, pulsemixer --change-volume -5"
-      ];
-      bind = [
-        # -------------------------- #
-        # ---- $main + Alphabet ---- #
-        # -------------------------- #
-        # ---- First Row ---- #
-        "$main, Q, killactive,"
-        "$main, W, exec, brave &"
-        "$main, E, exec, nautilus --new-window" # Launch Nautilus (file manager)
-        "$main, R, exec, resources &"
-        "$main, T, exec, kitty" # Launch kitty (terminal)
-        "$main, Y, exec, "
-        "$main, U, exec, "
-        "$main, I, exec, "
-        "$main, O, togglesplit,"
-        "$main, P, pseudo,"
-        # ---- Second Row ---- #
-        "$main, A, exec, "
-        "$main, S, exec, "
-        "$main, D, exec, fuzzel" # Toggle fallback launcher: fuzzel
-        "$main, F, fullscreen, 0"
-        "$main, G, exec, "
-        "$main, H, exec, "
-        "$main, J, exec, "
-        "$main, K, exec, "
-        "$main, L, exec, hyprlock" # Lock screen
-        # ---- Third Row ---- #
-        "$main, Z, exec, "
-        "$main, X, exec, gnome-text-editor --new-window" # Launch GNOME Text Editor
-        "$main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland" # Launch VSCode (editor)
-        "$main, V, exec, "
-        "$main, B, exec, "
-        "$main, N, exec, "
-        "$main, M, exec, "
-
-        # ---------------------- #
-        # ---- $main + Ctrl ---- #
-        # ---------------------- #
-        "$main Ctrl, K, exec, hyprctl kill" # Pick and kill an Active Window
-        "$main Ctrl, L, exec, hyprctl dispatch exit" # Logout
-        "$main Ctrl, P, exec, pavucontrol" # Launch pavucontrol (volume mixer)
-        "$main Ctrl, T, exec, kitty --class floating"
-
-        # --------------------- #
-        # ---- $main + Alt ---- #
-        # --------------------- #
-
-        # ----------------------- #
-        # ---- $main + Shift ---- #
-        # ----------------------- #
-
-        # --------------------- #
-        # ---- $main + Tag ---- #
-        # --------------------- #
-        "$main, , exec, " # $main + ~
-        "$main, , exec, " # $main + <
-        "$main, , exec, " # $main + >
-        "$main, , exec, " # $main + /?
-        "$main, , exec, " # $main + ;:
-        "$main, , exec, " # $main + '"
-        "$main, , exec, " # $main + [
-        "$main, , exec, " # $main + ]
-        "$main, , exec, " # $main + `=`
-        "$main, , exec, " # $main + `_`
-
-        # Launch Gnome Control Center
-        ''
-          $main G, C, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center
-        ''
-
-        # ---- Positioning Mode ---- #
-        "$main SHIFT, F, fullscreen,"
-        "$main T, F, togglefloating,"
-        "$main C, W, centerwindow, 1"
-        # Move monitor focus.
-        "$main, TAB, focusmonitor, +1"
-
-        # -------------------- #
-        # ---- Workspaces ---- #
-        # -------------------- #
-        #/# bind = Ctrl+Super, ←/→,, # Workspace: focus left/right
-        "$main Ctrl, Right, workspace, +1"
-        "$main Ctrl, Left, workspace, -1"
-
-        # Switch workspaces.
-        "$main, 1,exec,hyprworkspace 1"
-        "$main, 2,exec,hyprworkspace 2"
-        "$main, 3,exec,hyprworkspace 3"
-        "$main, 4,exec,hyprworkspace 4"
-        "$main, 5,exec,hyprworkspace 5"
-        "$main, 6,exec,hyprworkspace 6"
-        "$main, 7,exec,hyprworkspace 7"
-        "$main, 8,exec,hyprworkspace 8"
-        "$main, 9,exec,hyprworkspace 9"
-        "$main, 0,exec,hyprworkspace 10"
-
-        # --------------------- #
-        # ---- Move Window ---- #
-        # --------------------- #
-        # Move Active Window to a Workspace.
-        "$main ALT, 1, movetoworkspace, 1"
-        "$main ALT, 2, movetoworkspace, 2"
-        "$main ALT, 3, movetoworkspace, 3"
-        "$main ALT, 4, movetoworkspace, 4"
-        "$main ALT, 5, movetoworkspace, 5"
-        "$main ALT, 6, movetoworkspace, 6"
-        "$main ALT, 7, movetoworkspace, 7"
-        "$main ALT, 8, movetoworkspace, 8"
-        "$main ALT, 9, movetoworkspace, 9"
-        "$main ALT, 0, movetoworkspace, 10"
-
-        # Move Active Window to a Workspace Silent.
-        "$main SHIFT, 1, movetoworkspacesilent, 1"
-        "$main SHIFT, 2, movetoworkspacesilent, 2"
-        "$main SHIFT, 3, movetoworkspacesilent, 3"
-        "$main SHIFT, 4, movetoworkspacesilent, 4"
-        "$main SHIFT, 5, movetoworkspacesilent, 5"
-        "$main SHIFT, 6, movetoworkspacesilent, 6"
-        "$main SHIFT, 7, movetoworkspacesilent, 7"
-        "$main SHIFT, 8, movetoworkspacesilent, 8"
-        "$main SHIFT, 9, movetoworkspacesilent, 9"
-        "$main SHIFT, 0, movetoworkspacesilent, 10"
-
-        # Move Active Window to a workspace with Arrows.
-        "$main Ctrl ALT, Right, movetoworkspace, r+1"
-        "$main Ctrl ALT, Left, movetoworkspace, r-1"
-
-        # ----------------- #
-        # ---- Windows ---- #
-        # ----------------- #
-        # Move window Focus.
-        "$main SHIFT, L, movefocus, l" # l: left
-        "$main SHIFT, R, movefocus, r" # r: right
-        "$main SHIFT, U, movefocus, u" # u: up
-        "$main SHIFT, D, movefocus, d" # d: down
-
-        # Swap Windows
-        "$main CTRL, L, swapwindow, l" # l: left
-        "$main CTRL, R, swapwindow, r" # r: right
-        "$main CTRL, U, swapwindow, u" # u: up
-        "$main CTRL, D, swapwindow, d" # d: down
-
-        # --------------------- #
-        # ---- Media Stuff ---- #
-        # --------------------- #
-        # Music control
-        "$main ALT, m, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute"
-        "$main ALT, l, exec, hyprmusic next"
-        "$main ALT, h, exec, hyprmusic previous"
-        "$main ALT, p, exec, hyprmusic play-pause"
-      ];
-      # bindr = [];
+      # ---- Bind flags ---- #
+      # => bind supports flags in this format:
+      # bind[flags] = ...
+      # => e.g.:
+      # bindrl = MOD, KEY, exec, amongus
+      # => Flags:
+      # l -> locked, will also work when an input inhibitor (e.g. a lockscreen) is active.
+      # r -> release, will trigger on release of a key.
+      # o -> longPress, will trigger on long press of a key.
+      # e -> repeat, will repeat when held.
+      # n -> non-consuming, key/mouse events will be passed to the active window in addition to triggering the dispatcher.
+      # m -> mouse.
+      # t -> transparent, cannot be shadowed by other binds.
+      # i -> ignore mods, will ignore modifiers.
+      # s -> separate, will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above.
+      # d -> has description, will allow you to write a description for your bind.
+      # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
+      # -------------------------- #
+      # ---- $main + Alphabet ---- #
+      # -------------------------- #
+      # ---- First Row ---- #
+      bind = $main, Q, killactive,
+      bind = $main, W, exec, brave &
+      bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
+      bind = $main, R, exec, resources &
+      bind = $main, T, exec, kitty" # Launch kitty (terminal)
+      bind = $main, Y, exec,
+      bind = $main, U, exec,
+      bind = $main, I, exec,
+      bind = $main, O, togglesplit,
+      bind = $main, P, pseudo,
+      # ---- Second Row ---- #
+      bind = $main, A, exec,
+      bind = $main, S, exec,
+      bind = $main, D, exec, fuzzel # Toggle fallback launcher: fuzzel
+      bind = $main, F, fullscreen, 0
+      bind = $main, G, exec,
+      bind = $main, H, exec,
+      bind = $main, J, exec,
+      bind = $main, K, exec,
+      bind = $main, L, exec, hyprlock # Lock screen
+      # ---- Third Row ---- #
+      bind = $main, Z, exec,
+      bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
+      bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)
+      bind = $main, V, exec,
+      bind = $main, B, exec,
+      bind = $main, N, exec,
+      bind = $main, M, exec,
+
+      # ---------------------- #
+      # ---- $main + Ctrl ---- #
+      # ---------------------- #
+      bind = = $main Ctrl, K, exec, hyprctl kill # Pick and kill an Active Window
+      bind = = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
+      bind = = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
+      bind = = $main Ctrl, T, exec, kitty --class floating
+
+      # --------------------- #
+      # ---- $main + Alt ---- #
+      # --------------------- #
+
+      # ----------------------- #
+      # ---- $main + Shift ---- #
+      # ----------------------- #
+
+      # --------------------- #
+      # ---- $main + Tag ---- #
+      # --------------------- #
+      bind = $main, , exec, # $main + ~
+      bind = $main, , exec, # $main + <
+      bind = $main, , exec, # $main + >
+      bind = $main, , exec, # $main + /?
+      bind = $main, , exec, # $main + ;:
+      bind = $main, , exec, # $main + '"
+      bind = $main, , exec, # $main + [
+      bind = $main, , exec, # $main + ]
+      bind = $main, , exec, # $main + `=`
+      bind = $main, , exec, # $main + `_`
+
+      # Launch Gnome Control Center
+      bind = $main G, C, exec, XDG_CURRENT_DESKTOP="gnome" gnome-control-center
+
+      # ---- Positioning Mode ---- #
+      bind = $main SHIFT, F, fullscreen,
+      bind = $main T, F, togglefloating,
+      bind = $main C, W, centerwindow, 1
+      bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
+
+      # -------------------- #
+      # ---- Workspaces ---- #
+      # -------------------- #
+      #/# bind = Ctrl+Super, ←/→,, # Workspace: focus left/right
+      bind = $main Ctrl, Right, workspace, +1
+      bind = $main Ctrl, Left, workspace, -1
+
+      # Switch workspaces.
+      bind = $main, 1,exec,hyprworkspace 1
+      bind = $main, 2,exec,hyprworkspace 2
+      bind = $main, 3,exec,hyprworkspace 3
+      bind = $main, 4,exec,hyprworkspace 4
+      bind = $main, 5,exec,hyprworkspace 5
+      bind = $main, 6,exec,hyprworkspace 6
+      bind = $main, 7,exec,hyprworkspace 7
+      bind = $main, 8,exec,hyprworkspace 8
+      bind = $main, 9,exec,hyprworkspace 9
+      bind = $main, 0,exec,hyprworkspace 10
+
+      # --------------------- #
+      # ---- Move Window ---- #
+      # --------------------- #
+      # Move Active Window to a Workspace.
+      bind = $main ALT, 1, movetoworkspace, 1
+      bind = $main ALT, 2, movetoworkspace, 2
+      bind = $main ALT, 3, movetoworkspace, 3
+      bind = $main ALT, 4, movetoworkspace, 4
+      bind = $main ALT, 5, movetoworkspace, 5
+      bind = $main ALT, 6, movetoworkspace, 6
+      bind = $main ALT, 7, movetoworkspace, 7
+      bind = $main ALT, 8, movetoworkspace, 8
+      bind = $main ALT, 9, movetoworkspace, 9
+      bind = $main ALT, 0, movetoworkspace, 10
+
+      # Move Active Window to a Workspace Silent.
+      bind = $main SHIFT, 1, movetoworkspacesilent, 1
+      bind = $main SHIFT, 2, movetoworkspacesilent, 2
+      bind = $main SHIFT, 3, movetoworkspacesilent, 3
+      bind = $main SHIFT, 4, movetoworkspacesilent, 4
+      bind = $main SHIFT, 5, movetoworkspacesilent, 5
+      bind = $main SHIFT, 6, movetoworkspacesilent, 6
+      bind = $main SHIFT, 7, movetoworkspacesilent, 7
+      bind = $main SHIFT, 8, movetoworkspacesilent, 8
+      bind = $main SHIFT, 9, movetoworkspacesilent, 9
+      bind = $main SHIFT, 0, movetoworkspacesilent, 10
+
+      # Move Active Window to a workspace with Arrows.
+      bind = $main Ctrl ALT, Right, movetoworkspace, r+1
+      bind = $main Ctrl ALT, Left, movetoworkspace, r-1
+
+      # --------------------------------------- #
+      # ---- Window Shortcuts and Actions ---- #
+      # --------------------------------------- #
+      # ---- Move window Focus ---- #
+      bind = $main SHIFT, L, movefocus, l # l: left
+      bind = $main SHIFT, R, movefocus, r # r: right
+      bind = $main SHIFT, U, movefocus, u # u: up
+      bind = $main SHIFT, D, movefocus, d # d: down
+
+      # ---- Swap Windows ---- #
+      bind = $main CTRL, L, swapwindow, l # l: left
+      bind = $main CTRL, R, swapwindow, r # r: right
+      bind = $main CTRL, U, swapwindow, u # u: up
+      bind = $main CTRL, D, swapwindow, d # d: down
+
+      # --------------------- #
+      # ---- Media Stuff ---- #
+      # --------------------- #
+      # Music control
+      $main ALT, m, exec, pulsemixer --id $(pulsemixer --list-sources | cut -f3 | grep 'Default' | cut -d ',' -f 1 | cut -c 6-) --toggle-mute
+      $main ALT, l, exec, hyprmusic next
+      $main ALT, h, exec, hyprmusic previous
+      $main ALT, p, exec, hyprmusic play-pause
+
+      # ----------------------------------------------------- #
+      binde = , XF86MonBrightnessUp, exec, brightnessctl s +5%
+      binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
+      binde = $main ALT, k, exec, pulsemixer --change-volume +5
+      binde = $main ALT, j, exec, pulsemixer --change-volume -5
+
       # ------------------------- #
       # ---- Mouse Shortcuts ---- #
       # ------------------------- #
