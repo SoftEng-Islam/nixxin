@@ -11,19 +11,11 @@ palette:
   base05: "#e0def4" # (Foreground) - Default Foreground, Caret, Delimiters, Operators
   base06: "#e0def4" # (White) - Light Foreground (Not often used)
   base07: "#524f67" # (Bright White) - The Lightest Foreground (Not often used)
-  base08: "#ff1e2b" # (Red) - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
-  base09: "#ff7f3b" # (Orange) - Integers, Boolean, Constants, XML Attributes, Markup Link Url
-  base0A: "#ffbf00" # (Yellow) - Classes, Markup Bold, Search Text Background
-  base0B: "#a4e500" # (Green) - Strings, Inherited Class, Markup Code, Diff Inserted
-  base0C: "#00e5b0" # (Cyan) - Support, Regular Expressions, Escape Characters, Markup Quotes
-  base0D: "#00aaff" # (Blue) - Functions, Methods, Attribute IDs, Headings
-  base0E: "#d95cff" # (Purple) - Keywords, Storage, Selector, Markup Italic, Diff Changed
-  base0F: "#ff4080" # (Dark Red or Brown) - Deprecated Highlighting for Methods and Functions, Opening/Closing Embedded Language Tags, e.g., <?php ?>
-  base10: "#1e1e1e" # (Darker Black) - Darker Background
-  base11: "#0e0e0e" # (Darkest Black) - The Darkest Background
-  base12: "#ff3f40" # (Bright Red)
-  base13: "#ffb040" # (Bright Yellow)
-  base14: "#c0d700" # (Bright Green)
-  base15: "#00d8a0" # (Bright Cyan)
-  base16: "#4080ff" # (Bright Blue)
-  base17: "#a040ff" # (Bright Purple)
+  base08: "#e91e63" # (Red) - Variables, XML Tags, Markup Link Text, Markup Lists, Diff Deleted
+  base09: "#ff9800" # (Orange) - Integers, Boolean, Constants, XML Attributes, Markup Link Url
+  base0A: "#ffeb3b" # (Yellow) - Classes, Markup Bold, Search Text Background
+  base0B: "#4caf50" # (Green) - Strings, Inherited Class, Markup Code, Diff Inserted
+  base0C: "#00bcd4" # (Cyan) - Support, Regular Expressions, Escape Characters, Markup Quotes
+  base0D: "#3f51b5" # (Blue) - Functions, Methods, Attribute IDs, Headings
+  base0E: "#673ab7" # (Purple) - Keywords, Storage, Selector, Markup Italic, Diff Changed
+  base0F: "#f44336" # (Dark Red or Brown) - Deprecated Highlighting for Methods and Functions, Opening/Closing Embedded Language Tags, e.g., <?php ?>
