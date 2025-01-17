@@ -72,7 +72,6 @@ in {
     cairo
     clang
     cmake
-    dbus
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
     gcc

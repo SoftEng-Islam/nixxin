@@ -1,6 +1,42 @@
 { settings, lib, ... }:
+# you can try this command if you have any problem with gnome settings
+# dconf reset -f /org/gnome/
+
+# Run the following command to disable the Gnome check-alive-timeout or "App Not Responding" dialog:
+# dconf write /org/gnome/mutter/debug/enable-frame-timing false
+# gsettings set org.gnome.mutter check-alive-timeout 0
+
 with lib.gvariant; {
+  programs.dconf.enable = true; # dconf
+  environment.systemPackages = with pkgs; [
+    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
+    dconf-editor # GSettings editor for GNOME
+
+    gnome-tweaks
+    gnome-extension-manager
+    gnomeExtensions.appindicator
+    gnomeExtensions.blur-my-shell
+    gnomeExtensions.dash-to-dock
+    gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
+  ];
+
   home-manager.users.${settings.username} = {
+    # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
+    # gnome-extensions list --enabled
+    "org/gnome/shell" = {
+      disable-user-extensions = false;
+      enabled-extensions = [
+        "dash-to-dock@micxgx.gmail.com"
+        "blur-my-shell@aunetx"
+        "appindicatorsupport@rgcjonas.gmail.com"
+        "pomodoro@arun.codito.in"
+        "netspeedsimplified@prateekmedia.extension"
+      ];
+    };
+
+    "org/gnome/shell/extensions/blur-my-shell/overview" = {
+      style-components = 3;
+    };
     dconf.settings = {
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {

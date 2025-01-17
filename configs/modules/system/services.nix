@@ -27,10 +27,6 @@
     displayManager.enable = true;
     displayManager.defaultSession = settings.defaultSession;
 
-    dbus.enable = true;
-    dbus.packages = [ pkgs.dconf ];
-    dbus.implementation = "broker";
-
     # populates contents of /bin and /usr/bin/
     envfs.enable = true;
     accounts-daemon.enable = true;

@@ -11,16 +11,13 @@
       home = "/home/${settings.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
-        "softeng"
-        "adbusers"
-        "gamemode"
         "adbusers"
         "audio" # Access to audio devices.
         "dialout"
         "disk"
-        "transmission"
         "docker"
         "flatpak"
+        "gamemode"
         "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
@@ -28,14 +25,16 @@
         "lp" # Manage printers.
         "network"
         "networkmanager" # Permissions to manage network connections.
+        "nixos"
         "plugdev"
         "qemu"
-        "nixos"
         "render"
         "root"
-        "tty"
+        "softeng"
         "sshd"
         "storage" # Access to storage devices.
+        "transmission"
+        "tty"
         "uucp" # Access to serial ports and devices connected via serial ports.
         "vboxusers"
         "video" # Access to video devices

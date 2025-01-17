@@ -18,7 +18,6 @@
     corectrl.gpuOverclock.enable = true;
     corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
 
-    dconf.enable = true; # dconf
     droidcam.enable = true; # camera
     mtr.enable = true;
     fuse.userAllowOther = true;

@@ -1,12 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [ ./dconf.nix ./extensions.nix ];
-
-  # you can try this command if you have any problem with gnome settings
-  # dconf reset -f /org/gnome/
-
-  # Run the following command to disable the Gnome check-alive-timeout or "App Not Responding" dialog:
-  # dconf write /org/gnome/mutter/debug/enable-frame-timing false
-  # gsettings set org.gnome.mutter check-alive-timeout 0
+  imports = [ ./dconf.nix ];
 
   # Run this command to Remove window close and minimize buttons in GTK:
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'

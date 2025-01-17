@@ -29,12 +29,6 @@
     # silver-searcher # Code-searching tool similar to ack, but faster
     # ripgrep # Utility that combines the usability of The Silver Searcher with the raw speed of grep
 
-    # ---- D-Bus ---- #
-    dbus # Simple interprocess messaging system
-    dbus-broker # Linux D-Bus Message Broker
-
-    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
-    dconf-editor # GSettings editor for GNOME
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
     matugen # A material you color generation tool
 
@@ -111,7 +105,6 @@
     audit # Audit Library
     xmlto # Front-end to an XSL toolchain
     fop # XML formatter driven by XSL Formatting Objects (XSL-FO)
-    libdbusmenu # Library for passing menu structures across DBus
 
     # developers packages
     # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
@@ -138,7 +131,7 @@
     harfbuzz # An OpenType text shaping engine
     harfbuzz.dev
     jetbrains-toolbox
-    libdbusmenu-gtk3
+
     libgcc
     libpulseaudio
     libpulseaudio.dev

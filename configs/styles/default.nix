@@ -48,6 +48,11 @@ in {
       package = settings.cursorPackage;
     };
     fonts = {
+      sizes = {
+        applications = settings.fontSize;
+        desktop = settings.fontSize;
+        popups = settings.fontSize;
+      };
       serif.name = settings.serifFont;
       serif.package = settings.serifPackage;
       sansSerif.name = settings.sansSerifFont;
@@ -61,19 +66,23 @@ in {
     };
     targets = {
       console.enable = true;
-      # feh.enable = true;
-      # fish.enable = true;
-      gnome.enable = false;
-      grub.enable = false;
-      regreet.enable = false;
-      gtk.enable = false;
+      feh.enable = true;
+      fish.enable = true;
+      gnome.enable = true;
+      grub.enable = true;
+      grub.useImage = true;
+      regreet.enable = true;
+      gtk.enable = true;
       nixos-icons.enable = true;
       plymouth.enable = true;
+      nixvim.enable = true;
+      gnome-text-editor.enable = true;
     };
   };
-  home-manager.users.${settings.username} = {
+  home-manager.sharedModules = [{
     stylix = {
       enable = true;
+      # autoEnable = true;
       iconTheme = {
         enable = true;
         package = settings.iconPackage;
@@ -81,25 +90,30 @@ in {
         light = settings.iconNameLight;
       };
       targets = {
-        # alacritty.enable = true;
-        # avizo.enable = true;
-        # bat.enable = true;
-        # btop.enable = true;
-        # cava.enable = true;
-        # dunst.enable = true;
-        # emacs.enable = true;
-        # firefox.enable = true;
-        # foot.enable = true;
-        # fzf.enable = true;
-        # gitui.enable = true;
-        kitty.enable = false;
-        # lazygit.enable = true;
-        # mako.enable = true;
-        # nixvim.enable = true;
+        zed.enable = true;
+        zathura.enable = true;
+        wezterm.enable = true;
+        vim.enable = true;
+        vscode.enable = true;
+        alacritty.enable = true;
+        avizo.enable = true;
+        bat.enable = true;
+        btop.enable = true;
+        cava.enable = true;
+        dunst.enable = true;
+        emacs.enable = true;
+        firefox.enable = true;
+        foot.enable = true;
+        fzf.enable = true;
+        gitui.enable = true;
+        kitty.enable = true;
+        kitty.variant256Colors = true;
+        lazygit.enable = true;
+        mako.enable = true;
         hyprland.enable = false;
       };
     };
-  };
+  }];
   environment.systemPackages = with pkgs; [
     # Icons
     papirus-icon-theme # Pixel perfect icon theme for Linux

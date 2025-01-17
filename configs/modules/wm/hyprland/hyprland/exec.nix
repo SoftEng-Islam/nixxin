@@ -3,8 +3,8 @@
     wayland.windowManager.hyprland.settings = {
       exec-once = [
         "ignis init"
-        # "swww-daemon --format xrgb &"
         # "swww init"
+        # "swww-daemon --format xrgb &"
         # "swww img ~/Downloads/nixos-chan.png"
 
         # Input method
