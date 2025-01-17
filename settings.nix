@@ -127,4 +127,19 @@
   cursorPackage = pkgs.bibata-cursors;
   cursorTheme = "Bibata-Modern-Ice"; # Cursor Name
   cursorSize = 24; # Cursor Size
+
+  # ---- Hyprland ---- #
+  hyprland = {
+    enable = true;
+    # Generated Colors to use in Hyprland
+    genColorsPath = /home/${username}/.cache/hypr/colors.conf;
+  };
+
+  # ---- Gnome ---- #
+  # you can access the value like this:
+  # settings.gnome.enable
+  gnome = {
+    enable = true;
+    accentColor = "red";
+  };
 }

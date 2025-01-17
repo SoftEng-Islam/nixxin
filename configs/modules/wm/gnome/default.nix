@@ -1,6 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+if settings.gnome.enable then {
   imports = [ ./dconf.nix ];
-
   # Run this command to Remove window close and minimize buttons in GTK:
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'
   services.gnome.core-shell.enable = true;
@@ -94,4 +94,5 @@
     libsForQt5.polkit-qt # A Qt wrapper around PolKit
   ];
 
-}
+} else
+  { }
