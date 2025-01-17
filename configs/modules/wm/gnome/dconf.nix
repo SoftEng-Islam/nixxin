@@ -3,11 +3,11 @@ with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
-      "/org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
+      "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
         enable-monitors = false;
       };
 
-      "/org/gnome/desktop/interface" = {
+      "org/gnome/desktop/interface" = {
         # show-battery-percentage = true;
         # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
         # document-font-name = "JetBrains Mono 12";
@@ -160,9 +160,9 @@ with lib.gvariant; {
       "org/gnome/shell/app-switcher" = { current-workspace-only = false; };
       "system/locale" = { region = "en_US.UTF-8"; };
 
-      "com/github/stunkymonkey/nautilus-open-any-terminal" = {
-        terminal = "kitty";
-      };
+      # "com/github/stunkymonkey/nautilus-open-any-terminal" = {
+      #   terminal = "kitty";
+      # };
 
       "org/virt-manager/virt-manager/connections" = {
         autoconnect = [ "qemu:///system" ];
