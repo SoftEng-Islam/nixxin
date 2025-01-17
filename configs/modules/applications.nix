@@ -40,6 +40,7 @@
     dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
     sqlitebrowser # DB Browser for SQLite
     bruno # Open-source IDE For exploring and testing APIs.
+    insomnia
 
     # Community Apps
     ferdium # All your services in one place built by the community
