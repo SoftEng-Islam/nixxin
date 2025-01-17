@@ -2,6 +2,11 @@
 with lib.gvariant; {
   home-manager.users.${settings.username} = {
     dconf.settings = {
+      # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
+      "/org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
+        enable-monitors = false;
+      };
+
       "/org/gnome/desktop/interface" = {
         # show-battery-percentage = true;
         # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";

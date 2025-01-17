@@ -114,8 +114,9 @@
   # gtkPackage = pkgs.adw-gtk3;
 
   # ---- Qt ---- #
-  qtPlatformTheme = "kde"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
+  qtPlatformTheme = "qtct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
   qtStyle = "adwaita-dark";
+  qtPackage = pkgs.kdePackages.breeze;
 
   # ---- Icons ---- #
   iconNameLight = "Papirus";

@@ -10,14 +10,14 @@
       # };
       gtk3 = {
         bookmarks = [
+          "file:///home/${settings.username}/Dev"
           "file:///home/${settings.username}/Downloads"
           "file:///home/${settings.username}/Documents"
           "file:///home/${settings.username}/Pictures"
           "file:///home/${settings.username}/Music"
           "file:///home/${settings.username}/Videos"
-          "file:///home/${settings.username}/.config"
-          "file:///home/${settings.username}/Dev"
           "file:///home/${settings.username}/GitHub"
+          "file:///home/${settings.username}/.config"
           # "file:///mnt/Windows"
         ];
         extraCss = ''

@@ -6,13 +6,11 @@ let
   };
 in {
   environment = {
-    systemPackages = [ nautEnv ];
+    systemPackages = [ nautEnv pkgs.gvfs pkgs.dconf pkgs.xdg-desktop-portal ];
     pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
       FILE_MANAGER = "nautilus";
       NAUTILUS_EXTENSION_DIR =
-        "${config.system.path}/lib/nautilus/extensions-4";
-      NAUTILUS_4_EXTENSION_DIR =
         lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
     };
   };
