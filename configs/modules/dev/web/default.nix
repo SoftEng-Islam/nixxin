@@ -1,10 +1,6 @@
 { settings, pkgs, ... }: {
   environment.variables = {
-    # NODE_PATH = "/home/${settings.username}/.npm-global/lib/node_modules";
-
-    # Fixes `bad interpreter: Text file busy`
-    # https://github.com/NixOS/nixpkgs/issues/314713
-    UV_USE_IO_URING = "0";
+    NODE_PATH = "${pkgs.nodejs_latest}/lib/node_modules";
 
     # npm set prefix ~/.npm-global
     # Then, append your PATH with $HOME/.npm-global/bin.

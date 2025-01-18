@@ -29,6 +29,10 @@
       TERM = settings.term;
       BROWSER = settings.browser;
 
+      # Fixes `bad interpreter: Text file busy`
+      # https://github.com/NixOS/nixpkgs/issues/314713
+      UV_USE_IO_URING = "0";
+
       DIRENV_LOG_FORMAT = "";
 
       # auto-run programs using nix-index-database
@@ -56,9 +60,6 @@
       LANG = settings.locale;
       # Configures X keyboard settings.
       XKB_DEFAULT_RULES = "evdev";
-
-      # Add the glib bin path to the PATH variable
-      # PATH = "${pkgs.glib.dev}/bin:${config.environment.variables.PATH}";
 
       # GLFW_IM_MODULE = "ibus";
       # HIP_VISIBLE_DEVICES = "0,2";
