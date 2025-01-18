@@ -109,7 +109,6 @@ in {
         kitty.variant256Colors = true;
         lazygit.enable = true;
         mako.enable = true;
-        gnome-text-editor.enable = true;
         hyprland.enable = false;
       };
     };
