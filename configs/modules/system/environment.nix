@@ -7,27 +7,36 @@
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun, and Ignis.
       PATH = lib.unique [
+        "${pkgs.glib.dev}/bin"
         "${pkgs.nodejs}/bin"
         "${pkgs.nodePackages.npm}/bin"
         "${pkgs.python3}/bin"
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
-        "$HOME/.bun/bin"
         #"$HOME/.cache/ignis/bin"
-        "$HOME/.npm-global/bin"
-        "$HOME/.npm-packages/bin"
+        "/run/current-system/sw/bin"
         "/run/wrappers/bin"
-        "${pkgs.glib.dev}/bin"
+        "$HOME/.bun/bin"
         "$HOME/.local/bin"
         "$HOME/.local/share/pnpm"
-        "/run/current-system/sw/bin"
+        "$HOME/.npm-global/bin"
+        "$HOME/.npm-packages/bin"
       ];
+
+      EDITOR = settings.editor;
+      VISUAL = settings.visual;
+
+      TERM = settings.term;
+      BROWSER = settings.browser;
+
+      DIRENV_LOG_FORMAT = "";
+
+      # auto-run programs using nix-index-database
+      NIX_AUTO_RUN = "1";
 
       NVM_DIR = "$HOME/.nvm";
       PNPM_HOME = "/home/softeng/.local/share/pnpm";
       # Set the default editors for CLI-based tools.
-      EDITOR = settings.editor;
-      VISUAL = settings.visual;
 
       # Ignore commands that start with spaces and duplicates.
       HISTCONTROL = "ignoreboth";
@@ -109,6 +118,7 @@
 
       # Enables support for non-free (proprietary) software in NixOS.
       NIXPKGS_ALLOW_UNFREE = "1";
+      # NIXPKGS_ALLOW_INSECURE = "1";
 
       # Optimize Wine performance.
       WINEESYNC = "1";

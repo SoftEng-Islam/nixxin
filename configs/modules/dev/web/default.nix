@@ -1,5 +1,11 @@
 { settings, pkgs, ... }: {
   environment.variables = {
+    # NODE_PATH = "/home/${settings.username}/.npm-global/lib/node_modules";
+
+    # Fixes `bad interpreter: Text file busy`
+    # https://github.com/NixOS/nixpkgs/issues/314713
+    UV_USE_IO_URING = "0";
+
     # npm set prefix ~/.npm-global
     # Then, append your PATH with $HOME/.npm-global/bin.
     NPM_CONFIG_PREFIX = "/home/${settings.username}/.npm-global";
@@ -41,14 +47,7 @@
   ];
 
   home-manager.users.${settings.username} = {
-    home.sessionVariables = {
-      NODE_PATH = "$HOME/.npm-global/lib/node_modules:$NODE_PATH";
-      # PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
-
-      # Fixes `bad interpreter: Text file busy`
-      # https://github.com/NixOS/nixpkgs/issues/314713
-      UV_USE_IO_URING = "0";
-    };
+    # home.sessionVariables = { };
     # home.sessionPath = [ "$HOME/.npm-global/bin:$PATH" ];
     home.file = {
       ".npmrc".source = ./.npmrc;
