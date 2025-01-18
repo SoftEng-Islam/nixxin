@@ -24,7 +24,7 @@
   ];
   programs = {
     uwsm.enable = false;
-    hyprlock.enable = false;
+    hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
       enable = true;
