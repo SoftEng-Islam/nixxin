@@ -69,6 +69,7 @@ in {
       feh.enable = true;
       fish.enable = true;
       gnome.enable = true;
+      gnome-text-editor.enable = true;
       grub.enable = true;
       grub.useImage = true;
       regreet.enable = true;

@@ -148,16 +148,16 @@
       # ---- Window Shortcuts and Actions ---- #
       # --------------------------------------- #
       # ---- Move window Focus ---- #
-      bind = $main SHIFT, L, movefocus, l # l: left
-      bind = $main SHIFT, R, movefocus, r # r: right
-      bind = $main SHIFT, U, movefocus, u # u: up
-      bind = $main SHIFT, D, movefocus, d # d: down
+      bind = $main , left , movefocus, l # l: left
+      bind = $main , right , movefocus, r # r: right
+      bind = $main , up , movefocus, u # u: up
+      bind = $main , down , movefocus, d # d: down
 
       # ---- Swap Windows ---- #
-      bind = $main CTRL, L, swapwindow, l # l: left
-      bind = $main CTRL, R, swapwindow, r # r: right
-      bind = $main CTRL, U, swapwindow, u # u: up
-      bind = $main CTRL, D, swapwindow, d # d: down
+      bind = $main Alt, left, swapwindow, l # l: left
+      bind = $main Alt, right, swapwindow, r # r: right
+      bind = $main Alt, up, swapwindow, u # u: up
+      bind = $main Alt, down, swapwindow, d # d: down
 
       binde = , XF86MonBrightnessUp, exec, brightnessctl s +5%
       binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
