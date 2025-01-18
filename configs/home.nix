@@ -31,8 +31,8 @@
         NIXPKGS_ALLOW_UNFREE = "1";
         NIXPKGS_ALLOW_INSECURE = "1";
 
-        PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
-        NODE_PATH = "$HOME/.npm-packages/lib/node_modules:$NODE_PATH";
+        # PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
+        # NODE_PATH = "$HOME/.npm-packages/lib/node_modules:$NODE_PATH";
 
         # Fixes `bad interpreter: Text file busy`
         # https://github.com/NixOS/nixpkgs/issues/314713

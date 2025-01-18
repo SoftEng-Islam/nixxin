@@ -42,7 +42,8 @@
 
   home-manager.users.${settings.username} = {
     home.sessionVariables = {
-      NODE_PATH = "$HOME/.npm-packages/lib/node_modules:$NODE_PATH";
+      NODE_PATH = "$HOME/.npm-global/lib/node_modules:$NODE_PATH";
+      # PATH = "$HOME/.npm-packages/bin:$HOME/.bun/bin:$PATH";
 
       # Fixes `bad interpreter: Text file busy`
       # https://github.com/NixOS/nixpkgs/issues/314713
