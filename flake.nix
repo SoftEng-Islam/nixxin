@@ -64,9 +64,9 @@
       nixosConfigurations = {
         ${settings.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {
+            inherit self;
             inherit inputs;
             inherit settings;
-            inherit self;
           };
           modules = [
             inputs.stylix.nixosModules.stylix

@@ -139,7 +139,7 @@
   # you can access the value like this:
   # settings.gnome.enable
   gnome = {
-    enable = true;
+    enable = false;
     accentColor = "red";
   };
 }

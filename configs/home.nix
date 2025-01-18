@@ -3,11 +3,11 @@
   # ~~~~~~~ home-manager ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   home-manager = {
-    extraSpecialArgs = {
-      inherit inputs;
-      inherit settings;
-      inherit self;
-    };
+    # extraSpecialArgs = {
+    #   inherit inputs;
+    #   inherit settings;
+    #   inherit self;
+    # };
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
