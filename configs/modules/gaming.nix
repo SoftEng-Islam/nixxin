@@ -3,7 +3,17 @@
     gamemode = {
       enable = true;
       enableRenice = true;
-      settings = { general = { renice = 20; }; };
+      settings = {
+        general = {
+          desiredgov = "performance";
+          renice = 20;
+        };
+        custom = {
+          start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
+          end = "${pkgs.libnotify}/bin/notify-send 'GameMode ended'";
+          script_timeout = 10;
+        };
+      };
     };
     steam = {
       enable = false;
@@ -12,17 +22,17 @@
       dedicatedServer.openFirewall = true; # Source Dedicated Server.
       package = pkgs.steam.override {
         extraPkgs = [
-          # pkgs.keyutils
-          # pkgs.libgdiplus
-          # pkgs.libkrb5
-          # pkgs.libpng
-          # pkgs.libpulseaudio
-          # pkgs.libvorbis
-          # pkgs.stdenv.cc.cc.lib
-          # pkgs.xorg.libXcursor
-          # pkgs.xorg.libXi
-          # pkgs.xorg.libXinerama
-          # pkgs.xorg.libXScrnSaver
+          pkgs.keyutils
+          pkgs.libgdiplus
+          pkgs.libkrb5
+          pkgs.libpng
+          pkgs.libpulseaudio
+          pkgs.libvorbis
+          pkgs.stdenv.cc.cc.lib
+          pkgs.xorg.libXcursor
+          pkgs.xorg.libXi
+          pkgs.xorg.libXinerama
+          pkgs.xorg.libXScrnSaver
         ];
       };
     };
