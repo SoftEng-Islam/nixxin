@@ -24,7 +24,7 @@
       # inactive_tab_foreground #${config.lib.stylix.colors.base04}
       # tab_bar_background #${config.lib.stylix.colors.base01}
 
-      # Tab bar
+      # ---- Tab Bar ---- #
       active_tab_font_style   bold
       inactive_tab_font_style normal
       tab_bar_align left
@@ -38,21 +38,22 @@
       tab_title_max_length 25
       tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
 
+      # ---- URL ---- #
       # URL underline color when hovering with mouse
       url_style curly
       detect_urls yes
       url_prefixes file ftp ftps gemini git gopher http https irc ircs kitty mailto news sftp ssh
       underline_hyperlinks always
-      copy_on_select yes
+      copy_on_select no
 
-      # Fonts
+      # ---- Fonts ---- #
       font_family ${settings.TerminalsFontName}
       bold_font auto
       italic_font auto
       bold_italic_font auto
       font_size ${toString settings.TerminalsFontSize}
 
-      # Cursor settings
+      # ---- Cursor ---- #
       cursor_shape beam
       cursor_shape_unfocused beam
       cursor_beam_thickness 3
@@ -62,11 +63,11 @@
       cursor_trail_start_threshold 2
       cursor_stop_blinking_after 0
 
-      # Scrollbar settings
+      # ---- Scrollbar ---- #
       scrollback_indicator_opacity 1.0
-      scrollbar yes
+      scrollbar no
 
-      # Windows Customization
+      # ---- Windows Customization ---- #
       remember_window_size no
       window_padding_width 14
       background_opacity 1
@@ -75,7 +76,7 @@
       allow_unsafe_paste yes
       hide_window_decorations yes
 
-      # Key bindings for common actions
+      # ---- Key bindings ---- #
       map ctrl+c copy_to_clipboard
       map ctrl+v paste_from_clipboard
       map ctrl+x cut_to_clipboard
