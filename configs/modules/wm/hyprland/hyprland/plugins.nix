@@ -4,17 +4,36 @@
   ];
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
-      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.Hyprspace.packages."${pkgs.system}".Hyprspace
+      inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
+      inputs.hyprland-plugins.packages."${pkgs.system}".hyprexpo
+      inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
     ];
+    wayland.windowManager.hyprland.settings = {
+      "plugin:borders-plus-plus" = {
+        add_borders = 1; # 0 - 9
+
+        # You can add up to 9 borders
+        "col.border_1" = "rgb(ffffff)";
+        "col.border_2" = "rgb(2222ff)";
+
+        # -1 means "default" as in the one defined in general:border_size
+        border_size_1 = 10;
+        border_size_2 = -1;
+
+        # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
+        natural_rounding = "yes";
+      };
+    };
     wayland.windowManager.hyprland.extraConfig = ''
       hyprexpo = {
         columns = 3;
         gap_size = 5;
         bg_col = "rgb(111111)";
-        workspace_method =
-          "center current"; # [center/first] [workspace] e.g. first 1 or center m+1
+
+        # [center/first] [workspace] e.g. first 1 or center m+1
+        workspace_method = "center current";
+
         enable_gesture = true; # laptop touchpad
         gesture_fingers = 3; # 3 or 4
         gesture_distance = 300; # how far is the "max"
