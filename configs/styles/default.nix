@@ -76,7 +76,6 @@ in {
       nixos-icons.enable = true;
       plymouth.enable = true;
       nixvim.enable = true;
-      gnome-text-editor.enable = true;
     };
   };
   home-manager.sharedModules = [{
@@ -110,6 +109,7 @@ in {
         kitty.variant256Colors = true;
         lazygit.enable = true;
         mako.enable = true;
+        gnome-text-editor.enable = true;
         hyprland.enable = false;
       };
     };
