@@ -20,7 +20,7 @@
     ./hyprland/rules.nix
     # ./hyprland/scripts.nix
     # ./hyprland/hyprlock.nix
-    # ./hyprland/plugins.nix
+    ./hyprland/plugins.nix
   ];
   programs = {
     uwsm.enable = false;
