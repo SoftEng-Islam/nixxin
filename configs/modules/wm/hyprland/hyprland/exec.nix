@@ -15,17 +15,17 @@ let
     ${pkgs.fcitx5}/bin/fcitx5
 
     # Core components (authentication, lock screen, notification daemon)
-    gnome-keyring-daemon --start --components=secrets
+    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
     ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
     # ---- DBUS ---- #
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
     # ---- Clipboard ---- #
-    wl-paste --type text --watch cliphist store
-    wl-paste --type image --watch cliphist store
+    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
+    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store
 
     # ---- Set Cursor ---- #
     hyprctl setcursor ${settings.cursorTheme}  ${toString settings.cursorSize}

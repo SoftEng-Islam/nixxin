@@ -21,7 +21,7 @@
 
     # ---- clipboard ---- #
     cliphist # Wayland clipboard manager
-    wl-clipboard # Command-line copy/paste utilities for Wayland
+    wl-clipboard-rs # Command-line copy/paste utilities for Wayland
     # gpaste # Clipboard management system with GNOME integration
     # clipman # A simple clipboard manager for Wayland
 
