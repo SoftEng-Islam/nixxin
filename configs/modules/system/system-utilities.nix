@@ -10,6 +10,8 @@
     lm_sensors # for `sensors` command, Tools for reading hardware sensors
     lsof # list open files
     ltrace # library call monitoring
+    man
+    man-db
     man-pages # Linux development manual pages
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     shfmt # Shell parser and formatter
