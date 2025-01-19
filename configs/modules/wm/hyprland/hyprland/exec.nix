@@ -1,7 +1,7 @@
 { settings, pkgs, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
-
+    #!/usr/bin/env bash
     # ---- Set Background ---- #
     ${pkgs.swww}/bin/swww init &
     ${pkgs.swww}/bin/swww-daemon --format xrgb &
@@ -12,7 +12,7 @@ let
     ignis init
 
     # ---- Input Method ---- #
-    fcitx5
+    ${pkgs.fcitx5}/bin/fcitx5
 
     # Core components (authentication, lock screen, notification daemon)
     gnome-keyring-daemon --start --components=secrets
