@@ -1,4 +1,4 @@
-{ settings, lib, ... }:
+{ settings, lib, pkgs, ... }:
 # you can try this command if you have any problem with gnome settings
 # dconf reset -f /org/gnome/
 
@@ -21,23 +21,23 @@ with lib.gvariant; {
   ];
 
   home-manager.users.${settings.username} = {
-    # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
-    # gnome-extensions list --enabled
-    "org/gnome/shell" = {
-      disable-user-extensions = false;
-      enabled-extensions = [
-        "dash-to-dock@micxgx.gmail.com"
-        "blur-my-shell@aunetx"
-        "appindicatorsupport@rgcjonas.gmail.com"
-        "pomodoro@arun.codito.in"
-        "netspeedsimplified@prateekmedia.extension"
-      ];
-    };
-
-    "org/gnome/shell/extensions/blur-my-shell/overview" = {
-      style-components = 3;
-    };
     dconf.settings = {
+      # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
+      # gnome-extensions list --enabled
+      "org/gnome/shell" = {
+        disable-user-extensions = false;
+        enabled-extensions = [
+          "dash-to-dock@micxgx.gmail.com"
+          "blur-my-shell@aunetx"
+          "appindicatorsupport@rgcjonas.gmail.com"
+          "pomodoro@arun.codito.in"
+          "netspeedsimplified@prateekmedia.extension"
+        ];
+      };
+
+      "org/gnome/shell/extensions/blur-my-shell/overview" = {
+        style-components = 3;
+      };
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
         enable-monitors = false;

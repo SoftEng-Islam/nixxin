@@ -46,6 +46,7 @@
     ./modules/wine.nix
     ./modules/xdg.nix
     ./modules/xremap.nix
+    ./modules/zed-editor.nix
   ];
   documentation.dev.enable = true;
   documentation.doc.enable = true;
