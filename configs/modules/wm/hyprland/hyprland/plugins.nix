@@ -23,7 +23,7 @@
 
         # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
         natural_rounding = yes
-      };
+      }
 
       # ------------------ #
       # ---- hyprexpo ---- #
@@ -36,11 +36,11 @@
         # [center/first] [workspace] e.g. first 1 or center m+1
         workspace_method = "center current"
 
-        enable_gesture = true; # laptop touchpad
+        enable_gesture = true # laptop touchpad
         gesture_fingers = 3 # 3 or 4
         gesture_distance = 300 # how far is the "max"
         gesture_positive = true # positive = swipe down. Negative = swipe up.
-      };
+      }
       # ------------------ #
       # ---- hyprbars ---- #
       # ------------------ #
@@ -60,7 +60,7 @@
         hyprbars-button = rgb(B91C1C), 20, , hyprctl dispatch killactive
         hyprbars-button = rgb(15803D), 20, , hyprctl dispatch fullscreen 1
         hyprbars-button = rgb(7E22CE), 20, , hyprctl dispatch togglefloating
-      };
+      }
     '';
   };
 }
