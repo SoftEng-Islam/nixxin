@@ -2,6 +2,12 @@
   # starting this target will also start graphical-session targets
   # NOTE: update dbus and systemd env variables so that gtk apps start without delay
   systemd = {
+    sleep.extraConfig = ''
+      AllowSuspend=no
+      AllowHibernation=no
+      AllowSuspendThenHibernate=no
+      AllowHybridSleep=no
+    '';
     timers.nix-cleanup-gcroots = {
       timerConfig = {
         OnCalendar = [ "weekly" ];

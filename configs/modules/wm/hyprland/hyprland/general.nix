@@ -7,7 +7,8 @@
           smart_split = true;
           preserve_split = true;
           smart_resizing = true;
-          special_scale_factor = 0.8;
+          force_split = 1; # 0 or 1 or 2
+          special_scale_factor = 1; # [0 - 1]
           # no_gaps_when_only = 0;
         };
         master = {
