@@ -133,15 +133,27 @@
     enable = true;
     # Generated Colors to use in Hyprland
     genColorsPath = /home/${username}/.cache/hypr/colors.conf;
-    # list Of enables Plugins
-    plugins = [ ];
+    # List Of Plugins to Enable to disable
+    plugins = {
+      Hyprspace = true;
+      hyprbars = true;
+      hyprtrails = true;
+      borders-plus-plus = true;
+    };
   };
 
   # ---- Gnome ---- #
-  # you can access the value like this:
+  # You can access the value like this:
   # settings.gnome.enable
   gnome = {
     enable = false;
     accentColor = "red";
+  };
+
+  desktopPreferances = {
+    fileManager = "thunar"; # thunar & nautilus
+    imageViewer = "loupe"; # feh or loupe
+    videoPlayer = "celluloid"; # vlc or celluloid or mpv
+    torrentApp = "qBittorrent";
   };
 }

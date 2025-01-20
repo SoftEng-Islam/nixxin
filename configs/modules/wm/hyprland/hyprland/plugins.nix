@@ -1,13 +1,10 @@
 { inputs, settings, pkgs, ... }: {
-  environment.systemPackages = [
-    # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-  ];
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
       inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''
