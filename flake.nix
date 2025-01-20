@@ -34,8 +34,8 @@
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
-    # Hyprspace.url = "github:KZDKM/Hyprspace";
-    Hyprspace.url = "github:ReshetnikovPavel/Hyprspace";
+    Hyprspace.url = "github:KZDKM/Hyprspace";
+    # Hyprspace.url = "github:ReshetnikovPavel/Hyprspace";
     Hyprspace.inputs.hyprland.follows = "hyprland";
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
