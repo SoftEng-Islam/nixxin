@@ -1,10 +1,8 @@
 { pkgs, ... }: {
-  hardware = {
-    pulseaudio.enable = false;
-    # pulseaudio.enable = false; # Enable sound with pipewire.
-    # pulseaudio.support32Bit = false;
-  };
+  hardware = { alsa.enable = false; };
   services = {
+    pulseaudio.enable = false; # Enable sound with pipewire.
+    pulseaudio.support32Bit = false;
     pipewire = {
       enable = true;
       audio.enable = true;
