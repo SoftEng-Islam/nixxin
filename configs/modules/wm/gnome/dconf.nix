@@ -43,12 +43,54 @@ with lib.gvariant; {
         enable-monitors = false;
       };
 
+      # Run this Command In the terminal to get list of options:
+      # gsettings list-keys org.gnome.desktop.interface
       "org/gnome/desktop/interface" = {
-        # show-battery-percentage = true;
-        # cursor-theme = "Catppuccin-Mocha-Lavender-Cursors";
-        # document-font-name = "JetBrains Mono 12";
-        # monospace-font-name = "JetBrains Mono 12";
-        # titlebar-font = "JetBrains Mono 12";
+        # accent-color
+        # avatar-directories
+        # can-change-accels
+        # clock-format
+        # clock-show-date
+        # clock-show-seconds
+        # clock-show-weekday
+        # color-scheme
+        # cursor-blink
+        # cursor-blink-time
+        # cursor-blink-timeout
+        cursor-size = settings.cursorSize;
+        cursor-theme = "${settings.cursorTheme}";
+        # document-font-name
+        # enable-animations
+        # enable-hot-corners
+        # font-antialiasing
+        # font-hinting
+        # font-name
+        # font-rendering
+        # font-rgba-order
+        # gtk-color-palette
+        # gtk-color-scheme
+        # gtk-enable-primary-paste
+        # gtk-im-module
+        # gtk-im-preedit-style
+        # gtk-im-status-style
+        # gtk-key-theme
+        # gtk-theme
+        # gtk-timeout-initial
+        # gtk-timeout-repeat
+        # icon-theme
+        # locate-pointer
+        # menubar-accel
+        # menubar-detachable
+        # menus-have-tearoff
+        # monospace-font-name
+        # overlay-scrolling
+        # scaling-factor
+        # show-battery-percentage
+        # text-scaling-factor
+        # toolbar-detachable
+        # toolbar-icons-size
+        # toolbar-style
+        # toolkit-accessibility
       };
       "org/gnome/mutter" = {
         center-new-windows = true;

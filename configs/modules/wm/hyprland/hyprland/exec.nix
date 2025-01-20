@@ -2,6 +2,12 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
+    # ---- DBUS ---- #
+    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
+
+    ${pkgs.hyprlock}/bin/hyprlock
+
+
     # ---- Set Background ---- #
     ${pkgs.swww}/bin/swww init &
     ${pkgs.swww}/bin/swww-daemon --format xrgb &
@@ -20,8 +26,6 @@ let
     # ---- polkit-gnome ---- #
     ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
-    # ---- DBUS ---- #
-    ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store

@@ -88,6 +88,7 @@
       ELECTRON_ENABLE_WAYLAND = "1";
 
       # Configure the cursor theme and size for graphical sessions.
+      XCURSOR = settings.cursorTheme;
       XCURSOR_THEME = settings.cursorTheme;
       XCURSOR_SIZE = toString settings.cursorSize;
 

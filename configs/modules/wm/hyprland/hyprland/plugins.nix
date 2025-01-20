@@ -4,12 +4,20 @@
   ];
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
-      # inputs.Hyprspace.packages."${pkgs.system}".Hyprspace
-      inputs.hyprland-plugins.packages."${pkgs.system}".hyprbars
-      inputs.hyprland-plugins.packages."${pkgs.system}".hyprexpo
-      inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
+      inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
+      inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''
+      plugin:overview {
+        autoDrag = false
+        overrideGaps = false
+      }
+      plugin:hyprtrails {
+        color = rgba(ffaa00ff)
+      }
       plugin:borders-plus-plus {
         add_borders = 1 # 0 - 9
 
@@ -34,7 +42,7 @@
         bg_col = rgb(111111)
 
         # [center/first] [workspace] e.g. first 1 or center m+1
-        workspace_method = "center current"
+        workspace_method = center current
 
         enable_gesture = true # laptop touchpad
         gesture_fingers = 3 # 3 or 4

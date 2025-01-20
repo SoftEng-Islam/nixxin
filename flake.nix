@@ -35,7 +35,6 @@
     hyprland-plugins.inputs.hyprland.follows = "hyprland";
 
     Hyprspace.url = "github:KZDKM/Hyprspace";
-    # Hyprspace uses latest Hyprland. We declare this to keep them in sync.
     Hyprspace.inputs.hyprland.follows = "hyprland";
 
     hyprpicker.url = "github:hyprwm/hyprpicker";
