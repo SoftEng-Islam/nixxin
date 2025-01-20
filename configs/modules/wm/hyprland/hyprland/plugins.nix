@@ -6,7 +6,7 @@
     wayland.windowManager.hyprland.plugins = [
       inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
       inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
     ];
@@ -23,7 +23,7 @@
 
         # You can add up to 9 borders
         col.border_1 = rgb(ffffff)
-        col.border_2 = rgb(2222ff)
+        col.border_2 = rgb(000000)
 
         # -1 means "default" as in the one defined in general:border_size
         border_size_1 = 2
@@ -36,19 +36,19 @@
       # ------------------ #
       # ---- hyprexpo ---- #
       # ------------------ #
-      plugin:hyprexpo {
-        columns = 3
-        gap_size = 5
-        bg_col = rgb(111111)
+      # plugin:hyprexpo {
+      #   columns = 3
+      #   gap_size = 5
+      #   bg_col = rgb(111111)
 
-        # [center/first] [workspace] e.g. first 1 or center m+1
-        workspace_method = center current
+      #   # [center/first] [workspace] e.g. first 1 or center m+1
+      #   workspace_method = center current
 
-        enable_gesture = true # laptop touchpad
-        gesture_fingers = 3 # 3 or 4
-        gesture_distance = 300 # how far is the "max"
-        gesture_positive = true # positive = swipe down. Negative = swipe up.
-      }
+      #   enable_gesture = true # laptop touchpad
+      #   gesture_fingers = 3 # 3 or 4
+      #   gesture_distance = 300 # how far is the "max"
+      #   gesture_positive = true # positive = swipe down. Negative = swipe up.
+      # }
       # ------------------ #
       # ---- hyprbars ---- #
       # ------------------ #
