@@ -133,6 +133,8 @@
     enable = true;
     # Generated Colors to use in Hyprland
     genColorsPath = /home/${username}/.cache/hypr/colors.conf;
+    # list Of enables Plugins
+    plugins = [ ];
   };
 
   # ---- Gnome ---- #
