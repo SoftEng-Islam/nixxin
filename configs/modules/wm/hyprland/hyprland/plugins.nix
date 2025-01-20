@@ -9,23 +9,25 @@
       inputs.hyprland-plugins.packages."${pkgs.system}".hyprexpo
       inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
     ];
-    wayland.windowManager.hyprland.settings = {
-      "plugin:borders-plus-plus" = {
+    wayland.windowManager.hyprland.extraConfig = ''
+      plugin:borders-plus-plus = {
         add_borders = 1; # 0 - 9
 
         # You can add up to 9 borders
-        "col.border_1" = "rgb(ffffff)";
-        "col.border_2" = "rgb(2222ff)";
+        col.border_1 = rgb(ffffff)";
+        col.border_2 = rgb(2222ff)";
 
         # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 10;
-        border_size_2 = -1;
+        border_size_1 = 2;
+        border_size_2 = 2;
 
         # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
-        natural_rounding = "yes";
+        natural_rounding = yes;
       };
-    };
-    wayland.windowManager.hyprland.extraConfig = ''
+
+      # ------------------ #
+      # ---- hyprexpo ---- #
+      # ------------------ #
       plugin:hyprexpo = {
         columns = 3;
         gap_size = 5;
@@ -39,6 +41,9 @@
         gesture_distance = 300; # how far is the "max"
         gesture_positive = true; # positive = swipe down. Negative = swipe up.
       };
+      # ------------------ #
+      # ---- hyprbars ---- #
+      # ------------------ #
       plugin:hyprbars = {
         # Honestly idk if it works like css, but well, why not
         bar_text_font = "${settings.fontName}";
