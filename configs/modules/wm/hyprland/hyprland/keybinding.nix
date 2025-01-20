@@ -27,7 +27,7 @@
       # ---- $main + Alphabet ---- #
       # -------------------------- #
       #=> First Row:
-      bind = $main, Q, killactive,
+      bind = $main, Q, killactive
       bind = $main, W, exec, brave &
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, resources &
@@ -49,7 +49,7 @@
       bind = $main, L, exec, hyprlock # Lock screen
       #=> Third Row:
       # bind = $main, Z, exec,
-      bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
+      # bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)
       # bind = $main, V, exec,
       # bind = $main, B, exec,
@@ -59,10 +59,10 @@
       # ---------------------- #
       # ---- $main + Ctrl ---- #
       # ---------------------- #
-      bind = = $main Ctrl, K, exec, hyprctl kill # Pick and kill an Active Window
-      bind = = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
-      bind = = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
-      bind = = $main Ctrl, T, exec, kitty --class floating
+      bind = $main Ctrl, K, exec, hyprctl kill # Pick and kill an Active Window
+      bind = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
+      bind = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
+      bind = $main Ctrl, T, exec, kitty --class floating
 
       # --------------------- #
       # ---- $main + Alt ---- #

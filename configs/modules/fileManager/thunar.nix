@@ -14,7 +14,6 @@ in {
   };
   environment = {
     systemPackages = with pkgs; [
-
       # required by tumbler service
       # TODO: add https://gitlab.com/hxss-linux/folderpreview
       ffmpegthumbnailer # videos
