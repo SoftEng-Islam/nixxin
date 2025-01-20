@@ -104,7 +104,5 @@
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./hyprland/scripts;
-
   };
-
 }
