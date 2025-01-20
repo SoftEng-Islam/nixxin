@@ -29,9 +29,10 @@
       #=> First Row:
       bind = $main, Q, killactive
       bind = $main, W, exec, brave &
-      bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
+      bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
+      bind = $main E, N, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, resources &
-      bind = $main, T, exec, kitty # Launch kitty (terminal)
+      bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
       # bind = $main, I, exec,
@@ -46,7 +47,7 @@
       # bind = $main, H, exec,
       # bind = $main, J, exec,
       # bind = $main, K, exec,
-      bind = $main, L, exec, hyprlock # Lock screen
+      bind = $main, L, exec, ${pkgs.hyprlock}/bin/hyprlock # Lock screen
       #=> Third Row:
       # bind = $main, Z, exec,
       # bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
@@ -62,7 +63,7 @@
       bind = $main Ctrl, K, exec, hyprctl kill # Pick and kill an Active Window
       bind = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
       bind = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
-      bind = $main Ctrl, T, exec, kitty --class floating
+      bind = $main Ctrl, T, exec, ${pkgs.kitty}/bin/kitty --class floating
 
       # --------------------- #
       # ---- $main + Alt ---- #
@@ -97,10 +98,6 @@
       # -------------------- #
       # ---- Workspaces ---- #
       # -------------------- #
-      # ---- Hyprspace ---- #
-      bind = SUPER, tab, overview:toggle # can be: toggle, off/disable or on/enable
-      # ---- hyprexpo ---- #
-      # bind = SUPER, tab, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
       #/# bind = Ctrl+Super, ←/→,, # Workspace: focus left/right
       bind = $main Ctrl, Right, workspace, +1
       bind = $main Ctrl, Left, workspace, -1

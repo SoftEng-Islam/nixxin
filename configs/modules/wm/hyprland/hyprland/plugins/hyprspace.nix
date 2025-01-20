@@ -10,6 +10,7 @@
           };
         };
         bind = [
+          # ---- Hyprspace ---- #
           "$main,TAB, overview:toggle" # Overview
         ];
       };

@@ -134,6 +134,7 @@
     # Generated Colors to use in Hyprland
     genColorsPath = /home/${username}/.cache/hypr/colors.conf;
     # List Of Plugins to Enable to disable
+    animationSpeed = "medium"; # medium or slow
     plugins = {
       Hyprspace = true;
       hyprbars = true;
