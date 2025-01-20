@@ -14,6 +14,12 @@
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # services.gnome.core-developer-tools.enable = true;
 
+  programs = {
+    # Required by gnome file managers
+    file-roller.enable = true;
+    gnome-disks.enable = true;
+  };
+
   services.xserver.desktopManager.gnome = {
     extraGSettingsOverrides = ''
       [org.gnome.desktop.interface]

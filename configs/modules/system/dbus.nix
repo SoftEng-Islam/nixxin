@@ -1,8 +1,11 @@
-{ settings, pkgs, ... }: {
+{ pkgs, ... }: {
   services = {
     dbus.enable = true;
     dbus.packages = [ pkgs.dconf ];
     dbus.implementation = "broker";
+    accounts-daemon.enable = true;
+    fwupd.enable = false;
+    udisks2.enable = true;
   };
   environment.systemPackages = with pkgs; [
     dbus # Simple interprocess messaging system

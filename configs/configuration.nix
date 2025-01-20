@@ -14,8 +14,9 @@
     ./modules/media
     ./modules/qbittorrent
     ./modules/terminal
-    ./modules/wm/gnome
-    ./modules/wm/hyprland
+
+    "${if settings.gnome.enable then ./modules/wm/gnome else ""}"
+    "${if settings.hyprland.enable then ./modules/wm/hyprland else ""}"
 
     ./modules/system/audio.nix
     ./modules/system/boot.nix
@@ -24,6 +25,7 @@
     ./modules/system/networking.nix
     ./modules/system/power-management.nix
     ./modules/system/programs.nix
+    ./modules/system/sddm.nix
     ./modules/system/security.nix
     ./modules/system/services.nix
     ./modules/system/system-utilities.nix
@@ -37,7 +39,6 @@
     ./modules/codex.nix
     ./modules/data-transferring.nix
     ./modules/files.nix
-    ./modules/fuzzel.nix
     ./modules/gaming.nix
     ./modules/gtk.nix
     ./modules/misc.nix

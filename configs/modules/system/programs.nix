@@ -25,10 +25,6 @@
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
 
-    # Required by gnome file managers
-    file-roller.enable = true;
-    gnome-disks.enable = true;
-
     # required by libreoffice
     # java.enable = true;
   };
