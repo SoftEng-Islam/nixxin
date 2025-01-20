@@ -18,12 +18,12 @@
       displayManager.startx.enable = true;
       displayManager.gdm.enable = true; # x11
       displayManager.gdm.wayland = true; # wayland
+      # Enable the GNOME Desktop Environment.
       desktopManager.gnome = {
-        enable = true;
+        enable = settings.gnome.enable;
         extraGSettingsOverridePackages = [ pkgs.nautilus-open-any-terminal ];
       };
     };
-    # Enable the GNOME Desktop Environment.
     displayManager.enable = true;
     displayManager.defaultSession = settings.defaultSession;
 
