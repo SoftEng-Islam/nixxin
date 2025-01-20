@@ -10,12 +10,12 @@
       inputs.hyprland-plugins.packages."${pkgs.system}".borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''
-      plugin:borders-plus-plus = {
+      plugin:borders-plus-plus {
         add_borders = 1; # 0 - 9
 
         # You can add up to 9 borders
-        col.border_1 = rgb(ffffff)";
-        col.border_2 = rgb(2222ff)";
+        col.border_1 = rgb(ffffff);
+        col.border_2 = rgb(2222ff);
 
         # -1 means "default" as in the one defined in general:border_size
         border_size_1 = 2;
@@ -28,7 +28,7 @@
       # ------------------ #
       # ---- hyprexpo ---- #
       # ------------------ #
-      plugin:hyprexpo = {
+      plugin:hyprexpo {
         columns = 3;
         gap_size = 5;
         bg_col = rgb(111111);
@@ -44,7 +44,7 @@
       # ------------------ #
       # ---- hyprbars ---- #
       # ------------------ #
-      plugin:hyprbars = {
+      plugin:hyprbars {
         # Honestly idk if it works like css, but well, why not
         bar_text_font = "${settings.fontName}";
         bar_text_size = ${toString settings.fontSize};
