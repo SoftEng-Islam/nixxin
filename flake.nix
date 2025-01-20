@@ -33,6 +33,7 @@
 
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     hyprlock.url = "github:hyprwm/hyprlock";
     hyprlock.inputs.hyprland.follows = "hyprland";
