@@ -7,6 +7,7 @@
 
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_DEKSTOP,Hyprland"
+        "XDG_SESSION_TYPE,wayland"
 
         # Disable window decoration for Wayland Qt applications
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
@@ -24,12 +25,7 @@
         # env = WLR_DRM_NO_ATOMIC, 1
 
         # Set the backend for GDK (GIMP Drawing Kit) to support Wayland and X11
-        "GDK_BACKEND,wayland,x11"
-
-        # XWayland applications scaling fix (useful if you are using monitor scaling)
-        # Refer to the Hyprland wiki for more details on configuration
-        # toolkit-specific scale for GDK applications
-        "GDK_SCALE,1"
+        "GDK_BACKEND,wayland"
 
         # Enable Wayland support for Electron applications
         "ELECTRON_ENABLE_WAYLAND,1"
@@ -38,6 +34,27 @@
 
         # Electron applications version 28 and above (may help with compatibility)
         # env = ELECTRON_OZONE_PLATFORM_HINT,auto
+
+        "MOZ_ENABLE_WAYLAND,1"
+        "ANKI_WAYLAND,1"
+        "DISABLE_QT5_COMPAT,0"
+        "NIXOS_OZONE_WL,1"
+        "XDG_SESSION_DESKTOP,Hyprland"
+        "QT_AUTO_SCREEN_SCALE_FACTOR,1"
+        "QT_QPA_PLATFORM=wayland,xcb"
+        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        "__GL_GSYNC_ALLOWED,0"
+        "__GL_VRR_ALLOWED,0"
+        "DISABLE_QT5_COMPAT,0"
+        "DIRENV_LOG_FORMAT,"
+        "WLR_DRM_NO_ATOMIC,1"
+        "WLR_BACKEND,vulkan"
+        "WLR_RENDERER,vulkan"
+        "WLR_NO_HARDWARE_CURSORS,1"
+        "SDL_VIDEODRIVER,wayland"
+        "CLUTTER_BACKEND,wayland"
+        "AQ_DRM_DEVICES,/dev/dri/card2:/dev/dri/card1" # CHANGEME: Related to the GPU
 
         # --------- NVIDIA --------- #
         # This is from Hyprland Wiki. Below will be activated nvidia gpu detected
