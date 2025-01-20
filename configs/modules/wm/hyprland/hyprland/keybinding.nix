@@ -97,6 +97,7 @@
       # -------------------- #
       # ---- Workspaces ---- #
       # -------------------- #
+      bind = SUPER, tab, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
       #/# bind = Ctrl+Super, ←/→,, # Workspace: focus left/right
       bind = $main Ctrl, Right, workspace, +1
       bind = $main Ctrl, Left, workspace, -1
