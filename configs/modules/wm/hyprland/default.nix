@@ -47,17 +47,17 @@
     enableGnomeKeyring = true;
   };
 
-  services.greetd = {
-    enable = true;
-    settings = {
-      default_session = {
-        command =
-          "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
-        user = settings.username;
-      };
-    };
-    vt = 7;
-  };
+  # services.greetd = {
+  #   enable = true;
+  #   settings = {
+  #     default_session = {
+  #       command =
+  #         "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
+  #       user = settings.username;
+  #     };
+  #   };
+  #   vt = 7;
+  # };
 
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
