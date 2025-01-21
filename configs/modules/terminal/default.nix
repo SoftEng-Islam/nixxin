@@ -2,6 +2,7 @@
   imports = [
     # ---- Dirs ---- #
     # ./alacritty
+    ./bash
     # ./fish
     # ./foot
     ./kitty
@@ -10,7 +11,6 @@
     # ./wezterm
 
     # ---- Files ---- #
-    ./bash.nix
     ./direnv.nix
     # ./emacs.nix
     # ./eza.nix
@@ -32,9 +32,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # Terminal Emulators
-    bash # GNU Bourne-Again Shell, the de facto standard shell on Linux
-    kitty # A modern, hackable, featureful, OpenGL based terminal emulator
+
     bashInteractive
 
     nanorc # Improved Nano Syntax Highlighting Files
