@@ -44,6 +44,7 @@ let
     };
   };
 in {
+  environment.systemPackages = with pkgs; [ foot ];
   programs.foot = {
     enable = true;
 

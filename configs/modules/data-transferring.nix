@@ -13,7 +13,7 @@
     wget2 # Successor of GNU Wget, a file and recursive website downloader
     yt-dlp # Command-line tool to download videos from YouTube.com and other sites (youtube-dl fork)
 
-    motrix # Full-featured download manager
+    # motrix # Full-featured download manager
     libtorrent-rasterbar # C++ BitTorrent implementation focusing on efficiency and scalability
     # ariang # Modern web frontend making aria2 easier to use
     # media-downloader # Qt/C++ GUI front end for yt-dlp and others
