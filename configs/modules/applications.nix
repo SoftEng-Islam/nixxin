@@ -10,9 +10,9 @@
 
     # Media Players
     (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
-    glide-media-player # Linux/macOS media player based on GStreamer and GTK
-    jellyfin-media-player # Jellyfin Desktop Client based on Plex Media Player
+    # clapper # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
+    # glide-media-player # Linux/macOS media player based on GStreamer and GTK
+    # jellyfin-media-player # Jellyfin Desktop Client based on Plex Media Player
     playerctl # Command-line utility and library for controlling media players that implement MPRIS
     vlc # Cross-platform media player and streaming server
 
@@ -23,7 +23,7 @@
     # shotcut
 
     # ---- Utilities ---- #
-    testdisk # Data Recovery Utilities
+    # testdisk # Data Recovery Utilities
     resources # Monitor your system resources and processes
 
     # Graphics Apps
@@ -40,7 +40,7 @@
     dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
     sqlitebrowser # DB Browser for SQLite
     bruno # Open-source IDE For exploring and testing APIs.
-    insomnia
+    # insomnia
 
     # Community Apps
     ferdium # All your services in one place built by the community
@@ -55,7 +55,7 @@
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
-    firefox-beta # Web browser built from Firefox Beta Release source tree
+    # firefox-beta # Web browser built from Firefox Beta Release source tree
     google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
