@@ -4,8 +4,9 @@
 { settings, pkgs, ... }:
 
 let
-  gnome = if settings.gnome.enable then ./modules/wm/gnome else "";
-  hyprland = if settings.hyprland.enable then ./modules/wm/hyprland else "";
+  gnome = if settings.gnome.enable then [ ./modules/wm/gnome ] else [ "" ];
+  hyprland =
+    if settings.hyprland.enable then [ ./modules/wm/hyprland ] else [ "" ];
 
 in {
   imports = [
