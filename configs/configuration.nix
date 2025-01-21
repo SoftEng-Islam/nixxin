@@ -185,9 +185,10 @@ in {
 
     # Nix Formatters:
     alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
-    nixdoc # Generate documentation for Nix functions
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
+
+    nixdoc # Generate documentation for Nix functions
     node2nix # Generate Nix expressions to build NPM packages
   ];
 }
