@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ settings, pkgs, ... }:
 let
   json = pkgs.formats.json { };
 
@@ -30,7 +30,9 @@ let
     }];
   };
 in {
-  xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
-    source = json.generate "99-input-denoising.conf" pw_rnnoise_config;
+  home-manager.users.${settings.username} = {
+    xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
+      source = json.generate "99-input-denoising.conf" pw_rnnoise_config;
+    };
   };
 }

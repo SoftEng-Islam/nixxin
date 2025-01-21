@@ -1,4 +1,5 @@
 { settings, pkgs, ... }: {
+  imports = [ ./cava.nix ./codex.nix ./feh.nix ./mpv.nix ./rnnoise.nix ];
   services = {
     radarr = {
       enable = true;
@@ -42,9 +43,6 @@
   #   Connection Manager: localhost:58846
   #   Preferences: Change download folder and enable Plugins-label
 
-  home-manager.users.${settings.username} = {
-    imports = [ ./mpv.nix ./rnnoise.nix ];
-  };
   environment.systemPackages = with pkgs; [
     # audio control
     pulsemixer

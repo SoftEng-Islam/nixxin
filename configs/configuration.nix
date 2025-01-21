@@ -7,47 +7,41 @@
     ./home.nix
     ./packages.nix
     ./styles
+
+    ./modules/alfred
+    ./modules/anytype
     ./modules/btop
     ./modules/cli
     ./modules/dev
+    ./modules/editors
+    ./modules/fileManager
     ./modules/flags
     ./modules/media
     ./modules/qbittorrent
+    ./modules/system
     ./modules/terminal
 
     "${if settings.gnome.enable then ./modules/wm/gnome else ""}"
     "${if settings.hyprland.enable then ./modules/wm/hyprland else ""}"
 
-    ./modules/system/audio.nix
-    ./modules/system/boot.nix
-    ./modules/system/environment.nix
-    ./modules/system/locale.nix
-    ./modules/system/networking.nix
-    ./modules/system/power-management.nix
-    ./modules/system/programs.nix
-    ./modules/system/sddm.nix
-    ./modules/system/security.nix
-    ./modules/system/services.nix
-    ./modules/system/system-utilities.nix
-    ./modules/system/systemd.nix
-    ./modules/system/users.nix
-    ./modules/system/virtualisation.nix
-    ./modules/system/zram.nix
-
     ./modules/android.nix
     ./modules/applications.nix
-    ./modules/codex.nix
+    # ./modules/beesd.nix
+    # ./modules/browser.nix
     ./modules/data-transferring.nix
-    ./modules/files.nix
+    # ./modules/davinci.nix
+    ./modules/fcitx5.nix
+    ./modules/fuzzel.nix
     ./modules/gaming.nix
     ./modules/gtk.nix
     ./modules/misc.nix
-    ./modules/nautilus.nix
+    # ./modules/printing.nix
+    # ./modules/productivity.nix
+    ./modules/qt.nix
     ./modules/wayland.nix
     ./modules/wine.nix
     ./modules/xdg.nix
     ./modules/xremap.nix
-    ./modules/zed-editor.nix
   ];
   documentation.dev.enable = true;
   documentation.doc.enable = true;

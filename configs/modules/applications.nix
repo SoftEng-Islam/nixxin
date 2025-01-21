@@ -49,7 +49,7 @@
     # revolt-desktop # Open source user-first chat platform
     # signal-desktop # Private, simple, and secure messenger
     # slack # Desktop client for Slack
-    # telegram-desktop # Telegram Desktop messaging app
+    telegram-desktop # Telegram Desktop messaging app
     # vesktop # Alternate client for Discord with Vencord built-in
     # zoom-us # zoom.us video conferencing application
 
