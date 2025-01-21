@@ -28,6 +28,7 @@
   programs.zsh.enable = true;
 
   home-manager.users.${settings.username} = {
+    programs.bat.enable = true;
     home.file.".config/fish".source = ./fish;
   };
 

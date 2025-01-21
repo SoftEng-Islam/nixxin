@@ -16,10 +16,6 @@
 
   home-manager.users.${settings.username} = {
     programs.home-manager.enable = true;
-
-    programs.bat.enable = true;
-    programs.eza.enable = true;
-    programs.ssh.enable = true;
     home = {
       username = settings.username;
       homeDirectory = "/home/${settings.username}";
