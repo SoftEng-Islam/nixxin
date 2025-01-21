@@ -2,29 +2,29 @@
   imports = [ ./cava.nix ./codex.nix ./feh.nix ./mpv.nix ./rnnoise.nix ];
   services = {
     radarr = {
-      enable = true;
+      enable = false;
       user = "root";
       group = "users";
       openFirewall = true;
     };
     sonarr = {
-      enable = true;
+      enable = false;
       user = "root";
       group = "users";
       openFirewall = true;
     };
     bazarr = {
-      enable = true;
+      enable = false;
       user = "root";
       group = "users";
       openFirewall = true;
     };
     prowlarr = {
-      enable = true;
+      enable = false;
       openFirewall = true;
     };
     deluge = {
-      enable = true;
+      enable = false;
       web.enable = true;
       user = "root";
       group = "users";
