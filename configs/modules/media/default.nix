@@ -1,37 +1,11 @@
 { settings, pkgs, ... }: {
-  imports = [ ./cava.nix ./codex.nix ./feh.nix ./mpv.nix ./rnnoise.nix ];
-  services = {
-    radarr = {
-      enable = false;
-      user = "root";
-      group = "users";
-      openFirewall = true;
-    };
-    sonarr = {
-      enable = false;
-      user = "root";
-      group = "users";
-      openFirewall = true;
-    };
-    bazarr = {
-      enable = false;
-      user = "root";
-      group = "users";
-      openFirewall = true;
-    };
-    prowlarr = {
-      enable = false;
-      openFirewall = true;
-    };
-    deluge = {
-      enable = false;
-      web.enable = true;
-      user = "root";
-      group = "users";
-      openFirewall = true;
-      web.openFirewall = true;
-    };
-  };
+  imports = [
+    # ./cava.nix
+    ./codex.nix
+    ./feh.nix
+    ./mpv.nix
+    ./rnnoise.nix
+  ];
 
   # literally can't be bothered anymore with user permissions.
   # So everything with root, add permissions 775 with group users in radarr and sonarr
@@ -44,7 +18,7 @@
   #   Preferences: Change download folder and enable Plugins-label
 
   environment.systemPackages = with pkgs; [
-    # audio control
+    # Audio Control
     pulsemixer
     pwvucontrol
     loupe # Simple image viewer application written with GTK4 and Rust
