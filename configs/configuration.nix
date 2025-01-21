@@ -9,7 +9,7 @@ let
     if settings.hyprland.enable then [ ./modules/wm/hyprland ] else [ "" ];
 
 in {
-  imports = [
+  imports = gnome ++ hyprland ++ [
     ./hardware.nix
     ./home.nix
     ./packages.nix
@@ -27,10 +27,6 @@ in {
     ./modules/qbittorrent
     ./modules/system
     ./modules/terminal
-
-    # wm
-    gnome
-    hyprland
 
     ./modules/android.nix
     ./modules/applications.nix
