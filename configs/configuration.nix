@@ -1,7 +1,13 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+
+let
+  gnome = if settings.gnome.enable then ./modules/wm/gnome else "";
+  hyprland = if settings.hyprland.enable then ./modules/wm/hyprland else "";
+
+in {
   imports = [
     ./hardware.nix
     ./home.nix
@@ -9,7 +15,7 @@
     ./styles
 
     ./modules/alfred
-    ./modules/anytype
+    # ./modules/anytype
     ./modules/btop
     ./modules/cli
     ./modules/dev
@@ -21,8 +27,9 @@
     ./modules/system
     ./modules/terminal
 
-    "${if settings.gnome.enable then ./modules/wm/gnome else ""}"
-    "${if settings.hyprland.enable then ./modules/wm/hyprland else ""}"
+    # wm
+    gnome
+    hyprland
 
     ./modules/android.nix
     ./modules/applications.nix

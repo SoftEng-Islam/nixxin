@@ -36,7 +36,7 @@
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     hyprlock.url = "github:hyprwm/hyprlock";
-    hyprlock.inputs.hyprland.follows = "hyprland";
+    # hyprlock.inputs.hyprland.follows = "hyprland";
 
     Hyprspace.url = "github:KZDKM/Hyprspace";
     # Hyprspace.url = "github:ReshetnikovPavel/Hyprspace";
