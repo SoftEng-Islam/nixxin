@@ -10,6 +10,5 @@
     gawk
     zstd
     gnupg
-
   ];
 }

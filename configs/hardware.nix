@@ -107,7 +107,6 @@
     fsType = "vfat";
     # options = [ "fmask=0077" "dmask=0077" ];
     options = [ "rw" ];
-
   };
 
   swapDevices =
@@ -220,6 +219,5 @@
 
     # lact # Linux AMDGPU Controller
     corectrl # Control your computer hardware via application profiles
-
   ];
 }
