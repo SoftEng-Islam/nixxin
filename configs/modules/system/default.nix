@@ -9,7 +9,7 @@
     ./networking.nix
     ./power.nix
     ./programs.nix
-    ./sddm.nix
+    # ./sddm.nix
     ./security.nix
     ./services.nix
     ./systemd.nix

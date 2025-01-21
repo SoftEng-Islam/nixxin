@@ -1,9 +1,26 @@
 { settings, pkgs, ... }: {
   imports = [
-    # ./wezterm
-    ./zsh.nix
+    # ---- Dirs ---- #
+    # ./alacritty
+    # ./fish
+    # ./foot
     ./kitty
-    ./foot
+    # ./neofetch
+    # ./nvim
+    # ./wezterm
+
+    # ---- Files ---- #
+    ./bash.nix
+    ./direnv.nix
+    # ./emacs.nix
+    ./eza.nix
+    ./fd.nix
+    ./fzf.nix
+    # ./lf.nix
+    # ./shell.nix
+    # ./starship.nix
+    # ./tmux.nix
+    ./zsh.nix
     # ./tmux.nix
   ];
   environment.shells = with pkgs; [ zsh ];
