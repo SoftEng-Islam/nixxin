@@ -8,10 +8,10 @@
     #     done
     #   '';
     # })
-    hashcat # Fast password cracker
-    hashcat-utils # Small utilities that are useful in advanced password cracking
-    john # John the Ripper password cracker
-    johnny # Open Source GUI frontend for John the Ripper
+    # hashcat # Fast password cracker
+    # hashcat-utils # Small utilities that are useful in advanced password cracking
+    # john # John the Ripper password cracker
+    # johnny # Open Source GUI frontend for John the Ripper
     aircrack-ng # WiFi security auditing tools suite
 
     wireshark
