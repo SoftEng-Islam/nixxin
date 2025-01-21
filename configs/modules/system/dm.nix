@@ -1,7 +1,7 @@
 { settings, pkgs, ... }: {
   # Desktop Manager & Display Manager
   services = {
-    displayManager.sddm.enable = true; # x11
+    # displayManager.sddm.enable = true;
     xserver = {
       enable = true;
       # Enable the GNOME Desktop Environment.
