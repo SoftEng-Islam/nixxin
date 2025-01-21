@@ -29,7 +29,6 @@
     qt5.full
     qt5.qtgraphicaleffects
     qt5.qtquickcontrols2
-    qt5ct
     qt6
     qt6.qtwayland
     qt6ct

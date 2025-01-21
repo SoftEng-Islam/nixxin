@@ -94,10 +94,11 @@ in {
       wlr.enable = true;
       xdgOpenUsePortal = true;
       config = {
-        common.default = [ "gtk" ];
+        common.default = "*";
         hyprland.default = [ "gtk" "hyprland" ];
       };
-      extraPortals = [ pkgs.xdg-desktop-portal pkgs.xdg-desktop-portal-gtk ];
+      extraPortals =
+        [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
       configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
