@@ -10,7 +10,7 @@
     ./gestures.nix
     ./hypridle.nix
     ./hyprlock.nix
-    ./hyprpaper.nix
+    # ./hyprpaper.nix
     ./input.nix
     ./keybinding.nix
     ./misc.nix
