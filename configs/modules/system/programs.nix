@@ -13,11 +13,6 @@
 
     command-not-found.enable = false;
 
-    # corectrl to overclock your CPU APU GPU
-    corectrl.enable = true;
-    corectrl.gpuOverclock.enable = true;
-    corectrl.gpuOverclock.ppfeaturemask = "0xffffffff";
-
     droidcam.enable = true; # camera
     mtr.enable = true;
     fuse.userAllowOther = true;

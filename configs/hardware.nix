@@ -24,7 +24,6 @@
   boot.extraModulePackages = with config.boot.kernelPackages;
     [ rtl8188eus-aircrack ];
   boot.kernelParams = [
-
     # CPU optimizations
     "threadirqs"
     "mitigations=off"
@@ -44,10 +43,8 @@
     # for Sea Islands (CIK i.e. GCN 2) cards
     "radeon.cik_support=0"
     "amdgpu.cik_support=1"
-
-    "amdgpu.dc=1"
-    "amdgpu.dpm=1"
-    "amdgpu.gpu_recovery=1"
+    # "amdgpu.dc=1"
+    # "amdgpu.dpm=1"
 
     # "amdgpu.runpm=0"
     # "amdgpu.gttsize=4096"
@@ -72,10 +69,10 @@
     "pcie_aspm=off"
 
     # Audio and USB
-    "amdgpu.audio=0"
-    "usbcore.autosuspend=-1"
-    "snd_hda_intel.power_save=0"
-    "snd_hda_intel.probe_mask=1"
+    # "amdgpu.audio=0"
+    # "usbcore.autosuspend=-1"
+    # "snd_hda_intel.power_save=0"
+    # "snd_hda_intel.probe_mask=1"
   ];
 
   # services.fstrim.enable = true;
@@ -90,7 +87,8 @@
     amdgpu.initrd.enable = false;
     amdgpu.opencl.enable = true;
     amdgpu.legacySupport.enable = true;
-    # cpu.amd.updateMicrocode = true;
+    enableRedistributableFirmware = true;
+    cpu.amd.updateMicrocode = true;
     enableAllFirmware = true;
     amdgpu.amdvlk.settings = {
       AllowVkPipelineCachingToDisk = 1;
@@ -106,6 +104,7 @@
       extraPackages = with pkgs; [
         mesa.opencl
         amdvlk
+        driversi686Linux.amdvlk
         rocmPackages.clr
         rocmPackages.clr.icd
         rocmPackages.rocm-runtime
@@ -126,10 +125,7 @@
       name = "rocm-combined";
       paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
     };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-  ];
+  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
@@ -172,8 +168,8 @@
   # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system}";
-  hardware.cpu.amd.updateMicrocode =
-    lib.mkDefault config.hardware.enableRedistributableFirmware;
+  # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+
   environment.variables = {
     HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # For AMD GPUs
@@ -194,6 +190,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
 
     rocmPackages.hip-common
@@ -209,6 +206,7 @@
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
     microcode-amd # AMD Processor microcode patch
+    microcodeAmd
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     linux-firmware # Binary firmware collection packaged by kernel.org
     # AMD Stuff
@@ -253,6 +251,5 @@
     xorg.xf86videoamdgpu
 
     # lact # Linux AMDGPU Controller
-    corectrl # Control your computer hardware via application profiles
   ];
 }
