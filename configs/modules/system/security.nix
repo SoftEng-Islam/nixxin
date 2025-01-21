@@ -11,11 +11,11 @@
     allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
     polkit.enable = true;
     isolate.enable = false;
-    #sudo.configFile = ''
-    #  root   ALL=(ALL:ALL) SETENV: ALL
-    #  %wheel ALL=(ALL:ALL) SETENV: ALL
-    #  celes  ALL=(ALL:ALL) SETENV: ALL
-    #'';
+    sudo.configFile = ''
+      root   ALL=(ALL:ALL) SETENV: ALL
+      %wheel ALL=(ALL:ALL) SETENV: ALL
+      celes  ALL=(ALL:ALL) SETENV: ALL
+    '';
   };
   environment.systemPackages = with pkgs; [
     openvpn # Robust and highly flexible tunneling application
