@@ -26,13 +26,12 @@
     libsForQt5.qt5.qtquickcontrols2
     libsForQt5.qt5ct # Qt5 Configuration Tool
     libsForQt5.qwt
-    qt5.full
     qt5.qtgraphicaleffects
+    qt5.qtimageformats
     qt5.qtquickcontrols2
     qt6
     qt6.qtwayland
     qt6ct
     qt6Packages.qt6ct
-    qt5.qtimageformats
   ];
 }
