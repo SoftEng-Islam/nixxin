@@ -120,6 +120,7 @@
     tcpdump # Network sniffer
     bandwhich # CLI utility for displaying current network utilization
     dnsutils # Domain name server
+    avahi # mDNS/DNS-SD implementation
 
     ntp # An implementation of the Network Time Protocol
     openresolv # A program to manage /etc/resolv.conf

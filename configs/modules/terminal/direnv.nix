@@ -7,6 +7,8 @@
   #  Add 'eval "$(direnv hook zsh)"' to .zshrc
   #
 
+  environment.systemPackages = with pkgs; [ direnv ];
+
   programs.direnv = {
     enable = true;
     loadInNixShell = true;

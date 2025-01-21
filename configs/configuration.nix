@@ -160,7 +160,6 @@ in {
     # it provides the command `nom` works just like `nix`
     # with more details log output
     cached-nix-shell # fast nix-shell scripts
-    direnv # Shell extension that manages your environment
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
     inxi # Full featured CLI system information tool

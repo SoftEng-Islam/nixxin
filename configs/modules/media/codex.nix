@@ -10,21 +10,20 @@
     aalib # ASCII art graphics library
     alsa-lib # ALSA, the Advanced Linux Sound Architecture libraries
     aribb25 # Sample implementation of the ARIB STD-B25 standard
-    avahi # mDNS/DNS-SD implementation
-    flac # Library and tools for encoding and decoding the FLAC lossless audio file format
+    # flac # Library and tools for encoding and decoding the FLAC lossless audio file format
     jack2 # JACK audio connection kit, version 2 with jackdbus
     libass # Portable ASS/SSA subtitle renderer
     libavc1394 # Programming interface for the 1394 Trade Association AV/C (Audio/Video Control) Digital Interface Command Set
     libbluray # Library to access Blu-Ray disks for video playback
-    libcaca # A graphics library that outputs text instead of pixels
+    # libcaca # A graphics library that outputs text instead of pixels
     libgcrypt # General-purpose cryptographic library
     libjpeg # A faster (using SIMD) libjpeg implementation
     libmicrodns # Minimal mDNS resolver library, used by VLC
     libmodplug # MOD playing library
-    libmtp # An implementation of Microsoft's Media Transfer Protocol
-    libnfs # NFS client library
-    libogg # Media container library to manipulate Ogg files
-    libopus # Open, royalty-free, highly versatile audio codec
+    # libmtp # An implementation of Microsoft's Media Transfer Protocol
+    # libnfs # NFS client library
+    # libogg # Media container library to manipulate Ogg files
+    # libopus # Open, royalty-free, highly versatile audio codec
     libpng # The official reference implementation for the PNG file format with animation patch
     libvpx # WebM VP8/VP9 codec SDK
     ncurses # Free software emulation of curses in SVR4 and more
