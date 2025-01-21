@@ -13,6 +13,8 @@
     "usb_storage"
     "sd_mod"
     "radeon"
+    "cryptd"
+    "aes_x86_64"
   ];
   boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
   boot.kernelModules =
@@ -22,7 +24,20 @@
   boot.extraModulePackages = with config.boot.kernelPackages;
     [ rtl8188eus-aircrack ];
   boot.kernelParams = [
+
+    # CPU optimizations
+    "threadirqs"
+    "mitigations=off"
+    "idle=nomwait"
+    "processor.max_cstate=1"
     "amd_pstate=active"
+    "clearcpuid=rdrand"
+
+    # AMD GPU optimizations
+    "amdgpu.ppfeaturemask=0xffffffff"
+    "amdgpu.dcfeaturemask=0x8"
+    "amdgpu.freesync_video=1"
+    "amdgpu.gpu_recovery=1"
     # for Southern Islands (SI i.e. GCN 1) cards
     # "radeon.si_support=0"
     # "amdgpu.si_support=1"
@@ -33,9 +48,9 @@
     "amdgpu.dc=1"
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
+
     # "amdgpu.runpm=0"
     # "amdgpu.gttsize=4096"
-    "amdgpu.ppfeaturemask=0xffffffff"
     # "amdgpu.deep_color=1"
     # "amdgpu.vm_size=8"
     # "amdgpu.exp_hw_support=1"
@@ -44,6 +59,23 @@
     # "amdgpu.vm_update_mode=3"
     # "amdgpu.unified_memory=1"
     # "amdgpu.memory_alloc_mode=2"
+
+    # System performance
+    "preempt=voluntary"
+    "transparent_hugepage=never"
+    "clocksource=tsc"
+    "tsc=reliable"
+
+    # Power management
+    "workqueue.power_efficient=off"
+    "amd_iommu=off"
+    "pcie_aspm=off"
+
+    # Audio and USB
+    "amdgpu.audio=0"
+    "usbcore.autosuspend=-1"
+    "snd_hda_intel.power_save=0"
+    "snd_hda_intel.probe_mask=1"
   ];
 
   # services.fstrim.enable = true;
@@ -74,8 +106,11 @@
       extraPackages = with pkgs; [
         mesa.opencl
         amdvlk
+        rocmPackages.clr
         rocmPackages.clr.icd
         rocmPackages.rocm-runtime
+        rocmPackages.rocm-smi
+        rocmPackages.rocminfo
         libva
         libva-utils
         inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers

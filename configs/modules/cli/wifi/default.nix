@@ -1,5 +1,13 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
+    pkgs.hashcat.overrideAttrs
+    (old: {
+      preFixup = (old.preFixup or "") + ''
+        for f in $(find $out/share/hashcat/OpenCL -name '*.cl'); do
+          sed "s|#include \"\(.*\)\"|#include \"$out/share/hashcat/OpenCL/\1\"|g" -i "$f"
+        done
+      '';
+    })
     hashcat # Fast password cracker
     hashcat-utils # Small utilities that are useful in advanced password cracking
     john # John the Ripper password cracker

@@ -84,16 +84,39 @@
 
     ];
     kernel.sysctl = {
+      # Virtual memory tweaks
+      "vm.swappiness" = 10;
+      "vm.dirty_ratio" = 60;
+      "vm.dirty_background_ratio" = 2;
+      "vm.vfs_cache_pressure" = 50;
+      "vm.max_map_count" = 262144;
+
+      # Kernel scheduler
+      "kernel.sched_autogroup_enabled" = 0;
+      "kernel.sched_child_runs_first" = 1;
+      "kernel.sched_min_granularity_ns" = 10000000;
+      "kernel.sched_wakeup_granularity_ns" = 15000000;
+
+      # File system tweaks
+      "fs.file-max" = 2097152;
+      "fs.inotify.max_user_watches" = 524288;
+
+      # Network optimization
+      "net.core.rmem_max" = 16777216;
+      "net.core.wmem_max" = 16777216;
+      "net.core.rmem_default" = 1048576;
+      "net.core.wmem_default" = 1048576;
+      "net.ipv4.tcp_fastopen" = 3;
+      "net.ipv4.tcp_congestion_control" = "bbr";
+      "net.ipv4.tcp_slow_start_after_idle" = 0;
       "net.ipv4.ip_forward" = true; # Enable IPv4 forwarding
       "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding
-      "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "fq";
       # sets the kernel’s TCP keepalive time to 120 seconds. To see the available parameters, run sysctl -a.
       "net.ipv4.tcp_keepalive_time" = 120;
-      "vm.swappiness" = 60;
-      "net.core.rmem_max" = 16777216;
-      "net.core.wmem_max" = 16777216;
-      "fs.inotify.max_user_watches" = "1048576";
+
+      # PID optimization
+      "kernel.pid_max" = 4194304;
     };
     # extraModprobeConfig = ''
     # blacklist r8188eu
