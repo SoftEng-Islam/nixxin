@@ -2,6 +2,7 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
+    systemctl --user start hyprpolkitagent
     # ---- DBUS ---- #
     ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
@@ -24,7 +25,7 @@ let
     ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
-    ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
+    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
 
     # ---- Clipboard ---- #

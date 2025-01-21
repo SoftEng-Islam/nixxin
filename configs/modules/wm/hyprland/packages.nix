@@ -4,7 +4,7 @@
     inputs.hyprland.packages.${system}.hyprland
     # A wlroots-compatible Wayland color picker that does not suck
     inputs.hyprpicker.packages.${system}.hyprpicker
-
+    inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
     # gui
     yad
 

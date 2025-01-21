@@ -9,17 +9,17 @@
           disable_loading_bar = true;
           grace = 0;
         };
-        background = [{
-          monitor = "";
-          path = "$HOME/.cache/ignis/wallpaper";
-          color = "rgba(25, 20, 20, 1.0)";
-          blur_size = 0;
-          blur_passes = 2;
-          contrast = 0.9;
-          brightness = 0.5;
-          vibrancy = 0.17;
-          vibrancy_darkness = 0;
-        }];
+        # background = [{
+        #   monitor = "";
+        #   path = "$HOME/.cache/ignis/wallpaper";
+        #   color = "rgba(25, 20, 20, 1.0)";
+        #   blur_size = 0;
+        #   blur_passes = 2;
+        #   contrast = 0.9;
+        #   brightness = 0.5;
+        #   vibrancy = 0.17;
+        #   vibrancy_darkness = 0;
+        # }];
         input-field = [{
           monitor = "";
           size = "250, 60";

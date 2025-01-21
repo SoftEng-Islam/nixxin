@@ -16,7 +16,6 @@
     ./misc.nix
     ./monitor.nix
     ./plugins.nix
-    ./polkitagent.nix
     ./render.nix
     ./rules.nix
     # ./scripts.nix
