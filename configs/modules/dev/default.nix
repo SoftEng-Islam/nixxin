@@ -1,1 +1,10 @@
-{ imports = [ ./clang ./python ./rust ./web ]; }
+{
+  imports = [
+    ./clang
+    # ./go
+    ./python
+    ./rust
+    # ./tools
+    ./web
+  ];
+}
