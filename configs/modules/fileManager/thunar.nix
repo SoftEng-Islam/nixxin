@@ -20,12 +20,10 @@ in {
       libgepub # .epub
       libgsf # .odf
       poppler # .pdf .ps
-      thunar
-      thunar-archive-plugin
-      thunar-volman
-      tumbler
       webp-pixbuf-loader # .webp
-      xfconf
+      xfce.thunar
+      xfce.tumbler
+      xfce.xfconf
     ];
   };
   home-manager.users.${settings.username} = {
