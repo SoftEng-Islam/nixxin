@@ -1,27 +1,5 @@
 { inputs, pkgs, settings, ... }: {
-  imports = [
-    ./packages.nix
-    ./ignis
-
-    ./hyprland/source.nix
-    ./hyprland/monitor.nix
-    ./hyprland/keybinding.nix
-    ./hyprland/env.nix
-    ./hyprland/exec.nix
-    ./hyprland/input.nix
-    ./hyprland/binds.nix
-    ./hyprland/animations.nix
-    ./hyprland/cursor.nix
-    ./hyprland/decoration.nix
-    ./hyprland/general.nix
-    ./hyprland/gestures.nix
-    ./hyprland/misc.nix
-    ./hyprland/render.nix
-    ./hyprland/rules.nix
-    # ./hyprland/scripts.nix
-    # ./hyprland/hyprlock.nix
-    ./hyprland/plugins.nix
-  ];
+  imports = [ ./packages.nix ./ignis ./hyprland ];
   programs = {
     uwsm.enable = false;
     hyprlock.enable = true;
