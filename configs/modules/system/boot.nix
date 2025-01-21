@@ -1,11 +1,13 @@
 { settings, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
+    # bootspec.enable = true;
     #initrd.systemd.dbus.enable = false;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" "nfs" "btrfs" "ext4" "fat32" ];
     consoleLogLevel = 0;
+    initrd.verbose = false;
     loader = {
       timeout = 4;
       efi.canTouchEfiVariables = true;
@@ -58,7 +60,9 @@
       "quiet"
       "splash"
       "loglevel=3"
-
+      "rd.systemd.show_status=false"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
       # Performance
       "mitigations=off"
       # "zswap.enabled=1"
@@ -79,7 +83,6 @@
       "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
     ];
-
     kernel.sysctl = {
       "net.ipv4.ip_forward" = true; # Enable IPv4 forwarding
       "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding

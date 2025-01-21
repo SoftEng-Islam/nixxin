@@ -13,6 +13,7 @@
     ./security.nix
     ./services.nix
     ./systemd.nix
+    ./tuigreet.nix
     ./users.nix
     ./utilities.nix
     ./virtualisation.nix

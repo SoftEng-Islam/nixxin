@@ -27,6 +27,7 @@
     gh # GitHub CLI tool
     git # Distributed version control system
     git-absorb
+    git-ignore
     git-crypt # Transparent file encryption in git
     git-lfs # Git extension for versioning large files
     lazygit # Simple terminal UI for git commands

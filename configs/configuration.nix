@@ -47,11 +47,17 @@ in {
     ./modules/xdg.nix
     ./modules/xremap.nix
   ];
-  documentation.dev.enable = true;
-  documentation.doc.enable = true;
-  documentation.info.enable = true;
-  documentation.man.enable = true;
-  documentation.nixos.enable = true;
+
+  # Faster rebuilding
+  documentation = {
+    enable = true;
+    doc.enable = false;
+    man.enable = true;
+    dev.enable = false;
+    info.enable = false;
+    nixos.enable = false;
+  };
+
   # ~~~~~~~~~~~~~~~~~~~
   # ~~~~~~~ nix ~~~~~~~
   # ~~~~~~~~~~~~~~~~~~~

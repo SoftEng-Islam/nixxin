@@ -23,5 +23,10 @@
     openssh.enable = true; # Enable the OpenSSH daemon.
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = false; # Whether to enable sysprof profiling daemon.
+
+    logind.extraConfig = ''
+      # don’t shutdown when power button is short-pressed
+      HandlePowerKey=ignore
+    '';
   };
 }
