@@ -34,7 +34,7 @@ in {
     # ./modules/browser.nix
     ./modules/data-transferring.nix
     # ./modules/davinci.nix
-    ./modules/fcitx5.nix
+    # ./modules/fcitx5.nix
     ./modules/fuzzel.nix
     ./modules/gaming.nix
     ./modules/gtk.nix

@@ -6,7 +6,7 @@
   home-manager.users.${settings.username} = {
     programs.feh = {
       enable = true;
-      feh.package = pkgs.feh;
+      package = pkgs.feh;
       buttons = {
         prev_img = [ 3 "C-3" ];
         zoom_in = 4;
