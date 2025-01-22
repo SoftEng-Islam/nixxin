@@ -32,6 +32,7 @@
 
   # ---- Hardware ---- #
   gpuType = "amd"; # amd, intel or nvidia;
+  rocmSupport = false; # or use (if gpuType == "amd" then true else false);
   # APU = "amd";
   # CPU = "amd";
   # StorageType = "";

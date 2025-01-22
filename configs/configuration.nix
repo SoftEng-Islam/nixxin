@@ -115,7 +115,7 @@ in {
   # ~~~~~~~~~~~~~~~~~~~~~~~
   nixpkgs = {
     config = {
-      rocmSupport = (if settings.gpuType == "amd" then true else false);
+      rocmSupport = settings.rocmSupport;
       allowUnfree = true;
     };
   };
