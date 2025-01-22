@@ -35,7 +35,13 @@
   # APU = "amd";
   # CPU = "amd";
   # StorageType = "";
-  videoDrivers = [ "ati_unfree" ];
+  videoDrivers = [
+    "radeon"
+    # "amdgpu"
+    # "modesetting"
+    # "displaylink"
+    # "ati_unfree"
+  ];
 
   # ---- Dotfiles Inforamtions ---- #
   dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo

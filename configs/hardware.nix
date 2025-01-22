@@ -5,8 +5,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # services.fstrim.enable = true;
-  services.xserver.videoDrivers =
-    [ "amdgpu" ]; # "displaylink" "modesetting" "amdgpu"
+  services.xserver.videoDrivers = settings.videoDrivers;
 
   hardware = {
     uinput.enable = true;

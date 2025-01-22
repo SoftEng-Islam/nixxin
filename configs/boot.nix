@@ -57,7 +57,10 @@
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [ "amdgpu" "radeon" ];
+      kernelModules = [
+        # "amdgpu"
+        "radeon"
+      ];
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -72,7 +75,8 @@
       ];
     };
     kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
-    blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
+    blacklistedKernelModules =
+      [ "radeon" "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
       v4l2loopback
@@ -87,6 +91,9 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+
+      # Black Screen Issues
+      "nomodeset"
 
       "rtl8xxxu_disable_hw_crypto=1"
       "iommu=pt"
@@ -211,6 +218,7 @@
     # plymouth.theme = "bgrt";
   };
   environment.systemPackages = with pkgs; [
+    acpid
     fatcat
     os-prober
     grub2_efi
