@@ -44,7 +44,7 @@
     # text = "auth include system-auth";
     text = "auth include login";
     fprintAuth = if settings.hostName == "nixos" then true else false;
-    enableGnomeKeyring = true;
+    enableGnomeKeyring = false;
   };
 
   # services.greetd = {

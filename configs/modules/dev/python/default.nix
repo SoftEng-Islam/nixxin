@@ -66,16 +66,9 @@ in {
     automake
     bzip2 # High-quality data compression program
     c-ares
-    cairo
-    clang
-    cmake
     devtoolbox # Development tools at your fingertips
     fakeroot # Give a fake root environment through LD_PRELOAD
-    gcc
     gdbm
-    git
-    gnumake
-    gobject-introspection
     icu
     libedit
     libffi

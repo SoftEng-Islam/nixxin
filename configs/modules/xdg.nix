@@ -136,15 +136,6 @@ in {
             "/home/${settings.username}/Pictures/Screenshots";
         };
       };
-      desktopEntries."org.gnome.Settings" = {
-        name = "Settings";
-        comment = "Gnome Control Center";
-        icon = "org.gnome.Settings";
-        exec =
-          "env XDG_CURRENT_DESKTOP=gnome ${pkgs.gnome-control-center}/bin/gnome-control-center";
-        categories = [ "X-Preferences" ];
-        terminal = false;
-      };
       mimeApps = {
         enable = true;
         defaultApplications = associations;
@@ -155,7 +146,7 @@ in {
   environment.systemPackages = with pkgs; [
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
+    # xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots

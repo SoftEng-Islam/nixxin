@@ -1,4 +1,9 @@
 { settings, pkgs, ... }:
+# Core components (authentication, lock screen, notification daemon)
+# ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+
+# ---- polkit-gnome ---- #
+# ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
@@ -7,7 +12,6 @@ let
     ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
     ${pkgs.hyprlock}/bin/hyprlock
-
 
     # ---- Set Background ---- #
     ${pkgs.swww}/bin/swww init &
@@ -20,13 +24,6 @@ let
 
     # ---- Input Method ---- #
     ${pkgs.fcitx5}/bin/fcitx5
-
-    # Core components (authentication, lock screen, notification daemon)
-    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
-
-    # ---- polkit-gnome ---- #
-    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
-
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store

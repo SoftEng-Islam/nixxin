@@ -85,10 +85,7 @@
     cairomm # C++ bindings for the Cairo vector graphics library
     gdk-pixbuf # A library for image loading and manipulation
     glib # C library of programming buildings blocks
-    glib-networking
     glibc
-    glibc_memusage
-    glibtool
     gobject-introspection # A middleware layer between C libraries and language bindings
     gobject-introspection-unwrapped
     gobject-introspection.dev
