@@ -9,51 +9,51 @@
 
   hardware = {
     uinput.enable = true;
-    amdgpu.amdvlk.enable = true;
-    amdgpu.amdvlk.support32Bit.enable = true;
-    amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.initrd.enable = false;
-    amdgpu.opencl.enable = true;
-    amdgpu.legacySupport.enable = true;
-    enableRedistributableFirmware = true;
-    cpu.amd.updateMicrocode = true;
     enableAllFirmware = true;
-    amdgpu.amdvlk.settings = {
-      AllowVkPipelineCachingToDisk = 1;
-      EnableVmAlwaysValid = 1;
-      IFH = 0;
-      IdleAfterSubmitGpuMask = 1;
-      ShaderCacheMode = 1;
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages = with pkgs; [
-        mesa.opencl
-        amdvlk
-        driversi686Linux.amdvlk
-        rocmPackages.clr
-        rocmPackages.clr.icd
-        rocmPackages.rocm-runtime
-        rocmPackages.rocm-smi
-        rocmPackages.rocminfo
-        libva
-        libva-utils
-        inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
-      ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
-        inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
-      ];
-    };
+    cpu.amd.updateMicrocode = true;
+    # amdgpu.amdvlk.enable = true;
+    # amdgpu.amdvlk.support32Bit.enable = true;
+    # amdgpu.amdvlk.supportExperimental.enable = true;
+    # amdgpu.initrd.enable = false;
+    # amdgpu.opencl.enable = true;
+    # amdgpu.legacySupport.enable = true;
+    # enableRedistributableFirmware = true;
+    # amdgpu.amdvlk.settings = {
+    #   AllowVkPipelineCachingToDisk = 1;
+    #   EnableVmAlwaysValid = 1;
+    #   IFH = 0;
+    #   IdleAfterSubmitGpuMask = 1;
+    #   ShaderCacheMode = 1;
+    # };
+    #   graphics = {
+    #     enable = true;
+    #     enable32Bit = true;
+    #     # To enable Vulkan support for 32-bit applications, also add:
+    #     extraPackages = with pkgs; [
+    #       mesa.opencl
+    #       amdvlk
+    #       driversi686Linux.amdvlk
+    #       rocmPackages.clr
+    #       rocmPackages.clr.icd
+    #       rocmPackages.rocm-runtime
+    #       rocmPackages.rocm-smi
+    #       rocmPackages.rocminfo
+    #       libva
+    #       libva-utils
+    #       inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
+    #     ];
+    #     extraPackages32 = [
+    #       pkgs.driversi686Linux.amdvlk
+    #       inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
+    #     ];
+    #   };
   };
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+  # systemd.tmpfiles.rules = let
+  #   rocmEnv = pkgs.symlinkJoin {
+  #     name = "rocm-combined";
+  #     paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+  #   };
+  # in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
@@ -99,35 +99,35 @@
   # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   environment.variables = {
-    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # For AMD GPUs
-    LIBVA_DRIVER_NAME = "amdgpu";
-    VDPAU_DRIVER = "amdgpu";
-    OCL_ICD_VENDORS = ''
-      ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
-    '';
-    VK_ICD_FILENAMES = ''
-      ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
-    '';
-    GPU_MAX_ALLOC_PERCENT = "50";
-    GPU_MAX_HEAP_SIZE = "50";
-    GPU_SINGLE_ALLOC_PERCENT = "50";
-    GPU_MAX_USE_SYNC_OBJECTS = "1";
-    GPU_FORCE_64BIT_PTR = "1";
-    AMD_VULKAN_ICD = "RADV";
+    # LIBVA_DRIVER_NAME = "amdgpu";
+    # VDPAU_DRIVER = "amdgpu";
+    # OCL_ICD_VENDORS = ''
+    #   ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
+    # '';
+    # VK_ICD_FILENAMES = ''
+    #   ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
+    # '';
+    # GPU_MAX_ALLOC_PERCENT = "50";
+    # GPU_MAX_HEAP_SIZE = "50";
+    # GPU_SINGLE_ALLOC_PERCENT = "50";
+    # GPU_MAX_USE_SYNC_OBJECTS = "1";
+    # GPU_FORCE_64BIT_PTR = "1";
+    # AMD_VULKAN_ICD = "RADV";
   };
 
   environment.systemPackages = with pkgs; [
-    nvtopPackages.amd
+    # nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
 
-    rocmPackages.hip-common
-    rocmPackages.hipblas
-    rocmPackages.hipcc
-    rocmPackages.hipcub
-    rocmPackages.hipfft
-    rocmPackages.hipify
-    rocmPackages.hiprand
+    # rocmPackages.hip-common
+    # rocmPackages.hipblas
+    # rocmPackages.hipcc
+    # rocmPackages.hipcub
+    # rocmPackages.hipfft
+    # rocmPackages.hipify
+    # rocmPackages.hiprand
 
     # zluda # ZLUDA - CUDA on Intel GPUs
 
@@ -135,48 +135,49 @@
     amd-ucodegen # Tool to generate AMD microcode files
     microcode-amd # AMD Processor microcode patch
     microcodeAmd
-    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
+    # pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     linux-firmware # Binary firmware collection packaged by kernel.org
+
     # AMD Stuff
-    amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.mesa # An open source 3D graphics library
-    amdenc # AMD Encode Core Library
-    amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
-    amd-blis # BLAS-compatible library optimized for AMD CPUs
-    amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    amf # AMD's closed source Advanced Media Framework (AMF) driver
-    aocl-utils # Interface to all AMD AOCL libraries to access CPU features
+    # amdvlk # AMD Open Source Driver For Vulkan
+    # driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+    # driversi686Linux.mesa # An open source 3D graphics library
+    # amdenc # AMD Encode Core Library
+    # amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
+    # amd-blis # BLAS-compatible library optimized for AMD CPUs
+    # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
+    # amf # AMD's closed source Advanced Media Framework (AMF) driver
+    # aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
-    clinfo # Print all known information about all available OpenCL platforms and devices in the system
-    dxvk # A Vulkan-based translation layer for Direct3D
-    glaxnimate # Simple vector animation program.
-    glmark2 # OpenGL (ES) 2.0 benchmark
-    gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-    hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
-    khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
-    libdrm # Direct Rendering Manager library and headers
-    libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
-    libva # An implementation for VA-API (Video Acceleration API)
-    mesa # An open source 3D graphics library
-    mesa_glu # OpenGL utility library
-    mesa_i686 # Open source 3D graphics library
-    mesa-demos # Collection of demos and test programs for OpenGL and Mesa
-    ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
-    openal # OpenAL alternative
-    opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
-    opencl-clhpp # OpenCL Host API C++ bindings
-    opencl-headers # Khronos OpenCL headers version 2023.12.14
-    oclgrind # OpenCL device simulator and debugger
+    # clinfo # Print all known information about all available OpenCL platforms and devices in the system
+    # dxvk # A Vulkan-based translation layer for Direct3D
+    # glaxnimate # Simple vector animation program.
+    # glmark2 # OpenGL (ES) 2.0 benchmark
+    # gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
+    # hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
+    # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
+    # libdrm # Direct Rendering Manager library and headers
+    # libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
+    # libva # An implementation for VA-API (Video Acceleration API)
+    # mesa # An open source 3D graphics library
+    # mesa_glu # OpenGL utility library
+    # mesa_i686 # Open source 3D graphics library
+    # mesa-demos # Collection of demos and test programs for OpenGL and Mesa
+    # ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
+    # openal # OpenAL alternative
+    # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
+    # opencl-clhpp # OpenCL Host API C++ bindings
+    # opencl-headers # Khronos OpenCL headers version 2023.12.14
+    # oclgrind # OpenCL device simulator and debugger
 
-    vkbasalt # Vulkan post processing layer for Linux
-    vkquake # Vulkan Quake port based on QuakeSpasm
-    vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
-    vulkan-headers # Vulkan Header files and API registry
-    vulkan-tools # Khronos official Vulkan Tools and Utilities
-    vulkan-utility-libraries # Set of utility libraries for Vulkan
+    # vkbasalt # Vulkan post processing layer for Linux
+    # vkquake # Vulkan Quake port based on QuakeSpasm
+    # vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
+    # vulkan-headers # Vulkan Header files and API registry
+    # vulkan-tools # Khronos official Vulkan Tools and Utilities
+    # vulkan-utility-libraries # Set of utility libraries for Vulkan
 
-    xorg.xf86videoamdgpu
+    # xorg.xf86videoamdgpu
 
     # lact # Linux AMDGPU Controller
   ];
