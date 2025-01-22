@@ -11,6 +11,7 @@ let
 in {
   imports = gnome ++ hyprland ++ [
     ./hardware.nix
+    ./boot.nix
     ./home.nix
     ./packages.nix
     ./styles

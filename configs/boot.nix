@@ -1,13 +1,11 @@
-{ settings, pkgs, ... }: {
+{ config, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     # bootspec.enable = true;
-    #initrd.systemd.dbus.enable = false;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "ntfs" "nfs" "btrfs" "ext4" "fat32" ];
     consoleLogLevel = 0;
-    initrd.verbose = false;
     loader = {
       timeout = 4;
       efi.canTouchEfiVariables = true;
@@ -56,6 +54,32 @@
         # '';
       };
     };
+    initrd = {
+      verbose = false;
+      # systemd.dbus.enable = false;
+      kernelModules = [ "amdgpu" "radeon" ];
+      availableKernelModules = [
+        "xhci_pci"
+        "ahci"
+        "ohci_pci"
+        "ehci_pci"
+        "usbhid"
+        "usb_storage"
+        "sd_mod"
+        "radeon"
+        "cryptd"
+        "aes_x86_64"
+      ];
+    };
+    kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
+    blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
+    extraModulePackages = with config.boot.kernelPackages; [
+      rtl8188eus-aircrack
+      v4l2loopback
+    ];
+    # extraModprobeConfig = ''
+    #   options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
+    # '';
     kernelParams = [
       "quiet"
       "splash"
@@ -63,11 +87,6 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      # Performance
-      "mitigations=off"
-      # "zswap.enabled=1"
-      # "zswap.compressor=lz4"
-      # "zswap.max_pool_percent=20"
 
       "rtl8xxxu_disable_hw_crypto=1"
       "iommu=pt"
@@ -78,11 +97,66 @@
       # "acpi_osi=Linux"
       # "pci=realloc"
 
-      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      # "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+      # "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+      # "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
+      # CPU optimizations
+      "threadirqs"
+      "mitigations=off"
+      "idle=nomwait"
+      "processor.max_cstate=1"
+      "amd_pstate=active"
+      "clearcpuid=rdrand"
+
+      # ---- Swap ---- #
+      # "zswap.enabled=1"
+      # "zswap.compressor=lz4"
+      # "zswap.max_pool_percent=20"
+
+      # AMD GPU optimizations
+      "amdgpu.ppfeaturemask=0xffffffff"
+      "amdgpu.dcfeaturemask=0x8"
+      "amdgpu.freesync_video=1"
+      "amdgpu.gpu_recovery=1"
+      # for Southern Islands (SI i.e. GCN 1) cards
+      # "radeon.si_support=0"
+      # "amdgpu.si_support=1"
+      # for Sea Islands (CIK i.e. GCN 2) cards
+      "radeon.cik_support=0"
+      "amdgpu.cik_support=1"
+      # "amdgpu.dc=1"
+      # "amdgpu.dpm=1"
+
+      # "amdgpu.runpm=0"
+      # "amdgpu.gttsize=4096"
+      # "amdgpu.deep_color=1"
+      # "amdgpu.vm_size=8"
+      # "amdgpu.exp_hw_support=1"
+      # "amdgpu.vm_fragment_size=9"
+      # "amdgpu.vm_fault_stop=2"
+      # "amdgpu.vm_update_mode=3"
+      # "amdgpu.unified_memory=1"
+      # "amdgpu.memory_alloc_mode=2"
+
+      # System performance
+      "preempt=voluntary"
+      "transparent_hugepage=never"
+      "clocksource=tsc"
+      "tsc=reliable"
+
+      # Power management
+      "workqueue.power_efficient=off"
+      "amd_iommu=off"
+      "pcie_aspm=off"
+
+      # Audio and USB
+      # "amdgpu.audio=0"
+      # "usbcore.autosuspend=-1"
+      # "snd_hda_intel.power_save=0"
+      # "snd_hda_intel.probe_mask=1"
     ];
+
     kernel.sysctl = {
       # Virtual memory tweaks
       "vm.swappiness" = 10;

@@ -1,7 +1,6 @@
 { settings, pkgs, ... }: {
   imports = [
     ./audio.nix
-    ./boot.nix
     ./corectrl.nix
     ./dbus.nix
     ./dm.nix
