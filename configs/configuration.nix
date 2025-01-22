@@ -46,7 +46,7 @@ in {
     ./modules/wayland.nix
     ./modules/wine.nix
     ./modules/xdg.nix
-    ./modules/xremap.nix
+    # ./modules/xremap.nix
   ];
 
   # Faster rebuilding

@@ -18,7 +18,7 @@
     wine64 # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     wineasio # ASIO to JACK driver for WINE
     winePackages.fonts # Microsoft replacement fonts by the Wine project
-    winePackages.stable # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
+    winePackages.stableFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     winetricks # A script to install DLLs needed to work around problems in Wine
     wineWowPackages.waylandFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     libGL # GL Vendor-Neutral Dispatch library

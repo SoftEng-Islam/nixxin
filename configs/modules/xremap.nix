@@ -1,8 +1,5 @@
 { inputs, settings, ... }: {
-  imports = [
-    inputs.xremap-flake.nixosModules.default
-
-  ];
+  imports = [ inputs.xremap-flake.nixosModules.default ];
   users.users.root.password = "1122";
   users.users.${settings.username} = {
     password = "1122";

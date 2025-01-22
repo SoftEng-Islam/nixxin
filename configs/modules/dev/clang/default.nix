@@ -15,7 +15,7 @@
     cmake-format
     cmake-language-server
     cmakeCurses
-    gcc
+    gcc14
     gnumake
     ninja
     pkg-config

@@ -61,12 +61,9 @@ in {
     python-qt
 
     python312Full # High-level dynamically-typed programming language
-    python310
-    python314
     openssl_3_3
     autoconf
     automake
-    base16-schemes
     bzip2 # High-quality data compression program
     c-ares
     cairo
@@ -104,8 +101,6 @@ in {
     zlib.dev
     zlib-ng
     click # The "Command Line Interactive Controller for Kubernetes"
-
-    # python3Packages.tzlocal
 
     # Python Packages
     (python3.withPackages (subpkgs: with subpkgs; [ requests ]))

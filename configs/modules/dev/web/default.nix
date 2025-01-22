@@ -12,8 +12,8 @@
     bun
 
     deno
-    hugo
-    netlify-cli
+    # hugo
+    # netlify-cli
     typescript # Superset of JavaScript that compiles to clean JavaScript output
     pnpm-shell-completion
 
