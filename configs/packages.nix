@@ -65,7 +65,7 @@
     ddcutil # Query and change Linux monitor settings using DDC/CI and USB
     gojq # Pure Go implementation of jq
     rsync # Fast incremental file transfer utility
-    starship # Minimal, blazing fast, and extremely customizable prompt for any shell
+    # starship # Minimal, blazing fast, and extremely customizable prompt for any shell
     tesseract # OCR engine
     tinyxml2 # Simple, small, efficient, C++ XML parser
     webp-pixbuf-loader # WebP GDK Pixbuf Loader library
@@ -73,8 +73,8 @@
     libbsd # Common functions found on BSD systems
     libselinux # SELinux core library
     audit # Audit Library
-    xmlto # Front-end to an XSL toolchain
-    fop # XML formatter driven by XSL Formatting Objects (XSL-FO)
+    # xmlto # Front-end to an XSL toolchain
+    # fop # XML formatter driven by XSL Formatting Objects (XSL-FO)
 
     # developers packages
     # bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
@@ -94,7 +94,7 @@
     gobject-introspection.dev
     gtksourceviewmm
     harfbuzz # An OpenType text shaping engine
-    jetbrains-toolbox
+    # jetbrains-toolbox
 
     libgcc
     libpulseaudio
@@ -105,7 +105,6 @@
     pango # A library for laying out and rendering of text, with an emphasis on internationalization
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
     tinyxml-2
-    zlib # Lossless data-compression library
 
     # Databases
     sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
