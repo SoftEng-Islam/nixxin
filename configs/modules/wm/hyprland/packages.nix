@@ -9,22 +9,9 @@
     yad
 
     # tools
-    bat
-    eza
-    fd
-    ripgrep
-    fzf
-    socat
-    jq
     gojq
-    acpi
-    libnotify
-    starship
     showmethekey
     ydotool
-
-    # theming tools
-    gradience
 
     # hyprland
     temurin-jre-bin
