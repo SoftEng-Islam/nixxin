@@ -4,12 +4,12 @@
 { settings, pkgs, ... }:
 
 let
-  # gnome = if settings.gnome.enable then [ ./modules/wm/gnome ] else [ ];
+  gnome = if settings.gnome.enable then [ ./modules/wm/gnome ] else [ ];
   hyprland =
     if settings.hyprland.enable then [ ./modules/wm/hyprland ] else [ ];
 
 in {
-  imports = hyprland ++ [
+  imports = gnome ++ hyprland ++ [
     ./hardware.nix
     ./boot.nix
     ./home.nix
@@ -70,30 +70,35 @@ in {
     settings = {
       # for nix-direnv
       sandbox = false;
-      keep-outputs = false;
+      connect-timeout = 0; # 0 means no limit
+      download-attempts = 10;
+      download-buffer-size = 536870912;
+      http-connections = 1; # 0 means no limit
+      keep-outputs = true;
       keep-derivations = false;
       builders-use-substitutes = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [
-        "https://cache.nixos.org"
-        "https://cuda-maintainers.cachix.org"
-        "https://hyprland.cachix.org"
-        "https://nix-community.cachix.org"
-        "https://nix-gaming.cachix.org"
-        "https://nixpkgs-python.cachix.org"
-        "https://nixpkgs-wayland.cachix.org"
+        # "https://cache.nixos.org"
+        # "https://cuda-maintainers.cachix.org"
+        # "https://hyprland.cachix.org"
+        # "https://nix-community.cachix.org"
+        # "https://nix-gaming.cachix.org"
+        # "https://nixpkgs-python.cachix.org"
+        # "https://nixpkgs-wayland.cachix.org"
       ];
       # trusted-substituters = [ "https://nix-community.cachix.org" ];
       trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-        "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
+        # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        # "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+        # "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
       ];
-      trusted-users = [ "@wheel" "root" ];
+      trusted-users = [ "@wheel" "root" "${settings.user}" ];
+      allowed-users = [ "@wheel" "root" "${settings.user}" ];
       fallback = true;
       warn-dirty = false;
       auto-optimise-store = true;
