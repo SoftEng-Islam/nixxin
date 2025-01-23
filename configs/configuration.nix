@@ -67,9 +67,9 @@ in {
     settings = {
       sandbox = false;
       connect-timeout = 120; # 0 means no limit
-      download-attempts = 10;
-      download-buffer-size = 536870912;
-      http-connections = 1; # 0 means no limit
+      # download-attempts = 10;
+      # download-buffer-size = 536870912;
+      http-connections = 0; # 0 means no limit
       keep-outputs = true;
       keep-derivations = false;
       builders-use-substitutes = false;
