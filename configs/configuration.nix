@@ -61,7 +61,7 @@ in {
 
   nix = {
     package = pkgs.nixVersions.latest;
-    gc.automatic = true;
+    gc.automatic = false;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
     settings = {
@@ -84,7 +84,9 @@ in {
         # "https://nixpkgs-python.cachix.org"
         # "https://nixpkgs-wayland.cachix.org"
       ];
-      # trusted-substituters = [ "https://nix-community.cachix.org" ];
+      trusted-substituters = [ 
+	# "https://nix-community.cachix.org"
+      ];
       trusted-public-keys = [
         # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -93,8 +95,8 @@ in {
         # "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         # "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
       ];
-      trusted-users = [ "@wheel" "root" "${settings.user}" ];
-      allowed-users = [ "@wheel" "root" "${settings.user}" ];
+      trusted-users = [ "@wheel" "root" "${settings.username}" ];
+      allowed-users = [ "@wheel" "root" "${settings.username}" ];
       fallback = true;
       warn-dirty = false;
       auto-optimise-store = true;
