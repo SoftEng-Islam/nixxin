@@ -75,13 +75,13 @@ in {
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [
-        # "https://cache.nixos.org"
+        "https://cache.nixos.org"
         # "https://cuda-maintainers.cachix.org"
-        # "https://hyprland.cachix.org"
-        # "https://nix-community.cachix.org"
-        # "https://nix-gaming.cachix.org"
-        # "https://nixpkgs-python.cachix.org"
-        # "https://nixpkgs-wayland.cachix.org"
+        "https://hyprland.cachix.org"
+        "https://nix-community.cachix.org"
+        "https://nix-gaming.cachix.org"
+        "https://nixpkgs-python.cachix.org"
+        "https://nixpkgs-wayland.cachix.org"
       ];
       trusted-substituters = [ 
 	"https://nix-community.cachix.org"
