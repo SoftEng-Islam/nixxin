@@ -1,6 +1,5 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
+# Edit this configuration file to define what should be installed on your system. Help is available in the 
+# configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
 { settings, pkgs, ... }:
 
 let
@@ -72,7 +71,7 @@ in {
       http-connections = 0; # 0 means no limit
       keep-outputs = true;
       keep-derivations = false;
-      builders-use-substitutes = false;
+      builders-use-substitutes = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [
@@ -85,7 +84,7 @@ in {
         # "https://nixpkgs-wayland.cachix.org"
       ];
       trusted-substituters = [ 
-	# "https://nix-community.cachix.org"
+	"https://nix-community.cachix.org"
       ];
       trusted-public-keys = [
         # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
