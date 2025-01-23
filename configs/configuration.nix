@@ -59,24 +59,20 @@ in {
     nixos.enable = false;
   };
 
-  # ~~~~~~~~~~~~~~~~~~~
-  # ~~~~~~~ nix ~~~~~~~
-  # ~~~~~~~~~~~~~~~~~~~
   nix = {
     package = pkgs.nixVersions.latest;
     gc.automatic = true;
     gc.dates = "03:15";
     gc.options = "--delete-older-than 10d";
     settings = {
-      # for nix-direnv
       sandbox = false;
-      connect-timeout = 0; # 0 means no limit
+      connect-timeout = 120; # 0 means no limit
       download-attempts = 10;
       download-buffer-size = 536870912;
       http-connections = 1; # 0 means no limit
       keep-outputs = true;
       keep-derivations = false;
-      builders-use-substitutes = true;
+      builders-use-substitutes = false;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       substituters = [
