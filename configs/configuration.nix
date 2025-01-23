@@ -1,4 +1,4 @@
-# Edit this configuration file to define what should be installed on your system. Help is available in the 
+# Edit this configuration file to define what should be installed on your system. Help is available in the
 # configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
 { settings, pkgs, ... }:
 
@@ -60,9 +60,11 @@ in {
 
   nix = {
     package = pkgs.nixVersions.latest;
-    gc.automatic = false;
-    gc.dates = "03:15";
-    gc.options = "--delete-older-than 10d";
+    gc = {
+      automatic = false;
+      dates = "03:15";
+      options = "--delete-older-than 10d";
+    };
     settings = {
       sandbox = false;
       # connect-timeout = 120; # 0 means no limit
@@ -73,26 +75,26 @@ in {
       keep-derivations = false;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
-       # builders-use-substitutes = true;
-       #substituters = [
-        #"https://cache.nixos.org"
-        # "https://cuda-maintainers.cachix.org"
-        #"https://hyprland.cachix.org"
-        #"https://nix-community.cachix.org"
-        #"https://nix-gaming.cachix.org"
-        #"https://nixpkgs-python.cachix.org"
-        #"https://nixpkgs-wayland.cachix.org"
+      # builders-use-substitutes = true;
+      #substituters = [
+      #"https://cache.nixos.org"
+      # "https://cuda-maintainers.cachix.org"
+      #"https://hyprland.cachix.org"
+      #"https://nix-community.cachix.org"
+      #"https://nix-gaming.cachix.org"
+      #"https://nixpkgs-python.cachix.org"
+      #"https://nixpkgs-wayland.cachix.org"
       #];
-      #trusted-substituters = [ 
-	#"https://nix-community.cachix.org"
+      #trusted-substituters = [
+      #"https://nix-community.cachix.org"
       #];
       #trusted-public-keys = [
-        # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-        # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-        # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-        # "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-        # "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
+      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+      # "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+      # "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
       #];
       trusted-users = [ "@wheel" "root" "${settings.username}" ];
       allowed-users = [ "@wheel" "root" "${settings.username}" ];

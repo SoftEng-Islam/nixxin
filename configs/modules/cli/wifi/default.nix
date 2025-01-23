@@ -23,7 +23,7 @@
     hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
     netcat # Free TLS/SSL implementation
     netop # Network monitor using bpf
-    netrw # Simple tool for transporting data over the network
+    #netrw # Simple tool for transporting data over the network
     nettools # Set of tools for controlling the network subsystem in Linux
   ];
 }
