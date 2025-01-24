@@ -97,8 +97,10 @@ in {
         common.default = "*";
         hyprland.default = [ "gtk" "hyprland" ];
       };
-      extraPortals =
-        [ pkgs.xdg-desktop-portal-hyprland pkgs.xdg-desktop-portal-gtk ];
+      extraPortals = [
+        # pkgs.xdg-desktop-portal-hyprland
+        pkgs.xdg-desktop-portal-gtk
+      ];
       # configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
@@ -148,7 +150,7 @@ in {
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
     # xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
+    # xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
     xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks

@@ -27,7 +27,7 @@
     resources # Monitor your system resources and processes
 
     # Graphics Apps
-    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
+    # lunacy # Free design software that keeps your flow with AI tools and built-in graphics
     #drawio # A desktop application for creating diagrams
     blender-hip # 3D Creation/Animation/Publishing System
     gimp # GNU Image Manipulation Program

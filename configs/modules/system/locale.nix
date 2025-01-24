@@ -145,7 +145,7 @@
     # hunspellDicts.en-gb-ise
 
     # Latex
-    texliveFull # TeX Live environment
-    texlive.combined.scheme-full # TeX Live environment for scheme-full
+    # texliveFull # TeX Live environment
+    # texlive.combined.scheme-full # TeX Live environment for scheme-full
   ];
 }

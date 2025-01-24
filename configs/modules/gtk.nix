@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  # gtk.iconCache.enable = true;
+  gtk.iconCache.enable = false;
   home-manager.users.${settings.username} = {
     gtk = {
       enable = true;

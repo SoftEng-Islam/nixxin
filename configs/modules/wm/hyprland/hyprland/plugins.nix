@@ -1,5 +1,5 @@
 { inputs, settings, pkgs, ... }: {
-  imports = [ ./plugins/hyprspace.nix ];
+  # imports = [ ./plugins/hyprspace.nix ];
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
       inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars

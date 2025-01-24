@@ -71,12 +71,10 @@
         "sd_mod"
         "radeon"
         "cryptd"
-        "aes_x86_64"
       ];
     };
     kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
-    blacklistedKernelModules =
-      [ "radeon" "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
+    blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
       v4l2loopback
@@ -113,7 +111,7 @@
       "mitigations=off"
       "idle=nomwait"
       "processor.max_cstate=1"
-      "amd_pstate=active"
+      # "amd_pstate=active"
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
@@ -122,16 +120,16 @@
       # "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
-      "amdgpu.ppfeaturemask=0xffffffff"
-      "amdgpu.dcfeaturemask=0x8"
-      "amdgpu.freesync_video=1"
-      "amdgpu.gpu_recovery=1"
+      # "amdgpu.ppfeaturemask=0xffffffff"
+      # "amdgpu.dcfeaturemask=0x8"
+      # "amdgpu.freesync_video=1"
+      # "amdgpu.gpu_recovery=1"
       # for Southern Islands (SI i.e. GCN 1) cards
-      # "radeon.si_support=0"
-      # "amdgpu.si_support=1"
+      "radeon.si_support=1"
+      "amdgpu.si_support=0"
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=1"
+      "radeon.cik_support=1"
+      "amdgpu.cik_support=0"
       # "amdgpu.dc=1"
       # "amdgpu.dpm=1"
 
@@ -225,5 +223,6 @@
     grub2_full
     sleek-grub-theme
     nixos-grub2-theme
+    # aescrypt
   ];
 }
