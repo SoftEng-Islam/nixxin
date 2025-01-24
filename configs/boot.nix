@@ -69,7 +69,7 @@
         "usbhid"
         "usb_storage"
         "sd_mod"
-        "radeon"
+      #  "radeon"
         "cryptd"
       ];
     };

@@ -8,8 +8,8 @@
     ./exec.nix
     ./general.nix
     ./gestures.nix
-    ./hypridle.nix
-    ./hyprlock.nix
+   # ./hypridle.nix
+   # ./hyprlock.nix
     # ./hyprpaper.nix
     ./input.nix
     ./keybinding.nix
