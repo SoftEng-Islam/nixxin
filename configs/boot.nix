@@ -58,8 +58,8 @@
       verbose = false;
       # systemd.dbus.enable = false;
       kernelModules = [
-        # "amdgpu"
-   #     "radeon"
+          "amdgpu"
+        # "radeon"
       ];
       availableKernelModules = [
         "xhci_pci"
@@ -69,11 +69,10 @@
         "usbhid"
         "usb_storage"
         "sd_mod"
-      #  "radeon"
         "cryptd"
       ];
     };
-    kernelModules =  [ "radeon" "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
+    kernelModules =  [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
@@ -111,7 +110,7 @@
       "mitigations=off"
       "idle=nomwait"
       "processor.max_cstate=1"
-      # "amd_pstate=active"
+      "amd_pstate=active"
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
@@ -120,22 +119,22 @@
       # "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
-      # "amdgpu.ppfeaturemask=0xffffffff"
-      # "amdgpu.dcfeaturemask=0x8"
-      # "amdgpu.freesync_video=1"
-      # "amdgpu.gpu_recovery=1"
+      "amdgpu.ppfeaturemask=0xffffffff"
+      "amdgpu.dcfeaturemask=0x8"
+      "amdgpu.freesync_video=1"
+      "amdgpu.gpu_recovery=1"
       # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=1"
-      "amdgpu.si_support=0"
+      #"radeon.si_support=1"
+      #"amdgpu.si_support=0"
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=1"
-      "amdgpu.cik_support=0"
-      # "amdgpu.dc=1"
-      # "amdgpu.dpm=1"
+      "radeon.cik_support=0"
+      "amdgpu.cik_support=1"
+      "amdgpu.dc=1"
+      "amdgpu.dpm=1"
 
       # "amdgpu.runpm=0"
       # "amdgpu.gttsize=4096"
-      # "amdgpu.deep_color=1"
+      "amdgpu.deep_color=1"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
       # "amdgpu.vm_fragment_size=9"
@@ -156,10 +155,10 @@
       "pcie_aspm=off"
 
       # Audio and USB
-      # "amdgpu.audio=0"
-      # "usbcore.autosuspend=-1"
-      # "snd_hda_intel.power_save=0"
-      # "snd_hda_intel.probe_mask=1"
+      "amdgpu.audio=0"
+      "usbcore.autosuspend=-1"
+      "snd_hda_intel.power_save=0"
+      "snd_hda_intel.probe_mask=1"
     ];
 
     kernel.sysctl = {

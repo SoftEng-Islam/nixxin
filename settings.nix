@@ -37,8 +37,8 @@
   # CPU = "amd";
   # StorageType = "";
   videoDrivers = [
-    "radeon"
-    # "amdgpu"
+  #  "radeon"
+   "amdgpu"
     # "modesetting"
     # "displaylink"
     # "ati_unfree"

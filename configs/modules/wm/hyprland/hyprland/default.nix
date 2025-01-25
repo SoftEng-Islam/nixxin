@@ -15,7 +15,7 @@
     ./keybinding.nix
     ./misc.nix
     ./monitor.nix
-    ./plugins.nix
+#    ./plugins.nix
     ./render.nix
     ./rules.nix
     # ./scripts.nix
