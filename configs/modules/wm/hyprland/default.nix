@@ -6,8 +6,8 @@
     xwayland.enable = false;
     hyprland = {
       enable = true;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
-      xwayland.enable = false;
+      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      xwayland.enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
@@ -70,8 +70,8 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      systemd.enable = true;
-      systemd.enableXdgAutostart = true;
+      systemd.enable = false;
+      systemd.enableXdgAutostart = false;
       settings = {
         debug = {
           disable_logs = false;
