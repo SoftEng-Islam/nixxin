@@ -59,7 +59,7 @@
       # systemd.dbus.enable = false;
       kernelModules = [
         # "amdgpu"
-        "radeon"
+   #     "radeon"
       ];
       availableKernelModules = [
         "xhci_pci"
@@ -73,7 +73,7 @@
         "cryptd"
       ];
     };
-    kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
+    kernelModules =  [ "radeon" "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack

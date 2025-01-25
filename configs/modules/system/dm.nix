@@ -6,15 +6,15 @@
     displayManager.defaultSession = settings.defaultSession;
     
     # ---- GREETED ---- #
-    greetd.enable = true;
+    greetd.enable = false;
     greetd.settings.default_session = {
           command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
           user = "greeter";
     };
     
     # ---- SDDM ---- #
-    displayManager.sddm.enable = false;
-    displayManager.sddm.wayland.enable = false;
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
     displayManager.sddm.package = pkgs.plasma5Packages.sddm;
 
     # ---- XSERVER ---- #

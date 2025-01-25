@@ -75,27 +75,27 @@ in {
       # keep-derivations = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
-      # builders-use-substitutes = true;
-      #substituters = [
-      #"https://cache.nixos.org"
-      # "https://cuda-maintainers.cachix.org"
-      #"https://hyprland.cachix.org"
-      #"https://nix-community.cachix.org"
-      #"https://nix-gaming.cachix.org"
-      #"https://nixpkgs-python.cachix.org"
-      #"https://nixpkgs-wayland.cachix.org"
-      #];
-      #trusted-substituters = [
-      #"https://nix-community.cachix.org"
-      #];
-      #trusted-public-keys = [
-      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      # "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      # "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-      # "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      # "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-      #];
+      builders-use-substitutes = true;
+      substituters = [
+       "https://cache.nixos.org"
+       "https://cuda-maintainers.cachix.org"
+       "https://hyprland.cachix.org"
+       "https://nix-community.cachix.org"
+       "https://nix-gaming.cachix.org"
+       "https://nixpkgs-python.cachix.org"
+       "https://nixpkgs-wayland.cachix.org"
+      ];
+      trusted-substituters = [
+        "https://nix-community.cachix.org"
+      ];
+      trusted-public-keys = [
+       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+       "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+       "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+       "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
+     ];
       trusted-users = [ "@wheel" "root" "${settings.username}" ];
       allowed-users = [ "@wheel" "root" "${settings.username}" ];
       fallback = true;
