@@ -6,47 +6,48 @@
 
   # services.fstrim.enable = true;
   services.xserver.videoDrivers = settings.videoDrivers;
-
+  # services.auto-epp.enable = true;
   hardware = {
     uinput.enable = true;
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
+    # cpu.amd.sev.enable = true;
+    amdgpu.initrd.enable = true;
     amdgpu.amdvlk.enable = true;
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.initrd.enable = false;
     amdgpu.opencl.enable = true;
-    amdgpu.legacySupport.enable = true;
-    enableRedistributableFirmware = true;
+    amdgpu.legacySupport.enable = false;   
+  enableRedistributableFirmware = true;
     amdgpu.amdvlk.settings = {
-       AllowVkPipelineCachingToDisk = 1;
-       EnableVmAlwaysValid = 1;
-       IFH = 0;
-       IdleAfterSubmitGpuMask = 1;
-       ShaderCacheMode = 1;
-     };
-       graphics = {
-         enable = true;
-         enable32Bit = true;
-         # To enable Vulkan support for 32-bit applications, also add:
-         extraPackages = with pkgs; [
-           mesa.opencl
-           amdvlk
-           driversi686Linux.amdvlk
-    #       rocmPackages.clr
-    #       rocmPackages.clr.icd
-    #       rocmPackages.rocm-runtime
-    #       rocmPackages.rocm-smi
-    #       rocmPackages.rocminfo
-           libva
-           libva-utils
-           inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
-         ];
-         extraPackages32 = [
-           pkgs.driversi686Linux.amdvlk
-           inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
-         ];
-       };
+      AllowVkPipelineCachingToDisk = 1;
+      EnableVmAlwaysValid = 1;
+      IFH = 0;
+      IdleAfterSubmitGpuMask = 1;
+      ShaderCacheMode = 1;
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      # To enable Vulkan support for 32-bit applications, also add:
+      extraPackages = with pkgs; [
+        mesa.opencl
+        amdvlk
+        driversi686Linux.amdvlk
+        # rocmPackages.clr
+        # rocmPackages.clr.icd
+        # rocmPackages.rocm-runtime
+        # rocmPackages.rocm-smi
+        # rocmPackages.rocminfo
+        libva
+        libva-utils
+        inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
+      ];
+      extraPackages32 = [
+        pkgs.driversi686Linux.amdvlk
+        inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
+      ];
+    };
   };
   # systemd.tmpfiles.rules = let
   #   rocmEnv = pkgs.symlinkJoin {
@@ -96,7 +97,7 @@
   # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system}";
-  # hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
+  #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   environment.variables = {
     # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
@@ -145,8 +146,8 @@
     amdenc # AMD Encode Core Library
     amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
     amd-blis # BLAS-compatible library optimized for AMD CPUs
-    amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    amf # AMD's closed source Advanced Media Framework (AMF) driver
+#    amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
+#    amf # AMD's closed source Advanced Media Framework (AMF) driver
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
     # clinfo # Print all known information about all available OpenCL platforms and devices in the system

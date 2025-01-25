@@ -10,12 +10,12 @@
     ./gestures.nix
    # ./hypridle.nix
    # ./hyprlock.nix
-    # ./hyprpaper.nix
+   # ./hyprpaper.nix
     ./input.nix
     ./keybinding.nix
     ./misc.nix
     ./monitor.nix
-#    ./plugins.nix
+    ./plugins.nix
     ./render.nix
     ./rules.nix
     # ./scripts.nix

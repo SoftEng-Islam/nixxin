@@ -26,7 +26,7 @@
         # devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
         devices = [ "nodev" ];
         device = "nodev"; # Let GRUB automatically detect EFI
-        useOSProber = false;
+        useOSProber = true;
         extraConfig = ''
           GRUB_DISABLE_OS_PROBER=true
           GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
@@ -57,10 +57,7 @@
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [
-          "amdgpu"
-        # "radeon"
-      ];
+      kernelModules = [ "amdgpu" ];
       availableKernelModules = [
         "xhci_pci"
         "ahci"
@@ -72,7 +69,7 @@
         "cryptd"
       ];
     };
-    kernelModules =  [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ]; # "amdgpu"
+    kernelModules =  [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
