@@ -8,21 +8,23 @@
     # ---- GREETED ---- #
     greetd.enable = false;
     greetd.settings.default_session = {
-          command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
-          user = "greeter";
+     command = "${pkgs.greetd.tuigreet}/bin/tuigreet --time --cmd sway";
+     user = "greeter";
     };
-    
+
+	    
+
     # ---- SDDM ---- #
-    displayManager.sddm.enable = true;
-    displayManager.sddm.wayland.enable = true;
+    displayManager.sddm.enable = false;
+    displayManager.sddm.wayland.enable = false;
     displayManager.sddm.package = pkgs.plasma5Packages.sddm;
 
     # ---- XSERVER ---- #
     xserver.enable = true;
   
     # ---- GDM ---- #
-    xserver.displayManager.gdm.wayland = false;
-    xserver.displayManager.gdm.enable = false;
+    xserver.displayManager.gdm.wayland = true;
+    xserver.displayManager.gdm.enable = true;
         
     # ---- GNOME ---- #   
     # Enable or Disable the GNOME Desktop Environment.
