@@ -11,20 +11,20 @@ let
     # ---- Set Background ---- #
     ${pkgs.swww}/bin/swww init &
     ${pkgs.swww}/bin/swww-daemon --format xrgb &
-    sleep 1
+    # sleep 1
     # ${pkgs.swww}/bin/swww img ~/Pictures/nord.jpg --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
 
     # ---- Start IGNIS ---- #
     ignis init
 
     # Core components (authentication, lock screen, notification daemon)
-    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    #${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
-    ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
+    #${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
     # ---- Input Method ---- #
-    ${pkgs.fcitx5}/bin/fcitx5
+    #${pkgs.fcitx5}/bin/fcitx5
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
