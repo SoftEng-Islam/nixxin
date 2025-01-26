@@ -1,0 +1,22 @@
+{ settings, inputs, pkgs, ... }: {
+  home-manager.users.${settings.username} = {
+    wayland.windowManager.hyprland.plugins =
+      [ inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus ];
+    wayland.windowManager.hyprland.extraConfig = ''
+      plugin:borders-plus-plus {
+        add_borders = 1 # 0 - 9
+
+        # You can add up to 9 borders
+        col.border_1 = rgb(ffffff)
+        col.border_2 = rgb(000000)
+
+        # -1 means "default" as in the one defined in general:border_size
+        border_size_1 = 2
+        border_size_2 = 2
+
+        # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
+        natural_rounding = yes
+      }
+    '';
+  };
+}

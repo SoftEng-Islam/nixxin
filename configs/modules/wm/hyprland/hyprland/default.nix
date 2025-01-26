@@ -8,14 +8,14 @@
     ./exec.nix
     ./general.nix
     ./gestures.nix
-   # ./hypridle.nix
-   # ./hyprlock.nix
-   # ./hyprpaper.nix
+    # ./hypridle.nix
+    # ./hyprlock.nix
+    # ./hyprpaper.nix
     ./input.nix
     ./keybinding.nix
     ./misc.nix
     ./monitor.nix
-#    ./plugins.nix
+    ./plugins
     ./render.nix
     ./rules.nix
     # ./scripts.nix
