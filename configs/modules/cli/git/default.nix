@@ -12,14 +12,6 @@
       userEmail = settings.email;
       userName = settings.name;
     };
-    programs.ssh = {
-      enable = true;
-      addKeysToAgent = "yes";
-    };
-    services.ssh-agent = {
-      enable = lib.modules.mkIf pkgs.stdenv.isLinux true;
-    };
-
   };
   environment.systemPackages = with pkgs; [
     hub # Command-line wrapper for git that makes you better at GitHub

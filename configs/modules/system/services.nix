@@ -20,7 +20,6 @@
     flatpak.enable = false;
     geoclue2.enable = true;
     gvfs.enable = true; # A lot of mpris packages require it.
-    openssh.enable = true; # Enable the OpenSSH daemon.
     printing.enable = false; # Enable CUPS to print documents.
     sysprof.enable = true; # Whether to enable sysprof profiling daemon.
 
