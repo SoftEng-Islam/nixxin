@@ -12,7 +12,7 @@ let
     ${pkgs.swww}/bin/swww init &
     ${pkgs.swww}/bin/swww-daemon --format xrgb &
     sleep 1
-    ${pkgs.swww}/bin/swww img ~/Pictures/nord.jpg --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
+    # ${pkgs.swww}/bin/swww img ~/Pictures/nord.jpg --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
 
     # ---- Start IGNIS ---- #
     ignis init
