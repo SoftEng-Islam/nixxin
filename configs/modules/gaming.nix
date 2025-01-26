@@ -63,6 +63,6 @@
     # protonup
 
     # Games
-    # zeroad # Free, open-source game of ancient warfare
+    zeroad # Free, open-source game of ancient warfare
   ];
 }

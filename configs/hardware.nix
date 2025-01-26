@@ -4,9 +4,11 @@
 { lib, settings, inputs, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  # services.fstrim.enable = true;
-  services.xserver.videoDrivers = [ "amdgpu" ];
-  # services.auto-epp.enable = true;
+  services = {
+    # fstrim.enable = true;
+    xserver.videoDrivers = settings.videoDrivers;
+    # auto-epp.enable = true;
+  };
   hardware = {
     uinput.enable = true;
     enableAllFirmware = true;
@@ -17,8 +19,8 @@
     amdgpu.amdvlk.support32Bit.enable = true;
     amdgpu.amdvlk.supportExperimental.enable = true;
     amdgpu.opencl.enable = true;
-    amdgpu.legacySupport.enable = false;   
-  enableRedistributableFirmware = true;
+    amdgpu.legacySupport.enable = false;
+    enableRedistributableFirmware = true;
     amdgpu.amdvlk.settings = {
       AllowVkPipelineCachingToDisk = 1;
       EnableVmAlwaysValid = 1;
@@ -102,20 +104,20 @@
   environment.variables = {
     # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # For AMD GPUs
-     LIBVA_DRIVER_NAME = "amdgpu";
-     VDPAU_DRIVER = "amdgpu";
+    LIBVA_DRIVER_NAME = "amdgpu";
+    VDPAU_DRIVER = "amdgpu";
     # OCL_ICD_VENDORS = ''
     #   ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
     # '';
-     VK_ICD_FILENAMES = ''
-       ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
-     '';
-     GPU_MAX_ALLOC_PERCENT = "50";
-     GPU_MAX_HEAP_SIZE = "50";
-     GPU_SINGLE_ALLOC_PERCENT = "50";
-     GPU_MAX_USE_SYNC_OBJECTS = "1";
-     GPU_FORCE_64BIT_PTR = "1";
-     AMD_VULKAN_ICD = "RADV";
+    VK_ICD_FILENAMES = ''
+      ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
+    '';
+    GPU_MAX_ALLOC_PERCENT = "50";
+    GPU_MAX_HEAP_SIZE = "50";
+    GPU_SINGLE_ALLOC_PERCENT = "50";
+    GPU_MAX_USE_SYNC_OBJECTS = "1";
+    GPU_FORCE_64BIT_PTR = "1";
+    AMD_VULKAN_ICD = "RADV";
   };
 
   environment.systemPackages = with pkgs; [
@@ -146,8 +148,8 @@
     amdenc # AMD Encode Core Library
     amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
     amd-blis # BLAS-compatible library optimized for AMD CPUs
-#    amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-#    amf # AMD's closed source Advanced Media Framework (AMF) driver
+    # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
+    # amf # AMD's closed source Advanced Media Framework (AMF) driver
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
     clinfo # Print all known information about all available OpenCL platforms and devices in the system

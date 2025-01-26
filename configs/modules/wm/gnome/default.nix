@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [ ./dconf.nix ];
+  # imports = [ ./dconf.nix ];
   # Run this command to Remove window close and minimize buttons in GTK:
   # gsettings set org.gnome.desktop.wm.preferences button-layout ':'
   services.gnome.core-shell.enable = true;

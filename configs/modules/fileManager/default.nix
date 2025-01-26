@@ -2,7 +2,7 @@
   imports = [
     ./dircolors.nix
     ./files.nix
-    # ./nautilus.nix
+    ./nautilus.nix
     ./thunar.nix
   ];
   # services.gvfs.enable = true; # Mount, trash, and other functionalities

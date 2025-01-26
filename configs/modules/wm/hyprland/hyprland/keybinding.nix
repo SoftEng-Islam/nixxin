@@ -29,8 +29,8 @@
       #=> First Row:
       bind = $main, Q, killactive
       bind = $main, W, exec, brave &
-      bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
-      bind = $main E, N, exec, nautilus --new-window # Launch Nautilus (file manager)
+      #bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
+      bind = $main E, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, resources &
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
