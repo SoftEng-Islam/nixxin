@@ -51,11 +51,11 @@ in {
   # Faster rebuilding
   documentation = {
     enable = true;
-    doc.enable = false;
+    doc.enable = true;
     man.enable = true;
-    dev.enable = false;
-    info.enable = false;
-    nixos.enable = false;
+    dev.enable = true;
+    info.enable = true;
+    nixos.enable = true;
   };
 
   nix = {
@@ -67,12 +67,12 @@ in {
     };
     settings = {
       sandbox = false;
-      # connect-timeout = 120; # 0 means no limit
-      # download-attempts = 10;
+      connect-timeout = 0; # 0 means no limit
+      download-attempts = 10;
       # download-buffer-size = 536870912;
-      # http-connections = 0; # 0 means no limit
-      # keep-outputs = true;
-      # keep-derivations = true;
+      http-connections = 0; # 0 means no limit
+      keep-outputs = true;
+      keep-derivations = true;
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       builders-use-substitutes = true;
@@ -99,12 +99,12 @@ in {
       trusted-users = [ "@wheel" "root" "${settings.username}" ];
       allowed-users = [ "@wheel" "root" "${settings.username}" ];
       fallback = true;
-      warn-dirty = false;
+      warn-dirty = true;
       auto-optimise-store = true;
     };
     extraOptions = ''
       sandbox = false
-      max-jobs = 4
+      max-jobs = 2
       auto-optimise-store = true
       experimental-features = nix-command flakes
     '';

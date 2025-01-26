@@ -7,14 +7,14 @@
     supportedFilesystems = [ "ntfs" "nfs" "btrfs" "ext4" "fat32" ];
     consoleLogLevel = 0;
     loader = {
-      timeout = 4;
+      timeout = 3;
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
+      
       # Grub boot
-
       grub = {
         enable = true;
-        fontSize = 18;
+        # fontSize = 18;
         # nix path-info -r nixpkgs#sleek-grub-theme
         # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
         efiSupport = true;
@@ -26,7 +26,7 @@
         # devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
         devices = [ "nodev" ];
         device = "nodev"; # Let GRUB automatically detect EFI
-        useOSProber = true;
+        useOSProber = false;
         extraConfig = ''
           GRUB_DISABLE_OS_PROBER=true
           GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
@@ -87,13 +87,13 @@
       "udev.log_priority=3"
 
       # Black Screen Issues
-      "nomodeset"
+      # "nomodeset"
 
       "rtl8xxxu_disable_hw_crypto=1"
       "iommu=pt"
       # "drm.kms_helper.parallel_locks=1"
       # "acpi_enforce_resources=lax"
-      "pcie_aspm=off"
+       "pcie_aspm=off"
 
       # "acpi_osi=Linux"
       # "pci=realloc"
@@ -120,18 +120,21 @@
       "amdgpu.dcfeaturemask=0x8"
       "amdgpu.freesync_video=1"
       "amdgpu.gpu_recovery=1"
+   
       # for Southern Islands (SI i.e. GCN 1) cards
       #"radeon.si_support=1"
       #"amdgpu.si_support=0"
+   
       # for Sea Islands (CIK i.e. GCN 2) cards
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
-      "amdgpu.dc=1"
-      "amdgpu.dpm=1"
+   
+      # "amdgpu.dc=1"
+      # "amdgpu.dpm=1"
 
       # "amdgpu.runpm=0"
       # "amdgpu.gttsize=4096"
-      "amdgpu.deep_color=1"
+      # "amdgpu.deep_color=1"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
       # "amdgpu.vm_fragment_size=9"

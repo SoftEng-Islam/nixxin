@@ -11,7 +11,7 @@
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = "bkk"; # null
+    backupFileExtension = null; # null
   };
 
   home-manager.users.${settings.username} = {
@@ -25,9 +25,9 @@
     };
     manual = {
       # disable manuals as nmd fails to build often
-      html.enable = false;
-      json.enable = false;
-      manpages.enable = false;
+      html.enable = true;
+      json.enable = true;
+      manpages.enable = true;
     };
   };
 }

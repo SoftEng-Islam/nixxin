@@ -5,7 +5,7 @@
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
   # services.fstrim.enable = true;
-  services.xserver.videoDrivers = settings.videoDrivers;
+  services.xserver.videoDrivers = [ "amdgpu" ];
   # services.auto-epp.enable = true;
   hardware = {
     uinput.enable = true;
@@ -150,11 +150,11 @@
 #    amf # AMD's closed source Advanced Media Framework (AMF) driver
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
-    # clinfo # Print all known information about all available OpenCL platforms and devices in the system
+    clinfo # Print all known information about all available OpenCL platforms and devices in the system
     dxvk # A Vulkan-based translation layer for Direct3D
-    # glaxnimate # Simple vector animation program.
-    # glmark2 # OpenGL (ES) 2.0 benchmark
-    # gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
+    glaxnimate # Simple vector animation program.
+    glmark2 # OpenGL (ES) 2.0 benchmark
+    gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
     hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
     khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
     libdrm # Direct Rendering Manager library and headers
@@ -166,10 +166,10 @@
     mesa-demos # Collection of demos and test programs for OpenGL and Mesa
     ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
     openal # OpenAL alternative
-    # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
-    # opencl-clhpp # OpenCL Host API C++ bindings
-    # opencl-headers # Khronos OpenCL headers version 2023.12.14
-    # oclgrind # OpenCL device simulator and debugger
+    opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
+    opencl-clhpp # OpenCL Host API C++ bindings
+    opencl-headers # Khronos OpenCL headers version 2023.12.14
+    oclgrind # OpenCL device simulator and debugger
 
     vkbasalt # Vulkan post processing layer for Linux
     vkquake # Vulkan Quake port based on QuakeSpasm
