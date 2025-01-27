@@ -1,4 +1,4 @@
-{ settings, config, lib, inputs, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let
   hyprbars = (pkgs.hyprlandPlugins.hyprbars.override {
     # Make sure it's using the same hyprland package as we are
@@ -12,7 +12,6 @@ let
 in {
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
-      # pkgs.hyprlandPlugins.hyprbars
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       hyprbars
     ];

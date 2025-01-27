@@ -1,18 +1,19 @@
-{ settings, config, lib, inputs, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let
+  borders-plus-plus = (pkgs.hyprlandPlugins.borders-plus-plus.override {
+    # Make sure it's using the same hyprland package as we are
+    hyprland = pkgs.hyprland;
+  }).overrideAttrs (old: {
+    # Yeet the initialization notification (I hate it)
+    postPatch = (old.postPatch or "") + ''
+      ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
+    '';
+  });
+in {
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
       # inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
-      # pkgs.hyprlandPlugins.borders-plus-plus
-      (pkgs.hyprlandPlugins.borders-plus-plus.override {
-        # Make sure it's using the same hyprland package as we are
-        hyprland = config.wayland.windowManager.hyprland.package;
-      }).overrideAttrs
-      (old: {
-        # Yeet the initialization notification (I hate it)
-        postPatch = (old.postPatch or "") + ''
-          ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
-        '';
-      })
+      borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''
       plugin:borders-plus-plus {

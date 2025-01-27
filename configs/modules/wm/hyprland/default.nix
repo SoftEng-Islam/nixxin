@@ -1,4 +1,4 @@
-{ inputs, pkgs, lib, settings, ... }: {
+{ pkgs, lib, settings, ... }: {
   imports = [
     ./packages.nix
     # ./ignis

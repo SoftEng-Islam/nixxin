@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }: {
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     # Install Hyprland from Inputes (latest version)
     # inputs.hyprland.packages.${system}.hyprland
