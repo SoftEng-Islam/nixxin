@@ -17,7 +17,7 @@ in {
         pkgs.hyprlandPlugins.hyprspace
       ];
       extraConfig = ''
-        plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
+        # plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
         plugin {
           overview {
             autoDrag = false
