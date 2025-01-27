@@ -4,7 +4,7 @@
       (inputs.ignis.packages.${system}.ignis.overrideAttrs (oldAttrs: {
         propagatedBuildInputs = (oldAttrs.propagatedBuildInputs or [ ])
           ++ (with pkgs; [
-            dart-sass
+            # dart-sass
             grass-sass
             libpulseaudio
             (python312.withPackages (ppkgs:
