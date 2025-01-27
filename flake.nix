@@ -31,6 +31,11 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
+    wezterm = {
+      url = "github:wez/wezterm?dir=nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
     # hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
 
@@ -85,6 +90,7 @@
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + "/configs/configuration.nix")
+            { nixpkgs.overlays = [ (import ./overlays/hyprspace.nix) ]; }
           ];
         };
       };
