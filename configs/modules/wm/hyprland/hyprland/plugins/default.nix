@@ -4,6 +4,6 @@
     ./hyprbars.nix
     ./borders-plus.nix
     # ./hyprexpo.nix
-    # ./hyprtrails.nix
+    ./hyprtrails.nix
   ];
 }
