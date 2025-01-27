@@ -11,6 +11,8 @@
         "${pkgs.nodejs}/bin"
         "${pkgs.nodePackages.npm}/bin"
         "${pkgs.python3}/bin"
+        "${pkgs.grass-sass}/bin"
+        "${pkgs.dart-sass}/bin"
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
         #"$HOME/.cache/ignis/bin"
