@@ -1,11 +1,12 @@
 { settings, pkgs, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+    #!/usr/bin/env bash
+    systemctl --user start hyprpolkitagent
+
     # ---- Start IGNIS ---- #
     ignis init
 
-    #!/usr/bin/env bash
-    systemctl --user start hyprpolkitagent
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 

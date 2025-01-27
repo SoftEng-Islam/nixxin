@@ -1,4 +1,4 @@
-{ settings, config, inputs, pkgs, ... }: {
+{ settings, config, lib, inputs, pkgs, ... }: {
   # ---- hyprexpo ---- #
   # bind = $main, tab, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
   home-manager.users.${settings.username} = {
@@ -8,6 +8,12 @@
       (pkgs.hyprlandPlugins.hyprexpo.override {
         # Make sure it's using the same hyprland package as we are
         hyprland = config.wayland.windowManager.hyprland.package;
+      }).overrideAttrs
+      (old: {
+        # Yeet the initialization notification (I hate it)
+        postPatch = (old.postPatch or "") + ''
+          ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
+        '';
       })
     ];
 

@@ -5,7 +5,7 @@
 
     # A wlroots-compatible Wayland color picker that does not suck
     # inputs.hyprpicker.packages.${system}.hyprpicker
-    inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
+    # inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
 
     # albert # Fast and flexible keyboard launcher
     # hyprgui # unstable GUI for configuring Hyprland written in Rust
@@ -21,7 +21,6 @@
     hyprnotify # DBus Implementation of Freedesktop Notification spec for 'hyprctl notify'
     hyprpaper # A blazing fast wayland wallpaper utility
     hyprpicker
-    # hyprpolkitagent
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
