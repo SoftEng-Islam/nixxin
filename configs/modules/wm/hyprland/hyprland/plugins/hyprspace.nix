@@ -14,7 +14,7 @@ in {
     wayland.windowManager.hyprland = {
       plugins = [
         # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-        # pkgs.hyprlandPlugins.hyprspace
+        pkgs.hyprlandPlugins.hyprspace
       ];
       settings = {
         extraConfig = ''
