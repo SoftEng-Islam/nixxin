@@ -16,26 +16,23 @@ in {
         # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
         pkgs.hyprlandPlugins.hyprspace
       ];
-      settings = {
-        # plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
-        extraConfig = ''
-          plugin {
-            overview {
-              autoDrag = false
-              overrideGaps = false
-              gapsIn = 5
-              gapsOut = 5
-              panelHeight = 100
-              showEmptyWorkspace = false
-              showNewWorkspace = false
-              workspaceActiveBorder = rgb(15803D)
-            }
+      extraConfig = ''
+        plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
+        plugin {
+          overview {
+            autoDrag = false
+            overrideGaps = false
+            gapsIn = 5
+            gapsOut = 5
+            panelHeight = 100
+            showEmptyWorkspace = false
+            showNewWorkspace = false
+            workspaceActiveBorder = rgba(15803D99)
           }
-          bind = $main, TAB, overview:toggle
-          bind = $main SHIFT, TAB, overview:toggle, all
-        '';
-
-      };
+        }
+        bind = $main, TAB, overview:toggle
+        bind = $main SHIFT, TAB, overview:toggle, all
+      '';
     };
   };
 }
