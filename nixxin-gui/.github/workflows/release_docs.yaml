@@ -1,0 +1,11 @@
+name: Build Release Documentation
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_docs.yaml
+    with:
+      DOC_TAG: ${{ github.ref_name }}

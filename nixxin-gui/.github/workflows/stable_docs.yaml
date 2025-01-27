@@ -1,0 +1,18 @@
+name: Build Stable Documentation
+
+on:
+
+  push:
+    branches:
+      - stable-docs
+    paths:
+      - "ignis/**"
+      - "docs/**"
+      - ".github/workflows/stable_docs.yaml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_docs.yaml
+    with:
+      DOC_TAG: "stable"

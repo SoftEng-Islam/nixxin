@@ -1,0 +1,17 @@
+name: docs
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "ignis/**"
+      - "docs/**"
+      - ".github/workflows/latest_docs.yaml"
+  workflow_dispatch:
+
+jobs:
+  build:
+    uses: ./.github/workflows/build_docs.yaml
+    with:
+      DOC_TAG: "latest"
