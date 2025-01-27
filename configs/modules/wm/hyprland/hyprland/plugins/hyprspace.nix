@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let
-  hyprspace = (pkgs.hyprlandPlugins.hyprspace.override {
+  Hyprspace = (pkgs.hyprlandPlugins.hyprspace.override {
     # Make sure it's using the same hyprland package as we are
     hyprland = pkgs.hyprland;
   }).overrideAttrs (old: {
@@ -14,7 +14,7 @@ in {
     wayland.windowManager.hyprland = {
       plugins = [
         # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-        hyprspace
+        pkgs.hyprlandPlugins.hyprspace
       ];
       settings = {
         plugin = {
