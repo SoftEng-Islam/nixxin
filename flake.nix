@@ -7,6 +7,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
+    ignis.inputs.nixpkgs.follows = "nixpkgs";
+
     # superfile.url = "github:yorukot/superfile";
     xremap-flake.url = "github:xremap/nix-flake";
 
@@ -40,8 +43,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     # };
 
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-plugins.inputs.hyprland.follows = "nixpkgs";
     # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     # hyprlock.url = "github:hyprwm/hyprlock";
@@ -56,9 +59,6 @@
 
     #pyprland.url = "github:hyprland-community/pyprland";
     #pyprland.inputs.nixpkgs.follows = "nixpkgs";
-
-    ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
-    ignis.inputs.nixpkgs.follows = "nixpkgs";
 
     # A Material You Color Generation Tool
     # matugen.url = "github:/InioX/Matugen";

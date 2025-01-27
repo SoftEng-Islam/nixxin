@@ -7,32 +7,7 @@
             # dart-sass
             grass-sass
             libpulseaudio
-            ninja
-            meson
-            (python312.withPackages (ppkgs:
-              with ppkgs; [
-                # mypy
-                # ruff
-                types-requests
-                certifi
-                charset-normalizer
-                click
-                xlib
-                idna
-                jinja2
-                loguru
-                markupsafe
-                # material-color-utilities
-                materialyoucolor
-                pillow
-                pycairo
-                pygobject-stubs
-                pygobject3
-                requests
-                # setuptools
-                # setuptools-scm
-                # urllib3
-              ]))
+            (python312.withPackages (ppkgs: with ppkgs; [ jinja2 pillow ]))
           ]);
       }))
     ];
