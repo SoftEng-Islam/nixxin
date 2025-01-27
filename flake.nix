@@ -32,9 +32,8 @@
 
     hyprland = {
       type = "git";
-      url = "https://github.com/hyprwm/Hyprland.git";
+      url = "github:hyprwm/Hyprland/releases/latest";
       submodules = true;
-      ref = "tags/v0.46.2";
       inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
 
