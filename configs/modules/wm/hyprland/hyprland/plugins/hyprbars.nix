@@ -25,7 +25,7 @@ in {
         bar_text_size = ${toString settings.fontSize}
         bar_height = 35
         bar_padding = 10
-        bar_button_padding = 1
+        bar_button_padding = 6
         bar_precedence_over_border = true
         bar_part_of_window = true
         bar_color = rgba(0D141BFF)

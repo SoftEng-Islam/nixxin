@@ -14,15 +14,18 @@ in {
     wayland.windowManager.hyprland = {
       plugins = [
         # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
-        pkgs.hyprlandPlugins.hyprspace
+        # pkgs.hyprlandPlugins.hyprspace
       ];
       settings = {
-        plugin = {
-          overview = {
-            autoDrag = false;
-            overrideGaps = false;
-          };
-        };
+        extraConfig = ''
+          plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
+          plugin = {
+            overview = {
+              autoDrag = false
+              overrideGaps = false
+            }
+          }
+        '';
         bind = [
           # ---- Hyprspace ---- #
           "$main,TAB, overview:toggle" # Overview
