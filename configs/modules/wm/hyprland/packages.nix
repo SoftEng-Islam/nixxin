@@ -17,7 +17,6 @@
     hyprland
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprlang # The official implementation library for the hypr config language
-    hyprlauncher # GUI for launching applications, written in Rust
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprnotify # DBus Implementation of Freedesktop Notification spec for 'hyprctl notify'
     hyprpaper # A blazing fast wayland wallpaper utility

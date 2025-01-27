@@ -28,8 +28,8 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    hyprland.url = "github:hyprwm/Hyprland?submodules=1";
-    hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+    # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
+    # hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
 
     # hyprland = {
     #   type = "git";
@@ -40,22 +40,22 @@
     #   inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     # };
 
-    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    hyprland-plugins.inputs.hyprland.follows = "hyprland";
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
+    # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    hyprlock.url = "github:hyprwm/hyprlock";
+    # hyprlock.url = "github:hyprwm/hyprlock";
     # hyprlock.inputs.hyprland.follows = "hyprland";
 
-    Hyprspace.url = "github:KZDKM/Hyprspace";
+    #Hyprspace.url = "github:KZDKM/Hyprspace";
     # Hyprspace.url = "github:ReshetnikovPavel/Hyprspace";
-    Hyprspace.inputs.hyprland.follows = "hyprland";
+    #Hyprspace.inputs.hyprland.follows = "hyprland";
 
-    hyprpicker.url = "github:hyprwm/hyprpicker";
-    hyprpicker.inputs.nixpkgs.follows = "nixpkgs";
+    #hyprpicker.url = "github:hyprwm/hyprpicker";
+    #hyprpicker.inputs.nixpkgs.follows = "nixpkgs";
 
-    pyprland.url = "github:hyprland-community/pyprland";
-    pyprland.inputs.nixpkgs.follows = "nixpkgs";
+    #pyprland.url = "github:hyprland-community/pyprland";
+    #pyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
