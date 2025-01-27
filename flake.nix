@@ -29,11 +29,11 @@
     # thorium.url = "github:end-4/nix-thorium";
 
     # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
-
     hyprland = {
       type = "git";
-      url = "github:hyprwm/Hyprland/releases/latest";
+      url = "https://github.com/hyprwm/Hyprland.git";
       submodules = true;
+      ref = "0bd541f2fd902dbfa04c3ea2ccf679395e316887";
       inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     };
 
