@@ -20,12 +20,10 @@ in {
         add_borders = 1 # 0 - 9
 
         # You can add up to 9 borders
-        col.border_1 = rgb(15803D)
-        col.border_2 = rgb(7E22CE)
+        col.border_1 = rgba(#eaeaee20)
 
         # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 2
-        border_size_2 = 2
+        border_size_1 = 3
 
         # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
         natural_rounding = yes
