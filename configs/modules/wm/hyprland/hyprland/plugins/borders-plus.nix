@@ -3,11 +3,6 @@ let
   borders-plus-plus = (pkgs.hyprlandPlugins.borders-plus-plus.override {
     # Make sure it's using the same hyprland package as we are
     hyprland = pkgs.hyprland;
-  }).overrideAttrs (old: {
-    # Yeet the initialization notification (I hate it)
-    postPatch = (old.postPatch or "") + ''
-      ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
-    '';
   });
 in {
   home-manager.users.${settings.username} = {
@@ -20,7 +15,7 @@ in {
         add_borders = 1 # 0 - 9
 
         # You can add up to 9 borders
-        col.border_1 = rgba(#eaeaee20)
+        col.border_1 = rgb(#eaeaee20)
 
         # -1 means "default" as in the one defined in general:border_size
         border_size_1 = 3
