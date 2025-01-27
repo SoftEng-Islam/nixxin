@@ -25,16 +25,16 @@ in {
         bar_text_size = ${toString settings.fontSize}
         bar_height = 35
         bar_padding = 10
-        bar_button_padding = 5
+        bar_button_padding = 2
         bar_precedence_over_border = true
         bar_part_of_window = true
         bar_color = rgba(0D141BFF)
         col.text = rgba(DCE3EEFF)
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        hyprbars-button = rgb(B91C1C), 25, , hyprctl dispatch killactive
-        hyprbars-button = rgb(15803D), 25, 󰖯, hyprctl dispatch fullscreen 1
-        hyprbars-button = rgb(CA8A04), 25, 󰖰, hyprctl dispatch togglefloating
+        hyprbars-button = rgb(B91C1C), 20, , hyprctl dispatch killactive
+        hyprbars-button = rgb(15803D), 20, 󰖯, hyprctl dispatch fullscreen 1
+        hyprbars-button = rgb(CA8A04), 20, 󰖰, hyprctl dispatch togglefloating
       }
     '';
   };
