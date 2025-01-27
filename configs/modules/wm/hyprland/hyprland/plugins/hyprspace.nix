@@ -19,8 +19,7 @@ in {
       settings = {
         extraConfig = ''
           plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
-          plugin = {
-            overview = {
+          plugin:overview {
               autoDrag = false
               overrideGaps = false
             }
