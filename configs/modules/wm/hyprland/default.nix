@@ -36,7 +36,7 @@
       #'';
       variables = {
         LIBSEAT_BACKEND = "logind";
-        HYPRLAND_PLUGIN_PATH = lib.mkString ":" [
+        HYPRLAND_PLUGIN_PATH = lib.concatStringsSep ":" [
           "${pkgs.hyprlandPlugins.hyprspace}/lib"
           "${pkgs.hyprlandPlugins.hyprbars}/lib"
           "${pkgs.hyprlandPlugins.borders-plus-plus}/lib"
