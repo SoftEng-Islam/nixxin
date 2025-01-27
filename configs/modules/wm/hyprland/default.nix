@@ -1,9 +1,5 @@
 { pkgs, lib, settings, ... }: {
-  imports = [
-    ./packages.nix
-    # ./ignis
-    ./hyprland
-  ];
+  imports = [ ./packages.nix ./ignis ./hyprland ];
   services.seatd.enable = lib.mkForce false;
   services.seatd.user = "root";
   programs = {
