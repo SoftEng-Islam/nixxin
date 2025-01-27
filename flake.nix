@@ -43,8 +43,8 @@
     #   inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
     # };
 
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # hyprland-plugins.inputs.hyprland.follows = "nixpkgs";
+    hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
+    hyprland-plugins.inputs.hyprland.follows = "nixpkgs";
     # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     # hyprlock.url = "github:hyprwm/hyprlock";
