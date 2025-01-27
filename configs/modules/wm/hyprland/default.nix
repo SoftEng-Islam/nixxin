@@ -36,12 +36,12 @@
       #'';
       variables = {
         LIBSEAT_BACKEND = "logind";
-        HYPRLAND_PLUGIN_PATH = lib.concatStringsSep ":" [
-          "${pkgs.hyprlandPlugins.hyprspace}/lib"
-          "${pkgs.hyprlandPlugins.hyprbars}/lib"
-          "${pkgs.hyprlandPlugins.borders-plus-plus}/lib"
-          "${pkgs.hyprlandPlugins.hyprtrails}/lib"
-        ];
+        # HYPRLAND_PLUGIN_PATH = lib.concatStringsSep ":" [
+        #   "${pkgs.hyprlandPlugins.hyprspace}/lib"
+        #   "${pkgs.hyprlandPlugins.hyprbars}/lib"
+        #   "${pkgs.hyprlandPlugins.borders-plus-plus}/lib"
+        #   "${pkgs.hyprlandPlugins.hyprtrails}/lib"
+        # ];
         HYPRCURSOR_THEME = settings.cursorTheme;
         HYPRCURSOR_SIZE = toString settings.cursorSize;
 
