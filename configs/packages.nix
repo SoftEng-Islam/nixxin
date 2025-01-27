@@ -112,9 +112,9 @@
 
     # Sass (Css)
     dart-sass # The reference implementation of Sass, written in Dart
+    grass-sass # A Sass compiler written purely in Rust
     # libsass # A C/C++ implementation of a Sass compiler
     # rsass # Sass reimplemented in rust with nom
-    # grass-sass # A Sass compiler written purely in Rust
     # sassc # A front-end for libsass
 
     # Ruby
