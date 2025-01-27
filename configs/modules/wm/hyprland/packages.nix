@@ -25,6 +25,7 @@
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
+    hyprprop
 
     # gui
     yad
