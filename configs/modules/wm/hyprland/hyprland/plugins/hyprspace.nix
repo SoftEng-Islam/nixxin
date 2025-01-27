@@ -19,15 +19,22 @@ in {
       settings = {
         extraConfig = ''
           plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
-          plugin:overview {
+          plugin {
+            overview {
               autoDrag = false
               overrideGaps = false
+              gapsIn = 5
+              gapsOut = 5
+              panelHeight = 100
+              showEmptyWorkspace = false
+              showNewWorkspace = false
+              # workspaceActiveBorder =
             }
+          }
+          bind = $main, TAB, overview:toggle
+          bind = $main SHIFT, TAB, overview:toggle, all
         '';
-        bind = [
-          # ---- Hyprspace ---- #
-          "$main,TAB, overview:toggle" # Overview
-        ];
+
       };
     };
   };
