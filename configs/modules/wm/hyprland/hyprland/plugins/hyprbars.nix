@@ -2,7 +2,7 @@
 let
   hyprbars = (pkgs.hyprlandPlugins.hyprbars.override {
     # Make sure it's using the same hyprland package as we are
-    hyprland = config.wayland.windowManager.hyprland.package;
+    hyprland = pkgs.hyprland;
   }).overrideAttrs (old: {
     # Yeet the initialization notification (I hate it)
     postPatch = (old.postPatch or "") + ''
