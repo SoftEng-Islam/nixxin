@@ -1,8 +1,12 @@
-{ settings, inputs, pkgs, ... }: {
+{ settings, config, inputs, pkgs, ... }: {
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland.plugins = [
-      inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
+      # inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
       # pkgs.hyprlandPlugins.borders-plus-plus
+      (pkgs.hyprlandPlugins.borders-plus-plus.override {
+        # Make sure it's using the same hyprland package as we are
+        hyprland = config.wayland.windowManager.hyprland.package;
+      })
     ];
     wayland.windowManager.hyprland.extraConfig = ''
       plugin:borders-plus-plus {
