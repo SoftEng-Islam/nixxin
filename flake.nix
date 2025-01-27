@@ -31,10 +31,10 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    wezterm = {
-      url = "github:wez/wezterm?dir=nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # wezterm = {
+    #   url = "github:wez/wezterm?dir=nix";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
     # hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
