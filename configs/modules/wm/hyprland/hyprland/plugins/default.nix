@@ -1,9 +1,9 @@
 { ... }: {
   imports = [
-    # ./hyprspace.nix
+#    ./hyprspace.nix
     ./hyprbars.nix
     ./borders-plus.nix
     # ./hyprexpo.nix
-    ./hyprtrails.nix
+    # ./hyprtrails.nix
   ];
 }
