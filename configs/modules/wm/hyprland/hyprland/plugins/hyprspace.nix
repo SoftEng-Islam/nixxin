@@ -17,8 +17,8 @@ in {
         pkgs.hyprlandPlugins.hyprspace
       ];
       settings = {
+        # plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
         extraConfig = ''
-          plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
           plugin {
             overview {
               autoDrag = false
@@ -28,7 +28,7 @@ in {
               panelHeight = 100
               showEmptyWorkspace = false
               showNewWorkspace = false
-              # workspaceActiveBorder =
+              workspaceActiveBorder = rgb(15803D)
             }
           }
           bind = $main, TAB, overview:toggle
