@@ -23,7 +23,6 @@ in {
               autoDrag = false
               overrideGaps = false
             }
-          }
         '';
         bind = [
           # ---- Hyprspace ---- #
