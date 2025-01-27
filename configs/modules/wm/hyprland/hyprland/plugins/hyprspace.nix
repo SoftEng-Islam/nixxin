@@ -1,7 +1,10 @@
 { settings, inputs, pkgs, ... }: {
   home-manager.users.${settings.username} = {
     wayland.windowManager.hyprland = {
-      plugins = [ inputs.Hyprspace.packages.${pkgs.system}.Hyprspace ];
+      plugins = [
+        pkgs.hyprlandPlugins.hyprspace
+        # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+      ];
       settings = {
         plugin = {
           overview = {

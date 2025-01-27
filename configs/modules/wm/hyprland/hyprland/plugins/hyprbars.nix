@@ -1,7 +1,9 @@
 { settings, inputs, pkgs, ... }: {
   home-manager.users.${settings.username} = {
-    wayland.windowManager.hyprland.plugins =
-      [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars ];
+    wayland.windowManager.hyprland.plugins = [
+      pkgs.hyprlandPlugins.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+    ];
     wayland.windowManager.hyprland.extraConfig = ''
       # ------------------ #
       # ---- hyprbars ---- #

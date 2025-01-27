@@ -63,8 +63,8 @@
     # A Material You Color Generation Tool
     # matugen.url = "github:/InioX/Matugen";
 
-    anytype.url = "github:/anyproto/anytype-ts";
-    anytype.inputs.nixpkgs.follows = "nixpkgs";
+    # anytype.url = "github:/anyproto/anytype-ts";
+    # anytype.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

@@ -2,8 +2,10 @@
   # ---- hyprexpo ---- #
   # bind = $main, tab, hyprexpo:expo, toggle # can be: toggle, off/disable or on/enable
   home-manager.users.${settings.username} = {
-    wayland.windowManager.hyprland.plugins =
-      [ inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo ];
+    wayland.windowManager.hyprland.plugins = [
+      pkgs.hyprlandPlugins.hyprexpo
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprexpo
+    ];
 
     wayland.windowManager.hyprland.extraConfig = ''
       # ------------------ #
