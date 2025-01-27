@@ -20,36 +20,36 @@
   # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
   # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
 
-  environment = 
-  # let exec = "exec dbus-launch Hyprland";
-  # in
- {
-    #loginShellInit = ''
-     # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-    #    ${exec}
-    #  fi
-    #'';
-    variables = {
-      LIBSEAT_BACKEND = "logind";
-      HYPRCURSOR_THEME = settings.cursorTheme;
-      HYPRCURSOR_SIZE = toString settings.cursorSize;
+  environment =
+    # let exec = "exec dbus-launch Hyprland";
+    # in
+    {
+      #loginShellInit = ''
+      # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
+      #    ${exec}
+      #  fi
+      #'';
+      variables = {
+        LIBSEAT_BACKEND = "logind";
+        HYPRCURSOR_THEME = settings.cursorTheme;
+        HYPRCURSOR_SIZE = toString settings.cursorSize;
 
-      # HYPRLAND_TRACE = 1; # Enables more verbose logging.
+        # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
-      # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
-      # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
+        # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
+        # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
 
-      # Disables management of variables in systemd and dbus activation environments.
-      # HYPRLAND_NO_SD_VARS = 1;
+        # Disables management of variables in systemd and dbus activation environments.
+        # HYPRLAND_NO_SD_VARS = 1;
 
-      # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
+        # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
+      };
     };
-  };
   #security.pam.services.hyprlock = {
-    # text = "auth include system-auth";
-    #text = "auth include login";
-    #fprintAuth = if settings.hostName == "nixos" then true else false;
-   # enableGnomeKeyring = false;
+  # text = "auth include system-auth";
+  #text = "auth include login";
+  #fprintAuth = if settings.hostName == "nixos" then true else false;
+  # enableGnomeKeyring = false;
   #};
 
   # services.greetd = {
@@ -76,6 +76,7 @@
       enable = true;
       package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
+      systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       settings = {
         debug = {
