@@ -32,9 +32,9 @@ in {
         col.text = rgba(DCE3EEFF)
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        hyprbars-button = rgb(B91C1C), 15, , hyprctl dispatch killactive
-        hyprbars-button = rgb(15803D), 15, 󰖯, hyprctl dispatch fullscreen 1
-        hyprbars-button = rgb(CA8A04), 15, 󰖰, hyprctl dispatch togglefloating
+        hyprbars-button = rgb(B91C1C), 25, , hyprctl dispatch killactive
+        hyprbars-button = rgb(15803D), 25, 󰖯, hyprctl dispatch fullscreen 1
+        hyprbars-button = rgb(CA8A04), 25, 󰖰, hyprctl dispatch togglefloating
       }
     '';
   };
