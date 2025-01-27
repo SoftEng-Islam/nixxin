@@ -28,14 +28,17 @@
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
 
-    # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
-    hyprland = {
-      type = "git";
-      url = "https://github.com/hyprwm/Hyprland.git";
-      submodules = true;
-      ref = "0bd541f2fd902dbfa04c3ea2ccf679395e316887";
-      inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
-    };
+    hyprland.url = "github:hyprwm/Hyprland?submodules=1";
+    hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+
+    # hyprland = {
+    #   type = "git";
+    #   url = "https://github.com/hyprwm/Hyprland.git";
+    #   submodules = true;
+    #   # git ls-remote https://github.com/hyprwm/Hyprland.git refs/tags/v0.46.2
+    #   ref = "refs/tags/v0.46.2";
+    #   inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
+    # };
 
     hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     hyprland-plugins.inputs.hyprland.follows = "hyprland";

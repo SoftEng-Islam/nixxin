@@ -35,6 +35,7 @@
     openssl # A cryptographic library that implements the SSL and TLS protocols
     nettle # Cryptographic library
     libgcrypt # General-purpose cryptographic library
+    cacert
 
     # ---- Notifications ---- #
     notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
