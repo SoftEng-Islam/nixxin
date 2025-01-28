@@ -60,7 +60,8 @@
   ];
 
   # ---- Dotfiles Inforamtions ---- #
-  dotfilesDir = "/home/${username}/nixxin"; # Absolute path of the local repo
+  dotfilesDir =
+    "/home/${users.user1.username}/nixxin"; # Absolute path of the local repo
 
   # ---- Window/Desktop Managers ---- #
   defaultSession = "hyprland"; # hyprland or gnome
@@ -72,9 +73,9 @@
   # ----------------------------- #
   users = {
     user1 = {
-      name = "Islam Ahmed";
-      username = "softeng";
-      email = "softeng.islam@gmail.com";
+      name = "Islam Ahmed"; # Name/Identifier
+      username = "softeng"; # Username
+      email = "softeng.islam@gmail.com"; # Email (git config)
     };
     user2 = {
       name = "Iman Ahmed";
@@ -82,9 +83,6 @@
       email = "";
     };
   };
-  name = "Islam Ahmed"; # Name/Identifier
-  username = "softeng"; # Username
-  email = "softeng.islam@gmail.com"; # Email (git config)
 
   # ---------------------- #
   # ---- Web Browsers ---- #
@@ -167,7 +165,7 @@
   hyprland = {
     enable = true;
     # Generated Colors to use in Hyprland
-    genColorsPath = /home/${username}/.cache/hypr/colors.conf;
+    genColorsPath = /home/${users.user1.username}/.cache/hypr/colors.conf;
     # List Of Plugins to Enable to disable
     animationSpeed = "medium"; # medium or slow
     plugins = {
