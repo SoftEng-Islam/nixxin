@@ -142,7 +142,7 @@
   style = {
     name = "nixxin";
 
-    # Blue, Teal, Green, Yellow, Ornage, Red, Pink, Purple, Slate
+    # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
     mainColor = "red";
 
     # ---- Mode ---- #
@@ -214,15 +214,13 @@
   };
 
   # ---- Gnome ---- #
-  # You can access the value like this:
-  # settings.gnome.enable
   gnome = {
     enable = false;
     accentColor = "red";
   };
 
   desktopPreferances = {
-    fileManager = "thunar"; # thunar & nautilus
+    fileManager = "nautilus"; # thunar & nautilus
     imageViewer = "loupe"; # feh or loupe
     videoPlayer = "celluloid"; # vlc or celluloid or mpv
     torrentApp = "qBittorrent";
