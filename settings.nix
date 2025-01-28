@@ -201,9 +201,8 @@
   # ---- Hyprland ---- #
   hyprland = {
     enable = true;
-    # Generated Colors to use in Hyprland
+    # Pregenerated Colors to use in Hyprland
     genColorsPath = /home/${users.user1.username}/.cache/hypr/colors.conf;
-    # List Of Plugins to Enable to disable
     animationSpeed = "medium"; # medium or slow
     plugins = {
       Hyprspace = true;
@@ -214,10 +213,7 @@
   };
 
   # ---- Gnome ---- #
-  gnome = {
-    enable = false;
-    accentColor = "red";
-  };
+  gnome = { enable = false; };
 
   desktopPreferances = {
     fileManager = "nautilus"; # thunar & nautilus
