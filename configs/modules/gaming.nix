@@ -1,6 +1,7 @@
 { pkgs, ... }: {
   programs = {
     gamemode = {
+      # https://feralinteractive.github.io/gamemode/
       enable = true;
       enableRenice = true;
       settings = {
