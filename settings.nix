@@ -103,63 +103,100 @@
   visual = "nvim";
   editorPkg = pkgs.neovim;
 
-  # ---------------------- #
-  # ---- Fonts ----------- #
-  # ---------------------- #
-  fontAntialiasing = "grayscale";
-  # "JetBrainsMonoNL Nerd Font Mono"
-  # "CaskaydiaCove Nerd Font Mono"
-  fontName = "CaskaydiaCove Nerd Font Mono"; # Selected Font
-  fontPackage = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
-  monospaceFont = fontName;
-  fontSize = 12; # Font size
-  serifFont = "Noto Serif";
-  serifPackage = pkgs.noto-fonts-cjk-sans;
-  sansSerifFont = "Noto Sans";
-  sansSerifPackage = pkgs.noto-fonts-cjk-serif;
-  TerminalsFontName = "CaskaydiaCove Nerd Font Mono";
-  TerminalsFontSize = 18; # Font size
+  # --------------- #
+  # ---- Fonts ---- #
+  # --------------- #
+  fonts = {
+    main = {
+      # Exambles:
+      # "JetBrainsMonoNL Nerd Font Mono"
+      # "CaskaydiaCove Nerd Font Mono"
+      name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
+      package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+      size = 12; # Font size
+      antialiasing = "grayscale";
+    };
+    monospace = {
+      name = fonts.name;
+      package = "";
+    };
+    serif = {
+      name = "Noto Serif";
+      package = pkgs.noto-fonts-cjk-sans;
+    };
+    sansSerif = {
+      name = "Noto Sans";
+      package = pkgs.noto-fonts-cjk-serif;
+    };
+    terminals = {
+      kitty = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 18; # Font size
+      };
+    };
+  };
 
-  # ------------------------ #
-  # ----- Styles ----------- #
-  # ------------------------ #
-  # Blue, Teal, Greesn, Yellow, Ornage, Red, Pink, Purple, Slate
-  accentColor = "red";
-  themeName = "nixxin";
+  # ---------------- #
+  # ---- Styles ---- #
+  # ---------------- #
+  style = {
+    name = "nixxin";
 
-  # ---- Mode ---- #
-  styleMode = "dark"; # "dark" or "light"
-  colorScheme = "prefer-dark";
+    # Blue, Teal, Green, Yellow, Ornage, Red, Pink, Purple, Slate
+    mainColor = "red";
 
-  # ---- Window Properties ---- #
-  # flase: disabled
-  # true: enabled
-  opacity = 0.9; # The windows Opacity
-  blur = false; # Enable blur for windows
-  shadow = false; # enable shadow for Hyprland
-  rounding = 10; # rounding corners for Hyprland windwos
-  dim_inactive = true;
+    # ---- Mode ---- #
+    mode = "dark"; # "dark" or "light"
+    colorScheme = "prefer-dark";
 
-  # ---- GTK ---- #
-  # Material
-  # adw-gtk3-dark
-  gtkTheme = "Material";
-  # gtkPackage = pkgs.adw-gtk3;
-
-  # ---- Qt ---- #
-  qtPlatformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
-  qtStyle = "adwaita-dark";
-  qtPackage = pkgs.kdePackages.breeze;
-
-  # ---- Icons ---- #
-  iconNameLight = "Papirus";
-  iconNameDark = "Papirus-Dark";
-  iconPackage = pkgs.papirus-icon-theme;
-
-  # ---- Cursor ---- #
-  cursorPackage = pkgs.bibata-cursors;
-  cursorTheme = "Bibata-Modern-Ice"; # Cursor Name
-  cursorSize = 24; # Cursor Size
+    # ---- Window Properties ---- #
+    window = {
+      title = {
+        fontStyle = "bold";
+        fontSize = 20;
+      };
+      border = {
+        active = {
+          color = style.mainColor;
+          size = 3;
+        };
+        inactive = {
+          color = "#ddd8";
+          size = 3;
+        };
+      };
+      opacity = 0.9; # The windows Opacity
+      blur = false; # Enable blur for windows
+      shadow = false; # enable shadow for Hyprland
+      rounding = 10; # rounding corners for Hyprland windwos
+      dim_inactive = true;
+    };
+    # ---- GTK ---- #
+    gtk = {
+      # Material
+      # adw-gtk3-dark
+      theme = "Material";
+      package = pkgs.adw-gtk3;
+    };
+    # ---- Qt ---- #
+    qt = {
+      Style = "adwaita-dark";
+      platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
+      package = pkgs.kdePackages.breeze;
+    };
+    # ---- Icons ---- #
+    icons = {
+      nameInLight = "Papirus";
+      nameInDark = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+    };
+    # ---- Cursor ---- #
+    cursor = {
+      size = 24; # Cursor Size
+      name = "Bibata-Modern-Ice"; # Cursor Name
+      package = pkgs.bibata-cursors;
+    };
+  };
 
   # ---- Hyprland ---- #
   hyprland = {
