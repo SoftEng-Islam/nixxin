@@ -30,7 +30,7 @@ let
     }];
   };
 in {
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
       source = json.generate "99-input-denoising.conf" pw_rnnoise_config;
     };

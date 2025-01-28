@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     wayland.windowManager.hyprland = {
       settings.binds = {
         # This allows cycling through workspaces when reaching the last one.

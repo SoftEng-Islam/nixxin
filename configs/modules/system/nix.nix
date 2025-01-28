@@ -35,8 +35,8 @@
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
       ];
-      trusted-users = [ "@wheel" "root" "${settings.username}" ];
-      allowed-users = [ "@wheel" "root" "${settings.username}" ];
+      trusted-users = [ "@wheel" "root" "${settings.users.user1.username}" ];
+      allowed-users = [ "@wheel" "root" "${settings.users.user1.username}" ];
       fallback = true;
       warn-dirty = false;
       auto-optimise-store = true;

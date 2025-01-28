@@ -5,7 +5,7 @@
       default_session = {
         command =
           "${pkgs.greetd.tuigreet}/bin/tuigreet --remember --asterisks --container-padding 2 --time --time-format '%I:%M %p | %a • %h | %F' --cmd Hyprland";
-        user = settings.username;
+        user = settings.users.user1.username;
       };
     };
     # vt = 2;

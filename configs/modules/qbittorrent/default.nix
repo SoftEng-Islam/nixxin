@@ -8,7 +8,7 @@
       #   exec /run/current-system/sw/bin/qbittorrent "$@"
       # '')
     ];
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     home.file."qbittorrent".source = ./qbittorrent/dist;
   };
 }

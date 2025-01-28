@@ -1,5 +1,5 @@
 { settings, pkgs, config, ... }: {
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     programs.lf = {
       enable = true;
       commands = {

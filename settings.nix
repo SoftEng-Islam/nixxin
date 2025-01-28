@@ -1,29 +1,44 @@
 { pkgs, ... }: rec {
-  # ------------------ #
-  # ---- SETTINGS ---- #
-  # ------------------ #
+  # ---------------- #
+  # ---- System ---- #
+  # ---------------- #
   system = "x86_64-linux"; # Replace with your system architecture
   hostName = "nixos"; # Hostname
   systemStateVersion = "24.05";
   homeStateVersion = "24.11";
   profile = "desktop"; # select a profile defined from my profiles directory
 
+  # -------------- #
+  # ---- IDLE ---- #
+  # -------------- #
   # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
   # 0 to Disable:
-  idleDelay = 0;
+  idle = { delay = 0; };
 
+  # -------------------- #
+  # ---- Lockscreen ---- #
+  # -------------------- #
+  lockscreen = {
+    type = "hyprlock";
+    timeOut = 600;
+  };
+
+  # -------------- #
   # ---- Boot ---- #
-  bootMode = "uefi"; # uefi or bios
-  # mount path for efi boot partition; only used for uefi boot mode
-  bootMountPath = "/boot";
-  # device identifier for grub; only used for legacy (bios) boot mode
-  grubDevice = "";
+  # -------------- #
+  boot = {
+    mode = "uefi"; # uefi or bios
+    # mount path for efi boot partition; only used for uefi boot mode
+    mountPath = "/boot";
+    # device identifier for grub; only used for legacy (bios) boot mode
+    grubDevice = "";
+  };
 
   # ---- Date/Time & Languages ---- #
   timezone = "Africa/Cairo"; # Select timezone
   timeFormat = 12;
   locale = "en_US.UTF-8"; # Select locale
-  mainlanguage = "English"; # Select Your Language
+  mainlanguage = "English"; # Select Your Language for System and keyboard.
   languages = [ "arabic" "france" ]; # Add Other Languages that you know
 
   # ---- Networks ---- #
@@ -55,7 +70,19 @@
   # ----------------------------- #
   # ----- USER Inforamtions ----- #
   # ----------------------------- #
-  name = "Islam Ahmed"; # Name/identifier
+  users = {
+    user1 = {
+      name = "Islam Ahmed";
+      username = "softeng";
+      email = "softeng.islam@gmail.com";
+    };
+    user2 = {
+      name = "Iman Ahmed";
+      username = "iman";
+      email = "";
+    };
+  };
+  name = "Islam Ahmed"; # Name/Identifier
   username = "softeng"; # Username
   email = "softeng.islam@gmail.com"; # Email (git config)
 

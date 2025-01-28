@@ -1,5 +1,5 @@
 { inputs, pkgs, settings, ... }: {
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     home = {
       sessionVariables = { BROWSER = settings.browser; };
 

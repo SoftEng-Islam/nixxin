@@ -1,6 +1,6 @@
 { settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [ wezterm ];
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     programs.wezterm = {
       enable = true;
       enableZshIntegration = true;

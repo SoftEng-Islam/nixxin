@@ -4,7 +4,7 @@
     [
 
     ];
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     programs.ssh = {
       enable = true;
       addKeysToAgent = "yes";

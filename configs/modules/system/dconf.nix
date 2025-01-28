@@ -21,7 +21,7 @@ with lib.gvariant; {
       # gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
     ];
 
-  home-manager.users.${settings.username} = {
+  home-manager.users.${settings.users.user1.username} = {
     dconf.settings = {
       # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
       # gnome-extensions list --enabled
@@ -155,7 +155,7 @@ with lib.gvariant; {
       "org/gnome/desktop/session" = {
         # you can set the idle-delay to 300 seconds (5 minutes) or
         # 0 to Disable:
-        idle-delay = mkUint32 settings.idleDelay;
+        idle-delay = mkUint32 settings.idle.delay;
       };
 
       "org/gnome/desktop/wm/keybindings" = {
