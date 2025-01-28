@@ -8,17 +8,18 @@
 
 with lib.gvariant; {
   programs.dconf.enable = true; # dconf
-  environment.systemPackages = with pkgs; [
-    dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
-    dconf-editor # GSettings editor for GNOME
+  environment.systemPackages = with pkgs;
+    [
+      dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
+      # dconf-editor # GSettings editor for GNOME
 
-    gnome-tweaks
-    gnome-extension-manager
-    gnomeExtensions.appindicator
-    gnomeExtensions.blur-my-shell
-    gnomeExtensions.dash-to-dock
-    gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
-  ];
+      # gnome-tweaks
+      # gnome-extension-manager
+      # gnomeExtensions.appindicator
+      # gnomeExtensions.blur-my-shell
+      # gnomeExtensions.dash-to-dock
+      # gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
+    ];
 
   home-manager.users.${settings.username} = {
     dconf.settings = {
@@ -27,20 +28,19 @@ with lib.gvariant; {
       "org/gnome/shell" = {
         disable-user-extensions = false;
         enabled-extensions = [
-          "dash-to-dock@micxgx.gmail.com"
-          "blur-my-shell@aunetx"
-          "appindicatorsupport@rgcjonas.gmail.com"
-          "pomodoro@arun.codito.in"
-          "netspeedsimplified@prateekmedia.extension"
+          # "dash-to-dock@micxgx.gmail.com"
+          # "blur-my-shell@aunetx"
+          # "appindicatorsupport@rgcjonas.gmail.com"
+          # "pomodoro@arun.codito.in"
+          # "netspeedsimplified@prateekmedia.extension"
         ];
       };
-
       "org/gnome/shell/extensions/blur-my-shell/overview" = {
         style-components = 3;
       };
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
-        enable-monitors = true;
+        enable-monitors = false;
       };
 
       # Run this Command In the terminal to get list of options:
@@ -91,6 +91,10 @@ with lib.gvariant; {
         # toolbar-icons-size
         # toolbar-style
         # toolkit-accessibility
+      };
+      "org/gnome/desktop/thumbnail-cache" = {
+        maximum-age = 200;
+        maximum-size = 2048;
       };
       "org/gnome/mutter" = {
         center-new-windows = true;
