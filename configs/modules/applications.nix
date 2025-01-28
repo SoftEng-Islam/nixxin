@@ -44,7 +44,7 @@
 
     # Community Apps
     ferdium # All your services in one place built by the community
-    # discord # All-in-one cross-platform voice and text chat for gamers
+    discord # All-in-one cross-platform voice and text chat for gamers
     # mumble # Low-latency, high quality voice chat software
     # revolt-desktop # Open source user-first chat platform
     # signal-desktop # Private, simple, and secure messenger
@@ -55,7 +55,7 @@
 
     # Browsers
     brave # Privacy-oriented browser for Desktop and Laptop computers
-    # firefox-beta # Web browser built from Firefox Beta Release source tree
+    firefox-beta # Web browser built from Firefox Beta Release source tree
     google-chrome # Freeware web browser developed by Google
     microsoft-edge # The web browser from Microsoft
 
