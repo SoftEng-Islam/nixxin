@@ -3,7 +3,6 @@
     # ./cava.nix
     ./codex.nix
     ./feh.nix
-    ./mpv.nix
     ./rnnoise.nix
   ];
 
