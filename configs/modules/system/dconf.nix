@@ -40,7 +40,7 @@ with lib.gvariant; {
       };
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
-        enable-monitors = false;
+        enable-monitors = true;
       };
 
       # Run this Command In the terminal to get list of options:
@@ -60,7 +60,7 @@ with lib.gvariant; {
         cursor-size = settings.cursorSize;
         cursor-theme = "${settings.cursorTheme}";
         # document-font-name
-        # enable-animations
+        enable-animations = false;
         # enable-hot-corners
         # font-antialiasing
         # font-hinting

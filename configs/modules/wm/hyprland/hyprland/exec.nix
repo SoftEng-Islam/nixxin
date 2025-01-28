@@ -5,7 +5,8 @@ let
     systemctl --user start hyprpolkitagent
 
     # ---- Start IGNIS ---- #
-    ignis init
+    # ignis init
+    nautilus --no-desktop &
 
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
