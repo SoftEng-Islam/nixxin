@@ -11,7 +11,7 @@
     upgrade = {
       enable = true;
       allowReboot = true;
-      # nix-channel --list
+      # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";
     };
   };
