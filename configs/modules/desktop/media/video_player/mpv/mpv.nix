@@ -1,7 +1,111 @@
-{ settings, pkgs, ... }: {
+{ config, lib, settings, pkgs, ... }:
+let
+  mpvConfig = ''
+    input-ipc-server=/tmp/mpvsocket
+    load-auto-profiles=no
+    no-border
+    msg-module
+    msg-color
+    term-osd-bar
+    use-filedir-conf
+    pause
+    keep-open=always
+    autofit-larger=100%x95%
+    cursor-autohide-fs-only
+    input-media-keys=no
+    cursor-autohide=1000
+    prefetch-playlist=yes
+    force-seekable=yes
+
+    screenshot-format=png
+    screenshot-png-compression=8
+    screenshot-template='~/Desktop/%F (%P) %n'
+    watch-later-directory='~/.mpv/watch_later'
+    write-filename-in-watch-later-config
+    watch-later-options-remove=fullscreen
+
+    hls-bitrate=max
+    script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
+  '';
+
+  ytdlDesktop = ''
+    [ytdl-desktop]
+    profile-desc=cond:dedicated_gpu()
+    ytdl-format=bestvideo[height<=?2160]+bestaudio/best
+  '';
+
+  ytdlLaptop = ''
+    [ytdl-laptop]
+    profile-desc=cond:not dedicated_gpu()
+    ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9][protocol!=http_dash_segments]+bestaudio/best
+  '';
+
+  subtitles = ''
+    demuxer-mkv-subtitle-preroll=yes
+    demuxer-mkv-subtitle-preroll-secs=2
+    sub-auto=fuzzy
+    sub-file-paths-append=ass
+    sub-file-paths-append=srt
+    sub-file-paths-append=sub
+    sub-file-paths-append=subs
+    sub-file-paths-append=subtitles
+    embeddedfonts=yes
+    sub-fix-timing=no
+    sub-ass-force-style=Kerning=yes
+    sub-use-margins
+    sub-ass-force-margins
+    sub-font="Source Sans Pro Semibold"
+    sub-font-size=36
+    sub-color="#FFFFFFFF"
+    sub-border-color="#FF262626"
+    sub-border-size=3.2
+    sub-shadow-offset=1
+    sub-shadow-color="#33000000"
+    sub-spacing=0.5
+  '';
+
+  languages = ''
+    slang=enm,en,eng,de,deu,ger
+    alang=ja,jp,jpn,en,eng,de,deu,ger
+  '';
+
+  audio = ''
+    audio-file-auto=fuzzy
+    audio-pitch-correction=yes
+    volume-max=200
+    volume=100
+  '';
+
+  videoOutput = ''
+    tscale=oversample
+    opengl-early-flush=no
+    opengl-pbo=no
+    icc-profile-auto
+    hwdec=no
+  '';
+
+  osdConfig = ''
+    osd-level=1
+    osd-duration=2500
+    osd-status-msg=""
+    osd-font='Source Sans Pro'
+    osd-font-size=32
+    osd-color='#CCFFFFFF'
+    osd-border-color='#DD322640'
+    osd-bar-align-y=0
+    osd-border-size=2
+    osd-bar-h=2
+    osd-bar-w=60
+  '';
+in {
+  # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.users.selected.username} = {
     home.sessionVariables.VIDEO = "mpv";
+
     home.file.".config/mpv/shaders".source = ./shaders;
+    # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
+    #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio
+    #   + "\n" + videoOutput + "\n" + osdConfig;
 
     xdg.configFile = {
       "mpv/script-opts/osc.conf".text = ''
