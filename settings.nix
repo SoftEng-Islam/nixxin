@@ -206,9 +206,9 @@
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
   # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
-  # ----------------------------- #
-  # ----- USER Inforamtions ----- #
-  # ----------------------------- #
+  # ---------------- #
+  # ----- USER ----- #
+  # ---------------- #
   users = {
     selected = users.user1;
     user1 = {

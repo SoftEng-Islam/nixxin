@@ -32,8 +32,8 @@
     smpeg # MPEG decoding library
     srt # Secure, Reliable, Transport
 
-    # ab-av1 # AV1 re-encoding using ffmpeg, svt-av1 & vmaf
-    # dav1d # A cross-platform AV1 decoder focused on speed and correctness
+    ab-av1 # AV1 re-encoding using ffmpeg, svt-av1 & vmaf
+    dav1d # A cross-platform AV1 decoder focused on speed and correctness
     libaom # Alliance for Open Media AV1 codec library
     rav1e # The fastest and safest AV1 encoder
     svt-av1 # AV1-compliant encoder/decoder library core

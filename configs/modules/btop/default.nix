@@ -7,12 +7,8 @@
         # theme_background = false;
       };
     };
-    # btop themes
+    # ---- Themes ---- #
     # home.file.".config/btop/themes".source = ./themes;
   };
-  environment.systemPackages = with pkgs;
-    [
-      btop
-      # btop-rocm
-    ];
+  environment.systemPackages = with pkgs; [ btop ];
 }
