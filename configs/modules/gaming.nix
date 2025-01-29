@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   programs = {
     gamemode = {
       # https://feralinteractive.github.io/gamemode/
@@ -28,7 +28,8 @@
       };
     };
     steam = {
-      enable = false;
+      enable = settings.gaming.steam.enable;
+      protontricks.enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true; # Steam Remote Play.
       dedicatedServer.openFirewall = true; # Source Dedicated Server.

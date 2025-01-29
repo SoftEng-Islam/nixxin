@@ -215,10 +215,14 @@
   # ---- Gnome ---- #
   gnome = { enable = false; };
 
-  desktopPreferances = {
+  defaults = {
     fileManager = "nautilus"; # thunar & nautilus
     imageViewer = "loupe"; # feh or loupe
     videoPlayer = "celluloid"; # vlc or celluloid or mpv
     torrentApp = "qBittorrent";
+  };
+  gaming = {
+    enable = true; # To support gaming and install gaming stuff
+    steam = { enable = true; };
   };
 }
