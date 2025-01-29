@@ -2,11 +2,21 @@
   # ---------------- #
   # ---- System ---- #
   # ---------------- #
-  system = "x86_64-linux"; # Replace with your system architecture
-  hostName = "nixos"; # Hostname
-  systemStateVersion = "24.05";
-  homeStateVersion = "24.11";
-  profile = "desktop"; # select a profile defined from my profiles directory
+  system = {
+    name = "nixos";
+    hostName = "nixos"; # Hostname
+    profile = "desktop"; # select a profile defined from my profiles directory
+    architecture = "x86_64-linux"; # Replace with your system architecture
+    stateVersion = "24.05";
+    upgrade = {
+      enable = true;
+      allowReboot = true;
+      # nix-channel --list
+      channel = "https://channels.nixos.org/nixos-unstable";
+    };
+  };
+
+  home = { stateVersion = "24.11"; };
 
   # -------------- #
   # ---- IDLE ---- #

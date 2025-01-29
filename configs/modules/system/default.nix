@@ -1,9 +1,9 @@
 { settings, pkgs, ... }: {
   imports = [ ];
   system = {
-    autoUpgrade.enable = true;
-    autoUpgrade.allowReboot = true;
-    autoUpgrade.channel = "https://channels.nixos.org/nixos-unstable";
+    autoUpgrade.enable = settings.system.upgrade.enable;
+    autoUpgrade.allowReboot = settings.system.upgrade.allowReboot;
+    autoUpgrade.channel = settings.system.upgrade.channel;
     stateVersion = settings.systemStateVersion;
   };
 }
