@@ -134,7 +134,7 @@ let
   tomlFormat = pkgs.formats.toml { };
   starshipCmd = "${pkgs.starship}/bin/starship";
 in {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
     xdg.configFile."starship.toml" = {

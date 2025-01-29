@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland.settings = {
       workspace =
         [ "special,gapsin:24,gapsout:64" "10,border:false,rounding:false" ];

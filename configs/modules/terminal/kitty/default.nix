@@ -1,6 +1,6 @@
 { settings, config, pkgs, ... }: {
   environment.systemPackages = with pkgs; [ kitty ];
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
       # include ~/.local/cache/ignis/material/dark_colors-kitty.conf
 

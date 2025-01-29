@@ -199,7 +199,7 @@
 
   # ---- Dotfiles Inforamtions ---- #
   dotfilesDir =
-    "/home/${users.user1.username}/nixxin"; # Absolute path of the local repo
+    "/home/${users.selected.username}/nixxin"; # Absolute path of the local repo
 
   # ---- Window/Desktop Managers ---- #
   defaultSession = "hyprland"; # hyprland or gnome
@@ -210,6 +210,7 @@
   # ----- USER Inforamtions ----- #
   # ----------------------------- #
   users = {
+    selected = users.user1;
     user1 = {
       name = "Islam Ahmed"; # Name/Identifier
       username = "softeng"; # Username

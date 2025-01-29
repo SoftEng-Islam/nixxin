@@ -27,7 +27,7 @@
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;
 
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     programs.bat.enable = true;
     home.file.".config/fish".source = ./fish;
   };

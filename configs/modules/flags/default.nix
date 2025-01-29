@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     imports = [
       ./chrome-flags.nix
       ./code-flags.nix

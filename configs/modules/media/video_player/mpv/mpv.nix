@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     programs.mpv = {
       enable = true;
       scripts = [ pkgs.mpvScripts.mpris ];

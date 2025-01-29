@@ -2,7 +2,7 @@
 let
   # base24 = builtins.fetchurl {
   #   url =
-  #     "file:///home/${settings.users.user1.username}/nixxin/configs/styles/base24.yaml"; # Local path to the file
+  #     "file:///home/${settings.users.selected.username}/nixxin/configs/styles/base24.yaml"; # Local path to the file
   #   # To Generate The sha256
   #   # sha256sum ~/nixxin/configs/styles/base24.yaml
   #   sha256 =

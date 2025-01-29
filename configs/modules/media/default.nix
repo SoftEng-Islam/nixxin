@@ -1,10 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [
-    # ./cava.nix
-    ./codex.nix
-    ./feh.nix
-    ./rnnoise.nix
-  ];
+  imports = [ ];
 
   environment.systemPackages = with pkgs; [
     # Audio Control

@@ -1,6 +1,6 @@
 { config, settings, lib, pkgs, ... }:
 let
-  cacheInHome = "/home/${settings.users.user1.username}/.cache";
+  cacheInHome = "/home/${settings.users.selected.username}/.cache";
 
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
@@ -69,7 +69,7 @@ let
 in {
   environment.variables = {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
-    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.users.user1.username}.uid}";
+    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.users.selected.username}.uid}";
     # XDG_RUNTIME_DIR = "/run/user/1000";
 
     # Don't set this var
@@ -78,9 +78,10 @@ in {
     XDG_SESSION_TYPE = "wayland";
 
     XDG_CACHE_HOME = cacheInHome;
-    XDG_CONFIG_HOME = "/home/${settings.users.user1.username}/.config";
-    XDG_PICTURES_DIR = "/home/${settings.users.user1.username}/Pictures";
-    XDG_SCREENSHOTS_DIR = "/home/${settings.users.user1.username}/Pictures/Screenshots";
+    XDG_CONFIG_HOME = "/home/${settings.users.selected.username}/.config";
+    XDG_PICTURES_DIR = "/home/${settings.users.selected.username}/Pictures";
+    XDG_SCREENSHOTS_DIR =
+      "/home/${settings.users.selected.username}/Pictures/Screenshots";
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
@@ -115,7 +116,7 @@ in {
   #   "starship.toml".source = ./.config/starship.toml;
   # };
 
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     xdg = {
       enable = true;
       configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
@@ -123,19 +124,19 @@ in {
       userDirs = {
         enable = true;
         createDirectories = true;
-        music = "/home/${settings.users.user1.username}/Music";
-        videos = "/home/${settings.users.user1.username}/Videos";
-        pictures = "/home/${settings.users.user1.username}/Pictures";
-        download = "/home/${settings.users.user1.username}/Downloads";
-        documents = "/home/${settings.users.user1.username}/Documents";
+        music = "/home/${settings.users.selected.username}/Music";
+        videos = "/home/${settings.users.selected.username}/Videos";
+        pictures = "/home/${settings.users.selected.username}/Pictures";
+        download = "/home/${settings.users.selected.username}/Downloads";
+        documents = "/home/${settings.users.selected.username}/Documents";
         templates = null;
         desktop = null;
         publicShare = null;
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-          XDG_BOOK_DIR = "/home/${settings.users.user1.username}/Books";
+          XDG_BOOK_DIR = "/home/${settings.users.selected.username}/Books";
           XDG_SCREENSHOTS_DIR =
-            "/home/${settings.users.user1.username}/Pictures/Screenshots";
+            "/home/${settings.users.selected.username}/Pictures/Screenshots";
         };
       };
       mimeApps = {

@@ -72,7 +72,7 @@
   #     default_session = {
   #       command =
   #         "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
-  #       user = settings.users.user1.username;
+  #       user = settings.users.selected.username;
   #     };
   #   };
   #   vt = 7;
@@ -85,7 +85,7 @@
     AllowHybridSleep=no
   '';
 
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;

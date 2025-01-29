@@ -16,7 +16,7 @@ let
     "3";
 
 in {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland = {
       settings.animations = {
         enabled = true;

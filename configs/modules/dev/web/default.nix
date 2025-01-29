@@ -4,7 +4,7 @@
 
     # npm set prefix ~/.npm-global
     # Then, append your PATH with $HOME/.npm-global/bin.
-    NPM_CONFIG_PREFIX = "/home/${settings.users.user1.username}/.npm-global";
+    NPM_CONFIG_PREFIX = "/home/${settings.users.selected.username}/.npm-global";
   };
   environment.systemPackages = with pkgs; [
     corepack_latest # yarn, pnpm
@@ -42,7 +42,7 @@
     # nodePackages_latest.vue-language-server
   ];
 
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     # home.sessionVariables = { };
     # home.sessionPath = [ "$HOME/.npm-global/bin:$PATH" ];
     home.file = {

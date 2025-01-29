@@ -26,7 +26,7 @@ in {
       xfce.xfconf
     ];
   };
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     # xdg.configFile."Thunar/uca.xml".source = ./dotfiles/Thunar/uca.xml;
     xdg.desktopEntries.thunar = {
       name = "Thunar File Manager";

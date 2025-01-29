@@ -55,7 +55,7 @@
     };
   };
 
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     # Autostart
     home.file.".config/autostart/input-remapper.desktop".text = ''
       [Desktop Entry]

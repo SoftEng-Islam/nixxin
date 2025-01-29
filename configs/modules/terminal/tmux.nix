@@ -99,7 +99,7 @@ let
 
   separator = "#[fg=${fg}]|";
 in {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     programs.tmux = {
       enable = true;
       plugins = with pkgs.tmuxPlugins; [ vim-tmux-navigator yank ];

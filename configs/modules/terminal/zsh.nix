@@ -24,7 +24,7 @@
     # completions
     zsh-completions
   ];
-  home-manager.users.${settings.users.user1.username}.home.file.".zshrc".text =
+  home-manager.users.${settings.users.selected.username}.home.file.".zshrc".text =
     ''
       # If you come from bash you might have to change your $PATH.
       export PATH=$HOME/bin:/usr/local/bin:$PATH

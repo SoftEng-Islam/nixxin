@@ -5,7 +5,7 @@ let
     hyprland = pkgs.hyprland;
   });
 in {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland.plugins = [
       # inputs.hyprland-plugins.packages.${pkgs.system}.hyprtrails
       hyprtrails

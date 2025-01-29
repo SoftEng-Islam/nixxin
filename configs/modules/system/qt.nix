@@ -4,12 +4,12 @@
     QT_AUTO_SCREEN_SCALE_FACTOR = "1";
     QT_SCALE_FACTOR = "1";
     QT_QPA_PLATFORMTHEME = settings.qtPlatformTheme;
-  #  QT_PLATFORM_PLUGIN = "wayland";
+    #  QT_PLATFORM_PLUGIN = "wayland";
     # Set the scale factor for Qt applications
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
   };
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     qt = {
       enable = true;
       platformTheme.name = settings.qtPlatformTheme;

@@ -3,7 +3,7 @@
   # ------------------------------------
   # Feh - A fast and light image viewer.
   # ------------------------------------
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     programs.feh = {
       enable = true;
       package = pkgs.feh;

@@ -15,7 +15,7 @@
     nix-direnv.enable = true;
     enableZshIntegration = true;
   };
-  # home-manager.users.${settings.users.user1.username} = {
+  # home-manager.users.${settings.users.selected.username} = {
   #   programs.direnv = { enable = true; };
   # };
 }

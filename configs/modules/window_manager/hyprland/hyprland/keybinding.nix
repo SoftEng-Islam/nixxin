@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland.settings = {
       # ---- Main Key ---- #
       "$main" = "SUPER";

@@ -11,7 +11,7 @@
           ]);
       }))
     ];
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     home.file.".config/ignis".source = ./ignis;
     home.file.".local/share/themes/Material".source = ./Material;
   };

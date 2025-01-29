@@ -1,16 +1,16 @@
 { settings, lib, pkgs, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     programs.git = {
       enable = true;
       extraConfig = {
         color.ui = true;
         core.editor = "nvim";
         credential.helper = "store";
-        github.user = settings.users.user1.name;
+        github.user = settings.users.selected.name;
         push.autoSetupRemote = true;
       };
-      userEmail = settings.users.user1.email;
-      userName = settings.users.user1.name;
+      userEmail = settings.users.selected.email;
+      userName = settings.users.selected.name;
     };
   };
   environment.systemPackages = with pkgs; [

@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.user1.username} = {
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland = {
       # render section for Hyprland >= v0.42.0
       settings.render = {

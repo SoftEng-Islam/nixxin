@@ -5,7 +5,7 @@
   # Optional: Enable 32-bit Wine for older games
   # Add this if you want a 32-bit Wine prefix:
   environment.variables = {
-    # WINEPREFIX = "/home/${settings.users.user1.username}/.wine";
+    # WINEPREFIX = "/home/${settings.users.selected.username}/.wine";
     # WINEARCH = "win32"; # Set Wine architecture to 32-bit
   };
   environment.systemPackages = with pkgs; [
