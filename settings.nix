@@ -28,16 +28,23 @@
       shotcut = true;
       davinci-resolve = false;
     };
-    Media = {
+    mediaPlayers = {
       mpv = true;
       celluloid = true;
       vlc = true;
       clapper = false;
       glide = false;
       jellyfin = false;
-      playerctl = true;
     };
-    threeD = { blender = true; };
+    graphics = {
+      lunacy = true;
+      drawio = true;
+      figmaLinux = false;
+      gimp = true;
+      blender = true;
+      inkscape = false;
+      darktable = false;
+    };
   };
 
   # -------------- #
@@ -91,21 +98,103 @@
   # ---- Hardware ---- #
   # ------------------ #
   hardware = {
-    APU = "amd";
-    CPU = "amd";
-    gpu = {
-      type = "amd"; # amd, intel or nvidia;
-      model = "";
+    # CPU Information
+    cpu = {
+      vendor = "amd"; # amd, intel, or other
+      model = "Ryzen 7 5800X"; # Example model
+      cores = 8; # Number of cores
+      threads = 16; # Number of threads
     };
-    rocmSupport = (if hardware.gpu.type == "amd" then true else false);
-    # StorageType = "";
-    videoDrivers = [
-      "amdgpu"
-      # "radeon"
-      # "modesetting"
-      # "displaylink"
-      # "ati_unfree"
+
+    # GPU Information
+    gpu = {
+      vendor = "amd"; # amd, intel, or nvidia
+      model = "Radeon RX 6700 XT"; # Example model
+      bus = "pcie"; # pcie, agp, etc.
+      vram = "12GB"; # Video RAM
+    };
+
+    # APU Information (if applicable)
+    apu = {
+      enabled = true; # Whether an APU is present
+      vendor = "amd"; # amd or intel
+      model = "Ryzen 7 5700G"; # Example model
+    };
+
+    # ROCm Support (for AMD GPUs)
+    rocmSupport = hardware.gpu.vendor == "amd";
+
+    # Storage Information
+    storage = {
+      type = "nvme"; # nvme, sata, hdd, ssd, etc.
+      model = "Samsung 970 EVO Plus"; # Example model
+      capacity = "1TB"; # Storage capacity
+    };
+
+    # Video Drivers (based on GPU vendor)
+    videoDrivers = if hardware.gpu.vendor == "amd" then
+      [ "amdgpu" ] # Default driver for AMD GPUs
+    else if hardware.gpu.vendor == "nvidia" then
+      [ "nvidia" ] # Default driver for NVIDIA GPUs
+    else if hardware.gpu.vendor == "intel" then
+      [ "modesetting" ] # Default driver for Intel GPUs
+    else
+      [ "modesetting" ]; # Fallback driver
+
+    # Network Adapters
+    networkAdapters = [
+      {
+        type = "wifi";
+        vendor = "intel";
+        model = "Intel Wi-Fi 6 AX200";
+      }
+      {
+        type = "ethernet";
+        vendor = "realtek";
+        model = "RTL8111/8168/8411";
+      }
     ];
+
+    # Audio Information
+    audio = {
+      vendor = "realtek";
+      model = "ALC1220";
+      driver = "snd_hda_intel"; # Example driver
+    };
+
+    # RAM Information
+    memory = {
+      size = "32GB"; # Total RAM size
+      type = "DDR4"; # RAM type
+      speed = "3200MHz"; # RAM speed
+    };
+
+    # Motherboard Information
+    motherboard = {
+      vendor = ""; # Ex. ASUS
+      model = ""; # Ex. ROG Strix X570-E Gaming
+    };
+
+    # Power Supply Information
+    powerSupply = {
+      wattage = "750W";
+      efficiency = "80+ Gold";
+    };
+
+    # Cooling Information
+    cooling = {
+      cpuCooler = "Noctua NH-D15";
+      caseFans = [
+        {
+          size = "120mm";
+          speed = "1200 RPM";
+        }
+        {
+          size = "140mm";
+          speed = "1000 RPM";
+        }
+      ];
+    };
   };
 
   # ---- Dotfiles Inforamtions ---- #

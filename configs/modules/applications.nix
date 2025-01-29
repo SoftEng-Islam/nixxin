@@ -8,24 +8,7 @@
     d-spy
     icon-library
 
-    # Video Editors
-    kdenlive # Video editor
-    # davinci-resolve # Professional video editing, color, effects and audio post-processing
-    # davinci-resolve-studio # Professional video editing, color, effects and audio post-processing
-    # shotcut
-
-    # ---- Utilities ---- #
-    # testdisk # Data Recovery Utilities
     resources # Monitor your system resources and processes
-
-    # Graphics Apps
-    lunacy # Free design software that keeps your flow with AI tools and built-in graphics
-    drawio # A desktop application for creating diagrams
-    blender-hip # 3D Creation/Animation/Publishing System
-    gimp # GNU Image Manipulation Program
-    # inkscape # Vector graphics editor
-    # figma-linux # Unofficial Electron-based Figma desktop app for Linux
-    # darktable # Virtual lighttable and darkroom for photographers
 
     # Developers Applications
     beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
