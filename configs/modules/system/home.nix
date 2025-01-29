@@ -1,17 +1,10 @@
-{ self, inputs, settings, ... }: {
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # ~~~~~~~ home-manager ~~~~~~~
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+{ settings, ... }: {
   home-manager = {
-    # extraSpecialArgs = {
-    #   inherit inputs;
-    #   inherit settings;
-    #   inherit self;
-    # };
+    # extraSpecialArgs = { inherit inputs; };
     verbose = true;
     useGlobalPkgs = true;
     useUserPackages = true;
-    backupFileExtension = null; # null
+    backupFileExtension = settings.home.backupFileExtension; # null
   };
 
   home-manager.users.${settings.users.user1.username} = {
@@ -20,11 +13,10 @@
       username = settings.users.user1.username;
       homeDirectory = "/home/${settings.users.user1.username}";
       stateVersion = settings.homeStateVersion;
-      # sessionVariables = {};
       sessionPath = [ "$HOME/.local/bin" ];
     };
     manual = {
-      # disable manuals as nmd fails to build often
+      # You can Disable manuals as nmd fails to build often
       html.enable = true;
       json.enable = true;
       manpages.enable = true;

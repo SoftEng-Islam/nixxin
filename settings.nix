@@ -14,9 +14,39 @@
       # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";
     };
+    features = {
+      android = true;
+      corectrl = true;
+      fcitx5 = true;
+      ssh = true;
+      wine = true;
+      zram = true;
+      ai = { enable = true; };
+    };
+    videoEditors = {
+      kdenlive = true;
+      shotcut = true;
+      davinci-resolve = false;
+    };
+    Media = {
+      mpv = true;
+      celluloid = true;
+      vlc = true;
+      clapper = false;
+      glide = false;
+      jellyfin = false;
+      playerctl = true;
+    };
+    threeD = { blender = true; };
   };
 
-  home = { stateVersion = "24.11"; };
+  # -------------- #
+  # ---- HOME ---- #
+  # -------------- #
+  home = {
+    stateVersion = "24.11";
+    backupFileExtension = null;
+  };
 
   # -------------- #
   # ---- IDLE ---- #
@@ -51,23 +81,32 @@
   mainlanguage = "English"; # Select Your Language for System and keyboard.
   languages = [ "arabic" "france" ]; # Add Other Languages that you know
 
+  # ------------------ #
   # ---- Networks ---- #
+  # ------------------ #
   ethernet = "eno1";
   wlanInterface = "wlp0s19f2u5";
 
+  # ------------------ #
   # ---- Hardware ---- #
-  gpuType = "amd"; # amd, intel or nvidia;
-  rocmSupport = (if gpuType == "amd" then true else false);
-  # APU = "amd";
-  # CPU = "amd";
-  # StorageType = "";
-  videoDrivers = [
-    "amdgpu"
-    # "radeon"
-    # "modesetting"
-    # "displaylink"
-    # "ati_unfree"
-  ];
+  # ------------------ #
+  hardware = {
+    APU = "amd";
+    CPU = "amd";
+    gpu = {
+      type = "amd"; # amd, intel or nvidia;
+      model = "";
+    };
+    rocmSupport = (if hardware.gpu.type == "amd" then true else false);
+    # StorageType = "";
+    videoDrivers = [
+      "amdgpu"
+      # "radeon"
+      # "modesetting"
+      # "displaylink"
+      # "ati_unfree"
+    ];
+  };
 
   # ---- Dotfiles Inforamtions ---- #
   dotfilesDir =
