@@ -127,7 +127,7 @@ in {
         gpu-context = "wayland";
         hwdec-codecs = "all";
         keep-open = true;
-        osd-font = "Iosevka NF";
+        # osd-font = "Iosevka NF";
         pause = true;
         video-sync = "display-resample";
 
