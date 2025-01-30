@@ -1,6 +1,4 @@
-{ config, pkgs, ... }:
-
-{
+{ pkgs, ... }: {
   environment.systemPackages = with pkgs;
     [
       virt-manager
@@ -11,5 +9,4 @@
     enable = false;
     qemu.runAsRoot = false;
   };
-  virtualisation.waydroid.enable = true;
 }
