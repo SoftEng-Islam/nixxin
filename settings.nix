@@ -1,7 +1,7 @@
 { pkgs, ... }: rec {
-  # ---------------- #
-  # ---- System ---- #
-  # ---------------- #
+  # ---------------------------------------------- #
+  # ---- System Information And Configuration ---- #
+  # ---------------------------------------------- #
   system = {
     name = "nixos";
     hostName = "nixos"; # Hostname
@@ -15,7 +15,8 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
     features = {
-      android = true;
+      android_development_stuff = true;
+      android_studio = false;
       corectrl = true;
       fcitx5 = true;
       ssh = true;
@@ -197,14 +198,35 @@
     };
   };
 
-  # ---- Dotfiles Inforamtions ---- #
-  dotfilesDir =
-    "/home/${users.selected.username}/nixxin"; # Absolute path of the local repo
-
   # ---- Window/Desktop Managers ---- #
   defaultSession = "hyprland"; # hyprland or gnome
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
-  # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
+  wmType =
+    if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
+
+  # ---- Desktop Environment ---- #
+  gnome = { enable = false; };
+  COSMIC = { enable = false; };
+  plasma = { enable = false; };
+
+  # ---- Hyprland ---- #
+  hyprland = {
+    enable = true;
+    # Pregenerated Colors to use in Hyprland
+    genColorsPath = /home/${users.user1.username}/.cache/hypr/colors.conf;
+    animationSpeed = "medium"; # medium or slow
+    plugins = {
+      Hyprspace = true;
+      hyprexpo = false;
+      hyprbars = true;
+      hyprtrails = true;
+      borders-plus-plus = true;
+    };
+  };
+
+  # ---- Dotfiles Inforamtions ---- #
+  dotfilesDir =
+    "/home/${users.selected.username}/nixxin"; # Absolute path of the local repo
 
   # ---------------- #
   # ----- USER ----- #
@@ -337,29 +359,13 @@
     };
   };
 
-  # ---- Hyprland ---- #
-  hyprland = {
-    enable = true;
-    # Pregenerated Colors to use in Hyprland
-    genColorsPath = /home/${users.user1.username}/.cache/hypr/colors.conf;
-    animationSpeed = "medium"; # medium or slow
-    plugins = {
-      Hyprspace = true;
-      hyprbars = true;
-      hyprtrails = true;
-      borders-plus-plus = true;
-    };
-  };
-
-  # ---- Gnome ---- #
-  gnome = { enable = false; };
-
   defaults = {
     fileManager = "nautilus"; # thunar & nautilus
     imageViewer = "loupe"; # feh or loupe
     videoPlayer = "celluloid"; # vlc or celluloid or mpv
     torrentApp = "qBittorrent";
   };
+
   gaming = {
     enable = true; # To support gaming and install gaming stuff
     steam = { enable = true; };
