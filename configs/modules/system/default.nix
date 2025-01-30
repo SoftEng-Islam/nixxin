@@ -22,7 +22,7 @@
     ./fcitx5.nix
     ./gtk.nix
     ./hardware.nix
-    ./home.nix./
+    ./home.nix.
     ./locale.nix
     ./nix.nix
     ./packages.nix
