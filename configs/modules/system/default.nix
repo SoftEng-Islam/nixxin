@@ -11,6 +11,7 @@
     # ./power_menu
     # ./screen_lock
     # ./screenshot
+    ./window_manager
     ./audio.nix
     ./boot.nix
     ./corectrl.nix
