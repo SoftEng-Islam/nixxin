@@ -6,7 +6,7 @@
 
   services = {
     # fstrim.enable = true;
-    xserver.videoDrivers = settings.videoDrivers;
+    xserver.videoDrivers = settings.hardware.videoDrivers;
     # auto-epp.enable = true;
   };
   hardware = {
@@ -98,7 +98,7 @@
   # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
   # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
-  nixpkgs.hostPlatform = lib.mkDefault "${settings.system}";
+  nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
   #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   environment.variables = {

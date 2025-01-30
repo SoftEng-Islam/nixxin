@@ -4,13 +4,13 @@
     # bootspec.enable = true;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
-    supportedFilesystems = [ "ntfs" "nfs" "btrfs" "ext4" "fat32" ];
+    supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
     consoleLogLevel = 0;
     loader = {
       timeout = 3;
       efi.canTouchEfiVariables = true;
       systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
-      
+
       # Grub boot
       grub = {
         enable = true;
@@ -69,7 +69,7 @@
         "cryptd"
       ];
     };
-    kernelModules =  [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ];
+    kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
@@ -93,7 +93,7 @@
       "iommu=pt"
       # "drm.kms_helper.parallel_locks=1"
       # "acpi_enforce_resources=lax"
-       "pcie_aspm=off"
+      "pcie_aspm=off"
 
       # "acpi_osi=Linux"
       # "pci=realloc"
@@ -120,15 +120,15 @@
       "amdgpu.dcfeaturemask=0x8"
       "amdgpu.freesync_video=1"
       "amdgpu.gpu_recovery=1"
-   
+
       # for Southern Islands (SI i.e. GCN 1) cards
       #"radeon.si_support=1"
       #"amdgpu.si_support=0"
-   
+
       # for Sea Islands (CIK i.e. GCN 2) cards
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
-   
+
       # "amdgpu.dc=1"
       # "amdgpu.dpm=1"
 

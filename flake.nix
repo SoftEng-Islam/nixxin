@@ -75,12 +75,12 @@
   outputs = { self, nixpkgs, ... }@inputs:
     let
       settings = import (./. + "/settings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs { system = settings.system; };
+      pkgs = import nixpkgs { system = settings.system.architecture; };
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
-        ${settings.hostName} = nixpkgs.lib.nixosSystem {
+        ${settings.system.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
