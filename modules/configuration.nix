@@ -23,7 +23,7 @@ in {
   imports = gnome ++ COSMIC ++ plasma ++ hyprland ++ [
     ./android
     ./apps_launcher
-    ./btop
+    (if settings.system.features.btop.enable then ./btop else null)
     ./cli
     ./desktop
     ./dev

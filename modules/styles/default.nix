@@ -1,4 +1,4 @@
-{ pkgs, lib, settings, ... }:
+{ pkgs, settings, ... }:
 let
   # base24 = builtins.fetchurl {
   #   url =

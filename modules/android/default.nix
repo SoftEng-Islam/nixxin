@@ -1,14 +1,15 @@
 { settings, pkgs, ... }:
 let
   enable_android_development_stuff =
-    if settings.system.features.android_development_stuff then
+    if settings.system.features.android.development_stuff then
       [ ./development.nix ]
     else
       [ ];
-  enable_android_studio = if settings.system.features.android_studio then
-    [ ./android-studio.nix ]
-  else
-    [ ];
+  enable_android_studio =
+    if settings.system.features.android.android_studio then
+      [ ./android-studio.nix ]
+    else
+      [ ];
 in {
   imports = enable_android_development_stuff ++ enable_android_studio
     ++ [ ./scrcpy.nix ./waydroid.nix ];

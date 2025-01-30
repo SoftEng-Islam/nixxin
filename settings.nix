@@ -15,8 +15,15 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
     features = {
-      android_development_stuff = true;
-      android_studio = false;
+      android = {
+        development_stuff = true;
+        android_studio = false;
+      };
+      apps_launcher = {
+        albert = true;
+        ulauncher = false;
+      };
+      btop = { enable = true; };
       corectrl = true;
       fcitx5 = true;
       ssh = true;
