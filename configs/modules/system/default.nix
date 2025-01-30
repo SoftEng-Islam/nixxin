@@ -1,5 +1,44 @@
 { settings, pkgs, ... }: {
-  imports = [ ];
+  imports = [
+    ./clipboard_manager
+    ./color_picker
+    ./desktop_environment
+    ./display_configuration
+    ./display_manager
+    ./gamma_tools
+    ./keyboard_remapper
+    ./networks
+    ./power_menu
+    ./screen_lock
+    ./screenshot
+    ./audio.nix
+    ./boot.nix
+    ./corectrl.nix
+    ./dbus.nix
+    ./dconf.nix
+    ./documentation.nix
+    ./env.nix
+    ./fcitx5.nix
+    ./gtk.nix
+    ./hardware.nix
+    ./home.nix./
+    ./locale.nix
+    ./nix.nix
+    ./packages.nix
+    ./power.nix
+    ./programs.nix
+    ./qt.nix
+    ./security.nix
+    ./services.nix
+    ./ssh.nix
+    ./systemd.nix
+    ./users.nix
+    ./utilities.nix
+    ./virtualisation.nix
+    ./wayland.nix
+    ./xdg.nix
+    ./zram.nix
+  ];
   system = {
     autoUpgrade.enable = settings.system.upgrade.enable;
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot;
