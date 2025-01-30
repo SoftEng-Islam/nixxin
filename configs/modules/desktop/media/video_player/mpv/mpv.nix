@@ -199,5 +199,8 @@ in {
     lua
     gnutls
     libmp3splt
+    vdpauinfo
+    driversi686Linux.vdpauinfo
+    libva-utils
   ];
 }

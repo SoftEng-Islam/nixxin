@@ -9,8 +9,11 @@ in {
     enable = true;
     terminal = "kitty";
   };
+  services.udisks2.enable = true;
+  services.gvfs.enable = true;
   environment = {
-    systemPackages = [ nautEnv pkgs.gvfs pkgs.dconf pkgs.xdg-desktop-portal ];
+    systemPackages =
+      [ nautEnv pkgs.gvfs pkgs.dconf pkgs.xdg-desktop-portal pkgs.file-roller ];
     pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
       FILE_MANAGER = "nautilus";

@@ -13,7 +13,16 @@
       username = settings.users.selected.username;
       homeDirectory = "/home/${settings.users.selected.username}";
       stateVersion = settings.homeStateVersion;
-      sessionPath = [ "$HOME/.local/bin" ];
+      sessionPath =
+        [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
+
+      home.sessionVariables = {
+        PAGER = "less";
+        LESS = "-R";
+        VIRTUAL_ENV_DISABLE_PROMPT = "1";
+        PIPENV_SHELL_FANCY = "1";
+        ERL_AFLAGS = "-kernel shell_history enabled";
+      };
     };
     manual = {
       # You can Disable manuals as nmd fails to build often

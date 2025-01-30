@@ -10,6 +10,7 @@
     # matugen # A material you color generation tool
 
     # ---- Disks & Filesystem ---- #
+    cifs-utils
     gvfs # Virtual Filesystem support library
     bees # Bees is a deduplication tool designed specifically for filesystems that use the Btrfs (B-tree file system).
     btrfs-progs # Utilities for the btrfs filesystem
@@ -36,14 +37,6 @@
     nettle # Cryptographic library
     libgcrypt # General-purpose cryptographic library
     cacert
-
-    # ---- Notifications ---- #
-    notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
-    libnotify # A library that sends desktop notifications to a notification daemon
-    libnotify.dev # Library that sends desktop notifications to a notification daemon
-    # dunst # Lightweight and customizable notification daemon
-    # mako # A lightweight Wayland notification daemon
-    # avizo # Neat notification daemon for Wayland
 
     # ---- GNU Utilities ---- #
     autoconf # Part of the GNU Build System

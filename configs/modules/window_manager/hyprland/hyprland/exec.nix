@@ -4,6 +4,9 @@ let
     #!/usr/bin/env bash
     systemctl --user start hyprpolkitagent
 
+    # ---- notification daemon ---- #
+    dunst
+
     # ---- Start IGNIS ---- #
     # ignis init
     nautilus --no-desktop &
