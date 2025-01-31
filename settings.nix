@@ -90,10 +90,12 @@
 
     # List all the devices with their by-id symlinks
     # ls -l /dev/disk/by-id/
-    gfxmodeEfi = "1920x1080";
-    devices = [ "nodev" ];
-    device = "nodev"; # Let GRUB automatically detect EFI
-    grub = { oSProber = false; };
+    grub = {
+      oSProber = false;
+      gfxmodeEfi = "1920x1080";
+      devices = [ "nodev" ];
+      device = "nodev"; # Let GRUB automatically detect EFI
+    };
   };
 
   # ---- Date/Time & Languages ---- #
