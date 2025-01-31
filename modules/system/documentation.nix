@@ -8,7 +8,7 @@
     doc.enable = true;
     man = {
       enable = true;
-      generateCaches = true;
+      generateCaches = false;
     };
     dev.enable = true;
     info.enable = true;
