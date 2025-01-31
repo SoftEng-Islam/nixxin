@@ -9,7 +9,7 @@
       # foreground #${config.lib.stylix.colors.base07}
 
       # ---- Cursor colors ---- #
-      # cursor #${settings.accentColor}
+      # cursor #${settings.style.mainColor}
       # cursor_text_color #${config.lib.stylix.colors.base0A}
       # selection_background #${config.lib.stylix.colors.base04}
       # selection_foreground #${config.lib.stylix.colors.base06}
