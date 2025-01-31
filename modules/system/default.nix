@@ -9,6 +9,7 @@
     # ./keyboard_remapper
     ./networks
     # ./power_menu
+    ./qt_gtk
     # ./screen_lock
     # ./screenshot
     ./statusbar
@@ -21,7 +22,6 @@
     ./documentation.nix
     ./env.nix
     ./fcitx5.nix
-    ./gtk.nix
     ./hardware.nix
     ./home.nix.
     ./locale.nix
@@ -29,7 +29,6 @@
     ./packages.nix
     ./power.nix
     ./programs.nix
-    ./qt.nix
     ./security.nix
     ./services.nix
     ./ssh.nix

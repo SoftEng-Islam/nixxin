@@ -1,9 +1,7 @@
 { config, lib, pkgs, ... }:
-
 let
-
-  #custom qtct color palette (only used for qt5ct)
-  #inspiration from following base16 template: https://github.com/mnussbaum/base16-qt5ct
+  # custom qtct color palette (only used for qt5ct)
+  # inspiration from following base16 template: https://github.com/mnussbaum/base16-qt5ct
   qt5ct-color-file = with config.lib.stylix.colors;
     pkgs.writeText "stylix-qt5ct-colors.conf" ''
       [ColorScheme]
@@ -138,11 +136,11 @@ let
     style=Breeze
 
     [Fonts]
-    fixed="${config.stylix.fonts.monospace.name},${
-      builtins.toString config.stylix.fonts.sizes.applications
+    fixed="${config.lib.stylix.fonts.monospace.name},${
+      builtins.toString config.lib.stylix.fonts.sizes.applications
     },-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
-    general="${config.stylix.fonts.serif.name},${
-      builtins.toString config.stylix.fonts.sizes.applications
+    general="${config.lib.stylix.fonts.serif.name},${
+      builtins.toString config.lib.stylix.fonts.sizes.applications
     },-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
 
     [Interface]
