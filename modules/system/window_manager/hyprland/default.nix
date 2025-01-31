@@ -27,7 +27,7 @@
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
-      enable = lib.optional settings.hyprland.enable true;
+      enable = lib.optional settings.hyprland.enable;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
