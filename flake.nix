@@ -71,9 +71,10 @@
     anytype.url = "github:/anyproto/anytype-ts";
     anytype.inputs.nixpkgs.follows = "nixpkgs";
 
-     ashell = {
-      url = "github:MalpenZibo/ashell";
-      inputs.nixpkgs.follows = "nixpkgs";
+    ashell = {
+      url =
+        "github:MalpenZibo/ashell?rev=96103fa1b3e936b4bff5e624eca023ddaf9c106f";
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
   };
 

@@ -41,7 +41,7 @@
       #=> Second Row:
       # bind = $main, A, exec,
       # bind = $main, S, exec,
-      bind = $main, D, exec, fuzzel # Toggle fallback launcher: fuzzel
+      bind = $main, D, exec, albert # Toggle fallback launcher: Albert
       bind = $main, F, fullscreen, 0
       # bind = $main, G, exec,
       # bind = $main, H, exec,
