@@ -215,7 +215,7 @@
   };
 
   # ---- Window/Desktop Managers ---- #
-  defaultSession = "Hyprland"; # hyprland or gnome
+  defaultSession = "hyprland"; # hyprland or gnome
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
@@ -406,6 +406,6 @@
 
   gaming = {
     enable = true; # To support gaming and install gaming stuff
-    steam = { enable = true; };
+    steam = { enable = false; };
   };
 }
