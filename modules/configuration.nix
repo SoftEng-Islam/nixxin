@@ -1,35 +1,20 @@
 # Edit this configuration file to define what should be installed on your system. Help is available in the
 # configuration.nix(5) man page and in the NixOS manual (accessible by running ‘nixos-help’).
-{ settings, pkgs, ... }:
-let
-  gnome = if settings.gnome.enable then
-    [ ./system/desktop_environment/gnome ]
-  else
-    [ ];
-  COSMIC = if settings.COSMIC.enable then
-    [ ./system/desktop_environment/COSMIC ]
-  else
-    [ ];
-  plasma = if settings.plasma.enable then
-    [ ./system/desktop_environment/plasma ]
-  else
-    [ ];
-  hyprland = if settings.hyprland.enable then
-    [ ./system/window_manager/hyprland ]
-  else
-    [ ];
-
-in {
-  imports = gnome ++ COSMIC ++ plasma ++ hyprland ++ [
-    ./android
-    ./apps_launcher
-    (if settings.system.features.btop.enable then ./btop else null)
-    ./cli
-    ./desktop
-    ./dev
-    ./flags
-    ./styles
-    ./system
-    ./terminal
-  ];
+{ lib, settings, pkgs, ... }: {
+  imports =
+    lib.optional.settings.gnome.enable ./system/desktop_environment/gnome
+    ++ lib.optional.settings.COSMIC.enable ./system/desktop_environment/COSMIC
+    ++ lib.optional.settings.plasma.enable ./system/desktop_environment/plasma
+    ++ lib.optional.settings.hyprland.enable ./system/window_manager/hyprland
+    ++ [
+      ./android
+      ./apps_launcher
+      ./cli
+      ./desktop
+      ./dev
+      ./flags
+      ./styles
+      ./system
+      ./terminal
+    ] ++ lib.optional.settings.system.features.btop.enable ./btop;
 }
