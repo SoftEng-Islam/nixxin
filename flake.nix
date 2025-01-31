@@ -90,7 +90,6 @@
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + "/modules/configuration.nix")
-            # { nixpkgs.overlays = [ (import ./overlays/hyprspace.nix) ]; }
           ];
         };
       };
