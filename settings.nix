@@ -215,7 +215,7 @@
   };
 
   # ---- Window/Desktop Managers ---- #
-  defaultSession = "hyprland"; # hyprland or gnome
+  defaultSession = "Hyprland"; # hyprland or gnome
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
