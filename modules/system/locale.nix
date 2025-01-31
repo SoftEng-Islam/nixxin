@@ -6,7 +6,7 @@
     enableDefaultPackages = false;
     fontDir.enable = true;
     packages = with pkgs; [
-      settings.fontPackage
+      settings.fonts.main.package
       dejavu_fonts # Typeface family based on the Bitstream Vera fonts
       fira-code # Monospace font with programming ligatures
       mononoki # Font for programming and code review
