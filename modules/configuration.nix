@@ -11,13 +11,5 @@
     ./styles
     ./system
     ./terminal
-  ] ++ (lib.optional settings.gnome.enable
-    [ ./system/desktop_environment/gnome ])
-    ++ (lib.optional settings.COSMIC.enable
-      [ ./system/desktop_environment/COSMIC ])
-    ++ (lib.optional settings.plasma.enable
-      [ ./system/desktop_environment/plasma ])
-    ++ (lib.optional settings.hyprland.enable
-      [ ./system/window_manager/hyprland ])
-    ++ (lib.optional settings.system.features.btop.enable [ ./btop ]);
+  ] ++ (lib.optional settings.system.features.btop.enable [ ./btop ]);
 }

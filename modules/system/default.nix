@@ -1,45 +1,52 @@
-{ settings, pkgs, ... }: {
-  imports = [
-    # ./clipboard_manager
-    # ./color_picker
-    ./desktop_environment
-    # ./display_configuration
-    ./display_manager
-    # ./gamma_tools
-    # ./keyboard_remapper
-    ./networks
-    # ./power_menu
-    ./qt_gtk
-    # ./screen_lock
-    # ./screenshot
-    ./statusbar
-    ./window_manager
-    ./audio.nix
-    ./boot.nix
-    ./corectrl.nix
-    ./dbus.nix
-    ./dconf.nix
-    ./documentation.nix
-    ./env.nix
-    # ./fcitx5.nix
-    ./hardware.nix
-    ./home.nix
-    ./locale.nix
-    ./nix.nix
-    ./packages.nix
-    ./power.nix
-    ./programs.nix
-    ./security.nix
-    ./services.nix
-    ./ssh.nix
-    ./systemd.nix
-    ./users.nix
-    ./utilities.nix
-    ./virtualisation.nix
-    ./wayland.nix
-    ./xdg.nix
-    ./zram.nix
-  ];
+{ lib, settings, pkgs, ... }: {
+  imports =
+    (lib.optional settings.gnome.enable [ ./system/desktop_environment/gnome ])
+    ++ (lib.optional settings.COSMIC.enable
+      [ ./system/desktop_environment/COSMIC ])
+    ++ (lib.optional settings.plasma.enable
+      [ ./system/desktop_environment/plasma ])
+    ++ (lib.optional settings.hyprland.enable
+      [ ./system/window_manager/hyprland ]) [
+        # ./clipboard_manager
+        # ./color_picker
+        ./desktop_environment
+        # ./display_configuration
+        ./display_manager
+        # ./gamma_tools
+        # ./keyboard_remapper
+        ./networks
+        # ./power_menu
+        ./qt_gtk
+        # ./screen_lock
+        # ./screenshot
+        ./statusbar
+        ./window_manager
+        ./audio.nix
+        ./boot.nix
+        ./corectrl.nix
+        ./dbus.nix
+        ./dconf.nix
+        ./documentation.nix
+        ./env.nix
+        # ./fcitx5.nix
+        ./hardware.nix
+        ./home.nix
+        ./locale.nix
+        ./nix.nix
+        ./packages.nix
+        ./power.nix
+        ./programs.nix
+        ./security.nix
+        ./services.nix
+        ./ssh.nix
+        ./systemd.nix
+        ./users.nix
+        ./utilities.nix
+        ./virtualisation.nix
+        ./wayland.nix
+        ./xdg.nix
+        ./zram.nix
+      ];
   system = {
     autoUpgrade.enable = settings.system.upgrade.enable;
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot;
