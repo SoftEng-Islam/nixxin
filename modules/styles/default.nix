@@ -43,22 +43,30 @@ in {
       # popups = settings.opacity;
     };
     cursor = {
-      size = settings.cursorSize;
-      name = settings.cursorTheme;
-      package = settings.cursorPackage;
+      size = settings.style.cursor.size;
+      name = settings.style.cursor.name;
+      package = settings.style.cursor.package;
     };
     fonts = {
       sizes = {
-        applications = settings.fontSize;
-        desktop = settings.fontSize;
-        popups = settings.fontSize;
+        applications = settings.fonts.main.size.applications;
+        desktop = settings.fonts.main.size.desktop;
+        popups = settings.fonts.main.size.popups;
       };
-      serif.name = settings.serifFont;
-      serif.package = settings.serifPackage;
-      sansSerif.name = settings.sansSerifFont;
-      sansSerif.package = settings.sansSerifPackage;
-      monospace.name = settings.fontName;
-      monospace.package = settings.fontPackage;
+
+      # ---- Monospace Fonts ---- #
+      monospace.name = settings.fonts.monospace.name;
+      monospace.package = settings.fonts.monospace.package;
+
+      # ---- Serif Fonts ---- #
+      serif.name = settings.fonts.serif.name;
+      serif.package = settings.fonts.serif.package;
+
+      # ---- SansSerif Fonts ---- #
+      sansSerif.name = settings.fonts.sansSerif.name;
+      sansSerif.package = settings.fonts.sansSerif.package;
+
+      # ---- Emoji ---- #
       emoji = {
         package = pkgs.noto-fonts-emoji;
         name = "Noto Color Emoji"; # Keep Noto Color Emoji for emojis
@@ -85,9 +93,9 @@ in {
       # autoEnable = true;
       iconTheme = {
         enable = true;
-        package = settings.iconPackage;
-        dark = settings.iconNameDark;
-        light = settings.iconNameLight;
+        light = settings.style.icons.nameInLight;
+        dark = settings.style.icons.nameInDark;
+        package = settings.style.icons.package;
       };
       targets = {
         zed.enable = true;

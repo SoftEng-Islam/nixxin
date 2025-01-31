@@ -288,8 +288,14 @@
       # "CaskaydiaCove Nerd Font Mono"
       name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
       package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
-      size = 12; # Font size
       antialiasing = "grayscale";
+
+      size = {
+        main = 12; # Font size
+        applications = 14;
+        desktop = 16;
+        popups = 18;
+      };
     };
     monospace = {
       name = fonts.name;
