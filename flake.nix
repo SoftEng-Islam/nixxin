@@ -71,9 +71,10 @@
     anytype.url = "github:/anyproto/anytype-ts";
     anytype.inputs.nixpkgs.follows = "nixpkgs";
 
-    ashell.url = "github:/MalpenZibo/ashell";
-    ashell.inputs.nixpkgs.follows = "nixpkgs";
-
+     ashell = {
+      url = "github:MalpenZibo/ashell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

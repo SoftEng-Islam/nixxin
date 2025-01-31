@@ -13,6 +13,6 @@
       #     "0f44vzf28nx2fj13bnlrk1j5ad6gmr74np4pk5ysyx0k17xjgvzl"; # Replace with the correct hash
       # }) { }).defaultPackage.x86_64-linux)
 
-      inputs.ashell
+      inputs.ashell.defaultPackage."${pkgs.system}"
     ];
 }
