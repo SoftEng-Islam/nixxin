@@ -23,7 +23,7 @@
     ./env.nix
     # ./fcitx5.nix
     ./hardware.nix
-    ./home.nix.
+    ./home.nix
     ./locale.nix
     ./nix.nix
     ./packages.nix
