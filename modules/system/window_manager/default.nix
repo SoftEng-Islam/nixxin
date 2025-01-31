@@ -1,9 +1,5 @@
 { pkgs, lib, settings, ... }: {
-  imports = [
-    ./packages.nix
-    # ./ignis
-    ./hyprland
-  ];
+  imports = [ ./hyprland/packages.nix ./hyprland/configs ];
   services.seatd.enable = lib.mkForce false;
   services.seatd.user = "root";
   programs = {
@@ -102,6 +98,6 @@
       };
     };
     # Scripts for Hyprland
-    home.file.".config/hypr/scripts".source = ./hyprland/scripts;
+    home.file.".config/hypr/scripts".source = ./hyprland/configs/scripts;
   };
 }
