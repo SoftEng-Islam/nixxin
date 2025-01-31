@@ -10,7 +10,7 @@
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
     wireless.driver = "rtl8188eus-aircrack";
-    hostName = settings.hostName; # Define your hostname.
+    hostName = settings.system.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
