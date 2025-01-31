@@ -286,7 +286,9 @@
   fonts = {
     main = {
       # Exambles:
+      # nix build nixpkgs#nerd-fonts.jetbrains-mono --print-out-paths --no-link
       # "JetBrainsMonoNL Nerd Font Mono"
+      # "JetBrainsMonoNL Nerd Font Bold"
       # "CaskaydiaCove Nerd Font Mono"
       name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
       package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
@@ -310,6 +312,10 @@
     sansSerif = {
       name = "Noto Sans";
       package = pkgs.noto-fonts-cjk-serif;
+    };
+    hyprbars = {
+      name = "JetBrainsMonoNL Nerd Font Bold";
+      size = 16;
     };
     terminals = {
       kitty = {

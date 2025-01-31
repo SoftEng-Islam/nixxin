@@ -21,8 +21,8 @@ in {
       # ------------------ #
       plugin:hyprbars {
         # Honestly idk if it works like css, but well, why not
-        bar_text_font = "${settings.fontName}"
-        bar_text_size = ${toString settings.fontSize}
+        bar_text_font = "${settings.fonts.hyprbars.name}"
+        bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 35
         bar_padding = 10
         bar_button_padding = 6
