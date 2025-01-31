@@ -93,15 +93,15 @@
       ELECTRON_ENABLE_WAYLAND = "1";
 
       # Configure the cursor theme and size for graphical sessions.
-      XCURSOR = settings.cursorTheme;
-      XCURSOR_THEME = settings.cursorTheme;
-      XCURSOR_SIZE = toString settings.cursorSize;
+      XCURSOR = settings.style.cursor.name;
+      XCURSOR_THEME = settings.style.cursor.name;
+      XCURSOR_SIZE = toString settings.style.cursor.size;
 
       # Optimize rendering and disable hardware cursors for Wayland-based compositors.
       WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
       WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
-      GTK_THEME = settings.gtkTheme;
+      GTK_THEME = settings.style.gtk.theme;
 
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
