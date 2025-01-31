@@ -59,7 +59,7 @@
 
   nixpkgs = {
     config = {
-      rocmSupport = settings.rocmSupport;
+      rocmSupport = settings.hardware.rocmSupport;
       allowUnfree = true;
     };
   };
