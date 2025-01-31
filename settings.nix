@@ -348,7 +348,10 @@
     name = "nixxin";
 
     # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
-    mainColor = "red";
+    mainColor = {
+      name = "red";
+      hash = "B91C1C";
+    };
 
     # ---- Mode ---- #
     mode = "dark"; # "dark" or "light"
