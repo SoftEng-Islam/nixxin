@@ -35,9 +35,9 @@
       # hinting.style = "full";
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
-        serif = [ "${settings.serifFont}" ];
-        sansSerif = [ "${settings.sansSerifFont}" ];
-        monospace = [ "${settings.monospaceFont}" ];
+        serif = [ "${settings.fonts.serif.name}" ];
+        sansSerif = [ "${settings.fonts.sansSerif.name}" ];
+        monospace = [ "${settings.fonts.monospace.name}" ];
       };
     };
   };
