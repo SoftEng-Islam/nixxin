@@ -1,7 +1,5 @@
 { pkgs, lib, settings, ... }: {
   imports = [
-    ./packages.nix
-
     ./configs/animations.nix
     ./configs/binds.nix
     ./configs/cursor.nix
