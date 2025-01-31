@@ -312,7 +312,7 @@
     terminals = {
       kitty = {
         name = "CaskaydiaCove Nerd Font Mono";
-        size = 15; # Font size
+        size = 15;
       };
       alacritty = {
         name = "CaskaydiaCove Nerd Font Mono";
