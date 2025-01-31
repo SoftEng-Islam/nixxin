@@ -59,8 +59,8 @@
         #   "${pkgs.hyprlandPlugins.borders-plus-plus}/lib"
         #   "${pkgs.hyprlandPlugins.hyprtrails}/lib"
         # ];
-        HYPRCURSOR_THEME = settings.cursorTheme;
-        HYPRCURSOR_SIZE = toString settings.cursorSize;
+        HYPRCURSOR_THEME = settings.style.cursor.name;
+        HYPRCURSOR_SIZE = toString settings.style.cursor.size;
 
         # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
