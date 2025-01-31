@@ -21,7 +21,7 @@
     ./dconf.nix
     ./documentation.nix
     ./env.nix
-    ./fcitx5.nix
+    # ./fcitx5.nix
     ./hardware.nix
     ./home.nix.
     ./locale.nix

@@ -87,7 +87,12 @@
     # mount path for efi boot partition; only used for uefi boot mode
     mountPath = "/boot";
     # device identifier for grub; only used for legacy (bios) boot mode
-    grubDevice = "";
+
+    # List all the devices with their by-id symlinks
+    # ls -l /dev/disk/by-id/
+    gfxmodeEfi = "1920x1080";
+    devices = [ "nodev" ];
+    device = "nodev"; # Let GRUB automatically detect EFI
     grub = { oSProber = false; };
   };
 

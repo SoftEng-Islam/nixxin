@@ -18,14 +18,9 @@
         # nix path-info -r nixpkgs#sleek-grub-theme
         # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
         efiSupport = true;
-        gfxmodeEfi = "1920x1080";
-        # List all the devices with their by-id symlinks
-        # ls -l /dev/disk/by-id/
-        # mirroredBoots = ;
-        # device = "nodev";
-        # devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
-        devices = [ "nodev" ];
-        device = "nodev"; # Let GRUB automatically detect EFI
+        gfxmodeEfi = settings.boot.grub.gfxmodeEfi;
+        devices = settings.boot.grub.devices;
+        device = settings.boot.grub.device;
         useOSProber = settings.boot.grub.oSProber;
         extraConfig = ''
           GRUB_DISABLE_OS_PROBER=${!settings.boot.grub.oSProber}
