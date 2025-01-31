@@ -103,7 +103,7 @@
 
   home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland = {
-      enable = lib.optional settings.hyprland.enable true;
+      enable = settings.hyprland.enable;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
