@@ -1,5 +1,1 @@
-{ settings, pkgs, ... }: {
-  imports = [
-    #  ./ashell.nix
-  ];
-}
+{ settings, pkgs, ... }: { imports = [ ./ashell.nix ]; }
