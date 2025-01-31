@@ -21,9 +21,9 @@
         gfxmodeEfi = settings.boot.grub.gfxmodeEfi;
         devices = settings.boot.grub.devices;
         device = settings.boot.grub.device;
-        useOSProber = settings.boot.grub.oSProber;
+        useOSProber = false;
         extraConfig = ''
-          GRUB_DISABLE_OS_PROBER=${!settings.boot.grub.oSProber}
+          GRUB_DISABLE_OS_PROBER=true
           GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
         '';
         # extraEntries = ''
