@@ -98,6 +98,7 @@
     nix-tree # Interactively browse a Nix store paths dependencies
     nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
     nix-prefetch # Prefetch any fetcher function call, e.g. package sources
+    nix-prefetch-git
     nix-prefetch-github
     nixfmt-classic # An opinionated formatter for Nix
     nixos-install-tools # The essential commands from the NixOS installer as a package
