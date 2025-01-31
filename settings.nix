@@ -298,8 +298,8 @@
       };
     };
     monospace = {
-      name = fonts.name;
-      package = "";
+      name = "Monospace Nerd Font Mono";
+      package = pkgs.nerd-fonts.monaspace;
     };
     serif = {
       name = "Noto Serif";
@@ -312,7 +312,11 @@
     terminals = {
       kitty = {
         name = "CaskaydiaCove Nerd Font Mono";
-        size = 18; # Font size
+        size = 15; # Font size
+      };
+      foot = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 15;
       };
     };
   };
