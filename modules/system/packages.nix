@@ -4,7 +4,7 @@
     # ---- Settings.nix Packages ---- #
     settings.browserPkg
     settings.termPkg
-    settings.cursorPackage
+    settings.style.cursor.package
 
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
     # matugen # A material you color generation tool
