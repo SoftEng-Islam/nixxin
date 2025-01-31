@@ -379,7 +379,7 @@
     };
     # ---- Qt ---- #
     qt = {
-      Style = "adwaita-dark";
+      style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
       package = pkgs.kdePackages.breeze;
     };
