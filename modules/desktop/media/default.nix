@@ -29,13 +29,13 @@
     (if settings.system.mediaPlayers.glide then glide-media-player else "")
 
     # Jellyfin Desktop Client based on Plex Media Player
-    (if settings.system.features.mediaPlayers.jellyfin then
+    (if settings.system.mediaPlayers.jellyfin then
       jellyfin-media-player
     else
       "")
 
     # ---- Video Editors ---- #
-    (if settings.system.features.videoEditors.kdenlive then kdenlive else "")
-    (if settings.system.features.videoEditors.shotcut then shotcut else "")
+    (if settings.system.videoEditors.kdenlive then kdenlive else "")
+    (if settings.system.videoEditors.shotcut then shotcut else "")
   ];
 }
