@@ -12,7 +12,7 @@
     home = {
       username = settings.users.selected.username;
       homeDirectory = "/home/${settings.users.selected.username}";
-      stateVersion = settings.homeStateVersion;
+      stateVersion = settings.home.stateVersion;
       sessionPath =
         [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
 

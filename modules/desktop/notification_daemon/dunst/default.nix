@@ -8,8 +8,8 @@ in {
 
   # nixpkgs.overlays = [ (final: prev: { _custom = pkgs.callPackage ./dunst-nctui { }; }) ];
 
+  # programs.dunst.enable = true;
   home-manager.users."${settings.users.selected.username}" = {
     home.file.".config/dunst/dunstrc".source = ./dunstrc;
-    # programs.dunst.enable = true;
   };
 }
