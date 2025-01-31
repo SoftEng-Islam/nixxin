@@ -2,6 +2,7 @@
   imports = [
     # ./clipboard_manager
     # ./color_picker
+    ./desktop_environment
     # ./display_configuration
     ./display_manager
     # ./gamma_tools
@@ -12,6 +13,7 @@
     # ./screen_lock
     # ./screenshot
     ./statusbar
+    ./window_manager
     ./audio.nix
     ./boot.nix
     ./corectrl.nix
