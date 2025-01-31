@@ -16,8 +16,10 @@ in {
     # Command-line utility and library for controlling media players that implement MPRIS
     playerctl
 
-    mpvPlayer
+    (pkgs.mpv.override { scripts = [ pkgs.mpvScripts.mpris ]; })
+    celluloid
 
+    vlc
     # Simple GTK frontend for the mpv video player
     # (if settings.system.mediaPlayers.celluloid then celluloid else "")
 
