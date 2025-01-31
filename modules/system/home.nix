@@ -16,7 +16,7 @@
       sessionPath =
         [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
 
-      home.sessionVariables = {
+      sessionVariables = {
         PAGER = "less";
         LESS = "-R";
         VIRTUAL_ENV_DISABLE_PROMPT = "1";
