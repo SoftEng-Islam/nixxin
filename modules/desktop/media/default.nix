@@ -2,9 +2,8 @@
 # mpv is a free and open-source general-purpose video player, based on the MPlayer and mplayer2 projects, with great improvements above both.
 { lib, settings, pkgs, ... }:
 let
-  mpvPlayer = lib.optional settings.system.mediaPlayers.mpv pkgs.mpv.override {
-    scripts = [ pkgs.mpvScripts.mpris ];
-  };
+  mpvPlayer = lib.optional settings.system.mediaPlayers.mpv
+    (pkgs.mpv.override { scripts = [ pkgs.mpvScripts.mpris ]; });
 
 in {
   imports = [ ];
