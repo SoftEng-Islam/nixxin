@@ -10,6 +10,6 @@ in {
 
   home-manager.users."${settings.users.selected.username}" = {
     home.file.".config/dunst/dunstrc".source = ./dunstrc;
-    programs.dunst.enable = true;
+    # programs.dunst.enable = true;
   };
 }
