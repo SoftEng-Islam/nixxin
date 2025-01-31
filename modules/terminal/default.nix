@@ -41,7 +41,6 @@
   '';
 
   environment.systemPackages = with pkgs; [
-
     bashInteractive
 
     nanorc # Improved Nano Syntax Highlighting Files

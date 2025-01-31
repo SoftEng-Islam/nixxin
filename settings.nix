@@ -318,6 +318,14 @@
         name = "CaskaydiaCove Nerd Font Mono";
         size = 15;
       };
+      wezterm = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 15;
+      };
+      fish = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 15;
+      };
     };
   };
 
