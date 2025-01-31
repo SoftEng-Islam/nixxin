@@ -2,11 +2,11 @@
   home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland = {
       settings.decoration = {
-        rounding = settings.rounding;
+        rounding = settings.style.window.rounding;
 
         # ---- Blur ---- #
         blur = {
-          enabled = settings.blur;
+          enabled = settings.style.window.blur;
           xray = true;
           ignore_opacity = true;
           special = true;
@@ -22,7 +22,7 @@
 
         # ---- Shadow ---- #
         shadow = {
-          enabled = settings.shadow;
+          enabled = settings.style.window.shadow;
           range = 20;
           offset = "0 2";
           render_power = 2;
@@ -33,7 +33,7 @@
         };
 
         # ---- Dim ---- #
-        dim_inactive = settings.dim_inactive;
+        dim_inactive = settings.style.window.dim_inactive;
         dim_strength = 0.2;
         dim_special = 0;
       };
