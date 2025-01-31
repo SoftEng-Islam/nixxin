@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ settings, config, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     # bootspec.enable = true;
@@ -26,9 +26,9 @@
         # devices = [ "/dev/disk/by-uuid/7FD3-5156" ];
         devices = [ "nodev" ];
         device = "nodev"; # Let GRUB automatically detect EFI
-        useOSProber = false;
+        useOSProber = settings.boot.grub.oSProber;
         extraConfig = ''
-          GRUB_DISABLE_OS_PROBER=true
+          GRUB_DISABLE_OS_PROBER=${!settings.boot.grub.oSProber}
           GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
         '';
         # extraEntries = ''

@@ -83,10 +83,12 @@
   # -------------- #
   boot = {
     mode = "uefi"; # uefi or bios
+    boot_manager = "grub";
     # mount path for efi boot partition; only used for uefi boot mode
     mountPath = "/boot";
     # device identifier for grub; only used for legacy (bios) boot mode
     grubDevice = "";
+    grub = { oSProber = false; };
   };
 
   # ---- Date/Time & Languages ---- #
