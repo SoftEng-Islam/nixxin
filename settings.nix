@@ -229,7 +229,7 @@
   hyprland = {
     enable = true;
     # Pregenerated Colors to use in Hyprland
-    genColorsPath = /home/${users.user1.username}/.cache/hypr/colors.conf;
+    genColorsPath = /home/${users.selected.username}/.cache/hypr/colors.conf;
     animationSpeed = "medium"; # medium or slow
     plugins = {
       Hyprspace = true;
