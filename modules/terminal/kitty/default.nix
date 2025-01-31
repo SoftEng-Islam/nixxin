@@ -30,8 +30,6 @@
       inactive_tab_font_style normal
       tab_bar_align left
       tab_bar_edge top
-      # tab_bar_margin_height 1.0 1.0
-      # tab_bar_margin_width 1.0
       tab_bar_min_tabs 1
       tab_bar_style separator
       tab_separator " ┇ "
@@ -48,11 +46,11 @@
       copy_on_select no
 
       # ---- Fonts ---- #
-      font_family ${settings.TerminalsFontName}
+      font_family ${settings.fonts.terminals.kitty.name}
       bold_font auto
       italic_font auto
       bold_italic_font auto
-      font_size ${toString settings.TerminalsFontSize}
+      font_size ${toString settings.fonts.terminals.kitty.size}
 
       # ---- Cursor ---- #
       cursor_shape beam
@@ -66,7 +64,7 @@
 
       # ---- Scrollbar ---- #
       scrollback_indicator_opacity 1.0
-      scrollbar no
+      scrollbar yes
 
       # ---- Windows Customization ---- #
       remember_window_size no
