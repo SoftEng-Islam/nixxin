@@ -1,14 +1,14 @@
 { settings, pkgs, ... }: {
   imports = [
     # ---- Dirs ---- #
-    # ./alacritty
+    ./alacritty
     ./bash
-    # ./fish
-    # ./foot
+    ./fish
+    ./foot
     ./kitty
-    # ./neofetch
+    ./neofetch
     # ./nvim
-    # ./wezterm
+    ./wezterm
 
     # ---- Files ---- #
     ./direnv.nix

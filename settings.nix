@@ -314,6 +314,10 @@
         name = "CaskaydiaCove Nerd Font Mono";
         size = 15; # Font size
       };
+      alacritty = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        size = 15;
+      };
       foot = {
         name = "CaskaydiaCove Nerd Font Mono";
         size = 15;

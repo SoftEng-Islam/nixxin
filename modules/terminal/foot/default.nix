@@ -50,8 +50,8 @@ in {
 
     settings = {
       main = {
-        font = "${settings.TerminalsFontName}:size=${
-            toString settings.TerminalsFontSize
+        font = "${settings.fonts.terminals.foot.name}:size=${
+            toString settings.fonts.terminals.foot.size
           }";
         horizontal-letter-offset = 0;
         vertical-letter-offset = 0;
