@@ -38,17 +38,21 @@
       # bind = $main, I, exec,
       bind = $main, O, togglesplit,
       bind = $main, P, pseudo,
+      # -------------
       #=> Second Row:
+      # -------------
       # bind = $main, A, exec,
       # bind = $main, S, exec,
-      bind = $main, D, exec, albert # Toggle fallback launcher: Albert
+      # bind = $main, D, exec,
       bind = $main, F, fullscreen, 0
       # bind = $main, G, exec,
       # bind = $main, H, exec,
       # bind = $main, J, exec,
       # bind = $main, K, exec,
       bind = $main, L, exec, ${pkgs.hyprlock}/bin/hyprlock # Lock screen
+      # -------------
       #=> Third Row:
+      # -------------
       # bind = $main, Z, exec,
       # bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)

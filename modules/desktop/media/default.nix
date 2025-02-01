@@ -6,7 +6,7 @@ let
     (pkgs.mpv.override { scripts = [ pkgs.mpvScripts.mpris ]; });
 
 in {
-  imports = [ ];
+  imports = [ ./cava.nix ./codex.nix ./rnnoise.nix ./mpv ];
 
   environment.systemPackages = with pkgs; [
     # Audio Control
