@@ -29,8 +29,8 @@
     ./packages.nix
     ./power.nix
     ./programs.nix
-    ./security.nix
-    ./services.nix
+    ./security
+    ./services
     ./ssh.nix
     ./systemd.nix
     ./users.nix

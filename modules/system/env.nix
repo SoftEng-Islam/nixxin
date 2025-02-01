@@ -1,4 +1,6 @@
-{ config, lib, settings, pkgs, ... }: {
+{ config, lib, settings, pkgs, ... }:
+let inherit (lib) makeSearchPathOutput;
+in {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
@@ -142,6 +144,15 @@
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
       # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
+
+      # Fix for missing audio/video information in properties https://github.com/NixOS/nixpkgs/issues/53631
+      GST_PLUGIN_SYSTEM_PATH_1_0 =
+        makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
+          gst-plugins-good
+          gst-plugins-bad
+          gst-plugins-ugly
+          gst-libav
+        ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
 
       # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
       GST_PLUGIN_PATH =

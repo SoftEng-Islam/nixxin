@@ -31,7 +31,7 @@
       bind = $main, W, exec, brave &
       #bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
-      bind = $main, R, exec, resources &
+      bind = $main, R, exec, btop
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
@@ -184,7 +184,7 @@
       bind = $main, F2, exec, ignis toggle ignis_POWERMENU
       bind = $main, F3, exec, ignis toggle ignis_POWERMENU
       #=> Restart Ignis
-      bindr = $main I, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
+      bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
       #=> ignis Recording
       bind = $main I, 1, exec, ~/.config/ignis/scripts/recording.py start
       bind = $main I, 2, exec, ~/.config/ignis/scripts/recording.py continue

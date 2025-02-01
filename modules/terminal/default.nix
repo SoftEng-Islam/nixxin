@@ -19,7 +19,7 @@
     # ./lf.nix
     # ./shell.nix
     # ./starship.nix
-    # ./tmux.nix
+    # ./tmux
     ./zsh.nix
     # ./tmux.nix
   ];
