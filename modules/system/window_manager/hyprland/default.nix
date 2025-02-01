@@ -20,7 +20,7 @@
     ./configs/rules.nix
     # ./configs/scripts.nix
     ./configs/source.nix
-
+    ./hyprpolkitagent.nix
   ];
   programs = {
     uwsm.enable = false;
@@ -36,63 +36,26 @@
     };
   };
 
-  # home.file.".config/hypr/hyprland.conf".text = builtins.readFile ./hypr/hyprland.conf;
-  # home.file.".config/hypr/hyprland.conf".source = ./hypr/hyprland.conf;
-  # home.file.".config/hypr/hyprlock.conf".source = ./hypr/hyprlock.conf;
-  # home.file.".config/hypr/scripts/hyprlock-time.sh".source = ./hypr/scripts/hyprlock-time.sh;
+  environment = {
+    variables = {
+      LIBSEAT_BACKEND = "logind";
 
-  environment =
-    # let exec = "exec dbus-launch Hyprland";
-    # in
-    {
-      #loginShellInit = ''
-      # if [ -z $DISPLAY ] && [ "$(tty)" = "/dev/tty1" ]; then
-      #    ${exec}
-      #  fi
-      #'';
-      variables = {
-        LIBSEAT_BACKEND = "logind";
+      HYPRCURSOR_THEME = settings.style.cursor.name;
+      HYPRCURSOR_SIZE = toString settings.style.cursor.size;
 
-        # HYPRLAND_PLUGIN_PATH = lib.concatStringsSep ":" [
-        #   "${pkgs.hyprlandPlugins.hyprspace}/lib"
-        #   "${pkgs.hyprlandPlugins.hyprbars}/lib"
-        #   "${pkgs.hyprlandPlugins.borders-plus-plus}/lib"
-        #   "${pkgs.hyprlandPlugins.hyprtrails}/lib"
-        # ];
-        HYPRCURSOR_THEME = settings.style.cursor.name;
-        HYPRCURSOR_SIZE = toString settings.style.cursor.size;
+      # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
-        # HYPRLAND_TRACE = 1; # Enables more verbose logging.
+      # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
+      # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
 
-        # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
-        # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
+      # Disables management of variables in systemd and dbus activation environments.
+      # HYPRLAND_NO_SD_VARS = 1;
 
-        # Disables management of variables in systemd and dbus activation environments.
-        # HYPRLAND_NO_SD_VARS = 1;
-
-        # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
-        QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-        _JAVA_AWT_WM_NONREPARENTING = "1";
-      };
+      # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+      _JAVA_AWT_WM_NONREPARENTING = "1";
     };
-  #security.pam.services.hyprlock = {
-  # text = "auth include system-auth";
-  #text = "auth include login";
-  #fprintAuth = if settings.hostName == "nixos" then true else false;
-  # enableGnomeKeyring = false;
-  #};
-
-  # services.greetd = {
-  #   enable = true;
-  #   settings = {
-  #     default_session = {
-  #       command =
-  #         "${inputs.hyprland.packages.${pkgs.system}.hyprland}/bin/Hyprland";
-  #       user = settings.users.selected.username;
-  #     };
-  #   };
-  #   vt = 7;
-  # };
+  };
 
   systemd.sleep.extraConfig = ''
     AllowSuspend=no
@@ -116,9 +79,9 @@
         };
         # extraConfig = "";
       };
+      # Scripts for Hyprland
+      home.file.".config/hypr/scripts".source = ./configs/scripts;
     };
-    # Scripts for Hyprland
-    home.file.".config/hypr/scripts".source = ./configs/scripts;
   };
   environment.systemPackages = with pkgs; [
     # Install Hyprland from Inputes (latest version)
@@ -126,11 +89,6 @@
 
     # A wlroots-compatible Wayland color picker that does not suck
     # inputs.hyprpicker.packages.${system}.hyprpicker
-
-    # inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
-    # hyprpolkitagent
-
-    (hyprpolkitagent.override { hyprland = hyprland; })
 
     # albert # Fast and flexible keyboard launcher
     # hyprgui # unstable GUI for configuring Hyprland written in Rust
