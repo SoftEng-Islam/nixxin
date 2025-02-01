@@ -27,7 +27,7 @@ in {
             panelHeight = 100
             showEmptyWorkspace = true
             showNewWorkspace = true
-            workspaceActiveBorder = "$primary"
+            workspaceActiveBorder = $primary
           }
         }
         bind = $main, TAB, overview:toggle

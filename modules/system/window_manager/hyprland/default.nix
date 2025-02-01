@@ -90,8 +90,6 @@
     # A wlroots-compatible Wayland color picker that does not suck
     # inputs.hyprpicker.packages.${system}.hyprpicker
 
-    # albert # Fast and flexible keyboard launcher
-    # hyprgui # unstable GUI for configuring Hyprland written in Rust
     fd # A simple, fast and user-friendly alternative to find
     gtk-engine-murrine # for gtk themes
     hyprcursor # The hyprland cursor format, library and utilities
