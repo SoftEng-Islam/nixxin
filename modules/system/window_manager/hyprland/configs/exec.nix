@@ -29,7 +29,7 @@ let
 
 
     # Core components (authentication, lock screen, notification daemon)
-    # ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
     ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
