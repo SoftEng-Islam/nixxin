@@ -11,7 +11,7 @@ let
 in {
   stylix = {
     enable = true;
-    image = ./wallpapers/eveningSky.png;
+    image = ../../wallpapers/japan_tower_pink.jpg;
     polarity = "dark";
     # base16Scheme = ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
     # base16Scheme = base24;
@@ -80,8 +80,8 @@ in {
       # gnome-text-editor.enable = true;
       grub.enable = true;
       grub.useImage = true;
-      regreet.enable = true;
-      gtk.enable = true;
+      regreet.enable = false;
+      gtk.enable = false;
       nixos-icons.enable = true;
       plymouth.enable = true;
       nixvim.enable = true;

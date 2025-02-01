@@ -23,12 +23,12 @@
     ./hyprpolkitagent.nix
   ];
   programs = {
-    uwsm.enable = true;
+    uwsm.enable = false;
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
       enable = settings.hyprland.enable;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -69,7 +69,7 @@
       enable = settings.hyprland.enable;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      systemd.enable = false;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       settings = {
