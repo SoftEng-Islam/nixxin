@@ -80,10 +80,10 @@ with lib.gvariant; {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        gtk-theme = "${settings.styles.gtk.theme}";
+        gtk-theme = "${settings.style.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
-        icon-theme = "${settings.styles.icons.nameInDark}";
+        icon-theme = "${settings.style.icons.nameInDark}";
         # locate-pointer
         # menubar-accel
         # menubar-detachable
