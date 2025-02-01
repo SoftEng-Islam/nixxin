@@ -11,9 +11,26 @@ in {
   };
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+  systemd.user.services.nautilus = {
+    description = "Preload Nautilus";
+    after = [ "graphical-session.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.nautilus}/bin/nautilus --no-desktop";
+      Restart = "always";
+    };
+    wantedBy = [ "default.target" ];
+  };
   environment = {
-    systemPackages =
-      [ nautEnv pkgs.gvfs pkgs.dconf pkgs.xdg-desktop-portal pkgs.file-roller ];
+    systemPackages = with pkgs; [
+      nautEnv
+      dconf
+      file-roller
+      gvfs # Mounts, trash, and remote filesystem support
+      udisks2 # Disk mounting support
+      tracker # File indexing for Nautilus search
+      # xdg-desktop-portal-gnome
+
+    ];
     pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
       FILE_MANAGER = "nautilus";

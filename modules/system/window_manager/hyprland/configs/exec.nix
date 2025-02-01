@@ -4,12 +4,17 @@ let
     #!/usr/bin/env bash
     systemctl --user start hyprpolkitagent
 
+    # ---- Hyprland with uwsm ---- #
+    # systemctl --user enable --now hyprpolkitagent.service
+
     # ---- notification daemon ---- #
-    dunst
+    dunst &
 
     # ---- Start IGNIS ---- #
-    # ignis init
-    nautilus --no-desktop &
+    ignis init &
+
+    # ---- Make nautilus Run in Background ---- #
+    # nautilus --no-desktop &
 
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP

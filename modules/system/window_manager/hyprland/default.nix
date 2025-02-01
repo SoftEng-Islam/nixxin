@@ -126,8 +126,11 @@
 
     # A wlroots-compatible Wayland color picker that does not suck
     # inputs.hyprpicker.packages.${system}.hyprpicker
+
     # inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
-    hyprpolkitagent
+    # hyprpolkitagent
+
+    (hyprpolkitagent.override { hyprland = hyprland; })
 
     # albert # Fast and flexible keyboard launcher
     # hyprgui # unstable GUI for configuring Hyprland written in Rust

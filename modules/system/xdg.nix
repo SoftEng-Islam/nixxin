@@ -85,6 +85,8 @@ in {
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
+      "${pkgs.gsettings-desktop-schemas}/share"
+      "${pkgs.nautilus}/share"
       "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
       "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
     ];
@@ -96,13 +98,12 @@ in {
       xdgOpenUsePortal = true;
       config = {
         common.default = "*";
-        hyprland.default = [ "gtk" "hyprland" ];
+        hyprland.default = [ "hyprland" "gtk" ];
       };
-      extraPortals = [
-        # pkgs.xdg-desktop-portal-hyprland
-        pkgs.xdg-desktop-portal-gtk
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
       ];
-      # configPackages = [ pkgs.xdg-desktop-portal-gtk pkgs.xdg-desktop-portal ];
     };
   };
 
@@ -149,9 +150,8 @@ in {
   environment.systemPackages = with pkgs; [
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    # xdg-desktop-portal-gnome # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
+    xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-    # xdg-desktop-portal-hyprland # xdg-desktop-portal backend for Hyprland
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
     xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
