@@ -35,7 +35,7 @@ in {
         hyprbars-button = rgb(B91C1C),20,, hyprctl dispatch killactive
         hyprbars-button = rgb(7E22CE),20,*, hyprctl dispatch fullscreen 2
         hyprbars-button = rgb(15803D),20,+, hyprctl dispatch fullscreen 1
-        hyprbars-button = rgb(CA8A04),20,=, hyprctl dispatch togglefloating
+        hyprbars-button = rgb(CA8A04),20,-, hyprctl dispatch togglefloating
       }
     '';
   };
