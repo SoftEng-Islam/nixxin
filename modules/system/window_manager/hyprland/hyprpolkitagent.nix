@@ -16,6 +16,9 @@
         StartLimitIntervalSec = 60;
         StartLimitBurst = 60;
       };
+      # start polkit to support authentication prompts
+      # wayland.windowManager.hyprland.settings.exec-once =
+      #   [ "systemctl --user start hyprpolkitagent" ];
     };
   };
 }
