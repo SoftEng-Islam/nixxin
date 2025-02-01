@@ -29,12 +29,12 @@
       active_tab_font_style   bold
       inactive_tab_font_style normal
       tab_bar_align left
-      tab_bar_edge top
-      tab_bar_min_tabs 1
-      tab_bar_style separator
-      tab_separator " ┇ "
+      tab_bar_edge down
+      tab_bar_min_tabs 2
+      # tab_bar_style separator
+      # tab_separator " ┇ "
       tab_switch_strategy previous
-      tab_title_max_length 25
+      tab_title_max_length 20
       tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
 
       # ---- URL ---- #
