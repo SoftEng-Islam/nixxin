@@ -1,0 +1,84 @@
+// JINJA2 TEMPLATE
+// WARNING: Do not import this file in style.scss
+
+.media-io.github.celluloid_player.Celluloid {
+    margin-top: 1rem;
+}
+
+
+.media-image-io.github.celluloid_player.Celluloid {
+    background-image: url('file:////home/softeng/.config/ignis/modules/control_center/widgets/../../../misc/media-art-fallback.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    min-height: 11rem;
+    border-radius: 1.5rem;
+}
+
+.media-image-gradient-io.github.celluloid_player.Celluloid {
+    border-radius: 1.3rem;
+    background: linear-gradient(90deg, rgba(#00363c, 0.9) 0%, rgba(#00363c, 0.4) 50%, rgba(#00363c, 0.9) 100%);
+}
+
+.media-scale-io.github.celluloid_player.Celluloid trough,
+.media-scale-io.github.celluloid_player.Celluloid trough highlight {
+    background-color: rgba(#dee4e4, 0.2);
+    border-radius: 1rem;
+    min-height: 0.2rem;
+}
+
+
+.media-scale-io.github.celluloid_player.Celluloid trough highlight {
+    background-color: #dee4e4;
+}
+
+.media-scale-io.github.celluloid_player.Celluloid slider {
+    background-color: #dee4e4;
+    padding: 0.5rem 0.1rem;
+    margin: -0.5rem -0.1rem;
+}
+
+.media-title-io.github.celluloid_player.Celluloid {
+    color: #dee4e4;
+}
+
+.media-artist-io.github.celluloid_player.Celluloid {
+    color: #bec8ca;
+    font-weight: normal;
+}
+
+
+.media-content-io.github.celluloid_player.Celluloid {
+    padding: 1rem;
+}
+
+.media-playback-button-io.github.celluloid_player.Celluloid {
+    background-color: #81d3df;
+    color: #00363c;
+    border-radius: 4rem;
+    min-width: 2.7rem;
+    min-height: 2.7rem;
+    transition: 0.3s;
+
+    &:hover {
+        background-color: lighten(#81d3df, 5%);
+    }
+
+    &.playing {
+        border-radius: 1rem;
+    }
+}
+
+.media-player-icon-io.github.celluloid_player.Celluloid {
+    color: #81d3df;
+    padding: 1rem;
+    padding-top: 1.2rem;
+}
+
+.media-skip-button-io.github.celluloid_player.Celluloid {
+    transition: 0.3s;
+    color: #dee4e4;
+    &:hover {
+        color: #81d3df;
+    }
+}

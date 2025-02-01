@@ -1,0 +1,22 @@
+// @use "colors.scss";
+@use "../../.cache/ignis/material/colors.scss";
+
+@use "scss/mixins/window.scss";
+@use "scss/mixins/hover.scss";
+
+@use "scss/lib.scss";
+
+@use "scss/bar.scss";
+@use "scss/control_center.scss";
+@use "scss/osd.scss";
+@use "scss/notification_popup.scss";
+@use "scss/launcher.scss";
+@use "scss/settings.scss";
+@use "scss/powermenu.scss";
+@use "scss/notification_center.scss";
+
+
+* {
+    font-family: "JetBrainsMonoNL Nerd Font Mono";
+    font-weight: bold;
+}

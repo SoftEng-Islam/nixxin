@@ -1,0 +1,32 @@
+@use "../colors";
+@use "mixins/hover";
+@use "mixins/window";
+
+.powermenu {
+    @include window.window;
+}
+
+.powermenu-button {
+    @include hover.hover(colors.$surfaceContainer);
+    transition: 0.3s;
+    border-radius: 10rem;
+    min-width: 8rem;
+    min-height: 8rem;
+
+    &:focus {
+        @include hover.hover(colors.$primary);
+        color: colors.$surface;
+    }
+}
+
+.powermenu-button-label {
+    margin-top: 0.5rem;
+}
+
+.powermenu-button-box {
+    margin: 0.5rem;
+}
+
+.powermenu-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+}

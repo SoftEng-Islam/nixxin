@@ -8,13 +8,9 @@
     ./desktop
     ./dev
     ./flags
+    ./ignis
     ./styles
     ./system
     ./terminal
   ];
-  environment.systemPackages = with pkgs;
-    [ inputs.ignis.packages.${system}.ignis ];
-  home-manager.users."${settings.users.selected.username}" = {
-    home.file.".config/ignis".source = ./ignis;
-  };
 }

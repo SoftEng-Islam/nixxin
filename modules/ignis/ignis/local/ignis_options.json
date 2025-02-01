@@ -1,0 +1,8 @@
+{
+    "notifications": {},
+    "recorder": {},
+    "applications": {},
+    "wallpaper": {
+        "wallpaper_path": "~/.cache/ignis/wallpaper"
+    }
+}
