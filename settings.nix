@@ -23,7 +23,10 @@
         albert = true;
         ulauncher = false;
       };
-      btop = { enable = true; };
+      btop = {
+        enable = true;
+        timeFormat = "12"; # or 24
+      };
       corectrl = true;
       fcitx5 = true;
       ssh = true;

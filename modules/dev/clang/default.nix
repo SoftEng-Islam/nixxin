@@ -2,10 +2,12 @@
 
   environment.variables = {
     # Use gcc for compilation
+
     # CC="${pkgs.gcc}/bin/gcc";
     # CXX="${pkgs.gcc}/bin/c++"";
-    CC = "${pkgs.clang}/bin/clang";
-    CXX = "${pkgs.clang}/bin/clang++";
+
+    # CC = "${pkgs.clang}/bin/clang";
+    # CXX = "${pkgs.clang}/bin/clang++";
   };
   environment.systemPackages = with pkgs; [
     valgrind # Valgrind is an award-winning instrumentation framework for building dynamic analysis tools.
@@ -15,10 +17,11 @@
     cmake-format
     cmake-language-server
     cmakeCurses
-    gcc14
+    gcc
     gnumake
     ninja
     pkg-config
+    clang-analyzer
 
     # generates .cache and compile_commands.json
     # files required by clangd
