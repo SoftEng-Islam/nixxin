@@ -297,7 +297,7 @@
       antialiasing = "grayscale";
       hinting = "medium";
       rendering = "automatic";
-      rgba-order = "rgb";
+      rgba_order = "rgb";
 
       size = {
         main = 12; # Font size
