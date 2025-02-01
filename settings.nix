@@ -314,8 +314,8 @@
       package = pkgs.noto-fonts-cjk-serif;
     };
     hyprbars = {
-      name = "JetBrainsMonoNL Nerd Font Bold";
-      size = 16;
+      name = "JetBrainsMonoNL Nerd Font Mono Bold";
+      size = 14;
     };
     terminals = {
       kitty = {

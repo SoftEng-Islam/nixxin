@@ -5,12 +5,22 @@ let
     paths = with pkgs; [ nautilus nautilus-python nautilus-open-any-terminal ];
   };
 in {
-  programs.nautilus-open-any-terminal = {
-    enable = true;
-    terminal = "kitty";
+  programs = {
+    nautilus-open-any-terminal = {
+      enable = true;
+      terminal = "kitty";
+    };
+    # Required by gnome file managers
+    file-roller.enable = true;
+    gnome-disks.enable = true;
   };
+  # ---- Tracker3 ---- #
+  services.gnome.tinysparql.enable = false; # indexing files
+
+  services.gnome.localsearch.enable = false;
   services.udisks2.enable = true;
   services.gvfs.enable = true;
+
   systemd.user.services.nautilus = {
     description = "Preload Nautilus";
     after = [ "graphical-session.target" ];

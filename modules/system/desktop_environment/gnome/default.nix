@@ -10,7 +10,10 @@
   services.gnome.gnome-online-accounts.enable = true;
   services.gnome.games.enable = false;
   services.gnome.localsearch.enable = false;
+
+  # ---- Tracker3 ---- #
   services.gnome.tinysparql.enable = false; # indexing files
+
   services.udev.packages = with pkgs; [ gnome-settings-daemon ];
   # services.gnome.core-developer-tools.enable = true;
 
