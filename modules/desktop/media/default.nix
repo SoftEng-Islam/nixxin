@@ -3,39 +3,37 @@
 { lib, settings, pkgs, ... }:
 let
   mediaPlayers = [
-    (lib.optional settings.system.mediaPlayers.mpv
-      (pkgs.mpv.override { scripts = [ pkgs.mpvScripts.mpris ]; }))
-    (lib.optional settings.system.mediaPlayers)
+    # ---- VLC ---- #
+    (lib.optional settings.system.mediaPlayers.vlc pkgs.vlc)
+
+    # ---- clapper ---- #
+    (lib.optional settings.system.mediaPlayers.clapper pkgs.clapper)
+
+    # ---- glide ---- #
+    (lib.optional settings.system.mediaPlayers.glide pkgs.glide-media-player)
+
+    # ---- jellyfin ---- #
+    (lib.optional settings.system.mediaPlayers.jellyfin
+      pkgs.jellyfin-media-player)
+
+    # ---- kdenlive ---- #
+    (lib.optional settings.system.videoEditors.kdenlive pkgs.kdenlive)
+
+    # ---- shotcut ---- #
+    (lib.optional settings.system.videoEditors.shotcut pkgs.shotcut)
   ];
 
-  # Cross-platform media player and streaming server
-  # (if settings.system.mediaPlayers.vlc then vlc else "")
-
-  # A GNOME media player built using GTK4 toolkit and powered by GStreamer with OpenGL rendering
-  # (if settings.system.mediaPlayers.clapper then clapper else "")
-
-  # Linux/macOS media player based on GStreamer and GTK
-  # (if settings.system.mediaPlayers.glide then glide-media-player else "")
-
-  # Jellyfin Desktop Client based on Plex Media Player
-  # (if settings.system.mediaPlayers.jellyfin then
-  #   jellyfin-media-player
-  # else
-  #   "")
-
-  # ---- Video Editors ---- #
-  # (if settings.system.videoEditors.kdenlive then kdenlive else "")
-  # (if settings.system.videoEditors.shotcut then shotcut else "")
 in {
   imports = [ ./celluloid ./cava.nix ./codex.nix ./rnnoise.nix ./mpv ];
 
-  environment.systemPackages = with pkgs; [
-    # Command-line utility and library for controlling media players that implement MPRIS
-    playerctl
+  environment.systemPackages = with pkgs;
+    lib.flatten mediaPlayers ++ [
+      # Command-line utility and library for controlling media players that implement MPRIS
+      playerctl
 
-    # Audio Control
-    pulsemixer
-    pwvucontrol
+      # Audio Control
+      pulsemixer
+      pwvucontrol
 
-  ];
+    ];
 }
