@@ -28,7 +28,7 @@ in {
         bar_button_padding = 12
         bar_precedence_over_border = true
         bar_part_of_window = true
-        bar_color = rgba(0D141B90)
+        bar_color = rgba(262626ff)
         col.text = rgba(DCE3EEFF)
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
