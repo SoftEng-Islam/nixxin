@@ -140,7 +140,6 @@
     uwuify
 
     adwaita-qt6
-    adw-gtk3
     material-symbols
   ];
 }

@@ -80,7 +80,7 @@ with lib.gvariant; {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        gtk-theme = "${settings.style.gtk.theme}";
+        gtk-theme = lib.mkForce "${settings.style.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
         icon-theme = "${settings.style.icons.nameInDark}";
