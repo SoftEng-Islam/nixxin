@@ -19,10 +19,6 @@
         development_stuff = true;
         android_studio = false;
       };
-      apps_launcher = {
-        albert = true;
-        ulauncher = false;
-      };
       btop = {
         enable = true;
         timeFormat = "12"; # or 24
@@ -40,8 +36,6 @@
       davinci-resolve = false;
     };
     mediaPlayers = {
-      mpv = true;
-      celluloid = true;
       vlc = true;
       clapper = false;
       glide = false;

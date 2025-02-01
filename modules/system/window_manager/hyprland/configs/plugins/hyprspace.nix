@@ -25,9 +25,9 @@ in {
             gapsIn = 5
             gapsOut = 5
             panelHeight = 100
-            showEmptyWorkspace = false
-            showNewWorkspace = false
-            workspaceActiveBorder = rgba(15803D99)
+            showEmptyWorkspace = true
+            showNewWorkspace = true
+            workspaceActiveBorder = "$primary"
           }
         }
         bind = $main, TAB, overview:toggle
