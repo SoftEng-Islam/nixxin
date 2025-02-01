@@ -61,17 +61,17 @@ with lib.gvariant; {
         # cursor-blink-time
         # cursor-blink-timeout
         cursor-size = settings.style.cursor.size;
-        cursor-theme = "${settings.style.cursor.name}";
+        cursor-theme = settings.style.cursor.name;
         enable-animations = false;
         # enable-hot-corners
 
         # ---- Fonts ---- #
-        font-name = "${settings.fonts.main.name}";
-        # document-font-name = "${settings.fonts.main.name}";
-        font-hinting = "${settings.fonts.main.hinting}";
-        font-rendering = "${settings.fonts.main.rendering}";
-        font-antialiasing = "${settings.fonts.main.antialiasing}";
-        font-rgba-order = "${settings.fonts.main.rgba_order}";
+        font-name = lib.mkForce settings.fonts.main.name;
+        document-font-name = lib.mkForce settings.fonts.main.name;
+        font-hinting = lib.mkForce settings.fonts.main.hinting;
+        font-rendering = lib.mkForce settings.fonts.main.rendering;
+        font-antialiasing = lib.mkForce settings.fonts.main.antialiasing;
+        font-rgba-order = lib.mkForce settings.fonts.main.rgba_order;
 
         # gtk-color-palette
         # gtk-color-scheme
