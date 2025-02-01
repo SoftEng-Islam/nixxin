@@ -5,7 +5,7 @@ let
     #systemctl --user start hyprpolkitagent
 
     # ---- Hyprland with uwsm ---- #
-    systemctl --user enable --now hyprpolkitagent.service
+    #systemctl --user enable --now hyprpolkitagent.service
 
     # ---- notification daemon ---- #
     # dunst &
@@ -29,10 +29,10 @@ let
 
 
     # Core components (authentication, lock screen, notification daemon)
-    #${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    # ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
-    #${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
+    ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
     # ---- Input Method ---- #
     #${pkgs.fcitx5}/bin/fcitx5
