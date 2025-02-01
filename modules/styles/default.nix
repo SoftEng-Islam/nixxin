@@ -118,7 +118,7 @@ in {
         # kitty.variant256Colors = true;
         # lazygit.enable = true;
         # mako.enable = true;
-        # hyprland.enable = false;
+        hyprland.enable = false;
       };
     };
   }];
