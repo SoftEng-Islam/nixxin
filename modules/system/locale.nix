@@ -93,24 +93,7 @@
     packages = [ pkgs.terminus_font ];
     font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
     # useXkbConfig = false; # If set, configure the virtual console keymap from the xserver keyboard settings.
-    colors = [
-      "002b36"
-      "dc322f"
-      "859900"
-      "b58900"
-      "268bd2"
-      "d33682"
-      "2aa198"
-      "eee8d5"
-      "002b36"
-      "cb4b16"
-      "586e75"
-      "657b83"
-      "839496"
-      "6c71c4"
-      "93a1a1"
-      "fdf6e3"
-    ];
+    # colors = [ "002b36" "dc322f" "859900" "b58900" "268bd2" "d33682" "2aa198" "eee8d5" "002b36" "cb4b16" "586e75" "657b83" "839496" "6c71c4" "93a1a1" "fdf6e3" ];
   };
   # IBus Daemon as a User Service
   systemd.user.services.ibus-daemon = {

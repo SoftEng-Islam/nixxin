@@ -67,7 +67,7 @@ with lib.gvariant; {
 
         # ---- Fonts ---- #
         font-name = "${settings.fonts.main.name}";
-        document-font-name = "${settings.fonts.main.name}";
+        # document-font-name = "${settings.fonts.main.name}";
         font-hinting = "${settings.fonts.main.hinting}";
         font-rendering = "${settings.fonts.main.rendering}";
         font-antialiasing = "${settings.fonts.main.antialiasing}";
