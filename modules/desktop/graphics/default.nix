@@ -16,13 +16,7 @@ let
   # Virtual lighttable and darkroom for photographers
   darktableApp = lib.optional settings.system.graphics.darktable pkgs.darktable;
 in {
-  environment.systemPackages = [
-    lunacyApp
-    figmaApp
-    drawioApp
-    blenderApp
-    gimpApp
-    inkscapeApp
-    darktableApp
-  ];
+  environment.systemPackages =
+    lunacyApp figmaApp drawioApp blenderApp gimpApp inkscapeApp darktableApp;
+
 }
