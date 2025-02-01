@@ -106,7 +106,7 @@ in {
         # alacritty.enable = true;
         # avizo.enable = true;
         # bat.enable = true;
-        # btop.enable = true;
+        btop.enable = true;
         # cava.enable = true;
         # dunst.enable = true;
         # emacs.enable = true;
