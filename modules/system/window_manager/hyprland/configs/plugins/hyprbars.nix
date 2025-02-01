@@ -33,8 +33,8 @@ in {
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
         hyprbars-button = rgb(B91C1C),20,, hyprctl dispatch killactive
-        hyprbars-button = rgb(15803D),20,O, hyprctl dispatch fullscreen 2
-        hyprbars-button = rgb(CA8A04),20,-, hyprctl dispatch togglefloating
+        hyprbars-button = rgb(15803D),20,[], hyprctl dispatch fullscreen 2
+        hyprbars-button = rgb(CA8A04),20,][, hyprctl dispatch togglefloating
       }
     '';
   };

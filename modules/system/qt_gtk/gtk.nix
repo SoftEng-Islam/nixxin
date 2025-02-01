@@ -43,7 +43,7 @@
     gtksourceview
     libappindicator-gtk3
     tk
-    webkitgtk # Web content rendering engine, GTK port
+    # webkitgtk # Web content rendering engine, GTK port
     webkitgtk_6_0
     webp-pixbuf-loader
     wrapGAppsHook
