@@ -8,7 +8,7 @@ let
     # systemctl --user enable --now hyprpolkitagent.service
 
     # ---- notification daemon ---- #
-    dunst &
+    # dunst &
 
     # ---- Start IGNIS ---- #
     ignis init &
