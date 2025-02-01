@@ -36,9 +36,6 @@ in {
 
       file-roller
       gvfs # Mounts, trash, and remote filesystem support
-      gvfs-afc # For Apple devices
-      gvfs-gphoto2 # For cameras
-      gvfs-mtp # For MTP devices like Android phones
       udisks2 # Disk mounting support
 
       # tracker # File indexing for Nautilus search
