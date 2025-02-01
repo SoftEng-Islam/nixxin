@@ -32,21 +32,17 @@
   environment.systemPackages = with pkgs; [
     # GTK  Stuff & Themes & Graphical Interfaces
     gobject-introspection
-    # gtk_engines # Theme engines for GTK 2
-    # gtk-layer-shell
+    gtk_engines # Theme engines for GTK 2
+
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
-    # gtk-doc
-    # gtk-server
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
+
     gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
-    # gtkmm2 # C++ interface to the GTK graphical user interface library
-    # gtkmm3 # C++ interface to the GTK graphical user interface library
     gtkmm4 # C++ interface to the GTK graphical user interface library
     gtksourceview
-    # gtksourceview3
     libappindicator-gtk3
-    # tk
-    #webkitgtk_6_0 # Web content rendering engine, GTK port
+    tk
+    webkitgtk # Web content rendering engine, GTK port
     webp-pixbuf-loader
     wrapGAppsHook
     yad
