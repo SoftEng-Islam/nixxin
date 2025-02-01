@@ -1,1 +1,0 @@
-# https://inkscape.org/es/
