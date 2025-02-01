@@ -9,6 +9,6 @@
       # '')
     ];
   home-manager.users.${settings.users.selected.username} = {
-    home.file."qbittorrent".source = ./dist;
+    # home.file."qbittorrent".source = ./dist;
   };
 }
