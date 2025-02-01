@@ -6,6 +6,8 @@
     # ./emails
     # ./emoji_handlers
     ./fileManager
+    ./graphics
+    ./image_viewer
     ./media
     ./notification_daemon
     # ./OSD

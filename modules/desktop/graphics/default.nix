@@ -1,26 +1,30 @@
-{ settings, pkgs, ... }: {
-  # ---- Graphics Apps ----#
-  environment.systemPackages = with pkgs; [
-
-    # Free design software that keeps your flow with AI tools and built-in graphics
-    (if settings.features.graphics.lunacy then lunacy else "")
-
-    # Unofficial Electron-based Figma desktop app for Linux
-    (if settings.features.graphics.figmaLinux then figma-linux else "")
-
-    # A desktop application for creating diagrams
-    (if settings.features.graphics.drawio then drawio else "")
-
-    # 3D Creation/Animation/Publishing System
-    (if settings.features.graphics.blender then blender-hip else "")
-
-    # GNU Image Manipulation Program
-    (if settings.features.graphics.gimp then gimp else "")
-
-    # Vector graphics editor
-    (if settings.features.graphics.inkscape then inkscape else "")
-
-    # Virtual lighttable and darkroom for photographers
-    (if settings.features.graphics.darktable then darktable else "")
+# ---- Graphics Apps ----#
+{ settings, lib, pkgs, ... }:
+let
+  # Free design software that keeps your flow with AI tools and built-in graphics
+  lunacyApp = lib.optional settings.features.graphics.lunacy pkgs.lunacy;
+  # Unofficial Electron-based Figma desktop app for Linux
+  figmaApp =
+    lib.optional settings.features.graphics.figmaLinux pkgs.figma-linux;
+  # A desktop application for creating diagrams
+  drawioApp = lib.optional settings.features.graphics.drawio pkgs.drawio;
+  # 3D Creation/Animation/Publishing System
+  blenderApp = lib.optional settings.features.graphics.blender pkgs.blender-hip;
+  # GNU Image Manipulation Program
+  gimpApp = lib.optional settings.features.graphics.gimp pkgs.gimp;
+  # Vector graphics editor
+  inkscapeApp = lib.optional settings.features.graphics.inkscape pkgs.inkscape;
+  # Virtual lighttable and darkroom for photographers
+  darktableApp =
+    lib.optional settings.features.graphics.darktable pkgs.darktable;
+in {
+  environment.systemPackages = [
+    lunacyApp
+    figmaApp
+    drawioApp
+    blenderApp
+    gimpApp
+    inkscapeApp
+    darktableApp
   ];
 }
