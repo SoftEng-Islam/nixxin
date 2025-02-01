@@ -2,10 +2,10 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
-    systemctl --user start hyprpolkitagent
+    #systemctl --user start hyprpolkitagent
 
     # ---- Hyprland with uwsm ---- #
-    # systemctl --user enable --now hyprpolkitagent.service
+    systemctl --user enable --now hyprpolkitagent.service
 
     # ---- notification daemon ---- #
     # dunst &
