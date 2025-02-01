@@ -316,7 +316,7 @@
       package = pkgs.noto-fonts-cjk-serif;
     };
     hyprbars = {
-      name = "JetBrainsMonoNL Nerd Font Mono Bold";
+      name = "CaskaydiaCove Nerd Font Mono Bold";
       size = 12;
     };
     terminals = {
