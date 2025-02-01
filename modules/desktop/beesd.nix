@@ -1,6 +1,7 @@
 {
   # What is Bees (or beesd)?
-  # Bees is a deduplication tool specifically designed for Btrfs (a Linux file system with advanced features). It identifies duplicate data blocks in a Btrfs file system and reduces disk usage by storing only a single copy of the data.
+  # Bees is a deduplication tool specifically designed for Btrfs (a Linux file system with advanced features).
+  # It identifies duplicate data blocks in a Btrfs file system and reduces disk usage by storing only a single copy of the data.
   # Deduplication: Bees scans the filesystem for identical data blocks and replaces duplicate copies with references to the same data block.
   # Efficient for Large Filesystems: It uses a hashtable to manage deduplication efficiently without using excessive memory or CPU resources.
   # The beesd service is the system daemon that runs Bees.
