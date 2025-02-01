@@ -23,18 +23,18 @@ in {
         # Honestly idk if it works like css, but well, why not
         bar_text_font = "${settings.fonts.hyprbars.name}"
         bar_text_size = ${toString settings.fonts.hyprbars.size}
-        bar_height = 35
+        bar_height = 38
         bar_padding = 10
-        bar_button_padding = 6
+        bar_button_padding = 12
         bar_precedence_over_border = true
         bar_part_of_window = true
-        bar_color = rgba(0D141BFF)
+        bar_color = rgba(0D141B50)
         col.text = rgba(DCE3EEFF)
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        hyprbars-button = rgb(B91C1C), 20,, hyprctl dispatch killactive
-        hyprbars-button = rgb(15803D), 20,󰖯, hyprctl dispatch fullscreen 1
-        hyprbars-button = rgb(CA8A04), 20,󰖰, hyprctl dispatch togglefloating
+        hyprbars-button = rgb(B91C1C), 20, , hyprctl dispatch killactive
+        hyprbars-button = rgb(15803D), 20, , hyprctl dispatch fullscreen 2
+        hyprbars-button = rgb(CA8A04), 20, , hyprctl dispatch togglefloating
       }
     '';
   };
