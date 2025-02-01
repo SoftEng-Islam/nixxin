@@ -289,7 +289,7 @@
       # "JetBrainsMonoNL Nerd Font Mono"
       # "JetBrainsMonoNL Nerd Font Bold"
       # "CaskaydiaCove Nerd Font Mono"
-      name = "CaskaydiaCove Nerd Font Mono "; # Selected Font
+      name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
       package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
       antialiasing = "grayscale";
       hinting = "medium";
@@ -316,8 +316,8 @@
       package = pkgs.noto-fonts-cjk-serif;
     };
     hyprbars = {
-      name = "JetBrainsMonoNL Nerd Font ExtraBold";
-      size = 12;
+      name = "CaskaydiaCove Nerd Font Mono Bold";
+      size = 11;
     };
     terminals = {
       kitty = {
