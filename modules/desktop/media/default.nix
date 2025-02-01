@@ -16,7 +16,6 @@ in {
     # Command-line utility and library for controlling media players that implement MPRIS
     playerctl
 
-    (pkgs.mpv.override { scripts = [ pkgs.mpvScripts.mpris ]; })
     celluloid
 
     vlc
