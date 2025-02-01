@@ -45,6 +45,9 @@ with lib.gvariant; {
 
       # Run this Command In the terminal to get list of options:
       # gsettings list-keys org.gnome.desktop.interface
+
+      # gsettings get org.gnome.desktop.interface font-antialiasing
+      # 'grayscale'
       "org/gnome/desktop/interface" = {
         # accent-color
         # avatar-directories
@@ -59,14 +62,17 @@ with lib.gvariant; {
         # cursor-blink-timeout
         cursor-size = settings.style.cursor.size;
         cursor-theme = "${settings.style.cursor.name}";
-        # document-font-name
         enable-animations = false;
         # enable-hot-corners
-        # font-antialiasing
-        # font-hinting
-        # font-name
-        # font-rendering
-        # font-rgba-order
+
+        # ---- Fonts ---- #
+        font-name = "${settings.fonts.main.name}";
+        document-font-name = "${settings.fonts.main.name}";
+        font-hinting = "${settings.fonts.main.hinting}";
+        font-rendering = "${settings.fonts.main.rendering}";
+        font-antialiasing = "${settings.fonts.main.antialiasing}";
+        font-rgba-order = "${settings.fonts.main.rgba_order}";
+
         # gtk-color-palette
         # gtk-color-scheme
         # gtk-enable-primary-paste
@@ -74,10 +80,10 @@ with lib.gvariant; {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        # gtk-theme
+        gtk-theme = "${settings.styles.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
-        # icon-theme
+        icon-theme = "${settings.styles.icons.nameInDark}";
         # locate-pointer
         # menubar-accel
         # menubar-detachable

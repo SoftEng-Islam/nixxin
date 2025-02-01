@@ -287,12 +287,17 @@
     main = {
       # Exambles:
       # nix build nixpkgs#nerd-fonts.jetbrains-mono --print-out-paths --no-link
+      # to get path of package
+      # nix path-info -r nixpkgs#nerd-fonts.jetbrains-mono
       # "JetBrainsMonoNL Nerd Font Mono"
       # "JetBrainsMonoNL Nerd Font Bold"
       # "CaskaydiaCove Nerd Font Mono"
-      name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
+      name = "CaskaydiaCove Nerd Font Mono "; # Selected Font
       package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
       antialiasing = "grayscale";
+      hinting = "medium";
+      rendering = "automatic";
+      rgba-order = "rgb";
 
       size = {
         main = 12; # Font size
