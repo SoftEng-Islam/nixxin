@@ -11,14 +11,10 @@
         "float,^(pavucontrol)$"
         "pin,^(pavucontrol)$"
         "size 900 500,^(pavucontrol)$"
-        "float,^(kitty)$"
-        "size 640 400,^(kitty)$"
+
         "float,class:^(Material Settings)$"
 
         # Dialogs
-        "float, ^(blueberry.py)$"
-        "float, ^(guifetch)$" # FlafyDev/guifetch
-        "float, ^(steam)$"
         "float, title:^(Choose wallpaper)(.*)$"
         "float, title:^(File Upload)(.*)$"
         "float, title:^(Library)(.*)$"
@@ -30,13 +26,9 @@
         "immediate,.*.exe"
       ];
       windowrulev2 = [
-        "float,class:^(floating)$,title:^(kitty)$"
-        "size 50% 50%,class:^(floating)$,title:^(kitty)$"
-        "center,class:^(floating)$,title:^(kitty)$"
         "float, title:^([Pp]icture[-s]?[Ii]n[-s]?[Pp]icture)(.*)$"
         "tile, class:(dev.warp.Warp)"
-        # Tearing
-        "immediate,class:(steam_app)"
+
         # No shadow for tiled windows
         # "noshadow,floating:0"
       ];
@@ -53,29 +45,6 @@
         "blur, shell:*" # Apply blur to all shell elements
         "blur, launcher" # Apply blur to launcher
         "blur, notifications" # Apply blur to notifications
-
-        # Alpha/Transparency settings
-        "ignorealpha 0.5, swaync-control-center" # Set transparency for swaync control center
-        "ignorealpha 0.6, shell:*" # Set transparency for shell elements
-        "ignorealpha 0.5, launcher" # Set transparency for launcher
-        "ignorealpha 0.69, notifications" # Set transparency for notifications
-
-        # X-ray and visibility settings
-        "xray 1, gtk-layer-shell" # Apply x-ray effect to GTK layer shell
-        "xray 1, .*" # Apply x-ray effect to all matching layers
-
-        # Ignore settings for specific layers
-        "ignorezero, gtk-layer-shell" # Ignore zero-sized GTK layer shell windows
-        "ignorezero, .*" # Ignore zero-sized layers globally
-
-        # No animation settings for specific layers
-        "noanim, .*" # Disable animations for all matching layers
-        "noanim, walker" # Disable animations for walker
-        "noanim, selection" # Disable animations for selection
-        "noanim, overview" # Disable animations for overview
-        "noanim, indicator.*" # Disable animations for indicator layers
-        "noanim, osk" # Disable animations for on-screen keyboard
-        "noanim, hyprpicker" # Disable animations for hyprpicker
       ];
     };
   };

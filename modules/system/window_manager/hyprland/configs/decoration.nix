@@ -22,7 +22,7 @@
         # ---- Shadow ---- #
         shadow = {
           enabled = settings.style.window.shadow;
-          range = 20;
+          range = 15;
           offset = "0 2";
           render_power = 2;
           ignore_window = true;
