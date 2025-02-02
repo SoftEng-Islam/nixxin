@@ -26,8 +26,8 @@ in {
             #workspaceInactiveBorder =
             #workspaceActiveBackground =
             #workspaceInactiveBackground
-            # dragAlpha = 1
-            disableBlur = 1
+            dragAlpha = 0
+            disableBlur = 0
             # ---- Layout ---- #
             panelHeight = 100
             panelBorderWidth = 2
@@ -53,9 +53,9 @@ in {
             switchOnDrop = 0
             exitOnSwitch = 0
             showEmptyWorkspace = 1
-            showSpecialWorkspace = 1
+            showSpecialWorkspace = 0
             reverseSwipe = 0
-            showNewWorkspace = 1
+            showNewWorkspace = 0
             disableGestures = 1
             # gestures:workspace_swipe_fingers
             # gestures:workspace_swipe_cancel_ratio

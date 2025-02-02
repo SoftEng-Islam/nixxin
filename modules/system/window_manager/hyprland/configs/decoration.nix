@@ -26,7 +26,7 @@
           offset = "0 2";
           render_power = 2;
           ignore_window = true;
-          color = "rgb(000000)";
+          color = "rgba(00000070)";
           # col.shadow = rgba(00000070)
           # col.shadow_inactive = rgba(00000020)
           # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
