@@ -21,12 +21,12 @@ in {
         plugin {
           overview {
             # ---- Colors ---- #
-            panelColor = rgb()
-            panelBorderColor = rgb()
+            #panelColor = rgb()
+            #panelBorderColor = rgb()
             workspaceActiveBorder = $primary
-            workspaceInactiveBorder =
-            workspaceActiveBackground =
-            workspaceInactiveBackground
+            #workspaceInactiveBorder =
+            #workspaceActiveBackground =
+            #workspaceInactiveBackground
             dragAlpha = 1
             disableBlur = 0
             # ---- Layout ---- #
