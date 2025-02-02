@@ -17,29 +17,28 @@ in {
         pkgs.hyprlandPlugins.hyprspace
       ];
       extraConfig = ''
-        # plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
         plugin {
           overview {
             # ---- Colors ---- #
-            #panelColor = rgb()
-            #panelBorderColor = rgb()
+            panelColor = $surface
+            panelBorderColor = $primary
             workspaceActiveBorder = $primary
             #workspaceInactiveBorder =
             #workspaceActiveBackground =
             #workspaceInactiveBackground
-            dragAlpha = 1
-            disableBlur = 0
+            # dragAlpha = 1
+            disableBlur = 1
             # ---- Layout ---- #
             panelHeight = 100
             panelBorderWidth = 2
             onBottom = 1
             reservedArea = 0
-            workspaceBorderSize = 2
+            workspaceBorderSize = 3
             centerAligned = 1
-            hideBackgroundLayers = 1
-            hideTopLayers = 1
-            hideOverlayLayers = 1
-            hideRealLayers = 1
+            hideBackgroundLayers = 0
+            hideTopLayers = 0
+            hideOverlayLayers = 0
+            hideRealLayers = 0
             drawActiveWorkspace = 1
             overrideGaps = 1
             gapsIn = 5
@@ -54,7 +53,7 @@ in {
             switchOnDrop = 0
             exitOnSwitch = 0
             showEmptyWorkspace = 1
-            showSpecialWorkspace = 0
+            showSpecialWorkspace = 1
             reverseSwipe = 0
             showNewWorkspace = 1
             disableGestures = 1

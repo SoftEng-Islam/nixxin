@@ -10,7 +10,7 @@ let
   # };
 in {
   stylix = {
-    enable = true;
+    enable = false;
     image = ../../wallpapers/japan_tower_pink.jpg;
     polarity = "dark";
     # base16Scheme = ${pkgs.base16-schemes}/share/themes/${settings.themeName}.yaml
@@ -74,10 +74,10 @@ in {
     };
     targets = {
       console.enable = true;
-      # feh.enable = true;
-      # fish.enable = true;
-      # gnome.enable = true;
-      # gnome-text-editor.enable = true;
+      feh.enable = true;
+      fish.enable = true;
+      gnome.enable = true;
+      gnome-text-editor.enable = true;
       grub.enable = true;
       grub.useImage = true;
       regreet.enable = false;
@@ -98,26 +98,26 @@ in {
         package = settings.style.icons.package;
       };
       targets = {
-        # zed.enable = true;
-        # zathura.enable = true;
-        # wezterm.enable = true;
-        # vim.enable = true;
-        # vscode.enable = true;
-        # alacritty.enable = true;
-        # avizo.enable = true;
-        # bat.enable = true;
+        zed.enable = true;
+        zathura.enable = true;
+        wezterm.enable = true;
+        vim.enable = true;
+        vscode.enable = true;
+        alacritty.enable = true;
+        avizo.enable = true;
+        bat.enable = true;
         btop.enable = true;
-        # cava.enable = true;
-        # dunst.enable = true;
-        # emacs.enable = true;
-        # firefox.enable = true;
-        # foot.enable = true;
-        # fzf.enable = true;
-        # gitui.enable = true;
-        # kitty.enable = true;
-        # kitty.variant256Colors = true;
-        # lazygit.enable = true;
-        # mako.enable = true;
+        cava.enable = true;
+        dunst.enable = true;
+        emacs.enable = true;
+        firefox.enable = true;
+        foot.enable = true;
+        fzf.enable = true;
+        gitui.enable = true;
+        kitty.enable = true;
+        kitty.variant256Colors = true;
+        lazygit.enable = true;
+        mako.enable = true;
         hyprland.enable = false;
       };
     };

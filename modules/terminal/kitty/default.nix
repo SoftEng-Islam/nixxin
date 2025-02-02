@@ -2,7 +2,7 @@
   environment.systemPackages = with pkgs; [ kitty ];
   home-manager.users.${settings.users.selected.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
-      # include ~/.local/cache/ignis/material/dark_colors-kitty.conf
+      include ~/.local/cache/ignis/material/dark_colors-kitty.conf
 
       # ---- basic colors ---- #
       # background #${config.lib.stylix.colors.base01}

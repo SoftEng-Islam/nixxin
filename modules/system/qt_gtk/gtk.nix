@@ -1,3 +1,4 @@
+# GTK  Stuff & Themes & Graphical Interfaces
 { settings, pkgs, ... }: {
   # gtk.iconCache.enable = false;
   home-manager.users.${settings.users.selected.username} = {
@@ -31,13 +32,13 @@
     };
   };
   environment.systemPackages = with pkgs; [
-    # GTK  Stuff & Themes & Graphical Interfaces
+    adw-gtk3
+
     gobject-introspection
     gtk_engines # Theme engines for GTK 2
 
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces
-
     gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
     gtkmm4 # C++ interface to the GTK graphical user interface library
     gtksourceview
