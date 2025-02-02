@@ -3,63 +3,6 @@
 # to /etc/nixos/configuration.nix instead.
 { lib, settings, inputs, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-
-  services = {
-    # fstrim.enable = true;
-    xserver.videoDrivers = settings.hardware.videoDrivers;
-    # auto-epp.enable = true;
-  };
-  hardware = {
-    uinput.enable = true;
-    enableAllFirmware = true;
-    cpu.amd.updateMicrocode = true;
-    # cpu.amd.sev.enable = true;
-    amdgpu.initrd.enable = true;
-    amdgpu.amdvlk.enable = true;
-    amdgpu.amdvlk.support32Bit.enable = true;
-    amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.opencl.enable = true;
-    amdgpu.legacySupport.enable = false;
-    enableRedistributableFirmware = true;
-    amdgpu.amdvlk.settings = {
-      AllowVkPipelineCachingToDisk = 1;
-      EnableVmAlwaysValid = 1;
-      IFH = 0;
-      IdleAfterSubmitGpuMask = 1;
-      ShaderCacheMode = 1;
-    };
-    graphics = {
-      enable = true;
-      enable32Bit = true;
-      # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        mesa.opencl
-        amdvlk
-        driversi686Linux.amdvlk
-        rocmPackages.clr
-        rocmPackages.clr.icd
-        rocmPackages.rocm-runtime
-        rocmPackages.rocm-smi
-        rocmPackages.rocminfo
-        libva
-        libva-utils
-        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
-      ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
-        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
-      ];
-    };
-  };
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
-
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
     fsType = "btrfs";
@@ -105,9 +48,65 @@
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
   #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
+  services = {
+    # fstrim.enable = true;
+    xserver.videoDrivers = settings.hardware.videoDrivers;
+    # auto-epp.enable = true;
+  };
+  hardware = {
+    uinput.enable = true;
+    enableAllFirmware = true;
+    cpu.amd.updateMicrocode = true;
+    # cpu.amd.sev.enable = true;
+    enableRedistributableFirmware = true;
+    amdgpu.initrd.enable = true;
+    amdgpu.amdvlk.enable = true;
+    amdgpu.amdvlk.support32Bit.enable = true;
+    amdgpu.amdvlk.supportExperimental.enable = true;
+    amdgpu.opencl.enable = true;
+    amdgpu.legacySupport.enable = false;
+    amdgpu.amdvlk.settings = {
+      AllowVkPipelineCachingToDisk = 1;
+      EnableVmAlwaysValid = 1;
+      IFH = 0;
+      IdleAfterSubmitGpuMask = 1;
+      ShaderCacheMode = 1;
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
+        mesa.opencl
+        amdvlk
+        driversi686Linux.amdvlk
+        rocmPackages.clr
+        rocmPackages.clr.icd
+        rocmPackages.rocm-runtime
+        rocmPackages.rocm-smi
+        rocmPackages.rocminfo
+        libva
+        libva-utils
+        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
+      ];
+      extraPackages32 = [
+        pkgs.driversi686Linux.amdvlk
+        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
+      ];
+    };
+  };
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+    };
+  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+
   environment.variables = {
     HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    # For AMD GPUs
+
+    # Load AMD driver for Xorg and Waylandard
     LIBVA_DRIVER_NAME = "amdgpu";
     VDPAU_DRIVER = "amdgpu";
     OCL_ICD_VENDORS = ''
@@ -125,6 +124,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    xivlauncher
+
     nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
 
