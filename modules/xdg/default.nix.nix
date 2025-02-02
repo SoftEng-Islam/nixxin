@@ -1,6 +1,7 @@
 { config, settings, lib, pkgs, ... }:
 let
   cacheInHome = "/home/${settings.users.selected.username}/.cache";
+  mimeTypes = import ./mixins/mimeTypes.nix;
 
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
@@ -136,6 +137,7 @@ in {
   home-manager.users.${settings.users.selected.username} = {
     xdg = {
       enable = true;
+      icons.enable = true;
       # configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
       cacheHome = cacheInHome;
       userDirs = {
@@ -149,6 +151,14 @@ in {
         templates = null;
         desktop = null;
         publicShare = null;
+        data = [ "/usr/share" "/usr/local/share" ];
+        # xdg.configFile."mimeapps.list".force = true;
+        # xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
+        #   [screencast]
+        #   max_fps=30
+        #   chooser_type=simple
+        #   chooser_cmd=slurp -d -b "${themeColors.background}bf" -c "${themeColors.primary}" -F "Iosevka NF" -w 1 -f %o -or
+        # '';
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
           XDG_BOOK_DIR = "/home/${settings.users.selected.username}/Books";
@@ -159,8 +169,49 @@ in {
       mimeApps = {
         enable = true;
         defaultApplications = associations;
+        # defaultApplications = with lib;
+        #   with mimeTypes;
+        #   mkMerge (mapAttrsToList (n: ms: genAttrs ms (_: [ "${n}.desktop" ])) {
+        #     # TODO: make nvim use kitty as terminal
+        #     "kitty-open" = text ++ [ "text/*" ];
+        #     "google-chrome" = html ++ web;
+        #     "imv" = images;
+        #     "mpv" = media;
+        #     "org.gnome.FileRoller" = archives;
+        #     "kitty" = [ "application/x-shellscript" ];
+        #     "amfora" = [ "x-scheme-handler/gemini" ];
+        #     "Postman" = [ "x-scheme-handler/postman" ];
+        #     # "neomutt" = [
+        #     #   "message/rfc822"
+        #     #   "x-scheme-handler/mailto"
+        #     # ];
+        #     # "newsboat" = [
+        #     #   "x-scheme-handler/news"
+        #     #   "x-scheme-handler/rss+xml"
+        #     #   "x-scheme-handler/x-extension-rss"
+        #     #   "x-scheme-handler/feed"
+        #     # ];
+        #     # transmission-gtk =
+        #     #   [ "application/x-bittorrent" "x-scheme-handler/magnet" ];
+        #   });
       };
     };
+  };
+
+  # xdg-desktop-portal works by exposing a series of D-Bus interfaces
+  # known as portals under a well-known name
+  # (org.freedesktop.portal.Desktop) and object path
+  # (/org/freedesktop/portal/desktop).
+  # The portal interfaces include APIs for file access, opening URIs,
+  # printing and others.
+  services.dbus.enable = lib.mkDefault true;
+  # xdg.portal.xdgOpenUsePortal = true;
+
+  environment = {
+    # etc."mime.types".source = ./dotfiles/mime.types;
+
+    # shellAliases.open = "xdg-open";
+    # shellAliases.o = "xdg-open";
   };
 
   environment.systemPackages = with pkgs; [
@@ -168,6 +219,8 @@ in {
     (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
       foot "$@"
     '')
+    xdg-launch
+    desktop-file-utils
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-gnome
