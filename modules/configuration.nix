@@ -25,7 +25,9 @@
     ./services
     ./styles
     ./terminal
+    ./virtualisation
     ./window_manager
+    ./xdg
 
     # [Files]
     ./applications.nix
@@ -50,10 +52,8 @@
     ./systemd.nix
     ./users.nix
     ./utilities.nix
-    ./virtualisation.nix
     ./wayland.nix
     ./wine.nix
-    ./xdg.nix
     ./zram.nix
   ];
 }
