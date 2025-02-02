@@ -164,6 +164,10 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    # used by `gio open` and xdp-gtk
+    (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
+      foot "$@"
+    '')
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-gnome
