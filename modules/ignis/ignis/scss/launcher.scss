@@ -1,9 +1,5 @@
-@use "../colors";
-@use "mixins/hover";
-@use "mixins/window";
-
 .launcher {
-    @include window.window;
+    @include window;
     margin-top: 20rem;
 }
 
@@ -13,7 +9,7 @@
 
 .launcher-search-box {
     padding: 0.75rem 1rem;
-    background-color: colors.$surfaceContainer;
+    background-color: $surfaceContainer;
     border-radius: 1rem;
     min-width: 30rem;
 }
@@ -24,15 +20,15 @@
 
 .launcher-app {
     all: unset;
-    @include hover.hover(colors.$surface);
+    @include hover($surface);
     border-radius: 1rem;
     padding: 0.5rem 0.25rem;
-    border: 2px solid colors.$surface;
+    border: 2px solid $surface;
     margin-top: 0.25rem;
     transition: 0.3s;
     
     &:focus {
-        border: 2px solid colors.$primary;
+        border: 2px solid $primary;
     }
 }
 

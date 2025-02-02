@@ -1,18 +1,15 @@
-@use "../colors";
-@use "mixins/hover";
-
 .bar-widget {
     padding: 0.4rem 1rem;
     margin: 0;
     border-radius: 0;
     transition: 0.3s;
-    background-color: rgba(colors.$surface, 0.3);
+    background-color: rgba($surface, 0.3);
 }
 
 .clock {
-    @include hover.hover(colors.$surface);
-    color: colors.$onSurface;
-    background-color: colors.$surface;
+    @include hover($surface);
+    color: $onSurface;
+    background-color: $surface;
     font-size: 1.5rem;
     border-radius: 1rem;
     padding: 0 0.75rem;
@@ -21,14 +18,14 @@
     transition: 0.3s;
 
     &.active {
-        background-color: colors.$primary;
-        color: colors.$surface;
+        background-color: $primary;
+        color: $surface;
 
         .record-indicator {
-            color: colors.$surface;
+            color: $surface;
         }
 
-        @include hover.hover(colors.$primary)
+        @include hover($primary)
     }
 }
 
@@ -64,13 +61,13 @@
 .workspaces {
     border-radius: 1rem;
     padding: 0.5rem;
-    background-color: colors.$surface;
+    background-color: $surface;
     margin: 0 0.5rem;
     margin-left: 0;
 }
 
 .workspace {
-    @include hover.hover(colors.$primaryContainer);
+    @include hover($primaryContainer);
     border-radius: 1rem;
     margin: 0 0.25rem;
     min-width: 0.7rem;
@@ -78,7 +75,7 @@
     transition: 0.3s;
 
     &.active {
-        @include hover.hover(colors.$primary);
+        @include hover($primary);
         min-width: 2rem;
     }
 }
@@ -102,7 +99,7 @@
 }
 
 .record-indicator {
-    color: colors.$error;
+    color: $error;
 }
 
 .record-indicator.active {
@@ -124,22 +121,22 @@
 
 .battery-scale trough,
 .battery-scale trough highlight {
-    background: colors.$surface;
+    background: $surface;
     border-radius: 1rem;
     min-height: 1.3rem;
     min-width: 5rem;
 }
 
 .battery-scale trough highlight {
-    background: colors.$primary;
+    background: $primary;
 }
 
 .battery-icon {
-    color: colors.$onSurface;
+    color: $onSurface;
     margin-right: 0.3rem;
 }
 
 .battery-percent {
-    color: colors.$onSurface;
+    color: $onSurface;
     margin-right: 0.3rem;
 }

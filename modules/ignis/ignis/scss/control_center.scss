@@ -1,9 +1,5 @@
-@use "../colors";
-@use "mixins/hover";
-@use "mixins/window";
-
 .control-center {
-    @include window.window;
+    @include window;
     min-width: 28rem;
     padding: 0;
 
@@ -11,41 +7,41 @@
         padding: 1rem;
         margin-bottom: 1rem;
     }
-
+    
     .qs-main-box {
         margin-top: 0.5rem;
     }
-
+    
     .user {
         margin-top: 1rem;
     }
-
+    
     .qs-button {
-        @include hover.hover(colors.$surfaceContainerHigh);
-        color: colors.$onSurface;
+        @include hover($surfaceContainerHigh);
+        color: $onSurface;
         min-height: 2.4rem;
         border-radius: 1.2rem;
         transition: 0.3s;
         padding: 0.3rem 0.8rem;
-
+    
         &.active {
-            @include hover.hover(colors.$primary);
-            color: colors.$surface;
+            @include hover($primary);
+            color: $surface;
         }
-
+    
     }
-
+    
     .qs-button-label {
         margin-left: 0.5rem;
     }
-
+    
     .control-center-menu {
-        background-color: colors.$surfaceContainerHigh;
+        background-color: $surfaceContainerHigh;
         border-radius: 1rem;
         padding: 1rem;
         margin-top: 1rem;
         margin-bottom: 0.5rem;
-        // max-height: 50rem; // test
+    
         separator {
             margin: 0.5rem 0;
         }
@@ -54,97 +50,97 @@
     .control-center-menu-last-row {
         margin-bottom: 0;
     }
-
+    
     .record-icon {
-        color: colors.$error;
+        color: $error;
     }
-
+    
     .record-dropdown {
         button {
             all: unset;
-            color: colors.$onSurfaceVariant;
+            color: $onSurfaceVariant;
             font-size: 0.9rem;
         }
     }
-
+    
     .record-cancel-button,
     .record-start-button {
-        color: colors.$surface;
+        color: $surface;
         border-radius: 1rem;
         padding: 0.25rem 0.75rem;
         font-size: 0.95rem;
         transition: 0.3s;
     }
-
+    
     .record-cancel-button {
-        @include hover.hover(colors.$surfaceContainerHigh);
-        color: colors.$onSurface;
-        border: 1px solid colors.$primary;
+        @include hover($surfaceContainerHigh);
+        color: $onSurface;
+        border: 1px solid $primary;
     }
-
+    
     .record-start-button {
-        @include hover.hover(colors.$primary);
+        @include hover($primary);
     }
-
+    
     .volume-entry {
-        @include hover.hover(colors.$surfaceContainerHigh);
+        @include hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
     }
-
+    
     .volume-entry-list-header-label {
         font-size: 1.35rem;
         margin-left: 0.5rem;
     }
-
+    
     .volume-entry-list-header-box {
         margin-bottom: 0.75rem;
     }
-
+    
     .user-name-box {
         margin-left: 0.5rem;
     }
-
+    
     .user-name {
         font-size: 1.2rem;
     }
-
+    
     .user-name-secondary {
-        color: colors.$onSurfaceVariant;
+        color: $onSurfaceVariant;
         font-size: 0.9rem;
     }
-
+    
     .user-settings {
-        @include hover.hover(colors.$surfaceContainerHighest);
-        color: colors.$onSurface;
+        @include hover($surfaceContainerHighest);
+        color: $onSurface;
         border-radius: 2rem;
         min-width: 2.35rem;
         margin: 0.4rem 0rem;
         margin-right: 0.5rem;
         transition: 0.3s;
     }
-
+    
     .user-power {
-        @include hover.hover(colors.$primary);
-        color: colors.$surface;
+        @include hover($primary);
+        color: $surface;
         border-radius: 1.5rem;
         min-width: 2.35rem;
         margin: 0.4rem 0rem;
         transition: 0.3s;
     }
-
+    
     .network-header-box {
         margin-bottom: 0.5rem;
     }
-
+    
     .network-header-label {
         font-size: 1.35rem;
         margin-left: 0.75rem;
     }
-
+    
     .network-item {
-        @include hover.hover(colors.$surfaceContainerHigh);
+        @include hover($surfaceContainerHigh);
         transition: 0.3s;
         border-radius: 1rem;
         padding: 0.5rem 0.5rem;
@@ -155,10 +151,10 @@
 
         .connect-label {
             font-size: 1rem;
-            color: colors.$onSurfaceVariant;
+            color: $onSurfaceVariant;
         }
     }
-
+    
     .volume-entry-label {
         margin-left: 0.5rem;
         margin-right: 1rem;

@@ -1,8 +1,5 @@
-@use "sass:color";
-@use "../colors";
-
 .settings-sidebar {
-    background-color: colors.$surfaceContainer;
+    background-color: $surfaceContainer;
     min-width: 300px;
 }
 
@@ -15,17 +12,17 @@
 
 .settings-sidebar-entry {
     all: unset;
-    background-color: colors.$surfaceContainer;
+    background-color: $surfaceContainer;
     padding: 1rem 2rem;
     padding-left: 0.75rem;
     font-size: 1.2rem;
 
     &:selected {
-        @if colors.$darkmode == true {
-            background-color: color.adjust(colors.$surfaceContainer, $lightness: 10%);
+        @if $darkmode == true {
+            background-color: lighten($surfaceContainer, 10%);
         }
         @else {
-            background-color: color.adjust(colors.$surfaceContainer, $lightness: -10%);
+            background-color: darken($surfaceContainer, 10%);
         }
     }
 }
@@ -40,7 +37,7 @@
 
 .settings-group-name {
     margin-left: 2.5rem;
-    color: colors.$primary;
+    color: $primary;
 }
 
 .settings-row {
@@ -49,7 +46,7 @@
     transition: 0.2s;
 
     &:active {
-        @if colors.$darkmode == true {
+        @if $darkmode == true {
             background-color: rgba(255, 255, 255, 0.05);
         }
         @else {
@@ -65,7 +62,7 @@
 .settings-row-sublabel {
     font-size: 0.9rem;
     font-weight: normal;
-    color: colors.$onSurfaceVariant;
+    color: $onSurfaceVariant;
 }
 
 .settings-user-name {

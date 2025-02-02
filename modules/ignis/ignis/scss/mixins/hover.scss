@@ -1,15 +1,12 @@
-@use "sass:color";
-@use "../../colors";
-
 @mixin hover($bg) {
     background-color: $bg;
 
     &:hover {
-        @if colors.$darkmode == true {
-            background-color: color.adjust($bg, $lightness: 5%);
+        @if $darkmode == true {
+            background-color: lighten($bg, 5%);
         }
         @else {
-            background-color: color.adjust($bg, $lightness: -5%);
+            background-color: darken($bg, 5%);
         }
     }
 }

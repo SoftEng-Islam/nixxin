@@ -18,8 +18,7 @@ audio = AudioService.get_default()
 app = IgnisApp.get_default()
 
 current_time = Variable(
-    # "%H:%M" or "%I:%M %p"
-    value=Utils.Poll(1000, lambda x: datetime.datetime.now().strftime("%I:%M %p")).bind(
+    value=Utils.Poll(1000, lambda x: datetime.datetime.now().strftime("%H:%M")).bind(
         "output"
     )
 )

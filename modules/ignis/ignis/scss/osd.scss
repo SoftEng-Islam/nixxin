@@ -1,7 +1,5 @@
-@use "mixins/window";
-
 .osd {
-    @include window.window;
+    @include window;
     min-width: 15rem;
     margin-bottom: 5rem;
     * {
