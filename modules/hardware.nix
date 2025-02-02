@@ -36,11 +36,11 @@
         mesa.opencl
         amdvlk
         driversi686Linux.amdvlk
-        # rocmPackages.clr
-        # rocmPackages.clr.icd
-        # rocmPackages.rocm-runtime
-        # rocmPackages.rocm-smi
-        # rocmPackages.rocminfo
+        rocmPackages.clr
+        rocmPackages.clr.icd
+        rocmPackages.rocm-runtime
+        rocmPackages.rocm-smi
+        rocmPackages.rocminfo
         libva
         libva-utils
         # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
@@ -51,12 +51,12 @@
       ];
     };
   };
-  # systemd.tmpfiles.rules = let
-  #   rocmEnv = pkgs.symlinkJoin {
-  #     name = "rocm-combined";
-  #     paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-  #   };
-  # in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+    };
+  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
@@ -104,13 +104,13 @@
   #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   environment.variables = {
-    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # For AMD GPUs
     LIBVA_DRIVER_NAME = "amdgpu";
     VDPAU_DRIVER = "amdgpu";
-    # OCL_ICD_VENDORS = ''
-    #   ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
-    # '';
+    OCL_ICD_VENDORS = ''
+      ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
+    '';
     VK_ICD_FILENAMES = ''
       ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
     '';
@@ -123,16 +123,16 @@
   };
 
   environment.systemPackages = with pkgs; [
-    # nvtopPackages.amd
+    nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
 
-    # rocmPackages.hip-common
-    # rocmPackages.hipblas
-    # rocmPackages.hipcc
-    # rocmPackages.hipcub
-    # rocmPackages.hipfft
-    # rocmPackages.hipify
-    # rocmPackages.hiprand
+    rocmPackages.hip-common
+    rocmPackages.hipblas
+    rocmPackages.hipcc
+    rocmPackages.hipcub
+    rocmPackages.hipfft
+    rocmPackages.hipify
+    rocmPackages.hiprand
 
     # zluda # ZLUDA - CUDA on Intel GPUs
 
@@ -140,7 +140,7 @@
     amd-ucodegen # Tool to generate AMD microcode files
     microcode-amd # AMD Processor microcode patch
     microcodeAmd
-    # pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
+    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     linux-firmware # Binary firmware collection packaged by kernel.org
 
     # AMD Stuff

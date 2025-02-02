@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./curl ./git ./wifi ./aria.nix ];
+  imports = [ ./curl ./git ./wifi ];
 
   # Collection of useful CLI apps
   environment.systemPackages = with pkgs; [

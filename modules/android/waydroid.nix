@@ -14,6 +14,7 @@
   # - You can add "-s GAPPS -f" to the init command for GApps support.
   # - Start the WayDroid container with 'sudo systemctl start waydroid-container'.
   # - Begin a WayDroid session with 'waydroid session start'.
+
   environment.systemPackages = with pkgs;
     [
       waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
