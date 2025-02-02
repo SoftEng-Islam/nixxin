@@ -46,8 +46,6 @@
   # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
-  #hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
   services = {
     # fstrim.enable = true;
     xserver.videoDrivers = settings.hardware.videoDrivers;
@@ -123,8 +121,32 @@
     AMD_VULKAN_ICD = "RADV";
   };
 
+  # We are creating the lact daemon service manually because the provided one hangs
+  systemd.services.lactd = {
+    enable = false;
+    description = "Radeon GPU monitor";
+    after = [ "syslog.target" "systemd-modules-load.service" ];
+
+    unitConfig = { ConditionPathExists = "${pkgs.lact}/bin/lact"; };
+
+    serviceConfig = {
+      User = "root";
+      ExecStart = "${pkgs.lact}/bin/lact daemon";
+    };
+
+    wantedBy = [ "multi-user.target" ];
+  };
+
+  services.ucodenix = {
+    enable = false;
+    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
+    cpuModelId = "00A70F41";
+  };
+
   environment.systemPackages = with pkgs; [
-    xivlauncher
+    # xivlauncher # Custom launcher for FFXIV
+    # zenstates # Linux utility for Ryzen processors and motherboards
+    # amdgpu_top # Tool to display AMDGPU usage
 
     nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
@@ -187,6 +209,6 @@
 
     xorg.xf86videoamdgpu
 
-    # lact # Linux AMDGPU Controller
+    lact # Linux AMDGPU Controller and GPU overclocking tool
   ];
 }

@@ -64,11 +64,22 @@
         "cryptd"
       ];
     };
-    kernelModules = [ "fuse" "kvm-amd" "coretemp" "bfq" "uinput" ];
+    kernelModules = [
+      "fuse"
+      "kvm-amd"
+      "coretemp"
+      "bfq"
+      "uinput"
+
+      "amd-pstate"
+      # "msr"
+      # "zenpower"
+    ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
       v4l2loopback
+      # zenpower
     ];
     # extraModprobeConfig = ''
     #   options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
@@ -80,6 +91,13 @@
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
+
+      # What is this?
+      # ''acpi_osi="Windows 2020"''
+      # And
+      # this doesn't fix my ACPI Bios errors :c
+      # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
+      # "acpi_osi=Linux"
 
       # Black Screen Issues
       # "nomodeset"
@@ -103,6 +121,7 @@
       "idle=nomwait"
       "processor.max_cstate=1"
       "amd_pstate=active"
+      "amd_pstate.shared_mem=1"
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
@@ -111,7 +130,7 @@
       # "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
-      "amdgpu.ppfeaturemask=0xffffffff"
+      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       "amdgpu.dcfeaturemask=0x8"
       "amdgpu.freesync_video=1"
       "amdgpu.gpu_recovery=1"
@@ -158,10 +177,10 @@
 
     kernel.sysctl = {
       # Virtual memory tweaks
-      "vm.swappiness" = 10;
-      "vm.dirty_ratio" = 60;
-      "vm.dirty_background_ratio" = 2;
+      "vm.swappiness" = 90;
       "vm.vfs_cache_pressure" = 50;
+      "vm.dirty_background_ratio" = 2;
+      "vm.dirty_ratio" = 5;
       "vm.max_map_count" = 262144;
 
       # Kernel scheduler
@@ -214,6 +233,12 @@
     # Optional: For Polaris cards (Radeon 500 series) OpenCL support
     ROC_ENABLE_PRE_VEGA = "1";
   };
+
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
+
   environment.systemPackages = with pkgs; [
     acpid
     fatcat
