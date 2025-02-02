@@ -33,6 +33,8 @@
       enable32Bit = true;
       # To enable Vulkan support for 32-bit applications, also add:
       extraPackages = with pkgs; [
+        vaapiVdpau
+        libvdpau-va-gl
         mesa.opencl
         amdvlk
         driversi686Linux.amdvlk
