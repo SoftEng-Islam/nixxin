@@ -1,5 +1,11 @@
 { settings, pkgs, ... }: {
-  virtualisation.waydroid.enable = true;
+  # Additional configurations, notes and post-installation steps
+  # in https://nixos.wiki/wiki/WayDroid
+  virtualisation = {
+    waydroid.enable = true;
+    lxd.enable = true;
+  };
+
   # Additional configurations and notes:
   # 1. You may need to adjust settings if you have an NVIDIA card or an RX 6800 series:
   #    - Edit /var/lib/waydroid/waydroid_base.prop and set:

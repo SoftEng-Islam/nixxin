@@ -297,9 +297,9 @@
       rgba_order = "rgb";
 
       size = {
-        main = 12; # Font size
-        applications = 14;
-        desktop = 16;
+        main = 14; # Font size
+        applications = 16;
+        desktop = 18;
         popups = 18;
       };
     };

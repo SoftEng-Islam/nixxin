@@ -7,10 +7,8 @@ let
   imageViewer = [ "org.gnome.Loupe" ];
   videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
   audioPlayer = [ "io.bassi.Amberol" ];
-  editor = [ "code.desktop" ];
-  fileManager = [ "org.gnome.Nautilus.desktop" ];
-  torrentApp = [ "org.qbittorrent.qBittorrent.desktop" ];
-
+  editor = [ "code" ];
+  torrentApp = [ "org.qbittorrent.qBittorrent" ];
   xdgAssociations = type: program: list:
     builtins.listToAttrs (map (e: {
       name = "${type}/${e}";
@@ -18,6 +16,10 @@ let
     }) list);
 
   editors = xdgAssociations "editor" editor [
+    "application/x-shellscript"
+    "application/x-wine-extension-ini"
+    "application/x-zerosize"
+    "application/json"
     "text/english"
     "text/plain"
     "text/x-makefile"
@@ -34,37 +36,50 @@ let
     "text/x-c"
     "text/x-c++"
   ];
-  filesManager = xdgAssociations "file" fileManager [ "inode/directory" ];
-  torrent = xdgAssociations "torrents" torrentApp [ "x-scheme-handler/magnet" ];
-  image = xdgAssociations "image" imageViewer [ "png" "svg" "jpeg" "gif" ];
-  video =
-    xdgAssociations "video" videoPlayer [ "mp4" "avi" "mkv" "wmv" "ts" "webm" ];
-  audio = xdgAssociations "audio" audioPlayer [ "mp3" "flac" "wav" "aac" ];
-
+  image =
+    xdgAssociations "image" imageViewer [ "png" "svg" "svg+xml" "jpeg" "gif" ];
+  video = xdgAssociations "video" videoPlayer [
+    "mp4"
+    "avi"
+    "mkv"
+    "wmv"
+    "ts"
+    "webm"
+    "quicktime"
+    "x-matroska"
+    "x-ms-wmv"
+  ];
+  audio =
+    xdgAssociations "audio" audioPlayer [ "mp3" "m4a" "flac" "wav" "aac" ];
   browserTypes = (xdgAssociations "application" browser [
-    "json"
     "x-extension-htm"
     "x-extension-html"
     "x-extension-shtml"
     "x-extension-xht"
     "x-extension-xhtml"
+    "xhtml_xml"
+    "xhtml+xml"
   ]) // (xdgAssociations "x-scheme-handler" browser [
     "about"
     "ftp"
     "http"
     "https"
     "unknown"
+    "x-www-browser"
   ]);
 
   # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
     "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
+    "application/x-bittorrent" = torrentApp;
+    "application/x-ms-dos-executable" = "wine";
+    "application/zip" = "org.gnome.FileRoller";
+    "inode/directory" = [ "org.gnome.Nautilus" ];
     "text/html" = browser;
     "text/plain" = [ "org.gnome.TextEditor" ];
-    # "x-scheme-handler/chrome" = [ "google-chrome" ];
-    # "inode/directory" = [ "nautilus" ];
-  } // editors // filesManager // torrent // image // video // audio
-    // browserTypes);
+    "x-scheme-handler/magnet" = torrentApp;
+
+  } // editors // image // video // audio // browserTypes);
 
 in {
   environment.variables = {

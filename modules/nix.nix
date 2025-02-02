@@ -19,8 +19,10 @@
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
       builders-use-substitutes = true;
       substituters = [
+        # high priority since it's almost always used
+        "https://cache.nixos.org?priority=10"
+
         "https://cache.garnix.io"
-        "https://cache.nixos.org"
         "https://cuda-maintainers.cachix.org"
         "https://devenv.cachix.org"
         "https://hyprland.cachix.org"
@@ -32,8 +34,8 @@
       trusted-substituters = [ "https://nix-community.cachix.org" ];
       # Enable cachix
       trusted-public-keys = [
-        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
