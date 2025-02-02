@@ -362,8 +362,8 @@
     # ---- Window Properties ---- #
     window = {
       opacity = 0.9; # The windows Opacity
-      blur = false; # Enable blur for windows
-      shadow = false; # enable shadow for Hyprland
+      blur = true; # Enable blur for windows
+      shadow = true; # enable shadow for Hyprland
       rounding = 10; # rounding corners for Hyprland windwos
       dim_inactive = true;
       title = {

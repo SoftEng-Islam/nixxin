@@ -29,19 +29,18 @@
       #=> First Row:
       bind = $main, Q, killactive
       bind = $main, W, exec, brave &
-      #bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
       bind = $main, R, exec, btop
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
       # bind = $main, I, exec,
-      bind = $main, O, togglesplit,
-      bind = $main, P, pseudo,
+      bind = $main, O, togglesplit
+      bind = $main, P, exec, ignis toggle ignis_POWERMENU
       # -------------
       #=> Second Row:
       # -------------
-      # bind = $main, A, exec,
+      # bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen, 0

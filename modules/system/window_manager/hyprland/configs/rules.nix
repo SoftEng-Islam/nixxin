@@ -8,24 +8,24 @@
         # "noblur,.*""
         # "opacity 0.89 override 0.89 override, .*" # Applies transparency to EVERY WINDOW
 
-        "center, title:^(Choose wallpaper)(.*)$"
-        "center, title:^(File Upload)(.*)$"
-        "center, title:^(Library)(.*)$"
-        "center, title:^(Open File)(.*)$"
-        "center, title:^(Open Folder)(.*)$"
-        "center, title:^(Save As)(.*)$"
-        "center, title:^(Select a File)(.*)$"
+        "float,^(pavucontrol)$"
+        "pin,^(pavucontrol)$"
+        "size 900 500,^(pavucontrol)$"
+        "float,^(kitty)$"
+        "size 640 400,^(kitty)$"
+        "float,class:^(Material Settings)$"
+
+        # Dialogs
         "float, ^(blueberry.py)$"
         "float, ^(guifetch)$" # FlafyDev/guifetch
         "float, ^(steam)$"
-        # Dialogs
-        "float,title:^(Choose wallpaper)(.*)$"
-        "float,title:^(File Upload)(.*)$"
-        "float,title:^(Library)(.*)$"
-        "float,title:^(Open File)(.*)$"
-        "float,title:^(Open Folder)(.*)$"
-        "float,title:^(Save As)(.*)$"
-        "float,title:^(Select a File)(.*)$"
+        "float, title:^(Choose wallpaper)(.*)$"
+        "float, title:^(File Upload)(.*)$"
+        "float, title:^(Library)(.*)$"
+        "float, title:^(Open File)(.*)$"
+        "float, title:^(Open Folder)(.*)$"
+        "float, title:^(Save As)(.*)$"
+        "float, title:^(Select a File)(.*)$"
         # Tearing
         "immediate,.*.exe"
       ];
@@ -42,6 +42,11 @@
       ];
       # ######## Layer rules ########
       layerrule = [
+
+        "blur,^(ignis_BAR.*)$"
+        "noanim,^(ignis_NOTIFICATION_POPUP.*)$"
+        "noanim,^(ignis_CONTROL_CENTER.*)$"
+
         # Blur settings
         "blur, swaync-control-center" # Apply blur to swaync control center
         "blur, gtk-layer-shell" # Apply blur to GTK layer shell
