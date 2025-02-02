@@ -117,8 +117,8 @@
       "amdgpu.gpu_recovery=1"
 
       # for Southern Islands (SI i.e. GCN 1) cards
-      #"radeon.si_support=1"
-      #"amdgpu.si_support=0"
+      "radeon.si_support=0"
+      "amdgpu.si_support=1"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
       "radeon.cik_support=0"
@@ -208,6 +208,11 @@
 
     plymouth.enable = true;
     # plymouth.theme = "bgrt";
+  };
+
+  environment.variables = {
+    # Optional: For Polaris cards (Radeon 500 series) OpenCL support
+    ROC_ENABLE_PRE_VEGA = "1";
   };
   environment.systemPackages = with pkgs; [
     acpid
