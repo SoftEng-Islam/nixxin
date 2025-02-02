@@ -24,11 +24,13 @@ in {
         bar_text_font = "${settings.fonts.hyprbars.name}"
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 38
+        bar_blur = true
         bar_padding = 10
         bar_button_padding = 12
         bar_precedence_over_border = true
         bar_part_of_window = true
         bar_color = rgba(262626ff)
+        bar_text_align = left
         col.text = rgba(DCE3EEFF)
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click

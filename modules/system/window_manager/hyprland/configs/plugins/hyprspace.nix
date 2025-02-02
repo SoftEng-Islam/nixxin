@@ -20,14 +20,47 @@ in {
         # plugin = ${pkgs.hyprlandPlugins.hyprspace}/lib/libhyprspace.so
         plugin {
           overview {
-            autoDrag = false
-            overrideGaps = false
+            # ---- Colors ---- #
+            panelColor = rgb()
+            panelBorderColor = rgb()
+            workspaceActiveBorder = $primary
+            workspaceInactiveBorder =
+            workspaceActiveBackground =
+            workspaceInactiveBackground
+            dragAlpha = 1
+            disableBlur = 0
+            # ---- Layout ---- #
+            panelHeight = 100
+            panelBorderWidth = 2
+            onBottom = 1
+            reservedArea = 0
+            workspaceBorderSize = 2
+            centerAligned = 1
+            hideBackgroundLayers = 1
+            hideTopLayers = 1
+            hideOverlayLayers = 1
+            hideRealLayers = 1
+            drawActiveWorkspace = 1
+            overrideGaps = 1
             gapsIn = 5
             gapsOut = 5
-            panelHeight = 100
-            showEmptyWorkspace = true
-            showNewWorkspace = true
-            workspaceActiveBorder = $primary
+            affectStrut = 1
+            # ---- Animation ---- #
+            # overrideAnimSpeed =
+            # ---- Behaviors ---- #
+            autoDrag = 1
+            autoScroll = 1
+            exitOnClick = 1
+            switchOnDrop = 0
+            exitOnSwitch = 0
+            showEmptyWorkspace = 1
+            showSpecialWorkspace = 0
+            reverseSwipe = 0
+            showNewWorkspace = 1
+            disableGestures = 1
+            # gestures:workspace_swipe_fingers
+            # gestures:workspace_swipe_cancel_ratio
+            # gestures:workspace_swipe_min_speed_to_force
           }
         }
         bind = $main, TAB, overview:toggle
