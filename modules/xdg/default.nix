@@ -151,7 +151,7 @@ in {
         templates = null;
         desktop = null;
         publicShare = null;
-        data = [ "/usr/share" "/usr/local/share" ];
+        # data = [ "/usr/share" "/usr/local/share" ];
         # xdg.configFile."mimeapps.list".force = true;
         # xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
         #   [screencast]
