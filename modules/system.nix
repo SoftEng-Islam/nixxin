@@ -6,12 +6,12 @@
     stateVersion = settings.system.stateVersion;
   };
   #additional impermanence directories
-  environment.persistence."/persist".directories = [
-    "/var/lib/bluetooth"
-    "/etc/NetworkManager/system-connections"
-    "/var/lib/waydroid"
-    "/var/lib/libvirt"
-    "/etc/secureboot"
-    "/var/cache/nixseparatedebuginfod" # to stop nixseparatedebuginfod to re-index at every reboot
-  ];
+  # environment.persistence."/persist".directories = [
+  #   "/var/lib/bluetooth"
+  #   "/etc/NetworkManager/system-connections"
+  #   "/var/lib/waydroid"
+  #   "/var/lib/libvirt"
+  #   "/etc/secureboot"
+  #   "/var/cache/nixseparatedebuginfod" # to stop nixseparatedebuginfod to re-index at every reboot
+  # ];
 }
