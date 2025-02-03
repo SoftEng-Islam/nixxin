@@ -73,8 +73,8 @@ let
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
     "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
     "application/x-bittorrent" = torrentApp;
-    "application/x-ms-dos-executable" = "wine";
-    "application/zip" = "org.gnome.FileRoller";
+    "application/x-ms-dos-executable" = [ "wine" ];
+    "application/zip" = [ "org.gnome.FileRoller" ];
     "inode/directory" = [ "org.gnome.Nautilus" ];
     "text/html" = browser;
     "text/plain" = [ "org.gnome.TextEditor" ];
