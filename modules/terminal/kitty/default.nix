@@ -16,8 +16,8 @@ let
   };
 in {
   environment.systemPackages = with pkgs; [ kitty ];
+  environment.sessionVariables.PYTHONPATH = [ "${pkgs.kitty}/lib/kitty" ];
   home-manager.users.${settings.users.selected.username} = {
-    environment.sessionVariables.PYTHONPATH = [ "${pkgs.kitty}/lib/kitty" ];
     # manually add kitty shell integration
     programs.bash.initExtra = shellIntegrationInit.bash;
     programs.zsh.initExtra = shellIntegrationInit.zsh;
