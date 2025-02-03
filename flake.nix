@@ -71,11 +71,18 @@
     anytype.url = "github:/anyproto/anytype-ts";
     anytype.inputs.nixpkgs.follows = "nixpkgs";
 
-    ashell = {
-      url =
-        "github:MalpenZibo/ashell?rev=96103fa1b3e936b4bff5e624eca023ddaf9c106f";
-      inputs = { nixpkgs.follows = "nixpkgs"; };
-    };
+    # ---- Terminals ---- #
+    smart-splits-nvim.url = "github:mrjones2014/smart-splits.nvim";
+    smart-splits-nvim.flake = false;
+
+    kitty-scrollback-nvim.url = "github:mikesmithgh/kitty-scrollback.nvim";
+    kitty-scrollback-nvim.flake = false;
+
+    kitty-smart-scroll.url = "github:yurikhan/kitty-smart-scroll";
+    kitty-smart-scroll.flake = false;
+
+    kitty-smart-tab.url = "github:yurikhan/kitty-smart-tab";
+    kitty-smart-tab.flake = false;
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

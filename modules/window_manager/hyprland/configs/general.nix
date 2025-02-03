@@ -37,7 +37,7 @@
           # => Active Borders with `static` color, uncomment only one:
           # "col.active_border" = "rgba(3584E4ff)"; # Blue
           # "col.active_border" = "rgba(2190A4ff)"; # Teal
-          # "col.active_border" = "rgba(3A944Aff)"; # Greesn
+          # "col.active_border" = "rgba(3A944Aff)"; # Green
           # "col.active_border" = "rgba(C88800ff)"; # Yellow
           # "col.active_border" = "rgba(ED5B00ff)"; # Ornage
           # "col.active_border" = "rgba(E62D42ff)"; # Red

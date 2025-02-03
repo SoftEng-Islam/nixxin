@@ -34,10 +34,10 @@ in {
         col.text = $primary
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        hyprbars-button = rgb(B91C1C),20,x, hyprctl dispatch killactive, rgb(ffffff)
-        hyprbars-button = rgb(8E22CE),20,0, hyprctl dispatch fullscreen 2, rgb(000000)
-        hyprbars-button = rgb(4D4ED2),20,+, hyprctl dispatch fullscreen 1, rgb(ffffff)
-        hyprbars-button = rgb(0E7490),20,~, hyprctl dispatch togglefloating, rgb(ffffff)
+        hyprbars-button = rgba(#E62D42ff),20,x, hyprctl dispatch killactive, rgb(ffffff)
+        hyprbars-button = rgba(#9141ACff),20,0, hyprctl dispatch fullscreen 2, rgb(000000)
+        hyprbars-button = rgba(#3A944Aff),20,+, hyprctl dispatch fullscreen 1, rgb(ffffff)
+        hyprbars-button = rgba(#C88800ff),20,~, hyprctl dispatch togglefloating, rgb(ffffff)
       }
     '';
   };
