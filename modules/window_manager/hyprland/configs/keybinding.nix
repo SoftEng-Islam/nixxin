@@ -30,7 +30,7 @@
       bind = $main, Q, killactive
       bind = $main, W, exec, brave &
       bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
-      bind = $main, R, exec, btop
+      bind = $main, R, exec, ${pkgs.btop}/bin/btop
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
@@ -53,7 +53,7 @@
       #=> Third Row:
       # -------------
       # bind = $main, Z, exec,
-      # bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
+      bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)
       # bind = $main, V, exec,
       # bind = $main, B, exec,
