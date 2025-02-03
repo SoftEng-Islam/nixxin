@@ -137,11 +137,11 @@
     wantedBy = [ "multi-user.target" ];
   };
 
-  services.ucodenix = {
-    enable = false;
-    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-    cpuModelId = "00A70F41";
-  };
+  # services.ucodenix = {
+  #   enable = false;
+  #   # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
+  #   cpuModelId = "00A70F41";
+  # };
 
   environment.systemPackages = with pkgs; [
     # xivlauncher # Custom launcher for FFXIV
