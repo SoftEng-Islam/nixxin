@@ -7,8 +7,13 @@
             # dart-sass
             grass-sass
             libpulseaudio
-            (python312.withPackages
-              (ppkgs: with ppkgs; [ jinja2 pillow materialyoucolor ]))
+            (python312.withPackages (ppkgs:
+              with ppkgs; [
+                jinja2
+                pillow
+                materialyoucolor
+                material-color-utilities
+              ]))
           ]);
       }))
     ];

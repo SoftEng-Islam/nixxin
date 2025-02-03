@@ -64,34 +64,33 @@
     amdgpu.opencl.enable = true;
     amdgpu.legacySupport.enable = false;
     amdgpu.amdvlk.settings = {
-      AllowVkPipelineCachingToDisk = 1;
-      EnableVmAlwaysValid = 1;
       IFH = 0;
-      IdleAfterSubmitGpuMask = 1;
       ShaderCacheMode = 1;
+      EnableVmAlwaysValid = 1;
+      IdleAfterSubmitGpuMask = 1;
+      AllowVkPipelineCachingToDisk = 1;
     };
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        vaapiVdpau
-        libvdpau-va-gl
-        mesa.opencl
         amdvlk
-        driversi686Linux.amdvlk
+        mesa.opencl
+        libvdpau-va-gl
         rocmPackages.clr
         rocmPackages.clr.icd
         rocmPackages.rocm-runtime
         rocmPackages.rocm-smi
         rocmPackages.rocminfo
+        libGL
+        libGLU
+        libGLX
         libva
         libva-utils
-        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.mesa.drivers
+        vaapiVdpau
       ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
-        # inputs.hyprland.inputs.nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system}.pkgsi686Linux.mesa.drivers
-      ];
+      extraPackages32 =
+        [ pkgs.driversi686Linux.amdvlk pkgs.pkgsi686Linux.libva ];
     };
   };
   systemd.tmpfiles.rules = let
