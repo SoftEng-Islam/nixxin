@@ -1,1 +1,0 @@
-# https://github.com/any1/wayvnc

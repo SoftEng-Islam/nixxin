@@ -11,7 +11,7 @@
     ./dev
     ./display_manager
     ./editors
-    ./fileManager
+    ./file_manager
     ./flags
     ./graphics
     ./ignis
