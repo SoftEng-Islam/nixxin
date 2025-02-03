@@ -40,7 +40,7 @@
       # -------------
       #=> Second Row:
       # -------------
-      # bind = $main, A, exec, ignis toggle ignis_LAUNCHER
+      bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen, 0
