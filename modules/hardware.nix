@@ -89,8 +89,10 @@
         libva-utils
         vaapiVdpau
       ];
-      extraPackages32 =
-        [ pkgs.driversi686Linux.amdvlk pkgs.pkgsi686Linux.libva ];
+      extraPackages32 = [
+        pkgs.driversi686Linux.amdvlk
+        #  pkgs.pkgsi686Linux.libva
+      ];
     };
   };
   systemd.tmpfiles.rules = let
