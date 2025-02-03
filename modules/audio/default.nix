@@ -1,1 +1,1 @@
-{ settings, pkgs, ... }: { imports = [ ./audio.nix ]; }
+{ settings, pkgs, ... }: { imports = [ ./audio.nix ./rnnoise.nix ]; }

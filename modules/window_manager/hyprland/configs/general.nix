@@ -31,7 +31,7 @@
           gaps_workspaces = 50;
           border_size = 4;
           resize_on_border = true;
-          "col.inactive_border" = "rgba(9e9e9e60)";
+          "col.inactive_border" = "rgba(9e9e9e30)";
           "col.active_border" = "$primary";
 
           # => Active Borders with `static` color, uncomment only one:

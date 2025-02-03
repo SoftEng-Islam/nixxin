@@ -29,9 +29,9 @@ in {
         bar_button_padding = 12
         bar_precedence_over_border = true
         bar_part_of_window = true
-        bar_color = rgba(262626ff)
+        bar_color = $surface
         bar_text_align = left
-        col.text = rgba(DCE3EEFF)
+        col.text = $primary
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
         hyprbars-button = rgb(B91C1C),20,, hyprctl dispatch killactive ,reb(ffffff)

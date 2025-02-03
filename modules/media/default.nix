@@ -24,7 +24,7 @@ let
   ];
 
 in {
-  imports = [ ./celluloid ./cava.nix ./codex.nix ./rnnoise.nix ./mpv ];
+  imports = [ ./celluloid ./cava.nix ./codex.nix ./mpv ];
 
   environment.systemPackages = with pkgs;
     lib.flatten mediaPlayers ++ [
