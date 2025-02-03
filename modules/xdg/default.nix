@@ -137,7 +137,7 @@ in {
   home-manager.users.${settings.users.selected.username} = {
     xdg = {
       enable = true;
-      icons.enable = true;
+      # icons.enable = true;
       # configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
       cacheHome = cacheInHome;
       userDirs = {
