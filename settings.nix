@@ -316,7 +316,7 @@
       package = pkgs.noto-fonts-cjk-serif;
     };
     hyprbars = {
-      name = "CaskaydiaCove Nerd Font Mono Bold";
+      name = "CaskaydiaCove Nerd Font Mono";
       size = 11;
     };
     terminals = {
@@ -387,6 +387,7 @@
       # adw-gtk3-dark
       theme = "Material";
       package = pkgs.adw-gtk3;
+      icon_cache = false;
     };
     # ---- Qt ---- #
     qt = {

@@ -2,15 +2,9 @@
   environment.systemPackages = with pkgs; [ kitty ];
   home-manager.users.${settings.users.selected.username} = {
     home.file.".config/kitty/kitty.conf".text = ''
-      include ~/.local/cache/ignis/material/dark_colors-kitty.conf
-
-      # ---- basic colors ---- #
-      # background #${config.lib.stylix.colors.base01}
-      # foreground #${config.lib.stylix.colors.base07}
+      include ~/.cache/ignis/material/dark_colors-kitty.conf
 
       # ---- Cursor colors ---- #
-      # cursor ${settings.style.mainColor.hash}
-      # cursor_text_color #${config.lib.stylix.colors.base0A}
       # selection_background #${config.lib.stylix.colors.base04}
       # selection_foreground #${config.lib.stylix.colors.base06}
 
