@@ -50,6 +50,12 @@
       inkscape = false;
       darktable = false;
     };
+    textEditors = {
+      vscode-fhs = true;
+      zed-editor = false;
+      vscodium = true;
+      gnome-text-editor = true;
+    };
   };
 
   # -------------- #
