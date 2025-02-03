@@ -21,7 +21,7 @@ in {
       # ------------------ #
       plugin:hyprbars {
         # Honestly idk if it works like css, but well, why not
-        bar_text_font = "${settings.fonts.hyprbars.name}"
+        bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 38
         bar_blur = true
@@ -34,10 +34,10 @@ in {
         col.text = $primary
         # example buttons (R -> L)
         # hyprbars-button = color, size, on-click
-        hyprbars-button = rgba(#E62D42ff),20,x, hyprctl dispatch killactive, rgb(ffffff)
-        hyprbars-button = rgba(#9141ACff),20,0, hyprctl dispatch fullscreen 2, rgb(000000)
-        hyprbars-button = rgba(#3A944Aff),20,+, hyprctl dispatch fullscreen 1, rgb(ffffff)
-        hyprbars-button = rgba(#C88800ff),20,~, hyprctl dispatch togglefloating, rgb(ffffff)
+        hyprbars-button = rgba(E62D42ff),20,󰖭, hyprctl dispatch killactive, rgb(E5E5E5)
+        hyprbars-button = rgba(9141ACff),20,󰖯, hyprctl dispatch fullscreen 2, rgb(E5E5E5)
+        hyprbars-button = rgba(3A944Aff),20,󰖯, hyprctl dispatch fullscreen 1, rgb(E5E5E5)
+        hyprbars-button = rgba(C88800ff),20,󰖰, hyprctl dispatch togglefloating, rgb(E5E5E5)
       }
     '';
   };

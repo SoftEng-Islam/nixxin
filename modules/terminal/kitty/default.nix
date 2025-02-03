@@ -30,37 +30,12 @@ in {
         include ~/.cache/ignis/material/dark_colors-kitty.conf
 
         clear_all_shortcuts yes
-        kitty_mod ctrl+shift
+        kitty_mod ctrl
 
         # HACK: send alt+shift+h instead of alt+shift+backspace only when in shell (zsh)
         map alt+shift+backspace kitten replace_alt_shift_backspace.py alt+shift+backspace
 
-        # ---- Cursor colors ---- #
-        # selection_background #${config.lib.stylix.colors.base04}
-        # selection_foreground #${config.lib.stylix.colors.base06}
-
-        # url_color #${config.lib.stylix.colors.base11}
-        # cursor #${config.lib.stylix.colors.base11}
-
-        # active_border_color #${config.lib.stylix.colors.base11}
-        # active_tab_background #${config.lib.stylix.colors.base01}
-        # active_tab_foreground #${config.lib.stylix.colors.base05}
-        # inactive_border_color #${config.lib.stylix.colors.base03}
-        # inactive_tab_background #${config.lib.stylix.colors.base02}
-        # inactive_tab_foreground #${config.lib.stylix.colors.base04}
-        # tab_bar_background #${config.lib.stylix.colors.base01}
-
-        # ---- Tab Bar ---- #
-        active_tab_font_style   bold
-        inactive_tab_font_style normal
-        tab_bar_align left
-        tab_bar_edge down
-        tab_bar_min_tabs 2
-        # tab_bar_style separator
-        # tab_separator " ┇ "
-        tab_switch_strategy previous
-        tab_title_max_length 20
-        tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{title}"
+        disable_ligatures never
 
         # ---- URL ---- #
         # URL underline color when hovering with mouse
@@ -76,6 +51,7 @@ in {
         italic_font auto
         bold_italic_font auto
         font_size ${toString settings.fonts.terminals.kitty.size}
+
 
         # ---- Cursor ---- #
         cursor_shape beam
@@ -93,22 +69,18 @@ in {
 
         # ---- Windows Customization ---- #
         remember_window_size no
-        window_padding_width 14
+        window_padding_width 7
+        # background_opacity 0.75
         background_opacity 1
         confirm_os_window_close 0
         allow_clipboard_access clipboard_sanitize
         allow_unsafe_paste yes
         hide_window_decorations yes
 
-        # ---- Key bindings ---- #
-        map ctrl+c copy_to_clipboard
-        map ctrl+v paste_from_clipboard
-        map ctrl+x cut_to_clipboard
-        map ctrl+shift+c send_text all \x03
 
         # Set a color for comments (ensure they stand out clearly in the terminal)
         # You might need to set a specific color for comments in your editor (like Vim or Bash).
-        # highlight Comment ctermfg=Green guifg=#${config.lib.stylix.colors.base02}  # Lighter green for comments
+        highlight Comment ctermfg=Green guifg=#15803D  # Lighter comments
 
         # misc
         map ctrl+shift+f5 load_config_file
@@ -117,7 +89,11 @@ in {
         map kitty_mod+minus change_font_size all -1.0
         map kitty_mod+0 change_font_size all 0
         map kitty_mod+c combine : copy_to_clipboard : clear_selection
+        #map ctrl+c copy_to_clipboard
         map kitty_mod+v paste_from_clipboard
+        #map ctrl+v paste_from_clipboard
+        map kitty_mod+x cut_to_clipboard
+        map kitty_mod+shift+c send_text all \x03
         map kitty_mod+escape kitty_shell window
         # TODO: use ctrl+f
         # map ctrl+f kitten custom_pass_keys.py ctrl+f show_scrollback
@@ -235,14 +211,8 @@ in {
         # TODO: use kitty_scrollback_nvim as scrollback_pager
         # scrollback_pager ~/.config/kitty/scripts/nvim-scrollback.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'
 
-        # Cursor
-        cursor_beam_thickness 1.5
-        cursor_blink_interval -1.0
-        cursor_shape beam
-        cursor_stop_blinking_after 5.0
-
         # Tab-bar
-        active_tab_font_style normal
+        active_tab_font_style bold
         inactive_tab_font_style normal
         tab_bar_margin_width 7.0
         tab_bar_margin_height 7.0 0
@@ -250,19 +220,8 @@ in {
         tab_bar_align left
         tab_separator " "
 
-        # Font config
-        font_family IosevkaTerm NF
-        bold_font IosevkaTerm NF Heavy
-        italic_font IosevkaTerm NF Italic
-        bold_italic_font IosevkaTerm NF Heavy Italic
-
         # Theme
         # modify_font cell_height 135%
-        # background_opacity 0.75
-        background_opacity 1
-        font_size 10
-        hide_window_decorations no
-        window_padding_width 7
 
         # - Use additional nerd symbols
         # See https://github.com/be5invis/Iosevka/issues/248
