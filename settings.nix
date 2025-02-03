@@ -400,6 +400,10 @@
       nameInLight = "Papirus";
       nameInDark = "Papirus-Dark";
       package = pkgs.papirus-icon-theme;
+
+      # ---- File Manager Icons Size ---- #
+      # "small" or "small-plus" or "medium" or "large" or "extra-large"
+      icon_view_size = "large"; # Set icon size for nautilus file manager.
     };
     # ---- Cursor ---- #
     cursor = {

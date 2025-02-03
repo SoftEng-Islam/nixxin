@@ -38,7 +38,10 @@ in {
         show-delete-permanently = true;
       };
 
-      "org/gnome/nautilus/icon-view" = { default-zoom-level = "small-plus"; };
+      # "small" or "small-plus" or "medium" or "large" or "extra-large"
+      "org/gnome/nautilus/icon-view" = {
+        default-zoom-level = settings.style.icons.icon_view_size;
+      };
 
       "org/gtk/gtk4/settings/file-chooser" = {
         sort-directories-first = true;
