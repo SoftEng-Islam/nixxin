@@ -95,6 +95,7 @@
       "udev.log_priority=3"
 
       "ibt=off"
+      "psi=1"
 
       # makes Linux pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.

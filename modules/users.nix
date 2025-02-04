@@ -40,6 +40,7 @@
         "video" # Access to video devices
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
+        "waydroid"
       ];
       uid = 1000;
       packages = with pkgs; [ thunderbird ];

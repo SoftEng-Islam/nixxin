@@ -1,4 +1,17 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+let
+  waydroidGbinderConf = pkgs.writeText "waydroid.conf" ''
+    [Protocol]
+    /dev/binder = aidl2
+    /dev/vndbinder = aidl2
+    /dev/hwbinder = hidl
+
+    [ServiceManager]
+    /dev/binder = aidl2
+    /dev/vndbinder = aidl2
+    /dev/hwbinder = hidl
+  '';
+in {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
   virtualisation = {
@@ -94,8 +107,24 @@
   #- sys.use_memfd=true
 
   fileSystems."/dev/binderfs" = {
-    device = "binderfs";
+    device = "none";
     fsType = "binder";
+    options = [ "defaults" ];
+  };
+
+  environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
+  networking.firewall.trustedInterfaces = [ "waydroid0" ];
+
+  systemd.services.waydroid-container = {
+    description = "Waydroid Container";
+
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      ExecStart = "${pkgs.waydroid}/bin/waydroid -w container start";
+      ExecStop = "${pkgs.waydroid}/bin/waydroid container stop";
+      ExecStopPost = "${pkgs.waydroid}/bin/waydroid session stop";
+    };
   };
 
   environment.systemPackages = with pkgs; [
