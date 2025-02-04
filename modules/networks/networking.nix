@@ -79,6 +79,7 @@
         server = [ "8.8.8.8" "8.8.4.4" ];
         # Provide DHCP settings (if applicable)
         dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
+        except-interface = "waydroid0";
       };
     };
   };
@@ -146,7 +147,7 @@
     hostapd # A user space daemon for access point and authentication servers
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
 
-    iptables # A program to configure the Linux IP packet filtering ruleset
+    # iptables # A program to configure the Linux IP packet filtering ruleset
 
     iptables-legacy # A program to configure the Linux IP packet filtering ruleset
     iwd # Wireless daemon for Linux
