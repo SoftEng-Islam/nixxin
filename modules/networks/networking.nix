@@ -79,10 +79,6 @@
         server = [ "8.8.8.8" "8.8.4.4" ];
         # Provide DHCP settings (if applicable)
         dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
-        # dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
-        # dhcpLeaseTime = "12h";
-        # port = 50;
-        DNSStubListener = "no";
       };
     };
   };
@@ -149,7 +145,9 @@
     firewalld-gui # Firewall daemon with D-Bus interface
     hostapd # A user space daemon for access point and authentication servers
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
-    # iptables # A program to configure the Linux IP packet filtering ruleset
+
+    iptables # A program to configure the Linux IP packet filtering ruleset
+
     iptables-legacy # A program to configure the Linux IP packet filtering ruleset
     iwd # Wireless daemon for Linux
     iw # Tool to use nl80211
