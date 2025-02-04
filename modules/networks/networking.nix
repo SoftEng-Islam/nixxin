@@ -28,8 +28,7 @@
     #   iptables -A FORWARD -i ${settings.wlanInterface} -o ${settings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
     #   iptables -A FORWARD -i ${settings.ethernet} -o ${settings.wlanInterface} -j ACCEPT
     # '';
-    nameservers =
-      [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
@@ -82,7 +81,7 @@
         dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpLeaseTime = "12h";
-        port = 50;
+        # port = 50;
       };
     };
   };
