@@ -81,7 +81,6 @@
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
       v4l2loopback
-      binder_linux
       # zenpower
     ];
     extraModprobeConfig = ''
