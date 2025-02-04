@@ -93,6 +93,11 @@
   # /var/lib/waydroid/waydroid_base.prop
   #- sys.use_memfd=true
 
+  fileSystems."/dev/binderfs" = {
+    device = "binderfs";
+    fsType = "binder";
+  };
+
   environment.systemPackages = with pkgs; [
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     wl-clipboard
