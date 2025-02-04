@@ -69,7 +69,7 @@
   };
   services = {
     hostapd.enable = false;
-    resolved.enable = true; # systemd DNS resolver daemon, systemd-resolved.
+    resolved.enable = false; # systemd DNS resolver daemon, systemd-resolved.
     dnsmasq = {
       # Configure dnsmasq
       enable = true;
