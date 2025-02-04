@@ -82,6 +82,7 @@
         # dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpLeaseTime = "12h";
         # port = 50;
+        DNSStubListener = "no";
       };
     };
   };
