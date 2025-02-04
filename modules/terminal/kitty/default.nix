@@ -121,7 +121,6 @@ in {
         # HACK: send alt+shift+h instead of alt+shift+backspace only when in shell (zsh)
         map alt+shift+backspace kitten replace_alt_shift_backspace.py alt+shift+backspace
 
-
         # ---- URL ---- #
         # URL underline color when hovering with mouse
         url_style curly
