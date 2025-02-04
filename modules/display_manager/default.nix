@@ -30,10 +30,5 @@
     xserver.displayManager.gdm.wayland = true;
     xserver.displayManager.gdm.enable = true;
     xserver.displayManager.gdm.autoSuspend = false;
-
-    # ---- GNOME ---- #
-    # Enable or Disable the GNOME Desktop Environment.
-    xserver.desktopManager.gnome.enable = settings.gnome.enable;
-
   };
 }
