@@ -38,8 +38,8 @@ let
     #${pkgs.fcitx5}/bin/fcitx5
 
     # ---- Clipboard ---- #
-    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
-    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store
+    ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
+    ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store
 
     # ---- Set Cursor ---- #
     hyprctl setcursor ${settings.style.cursor.name}  ${

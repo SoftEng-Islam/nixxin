@@ -5,7 +5,7 @@ let
     "${pkgs.pipewire}/lib"
     # Add other necessary paths here
   ];
-  python-final = (pkgs.python.withPackages (ps:
+  python-final = (pkgs.python3.withPackages (ps:
     with ps; [
       pip
       pynvim # required by nvim
@@ -20,27 +20,27 @@ in {
   # Set environment variables for Python
   environment.sessionVariables = {
     # HACK: so pylint can resolve modules
-    # PYTHONPATH = [ "${python-final}/lib/python3.11/site-packages" "$PYTHONPATH" ];
+    PYTHONPATH = [
+      "${python-final}/lib/python3.12/site-packages"
+      "${pkgs.python3.sitePackages}:$PYTHONPATH"
+      "${pkgs.kitty}/lib/kitty"
+    ];
+    PYTHONHOME = "${pkgs.python3}";
 
     # PYENV_ROOT = "$HOME/.pyenv";
     # PYENV_ROOT = "${pkgs.pyenv}";
     # pyenv flags to be able to install Python
-    CPPFLAGS =
-      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl_3_3.dev}/include";
-    CXXFLAGS =
-      "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl_3_3.dev}/include";
-    CFLAGS = "-I${pkgs.openssl_3_3.dev}/include";
-    LDFLAGS =
-      "-L${pkgs.zlib.out}/lib -L${pkgs.libffi.out}/lib -L${pkgs.readline.out}/lib -L${pkgs.bzip2.out}/lib -L${pkgs.openssl_3_3.out}/lib";
-    CONFIGURE_OPTS = "-with-openssl=${pkgs.openssl_3_3.dev}";
-    PYENV_VIRTUALENV_DISABLE_PROMPT = "1";
-    PYTHONPATH = "${pkgs.python3.sitePackages}:$PYTHONPATH";
-    PYTHONHOME = "${pkgs.python3}";
-    LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
-    PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
-    PYTHON_CFLAGS = "$CPPFLAGS";
-    PYTHON_LDFLAGS = "$LDFLAGS";
-    PYTHON_CONFIGURE_OPTS = "--enable-shared";
+    # CPPFLAGS = "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl_3_3.dev}/include";
+    # CXXFLAGS = "-I${pkgs.zlib.dev}/include -I${pkgs.libffi.dev}/include -I${pkgs.readline.dev}/include -I${pkgs.bzip2.dev}/include -I${pkgs.openssl_3_3.dev}/include";
+    # CFLAGS = "-I${pkgs.openssl_3_3.dev}/include";
+    # LDFLAGS = "-L${pkgs.zlib.out}/lib -L${pkgs.libffi.out}/lib -L${pkgs.readline.out}/lib -L${pkgs.bzip2.out}/lib -L${pkgs.openssl_3_3.out}/lib";
+    # CONFIGURE_OPTS = "-with-openssl=${pkgs.openssl_3_3.dev}";
+    # PYENV_VIRTUALENV_DISABLE_PROMPT = "1";
+    # LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
+    # PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
+    # PYTHON_CFLAGS = "$CPPFLAGS";
+    # PYTHON_LDFLAGS = "$LDFLAGS";
+    # PYTHON_CONFIGURE_OPTS = "--enable-shared";
     # PIP_PREFIX = "$(pwd)/_build/pip_packages";
     # CPPFLAGS = "-I${pkgs.readline.dev}/include";
     # LDFLAGS = "-L${pkgs.readline.dev}/lib";

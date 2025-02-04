@@ -7,12 +7,21 @@
       windowrule = [
         # "noblur,.*""
         # "opacity 0.89 override 0.89 override, .*" # Applies transparency to EVERY WINDOW
-
         "float,^(pavucontrol)$"
         "pin,^(pavucontrol)$"
         "size 900 500,^(pavucontrol)$"
-
         "float,class:^(Material Settings)$"
+
+        "float, ^(blueberry.py)$"
+        "float, ^(steam)$"
+        "float, ^(guifetch)$" # FlafyDev/guifetch
+        "center, title:^(Open File)(.*)$"
+        "center, title:^(Select a File)(.*)$"
+        "center, title:^(Choose wallpaper)(.*)$"
+        "center, title:^(Open Folder)(.*)$"
+        "center, title:^(Save As)(.*)$"
+        "center, title:^(Library)(.*)$"
+        "center, title:^(File Upload)(.*)$"
 
         # Dialogs
         "float, title:^(Choose wallpaper)(.*)$"
@@ -28,6 +37,16 @@
       windowrulev2 = [
         "float, title:^([Pp]icture[-s]?[Ii]n[-s]?[Pp]icture)(.*)$"
         "tile, class:(dev.warp.Warp)"
+
+        "tile, class:(dev.warp.Warp)"
+        "float, title:^([Pp]icture[-s]?[Ii]n[-s]?[Pp]icture)(.*)$"
+
+        # Picture-in-Picture
+        "keepaspectratio, title:^(Picture(-| )in(-| )[Pp]icture)$"
+        "move 73% 72%,title:^(Picture(-| )in(-| )[Pp]icture)$"
+        "size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$"
+        "float, title:^(Picture(-| )in(-| )[Pp]icture)$"
+        "pin, title:^(Picture(-| )in(-| )[Pp]icture)$"
 
         # No shadow for tiled windows
         # "noshadow,floating:0"

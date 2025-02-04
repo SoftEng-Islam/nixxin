@@ -52,21 +52,22 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # steam-run # Run commands in the same FHS environment that is used for Steam
-    # gamescope # SteamOS session compositing window manager
-    # lutris # Open Source gaming platform for GNU/Linux
-    # retroarch # Multi-platform emulator frontend for libretro cores
-    # retroarch-assets # Assets needed for RetroArch
-    # retroarch-joypad-autoconfig # Joypad autoconfig files
-    # (mangohud.override { lowerBitnessSupport = true; })
-    gamemode # Optimise Linux system performance on demand
+  environment.systemPackages = with pkgs;
+    [
+      # steam-run # Run commands in the same FHS environment that is used for Steam
+      # gamescope # SteamOS session compositing window manager
+      # lutris # Open Source gaming platform for GNU/Linux
+      # retroarch # Multi-platform emulator frontend for libretro cores
+      # retroarch-assets # Assets needed for RetroArch
+      # retroarch-joypad-autoconfig # Joypad autoconfig files
+      # (mangohud.override { lowerBitnessSupport = true; })
+      gamemode # Optimise Linux system performance on demand
 
-    # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
-    # protonup
+      # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
+      # protonup
 
-    # Games
-    zeroad # Free, open-source game of ancient warfare
-    # zeroadPackages.zeroad-unwrapped
-  ];
+      # Games
+      # zeroad # Free, open-source game of ancient warfare
+      # zeroadPackages.zeroad-unwrapped
+    ];
 }

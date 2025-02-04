@@ -327,7 +327,10 @@
     };
     terminals = {
       kitty = {
-        name = "CaskaydiaCove Nerd Font Mono";
+        name = "IosevkaTerm NF";
+        bold_font = "IosevkaTerm NF Heavy";
+        italic_font = "IosevkaTerm NF Italic";
+        bold_italic_font = "IosevkaTerm NF Heavy Italic";
         size = 15;
       };
       alacritty = {
@@ -413,6 +416,7 @@
     };
     # ---- Cursor ---- #
     cursor = {
+      # 16, 32, 48 or 64
       size = 24; # Cursor Size
       name = "Bibata-Modern-Ice"; # Cursor Name
       package = pkgs.bibata-cursors;

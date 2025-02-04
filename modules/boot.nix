@@ -71,6 +71,8 @@
       "bfq"
       "uinput"
 
+      "binder_linux"
+
       "amd-pstate"
       # "msr"
       # "zenpower"
@@ -79,11 +81,12 @@
     extraModulePackages = with config.boot.kernelPackages; [
       rtl8188eus-aircrack
       v4l2loopback
+      binder_linux
       # zenpower
     ];
-    # extraModprobeConfig = ''
-    #   options v4l2loopback devices=1 video_nr=1 card_label="OBS Cam" exclusive_caps=1
-    # '';
+    extraModprobeConfig = ''
+      options binder_linux devices=binder,hwbinder,vndbinder
+    '';
     kernelParams = [
       "quiet"
       "splash"
@@ -92,9 +95,12 @@
       "rd.udev.log_level=3"
       "udev.log_priority=3"
 
-      # What is this?
-      # ''acpi_osi="Windows 2020"''
-      # And
+      "ibt=off"
+
+      # makes Linux pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
+      # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
+      ''acpi_osi="Windows 2020"''
+
       # this doesn't fix my ACPI Bios errors :c
       # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
       # "acpi_osi=Linux"

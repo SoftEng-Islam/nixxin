@@ -1,10 +1,18 @@
 { settings, pkgs, ... }: {
   # Additional configurations, notes and post-installation steps
-  # in https://nixos.wiki/wiki/WayDroid
+  # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
   virtualisation = {
     waydroid.enable = true;
     lxd.enable = true;
   };
+
+  # ---- Installation ---- #
+  # After you have downloaded both system and vendor image, extract them.
+  # Now move both vendor.img and system.img to `/etc/waydroid-extra/images/`
+  # Lastly, in your terminal enter this command `sudo waydroid init -f`
+  # https://sourceforge.net/projects/waydroid/files/images/
+  # aria2c https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/lineage-18.1-20250201-MAINLINE-waydroid_x86_64-vendor.zip/download
+  # aria2c https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-18.1-20250201-GAPPS-waydroid_x86_64-system.zip/download
 
   # Additional configurations and notes:
   # 1. You may need to adjust settings if you have an NVIDIA card or an RX 6800 series:
@@ -21,8 +29,64 @@
   # - Start the WayDroid container with 'sudo systemctl start waydroid-container'.
   # - Begin a WayDroid session with 'waydroid session start'.
 
-  environment.systemPackages = with pkgs;
-    [
-      waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
-    ];
+  # ---- Start the container ---- #
+  # Start the Waydroid LXC container
+  # $ sudo systemctl start waydroid-container
+  #
+  # You'll know it worked by checking the journal You should see "Started Waydroid Container".
+  # $ sudo journalctl -u waydroid-container
+  #
+  # Start Waydroid session
+  # You'll know it is finished when you see the message "Android with user 0 is ready".
+  # $ waydroid session start
+
+  # ------------------------------- #
+  # ------------------------------- #
+
+  # ---- General usage ---- #
+  # Start Android UI
+  # $ waydroid show-full-ui
+  #
+  # List Android apps
+  # $ waydroid app list
+  #
+  # Start an Android app
+  # $ waydroid app launch <application name>
+  #
+  # Install an Android app
+  # $ waydroid app install </path/to/app.apk>
+  #
+  # Enter the LXC shell
+  # $ sudo waydroid shell
+  #
+  # Overrides the full-ui width
+  # $ waydroid prop set persist.waydroid.width 608
+
+  # ------------------------------- #
+  # ------------------------------- #
+
+  # ---- Update Android ---- #
+  # $ sudo waydroid upgrade
+
+  # ------------------------------- #
+  # ------------------------------- #
+
+  # ---- GPU Adjustments ---- #
+  # In case you have an NVIDIA card or an RX 6800 series, you'll need to disable GBM and mesa-drivers:
+  # /var/lib/waydroid/waydroid_base.prop
+  #- ro.hardware.gralloc=default
+  #- ro.hardware.egl=swiftshader
+
+  # ------------------------------- #
+  # ------------------------------- #
+
+  # ---- Linux 5.18+ ---- #
+  # Linux 5.18 and later removed ashmem in favor of memfd, so you may need to tell Waydroid (1.2.1 and later) to use the new module:
+  # /var/lib/waydroid/waydroid_base.prop
+  #- sys.use_memfd=true
+
+  environment.systemPackages = with pkgs; [
+    waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
+    wl-clipboard
+  ];
 }
