@@ -14,7 +14,11 @@
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
-    firewall = { enable = false; };
+    firewall = {
+      enable = false;
+      allowedTCPPorts = [ 53 ];
+      allowedUDPPorts = [ 53 67 ];
+    };
     # interfaces.${wifiInterface}.useDHCP = true;
     # useNetworkd = true;
 

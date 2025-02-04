@@ -166,10 +166,9 @@ in {
         map kitty_mod+equal change_font_size all +1.0
         map kitty_mod+minus change_font_size all -1.0
         map kitty_mod+0 change_font_size all 0
+        map kitty_mod+. clear_terminal clear active
         map kitty_mod+c combine : copy_to_clipboard : clear_selection
-        #map ctrl+c copy_to_clipboard
         map kitty_mod+v paste_from_clipboard
-        #map ctrl+v paste_from_clipboard
         map kitty_mod+x cut_to_clipboard
         map kitty_mod+shift+c send_text all \x03
         map kitty_mod+escape kitty_shell window
@@ -221,6 +220,7 @@ in {
         map ctrl+shift+enter new_window_with_cwd
         map ctrl+shift+alt+enter detach_window
         map kitty_mod+w close_window
+
 
         # ---- Tabs ---- #
         map alt+1 kitten smart_tab.py goto_tab 1 alt+1
