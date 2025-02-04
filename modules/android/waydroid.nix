@@ -29,6 +29,14 @@
   # - Start the WayDroid container with 'sudo systemctl start waydroid-container'.
   # - Begin a WayDroid session with 'waydroid session start'.
 
+  # Fixing Waydroid Binder Issues on NixOS
+  # Step 1: Manually Mount binderfs
+  # sudo mkdir -p /dev/binderfs
+  # sudo mount -t binder none /dev/binderfs
+  # ls /dev/binderfs/
+  # It should show:
+  # binder  hwbinder  vndbinder
+
   # ---- Start the container ---- #
   # Start the Waydroid LXC container
   # $ sudo systemctl start waydroid-container
@@ -84,6 +92,11 @@
   # Linux 5.18 and later removed ashmem in favor of memfd, so you may need to tell Waydroid (1.2.1 and later) to use the new module:
   # /var/lib/waydroid/waydroid_base.prop
   #- sys.use_memfd=true
+
+  fileSystems."/dev/binderfs" = {
+    fsType = "binder";
+    options = [ "none" ];
+  };
 
   environment.systemPackages = with pkgs; [
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu

@@ -223,11 +223,6 @@
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
-  # ---- Desktop Environment ---- #
-  gnome = { enable = false; };
-  COSMIC = { enable = false; };
-  plasma = { enable = false; };
-
   # ---- Hyprland ---- #
   hyprland = {
     enable = true;
@@ -322,16 +317,16 @@
       package = pkgs.noto-fonts-cjk-serif;
     };
     hyprbars = {
-      name = "CaskaydiaCove Nerd Font Mono Bold";
+      name = "CaskaydiaCove Nerd Font BoldItalic";
       size = 11;
     };
     terminals = {
       kitty = {
-        name = "IosevkaTerm NF";
-        bold_font = "IosevkaTerm NF Heavy";
-        italic_font = "IosevkaTerm NF Italic";
-        bold_italic_font = "IosevkaTerm NF Heavy Italic";
-        size = 15;
+        name = "CaskaydiaCove Nerd Font Mono Regular";
+        bold_font = "CaskaydiaCove Nerd Font Mono Bold";
+        italic_font = "CaskaydiaCove Nerd Font Mono Italic";
+        bold_italic_font = "CaskaydiaCove Nerd Font Mono BoldItalic";
+        size = 14;
       };
       alacritty = {
         name = "CaskaydiaCove Nerd Font Mono";
@@ -433,5 +428,6 @@
   gaming = {
     enable = true; # To support gaming and install gaming stuff
     steam = { enable = false; };
+    zeroad = { enable = false; };
   };
 }

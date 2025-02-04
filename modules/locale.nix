@@ -26,7 +26,7 @@
       nerd-fonts.caskaydia-cove
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
+      # nerd-fonts.iosevka
     ];
     fontconfig = {
       enable = true;

@@ -17,13 +17,14 @@ WallpaperService.get_default()
 app.add_icons(f"{Utils.get_current_dir()}/icons")
 app.apply_css(Utils.get_current_dir() + "/style.scss")
 
-# Utils.exec_sh("gsettings set org.gnome.desktop.interface gtk-theme Material")
-# Utils.exec_sh("gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark")
-# Utils.exec_sh(
-#     'gsettings set org.gnome.desktop.interface font-name "CaskaydiaCove Nerd Font Mono 11"'
-# )
+Utils.exec_sh("gsettings set org.gnome.desktop.interface gtk-theme Material")
+Utils.exec_sh("gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice")
+Utils.exec_sh("gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark")
+Utils.exec_sh(
+  'gsettings set org.gnome.desktop.interface font-name "CaskaydiaCove Nerd Font Mono 10"'
+)
 
-# Utils.exec_sh("hyprctl reload")
+Utils.exec_sh("hyprctl reload")
 
 
 ControlCenter()

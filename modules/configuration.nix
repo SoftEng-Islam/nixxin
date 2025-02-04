@@ -7,7 +7,6 @@
     ./audio
     ./btop
     ./cli
-    ./desktop_environment
     ./dev
     ./display_manager
     ./editors

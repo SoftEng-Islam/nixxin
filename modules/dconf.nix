@@ -62,7 +62,7 @@ with lib.gvariant; {
         # cursor-blink-timeout
         cursor-size = settings.style.cursor.size;
         cursor-theme = settings.style.cursor.name;
-        enable-animations = false;
+        enable-animations = true;
         # enable-hot-corners
 
         # ---- Fonts ---- #
