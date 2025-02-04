@@ -126,7 +126,9 @@ in {
       ExecStopPost = "${pkgs.waydroid}/bin/waydroid session stop";
     };
   };
-
+  systemd.tmpfiles.rules = [
+    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
+  ];
   environment.systemPackages = with pkgs; [
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     wl-clipboard
