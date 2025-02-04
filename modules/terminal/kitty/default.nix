@@ -1,5 +1,6 @@
 { inputs, settings, config, pkgs, ... }:
 let
+  unwrapHex = str: builtins.substring 1 (builtins.stringLength str) str;
   shellIntegrationInit = {
     bash = ''
       if test -n "$KITTY_INSTALLATION_DIR"; then
@@ -22,11 +23,97 @@ in {
     programs.zsh.initExtra = shellIntegrationInit.zsh;
     xdg.configFile = {
       "kitty/diff.conf".text = ''
-        ${builtins.readFile ./configs/kitty-diff.conf}
+
+        # text
+        foreground           #4c4f69
+        # base
+        background           #eff1f5
+        # subtext0
+        title_fg             #6c6f85
+
+        # mantle
+        title_bg             #e6e9ef
+        margin_bg            #e6e9ef
+
+        # subtext1
+        margin_fg            #5c5f77
+        # mantle
+        filler_bg            #e6e9ef
+
+        # 30% red, 70% base
+        removed_bg           #e6adbc
+        # 50% red, 50% base
+        highlight_removed_bg #e08097
+        # 40% red, 60% base
+        removed_margin_bg    #e397aa
+
+        # 30% green, 70% base
+        added_bg             #bad8b8
+        # 50% green, 50% base
+        highlight_added_bg   #97c890
+        # 40% green, 60% base
+        added_margin_bg      #e397aa
+
+        # mantle
+        hunk_margin_bg       #e6e9ef
+        hunk_bg              #e6e9ef
+
+        # 40% yellow, 60% base
+        search_bg            #e8ca9f
+        # text
+        search_fg            #4c4f69
+        # 30% sky, 70% base
+        select_bg            #a8daf0
+        # text
+        select_fg            #4c4f69
+          ${builtins.readFile ./configs/kitty-diff.conf}
       '';
       "kitty/kitty.conf".text = ''
         shell ${pkgs.zsh}/bin/zsh
+
+        # ---- Theme ---- #
         include ~/.cache/ignis/material/dark_colors-kitty.conf
+        # modify_font cell_height 135%
+        disable_ligatures never
+
+
+        tab_title_template "{fmt.bg.default}{fmt.fg._4c4f69}  {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol}  {fmt.fg.default}"
+        active_tab_title_template "{fmt.bg.default}{fmt.fg._a8daf0}{fmt.bg._a8daf0}{fmt.fg._e8ca9f} {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.bg.default}{fmt.fg.__e8ca9f}{fmt.bg.default}{fmt.fg.default}"
+
+
+        # The basic colors
+        selection_foreground    #303446
+        selection_background    #f2d5cf
+
+        # Cursor colors
+        cursor_text_color       #303446
+
+        # URL underline color when hovering with mouse
+        url_color               #f2d5cf
+
+        # Kitty window border colors
+        active_border_color     #babbf1
+        inactive_border_color   #737994
+        bell_border_color       #e5c890
+
+        # OS Window titlebar colors
+        wayland_titlebar_color system
+        macos_titlebar_color system
+
+        # Tab bar colors
+        active_tab_foreground   #232634
+        active_tab_background   #ca9ee6
+        inactive_tab_foreground #c6d0f5
+        inactive_tab_background #292c3c
+        tab_bar_background      #232634
+
+        # Colors for marks (marked text in the terminal)
+        mark1_foreground #303446
+        mark1_background #babbf1
+        mark2_foreground #303446
+        mark2_background #ca9ee6
+        mark3_foreground #303446
+        mark3_background #85c1dc
 
         clear_all_shortcuts yes
         kitty_mod ctrl
@@ -34,7 +121,6 @@ in {
         # HACK: send alt+shift+h instead of alt+shift+backspace only when in shell (zsh)
         map alt+shift+backspace kitten replace_alt_shift_backspace.py alt+shift+backspace
 
-        disable_ligatures never
 
         # ---- URL ---- #
         # URL underline color when hovering with mouse
@@ -60,10 +146,6 @@ in {
         cursor_trail_decay 0.1 0.4
         cursor_trail_start_threshold 2
         cursor_stop_blinking_after 0
-
-        # ---- Scrollbar ---- #
-        scrollback_indicator_opacity 1.0
-        scrollbar yes
 
         # ---- Windows Customization ---- #
         remember_window_size no
@@ -94,108 +176,110 @@ in {
         # TODO: use ctrl+f
         # map ctrl+f kitten custom_pass_keys.py ctrl+f show_scrollback
 
-        # scrolling
-        # map kitty_mod+page_up kitten smart_scroll.py scroll_page_up ctrl+shift+page_up
-        # map kitty_mod+page_down kitten smart_scroll.py scroll_page_down ctrl+shift+page_down
-        # map kitty_mod+u kitten smart_scroll.py scroll_page_up ctrl+shift+u
-        # map kitty_mod+d kitten smart_scroll.py scroll_page_down ctrl+shift+d
-        # map kitty_mod+home kitten smart_scroll.py scroll_home ctrl+shift+home
-        # map kitty_mod+end kitten smart_scroll.py scroll_end ctrl+shift+end
+        # ---- Scrollbar & Scrolling ---- #
+        scrollbar yes
+        scrollback_indicator_opacity 1.0
+        map kitty_mod+page_up kitten smart_scroll.py scroll_page_up ctrl+shift+page_up
+        map kitty_mod+page_down kitten smart_scroll.py scroll_page_down ctrl+shift+page_down
+        map kitty_mod+u kitten smart_scroll.py scroll_page_up ctrl+shift+u
+        map kitty_mod+d kitten smart_scroll.py scroll_page_down ctrl+shift+d
+        map kitty_mod+home kitten smart_scroll.py scroll_home ctrl+shift+home
+        map kitty_mod+end kitten smart_scroll.py scroll_end ctrl+shift+end
 
-        # windows
-        # map ctrl+up neighboring_window up
-        # map ctrl+down neighboring_window down
-        # map ctrl+left neighboring_window left
-        # map ctrl+right neighboring_window right
-        # map --when-focus-on var:IS_NVIM ctrl+up
-        # map --when-focus-on var:IS_NVIM ctrl+down
-        # map --when-focus-on var:IS_NVIM ctrl+left
-        # map --when-focus-on var:IS_NVIM ctrl+right
+        # ---- Windows ---- #
+        map ctrl+up neighboring_window up
+        map ctrl+down neighboring_window down
+        map ctrl+left neighboring_window left
+        map ctrl+right neighboring_window right
+        map --when-focus-on var:IS_NVIM ctrl+up
+        map --when-focus-on var:IS_NVIM ctrl+down
+        map --when-focus-on var:IS_NVIM ctrl+left
+        map --when-focus-on var:IS_NVIM ctrl+right
 
-        # map ctrl+shift+up kitten custom_pass_keys.py ctrl+shift+up move_window top
-        # map ctrl+shift+down kitten custom_pass_keys.py ctrl+shift+down move_window bottom
-        # map ctrl+shift+left kitten custom_pass_keys.py ctrl+shift+left move_window left
-        # map ctrl+shift+right kitten custom_pass_keys.py ctrl+shift+right move_window right
+        map ctrl+shift+up kitten custom_pass_keys.py ctrl+shift+up move_window top
+        map ctrl+shift+down kitten custom_pass_keys.py ctrl+shift+down move_window bottom
+        map ctrl+shift+left kitten custom_pass_keys.py ctrl+shift+left move_window left
+        map ctrl+shift+right kitten custom_pass_keys.py ctrl+shift+right move_window right
 
-        # map ctrl+shift+alt+up kitten relative_resize.py up 3
-        # map ctrl+shift+alt+down kitten relative_resize.py down 3
-        # map ctrl+shift+alt+left kitten relative_resize.py left 3
-        # map ctrl+shift+alt+right kitten relative_resize.py right 3
-        # map --when-focus-on var:IS_NVIM ctrl+shift+alt+up
-        # map --when-focus-on var:IS_NVIM ctrl+shift+alt+down
-        # map --when-focus-on var:IS_NVIM ctrl+shift+alt+left
-        # map --when-focus-on var:IS_NVIM ctrl+shift+alt+right
+        map ctrl+shift+alt+up kitten relative_resize.py up 3
+        map ctrl+shift+alt+down kitten relative_resize.py down 3
+        map ctrl+shift+alt+left kitten relative_resize.py left 3
+        map ctrl+shift+alt+right kitten relative_resize.py right 3
+        map --when-focus-on var:IS_NVIM ctrl+shift+alt+up
+        map --when-focus-on var:IS_NVIM ctrl+shift+alt+down
+        map --when-focus-on var:IS_NVIM ctrl+shift+alt+left
+        map --when-focus-on var:IS_NVIM ctrl+shift+alt+right
 
-        # map ctrl+f4 kitten custom_pass_keys.py ctrl+f4 focus_visible_window
-        # map ctrl+shift+f4 kitten custom_pass_keys.py ctrl+shift+f4 swap_with_window
+        map ctrl+f4 kitten custom_pass_keys.py ctrl+f4 focus_visible_window
+        map ctrl+shift+f4 kitten custom_pass_keys.py ctrl+shift+f4 swap_with_window
 
-        # map ctrl+n kitten custom_pass_keys.py ctrl+n next_window
-        # map ctrl+p kitten custom_pass_keys.py ctrl+p previous_window
-        # map ctrl+shift+n kitten custom_pass_keys.py ctrl+shift+n move_window_forward
-        # map ctrl+shift+p kitten custom_pass_keys.py ctrl+shift+p move_window_backward
-        # map ctrl+enter move_window_to_top
-        # map ctrl+shift+enter new_window_with_cwd
-        # map ctrl+shift+alt+enter detach_window
-        # map kitty_mod+w close_window
+        map ctrl+n kitten custom_pass_keys.py ctrl+n next_window
+        map ctrl+p kitten custom_pass_keys.py ctrl+p previous_window
+        map ctrl+shift+n kitten custom_pass_keys.py ctrl+shift+n move_window_forward
+        map ctrl+shift+p kitten custom_pass_keys.py ctrl+shift+p move_window_backward
+        map ctrl+enter move_window_to_top
+        map ctrl+shift+enter new_window_with_cwd
+        map ctrl+shift+alt+enter detach_window
+        map kitty_mod+w close_window
 
-        # tabs
-        # map alt+1 kitten smart_tab.py goto_tab 1 alt+1
-        # map alt+2 kitten smart_tab.py goto_tab 2 alt+2
-        # map alt+3 kitten smart_tab.py goto_tab 3 alt+3
-        # map alt+4 kitten smart_tab.py goto_tab 4 alt+4
-        # map alt+5 kitten smart_tab.py goto_tab 5 alt+5
-        # map alt+6 kitten smart_tab.py goto_tab 6 alt+6
-        # map alt+7 kitten smart_tab.py goto_tab 7 alt+7
-        # map alt+8 kitten smart_tab.py goto_tab 8 alt+8
-        # map alt+9 kitten smart_tab.py goto_tab 9 alt+9
-        # map alt+0 kitten smart_tab.py goto_tab -1 alt+0
+        # ---- Tabs ---- #
+        map alt+1 kitten smart_tab.py goto_tab 1 alt+1
+        map alt+2 kitten smart_tab.py goto_tab 2 alt+2
+        map alt+3 kitten smart_tab.py goto_tab 3 alt+3
+        map alt+4 kitten smart_tab.py goto_tab 4 alt+4
+        map alt+5 kitten smart_tab.py goto_tab 5 alt+5
+        map alt+6 kitten smart_tab.py goto_tab 6 alt+6
+        map alt+7 kitten smart_tab.py goto_tab 7 alt+7
+        map alt+8 kitten smart_tab.py goto_tab 8 alt+8
+        map alt+9 kitten smart_tab.py goto_tab 9 alt+9
+        map alt+0 kitten smart_tab.py goto_tab -1 alt+0
 
-        # map kitty_mod+q close_tab
-        # map ctrl+, previous_tab
-        # map ctrl+. next_tab
-        # map ctrl+shift+, move_tab_backward
-        # map ctrl+shift+. move_tab_forward
+        map kitty_mod+q close_tab
+        map ctrl+, previous_tab
+        map ctrl+. next_tab
+        map ctrl+shift+, move_tab_backward
+        map ctrl+shift+. move_tab_forward
         # map ctrl+t kitten custom_pass_keys.py ctrl+t set_tab_title
-        # map ctrl+shift+t new_tab_with_cwd
-        # map ctrl+shift+alt+t detach_tab
+        map ctrl+shift+t new_tab_with_cwd
+        map ctrl+shift+alt+t detach_tab
 
-        # layouts
-        # map kitty_mod+f toggle_layout stack
-        # map kitty_mod+r>m goto_layout stack
-        # map kitty_mod+r>t goto_layout tall:bias=50;full_size=1
-        # map kitty_mod+r>f goto_layout fat:bias=50;full_size=1
-        # map kitty_mod+r>s goto_layout splits
-        # map kitty_mod+r>left layout_action increase_num_full_size_windows
-        # map kitty_mod+r>right layout_action decrease_num_full_size_windows
+        # ---- Layouts ---- #
+        map kitty_mod+f toggle_layout stack
+        map kitty_mod+r>m goto_layout stack
+        map kitty_mod+r>t goto_layout tall:bias=50;full_size=1
+        map kitty_mod+r>f goto_layout fat:bias=50;full_size=1
+        map kitty_mod+r>s goto_layout splits
+        map kitty_mod+r>left layout_action increase_num_full_size_windows
+        map kitty_mod+r>right layout_action decrease_num_full_size_windows
 
-        # hints
-        # map kitty_mod+h>l open_url_with_hints
-        # map kitty_mod+h>n kitten hints --type=linenum --linenum-action=tab nvim +{line} {path}
-        # map kitty_mod+h>y kitten hints --type hyperlink
-        # map kitty_mod+h>f kitten hints --type path
-        # map kitty_mod+h>shift+F kitten hints --type path --program -
+        # ---- Hints ---- #
+        map kitty_mod+h>l open_url_with_hints
+        map kitty_mod+h>n kitten hints --type=linenum --linenum-action=tab nvim +{line} {path}
+        map kitty_mod+h>y kitten hints --type hyperlink
+        map kitty_mod+h>f kitten hints --type path
+        map kitty_mod+h>shift+F kitten hints --type path --program -
 
-        # leader
-        # map kitty_mod+l>c launch --type overlay zsh -i -c "cht"
-        # map kitty_mod+l>s kitty_scrollback_nvim --nvim-args kitty-scrollback
-        # map kitty_mod+l>o kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
+        # ---- Leader ---- #
+        map kitty_mod+l>c launch --type overlay zsh -i -c "cht"
+        map kitty_mod+l>s kitty_scrollback_nvim --nvim-args kitty-scrollback
+        map kitty_mod+l>o kitty_scrollback_nvim --config ksb_builtin_last_cmd_output
 
         action_alias kitty_scrollback_nvim kitten $XDG_DATA_HOME/nvim/lazy/kitty-scrollback.nvim/python/kitty_scrollback_nvim.py
 
-        # update_check_interval 0
-        # visual_window_select_characters ABCDEFGHIJKLMNOPQRSTUVWXYZ
-        # shell_integration no-rc no-cursor enabled
-        # touch_scroll_multiplier 6.0
-        # close_on_child_death no
-        # listen_on unix:@kitty
-        # allow_remote_control yes
-        # confirm_os_window_close 2
-        # enabled_layouts fat:bias=50;full_size=1,tall:bias=50;full_size=1,stack,splits
-        # focus_follows_mouse yes
-        # open_url_with default
-        # placement_strategy top-left
-        # copy_on_select no
-        # strip_trailing_spaces smart
+        update_check_interval 0
+        visual_window_select_characters ABCDEFGHIJKLMNOPQRSTUVWXYZ
+        shell_integration no-rc no-cursor enabled
+        touch_scroll_multiplier 6.0
+        close_on_child_death no
+        listen_on unix:@kitty
+        allow_remote_control yes
+        confirm_os_window_close 2
+        enabled_layouts fat:bias=50;full_size=1,tall:bias=50;full_size=1,stack,splits
+        focus_follows_mouse yes
+        open_url_with default
+        placement_strategy top-left
+        copy_on_select no
+        strip_trailing_spaces smart
 
         draw_minimal_borders yes
         inactive_text_alpha 0.8
@@ -207,7 +291,7 @@ in {
         # TODO: use kitty_scrollback_nvim as scrollback_pager
         # scrollback_pager ~/.config/kitty/scripts/nvim-scrollback.sh 'INPUT_LINE_NUMBER' 'CURSOR_LINE' 'CURSOR_COLUMN'
 
-        # Tab-bar
+        # ---- Tab-bar ---- #
         active_tab_font_style bold
         inactive_tab_font_style normal
         tab_bar_margin_width 7.0
@@ -215,9 +299,6 @@ in {
         tab_bar_style custom
         tab_bar_align left
         tab_separator " "
-
-        # Theme
-        # modify_font cell_height 135%
 
         # - Use additional nerd symbols
         # See https://github.com/be5invis/Iosevka/issues/248
