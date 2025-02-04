@@ -20,7 +20,7 @@
     ./configs/rules.nix
     # ./configs/scripts.nix
     ./configs/source.nix
-    # ./hyprpolkitagent.nix
+    ./hyprpolkitagent.nix
   ];
   programs = {
     uwsm.enable = false;

@@ -2,7 +2,7 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
-    #systemctl --user start hyprpolkitagent
+    systemctl --user start hyprpolkitagent
 
     # ---- Hyprland with uwsm ---- #
     #systemctl --user enable --now hyprpolkitagent.service
@@ -29,10 +29,10 @@ let
 
 
     # Core components (authentication, lock screen, notification daemon)
-    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    # ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
-    ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
+    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
     # ---- Input Method ---- #
     #${pkgs.fcitx5}/bin/fcitx5
