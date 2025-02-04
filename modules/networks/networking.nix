@@ -73,15 +73,12 @@
       alwaysKeepRunning = true;
       settings = {
         # Set Google DNS for IPv4 and IPv6
-        server =
-          [ "8.8.8.8" "8.8.4.4" "2001:4860:4860::8888" "2001:4860:4860::8844" ];
+        server = [ "8.8.8.8" "8.8.4.4" ];
         # Provide DHCP settings (if applicable)
         dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpRange = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
         # dhcpLeaseTime = "12h";
-        interface = "waydroid0"; # Bind to Waydroid’s virtual interface
-        bind-interfaces = true; # Prevent conflicts with other services
-        except-interface = "lo"; # Ignore loopback
+        port = 50;
       };
     };
   };
