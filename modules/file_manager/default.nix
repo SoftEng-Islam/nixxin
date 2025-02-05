@@ -8,7 +8,7 @@ let
     (lib.optional settings.system.fileManagers.nemo ./nemo.nix)
   ];
 in {
-  imports = _fileManager;
+  imports = lib.flatten _fileManager;
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.gvfs.package = pkgs.gnome.gvfs;
