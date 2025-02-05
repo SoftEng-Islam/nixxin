@@ -40,7 +40,7 @@ in mkIf (cfg.applications.codium.enable) {
 
         editor = {
           fontFamily =
-            "'JetBrainsMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
+            "'CaskaydiaCove Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
           fontLigatures = true;
           formatOnPaste =
             cfg.system.users.${user}.applications.codium.formatOnPaste;

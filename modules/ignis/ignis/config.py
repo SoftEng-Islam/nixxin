@@ -21,7 +21,7 @@ Utils.exec_sh("gsettings set org.gnome.desktop.interface gtk-theme Material")
 Utils.exec_sh("gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Ice")
 Utils.exec_sh("gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark")
 Utils.exec_sh(
-  'gsettings set org.gnome.desktop.interface font-name "CaskaydiaCove Nerd Font Mono 10"'
+  'gsettings set org.gnome.desktop.interface font-name "CaskaydiaCove Nerd Font 10"'
 )
 
 Utils.exec_sh("hyprctl reload")

@@ -9,7 +9,7 @@
 
         auto_update = false;
         autosave = "off";
-        buffer_font_family = "JetBrainsMono Nerd Font";
+        buffer_font_family = "CaskaydiaCove Nerd Font";
         buffer_font_size = 14;
         chat_panel.button = false;
         collaboration_panel.button = false;
@@ -31,7 +31,7 @@
         terminal = {
           blinking = "on";
           copy_on_select = true;
-          font_family = "JetBrainsMono Nerd Font";
+          font_family = "CaskaydiaCove Nerd Font";
           font_size = 14;
         };
         ui_font_size = 16;
