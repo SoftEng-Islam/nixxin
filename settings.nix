@@ -331,10 +331,10 @@
     };
     terminals = {
       kitty = {
-        name = "CaskaydiaCove Nerd Font Mono";
-        bold_font = "CaskaydiaCove Nerd Font Bold";
-        italic_font = "CaskaydiaCove Nerd Font Italic";
-        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
+        name = "IosevkaTerm NF";
+        bold_font = "IosevkaTerm NF Heavy";
+        italic_font = "IosevkaTerm NF Italic";
+        bold_italic_font = "IosevkaTerm NF Heavy Italic";
         size = 14;
       };
       alacritty = {

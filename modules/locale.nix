@@ -25,6 +25,7 @@
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
       nerd-fonts.iosevka
+      nerd-fonts.iosevka-term
     ];
     fontconfig = {
       enable = true;

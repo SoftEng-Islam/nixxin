@@ -92,7 +92,6 @@ in {
           unwrapHex "#e5c890"
         }}{fmt.bg.default}{fmt.fg.default}"
 
-
         # The basic colors
         selection_foreground    #303446
         selection_background    #f2d5cf
