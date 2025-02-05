@@ -74,7 +74,7 @@ in {
         include ~/.cache/ignis/material/dark_colors-kitty.conf
         include ~/.config/kitty/settings.conf
 
-        tab_title_template "{fmt.bg._${unwrapHex "#232634"}}{fmt.fg._${
+        tab_title_template "{fmt.bg._${unwrapHex "#737994"}}{fmt.fg._${
           unwrapHex "#15803D"
         }}  {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol}  {fmt.fg.default}"
         active_tab_title_template "{fmt.bg.default}{fmt.fg._${
@@ -106,11 +106,11 @@ in {
         macos_titlebar_color system
 
         # Tab bar colors
-        active_tab_foreground   #232634
-        active_tab_background   #ca9ee6
-        inactive_tab_foreground #c6d0f5
-        inactive_tab_background #292c3c
-        tab_bar_background      #232634
+        #active_tab_foreground   #232634
+        #active_tab_background   #ca9ee6
+        #inactive_tab_foreground #c6d0f5
+        #inactive_tab_background #292c3c
+        #tab_bar_background      #232634
 
         # Colors for marks (marked text in the terminal)
         mark1_foreground #303446
