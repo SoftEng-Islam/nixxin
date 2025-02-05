@@ -75,14 +75,14 @@ in {
         include ~/.config/kitty/settings.conf
 
         tab_title_template "{fmt.bg.default}{fmt.fg._${
-          unwrapHex "#babbf1"
+          unwrapHex "#15803D"
         }}  {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol}  {fmt.fg.default}"
         active_tab_title_template "{fmt.bg.default}{fmt.fg._${
+          unwrapHex "#303446"
+        }}{fmt.bg._${unwrapHex "#e5c890"}}{fmt.fg._${
           unwrapHex "#e5c890"
-        }}{fmt.bg._${unwrapHex "#f2d5cf"}}{fmt.fg._${
-          unwrapHex "#e5c890"
-        }} {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.bg.default}{fmt.fg._${
-          unwrapHex "#f2d5cf"
+        }}{sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.bg.default}{fmt.fg._${
+          unwrapHex "#303446"
         }}{fmt.bg.default}{fmt.fg.default}"
 
 
