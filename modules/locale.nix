@@ -2,7 +2,7 @@
   #. Sometimes cached data or corrupt configuration files cause issues.
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus && fc-cache -fv
   fonts = {
-    enableDefaultPackages = false;
+    enableDefaultPackages = true;
     fontDir.enable = true;
     packages = with pkgs; [
       settings.fonts.main.package
