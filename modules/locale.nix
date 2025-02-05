@@ -7,6 +7,10 @@
     packages = with pkgs; [
       # ---- Main Font ---- #
       settings.fonts.main.package
+      monaspace
+      jetbrains-mono
+      iosevka
+      iosevka-bin
 
       # ---- Extra Fonts ---- #
       fira-code # Monospace font with programming ligatures
@@ -22,10 +26,6 @@
 
       # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
-      nerd-fonts.monaspace
-      nerd-fonts.jetbrains-mono
-      nerd-fonts.iosevka
-      nerd-fonts.iosevka-term
     ];
     fontconfig = {
       enable = true;
