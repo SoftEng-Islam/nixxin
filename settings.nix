@@ -331,7 +331,7 @@
     };
     terminals = {
       kitty = {
-        name = "CaskaydiaCove Nerd Font Regular";
+        name = "CaskaydiaCove Nerd Font Mono";
         bold_font = "CaskaydiaCove Nerd Font Bold";
         italic_font = "CaskaydiaCove Nerd Font Italic";
         bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";

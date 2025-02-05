@@ -2,7 +2,7 @@
 
 let
   _editors = [
-    # (lib.optional settings.system.editors.vscode ./vscode.nix)
+    # (lib.optional settings.system.editors.vscode ./vscode)
     (lib.optional settings.system.editors.zedEditor ./zed-editor.nix)
     (lib.optional settings.system.editors.eclipse ./eclipse.nix)
     (lib.optional settings.system.editors.helix ./helix.nix)
