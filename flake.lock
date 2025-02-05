@@ -830,11 +830,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1738350069,
-        "narHash": "sha256-J8jsWL7NyBPM4cs9eeIzDx+w3xnyBJTtBjAJEFxH2DI=",
+        "lastModified": 1738679070,
+        "narHash": "sha256-YlatG+U+e/5RHT+Q/DVoSnZDYJoRHPeeHxfPh8bBDuo=",
         "ref": "refs/heads/main",
-        "rev": "1f303c155bdb1c6bdb753921046424ce01af1d29",
-        "revCount": 393,
+        "rev": "690771a27cb34e376273775d817f05b54f8acfce",
+        "revCount": 399,
         "submodules": true,
         "type": "git",
         "url": "https://github.com/linkfrg/ignis"
