@@ -50,11 +50,11 @@
       inkscape = true;
       darktable = true;
     };
-    textEditors = {
-      vscode-fhs = true;
-      zed-editor = true;
+    editors = {
+      vscode = true;
+      zedEditor = true;
       vscodium = true;
-      gnome-text-editor = true;
+      gnomeTextEditor = true;
     };
     fileManagers = {
       spacedrive = true;
@@ -329,10 +329,10 @@
     };
     terminals = {
       kitty = {
-        name = "CaskaydiaCove Nerd Font";
-        bold_font = "auto";
-        italic_font = "auto";
-        bold_italic_font = "auto";
+        name = "CaskaydiaCove Nerd Font Regular";
+        bold_font = "CaskaydiaCove Nerd Font Bold";
+        italic_font = "CaskaydiaCove Nerd Font Italic";
+        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
         size = 14;
       };
       alacritty = {
