@@ -56,6 +56,12 @@
       vscodium = true;
       gnome-text-editor = true;
     };
+    fileManagers = {
+      spacedrive = true;
+      nautilus = true;
+      thunar = false;
+      nemo = true;
+    };
   };
 
   # -------------- #
