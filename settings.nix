@@ -298,9 +298,9 @@
       # nix path-info -r nixpkgs#jetbrains-mono
       # "JetBrainsMonoNL Font Mono"
       # "JetBrainsMonoNL Font Bold"
-      # "CaskaydiaCove Font Mono"
-      name = "Roboto"; # Selected Font
-      package = pkgs.roboto; # Typeface made for developers
+      # "CaskaydiaCove Nerd Font"
+      name = "CaskaydiaCove Nerd Font"; # Selected Font
+      package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
       antialiasing = "grayscale";
       hinting = "medium"; # (one of "none", "slight", "medium", "full")
       rendering = "automatic";
@@ -314,43 +314,43 @@
       };
     };
     monospace = {
-      name = "Iosevka Fixed Medium";
-      package = pkgs.iosevka;
+      name = "CaskaydiaCove Nerd Font Mono";
+      package = pkgs.nerd-fonts.caskaydia-mono;
     };
     serif = {
-      name = "Iosevka Slab";
-      package = pkgs.iosevka;
+      name = "CaskaydiaCove Nerd Font";
+      package = pkgs.nerd-fonts.caskaydia-cove;
     };
     sansSerif = {
-      name = "Iosevka Aile";
-      package = pkgs.iosevka;
+      name = "CaskaydiaCove Nerd Font";
+      package = pkgs.nerd-fonts.caskaydia-cove;
     };
     hyprbars = {
-      name = "Roboto";
+      name = "CaskaydiaCove Nerd Font Bold";
       size = 11;
     };
     terminals = {
       kitty = {
-        name = "Iosevka Term";
-        bold_font = "Iosevka Term Bold";
-        italic_font = "Iosevka Term Italic";
-        bold_italic_font = "Iosevka Term Bold Italic";
+        name = "CaskaydiaCove Nerd Font";
+        bold_font = "CaskaydiaCove Nerd Font Bold";
+        italic_font = "CaskaydiaCove Nerd Font Italic";
+        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
         size = 14;
       };
       alacritty = {
-        name = "Iosevka Term";
+        name = "CaskaydiaCove Nerd Font";
         size = 15;
       };
       foot = {
-        name = "Iosevka Term";
+        name = "CaskaydiaCove Nerd Font";
         size = 15;
       };
       wezterm = {
-        name = "Iosevka Term";
+        name = "CaskaydiaCove Nerd Font";
         size = 15;
       };
       fish = {
-        name = "Iosevka Term";
+        name = "CaskaydiaCove Nerd Font";
         size = 15;
       };
     };

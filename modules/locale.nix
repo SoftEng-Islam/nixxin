@@ -9,20 +9,14 @@
       settings.fonts.main.package
       monaspace
       jetbrains-mono
-      iosevka
-      iosevka-bin
 
       # ---- Extra Fonts ---- #
       fira-code # Monospace font with programming ligatures
-      google-fonts
-      roboto # Roboto family of fonts
       texlivePackages.fira # Fira fonts with LaTeX support
 
       # ---- Noto Fonts ---- #
       noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-emoji # Color emoji font
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
 
       # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
