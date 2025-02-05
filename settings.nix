@@ -329,10 +329,10 @@
     };
     terminals = {
       kitty = {
-        name = "CaskaydiaCove Nerd Font Mono";
-        bold_font = "CaskaydiaCove Nerd Font Mono Bold";
-        italic_font = "CaskaydiaCove Nerd Font Mono Italic";
-        bold_italic_font = "CaskaydiaCove Nerd Font Mono BoldItalic";
+        name = "CaskaydiaCove Nerd Font";
+        bold_font = "auto";
+        italic_font = "auto";
+        bold_italic_font = "auto";
         size = 14;
       };
       alacritty = {

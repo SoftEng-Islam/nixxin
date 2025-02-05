@@ -127,10 +127,6 @@ in {
         bold_italic_font ${settings.fonts.terminals.kitty.bold_italic_font}
         font_size ${toString settings.fonts.terminals.kitty.size}
 
-
-        # Set a color for comments (ensure they stand out clearly in the terminal)
-        # You might need to set a specific color for comments in your editor (like Vim or Bash).
-        highlight Comment ctermfg=Green guifg=#15803D  # Lighter comments
       '';
       "kitty/open-actions.conf".source = ./configs/open-actions.conf;
       "kitty/mime.types".source = ./configs/mime.types;
