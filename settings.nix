@@ -55,6 +55,8 @@
       zedEditor = true;
       vscodium = true;
       gnomeTextEditor = true;
+      eclipse = true;
+      helix = true;
     };
     fileManagers = {
       spacedrive = true;
