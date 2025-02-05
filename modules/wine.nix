@@ -8,6 +8,17 @@
     # WINEPREFIX = "/home/${settings.users.selected.username}/.wine";
     # WINEARCH = "win32"; # Set Wine architecture to 32-bit
   };
+
+  home-manager.users."${settings.users.selected.username}" = {
+    xdg.desktopEntries.wine = {
+      name = "Wine Windows Program Loader";
+      exec = "wine %f";
+      terminal = false;
+      mimeType = [ "application/x-ms-dos-executable" ];
+      noDisplay = true;
+    };
+  };
+
   environment.systemPackages = with pkgs; [
     # Modern and transparent way to use Windows VST2 and VST3 plugins on Linux
     yabridge
