@@ -405,7 +405,7 @@
       style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
       package = pkgs.kdePackages.breeze;
-      SCALE_FACTOR = 1.5;
+      SCALE_FACTOR = 1;
     };
     # ---- Icons ---- #
     icons = {
