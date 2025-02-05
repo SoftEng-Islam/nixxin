@@ -47,12 +47,12 @@
       figmaLinux = false;
       gimp = true;
       blender = true;
-      inkscape = false;
-      darktable = false;
+      inkscape = true;
+      darktable = true;
     };
     textEditors = {
       vscode-fhs = true;
-      zed-editor = false;
+      zed-editor = true;
       vscodium = true;
       gnome-text-editor = true;
     };
@@ -77,8 +77,9 @@
   # ---- Lockscreen ---- #
   # -------------------- #
   lockscreen = {
+    enable = true;
     type = "hyprlock";
-    timeOut = 600;
+    timeOut = 600; # 10min
   };
 
   # -------------- #
