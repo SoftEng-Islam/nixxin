@@ -75,11 +75,13 @@ in {
         include ~/.config/kitty/settings.conf
 
         # ---- InActive Tab ---- #
-        tab_title_template "{fmt.bg._${unwrapHex "#303446"}}{fmt.fg._${
-          unwrapHex "#15803D"
-        }}{sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.fg._${
-          unwrapHex "#ca9ee6"
-        }}"
+        tab_title_template "{fmt.bg.default}{fmt.fg._${
+          unwrapHex "#303446"
+        }}{fmt.bg._${unwrapHex "#303446"}}{fmt.fg._${
+          unwrapHex "#e5c890"
+        }}{sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.bg.default}{fmt.fg._${
+          unwrapHex "#303446"
+        }}{fmt.bg.default}{fmt.fg.default}"
 
         # ---- Active Tab ---- #
         active_tab_title_template "{fmt.bg.default}{fmt.fg._${
@@ -101,21 +103,9 @@ in {
         # URL underline color when hovering with mouse
         url_color               #f2d5cf
 
-        # Kitty window border colors
-        active_border_color     #babbf1
-        inactive_border_color   #737994
-        bell_border_color       #e5c890
-
         # OS Window titlebar colors
         wayland_titlebar_color system
         macos_titlebar_color system
-
-        # Tab bar colors
-        #active_tab_foreground   #232634
-        #active_tab_background   #ca9ee6
-        #inactive_tab_foreground #c6d0f5
-        #inactive_tab_background #292c3c
-        #tab_bar_background      #232634
 
         # Colors for marks (marked text in the terminal)
         mark1_foreground #303446
