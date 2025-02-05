@@ -5,33 +5,33 @@
     enableDefaultPackages = true;
     fontDir.enable = true;
     packages = with pkgs; [
+      # ---- Main Font ---- #
       settings.fonts.main.package
-      # dejavu_fonts # Typeface family based on the Bitstream Vera fonts
-      # fira-code # Monospace font with programming ligatures
-      # font-awesome # Font Awesome - OTF font
-      # google-fonts
-      # hack-font # Typeface designed for source code
-      # inter # Typeface specially designed for user interfaces
-      # iosevka
-      # mononoki # Font for programming and code review
-      # roboto # Roboto family of fonts
-      # texlivePackages.fira # Fira fonts with LaTeX support
+
+      # ---- Extra Fonts ---- #
+      fira-code # Monospace font with programming ligatures
+      google-fonts
+      roboto # Roboto family of fonts
+      texlivePackages.fira # Fira fonts with LaTeX support
+
+      # ---- Noto Fonts ---- #
       noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-emoji # Color emoji font
       noto-fonts-cjk-sans
       noto-fonts-cjk-serif
 
+      # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
       nerd-fonts.monaspace
       nerd-fonts.jetbrains-mono
-      # nerd-fonts.iosevka
+      nerd-fonts.iosevka
     ];
     fontconfig = {
       enable = true;
-      # antialias = true;
-      # cache32Bit = true;
-      # hinting.enable = true;
-      # hinting.style = "full";
+      antialias = true;
+      cache32Bit = true;
+      hinting.enable = true;
+      hinting.style = settings.fonts.main.hinting;
       defaultFonts = {
         emoji = [ "Noto Color Emoji" ];
         serif = [ "${settings.fonts.serif.name}" ];

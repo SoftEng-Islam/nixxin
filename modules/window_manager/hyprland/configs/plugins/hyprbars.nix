@@ -20,7 +20,6 @@ in {
       # ---- hyprbars ---- #
       # ------------------ #
       plugin:hyprbars {
-        # Honestly idk if it works like css, but well, why not
         bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 38
@@ -32,20 +31,13 @@ in {
         bar_color = $surface
         bar_text_align = left
         col.text = $primary
+
         # example buttons (R -> L)
-        # hyprbars-button = color, size, on-click
-        # Close
-
-        hyprbars-button = rgba(E62D42ff),20, 󰖭 , hyprctl dispatch killactive, rgb(FFFFFF)
-        # Fullscreen mode 2
-
-        hyprbars-button = rgba(9141ACff),20, ◬ , hyprctl dispatch fullscreen 2, rgb(FFFFFF)
-        # Maximize
-
-        hyprbars-button = rgba(3A944Aff),20, ◬ , hyprctl dispatch fullscreen 1, rgb(FFFFFF)
-
-        # Minimize / Floating toggle
-        hyprbars-button = rgba(C88800ff),20, ▽ , hyprctl dispatch togglefloating, rgb(FFFFFF)
+        # hyprbars-button = Background Color, Size, On-click, Foreground
+        hyprbars-button = rgba(E62D42ff),20, x , hyprctl dispatch killactive, rgb(FFFFFF) # Close
+        hyprbars-button = rgba(9141ACff),20, ◬ , hyprctl dispatch fullscreen 2, rgb(FFFFFF) # Fullscreen mode 2
+        hyprbars-button = rgba(3A944Aff),20, ◬ , hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
+        hyprbars-button = rgba(C88800ff),20, ▽ , hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
       }
     '';
   };

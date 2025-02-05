@@ -300,7 +300,7 @@
       name = "CaskaydiaCove Nerd Font Mono"; # Selected Font
       package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
       antialiasing = "grayscale";
-      hinting = "medium";
+      hinting = "medium"; # (one of "none", "slight", "medium", "full")
       rendering = "automatic";
       rgba_order = "rgb";
 

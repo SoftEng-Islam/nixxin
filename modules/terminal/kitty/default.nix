@@ -74,9 +74,11 @@ in {
         include ~/.cache/ignis/material/dark_colors-kitty.conf
         include ~/.config/kitty/settings.conf
 
-        tab_title_template "{fmt.bg._${unwrapHex "#737994"}}{fmt.fg._${
+        tab_title_template "{fmt.bg._${unwrapHex "#303446"}}{fmt.fg._${
           unwrapHex "#15803D"
-        }}  {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol}  {fmt.fg.default}"
+        }} {sup.index} 󰓩 {title[:30]}{bell_symbol}{activity_symbol} {fmt.fg._${
+          unwrapHex "#ca9ee6"
+        }}"
         active_tab_title_template "{fmt.bg.default}{fmt.fg._${
           unwrapHex "#e5c890"
         }}{fmt.bg._${unwrapHex "#e5c890"}}{fmt.fg._${
