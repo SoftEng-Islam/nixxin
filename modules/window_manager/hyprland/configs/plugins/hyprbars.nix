@@ -36,16 +36,16 @@ in {
         # hyprbars-button = color, size, on-click
         # Close
 
-        hyprbars-button = rgba(E62D42ff),20,󰖭, hyprctl dispatch killactive, rgb(FFFFFF)
+        hyprbars-button = rgba(E62D42ff),20, 󰖭 , hyprctl dispatch killactive, rgb(FFFFFF)
         # Fullscreen mode 2
 
-        hyprbars-button = rgba(9141ACff),20,󰖯, hyprctl dispatch fullscreen 2, rgb(FFFFFF)
+        hyprbars-button = rgba(9141ACff),20, ◬ , hyprctl dispatch fullscreen 2, rgb(FFFFFF)
         # Maximize
 
-        hyprbars-button = rgba(3A944Aff),20,󰖯, hyprctl dispatch fullscreen 1, rgb(FFFFFF)
+        hyprbars-button = rgba(3A944Aff),20, ◬ , hyprctl dispatch fullscreen 1, rgb(FFFFFF)
 
         # Minimize / Floating toggle
-        hyprbars-button = rgba(C88800ff),20,󰖰, hyprctl dispatch togglefloating, rgb(FFFFFF)
+        hyprbars-button = rgba(C88800ff),20, ▽ , hyprctl dispatch togglefloating, rgb(FFFFFF)
       }
     '';
   };
