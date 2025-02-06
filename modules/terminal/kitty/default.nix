@@ -22,7 +22,7 @@ in {
     programs.bash.initExtra = shellIntegrationInit.bash;
     programs.zsh.initExtra = shellIntegrationInit.zsh;
     xdg.configFile = {
-      "kitty/settings.conf".source = ./configs/settings.conf;
+      "kitty/settings.conf".source = ./settings.conf;
       "kitty/kitty.conf".text = ''
         shell ${pkgs.zsh}/bin/zsh
         include ~/.cache/ignis/material/dark_colors-kitty.conf
