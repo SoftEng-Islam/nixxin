@@ -29,7 +29,7 @@
           gaps_in = 5;
           gaps_out = 8;
           gaps_workspaces = 50;
-          border_size = 4;
+          border_size = 6;
           resize_on_border = true;
           "col.inactive_border" = "$surface";
           "col.active_border" = "$primary";
