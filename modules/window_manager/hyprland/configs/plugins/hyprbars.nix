@@ -23,7 +23,7 @@ in {
         bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 38
-        bar_blur = false
+        bar_blur = true
         bar_padding = 10
         bar_button_padding = 12
         bar_precedence_over_border = false
