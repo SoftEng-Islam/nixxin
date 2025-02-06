@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }:
-let _gmaing = [ (lib.optional settings.gaming.zeroad pkgs.zeroad) ];
+let _gmaing = [ (lib.optional settings.gaming.zeroad.enable pkgs.zeroad) ];
 in {
   programs = {
     gamemode = {
