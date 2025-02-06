@@ -20,7 +20,7 @@ in {
         add_borders = 1 # 0 - 9
 
         # You can add up to 9 borders
-        col.border_1 = rgba(eaeaee50)
+        col.border_1 = rgba(9e9e9e70)
 
         # -1 means "default" as in the one defined in general:border_size
         border_size_1 = 5
