@@ -23,7 +23,7 @@ in {
         bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 38
-        bar_blur = true
+        bar_blur = false
         bar_padding = 10
         bar_button_padding = 12
         bar_precedence_over_border = false
@@ -34,10 +34,10 @@ in {
 
         # example buttons (R -> L)
         # hyprbars-button = Background Color, Size, On-click, Foreground
-        hyprbars-button = rgba(E62D42ff),20,  , hyprctl dispatch killactive, rgb(FFFFFF) # Close
+        hyprbars-button = rgba(E62D42ff),20, x , hyprctl dispatch killactive, rgb(FFFFFF) # Close
         # hyprbars-button = rgba(9141ACff),20, 🗔 , hyprctl dispatch fullscreen 2, rgb(FFFFFF) # Fullscreen mode 2
-        hyprbars-button = rgba(3A944Aff),20,  , hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
-        hyprbars-button = rgba(C88800ff),20, 󰛓 , hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
+        hyprbars-button = rgba(3A944Aff),20, 🗔 , hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
+        hyprbars-button = rgba(C88800ff),20, ︾ , hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
       }
     '';
   };
