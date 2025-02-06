@@ -30,15 +30,15 @@ in {
         bar_part_of_window = true
         bar_color = $surface
         bar_text_align = left
-        col.text = $primary
+        col.text = $onSurface
+        #col.text = $primary
 
         # example buttons (R -> L)
         # hyprbars-button = Background Color, Size, On-click, Foreground
+        hyprbars-button = rgba(E62D42ff),20, ⨉ , hyprctl dispatch killactive, rgb(FFFFFF) # Close
         # hyprbars-button = rgba(9141ACff),20, ▢ , hyprctl dispatch fullscreen 2, rgb(FFFFFF) # Fullscreen mode 2
-
-        hyprbars-button = rgba(E62D42ff),20, , hyprctl dispatch killactive, rgb(FFFFFF) # Close
-        hyprbars-button = rgba(3A944Aff),20, , hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
-        hyprbars-button = rgba(C88800ff),20, , hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
+        hyprbars-button = rgba(3A944Aff),20, ⛶ , hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
+        hyprbars-button = rgba(C88800ff),20, ˅ , hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
       }
     '';
   };
