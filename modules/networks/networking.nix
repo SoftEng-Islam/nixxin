@@ -77,8 +77,8 @@
       settings = {
         # Set Google DNS for IPv4 and IPv6
         server = [ "8.8.8.8" "8.8.4.4" ];
-        interface = "lo,waydroid0";
-        bind-interfaces = true;
+        #interface = "lo,waydroid0";
+        #bind-interfaces = true;
         # Provide DHCP settings (if applicable)
         dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
 
