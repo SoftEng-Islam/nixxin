@@ -80,10 +80,6 @@ in {
       WLR_DRM_NO_ATOMIC = "1";
       WLR_VSYNC = "1";
 
-      # Simple DirectMedia Layer (SDL) library to use the Wayland display server as its video driver.
-      # WAYLAND = "1";
-      # WAYLAND_DISPLAY = "wayland-0";
-
       # Set backend rendering to Wayland.
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";

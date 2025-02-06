@@ -1,5 +1,16 @@
 { settings, pkgs, ... }:
 let
+  waydroid-ui = pkgs.writeShellScriptBin "waydroid-ui" ''
+    export WAYLAND_DISPLAY=wayland-0
+    ${pkgs.weston}/bin/weston -Swayland-1 --width=600 --height=1000 --shell="kiosk-shell.so" &
+    WESTON_PID=$!
+
+    export WAYLAND_DISPLAY=wayland-1
+    ${pkgs.waydroid}/bin/waydroid show-full-ui &
+
+    wait $WESTON_PID
+    waydroid session stop
+  '';
   waydroidGbinderConf = pkgs.writeText "waydroid.conf" ''
     [Protocol]
     /dev/binder = aidl2
@@ -132,5 +143,7 @@ in {
   environment.systemPackages = with pkgs; [
     waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Ubuntu
     wl-clipboard
+    waydroid-ui
+    weston
   ];
 }
