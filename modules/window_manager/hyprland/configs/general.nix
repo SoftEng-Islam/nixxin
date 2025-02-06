@@ -29,7 +29,7 @@
           gaps_in = 5;
           gaps_out = 8;
           gaps_workspaces = 50;
-          border_size = 6;
+          border_size = 3;
           resize_on_border = true;
           "col.inactive_border" = "$surface";
           "col.active_border" = "$primary";
@@ -47,10 +47,6 @@
 
           # => Active Border with `graid` colors:
           # "col.active_border"="rgba(673ab7ff) rgba(E62D42ff) 45deg";
-
-          # => Active/Inactive border colors with `stylix`:
-          # "col.active_border" = "rgba(${config.lib.stylix.colors.base0D}ff)";
-          # "col.inactive_border" = "rgba(${config.lib.stylix.colors.base02}ff)";
         };
       };
     };
