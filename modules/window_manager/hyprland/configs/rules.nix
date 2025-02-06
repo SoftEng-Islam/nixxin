@@ -3,23 +3,16 @@
     wayland.windowManager.hyprland.extraConfig = ''
       # windowrule = noblur,.*
       # windowrule = opacity 0.89 override 0.89 override, .* # Applies transparency to EVERY WINDOW
+
       windowrule = float, ^(blueberry.py)$
-      windowrule = float, ^(steam)$
       windowrule = float, ^(guifetch)$ # FlafyDev/guifetch
-      windowrulev2 = float,class:^(Waydroid|waydroid)
-      windowrulev2 = tile, class:(dev.warp.Warp)
-      windowrulev2 = float, title:^([Pp]icture[-\s]?[Ii]n[-\s]?[Pp]icture)(.*)$
-      windowrule = center, title:^(Open File)(.*)$
-      windowrule = center, title:^(Select a File)(.*)$
-      windowrule = center, title:^(Choose wallpaper)(.*)$
-      windowrule = center, title:^(Open Folder)(.*)$
-      windowrule = center, title:^(Save As)(.*)$
-      windowrule = center, title:^(Library)(.*)$
-      windowrule = center, title:^(File Upload)(.*)$
+      windowrule = float, ^(steam)$
       windowrule = float,^(pavucontrol)$
+      windowrule = float,class:^(Material Settings)$
       windowrule = pin,^(pavucontrol)$
       windowrule = size 900 500,^(pavucontrol)$
-      windowrule = float,class:^(Material Settings)$
+      windowrulev2 = float,class:^(Waydroid|waydroid)
+      windowrulev2 = tile, class:(dev.warp.Warp)
 
       # Picture-in-Picture
       windowrulev2 = keepaspectratio, title:^(Picture(-| )in(-| )[Pp]icture)$
@@ -29,13 +22,10 @@
       windowrulev2 = pin, title:^(Picture(-| )in(-| )[Pp]icture)$
 
       # Dialogs
-      windowrule=float,title:^(Open File)(.*)$
-      windowrule=float,title:^(Select a File)(.*)$
-      windowrule=float,title:^(Choose wallpaper)(.*)$
-      windowrule=float,title:^(Open Folder)(.*)$
-      windowrule=float,title:^(Save As)(.*)$
-      windowrule=float,title:^(Library)(.*)$
-      windowrule=float,title:^(File Upload)(.*)$
+      windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
+      windowrule = float, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
+
+
 
       # Tearing
       windowrule=immediate,.*\.exe
