@@ -29,21 +29,23 @@ in {
         bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 40
-        bar_blur = true
         bar_padding = 10
         bar_button_padding = 12
-        bar_precedence_over_border = true
-        bar_part_of_window = true
-        bar_color = $surface
-        bar_text_align = left
-        col.text = $onSurface
-        #col.text = $primary
 
-        # example buttons (R -> L)
-        # hyprbars-button = Background Color, Size, On-click, Foreground
-        hyprbars-button = rgb(ff5165),20,, close-window, rgb(000000) # Close
-        hyprbars-button = rgb(51ff7f),20,=, hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
-        hyprbars-button = rgb(fff651),20,-, hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
+        bar_blur = true
+        bar_text_align = left
+        bar_part_of_window = false
+        bar_precedence_over_border = false
+
+        bar_color = $surface
+        #col.text = $onSurface
+        col.text = $primary
+
+        # ---- Example buttons (R -> L) ---- #
+        # hyprbars-button = Background Color, Size, On-click, Foreground Color
+        hyprbars-button = rgba(E62D42ff),20,, close-window, rgb(000000) # Close
+        hyprbars-button = rgba(3A944Aff),20,=, hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
+        hyprbars-button = rgba(C88800ff),20,-, hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
       }
     '';
   };
