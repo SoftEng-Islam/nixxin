@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let _gmaing = [ (lib.optional settings.gaming.zeroad pkgs.zeroad) ];
+in {
   programs = {
     gamemode = {
       # https://feralinteractive.github.io/gamemode/
@@ -65,9 +67,5 @@
 
       # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
       # protonup
-
-      # Games
-      # zeroad # Free, open-source game of ancient warfare
-      # zeroadPackages.zeroad-unwrapped
-    ];
+    ] ++ lib.flatten _gmaing;
 }

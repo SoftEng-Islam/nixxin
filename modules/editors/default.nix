@@ -9,8 +9,8 @@ let
   ];
 
   _editorsPackages = with pkgs; [
-    (lib.optional settings.system.editors.vscode vscode-fhs)
-    (lib.optional settings.system.editors.vscodium vscodium-fhs)
+    (lib.optional settings.system.editors.vscode vscode)
+    (lib.optional settings.system.editors.vscodium vscodium)
     (lib.optional settings.system.editors.gnomeTextEditor gnome-text-editor)
   ];
 

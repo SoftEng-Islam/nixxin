@@ -22,52 +22,6 @@ in {
     programs.bash.initExtra = shellIntegrationInit.bash;
     programs.zsh.initExtra = shellIntegrationInit.zsh;
     xdg.configFile = {
-      "kitty/diff.conf".text = ''
-
-        # text
-        foreground           #4c4f69
-        # base
-        background           #eff1f5
-        # subtext0
-        title_fg             #6c6f85
-
-        # mantle
-        title_bg             #e6e9ef
-        margin_bg            #e6e9ef
-
-        # subtext1
-        margin_fg            #5c5f77
-        # mantle
-        filler_bg            #e6e9ef
-
-        # 30% red, 70% base
-        removed_bg           #e6adbc
-        # 50% red, 50% base
-        highlight_removed_bg #e08097
-        # 40% red, 60% base
-        removed_margin_bg    #e397aa
-
-        # 30% green, 70% base
-        added_bg             #bad8b8
-        # 50% green, 50% base
-        highlight_added_bg   #97c890
-        # 40% green, 60% base
-        added_margin_bg      #e397aa
-
-        # mantle
-        hunk_margin_bg       #e6e9ef
-        hunk_bg              #e6e9ef
-
-        # 40% yellow, 60% base
-        search_bg            #e8ca9f
-        # text
-        search_fg            #4c4f69
-        # 30% sky, 70% base
-        select_bg            #a8daf0
-        # text
-        select_fg            #4c4f69
-          ${builtins.readFile ./configs/kitty-diff.conf}
-      '';
       "kitty/settings.conf".source = ./configs/settings.conf;
       "kitty/kitty.conf".text = ''
         shell ${pkgs.zsh}/bin/zsh
@@ -122,50 +76,6 @@ in {
         font_size ${toString settings.fonts.terminals.kitty.size}
 
       '';
-      "kitty/open-actions.conf".source = ./configs/open-actions.conf;
-      "kitty/mime.types".source = ./configs/mime.types;
-
-      "kitty/tab_bar.py" = {
-        source = ./configs/tab_bar.py;
-        executable = true;
-      };
-
-      # scripts
-      "kitty/scripts" = {
-        recursive = true;
-        source = ./scripts;
-      };
-
-      # kittens
-      "kitty/replace_alt_shift_backspace.py" = {
-        source = ./configs/replace_alt_shift_backspace.py;
-        executable = true;
-      };
-      "kitty/custom_pass_keys.py" = {
-        source = ./configs/custom_pass_keys.py;
-        executable = true;
-      };
-      "kitty/neighboring_window.py" = {
-        source = "${inputs.smart-splits-nvim}/kitty/neighboring_window.py";
-        executable = true;
-      };
-      "kitty/relative_resize.py" = {
-        source = "${inputs.smart-splits-nvim}/kitty/relative_resize.py";
-        executable = true;
-      };
-      "kitty/kitty_scrollback_nvim.py" = {
-        source =
-          "${inputs.kitty-scrollback-nvim}/python/kitty_scrollback_nvim.py";
-        executable = true;
-      };
-      "kitty/smart_scroll.py" = {
-        source = "${inputs.kitty-smart-scroll}/smart_scroll.py";
-        executable = true;
-      };
-      "kitty/smart_tab.py" = {
-        source = "${inputs.kitty-smart-tab}/smart_tab.py";
-        executable = true;
-      };
     };
   };
 }
