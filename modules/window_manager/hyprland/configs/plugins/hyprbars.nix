@@ -1,10 +1,10 @@
 { settings, lib, pkgs, ... }:
 let
   hyprbars = (pkgs.hyprlandPlugins.hyprbars.override {
-# Make sure it's using the same hyprland package as we are
+    # Make sure it's using the same hyprland package as we are
     hyprland = pkgs.hyprland;
   }).overrideAttrs (old: {
-  # Yeet the initialization notification (I hate it)
+    # Yeet the initialization notification (I hate it)
     postPatch = (old.postPatch or "") + ''
       ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
     '';
@@ -16,16 +16,16 @@ let
     fi
   '';
 in {
-  home-manager.users.$settings.users.selected.username =
+  home-manager.users.${settings.users.selected.username} = {
     wayland.windowManager.hyprland.plugins = [
-    # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
+      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
       hyprbars
     ];
     wayland.windowManager.hyprland.extraConfig = ''
       # ------------------ #
       # ---- hyprbars ---- #
       # ------------------ #
-        plugin: hyprbars
+      plugin:hyprbars {
         bar_text_font = ${settings.fonts.hyprbars.name}
         bar_text_size = ${toString settings.fonts.hyprbars.size}
         bar_height = 40
@@ -41,9 +41,11 @@ in {
 
         # example buttons (R -> L)
         # hyprbars-button = Background Color, Size, On-click, Foreground
-        hyprbars-button = rgb(ff6375),20,, close-window, rgb(FFFFFF) # Close
-        hyprbars-button = rgb(63ff7d),20,, hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
-        hyprbars-button = rgb(faff63),20,, hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
+        hyprbars-button = rgb(ff5165),20,, close-window, rgb(000000) # Close
+        hyprbars-button = rgb(51ff7f),20,=, hyprctl dispatch fullscreen 1, rgb(FFFFFF) # Maximize
+        hyprbars-button = rgb(fff651),20,-, hyprctl dispatch togglefloating, rgb(FFFFFF) # Minimize / Floating toggle
+      }
     '';
   };
   environment.systemPackages = [ close-window ];
+}
