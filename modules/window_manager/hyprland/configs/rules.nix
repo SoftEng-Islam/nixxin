@@ -27,7 +27,7 @@
       windowrulev2 = immediate, class:(steam_app)
 
       # ---- No shadow for tiled windows ---- #
-      windowrulev2 = noshadow, floating:0
+      # windowrulev2 = noshadow, floating:0
 
       # ---- Layer Rules ---- #
       layerrule = xray 1, .*
