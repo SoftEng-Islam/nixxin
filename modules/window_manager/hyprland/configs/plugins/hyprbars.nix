@@ -34,7 +34,7 @@ in {
 
         bar_blur = true
         bar_text_align = left
-        bar_part_of_window = false
+        bar_part_of_window = true
         bar_precedence_over_border = true
 
         bar_color = $surface
