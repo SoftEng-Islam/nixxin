@@ -110,11 +110,11 @@ class MaterialService(BaseService):
     def __reload_gtk_theme(self) -> None:
         THEME_CMD = "gsettings set org.gnome.desktop.interface gtk-theme {}"
         COLOR_SCHEME_CMD = "gsettings set org.gnome.desktop.interface color-scheme {}"
-        #Utils.exec_sh_async(THEME_CMD.format("Adwaita"))
+        Utils.exec_sh_async(THEME_CMD.format("Adwaita"))
         Utils.exec_sh_async(THEME_CMD.format("Material"))
-        #Utils.exec_sh_async(COLOR_SCHEME_CMD.format("default"))
+        Utils.exec_sh_async(COLOR_SCHEME_CMD.format("default"))
         Utils.exec_sh_async(COLOR_SCHEME_CMD.format("prefer-dark"))
-        #Utils.exec_sh_async(COLOR_SCHEME_CMD.format("default"))
+        Utils.exec_sh_async(COLOR_SCHEME_CMD.format("default"))
 
     def __setup(self, image_path: str) -> None:
         Utils.exec_sh_async("pkill -SIGUSR1 kitty")
