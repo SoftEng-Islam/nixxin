@@ -239,11 +239,11 @@
     genColorsPath = /home/${users.selected.username}/.cache/hypr/colors.conf;
     animationSpeed = "medium"; # medium or slow
     plugins = {
-      Hyprspace = true;
-      hyprexpo = false;
       hyprbars = true;
-      hyprtrails = true;
-      borders-plus-plus = true;
+      hyprspace = true;
+      bordersPlus = true;
+      hyprexpo = false;
+      hyprtrails = false;
     };
   };
 
