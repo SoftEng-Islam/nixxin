@@ -241,7 +241,7 @@
     plugins = {
       hyprbars = true;
       hyprspace = true;
-      bordersPlus = true;
+      bordersPlus = false;
       hyprexpo = false;
       hyprtrails = false;
     };
