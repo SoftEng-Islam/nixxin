@@ -69,28 +69,10 @@
   };
   services = {
     hostapd.enable = false;
-    resolved.enable = false; # systemd DNS resolver daemon, systemd-resolved.
-    dnsmasq = {
-      # Configure dnsmasq
-      enable = true;
-      alwaysKeepRunning = true;
-      settings = {
-        # Set Google DNS for IPv4 and IPv6
-        server = [ "8.8.8.8" "8.8.4.4" ];
-        #interface = "lo,waydroid0";
-        #bind-interfaces = true;
-        # Provide DHCP settings (if applicable)
-        dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
-
-      };
-    };
-  };
-  systemd.services.dnsmasq = {
-    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
-    serviceConfig = {
-      Restart = "always";
-      RestartSec = "5s"; # Add a 5-second delay before restarting.
-    };
+    resolved.enable = if (settings.networks.dnsResolver == "dnsmasq") then
+      true
+    else
+      false; # systemd DNS resolver daemon, systemd-resolved.
   };
   networking.hosts = {
     #    "0.0.0.0" = [
@@ -143,7 +125,6 @@
     networkmanager # Network configuration and management tool
     dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
     dhcping # Send DHCP request to find out if a DHCP server is running
-    dnsmasq # An integrated DNS, DHCP and TFTP server for small networks
     # firewalld # Firewall daemon with D-Bus interface
     firewalld-gui # Firewall daemon with D-Bus interface
     hostapd # A user space daemon for access point and authentication servers

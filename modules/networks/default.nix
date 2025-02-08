@@ -1,4 +1,4 @@
 { pkgs, ... }: {
-  imports = [ ./networking.nix ];
+  imports = [ ./networking.nix ./dnsmasq.nix ];
   # environment.systemPackages = with pkgs; [ ];
 }
