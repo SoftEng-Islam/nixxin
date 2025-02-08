@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  import = [ ./bun.nix ];
+  imports = [ ./bun.nix ];
   environment.variables = {
     NODE_PATH = "${pkgs.nodejs_latest}/lib/node_modules";
 
