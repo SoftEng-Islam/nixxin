@@ -76,6 +76,23 @@
     backupFileExtension = null;
   };
 
+  # ----------------- #
+  # ---- DESKTOP ---- #
+  # ----------------- #
+  desktop = {
+    # ---- Lockscreen ---- #
+    lockscreen = {
+      enable = true;
+      name = "";
+      package = "";
+      font = "";
+    };
+    # ---- IDLE ---- #
+    # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
+    # 0 to Disable:
+    idle = { delay = 0; };
+  };
+
   # -------------- #
   # ---- IDLE ---- #
   # -------------- #
@@ -96,19 +113,23 @@
   # ---- Boot ---- #
   # -------------- #
   boot = {
-    mode = "uefi"; # uefi or bios
-    boot_manager = "grub";
-    # mount path for efi boot partition; only used for uefi boot mode
-    mountPath = "/boot";
-    # device identifier for grub; only used for legacy (bios) boot mode
+    loader = {
+      timeout = 3; # seconds
+      mode = "UEFI"; # UEFI OR BIOS
+      manager = {
+        # Select The boot manager to enable
+        name = "GRUB"; # GRUB or SYSTEMD
 
-    # List all the devices with their by-id symlinks
-    # ls -l /dev/disk/by-id/
-    grub = {
-      oSProber = false;
-      gfxmodeEfi = "1920x1080";
-      devices = [ "nodev" ];
-      device = "nodev"; # Let GRUB automatically detect EFI
+        # device identifier for grub; only used for legacy (bios) boot mode
+        # List all the devices with their by-id symlinks
+        # ls -l /dev/disk/by-id/
+        grub = {
+          oSProber = false;
+          gfxmodeEfi = "1920x1080";
+          devices = [ "nodev" ];
+          device = "nodev"; # Let GRUB automatically detect EFI
+        };
+      };
     };
   };
 

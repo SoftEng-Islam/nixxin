@@ -97,11 +97,12 @@
     nix-direnv # Fast, persistent use_nix implementation for direnv
     nix-doc # Interactive Nix documentation tool
     nix-index # A files database for nixpkgs
-    nix-tree # Interactively browse a Nix store paths dependencies
     nix-output-monitor # Processes output of Nix commands to show helpful and pretty information
     nix-prefetch # Prefetch any fetcher function call, e.g. package sources
-    nix-prefetch-git
-    nix-prefetch-github
+    nix-prefetch-git # Script used to obtain source hashes for fetchgit
+    nix-prefetch-github # Prefetch sources from github
+    nix-repl # To try Nix code on the fly.
+    nix-tree # Interactively browse a Nix store paths dependencies
     nixfmt-classic # An opinionated formatter for Nix
     nixos-install-tools # The essential commands from the NixOS installer as a package
     nixos-shell # Spawns lightweight nixos vms in a shell

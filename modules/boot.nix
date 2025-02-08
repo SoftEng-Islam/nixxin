@@ -1,4 +1,4 @@
-{ settings, config, pkgs, ... }: {
+{ settings, lib, config, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
     # bootspec.enable = true;
@@ -7,13 +7,19 @@
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
     consoleLogLevel = 0;
     loader = {
-      timeout = 3;
+      # Boot Time out in seconds
+      timeout = settings.boot.loader.timeout;
+
+      # Whether the installation process is allowed to modify EFI boot variables.
       efi.canTouchEfiVariables = true;
-      systemd-boot.enable = false; # disable to use GRUB instead of systemd-boot
+
+      # To Enable the systemd boot manager
+      systemd-boot.enable = lib.optional settings.boot.loader.manager.name
+        == "SYSTEMD" ? true; # disable to use GRUB instead of systemd-boot
 
       # Grub boot
       grub = {
-        enable = true;
+        enable = settings.boot.manager;
         # fontSize = 18;
         # nix path-info -r nixpkgs#sleek-grub-theme
         # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
