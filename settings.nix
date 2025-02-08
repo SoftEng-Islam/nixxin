@@ -14,6 +14,8 @@
       # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";
     };
+
+    # Features: To Install Extra Packages and file systems & apps
     features = {
       android = {
         development_stuff = true;
@@ -274,9 +276,9 @@
   browser = "brave"; # Default Browser;
   browserPkg = pkgs.brave;
 
-  # ---------------------- #
-  # ---- Terminals ------- #
-  # ---------------------- #
+  # ------------------- #
+  # ---- Terminals ---- #
+  # ------------------- #
   terminals = {
     default = {
       shell = "zsh"; # bash
@@ -322,6 +324,7 @@
       size = terminals.default.font.size;
     };
   };
+
   term = "kitty";
   termPkg = pkgs.kitty;
 
