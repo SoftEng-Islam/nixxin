@@ -17,6 +17,7 @@ in {
         "${pkgs.dart-sass}/bin"
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
+        "${pkgs.rocmPackages.rocm-runtime}/bin:${pkgs.rocmPackages.hip-common}/bin:$PATH"
         #"$HOME/.cache/ignis/bin"
         "/run/current-system/sw/bin"
         "/run/wrappers/bin"
