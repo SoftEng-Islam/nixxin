@@ -1,8 +1,8 @@
 { settings, pkgs, ... }: {
   # zramctl
   zramSwap = {
-    enable = settings.features.zram.enable;
-    algorithm = settings.features.zram.algorithm; # lz4 or zstd
+    enable = settings.system.features.zram.enable;
+    algorithm = settings.system.features.zram.algorithm; # lz4 or zstd
     memoryPercent = 50;
     swapDevices = 1;
     priority = 100;
