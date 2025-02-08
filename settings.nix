@@ -277,7 +277,47 @@
   # ---------------------- #
   # ---- Terminals ------- #
   # ---------------------- #
-  term = "kitty"; # Default terminal command
+  terminals = {
+    default = {
+      shell = "zsh"; # bash
+      font = {
+        name = "CaskaydiaCove Nerd Font";
+        bold_font = "CaskaydiaCove Nerd Font Bold";
+        italic_font = "CaskaydiaCove Nerd Font Italic";
+        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
+        size = 14;
+        package = pkgs.nerd-fonts.caskaydia-cove;
+      };
+      term = {
+        name = "kitty"; # Default terminal command
+        package = pkgs.kitty;
+      };
+    };
+    kitty = {
+      name = "CaskaydiaCove Nerd Font";
+      bold_font = "CaskaydiaCove Nerd Font Bold";
+      italic_font = "CaskaydiaCove Nerd Font Italic";
+      bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
+      size = 14;
+    };
+    alacritty = {
+      name = "CaskaydiaCove Nerd Font";
+      size = 15;
+    };
+    foot = {
+      name = "CaskaydiaCove Nerd Font";
+      size = 15;
+    };
+    wezterm = {
+      name = "CaskaydiaCove Nerd Font";
+      size = 15;
+    };
+    fish = {
+      name = "CaskaydiaCove Nerd Font";
+      size = 15;
+    };
+  };
+  term = "kitty";
   termPkg = pkgs.kitty;
 
   # ---------------------- #
