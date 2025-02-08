@@ -24,9 +24,9 @@
 
     # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
     # firewall.extraCommands = ''
-    #   iptables -t nat -A POSTROUTING -o ${settings.wlanInterface} -j MASQUERADE
-    #   iptables -A FORWARD -i ${settings.wlanInterface} -o ${settings.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
-    #   iptables -A FORWARD -i ${settings.ethernet} -o ${settings.wlanInterface} -j ACCEPT
+    #   iptables -t nat -A POSTROUTING -o ${settings.networks.wlanInterface} -j MASQUERADE
+    #   iptables -A FORWARD -i ${settings.networks.wlanInterface} -o ${settings.networks.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
+    #   iptables -A FORWARD -i ${settings.networks.ethernet} -o ${settings.networks.wlanInterface} -j ACCEPT
     # '';
     nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
@@ -69,10 +69,11 @@
   };
   services = {
     hostapd.enable = false;
-    resolved.enable = if (settings.networks.dnsResolver == "dnsmasq") then
-      true
-    else
-      false; # systemd DNS resolver daemon, systemd-resolved.
+    resolved.enable =
+      if (settings.networks.dnsResolver == "systemd-resolved") then
+        true
+      else
+        false; # systemd DNS resolver daemon, systemd-resolved.
   };
   networking.hosts = {
     #    "0.0.0.0" = [

@@ -153,9 +153,9 @@
   # ------------------ #
   networks = {
     dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
+    ethernet = "eno1";
+    wlanInterface = "wlp0s19f2u5";
   };
-  ethernet = "eno1";
-  wlanInterface = "wlp0s19f2u5";
 
   # ------------------ #
   # ---- Hardware ---- #
