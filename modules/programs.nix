@@ -1,7 +1,4 @@
 { pkgs, ... }: {
-  # ~~~~~~~~~~~~~~~~~~~~~~~~
-  # ~~~~~~~ Programs ~~~~~~~
-  # ~~~~~~~~~~~~~~~~~~~~~~~~
   programs = {
     nh.enable = true;
     # See https://nix.dev/permalink/stub-ld.
@@ -17,8 +14,8 @@
     mtr.enable = true;
     fuse.userAllowOther = true;
 
-    # gnupg.agent.enable = true;
-    # gnupg.agent.enableSSHSupport = true;
+    gnupg.agent.enable = true;
+    gnupg.agent.enableSSHSupport = true;
 
     # required by libreoffice
     # java.enable = true;

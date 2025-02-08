@@ -1,12 +1,25 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.features.wine.enable) {
   # Enable DXVK in Wine:
   # WINEPREFIX=~/.wine winecfg
   # Go to the Libraries tab, add d3d11 and dxgi, and set them to "native."
-  # Optional: Enable 32-bit Wine for older games
-  # Add this if you want a 32-bit Wine prefix:
+
   environment.variables = {
+    # Optional: Enable 32-bit Wine for older games
+    # Add this if you want a 32-bit Wine prefix
     # WINEPREFIX = "/home/${settings.users.selected.username}/.wine";
     # WINEARCH = "win32"; # Set Wine architecture to 32-bit
+
+    # MESA_GL_VERSION_OVERRIDE=4.5
+    # MESA_LOADER_DRIVER_OVERRIDE=osmesa
+
+    __GL_THREADED_OPTIMIZATIONS = "1";
+    WINE_GALLIUM_NINE = "1";
+
+    # Optimize Wine performance.
+    WINEESYNC = "1";
+    WINEFSYNC = "1";
   };
 
   home-manager.users."${settings.users.selected.username}" = {

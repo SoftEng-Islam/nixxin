@@ -28,7 +28,7 @@
     #   iptables -A FORWARD -i ${settings.networks.wlanInterface} -o ${settings.networks.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
     #   iptables -A FORWARD -i ${settings.networks.ethernet} -o ${settings.networks.wlanInterface} -j ACCEPT
     # '';
-    nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    nameservers = settings.networks.nameservers;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
@@ -73,7 +73,7 @@
       if (settings.networks.dnsResolver == "systemd-resolved") then
         true
       else
-        false; # systemd DNS resolver daemon, systemd-resolved.
+        false; # Systemd DNS Resolver Daemon, systemd-resolved.
   };
   networking.hosts = {
     #    "0.0.0.0" = [

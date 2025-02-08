@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-
+  # environment.variables = { };
   environment.systemPackages = with pkgs; [
     libqalculate # Advanced calculator library
     mkvtoolnix-cli # Cross-platform tools for Matroska

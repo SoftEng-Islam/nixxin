@@ -1,7 +1,7 @@
 {
   imports = [
     ./clang
-    # ./go
+    ./go
     ./python
     ./rust
     # ./tools

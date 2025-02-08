@@ -125,16 +125,9 @@ in {
       NIXPKGS_ALLOW_UNFREE = "1";
       # NIXPKGS_ALLOW_INSECURE = "1";
 
-      # Optimize Wine performance.
-      WINEESYNC = "1";
-      WINEFSYNC = "1";
-
       # Enables Rust backtraces for debugging.
       RUST_BACKTRACE = "1";
       CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
-
-      GOPROXY = "direct";
-      BUN_INSTALL = "$HOME/.bun";
 
       QUOTING_STYLE = "literal";
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";

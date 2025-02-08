@@ -1,14 +1,15 @@
-{ pkgs, ... }: {
+{ settings, pkgs, ... }: {
   # zramctl
   zramSwap = {
-    enable = true;
-    algorithm = "zstd"; # lz4 or zstd
+    enable = settings.features.zram.enable;
+    algorithm = settings.features.zram.algorithm; # lz4 or zstd
     memoryPercent = 50;
     swapDevices = 1;
     priority = 100;
   };
   environment.systemPackages = with pkgs; [
-    zstd
+    lz4 # Extremely fast compression algorithm
+    zstd # Zstandard real-time compression algorithm
     zram-generator # Systemd unit generator for zram devices
   ];
 }

@@ -25,11 +25,14 @@
         enable = true;
         timeFormat = "12"; # or 24
       };
-      corectrl = true;
+      zram = {
+        enable = true;
+        algorithm = "lz4"; # lz4 or zstd
+      };
+      wine = { enable = true; };
+      corectrl = { enable = true; };
       fcitx5 = true;
       ssh = true;
-      wine = true;
-      zram = true;
       ai = { enable = true; };
     };
     videoEditors = {
@@ -75,6 +78,8 @@
     stateVersion = "24.11";
     backupFileExtension = null;
   };
+
+  applications = { };
 
   # ----------------- #
   # ---- DESKTOP ---- #
@@ -155,6 +160,8 @@
     dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
     ethernet = "eno1";
     wlanInterface = "wlp0s19f2u5";
+    nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
+    dnsmasq = { settings = { server = networks.nameservers; }; };
   };
 
   # ------------------ #

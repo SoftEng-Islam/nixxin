@@ -59,7 +59,6 @@
     ddcutil # Query and change Linux monitor settings using DDC/CI and USB
     gojq # Pure Go implementation of jq
     rsync # Fast incremental file transfer utility
-    # starship # Minimal, blazing fast, and extremely customizable prompt for any shell
     tesseract # OCR engine
     tinyxml2 # Simple, small, efficient, C++ XML parser
     webp-pixbuf-loader # WebP GDK Pixbuf Loader library

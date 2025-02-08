@@ -134,6 +134,10 @@ let
   tomlFormat = pkgs.formats.toml { };
   starshipCmd = "${pkgs.starship}/bin/starship";
 in {
+  environment.systemPackages = with pkgs;
+    [
+      starship # starship # Minimal, blazing fast, and extremely customizable prompt for any shell
+    ];
   home-manager.users.${settings.users.selected.username} = {
     home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 

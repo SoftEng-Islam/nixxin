@@ -104,7 +104,11 @@
   in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
   environment.variables = {
+    HSA_OVERRIDE_GFX_VERSION = "9.0.0";
+    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    PATH =
+      "${pkgs.rocmPackages.rocm-runtime}/bin:${pkgs.rocmPackages.hip-common}/bin:$PATH";
 
     # Load AMD driver for Xorg and Waylandard
     LIBVA_DRIVER_NAME = "amdgpu";
@@ -160,6 +164,7 @@
     rocmPackages.hipfft
     rocmPackages.hipify
     rocmPackages.hiprand
+    rocmPackages.rocminfo
 
     # zluda # ZLUDA - CUDA on Intel GPUs
 
