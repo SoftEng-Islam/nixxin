@@ -281,10 +281,10 @@
     default = {
       shell = "zsh"; # bash
       font = {
-        name = "CaskaydiaCove Nerd Font";
-        bold_font = "CaskaydiaCove Nerd Font Bold";
-        italic_font = "CaskaydiaCove Nerd Font Italic";
-        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
+        family = "CaskaydiaCove Nerd Font";
+        bold = "CaskaydiaCove Nerd Font Bold";
+        italic = "CaskaydiaCove Nerd Font Italic";
+        bold_italic = "CaskaydiaCove Nerd Font Bold Italic";
         size = 14;
         package = pkgs.nerd-fonts.caskaydia-cove;
       };
@@ -294,27 +294,32 @@
       };
     };
     kitty = {
-      name = "CaskaydiaCove Nerd Font";
-      bold_font = "CaskaydiaCove Nerd Font Bold";
-      italic_font = "CaskaydiaCove Nerd Font Italic";
-      bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
-      size = 14;
+      shell = terminals.default.shell;
+      family = terminals.default.font.family;
+      size = terminals.default.font.size;
+      bold = terminals.default.font.bold;
+      italic = terminals.default.font.italic;
+      bold_italic = terminals.default.font.bold_italic;
     };
     alacritty = {
-      name = "CaskaydiaCove Nerd Font";
-      size = 15;
+      shell = terminals.default.shell;
+      family = terminals.default.font.family;
+      size = terminals.default.font.size;
     };
     foot = {
-      name = "CaskaydiaCove Nerd Font";
-      size = 15;
+      shell = terminals.default.shell;
+      family = terminals.default.font.family;
+      size = terminals.default.font.size;
     };
     wezterm = {
-      name = "CaskaydiaCove Nerd Font";
-      size = 15;
+      shell = terminals.default.shell;
+      family = terminals.default.font.family;
+      size = terminals.default.font.size;
     };
     fish = {
-      name = "CaskaydiaCove Nerd Font";
-      size = 15;
+      shell = terminals.default.shell;
+      family = terminals.default.font.family;
+      size = terminals.default.font.size;
     };
   };
   term = "kitty";
