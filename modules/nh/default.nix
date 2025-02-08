@@ -1,26 +1,23 @@
-{
-  config,
-  pkgs,
-  ...
-}:
-
+{ settings, lib, pkgs, ... }:
 let
-  cfg = config.icedos.system.generations.garbageCollect;
+  cfg = generations.garbageCollect;
   days = "${builtins.toString (cfg.days)}d";
   generations = builtins.toString (cfg.generations);
-in
-{
+in {
   environment.systemPackages = [
-    (pkgs.writeShellScriptBin "nix-gc" "nh clean all -k ${generations} -K ${days}")
+    (pkgs.writeShellScriptBin "nix-gc"
+      "nh clean all -k ${generations} -K ${days}")
   ];
 
-  programs.nh = {
-    enable = true;
+  home-manager.users."${settings.users.selected.username}" = {
+    programs.nh = {
+      enable = true;
 
-    clean = {
-      enable = cfg.automatic;
-      extraArgs = "-k ${builtins.toString (cfg.generations)} -K ${days}";
-      dates = cfg.interval;
+      clean = {
+        enable = cfg.automatic;
+        extraArgs = "-k ${builtins.toString (cfg.generations)} -K ${days}";
+        dates = cfg.interval;
+      };
     };
   };
 }
