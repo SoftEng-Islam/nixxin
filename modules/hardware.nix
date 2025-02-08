@@ -202,6 +202,13 @@
     opencl-headers # Khronos OpenCL headers version 2023.12.14
     oclgrind # OpenCL device simulator and debugger
 
+    spirv-cross
+    spirv-headers
+    spirv-llvm-translator
+    spirv-tools
+    libunwind
+    llvm
+
     vkbasalt # Vulkan post processing layer for Linux
     vkquake # Vulkan Quake port based on QuakeSpasm
     vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable

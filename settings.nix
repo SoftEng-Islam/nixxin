@@ -124,6 +124,7 @@
         # List all the devices with their by-id symlinks
         # ls -l /dev/disk/by-id/
         grub = {
+          fontSize = 18;
           oSProber = false;
           gfxmodeEfi = "1920x1080";
           devices = [ "nodev" ];

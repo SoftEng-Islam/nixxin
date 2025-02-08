@@ -13,14 +13,19 @@
       # Whether the installation process is allowed to modify EFI boot variables.
       efi.canTouchEfiVariables = true;
 
-      # To Enable the systemd boot manager
-      systemd-boot.enable = lib.optional settings.boot.loader.manager.name
-        == "SYSTEMD" ? true; # disable to use GRUB instead of systemd-boot
+      # ---- Systemd Boot Manager ---- #
+      # NOTE!! disable to use GRUB instead of systemd-boot
+      systemd-boot.enable =
+        if (settings.boot.loader.manager.name == "SYSTEMD") then
+          true
+        else
+          false;
 
       # Grub boot
       grub = {
-        enable = settings.boot.manager;
-        # fontSize = 18;
+        enable =
+          if (settings.boot.loader.manager.name == "GRUB") then true else false;
+        fontSize = settings.boot.loader.manager.grub.fontSize;
         # nix path-info -r nixpkgs#sleek-grub-theme
         # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
         efiSupport = true;
