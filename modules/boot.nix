@@ -27,7 +27,7 @@
         enable =
           if (settings.boot.loader.manager.name == "GRUB") then true else false;
         fontSize = settings.boot.loader.manager.grub.fontSize;
-        theme = settings.boot.loader.manager.grub.theme;
+        # theme = settings.boot.loader.manager.grub.theme;
         efiSupport = settings.boot.loader.manager.grub.efiSupport;
         gfxmodeEfi = settings.boot.loader.manager.grub.gfxmodeEfi;
         devices = settings.boot.loader.manager.grub.devices;
