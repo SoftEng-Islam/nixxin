@@ -1,7 +1,8 @@
 { settings, lib, config, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
-    # bootspec.enable = true;
+    bootspec.enable =
+      if (settings.boot.loader.manager.name == "SYSTEMD") then true else false;
     kernelPackages = pkgs.linuxPackages_latest;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
@@ -26,17 +27,13 @@
         enable =
           if (settings.boot.loader.manager.name == "GRUB") then true else false;
         fontSize = settings.boot.loader.manager.grub.fontSize;
-        # nix path-info -r nixpkgs#sleek-grub-theme
-        # theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
-        efiSupport = true;
-        gfxmodeEfi = settings.boot.grub.gfxmodeEfi;
-        devices = settings.boot.grub.devices;
-        device = settings.boot.grub.device;
-        useOSProber = false;
-        extraConfig = ''
-          GRUB_DISABLE_OS_PROBER=true
-          GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
-        '';
+        theme = settings.boot.loader.manager.grub.theme;
+        efiSupport = settings.boot.loader.manager.grub.efiSupport;
+        gfxmodeEfi = settings.boot.loader.manager.grub.gfxmodeEfi;
+        devices = settings.boot.loader.manager.grub.devices;
+        device = settings.boot.loader.manager.grub.device;
+        useOSProber = settings.boot.loader.manager.grub.osProber;
+        extraConfig = settings.boot.loader.manager.grub.extraConfig;
         # extraEntries = ''
         #   menuentry 'Arch Linux' {
         #   	insmod part_gpt
@@ -128,9 +125,9 @@
       # "acpi_osi=Linux"
       # "pci=realloc"
 
-      # "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      # "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      # "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
       # CPU optimizations
       "threadirqs"
@@ -160,12 +157,12 @@
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
 
-      # "amdgpu.dc=1"
-      # "amdgpu.dpm=1"
+      "amdgpu.dc=1"
+      "amdgpu.dpm=1"
 
       # "amdgpu.runpm=0"
       # "amdgpu.gttsize=4096"
-      # "amdgpu.deep_color=1"
+      "amdgpu.deep_color=1"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
       # "amdgpu.vm_fragment_size=9"
