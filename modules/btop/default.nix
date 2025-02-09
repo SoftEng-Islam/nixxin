@@ -11,5 +11,9 @@
     home.file.".config/btop/btop.conf".source = ./btop.conf;
     # home.file.".config/btop/themes".source = ./themes;
   };
-  environment.systemPackages = with pkgs; [ btop btop-rocm ];
+  environment.systemPackages = with pkgs;
+    [
+      btop
+      # btop-rocm
+    ];
 }
