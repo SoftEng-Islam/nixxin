@@ -79,7 +79,15 @@
     backupFileExtension = null;
   };
 
-  applications = { };
+  # ---------------------- #
+  # ---- applications ---- #
+  # ---------------------- #
+  applications = {
+    # IDEs
+    vscode.enable = true;
+    # Terms
+    wezterm.enable = true;
+  };
 
   # ----------------- #
   # ---- DESKTOP ---- #

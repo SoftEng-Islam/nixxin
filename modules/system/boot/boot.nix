@@ -157,11 +157,13 @@
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
 
+      "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+      "amdgpu.noretry=0" # Improve memory handling
       "amdgpu.dc=1"
       "amdgpu.dpm=1"
 
       # "amdgpu.runpm=0"
-      # "amdgpu.gttsize=4096"
+      "amdgpu.gttsize=4096"
       "amdgpu.deep_color=1"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
