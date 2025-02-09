@@ -13,6 +13,7 @@
       extraGroups = [
         "adbusers"
         "audio" # Access to audio devices.
+        "corectrl"
         "dialout"
         "disk"
         "docker"
