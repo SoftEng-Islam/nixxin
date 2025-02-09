@@ -9,6 +9,19 @@
     ./virtualization
   ];
 
+  # For Faster rebuilding Disable These
+  documentation = {
+    enable = true;
+    doc.enable = true;
+    man = {
+      enable = true;
+      generateCaches = false;
+    };
+    dev.enable = true;
+    info.enable = true;
+    nixos.enable = true;
+  };
+
   system = {
     autoUpgrade.enable = settings.system.upgrade.enable;
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot;

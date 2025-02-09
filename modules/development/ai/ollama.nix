@@ -5,4 +5,5 @@
     environmentVariables = { HSA_OVERRIDE_GFX_VERSION = "10.1.2"; };
     #      models = "/opt/ollama/models";
   };
+  environment.systemPackages = with pkgs; [ ollama-rocm ];
 }
