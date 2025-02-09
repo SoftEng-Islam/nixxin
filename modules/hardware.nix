@@ -108,25 +108,28 @@
   '';
 
   environment.variables = {
-    HSA_OVERRIDE_GFX_VERSION = "9.0.0";
-    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    AMD_VULKAN_ICD = "RADV";
 
-    # Load AMD driver for Xorg and Waylandard
-    LIBVA_DRIVER_NAME = "amdgpu";
-    VDPAU_DRIVER = "amdgpu";
-    OCL_ICD_VENDORS = ''
-      ${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/
-    '';
-    VK_ICD_FILENAMES = ''
-      ${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json
-    '';
+    GPU_FORCE_64BIT_PTR = "1";
     GPU_MAX_ALLOC_PERCENT = "50";
     GPU_MAX_HEAP_SIZE = "50";
-    GPU_SINGLE_ALLOC_PERCENT = "50";
     GPU_MAX_USE_SYNC_OBJECTS = "1";
-    GPU_FORCE_64BIT_PTR = "1";
-    AMD_VULKAN_ICD = "RADV";
+    GPU_SINGLE_ALLOC_PERCENT = "50";
+
+    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    HSA_OVERRIDE_GFX_VERSION = "10.3.0"; # or "9.0.0"
+
+    LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
+    OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+
+    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
+    ROCM_TARGET = "gfx900";
+    ROC_ENABLE_PRE_VEGA = "1";
+
+    VDPAU_DRIVER = "amdgpu";
+    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+
+    OLLAMA_VRAM_OVERRIDE = "1";
   };
 
   # We are creating the lact daemon service manually because the provided one hangs
