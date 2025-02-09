@@ -124,6 +124,7 @@
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
     OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
@@ -194,8 +195,8 @@
     # amf # AMD's closed source Advanced Media Framework (AMF) driver
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
-    clpeak
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
+    clpeak
     dxvk # A Vulkan-based translation layer for Direct3D
     glaxnimate # Simple vector animation program.
     glmark2 # OpenGL (ES) 2.0 benchmark
@@ -210,11 +211,12 @@
     mesa_i686 # Open source 3D graphics library
     mesa-demos # Collection of demos and test programs for OpenGL and Mesa
     ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
+    oclgrind # OpenCL device simulator and debugger
     openal # OpenAL alternative
     opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
     opencl-clhpp # OpenCL Host API C++ bindings
     opencl-headers # Khronos OpenCL headers version 2023.12.14
-    oclgrind # OpenCL device simulator and debugger
+    pocl # Portable Computing Language
 
     spirv-cross
     spirv-headers
