@@ -103,6 +103,10 @@
     };
   in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
+  environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
+    ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
+  '';
+
   environment.variables = {
     HSA_OVERRIDE_GFX_VERSION = "9.0.0";
     ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
@@ -162,9 +166,9 @@
     rocmPackages.hipfft
     rocmPackages.hipify
     rocmPackages.hiprand
+    rocmPackages.rocm-runtime
     rocmPackages.rocminfo
-
-    # zluda # ZLUDA - CUDA on Intel GPUs
+    rocmPackages.rpp-opencl
 
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
