@@ -219,6 +219,7 @@
     # opencl-clhpp # OpenCL Host API C++ bindings
     # opencl-headers # Khronos OpenCL headers version 2023.12.14
     pocl # Portable Computing Language
+    # clblast # Tuned OpenCL BLAS library
 
     spirv-cross
     spirv-headers

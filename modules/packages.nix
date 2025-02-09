@@ -62,7 +62,6 @@
     tesseract # OCR engine
     tinyxml2 # Simple, small, efficient, C++ XML parser
     webp-pixbuf-loader # WebP GDK Pixbuf Loader library
-    clblast # Tuned OpenCL BLAS library
     libbsd # Common functions found on BSD systems
     libselinux # SELinux core library
     audit # Audit Library
