@@ -124,7 +124,7 @@
     HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
-    OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
