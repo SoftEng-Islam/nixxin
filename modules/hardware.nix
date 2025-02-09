@@ -78,8 +78,8 @@
         amdvlk
         mesa.opencl
         libvdpau-va-gl
-        rocmPackages.clr
-        rocmPackages.clr.icd
+        # rocmPackages.clr
+        # rocmPackages.clr.icd
         rocmPackages.rocm-runtime
         rocmPackages.rocm-smi
         rocmPackages.rocminfo
@@ -97,19 +97,19 @@
       ];
     };
   };
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
+  # systemd.tmpfiles.rules = let
+  #   rocmEnv = pkgs.symlinkJoin {
+  #     name = "rocm-combined";
+  #     paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+  #   };
+  # in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
   # environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
   #   ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
   # '';
 
-  environment.etc."OpenCL/vendors/amdocl64.icd".source =
-    pkgs.rocmPackages.clr.icd;
+  # environment.etc."OpenCL/vendors/amdocl64.icd".source =
+  #   pkgs.rocmPackages.clr.icd;
 
   environment.variables = {
     AMD_VULKAN_ICD = "RADV";
