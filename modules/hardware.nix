@@ -76,13 +76,13 @@
       enable32Bit = true;
       extraPackages = with pkgs; [
         amdvlk
-        mesa.opencl
+        # mesa.opencl
         libvdpau-va-gl
         # rocmPackages.clr
         # rocmPackages.clr.icd
-        rocmPackages.rocm-runtime
-        rocmPackages.rocm-smi
-        rocmPackages.rocminfo
+        # rocmPackages.rocm-runtime
+        # rocmPackages.rocm-smi
+        # rocmPackages.rocminfo
         libGL
         libGLU
         libGLX
@@ -214,8 +214,8 @@
     ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
     oclgrind # OpenCL device simulator and debugger
     openal # OpenAL alternative
-    opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
-    opencl-clhpp # OpenCL Host API C++ bindings
+    # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
+    # opencl-clhpp # OpenCL Host API C++ bindings
     opencl-headers # Khronos OpenCL headers version 2023.12.14
     pocl # Portable Computing Language
 
