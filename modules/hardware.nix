@@ -103,9 +103,12 @@
     };
   in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
 
-  environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
-    ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
-  '';
+  # environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
+  #   ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
+  # '';
+
+  environment.etc."OpenCL/vendors/amdocl64.icd".source =
+    pkgs.rocmPackages.clr.icd;
 
   environment.variables = {
     AMD_VULKAN_ICD = "RADV";
@@ -117,13 +120,13 @@
     GPU_SINGLE_ALLOC_PERCENT = "50";
 
     HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    HSA_OVERRIDE_GFX_VERSION = "10.3.0"; # or "9.0.0"
+    HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
     OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
 
     ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    ROCM_TARGET = "gfx900";
+    ROCM_TARGET = "gfx700";
     ROC_ENABLE_PRE_VEGA = "1";
 
     VDPAU_DRIVER = "amdgpu";
@@ -157,7 +160,7 @@
   environment.systemPackages = with pkgs; [
     # xivlauncher # Custom launcher for FFXIV
     # zenstates # Linux utility for Ryzen processors and motherboards
-    # amdgpu_top # Tool to display AMDGPU usage
+    amdgpu_top # Tool to display AMDGPU usage
 
     nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
@@ -191,6 +194,7 @@
     # amf # AMD's closed source Advanced Media Framework (AMF) driver
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
 
+    clpeak
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
     dxvk # A Vulkan-based translation layer for Direct3D
     glaxnimate # Simple vector animation program.
