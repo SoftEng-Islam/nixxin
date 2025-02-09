@@ -89,6 +89,7 @@
         libva
         libva-utils
         vaapiVdpau
+        pocl
       ];
       extraPackages32 = [
         pkgs.driversi686Linux.amdvlk
