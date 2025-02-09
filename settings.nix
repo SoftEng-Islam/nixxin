@@ -192,7 +192,7 @@
     };
 
     # ROCm Support (for AMD GPUs)
-    rocmSupport = hardware.gpu.vendor == "amd";
+    rocmSupport = false; # hardware.gpu.vendor == "amd";
 
     # Storage Information
     storage = {

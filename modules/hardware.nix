@@ -77,18 +77,18 @@
       extraPackages = with pkgs; [
         amdvlk
         # mesa.opencl
-        libvdpau-va-gl
+        # libvdpau-va-gl
         # rocmPackages.clr
         # rocmPackages.clr.icd
         # rocmPackages.rocm-runtime
         # rocmPackages.rocm-smi
         # rocmPackages.rocminfo
-        libGL
-        libGLU
-        libGLX
-        libva
-        libva-utils
-        vaapiVdpau
+        # libGL
+        # libGLU
+        # libGLX
+        # libva
+        # libva-utils
+        # vaapiVdpau
         pocl
       ];
       extraPackages32 = [

@@ -43,7 +43,7 @@
       bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       # bind = $main, S, exec,
       # bind = $main, D, exec,
-      bind = $main, F, fullscreen, 2
+      bind = $main, F, fullscreen, 1
       # bind = $main, G, exec,
       # bind = $main, H, exec,
       # bind = $main, J, exec,
