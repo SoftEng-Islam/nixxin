@@ -120,14 +120,14 @@
     GPU_MAX_USE_SYNC_OBJECTS = "1";
     GPU_SINGLE_ALLOC_PERCENT = "50";
 
-    HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
     # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
-    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
+    # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
     ROC_ENABLE_PRE_VEGA = "1";
 
@@ -167,16 +167,17 @@
     nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
 
-    rocmPackages.hip-common
-    rocmPackages.hipblas
-    rocmPackages.hipcc
-    rocmPackages.hipcub
-    rocmPackages.hipfft
-    rocmPackages.hipify
-    rocmPackages.hiprand
-    rocmPackages.rocm-runtime
-    rocmPackages.rocminfo
-    rocmPackages.rpp-opencl
+    # rocmPackages.hip-common
+    # rocmPackages.hipblas
+    # rocmPackages.hipcc
+    # rocmPackages.hipcub
+    # rocmPackages.hipfft
+    # rocmPackages.hipify
+    # rocmPackages.hiprand
+    # rocmPackages.rocm-runtime
+    # rocmPackages.rocminfo
+    # rocmPackages.rpp-opencl
+    # rocmPackages.clr
 
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
@@ -216,7 +217,7 @@
     openal # OpenAL alternative
     # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
     # opencl-clhpp # OpenCL Host API C++ bindings
-    opencl-headers # Khronos OpenCL headers version 2023.12.14
+    # opencl-headers # Khronos OpenCL headers version 2023.12.14
     pocl # Portable Computing Language
 
     spirv-cross
