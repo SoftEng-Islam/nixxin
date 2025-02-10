@@ -1,4 +1,5 @@
 { pkgs, ... }: rec {
   # ---- Users ---- #
-  profile = import (./. + "/users/user1/desktop");
+  path = "/users/user1/desktop"; # Path of the Profile
+  profile = import (./. + path);
 }

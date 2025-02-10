@@ -102,7 +102,7 @@
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
-            (./. + "/modules/configuration.nix")
+            (./. + settings.path + "/configuration.nix")
           ];
         };
       };
