@@ -2,7 +2,6 @@
   imports = [ ./ai ./databases ./languages ./tools ];
 
   environment.systemPackages = with pkgs; [
-    # developers packages
     bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
     atkmm # C++ wrappers for ATK accessibility toolkit
