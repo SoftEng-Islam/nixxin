@@ -35,10 +35,9 @@
       };
     };
   };
-
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  # Internationalisation & Time Zone
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # -------------------------------- #
+  # Internationalisation & Time Zone #
+  # -------------------------------- #
   # Set your time zone.
   time.timeZone = settings.timezone;
   services.timesyncd.enable = true;
