@@ -5,7 +5,7 @@
     # rtkit is recommended for pipewire
     rtkit.enable = true;
 
-    #enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
+    # Enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
     polkit.enable = true;
 
     # Swaylock needs an entry in PAM to proberly unlock
@@ -15,7 +15,7 @@
       auth include login
     '';
 
-    #enable basic tpm2 support for clevis
+    # Enable basic tpm2 support
     tpm2 = {
       enable = false;
       pkcs11.enable = true;

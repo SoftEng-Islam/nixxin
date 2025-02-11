@@ -1,8 +1,7 @@
 { pkgs, ... }: rec {
-
-  # ---------------------------------------------- #
-  # ---- System Information And Configuration ---- #
-  # ---------------------------------------------- #
+  # ----------------------------------------------
+  # ---- System Information And Configuration
+  # ----------------------------------------------
   system = {
     name = "nixos";
     hostName = "nixos"; # Hostname
@@ -17,49 +16,36 @@
     };
   };
 
-  # -------------- #
-  # ---- HOME ---- #
-  # -------------- #
+  # ----------------------------------------------
+  # ---- HOME
+  # ----------------------------------------------
   home = {
     stateVersion = "24.11";
     backupFileExtension = null;
   };
 
-  # ------------------ #
-  # ---- Profiles ---- #
-  # ------------------ #
-  profiles = {
-    base = {
-
-    };
-    desktop = {
-
-    };
-    laptop = {
-
-    };
+  # ----------------------------------------------
+  # ---- Modules
+  # ----------------------------------------------
+  # Modules: To Enable/disable
+  android = {
+    development_stuff = true;
+    android_studio = false;
   };
-
-  # Features: To Install Extra Packages and file systems & apps
-  features = {
-    android = {
-      development_stuff = true;
-      android_studio = false;
-    };
-    btop = {
-      enable = true;
-      timeFormat = "12"; # or 24
-    };
-    zram = {
-      enable = true;
-      algorithm = "lz4"; # lz4 or zstd
-    };
-    wine = { enable = true; };
-    corectrl = { enable = true; };
-    fcitx5 = true;
-    ssh = true;
-    ai = { enable = true; };
+  btop = {
+    enable = true;
+    timeFormat = "12"; # or 24
   };
+  zram = {
+    enable = true;
+    algorithm = "lz4"; # lz4 or zstd
+  };
+  wine = { enable = true; };
+  corectrl = { enable = true; };
+  fcitx5 = true;
+  ssh = true;
+  ai = { enable = true; };
+
   videoEditors = {
     kdenlive = true;
     shotcut = true;

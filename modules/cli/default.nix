@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./curl ./git ./wifi ];
+  imports = [ ];
 
   # Collection of useful CLI apps
   environment.systemPackages = with pkgs; [
