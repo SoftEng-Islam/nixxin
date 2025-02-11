@@ -1,8 +1,7 @@
-# ---- Graphics Apps ----#
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  graphicsApps = with pkgs; [
+  _graphics = with pkgs; [
     (lib.optional settings.modules.graphics.blender.enable blender)
     (lib.optional settings.modules.graphics.darktable.enable darktable)
     (lib.optional settings.modules.graphics.davinci.enable davinci-resolve)
@@ -13,5 +12,5 @@ let
     (lib.optional settings.modules.graphics.lunacy.enable lunacy)
   ];
 in mkIf (settings.modules.graphics.enable) {
-  environment.systemPackages = lib.flatten graphicsApps;
+  environment.systemPackages = lib.flatten _graphics;
 }

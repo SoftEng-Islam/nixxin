@@ -50,7 +50,15 @@
       };
       community = {
         enable = true;
-        discord = { enable = true; };
+        discord = true;
+        ferdium = true;
+        mumble = true;
+        revolt = true;
+        signal = true;
+        slack = true;
+        telegram = true;
+        vesktop = true;
+        zoom = true;
       };
       graphics = {
         enable = true;

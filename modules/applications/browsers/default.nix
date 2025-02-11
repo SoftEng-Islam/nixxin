@@ -1,4 +1,3 @@
-# ---- browsers/default.nix ---- #
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
