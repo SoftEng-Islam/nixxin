@@ -1,4 +1,7 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+
+in mkIf (settings.modules.development.enable) {
   imports = [ ./ai ./databases ./languages ./tools ];
 
   environment.systemPackages = with pkgs; [
