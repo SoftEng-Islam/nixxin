@@ -1,18 +1,14 @@
-{ settings, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let
-  enable_android_development_stuff =
-    if settings.system.features.android.development_stuff then
-      [ ./development.nix ]
-    else
-      [ ];
-  enable_android_studio =
-    if settings.system.features.android.android_studio then
-      [ ./android-studio.nix ]
-    else
-      [ ];
-in {
-  imports = enable_android_development_stuff ++ enable_android_studio
-    ++ [ ./scrcpy.nix ./waydroid.nix ];
+  inherit (lib) mkIf;
+  _android = [
+    (lib.optional settings.moudles.android.development ./development.nix)
+    (lib.optional settings.moudles.android.android_studio ./android-studio.nix)
+    (lib.optional settings.moudles.android.scrcpy ./scrcpy.nix)
+    (lib.optional settings.moudles.android.waydroid ./waydroid.nix)
+  ];
+in mkIf (settings.moudles.android.enable) {
+  imports = lib.flatten _android;
   programs.adb.enable = true;
   environment.systemPackages = with pkgs;
     [

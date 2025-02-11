@@ -34,7 +34,9 @@
     };
     android = {
       enable = true;
-      development_stuff = true;
+      scrcpy = true;
+      waydroid = true;
+      development = true;
       android_studio = false;
     };
     applications = {
