@@ -1,5 +1,6 @@
-{ settings, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let
+  inherit (lib) mkIf;
   json = pkgs.formats.json { };
 
   pw_rnnoise_config = {
@@ -29,7 +30,7 @@ let
       };
     }];
   };
-in {
+in mkIf (settings.modules.audio.rnnoise.enable) {
   home-manager.users.${settings.users.selected.username} = {
     xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
       source = json.generate "99-input-denoising.conf" pw_rnnoise_config;

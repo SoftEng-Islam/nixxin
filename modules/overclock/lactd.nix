@@ -1,5 +1,6 @@
-# Linux GPU Configuration Tool for AMD and NVIDIA
+# ---- lactd.nix ---- #
 { settings, lib, pkgs, ... }: {
+  # Linux GPU Configuration Tool for AMD and NVIDIA
   # We are creating the lact daemon service manually because the provided one hangs
   systemd.services.lactd = {
     enable = false;

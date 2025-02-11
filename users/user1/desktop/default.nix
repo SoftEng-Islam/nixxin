@@ -27,21 +27,105 @@
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
-  # Modules: To Enable/disable
-  android = {
-    development_stuff = true;
-    android_studio = false;
-  };
-  btop = {
-    enable = true;
-    timeFormat = "12"; # or 24
+  # Modules: To Enable/disable && Options.
+  # NOTE: The Options doesn't have effect if the module is disabled.
+  modules = {
+    ai = { enable = false; };
+    android = {
+      enable = true;
+      development_stuff = true;
+      android_studio = false;
+    };
+    applications = {
+      enable = true; # False Means no apps will be installed
+      discord = {
+        # False Means Will not Install even if the applications module enabled.
+        enable = true;
+      };
+    };
+    audio = {
+      enable = true;
+      # Noise Canceling
+      rnnoise.enable = true;
+    };
+    browsers = { };
+    cli = { };
+    color_picker = { };
+    computing = { };
+    data_transferring = { };
+    dbus = { };
+    dconf = { };
+    design = { };
+    development = { };
+    display = { };
+    documents = { };
+    drivers = { };
+    editors = { };
+    emails = { };
+    file_manager = { };
+    flags = { };
+    gaming = { };
+    git = { };
+    hacking = { };
+    hardware = { };
+    image_viewer = { };
+    keyboard_remapper = { };
+    locale = { };
+    media = { };
+    networking = { };
+    nh = { };
+    nix = { };
+    notifications = { };
+    overclock = { corectrl = { enable = true; }; };
+    power = { };
+    qt_gtk = { };
+    recording = { };
+    resources_monitoring = {
+      btop = {
+        enable = true;
+        timeFormat = "12"; # or 24
+      };
+    };
+    screenshot = { };
+    security = { };
+    services = { };
+    ssh = { };
+    storage = {
+      enable = true;
+      fstrim.enable = true;
+    };
+    system_theming = { };
+    systemd = { };
+    terminals = { };
+    virtualization = { };
+    wayland = { };
+    windows = { wine = { enable = true; }; };
+    window_manager = {
+      # ---- Hyprland ---- #
+      hyprland = {
+        enable = true;
+        # Pregenerated Colors to use in Hyprland
+        genColorsPath =
+          /home/${users.selected.username}/.cache/hypr/colors.conf;
+        animationSpeed = "medium"; # medium or slow
+        plugins = {
+          hyprbars = true;
+          hyprspace = true;
+          bordersPlus = false;
+          hyprexpo = false;
+          hyprtrails = false;
+        };
+      };
+    };
+    write_shell = { };
+    xdg = { };
+    zram = { };
   };
   zram = {
     enable = true;
     algorithm = "lz4"; # lz4 or zstd
   };
-  wine = { enable = true; };
-  corectrl = { enable = true; };
+
   fcitx5 = true;
   ssh = true;
   ai = { enable = true; };
@@ -282,21 +366,6 @@
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-
-  # ---- Hyprland ---- #
-  hyprland = {
-    enable = true;
-    # Pregenerated Colors to use in Hyprland
-    genColorsPath = /home/${users.selected.username}/.cache/hypr/colors.conf;
-    animationSpeed = "medium"; # medium or slow
-    plugins = {
-      hyprbars = true;
-      hyprspace = true;
-      bordersPlus = false;
-      hyprexpo = false;
-      hyprtrails = false;
-    };
-  };
 
   # ---- Dotfiles Inforamtions ---- #
   dotfilesDir =
