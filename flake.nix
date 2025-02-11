@@ -87,22 +87,24 @@
 
   outputs = { self, nixpkgs, ... }@inputs:
     let
-      settings = import (./. + "/settings.nix") { inherit pkgs; };
-      pkgs = import nixpkgs { system = settings.system.architecture; };
+      _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
+      settings = _SETTINGS.profile;
+      pkgs = import nixpkgs { system = _SETTINGS.system.architecture; };
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
-        ${settings.system.hostName} = nixpkgs.lib.nixosSystem {
+        ${_SETTINGS.system.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
+            inherit _SETTINGS;
             inherit settings;
           };
           modules = [
             inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
-            (./. + settings.path + "/configuration.nix")
+            (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
       };

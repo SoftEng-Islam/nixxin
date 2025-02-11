@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }: {
   imports = [ ./boot ./hardware ];
 
-  # For Faster rebuilding Disable These
+  # For Faster Rebuilding Disable These
   documentation = {
     enable = true;
     doc.enable = true;
