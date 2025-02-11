@@ -142,5 +142,7 @@
     mtr # A network diagnostics tool
     ethtool # Utility for controlling network drivers and hardware
     nettools # A set of tools for controlling the network subsystem in Linux
+
+    iftop # network monitoring
   ];
 }
