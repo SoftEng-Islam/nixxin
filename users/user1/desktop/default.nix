@@ -15,7 +15,6 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
   };
-
   # ----------------------------------------------
   # ---- HOME
   # ----------------------------------------------
@@ -23,14 +22,16 @@
     stateVersion = "24.11";
     backupFileExtension = null;
   };
-
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
   # Modules: To Enable/disable && Options.
   # NOTE: The Options doesn't have effect if the module is disabled.
   modules = {
-    ai = { enable = false; };
+    ai = {
+      enable = false;
+      ollama = { enable = true; };
+    };
     android = {
       enable = true;
       development_stuff = true;
@@ -38,9 +39,26 @@
     };
     applications = {
       enable = true; # False Means no apps will be installed
-      discord = {
-        # False Means Will not Install even if the applications module enabled.
+      browsers = {
         enable = true;
+        firefox.enable = false;
+        firefox-beta.enable = true;
+        google-chrome.enable = true;
+        microsoft-edge.enable = true;
+      };
+      community = {
+        enable = true;
+        discord = { enable = true; };
+      };
+      graphics = {
+        enable = true;
+        lunacy.enable = true;
+        figmaLinux.enable = false;
+        drawio.enable = true;
+        blender.enable = true;
+        gimp.enable = true;
+        inkscape.enable = true;
+        darktable.enable = false;
       };
     };
     audio = {
@@ -48,7 +66,9 @@
       # Noise Canceling
       rnnoise.enable = true;
     };
-    browsers = { };
+    browsers = {
+
+    };
     cli = { };
     color_picker = { };
     computing = { };
@@ -58,6 +78,17 @@
     design = { };
     development = { };
     display = { };
+    docs = {
+      enable = true;
+      doc.enable = true;
+      man = {
+        enable = true;
+        generateCaches = false;
+      };
+      dev.enable = true;
+      info.enable = true;
+      nixos.enable = true;
+    };
     documents = { };
     drivers = { };
     editors = { };
@@ -119,16 +150,11 @@
     };
     write_shell = { };
     xdg = { };
-    zram = { };
+    zram = {
+      enable = true;
+      algorithm = "lz4"; # lz4 or zstd
+    };
   };
-  zram = {
-    enable = true;
-    algorithm = "lz4"; # lz4 or zstd
-  };
-
-  fcitx5 = true;
-  ssh = true;
-  ai = { enable = true; };
 
   videoEditors = {
     kdenlive = true;

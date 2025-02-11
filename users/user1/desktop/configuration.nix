@@ -1,18 +1,13 @@
 { settings, lib, pkgs, ... }: {
-  imports = [ ./boot ./hardware ];
-
-  # For Faster Rebuilding Disable These
-  documentation = {
-    enable = true;
-    doc.enable = true;
-    man = {
-      enable = true;
-      generateCaches = false;
-    };
-    dev.enable = true;
-    info.enable = true;
-    nixos.enable = true;
-  };
+  imports = [
+    ./boot
+    ./hardware
+    ./environment.nix
+    ./home.nix
+    ./packages.nix
+    ./programs.nix
+    ./user.nix
+  ];
 
   system = {
     autoUpgrade.enable = settings.system.upgrade.enable;
