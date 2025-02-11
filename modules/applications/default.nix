@@ -1,9 +1,8 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.applications.enable) {
   environment.systemPackages = with pkgs; [
-    figma-linux # Unofficial Electron-based Figma desktop app for Linux
     kolourpaint # Paint program
-    github-desktop # GUI for managing Git and GitHub
-    blueberry # Bluetooth configuration tool
 
     audacity # Sound editor with graphical UI
     gromit-mpx # Desktop annotation tool

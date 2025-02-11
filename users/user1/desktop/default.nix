@@ -54,13 +54,14 @@
       };
       graphics = {
         enable = true;
-        lunacy.enable = true;
-        figmaLinux.enable = false;
-        drawio.enable = true;
         blender.enable = true;
+        darktable.enable = false;
+        davinci.enable = true;
+        drawio.enable = true;
+        figmaLinux.enable = false;
         gimp.enable = true;
         inkscape.enable = true;
-        darktable.enable = false;
+        lunacy.enable = true;
       };
     };
     audio = {
