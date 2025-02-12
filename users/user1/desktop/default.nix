@@ -39,40 +39,38 @@
       development = true;
       android_studio = false;
     };
-    apps = {
-      enable = true; # False Means no apps will be installed
-      browsers = {
-        enable = true;
-        brave = true;
-        firefox = false;
-        firefox-beta = false;
-        google-chrome = true;
-        microsoft-edge = true;
-      };
-      community = {
-        enable = true;
-        discord = true;
-        ferdium = true;
-        mumble = true;
-        revolt = true;
-        signal = true;
-        slack = true;
-        telegram = true;
-        vesktop = true;
-        zoom = true;
-      };
-      graphics = {
-        enable = true;
-        blender = true;
-        darktable = false;
-        davinci = true;
-        drawio = true;
-        figmaLinux = false;
-        gimp = true;
-        inkscape = true;
-        lunacy = true;
-      };
+    browsers = {
+      enable = true;
+      brave = true;
+      firefox = false;
+      firefox-beta = false;
+      google-chrome = true;
+      microsoft-edge = true;
     };
+    community = {
+      enable = true;
+      discord = true;
+      ferdium = true;
+      mumble = true;
+      revolt = true;
+      signal = true;
+      slack = true;
+      telegram = true;
+      vesktop = true;
+      zoom = true;
+    };
+    graphics = {
+      enable = true;
+      blender = true;
+      darktable = false;
+      davinci = true;
+      drawio = true;
+      figmaLinux = false;
+      gimp = true;
+      inkscape = true;
+      lunacy = true;
+    };
+
     audio = {
       enable = true;
       # Noise Canceling
