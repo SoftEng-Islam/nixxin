@@ -3,7 +3,6 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.cli.enable) {
   imports = [ ./eza.nix ./fd.nix ./fzf.nix ./lf.nix ];
   environment.systemPackages = with pkgs; [
-
     bat # Cat(1) clone with syntax highlighting and Git integration
     du-dust # du + rust = dust. Like du but more intuitive
     duf # Disk Usage/Free Utility

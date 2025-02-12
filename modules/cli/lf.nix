@@ -1,4 +1,4 @@
-{ settings, pkgs, config, ... }: {
+{ settings, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.lf = {
       enable = true;

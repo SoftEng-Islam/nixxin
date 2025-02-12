@@ -59,18 +59,17 @@
       enable = true;
       discord = true;
       ferdium = true;
-      mumble = true;
-      revolt = true;
-      signal = true;
-      slack = true;
+      mumble = false;
+      revolt = false;
+      signal = false;
+      slack = false;
       telegram = true;
-      vesktop = true;
-      zoom = true;
+      vesktop = false;
+      zoom = false;
     };
     computing = {
       enable = true;
-      opencl = false;
-      pocl = true;
+      default = "pocl"; # pocl or opencl
     };
     data_transferring = { };
     dbus = { };
