@@ -1,6 +1,18 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-
+let
+  inherit (lib) mkIf;
+  _pkgs = with pkgs; [
+    # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
+    (lib.optional settings.modules.development.beekeeper beekeeper-studio)
+    # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
+    (lib.optional settings.modules.development.dbeaver dbeaver-bin)
+    # DB Browser for SQLite
+    (lib.optional settings.modules.development.sqlitebrowser sqlitebrowser)
+    # Open-source IDE For exploring and testing APIs.
+    (lib.optional settings.modules.development.bruno bruno)
+    # cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC. With Cloud, Local and Git storage.
+    (lib.optional settings.modules.development.insomnia insomnia)
+  ];
 in mkIf (settings.modules.development.enable) {
   imports = [ ./ai ./databases ./languages ./tools ];
 
@@ -19,13 +31,5 @@ in mkIf (settings.modules.development.enable) {
     gobject-introspection.dev
     gtksourceviewmm
     harfbuzz # An OpenType text shaping engine
-    # jetbrains-toolbox
-
-    # Developers apps
-    beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
-    dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
-    sqlitebrowser # DB Browser for SQLite
-    bruno # Open-source IDE For exploring and testing APIs.
-    # insomnia
   ];
 }
