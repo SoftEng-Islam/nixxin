@@ -71,7 +71,21 @@
       enable = true;
       default = "pocl"; # pocl or opencl
     };
-    data_transferring = { };
+    data_transferring = { # command-line/apps download utility
+      enable = true;
+      aria2 = true;
+      axel = false;
+      curl = true;
+      lux = true;
+      wget2 = true;
+      yt-dlp = true;
+      motrix = false;
+      libtorrent-rasterbar = true;
+      ariang = true;
+      media-downloader = false;
+      persepolis = false;
+      varia = false;
+    };
     dbus = { };
     dconf = { };
     design = { };
