@@ -212,7 +212,7 @@
     ZSH_AUTOSUGGEST_STRATEGY=(history completion)
     ZSH_AUTOSUGGEST_USE_FZF=true
 
-    # Enable Wayland support for different applications
+    # Enable Wayland support for different apps
     if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
       export WAYLAND=1
       export QT_QPA_PLATFORM='wayland'

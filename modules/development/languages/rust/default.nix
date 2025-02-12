@@ -1,7 +1,7 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
     cargo # Downloads your Rust project's dependencies and builds your project
-    cargo-tauri # Build smaller, faster, and more secure desktop applications with a web frontend
+    cargo-tauri # Build smaller, faster, and more secure desktop apps with a web frontend
     rust-analyzer # A modular compiler frontend for the Rust language
     rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
     rustc # A safe, concurrent, practical language (wrapper script)

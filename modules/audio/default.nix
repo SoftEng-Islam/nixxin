@@ -82,7 +82,7 @@
     ladspaPlugins # LADSPA format audio plugins
     calf # Set of high quality open source audio plugins for musicians
     lsp-plugins # Collection of open-source audio plugins
-    easyeffects # Audio effects for PipeWire applications
+    easyeffects # Audio effects for PipeWire apps
   ];
 
 }

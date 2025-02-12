@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.applications.enable) {
+in mkIf (settings.modules.apps.enable) {
   environment.systemPackages = with pkgs; [
     kolourpaint # Paint program
 

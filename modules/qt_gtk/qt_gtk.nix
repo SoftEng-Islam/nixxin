@@ -137,10 +137,10 @@ let
 
     [Fonts]
     fixed="${config.lib.stylix.fonts.monospace.name},${
-      builtins.toString config.lib.stylix.fonts.sizes.applications
+      builtins.toString config.lib.stylix.fonts.sizes.apps
     },-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
     general="${config.lib.stylix.fonts.serif.name},${
-      builtins.toString config.lib.stylix.fonts.sizes.applications
+      builtins.toString config.lib.stylix.fonts.sizes.apps
     },-1,5,400,0,0,0,0,0,0,0,0,0,0,1,Regular"
 
     [Interface]

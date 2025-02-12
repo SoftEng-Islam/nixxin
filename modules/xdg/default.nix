@@ -172,8 +172,8 @@ in {
       };
       mimeApps = {
         enable = true;
-        defaultApplications = associations;
-        # defaultApplications = with lib;
+        defaultapps = associations;
+        # defaultapps = with lib;
         #   with mimeTypes;
         #   mkMerge (mapAttrsToList (n: ms: genAttrs ms (_: [ "${n}.desktop" ])) {
         #     # TODO: make nvim use kitty as terminal
@@ -231,7 +231,7 @@ in {
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-    xdg-utils # A set of command line tools that assist applications with a variety of desktop integration tasks
+    xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
     libxdg_basedir # Implementation of the XDG Base Directory specification
   ];
 }

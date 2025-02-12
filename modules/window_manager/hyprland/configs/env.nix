@@ -9,13 +9,13 @@
         "XDG_SESSION_DEKSTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
 
-        # Disable window decoration for Wayland Qt applications
+        # Disable window decoration for Wayland Qt apps
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
 
         # env = EDITOR,vim # Set the default editor (uncomment to use vim)
 
         # --------- Themes --------- #
-        # Set the platform theme for Qt5 and Qt6 applications
+        # Set the platform theme for Qt5 and Qt6 apps
         # env = QT_QPA_PLATFORM, wayland;xcb
         # env = QT_QPA_PLATFORMTHEME, qt5ct
         # env = QT_QPA_PLATFORMTHEME, qt6ct
@@ -27,12 +27,12 @@
         # Set the backend for GDK (GIMP Drawing Kit) to support Wayland and X11
         "GDK_BACKEND,wayland"
 
-        # Enable Wayland support for Electron applications
+        # Enable Wayland support for Electron apps
         "ELECTRON_ENABLE_WAYLAND,1"
-        # Uncomment if using Electron applications older than version 28
+        # Uncomment if using Electron apps older than version 28
         "ELECTRON_OZONE_PLATFORM_HINT,wayland"
 
-        # Electron applications version 28 and above (may help with compatibility)
+        # Electron apps version 28 and above (may help with compatibility)
         # env = ELECTRON_OZONE_PLATFORM_HINT,auto
 
         "MOZ_ENABLE_WAYLAND,1"

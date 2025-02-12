@@ -38,7 +38,7 @@ in {
     };
     opacity = {
       # terminal = settings.opacity;
-      # applications = settings.opacity;
+      # apps = settings.opacity;
       # desktop = settings.opacity;
       # popups = settings.opacity;
     };
@@ -49,7 +49,7 @@ in {
     };
     fonts = {
       sizes = {
-        applications = settings.fonts.main.size.applications;
+        apps = settings.fonts.main.size.apps;
         desktop = settings.fonts.main.size.desktop;
         popups = settings.fonts.main.size.popups;
       };

@@ -21,7 +21,7 @@ in mkIf (settings.modules.development.enable) {
     harfbuzz # An OpenType text shaping engine
     # jetbrains-toolbox
 
-    # Developers Applications
+    # Developers apps
     beekeeper-studio # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
     dbeaver-bin # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
     sqlitebrowser # DB Browser for SQLite

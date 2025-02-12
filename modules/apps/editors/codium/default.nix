@@ -3,9 +3,9 @@
 let
   inherit (lib) mapAttrs mkIf;
   cfg = config.icedos;
-in mkIf (cfg.applications.codium.enable) {
+in mkIf (cfg.apps.codium.enable) {
   environment.variables.EDITOR =
-    mkIf (cfg.applications.defaultEditor == "codium") "codium -n -w";
+    mkIf (cfg.apps.defaultEditor == "codium") "codium -n -w";
 
   home-manager.users = mapAttrs (user: _: {
     programs.vscode = {
@@ -42,10 +42,8 @@ in mkIf (cfg.applications.codium.enable) {
           fontFamily =
             "'CaskaydiaCove Nerd Font', 'Droid Sans Mono', 'monospace', monospace";
           fontLigatures = true;
-          formatOnPaste =
-            cfg.system.users.${user}.applications.codium.formatOnPaste;
-          formatOnSave =
-            cfg.system.users.${user}.applications.codium.formatOnSave;
+          formatOnPaste = cfg.system.users.${user}.apps.codium.formatOnPaste;
+          formatOnSave = cfg.system.users.${user}.apps.codium.formatOnSave;
           minimap.enabled = false;
           renderWhitespace = "trailing";
           smoothScrolling = true;
@@ -56,7 +54,7 @@ in mkIf (cfg.applications.codium.enable) {
 
         files = {
           associations."*.css" = "tailwindcss";
-          autoSave = cfg.system.users.${user}.applications.codium.autoSave;
+          autoSave = cfg.system.users.${user}.apps.codium.autoSave;
           insertFinalNewline = true;
           trimFinalNewlines = true;
           trimTrailingWhitespace = true;
@@ -101,7 +99,7 @@ in mkIf (cfg.applications.codium.enable) {
 
         window = {
           menuBarVisibility = "toggle";
-          zoomLevel = cfg.applications.codium.zoomLevel;
+          zoomLevel = cfg.apps.codium.zoomLevel;
         };
 
         workbench = {

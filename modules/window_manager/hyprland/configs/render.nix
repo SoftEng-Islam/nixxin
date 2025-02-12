@@ -15,7 +15,7 @@
         # `2` = Always enabled.
         explicit_sync_kms = 2;
 
-        # Direct scan-out can improve performance and reduce latency by skipping the compositor and allowing the display to render directly. However, it may not always work depending on hardware, drivers, or specific applications. Setting this to false disables it entirely.
+        # Direct scan-out can improve performance and reduce latency by skipping the compositor and allowing the display to render directly. However, it may not always work depending on hardware, drivers, or specific apps. Setting this to false disables it entirely.
         direct_scanout = true; # true or false
       };
     };

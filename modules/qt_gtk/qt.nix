@@ -1,11 +1,11 @@
 { settings, pkgs, ... }: {
   environment.variables = {
-    # Enable automatic screen scaling for Qt applications
+    # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = settings.style.qt.SCALE_FACTOR;
     QT_SCALE_FACTOR = settings.style.qt.SCALE_FACTOR;
     QT_QPA_PLATFORMTHEME = settings.style.qt.platformTheme;
     #  QT_PLATFORM_PLUGIN = "wayland";
-    # Set the scale factor for Qt applications
+    # Set the scale factor for Qt apps
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
   };

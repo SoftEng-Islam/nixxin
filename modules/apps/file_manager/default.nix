@@ -2,16 +2,14 @@
 let
   inherit (lib) mkIf;
   _pkgs = with pkgs;
-    [ (lib.optional settings.modules.applications.spacedrive pkgs.spacedrive) ];
+    [ (lib.optional settings.modules.apps.spacedrive pkgs.spacedrive) ];
 
   _fileManager = [
-    (lib.optional settings.modules.applications.fileManagers.nautilus
-      ./nautilus.nix)
-    (lib.optional settings.modules.applications.fileManagers.thunar
-      ./thunar.nix)
-    (lib.optional settings.modules.applications.fileManagers.nemo ./nemo.nix)
+    (lib.optional settings.modules.apps.fileManagers.nautilus ./nautilus.nix)
+    (lib.optional settings.modules.apps.fileManagers.thunar ./thunar.nix)
+    (lib.optional settings.modules.apps.fileManagers.nemo ./nemo.nix)
   ];
-in mkIf (settings.modules.applications.file_manager.enable) {
+in mkIf (settings.modules.apps.file_manager.enable) {
   imports = lib.flatten _fileManager;
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities

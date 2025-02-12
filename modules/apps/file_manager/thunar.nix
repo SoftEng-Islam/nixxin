@@ -33,7 +33,7 @@ in {
       exec = "Thunar %U";
     };
     xdg.mimeApps = {
-      defaultApplications = { "inode/directory" = [ "thunar.desktop" ]; };
+      defaultapps = { "inode/directory" = [ "thunar.desktop" ]; };
       associations.added = { "inode/directory" = [ "thunar.desktop" ]; };
     };
 

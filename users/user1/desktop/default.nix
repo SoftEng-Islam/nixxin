@@ -39,7 +39,7 @@
       development = true;
       android_studio = false;
     };
-    applications = {
+    apps = {
       enable = true; # False Means no apps will be installed
       browsers = {
         enable = true;
@@ -203,9 +203,9 @@
   };
 
   # ---------------------- #
-  # ---- applications ---- #
+  # ---- apps ---- #
   # ---------------------- #
-  applications = {
+  apps = {
     # IDEs
     vscode.enable = true;
     # Terms
@@ -503,7 +503,7 @@
 
       size = {
         main = 14; # Font size
-        applications = 16;
+        apps = 16;
         desktop = 18;
         popups = 18;
       };

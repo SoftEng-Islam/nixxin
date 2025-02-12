@@ -8,7 +8,7 @@
     swww # Efficient animated wallpaper daemon for wayland, controlled at runtime
     wayland # Core Wayland window system code and protocol
     wayland-utils # Wayland utilities (wayland-info)
-    waypipe # Network proxy for Wayland clients (applications)
+    waypipe # Network proxy for Wayland clients (apps)
     wayvnc # VNC server for wlroots based Wayland compositors
     wev # Wayland event viewer
     wf-recorder # Utility program for screen recording of wlroots-based compositors
