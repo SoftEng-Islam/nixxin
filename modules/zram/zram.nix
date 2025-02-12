@@ -1,8 +1,10 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.zram.enable) {
   # zramctl
   zramSwap = {
-    enable = settings.system.features.zram.enable;
-    algorithm = settings.system.features.zram.algorithm; # lz4 or zstd
+    enable = true;
+    algorithm = settings.modules.zram.algorithm; # lz4 or zstd
     memoryPercent = 50;
     swapDevices = 1;
     priority = 100;

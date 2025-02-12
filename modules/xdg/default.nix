@@ -1,7 +1,8 @@
-{ config, settings, lib, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let
+  inherit (lib) mkIf;
   cacheInHome = "/home/${settings.user.username}/.cache";
-  mimeTypes = import ./mixins/mimeTypes.nix;
+  mimeTypes = import /mimeTypes.nix;
 
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
@@ -82,7 +83,7 @@ let
 
   } // editors // image // video // audio // browserTypes);
 
-in {
+in mkIf (settings.modules.xdg.enable) {
   environment.variables = {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
     # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.user.username}.uid}";
@@ -127,7 +128,7 @@ in {
     };
   };
 
-  # ----  Under Test ---- #
+  # ---- Under Test ---- #
   # xdg.configFile = {
   #   "fish".source = ./.config/fish;
   #   "foot".source = ./.config/foot;
