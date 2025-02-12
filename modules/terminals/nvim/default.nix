@@ -1,6 +1,6 @@
 { settings, pkgs, lib, ... }: {
 
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
 
     xdg = {
       configFile.nvim.source = ./nvim;

@@ -99,7 +99,7 @@ let
   '';
 in {
   # https://github.com/mpv-player/mpv/wiki
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     home.sessionVariables.VIDEO = "mpv";
 
     home.file.".config/mpv/shaders".source = ./shaders;

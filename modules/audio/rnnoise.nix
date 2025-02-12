@@ -31,7 +31,7 @@ let
     }];
   };
 in mkIf (settings.modules.audio.rnnoise.enable) {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     xdg.configFile."pipewire/pipewire.conf.d/99-input-denoising.conf" = {
       source = json.generate "99-input-denoising.conf" pw_rnnoise_config;
     };

@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     home.file.".config/hypr/scripts/hyprlock-time.sh".text = ''
       #!/bin/bash
 

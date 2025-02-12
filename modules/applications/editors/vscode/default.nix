@@ -50,7 +50,7 @@ let
   ];
 in {
   environment.systemPackages = with pkgs; [ vscode ];
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = true;

@@ -1,5 +1,5 @@
 { settings, config, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.cava = {
       enable = true;
       settings = {

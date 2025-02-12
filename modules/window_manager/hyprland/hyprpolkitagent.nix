@@ -4,7 +4,7 @@
       # inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
       hyprpolkitagent
     ];
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
     systemd.user.services.hyprpolkitagent = {
       Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
       Install.WantedBy = [ "graphical-session.target" ];

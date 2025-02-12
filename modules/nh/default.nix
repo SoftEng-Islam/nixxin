@@ -9,7 +9,7 @@ in {
       "nh clean all -k ${generations} -K ${days}")
   ];
 
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
     programs.nh = {
       enable = true;
 

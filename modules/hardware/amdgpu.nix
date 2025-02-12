@@ -93,5 +93,5 @@
     # amf # AMD's closed source Advanced Media Framework (AMF) driver
   ];
 
-  home-manager.users."${settings.users.selected.username}" = { };
+  home-manager.users."${settings.user.username}" = { };
 }

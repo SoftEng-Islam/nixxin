@@ -29,7 +29,7 @@
     #     };
     #  };
   };
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     # fake a tray to let apps start
     # https://github.com/nix-community/home-manager/issues/2064
     systemd.user.targets.tray = {

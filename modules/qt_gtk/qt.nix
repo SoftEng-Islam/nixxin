@@ -9,7 +9,7 @@
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
   };
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     qt = {
       enable = true;
       platformTheme.name = settings.style.qt.platformTheme;

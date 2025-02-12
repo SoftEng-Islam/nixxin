@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.decoration = {
         rounding = settings.style.window.rounding;

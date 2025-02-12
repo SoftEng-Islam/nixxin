@@ -1,25 +1,25 @@
 # GTK  Stuff & Themes & Graphical Interfaces
 { settings, pkgs, ... }: {
   gtk.iconCache.enable = settings.style.gtk.icon_cache;
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
       gtk2.configLocation =
-        "/home/${settings.users.selected.username}/.config/gtk-2.0/gtkrc";
+        "/home/${settings.user.username}/.config/gtk-2.0/gtkrc";
       # theme = {
       #   name = lib.mkForce settings.gtkTheme;
       #   package = lib.mkForce settings.gtkPackage;
       # };
       gtk3 = {
         bookmarks = [
-          "file:///home/${settings.users.selected.username}/Downloads"
-          "file:///home/${settings.users.selected.username}/Documents"
-          "file:///home/${settings.users.selected.username}/Pictures"
-          "file:///home/${settings.users.selected.username}/Music"
-          "file:///home/${settings.users.selected.username}/Videos"
-          # "file:///home/${settings.users.selected.username}/Dev"
-          # "file:///home/${settings.users.selected.username}/GitHub"
-          # "file:///home/${settings.users.selected.username}/.config"
+          "file:///home/${settings.user.username}/Downloads"
+          "file:///home/${settings.user.username}/Documents"
+          "file:///home/${settings.user.username}/Pictures"
+          "file:///home/${settings.user.username}/Music"
+          "file:///home/${settings.user.username}/Videos"
+          # "file:///home/${settings.user.username}/Dev"
+          # "file:///home/${settings.user.username}/GitHub"
+          # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
         # extraCss = ''

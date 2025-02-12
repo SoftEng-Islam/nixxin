@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
       monitor = [
         # "DP-1, 3440x1440@120, 0x0, 1"

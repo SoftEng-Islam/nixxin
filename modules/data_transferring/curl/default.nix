@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.selected.username}.home.file.".curlrc" = {
+  home-manager.users.${settings.user.username}.home.file.".curlrc" = {
     text = ''
       # this is a sample .curlrc file
       # https://everything.curl.dev/ is a GREAT RESOURCE

@@ -1,14 +1,14 @@
 { settings, pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
-    groups.uinput.members = [ "${settings.users.selected.username}" ];
-    groups.input.members = [ "${settings.users.selected.username}" ];
-    users.${settings.users.selected.username} = {
+    groups.uinput.members = [ "${settings.user.username}" ];
+    groups.input.members = [ "${settings.user.username}" ];
+    users.${settings.user.username} = {
       isNormalUser = true;
       # isSystemUser = false;
       # hashedPassword = "";
       description = settings.users.selected.name;
-      home = "/home/${settings.users.selected.username}";
+      home = "/home/${settings.user.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
         "adbusers"

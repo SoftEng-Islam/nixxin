@@ -9,7 +9,7 @@ in {
   # nixpkgs.overlays = [ (final: prev: { _custom = pkgs.callPackage ./dunst-nctui { }; }) ];
 
   # programs.dunst.enable = true;
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
     home.file.".config/dunst/dunstrc".source = ./dunstrc;
   };
 }

@@ -12,7 +12,7 @@ let
     fi
   '';
 in {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     services.hypridle = {
       enable = true;
       settings = {

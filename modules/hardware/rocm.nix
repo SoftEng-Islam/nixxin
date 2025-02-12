@@ -31,7 +31,7 @@
     rocmPackages.rpp-opencl
     rocmPackages.clr
   ];
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
 
   };
 }

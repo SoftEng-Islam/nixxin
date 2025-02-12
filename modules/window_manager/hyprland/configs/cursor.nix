@@ -1,5 +1,5 @@
 { settings, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.cursor = {
         no_hardware_cursors = false;

@@ -10,7 +10,7 @@ let
     '';
   });
 in {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       plugins = [
         # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace

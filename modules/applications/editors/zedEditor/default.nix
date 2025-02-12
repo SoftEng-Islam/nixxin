@@ -1,6 +1,6 @@
 { settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [ nil nixd package-version-server ];
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.zed-editor = {
       enable = true;
       extensions =

@@ -1,6 +1,6 @@
 { config, settings, lib, pkgs, ... }:
 let
-  cacheInHome = "/home/${settings.users.selected.username}/.cache";
+  cacheInHome = "/home/${settings.user.username}/.cache";
   mimeTypes = import ./mixins/mimeTypes.nix;
 
   # find /nix/store/ -name "*qbittorrent*.desktop"
@@ -85,7 +85,7 @@ let
 in {
   environment.variables = {
     # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
-    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.users.selected.username}.uid}";
+    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.user.username}.uid}";
     # XDG_RUNTIME_DIR = "/run/user/1000";
 
     # Don't set this var
@@ -94,10 +94,10 @@ in {
     XDG_SESSION_TYPE = "wayland";
 
     XDG_CACHE_HOME = cacheInHome;
-    XDG_CONFIG_HOME = "/home/${settings.users.selected.username}/.config";
-    XDG_PICTURES_DIR = "/home/${settings.users.selected.username}/Pictures";
+    XDG_CONFIG_HOME = "/home/${settings.user.username}/.config";
+    XDG_PICTURES_DIR = "/home/${settings.user.username}/Pictures";
     XDG_SCREENSHOTS_DIR =
-      "/home/${settings.users.selected.username}/Pictures/Screenshots";
+      "/home/${settings.user.username}/Pictures/Screenshots";
   };
   environment.sessionVariables = {
     XDG_DATA_DIRS = [
@@ -106,7 +106,7 @@ in {
       "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
       "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       "${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}"
-      "/home/${settings.users.selected.username}/.local/share:/usr/local/share:/usr/share"
+      "/home/${settings.user.username}/.local/share:/usr/local/share:/usr/share"
       "/run/current-system/sw/share"
     ];
   };
@@ -137,7 +137,7 @@ in {
   #   "starship.toml".source = ./.config/starship.toml;
   # };
 
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     xdg = {
       enable = true;
       mime.enable = true;
@@ -147,11 +147,11 @@ in {
       userDirs = {
         enable = true;
         createDirectories = true;
-        music = "/home/${settings.users.selected.username}/Music";
-        videos = "/home/${settings.users.selected.username}/Videos";
-        pictures = "/home/${settings.users.selected.username}/Pictures";
-        download = "/home/${settings.users.selected.username}/Downloads";
-        documents = "/home/${settings.users.selected.username}/Documents";
+        music = "/home/${settings.user.username}/Music";
+        videos = "/home/${settings.user.username}/Videos";
+        pictures = "/home/${settings.user.username}/Pictures";
+        download = "/home/${settings.user.username}/Downloads";
+        documents = "/home/${settings.user.username}/Documents";
         templates = null;
         desktop = null;
         publicShare = null;
@@ -165,9 +165,9 @@ in {
         # '';
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.dotfilesDir}";
-          XDG_BOOK_DIR = "/home/${settings.users.selected.username}/Books";
+          XDG_BOOK_DIR = "/home/${settings.user.username}/Books";
           XDG_SCREENSHOTS_DIR =
-            "/home/${settings.users.selected.username}/Pictures/Screenshots";
+            "/home/${settings.user.username}/Pictures/Screenshots";
         };
       };
       mimeApps = {

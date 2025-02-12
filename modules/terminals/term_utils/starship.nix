@@ -138,7 +138,7 @@ in {
     [
       starship # starship # Minimal, blazing fast, and extremely customizable prompt for any shell
     ];
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
     xdg.configFile."starship.toml" = {

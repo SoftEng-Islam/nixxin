@@ -44,8 +44,8 @@
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
-      trusted-users = [ "@wheel" "root" "${settings.users.selected.username}" ];
-      allowed-users = [ "@wheel" "root" "${settings.users.selected.username}" ];
+      trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
+      allowed-users = [ "@wheel" "root" "${settings.user.username}" ];
       fallback = true;
       warn-dirty = false;
       # Auto clear nixos store

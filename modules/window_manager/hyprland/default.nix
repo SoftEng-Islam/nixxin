@@ -64,7 +64,7 @@
     AllowHybridSleep=no
   '';
 
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       enable = settings.hyprland.enable;
       package = pkgs.hyprland;

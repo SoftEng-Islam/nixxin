@@ -2,7 +2,7 @@
   # ----------------------------------- #
   # Helix: Post-modern modal text editor
   # ----------------------------------- #
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.helix = { enable = true; };
   };
 }

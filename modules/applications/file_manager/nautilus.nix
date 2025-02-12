@@ -30,7 +30,7 @@ in {
     wantedBy = [ "default.target" ];
   };
 
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users.${settings.user.username} = {
     dconf.settings = {
       "org/gnome/nautilus/preferences" = {
         always-use-location-entry = true;

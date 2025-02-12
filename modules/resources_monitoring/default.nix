@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.btop = {
       enable = true;
       settings = {

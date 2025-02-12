@@ -8,7 +8,7 @@ in mkIf (settings.modules.windows.wine.enable) {
   environment.variables = {
     # Optional: Enable 32-bit Wine for older games
     # Add this if you want a 32-bit Wine prefix
-    # WINEPREFIX = "/home/${settings.users.selected.username}/.wine";
+    # WINEPREFIX = "/home/${settings.user.username}/.wine";
     # WINEARCH = "win32"; # Set Wine architecture to 32-bit
 
     # MESA_GL_VERSION_OVERRIDE=4.5
@@ -22,7 +22,7 @@ in mkIf (settings.modules.windows.wine.enable) {
     WINEFSYNC = "1";
   };
 
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
     xdg.desktopEntries.wine = {
       name = "Wine Windows Program Loader";
       exec = "wine %f";

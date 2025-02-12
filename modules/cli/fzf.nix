@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.fzf = { enable = true; };
   };
   environment.systemPackages = with pkgs;

@@ -53,7 +53,7 @@ let
     # telegram-desktop -startintray
   '';
 in {
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
       exec-once = "${startupScript}/bin/start";
     };

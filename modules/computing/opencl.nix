@@ -17,5 +17,5 @@
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
     clpeak
   ];
-  home-manager.users."${settings.users.selected.username}" = { };
+  home-manager.users."${settings.user.username}" = { };
 }

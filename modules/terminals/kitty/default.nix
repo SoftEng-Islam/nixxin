@@ -17,7 +17,7 @@ let
   };
 in {
   environment.systemPackages = with pkgs; [ kitty ];
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     # manually add kitty shell integration
     programs.bash.initExtra = shellIntegrationInit.bash;
     programs.zsh.initExtra = shellIntegrationInit.zsh;

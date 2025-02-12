@@ -4,7 +4,7 @@
     celluloid
   ];
 
-  home-manager.users."${settings.users.selected.username}" = {
+  home-manager.users."${settings.user.username}" = {
     home.file.".config/celluloid" = {
       source = ./config;
       recursive = true;
@@ -13,7 +13,7 @@
     dconf.settings = {
       "io/github/celluloid-player/celluloid" = {
         mpv-config-file =
-          "file:///home/${settings.users.selected.username}/.config/celluloid/celluloid.conf";
+          "file:///home/${settings.user.username}/.config/celluloid/celluloid.conf";
       };
 
       "io/github/celluloid-player/celluloid" = { mpv-config-enable = true; };

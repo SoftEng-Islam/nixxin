@@ -7,11 +7,11 @@
     backupFileExtension = settings.home.backupFileExtension; # null
   };
 
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.home-manager.enable = true;
     home = {
-      username = settings.users.selected.username;
-      homeDirectory = "/home/${settings.users.selected.username}";
+      username = settings.user.username;
+      homeDirectory = "/home/${settings.user.username}";
       stateVersion = settings.home.stateVersion;
       sessionPath =
         [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
