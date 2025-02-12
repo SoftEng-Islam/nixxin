@@ -33,5 +33,8 @@ in mkIf (settings.modules.apps.media.enable) {
       # Audio Control
       pulsemixer
       pwvucontrol
+
+      # Sound Player
+      # recordbox
     ];
 }
