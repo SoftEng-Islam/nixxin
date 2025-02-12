@@ -10,6 +10,8 @@ let
     (lib.optional settings.modules.graphics.gimp.enable gimp)
     (lib.optional settings.modules.graphics.inkscape.enable inkscape)
     (lib.optional settings.modules.graphics.lunacy.enable lunacy)
+    (lib.optional settings.modules.graphics.kolourpaint.enable kolourpaint)
+
   ];
 in mkIf (settings.modules.graphics.enable) {
   environment.systemPackages = lib.flatten _graphics;
