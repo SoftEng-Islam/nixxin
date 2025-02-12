@@ -1,39 +1,38 @@
-# ---- Media Players ---- #
-# mpv is a free and open-source general-purpose video player, based on the MPlayer and mplayer2 projects, with great improvements above both.
 { lib, settings, pkgs, ... }:
 let
-  mediaPlayers = [
+  inherit (lib) mkIf;
+  _imports = [
+    (lib.optional settings.modules.applications.media.celluloid ./celluloid)
+    (lib.optional settings.modules.applications.media.mpv ./mpv)
+    (lib.optional settings.modules.applications.media.cava ./cava.nix)
+    (lib.optional settings.modules.applications.media.codex ./codex.nix)
+  ];
+  _pkgs = with pkgs; [
     # ---- VLC ---- #
-    (lib.optional settings.system.mediaPlayers.vlc pkgs.vlc)
-
+    (lib.optional settings.modules.applications.media.vlc vlc)
     # ---- clapper ---- #
-    (lib.optional settings.system.mediaPlayers.clapper pkgs.clapper)
-
+    (lib.optional settings.modules.applications.media.clapper clapper)
     # ---- glide ---- #
-    (lib.optional settings.system.mediaPlayers.glide pkgs.glide-media-player)
-
+    (lib.optional settings.modules.applications.media.glide glide-media-player)
     # ---- jellyfin ---- #
-    (lib.optional settings.system.mediaPlayers.jellyfin
-      pkgs.jellyfin-media-player)
-
+    (lib.optional settings.modules.applications.media.jellyfin
+      jellyfin-media-player)
     # ---- kdenlive ---- #
-    (lib.optional settings.system.videoEditors.kdenlive pkgs.kdenlive)
-
+    (lib.optional settings.modules.applications.media.kdenlive kdenlive)
     # ---- shotcut ---- #
-    (lib.optional settings.system.videoEditors.shotcut pkgs.shotcut)
+    (lib.optional settings.modules.applications.media.shotcut shotcut)
   ];
 
-in {
-  imports = [ ./celluloid ./cava.nix ./codex.nix ./mpv ];
+in mkIf (settings.modules.applications.media.enable) {
+  imports = lib.flatten _imports;
 
   environment.systemPackages = with pkgs;
-    lib.flatten mediaPlayers ++ [
+    lib.flatten _pkgs ++ [
       # Command-line utility and library for controlling media players that implement MPRIS
       playerctl
 
       # Audio Control
       pulsemixer
       pwvucontrol
-
     ];
 }
