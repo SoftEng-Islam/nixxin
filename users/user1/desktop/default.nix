@@ -73,6 +73,7 @@
     };
     data_transferring = { # command-line/apps download utility
       enable = true;
+      qbittorrent = true;
       aria2 = true;
       axel = false;
       curl = true;

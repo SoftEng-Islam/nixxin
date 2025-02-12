@@ -1,4 +1,4 @@
-{ settings, ... }: {
+{ settings, lib, pkgs, ... }: {
   home-manager.users.${settings.user.username}.home.file.".curlrc" = {
     text = ''
       # this is a sample .curlrc file
@@ -46,4 +46,12 @@
       --insecure
     '';
   };
+  environment.systemPackages = with pkgs;
+    [
+      curl
+      # curlFull
+      # curlHTTP3
+      # curl-impersonate
+      # curl-impersonate-chrome
+    ];
 }

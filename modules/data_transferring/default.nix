@@ -1,13 +1,18 @@
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
+  _imports = [
+    # A command line tool for transferring files with URL syntax
+    (lib.optional settings.modules.data_transferring.curl ./curl)
+
+    # Featureful free software BitTorrent client
+    (lib.optional settings.modules.data_transferring.qbittorrent ./qbittorrent)
+  ];
   _pkgs = with pkgs; [
     # Lightweight, multi-protocol, multi-source, command-line download utility
     (lib.optional settings.modules.data_transferring.aria2 aria2)
     # Console downloading program
     (lib.optional settings.modules.data_transferring.axel axel)
-    # A command line tool for transferring files with URL syntax
-    (lib.optional settings.modules.data_transferring.curl curl)
     # Fast and simple video download library and CLI tool written in Go
     (lib.optional settings.modules.data_transferring.lux lux)
     # Successor of GNU Wget, a file and recursive website downloader
@@ -30,10 +35,12 @@ let
     (lib.optional settings.modules.data_transferring.varia varia)
   ];
 in mkIf (settings.modules.data_transferring.enable) {
+  imports = lib.flatten _imports;
+  environment.systemPackages = lib.flatten _pkgs;
+
   # Download Managers & CLI Downloads Utility
   environment.variables = {
     QT_LOGGING_RULES = "qt.gui.imageio.warning=false";
     QT_NETWORK_LOGGING_RULES = "qt.network.http2.warning=false";
   };
-  environment.systemPackages = lib.flatten _pkgs;
 }
