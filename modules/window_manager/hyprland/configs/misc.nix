@@ -16,7 +16,8 @@
         middle_click_paste = false;
         mouse_move_enables_dpms = true;
         key_press_enables_dpms = true;
-        new_window_takes_over_fullscreen = 2;
+        new_window_takes_over_fullscreen = 1;
+        # new_window_takes_over_fullscreen = 2;
         swallow_regex = "(foot|kitty|allacritty|Alacritty)";
         # frame pre-rendering
         render_ahead_of_time = false;

@@ -29,7 +29,7 @@
       #=> First Row:
       bind = $main, Q, killactive
       bind = $main, W, exec, brave &
-      bind = $main, E, exec, nautilus --new-window # Launch Nautilus (file manager)
+      bind = $main, E, exec, nautilus --new-window & # Launch Nautilus (file manager)
       bind = $main, R, exec, ${pkgs.btop}/bin/btop
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
@@ -43,7 +43,9 @@
       bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       # bind = $main, S, exec,
       # bind = $main, D, exec,
-      bind = $main, F, fullscreen, 1
+      bind = $main F, 1, fullscreen,0
+      bind = $main F, 2, fullscreen,1
+      bind = $main F, 3, fullscreen,2
       # bind = $main, G, exec,
       # bind = $main, H, exec,
       # bind = $main, J, exec,

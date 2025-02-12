@@ -43,10 +43,11 @@
       enable = true; # False Means no apps will be installed
       browsers = {
         enable = true;
-        firefox.enable = false;
-        firefox-beta.enable = true;
-        google-chrome.enable = true;
-        microsoft-edge.enable = true;
+        brave = true;
+        firefox = false;
+        firefox-beta = false;
+        google-chrome = true;
+        microsoft-edge = true;
       };
       community = {
         enable = true;
@@ -62,14 +63,14 @@
       };
       graphics = {
         enable = true;
-        blender.enable = true;
-        darktable.enable = false;
-        davinci.enable = true;
-        drawio.enable = true;
-        figmaLinux.enable = false;
-        gimp.enable = true;
-        inkscape.enable = true;
-        lunacy.enable = true;
+        blender = true;
+        darktable = false;
+        davinci = true;
+        drawio = true;
+        figmaLinux = false;
+        gimp = true;
+        inkscape = true;
+        lunacy = true;
       };
     };
     audio = {
@@ -147,8 +148,7 @@
       hyprland = {
         enable = true;
         # Pregenerated Colors to use in Hyprland
-        genColorsPath =
-          /home/${users.selected.username}/.cache/hypr/colors.conf;
+        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
         plugins = {
           hyprbars = true;
@@ -406,23 +406,15 @@
 
   # ---- Dotfiles Inforamtions ---- #
   dotfilesDir =
-    "/home/${users.selected.username}/nixxin"; # Absolute path of the local repo
+    "/home/${user.username}/nixxin"; # Absolute path of the local repo
 
   # ---------------- #
   # ----- USER ----- #
   # ---------------- #
-  users = {
-    selected = users.user1;
-    user1 = {
-      name = "Islam Ahmed"; # Name/Identifier
-      username = "softeng"; # Username
-      email = "softeng.islam@gmail.com"; # Email (git config)
-    };
-    user2 = {
-      name = "Iman Ahmed";
-      username = "iman";
-      email = "";
-    };
+  user = {
+    name = "Islam Ahmed"; # Name/Identifier
+    username = "softeng"; # Username
+    email = "softeng.islam@gmail.com"; # Email (git config)
   };
 
   # ---------------------- #
