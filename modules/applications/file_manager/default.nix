@@ -1,25 +1,29 @@
 { settings, lib, pkgs, ... }:
 let
-  _spacedrive =
-    [ (lib.optional settings.system.fileManagers.spacedrive pkgs.spacedrive) ];
+  inherit (lib) mkIf;
+  _pkgs = with pkgs;
+    [ (lib.optional settings.modules.applications.spacedrive pkgs.spacedrive) ];
+
   _fileManager = [
-    (lib.optional settings.system.fileManagers.nautilus ./nautilus.nix)
-    (lib.optional settings.system.fileManagers.thunar ./thunar.nix)
-    (lib.optional settings.system.fileManagers.nemo ./nemo.nix)
+    (lib.optional settings.modules.applications.fileManagers.nautilus
+      ./nautilus.nix)
+    (lib.optional settings.modules.applications.fileManagers.thunar
+      ./thunar.nix)
+    (lib.optional settings.modules.applications.fileManagers.nemo ./nemo.nix)
   ];
-in {
+in mkIf (settings.modules.applications.file_manager.enable) {
   imports = lib.flatten _fileManager;
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.gvfs.package = pkgs.gnome.gvfs;
   services.tumbler.enable = true; # Thumbnail support for images
 
-  home-manager.users.${settings.users.selected.username} = {
+  home-manager.users.${settings.user.username} = {
     programs.dircolors = { enable = true; };
   };
 
   environment.systemPackages = with pkgs;
-    lib.flatten _spacedrive ++ [
+    lib.flatten _pkgs ++ [
 
       file # A program that shows the type of files
       lsof # Tool to list open files

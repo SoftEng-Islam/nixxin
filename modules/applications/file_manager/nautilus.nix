@@ -24,8 +24,8 @@ in {
     description = "Preload Nautilus";
     after = [ "graphical-session.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.nautilus}/bin/nautilus --no-desktop";
-      Restart = "always";
+      ExecStart = "${pkgs.nautilus}/bin/nautilus --no-desktop &";
+      Restart = "always"; # !
     };
     wantedBy = [ "default.target" ];
   };
