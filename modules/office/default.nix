@@ -3,8 +3,6 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.enable) {
   environment.systemPackages = with pkgs; [
 
-    screenkey # A screencast tool to display your keys inspired by Screenflick
-
     # ---- Office ---- #
     libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
     obsidian # Powerful knowledge base that works on top of a local folder of plain text Markdown files

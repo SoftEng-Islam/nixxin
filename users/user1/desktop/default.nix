@@ -39,13 +39,21 @@
       development = true;
       android_studio = false;
     };
-    browsers = {
+    audio = {
+      enable = true;
+      rnnoise.enable = true; # Noise Canceling
+    };
+    bluetooth = { enable = false; };
+    browsers = { # Browsers To Install
       enable = true;
       brave = true;
       firefox = false;
       firefox-beta = false;
       google-chrome = true;
       microsoft-edge = true;
+    };
+    cli = { # Collection of useful CLI apps
+      enable = true;
     };
     community = {
       enable = true;
@@ -59,29 +67,11 @@
       vesktop = true;
       zoom = true;
     };
-    graphics = {
+    computing = {
       enable = true;
-      blender = true;
-      darktable = false;
-      davinci = true;
-      drawio = true;
-      figmaLinux = false;
-      gimp = true;
-      inkscape = true;
-      lunacy = true;
+      opencl = false;
+      pocl = true;
     };
-
-    audio = {
-      enable = true;
-      # Noise Canceling
-      rnnoise.enable = true;
-    };
-    browsers = {
-
-    };
-    cli = { };
-    color_picker = { };
-    computing = { };
     data_transferring = { };
     dbus = { };
     dconf = { };
@@ -107,6 +97,17 @@
     flags = { };
     gaming = { };
     git = { };
+    graphics = {
+      enable = true;
+      blender = true;
+      darktable = false;
+      davinci = true;
+      drawio = true;
+      figmaLinux = false;
+      gimp = true;
+      inkscape = true;
+      lunacy = true;
+    };
     hacking = { };
     hardware = { };
     image_viewer = { };
@@ -164,7 +165,6 @@
       algorithm = "lz4"; # lz4 or zstd
     };
   };
-
   videoEditors = {
     kdenlive = true;
     shotcut = true;
@@ -201,7 +201,7 @@
   };
 
   # ---------------------- #
-  # ---- apps ---- #
+  # ---- apps
   # ---------------------- #
   apps = {
     # IDEs
