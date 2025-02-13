@@ -1,6 +1,7 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
+  imports = [ ./toggle-services.nix ];
   services = {
     tumbler.enable = true;
     acpid.enable = true;
@@ -23,5 +24,4 @@ in {
       HandlePowerKey=ignore
     '';
   };
-
 }
