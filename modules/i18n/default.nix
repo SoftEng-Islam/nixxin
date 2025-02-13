@@ -1,42 +1,8 @@
-{ settings, pkgs, ... }: {
-  #. Sometimes cached data or corrupt configuration files cause issues.
-  # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus && fc-cache -fv
-  fonts = {
-    enableDefaultPackages = true;
-    fontDir.enable = true;
-    packages = with pkgs; [
-      # ---- Main Font ---- #
-      settings.fonts.main.package
-      monaspace
-      jetbrains-mono
-
-      # ---- Extra Fonts ---- #
-      fira-code # Monospace font with programming ligatures
-      texlivePackages.fira # Fira fonts with LaTeX support
-
-      # ---- Noto Fonts ---- #
-      noto-fonts # Beautiful and free fonts for many languages
-      noto-fonts-emoji # Color emoji font
-
-      # ---- Nerd Fonts ---- #
-      nerd-fonts.caskaydia-cove
-    ];
-    fontconfig = {
-      enable = true;
-      antialias = true;
-      cache32Bit = true;
-      hinting.enable = true;
-      hinting.style = settings.fonts.main.hinting;
-      defaultFonts = {
-        emoji = [ "Noto Color Emoji" ];
-        serif = [ "${settings.fonts.serif.name}" ];
-        sansSerif = [ "${settings.fonts.sansSerif.name}" ];
-        monospace = [ "${settings.fonts.monospace.name}" ];
-      };
-    };
-  };
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.i18n.enable) {
   # -------------------------------- #
-  # Internationalisation & Time Zone #
+  # Internationalisation & Time Zone
   # -------------------------------- #
   # Set your time zone.
   time.timeZone = settings.timezone;
@@ -125,8 +91,6 @@
     fcitx5-gtk
     fontconfig # Library for font customization and configuration
 
-    font-manager
-
     # ibus
     # ibus-engines.m17n
     # ibus-theme-tools
@@ -138,9 +102,5 @@
     # aspellDicts.en
     # hunspell
     # hunspellDicts.en-gb-ise
-
-    # Latex
-    texliveFull # TeX Live environment
-    texlive.combined.scheme-full # TeX Live environment for scheme-full
   ];
 }

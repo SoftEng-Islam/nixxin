@@ -407,13 +407,6 @@
     };
   };
 
-  defaults = {
-    fileManager = "nautilus"; # thunar & nautilus
-    imageViewer = "loupe"; # feh or loupe
-    videoPlayer = "celluloid"; # vlc or celluloid or mpv
-    torrentApp = "qBittorrent";
-  };
-
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
@@ -461,9 +454,9 @@
     };
     computing = {
       enable = true;
-      default = "pocl"; # pocl or opencl
+      default = "pocl"; # "pocl" OR "opencl"
     };
-    data_transferring = { # command-line/apps download utility
+    data_transferring = { # Command-Line/Apps Download Utilities
       enable = true;
       qbittorrent = true;
       aria2 = true;
@@ -638,7 +631,15 @@
       };
     };
     write_shell = { };
-    xdg = { };
+    xdg = {
+      enable = true;
+      defaults = {
+        fileManager = "nautilus"; # thunar & nautilus
+        imageViewer = "loupe"; # feh or loupe
+        videoPlayer = "celluloid"; # vlc or celluloid or mpv
+        torrentApp = "qBittorrent";
+      };
+    };
     zram = {
       enable = true;
       algorithm = "lz4"; # lz4 or zstd
