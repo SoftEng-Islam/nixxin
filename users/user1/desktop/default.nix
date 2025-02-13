@@ -22,163 +22,7 @@
     stateVersion = "24.11";
     backupFileExtension = null;
   };
-  # ----------------------------------------------
-  # ---- Modules
-  # ----------------------------------------------
-  # Modules: To Enable/disable && Options.
-  # NOTE: The Options doesn't have effect if the module is disabled.
-  modules = {
-    ai = {
-      enable = false;
-      ollama = { enable = true; };
-    };
-    android = {
-      enable = true;
-      scrcpy = true;
-      waydroid = true;
-      development = true;
-      android_studio = false;
-    };
-    audio = {
-      enable = true;
-      rnnoise.enable = true; # Noise Canceling
-    };
-    bluetooth = { enable = false; };
-    browsers = { # Browsers To Install
-      enable = true;
-      brave = true;
-      firefox = false;
-      firefox-beta = false;
-      google-chrome = true;
-      microsoft-edge = true;
-    };
-    cli = { # Collection of useful CLI apps
-      enable = true;
-    };
-    community = {
-      enable = true;
-      discord = true;
-      ferdium = true;
-      mumble = false;
-      revolt = false;
-      signal = false;
-      slack = false;
-      telegram = true;
-      vesktop = false;
-      zoom = false;
-    };
-    computing = {
-      enable = true;
-      default = "pocl"; # pocl or opencl
-    };
-    data_transferring = { # command-line/apps download utility
-      enable = true;
-      qbittorrent = true;
-      aria2 = true;
-      axel = false;
-      curl = true;
-      lux = true;
-      wget2 = true;
-      yt-dlp = true;
-      motrix = false;
-      libtorrent-rasterbar = true;
-      ariang = true;
-      media-downloader = false;
-      persepolis = false;
-      varia = false;
-    };
-    dbus = { };
-    dconf = { };
-    design = { };
-    development = { };
-    display = { };
-    docs = {
-      enable = true;
-      doc.enable = true;
-      man = {
-        enable = true;
-        generateCaches = false;
-      };
-      dev.enable = true;
-      info.enable = true;
-      nixos.enable = true;
-    };
-    documents = { };
-    drivers = { };
-    editors = { };
-    emails = { };
-    file_manager = { };
-    flags = { };
-    gaming = { };
-    git = { };
-    graphics = {
-      enable = true;
-      blender = true;
-      darktable = false;
-      davinci = true;
-      drawio = true;
-      figmaLinux = false;
-      gimp = true;
-      inkscape = true;
-      lunacy = true;
-    };
-    hacking = { };
-    hardware = { };
-    image_viewer = { };
-    keyboard_remapper = { };
-    locale = { };
-    media = { };
-    networking = { };
-    nh = { };
-    nix = { };
-    notifications = { };
-    overclock = { corectrl = { enable = true; }; };
-    power = { };
-    qt_gtk = { };
-    recording = { };
-    resources_monitoring = {
-      btop = {
-        enable = true;
-        timeFormat = "12"; # or 24
-      };
-    };
-    screenshot = { };
-    security = { };
-    services = { };
-    ssh = { };
-    storage = {
-      enable = true;
-      fstrim.enable = true;
-    };
-    system_theming = { };
-    systemd = { };
-    terminals = { };
-    virtualization = { };
-    wayland = { };
-    windows = { wine = { enable = true; }; };
-    window_manager = {
-      # ---- Hyprland ---- #
-      hyprland = {
-        enable = true;
-        # Pregenerated Colors to use in Hyprland
-        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
-        animationSpeed = "medium"; # medium or slow
-        plugins = {
-          hyprbars = true;
-          hyprspace = true;
-          bordersPlus = false;
-          hyprexpo = false;
-          hyprtrails = false;
-        };
-      };
-    };
-    write_shell = { };
-    xdg = { };
-    zram = {
-      enable = true;
-      algorithm = "lz4"; # lz4 or zstd
-    };
-  };
+
   videoEditors = {
     kdenlive = true;
     shotcut = true;
@@ -411,7 +255,7 @@
   };
 
   # ---- Window/Desktop Managers ---- #
-  defaultSession = "hyprland"; # hyprland  or hyprland-uwsm or gnome
+  defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
   wm = [ "hyprland" ]; # Selected window manager or desktop environment;
   wmType =
     if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
@@ -563,78 +407,6 @@
     };
   };
 
-  # ---------------- #
-  # ---- Styles ---- #
-  # ---------------- #
-  style = {
-    name = "nixxin";
-
-    # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
-    mainColor = {
-      name = "red";
-      hash = "B91C1C";
-    };
-
-    # ---- Mode ---- #
-    mode = "dark"; # "dark" or "light"
-    colorScheme = "prefer-dark";
-
-    # ---- Window Properties ---- #
-    window = {
-      opacity = 0.9; # The windows Opacity
-      blur = true; # Enable blur for windows
-      shadow = true; # enable shadow for Hyprland
-      rounding = 10; # rounding corners for Hyprland windwos
-      dim_inactive = true;
-      title = {
-        fontStyle = "bold";
-        fontSize = 20;
-      };
-      border = {
-        active = {
-          color = style.mainColor;
-          size = 3;
-        };
-        inactive = {
-          color = "#ddd8";
-          size = 3;
-        };
-      };
-    };
-    # ---- GTK ---- #
-    gtk = {
-      # Material
-      # adw-gtk3-dark
-      theme = "Material";
-      package = pkgs.adw-gtk3;
-      icon_cache = false;
-    };
-    # ---- Qt ---- #
-    qt = {
-      style = "adwaita-dark";
-      platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
-      package = pkgs.kdePackages.breeze;
-      SCALE_FACTOR = 1;
-    };
-    # ---- Icons ---- #
-    icons = {
-      nameInLight = "Papirus";
-      nameInDark = "Papirus-Dark";
-      package = pkgs.papirus-icon-theme;
-
-      # ---- File Manager Icons Size ---- #
-      # "small" or "small-plus" or "medium" or "large" or "extra-large"
-      icon_view_size = "large"; # Set icon size for nautilus file manager.
-    };
-    # ---- Cursor ---- #
-    cursor = {
-      # 16, 32, 48 or 64
-      size = 24; # Cursor Size
-      name = "Bibata-Modern-Ice"; # Cursor Name
-      package = pkgs.bibata-cursors;
-    };
-  };
-
   defaults = {
     fileManager = "nautilus"; # thunar & nautilus
     imageViewer = "loupe"; # feh or loupe
@@ -642,10 +414,234 @@
     torrentApp = "qBittorrent";
   };
 
-  gaming = {
-    enable = true; # To support gaming and install gaming stuff
-    steam = { enable = false; };
-    # Free, open-source game of ancient warfare
-    zeroad = { enable = false; };
+  # ----------------------------------------------
+  # ---- Modules
+  # ----------------------------------------------
+  # Modules: To Enable/disable && Options.
+  # NOTE: The Options doesn't have effect if the module is disabled.
+  modules = {
+    ai = {
+      enable = false;
+      ollama = { enable = true; };
+    };
+    android = {
+      enable = true;
+      scrcpy = true;
+      waydroid = true;
+      development = true;
+      android_studio = false;
+    };
+    audio = {
+      enable = true;
+      rnnoise.enable = true; # Noise Canceling
+    };
+    bluetooth = { enable = false; };
+    browsers = { # Browsers To Install
+      enable = true;
+      brave = true;
+      firefox = false;
+      firefox-beta = false;
+      google-chrome = true;
+      microsoft-edge = true;
+    };
+    cli = { # Collection of useful CLI apps
+      enable = true;
+    };
+    community = {
+      enable = true;
+      discord = true;
+      ferdium = true;
+      mumble = false;
+      revolt = false;
+      signal = false;
+      slack = false;
+      telegram = true;
+      vesktop = false;
+      zoom = false;
+    };
+    computing = {
+      enable = true;
+      default = "pocl"; # pocl or opencl
+    };
+    data_transferring = { # command-line/apps download utility
+      enable = true;
+      qbittorrent = true;
+      aria2 = true;
+      axel = false;
+      curl = true;
+      lux = true;
+      wget2 = true;
+      yt-dlp = true;
+      motrix = false;
+      libtorrent-rasterbar = true;
+      ariang = true;
+      media-downloader = false;
+      persepolis = false;
+      varia = false;
+    };
+    dbus = { };
+    dconf = { };
+    design = { };
+    development = { };
+    display = { };
+    docs = {
+      enable = true;
+      doc.enable = true;
+      man = {
+        enable = true;
+        generateCaches = false;
+      };
+      dev.enable = true;
+      info.enable = true;
+      nixos.enable = true;
+    };
+    documents = { };
+    drivers = { };
+    editors = { };
+    emails = { };
+    file_manager = { };
+    flags = { };
+    gaming = {
+      enable = true; # To support gaming and install gaming stuff
+      steam = { enable = false; };
+      # Free, open-source game of ancient warfare
+      zeroad = { enable = false; };
+    };
+    git = { };
+    graphics = {
+      enable = true;
+      blender = true;
+      darktable = false;
+      davinci = true;
+      drawio = true;
+      figmaLinux = false;
+      gimp = true;
+      inkscape = true;
+      lunacy = true;
+    };
+    hacking = { };
+    hardware = { };
+    image_viewer = { };
+    keyboard_remapper = { };
+    locale = { };
+    media = { };
+    networking = { };
+    nh = { };
+    nix = { };
+    notifications = { };
+    overclock = { corectrl = { enable = true; }; };
+    power = { };
+    qt_gtk = { };
+    recording = { };
+    resources_monitoring = {
+      btop = {
+        enable = true;
+        timeFormat = "12"; # or 24
+      };
+    };
+    screenshot = { };
+    security = { };
+    services = { };
+    ssh = { };
+    storage = {
+      enable = true;
+      fstrim.enable = true;
+    };
+    styles = {
+      name = "nixxin";
+
+      # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
+      mainColor = {
+        name = "red";
+        hash = "B91C1C";
+      };
+
+      # ---- Mode ---- #
+      mode = "dark"; # "dark" or "light"
+      colorScheme = "prefer-dark";
+
+      # ---- Window Properties ---- #
+      window = {
+        opacity = 0.9; # The windows Opacity
+        blur = true; # Enable blur for windows
+        shadow = true; # enable shadow for Hyprland
+        rounding = 10; # rounding corners for Hyprland windwos
+        dim_inactive = true;
+        title = {
+          fontStyle = "bold";
+          fontSize = 20;
+        };
+        border = {
+          active = {
+            color = modules.styles.mainColor;
+            size = 3;
+          };
+          inactive = {
+            color = "#ddd8";
+            size = 3;
+          };
+        };
+      };
+      # ---- GTK ---- #
+      gtk = {
+        # Material
+        # adw-gtk3-dark
+        theme = "Material";
+        package = pkgs.adw-gtk3;
+        icon_cache = false;
+      };
+      # ---- Qt ---- #
+      qt = {
+        style = "adwaita-dark";
+        platformTheme =
+          "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
+        package = pkgs.kdePackages.breeze;
+        SCALE_FACTOR = 1;
+      };
+      # ---- Icons ---- #
+      icons = {
+        nameInLight = "Papirus";
+        nameInDark = "Papirus-Dark";
+        package = pkgs.papirus-icon-theme;
+
+        # ---- File Manager Icons Size ---- #
+        # "small" or "small-plus" or "medium" or "large" or "extra-large"
+        icon_view_size = "large"; # Set icon size for nautilus file manager.
+      };
+      # ---- Cursor ---- #
+      cursor = {
+        # 16, 32, 48 or 64
+        size = 24; # Cursor Size
+        name = "Bibata-Modern-Ice"; # Cursor Name
+        package = pkgs.bibata-cursors;
+      };
+    };
+    systemd = { };
+    terminals = { };
+    virtualization = { };
+    wayland = { };
+    windows = { wine = { enable = true; }; };
+    window_manager = {
+      # ---- Hyprland ---- #
+      hyprland = {
+        enable = true;
+        # Pregenerated Colors to use in Hyprland
+        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+        animationSpeed = "medium"; # medium or slow
+        plugins = {
+          hyprbars = true;
+          hyprspace = true;
+          bordersPlus = false;
+          hyprexpo = false;
+          hyprtrails = false;
+        };
+      };
+    };
+    write_shell = { };
+    xdg = { };
+    zram = {
+      enable = true;
+      algorithm = "lz4"; # lz4 or zstd
+    };
   };
 }
