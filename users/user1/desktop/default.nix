@@ -15,57 +15,13 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
   };
+
   # ----------------------------------------------
   # ---- HOME
   # ----------------------------------------------
   home = {
     stateVersion = "24.11";
     backupFileExtension = null;
-  };
-
-  videoEditors = {
-    kdenlive = true;
-    shotcut = true;
-    davinci-resolve = false;
-  };
-  mediaPlayers = {
-    vlc = true;
-    clapper = false;
-    glide = false;
-    jellyfin = false;
-  };
-  graphics = {
-    lunacy = true;
-    drawio = true;
-    figmaLinux = false;
-    gimp = true;
-    blender = true;
-    inkscape = true;
-    darktable = true;
-  };
-  editors = {
-    vscode = true;
-    zedEditor = true;
-    vscodium = true;
-    gnomeTextEditor = true;
-    eclipse = true;
-    helix = true;
-  };
-  fileManagers = {
-    spacedrive = true;
-    nautilus = true;
-    thunar = false;
-    nemo = true;
-  };
-
-  # ---------------------- #
-  # ---- apps
-  # ---------------------- #
-  apps = {
-    # IDEs
-    vscode.enable = true;
-    # Terms
-    wezterm.enable = true;
   };
 
   # ----------------- #
@@ -132,13 +88,6 @@
       };
     };
   };
-
-  # ---- Date/Time & Languages ---- #
-  timezone = "Africa/Cairo"; # Select timezone
-  timeFormat = 12;
-  locale = "en_US.UTF-8"; # Select locale
-  mainlanguage = "English"; # Select Your Language for System and keyboard.
-  languages = [ "arabic" "france" ]; # Add Other Languages that you know
 
   # ------------------ #
   # ---- Networks ---- #
@@ -337,76 +286,6 @@
   editor = "nvim"; # Default editor
   visual = "nvim";
   editorPkg = pkgs.neovim;
-
-  # --------------- #
-  # ---- Fonts ---- #
-  # --------------- #
-  fonts = {
-    main = {
-      # Exambles:
-      # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
-      # to get path of package
-      # nix path-info -r nixpkgs#jetbrains-mono
-      # "JetBrainsMonoNL Font Mono"
-      # "JetBrainsMonoNL Font Bold"
-      # "CaskaydiaCove Nerd Font"
-      name = "CaskaydiaCove Nerd Font"; # Selected Font
-      package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
-      antialiasing = "grayscale";
-      hinting = "medium"; # (one of "none", "slight", "medium", "full")
-      rendering = "automatic";
-      rgba_order = "rgb";
-
-      size = {
-        main = 14; # Font size
-        apps = 16;
-        desktop = 18;
-        popups = 18;
-      };
-    };
-    monospace = {
-      name = "CaskaydiaCove Nerd Font Mono";
-      package = pkgs.nerd-fonts.caskaydia-mono;
-    };
-    serif = {
-      name = "CaskaydiaCove Nerd Font";
-      package = pkgs.nerd-fonts.caskaydia-cove;
-    };
-    sansSerif = {
-      name = "CaskaydiaCove Nerd Font";
-      package = pkgs.nerd-fonts.caskaydia-cove;
-    };
-    hyprbars = {
-      name = "CaskaydiaCove Nerd Font Bold";
-      size = 11;
-    };
-    terminals = {
-      kitty = {
-        name = "CaskaydiaCove Nerd Font";
-        bold_font = "CaskaydiaCove Nerd Font Bold";
-        italic_font = "CaskaydiaCove Nerd Font Italic";
-        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
-        size = 14;
-      };
-      alacritty = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
-      };
-      foot = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
-      };
-      wezterm = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
-      };
-      fish = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
-      };
-    };
-  };
-
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
@@ -514,9 +393,56 @@
     };
     hacking = { };
     hardware = { };
+    i18n = {
+      # ---- Date/Time & Languages ---- #
+      timezone = "Africa/Cairo"; # Select timezone
+      timeFormat = 12;
+      defaultLocale = "en_US.UTF-8"; # Select locale
+      mainlanguage = "English"; # Select Your Language for System and keyboard.
+      languages = [ "arabic" "france" ]; # Add Other Languages that you know
+    };
+    fonts = {
+      main = {
+        # Exambles:
+        # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
+        # to get path of package
+        # nix path-info -r nixpkgs#jetbrains-mono
+        # "JetBrainsMonoNL Font Mono"
+        # "JetBrainsMonoNL Font Bold"
+        # "CaskaydiaCove Nerd Font"
+        name = "CaskaydiaCove Nerd Font"; # Selected Font
+        package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+        antialiasing = "grayscale";
+        hinting = "medium"; # (one of "none", "slight", "medium", "full")
+        rendering = "automatic";
+        rgba_order = "rgb";
+
+        size = {
+          main = 14; # Font size
+          apps = 16;
+          desktop = 18;
+          popups = 18;
+        };
+      };
+      monospace = {
+        name = "CaskaydiaCove Nerd Font Mono";
+        package = pkgs.nerd-fonts.caskaydia-mono;
+      };
+      serif = {
+        name = "CaskaydiaCove Nerd Font";
+        package = pkgs.nerd-fonts.caskaydia-cove;
+      };
+      sansSerif = {
+        name = "CaskaydiaCove Nerd Font";
+        package = pkgs.nerd-fonts.caskaydia-cove;
+      };
+      hyprbars = {
+        name = "CaskaydiaCove Nerd Font Bold";
+        size = 11;
+      };
+    };
     image_viewer = { };
     keyboard_remapper = { };
-    locale = { };
     media = { };
     networking = { };
     nh = { };
@@ -610,7 +536,31 @@
       };
     };
     systemd = { };
-    terminals = { };
+    terminals = {
+      kitty = {
+        name = "CaskaydiaCove Nerd Font";
+        bold_font = "CaskaydiaCove Nerd Font Bold";
+        italic_font = "CaskaydiaCove Nerd Font Italic";
+        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
+        size = 14;
+      };
+      alacritty = {
+        name = "CaskaydiaCove Nerd Font";
+        size = 15;
+      };
+      foot = {
+        name = "CaskaydiaCove Nerd Font";
+        size = 15;
+      };
+      wezterm = {
+        name = "CaskaydiaCove Nerd Font";
+        size = 15;
+      };
+      fish = {
+        name = "CaskaydiaCove Nerd Font";
+        size = 15;
+      };
+    };
     virtualization = { };
     wayland = { };
     windows = { wine = { enable = true; }; };

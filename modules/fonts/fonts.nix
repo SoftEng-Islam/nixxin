@@ -39,6 +39,7 @@ in mkIf (settings.modules.fonts.enable) {
   };
   environment.systemPackages = with pkgs; [
     font-manager
+    fontconfig # Library for font customization and configuration
 
     # Latex
     texliveFull # TeX Live environment
