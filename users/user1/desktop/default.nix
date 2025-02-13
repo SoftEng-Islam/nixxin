@@ -25,21 +25,20 @@
       package = "";
       font = "";
     };
+
     # ---- IDLE ---- #
     # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
     # 0 to Disable:
     idle = { delay = 0; };
+
+    # ---- Window/Desktop Managers ---- #
+    window_manager = [ "hyprland" ]; # window manager or desktop environment;
+    defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
+    # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
+
+    # ---- Dotfiles Inforamtions ---- #
+    dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
   };
-
-  # ---- Window/Desktop Managers ---- #
-  defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
-  wm = [ "hyprland" ]; # Selected window manager or desktop environment;
-  wmType =
-    if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-
-  # ---- Dotfiles Inforamtions ---- #
-  dotfilesDir =
-    "/home/${user.username}/nixxin"; # Absolute path of the local repo
 
   # ------------------ #
   # ---- Hardware ---- #
