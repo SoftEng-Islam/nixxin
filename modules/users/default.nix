@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in {
   users = {
     defaultUserShell = pkgs.zsh;
     groups.uinput.members = [ "${settings.user.username}" ];
@@ -47,5 +49,4 @@
       packages = with pkgs; [ thunderbird ];
     };
   };
-  # services.getty.autologinUser = "softeng"; # Enable automatic login for the user.
 }

@@ -1,4 +1,5 @@
 { pkgs, ... }: rec {
+  user1 = import (./. + "../user.nix");
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
@@ -15,6 +16,10 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
   };
+
+  home.stateVersion = "24.11";
+  home.backupFileExtension = null;
+
   global = {
     # ---- Lockscreen ---- #
     lockscreen = {
@@ -40,9 +45,9 @@
     dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
   };
 
-  # ------------------ #
-  # ---- Hardware ---- #
-  # ------------------ #
+  # ----------------------------------------------
+  # ---- Hardware
+  # ----------------------------------------------
   hardware = {
     # CPU Information
     cpu = {
@@ -67,16 +72,6 @@
       model = "Ryzen 7 5700G"; # Example model
     };
 
-    # ROCm Support (for AMD GPUs)
-    rocmSupport = false; # hardware.gpu.vendor == "amd";
-
-    # Storage Information
-    storage = {
-      type = "nvme"; # nvme, sata, hdd, ssd, etc.
-      model = "Samsung 970 EVO Plus"; # Example model
-      capacity = "1TB"; # Storage capacity
-    };
-
     # Video Drivers (based on GPU vendor)
     videoDrivers = if hardware.gpu.vendor == "amd" then
       [ "amdgpu" ] # Default driver for AMD GPUs
@@ -86,87 +81,17 @@
       [ "modesetting" ] # Default driver for Intel GPUs
     else
       [ "modesetting" ]; # Fallback driver
-
-    # Network Adapters
-    networkAdapters = [
-      {
-        type = "wifi";
-        vendor = "intel";
-        model = "Intel Wi-Fi 6 AX200";
-      }
-      {
-        type = "ethernet";
-        vendor = "realtek";
-        model = "RTL8111/8168/8411";
-      }
-    ];
-
-    # Audio Information
-    audio = {
-      vendor = "realtek";
-      model = "ALC1220";
-      driver = "snd_hda_intel"; # Example driver
-    };
-
-    # RAM Information
-    memory = {
-      size = "32GB"; # Total RAM size
-      type = "DDR4"; # RAM type
-      speed = "3200MHz"; # RAM speed
-    };
-
-    # Motherboard Information
-    motherboard = {
-      vendor = ""; # Ex. ASUS
-      model = ""; # Ex. ROG Strix X570-E Gaming
-    };
-
-    # Power Supply Information
-    powerSupply = {
-      wattage = "750W";
-      efficiency = "80+ Gold";
-    };
-
-    # Cooling Information
-    cooling = {
-      cpuCooler = "Noctua NH-D15";
-      caseFans = [
-        {
-          size = "120mm";
-          speed = "1200 RPM";
-        }
-        {
-          size = "140mm";
-          speed = "1000 RPM";
-        }
-      ];
-    };
   };
 
-  # ---------------- #
-  # ----- USER ----- #
-  # ---------------- #
+  # ----------------------------------------------
+  # ----- USER
+  # ----------------------------------------------
   user = {
     name = "Islam Ahmed"; # Name/Identifier
     username = "softeng"; # Username
     email = "softeng.islam@gmail.com"; # Email (git config)
   };
 
-  # ---------------------- #
-  # ---- Web Browsers ---- #
-  # ---------------------- #
-  browser = "brave"; # Default Browser;
-  browserPkg = pkgs.brave;
-
-  term = "kitty";
-  termPkg = pkgs.kitty;
-
-  # ---------------------- #
-  # ---- Editors --------- #
-  # ---------------------- #
-  editor = "nvim"; # Default editor
-  visual = "nvim";
-  editorPkg = pkgs.neovim;
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
@@ -303,8 +228,8 @@
     hacking = { };
     hardware = { };
     home = {
-      stateVersion = "24.11";
-      backupFileExtension = null;
+      stateVersion = home.stateVersion;
+      backupFileExtension = home.backupFileExtension;
     };
     i18n = {
       # ---- Date/Time & Languages ---- #
