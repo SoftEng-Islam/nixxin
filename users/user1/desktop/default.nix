@@ -15,22 +15,12 @@
       channel = "https://channels.nixos.org/nixos-unstable";
     };
   };
-
-  # ----------------------------------------------
-  # ---- HOME
-  # ----------------------------------------------
-  home = {
-    stateVersion = "24.11";
-    backupFileExtension = null;
-  };
-
-  # ----------------- #
-  # ---- DESKTOP ---- #
-  # ----------------- #
-  desktop = {
+  global = {
     # ---- Lockscreen ---- #
     lockscreen = {
       enable = true;
+      type = "hyprlock";
+      timeOut = 600; # 10min
       name = "";
       package = "";
       font = "";
@@ -41,64 +31,15 @@
     idle = { delay = 0; };
   };
 
-  # -------------- #
-  # ---- IDLE ---- #
-  # -------------- #
-  # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
-  # 0 to Disable:
-  idle = { delay = 0; };
+  # ---- Window/Desktop Managers ---- #
+  defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
+  wm = [ "hyprland" ]; # Selected window manager or desktop environment;
+  wmType =
+    if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
-  # -------------------- #
-  # ---- Lockscreen ---- #
-  # -------------------- #
-  lockscreen = {
-    enable = true;
-    type = "hyprlock";
-    timeOut = 600; # 10min
-  };
-
-  # -------------- #
-  # ---- Boot ---- #
-  # -------------- #
-  boot = {
-    loader = {
-      timeout = 3; # seconds
-      mode = "UEFI"; # UEFI OR BIOS
-      manager = {
-        # Select The boot manager to enable
-        name = "GRUB"; # GRUB or SYSTEMD
-
-        # device identifier for grub; only used for legacy (bios) boot mode
-        # List all the devices with their by-id symlinks
-        # ls -l /dev/disk/by-id/
-        grub = {
-          fontSize = 18;
-          # nix path-info -r nixpkgs#sleek-grub-theme
-          theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
-          osProber = false;
-          efiSupport = true;
-          gfxmodeEfi = "1920x1080";
-          devices = [ "nodev" ];
-          device = "nodev"; # Let GRUB automatically detect EFI
-          extraConfig = ''
-            GRUB_DISABLE_OS_PROBER=true
-            GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
-          '';
-        };
-      };
-    };
-  };
-
-  # ------------------ #
-  # ---- Networks ---- #
-  # ------------------ #
-  networks = {
-    dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
-    ethernet = "eno1";
-    wlanInterface = "wlp0s19f2u5";
-    nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
-    dnsmasq = { settings = { server = networks.nameservers; }; };
-  };
+  # ---- Dotfiles Inforamtions ---- #
+  dotfilesDir =
+    "/home/${user.username}/nixxin"; # Absolute path of the local repo
 
   # ------------------ #
   # ---- Hardware ---- #
@@ -203,16 +144,6 @@
     };
   };
 
-  # ---- Window/Desktop Managers ---- #
-  defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
-  wm = [ "hyprland" ]; # Selected window manager or desktop environment;
-  wmType =
-    if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-
-  # ---- Dotfiles Inforamtions ---- #
-  dotfilesDir =
-    "/home/${user.username}/nixxin"; # Absolute path of the local repo
-
   # ---------------- #
   # ----- USER ----- #
   # ---------------- #
@@ -227,55 +158,6 @@
   # ---------------------- #
   browser = "brave"; # Default Browser;
   browserPkg = pkgs.brave;
-
-  # ------------------- #
-  # ---- Terminals ---- #
-  # ------------------- #
-  terminals = {
-    default = {
-      shell = "zsh"; # bash
-      font = {
-        family = "CaskaydiaCove Nerd Font";
-        bold = "CaskaydiaCove Nerd Font Bold";
-        italic = "CaskaydiaCove Nerd Font Italic";
-        bold_italic = "CaskaydiaCove Nerd Font Bold Italic";
-        size = 14;
-        package = pkgs.nerd-fonts.caskaydia-cove;
-      };
-      term = {
-        name = "kitty"; # Default terminal command
-        package = pkgs.kitty;
-      };
-    };
-    kitty = {
-      shell = terminals.default.shell;
-      family = terminals.default.font.family;
-      size = terminals.default.font.size;
-      bold = terminals.default.font.bold;
-      italic = terminals.default.font.italic;
-      bold_italic = terminals.default.font.bold_italic;
-    };
-    alacritty = {
-      shell = terminals.default.shell;
-      family = terminals.default.font.family;
-      size = terminals.default.font.size;
-    };
-    foot = {
-      shell = terminals.default.shell;
-      family = terminals.default.font.family;
-      size = terminals.default.font.size;
-    };
-    wezterm = {
-      shell = terminals.default.shell;
-      family = terminals.default.font.family;
-      size = terminals.default.font.size;
-    };
-    fish = {
-      shell = terminals.default.shell;
-      family = terminals.default.font.family;
-      size = terminals.default.font.size;
-    };
-  };
 
   term = "kitty";
   termPkg = pkgs.kitty;
@@ -308,6 +190,34 @@
       rnnoise.enable = true; # Noise Canceling
     };
     bluetooth = { enable = false; };
+    boot = {
+      loader = {
+        timeout = 3; # seconds
+        mode = "UEFI"; # UEFI OR BIOS
+        manager = {
+          # Select The boot manager to enable
+          name = "GRUB"; # GRUB or SYSTEMD
+
+          # device identifier for grub; only used for legacy (bios) boot mode
+          # List all the devices with their by-id symlinks
+          # ls -l /dev/disk/by-id/
+          grub = {
+            fontSize = 18;
+            # nix path-info -r nixpkgs#sleek-grub-theme
+            theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
+            osProber = false;
+            efiSupport = true;
+            gfxmodeEfi = "1920x1080";
+            devices = [ "nodev" ];
+            device = "nodev"; # Let GRUB automatically detect EFI
+            extraConfig = ''
+              GRUB_DISABLE_OS_PROBER=true
+              GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
+            '';
+          };
+        };
+      };
+    };
     browsers = { # Browsers To Install
       enable = true;
       brave = true;
@@ -393,13 +303,17 @@
     };
     hacking = { };
     hardware = { };
+    home = {
+      stateVersion = "24.11";
+      backupFileExtension = null;
+    };
     i18n = {
       # ---- Date/Time & Languages ---- #
-      timezone = "Africa/Cairo"; # Select timezone
       timeFormat = 12;
+      timezone = "Africa/Cairo"; # Select timezone
       defaultLocale = "en_US.UTF-8"; # Select locale
-      mainlanguage = "English"; # Select Your Language for System and keyboard.
-      languages = [ "arabic" "france" ]; # Add Other Languages that you know
+      mainlanguage = "English"; # Select the main Language.
+      languages = [ "arabic" "france" ]; # Add Other Languages
     };
     fonts = {
       main = {
@@ -444,7 +358,13 @@
     image_viewer = { };
     keyboard_remapper = { };
     media = { };
-    networking = { };
+    network = {
+      dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
+      ethernet = "eno1";
+      wlanInterface = "wlp0s19f2u5";
+      nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
+      dnsmasq = { settings = { server = modules.networks.nameservers; }; };
+    };
     nh = { };
     nix = { };
     notifications = { };
@@ -537,28 +457,48 @@
     };
     systemd = { };
     terminals = {
+      default = {
+        shell = "zsh"; # bash
+        font = {
+          family = "CaskaydiaCove Nerd Font";
+          bold = "CaskaydiaCove Nerd Font Bold";
+          italic = "CaskaydiaCove Nerd Font Italic";
+          bold_italic = "CaskaydiaCove Nerd Font Bold Italic";
+          size = 14;
+          package = pkgs.nerd-fonts.caskaydia-cove;
+        };
+        term = {
+          name = "kitty"; # Default terminal command
+          package = pkgs.kitty;
+        };
+      };
       kitty = {
-        name = "CaskaydiaCove Nerd Font";
-        bold_font = "CaskaydiaCove Nerd Font Bold";
-        italic_font = "CaskaydiaCove Nerd Font Italic";
-        bold_italic_font = "CaskaydiaCove Nerd Font Bold Italic";
-        size = 14;
+        shell = modules.terminals.default.shell;
+        family = modules.terminals.default.font.family;
+        size = modules.terminals.default.font.size;
+        bold = modules.terminals.default.font.bold;
+        italic = modules.terminals.default.font.italic;
+        bold_italic = modules.terminals.default.font.bold_italic;
       };
       alacritty = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
+        shell = modules.terminals.default.shell;
+        family = modules.terminals.default.font.family;
+        size = modules.terminals.default.font.size;
       };
       foot = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
+        shell = modules.terminals.default.shell;
+        family = modules.terminals.default.font.family;
+        size = modules.terminals.default.font.size;
       };
       wezterm = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
+        shell = modules.terminals.default.shell;
+        family = modules.terminals.default.font.family;
+        size = modules.terminals.default.font.size;
       };
       fish = {
-        name = "CaskaydiaCove Nerd Font";
-        size = 15;
+        shell = modules.terminals.default.shell;
+        family = modules.terminals.default.font.family;
+        size = modules.terminals.default.font.size;
       };
     };
     virtualization = { };
