@@ -1,4 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.power_management.tlp.enable) {
   services.tlp = {
     enable = false;
     settings = {

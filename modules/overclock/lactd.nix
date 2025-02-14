@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in (settings.modules.overclock.lactd.enable) {
+in mkIf (settings.modules.overclock.lactd.enable) {
   # Linux GPU Configuration Tool for AMD and NVIDIA
   # We are creating the lact daemon service manually because the provided one hangs
   systemd.services.lactd = {

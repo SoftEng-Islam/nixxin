@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.qt_gtk.enable) {
   imports = [
     ./gtk.nix
     ./qt.nix

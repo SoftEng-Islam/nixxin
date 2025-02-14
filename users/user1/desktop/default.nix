@@ -1,5 +1,5 @@
 { pkgs, ... }: rec {
-  user1 = import (./. + "../user.nix");
+  user = import (./. + "../user.nix");
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
@@ -39,7 +39,7 @@
     # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
     # ---- Dotfiles Inforamtions ---- #
-    dotfilesDir = "/home/${user1.username}/nixxin"; # Absolute path of the repo
+    dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
   };
 
   # ----------------------------------------------
@@ -446,7 +446,7 @@
       hyprland = {
         enable = true;
         # Pregenerated Colors to use in Hyprland
-        genColorsPath = /home/${user1.username}/.cache/hypr/colors.conf;
+        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
         plugins = {
           hyprbars = true;

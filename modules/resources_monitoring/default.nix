@@ -1,4 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.resources_monitoring.enable) {
   home-manager.users.${settings.user.username} = {
     programs.btop = {
       enable = true;
