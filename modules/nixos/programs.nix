@@ -8,8 +8,5 @@
 
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
-
-    # required by libreoffice
-    # java.enable = true;
   };
 }
