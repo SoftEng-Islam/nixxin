@@ -1,7 +1,7 @@
 { pkgs, ... }: rec {
-  name = "Islam Ahmed";
-  username = "softeng";
-  email = "softeng.islam@gmail.com";
+  name = "Islam Ahmed"; # Name/Identifier
+  username = "softeng"; # Username
+  email = "softeng.islam@gmail.com"; # Email (git config)
   devices = {
     desktop = {
       system = {

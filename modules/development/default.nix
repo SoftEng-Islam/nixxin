@@ -3,22 +3,18 @@ let
   inherit (lib) mkIf;
   _pkgs = with pkgs; [
     # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
-    (lib.optional settings.modules.development.beekeeper beekeeper-studio)
+    (lib.optional settings.modules.development.apps.beekeeper beekeeper-studio)
     # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
-    (lib.optional settings.modules.development.dbeaver dbeaver-bin)
+    (lib.optional settings.modules.development.apps.dbeaver dbeaver-bin)
     # DB Browser for SQLite
-    (lib.optional settings.modules.development.sqlitebrowser sqlitebrowser)
+    (lib.optional settings.modules.development.apps.sqlitebrowser sqlitebrowser)
     # Open-source IDE For exploring and testing APIs.
-    (lib.optional settings.modules.development.bruno bruno)
+    (lib.optional settings.modules.development.apps.bruno bruno)
     # cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC. With Cloud, Local and Git storage.
-    (lib.optional settings.modules.development.insomnia insomnia)
+    (lib.optional settings.modules.development.apps.insomnia insomnia)
   ];
 in mkIf (settings.modules.development.enable) {
-  imports = [
-    # ./databases
-    ./languages
-    ./tools
-  ];
+  imports = [ ./databases ./languages ./tools ];
 
   environment.systemPackages = with pkgs;
     [

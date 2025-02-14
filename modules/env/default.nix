@@ -28,6 +28,9 @@ in {
         "$HOME/.npm-packages/bin"
       ];
 
+      # If you have graphical issues like missing transparency or graphical artifact you could launch ashell with WGPU_BACKEND=gl. This env var forces wgpu to use OpenGL instead of Vulkan
+      WGPU_BACKEND = "gl";
+
       # XDG_DATA_HOME = "$HOME/.local/share";
       # PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
 

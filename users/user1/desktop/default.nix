@@ -36,13 +36,10 @@
     # 0 to Disable:
     idle = { delay = 0; };
 
-    # ---- Window/Desktop Managers ---- #
-    window_manager = [ "hyprland" ]; # window manager or desktop environment;
-    defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
     # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
     # ---- Dotfiles Inforamtions ---- #
-    dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
+    dotfilesDir = "/home/${user1.username}/nixxin"; # Absolute path of the repo
   };
 
   # ----------------------------------------------
@@ -81,15 +78,6 @@
       [ "modesetting" ] # Default driver for Intel GPUs
     else
       [ "modesetting" ]; # Fallback driver
-  };
-
-  # ----------------------------------------------
-  # ----- USER
-  # ----------------------------------------------
-  user = {
-    name = "Islam Ahmed"; # Name/Identifier
-    username = "softeng"; # Username
-    email = "softeng.islam@gmail.com"; # Email (git config)
   };
 
   # ----------------------------------------------
@@ -185,11 +173,36 @@
       persepolis = false;
       varia = false;
     };
-    dbus = { };
-    dconf = { };
-    design = { };
-    development = { };
-    display = { };
+    development = {
+      enable = true;
+      databases = {
+        enable = true;
+        monogodb = true;
+        MySQL = true;
+        sql = true;
+      };
+      languages = { enable = true; };
+      tools = {
+        enable = true;
+        devdocs = true;
+        ide = {
+          PHPStorm = false;
+          pyCharm = false;
+        };
+      };
+      apps = {
+        beekeeper = true;
+        dbeaver = true;
+        sqlitebrowser = true;
+        bruno = true;
+        insomnia = true;
+      };
+    };
+    display_manager = { # Display/Login manager
+      enable = true;
+      default = "gdm"; # gdm OR greetd OR tuigreet OR sddm
+      defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
+    };
     docs = {
       enable = true;
       doc.enable = true;
@@ -433,7 +446,7 @@
       hyprland = {
         enable = true;
         # Pregenerated Colors to use in Hyprland
-        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+        genColorsPath = /home/${user1.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
         plugins = {
           hyprbars = true;
