@@ -1,5 +1,6 @@
-# ---- Notifications ---- #
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.notifications.enable) {
   imports = [ ./dunst ];
 
   environment.systemPackages = with pkgs; [
@@ -8,6 +9,5 @@
     libnotify # A library that sends desktop notifications to a notification daemon
     # avizo # Neat notification daemon for Wayland
   ];
-
 }
 

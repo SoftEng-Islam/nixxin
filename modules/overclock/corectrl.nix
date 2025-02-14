@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.overclock.corectrl.enable) {
   environment.systemPackages = with pkgs;
     [
       corectrl # Control your computer hardware via application profiles
