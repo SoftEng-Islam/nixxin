@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in {
   nix = {
     package = pkgs.nixVersions.latest;
     gc = {
@@ -66,24 +68,36 @@
     };
   };
 
-  programs.nix-ld = {
-    enable = true;
-    #Include libstdc++ in the nix-ld profile
-    libraries = [
-      pkgs.stdenv.cc.cc
-      pkgs.zlib
-      pkgs.fuse3
-      pkgs.icu
-      pkgs.nss
-      pkgs.openssl
-      pkgs.curl
-      pkgs.expat
-      pkgs.xorg.libX11
-      pkgs.vulkan-headers
-      pkgs.vulkan-loader
-      pkgs.vulkan-tools
-    ];
+  programs = {
+    # ---- nh ---- #
+    # Enable "nh" nix cli helper.
+    nh = { enable = true; };
+
+    # See https://nix.dev/permalink/stub-ld.
+    # run unpatched dynamic binaries on NixOS
+    nix-ld = {
+      enable = true;
+      # Include libstdc++ in the nix-ld profile
+      libraries = with pkgs; [
+        curl
+        expat
+        fontconfig
+        freetype
+        fuse3
+        icu
+        nss
+        openssl
+        stdenv.cc.cc
+        util-linux
+        vulkan-headers
+        vulkan-loader
+        vulkan-tools
+        xorg.libX11
+        zlib
+      ];
+    };
   };
+
   environment.systemPackages = with pkgs; [
     # nix related
     # it provides the command `nom` works just like `nix`
@@ -121,5 +135,8 @@
 
     nixdoc # Generate documentation for Nix functions
     node2nix # Generate Nix expressions to build NPM packages
+
+    # Yet another nix cli helper
+    nh
   ];
 }
