@@ -5,4 +5,8 @@ in mkIf (settings.modules.office.libreoffice.enable) {
     # required by libreoffice
     java.enable = true;
   };
+  environment.systemPackages = with pkgs;
+    [
+      libreoffice # Comprehensive, professional-quality productivity suite, a variant of openoffice.org
+    ];
 }

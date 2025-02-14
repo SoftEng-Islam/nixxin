@@ -1,1 +1,0 @@
-# https://apps.kde.org/okular/
