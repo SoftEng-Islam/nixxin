@@ -9,7 +9,7 @@ let
   ];
 
   _pkgs = with pkgs; [
-    (lib.optional settings.modules.editors.vscode vscode)
+    (lib.optional settings.modules.editors.vscode vscode-fhs)
     (lib.optional settings.modules.editors.vscodium vscodium)
     (lib.optional settings.modules.editors.gnomeTextEditor gnome-text-editor)
   ];
