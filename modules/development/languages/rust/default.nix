@@ -4,6 +4,10 @@ let
   _rust = pkgs.rust-bin.selectLatestNightlyWith
     (toolchain: toolchain.default.override { extensions = [ "rust-src" ]; });
 in mkIf (settings.modules.development.languages.rust) {
+  home-manager.users.${settings.user.username} = {
+    programs.vscode.extensions = with pkgs;
+      [ vscode-extensions.rust-lang.rust-analyzer ];
+  };
   environment.systemPackages = with pkgs; [
     _rust
     cargo # Downloads your Rust project's dependencies and builds your project
