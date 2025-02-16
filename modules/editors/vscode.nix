@@ -119,6 +119,7 @@ in {
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = true;
+      enableExtensionUpdateCheck = true;
       extensions = extensions ++ nixpkgs-extensions ++ market-extensions;
       globalSnippets = {
         fixme = {
@@ -130,6 +131,23 @@ in {
       userSettings = {
         "files.autoSave" = "off";
         "[nix]"."editor.tabSize" = 2;
+
+        "editor.fontFamily" = "CaskaydiaCove Nerd Font";
+        "editor.fontLigatures" = true;
+        "editor.fontWeight" = "bold";
+        "editor.fontSize" = 14;
+        "editor.lineHeight" = 25;
+        "editor.cursorWidth" = 3;
+        "editor.cursorBlinking" = "expand";
+        "editor.cursorSmoothCaretAnimation" = "explicit";
+        "editor.smoothScrolling" = true;
+        "editor.renderWhitespace" = "all";
+        "editor.minimap.enabled" = false;
+        "editor.mouseWheelZoom" = true;
+        "editor.occurrencesHighlight" = "off";
+        "editor.suggest.localityBonus" = true;
+        "editor.inlineSuggest.syntaxHighlightingEnabled" = true;
+
       };
       keybindings = [{
         key = "ctrl+c";
