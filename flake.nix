@@ -83,6 +83,11 @@
 
     kitty-smart-tab.url = "github:yurikhan/kitty-smart-tab";
     kitty-smart-tab.flake = false;
+
+    ashell = {
+      url = "github:MalpenZibo/ashell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
