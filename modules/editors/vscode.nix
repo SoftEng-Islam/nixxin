@@ -129,25 +129,184 @@ in {
         };
       };
       userSettings = {
-        "files.autoSave" = "off";
+        editor = {
+          fontFamily = "'CaskaydiaCove Nerd Font','JetBrainsMono Nerd Font'";
+          fontLigatures = true;
+          fontSize = 14;
+          fontWeight = "bold";
+          formatOnPaste = true;
+          formatOnSave = true;
+          cursorBlinking = "expand";
+          cursorSmoothCaretAnimation = "explicit";
+          cursorWidth = 3;
+          inlineSuggest.syntaxHighlightingEnabled = true;
+          lineHeight = 25;
+          minimap.enabled = false;
+          mouseWheelZoom = true;
+          occurrencesHighlight = "off";
+          renderWhitespace = "all";
+          smoothScrolling = true;
+          suggest.localityBonus = true;
+          tabSize = 4;
+        };
+
+        # ---- Window Settings ---- #
+        window = {
+          menuBarVisibility = "toggle";
+          zoomLevel = 5;
+          autoDetectColorScheme = true;
+        };
+
+        # ---- workbench Settings ---- #
+        workbench = {
+          colorTheme = "One Dark Pro Darker";
+          iconTheme = "material-icon-theme";
+          editor.highlightModifiedTabs = true;
+          list.smoothScrolling = true;
+          sideBar.location = "right";
+          startupEditor = "none";
+          tips.enabled = true;
+          colorCustomizations = {
+            # Text Selection
+            # "editor.selectionBackground": "#020101", // Replace with your desired color code
+            # "editor.selectionHighlightBackground": "#850000bc", // Optional: for find matches highlight color
+            # "editor.inactiveSelectionBackground": "#1613beb7",
+            # Activity Bar
+            # "activityBar.background": "#2a2a2a",
+            # "activityBar.foreground":"#f90",
+            # "activityBar.inactiveForeground":"#ffffff",
+            # Title Bar
+            # "titleBar.activeBackground": "#2a2a2a",
+            # "titleBar.activeForeground": "#FAFCFC",
+            # Status Bar
+            # "statusBar.background": "#2a2a2a",
+            # "statusBar.border": "#94854eee",
+          };
+        };
+
+        # ---- Terminal Settings ---- #
+        terminal.integrated = {
+          cursorBlinking = true;
+          cursorStyle = "line";
+          smoothScrolling = true;
+          # gpuAcceleration = "off";
+          fontFamily = "CaskaydiaCove Nerd Font";
+          enableImages = true;
+          fontLigatures = true;
+          fontSize = 14;
+          fontWeight = "bold";
+          cursorWidth = 2;
+          cursorStyleInactive = "line";
+          environmentChangesRelaunch = false;
+          enableMultiLinePasteWarning = "never";
+          defaultProfile.linux = "zsh";
+        };
+
+        # ---- Files and Explorer ---- #
+        files = {
+          associations."*.css" = "tailwindcss";
+          autoSave = "off";
+          insertFinalNewline = true;
+          trimFinalNewlines = true;
+          trimTrailingWhitespace = true;
+        };
+
+        explorer = {
+          confirmDragAndDrop = false;
+          confirmDelete = false;
+          confirmPasteNative = false;
+        };
+
+        git = {
+          autofetch = true;
+          confirmSync = false;
+        };
+
+        gitlens = {
+          codeLens.enabled = false;
+          defaultDateFormat = "YYYY-MM-DD HH:mm";
+          defaultDateLocale = "system";
+          defaultDateShortFormat = "YYYY-M-D";
+          defaultTimeFormat = "HH:mm";
+          statusBar.enabled = false;
+
+          views.repositories = {
+            showContributors = false;
+            showStashes = true;
+            showTags = false;
+            showWorktrees = false;
+          };
+        };
+
+        intelephense = {
+          # environment.phpVersion = "7.4.3";
+          # format.braces = "k&r";
+        };
+
+        # JavaScript and TypeScript
+        "typescript.format.semicolons" = "insert";
+        "javascript.format.semicolons" = "insert";
+        "javascript.updateImportsOnFileMove.enabled" = "always";
+        "javascript.inlayHints.enumMemberValues.enabled" = true;
+        "javascript.inlayHints.functionLikeReturnTypes.enabled" = true;
+        "javascript.inlayHints.parameterNames.enabled" = "none";
+        "javascript.inlayHints.parameterTypes.enabled" = true;
+        "javascript.inlayHints.propertyDeclarationTypes.enabled" = true;
+        "javascript.inlayHints.variableTypes.enabled" = true;
+        "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
+          true;
+        "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" =
+          true;
+        "typescript.inlayHints.enumMemberValues.enabled" = true;
+        "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
+        "typescript.inlayHints.parameterNames.enabled" = "none";
+        "typescript.inlayHints.variableTypes.enabled" = true;
+        "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
+        "typescript.inlayHints.parameterTypes.enabled" = true;
+        "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
+          true;
+        "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" =
+          true;
+
+        # Update Settings
+        "update.showReleaseNotes" = false;
+        "update.mode" = "manual";
+        "extensions.autoUpdate" = false;
+        "extensions.autoCheckUpdates" = true;
+        "terminal.explorerKind" = "external";
+
+        "security.workspace.trust.banner" = "never";
+        "security.workspace.trust.untrustedFiles" = "open";
+
+        # Linting
+        "css.lint.unknownAtRules" = "ignore";
+        "scss.lint.unknownAtRules" = "ignore";
+        "less.lint.unknownAtRules" = "ignore";
+
+        # Vite
+        "vite.autoStart" = false;
+        "vite.https" = false;
+
+        # Miscellaneous
+        "application.shellEnvironmentResolutionTimeout" = 60;
+        "tabnine.experimentalAutoImports" = true;
+
+        nix.formatterPath = "nixfmt";
+        scm.showHistoryGraph = false;
+
         "[nix]"."editor.tabSize" = 2;
 
-        "editor.fontFamily" = "CaskaydiaCove Nerd Font";
-        "editor.fontLigatures" = true;
-        "editor.fontWeight" = "bold";
-        "editor.fontSize" = 14;
-        "editor.lineHeight" = 25;
-        "editor.cursorWidth" = 3;
-        "editor.cursorBlinking" = "expand";
-        "editor.cursorSmoothCaretAnimation" = "explicit";
-        "editor.smoothScrolling" = true;
-        "editor.renderWhitespace" = "all";
-        "editor.minimap.enabled" = false;
-        "editor.mouseWheelZoom" = true;
-        "editor.occurrencesHighlight" = "off";
-        "editor.suggest.localityBonus" = true;
-        "editor.inlineSuggest.syntaxHighlightingEnabled" = true;
+        evenBetterToml.formatter.alignComments = false;
 
+        "[css]".editor.defaultFormatter = "esbenp.prettier-vscode";
+        "[javascript]".editor.defaultFormatter = "esbenp.prettier-vscode";
+        "[typescript]".editor.defaultFormatter = "esbenp.prettier-vscode";
+        "[typescriptreact]".editor.defaultFormatter = "esbenp.prettier-vscode";
+        diffEditor.ignoreTrimWhitespace = false;
+
+        "better-comments.highlightPlainText" = true;
+        "debug.allowBreakpointsEverywhere" = true;
+        "search.seedWithNearestWord" = true;
       };
       keybindings = [{
         key = "ctrl+c";
