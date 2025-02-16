@@ -119,8 +119,23 @@ in {
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = true;
-      extensions = nixpkgs-extensions ++ market-extensions;
-      userSettings = { };
+      extensions = extensions ++ nixpkgs-extensions ++ market-extensions;
+      globalSnippets = {
+        fixme = {
+          body = [ "$LINE_COMMENT FIXME: $0" ];
+          description = "Insert a FIXME remark";
+          prefix = [ "fixme" ];
+        };
+      };
+      userSettings = {
+        "files.autoSave" = "off";
+        "[nix]"."editor.tabSize" = 2;
+      };
+      keybindings = [{
+        key = "ctrl+c";
+        command = "editor.action.clipboardCopyAction";
+        when = "textInputFocus";
+      }];
     };
     xdg.mimeApps.associations.removed = { "inode/directory" = "code.desktop"; };
   };
