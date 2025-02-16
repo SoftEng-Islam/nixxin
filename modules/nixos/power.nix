@@ -1,6 +1,7 @@
 { settings, lib, pkgs, ... }: {
   imports = [ ./tlp.nix ./upower.nix ];
 
+  # Best Power Optimizations for a Desktop
   powerManagement = {
     enable = true;
 
@@ -37,6 +38,12 @@
     enable = lib.mkForce true;
     package = pkgs.upower;
   };
+
+  # Should You Use TLP on a Desktop?
+  #---- No, TLP is designed for laptops to improve battery life by reducing power
+  #---- consumption. On a desktop, it is not necessary and can cause performance issues
+  #---- by limiting CPU power or turning off USB devices.
+  # Don’t use TLP on a desktop. It’s meant for battery-powered devices.
   services.tlp = {
     enable = false;
     settings = {
