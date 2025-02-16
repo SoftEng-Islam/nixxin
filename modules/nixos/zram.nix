@@ -1,7 +1,8 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.zram.enable) {
-  # zramctl
+  # Swap Tweaks for Performance
+  # Run Command "zramctl"
   zramSwap = {
     enable = true;
     algorithm = settings.modules.zram.algorithm; # lz4 or zstd

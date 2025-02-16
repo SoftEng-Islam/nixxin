@@ -55,6 +55,7 @@
       options binder_linux devices=binder,hwbinder,vndbinder
     '';
     kernelParams = [
+      # Reduce Boot Delay
       "quiet"
       "splash"
       "loglevel=3"
@@ -68,9 +69,6 @@
       # makes Linux pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
       ''acpi_osi="Windows 2020"''
-
-      "elevator=bfq" # Optimized disk performance for desktops
-
       # this doesn't fix my ACPI Bios errors :c
       # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
       # "acpi_osi=Linux"
@@ -90,6 +88,8 @@
       "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
       "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+
+      "elevator=bfq" # Optimized disk performance for desktops
 
       # CPU optimizations
       "threadirqs"
