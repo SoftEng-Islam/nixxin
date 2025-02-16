@@ -10,6 +10,7 @@ in {
     };
     settings = {
       sandbox = false;
+      color = true;
       connect-timeout = 0; # 0 means no limit
       download-attempts = 10;
       # download-buffer-size = 536870912;
@@ -19,6 +20,7 @@ in {
       # Enable flakes
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
+
       builders-use-substitutes = true;
       substituters = [
         # high priority since it's almost always used

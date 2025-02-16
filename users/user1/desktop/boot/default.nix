@@ -69,6 +69,8 @@
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
       ''acpi_osi="Windows 2020"''
 
+      "elevator=bfq" # Optimized disk performance for desktops
+
       # this doesn't fix my ACPI Bios errors :c
       # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
       # "acpi_osi=Linux"
@@ -94,7 +96,7 @@
       "mitigations=off"
       "idle=nomwait"
       "processor.max_cstate=1"
-      "amd_pstate=active"
+      "amd_pstate=active" # Enables AMD's new power scaling
       "amd_pstate.shared_mem=1"
       "clearcpuid=rdrand"
 
@@ -169,12 +171,12 @@
       # Kernel scheduler
       "kernel.sched_autogroup_enabled" = 0;
       "kernel.sched_child_runs_first" = 1;
-      "kernel.sched_min_granularity_ns" = 10000000;
-      "kernel.sched_wakeup_granularity_ns" = 15000000;
+      "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
+      "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
 
       # File system tweaks
       "fs.file-max" = 2097152;
-      "fs.inotify.max_user_watches" = 524288;
+      "fs.inotify.max_user_watches" = 524288; # Prevent game crashes
 
       # Network optimization
       "net.core.rmem_max" = 16777216;
