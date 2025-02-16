@@ -144,17 +144,16 @@
       # Power management
       "workqueue.power_efficient=off"
       "amd_iommu=off"
-      "pcie_aspm=off"
+      "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # Audio and USB
       "amdgpu.audio=0"
-      "usbcore.autosuspend=-1"
+      "usbcore.autosuspend=-1" # Prevents USB disconnect issues
       "snd_hda_intel.power_save=0"
       "snd_hda_intel.probe_mask=1"
     ];
 
     kernel.sysctl = {
-
       # Users will do scary things and suddenly require more memory,
       # so let's take a bunch of spares from the cache so we don't OOM
       # as easily.
@@ -162,17 +161,21 @@
       "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
 
       # Virtual memory tweaks
-      "vm.swappiness" = 90;
+      "vm.swappiness" = 10; # Use RAM more before swapping
       "vm.vfs_cache_pressure" = 50;
       "vm.dirty_background_ratio" = 2;
-      "vm.dirty_ratio" = 5;
       "vm.max_map_count" = 262144;
+      # Write data to disk more frequently (prevents slowdowns)
+      "vm.dirty_ratio" = 15;
 
-      # Kernel scheduler
+      # Kernel Scheduler
       "kernel.sched_autogroup_enabled" = 0;
       "kernel.sched_child_runs_first" = 1;
       "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
       "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
+
+      # Disables watchdog timer (can improve latency)
+      "kernel.nmi_watchdog" = 0;
 
       # File system tweaks
       "fs.file-max" = 2097152;
