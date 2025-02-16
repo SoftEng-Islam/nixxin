@@ -1,7 +1,8 @@
 { settings, lib, config, pkgs, ... }: {
   # Bootloader Configuration:
   boot = {
-    kernelPackages = pkgs.linuxPackages_latest;
+    # Change kernal to zen kernal
+    kernelPackages = pkgs.linuxPackages_zen;
 
     bootspec.enable =
       if (settings.boot.loader.manager.name == "SYSTEMD") then true else false;
@@ -151,6 +152,13 @@
     ];
 
     kernel.sysctl = {
+
+      # Users will do scary things and suddenly require more memory,
+      # so let's take a bunch of spares from the cache so we don't OOM
+      # as easily.
+      "vm.user_reserve_kbytes" = 196608; # 1(2^17)
+      "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
+
       # Virtual memory tweaks
       "vm.swappiness" = 90;
       "vm.vfs_cache_pressure" = 50;

@@ -7,6 +7,10 @@
     fwupd.enable = false;
     udisks2.enable = true;
   };
+
+  # Hackity HACK for working D-Bus activation
+  # systemd.user.services.dbus.environment.DISPLAY = ":0";
+
   environment.systemPackages = with pkgs; [
     dbus # Simple interprocess messaging system
     dbus-broker # Linux D-Bus Message Broker

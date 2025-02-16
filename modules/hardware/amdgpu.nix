@@ -90,7 +90,9 @@
     xorg.xf86videoamdgpu
 
     # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    # amf # AMD's closed source Advanced Media Framework (AMF) driver
+
+    # AMD encoders/decoders
+    amf # AMD's closed source Advanced Media Framework (AMF) driver
   ];
 
   home-manager.users."${settings.user.username}" = { };
