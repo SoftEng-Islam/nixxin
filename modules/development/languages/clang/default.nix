@@ -1,4 +1,6 @@
-{ pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.development.languages.clang.enable) {
 
   environment.variables = {
     # Use gcc for compilation
@@ -40,4 +42,5 @@
     gpp # c++ module?, decrypt
     gecode # c++ module
   ];
+  # programs.vscode.extensions = [ pkgs.vscode-extensions.ms-vscode.cpptools ];
 }

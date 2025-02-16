@@ -18,6 +18,7 @@
     typescript # Superset of JavaScript that compiles to clean JavaScript output
     pnpm-shell-completion
 
+    nodePackages_latest.typescript-language-server
     # nodePackages_latest.autoprefixer
     nodePackages_latest.eas-cli
     # nodePackages_latest.eslint

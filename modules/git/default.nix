@@ -2,15 +2,26 @@
   home-manager.users.${settings.user.username} = {
     programs.git = {
       enable = true;
+      userName = settings.user.name;
+      userEmail = settings.user.email;
       extraConfig = {
         color.ui = true;
         core.editor = "nvim";
         credential.helper = "store";
-        github.user = settings.users.selected.name;
+        github.user = settings.user.name;
         push.autoSetupRemote = true;
+        pull.ff = "only";
+        init.defaultBranch = "main";
+        tag.gpgSign = true;
+        safe.directory = "*";
       };
-      userEmail = settings.users.selected.email;
-      userName = settings.users.selected.name;
+      ignores = [ ".direnv/" ".envrc" "result" "result-doc" ];
+
+      signing = {
+        signByDefault = true;
+        # key = "3FE1845783ADA7CB";
+      };
+      delta.enable = true;
     };
   };
   environment.systemPackages = with pkgs; [
