@@ -20,7 +20,10 @@ in {
 
     # NOTE!! disable to use GRUB instead of systemd-boot
     loader.systemd-boot.enable =
-      if (settings.boot.loader.manager.name == "SYSTEMD") then true else false;
+      if (settings.system.os.boot.loader.manager.name == "SYSTEMD") then
+        true
+      else
+        false;
 
     bootspec.enable =
       if (settings.boot.loader.manager.name == "SYSTEMD") then true else false;
@@ -64,6 +67,7 @@ in {
       verbose = false;
       # systemd.dbus.enable = false;
       kernelModules = [ "amdgpu" ];
+
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
@@ -81,17 +85,15 @@ in {
       ];
     };
     kernelModules = [
+      "amd-pstate"
+      "bfq"
+      "binder_linux"
+      "coretemp"
       "fuse"
       "kvm-amd"
-      "coretemp"
-      "bfq"
+      "msr"
       "uinput"
-
-      "binder_linux"
-
-      "amd-pstate"
-      # "msr"
-      # "zenpower"
+      "zenpower"
     ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
@@ -99,9 +101,11 @@ in {
       v4l2loopback
       # zenpower
     ];
+
     extraModprobeConfig = ''
       options binder_linux devices=binder,hwbinder,vndbinder
     '';
+
     kernelParams = [
       # Reduce Boot Delay
       "quiet"
@@ -133,9 +137,9 @@ in {
       # "acpi_osi=Linux"
       # "pci=realloc"
 
-      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      # "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+      # "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+      # "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
       "elevator=bfq" # Optimized disk performance for desktops
 
@@ -321,8 +325,8 @@ in {
   nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
   services = {
     # fstrim.enable = true;
-    xserver.videoDrivers = settings.hardware.videoDrivers;
-    # auto-epp.enable = true;
+    xserver.videoDrivers = [ "amdgpu" "radeon" ];
+    auto-epp.enable = true; # Enable auto-epp for amd active pstate.
   };
   hardware = {
     uinput.enable = true;
@@ -363,6 +367,38 @@ in {
         libva-utils
         vaapiVdpau
         pocl
+
+        amdvlk # AMD Vulkan driver
+        vulkan-validation-layers
+        vulkan-tools
+        vulkan-loader
+
+        libvdpau-va-gl
+        libGL
+        libGLU
+        libGLX
+        libva
+        libva-utils
+        vaapiVdpau
+        # pocl
+
+        mesa
+        mesa.drivers
+        mesa.vulkan-drivers # Adds RADV Vulkan driver
+        mesa.opencl
+        mesa-demos # Provides glxinfo, glxgears
+        libglvnd
+        libva
+        libvdpau
+        xorg.libXv
+        xorg.libXvMC
+
+        # ---- Unlocks OpenCL GPU acceleration ---- #
+        # rocmPackages.clr
+        # rocmPackages.clr.icd
+        # rocmPackages.rocm-runtime
+        # rocmPackages.rocm-smi
+        # rocmPackages.rocminfo
       ];
       # To enable Vulkan support for 32-bit applications, also add:
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
@@ -512,11 +548,29 @@ in {
     "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
   ];
 
+  hardware = {
+    cpu.amd.updateMicrocode = true;
+    # cpu.amd.sev.enable = true;
+    enableRedistributableFirmware = true;
+    amdgpu.initrd.enable = true;
+    amdgpu.amdvlk.enable = true;
+    amdgpu.amdvlk.support32Bit.enable = true;
+    amdgpu.amdvlk.supportExperimental.enable = true;
+    amdgpu.opencl.enable = false;
+    amdgpu.legacySupport.enable = false;
+    amdgpu.amdvlk.settings = {
+      IFH = 0;
+      ShaderCacheMode = 1;
+      EnableVmAlwaysValid = 1;
+      IdleAfterSubmitGpuMask = 1;
+      AllowVkPipelineCachingToDisk = 1;
+    };
+  };
+
   environment.variables = {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
     ROC_ENABLE_PRE_VEGA = "1";
-    AMD_VULKAN_ICD = "RADV";
 
     GPU_FORCE_64BIT_PTR = "1";
     GPU_MAX_ALLOC_PERCENT = "50";
@@ -531,12 +585,27 @@ in {
     # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
+    # Fixes screen tearing in games & Hyprland.
+    AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
+    #VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+    VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    VK_LAYER_PATH = "/etc/vulkan/layer.d";
+    vblank_mode = "0"; # Reduces latency
+
+    # Improves OpenGL compatibility & speed.
+    MESA_GL_VERSION_OVERRIDE = "4.6";
+    MESA_GLSL_VERSION_OVERRIDE = "460";
+    AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
+
     VDPAU_DRIVER = "amdgpu";
-    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+
   };
 
   environment.systemPackages = with pkgs; [
-    # ---- Boot Packages ---- #
+    # ------------------------------------------------
+    # ---- Boot Packages
+    # ------------------------------------------------
     acpid
     fatcat
     os-prober
@@ -544,25 +613,16 @@ in {
     grub2_full
     sleek-grub-theme
     nixos-grub2-theme
-    # ---- Hardware Packages ---- #
+
+    # ------------------------------------------------
+    # ---- Hardware Packages
+    # ------------------------------------------------
     # xivlauncher # Custom launcher for FFXIV
     # zenstates # Linux utility for Ryzen processors and motherboards
     amdgpu_top # Tool to display AMDGPU usage
 
     nvtopPackages.amd
     llvmPackages.mlir # Multi-Level IR Compiler Framework
-
-    # rocmPackages.hip-common
-    # rocmPackages.hipblas
-    # rocmPackages.hipcc
-    # rocmPackages.hipcub
-    # rocmPackages.hipfft
-    # rocmPackages.hipify
-    # rocmPackages.hiprand
-    # rocmPackages.rocm-runtime
-    # rocmPackages.rocminfo
-    # rocmPackages.rpp-opencl
-    # rocmPackages.clr
 
     oclgrind # OpenCL device simulator and debugger
     amd-ucodegen # Tool to generate AMD microcode files
@@ -571,7 +631,9 @@ in {
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     linux-firmware # Binary firmware collection packaged by kernel.org
 
-    # AMD Stuff
+    # ------------------------------------------------
+    # ---- AMD Stuff
+    # ------------------------------------------------
     amdvlk # AMD Open Source Driver For Vulkan
     driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
     driversi686Linux.mesa # An open source 3D graphics library
@@ -589,7 +651,6 @@ in {
     glmark2 # OpenGL (ES) 2.0 benchmark
     gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
     hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
-    # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
     libdrm # Direct Rendering Manager library and headers
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva # An implementation for VA-API (Video Acceleration API)
@@ -597,14 +658,15 @@ in {
     mesa_glu # OpenGL utility library
     mesa_i686 # Open source 3D graphics library
     mesa-demos # Collection of demos and test programs for OpenGL and Mesa
+    openal # OpenAL alternative
+    # clblast # Tuned OpenCL BLAS library
+    # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
     # ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
     # oclgrind # OpenCL device simulator and debugger
-    openal # OpenAL alternative
     # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
     # opencl-clhpp # OpenCL Host API C++ bindings
     # opencl-headers # Khronos OpenCL headers version 2023.12.14
-    pocl # Portable Computing Language
-    # clblast # Tuned OpenCL BLAS library
+    # pocl # Portable Computing Language
 
     spirv-cross
     spirv-headers
@@ -623,28 +685,43 @@ in {
     xorg.xf86videoamdgpu
 
     lact # Linux AMDGPU Controller and GPU overclocking tool
-    # ---- Power Packages ---- #
 
-    # ---- Mesa Packages ---- #
+    # ------------------------------------------------
+    # ---- Power Packages
+    # ------------------------------------------------
+    tlp
+    upower
+    upower-notify
+    power-profiles-daemon
+    poweralertd
+    powercap
+
+    # ------------------------------------------------
+    # ---- Mesa Packages
+    # ------------------------------------------------
     mesa # An open source 3D graphics library
     mesa_glu # OpenGL utility library
     mesa_i686 # Open source 3D graphics library
     mesa-demos # Collection of demos and test programs for OpenGL and Mesa
 
-    # ---- ROCM Packages ---- #
-    rocmPackages.hip-common
-    rocmPackages.hipblas
-    rocmPackages.hipcc
-    rocmPackages.hipcub
-    rocmPackages.hipfft
-    rocmPackages.hipify
-    rocmPackages.hiprand
-    rocmPackages.rocm-runtime
-    rocmPackages.rocminfo
-    rocmPackages.rpp-opencl
-    rocmPackages.clr
+    # ------------------------------------------------
+    # ---- ROCM Packages
+    # ------------------------------------------------
+    # rocmPackages.clr
+    # rocmPackages.hip-common
+    # rocmPackages.hipblas
+    # rocmPackages.hipcc
+    # rocmPackages.hipcub
+    # rocmPackages.hipfft
+    # rocmPackages.hipify
+    # rocmPackages.hiprand
+    # rocmPackages.rocm-runtime
+    # rocmPackages.rocminfo
+    # rocmPackages.rpp-opencl
 
-    # ---- Vulkan ---- #
+    # ------------------------------------------------
+    # ---- Vulkan
+    # ------------------------------------------------
     dxvk # A Vulkan-based translation layer for Direct3D
     vkbasalt # Vulkan post processing layer for Linux
     vkquake # Vulkan Quake port based on QuakeSpasm
@@ -661,5 +738,26 @@ in {
     vulkan-utility-libraries # Set of utility libraries for Vulkan
     vulkan-validation-layers
     vulkan-volk
+
+    # ------------------------------------------------
+    # ---- AMD Packages
+    # ------------------------------------------------
+    amd-blis # BLAS-compatible library optimized for AMD CPUs
+    amd-ucodegen # Tool to generate AMD microcode files
+    amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
+    amdenc # AMD Encode Core Library
+    amdgpu_top # Tool to display AMDGPU usage
+    amdvlk # AMD Open Source Driver For Vulkan
+    aocl-utils # Interface to all AMD AOCL libraries to access CPU features
+    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+    driversi686Linux.mesa # An open source 3D graphics library
+    mesa_glu # OpenGL utility library
+    mesa_i686 # Open source 3D graphics library
+    microcode-amd # AMD Processor microcode patch
+    microcodeAmd # AMD Processor microcode patch
+    nvtopPackages.amd # (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs
+    xorg.xf86videoamdgpu
+    amf # AMD's closed source Advanced Media Framework (AMF) driver
+    # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
   ];
 }
