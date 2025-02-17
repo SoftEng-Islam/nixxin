@@ -3,7 +3,9 @@ let inherit (lib) mkIf;
 in {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  # ---- Boot Configuration ----  #
+  # ------------------------------------------------
+  # ---- Boot Configuration
+  # ------------------------------------------------
   boot = {
     # Change kernal to zen kernal
     kernelPackages = pkgs.linuxPackages_zen;
@@ -273,12 +275,10 @@ in {
     plymouth.enable = true;
     # plymouth.theme = "bgrt";
   };
-  services.btrfs.autoScrub = {
-    enable = true;
-    interval = "weekly";
-  };
 
-  # ---- Hardware Configuration ----  #
+  # ------------------------------------------------
+  # ---- Hardware Configuration
+  # ------------------------------------------------
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
     fsType = "btrfs";
@@ -299,7 +299,6 @@ in {
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
-    # fsType = "auto";
     fsType = "ntfs-3g";
     options = [
       "rw"
@@ -314,20 +313,14 @@ in {
     ];
   };
 
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
   services = {
-    # fstrim.enable = true;
     xserver.videoDrivers = [ "amdgpu" "radeon" ];
     auto-epp.enable = true; # Enable auto-epp for amd active pstate.
   };
+
+  # ------------------------------------------------
+  # ---- Hardware
+  # ------------------------------------------------
   hardware = {
     uinput.enable = true;
     enableAllFirmware = true;
@@ -353,34 +346,10 @@ in {
       extraPackages = with pkgs; [
         amdvlk
         amf
-        # mesa.opencl
-        # rocmPackages.clr
-        # rocmPackages.clr.icd
-        # rocmPackages.rocm-runtime
-        # rocmPackages.rocm-smi
-        # rocmPackages.rocminfo
-        libvdpau-va-gl
-        libGL
-        libGLU
-        libGLX
-        libva
-        libva-utils
-        vaapiVdpau
-        pocl
-
         amdvlk # AMD Vulkan driver
         vulkan-validation-layers
         vulkan-tools
         vulkan-loader
-
-        libvdpau-va-gl
-        libGL
-        libGLU
-        libGLX
-        libva
-        libva-utils
-        vaapiVdpau
-        # pocl
 
         mesa
         mesa.drivers
@@ -393,6 +362,15 @@ in {
         xorg.libXv
         xorg.libXvMC
 
+        libvdpau-va-gl
+        libGL
+        libGLU
+        libGLX
+        libva
+        libva-utils
+        vaapiVdpau
+        # pocl
+
         # ---- Unlocks OpenCL GPU acceleration ---- #
         # rocmPackages.clr
         # rocmPackages.clr.icd
@@ -404,6 +382,23 @@ in {
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
   };
+
+  # ------------------------------------------------
+  # ---- Storage
+  # ------------------------------------------------
+  # Btrfs scrub checks all data and metadata on the disk for corruption.
+  # If checksum mismatches are found, Btrfs attempts to repair them using redundant copies (if available).
+  # Similar to ZFS scrub but for Btrfs filesystems.
+  services.btrfs.autoScrub = {
+    enable = true;
+    interval = "weekly";
+  };
+
+  # TRIM is a command that tells the SSD which blocks are no longer needed (e.g., after file deletions).
+  # SSDs cannot overwrite data directly like HDDs—they must erase old data before writing new data.
+  # Without TRIM, SSDs can slow down over time due to inefficient block management.
+  services.fstrim.enable = settings.modules.system.fstrim;
+
   # ------------------------------------------------
   # ---- Power Configuration
   # ------------------------------------------------
