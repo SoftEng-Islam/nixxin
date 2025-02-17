@@ -27,9 +27,10 @@
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
-        mesa
-        mesa.opencl
+        amdvlk # AMD Vulkan driver
+        vulkan-validation-layers
+        vulkan-tools
+        vulkan-loader
 
         libvdpau-va-gl
         libGL
@@ -40,6 +41,18 @@
         vaapiVdpau
         pocl
 
+        mesa
+        mesa.drivers
+        mesa.vulkan-drivers # Adds RADV Vulkan driver
+        mesa.opencl
+        mesa-demos # Provides glxinfo, glxgears
+        libglvnd
+        libva
+        libvdpau
+        xorg.libXv
+        xorg.libXvMC
+
+        # ---- Unlocks OpenCL GPU acceleration ---- #
         # rocmPackages.clr
         # rocmPackages.clr.icd
         # rocmPackages.rocm-runtime
@@ -52,8 +65,19 @@
       ];
     };
   };
+
   environment.variables = {
-    AMD_VULKAN_ICD = "RADV";
+
+    # Fixes screen tearing in games & Hyprland.
+    AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
+    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+    VK_LAYER_PATH = "/etc/vulkan/layer.d";
+    vblank_mode = "0"; # Reduces latency
+
+    # Improves OpenGL compatibility & speed.
+    MESA_GL_VERSION_OVERRIDE = "4.6";
+    MESA_GLSL_VERSION_OVERRIDE = "460";
+    AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
 
     GPU_FORCE_64BIT_PTR = "1";
     GPU_MAX_ALLOC_PERCENT = "50";
@@ -69,7 +93,6 @@
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     VDPAU_DRIVER = "amdgpu";
-    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
   };
   environment.systemPackages = with pkgs; [
 

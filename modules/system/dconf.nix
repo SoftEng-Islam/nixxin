@@ -1,43 +1,27 @@
 { settings, lib, pkgs, ... }:
-# you can try this command if you have any problem with gnome settings
-# dconf reset -f /org/gnome/
+let
+  inherit (lib) mkIf;
+  # you can try this command if you have any problem with gnome settings
+  # dconf reset -f /org/gnome/
 
-# Run the following command to disable the Gnome check-alive-timeout or "App Not Responding" dialog:
-# dconf write /org/gnome/mutter/debug/enable-frame-timing false
-# gsettings set org.gnome.mutter check-alive-timeout 0
+  # Run the following command to disable the Gnome check-alive-timeout or "App Not Responding" dialog:
+  # dconf write /org/gnome/mutter/debug/enable-frame-timing false
+  # gsettings set org.gnome.mutter check-alive-timeout 0
 
-with lib.gvariant; {
+in with lib.gvariant;
+mkIf (settings.modules.nixos.dconf) {
   programs.dconf.enable = true; # dconf
   environment.systemPackages = with pkgs;
     [
       dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
       # dconf-editor # GSettings editor for GNOME
-
-      # gnome-tweaks
-      # gnome-extension-manager
-      # gnomeExtensions.appindicator
-      # gnomeExtensions.blur-my-shell
-      # gnomeExtensions.dash-to-dock
-      # gnomeExtensions.net-speed-simplified # A Net Speed extension With Loads of Customization. Fork of simplenetspeed
     ];
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
       # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
       # gnome-extensions list --enabled
-      "org/gnome/shell" = {
-        disable-user-extensions = false;
-        enabled-extensions = [
-          # "dash-to-dock@micxgx.gmail.com"
-          # "blur-my-shell@aunetx"
-          # "appindicatorsupport@rgcjonas.gmail.com"
-          # "pomodoro@arun.codito.in"
-          # "netspeedsimplified@prateekmedia.extension"
-        ];
-      };
-      "org/gnome/shell/extensions/blur-my-shell/overview" = {
-        style-components = 3;
-      };
+      "org/gnome/shell" = { disable-user-extensions = true; };
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
         enable-monitors = false;
@@ -162,29 +146,6 @@ with lib.gvariant; {
         # you can set the idle-delay to 300 seconds (5 minutes) or
         # 0 to Disable:
         idle-delay = mkUint32 settings.idle.delay;
-      };
-
-      "org/gnome/desktop/wm/keybindings" = {
-        close = [ "<Alt>q" ];
-        move-to-workspace-1 = [ "<Shift><Super>1" ];
-        move-to-workspace-2 = [ "<Shift><Super>2" ];
-        move-to-workspace-3 = [ "<Shift><Super>3" ];
-        move-to-workspace-4 = [ "<Shift><Super>4" ];
-        move-to-workspace-5 = [ "<Shift><Super>5" ];
-        move-to-workspace-6 = [ "<Shift><Super>6" ];
-        move-to-workspace-7 = [ "<Shift><Super>7" ];
-        move-to-workspace-8 = [ "<Shift><Super>8" ];
-        move-to-workspace-9 = [ "<Shift><Super>9" ];
-        switch-to-workspace-1 = [ "<Super>1" ];
-        switch-to-workspace-2 = [ "<Super>2" ];
-        switch-to-workspace-3 = [ "<Super>3" ];
-        switch-to-workspace-4 = [ "<Super>4" ];
-        switch-to-workspace-5 = [ "<Super>5" ];
-        switch-to-workspace-6 = [ "<Super>6" ];
-        switch-to-workspace-7 = [ "<Super>7" ];
-        switch-to-workspace-8 = [ "<Super>8" ];
-        switch-to-workspace-9 = [ "<Super>9" ];
-        toggle-fullscreen = [ "<Super>f" ];
       };
 
       "org/gnome/shell/keybindings" = {

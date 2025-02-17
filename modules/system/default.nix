@@ -124,6 +124,11 @@ in {
   };
 
   services = {
+    # Forces the GPU to always run at full power.
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", ATTR{power_dpm_state}="performance"
+    '';
+
     dbus.enable = true;
     dbus.packages = [ pkgs.dconf ];
     dbus.implementation = "broker";
