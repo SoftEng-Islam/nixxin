@@ -404,27 +404,9 @@ in {
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
   };
-  # systemd.tmpfiles.rules = let
-  #   rocmEnv = pkgs.symlinkJoin {
-  #     name = "rocm-combined";
-  #     paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-  #   };
-  # in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
-
-  # environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
-  #   ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
-  # '';
-
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source =
-  #   pkgs.rocmPackages.clr.icd;
-
-  # services.ucodenix = {
-  #   enable = false;
-  #   # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-  #   cpuModelId = "00A70F41";
-  # };
-
-  # ---- power Configuration ---- #
+  # ------------------------------------------------
+  # ---- Power Configuration
+  # ------------------------------------------------
   # Best Power Optimizations for a Desktop
   powerManagement = {
     enable = true;
@@ -452,20 +434,19 @@ in {
     # cpufreq.max = 2200000;
   };
 
-  services = {
-    # Power Management
-    power-profiles-daemon.enable = true;
+  # Power Management
+  services.power-profiles-daemon.enable = true;
 
-    # Whether to enable auto-cpufreq daemon.
-    auto-cpufreq.enable = true;
+  # Whether to enable auto-cpufreq daemon.
+  services.auto-cpufreq.enable = true;
 
-    # Upower, a DBus service that provides power management support to applications.
-    upower = {
-      enable = lib.mkForce true;
-      package = pkgs.upower;
-    };
-  };
+  # Upower, a DBus service that provides power management support to applications.
+  services.upower.enable = lib.mkForce true;
+  services.upower.package = pkgs.upower;
 
+  # ------------------------------------------------
+  # ---- TLP
+  # ------------------------------------------------
   # Should You Use TLP on a Desktop?
   #---- No, TLP is designed for laptops to improve battery life by reducing power
   #---- consumption. On a desktop, it is not necessary and can cause performance issues
@@ -515,20 +496,9 @@ in {
       INTEL_GPU_MIN_FREQ_ON_BAT = 600;
     };
   };
-
-  # systemd.tmpfiles.rules = let
-  #   rocmEnv = pkgs.symlinkJoin {
-  #     name = "rocm-combined";
-  #     paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-  #   };
-  # in [ "L+    /opt/rocm   -    -    -     -    ${rocmEnv}" ];
-
-  # environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
-  #   ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
-  # '';
-
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
-
+  # ------------------------------------------------
+  # ---- Lact
+  # ------------------------------------------------
   systemd.services.lact = {
     description = "AMDGPU Control Daemon";
     after = [ "multi-user.target" ];
@@ -548,6 +518,22 @@ in {
     "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
   ];
 
+  environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
+    ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
+  '';
+
+  environment.etc."OpenCL/vendors/amdocl64.icd".source =
+    pkgs.rocmPackages.clr.icd;
+
+  services.ucodenix = {
+    enable = false;
+    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
+    cpuModelId = "00A70F41";
+  };
+
+  # ------------------------------------------------
+  # ---- Variables
+  # ------------------------------------------------
   environment.variables = {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
@@ -580,7 +566,6 @@ in {
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
 
     VDPAU_DRIVER = "amdgpu";
-
   };
 
   environment.systemPackages = with pkgs; [
