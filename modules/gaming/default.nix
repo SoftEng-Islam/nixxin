@@ -54,6 +54,12 @@ in {
     };
   };
 
+  services.sunshine = {
+    enable = true;
+    autoStart = true;
+    capSysAdmin = true;
+    openFirewall = true;
+  };
   environment.systemPackages = with pkgs;
     [
       # steam-run # Run commands in the same FHS environment that is used for Steam
@@ -64,6 +70,9 @@ in {
       # retroarch-joypad-autoconfig # Joypad autoconfig files
       # (mangohud.override { lowerBitnessSupport = true; })
       gamemode # Optimise Linux system performance on demand
+
+      # Yet another keyboard configurator
+      # via
 
       # Install Gaming & Benchmarking Tools
       mesa-demos # OpenGL test tools

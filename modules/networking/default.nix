@@ -2,5 +2,6 @@
 let inherit (lib) mkIf;
 in {
   imports = [ ./networking.nix ./dnsmasq.nix ];
-  # environment.systemPackages = with pkgs; [ ];
+  services.avahi.publish.enable = true;
+  services.avahi.publish.userServices = true;
 }

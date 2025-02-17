@@ -64,15 +64,20 @@ in {
       verbose = false;
       # systemd.dbus.enable = false;
       kernelModules = [ "amdgpu" ];
+      # Additional kernel modules needed for virtualization
       availableKernelModules = [
-        "xhci_pci"
         "ahci"
-        "ohci_pci"
-        "ehci_pci"
-        "usbhid"
-        "usb_storage"
-        "sd_mod"
+        "amdgpu"
         "cryptd"
+        "ehci_pci"
+        "ohci_pci"
+        "sd_mod"
+        "usb_storage"
+        "usbhid"
+        "vfio_iommu_type1"
+        "vfio_pci"
+        "vfio"
+        "xhci_pci"
       ];
     };
     kernelModules = [
@@ -149,7 +154,13 @@ in {
       # "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
+      # If you want full control over power settings, use:
       "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # If you have stability issues (freezes, black screens, crashes), try:
+      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      # Check If It’s Applied:
+      # cat /sys/module/amdgpu/parameters/ppfeaturemask
+
       "amdgpu.dcfeaturemask=0x8"
       "amdgpu.freesync_video=1"
       "amdgpu.gpu_recovery=1"
@@ -162,14 +173,14 @@ in {
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
 
+      "amdgpu.audio=0"
       "amdgpu.sg_display=0" # Fixes display-related ROCm issues
       "amdgpu.noretry=0" # Improve memory handling
       "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
       "amdgpu.dpm=1"
-
-      # "amdgpu.runpm=0"
       "amdgpu.gttsize=4096"
       "amdgpu.deep_color=1"
+      # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
       # "amdgpu.vm_fragment_size=9"
@@ -178,19 +189,18 @@ in {
       # "amdgpu.unified_memory=1"
       # "amdgpu.memory_alloc_mode=2"
 
-      # System performance
+      # System Performance
       "preempt=voluntary"
       "transparent_hugepage=never"
       "clocksource=tsc"
       "tsc=reliable"
 
-      # Power management
+      # Power Management
       "workqueue.power_efficient=off"
       "amd_iommu=off"
       "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # Audio and USB
-      "amdgpu.audio=0"
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
       "snd_hda_intel.power_save=0"
       "snd_hda_intel.probe_mask=1"
@@ -263,6 +273,7 @@ in {
     enable = true;
     interval = "weekly";
   };
+
   # ---- Hardware Configuration ----  #
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
@@ -337,6 +348,7 @@ in {
       enable32Bit = true;
       extraPackages = with pkgs; [
         amdvlk
+        amf
         # mesa.opencl
         # rocmPackages.clr
         # rocmPackages.clr.icd
@@ -352,10 +364,8 @@ in {
         vaapiVdpau
         pocl
       ];
-      extraPackages32 = [
-        pkgs.driversi686Linux.amdvlk
-        #  pkgs.pkgsi686Linux.libva
-      ];
+      # To enable Vulkan support for 32-bit applications, also add:
+      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
   };
   # systemd.tmpfiles.rules = let
@@ -371,26 +381,6 @@ in {
 
   # environment.etc."OpenCL/vendors/amdocl64.icd".source =
   #   pkgs.rocmPackages.clr.icd;
-
-  environment.variables = {
-    AMD_VULKAN_ICD = "RADV";
-
-    GPU_FORCE_64BIT_PTR = "1";
-    GPU_MAX_ALLOC_PERCENT = "50";
-    GPU_MAX_HEAP_SIZE = "50";
-    GPU_MAX_USE_SYNC_OBJECTS = "1";
-    GPU_SINGLE_ALLOC_PERCENT = "50";
-
-    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
-
-    LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
-    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
-    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
-
-    VDPAU_DRIVER = "amdgpu";
-    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
-  };
 
   # services.ucodenix = {
   #   enable = false;
@@ -425,16 +415,19 @@ in {
     # cpufreq.min = 800000;
     # cpufreq.max = 2200000;
   };
-  # Power Management
-  services.power-profiles-daemon.enable = true;
 
-  # Whether to enable auto-cpufreq daemon.
-  services.auto-cpufreq.enable = true;
+  services = {
+    # Power Management
+    power-profiles-daemon.enable = true;
 
-  # Upower, a DBus service that provides power management support to applications.
-  services.upower = {
-    enable = lib.mkForce true;
-    package = pkgs.upower;
+    # Whether to enable auto-cpufreq daemon.
+    auto-cpufreq.enable = true;
+
+    # Upower, a DBus service that provides power management support to applications.
+    upower = {
+      enable = lib.mkForce true;
+      package = pkgs.upower;
+    };
   };
 
   # Should You Use TLP on a Desktop?
@@ -498,13 +491,48 @@ in {
   #   ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
   # '';
 
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source =
-  #   pkgs.rocmPackages.clr.icd;
+  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
+
+  systemd.services.lact = {
+    description = "AMDGPU Control Daemon";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
+    enable = true;
+  };
+
+  # Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
+  ];
 
   environment.variables = {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
     ROC_ENABLE_PRE_VEGA = "1";
+    AMD_VULKAN_ICD = "RADV";
+
+    GPU_FORCE_64BIT_PTR = "1";
+    GPU_MAX_ALLOC_PERCENT = "50";
+    GPU_MAX_HEAP_SIZE = "50";
+    GPU_MAX_USE_SYNC_OBJECTS = "1";
+    GPU_SINGLE_ALLOC_PERCENT = "50";
+
+    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
+
+    LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
+    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
+
+    VDPAU_DRIVER = "amdgpu";
+    VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
   };
 
   environment.systemPackages = with pkgs; [
@@ -615,5 +643,23 @@ in {
     rocmPackages.rocminfo
     rocmPackages.rpp-opencl
     rocmPackages.clr
+
+    # ---- Vulkan ---- #
+    dxvk # A Vulkan-based translation layer for Direct3D
+    vkbasalt # Vulkan post processing layer for Linux
+    vkquake # Vulkan Quake port based on QuakeSpasm
+    vulkan-caps-viewer
+    vulkan-cts
+    vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
+    vulkan-hdr-layer-kwin6
+    vulkan-headers # Vulkan Header files and API registry
+    vulkan-helper
+    vulkan-loader
+    vulkan-memory-allocator
+    vulkan-tools # Khronos official Vulkan Tools and Utilities
+    vulkan-tools-lunarg
+    vulkan-utility-libraries # Set of utility libraries for Vulkan
+    vulkan-validation-layers
+    vulkan-volk
   ];
 }
