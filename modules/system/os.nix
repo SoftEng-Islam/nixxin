@@ -548,25 +548,6 @@ in {
     "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
   ];
 
-  hardware = {
-    cpu.amd.updateMicrocode = true;
-    # cpu.amd.sev.enable = true;
-    enableRedistributableFirmware = true;
-    amdgpu.initrd.enable = true;
-    amdgpu.amdvlk.enable = true;
-    amdgpu.amdvlk.support32Bit.enable = true;
-    amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.opencl.enable = false;
-    amdgpu.legacySupport.enable = false;
-    amdgpu.amdvlk.settings = {
-      IFH = 0;
-      ShaderCacheMode = 1;
-      EnableVmAlwaysValid = 1;
-      IdleAfterSubmitGpuMask = 1;
-      AllowVkPipelineCachingToDisk = 1;
-    };
-  };
-
   environment.variables = {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     ROCM_TARGET = "gfx700";
