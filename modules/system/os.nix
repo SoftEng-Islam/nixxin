@@ -327,24 +327,27 @@ in {
     cpu.amd.updateMicrocode = true;
     # cpu.amd.sev.enable = true;
     enableRedistributableFirmware = true;
-    amdgpu.initrd.enable = true;
-    amdgpu.amdvlk.enable = true;
-    amdgpu.amdvlk.support32Bit.enable = true;
-    amdgpu.amdvlk.supportExperimental.enable = true;
-    amdgpu.opencl.enable = false;
-    amdgpu.legacySupport.enable = false;
-    amdgpu.amdvlk.settings = {
-      IFH = 0;
-      ShaderCacheMode = 1;
-      EnableVmAlwaysValid = 1;
-      IdleAfterSubmitGpuMask = 1;
-      AllowVkPipelineCachingToDisk = 1;
+    amdgpu = {
+      initrd.enable = true;
+      opencl.enable = false;
+      legacySupport.enable = false;
+      amdvlk = {
+        enable = true;
+        support32Bit.enable = true;
+        supportExperimental.enable = true;
+        settings = {
+          IFH = 0;
+          ShaderCacheMode = 1;
+          EnableVmAlwaysValid = 1;
+          IdleAfterSubmitGpuMask = 1;
+          AllowVkPipelineCachingToDisk = 1;
+        };
+      };
     };
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
         amf
         amdvlk # AMD Vulkan driver
         vulkan-validation-layers
