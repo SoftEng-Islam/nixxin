@@ -372,7 +372,6 @@ in {
         libva
         libva-utils
         vaapiVdpau
-        # pocl
 
         # ---- Unlocks OpenCL GPU acceleration ---- #
         # rocmPackages.clr
@@ -498,11 +497,11 @@ in {
   # ---- Lact
   # ------------------------------------------------
   systemd.services.lact = {
+    enable = true;
     description = "AMDGPU Control Daemon";
     after = [ "multi-user.target" ];
     wantedBy = [ "multi-user.target" ];
     serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
-    enable = true;
   };
 
   # Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
@@ -516,18 +515,18 @@ in {
     "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
   ];
 
-  environment.etc."OpenCL/vendors/amdocl64.icd".text = ''
-    ${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so
-  '';
-
-  environment.etc."OpenCL/vendors/amdocl64.icd".source =
-    pkgs.rocmPackages.clr.icd;
-
   services.ucodenix = {
-    enable = false;
+    enable = true;
     # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-    cpuModelId = "00A70F41";
+    # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
+    # 00630F81
+    # Replace with your processor's model ID, use (cpuid)
+    cpuModelId = "00630F81";
   };
+
+  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
+  environment.etc."OpenCL/vendors/amdocl64.icd".text =
+    "${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so ";
 
   # ------------------------------------------------
   # ---- Variables
@@ -578,35 +577,35 @@ in {
     sleek-grub-theme
     nixos-grub2-theme
 
+    linux-firmware # Binary firmware collection packaged by kernel.org
+
     # ------------------------------------------------
     # ---- Hardware Packages
     # ------------------------------------------------
-    # xivlauncher # Custom launcher for FFXIV
-    # zenstates # Linux utility for Ryzen processors and motherboards
-    amdgpu_top # Tool to display AMDGPU usage
-
-    nvtopPackages.amd
+    cpuid
     llvmPackages.mlir # Multi-Level IR Compiler Framework
-
     oclgrind # OpenCL device simulator and debugger
-    amd-ucodegen # Tool to generate AMD microcode files
-    microcode-amd # AMD Processor microcode patch
-    microcodeAmd
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
-    linux-firmware # Binary firmware collection packaged by kernel.org
+    xivlauncher # Custom launcher for FFXIV
+    zenstates # Linux utility for Ryzen processors and motherboards
 
     # ------------------------------------------------
     # ---- AMD Stuff
     # ------------------------------------------------
-    amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.mesa # An open source 3D graphics library
-    amdenc # AMD Encode Core Library
-    amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
-    amd-blis # BLAS-compatible library optimized for AMD CPUs
     # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
     # amf # AMD's closed source Advanced Media Framework (AMF) driver
+    amd-blis # BLAS-compatible library optimized for AMD CPUs
+    amd-ucodegen # Tool to generate AMD microcode files
+    amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
+    amdenc # AMD Encode Core Library
+    amdgpu_top # Tool to display AMDGPU usage
+    amdvlk # AMD Open Source Driver For Vulkan
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
+    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+    driversi686Linux.mesa # An open source 3D graphics library
+    microcode-amd # AMD Processor microcode patch
+    microcodeAmd
+    nvtopPackages.amd
 
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
     clpeak
