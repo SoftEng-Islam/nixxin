@@ -533,8 +533,8 @@ in {
   # ------------------------------------------------
   environment.variables = {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    ROCM_TARGET = "gfx700";
-    ROC_ENABLE_PRE_VEGA = "1";
+    # ROCM_TARGET = "gfx700";
+    # ROC_ENABLE_PRE_VEGA = "1";
 
     GPU_FORCE_64BIT_PTR = "1";
     GPU_MAX_ALLOC_PERCENT = "50";
@@ -543,7 +543,7 @@ in {
     GPU_SINGLE_ALLOC_PERCENT = "50";
 
     # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
+    # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
     # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
