@@ -1,8 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  # starting this target will also start graphical-session targets
-  # NOTE: update dbus and systemd env variables so that gtk apps start without delay
   systemd = {
     sleep.extraConfig = ''
       AllowSuspend=no
@@ -10,6 +8,7 @@ in {
       AllowSuspendThenHibernate=no
       AllowHybridSleep=no
     '';
+
     timers.nix-cleanup-gcroots = {
       timerConfig = {
         OnCalendar = [ "weekly" ];
@@ -17,6 +16,7 @@ in {
       };
       wantedBy = [ "timers.target" ];
     };
+
     services.nix-cleanup-gcroots = {
       serviceConfig = {
         Type = "oneshot";
