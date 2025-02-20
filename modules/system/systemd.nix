@@ -33,6 +33,13 @@ in {
       };
     };
   };
+
+  # Hackity HACK for working D-Bus activation
+  # systemd.user.services.dbus.environment.DISPLAY = ":0";
+
+  # Tweaks improve boot times
+  systemd.services."*" = { serviceConfig = { TimeoutStartSec = "30s"; }; };
+
   home-manager.users.${settings.user.username} = {
     # Fake a tray to let apps start
     # https://github.com/nix-community/home-manager/issues/2064

@@ -174,19 +174,13 @@ in {
       # don’t shutdown when power button is short-pressed
       HandlePowerKey=ignore
     '';
+    # ---- Optimization ---- #
+    scx = {
+      enable = true;
+      scheduler = "scx_rusty";
+      package = pkgs.scx.rustscheds;
+    };
   };
-
-  # Hackity HACK for working D-Bus activation
-  # systemd.user.services.dbus.environment.DISPLAY = ":0";
-
-  # ---- Optimization ---- #
-  services.scx = {
-    enable = true;
-    scheduler = "scx_rusty";
-    package = pkgs.scx.rustscheds;
-  };
-  # Tweaks improve boot times
-  systemd.services."*" = { serviceConfig = { TimeoutStartSec = "30s"; }; };
 
   environment.systemPackages = with pkgs; [
     dbus # Simple interprocess messaging system
