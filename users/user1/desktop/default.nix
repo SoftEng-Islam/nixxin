@@ -123,34 +123,6 @@
       lf = true;
       lout = true;
     };
-    boot = {
-      loader = {
-        timeout = 3; # seconds
-        mode = "UEFI"; # UEFI OR BIOS
-        manager = {
-          # Select The boot manager to enable
-          name = "GRUB"; # GRUB or SYSTEMD
-
-          # device identifier for grub; only used for legacy (bios) boot mode
-          # List all the devices with their by-id symlinks
-          # ls -l /dev/disk/by-id/
-          grub = {
-            fontSize = 18;
-            # nix path-info -r nixpkgs#sleek-grub-theme
-            theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
-            osProber = false;
-            efiSupport = true;
-            gfxmodeEfi = "1920x1080";
-            devices = [ "nodev" ];
-            device = "nodev"; # Let GRUB automatically detect EFI
-            extraConfig = ''
-              GRUB_DISABLE_OS_PROBER=true
-              GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
-            '';
-          };
-        };
-      };
-    };
     community = {
       enable = true;
       discord = true;
@@ -402,7 +374,36 @@
         package = pkgs.bibata-cursors;
       };
     };
-    systemd = { };
+    system = {
+      boot = {
+        loader = {
+          timeout = 3; # seconds
+          mode = "UEFI"; # UEFI OR BIOS
+          manager = {
+            # Select The boot manager to enable
+            name = "GRUB"; # GRUB or SYSTEMD
+
+            # device identifier for grub; only used for legacy (bios) boot mode
+            # List all the devices with their by-id symlinks
+            # ls -l /dev/disk/by-id/
+            grub = {
+              fontSize = 18;
+              # nix path-info -r nixpkgs#sleek-grub-theme
+              theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
+              osProber = false;
+              efiSupport = true;
+              gfxmodeEfi = "1920x1080";
+              devices = [ "nodev" ];
+              device = "nodev"; # Let GRUB automatically detect EFI
+              extraConfig = ''
+                GRUB_DISABLE_OS_PROBER=true
+                GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
+              '';
+            };
+          };
+        };
+      };
+    };
     terminals = {
       default = {
         shell = "zsh"; # bash
