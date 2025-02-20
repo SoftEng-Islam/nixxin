@@ -20,6 +20,9 @@
   home.stateVersion = "24.11";
   home.backupFileExtension = null;
 
+  # ----------------------------------------------
+  # ---- Global
+  # ----------------------------------------------
   global = {
     # ---- Lockscreen ---- #
     lockscreen = {
@@ -97,11 +100,29 @@
       development = true;
       android_studio = false;
     };
+    ashell = { enable = true; };
     audio = {
       enable = true;
       rnnoise.enable = true; # Noise Canceling
     };
     bluetooth = { enable = false; };
+    browsers = {
+      brave = true;
+      firefox = false;
+      firefox-beta = false;
+      google-chrome = true;
+      microsoft-edge = true;
+    };
+    cli = { # Collection of useful CLI apps
+      enable = true;
+      aria = true;
+      bat = true;
+      eza = true;
+      fd = true;
+      fzf = true;
+      lf = true;
+      lout = true;
+    };
     boot = {
       loader = {
         timeout = 3; # seconds
@@ -129,17 +150,6 @@
           };
         };
       };
-    };
-    browsers = { # Browsers To Install
-      enable = true;
-      brave = true;
-      firefox = false;
-      firefox-beta = false;
-      google-chrome = true;
-      microsoft-edge = true;
-    };
-    cli = { # Collection of useful CLI apps
-      enable = true;
     };
     community = {
       enable = true;
