@@ -403,6 +403,10 @@
           };
         };
       };
+      zram = {
+        enable = true;
+        algorithm = "lz4"; # lz4 or zstd
+      };
     };
     terminals = {
       default = {
@@ -449,7 +453,8 @@
         size = modules.terminals.default.font.size;
       };
     };
-    virtualization = { };
+    users = { name = user.name; };
+    virtualization = { enable = true; };
     wayland = { };
     windows = { wine = { enable = true; }; };
     window_manager = {
@@ -477,10 +482,6 @@
         videoPlayer = "celluloid"; # vlc or celluloid or mpv
         torrentApp = "qBittorrent";
       };
-    };
-    zram = {
-      enable = true;
-      algorithm = "lz4"; # lz4 or zstd
     };
   };
 }
