@@ -1,4 +1,12 @@
 { settings, config, lib, pkgs, modulesPath, ... }:
+# ------------------------------------------------
+# !NOTICE: You Must Read And Customize This File
+# ------------------------------------------------
+# ---- Table Of Content
+# -- Boot Configuration
+# -- Hardware Configuration
+# ------------------------------------------------
+
 let inherit (lib) mkIf;
 in {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];

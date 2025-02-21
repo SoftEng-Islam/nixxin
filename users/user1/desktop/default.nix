@@ -455,7 +455,6 @@
     };
     users = { name = user.name; };
     virtualization = { enable = true; };
-    wayland = { };
     windows = { wine = { enable = true; }; };
     window_manager = {
       # ---- Hyprland ---- #
