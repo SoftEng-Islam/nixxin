@@ -292,19 +292,12 @@ in {
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7FD3-5156";
     fsType = "vfat";
     # options = [ "fmask=0077" "dmask=0077" ];
     options = [ "rw" ];
   };
-
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
-    # size = 4 * 1024; # Size in MB for a 4GB swap file
-  }];
-
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
     fsType = "ntfs-3g";
@@ -320,15 +313,10 @@ in {
       "x-gvfs-show"
     ];
   };
-
-  services = {
-    xserver.videoDrivers = [ "amdgpu" "radeon" ];
-    auto-epp.enable = true; # Enable auto-epp for amd active pstate.
-  };
-
-  # ------------------------------------------------
-  # ---- Hardware
-  # ------------------------------------------------
+  swapDevices = [{
+    device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
+    # size = 4 * 1024; # Size in MB for a 4GB swap file
+  }];
   hardware = {
     uinput.enable = true;
     enableAllFirmware = true;
@@ -394,7 +382,15 @@ in {
   };
 
   # ------------------------------------------------
-  # ---- Storage
+  # ---- Services Configuration
+  # ------------------------------------------------
+  services = {
+    xserver.videoDrivers = [ "amdgpu" "radeon" ];
+    auto-epp.enable = true; # Enable auto-epp for amd active pstate.
+  };
+
+  # ------------------------------------------------
+  # ---- Storage Configuration
   # ------------------------------------------------
   # Btrfs scrub checks all data and metadata on the disk for corruption.
   # If checksum mismatches are found, Btrfs attempts to repair them using redundant copies (if available).
@@ -403,7 +399,6 @@ in {
     enable = true;
     interval = "weekly";
   };
-
   # TRIM is a command that tells the SSD which blocks are no longer needed (e.g., after file deletions).
   # SSDs cannot overwrite data directly like HDDs—they must erase old data before writing new data.
   # Without TRIM, SSDs can slow down over time due to inefficient block management.
@@ -438,8 +433,7 @@ in {
     # cpufreq.min = 800000;
     # cpufreq.max = 2200000;
   };
-
-  # Power Management
+  # a DBus daemon that allows changing system behavior based upon user-selected power profiles.
   services.power-profiles-daemon.enable = true;
 
   # Whether to enable auto-cpufreq daemon.
@@ -501,6 +495,7 @@ in {
       INTEL_GPU_MIN_FREQ_ON_BAT = 600;
     };
   };
+
   # ------------------------------------------------
   # ---- Lact
   # ------------------------------------------------
