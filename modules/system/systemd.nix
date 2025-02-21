@@ -2,6 +2,9 @@
 let inherit (lib) mkIf;
 in {
   systemd = {
+    # ------------------------------------------------
+    # ----
+    # ------------------------------------------------
     sleep.extraConfig = ''
       AllowSuspend=no
       AllowHibernation=no
@@ -9,6 +12,9 @@ in {
       AllowHybridSleep=no
     '';
 
+    # ------------------------------------------------
+    # ----
+    # ------------------------------------------------
     timers.nix-cleanup-gcroots = {
       timerConfig = {
         OnCalendar = [ "weekly" ];
@@ -17,6 +23,9 @@ in {
       wantedBy = [ "timers.target" ];
     };
 
+    # ------------------------------------------------
+    # ----
+    # ------------------------------------------------
     services.nix-cleanup-gcroots = {
       serviceConfig = {
         Type = "oneshot";
@@ -32,13 +41,43 @@ in {
         ];
       };
     };
+
+    # ------------------------------------------------
+    # ---- Lact
+    # ------------------------------------------------
+    services.lact = {
+      enable = true;
+      description = "AMDGPU Control Daemon";
+      after = [ "multi-user.target" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
+    };
+
+    # ------------------------------------------------
+    # ---- Rocm Combined
+    # - Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
+    # ------------------------------------------------
+    tmpfiles.rules = let
+      rocmEnv = pkgs.symlinkJoin {
+        name = "rocm-combined";
+        paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+      };
+    in [
+      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+      "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
+    ];
+
+    # ------------------------------------------------
+    # ---- Hackity
+    # - HACK for working D-Bus activation
+    # ------------------------------------------------
+    user.services.dbus.environment.DISPLAY = ":0";
+
+    # ------------------------------------------------
+    # ---- Tweaks improve boot times
+    # ------------------------------------------------
+    services."*" = { serviceConfig = { TimeoutStartSec = "30s"; }; };
   };
-
-  # Hackity HACK for working D-Bus activation
-  # systemd.user.services.dbus.environment.DISPLAY = ":0";
-
-  # Tweaks improve boot times
-  systemd.services."*" = { serviceConfig = { TimeoutStartSec = "30s"; }; };
 
   home-manager.users.${settings.user.username} = {
     # Fake a tray to let apps start
