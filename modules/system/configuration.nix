@@ -388,6 +388,17 @@ in {
     xserver.videoDrivers = [ "amdgpu" "radeon" ];
     auto-epp.enable = true; # Enable auto-epp for amd active pstate.
   };
+  # Whether to enable auto-cpufreq daemon.
+  services.auto-cpufreq.enable = true;
+
+  services.ucodenix = {
+    enable = true;
+    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
+    # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
+    # 00630F81
+    # Replace with your processor's model ID, use (cpuid)
+    cpuModelId = "00630F81";
+  };
 
   # ------------------------------------------------
   # ---- Storage Configuration
@@ -404,18 +415,9 @@ in {
   # Without TRIM, SSDs can slow down over time due to inefficient block management.
   services.fstrim.enable = settings.modules.system.fstrim;
 
-  # Whether to enable auto-cpufreq daemon.
-  services.auto-cpufreq.enable = true;
-
-  services.ucodenix = {
-    enable = true;
-    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-    # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
-    # 00630F81
-    # Replace with your processor's model ID, use (cpuid)
-    cpuModelId = "00630F81";
-  };
-
+  # ------------------------------------------------
+  # ---- etc
+  # ------------------------------------------------
   # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
   environment.etc."OpenCL/vendors/amdocl64.icd".text =
     "${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so ";
