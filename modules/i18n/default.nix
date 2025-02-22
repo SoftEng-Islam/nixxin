@@ -54,6 +54,9 @@ in mkIf (settings.modules.i18n.enable) {
     QT_IM_MODULE = "fcitx";
     INPUT_METHOD = "fcitx";
     XMODIFIERS = "@im=fcitx";
+
+    # Defines the system language.
+    LANG = settings.locale;
   };
 
   # Configure Virtual Console

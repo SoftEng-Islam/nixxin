@@ -43,9 +43,6 @@ in {
 
       DIRENV_LOG_FORMAT = "";
 
-      # auto-run programs using nix-index-database
-      NIX_AUTO_RUN = "1";
-
       NVM_DIR = "$HOME/.nvm";
       PNPM_HOME = "/home/softeng/.local/share/pnpm";
       # Set the default editors for CLI-based tools.
@@ -64,13 +61,8 @@ in {
             )'';
       LESS_TERMCAP_me = "$(tput sgr0 2>/dev/null)";
 
-      # Defines the system language.
-      LANG = settings.locale;
       # Configures X keyboard settings.
       XKB_DEFAULT_RULES = "evdev";
-
-      # GLFW_IM_MODULE = "ibus";
-      # HIP_VISIBLE_DEVICES = "0,2";
 
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
@@ -91,10 +83,6 @@ in {
       XCURSOR_THEME = settings.style.cursor.name;
       XCURSOR_SIZE = toString settings.style.cursor.size;
 
-      # Optimize rendering and disable hardware cursors for Wayland-based compositors.
-      WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-      WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
-
       GTK_THEME = settings.style.gtk.theme;
 
       # FONTCONFIG_PATH = "/etc/fonts";
@@ -102,9 +90,6 @@ in {
 
       # Enables portal-based access for apps like VSCode to integrate better with Wayland.
       GTK_USE_PORTAL = "1";
-
-      NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
-      NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
 
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";
@@ -116,10 +101,6 @@ in {
       # Enables Wayland for Mozilla apps and EGL.
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
-
-      # Enables support for non-free (proprietary) software in NixOS.
-      NIXPKGS_ALLOW_UNFREE = "1";
-      # NIXPKGS_ALLOW_INSECURE = "1";
 
       # Enables Rust backtraces for debugging.
       RUST_BACKTRACE = "1";
