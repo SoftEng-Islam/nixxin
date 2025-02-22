@@ -1,9 +1,8 @@
 # ---- docs.nix ---- #
-{ settings, lib, pkgs, modulesPath, ... }:
+{ settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
   imports = [
-    (modulesPath + "/installer/scan/not-detected.nix")
     ./configuration.nix
     ./file_systems.nix
     ./nixos.nix
