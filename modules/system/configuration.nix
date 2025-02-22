@@ -381,13 +381,12 @@ in {
     };
   };
 
-  # ------------------------------------------------
-  # ---- Services Configuration
-  # ------------------------------------------------
-  services = {
-    xserver.videoDrivers = [ "amdgpu" "radeon" ];
-    auto-epp.enable = true; # Enable auto-epp for amd active pstate.
-  };
+  # Video Drivers
+  services.xserver.videoDrivers = [ "amdgpu" "radeon" ];
+
+  # Enable auto-epp for amd active pstate.
+  services.auto-epp.enable = true;
+
   # Whether to enable auto-cpufreq daemon.
   services.auto-cpufreq.enable = true;
 
@@ -426,6 +425,15 @@ in {
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
+
+    # If you have graphical issues like missing transparency or graphical artifact you could launch ashell with WGPU_BACKEND=gl. This env var forces wgpu to use OpenGL instead of Vulkan
+    WGPU_BACKEND = "gl";
+
+    # Adjusts DRM devices, vsync, and atomic modes.
+    WLR_DRM_DEVICES = "/dev/dri/card1";
+    WLR_DRM_NO_ATOMIC = "1";
+    WLR_VSYNC = "1";
+
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     # ROCM_TARGET = "gfx700";
     # ROC_ENABLE_PRE_VEGA = "1";

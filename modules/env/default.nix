@@ -18,7 +18,7 @@ in {
         "${pkgs.sass}/bin"
         "${pkgs.yarn}/bin"
         # "${pkgs.rocmPackages.rocm-runtime}/bin:${pkgs.rocmPackages.hip-common}/bin:$PATH"
-        #"$HOME/.cache/ignis/bin"
+
         "/run/current-system/sw/bin"
         "/run/wrappers/bin"
         "$HOME/.bun/bin"
@@ -27,9 +27,6 @@ in {
         "$HOME/.npm-global/bin"
         "$HOME/.npm-packages/bin"
       ];
-
-      # If you have graphical issues like missing transparency or graphical artifact you could launch ashell with WGPU_BACKEND=gl. This env var forces wgpu to use OpenGL instead of Vulkan
-      WGPU_BACKEND = "gl";
 
       # XDG_DATA_HOME = "$HOME/.local/share";
       # PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
@@ -78,11 +75,6 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
       LIBGL_ALWAYS_INDIRECT = "1";
-
-      # Adjusts DRM devices, vsync, and atomic modes.
-      WLR_DRM_DEVICES = "/dev/dri/card1";
-      WLR_DRM_NO_ATOMIC = "1";
-      WLR_VSYNC = "1";
 
       # Set backend rendering to Wayland.
       SDL_VIDEODRIVER = "wayland";
@@ -159,6 +151,5 @@ in {
         + "${pkgs.gst_all_1.gst-plugins-ugly}/lib/girepository-1.0:"
         + "$GI_TYPELIB_PATH";
     };
-    # sessionVariables = { };
   };
 }
