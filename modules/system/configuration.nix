@@ -458,6 +458,8 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    linux-firmware # Binary firmware collection packaged by kernel.org
+
     # ------------------------------------------------
     # ---- Boot Packages
     # ------------------------------------------------
@@ -468,8 +470,6 @@ in {
     grub2_full
     sleek-grub-theme
     nixos-grub2-theme
-
-    linux-firmware # Binary firmware collection packaged by kernel.org
 
     # ------------------------------------------------
     # ---- Hardware Packages
