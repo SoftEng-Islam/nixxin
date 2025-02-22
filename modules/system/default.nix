@@ -1,8 +1,13 @@
 # ---- docs.nix ---- #
-{ settings, lib, pkgs, ... }:
+{ settings, lib, pkgs, modulesPath, ... }:
 let inherit (lib) mkIf;
 in {
-
-  imports = [ ./dconf.nix ./os.nix ./zram.nix ];
-
+  imports = [
+    (modulesPath + "/installer/scan/not-detected.nix")
+    ./configuration.nix
+    ./file_systems.nix
+    ./nixos.nix
+    ./swap_devices.nix
+    ./systemd.nix
+  ];
 }
