@@ -195,20 +195,9 @@
       vscodium = false;
       gnomeTextEditor = true;
     };
-    docs = {
-      enable = true;
-      doc.enable = true;
-      man = {
-        enable = true;
-        generateCaches = false;
-      };
-      dev.enable = true;
-      info.enable = true;
-      nixos.enable = true;
-    };
+    emails = { };
     documents = { };
     drivers = { };
-    emails = { };
     file_manager = { };
     flags = { };
     gaming = {
@@ -411,6 +400,17 @@
             };
           };
         };
+      };
+      docs = {
+        enable = true;
+        doc.enable = true;
+        man = {
+          enable = true;
+          generateCaches = false;
+        };
+        dev.enable = true;
+        info.enable = true;
+        nixos.enable = true;
       };
       zram = {
         enable = true;
