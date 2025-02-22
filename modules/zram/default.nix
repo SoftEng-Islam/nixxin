@@ -12,7 +12,7 @@ in mkIf (settings.modules.zram.enable) {
   };
   environment.systemPackages = with pkgs; [
     lz4 # Extremely fast compression algorithm
-    zstd # Zstandard real-time compression algorithm
+    # zstd # Zstandard real-time compression algorithm
     zram-generator # Systemd unit generator for zram devices
   ];
 }

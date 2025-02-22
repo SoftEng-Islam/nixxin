@@ -350,6 +350,9 @@ in {
     };
   };
 
+  # ------------------------------------------------
+  # ---- AMD Configuration
+  # ------------------------------------------------
   # Video Drivers
   services.xserver.videoDrivers = [ "amdgpu" "radeon" ];
 
@@ -368,20 +371,25 @@ in {
     cpuModelId = "00630F81";
   };
 
-  # ------------------------------------------------
-  # ---- Storage Configuration
-  # ------------------------------------------------
-  # Btrfs scrub checks all data and metadata on the disk for corruption.
-  # If checksum mismatches are found, Btrfs attempts to repair them using redundant copies (if available).
-  # Similar to ZFS scrub but for Btrfs filesystems.
-  services.btrfs.autoScrub = {
+  systemd.services.lact = {
     enable = true;
-    interval = "weekly";
+    description = "AMDGPU Control Daemon";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
   };
-  # TRIM is a command that tells the SSD which blocks are no longer needed (e.g., after file deletions).
-  # SSDs cannot overwrite data directly like HDDs—they must erase old data before writing new data.
-  # Without TRIM, SSDs can slow down over time due to inefficient block management.
-  services.fstrim.enable = settings.modules.system.fstrim;
+
+  # ---- Rocm Combined ---- #
+  # - Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
+  systemd.tmpfiles.rules = let
+    rocmEnv = pkgs.symlinkJoin {
+      name = "rocm-combined";
+      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
+    };
+  in [
+    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+    "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
+  ];
 
   # ------------------------------------------------
   # ---- etc
