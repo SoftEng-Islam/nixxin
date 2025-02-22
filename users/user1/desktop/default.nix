@@ -139,6 +139,7 @@
       enable = true;
       default = "pocl"; # "pocl" OR "opencl"
     };
+    dconf = { enable = true; };
     data_transferring = { # Command-Line/Apps Download Utilities
       enable = true;
       qbittorrent = true;
@@ -185,6 +186,15 @@
       default = "gdm"; # gdm OR greetd OR tuigreet OR sddm
       defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
     };
+    editors = {
+      enable = true;
+      zedEditor = false;
+      eclipse = false;
+      helix = false;
+      vscode = true;
+      vscodium = false;
+      gnomeTextEditor = true;
+    };
     docs = {
       enable = true;
       doc.enable = true;
@@ -198,7 +208,6 @@
     };
     documents = { };
     drivers = { };
-    editors = { };
     emails = { };
     file_manager = { };
     flags = { };

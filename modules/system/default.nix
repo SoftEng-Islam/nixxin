@@ -2,11 +2,5 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  imports = [
-    ./configuration.nix
-    ./file_systems.nix
-    ./nixos.nix
-    ./swap_devices.nix
-    ./systemd.nix
-  ];
+  imports = [ ./configuration.nix ./nixos.nix ./storage.nix ./systemd.nix ];
 }
