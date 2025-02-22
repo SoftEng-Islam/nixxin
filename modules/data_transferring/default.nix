@@ -7,10 +7,11 @@ let
 
     # Featureful free software BitTorrent client
     (lib.optional settings.modules.data_transferring.qbittorrent ./qbittorrent)
+
+    # Lightweight, multi-protocol, multi-source, command-line download utility
+    (lib.optional settings.modules.data_transferring.aria2 ./aria.nix)
   ];
   _pkgs = with pkgs; [
-    # Lightweight, multi-protocol, multi-source, command-line download utility
-    (lib.optional settings.modules.data_transferring.aria2 aria2)
     # Console downloading program
     (lib.optional settings.modules.data_transferring.axel axel)
     # Fast and simple video download library and CLI tool written in Go
