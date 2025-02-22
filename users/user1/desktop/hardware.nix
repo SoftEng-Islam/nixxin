@@ -8,22 +8,14 @@
     fsType = "btrfs";
     options = [ "subvol=@" ];
   };
-
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/7FD3-5156";
     fsType = "vfat";
     # options = [ "fmask=0077" "dmask=0077" ];
     options = [ "rw" ];
   };
-
-  swapDevices = [{
-    device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
-    # size = 4 * 1024; # Size in MB for a 4GB swap file
-  }];
-
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
-    # fsType = "auto";
     fsType = "ntfs-3g";
     options = [
       "rw"
@@ -37,51 +29,8 @@
       "x-gvfs-show"
     ];
   };
-
-  # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-  # (the default) this is the recommended approach. When using systemd-networkd it's
-  # still possible to use this option, but it's recommended to use it in conjunction
-  # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-  networking.useDHCP = lib.mkDefault true;
-  # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-  # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
-
-  nixpkgs.hostPlatform = lib.mkDefault "${settings.system.architecture}";
-
-  hardware = {
-    uinput.enable = true;
-    enableAllFirmware = true;
-  };
-
-  # services.ucodenix = {
-  #   enable = false;
-  #   # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-  #   cpuModelId = "00A70F41";
-  # };
-
-  environment.systemPackages = with pkgs; [
-    # xivlauncher # Custom launcher for FFXIV
-    # zenstates # Linux utility for Ryzen processors and motherboards
-
-    llvmPackages.mlir # Multi-Level IR Compiler Framework
-
-    pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
-    linux-firmware # Binary firmware collection packaged by kernel.org
-
-    glaxnimate # Simple vector animation program.
-    glmark2 # OpenGL (ES) 2.0 benchmark
-
-    gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
-    hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
-    libdrm # Direct Rendering Manager library and headers
-    libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
-    libva # An implementation for VA-API (Video Acceleration API)
-
-    spirv-cross
-    spirv-headers
-    spirv-llvm-translator
-    spirv-tools
-    libunwind
-    llvm
-  ];
+  swapDevices = [{
+    device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
+    # size = 4 * 1024; # Size in MB for a 4GB swap file
+  }];
 }
