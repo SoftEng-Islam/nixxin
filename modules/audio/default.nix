@@ -1,5 +1,9 @@
-{ settings, pkgs, ... }: {
-  imports = [ ./rnnoise.nix ];
+{ settings, lib, pkgs, ... }:
+let
+  inherit (lib) mkIf;
+  _imports = [ (lib.optional settings.audio.rnnoise.enable ./rnnoise.nix) ];
+in mkIf (settings.modules.audio.enable) {
+  imports = lib.flatten _imports;
 
   hardware = { alsa.enable = false; };
   services = {
