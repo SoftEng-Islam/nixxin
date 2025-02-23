@@ -139,7 +139,7 @@
     };
     computing = {
       enable = true;
-      default = "pocl"; # "pocl" OR "opencl"
+      default = "opencl"; # "pocl" OR "opencl"
     };
     dconf = { enable = true; };
     data_transferring = { # Command-Line/Apps Download Utilities
@@ -161,7 +161,7 @@
     development = {
       enable = true;
       databases = {
-        enable = true;
+        enable = false;
         monogodb = true;
         MySQL = true;
         sql = true;
@@ -197,7 +197,15 @@
       vscodium = false;
       gnomeTextEditor = true;
     };
-    emails = { };
+    emails = {
+      enable = true;
+      client = {
+        enable = true;
+        thunderbird = true;
+        geary = false;
+      };
+      handlers = false;
+    };
     documents = { };
     drivers = { };
     file_manager = { };
