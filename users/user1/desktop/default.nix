@@ -206,42 +206,15 @@
       };
       handlers = false;
     };
-    documents = { };
-    drivers = { };
-    file_manager = { };
-    flags = { };
-    gaming = {
-      enable = true; # To support gaming and install gaming stuff
-      steam = { enable = false; };
-      # Free, open-source game of ancient warfare
-      zeroad = { enable = false; };
-    };
-    git = { };
-    graphics = {
+    env = { enable = true; };
+    file_manager = {
       enable = true;
-      blender = true;
-      darktable = false;
-      davinci = true;
-      drawio = true;
-      figmaLinux = false;
-      gimp = true;
-      inkscape = true;
-      lunacy = true;
+      nautilus = true;
+      thunar = false;
+      nemo = false;
     };
-    hacking = { };
-    hardware = { };
-    home = {
-      stateVersion = home.stateVersion;
-      backupFileExtension = home.backupFileExtension;
-    };
-    i18n = {
-      # ---- Date/Time & Languages ---- #
-      timeFormat = 12;
-      timezone = "Africa/Cairo"; # Select timezone
-      defaultLocale = "en_US.UTF-8"; # Select locale
-      mainlanguage = "English"; # Select the main Language.
-      languages = [ "arabic" "france" ]; # Add Other Languages
-    };
+    flags = { enable = true; };
+    flatpak = { enable = false; };
     fonts = {
       main = {
         # Exambles:
@@ -281,6 +254,38 @@
         name = "CaskaydiaCove Nerd Font Bold";
         size = 11;
       };
+    };
+    gaming = {
+      enable = true; # To support gaming and install gaming stuff
+      steam = { enable = false; };
+      # Free, open-source game of ancient warfare
+      zeroad = { enable = false; };
+    };
+    git = { enable = true; };
+    graphics = {
+      enable = true;
+      blender = true;
+      darktable = false;
+      davinci = true;
+      drawio = true;
+      figmaLinux = false;
+      gimp = true;
+      inkscape = true;
+      lunacy = true;
+    };
+    hacking = { };
+    hardware = { };
+    home = {
+      stateVersion = home.stateVersion;
+      backupFileExtension = home.backupFileExtension;
+    };
+    i18n = {
+      # ---- Date/Time & Languages ---- #
+      timeFormat = 12;
+      timezone = "Africa/Cairo"; # Select timezone
+      defaultLocale = "en_US.UTF-8"; # Select locale
+      mainlanguage = "English"; # Select the main Language.
+      languages = [ "arabic" "france" ]; # Add Other Languages
     };
     image_viewer = { };
     keyboard_remapper = { };

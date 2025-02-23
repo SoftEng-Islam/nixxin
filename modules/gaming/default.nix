@@ -1,6 +1,9 @@
 { settings, lib, pkgs, ... }:
-let _gmaing = [ (lib.optional settings.gaming.zeroad.enable pkgs.zeroad) ];
-in {
+let
+  inherit (lib) mkIf;
+
+  _pkgs = [ (lib.optional settings.gaming.zeroad.enable pkgs.zeroad) ];
+in mkIf (settings.modules.gaming.enable) {
   programs = {
     gamemode = {
       # https://feralinteractive.github.io/gamemode/
@@ -83,5 +86,5 @@ in {
 
       # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
       # protonup
-    ] ++ lib.flatten _gmaing;
+    ] ++ lib.flatten _pkgs;
 }
