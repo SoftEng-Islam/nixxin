@@ -315,13 +315,30 @@
       nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
     };
-    nh = { };
-    nix = { };
-    notifications = { };
-    overclock = { corectrl = { enable = true; }; };
-    power = { };
-    qt_gtk = { };
-    recording = { };
+    notifications = { enable = true; };
+    office = {
+      enable = true;
+      documents.enable = true;
+      libreoffice.enable = true;
+    };
+    overclock = {
+      corectrl = { enable = true; };
+      lactd.enable = false;
+    };
+    power = { enable = true; };
+    printing = { enable = false; };
+    qt_gtk = { enable = true; };
+    recording = {
+      enable = true;
+      screen = {
+        enable = true;
+        blue = true;
+        gpu_recorder = true;
+        obs = true;
+        wf_recorder = true;
+      };
+      sound.enable = false;
+    };
     resources_monitoring = {
       btop = {
         enable = true;
