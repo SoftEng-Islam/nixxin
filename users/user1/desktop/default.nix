@@ -107,12 +107,14 @@
     };
     bluetooth = { enable = false; };
     browsers = {
+      enable = true; # To disable the whole module
       brave = true;
       firefox = false;
       firefox-beta = false;
       google-chrome = true;
       microsoft-edge = true;
     };
+    camera = { enable = false; };
     cli = { # Collection of useful CLI apps
       enable = true;
       aria = true;
