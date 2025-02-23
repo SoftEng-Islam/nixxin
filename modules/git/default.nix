@@ -1,4 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.git.enable) {
   home-manager.users.${settings.user.username} = {
     programs.git = {
       enable = true;

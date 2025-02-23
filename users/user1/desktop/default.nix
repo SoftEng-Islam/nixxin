@@ -340,12 +340,17 @@
       sound.enable = false;
     };
     resources_monitoring = {
+      enable = true;
       btop = {
         enable = true;
         timeFormat = "12"; # or 24
       };
     };
-    screenshot = { };
+    screenshot = {
+      enable = true;
+      flameshot = true;
+      slurp = true;
+    };
     security = { };
     services = { };
     ssh = { };

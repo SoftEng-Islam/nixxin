@@ -3,7 +3,7 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.resources_monitoring.enable) {
   home-manager.users.${settings.user.username} = {
     programs.btop = {
-      enable = true;
+      enable = settings.modules.resources_monitoring.btop.enable;
       settings = {
         color_theme = "rose-pine";
         theme_background = false;
