@@ -273,8 +273,7 @@
       inkscape = true;
       lunacy = true;
     };
-    hacking = { };
-    hardware = { };
+    hacking = { enable = true; };
     home = {
       stateVersion = home.stateVersion;
       backupFileExtension = home.backupFileExtension;

@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+
+in mkIf (settings.modules.hacking.enable) {
   environment.systemPackages = with pkgs; [
     # hashcat.overrideAttrs
     # (old: {
