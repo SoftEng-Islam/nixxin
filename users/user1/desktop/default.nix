@@ -286,6 +286,7 @@
       mainlanguage = "English"; # Select the main Language.
       languages = [ "arabic" "france" ]; # Add Other Languages
     };
+    icons = { enable = true; };
     image_viewer = { };
     keyboard_remapper = { };
     media = { };
