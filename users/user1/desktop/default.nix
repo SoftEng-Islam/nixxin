@@ -287,9 +287,26 @@
       languages = [ "arabic" "france" ]; # Add Other Languages
     };
     icons = { enable = true; };
-    image_viewer = { };
-    keyboard_remapper = { };
-    media = { };
+    image_viewer = {
+      enable = true;
+      eog = true;
+      feh = true;
+      loupe = true;
+    };
+    keyboard_remapper = { enable = false; };
+    media = {
+      enable = true;
+      celluloid = true;
+      mpv = true;
+      cava = false;
+      codex = true;
+      vlc = true;
+      clapper = true;
+      glide = false;
+      jellyfin = false;
+      kdenlive = true;
+      shotcut = true;
+    };
     network = {
       dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
       ethernet = "eno1";
