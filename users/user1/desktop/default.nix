@@ -306,6 +306,7 @@
       jellyfin = false;
       kdenlive = true;
       shotcut = true;
+      music = true;
     };
     network = {
       dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
