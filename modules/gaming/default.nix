@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
 
-  _pkgs = [ (lib.optional settings.gaming.zeroad.enable pkgs.zeroad) ];
+  _pkgs = [ (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad) ];
 in mkIf (settings.modules.gaming.enable) {
   programs = {
     gamemode = {
@@ -34,7 +34,7 @@ in mkIf (settings.modules.gaming.enable) {
       };
     };
     steam = {
-      enable = settings.gaming.steam.enable;
+      enable = settings.modules.gaming.steam.enable;
       protontricks.enable = true;
       gamescopeSession.enable = true;
       remotePlay.openFirewall = true; # Steam Remote Play.
