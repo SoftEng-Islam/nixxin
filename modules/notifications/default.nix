@@ -1,6 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.notifications.enable) {
+{ pkgs, ... }: {
   imports = [ ./dunst ];
 
   environment.systemPackages = with pkgs; [
