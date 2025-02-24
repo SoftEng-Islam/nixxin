@@ -553,6 +553,7 @@
     virtualization = { enable = true; };
     wayland = { enable = true; };
     window_manager = {
+      enable = true;
       # ---- Hyprland ---- #
       hyprland = {
         enable = true;
