@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in {
+in mkIf (settings.modules.recording.screen.obs) {
   # https://obsproject.com/
   environment.systemPackages = with pkgs;
     [
