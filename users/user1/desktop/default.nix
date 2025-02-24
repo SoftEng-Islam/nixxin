@@ -1,5 +1,7 @@
-{ pkgs, ... }: rec {
-  user = import (./. + "/../user.nix");
+{ pkgs, ... }:
+# user = import (./. + "/../user.nix");
+
+rec {
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
