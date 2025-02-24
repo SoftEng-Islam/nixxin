@@ -1,11 +1,7 @@
-{ settings, lib, pkgs, ... }:
-
-let inherit (lib) mkIf;
-in mkIf (settings.modules.styles.enable) {
+{ settings, lib, pkgs, ... }: {
   imports = [
     # ./icons
     ./styles
-
     #  ./wallpapers
   ];
 }
