@@ -4,7 +4,7 @@ let
   _imports = [
     (lib.optional settings.modules.window_manager.hyprland.enable ./hyprland)
   ];
-in mkIf (settings.modules.window_manager.enable) {
+in {
   imports = [ ./hyprland ];
 
   services.seatd.enable = lib.mkForce false;
