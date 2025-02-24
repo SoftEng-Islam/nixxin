@@ -345,7 +345,6 @@
       libreoffice.enable = true;
     };
     overclock = {
-      enable = true;
       corectrl = { enable = true; };
       lactd.enable = false;
     };
