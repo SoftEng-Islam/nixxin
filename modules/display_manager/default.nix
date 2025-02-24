@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   _imports = [
-    (./. + ./. + settings.modules.display_manager.default + ".nix")
+    (./. + "/${settings.modules.display_manager.default}.nix")
     # (lib.optional settings.modules.display_manager.greetd.enable ./greetd.nix)
     # (lib.optional settings.modules.display_manager.sddm.enable ./sddm.nix)
     # (lib.optional settings.modules.display_manager.tuigreet.enable ./tuigreet.nix)
