@@ -13,7 +13,7 @@ let
     # cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC. With Cloud, Local and Git storage.
     (lib.optional settings.modules.development.apps.insomnia insomnia)
   ];
-in mkIf (settings.modules.development.enable) {
+in {
   imports = [ ./databases ./languages ./tools ];
 
   environment.systemPackages = with pkgs;
