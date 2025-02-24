@@ -357,7 +357,10 @@
       flameshot = true;
       slurp = true;
     };
-    security = { };
+    security = {
+      enable = true;
+      tpm2 = false;
+    };
     services = { };
     ssh = { };
     storage = {
