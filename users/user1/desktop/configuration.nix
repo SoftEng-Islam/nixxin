@@ -52,7 +52,7 @@
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
-    ../../../modules/window_manager
+    ../../../modules/window_manager/hyprland
     ../../../modules/windows
     ../../../modules/xdg
     ../../../modules/zram
