@@ -1,4 +1,4 @@
-{ pkgs, lib, settings, ... }: {
+{ settings, lib, pkgs, ... }: {
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
