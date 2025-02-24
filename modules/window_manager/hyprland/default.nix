@@ -27,7 +27,7 @@
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
-      enable = settings.modules.hyprland.enable;
+      enable = settings.modules.window_manager.hyprland.enable;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
@@ -66,7 +66,7 @@
 
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      enable = settings.modules.hyprland.enable;
+      enable = settings.modules.window_manager.hyprland.enable;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
