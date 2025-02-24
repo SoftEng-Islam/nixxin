@@ -26,8 +26,8 @@ in {
       # ---- hyprbars ---- #
       # ------------------ #
       plugin:hyprbars {
-        bar_text_font = ${settings.fonts.hyprbars.name}
-        bar_text_size = ${toString settings.fonts.hyprbars.size}
+        bar_text_font = ${settings.modules.fonts.hyprbars.name}
+        bar_text_size = ${toString settings.modules.fonts.hyprbars.size}
         bar_height = 40
         bar_padding = 10
         bar_button_padding = 12
