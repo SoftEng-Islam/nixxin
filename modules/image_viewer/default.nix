@@ -7,6 +7,4 @@ let
     (lib.optional settings.modules.image_viewer.loupe ./loupe.nix)
     # (lib.optional settings.modules.image_viewer.LXImage-Qt ./LXImage-Qt.nix)
   ];
-in mkIf (settings.modules.image_viewer.enable) {
-  imports = lib.flatten _imports;
-}
+in { imports = lib.flatten _imports; }
