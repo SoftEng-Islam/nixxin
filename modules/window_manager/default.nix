@@ -1,8 +1,9 @@
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  _imports =
-    [ (lib.optional settings.window_manager.hyprland.enable ./hyprland) ];
+  _imports = [
+    (lib.optional settings.modules.window_manager.hyprland.enable ./hyprland)
+  ];
 in mkIf (settings.modules.window_manager.enable) {
   imports = lib.flatten _imports;
 
