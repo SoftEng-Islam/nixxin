@@ -7,7 +7,7 @@ let
     # (lib.optional settings.modules.display_manager.sddm.enable ./sddm.nix)
     # (lib.optional settings.modules.display_manager.tuigreet.enable ./tuigreet.nix)
   ];
-in mkIf (settings.modules.display_manager.enable) {
+in {
   imports = lib.flatten _imports;
 
   # Desktop Manager & Display Manager
