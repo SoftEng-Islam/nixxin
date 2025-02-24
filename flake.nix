@@ -94,12 +94,12 @@
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-      pkgs = import nixpkgs { system = _SETTINGS.system.architecture; };
+      pkgs = import nixpkgs { system = settings.system.architecture; };
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
-        ${_SETTINGS.system.hostName} = nixpkgs.lib.nixosSystem {
+        ${settings.system.hostName} = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
