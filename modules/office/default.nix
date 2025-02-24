@@ -1,6 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.office.enable) {
+{ pkgs, ... }: {
   imports = [ ./documents.nix ./libreoffice.nix ];
   environment.systemPackages = with pkgs;
     [
