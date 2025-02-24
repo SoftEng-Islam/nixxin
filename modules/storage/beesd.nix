@@ -1,4 +1,6 @@
-{
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in {
   # What is Bees (or beesd)?
   # Bees is a deduplication tool specifically designed for Btrfs (a Linux file system with advanced features).
   # It identifies duplicate data blocks in a Btrfs file system and reduces disk usage by storing only a single copy of the data.

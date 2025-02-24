@@ -1,4 +1,7 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+
+let inherit (lib) mkIf;
+in mkIf (settings.modules.virtualization.enable) {
   virtualisation = {
     spiceUSBRedirection.enable = true; # for virt-manager usb forwarding
     libvirtd = {

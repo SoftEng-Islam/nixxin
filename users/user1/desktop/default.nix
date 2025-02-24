@@ -361,13 +361,17 @@
       enable = true;
       tpm2 = false;
     };
-    services = { };
-    ssh = { };
+    sound_editor = {
+      enable = true;
+      audacity = true;
+    };
+    ssh = { enable = true; };
     storage = {
       enable = true;
       fstrim.enable = true;
     };
     styles = {
+      enable = false;
       name = "nixxin";
 
       # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
@@ -482,6 +486,7 @@
       };
     };
     terminals = {
+      enable = true;
       default = {
         shell = "zsh"; # bash
         font = {
@@ -526,9 +531,10 @@
         size = modules.terminals.default.font.size;
       };
     };
+    tools = { enable = true; };
     users = { name = user.name; };
     virtualization = { enable = true; };
-    windows = { wine = { enable = true; }; };
+    wayland = { enable = true; };
     window_manager = {
       # ---- Hyprland ---- #
       hyprland = {
@@ -545,7 +551,10 @@
         };
       };
     };
-    write_shell = { };
+    windows = {
+      enable = true;
+      wine = { enable = true; };
+    };
     xdg = {
       enable = true;
       defaults = {

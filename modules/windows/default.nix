@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.windows.wine.enable) {
+in mkIf (settings.modules.windows.enable) {
   # Enable DXVK in Wine:
   # WINEPREFIX=~/.wine winecfg
   # Go to the Libraries tab, add d3d11 and dxgi, and set them to "native."

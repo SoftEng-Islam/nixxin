@@ -1,15 +1,9 @@
-{
-  config,
-  pkgs,
-  lib,
-  ...
-}:
+{ config, pkgs, lib, ... }:
 
 let
   inherit (lib) mapAttrs;
   cfg = config.icedos;
-in
-{
+in {
   home-manager.users = mapAttrs (user: _: {
     programs.zsh.enable = true;
 
@@ -26,12 +20,7 @@ in
 
     ohMyZsh = {
       enable = true;
-      plugins = [
-        "git"
-        "npm"
-        "sudo"
-        "systemd"
-      ];
+      plugins = [ "git" "npm" "sudo" "systemd" ];
     };
 
     autosuggestions.enable = true;

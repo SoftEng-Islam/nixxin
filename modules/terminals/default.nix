@@ -1,4 +1,7 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+
+let inherit (lib) mkIf;
+in mkIf (settings.modules.terminals.enable) {
   imports = [
     # ---- Dirs ---- #
     ./alacritty

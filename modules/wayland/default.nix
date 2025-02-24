@@ -1,4 +1,7 @@
-{ pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+
+let inherit (lib) mkIf;
+in mkIf (settings.modules.wayland.enable) {
   # environment.variables = { };
   environment.systemPackages = with pkgs; [
     libqalculate # Advanced calculator library

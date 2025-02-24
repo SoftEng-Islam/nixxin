@@ -1,8 +1,14 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+
+let inherit (lib) mkIf;
+in mkIf (settings.modules.ssh.enable) {
   services.openssh.enable = true; # Enable the OpenSSH daemon.
   environment.systemPackages = with pkgs;
     [
-
+      # ssh-agents
+      # ssh-audit
+      # ssh-chat
+      # ssh-key-confirmer
     ];
   home-manager.users.${settings.user.username} = {
     programs.ssh = {
