@@ -13,7 +13,6 @@ in {
     ./wezterm
 
     # ---- Files ---- #
-    ./direnv.nix
     # ./emacs.nix
     # ./eza.nix
     # ./fd.nix
