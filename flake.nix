@@ -99,7 +99,7 @@
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
-        ${settings.system.hostName} = nixpkgs.lib.nixosSystem {
+        "${settings.system.hostName}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
             inherit self;
             inherit inputs;
