@@ -5,7 +5,7 @@ let
     (lib.optional settings.modules.window_manager.hyprland.enable ./hyprland)
   ];
 in mkIf (settings.modules.window_manager.enable) {
-  imports = lib.flatten _imports;
+  imports = [ ./hyprland ];
 
   services.seatd.enable = lib.mkForce false;
   # services.seatd.user = "root";
