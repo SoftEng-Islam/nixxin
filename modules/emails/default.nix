@@ -1,1 +1,6 @@
-{ settings, lib, pkgs, ... }: { imports = [ ./client ./handlers ]; }
+{ settings, lib, pkgs, ... }: {
+  imports = [
+    ./client
+    # ./handlers
+  ];
+}
