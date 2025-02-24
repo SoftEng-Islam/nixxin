@@ -1,6 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{ settings, pkgs, ... }: {
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
