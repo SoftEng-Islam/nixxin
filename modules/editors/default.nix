@@ -13,7 +13,7 @@ let
     (lib.optional settings.modules.editors.vscodium vscodium)
     (lib.optional settings.modules.editors.gnomeTextEditor gnome-text-editor)
   ];
-in mkIf (settings.modules.editors.enable) {
+in {
   environment.systemPackages = lib.flatten _pkgs;
   imports = lib.flatten _imports;
 }
