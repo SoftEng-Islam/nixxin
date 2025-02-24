@@ -386,6 +386,7 @@
     storage = {
       enable = true;
       fstrim.enable = true;
+      beesd = { enable = false; };
     };
     styles = {
       enable = false;
