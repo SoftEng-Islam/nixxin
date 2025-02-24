@@ -2,12 +2,14 @@
 let
   inherit (lib) mkIf;
   _pkgs = with pkgs;
-    [ (lib.optional settings.modules.spacedrive pkgs.spacedrive) ];
+    [
+      (lib.optional settings.modules.file_managers.spacedrive pkgs.spacedrive)
+    ];
 
   _fileManager = [
-    (lib.optional settings.modules.fileManagers.nautilus ./nautilus.nix)
-    (lib.optional settings.modules.fileManagers.thunar ./thunar.nix)
-    (lib.optional settings.modules.fileManagers.nemo ./nemo.nix)
+    (lib.optional settings.modules.file_managers.nautilus ./nautilus.nix)
+    (lib.optional settings.modules.file_managers.thunar ./thunar.nix)
+    (lib.optional settings.modules.file_managers.nemo ./nemo.nix)
   ];
 in {
   imports = lib.flatten _fileManager;
