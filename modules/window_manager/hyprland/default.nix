@@ -24,8 +24,6 @@ in {
     ./configs/source.nix
     ./hyprpolkitagent.nix
   ];
-  services.seatd.enable = lib.mkForce false;
-  # services.seatd.user = "root";
   programs = {
     uwsm.enable = false;
     hyprlock.enable = true;
