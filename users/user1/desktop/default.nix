@@ -1,5 +1,7 @@
-{ pkgs, ... }: rec {
-  user = import (./. + "../user.nix");
+{ pkgs, ... }:
+let _user = import (./. + "../user.nix");
+in rec {
+  user = _user;
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
