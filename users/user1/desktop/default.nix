@@ -216,6 +216,7 @@
     flags = { enable = true; };
     flatpak = { enable = false; };
     fonts = {
+      enable = true;
       main = {
         # Exambles:
         # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
