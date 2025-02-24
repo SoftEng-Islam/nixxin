@@ -1,4 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in mkIf (settings.modules.window_manager.hyprland.enable) {
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
