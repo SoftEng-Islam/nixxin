@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in {
+in mkIf (settings.modules.window_manager.enable) {
   imports = [ ./hyprland ];
 
   services.seatd.enable = lib.mkForce false;

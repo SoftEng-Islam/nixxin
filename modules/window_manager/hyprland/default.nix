@@ -29,7 +29,7 @@ in mkIf (settings.modules.window_manager.hyprland.enable) {
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
-      enable = settings.hyprland.enable;
+      enable = settings.modules.hyprland.enable;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
@@ -42,8 +42,8 @@ in mkIf (settings.modules.window_manager.hyprland.enable) {
     variables = {
       LIBSEAT_BACKEND = "logind";
 
-      HYPRCURSOR_THEME = settings.style.cursor.name;
-      HYPRCURSOR_SIZE = toString settings.style.cursor.size;
+      HYPRCURSOR_THEME = settings.modules.style.cursor.name;
+      HYPRCURSOR_SIZE = toString settings.modules.style.cursor.size;
 
       # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
@@ -68,7 +68,7 @@ in mkIf (settings.modules.window_manager.hyprland.enable) {
 
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      enable = settings.hyprland.enable;
+      enable = settings.modules.hyprland.enable;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       systemd.enable = true;
