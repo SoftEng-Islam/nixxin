@@ -13,13 +13,13 @@ in {
     home = {
       username = settings.user.username;
       homeDirectory = "/home/${settings.user.username}";
-      stateVersion = settings.home.stateVersion;
+      stateVersion = settings.modules.home.stateVersion;
     };
     manual = {
       # You can Disable manuals as nmd fails to build often
-      html.enable = true;
-      json.enable = true;
-      manpages.enable = true;
+      html.enable = settings.modules.home.html;
+      json.enable = settings.modules.home.json;
+      manpages.enable = settings.modules.home.manpages;
     };
   };
 }

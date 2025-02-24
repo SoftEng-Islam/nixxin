@@ -278,6 +278,11 @@
     home = {
       stateVersion = home.stateVersion;
       backupFileExtension = home.backupFileExtension;
+      manual = {
+        html = true;
+        json = true;
+        manpages = true;
+      };
     };
     i18n = {
       # ---- Date/Time & Languages ---- #
