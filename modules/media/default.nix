@@ -23,7 +23,7 @@ let
     (lib.optional settings.modules.media.shotcut shotcut)
   ];
 
-in mkIf (settings.modules.media.enable) {
+in {
   imports = lib.flatten _imports;
 
   environment.systemPackages = with pkgs;
