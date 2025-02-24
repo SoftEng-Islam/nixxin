@@ -9,7 +9,7 @@ let
     (lib.optional settings.modules.fileManagers.thunar ./thunar.nix)
     (lib.optional settings.modules.fileManagers.nemo ./nemo.nix)
   ];
-in mkIf (settings.modules.file_manager.enable) {
+in {
   imports = lib.flatten _fileManager;
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
