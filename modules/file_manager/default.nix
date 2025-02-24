@@ -2,17 +2,15 @@
 let
   inherit (lib) mkIf;
   _pkgs = with pkgs;
-    [
-      (lib.optional settings.modules.file_managers.spacedrive pkgs.spacedrive)
-    ];
+    [ (lib.optional settings.modules.file_manager.spacedrive pkgs.spacedrive) ];
 
-  _fileManager = [
-    (lib.optional settings.modules.file_managers.nautilus ./nautilus.nix)
-    (lib.optional settings.modules.file_managers.thunar ./thunar.nix)
-    (lib.optional settings.modules.file_managers.nemo ./nemo.nix)
+  _imports = [
+    (lib.optional settings.modules.file_manager.nautilus ./nautilus.nix)
+    (lib.optional settings.modules.file_manager.thunar ./thunar.nix)
+    (lib.optional settings.modules.file_manager.nemo ./nemo.nix)
   ];
 in {
-  imports = lib.flatten _fileManager;
+  imports = lib.flatten _imports;
 
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.gvfs.package = pkgs.gnome.gvfs;
