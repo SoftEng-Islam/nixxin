@@ -1,9 +1,11 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+let _qt_gtk = settings.modules.qt_gtk.qt;
+in {
   environment.variables = {
     # Enable automatic screen scaling for Qt apps
-    QT_AUTO_SCREEN_SCALE_FACTOR = settings.style.qt.SCALE_FACTOR;
-    QT_SCALE_FACTOR = settings.style.qt.SCALE_FACTOR;
-    QT_QPA_PLATFORMTHEME = settings.style.qt.platformTheme;
+    QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
+    QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
+    QT_QPA_PLATFORMTHEME = _qt_gtk.platformTheme;
     #  QT_PLATFORM_PLUGIN = "wayland";
     # Set the scale factor for Qt apps
     # Force QT to use wayland
@@ -12,8 +14,8 @@
   home-manager.users.${settings.user.username} = {
     qt = {
       enable = true;
-      platformTheme.name = settings.style.qt.platformTheme;
-      style.name = settings.style.qt.style;
+      platformTheme.name = _qt_gtk.platformTheme;
+      style.name = _qt_gtk.style;
     };
   };
   environment.systemPackages = with pkgs; [

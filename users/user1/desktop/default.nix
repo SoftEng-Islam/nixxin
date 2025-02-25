@@ -358,7 +358,25 @@
     };
     power = { enable = true; };
     printing = { enable = false; };
-    qt_gtk = { enable = true; };
+    qt_gtk = {
+      enable = true;
+      # ---- GTK ---- #
+      gtk = {
+        # Material
+        # adw-gtk3-dark
+        theme = "Material";
+        package = pkgs.adw-gtk3;
+        icon_cache = false;
+      };
+      # ---- Qt ---- #
+      qt = {
+        style = "adwaita-dark";
+        platformTheme =
+          "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
+        package = pkgs.kdePackages.breeze;
+        SCALE_FACTOR = 1;
+      };
+    };
     recording = {
       enable = true;
       screen = {
@@ -432,22 +450,7 @@
           };
         };
       };
-      # ---- GTK ---- #
-      gtk = {
-        # Material
-        # adw-gtk3-dark
-        theme = "Material";
-        package = pkgs.adw-gtk3;
-        icon_cache = false;
-      };
-      # ---- Qt ---- #
-      qt = {
-        style = "adwaita-dark";
-        platformTheme =
-          "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
-        package = pkgs.kdePackages.breeze;
-        SCALE_FACTOR = 1;
-      };
+
       # ---- Icons ---- #
       icons = {
         nameInLight = "Papirus";
