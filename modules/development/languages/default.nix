@@ -1,16 +1,17 @@
 { settings, config, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf;
-  _imports = mkIf (settings.modules.development.languages.enable or false) [
-    ./clang
-    ./go
-    ./python
-    ./ruby
-    ./rust
-    ./web
-  ];
+let inherit (lib) mkIf;
 in {
-  imports = _imports;
+  # Conditionally import all modules if `enable = true`
+  imports =
+    lib.optional (settings.modules.development.languages.enable or false) [
+      ./clang
+      ./go
+      ./python
+      ./ruby
+      ./rust
+      ./web
+    ];
+
   config = mkIf (settings.modules.development.languages.enable or false) {
     environment.systemPackages = with pkgs;
       [
