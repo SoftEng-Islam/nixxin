@@ -473,8 +473,8 @@ in {
     llvmPackages.mlir # Multi-Level IR Compiler Framework
     oclgrind # OpenCL device simulator and debugger
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
-    xivlauncher # Custom launcher for FFXIV
-    zenstates # Linux utility for Ryzen processors and motherboards
+    # xivlauncher # Custom launcher for FFXIV
+    # zenstates # Linux utility for Ryzen processors and motherboards
 
     # ------------------------------------------------
     # ---- AMD Stuff
