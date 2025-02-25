@@ -3,7 +3,7 @@ let inherit (lib) mkIf;
 in {
   # Conditionally import all modules if `enable = true`
   imports =
-    lib.optional (settings.modules.development.languages.enable or false) [
+    lib.optionals (settings.modules.development.languages.enable or false) [
       ./clang
       ./go
       ./python
