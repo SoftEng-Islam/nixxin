@@ -449,11 +449,11 @@
         border = {
           active = {
             color = modules.styles.mainColor;
-            size = 3;
+            size = 4;
           };
           inactive = {
             color = "#ddd8";
-            size = 3;
+            size = 4;
           };
         };
       };
@@ -578,7 +578,7 @@
         plugins = {
           hyprbars = true;
           hyprspace = true;
-          bordersPlus = false;
+          bordersPlus = true;
           hyprexpo = false;
           hyprtrails = false;
         };

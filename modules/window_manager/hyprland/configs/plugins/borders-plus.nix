@@ -23,7 +23,7 @@ in {
         col.border_1 = rgb(9e9e9e)
 
         # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 5
+        border_size_1 = 2
 
         # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
         natural_rounding = yes
