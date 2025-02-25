@@ -328,7 +328,6 @@ in {
 
         mesa
         mesa.drivers
-        mesa.vulkan-drivers # Adds RADV Vulkan driver
         mesa.opencl
         mesa-demos # Provides glxinfo, glxgears
         libglvnd
@@ -489,8 +488,6 @@ in {
     amdgpu_top # Tool to display AMDGPU usage
     amdvlk # AMD Open Source Driver For Vulkan
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
-    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.mesa # An open source 3D graphics library
     microcode-amd # AMD Processor microcode patch
     microcodeAmd
     nvtopPackages.amd
@@ -505,10 +502,6 @@ in {
     libdrm # Direct Rendering Manager library and headers
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva # An implementation for VA-API (Video Acceleration API)
-    mesa # An open source 3D graphics library
-    mesa_glu # OpenGL utility library
-    mesa_i686 # Open source 3D graphics library
-    mesa-demos # Collection of demos and test programs for OpenGL and Mesa
     openal # OpenAL alternative
     # clblast # Tuned OpenCL BLAS library
     # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
@@ -543,6 +536,7 @@ in {
     mesa_glu # OpenGL utility library
     mesa_i686 # Open source 3D graphics library
     mesa-demos # Collection of demos and test programs for OpenGL and Mesa
+    driversi686Linux.mesa # An open source 3D graphics library
 
     # ------------------------------------------------
     # ---- ROCM Packages
@@ -578,7 +572,7 @@ in {
     vulkan-utility-libraries # Set of utility libraries for Vulkan
     vulkan-validation-layers
     vulkan-volk
-
+    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
     # ------------------------------------------------
     # ---- AMD Packages
     # ------------------------------------------------
@@ -589,10 +583,6 @@ in {
     amdgpu_top # Tool to display AMDGPU usage
     amdvlk # AMD Open Source Driver For Vulkan
     aocl-utils # Interface to all AMD AOCL libraries to access CPU features
-    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
-    driversi686Linux.mesa # An open source 3D graphics library
-    mesa_glu # OpenGL utility library
-    mesa_i686 # Open source 3D graphics library
     microcode-amd # AMD Processor microcode patch
     microcodeAmd # AMD Processor microcode patch
     nvtopPackages.amd # (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs
