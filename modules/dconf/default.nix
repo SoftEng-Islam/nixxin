@@ -9,7 +9,7 @@ let
   # gsettings set org.gnome.mutter check-alive-timeout 0
 
 in with lib.gvariant;
-mkIf (settings.modules.nixos.dconf) {
+mkIf (settings.modules.dconf.enable) {
   programs.dconf.enable = true; # dconf
   environment.systemPackages = with pkgs;
     [
