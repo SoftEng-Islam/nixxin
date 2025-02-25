@@ -27,7 +27,7 @@ in {
     };
     settings = {
       sandbox = false;
-      color = true;
+      # color = true;
       connect-timeout = 0; # 0 means no limit
       download-attempts = 10;
       # download-buffer-size = 536870912;

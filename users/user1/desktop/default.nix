@@ -313,13 +313,13 @@
       enable = true;
       blender = true;
       darktable = false;
-      davinci = true;
+      davinci = false;
       drawio = true;
       figmaLinux = false;
       gimp = true;
-      inkscape = true;
+      inkscape = false;
       lunacy = true;
-      kolourpaint = true;
+      kolourpaint = false;
     };
     hacking = { enable = true; };
     home = {
