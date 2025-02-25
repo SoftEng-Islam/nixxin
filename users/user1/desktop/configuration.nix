@@ -1,5 +1,8 @@
 { settings, lib, pkgs, ... }: {
   imports = [
+    ./hardware.nix
+
+    # ---- Modules ---- #
     ../../../modules/ai
     ../../../modules/android
     ../../../modules/ashell
