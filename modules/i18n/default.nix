@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.i18n.enable) {
+in {
   # -------------------------------- #
   # Internationalisation & Time Zone
   # -------------------------------- #
