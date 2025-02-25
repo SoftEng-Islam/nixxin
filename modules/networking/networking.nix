@@ -36,7 +36,7 @@
     #   iptables -A FORWARD -i ${settings.networks.wlanInterface} -o ${settings.networks.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
     #   iptables -A FORWARD -i ${settings.networks.ethernet} -o ${settings.networks.wlanInterface} -j ACCEPT
     # '';
-    nameservers = settings.networks.nameservers;
+    nameservers = settings.modules.networks.nameservers;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
@@ -78,7 +78,7 @@
   services = {
     hostapd.enable = false;
     resolved.enable =
-      if (settings.networks.dnsResolver == "systemd-resolved") then
+      if (settings.modules.networks.dnsResolver == "systemd-resolved") then
         true
       else
         false; # Systemd DNS Resolver Daemon, systemd-resolved.
