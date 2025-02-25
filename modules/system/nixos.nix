@@ -227,8 +227,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     # ---- Settings.nix Packages ---- #
-    settings.browserPkg
-    settings.termPkg
     settings.style.cursor.package
 
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
