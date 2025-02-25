@@ -183,7 +183,10 @@
         MySQL = true;
         sql = true;
       };
-      languages = { enable = true; };
+      languages = {
+        enable = true;
+        clang.enable = true;
+      };
       tools = {
         enable = true;
         devdocs = true;
