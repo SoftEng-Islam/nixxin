@@ -78,11 +78,11 @@ in mkIf (settings.modules.gaming.enable) {
       # via
 
       # Install Gaming & Benchmarking Tools
-      mesa-demos # OpenGL test tools
       glxinfo # Shows GPU info
       vulkan-tools # Tests Vulkan performance
       vkmark # Vulkan benchmark
-      mesa-utils # Extra OpenGL tools
+      mesa-demos # OpenGL test tools
+      mesa_i686 # Extra OpenGL tools
 
       # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
       # protonup
