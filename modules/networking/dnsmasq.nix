@@ -1,12 +1,14 @@
 { settings, pkgs, ... }: {
   services.dnsmasq = {
     # Configure dnsmasq
-    enable =
-      if (settings.networking.dnsResolver == "dnsmasq") then true else false;
+    enable = if (settings.modules.networking.dnsResolver == "dnsmasq") then
+      true
+    else
+      false;
     alwaysKeepRunning = true;
     settings = {
       # Set Google DNS for IPv4 and IPv6
-      server = settings.networking.nameservers;
+      server = settings.modules.networking.nameservers;
       #interface = "lo,waydroid0";
       #bind-interfaces = true;
       # Provide DHCP settings (if applicable)
