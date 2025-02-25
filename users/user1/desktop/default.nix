@@ -339,7 +339,7 @@
       shotcut = true;
       music = true;
     };
-    network = {
+    networking = {
       dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
       ethernet = "eno1";
       wlanInterface = "wlp0s19f2u5";
