@@ -7,12 +7,15 @@ let
     (lib.optional settings.moudles.android.scrcpy ./scrcpy.nix)
     (lib.optional settings.moudles.android.waydroid ./waydroid.nix)
   ];
-in mkIf (settings.moudles.android.enable) {
+in {
   imports = lib.flatten _android;
-  programs.adb.enable = true;
-  environment.systemPackages = with pkgs;
-    [
-      # Display and control Android devices over USB or TCP/IP
-      android-tools
-    ];
+
+  config = mkIf (settings.moudles.android.enable) {
+    programs.adb.enable = true;
+    environment.systemPackages = with pkgs;
+      [
+        # Display and control Android devices over USB or TCP/IP
+        android-tools
+      ];
+  };
 }
