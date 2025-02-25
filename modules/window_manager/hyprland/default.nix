@@ -40,8 +40,8 @@
     variables = {
       LIBSEAT_BACKEND = "logind";
 
-      HYPRCURSOR_THEME = settings.modules.style.cursor.name;
-      HYPRCURSOR_SIZE = toString settings.modules.style.cursor.size;
+      HYPRCURSOR_THEME = settings.modules.styles.cursor.name;
+      HYPRCURSOR_SIZE = toString settings.modules.styles.cursor.size;
 
       # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
