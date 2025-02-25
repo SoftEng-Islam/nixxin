@@ -29,7 +29,7 @@ in {
 
     # NOTE!! disable to use GRUB instead of systemd-boot
     loader.systemd-boot.enable =
-      if (settings.system.os.boot.loader.manager.name == "SYSTEMD") then
+      if (settings.system.boot.loader.manager.name == "SYSTEMD") then
         true
       else
         false;
