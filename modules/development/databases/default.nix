@@ -1,5 +1,9 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.development.databases.enable) {
-  imports = [ ./monogodb ./mysql ./sql ];
+{ settings, lib, ... }:
+let inherit (lib) optionals;
+in {
+  imports = optionals (settings.modules.development.databases.enable or false) [
+    ./monogodb
+    ./mysql
+    ./sql
+  ];
 }
