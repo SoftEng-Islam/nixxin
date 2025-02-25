@@ -366,9 +366,6 @@ in {
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = true;
 
-  # Whether to enable auto-cpufreq daemon.
-  services.auto-cpufreq.enable = true;
-
   # services.ucodenix = {
   # enable = true;
   # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage

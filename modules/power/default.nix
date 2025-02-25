@@ -30,8 +30,12 @@ in mkIf (settings.modules.power.enable) {
     # cpufreq.min = 800000;
     # cpufreq.max = 2200000;
   };
+
   # a DBus daemon that allows changing system behavior based upon user-selected power profiles.
-  services.power-profiles-daemon.enable = true;
+  services.power-profiles-daemon.enable = false;
+  # OR
+  # Whether to enable auto-cpufreq daemon.
+  services.auto-cpufreq.enable = true;
 
   # Upower, a DBus service that provides power management support to applications.
   services.upower.enable = lib.mkForce true;
