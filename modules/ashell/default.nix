@@ -1,4 +1,4 @@
-{ settings, lib, inputs, ... }:
+{ settings, lib, inputs, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.ashell.enable) {
   home-manager.users.${settings.user.username} = {
