@@ -31,11 +31,11 @@ in {
       # XDG_DATA_HOME = "$HOME/.local/share";
       # PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
 
-      EDITOR = settings.global.editor;
-      VISUAL = settings.global.visual;
+      EDITOR = settings.global.EDITOR;
+      VISUAL = settings.global.VISUAL;
 
-      TERM = settings.global.term;
-      BROWSER = settings.global.browser;
+      TERM = settings.global.TERM;
+      BROWSER = settings.global.BROWSER;
 
       # Fixes `bad interpreter: Text file busy`
       # https://github.com/NixOS/nixpkgs/issues/314713
