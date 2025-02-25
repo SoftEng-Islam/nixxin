@@ -58,7 +58,7 @@ in {
     XMODIFIERS = "@im=fcitx";
 
     # Defines the system language.
-    LANG = settings.locale;
+    LANG = _i18n.defaultLocale;
   };
 
   # Configure Virtual Console
