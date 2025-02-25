@@ -544,23 +544,23 @@
       };
       alacritty = {
         shell = modules.terminals.default.shell;
-        family = modules.terminals.default.font.family;
-        size = modules.terminals.default.font.size;
+        fontFamily = modules.terminals.default.font.family;
+        fontSize = modules.terminals.default.font.size;
       };
       foot = {
         shell = modules.terminals.default.shell;
-        family = modules.terminals.default.font.family;
-        size = modules.terminals.default.font.size;
+        fontFamily = modules.terminals.default.font.family;
+        fontSize = modules.terminals.default.font.size;
       };
       wezterm = {
         shell = modules.terminals.default.shell;
-        family = modules.terminals.default.font.family;
-        size = modules.terminals.default.font.size;
+        fontFamily = modules.terminals.default.font.family;
+        fontSize = modules.terminals.default.font.size;
       };
       fish = {
         shell = modules.terminals.default.shell;
-        family = modules.terminals.default.font.family;
-        size = modules.terminals.default.font.size;
+        fontFamily = modules.terminals.default.font.family;
+        fontSize = modules.terminals.default.font.size;
       };
     };
     tools = { enable = true; };
