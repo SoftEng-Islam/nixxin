@@ -362,17 +362,17 @@ in {
   # Whether to enable auto-cpufreq daemon.
   services.auto-cpufreq.enable = true;
 
-  services.ucodenix = {
-    enable = true;
-    # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-    # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
-    # 00630F81
-    # Replace with your processor's model ID, use (cpuid)
-    cpuModelId = "00630F81";
-  };
+  # services.ucodenix = {
+  # enable = true;
+  # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
+  # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
+  # 00630F81
+  # Replace with your processor's model ID, use (cpuid)
+  # cpuModelId = "00630F81";
+  # };
 
   systemd.services.lact = {
-    enable = true;
+    enable = false;
     description = "AMDGPU Control Daemon";
     after = [ "multi-user.target" ];
     wantedBy = [ "multi-user.target" ];
