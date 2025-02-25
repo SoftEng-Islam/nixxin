@@ -41,6 +41,11 @@
   # ---- Global
   # ----------------------------------------------
   global = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+    TERM = "kitty";
+    BROWSER = "brave";
+
     # ---- Lockscreen ---- #
     lockscreen = {
       enable = true;
