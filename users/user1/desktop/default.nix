@@ -142,7 +142,7 @@
       enable = true; # To disable the whole module
       brave = true;
       firefox = false;
-      firefox-beta = false;
+      firefox-beta = true;
       google-chrome = true;
       microsoft-edge = true;
     };

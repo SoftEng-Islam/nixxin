@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  _rust = pkgs.rust-bin.selectLatestNightlyWith
+  _rust = pkgs.rustc.selectLatestNightlyWith
     (toolchain: toolchain.default.override { extensions = [ "rust-src" ]; });
 in mkIf (settings.modules.development.languages.rust) {
   home-manager.users.${settings.user.username} = {
