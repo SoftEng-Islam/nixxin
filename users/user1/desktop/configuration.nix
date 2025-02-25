@@ -45,7 +45,6 @@
     ../../../modules/sound_editor
     ../../../modules/ssh
     ../../../modules/storage
-    ../../../modules/styles
     ../../../modules/system
     ../../../modules/terminals
     ../../../modules/tools
