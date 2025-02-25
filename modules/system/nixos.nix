@@ -227,7 +227,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     # ---- Settings.nix Packages ---- #
-    settings.style.cursor.package
+    settings.modules.styles.cursor.package
 
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
     # matugen # A material you color generation tool
