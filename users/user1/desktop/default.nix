@@ -313,6 +313,7 @@
       gimp = true;
       inkscape = true;
       lunacy = true;
+      kolourpaint = true;
     };
     hacking = { enable = true; };
     home = {
