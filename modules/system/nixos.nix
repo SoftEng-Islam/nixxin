@@ -8,12 +8,12 @@ in {
     enable = settings.modules.system.docs.enable;
     doc.enable = settings.modules.system.docs.doc.enable;
     man = {
-      enable = settings.modules.modules.system.docs.man.enable;
-      generateCaches = settings.modules.modules.system.docs.man.generateCaches;
+      enable = settings.modules.system.docs.man.enable;
+      generateCaches = settings.modules.system.docs.man.generateCaches;
     };
-    dev.enable = settings.modules.modules.system.docs.dev.enable;
-    info.enable = settings.modules.modules.system.docs.info.enable;
-    nixos.enable = settings.modules.modules.system.docs.nixos.enable;
+    dev.enable = settings.modules.system.docs.dev.enable;
+    info.enable = settings.modules.system.docs.info.enable;
+    nixos.enable = settings.modules.system.docs.nixos.enable;
   };
 
   nix = {
