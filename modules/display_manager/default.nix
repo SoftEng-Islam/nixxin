@@ -15,7 +15,8 @@ in {
     displayManager.enable = true;
 
     # ---- Set Default Session ---- #
-    displayManager.defaultSession = settings.display_manager.defaultSession;
+    displayManager.defaultSession =
+      settings.modules.display_manager.defaultSession;
 
     # ---- XSERVER ---- #
     xserver.enable = true;
