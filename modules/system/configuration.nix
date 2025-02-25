@@ -22,33 +22,40 @@ in {
     consoleLogLevel = 0;
 
     # Boot Time out in seconds
-    loader.timeout = settings.boot.loader.timeout;
+    loader.timeout = settings.modules.system.boot.loader.timeout;
 
     # Whether the installation process is allowed to modify EFI boot variables.
     loader.efi.canTouchEfiVariables = true;
 
     # NOTE!! disable to use GRUB instead of systemd-boot
     loader.systemd-boot.enable =
-      if (settings.system.boot.loader.manager.name == "SYSTEMD") then
+      if (settings.modules.system.boot.loader.manager.name == "SYSTEMD") then
         true
       else
         false;
 
     bootspec.enable =
-      if (settings.boot.loader.manager.name == "SYSTEMD") then true else false;
+      if (settings.modules.system.boot.loader.manager.name == "SYSTEMD") then
+        true
+      else
+        false;
 
     loader.grub = {
       enable =
-        if (settings.boot.loader.manager.name == "GRUB") then true else false;
+        if (settings.modules.system.boot.loader.manager.name == "GRUB") then
+          true
+        else
+          false;
 
-      fontSize = settings.boot.loader.manager.grub.fontSize;
+      fontSize = settings.modules.system.boot.loader.manager.grub.fontSize;
       # theme = settings.boot.loader.manager.grub.theme;
-      efiSupport = settings.boot.loader.manager.grub.efiSupport;
-      gfxmodeEfi = settings.boot.loader.manager.grub.gfxmodeEfi;
-      devices = settings.boot.loader.manager.grub.devices;
-      device = settings.boot.loader.manager.grub.device;
-      useOSProber = settings.boot.loader.manager.grub.osProber;
-      extraConfig = settings.boot.loader.manager.grub.extraConfig;
+      efiSupport = settings.modules.system.boot.loader.manager.grub.efiSupport;
+      gfxmodeEfi = settings.modules.system.boot.loader.manager.grub.gfxmodeEfi;
+      devices = settings.modules.system.boot.loader.manager.grub.devices;
+      device = settings.modules.system.boot.loader.manager.grub.device;
+      useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
+      extraConfig =
+        settings.modules.system.boot.loader.manager.grub.extraConfig;
       # extraEntries = ''
       #   menuentry 'Arch Linux' {
       #   	insmod part_gpt
