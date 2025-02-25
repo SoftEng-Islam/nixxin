@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.office.libreoffice.enable) {
+in mkIf (settings.modules.office.libreoffice) {
   programs = {
     # required by libreoffice
     java.enable = true;
