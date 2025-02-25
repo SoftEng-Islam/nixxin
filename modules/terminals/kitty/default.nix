@@ -71,7 +71,7 @@ in {
         # ---- Fonts ---- #
         font_family ${settings.modules.terminals.kitty.fontFamily}
         bold_font ${settings.modules.terminals.kitty.fontBold}
-        italic_font ${settings.modules.terminal.kitty.fontItalic}
+        italic_font ${settings.modules.terminals.kitty.fontItalic}
         bold_italic_font ${settings.modules.terminals.fontBoldItalic}
         font_size ${toString settings.modules.terminals.fontSize}
 
