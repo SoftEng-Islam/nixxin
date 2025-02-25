@@ -526,11 +526,11 @@
       };
       kitty = {
         shell = modules.terminals.default.shell;
-        family = modules.terminals.default.font.family;
-        size = modules.terminals.default.font.size;
-        bold = modules.terminals.default.font.bold;
-        italic = modules.terminals.default.font.italic;
-        bold_italic = modules.terminals.default.font.bold_italic;
+        fontFamily = modules.terminals.default.font.family;
+        fontSize = modules.terminals.default.font.size;
+        fontBold = modules.terminals.default.font.bold;
+        fontItalic = modules.terminals.default.font.italic;
+        fontBoldItalic = modules.terminals.default.font.bold_italic;
       };
       alacritty = {
         shell = modules.terminals.default.shell;

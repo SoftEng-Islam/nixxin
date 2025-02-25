@@ -69,11 +69,11 @@ in {
         mark3_background #85c1dc
 
         # ---- Fonts ---- #
-        font_family ${settings.modules.fonts.terminals.kitty.name}
-        bold_font ${settings.modules.fonts.terminals.kitty.bold_font}
-        italic_font ${settings.modules.fonts.terminals.kitty.italic_font}
-        bold_italic_font ${settings.modules.fonts.terminals.kitty.bold_italic_font}
-        font_size ${toString settings.modules.fonts.terminals.kitty.size}
+        font_family ${settings.modules.terminals.kitty.fontFamily}
+        bold_font ${settings.modules.terminals.kitty.fontBold}
+        italic_font ${settings.modules.terminal.kitty.fontItalic}
+        bold_italic_font ${settings.modules.terminals.fontBoldItalic}
+        font_size ${toString settings.modules.terminals.fontSize}
 
       '';
     };
