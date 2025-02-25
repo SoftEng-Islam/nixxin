@@ -17,9 +17,9 @@ in {
     };
     manual = {
       # You can Disable manuals as nmd fails to build often
-      html.enable = settings.modules.home.html;
-      json.enable = settings.modules.home.json;
-      manpages.enable = settings.modules.home.manpages;
+      html.enable = settings.modules.home.manual.html;
+      json.enable = settings.modules.home.manual.json;
+      manpages.enable = settings.modules.home.manual.manpages;
     };
   };
 }
