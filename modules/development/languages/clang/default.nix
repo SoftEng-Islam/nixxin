@@ -1,11 +1,7 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-
-  options.settings.modules.development.languages.clang.enable =
-    lib.mkEnableOption "Enable Clang module";
-
-  config = mkIf config.settings.modules.development.languages.clang {
+  config = mkIf (settings.modules.development.languages.clang or false) {
     environment.variables = {
       # Use gcc for compilation
 
