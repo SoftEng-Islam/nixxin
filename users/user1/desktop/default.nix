@@ -252,6 +252,7 @@
       nautilus = true;
       thunar = false;
       nemo = false;
+      spacedrive = true;
     };
     flags = { enable = true; };
     flatpak = { enable = false; };
