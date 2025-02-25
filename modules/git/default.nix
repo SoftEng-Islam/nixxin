@@ -19,10 +19,10 @@ in mkIf (settings.modules.git.enable) {
       };
       ignores = [ ".direnv/" ".envrc" "result" "result-doc" ];
 
-      signing = {
-        signByDefault = true;
-        # key = "3FE1845783ADA7CB";
-      };
+      # signing = {
+      # signByDefault = true;
+      # key = "3FE1845783ADA7CB";
+      # };
       delta.enable = true;
     };
   };
