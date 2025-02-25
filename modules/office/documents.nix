@@ -7,14 +7,14 @@ let
   inherit (lib) mkIf;
   _pkgs = with pkgs; [
     # Zathura is a highly customizable and functional PDF viewer based on the poppler rendering library and the GTK toolkit.
-    (lib.optional settings.modules.office.documents.zathura zathura)
+    (lib.optional settings.modules.office.zathura zathura)
     # GNOME's document viewer
-    (lib.optional settings.modules.office.documents.evince evince)
+    (lib.optional settings.modules.office.evince evince)
     # KDE document viewer
-    (lib.optional settings.modules.office.documents.okular okular)
+    (lib.optional settings.modules.office.okular okular)
     # GNOME's document viewer
-    (lib.optional settings.modules.office.documents.papers papers)
+    (lib.optional settings.modules.office.papers papers)
   ];
-in mkIf (settings.modules.office.documents.enable) {
+in mkIf (settings.modules.office.enable) {
   environment.systemPackages = lib.flatten _pkgs;
 }

@@ -364,8 +364,11 @@
     notifications = { enable = true; };
     office = {
       enable = true;
-      documents.enable = true;
-      libreoffice.enable = true;
+      zathura = true;
+      evince = true;
+      okular = true;
+      papers = true;
+      libreoffice = true;
     };
     overclock = {
       corectrl = { enable = true; };
@@ -527,10 +530,10 @@
       kitty = {
         shell = modules.terminals.default.shell;
         fontFamily = modules.terminals.default.font.family;
-        fontSize = modules.terminals.default.font.size;
         fontBold = modules.terminals.default.font.bold;
         fontItalic = modules.terminals.default.font.italic;
         fontBoldItalic = modules.terminals.default.font.bold_italic;
+        fontSize = modules.terminals.default.font.size;
       };
       alacritty = {
         shell = modules.terminals.default.shell;
