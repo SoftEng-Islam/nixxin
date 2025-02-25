@@ -50,7 +50,7 @@
       package = "";
       font = "";
     };
-
+    rocm = { enable = false; };
     # ---- IDLE ---- #
     # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
     # 0 to Disable:

@@ -83,7 +83,7 @@ in {
   nixpkgs = {
     hostPlatform = lib.mkDefault "${settings.system.architecture}";
     config = {
-      rocmSupport = settings.hardware.rocmSupport;
+      rocmSupport = settings.global.rocm.enable;
       allowUnfree = true;
     };
   };
