@@ -1,5 +1,7 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  _i18n = settings.modules.i18n;
 in {
   # -------------------------------- #
   # Internationalisation & Time Zone
@@ -15,23 +17,23 @@ in {
   #---- Right-to-Left (RTL) Support: Handling languages like Arabic or Hebrew that are written right to left.
 
   # Set your time zone.
-  time.timeZone = settings.i18n.timezone;
+  time.timeZone = _i18n.timezone;
   services.timesyncd.enable = true;
   services.chrony.enable = true;
   # Internationalisation Properties.
   i18n = {
-    defaultLocale = settings.i18n.defaultLocale;
+    defaultLocale = _i18n.defaultLocale;
     extraLocaleSettings = {
-      LC_ADDRESS = settings.i18n.defaultLocale;
-      LC_IDENTIFICATION = settings.i18n.defaultLocale;
-      LC_MEASUREMENT = settings.i18n.defaultLocale;
-      LC_MONETARY = settings.i18n.defaultLocale;
-      LC_NAME = settings.i18n.defaultLocale;
-      LC_NUMERIC = settings.i18n.defaultLocale;
-      LC_PAPER = settings.i18n.defaultLocale;
-      LC_TELEPHONE = settings.i18n.defaultLocale;
-      LC_TIME = settings.i18n.defaultLocale;
-      LC_ALL = settings.i18n.defaultLocale;
+      LC_ADDRESS = _i18n.defaultLocale;
+      LC_IDENTIFICATION = _i18n.defaultLocale;
+      LC_MEASUREMENT = _i18n.defaultLocale;
+      LC_MONETARY = _i18n.defaultLocale;
+      LC_NAME = _i18n.defaultLocale;
+      LC_NUMERIC = _i18n.defaultLocale;
+      LC_PAPER = _i18n.defaultLocale;
+      LC_TELEPHONE = _i18n.defaultLocale;
+      LC_TIME = _i18n.defaultLocale;
+      LC_ALL = _i18n.defaultLocale;
     };
     # Configure Input Method (IBus for GNOME)
     inputMethod = {
