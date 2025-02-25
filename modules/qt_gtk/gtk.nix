@@ -1,6 +1,6 @@
 # GTK  Stuff & Themes & Graphical Interfaces
 { settings, pkgs, ... }: {
-  gtk.iconCache.enable = settings.style.gtk.icon_cache;
+  gtk.iconCache.enable = settings.global.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;

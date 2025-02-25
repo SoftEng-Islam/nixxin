@@ -1,5 +1,5 @@
 { settings, pkgs, ... }:
-let _qt_gtk = settings.modules.qt_gtk.qt;
+let _qt_gtk = settings.global.qt;
 in {
   environment.variables = {
     # Enable automatic screen scaling for Qt apps
