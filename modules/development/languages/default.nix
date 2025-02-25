@@ -2,7 +2,7 @@
 let inherit (lib) mkIf;
 in {
 
-  option.settings.modules.development.languages.enable =
+  options.settings.modules.development.languages.enable =
     lib.mkEnableOption "Enable Languages Module";
 
   config = mkIf config.settings.modules.development.languages.enable {
