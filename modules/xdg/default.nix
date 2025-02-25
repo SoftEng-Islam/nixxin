@@ -173,7 +173,7 @@ in mkIf (settings.modules.xdg.enable) {
       };
       mimeApps = {
         enable = true;
-        defaultapps = associations;
+        defaultApplications = associations;
         # defaultapps = with lib;
         #   with mimeTypes;
         #   mkMerge (mapAttrsToList (n: ms: genAttrs ms (_: [ "${n}.desktop" ])) {
