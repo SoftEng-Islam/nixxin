@@ -1,19 +1,21 @@
 # ---- docs.nix ---- #
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  _docs = settings.modules.system.docs;
 in {
 
   # For Faster Rebuilding Disable These
   documentation = {
-    enable = settings.modules.system.docs.enable;
-    doc.enable = settings.modules.system.docs.doc.enable;
+    enable = _docs.enable;
+    doc.enable = _docs.doc.enable;
     man = {
-      enable = settings.modules.system.docs.man.enable;
-      generateCaches = settings.modules.system.docs.man.generateCaches;
+      enable = _docs.man.enable;
+      generateCaches = _docs.man.generateCaches;
     };
-    dev.enable = settings.modules.system.docs.dev.enable;
-    info.enable = settings.modules.system.docs.info.enable;
-    nixos.enable = settings.modules.system.docs.nixos.enable;
+    dev.enable = _docs.dev.enable;
+    info.enable = _docs.info.enable;
+    nixos.enable = _docs.nixos.enable;
   };
 
   nix = {

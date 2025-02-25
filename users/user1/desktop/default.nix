@@ -186,6 +186,11 @@
       languages = {
         enable = true;
         clang = true;
+        go = true;
+        python = true;
+        ruby = true;
+        rust = true;
+        web = true;
       };
       tools = {
         enable = true;
