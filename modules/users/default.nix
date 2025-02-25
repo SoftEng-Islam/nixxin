@@ -9,7 +9,7 @@ in {
       isNormalUser = true;
       # isSystemUser = false;
       # hashedPassword = "";
-      description = settings.users.name;
+      description = settings.user.name;
       home = "/home/${settings.user.username}";
       # shell = pkgs.zsh; # Set zsh as the default shell
       extraGroups = [
