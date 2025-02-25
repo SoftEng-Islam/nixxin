@@ -1,8 +1,7 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) optionals mkIf;
 in {
-  imports =
-    optionals (lib.optional settings.audio.rnnoise.enable) [ ./rnnoise.nix ];
+  imports = optionals (settings.audio.rnnoise.enable) [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable) {
 
