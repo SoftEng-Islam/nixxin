@@ -506,10 +506,6 @@
         info.enable = true;
         nixos.enable = true;
       };
-      zram = {
-        enable = true;
-        algorithm = "lz4"; # lz4 or zstd
-      };
     };
     terminals = {
       enable = true;
@@ -590,6 +586,10 @@
         videoPlayer = "celluloid"; # vlc or celluloid or mpv
         torrentApp = "qBittorrent";
       };
+    };
+    zram = {
+      enable = true;
+      algorithm = "lz4"; # lz4 or zstd
     };
   };
 }
