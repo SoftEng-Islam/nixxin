@@ -185,7 +185,7 @@
       };
       languages = {
         enable = true;
-        clang.enable = true;
+        clang = true;
       };
       tools = {
         enable = true;
