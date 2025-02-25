@@ -1,10 +1,6 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-
-  options.settings.modules.development.languages.enable =
-    lib.mkEnableOption "Enable Languages Module";
-
   config = mkIf (settings.modules.development.languages.enable or false) {
     imports = [ ./clang ./go ./python ./ruby ./rust ./web ];
     environment.systemPackages = with pkgs;
