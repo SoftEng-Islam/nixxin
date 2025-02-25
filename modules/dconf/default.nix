@@ -44,18 +44,19 @@ mkIf (settings.modules.dconf.enable) {
         # cursor-blink
         # cursor-blink-time
         # cursor-blink-timeout
-        cursor-size = settings.modules.style.cursor.size;
-        cursor-theme = settings.style.cursor.name;
+        cursor-size = settings.modules.styles.cursor.size;
+        cursor-theme = settings.modules.styles.cursor.name;
         enable-animations = true;
         # enable-hot-corners
 
         # ---- Fonts ---- #
-        font-name = lib.mkForce settings.fonts.main.name;
-        document-font-name = lib.mkForce settings.fonts.main.name;
-        font-hinting = lib.mkForce settings.fonts.main.hinting;
-        font-rendering = lib.mkForce settings.fonts.main.rendering;
-        font-antialiasing = lib.mkForce settings.fonts.main.antialiasing;
-        font-rgba-order = lib.mkForce settings.fonts.main.rgba_order;
+        font-name = lib.mkForce settings.modules.fonts.main.name;
+        document-font-name = lib.mkForce settings.modules.fonts.main.name;
+        font-hinting = lib.mkForce settings.modules.fonts.main.hinting;
+        font-rendering = lib.mkForce settings.modules.fonts.main.rendering;
+        font-antialiasing =
+          lib.mkForce settings.modules.fonts.main.antialiasing;
+        font-rgba-order = lib.mkForce settings.modules.fonts.main.rgba_order;
 
         # gtk-color-palette
         # gtk-color-scheme
@@ -67,7 +68,7 @@ mkIf (settings.modules.dconf.enable) {
         gtk-theme = lib.mkForce "${settings.global.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
-        icon-theme = "${settings.style.icons.nameInDark}";
+        icon-theme = "${settings.modules.styles.icons.nameInDark}";
         # locate-pointer
         # menubar-accel
         # menubar-detachable
