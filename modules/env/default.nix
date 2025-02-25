@@ -79,11 +79,11 @@ in {
       ELECTRON_ENABLE_WAYLAND = "1";
 
       # Configure the cursor theme and size for graphical sessions.
-      XCURSOR = settings.style.cursor.name;
-      XCURSOR_THEME = settings.style.cursor.name;
-      XCURSOR_SIZE = toString settings.style.cursor.size;
+      XCURSOR = settings.modules.styles.cursor.name;
+      XCURSOR_THEME = settings.modules.styles.cursor.name;
+      XCURSOR_SIZE = toString settings.modules.styles.cursor.size;
 
-      GTK_THEME = settings.style.gtk.theme;
+      GTK_THEME = settings.global.gtk.theme;
 
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
