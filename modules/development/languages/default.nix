@@ -10,7 +10,7 @@ let
     ./web
   ];
 in {
-  imports = lib.flatten _imports;
+  imports = _imports;
   config = mkIf (settings.modules.development.languages.enable or false) {
     environment.systemPackages = with pkgs;
       [
