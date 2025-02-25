@@ -6,7 +6,7 @@ in mkIf (settings.modules.development.languages.clang.enable) {
     # Use gcc for compilation
 
     # CC="${pkgs.gcc}/bin/gcc";
-    # CXX="${pkgs.gcc}/bin/c++"";
+    # CXX="${pkgs.gcc}/bin/c++";
 
     # CC = "${pkgs.clang}/bin/clang";
     # CXX = "${pkgs.clang}/bin/clang++";
