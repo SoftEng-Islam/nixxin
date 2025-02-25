@@ -2,6 +2,8 @@
   imports = [
     ./hardware.nix
 
+    #../../../UI/ignis
+
     # ---- Modules ---- #
     ../../../modules/ai
     ../../../modules/android
