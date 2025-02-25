@@ -1,4 +1,4 @@
-{ settings, config, lib, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let inherit (lib) optionals mkIf;
 in {
   # Conditionally import all modules if `enable = true`
@@ -19,19 +19,5 @@ in {
         # insomnia
         # scc
       ];
-    # programs.vscode = {
-    #   enable = true;
-    #   package = pkgs.vscodium;
-    #   extensions = with pkgs.vscode-extensions; [
-    #     aaron-bond.better-comments
-    #     catppuccin.catppuccin-vsc
-    #     catppuccin.catppuccin-vsc-icons
-    #     eamodio.gitlens
-    #     jnoortheen.nix-ide
-    #     mkhl.direnv
-    #     ms-vscode.hexeditor
-    #     tamasfe.even-better-toml
-    #   ];
-    # };
   };
 }
