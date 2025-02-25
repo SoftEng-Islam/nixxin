@@ -1,5 +1,5 @@
 { settings, pkgs, ... }: {
-  imports = [ ./beesd.nix ];
+  # imports = [ ./beesd.nix ];
   services.fstrim.enable = settings.modules.storage.fstrim.enable;
   environment.systemPackages = with pkgs;
     [
