@@ -28,16 +28,16 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        # inputs.ashell.packages.${pkgs.system}
+        inputs.ashell.packages.${pkgs.system}
 
-        (import (pkgs.callPackage (pkgs.fetchFromGitHub {
-          owner = "MalpenZibo";
-          repo = "ashell";
-          rev = "refs/heads/main"; # Or specify the branch/tag you need
-          # nix-prefetch-git https://github.com/MalpenZibo/ashell
-          sha256 =
-            "1fvk3yl5z1sirm6ngi45j59r5b0raa5xszjbh23bkc389sbkzxiv"; # Replace with the correct hash
-        }) { }).packages.${settings.system.architecture})
+        # (import (pkgs.callPackage (pkgs.fetchFromGitHub {
+        #   owner = "MalpenZibo";
+        #   repo = "ashell";
+        #   rev = "refs/heads/main"; # Or specify the branch/tag you need
+        #   # nix-prefetch-git https://github.com/MalpenZibo/ashell
+        #   sha256 =
+        #     "1fvk3yl5z1sirm6ngi45j59r5b0raa5xszjbh23bkc389sbkzxiv"; # Replace with the correct hash
+        # }) { }).packages.${settings.system.architecture})
       ];
   };
 }
