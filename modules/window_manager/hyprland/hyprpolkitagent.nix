@@ -1,7 +1,7 @@
 { settings, pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
-    # hyprpolkitagent
+    # inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
+    hyprpolkitagent
     polkit
     # polkit_gnome
   ];
