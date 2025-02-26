@@ -6,6 +6,7 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     # systemctl --user start hyprpolkitagent
+    ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
 
     # ---- Hyprland with uwsm ---- #
     # systemctl --user enable --now hyprpolkitagent.service
@@ -18,7 +19,7 @@ let
     ignis init &
 
     # ---- Make nautilus Run in Background ---- #
-    nautilus --no-desktop &
+    # nautilus --no-desktop &
 
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
@@ -33,10 +34,10 @@ let
 
 
     # Core components (authentication, lock screen, notification daemon)
-    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    # ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
 
     # ---- polkit-gnome ---- #
-    ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
+    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1 &
 
     # ---- Input Method ---- #
     #${pkgs.fcitx5}/bin/fcitx5
