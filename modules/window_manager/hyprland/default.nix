@@ -37,21 +37,6 @@
 
   systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
 
-  home-manager.users."${settings.user.username}" = {
-    # systemd.user.services.hyprpolkitagent = {
-    #   Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
-    #   Install.WantedBy = [ "graphical-session.target" ];
-
-    #   Service = {
-    #     ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-    #     Nice = "-20";
-    #     Restart = "on-failure";
-    #     StartLimitIntervalSec = 60;
-    #     StartLimitBurst = 60;
-    #   };
-    # };
-  };
-
   environment = {
     variables = {
       LIBSEAT_BACKEND = "logind";
@@ -81,6 +66,20 @@
   '';
 
   home-manager.users.${settings.user.username} = {
+
+    # systemd.user.services.hyprpolkitagent = {
+    #   Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
+    #   Install.WantedBy = [ "graphical-session.target" ];
+
+    #   Service = {
+    #     ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+    #     Nice = "-20";
+    #     Restart = "on-failure";
+    #     StartLimitIntervalSec = 60;
+    #     StartLimitBurst = 60;
+    #   };
+    # };
+
     wayland.windowManager.hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
       package = pkgs.hyprland;
