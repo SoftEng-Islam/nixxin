@@ -20,7 +20,6 @@
     ./configs/rules.nix
     # ./configs/scripts.nix
     ./configs/source.nix
-    ./hyprpolkitagent.nix
   ];
   programs = {
     uwsm.enable = false;
@@ -34,6 +33,23 @@
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
     };
+  };
+
+  systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
+
+  home-manager.users."${settings.user.username}" = {
+    # systemd.user.services.hyprpolkitagent = {
+    #   Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
+    #   Install.WantedBy = [ "graphical-session.target" ];
+
+    #   Service = {
+    #     ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
+    #     Nice = "-20";
+    #     Restart = "on-failure";
+    #     StartLimitIntervalSec = 60;
+    #     StartLimitBurst = 60;
+    #   };
+    # };
   };
 
   environment = {
@@ -103,6 +119,11 @@
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
     # hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
     hyprprop
+
+    # inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
+    hyprpolkitagent
+    polkit
+    # polkit_gnome
 
     # gui
     yad
