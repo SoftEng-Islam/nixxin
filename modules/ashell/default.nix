@@ -1,5 +1,15 @@
 { settings, lib, config, inputs, pkgs, ... }:
-let inherit (lib) optionals mkIf;
+let
+  inherit (lib) optionals mkIf;
+
+  ashellSrc = pkgs.fetchFromGitHub {
+    owner = "MalpenZibo";
+    repo = "ashell";
+    rev = "4a1c9e0c788e0e1c4aac9522d39a44cce7c24ef2"; # From nix-prefetch-git
+    sha256 = "1fvk3yl5z1sirm6ngi45j59r5b0raa5xszjbh23bkc389sbkzxiv";
+  };
+  ashell = import ashellSrc { inherit pkgs; }; # Import properly
+
 in {
 
   # imports = optionals (settings.modules.ashell.enable) [ ./ashell.nix ];
@@ -28,8 +38,8 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        inputs.ashell
-
+        ashell.defaultPackage.${pkgs.system}
+        # inputs.ashell
         # (import (pkgs.callPackage (pkgs.fetchFromGitHub {
         #   owner = "MalpenZibo";
         #   repo = "ashell";
