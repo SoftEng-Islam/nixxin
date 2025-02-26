@@ -1,6 +1,5 @@
 { lib, stdenv, fetchFromGitHub, gcc, ... }:
-
-stdenv.mkDerivation rec {
+stdenv.mkDerivation {
   pname = "ashell";
   version = "latest";
 
