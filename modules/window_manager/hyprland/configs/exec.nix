@@ -1,4 +1,7 @@
 { settings, inputs, pkgs, ... }:
+
+# ${inputs.ashell.defaultPackage.${settings.system.architecture}}/bin/ashell
+
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
@@ -7,7 +10,6 @@ let
     # ---- Hyprland with uwsm ---- #
     # systemctl --user enable --now hyprpolkitagent.service
 
-    ${inputs.ashell.defaultPackage.${settings.system.architecture}}/bin/ashell
 
     # ---- notification daemon ---- #
     dunst &
