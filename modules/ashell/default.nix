@@ -2,7 +2,7 @@
 let inherit (lib) optionals mkIf;
 in {
 
-  imports = optionals (settings.modules.ashell.enable) [ ./ashell.nix ];
+  # imports = optionals (settings.modules.ashell.enable) [ ./ashell.nix ];
 
   config = mkIf (settings.modules.ashell.enable) {
     # home-manager.users.${settings.user.username} = {
@@ -29,7 +29,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        # inputs.ashell.defaultPackage.x86_64-linux
+        inputs.ashell.defaultPackage.${settings.system.architecture}
 
         # (import (pkgs.callPackage (pkgs.fetchFromGitHub {
         #   owner = "MalpenZibo";

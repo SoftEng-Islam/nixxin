@@ -1,14 +1,16 @@
-{ settings, pkgs, ... }:
+{ settings, inputs, pkgs, ... }:
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     # systemctl --user start hyprpolkitagent
 
     # ---- Hyprland with uwsm ---- #
-    #systemctl --user enable --now hyprpolkitagent.service
+    # systemctl --user enable --now hyprpolkitagent.service
+
+    ${inputs.ashell.defaultPackage.${settings.system.architecture}}/bin/ashell
 
     # ---- notification daemon ---- #
-    # dunst &
+    dunst &
 
     # ---- Start IGNIS ---- #
     # ignis init &
@@ -19,7 +21,7 @@ let
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 
-    ${pkgs.hyprlock}/bin/hyprlock
+    # ${pkgs.hyprlock}/bin/hyprlock
 
     # ---- Set Background ---- #
     ${pkgs.swww}/bin/swww init &
