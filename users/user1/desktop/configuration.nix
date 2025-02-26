@@ -2,7 +2,7 @@
   imports = [
     ./hardware.nix
 
-    #../../../UI/ignis
+    ../../../UI/ignis
 
     # ---- Modules ---- #
     ../../../modules/ai
