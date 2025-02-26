@@ -27,7 +27,7 @@ in mkIf (settings.modules.ashell.enable) {
         # nix-prefetch-git https://github.com/MalpenZibo/ashell
         sha256 =
           "1fvk3yl5z1sirm6ngi45j59r5b0raa5xszjbh23bkc389sbkzxiv"; # Replace with the correct hash
-      }) { }).defaultPackage.x86_64-linux)
+      }) { }))
       # inputs.ashell.defaultPackage.x86_64-linux
     ];
 }
