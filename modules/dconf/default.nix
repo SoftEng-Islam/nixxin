@@ -35,15 +35,15 @@ mkIf (settings.modules.dconf.enable) {
       "org/gnome/desktop/interface" = {
         # accent-color
         # avatar-directories
-        # can-change-accels
-        # clock-format
-        # clock-show-date
-        # clock-show-seconds
-        # clock-show-weekday
-        # color-scheme
-        # cursor-blink
-        # cursor-blink-time
-        # cursor-blink-timeout
+        can-change-accels = false;
+        clock-format = "12h";
+        clock-show-date = true;
+        clock-show-seconds = false;
+        clock-show-weekday = true;
+        color-scheme = settings.modules.styles.colorScheme;
+        cursor-blink = true;
+        cursor-blink-time = 500;
+        cursor-blink-timeout = 10;
         cursor-size = settings.modules.styles.cursor.size;
         cursor-theme = settings.modules.styles.cursor.name;
         enable-animations = true;

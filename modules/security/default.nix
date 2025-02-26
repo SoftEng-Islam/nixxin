@@ -9,7 +9,9 @@ in mkIf (settings.modules.security.enable) {
     sudo.wheelNeedsPassword = false;
 
     # show Password as stars in Terminals.
-    sudo.extraConfig = "Defaults        env_reset,pwfeedback";
+    sudo.extraConfig = ''
+      Defaults        env_reset,pwfeedback,!no_new_privs
+    '';
 
     allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
 

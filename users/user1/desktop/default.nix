@@ -137,7 +137,7 @@
       development = true;
       android_studio = false;
     };
-    ashell = { enable = false; };
+    ashell = { enable = true; };
     audio = {
       enable = true;
       rnnoise.enable = true; # Noise Canceling
