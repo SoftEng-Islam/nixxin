@@ -5,23 +5,22 @@ in {
   # imports = optionals (settings.modules.ashell.enable) [ ./ashell.nix ];
 
   config = mkIf (settings.modules.ashell.enable) {
-    # home-manager.users.${settings.user.username} = {
-    #   systemd.user.services = {
-    #     ashell = {
-    #       Unit = {
-    #         Description = "ashell status bar";
-    #         PartOf = [ "hyprland-session.target" ];
-    #       };
-
-    #       Service = {
-    #         ExecStart = "${inputs.ashell.defaultPackage.x86_64-linux}/bin/ashell";
-    #         Restart = "on-failure";
-    #       };
-
-    #       Install.WantedBy = [ "hyprland-session.target" ];
-    #     };
-    #   };
-    # };
+    home-manager.users.${settings.user.username} = {
+      systemd.user.services.ashell = {
+        Unit = {
+          Description = "Ashell shell";
+          PartOf = [ "hyprland-session.target" ];
+          After = [ "hyprland-session.target" ];
+        };
+        Install = { WantedBy = [ "hyprland-session.target" ]; };
+        Service = {
+          ExecStart =
+            "${inputs.ashell.defaultPackage.${pkgs.system}}/bin/ashell";
+          Restart = "on-failure";
+          Type = "simple";
+        };
+      };
+    };
 
     home-manager.users.${settings.user.username} = {
       home.file.".config/ashell.yml".source = ./ashell.yml;
@@ -29,7 +28,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        inputs.ashell.defaultPackage.${settings.system.architecture}
+        inputs.ashell.defaultPackage.${pkgs.system}
 
         # (import (pkgs.callPackage (pkgs.fetchFromGitHub {
         #   owner = "MalpenZibo";
