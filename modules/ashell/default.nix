@@ -24,8 +24,9 @@ in mkIf (settings.modules.ashell.enable) {
         owner = "MalpenZibo";
         repo = "ashell";
         rev = "refs/heads/main"; # Or specify the branch/tag you need
+        # nix-prefetch-git https://github.com/MalpenZibo/ashell
         sha256 =
-          "4a1c9e0c788e0e1c4aac9522d39a44cce7c24ef2"; # Replace with the correct hash
+          "1fvk3yl5z1sirm6ngi45j59r5b0raa5xszjbh23bkc389sbkzxiv"; # Replace with the correct hash
       }) { }).defaultPackage.x86_64-linux)
       # inputs.ashell.defaultPackage.x86_64-linux
     ];
