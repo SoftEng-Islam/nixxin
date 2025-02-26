@@ -18,6 +18,11 @@ in mkIf (settings.modules.ashell.enable) {
   #     };
   #   };
   # };
+
+  home-manager.users.${settings.user.username} = {
+    home.file.".config/ashell.yml".source = ./ashell.yml;
+  };
+
   environment.systemPackages = with pkgs;
     [
       # inputs.ashell.defaultPackage.x86_64-linux
