@@ -32,8 +32,8 @@ in {
       download-attempts = 10;
       # download-buffer-size = 536870912;
       http-connections = 0; # 0 means no limit
-      keep-outputs = true;
-      keep-derivations = true;
+      keep-outputs = false;
+      keep-derivations = false;
       # Enable flakes
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
