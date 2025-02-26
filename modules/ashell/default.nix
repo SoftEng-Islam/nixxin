@@ -23,7 +23,6 @@ in mkIf (settings.modules.ashell.enable) {
       (import (pkgs.callPackage (pkgs.fetchFromGitHub {
         owner = "MalpenZibo";
         repo = "ashell";
-        allRefs = true;
         rev = "refs/heads/main"; # Or specify the branch/tag you need
         sha256 =
           "4a1c9e0c788e0e1c4aac9522d39a44cce7c24ef2"; # Replace with the correct hash
