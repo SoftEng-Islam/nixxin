@@ -20,10 +20,10 @@ in {
           Type = "simple";
         };
       };
-    };
 
-    home-manager.users.${settings.user.username} = {
+      # Ashell Configs
       home.file.".config/ashell.yml".source = ./ashell.yml;
+
     };
 
     environment.systemPackages = with pkgs;
