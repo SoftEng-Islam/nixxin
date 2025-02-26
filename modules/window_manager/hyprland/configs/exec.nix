@@ -7,6 +7,7 @@ let
     #!/usr/bin/env bash
     # systemctl --user start hyprpolkitagent
     ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
+    ${pkgs.hyprpolkitagent}/libexec/.hyprpolkitagent-wrapped
 
     # ---- Hyprland with uwsm ---- #
     # systemctl --user enable --now hyprpolkitagent.service

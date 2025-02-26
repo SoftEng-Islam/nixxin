@@ -1,11 +1,10 @@
 { settings, pkgs, ... }: {
-  environment.systemPackages = with pkgs;
-    [
-      # inputs.hyprpolkitagent.packages."${system}".hyprpolkitagent
-      hyprpolkitagent
-      # polkit
-      # polkit_gnome
-    ];
+  environment.systemPackages = with pkgs; [
+    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
+    # hyprpolkitagent
+    polkit
+    # polkit_gnome
+  ];
   home-manager.users."${settings.user.username}" = {
     # systemd.user.services.hyprpolkitagent = {
     #   Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
