@@ -92,7 +92,7 @@
 
     fd # A simple, fast and user-friendly alternative to find
     gtk-engine-murrine # for gtk themes
-    hyprcursor # The hyprland cursor format, library and utilities
+    # hyprcursor # The hyprland cursor format, library and utilities
     hyprland
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprlang # The official implementation library for the hypr config language
@@ -126,17 +126,8 @@
     wlsunset
     wf-recorder
 
-    # langs
-    nodejs
-    bun
-    cargo
-    go
-    typescript
-    eslint
-
     # very important stuff
     uwuify
-
     adwaita-qt6
     material-symbols
   ];

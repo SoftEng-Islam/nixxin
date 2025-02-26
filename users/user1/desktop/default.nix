@@ -69,7 +69,7 @@
     gtk = {
       # Material
       # adw-gtk3-dark
-      theme = "Material";
+      theme = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
       icon_cache = false;
     };
@@ -137,7 +137,7 @@
       development = true;
       android_studio = false;
     };
-    ashell = { enable = true; };
+    ashell = { enable = false; };
     audio = {
       enable = true;
       rnnoise.enable = true; # Noise Canceling
