@@ -28,7 +28,7 @@ in {
 
     environment.systemPackages = with pkgs;
       [
-        inputs.ashell.packages.${pkgs.system}
+        inputs.ashell
 
         # (import (pkgs.callPackage (pkgs.fetchFromGitHub {
         #   owner = "MalpenZibo";
