@@ -10,11 +10,17 @@ in mkIf (settings.modules.virtualization.enable) {
       qemu.runAsRoot = false;
     };
     # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
-    lxd.enable = false;
-    # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
+    lxd.enable = true;
     lxc.enable = true;
     # lxc.lxcfs.enable = true;
     lxc.unprivilegedContainers = true;
+  };
+  systemd.services.lxc = {
+    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
+    serviceConfig = {
+      Restart = "always";
+      RestartSec = "5s"; # Add a 5-second delay before restarting.
+    };
   };
   environment = {
     systemPackages = with pkgs;
