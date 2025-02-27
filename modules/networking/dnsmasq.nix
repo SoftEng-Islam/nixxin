@@ -7,6 +7,7 @@
       false;
     alwaysKeepRunning = true;
     settings = {
+      port = 9751;
       # Set Google DNS for IPv4 and IPv6
       server = settings.modules.networking.nameservers;
       # interface = "waydroid0";
