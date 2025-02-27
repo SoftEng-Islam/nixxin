@@ -1,7 +1,9 @@
 { settings, lib, pkgs, ... }:
-
 let inherit (lib) mkIf;
 in mkIf (settings.modules.virtualization.enable) {
+  # ----------------------------------------------
+  # ---- virtualisation
+  # ----------------------------------------------
   virtualisation = {
     spiceUSBRedirection.enable = true; # for virt-manager usb forwarding
     libvirtd = {
@@ -9,11 +11,15 @@ in mkIf (settings.modules.virtualization.enable) {
       allowedBridges = [ "nm-bridge" "virbr0" ];
       qemu.runAsRoot = false;
     };
-    # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
-    lxd.enable = false;
-    lxc.enable = false;
-    lxc.unprivilegedContainers = false;
   };
+
+  # ----------------------------------------------
+  # ---- LXD
+  # ----------------------------------------------
+  # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
+  virtualisation.lxd.enable = false;
+  virtualisation.lxc.enable = false;
+  virtualisation.lxc.unprivilegedContainers = false;
   systemd.services.lxc = {
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
     serviceConfig = {
@@ -21,13 +27,15 @@ in mkIf (settings.modules.virtualization.enable) {
       RestartSec = "5s"; # Add a 5-second delay before restarting.
     };
   };
-  environment = {
-    systemPackages = with pkgs;
-      [
-        #for virtualisation virt-manager
-        # virtiofsd
-        # virt-manager
-        # distrobox
-      ];
-  };
+
+  # ----------------------------------------------
+  # ---- System Packages
+  # ----------------------------------------------
+  environment.systemPackages = with pkgs;
+    [
+      #for virtualisation virt-manager
+      # virtiofsd
+      # virt-manager
+      # distrobox
+    ];
 }
