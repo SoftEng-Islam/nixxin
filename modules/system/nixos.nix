@@ -272,10 +272,8 @@ in {
     coreutils # The GNU Core Utilities
     cups # A standards-based printing system for UNIX
     gdb # The GNU Project debugger
-    gnuchess # GNU Chess engine
+    # gnuchess # GNU Chess engine
     gnumake # A tool to control the generation of non-source files from sources
-    libGL # Stub bindings using libglvnd
-    libGLU # OpenGL utility library
 
     # Other Tools
     upower # D-Bus service for power management
@@ -304,9 +302,6 @@ in {
 
     # Databases
     sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
-
-    # C & C++
-    clang # A C language family frontend for LLVM (wrapper script)
 
     # Sass (Css)
     dart-sass # The reference implementation of Sass, written in Dart

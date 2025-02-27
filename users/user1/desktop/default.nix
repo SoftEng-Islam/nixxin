@@ -133,7 +133,7 @@
     android = {
       enable = true;
       scrcpy = true;
-      waydroid = true;
+      waydroid = false;
       development = true;
       android_studio = false;
     };
@@ -235,7 +235,7 @@
     };
     editors = {
       enable = true;
-      zedEditor = false;
+      zedEditor = true;
       eclipse = false;
       helix = false;
       vscode = true;
