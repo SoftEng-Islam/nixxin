@@ -270,6 +270,11 @@ in {
 
       # PID optimization
       "kernel.pid_max" = 4194304;
+
+      # ---- NoNewPrivs ---- #
+      # Run this command to check if a process has NoNewPrivileges set:
+      # grep NoNewPrivs /proc/*/status
+      "kernel.unprivileged_userns_clone" = 1;
     };
     # extraModprobeConfig = ''
     # blacklist r8188eu

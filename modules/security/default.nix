@@ -42,6 +42,9 @@ in mkIf (settings.modules.security.enable) {
       pkcs11.enable = true;
       tctiEnvironment.enable = true;
     };
+
+    # to create new namespaces.
+    unprivilegedUsernsClone = true;
   };
   environment.systemPackages = with pkgs; [
     openvpn # Robust and highly flexible tunneling application

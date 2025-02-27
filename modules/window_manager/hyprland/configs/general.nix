@@ -31,6 +31,8 @@
           gaps_workspaces = 50;
           border_size = 3;
           resize_on_border = true;
+          hover_icon_on_border = false;
+          extend_border_grab_area = 25;
           "col.inactive_border" = "$surface";
           "col.active_border" = "$primary";
 
@@ -47,6 +49,8 @@
 
           # => Active Border with `graid` colors:
           # "col.active_border"="rgba(673ab7ff) rgba(E62D42ff) 45deg";
+
+          snap = { enabled = true; };
         };
       };
     };

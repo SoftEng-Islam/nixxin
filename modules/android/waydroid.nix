@@ -31,6 +31,7 @@ in {
     lxd.enable = true;
     # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
     lxc.enable = true;
+    lxc.unprivilegedContainers = true;
   };
 
   # ---- Installation ---- #

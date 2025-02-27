@@ -228,7 +228,6 @@ in {
   environment.systemPackages = with pkgs; [
     # ---- Settings.nix Packages ---- #
     bibata-cursors
-
     proot # User-space implementation of chroot, mount --bind and binfmt_misc
     # matugen # A material you color generation tool
 
@@ -340,6 +339,7 @@ in {
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
     shfmt # Shell parser and formatter
     strace # System call tracer for Linux
+    binutils
     sudo # A command to run commands as root
     sysstat # Collection of performance monitoring tools for Linux (such as sar, iostat and pidstat)
     udevil # Mount without password
