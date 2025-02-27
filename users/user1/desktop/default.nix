@@ -231,7 +231,7 @@
     display_manager = { # Display/Login manager
       enable = true;
       default = "gdm"; # gdm OR greetd OR tuigreet OR sddm
-      defaultSession = null; # hyprland or hyprland-uwsm or gnome
+      defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
     };
     editors = {
       enable = true;
@@ -571,14 +571,14 @@
       enable = true;
       # ---- Hyprland ---- #
       hyprland = {
-        enable = false;
+        enable = true;
         # Pregenerated Colors to use in Hyprland
         genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
         plugins = {
           hyprbars = false;
           hyprspace = true;
-          bordersPlus = true;
+          bordersPlus = false;
           hyprexpo = false;
           hyprtrails = false;
         };
