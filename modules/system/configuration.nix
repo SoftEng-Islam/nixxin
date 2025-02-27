@@ -363,7 +363,7 @@ in {
   services.xserver.videoDrivers = [ "amdgpu" "radeon" ];
 
   # Enable auto-epp for amd active pstate.
-  services.auto-epp.enable = true;
+  services.auto-epp.enable = false;
 
   # services.ucodenix = {
   # enable = true;
