@@ -576,7 +576,7 @@
         genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
         plugins = {
-          hyprbars = false;
+          hyprbars = true;
           hyprspace = true;
           bordersPlus = false;
           hyprexpo = false;
