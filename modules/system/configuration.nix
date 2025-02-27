@@ -343,11 +343,10 @@ in {
         libva
         libva-utils
         vaapiVdpau
-
         # ---- Unlocks OpenCL GPU acceleration ---- #
         # rocmPackages.clr
-        # rocmPackages.clr.icd
-        # rocmPackages.rocm-runtime
+        rocmPackages.clr.icd
+        rocmPackages.rocm-runtime
         # rocmPackages.rocm-smi
         # rocmPackages.rocminfo
       ];
@@ -504,8 +503,8 @@ in {
     libva # An implementation for VA-API (Video Acceleration API)
     openal # OpenAL alternative
     # clblast # Tuned OpenCL BLAS library
-    # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
-    # ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
+    khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
+    ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
     # oclgrind # OpenCL device simulator and debugger
     # opencl-clang # A clang wrapper library with an OpenCL-oriented API and the ability to compile OpenCL C kernels to SPIR-V modules
     # opencl-clhpp # OpenCL Host API C++ bindings
