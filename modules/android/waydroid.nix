@@ -25,10 +25,7 @@ let
 in {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
-  virtualisation = {
-    waydroid.enable = true;
-
-  };
+  virtualisation = { waydroid.enable = true; };
 
   systemd.nspawn."waydroid".networkConfig = {
     VirtualEthernet = true;
