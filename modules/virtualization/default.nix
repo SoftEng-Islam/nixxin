@@ -17,8 +17,8 @@ in mkIf (settings.modules.virtualization.enable) {
   # ---- LXD
   # ----------------------------------------------
   # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
-  virtualisation.lxd.enable = false;
-  virtualisation.lxc.enable = false;
+  virtualisation.lxd.enable = lib.mkForce false;
+  virtualisation.lxc.enable = lib.mkForce false;
   virtualisation.lxc.unprivilegedContainers = false;
   systemd.services.lxc = {
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
