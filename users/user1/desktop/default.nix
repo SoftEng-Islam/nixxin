@@ -133,7 +133,7 @@
     android = {
       enable = true;
       scrcpy = true;
-      waydroid = true;
+      waydroid = false;
       development = true;
       android_studio = false;
     };
@@ -231,7 +231,7 @@
     display_manager = { # Display/Login manager
       enable = true;
       default = "gdm"; # gdm OR greetd OR tuigreet OR sddm
-      defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
+      defaultSession = null; # hyprland or hyprland-uwsm or gnome
     };
     editors = {
       enable = true;
@@ -571,7 +571,7 @@
       enable = true;
       # ---- Hyprland ---- #
       hyprland = {
-        enable = true;
+        enable = false;
         # Pregenerated Colors to use in Hyprland
         genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
