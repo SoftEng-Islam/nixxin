@@ -9,6 +9,12 @@ in mkIf (settings.modules.virtualization.enable) {
       allowedBridges = [ "nm-bridge" "virbr0" ];
       qemu.runAsRoot = false;
     };
+    # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
+    lxd.enable = false;
+    # a daemon that manages containers. Users in the “lxd” group can interact with the daemon (e.g. to start or stop containers) using the lxc command line tool, among others.
+    lxc.enable = false;
+    # lxc.lxcfs.enable = true;
+    lxc.unprivilegedContainers = true;
   };
   environment = {
     systemPackages = with pkgs;
