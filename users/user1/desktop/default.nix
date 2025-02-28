@@ -306,7 +306,7 @@
       enable = true; # To support gaming and install gaming stuff
       steam = { enable = false; };
       # Free, open-source game of ancient warfare
-      zeroad = { enable = true; };
+      zeroad = { enable = false; };
     };
     git = { enable = true; };
     graphics = {
