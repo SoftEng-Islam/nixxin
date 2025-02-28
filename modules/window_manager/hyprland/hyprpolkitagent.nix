@@ -3,6 +3,7 @@
   security.polkit.package = pkgs.polkit;
   systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
 
+  # systemctl --user enable hyprpolkitagent
   home-manager.users.${settings.user.username} = {
     #   systemd.user.services.hyprpolkitagent = {
     #     Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
