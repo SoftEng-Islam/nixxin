@@ -21,7 +21,7 @@ in {
       #   };
       # };
 
-      # Ashell Configs
+      # ashell Configs
       home.file.".config/ashell.yml".source = ./ashell.yml;
 
     };
