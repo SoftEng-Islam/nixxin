@@ -1,7 +1,6 @@
 { settings, lib, pkgs, ... }:
 let
   _hyprPlugins = [
-    ./hyprpolkitagent.nix
     (lib.optional settings.modules.window_manager.hyprland.plugins.bordersPlus
       ./borders-plus.nix)
     (lib.optional settings.modules.window_manager.hyprland.plugins.hyprbars

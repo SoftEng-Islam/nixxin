@@ -4,10 +4,6 @@
   systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
 
   home-manager.users.${settings.user.username} = {
-    wayland.windowManager.hyprland.plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
-      pkgs.hyprpolkitagent # Polkit authentication agent written in QT/QML
-    ];
     systemd.user.services.hyprpolkitagent = {
       Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
       Install.WantedBy = [ "graphical-session.target" ];
@@ -21,8 +17,8 @@
       };
     };
   };
-  environment.systemPackages = with pkgs;
-    [
-      polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
-    ];
+  environment.systemPackages = with pkgs; [
+    hyprpolkitagent # Polkit authentication agent written in QT/QML
+    polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
+  ];
 }

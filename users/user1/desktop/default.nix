@@ -35,7 +35,7 @@
   };
 
   home.stateVersion = "24.11";
-  home.backupFileExtension = "old";
+  home.backupFileExtension = null;
 
   # ----------------------------------------------
   # ---- Global
