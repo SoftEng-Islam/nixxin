@@ -163,6 +163,7 @@
       enable = false;
       ollama = { enable = true; };
     };
+    albert_launcher.enable = true;
     android = {
       enable = true;
       scrcpy = true;
@@ -346,7 +347,7 @@
       enable = true;
       blender = true;
       darktable = false;
-      davinci = true;
+      davinci = false;
       drawio = true;
       figmaLinux = false;
       gimp = true;

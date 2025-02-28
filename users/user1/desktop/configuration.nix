@@ -6,6 +6,7 @@
 
     # ---- Modules ---- #
     ../../../modules/ai
+    ../../../modules/albert_launcher
     ../../../modules/android
     ../../../modules/ashell
     ../../../modules/audio
