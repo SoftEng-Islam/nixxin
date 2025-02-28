@@ -22,7 +22,7 @@
         # env = WLR_NO_HARDWARE_CURSORS, 1
 
         "XCURSOR_THEME,${settings.modules.styles.cursor.name}"
-        "XCURSOR_SIZE,${settings.modules.styles.cursor.size}"
+        "XCURSOR_SIZE,${toString settings.modules.styles.cursor.size}"
 
         # --------- Screen tearing --------- #
         # env = WLR_DRM_NO_ATOMIC, 1
