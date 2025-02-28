@@ -346,7 +346,7 @@
       enable = true;
       blender = true;
       darktable = false;
-      davinci = false;
+      davinci = true;
       drawio = true;
       figmaLinux = false;
       gimp = true;
