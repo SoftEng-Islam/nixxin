@@ -80,6 +80,14 @@
     #   };
     # };
 
+    home.pointerCursor = {
+      gtk.enable = true;
+      # x11.enable = true;
+      package = settings.modules.styles.cursor.package;
+      name = settings.modules.styles.cursor.name;
+      size = settings.modules.styles.cursor.size;
+    };
+
     wayland.windowManager.hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
       package = pkgs.hyprland;
