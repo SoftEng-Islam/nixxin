@@ -6,7 +6,7 @@
         # Environment variables. See https://wiki.hyprland.org/Configuring/Environment-variables/
 
         "XDG_CURRENT_DESKTOP,Hyprland"
-        "XDG_SESSION_DEKSTOP,Hyprland"
+        "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
 
         # Disable window decoration for Wayland Qt apps
@@ -44,7 +44,7 @@
         "NIXOS_OZONE_WL,1"
         "XDG_SESSION_DESKTOP,Hyprland"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM=wayland,xcb"
+        "QT_QPA_PLATFORM=wayland;xcb"
         "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
         #   "ELECTRON_OZONE_PLATFORM_HINT,auto"
         "__GL_GSYNC_ALLOWED,0"
