@@ -5,11 +5,21 @@
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
-    # systemctl --user start hyprpolkitagent
-    ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
-    #${pkgs.hyprpolkitagent}/libexec/.hyprpolkitagent-wrapped
 
-    # ---- Hyprland with uwsm ---- #
+
+    # dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+    # dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
+    # dconf write /org/gnome/desktop/interface/document-font-name "'Noto Sans Medium 11'"
+    # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
+    # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
+
+
+    # ---- hyprpolkitagent for Hyprland ---- #
+    # systemctl --user start hyprpolkitagent
+    # ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
+    # ${pkgs.hyprpolkitagent}/libexec/.hyprpolkitagent-wrapped
+
+    # ---- hyprpolkitagent for Hyprland with uwsm ---- #
     # systemctl --user enable --now hyprpolkitagent.service
 
 

@@ -35,8 +35,6 @@
     };
   };
 
-  systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
-
   environment = {
     variables = {
       LIBSEAT_BACKEND = "logind";
@@ -67,19 +65,6 @@
 
   home-manager.users.${settings.user.username} = {
 
-    # systemd.user.services.hyprpolkitagent = {
-    #   Unit.Description = "Hyprpolkitagent - Polkit authentication agent";
-    #   Install.WantedBy = [ "graphical-session.target" ];
-
-    #   Service = {
-    #     ExecStart = "${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent";
-    #     Nice = "-20";
-    #     Restart = "on-failure";
-    #     StartLimitIntervalSec = 60;
-    #     StartLimitBurst = 60;
-    #   };
-    # };
-
     home.pointerCursor = {
       gtk.enable = true;
       # x11.enable = true;
@@ -107,7 +92,13 @@
     home.file.".config/hypr/scripts".source = ./configs/scripts;
   };
   environment.systemPackages = with pkgs; [
-    hyprland # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+    # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+    (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+      enableXWayland = false; # whether to enable XWayland
+      legacyRenderer = true; # whether to use the legacy renderer (for old GPUs)
+      withSystemd = true; # whether to build with systemd support
+    })
+
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprlang # The official implementation library for the hypr config language
     hyprlock # Hyprland's GPU-accelerated screen locking utility
@@ -117,9 +108,6 @@
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
     hyprprop
-
-    polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
-    hyprpolkitagent # Polkit authentication agent written in QT/QML
 
     adwaita-qt6
     gojq
