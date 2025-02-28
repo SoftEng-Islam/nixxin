@@ -27,7 +27,7 @@
     architecture = "x86_64-linux"; # Replace with your system architecture
     stateVersion = "24.05";
     upgrade = {
-      enable = true;
+      enable = false;
       allowReboot = true;
       # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";
@@ -46,7 +46,9 @@
     TERM = "kitty";
     BROWSER = "brave";
 
-    # ---- Lockscreen ---- #
+    # ---------------------
+    # ---- Lockscreen
+    # ---------------------
     lockscreen = {
       enable = true;
       type = "hyprlock";
@@ -56,7 +58,10 @@
       font = "";
     };
     rocm = { enable = false; };
-    # ---- IDLE ---- #
+
+    # ---------------------
+    # ---- IDLE
+    # ---------------------
     # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
     # 0 to Disable:
     idle = { delay = 0; };
@@ -66,6 +71,9 @@
     # ---- Dotfiles Inforamtions ---- #
     dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
 
+    # ---------------------
+    # ---- GTK
+    # ---------------------
     gtk = {
       # Material
       # adw-gtk3-dark
@@ -73,12 +81,37 @@
       package = pkgs.adw-gtk3;
       icon_cache = false;
     };
-    # ---- Qt ---- #
+    # ---------------------
+    # ---- Qt
+    # ---------------------
+
     qt = {
       style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
       package = pkgs.kdePackages.breeze;
       SCALE_FACTOR = 1;
+    };
+
+    # ---------------------
+    # ---- Icons
+    # ---------------------
+    icons = {
+      nameInLight = "Papirus";
+      nameInDark = "Papirus-Dark";
+      package = pkgs.papirus-icon-theme;
+
+      # ---- File Manager Icons Size ---- #
+      # "small" or "small-plus" or "medium" or "large" or "extra-large"
+      icon_view_size = "large"; # Set icon size for nautilus file manager.
+    };
+    # ---------------------
+    # ---- Cursor
+    # ---------------------
+    cursor = {
+      # 16, 32, 48 or 64
+      size = 24; # Cursor Size
+      name = "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
+      package = pkgs.bibata-cursors;
     };
   };
 

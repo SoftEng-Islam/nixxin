@@ -107,56 +107,38 @@
     home.file.".config/hypr/scripts".source = ./configs/scripts;
   };
   environment.systemPackages = with pkgs; [
-    # Install Hyprland from Inputes (latest version)
-    # inputs.hyprland.packages.${system}.hyprland
-
-    # A wlroots-compatible Wayland color picker that does not suck
-    # inputs.hyprpicker.packages.${system}.hyprpicker
-
-    fd # A simple, fast and user-friendly alternative to find
-    gtk-engine-murrine # for gtk themes
-    # hyprcursor # The hyprland cursor format, library and utilities
-    hyprland
+    hyprland # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprlang # The official implementation library for the hypr config language
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # A blazing fast wayland wallpaper utility
-    hyprpicker
+    hyprpicker # Wlroots-compatible Wayland color picker that does not suck
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
-    # hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
+    hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
     hyprprop
 
-    # inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
-    hyprpolkitagent
-    polkit
-    # polkit_gnome
+    polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
+    hyprpolkitagent # Polkit authentication agent written in QT/QML
 
-    # gui
-    yad
-
-    # tools
+    adwaita-qt6
     gojq
-    showmethekey
-    ydotool
-
-    # hyprland
-    temurin-jre-bin
     grim
-    tesseract
     imagemagick
+    material-symbols
     pavucontrol
     playerctl
-    swappy
+    showmethekey
     slurp
+    swappy
     swww
-    wayshot
-    wlsunset
-    wf-recorder
-
-    # very important stuff
+    temurin-jre-bin
+    tesseract
     uwuify
-    adwaita-qt6
-    material-symbols
+    wayshot
+    wf-recorder
+    wlsunset
+    yad
+    ydotool
   ];
 }
