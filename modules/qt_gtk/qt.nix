@@ -30,8 +30,9 @@ in {
     qt5.qtgraphicaleffects
     qt5.qtimageformats
     qt5.qtquickcontrols2
+    qt6.qtbase
+    qt6.qtdeclarative
+    qt6.qtsvg
     qt6.qtwayland
-    # qt6ct
-    # qt6Packages.qt6ct
   ];
 }

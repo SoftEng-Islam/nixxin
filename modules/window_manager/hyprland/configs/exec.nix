@@ -15,7 +15,10 @@ let
 
 
     # ---- hyprpolkitagent for Hyprland ---- #
-    # systemctl --user start hyprpolkitagent
+    systemctl --user start hyprpolkitagent
+    # ${
+      inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
+    }/libexec/hyprpolkitagent"
     # ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
     # ${pkgs.hyprpolkitagent}/libexec/.hyprpolkitagent-wrapped
 

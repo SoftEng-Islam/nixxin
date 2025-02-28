@@ -2,6 +2,8 @@
   description = "Nixxin Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
+
     home-manager = {
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -36,6 +38,20 @@
     #   inputs.nixpkgs.follows = "nixpkgs";
     # };
 
+    # hyprutils = {
+    #   url = "github:hyprwm/hyprutils";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.systems.follows = "systems";
+    # };
+
+    # hyprland-qt-support = {
+    #   url = "github:hyprwm/hyprland-qt-support";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    #   inputs.systems.follows = "systems";
+    # };
+
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+
     # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
     # hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
 
@@ -50,7 +66,6 @@
 
     # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
     # hyprland-plugins.inputs.hyprland.follows = "hyprland";
-    # hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     # hyprlock.url = "github:hyprwm/hyprlock";
     # hyprlock.inputs.hyprland.follows = "hyprland";
