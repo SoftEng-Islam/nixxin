@@ -25,5 +25,7 @@
     qt6.qtsvg
     qt6.qtwayland
     qt6.qtbase
+    hyprland-qtutils
+    hyprland-qt-support
   ];
 }
