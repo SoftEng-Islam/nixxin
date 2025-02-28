@@ -27,6 +27,6 @@ in {
     };
 
     environment.systemPackages = with pkgs;
-      [ inputs.ashell.defaultPackage.${pkgs.system} ];
+      [ inputs.ashell.defaultPackage."${pkgs.system}" ];
   };
 }
