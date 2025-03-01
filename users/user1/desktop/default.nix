@@ -167,7 +167,7 @@
     android = {
       enable = true;
       scrcpy = true;
-      waydroid = true;
+      waydroid = false;
       development = true;
       android_studio = false;
     };
