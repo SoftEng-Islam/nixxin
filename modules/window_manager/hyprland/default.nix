@@ -21,6 +21,9 @@
     # ./configs/scripts.nix
     ./configs/source.nix
     ./hyprpolkitagent.nix
+
+    # nix scripts
+    ./configs/nix_scripts/gamemode.nix
   ];
   programs = {
     uwsm.enable = false;

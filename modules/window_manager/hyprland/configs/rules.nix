@@ -45,6 +45,9 @@
       layerrule = blur, shell:*                # Apply blur to all shell elements
       layerrule = blur, launcher               # Apply blur to launcher
       layerrule = blur, notifications          # Apply blur to notifications
+
+      # ---- hyprbars Rules ---- #
+      windowrulev2 = plugin:hyprbars:nobar, albert
     '';
   };
 }

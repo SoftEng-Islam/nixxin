@@ -23,6 +23,7 @@
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
+      bind = $main, exec, albert
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
@@ -77,6 +78,11 @@
       # ----------------------- #
       # ---- $main + Shift ---- #
       # ----------------------- #
+
+      # ----------------------- #
+      # ---- $main + F1:F12
+      # ----------------------- #
+      bind = $main, F1, exec, run-gamemode
 
       # --------------------- #
       # ---- $main + Tag ---- #
@@ -181,9 +187,9 @@
       # --------------- #
       # ---- ignis ---- #
       # --------------- #
-      bind = $main, F1, exec, ignis toggle ignis_LAUNCHER
-      bind = $main, F2, exec, ignis toggle ignis_POWERMENU
-      bind = $main, F3, exec, ignis toggle ignis_POWERMENU
+      # bind = $main, F1, exec, ignis toggle ignis_LAUNCHER
+      # bind = $main, F2, exec, ignis toggle ignis_POWERMENU
+      # bind = $main, F3, exec, ignis toggle ignis_POWERMENU
       #=> Restart Ignis
       bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
       #=> ignis Recording
