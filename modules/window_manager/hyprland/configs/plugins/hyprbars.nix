@@ -43,11 +43,11 @@ in {
 
         # ---- Example buttons (R -> L) ---- #
         # hyprbars-button = Background Color, Size, On-click, Foreground Color
-        hyprbars-button = rgba(E62D42ff),20,, close-window, rgba(FFFFFF50) # Close
-        hyprbars-button = rgba(3A944Aff),20,=, hyprctl dispatch fullscreen 1, rgba(FFFFFF50) # Maximize
-        hyprbars-button = rgba(C88800ff),20,~, hyprctl dispatch togglefloating, rgba(FFFFFF50) # Minimize / Floating toggle
+        hyprbars-button = rgba(E62D42ff),20,, close-window, rgba(FFFFFF50) #? Close
+        hyprbars-button = rgba(3A944Aff),20,=, hyprctl dispatch fullscreen 1, rgba(FFFFFF50) #? Maximize
+        hyprbars-button = rgba(C88800ff),20,~, hyprctl dispatch togglefloating, rgba(FFFFFF50) #? Minimize / Floating toggle
       }
     '';
   };
-  environment.systemPackages = [ close-window ];
+  environment.systemPackages = [ close-window pkgs.jq ];
 }
