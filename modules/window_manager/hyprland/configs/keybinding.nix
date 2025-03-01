@@ -82,7 +82,12 @@
       # ----------------------- #
       # ---- $main + F1:F12
       # ----------------------- #
-      bind = $main, F1, exec, run-gamemode
+      # bind = $main, F1, exec, ToggleUI
+      bind = $main, F2, exec, run-gamemode
+      # bind = $main, F3, exec, run-gamemode
+      # bind = $main, F4, exec, run-gamemode
+      # bind = $main, F5, exec, run-gamemode
+      # bind = $main, F6, exec, run-gamemode
 
       # --------------------- #
       # ---- $main + Tag ---- #
