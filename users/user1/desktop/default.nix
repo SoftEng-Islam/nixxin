@@ -405,10 +405,12 @@
     notifications = { enable = true; };
     office = {
       enable = true;
-      zathura = true;
+      siyuan = true;
       evince = true;
       okular = true;
       papers = true;
+      zathura = true;
+      obsidian = true;
       libreoffice = true;
     };
     overclock = {
