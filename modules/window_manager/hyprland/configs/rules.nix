@@ -46,12 +46,14 @@
       layerrule = blur, launcher               # Apply blur to launcher
       layerrule = blur, notifications          # Apply blur to notifications
 
-      # ---- Albert Rules ---- #
-      windowrulev2 = plugin:hyprbars:nobar, class:(ulauncher)
-      # keep focus on albert
-      windowrulev2 = stayfocused, class:(ulauncher)
-      windowrulev2 = float, class:(ulauncher)
-      windowrulev2 = center, class:(ulauncher)
+      # ---- ulauncher Rules ---- #
+      windowrulev2 = plugin:hyprbars:nobar, class:^(ulauncher)$
+      windowrulev2 = stayfocused, class:^(ulauncher)$
+      windowrulev2 = float, class:^(ulauncher)$
+      windowrulev2 = center, class:^(ulauncher)$
+      windowrulev2 = noborder, class:^(ulauncher)$
+      windowrulev2 = noshadow, class:^(ulauncher)$
+      windowrulev2 = noblur, class:^(ulauncher)$
     '';
   };
 }

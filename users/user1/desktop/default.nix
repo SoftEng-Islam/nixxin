@@ -81,10 +81,10 @@
       package = pkgs.adw-gtk3;
       icon_cache = false;
     };
+
     # ---------------------
     # ---- Qt
     # ---------------------
-
     qt = {
       style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
