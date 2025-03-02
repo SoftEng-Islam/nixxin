@@ -6,7 +6,6 @@
 
     # ---- Modules ---- #
     ../../../modules/ai
-    ../../../modules/albert_launcher
     ../../../modules/android
     ../../../modules/ashell
     ../../../modules/audio
@@ -54,6 +53,7 @@
     ../../../modules/system
     ../../../modules/terminals
     ../../../modules/tools
+    ../../../modules/ulauncher
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
