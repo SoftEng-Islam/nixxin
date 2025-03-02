@@ -1,4 +1,6 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let socat = lib.getExe pkgs.socat;
+in {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
       # ---- Main Key ---- #
@@ -23,7 +25,8 @@
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      bind = $main, exec, albert
+      # <https://albertlauncher.github.io/gettingstarted/faq/#how-to-make-hotkeys-work-on-wayland>
+      bind = $main, exec, echo -n toggle | ${socat} - ~/.cache/albert/ipc_socket
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
