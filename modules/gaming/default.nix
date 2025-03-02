@@ -58,11 +58,12 @@ in mkIf (settings.modules.gaming.enable) {
   };
 
   services.sunshine = {
-    enable = true;
+    enable = false;
     autoStart = true;
     capSysAdmin = true;
     openFirewall = true;
   };
+
   environment.systemPackages = with pkgs;
     [
       # steam-run # Run commands in the same FHS environment that is used for Steam
