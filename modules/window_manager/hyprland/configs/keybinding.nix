@@ -25,7 +25,7 @@ in {
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      bind = $main, exec, ulauncher-toggle
+      bind = $main, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
