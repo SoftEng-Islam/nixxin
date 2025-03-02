@@ -25,15 +25,14 @@ in {
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      bind = $main, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
       #=> First Row:
       bind = $main, Q, killactive
-      bind = $main, W, exec, brave &
-      bind = $main, E, exec, nautilus --new-window & # Launch Nautilus (file manager)
-      bind = $main, R, exec, ${pkgs.btop}/bin/btop
+      bind = $main, W, exec, ${pkgs.brave}/bin/brave
+      bind = $main, E, exec, ${pkgs.nautilus}/bin/nautilus --new-window & # Launch Nautilus (file manager)
+      bind = $main, R, exec, ${pkgs.resources}/bin/resources
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
@@ -43,7 +42,8 @@ in {
       # -------------
       #=> Second Row:
       # -------------
-      bind = $main, A, exec, ignis toggle ignis_LAUNCHER
+      # bind = $main, A, exec, ignis toggle ignis_LAUNCHER
+      bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main F, 1, fullscreen,0
