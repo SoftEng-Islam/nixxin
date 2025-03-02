@@ -77,7 +77,7 @@
     gtk = {
       # Material
       # adw-gtk3-dark
-      theme = "adw-gtk3-dark";
+      theme = "Material";
       package = pkgs.adw-gtk3;
       icon_cache = false;
     };
