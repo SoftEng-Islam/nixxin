@@ -25,8 +25,7 @@ in {
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      # <https://albertlauncher.github.io/gettingstarted/faq/#how-to-make-hotkeys-work-on-wayland>
-      bind = $main, exec, echo -n toggle | ${socat} - ~/.cache/albert/ipc_socket
+      bind = $main, exec, ulauncher
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #

@@ -163,7 +163,6 @@
       enable = false;
       ollama = { enable = true; };
     };
-    albert_launcher.enable = true;
     android = {
       enable = true;
       scrcpy = true;
@@ -600,6 +599,7 @@
       };
     };
     tools = { enable = true; };
+    ulauncher.enable = true;
     users = { name = user.name; };
     virtualization = { enable = true; };
     wayland = { enable = true; };
