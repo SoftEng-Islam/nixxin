@@ -47,7 +47,7 @@
       layerrule = blur, notifications          # Apply blur to notifications
 
       # ---- hyprbars Rules ---- #
-      windowrulev2 = plugin:hyprbars:nobar, albert
+      windowrule = plugin:hyprbars:nobar, ^(albert)$
     '';
   };
 }
