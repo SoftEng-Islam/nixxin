@@ -34,8 +34,5 @@
         };
       };
     };
-
-    # Set env vars so flameshot works under wayland
-    home.sessionVariables = { QT_QPA_PLATFORM = "wayland"; };
   };
 }
