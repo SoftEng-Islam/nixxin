@@ -101,12 +101,12 @@ home-manager switch --flake .
 
 to Update the Input Use the following command to update just one input:
 ```bash
-    sudo nix flake lock --update-input <input-name>
+    sudo nix flake update <input-name>
 ```
 Replace <input-name> with the name of the input you want to update.
 Example:
 ```bash
-    sudo nix flake lock --update-input hyprland
+    sudo nix flake update hyprland
 ```
 
 ## Errors
@@ -114,6 +114,8 @@ Example:
 use `journalctl` to find problems:
 ```bash
     journalctl -xe | grep home-manager
+    # OR
+    journalctl -xeu home-manager-softeng.service | tail -50
 ```
 
 use chmod u+w /to/path if you have permissions errors:

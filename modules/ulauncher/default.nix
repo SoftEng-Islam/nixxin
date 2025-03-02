@@ -7,19 +7,17 @@ in {
       # Ulauncher service configuration
       systemd.user.services.ulauncher = {
         Unit = {
-          Description = "ulauncher application launcher service";
+          Description = "Ulauncher application launcher service";
           Documentation = "https://ulauncher.io";
-          PartOf = [ "graphical-session.target" ];
+          After = [ "graphical-session.target" ];
         };
 
         Service = {
-          Type = "simple";
-          ExecStart =
-            "${pkgs.bash}/bin/bash -lc '${pkgs.ulauncher}/bin/ulauncher --hide-window'";
+          ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
           Restart = "always";
         };
 
-        Install.WantedBy = [ "graphical-session.target" ];
+        Install = { WantedBy = [ "default.target" ]; };
       };
       # Source ulauncher configuration from this repository
       xdg.configFile = {
