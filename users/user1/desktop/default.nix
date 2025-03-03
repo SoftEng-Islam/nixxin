@@ -501,7 +501,7 @@
       cursor = {
         # 16, 32, 48 or 64
         size = 24; # Cursor Size
-        name = "Bibata-Modern-Ice"; # Cursor Name
+        name = "Bibata-Modern-Classic"; # Cursor Name
         package = pkgs.bibata-cursors;
       };
     };

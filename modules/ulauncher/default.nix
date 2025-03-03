@@ -12,7 +12,7 @@ in {
       serviceConfig = {
         # BusName=io.ulauncher.Ulauncher
         # Type=dbus
-        Type = "dbus";
+        Type = "simple";
         BusName = "io.ulauncher.Ulauncher";
         # Restart=always
         Restart = "always";
