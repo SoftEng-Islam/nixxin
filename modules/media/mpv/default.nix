@@ -143,7 +143,7 @@ in {
         video-sync = "display-resample";
 
         # video
-        vo = "gpu";
+        # vo = "gpu";
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
