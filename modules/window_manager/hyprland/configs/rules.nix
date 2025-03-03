@@ -54,6 +54,11 @@
       windowrulev2 = noborder, class:^(ulauncher)$
       windowrulev2 = noshadow, class:^(ulauncher)$
       windowrulev2 = noblur, class:^(ulauncher)$
+
+      # idle inhibit while watching videos
+      windowrulev2 = idleinhibit focus, class:^(mpv|.+exe|celluloid)$
+      windowrulev2 = idleinhibit focus, class:^(zen)$, title:^(.*YouTube.*)$
+      windowrulev2 = idleinhibit fullscreen, class:^(zen)$
     '';
   };
 }
