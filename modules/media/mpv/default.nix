@@ -1,6 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 let
-  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
+  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
   mpvConfig = ''
     input-ipc-server=/tmp/mpvsocket
     load-auto-profiles=no
@@ -26,7 +26,7 @@ let
     watch-later-options-remove=fullscreen
 
     hls-bitrate=max
-    script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
+    # script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
   '';
 
   ytdlDesktop = ''
@@ -101,7 +101,7 @@ let
 in {
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
-    home.sessionVariables.VIDEO = "mpv";
+    # home.sessionVariables.VIDEO = "mpv";
 
     # Simple GTK frontend for the mpv video player
     dconf.settings = {
@@ -118,11 +118,11 @@ in {
     #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio
     #   + "\n" + videoOutput + "\n" + osdConfig;
 
-    xdg.configFile = {
-      "mpv/script-opts/osc.conf".text = ''
-        windowcontrols=no
-      '';
-    };
+    # xdg.configFile = {
+    #   "mpv/script-opts/osc.conf".text = ''
+    #     windowcontrols=no
+    #   '';
+    # };
 
     programs.mpv = {
       enable = true;
