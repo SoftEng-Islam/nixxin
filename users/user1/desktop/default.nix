@@ -293,7 +293,7 @@
       spacedrive = true;
     };
     flags = { enable = true; };
-    flatpak = { enable = false; };
+    flatpak = { enable = true; };
     fonts = {
       enable = true;
       main = {
