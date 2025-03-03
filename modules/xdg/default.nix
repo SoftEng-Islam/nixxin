@@ -7,7 +7,7 @@ let
   # find /nix/store/ -name "*qbittorrent*.desktop"
   browser = [ "brave-browser" ];
   imageViewer = [ "org.gnome.Loupe" ];
-  videoPlayer = [ "io.github.celluloid_player.Celluloid" ];
+  videoPlayer = [ "mpv" ]; # "io.github.celluloid_player.Celluloid"
   audioPlayer = [ "io.bassi.Amberol" ];
   editor = [ "code" ];
   torrentApp = [ "org.qbittorrent.qBittorrent" ];
