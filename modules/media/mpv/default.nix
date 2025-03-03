@@ -66,7 +66,7 @@ in lib.mkIf (settings.modules.media.mpv) {
     #   ",buffering_indicator=0.3"
     #   ",playlist_position=0.8"
     # ];
-    xdg.configFile."mpv/script-opts/uosc.conf".source = ./uosc.conf;
+    xdg.configFile."mpv/script-opts/osc.conf".source = ./osc.conf;
 
     programs.mpv = {
       enable = true;
@@ -134,25 +134,25 @@ in lib.mkIf (settings.modules.media.mpv) {
         # osd-font = 'Source Sans Pro';
         osc = "no";
         osd-bar = "no";
-        osd-bar-align-y = 0;
-        osd-bar-h = "0.2";
-        osd-bar-w = 30;
-        osd-border-color = "#DD322640";
-        osd-border-size = 2;
-        osd-color = "#CCFFFFFF";
-        osd-duration = 750;
-        osd-font-size = 32;
-        osd-level = 1;
+        # osd-bar-align-y = 0;
+        # osd-bar-h = "0.2";
+        # osd-bar-w = 30;
+        # osd-border-color = "#DD322640";
+        # osd-border-size = 2;
+        # osd-color = "#CCFFFFFF";
+        # osd-duration = 750;
+        # osd-font-size = 32;
+        # osd-level = 1;
         osd-on-seek = "no";
-        osd-status-msg = "";
+        # osd-status-msg = "";
 
+        gpu-context = "auto"; # or "auto" instead of "wayland"
+        video-sync = "display-resample";
+        hwdec-codecs = "all";
         really-quiet = "yes";
         autofit = "65%";
-        border = false;
-        gpu-context = "auto"; # or "auto" instead of "wayland"
-        hwdec-codecs = "all";
+        border = "no";
         pause = false;
-        video-sync = "display-resample";
 
         # video
         vo = _vo;
