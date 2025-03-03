@@ -412,8 +412,8 @@ in {
     # HIP_VISIBLE_DEVICES = "0,2";
 
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
-    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-    WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+    WLR_RENDERER_ALLOW_SOFTWARE = "0"; # enable software rendering for wlroots
+    # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
     # If you have graphical issues like missing transparency or graphical artifact you could launch ashell with WGPU_BACKEND=gl. This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "gl";
@@ -437,6 +437,8 @@ in {
     # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
     LIBVA_DRIVER_NAME = "amdgpu"; # Load AMD driver for Xorg and Waylandard
+    VDPAU_DRIVER = "amdgpu";
+
     # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
@@ -452,14 +454,14 @@ in {
     # VK_LAYER_PATH = "/etc/vulkan/layer.d";
     VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
 
+    AMD_VULKAN_DRIVER = "RADV";
+
     vblank_mode = "0"; # ? Reduces latency
 
     # Improves OpenGL compatibility & speed.
     MESA_GL_VERSION_OVERRIDE = "4.6";
     MESA_GLSL_VERSION_OVERRIDE = "460";
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
-
-    VDPAU_DRIVER = "amdgpu";
   };
 
   environment.systemPackages = with pkgs; [
