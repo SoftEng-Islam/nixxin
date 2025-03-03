@@ -102,10 +102,10 @@ in {
   environment.variables = {
     LIBVA_DRIVER_NAME = "radeonsi";
     VDPAU_DRIVER = "radeonsi";
+    VIDEO = "mpv";
   };
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
-    # home.sessionVariables.VIDEO = "mpv";
 
     # Simple GTK frontend for the mpv video player
     dconf.settings = {
