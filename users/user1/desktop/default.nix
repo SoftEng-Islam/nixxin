@@ -623,7 +623,7 @@
       defaults = {
         fileManager = "nautilus"; # thunar & nautilus
         imageViewer = "loupe"; # feh or loupe
-        videoPlayer = "celluloid"; # vlc or celluloid or mpv
+        videoPlayer = "mpv"; # vlc or celluloid or mpv
         torrentApp = "qBittorrent";
       };
     };
