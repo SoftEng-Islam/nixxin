@@ -5,13 +5,14 @@ in {
     environment.systemPackages = with pkgs; [ ulauncher ];
     # Ulauncher service configuration
     systemd.services.ulauncher = {
-      Description = "Ulauncher application launcher service";
-      After = [ "graphical-session.target" ];
-      WantedBy = [ "default.target" ];
+      # Description = "Ulauncher application launcher service";
+      # After = [ "graphical-session.target" ];
+      # WantedBy = [ "default.target" ];
       Service = {
         ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
         Restart = "on-failure"; # Restart only on failure
       };
+
     };
     home-manager.users.${settings.user.username} = {
       # Source ulauncher configuration from this repository
