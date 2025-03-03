@@ -7,7 +7,7 @@ let
 in {
   programs = {
     nautilus-open-any-terminal = {
-      enable = true;
+      enable = false;
       terminal = "kitty";
     };
     # Required by gnome file managers
@@ -26,12 +26,12 @@ in {
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
     serviceConfig = {
       Restart = "on-failure"; # Restart only on failure
-      Environment = [
-        "XDG_CURRENT_DESKTOP=Hyprland"
-        "XDG_SESSION_TYPE=wayland"
-        "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
-        "DISPLAY=:0"
-      ];
+      # Environment = [
+      #   "XDG_CURRENT_DESKTOP=Hyprland"
+      #   "XDG_SESSION_TYPE=wayland"
+      #   "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
+      #   "DISPLAY=:0"
+      # ];
     };
     wantedBy = [ "default.target" ];
   };
