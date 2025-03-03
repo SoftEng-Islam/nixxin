@@ -5,7 +5,7 @@ in {
     environment.systemPackages = with pkgs; [ ulauncher ];
     home-manager.users.${settings.user.username} = {
       # Ulauncher service configuration
-      systemd.user.services.ulauncher = {
+      systemd.services.ulauncher = {
         Unit = {
           Description = "Ulauncher application launcher service";
           Documentation = "https://ulauncher.io";

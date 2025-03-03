@@ -20,7 +20,7 @@ in {
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
-  systemd.user.services.nautilus = {
+  systemd.services.nautilus = {
     description = "Preload Nautilus";
     after = [ "graphical-session.target" ];
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.

@@ -87,7 +87,7 @@ in {
     ];
   };
   # IBus Daemon as a User Service
-  systemd.user.services.ibus-daemon = {
+  systemd.services.ibus-daemon = {
     enable = true;
     description = "IBus Input Method Framework Daemon";
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
