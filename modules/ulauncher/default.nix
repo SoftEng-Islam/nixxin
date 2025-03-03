@@ -10,9 +10,9 @@ in {
       description = "Start the ulauncher";
       unitConfig = { Documentation = "https://ulauncher.io"; };
       serviceConfig = {
-        # BusName="io.ulauncher.Ulauncher";
-        # Type="dbus";
-        Type = "simple";
+        BusName = "io.ulauncher.Ulauncher";
+        Type = "dbus";
+        # Type = "simple";
         Restart = "always";
         RestartSec = 1;
         # ExecStart=/usr/bin/ulauncher --hide-window
