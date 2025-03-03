@@ -84,7 +84,7 @@ let
     opengl-early-flush=no
     opengl-pbo=no
     icc-profile-auto
-    hwdec=${_hwdec}
+    hwdec=no
   '';
 
   osdConfig = ''
@@ -113,55 +113,6 @@ in {
   };
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
-
-    # Simple GTK frontend for the mpv video player
-    home.file.".config/celluloid/celluloid.conf".text = ''
-      # Guide https://github.com/mpv-player/mpv/issues/10565
-      # Because we want high quality
-      profile=gpu-hq
-      # Because it can play DoVi and is faster
-      vo=gpu-next
-      # Hardware acceleration (faster, less energy consumption)
-      hwdec=${_hwdec}
-      # Force modern standards
-      gpu-api=vulkan
-      gpu-context=waylandvk
-
-      # Interpolation because 24hz videos look way better
-      video-sync=display-resample
-      interpolation=yes
-
-      # HDR passtrough: Important for HDR & DoVi playback, no downside for SDR so always on
-      target-colorspace-hint=yes
-
-      [HDR] # Dolby Video HDR profile
-      profile-restore=copy
-      target-trc=pq
-      target-prim=bt.2020
-      # Adjust this to the peak brightness of your display
-      target-peak=1000
-
-      # Prefer Japanese audio when available (for anime)
-      alang=Japanese,jpn,ja,English,eng,en
-      # Force enable English subtitles
-      slang=English,eng,en
-
-      glsl-shaders-append="~/.config/celluloid/shaders/AMD/FSR.glsl"
-    '';
-    home.file.".config/celluloid/shaders/".source = ./shaders;
-
-    dconf.settings = {
-      "io/github/celluloid-player/celluloid" = {
-        mpv-config-file =
-          "file:///home/${settings.user.username}/.config/celluloid/celluloid.conf";
-      };
-
-      "io/github/celluloid-player/celluloid" = { mpv-config-enable = true; };
-
-      "io/github/celluloid-player/celluloid" = {
-        always-append-to-playlist = true;
-      };
-    };
 
     home.file.".config/mpv/shaders".source = ./shaders;
     # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
@@ -299,11 +250,6 @@ in {
     nasm
     vaapiVdpau
     vdpauinfo
-
-    # ---- celluloid ---- #
-    # Simple GTK frontend for the mpv video player
-    celluloid
-    (writeShellScriptBin "celluloid-hdr" "celluloid --mpv-profile=HDR $@")
 
   ];
 }

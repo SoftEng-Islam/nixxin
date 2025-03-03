@@ -377,11 +377,12 @@
     keyboard_remapper = { enable = false; };
     media = {
       enable = true;
-      mpv = true; # To Install MPV and Celluloid
+      celluloid = true;
+      mpv = true;
       vlc = true;
       cava = false;
       codex = true;
-      clapper = true;
+      clapper = false;
       glide = false;
       jellyfin = false;
       kdenlive = true;
@@ -496,13 +497,6 @@
         # ---- File Manager Icons Size ---- #
         # "small" or "small-plus" or "medium" or "large" or "extra-large"
         icon_view_size = "large"; # Set icon size for nautilus file manager.
-      };
-      # ---- Cursor ---- #
-      cursor = {
-        # 16, 32, 48 or 64
-        size = 24; # Cursor Size
-        name = "Bibata-Modern-Classic"; # Cursor Name
-        package = pkgs.bibata-cursors;
       };
     };
     system = {

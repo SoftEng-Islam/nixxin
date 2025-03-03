@@ -1,4 +1,5 @@
-{ pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+lib.mkIf (settings.modules.media.codex) {
   # Video & Audio & Images | graphics & Formats
   environment.systemPackages = with pkgs; [
     mediainfo # Supplies technical and tag information about a video or audio file

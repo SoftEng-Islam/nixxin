@@ -1,4 +1,5 @@
-{ settings, config, ... }: {
+{ settings, lib, config, ... }:
+lib.mkIf (settings.modules.media.cava) {
   home-manager.users.${settings.user.username} = {
     programs.cava = {
       enable = true;

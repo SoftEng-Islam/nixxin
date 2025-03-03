@@ -1,12 +1,6 @@
-{ lib, settings, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  _imports = [
-    (lib.optional settings.modules.media.mpv ./mpv)
-    (lib.optional settings.modules.media.cava ./cava.nix)
-    (lib.optional settings.modules.media.codex ./codex.nix)
-    (lib.optional settings.modules.media.music ./music.nix)
-  ];
   _pkgs = with pkgs; [
     # ---- VLC ---- #
     (lib.optional settings.modules.media.vlc vlc)
@@ -23,18 +17,25 @@ let
   ];
 
 in {
-  imports = lib.flatten _imports;
+  imports = lib.optionals (settings.modules.media.enable) [
+    ./celluloid
+    ./mpv
+    ./cava.nix
+    ./codex.nix
+    ./music.nix
+  ];
+  config = lib.optionals (settings.modules.media.enable) {
+    environment.systemPackages = with pkgs;
+      lib.flatten _pkgs ++ [
+        # Command-line utility and library for controlling media players that implement MPRIS
+        playerctl
 
-  environment.systemPackages = with pkgs;
-    lib.flatten _pkgs ++ [
-      # Command-line utility and library for controlling media players that implement MPRIS
-      playerctl
+        # Audio Control
+        pulsemixer
+        pwvucontrol
 
-      # Audio Control
-      pulsemixer
-      pwvucontrol
-
-      # Sound Player
-      # recordbox
-    ];
+        # Sound Player
+        # recordbox
+      ];
+  };
 }
