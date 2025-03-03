@@ -453,8 +453,6 @@ in {
 
     AMD_VULKAN_DRIVER = "RADV";
 
-    vblank_mode = "0"; # ? Reduces latency
-
     # Improves OpenGL compatibility & speed.
     MESA_GL_VERSION_OVERRIDE = "4.6";
     MESA_GLSL_VERSION_OVERRIDE = "460";

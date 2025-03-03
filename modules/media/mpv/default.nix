@@ -100,22 +100,27 @@ let
   '';
 in {
   environment.variables = {
+    # ls /run/opengl-driver/lib/dri/
+    # vainfo
+
     LIBVA_DRIVER_NAME = "radeonsi";
     VDPAU_DRIVER = "radeonsi";
     VIDEO = "mpv";
+
+    # vblank_mode = "0"; # ? Reduces latency
   };
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
 
     # Simple GTK frontend for the mpv video player
-    dconf.settings = {
-      "io/github/celluloid-player/celluloid" = {
-        mpv-config-file =
-          "file:///home/${settings.user.username}/.config/mpv/mpv.conf";
-        mpv-config-enable = true;
-        always-append-to-playlist = false;
-      };
-    };
+    # dconf.settings = {
+    #   "io/github/celluloid-player/celluloid" = {
+    #     mpv-config-file =
+    #       "file:///home/${settings.user.username}/.config/mpv/mpv.conf";
+    #     mpv-config-enable = true;
+    #     always-append-to-playlist = false;
+    #   };
+    # };
 
     home.file.".config/mpv/shaders".source = ./shaders;
     # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
