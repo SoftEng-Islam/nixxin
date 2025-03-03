@@ -1,6 +1,8 @@
 { config, lib, settings, pkgs, ... }:
 let
   _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
+  _vo = "gpu"; # "gpu", "gpu-next"
+
   mpvConfig = ''
     input-ipc-server=/tmp/mpvsocket
     load-auto-profiles=no
@@ -82,7 +84,7 @@ let
     opengl-early-flush=no
     opengl-pbo=no
     icc-profile-auto
-    hwdec=no
+    hwdec=${_hwdec}
   '';
 
   osdConfig = ''
@@ -118,9 +120,9 @@ in {
       # Because we want high quality
       profile=gpu-hq
       # Because it can play DoVi and is faster
-      vo=gpu-next
+      vo=${_vo}
       # Hardware acceleration (faster, less energy consumption)
-      hwdec=auto-safe
+      hwdec=${_hwdec}
       # Force modern standards
       gpu-api=vulkan
       gpu-context=waylandvk
@@ -231,7 +233,7 @@ in {
         video-sync = "display-resample";
 
         # video
-        vo = "gpu";
+        vo = _vo;
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
