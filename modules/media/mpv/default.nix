@@ -87,19 +87,6 @@ let
     hwdec=no
   '';
 
-  osdConfig = ''
-    osd-level=1
-    osd-duration=2500
-    osd-status-msg=""
-    osd-font='Source Sans Pro'
-    osd-font-size=32
-    osd-color='#CCFFFFFF'
-    osd-border-color='#DD322640'
-    osd-bar-align-y=0
-    osd-border-size=2
-    osd-bar-h=2
-    osd-bar-w=60
-  '';
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
@@ -171,6 +158,14 @@ in lib.mkIf (settings.modules.media.mpv) {
         osd-bar-w = 30;
         osd-bar-h = "0.2";
         osd-duration = 750;
+        osd-level = 1;
+        osd-status-msg = "";
+        # osd-font = 'Source Sans Pro';
+        osd-font-size = 32;
+        osd-color = "#CCFFFFFF";
+        osd-border-color = "#DD322640";
+        osd-bar-align-y = 0;
+        osd-border-size = 2;
 
         really-quiet = "yes";
         autofit = "65%";
