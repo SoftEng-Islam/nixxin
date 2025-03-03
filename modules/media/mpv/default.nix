@@ -100,7 +100,7 @@ let
     osd-bar-h=2
     osd-bar-w=60
   '';
-in {
+in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
