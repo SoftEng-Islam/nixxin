@@ -43,8 +43,8 @@
     variables = {
       LIBSEAT_BACKEND = "logind";
 
-      HYPRCURSOR_THEME = settings.modules.styles.cursor.name;
-      HYPRCURSOR_SIZE = toString settings.modules.styles.cursor.size;
+      HYPRCURSOR_THEME = settings.global.cursor.name;
+      HYPRCURSOR_SIZE = toString settings.global.cursor.size;
 
       # HYPRLAND_TRACE = 1; # Enables more verbose logging.
 
@@ -72,9 +72,9 @@
     home.pointerCursor = {
       gtk.enable = true;
       # x11.enable = true;
-      package = settings.modules.styles.cursor.package;
-      name = settings.modules.styles.cursor.name;
-      size = settings.modules.styles.cursor.size;
+      package = settings.global.cursor.package;
+      name = settings.global.cursor.name;
+      size = settings.global.cursor.size;
     };
 
     wayland.windowManager.hyprland = {

@@ -44,8 +44,8 @@ mkIf (settings.modules.dconf.enable) {
         cursor-blink = true;
         cursor-blink-time = 500;
         cursor-blink-timeout = 10;
-        cursor-size = settings.modules.styles.cursor.size;
-        cursor-theme = settings.modules.styles.cursor.name;
+        cursor-size = settings.global.cursor.size;
+        cursor-theme = settings.global.cursor.name;
         enable-animations = true;
         # enable-hot-corners
 
