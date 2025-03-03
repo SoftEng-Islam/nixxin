@@ -45,27 +45,28 @@ in lib.mkIf (settings.modules.media.mpv) {
     #   '';
     # };
 
-    xdg.configFile."mpv/script-opts/uosc.conf".text = lib.concatStrings [
-      "opacity="
-      ",timeline=0.1"
-      ",position=0.2"
-      ",chapters=0.075"
-      ",slider=0.1"
-      ",slider_gauge=0.2"
-      ",controls=0"
-      ",speed=0.2"
-      ",menu=1"
-      ",submenu=0.4"
-      ",border=1"
-      ",title=1"
-      ",tooltip=1"
-      ",thumbnail=1"
-      ",curtain=0.8"
-      ",idle_indicator=0.8"
-      ",audio_indicator=0.5"
-      ",buffering_indicator=0.3"
-      ",playlist_position=0.8"
-    ];
+    # xdg.configFile."mpv/script-opts/uosc.conf".text = lib.concatStrings [
+    #   "opacity="
+    #   ",timeline=0.1"
+    #   ",position=0.2"
+    #   ",chapters=0.075"
+    #   ",slider=0.1"
+    #   ",slider_gauge=0.2"
+    #   ",controls=0"
+    #   ",speed=0.2"
+    #   ",menu=1"
+    #   ",submenu=0.4"
+    #   ",border=1"
+    #   ",title=1"
+    #   ",tooltip=1"
+    #   ",thumbnail=1"
+    #   ",curtain=0.8"
+    #   ",idle_indicator=0.8"
+    #   ",audio_indicator=0.5"
+    #   ",buffering_indicator=0.3"
+    #   ",playlist_position=0.8"
+    # ];
+    xdg.configFile."mpv/script-opts/uosc.conf".source = ./uosc.conf;
 
     programs.mpv = {
       enable = true;
@@ -99,54 +100,54 @@ in lib.mkIf (settings.modules.media.mpv) {
         # script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
 
         # Subtitles
-        slang = "eng,en,ar";
-        # sub-font = "Noto Sans CJK JP Medium";
-        sub-blur = 10;
         # sub-file-paths = "subs:subtitles:字幕";
-        demuxer-mkv-subtitle-preroll = "yes";
-        demuxer-mkv-subtitle-preroll-secs = 2;
-        sub-auto = "fuzzy";
         # sub-file-paths-append = "ass";
         # sub-file-paths-append = "srt";
         # sub-file-paths-append = "sub";
         # sub-file-paths-append = "subs";
         # sub-file-paths-append = "subtitles";
-        embeddedfonts = "yes";
-        sub-fix-timing = "no";
-        sub-ass-force-style = "Kerning=yes";
-        sub-use-margins = true;
-        sub-ass-force-margins = true;
+        # sub-font = "Noto Sans CJK JP Medium";
         # sub-font="Source Sans Pro Semibold";
-        sub-font-size = 36;
-        sub-color = "#FFFFFFFF";
+        demuxer-mkv-subtitle-preroll = "yes";
+        demuxer-mkv-subtitle-preroll-secs = 2;
+        slang = "eng,en,ar";
+        sub-ass-force-margins = true;
+        sub-ass-force-style = "Kerning=yes";
+        sub-auto = "fuzzy";
+        sub-blur = 10;
         sub-border-color = "#FF262626";
         sub-border-size = 3.2;
-        sub-shadow-offset = 1;
+        sub-color = "#FFFFFFFF";
+        sub-fix-timing = "no";
+        sub-font-size = 36;
         sub-shadow-color = "#33000000";
+        sub-shadow-offset = 1;
         sub-spacing = 0.5;
+        sub-use-margins = true;
+
+        embeddedfonts = "yes";
 
         title = "\${filename} - mpv";
         script-opts =
           "osc-title=\${filename},osc-boxalpha=150,osc-visibility=never,osc-boxvideo=yes";
 
-        osc = "no";
-        osd-on-seek = "no";
-        osd-bar = "no";
-        osd-bar-w = 30;
-        osd-bar-h = "0.2";
-        osd-duration = 750;
-        osd-level = 1;
-        osd-status-msg = "";
         # osd-font = 'Source Sans Pro';
-        osd-font-size = 32;
-        osd-color = "#CCFFFFFF";
-        osd-border-color = "#DD322640";
+        osc = "no";
+        osd-bar = "no";
         osd-bar-align-y = 0;
+        osd-bar-h = "0.2";
+        osd-bar-w = 30;
+        osd-border-color = "#DD322640";
         osd-border-size = 2;
+        osd-color = "#CCFFFFFF";
+        osd-duration = 750;
+        osd-font-size = 32;
+        osd-level = 1;
+        osd-on-seek = "no";
+        osd-status-msg = "";
 
         really-quiet = "yes";
         autofit = "65%";
-
         border = false;
         gpu-context = "auto"; # or "auto" instead of "wayland"
         hwdec-codecs = "all";
@@ -158,6 +159,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
+
         tscale = "oversample";
         opengl-early-flush = "no";
         opengl-pbo = "no";
@@ -165,7 +167,7 @@ in lib.mkIf (settings.modules.media.mpv) {
 
         # Audio
         ao = "pipewire";
-        alang = "jpn,jp,eng,en";
+        alang = "eng,en";
         audio-file-auto = "fuzzy";
         audio-pitch-correction = "yes";
         volume-max = 200;
@@ -220,6 +222,6 @@ in lib.mkIf (settings.modules.media.mpv) {
     nasm
     vaapiVdpau
     vdpauinfo
-
+    trash-cli
   ];
 }
