@@ -15,36 +15,42 @@ in {
       extraGroups = [
         "adbusers"
         "audio" # Access to audio devices.
+        "colord"
         "corectrl"
         "dialout"
         "disk"
         "docker"
         "flatpak"
+        "fuse"
         "gamemode"
         "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
-        "lxd"
         "libvirtd"
         "lp" # Manage printers.
+        "lxd"
         "network"
         "networkmanager" # Permissions to manage network connections.
-        "nixos"
         "plugdev"
+        "polkitd" # Ensures proper permission handling
         "qemu"
+        "realtime" # Allows setting low-latency priority for audio
         "render"
-        "root"
-        "softeng"
-        "sshd"
+        "rtkit" # Required for PipeWire's real-time scheduling
+        # "softeng"
         "storage" # Access to storage devices.
+        "systemd-resolve"
         "transmission"
         "tty"
         "uucp" # Access to serial ports and devices connected via serial ports.
         "vboxusers"
         "video" # Access to video devices
+        "waydroid"
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
-        "waydroid"
+        # "nixos"
+        # "root"
+        # "sshd"
       ];
       uid = 1000;
       packages = with pkgs; [ thunderbird ];
