@@ -1,6 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 let
-  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
+  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
   mpvConfig = ''
     input-ipc-server=/tmp/mpvsocket
     load-auto-profiles=no
@@ -99,6 +99,10 @@ let
     osd-bar-w=60
   '';
 in {
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "radeonsi";
+    VDPAU_DRIVER = "radeonsi";
+  };
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
     # home.sessionVariables.VIDEO = "mpv";
@@ -135,7 +139,7 @@ in {
         autofit = "70%";
 
         autofit-larger = "75%x75%";
-        gpu-context = "wayland";
+        gpu-context = "auto"; # or "auto" instead of "wayland"
         hwdec-codecs = "all";
         keep-open = true;
         # osd-font = "Iosevka NF";
@@ -143,7 +147,7 @@ in {
         video-sync = "display-resample";
 
         # video
-        # vo = "gpu";
+        vo = "gpu";
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
@@ -204,23 +208,27 @@ in {
     # (mpv.override { scripts = [ mpvScripts.mpris ]; })
     mpv
     mpv-shim-default-shaders
-    libavc1394
-    libavif
-    libplacebo
-    nasm
+    driversi686Linux.vdpauinfo
+    gnutls
     harfbuzz
     iconv
     libass
-    lua
-    gnutls
+    libavc1394
+    libavif
     libmp3splt
-    vdpauinfo
-    driversi686Linux.vdpauinfo
+    libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
+    libva
     libva-utils
+    libvdpau-va-gl
+    lua
+    nasm
+    vaapiVdpau
+    vdpauinfo
 
     # ---- celluloid ---- #
     # Simple GTK frontend for the mpv video player
     celluloid
     (writeShellScriptBin "celluloid-hdr" "celluloid --mpv-profile=HDR $@")
+
   ];
 }
