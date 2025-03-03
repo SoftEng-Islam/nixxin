@@ -189,20 +189,20 @@ in {
       defaultProfiles = [
         "high-quality" # or fast
       ]; # https://github.com/mpv-player/mpv/blob/master/etc/builtin.conf
-      profiles = {
-        igpu-amd = {
-          hwdec = "auto-safe";
-          vo = "gpu";
-        };
-        dgpu-nvidia = {
-          hwdec = "nvdec-copy";
-          vo = "gpu-next";
-        };
-      };
+      # profiles = {
+      #   igpu-amd = {
+      #     hwdec = "auto-safe";
+      #     vo = "gpu";
+      #   };
+      #   dgpu-nvidia = {
+      #     hwdec = "nvdec-copy";
+      #     vo = "gpu-next";
+      #   };
+      # };
       scripts = with pkgs; [
         mpvScripts.mpris
         mpvScripts.thumbfast
-        mpvScripts.uosc
+        # mpvScripts.uosc
         mpvScripts.cutter
         mpvScripts.quality-menu
         mpvScripts.mpv-cheatsheet

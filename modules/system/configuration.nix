@@ -198,8 +198,9 @@ in {
       "amdgpu.noretry=0" # Improve memory handling
       "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
       "amdgpu.dpm=1"
-      "amdgpu.gttsize=4096"
       "amdgpu.deep_color=1"
+      "amdgpu.vramlimit=1024"
+      "amdgpu.gttsize=4096"
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
