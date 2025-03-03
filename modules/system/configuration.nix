@@ -441,12 +441,18 @@ in {
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     # Fixes screen tearing in games & Hyprland.
+    # vulkaninfo | grep "driverName"
     AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
-    #VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+
+    #? What the Differante?
     VK_ICD_FILENAMES =
       "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-    VK_LAYER_PATH = "/etc/vulkan/layer.d";
-    vblank_mode = "0"; # Reduces latency
+    # VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
+
+    # VK_LAYER_PATH = "/etc/vulkan/layer.d";
+    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
+
+    vblank_mode = "0"; # ? Reduces latency
 
     # Improves OpenGL compatibility & speed.
     MESA_GL_VERSION_OVERRIDE = "4.6";

@@ -377,11 +377,10 @@
     keyboard_remapper = { enable = false; };
     media = {
       enable = true;
-      celluloid = true;
-      mpv = true;
+      mpv = true; # To Install MPV and Celluloid
+      vlc = true;
       cava = false;
       codex = true;
-      vlc = true;
       clapper = true;
       glide = false;
       jellyfin = false;

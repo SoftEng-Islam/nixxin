@@ -102,6 +102,16 @@ in {
   home-manager.users.${settings.user.username} = {
     home.sessionVariables.VIDEO = "mpv";
 
+    # Simple GTK frontend for the mpv video player
+    dconf.settings = {
+      "io/github/celluloid-player/celluloid" = {
+        mpv-config-file =
+          "file:///home/${settings.user.username}/.config/mpv/mpv.conf";
+        mpv-config-enable = true;
+        always-append-to-playlist = false;
+      };
+    };
+
     home.file.".config/mpv/shaders".source = ./shaders;
     # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
     #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio
@@ -134,7 +144,8 @@ in {
         # video
         vo = "gpu";
         gpu-api = "vulkan";
-        hwdec = "vdpau"; # auto, vaapi, vdpau, cuda
+        # Change this to "auto" or "vaapi" for AMD
+        hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
 
         # Audio
         ao = "pipewire";
@@ -205,5 +216,10 @@ in {
     vdpauinfo
     driversi686Linux.vdpauinfo
     libva-utils
+
+    # ---- celluloid ---- #
+    # Simple GTK frontend for the mpv video player
+    celluloid
+    (writeShellScriptBin "celluloid-hdr" "celluloid --mpv-profile=HDR $@")
   ];
 }

@@ -2,7 +2,6 @@
 let
   inherit (lib) mkIf;
   _imports = [
-    (lib.optional settings.modules.media.celluloid ./celluloid)
     (lib.optional settings.modules.media.mpv ./mpv)
     (lib.optional settings.modules.media.cava ./cava.nix)
     (lib.optional settings.modules.media.codex ./codex.nix)
