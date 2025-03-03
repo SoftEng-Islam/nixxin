@@ -3,23 +3,25 @@ let inherit (lib) mkIf;
 in {
   config = lib.optionals (settings.modules.ulauncher.enable) {
     environment.systemPackages = with pkgs; [ ulauncher ];
-    # Ulauncher service configuration
-    systemd.services.ulauncher = {
-      # WantedBy=graphical-session.target
-      wantedBy = [ "graphical-session.target" ];
-      description = "Start the ulauncher";
-      unitConfig = { Documentation = "https://ulauncher.io"; };
-      serviceConfig = {
-        BusName = "io.ulauncher.Ulauncher";
-        Type = "dbus";
-        # Type = "simple";
-        Restart = "always";
-        RestartSec = 1;
-        # ExecStart=/usr/bin/ulauncher --hide-window
-        ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
-      };
-    };
     home-manager.users.${settings.user.username} = {
+      # Ulauncher service configuration
+      systemd.user.services.ulauncher = {
+        Unit = {
+          Description = "ulauncher application launcher service";
+          Documentation = "https://ulauncher.io";
+          PartOf = [ "graphical-session.target" ];
+        };
+
+        Service = {
+          Type = "simple";
+          ExecStart =
+            "${pkgs.bash}/bin/bash -lc '${pkgs.ulauncher}/bin/ulauncher --hide-window'";
+          Restart = "always";
+        };
+
+        Install.WantedBy = [ "graphical-session.target" ];
+      };
+
       # Source ulauncher configuration from this repository
       xdg.configFile = {
         "ulauncher" = {
