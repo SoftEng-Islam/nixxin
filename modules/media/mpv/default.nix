@@ -3,34 +3,6 @@ let
   _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
   _vo = "gpu"; # "gpu", "gpu-next"
 
-  mpvConfig = ''
-    input-ipc-server=/tmp/mpvsocket
-    load-auto-profiles=no
-    no-border
-    msg-module
-    msg-color
-    term-osd-bar
-    use-filedir-conf
-    pause
-    keep-open=always
-    autofit-larger=100%x95%
-    cursor-autohide-fs-only
-    input-media-keys=no
-    cursor-autohide=1000
-    prefetch-playlist=yes
-    force-seekable=yes
-
-    screenshot-format=png
-    screenshot-png-compression=8
-    screenshot-template='~/Desktop/%F (%P) %n'
-    watch-later-directory='~/.mpv/watch_later'
-    write-filename-in-watch-later-config
-    watch-later-options-remove=fullscreen
-
-    hls-bitrate=max
-    # script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
-  '';
-
   ytdlDesktop = ''
     [ytdl-desktop]
     profile-desc=cond:dedicated_gpu()
@@ -43,48 +15,9 @@ let
     ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9][protocol!=http_dash_segments]+bestaudio/best
   '';
 
-  subtitles = ''
-    demuxer-mkv-subtitle-preroll=yes
-    demuxer-mkv-subtitle-preroll-secs=2
-    sub-auto=fuzzy
-    sub-file-paths-append=ass
-    sub-file-paths-append=srt
-    sub-file-paths-append=sub
-    sub-file-paths-append=subs
-    sub-file-paths-append=subtitles
-    embeddedfonts=yes
-    sub-fix-timing=no
-    sub-ass-force-style=Kerning=yes
-    sub-use-margins
-    sub-ass-force-margins
-    sub-font="Source Sans Pro Semibold"
-    sub-font-size=36
-    sub-color="#FFFFFFFF"
-    sub-border-color="#FF262626"
-    sub-border-size=3.2
-    sub-shadow-offset=1
-    sub-shadow-color="#33000000"
-    sub-spacing=0.5
-  '';
-
   languages = ''
     slang=enm,en,eng,de,deu,ger
     alang=ja,jp,jpn,en,eng,de,deu,ger
-  '';
-
-  audio = ''
-    audio-file-auto=fuzzy
-    audio-pitch-correction=yes
-    volume-max=200
-    volume=100
-  '';
-
-  videoOutput = ''
-    tscale=oversample
-    opengl-early-flush=no
-    opengl-pbo=no
-    icc-profile-auto
-    hwdec=no
   '';
 
 in lib.mkIf (settings.modules.media.mpv) {
@@ -138,15 +71,59 @@ in lib.mkIf (settings.modules.media.mpv) {
       enable = true;
       config = {
         fullscreen = false;
+        input-ipc-server = "/tmp/mpvsocket";
+        load-auto-profiles = "no";
+        no-border = true;
+        msg-module = true;
+        msg-color = true;
+        term-osd-bar = true;
+        use-filedir-conf = true;
+        keep-open = "always";
+        autofit-larger = "100%x95%";
+        cursor-autohide-fs-only = true;
+        input-media-keys = "no";
+        cursor-autohide = 1000;
+        prefetch-playlist = "yes";
+        force-seekable = "yes";
+
+        # Screenshots
+        screenshot-format = "png";
+        screenshot-png-compression = 8;
+        screenshot-template = "~/Desktop/%F (%P) %n";
+        screenshot-directory = "~/Pictures";
+        watch-later-directory = "~/.mpv/watch_later";
+        write-filename-in-watch-later-config = true;
+        watch-later-options-remove = "fullscreen";
+
+        hls-bitrate = "max";
+        # script-opts=ytdl_hook-ytdl_path=/usr/local/bin/yt-dlp
 
         # Subtitles
         slang = "eng,en,ar";
-        sub-auto = "fuzzy";
         # sub-font = "Noto Sans CJK JP Medium";
         sub-blur = 10;
         # sub-file-paths = "subs:subtitles:字幕";
-
-        screenshot-format = "png";
+        demuxer-mkv-subtitle-preroll = "yes";
+        demuxer-mkv-subtitle-preroll-secs = 2;
+        sub-auto = "fuzzy";
+        # sub-file-paths-append = "ass";
+        # sub-file-paths-append = "srt";
+        # sub-file-paths-append = "sub";
+        # sub-file-paths-append = "subs";
+        # sub-file-paths-append = "subtitles";
+        embeddedfonts = "yes";
+        sub-fix-timing = "no";
+        sub-ass-force-style = "Kerning=yes";
+        sub-use-margins = true;
+        sub-ass-force-margins = true;
+        # sub-font="Source Sans Pro Semibold";
+        sub-font-size = 36;
+        sub-color = "#FFFFFFFF";
+        sub-border-color = "#FF262626";
+        sub-border-size = 3.2;
+        sub-shadow-offset = 1;
+        sub-shadow-color = "#33000000";
+        sub-spacing = 0.5;
 
         title = "\${filename} - mpv";
         script-opts =
@@ -171,10 +148,8 @@ in lib.mkIf (settings.modules.media.mpv) {
         autofit = "65%";
 
         border = false;
-        autofit-larger = "75%x75%";
         gpu-context = "auto"; # or "auto" instead of "wayland"
         hwdec-codecs = "all";
-        keep-open = true;
         pause = false;
         video-sync = "display-resample";
 
@@ -183,22 +158,22 @@ in lib.mkIf (settings.modules.media.mpv) {
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
+        tscale = "oversample";
+        opengl-early-flush = "no";
+        opengl-pbo = "no";
+        icc-profile-auto = true;
 
         # Audio
         ao = "pipewire";
         alang = "jpn,jp,eng,en";
-
-        # Screenshots
-        screenshot-directory = "~/Pictures";
-        screenshot-template =
-          "mpv-%f-%wH.%wM.%wS.%wT-#%#00n"; # name-hour-minute-second-millisecond-ssnumb
+        audio-file-auto = "fuzzy";
+        audio-pitch-correction = "yes";
+        volume-max = 200;
+        volume = 100;
 
         # High-quality scaling
         scale = "ewa_lanczossharp";
         cscale = "ewa_lanczossharp";
-
-        tscale = "oversample";
-        volume-max = 200;
 
         # Debanding
         deband = "yes";
