@@ -1,5 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 let
+  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
   mpvConfig = ''
     input-ipc-server=/tmp/mpvsocket
     load-auto-profiles=no
@@ -145,7 +146,7 @@ in {
         vo = "gpu";
         gpu-api = "vulkan";
         # Change this to "auto" or "vaapi" for AMD
-        hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
+        hwdec = _hwdec; # auto, vaapi, vdpau, cuda
 
         # Audio
         ao = "pipewire";
@@ -201,7 +202,8 @@ in {
   };
   environment.systemPackages = with pkgs; [
     # (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    mpv
+    mpv.override
+    { cudaSupport = false; }
     mpv-shim-default-shaders
     libavc1394
     libavif
