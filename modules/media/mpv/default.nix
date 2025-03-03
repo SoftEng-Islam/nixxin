@@ -202,8 +202,7 @@ in {
   };
   environment.systemPackages = with pkgs; [
     # (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    mpv.override
-    { cudaSupport = false; }
+    mpv
     mpv-shim-default-shaders
     libavc1394
     libavif
