@@ -20,21 +20,21 @@ in {
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
-  systemd.services.nautilus = {
-    description = "Preload Nautilus";
-    after = [ "graphical-session.target" ];
-    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
-    serviceConfig = {
-      Restart = "on-failure"; # Restart only on failure
-      # Environment = [
-      #   "XDG_CURRENT_DESKTOP=Hyprland"
-      #   "XDG_SESSION_TYPE=wayland"
-      #   "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
-      #   "DISPLAY=:0"
-      # ];
-    };
-    wantedBy = [ "default.target" ];
-  };
+  # systemd.services.nautilus = {
+  #   description = "Preload Nautilus";
+  #   after = [ "graphical-session.target" ];
+  #   restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
+  #   serviceConfig = {
+  #     Restart = "on-failure"; # Restart only on failure
+  # Environment = [
+  #   "XDG_CURRENT_DESKTOP=Hyprland"
+  #   "XDG_SESSION_TYPE=wayland"
+  #   "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
+  #   "DISPLAY=:0"
+  # ];
+  # };
+  # wantedBy = [ "default.target" ];
+  # };
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
@@ -66,22 +66,21 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
-      nautEnv
-
+      # nautEnv
+      nautilus
       file-roller
       gvfs # Mounts, trash, and remote filesystem support
       udisks2 # Disk mounting support
-
+      udisks
       # tracker # File indexing for Nautilus search
       tinysparql
 
       xdg-desktop-portal-gnome
     ];
-    pathsToLink = [ "/share/nautilus-python/extensions" ];
+    # pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
-      FILE_MANAGER = "nautilus";
-      NAUTILUS_EXTENSION_DIR =
-        lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
+      # FILE_MANAGER = "nautilus";
+      # NAUTILUS_EXTENSION_DIR = lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
     };
   };
 }
