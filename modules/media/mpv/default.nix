@@ -120,7 +120,7 @@ in {
       # Because we want high quality
       profile=gpu-hq
       # Because it can play DoVi and is faster
-      vo=${_vo}
+      vo=gpu-next
       # Hardware acceleration (faster, less energy consumption)
       hwdec=${_hwdec}
       # Force modern standards
@@ -199,7 +199,7 @@ in {
     programs.mpv = {
       enable = true;
       config = {
-        fullscreen = true;
+        fullscreen = false;
 
         # Subtitles
         slang = "eng,en,ar";
