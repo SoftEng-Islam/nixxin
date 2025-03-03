@@ -11,10 +11,11 @@ in {
           Documentation = "https://ulauncher.io";
           After = [ "graphical-session.target" ];
         };
+        restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
 
         Service = {
           ExecStart = "${pkgs.ulauncher}/bin/ulauncher --hide-window";
-          Restart = "always";
+          Restart = "on-failure"; # Restart only on failure
         };
 
         Install = { WantedBy = [ "default.target" ]; };

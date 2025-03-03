@@ -19,7 +19,7 @@
   systemd.services.dnsmasq = {
     restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
     serviceConfig = {
-      Restart = "always";
+      Restart = "on-failure"; # Restart only on failure"
       RestartSec = "5s"; # Add a 5-second delay before restarting.
     };
   };

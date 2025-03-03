@@ -90,9 +90,10 @@ in {
   systemd.user.services.ibus-daemon = {
     enable = true;
     description = "IBus Input Method Framework Daemon";
+    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
     serviceConfig = {
       ExecStart = "${pkgs.ibus}/bin/ibus-daemon --xim --daemonize";
-      Restart = "always";
+      Restart = "on-failure"; # Restart only on failure
     };
     wantedBy = [ "default.target" ]; # Ensures it starts on user session login
   };

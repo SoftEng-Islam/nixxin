@@ -293,17 +293,12 @@
       spacedrive = true;
     };
     flags = { enable = true; };
-    flatpak = { enable = true; };
+    flatpak = { enable = false; };
     fonts = {
       enable = true;
       main = {
-        # Exambles:
+        # To Get "Path" of Package:
         # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
-        # to get path of package
-        # nix path-info -r nixpkgs#jetbrains-mono
-        # "JetBrainsMonoNL Font Mono"
-        # "JetBrainsMonoNL Font Bold"
-        # "CaskaydiaCove Nerd Font"
         name = "CaskaydiaCove Nerd Font"; # Selected Font
         package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
         antialiasing = "grayscale";

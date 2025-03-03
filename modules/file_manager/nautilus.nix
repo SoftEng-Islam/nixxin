@@ -23,9 +23,15 @@ in {
   systemd.user.services.nautilus = {
     description = "Preload Nautilus";
     after = [ "graphical-session.target" ];
+    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
     serviceConfig = {
-      ExecStart = "${pkgs.nautilus}/bin/nautilus --no-desktop &";
-      Restart = "always"; # !
+      Restart = "on-failure"; # Restart only on failure
+      Environment = [
+        "XDG_CURRENT_DESKTOP=Hyprland"
+        "XDG_SESSION_TYPE=wayland"
+        "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
+        "DISPLAY=:0"
+      ];
     };
     wantedBy = [ "default.target" ];
   };
