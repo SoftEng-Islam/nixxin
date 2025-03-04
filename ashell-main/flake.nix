@@ -3,76 +3,69 @@
 
   inputs = {
     crane.url = "github:ipetkov/crane";
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     rust-overlay = {
       url = "github:oxalica/rust-overlay";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-      };
+      inputs = { nixpkgs.follows = "nixpkgs"; };
     };
   };
 
   outputs = { crane, nixpkgs, flake-utils, rust-overlay, ... }:
-    flake-utils.lib.eachDefaultSystem
-      (system:
-        let
-          overlays = [ (import rust-overlay) ];
-          pkgs = import nixpkgs {
-            inherit system overlays;
-          };
-          
-          craneLib = crane.mkLib pkgs;
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        overlays = [ (import rust-overlay) ];
+        pkgs = import nixpkgs { inherit system overlays; };
 
-          buildInputs = with pkgs; [
-            rust-bin.stable.latest.default
-            rustPlatform.bindgenHook
+        craneLib = crane.mkLib pkgs;
+
+        buildInputs = with pkgs; [
+          rust-bin.stable.latest.default
+          rustPlatform.bindgenHook
+          pkg-config
+          libxkbcommon
+          libGL
+          pipewire
+          libpulseaudio
+          wayland
+          vulkan-loader
+          udev
+        ];
+
+        runtimeDependencies = with pkgs; [
+          libpulseaudio
+          wayland
+          mesa.drivers
+          vulkan-loader
+          libGL
+          libglvnd
+        ];
+
+        ldLibraryPath = pkgs.lib.makeLibraryPath runtimeDependencies;
+      in {
+        # `nix build` and `nix run`
+        defaultPackage = craneLib.buildPackage {
+          src = ./.;
+
+          nativeBuildInputs = with pkgs; [
+            makeWrapper
             pkg-config
-            libxkbcommon
-            libGL
-            pipewire
-            libpulseaudio
-            wayland
-            vulkan-loader
-            udev
+            autoPatchelfHook # Add runtimeDependencies to rpath
           ];
 
-          runtimeDependencies = with pkgs; [
-            libpulseaudio
-            wayland
-            mesa.drivers
-            vulkan-loader
-            libGL
-            libglvnd
-          ];
-            
-          ldLibraryPath = pkgs.lib.makeLibraryPath runtimeDependencies;
-        in
-        {
-          # `nix build` and `nix run`
-          defaultPackage = craneLib.buildPackage {
-            src = ./.;
+          inherit buildInputs runtimeDependencies ldLibraryPath;
 
-            nativeBuildInputs = with pkgs; [
-              makeWrapper
-              pkg-config
-              autoPatchelfHook # Add runtimeDependencies to rpath
-            ];
+          postInstall = ''
+            wrapProgram "$out/bin/ashell" --prefix LD_LIBRARY_PATH : "${ldLibraryPath}"
+          '';
+        };
 
-            inherit buildInputs runtimeDependencies ldLibraryPath;
+        # `nix develop`
+        devShells.default = pkgs.mkShell {
+          inherit buildInputs ldLibraryPath;
 
-            postInstall = ''
-              wrapProgram "$out/bin/ashell" --prefix LD_LIBRARY_PATH : "${ldLibraryPath}"
-            '';
-          };
-
-          # `nix develop`
-          devShells.default = pkgs.mkShell {
-            inherit buildInputs ldLibraryPath;
-
-            LD_LIBRARY_PATH = ldLibraryPath;
-          };
-        }
-      );
+          LD_LIBRARY_PATH = ldLibraryPath;
+        };
+      });
 }
 
