@@ -10,11 +10,6 @@ in mkIf (settings.modules.flatpak.enable) {
       enable = true;
       onCalendar = "weekly";
     };
-    remotes = {
-      "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
-      "launcher-moe" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
-    };
-    # packages = [ ];
   };
   environment.systemPackages = with pkgs; [ flatpak ];
 }
