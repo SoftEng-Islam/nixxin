@@ -9,8 +9,8 @@ in mkIf (settings.modules.development.languages.rust) {
       [ vscode-extensions.rust-lang.rust-analyzer ];
   };
   environment.variables = {
-    CARGO_NET_GIT_FETCH_WITH_CLI = true;
-    CARGO_HTTP_MULTIPLEXING = false;
+    CARGO_NET_GIT_FETCH_WITH_CLI = "true";
+    CARGO_HTTP_MULTIPLEXING = "false";
   };
   environment.systemPackages = with pkgs; [
     # _rust
