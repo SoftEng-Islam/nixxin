@@ -27,6 +27,16 @@ in {
     };
 
     environment.systemPackages = with pkgs;
-      [ inputs.ashell.defaultPackage."${pkgs.system}" ];
+      [
+        # inputs.ashell.defaultPackage."${pkgs.system}"
+        (import (pkgs.callPackage (pkgs.fetchFromGitHub {
+          owner = "MalpenZibo";
+          repo = "ashell";
+          rev = "refs/heads/main"; # Or specify the branch/tag you need
+          # nix-prefetch-git https://github.com/MalpenZibo/ashell
+          sha256 =
+            "sha256-ihl35gXT6ahnYUUSdKkgMW1luqpmbS6UZdp0EI5ug/0="; # Replace with the correct hash
+        }) { }).defaultPackage.x86_64-linux)
+      ];
   };
 }
