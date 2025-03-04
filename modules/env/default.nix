@@ -102,10 +102,6 @@ in {
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
 
-      # Enables Rust backtraces for debugging.
-      RUST_BACKTRACE = "1";
-      CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
-
       QUOTING_STYLE = "literal";
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";

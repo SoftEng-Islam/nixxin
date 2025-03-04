@@ -9,6 +9,10 @@ in mkIf (settings.modules.development.languages.rust) {
       [ vscode-extensions.rust-lang.rust-analyzer ];
   };
   environment.variables = {
+    # Enables Rust backtraces for debugging.
+    RUST_BACKTRACE = "1";
+    CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
+
     CARGO_NET_GIT_FETCH_WITH_CLI = "true";
     CARGO_HTTP_MULTIPLEXING = "false";
   };

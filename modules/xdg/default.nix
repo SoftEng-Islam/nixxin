@@ -142,10 +142,11 @@ in mkIf (settings.modules.xdg.enable) {
         common.default = "*"; # "*" or "gtk"
         hyprland.default = [ "hyprland" "gtk" ];
       };
-      extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-hyprland
-      ];
+      extraPortals = with pkgs;
+        [
+          xdg-desktop-portal-gtk
+          # xdg-desktop-portal-hyprland
+        ];
     };
   };
 
