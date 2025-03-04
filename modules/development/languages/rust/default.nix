@@ -1,4 +1,5 @@
 { settings, lib, pkgs, ... }:
+
 let
   inherit (lib) mkIf;
   # _rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override { extensions = [ "rust-src" ]; });
@@ -6,6 +7,10 @@ in mkIf (settings.modules.development.languages.rust) {
   home-manager.users.${settings.user.username} = {
     programs.vscode.extensions = with pkgs;
       [ vscode-extensions.rust-lang.rust-analyzer ];
+  };
+  environment.variables = {
+    CARGO_NET_GIT_FETCH_WITH_CLI = true;
+    CARGO_HTTP_MULTIPLEXING = false;
   };
   environment.systemPackages = with pkgs; [
     # _rust

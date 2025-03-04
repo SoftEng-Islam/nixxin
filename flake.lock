@@ -66,14 +66,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-El6JF3ZUkQtRngb9ZEwo2DofBUCxVV1U64xBoS9ckPs=",
-        "path": "./ashell-main",
-        "type": "path"
+        "lastModified": 1741023294,
+        "narHash": "sha256-ihl35gXT6ahnYUUSdKkgMW1luqpmbS6UZdp0EI5ug/0=",
+        "owner": "MalpenZibo",
+        "repo": "ashell",
+        "rev": "6a6a58e397fd8e5d9dc7c4ddd42c32205bddc55e",
+        "type": "github"
       },
       "original": {
-        "path": "./ashell-main",
-        "type": "path"
+        "owner": "MalpenZibo",
+        "repo": "ashell",
+        "type": "github"
       }
     },
     "base16": {
@@ -1146,13 +1149,13 @@
       "locked": {
         "lastModified": 1741010256,
         "narHash": "sha256-WZNlK/KX7Sni0RyqLSqLPbK8k08Kq7H7RijPJbq9KHM=",
-        "owner": "nixos",
+        "owner": "NixOS",
         "repo": "nixpkgs",
         "rev": "ba487dbc9d04e0634c64e3b1f0d25839a0a68246",
         "type": "github"
       },
       "original": {
-        "owner": "nixos",
+        "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
