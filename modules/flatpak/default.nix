@@ -10,7 +10,6 @@ in mkIf (settings.modules.flatpak.enable) {
       enable = true;
       onCalendar = "weekly";
     };
-    enableModule = true;
     preInitCommand = ''
       /usr/bin/flatpak config  --user --set languages 'en'
     '';
