@@ -35,8 +35,8 @@ in {
           rev = "refs/heads/main"; # Or specify the branch/tag you need
           # nix-prefetch-git https://github.com/MalpenZibo/ashell
           sha256 =
-            "1zc3ds710x6scna2wvb6max6av9i42lp84j5c5ksisfk0pk7f6ca"; # Replace with the correct hash
-        }) { }))
+            "sha256-ihl35gXT6ahnYUUSdKkgMW1luqpmbS6UZdp0EI5ug/0="; # Replace with the correct hash
+        }) { }).flake.x86_64-linux)
       ];
   };
 }
