@@ -1,6 +1,7 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
+  environment.variables = { GIT_CURL_VERBOSE = 1; };
   home-manager.users.${settings.user.username} = {
     programs.git = {
       enable = true;

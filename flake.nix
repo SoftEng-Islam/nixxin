@@ -100,8 +100,8 @@
     kitty-smart-tab.flake = false;
 
     ashell = {
-      # url = "github:MalpenZibo/ashell";
-      url = "path:./ashell-main";
+      url = "github:MalpenZibo/ashell";
+      # url = "path:./ashell-main";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
