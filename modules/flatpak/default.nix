@@ -10,9 +10,6 @@ in mkIf (settings.modules.flatpak.enable) {
       enable = true;
       onCalendar = "weekly";
     };
-    preInitCommand = ''
-      /usr/bin/flatpak config  --user --set languages 'en'
-    '';
     remotes = {
       "flathub" = "https://dl.flathub.org/repo/flathub.flatpakrepo";
       "launcher-moe" = "https://gol.launcher.moe/gol.launcher.moe.flatpakrepo";
