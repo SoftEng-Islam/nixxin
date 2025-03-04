@@ -139,13 +139,13 @@ in mkIf (settings.modules.xdg.enable) {
       wlr.enable = true;
       xdgOpenUsePortal = true;
       config = {
-        common.default = "*";
-        hyprland.default = [ "hyprland" "gtk" ];
+        common.default = "gtk"; # "*"
+        hyprland.default = [ "gtk" "hyprland" ];
       };
       extraPortals = with pkgs;
         [
-          # xdg-desktop-portal-hyprland
           xdg-desktop-portal-gtk
+          # xdg-desktop-portal-hyprland
         ];
     };
   };
