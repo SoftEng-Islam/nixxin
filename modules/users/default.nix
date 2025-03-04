@@ -37,7 +37,6 @@ in {
         "realtime" # Allows setting low-latency priority for audio
         "render"
         "rtkit" # Required for PipeWire's real-time scheduling
-        # "softeng"
         "storage" # Access to storage devices.
         "systemd-resolve"
         "transmission"
