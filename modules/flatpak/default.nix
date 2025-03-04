@@ -5,7 +5,7 @@ let
   # flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 in mkIf (settings.modules.flatpak.enable) {
   services.flatpak = {
-    fenable = true;
+    enable = true;
     update.auto = {
       enable = true;
       onCalendar = "weekly";
