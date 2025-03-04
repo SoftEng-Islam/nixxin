@@ -101,7 +101,7 @@
 
     ashell = {
       # url = "github:MalpenZibo/ashell";
-      url = "path:./ashell-main/flake.nix";
+      url = "path:./ashell-main";
       # inputs.nixpkgs.follows = "nixpkgs";
     };
   };
