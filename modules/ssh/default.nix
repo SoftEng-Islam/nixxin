@@ -2,21 +2,20 @@
 
 let inherit (lib) mkIf;
 in mkIf (settings.modules.ssh.enable) {
-  services.openssh.enable = false; # Enable the OpenSSH daemon.
-  environment.systemPackages = with pkgs;
-    [
-      # ssh-agents
-      # ssh-audit
-      # ssh-chat
-      # ssh-key-confirmer
-    ];
+  services.openssh.enable = true; # Enable the OpenSSH daemon.
+  environment.systemPackages = with pkgs; [
+    ssh-agents
+    ssh-audit
+    ssh-chat
+    ssh-key-confirmer
+  ];
   home-manager.users.${settings.user.username} = {
     programs.ssh = {
-      enable = false;
+      enable = true;
       addKeysToAgent = "yes";
     };
     services.ssh-agent = {
-      enable = lib.modules.mkIf pkgs.stdenv.isLinux false;
+      enable = lib.modules.mkIf pkgs.stdenv.isLinux true;
     };
   };
 }
