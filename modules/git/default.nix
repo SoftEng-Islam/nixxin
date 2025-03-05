@@ -5,22 +5,24 @@
 
 let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
-  environment.variables = { GIT_CURL_VERBOSE = 1; };
+  environment.variables = { GIT_CURL_VERBOSE = 0; };
   home-manager.users.${settings.user.username} = {
+    programs.git-credential-oauth.enable = true;
     programs.git = {
       enable = true;
       userName = settings.user.name;
       userEmail = settings.user.email;
       extraConfig = {
         color.ui = true;
-        core.editor = "nvim";
-        credential.helper = "store";
-        github.user = settings.user.name;
-        push.autoSetupRemote = true;
         pull.ff = "only";
-        init.defaultBranch = "main";
         tag.gpgSign = true;
         safe.directory = "*";
+        core.editor = "nvim";
+        credential.helper = "store";
+        init.defaultBranch = "main";
+        push.autoSetupRemote = true;
+        github.user = settings.user.username;
+        url = { "https://github.com/" = { insteadOf = "git@github.com"; }; };
       };
       ignores = [ ".direnv/" ".envrc" "result" "result-doc" ];
 
