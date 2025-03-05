@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
-let socat = lib.getExe pkgs.socat;
-in {
+# let socat = lib.getExe pkgs.socat; in
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
       # ---- Main Key ---- #
@@ -25,11 +25,13 @@ in {
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
+      bind = $main, esc, killactive
+
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
       #=> First Row:
-      bind = $main, Q, killactive
+      # bind = $main, Q, killactive
       bind = $main, W, exec, ${pkgs.brave}/bin/brave
       bind = $main, E, exec, ${pkgs.nautilus}/bin/nautilus --new-window & # Launch Nautilus (file manager)
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
