@@ -1,18 +1,26 @@
-{ settings, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 # git config --global url."https://github.com/".insteadOf "git@github.com:"
 # git config --global http.postBuffer 1048576000
 # git config --global http.lowSpeedTime 60
 
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  cfg = config.programs.git;
+  key =
+    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
 in mkIf (settings.modules.git.enable) {
   environment.variables = { GIT_CURL_VERBOSE = 0; };
   home-manager.users.${settings.user.username} = {
+    # enable scrolling in git diff
+    home.sessionVariables.DELTA_PAGER = "less -R";
+
     programs.git-credential-oauth.enable = true;
     programs.git = {
       enable = true;
       userName = settings.user.name;
       userEmail = settings.user.email;
       extraConfig = {
+        pull.rebase = true;
         color.ui = true;
         pull.ff = "only";
         tag.gpgSign = true;
@@ -23,15 +31,37 @@ in mkIf (settings.modules.git.enable) {
         push.autoSetupRemote = true;
         github.user = settings.user.username;
         url = { "https://github.com/" = { insteadOf = "git@github.com"; }; };
+        # gpg = {
+        #   format = "ssh";
+        #   ssh.allowedSignersFile = config.home.homeDirectory + "/"
+        #     + config.xdg.configFile."git/allowed_signers".target;
+        # };
       };
-      ignores = [ ".direnv/" ".envrc" "result" "result-doc" ];
+      ignores = [
+        ".direnv"
+        ".envrc"
+        "*.swp"
+        "*~"
+        "*result*"
+        "node_modules"
+        "result-doc"
+        "result"
+      ];
 
       # signing = {
-      # signByDefault = true;
-      # key = "3FE1845783ADA7CB";
+      #   signByDefault = true;
+      #   key = "${config.home.homeDirectory}/.ssh/id_ed";
       # };
-      delta.enable = true;
+
+      delta = {
+        enable = true;
+        options.dark = true;
+      };
+
     };
+    # xdg.configFile."git/allowed_signers".text = ''
+    #   ${cfg.userEmail} namespaces="git" ${key}
+    # '';
   };
   environment.systemPackages = with pkgs; [
     delta # Syntax-highlighting pager for git
