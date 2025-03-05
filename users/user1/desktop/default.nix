@@ -445,7 +445,7 @@
       enable = true;
       audacity = true;
     };
-    ssh = { enable = true; };
+    ssh = { enable = false; };
     storage = {
       enable = true;
       fstrim.enable = true;

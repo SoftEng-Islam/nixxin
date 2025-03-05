@@ -2,7 +2,7 @@
 
 let inherit (lib) mkIf;
 in mkIf (settings.modules.ssh.enable) {
-  services.openssh.enable = true; # Enable the OpenSSH daemon.
+  services.openssh.enable = false; # Enable the OpenSSH daemon.
   environment.systemPackages = with pkgs;
     [
       # ssh-agents
@@ -12,11 +12,11 @@ in mkIf (settings.modules.ssh.enable) {
     ];
   home-manager.users.${settings.user.username} = {
     programs.ssh = {
-      enable = true;
+      enable = false;
       addKeysToAgent = "yes";
     };
     services.ssh-agent = {
-      enable = lib.modules.mkIf pkgs.stdenv.isLinux true;
+      enable = lib.modules.mkIf pkgs.stdenv.isLinux false;
     };
   };
 }
