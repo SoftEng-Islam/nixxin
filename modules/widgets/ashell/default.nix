@@ -1,10 +1,9 @@
 { settings, lib, config, inputs, pkgs, ... }:
 let inherit (lib) optionals mkIf;
 in {
+  # imports = optionals (settings.modules.ashell.enable) [  ];
 
-  # imports = optionals (settings.modules.ashell.enable) [ ./ashell.nix ];
-
-  config = mkIf (settings.modules.ashell.enable) {
+  config = mkIf (settings.modules.widgets.ashell.enable) {
     home-manager.users.${settings.user.username} = {
       # systemd.user.services.ashell = {
       #   Unit = {
@@ -22,11 +21,12 @@ in {
       # };
 
       # ashell Configs
-      home.file.".config/ashell.yml".source = ./ashell.yml;
+      xdg.configFile = { "ashell.yml".source = ./ashell.yml; };
+      # home.file.".config/ashell.yml".source = ./ashell.yml;
 
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
       [ inputs.ashell.defaultPackage."${pkgs.system}" ];
   };
 }

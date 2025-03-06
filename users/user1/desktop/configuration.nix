@@ -2,12 +2,9 @@
   imports = [
     ./hardware.nix
 
-    ../../../UI/ignis
-
     # ---- Modules ---- #
     ../../../modules/ai
     ../../../modules/android
-    ../../../modules/ashell
     ../../../modules/audio
     ../../../modules/bluetooth
     ../../../modules/browsers
@@ -57,6 +54,8 @@
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
+    ../../../modules/widgets/ashell
+    ../../../modules/widgets/ignis
     ../../../modules/window_manager
     ../../../modules/windows
     ../../../modules/xdg

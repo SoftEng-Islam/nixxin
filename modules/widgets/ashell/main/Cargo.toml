@@ -7,7 +7,7 @@ edition = "2021"
 rust-version = "1.81"
 
 [dependencies]
-iced = { git = "https://github.com/MalpenZibo/iced", features = [
+iced = { path = "vendor/iced", features = [
   "tokio",
   "multi-window",
   "advanced",
@@ -35,7 +35,3 @@ itertools = "0.14"
 hex_color = { version = "3", features = ["serde"] }
 anyhow = "1"
 udev = { version = "0.9", features = ["send", "sync"] }
-
-[net]
-git-fetch-with-cli = true
-http-multiplexing = false
