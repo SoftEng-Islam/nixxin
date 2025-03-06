@@ -9,11 +9,13 @@ let
   key =
     "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
 in mkIf (settings.modules.git.enable) {
-  environment.variables = { GIT_CURL_VERBOSE = 0; };
-  home-manager.users.${settings.user.username} = {
-    # enable scrolling in git diff
-    home.sessionVariables.DELTA_PAGER = "less -R";
+  environment.variables = {
+    GIT_CURL_VERBOSE = 0;
 
+    # enable scrolling in git diff
+    DELTA_PAGER = "less -R";
+  };
+  home-manager.users.${settings.user.username} = {
     programs.git-credential-oauth.enable = true;
     programs.git = {
       enable = true;
