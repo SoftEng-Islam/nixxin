@@ -7,7 +7,7 @@ edition = "2021"
 rust-version = "1.81"
 
 [dependencies]
-iced = { path = "vendor/iced", features = [
+iced = { git = "https://github.com/MalpenZibo/iced", features = [
   "tokio",
   "multi-window",
   "advanced",

@@ -592,7 +592,7 @@
     virtualization = { enable = true; };
     wayland = { enable = true; };
     widgets = {
-      ashell = { enable = false; };
+      ashell = { enable = true; };
       ignis = { enable = true; };
     };
     window_manager = {
