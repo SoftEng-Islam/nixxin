@@ -17,8 +17,12 @@ audio = AudioService.get_default()
 
 app = IgnisApp.get_default()
 
+# %H → 24-hour format (01–24)
+# %I → 12-hour format (01–12)
+# %M → Minutes (00–59)
+# %p → AM/PM indicator (AM or PM)
 current_time = Variable(
-    value=Utils.Poll(1000, lambda x: datetime.datetime.now().strftime("%H:%M")).bind(
+    value=Utils.Poll(1000, lambda x: datetime.datetime.now().strftime("%I:%M %p")).bind(
         "output"
     )
 )
