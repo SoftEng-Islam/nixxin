@@ -5,9 +5,8 @@
 
 let
   inherit (lib) mkIf;
-  cfg = config.programs.git;
-  key =
-    "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
+  # cfg = config.programs.git;
+  # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
     GIT_CURL_VERBOSE = 0;
@@ -32,6 +31,21 @@ in mkIf (settings.modules.git.enable) {
         init.defaultBranch = "main";
         push.autoSetupRemote = true;
         github.user = settings.user.username;
+        core = {
+          autocrlf = false;
+          compression = 9;
+          packedGitWindowSize = "128m";
+          packedGitLimit = "512m";
+        };
+        http = {
+          postBuffer = 1048576000;
+          lowSpeedTime = 999999;
+          lowSpeedLimit = 0;
+          version = "HTTP/1.1";
+        };
+        submodule.fetchJobs = 4;
+        advice.addIgnoredFile = false;
+        # url."https://github.com/".insteadOf = "git@github.com:";
         url = { "https://github.com/" = { insteadOf = "git@github.com"; }; };
         # gpg = {
         #   format = "ssh";
