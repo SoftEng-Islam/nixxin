@@ -25,7 +25,7 @@
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      bind = $main, esc, killactive
+      bind = , ESCAPE, killactive
 
       # -------------------------- #
       # ---- $main + Alphabet ---- #
