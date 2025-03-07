@@ -15,7 +15,7 @@ in mkIf (settings.modules.git.enable) {
     DELTA_PAGER = "less -R";
   };
   home-manager.users.${settings.user.username} = {
-    programs.git-credential-oauth.enable = true;
+    # programs.git-credential-oauth.enable = true;
     programs.git = {
       enable = true;
       userName = settings.user.name;
