@@ -13,22 +13,19 @@
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 
     # superfile.url = "github:yorukot/superfile";
-    xremap-flake.url = "github:xremap/nix-flake";
-
-    # System-wide colorscheming and typography for NixOS
-    stylix.url = "github:danth/stylix";
+    # xremap-flake.url = "github:xremap/nix-flake";
 
     # Efficient Animated Wallpaper Daemon For Wayland, controlled at runtime
-    swww.url = "github:LGFae/swww";
+    # swww.url = "github:LGFae/swww";
 
-    nixvim.url = "github:nix-community/nixvim";
-    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+    # nixvim.url = "github:nix-community/nixvim";
+    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
 
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-ld.url = "github:Mic92/nix-ld";
-    nix-ld.inputs.nixpkgs.follows = "nixpkgs";
+    # nix-ld.url = "github:Mic92/nix-ld";
+    # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     # impurity.url = "github:outfoxxed/impurity.nix";
     # thorium.url = "github:end-4/nix-thorium";
@@ -83,8 +80,8 @@
     # A Material You Color Generation Tool
     # matugen.url = "github:/InioX/Matugen";
 
-    anytype.url = "github:/anyproto/anytype-ts";
-    anytype.inputs.nixpkgs.follows = "nixpkgs";
+    # anytype.url = "github:/anyproto/anytype-ts";
+    # anytype.inputs.nixpkgs.follows = "nixpkgs";
 
     # ---- Terminals ---- #
     smart-splits-nvim.url = "github:mrjones2014/smart-splits.nvim";
@@ -100,8 +97,8 @@
     kitty-smart-tab.flake = false;
 
     ashell = {
-      # url = "path:./ashell-main";
-      url = "github:MalpenZibo/ashell";
+      url = "path:./modules/widgets/ashell/main";
+      # url = "github:MalpenZibo/ashell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -123,7 +120,7 @@
             inherit settings;
           };
           modules = [
-            inputs.stylix.nixosModules.stylix
+            # inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
