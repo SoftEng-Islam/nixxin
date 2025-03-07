@@ -141,21 +141,21 @@ in {
       # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
       # "acpi_osi=Linux"
 
+      # "acpi_osi=Linux"
+      # "pci=realloc"
+      # "acpi_enforce_resources=lax"
+
       # Black Screen Issues
       # "nomodeset"
 
-      "rtl8xxxu_disable_hw_crypto=1"
       "iommu=pt"
-      # "drm.kms_helper.parallel_locks=1"
-      # "acpi_enforce_resources=lax"
       "pcie_aspm=off"
 
-      # "acpi_osi=Linux"
-      # "pci=realloc"
+      # "drm.kms_helper.parallel_locks=1"
 
-      # "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      # "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      # "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
       "elevator=bfq" # Optimized disk performance for desktops
 
@@ -225,6 +225,9 @@ in {
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
       "snd_hda_intel.power_save=0"
       "snd_hda_intel.probe_mask=1"
+
+      # WIFI
+      "rtl8xxxu_disable_hw_crypto=1"
     ];
 
     kernel.sysctl = {
