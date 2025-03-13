@@ -105,7 +105,7 @@ in mkIf (settings.modules.git.enable) {
     git-crypt # Transparent file encryption in git
     git-ignore # Quickly and easily fetch .gitignore templates from gitignore.io
     git-lfs # Git extension for versioning large files
-    # github-desktop # GUI for managing Git and GitHub
+    github-desktop # GUI for managing Git and GitHub
     hub # Command-line wrapper for git that makes you better at GitHub
     lazygit # Simple terminal UI for git commands
     mergiraf # Syntax-aware git merge driver for a growing collection of programming languages and file formats
