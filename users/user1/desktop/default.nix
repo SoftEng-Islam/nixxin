@@ -9,7 +9,7 @@
         system = {
           hostname = "nixos";
           architecture = "x86_64-linux";
-          stateVersion = "24.05";
+          stateVersion = "24.11";
         };
         home = { };
         language = { };
@@ -77,9 +77,9 @@
     gtk = {
       # Material
       # adw-gtk3-dark
-      theme = "Material";
+      theme = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
-      icon_cache = false;
+      icon_cache = true;
     };
 
     # ---------------------
@@ -161,7 +161,7 @@
   modules = {
     ai = {
       enable = false;
-      ollama = { enable = true; };
+      ollama = { enable = false; };
     };
     android = {
       enable = true;
@@ -170,7 +170,6 @@
       development = true;
       android_studio = false;
     };
-    ashell = { enable = false; };
     audio = {
       enable = true;
       rnnoise.enable = true; # Noise Canceling
@@ -180,7 +179,7 @@
       enable = true; # To disable the whole module
       brave = true;
       firefox = false;
-      firefox-beta = true;
+      firefox-beta = false;
       google-chrome = true;
       microsoft-edge = true;
     };
@@ -197,8 +196,8 @@
     };
     community = {
       enable = true;
-      discord = true;
-      ferdium = true;
+      discord = false;
+      ferdium = false;
       mumble = false;
       revolt = false;
       signal = false;
@@ -222,7 +221,7 @@
       wget2 = true;
       yt-dlp = true;
       motrix = false;
-      libtorrent-rasterbar = true;
+      libtorrent-rasterbar = false;
       ariang = true;
       media-downloader = false;
       persepolis = false;
@@ -254,6 +253,7 @@
         };
       };
       apps = {
+        enable = true;
         beekeeper = true;
         dbeaver = true;
         sqlitebrowser = true;
@@ -292,8 +292,8 @@
       nemo = false;
       spacedrive = true;
     };
-    flags = { enable = true; };
-    flatpak = { enable = true; };
+    flags = { enable = false; };
+    flatpak = { enable = false; };
     fonts = {
       enable = true;
       main = {
@@ -333,16 +333,15 @@
     gaming = {
       enable = true; # To support gaming and install gaming stuff
       steam = { enable = false; };
-      # Free, open-source game of ancient warfare
-      zeroad = { enable = false; };
+      zeroad = { enable = false; }; # Free game of ancient warfare
     };
     git = { enable = true; };
     graphics = {
       enable = true;
-      blender = true;
+      blender = false;
       darktable = false;
       davinci = false;
-      drawio = true;
+      drawio = false;
       figmaLinux = false;
       gimp = true;
       inkscape = false;
@@ -354,9 +353,9 @@
       stateVersion = home.stateVersion;
       backupFileExtension = home.backupFileExtension;
       manual = {
-        html = true;
-        json = true;
-        manpages = true;
+        html = false;
+        json = false;
+        manpages = false;
       };
     };
     i18n = {
@@ -386,10 +385,11 @@
       glide = false;
       jellyfin = false;
       kdenlive = true;
-      shotcut = true;
+      shotcut = false;
       music = true;
     };
     networking = {
+      enable = true;
       dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
       ethernet = "eno1";
       wlanInterface = "wlp0s19f2u5";
@@ -418,10 +418,10 @@
       enable = true;
       screen = {
         enable = true;
-        blue = true;
-        gpu_recorder = true;
-        obs = true;
-        wf_recorder = true;
+        blue = false;
+        gpu_recorder = false;
+        obs = false;
+        wf_recorder = false;
       };
       sound.enable = false;
     };
@@ -443,12 +443,12 @@
     };
     sound_editor = {
       enable = true;
-      audacity = true;
+      audacity = false;
     };
     ssh = { enable = false; };
     storage = {
       enable = true;
-      fstrim.enable = true;
+      fstrim.enable = false;
       beesd = { enable = false; };
     };
     styles = {
@@ -506,7 +506,7 @@
           mode = "UEFI"; # UEFI OR BIOS
           manager = {
             # Select The boot manager to enable
-            name = "GRUB"; # GRUB or SYSTEMD
+            name = "SYSTEMD"; # GRUB or SYSTEMD
 
             # device identifier for grub; only used for legacy (bios) boot mode
             # List all the devices with their by-id symlinks
@@ -529,7 +529,7 @@
         };
       };
       docs = {
-        enable = true;
+        enable = false;
         doc.enable = true;
         man = {
           enable = true;
@@ -593,7 +593,7 @@
     wayland = { enable = true; };
     widgets = {
       ashell = { enable = false; };
-      ignis = { enable = true; };
+      ignis = { enable = false; };
     };
     window_manager = {
       enable = true;
@@ -619,14 +619,15 @@
     xdg = {
       enable = true;
       defaults = {
-        fileManager = "nautilus"; # thunar & nautilus
-        imageViewer = "loupe"; # feh or loupe
-        videoPlayer = "mpv"; # vlc or celluloid or mpv
+        webBrowser = "edge"; # "edge", "chrome", "brave"
+        fileManager = "nautilus"; # "thunar", "nautilus"
+        imageViewer = "loupe"; # "feh", "loupe"
+        videoPlayer = "mpv"; # "vlc", "celluloid", "mpv"
         torrentApp = "qBittorrent";
       };
     };
     zram = {
-      enable = true;
+      enable = false;
       algorithm = "lz4"; # lz4 or zstd
     };
   };

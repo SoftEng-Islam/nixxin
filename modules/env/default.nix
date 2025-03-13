@@ -94,15 +94,14 @@ in {
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
-      GDK_PIXBUF_MODULE_FILE =
-        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+      GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
 
       MOZ_DBUS_REMOTE = "1";
       # Enables Wayland for Mozilla apps and EGL.
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
 
-      QUOTING_STYLE = "literal";
+      # QUOTING_STYLE = "literal";
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
       # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
@@ -117,8 +116,8 @@ in {
         ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
 
       # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
-      GST_PLUGIN_PATH =
-        "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
+      GST_PLUGIN_PATH = "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
+      
       GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
         + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
         + "${pkgs.networkmanager}/lib/girepository-1.0:"

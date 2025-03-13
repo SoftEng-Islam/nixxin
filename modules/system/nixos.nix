@@ -29,8 +29,8 @@ in {
       sandbox = false;
       # color = true;
       connect-timeout = 0; # 0 means no limit
-      download-attempts = 10;
-      # download-buffer-size = 536870912;
+      download-attempts = 4;
+      download-buffer-size = 536870912;
       http-connections = 0; # 0 means no limit
       keep-outputs = false;
       keep-derivations = false;
@@ -39,36 +39,40 @@ in {
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
 
       builders-use-substitutes = true;
+
       substituters = [
         # high priority since it's almost always used
         "https://cache.nixos.org?priority=10"
 
         "https://cache.garnix.io"
-        "https://cuda-maintainers.cachix.org"
+        #"https://cuda-maintainers.cachix.org"
         "https://devenv.cachix.org"
         "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
-        "https://nix-gaming.cachix.org"
+        #"https://nix-gaming.cachix.org"
         "https://nixpkgs-python.cachix.org"
         "https://nixpkgs-wayland.cachix.org"
       ];
+
       trusted-substituters = [ "https://nix-community.cachix.org" ];
+
       # Enable cachix
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        #"cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        #"nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
       trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
       allowed-users = [ "@wheel" "root" "${settings.user.username}" ];
       fallback = true;
-      warn-dirty = false;
+      warn-dirty = true;
+
       # Auto clear nixos store
       auto-optimise-store = true;
     };
@@ -197,7 +201,7 @@ in {
     '';
     # ---- Optimization ---- #
     scx = {
-      enable = true;
+      enable = false;
       scheduler = "scx_rusty";
       package = pkgs.scx.rustscheds;
     };

@@ -52,7 +52,7 @@ in {
         # "sshd"
       ];
       uid = 1000;
-      packages = with pkgs; [ thunderbird ];
+      # packages = with pkgs; [ thunderbird ];
     };
   };
 }

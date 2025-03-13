@@ -275,11 +275,12 @@ in {
       # PID optimization
       "kernel.pid_max" = 4194304;
 
-      # ---- NoNewPrivs ---- #
+      # ---- NoNewPrivs
       # Run this command to check if a process has NoNewPrivileges set:
       # grep NoNewPrivs /proc/*/status
       "kernel.unprivileged_userns_clone" = 1;
     };
+
     # extraModprobeConfig = ''
     # blacklist r8188eu
     # blacklist rtl8xxxu
@@ -329,7 +330,7 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amf
+        #        amf
         amdvlk # AMD Vulkan driver
         vulkan-validation-layers
         vulkan-tools
@@ -463,6 +464,8 @@ in {
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
   };
 
+  environment.memoryAllocator.provider = "libc";
+
   environment.systemPackages = with pkgs; [
     linux-firmware # Binary firmware collection packaged by kernel.org
 
@@ -491,7 +494,7 @@ in {
     # ---- AMD Stuff
     # ------------------------------------------------
     # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    amf # AMD's closed source Advanced Media Framework (AMF) driver
+    #    amf # AMD's closed source Advanced Media Framework (AMF) driver
     amd-blis # BLAS-compatible library optimized for AMD CPUs
     amd-ucodegen # Tool to generate AMD microcode files
     amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
@@ -598,7 +601,6 @@ in {
     microcodeAmd # AMD Processor microcode patch
     nvtopPackages.amd # (h)top like task monitor for AMD, Adreno, Intel and NVIDIA GPUs
     xorg.xf86videoamdgpu
-    amf # AMD's closed source Advanced Media Framework (AMF) driver
     # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
   ];
 }

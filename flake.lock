@@ -10,14 +10,17 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1,
-        "narHash": "sha256-DD3PpEVHe8GuGiaNgyZ9JipP8DS3+nIQOtWtrdKkW1Y=",
-        "path": "./modules/widgets/ashell/main",
-        "type": "path"
+        "lastModified": 1741779978,
+        "narHash": "sha256-f24I9eoGNUhmjSiE62F35Ag82Q6LW/4uVDdf6QilHYA=",
+        "owner": "MalpenZibo",
+        "repo": "ashell",
+        "rev": "d64033199abe7295dec09352112e6d79b26989fd",
+        "type": "github"
       },
       "original": {
-        "path": "./modules/widgets/ashell/main",
-        "type": "path"
+        "owner": "MalpenZibo",
+        "repo": "ashell",
+        "type": "github"
       }
     },
     "crane": {

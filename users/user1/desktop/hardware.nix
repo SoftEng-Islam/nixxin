@@ -3,17 +3,19 @@
 # to /etc/nixos/configuration.nix instead.
 { lib, settings, inputs, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
+
   fileSystems."/" = {
-    device = "/dev/disk/by-uuid/ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed";
-    fsType = "btrfs";
-    options = [ "subvol=@" ];
+    device = "/dev/disk/by-uuid/6cee242f-112a-46af-8d32-ce9f36ff6531";
+    fsType = "xfs";
   };
+
   fileSystems."/boot" = {
-    device = "/dev/disk/by-uuid/7FD3-5156";
+    device = "/dev/disk/by-uuid/EE68-B24A";
     fsType = "vfat";
-    # options = [ "fmask=0077" "dmask=0077" ];
-    options = [ "rw" ];
+    options = [ "fmask=0077" "dmask=0077" ];
+    # options = [ "rw" ];
   };
+
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
     fsType = "ntfs-3g";
@@ -29,6 +31,8 @@
       "x-gvfs-show"
     ];
   };
+
+
   swapDevices = [{
     device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
     # size = 4 * 1024; # Size in MB for a 4GB swap file

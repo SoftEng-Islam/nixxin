@@ -89,8 +89,13 @@
           disable_logs = false;
           enable_stdout_logs = true;
         };
-        # extraConfig = "";
+        # active color
+        "$primary" = "rgba(E62D42ff)";
+        # inactive color
+        "$surface" = "rgba(191919ff)";
       };
+      # extraConfig = ''
+      # '';
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;

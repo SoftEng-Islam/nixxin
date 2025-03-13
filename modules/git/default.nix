@@ -45,8 +45,7 @@ in mkIf (settings.modules.git.enable) {
         };
         submodule.fetchJobs = 4;
         advice.addIgnoredFile = false;
-        # url."https://github.com/".insteadOf = "git@github.com:";
-        url = { "git@github.com" = { insteadOf = "https://github.com/"; }; };
+        # url = { "git@github.com:" = { insteadOf = "https://github.com/"; }; };
         # gpg = {
         #   format = "ssh";
         #   ssh.allowedSignersFile = config.home.homeDirectory + "/"

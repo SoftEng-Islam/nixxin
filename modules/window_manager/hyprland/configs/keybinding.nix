@@ -25,7 +25,7 @@
       # p -> bypasses the app's requests to inhibit keybinds.
     };
     wayland.windowManager.hyprland.extraConfig = ''
-      bind = , ESCAPE, killactive
+      bind = $main, ESCAPE, killactive
 
       # -------------------------- #
       # ---- $main + Alphabet ---- #
@@ -74,6 +74,7 @@
       bind = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
       bind = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
       bind = $main Ctrl, T, exec, ${pkgs.kitty}/bin/kitty --class floating
+      bind = $main Ctrl, R, exec, hyprctl reload
 
       # --------------------- #
       # ---- $main + Alt ---- #
@@ -200,12 +201,12 @@
       # bind = $main, F2, exec, ignis toggle ignis_POWERMENU
       # bind = $main, F3, exec, ignis toggle ignis_POWERMENU
       #=> Restart Ignis
-      bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
+      # bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
       #=> ignis Recording
-      bind = $main I, 1, exec, ~/.config/ignis/scripts/recording.py start
-      bind = $main I, 2, exec, ~/.config/ignis/scripts/recording.py continue
-      bind = $main I, 3, exec, ~/.config/ignis/scripts/recording.py stop
-      bind = $main I, 4, exec, ~/.config/ignis/scripts/recording.py pause
+      # bind = $main I, 1, exec, ~/.config/ignis/scripts/recording.py start
+      # bind = $main I, 2, exec, ~/.config/ignis/scripts/recording.py continue
+      # bind = $main I, 3, exec, ~/.config/ignis/scripts/recording.py stop
+      # bind = $main I, 4, exec, ~/.config/ignis/scripts/recording.py pause
 
       # ---- Screen snip ---- #
       bind = $main SHIFT, S, exec, mkdir -p ~/Pictures/Area && ~/.config/hypr/scripts/grimblast.sh --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip

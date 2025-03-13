@@ -2,6 +2,12 @@
   # enable zsh autocompletion for system packages (systemd, etc)
   environment.pathsToLink = [ "/share/zsh" ];
 
+  environment.variables = {
+    # Path to your oh-my-zsh installation.
+    # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
+    ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -26,21 +32,18 @@
   ];
   home-manager.users.${settings.user.username}.home.file.".zshrc".text = ''
     # If you come from bash you might have to change your $PATH.
-    export PATH=$HOME/bin:/usr/local/bin:$PATH
-    export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
-    export QT_QPA_PLATFORMTHEME=qt5ct
+    # export PATH=$HOME/bin:/usr/local/bin:$PATH
+    # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
+    # export QT_QPA_PLATFORMTHEME=qt5ct
 
     # You may need to manually set your language environment
-    export LANG=en_US.UTF-8
-
-    # Path to your oh-my-zsh installation.
-    export ZSH="$HOME/.oh-my-zsh"
+    # export LANG=en_US.UTF-8
 
     # ------------------------ #
     # ------ User Theme ------ #
     # ------------------------ #
     # Load custom theme
-    # source ~/.oh-my-zsh/themes/theme.zsh-theme
+    # source ${pkgs.oh-my-zsh}/share/oh-my-zsh/themes/theme.zsh-theme
 
     # Enable prompt substitution
     setopt prompt_subst
@@ -76,7 +79,10 @@
       # zsh-syntax-highlighting
       # zsh-history-substring-search
     )
-    source $ZSH/oh-my-zsh.sh
+
+    # To get the package path
+    # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
+    source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
 
     # Optimized history settings
     HISTFILE=~/.zsh_history
@@ -199,10 +205,10 @@
     # -------- Plugins -------- #
     # ------------------------- #
     # Fish-like syntax highlighting and autosuggestions
-    source /home/softeng/.oh-my-zsh/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-    source /home/softeng/.oh-my-zsh/custom/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
     # Use history substring search
-    source /home/softeng/.oh-my-zsh/custom/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
+    source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
     # pkgfile "command not found" handler
     # source /usr/share/doc/pkgfile/command-not-found.zsh
 

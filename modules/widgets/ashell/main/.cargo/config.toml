@@ -1,8 +1,0 @@
-[source.crates-io]
-replace-with = "vendored-sources"
-
-[source.vendored-sources]
-directory = "vendor"
-
-[patch."https://github.com/MalpenZibo/iced"]
-iced = { path = "vendor/iced" }
