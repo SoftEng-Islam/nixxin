@@ -3,49 +3,58 @@
 # git config --global http.postBuffer 1048576000
 # git config --global http.lowSpeedTime 60
 
+# ---- Use gh to login ---- #
+# gh auth login
+
 let
   inherit (lib) mkIf;
   # cfg = config.programs.git;
   # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
-    GIT_CURL_VERBOSE = 0;
-
+    # GIT_CURL_VERBOSE = 0;
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
   };
   home-manager.users.${settings.user.username} = {
-    # programs.git-credential-oauth.enable = true;
     programs.git = {
       enable = true;
       userName = settings.user.name;
       userEmail = settings.user.email;
       extraConfig = {
-        pull.rebase = true;
-        color.ui = true;
-        pull.ff = "only";
-        tag.gpgSign = true;
-        safe.directory = "*";
-        core.editor = "nvim";
-        credential.helper = "store";
-        init.defaultBranch = "main";
-        push.autoSetupRemote = true;
-        github.user = settings.user.username;
+        pull.rebase =
+          true; # Enables rebase instead of merge when pulling changes.
+        color.ui = true; # Enables colored output.
+        pull.ff = "only"; # Allows fast-forward merges only (no merge commits).
+        tag.gpgSign = true; # Signs tags with GPG by default.
+        safe.directory = "*"; # Allows Git to operate in any directory safely.
+        core.editor = "nvim"; # Sets Neovim as the default Git editor.
+        credential.helper = "store"; # Stores Git credentials in plaintext.
+        init.defaultBranch = "main"; # Sets "main" as the default branch name.
+        push.autoSetupRemote =
+          true; # Automatically sets up remote tracking for pushed branches.
+        github.user = settings.user.username; # Sets the GitHub username.
         core = {
-          autocrlf = false;
-          compression = 9;
-          packedGitWindowSize = "128m";
-          packedGitLimit = "512m";
+          autocrlf = false; # Disables automatic line ending conversion.
+          compression = 9; # Uses maximum compression for Git pack files.
+          packedGitWindowSize =
+            "128m"; # Optimizes Git performance for large repos.
+          packedGitLimit =
+            "512m"; # Adjusts packed Git limit to improve efficiency.
         };
         http = {
-          postBuffer = 1048576000;
-          lowSpeedTime = 999999;
-          lowSpeedLimit = 0;
-          version = "HTTP/1.1";
+          postBuffer = 1048576000; # Increases buffer size for large Git pushes.
+          lowSpeedTime =
+            999999; # Prevents Git from timing out on slow networks.
+          lowSpeedLimit = 0; # Disables the minimum speed requirement.
+          version = "HTTP/1.1"; # Forces Git to use HTTP/1.1.
         };
-        submodule.fetchJobs = 4;
-        advice.addIgnoredFile = false;
-        # url = { "git@github.com:" = { insteadOf = "https://github.com/"; }; };
+        submodule.fetchJobs =
+          4; # Fetches submodules in parallel to speed up the process.
+        advice.addIgnoredFile =
+          false; # Disables Git's warning about ignored files being added.
+
+        url = { "https://github.com/" = { insteadOf = "git@github.com:"; }; };
         # gpg = {
         #   format = "ssh";
         #   ssh.allowedSignersFile = config.home.homeDirectory + "/"

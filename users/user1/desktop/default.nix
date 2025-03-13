@@ -226,6 +226,9 @@
       media-downloader = false;
       persepolis = false;
       varia = false;
+      deluge = true;
+      webtorrent_desktop = true;
+      bitmagnet = true;
     };
     development = {
       enable = true;

@@ -24,6 +24,15 @@ let
     (lib.optional settings.modules.data_transferring.persepolis persepolis)
     # Simple download manager based on aria2 and libadwaita
     (lib.optional settings.modules.data_transferring.varia varia)
+    # Torrent client
+    (lib.optional settings.modules.data_transferring.deluge deluge)
+
+    # Streaming torrent app for Mac, Windows, and Linux
+    (lib.optional settings.modules.data_transferring.webtorrent_desktop
+      webtorrent_desktop)
+
+    # Self-hosted BitTorrent indexer, DHT crawler, and torrent search engine
+    (lib.optional settings.modules.data_transferring.bitmagnet bitmagnet)
   ];
 in {
   imports = optionals (settings.modules.data_transferring.enable or false) [
