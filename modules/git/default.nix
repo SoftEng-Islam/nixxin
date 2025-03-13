@@ -9,7 +9,7 @@
 let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
-    GIT_CURL_VERBOSE = 1;
+    # GIT_CURL_VERBOSE = 1;
 
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
@@ -40,7 +40,6 @@ in mkIf (settings.modules.git.enable) {
         pull.ff = "only"; # Allows fast-forward merges only (no merge commits).
         tag.gpgSign = true; # Signs tags with GPG by default.
         safe.directory = "*"; # Allows Git to operate in any directory safely.
-        core.editor = "nvim"; # Sets Neovim as the default Git editor.
         credential.helper = "store"; # Stores Git credentials in plaintext.
         init.defaultBranch = "main"; # Sets "main" as the default branch name.
 
@@ -50,6 +49,7 @@ in mkIf (settings.modules.git.enable) {
         github.user = settings.user.username; # Sets the GitHub username.
 
         core = {
+          editor = "nvim"; # Sets Neovim as the default Git editor.
           autocrlf = false; # Disables automatic line ending conversion.
 
           # Optimizes Git performance for large repos.
@@ -68,7 +68,7 @@ in mkIf (settings.modules.git.enable) {
           lowSpeedTime = 1000;
 
           lowSpeedLimit = 0; # Disables the minimum speed requirement.
-          version = "HTTP/1.1"; # Forces Git to use HTTP/1.1.
+          # version = "HTTP/1.1"; # Forces Git to use HTTP/1.1.
         };
         # Enable partial cloning to avoid downloading unnecessary history
         feature.manyFiles = true;
