@@ -6,13 +6,11 @@
 # ---- Use gh to login ---- #
 # gh auth login
 
-let
-  inherit (lib) mkIf;
-  # cfg = config.programs.git;
-  # key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOq9Gew1rgfdIyuriJ/Ne0B8FE1s8O/U2ajErVQLUDu9 mihai@io";
+let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
     # GIT_CURL_VERBOSE = 0;
+
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
   };
@@ -22,8 +20,22 @@ in mkIf (settings.modules.git.enable) {
       userName = settings.user.name;
       userEmail = settings.user.email;
       extraConfig = {
-        pull.rebase =
-          true; # Enables rebase instead of merge when pulling changes.
+        # Reduce the number of parallel connections
+        fetch.parallel = 1;
+        submodule.fetchJobs = 1;
+
+        # Optimize compression to reduce data transfer size
+        core.compression = 9; # Uses maximum compression for Git pack files.
+        pack.compression = 9;
+
+        # Disables Git's warning about ignored files being added.
+        advice.addIgnoredFile = false;
+
+        url = { "https://github.com/" = { insteadOf = "git@github.com:"; }; };
+
+        # Enables rebase instead of merge when pulling changes.
+        pull.rebase = true;
+
         color.ui = true; # Enables colored output.
         pull.ff = "only"; # Allows fast-forward merges only (no merge commits).
         tag.gpgSign = true; # Signs tags with GPG by default.
@@ -31,36 +43,42 @@ in mkIf (settings.modules.git.enable) {
         core.editor = "nvim"; # Sets Neovim as the default Git editor.
         credential.helper = "store"; # Stores Git credentials in plaintext.
         init.defaultBranch = "main"; # Sets "main" as the default branch name.
-        push.autoSetupRemote =
-          true; # Automatically sets up remote tracking for pushed branches.
+
+        # Automatically sets up remote tracking for pushed branches.
+        push.autoSetupRemote = true;
+
         github.user = settings.user.username; # Sets the GitHub username.
+
         core = {
           autocrlf = false; # Disables automatic line ending conversion.
-          compression = 9; # Uses maximum compression for Git pack files.
-          packedGitWindowSize =
-            "128m"; # Optimizes Git performance for large repos.
-          packedGitLimit =
-            "512m"; # Adjusts packed Git limit to improve efficiency.
+
+          # Optimizes Git performance for large repos.
+          packedGitWindowSize = "128m";
+
+          # Adjusts packed Git limit to improve efficiency.
+          packedGitLimit = "512m";
         };
         http = {
           verbose = false;
+
+          # Increase buffer sizes for large files
           postBuffer = 1048576000; # Increases buffer size for large Git pushes.
-          lowSpeedTime =
-            999999; # Prevents Git from timing out on slow networks.
+
+          # Prevents Git from timing out on slow networks.
+          lowSpeedTime = 999999;
+
           lowSpeedLimit = 0; # Disables the minimum speed requirement.
           version = "HTTP/1.1"; # Forces Git to use HTTP/1.1.
         };
-        submodule.fetchJobs =
-          4; # Fetches submodules in parallel to speed up the process.
-        advice.addIgnoredFile =
-          false; # Disables Git's warning about ignored files being added.
+        # Enable partial cloning to avoid downloading unnecessary history
+        feature.manyFiles = true;
 
-        url = { "https://github.com/" = { insteadOf = "git@github.com:"; }; };
-        # gpg = {
-        #   format = "ssh";
-        #   ssh.allowedSignersFile = config.home.homeDirectory + "/"
-        #     + config.xdg.configFile."git/allowed_signers".target;
-        # };
+        # Reduce depth of clone (shallow clone)
+        clone.default = "shallow";
+        fetch.prune = true;
+
+        # Reconnect automatically if the connection drops
+        transfer.retry = 5;
       };
       ignores = [
         ".direnv"
@@ -73,20 +91,11 @@ in mkIf (settings.modules.git.enable) {
         "result"
       ];
 
-      # signing = {
-      #   signByDefault = true;
-      #   key = "${config.home.homeDirectory}/.ssh/id_ed";
-      # };
-
       delta = {
         enable = true;
         options.dark = true;
       };
-
     };
-    # xdg.configFile."git/allowed_signers".text = ''
-    #   ${cfg.userEmail} namespaces="git" ${key}
-    # '';
   };
   environment.systemPackages = with pkgs; [
     delta # Syntax-highlighting pager for git
