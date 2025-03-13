@@ -9,7 +9,7 @@
 let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
-    # GIT_CURL_VERBOSE = 0;
+    GIT_CURL_VERBOSE = 1;
 
     # enable scrolling in git diff
     DELTA_PAGER = "less -R";
@@ -65,7 +65,7 @@ in mkIf (settings.modules.git.enable) {
           postBuffer = 1048576000; # Increases buffer size for large Git pushes.
 
           # Prevents Git from timing out on slow networks.
-          lowSpeedTime = 999999;
+          lowSpeedTime = 1000;
 
           lowSpeedLimit = 0; # Disables the minimum speed requirement.
           version = "HTTP/1.1"; # Forces Git to use HTTP/1.1.
@@ -73,12 +73,21 @@ in mkIf (settings.modules.git.enable) {
         # Enable partial cloning to avoid downloading unnecessary history
         feature.manyFiles = true;
 
+        # If your repo is large, only download essential files:
+        feature.sparseCheckout = true;
+
         # Reduce depth of clone (shallow clone)
         clone.default = "shallow";
         fetch.prune = true;
+        fetch.depth = 1;
 
         # Reconnect automatically if the connection drops
         transfer.retry = 5;
+        # Disables integrity checks to speed up transfer
+        transfer.fsckObjects = false;
+        # Reduces the number of simultaneous unpacking jobs
+        transfer.unpackLimit = 1;
+
       };
       ignores = [
         ".direnv"
