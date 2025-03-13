@@ -43,6 +43,7 @@ in mkIf (settings.modules.git.enable) {
             "512m"; # Adjusts packed Git limit to improve efficiency.
         };
         http = {
+          verbose = false;
           postBuffer = 1048576000; # Increases buffer size for large Git pushes.
           lowSpeedTime =
             999999; # Prevents Git from timing out on slow networks.
