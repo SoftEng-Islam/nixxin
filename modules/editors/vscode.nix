@@ -6,7 +6,6 @@ let
     ms-vscode.cpptools-extension-pack
     ms-vscode.cmake-tools
     denoland.vscode-deno
-    syler.sass-indented
     timonwong.shellcheck
     rangav.vscode-thunder-client
     Vue.volar
