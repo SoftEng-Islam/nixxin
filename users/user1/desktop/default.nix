@@ -603,7 +603,7 @@
     virtualization = { enable = true; };
     wayland = { enable = true; };
     widgets = {
-      ashell = { enable = true; };
+      ashell = { enable = false; };
       ignis = { enable = false; };
     };
     window_manager = {

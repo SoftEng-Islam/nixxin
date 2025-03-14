@@ -169,15 +169,15 @@ in {
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
-      # "zswap.enabled=1"
-      # "zswap.compressor=lz4"
-      # "zswap.max_pool_percent=20"
+      "zswap.enabled=1"
+      "zswap.compressor=lz4"
+      "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
       # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
-      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
 

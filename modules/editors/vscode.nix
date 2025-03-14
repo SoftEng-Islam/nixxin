@@ -308,11 +308,65 @@ in {
         "debug.allowBreakpointsEverywhere" = true;
         "search.seedWithNearestWord" = true;
       };
-      keybindings = [{
-        key = "ctrl+c";
-        command = "editor.action.clipboardCopyAction";
-        when = "textInputFocus";
-      }];
+      keybindings = [
+        {
+          key = "ctrl+c";
+          command = "editor.action.clipboardCopyAction";
+          when = "textInputFocus";
+        }
+        {
+          key = "alt+down";
+          command = "editor.action.moveLinesDownAction";
+          when = "editorTextFocus && !editorReadonly";
+        }
+        {
+          key = "alt+up";
+          command = "editor.action.moveLinesUpAction";
+          when = "editorTextFocus && !editorReadonly";
+        }
+        {
+          key = "ctrl+shift+s";
+          command = "editor.action.sortLinesAscending";
+        }
+        {
+          key = "ctrl+shift+r";
+          command = "editor.action.removeDuplicateLines";
+        }
+        {
+          key = "ctrl+c";
+          command = "workbench.action.terminal.copySelection";
+          when =
+            "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused";
+        }
+        {
+          key = "ctrl+shift+c";
+          command = "-workbench.action.terminal.copySelection";
+          when =
+            "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused";
+        }
+        {
+          key = "ctrl+v";
+          command = "workbench.action.terminal.paste";
+          when =
+            "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+        }
+        {
+          key = "ctrl+shift+v";
+          command = "-workbench.action.terminal.paste";
+          when =
+            "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported";
+        }
+        {
+          key = "ctrl+shift+c";
+          command = "-workbench.action.terminal.openNativeConsole";
+          when = "!terminalFocus";
+        }
+        {
+          key = "ctrl+k ctrl+c";
+          command = "-editor.action.addCommentLine";
+          when = "editorTextFocus && !editorReadonly";
+        }
+      ];
     };
     xdg.mimeApps.associations.removed = { "inode/directory" = "code.desktop"; };
   };
