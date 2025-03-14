@@ -1,4 +1,4 @@
-{
+{ ... }: {
   # "application/x-shellscript"
   # "application/x-wine-extension-ini"
   # "application/x-zerosize"
