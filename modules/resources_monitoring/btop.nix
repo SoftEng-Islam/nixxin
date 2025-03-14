@@ -131,7 +131,7 @@ in {
       cpu_core_map = ""
 
       #* Which temperature scale to use, available values: "celsius", "fahrenheit", "kelvin" and "rankine".
-      temp_scale = "celsius"
+      temp_scale = ${settings.modules.resources_monitoring.btop.temperature}
 
       #* Use base 10 for bits/bytes sizes, KB = 1000 instead of KiB = 1024.
       base_10_sizes = False
@@ -202,7 +202,7 @@ in {
       net_sync = False
 
       #* Starts with the Network Interface specified here.
-      net_iface = "enp9s0"
+      net_iface = ${settings.modules.resources_monitoring.btop.net_iface}
 
       #* Show battery stats in top right if battery is present.
       show_battery = True

@@ -439,6 +439,8 @@
         update = 1000; # Update time in milliseconds
         temperature = "celsius"; # "celsius", "fahrenheit", "kelvin", "rankine"
         clock = "%I:%M %p";
+        # run to get Network Interface Name: ip addr show
+        net_iface = "wlp0s19f2u5";
       };
     };
     screenshot = {
