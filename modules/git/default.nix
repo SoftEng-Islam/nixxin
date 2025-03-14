@@ -1,11 +1,12 @@
 { settings, config, lib, pkgs, ... }:
-# git config --global url."https://github.com/".insteadOf "git@github.com:"
-# git config --global http.postBuffer 1048576000
-# git config --global http.lowSpeedTime 60
 
 # ---- Use gh to login ---- #
 # gh auth login
 
+# Ex: To set git configs in terminal:
+# git config --global url."https://github.com/".insteadOf "git@github.com:"
+# git config --global http.postBuffer 1048576000
+# git config --global http.lowSpeedTime 60
 let inherit (lib) mkIf;
 in mkIf (settings.modules.git.enable) {
   environment.variables = {
