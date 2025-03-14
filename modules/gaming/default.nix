@@ -85,6 +85,10 @@ in mkIf (settings.modules.gaming.enable) {
       mesa-demos # OpenGL test tools
       mesa_i686 # Extra OpenGL tools
 
+      boost
+      icu
+      libpng
+
       # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
       # protonup
     ] ++ lib.flatten _pkgs;
