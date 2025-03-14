@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
   _imports = [
@@ -13,6 +13,9 @@ let
     (lib.optional settings.modules.editors.gnomeTextEditor gnome-text-editor)
   ];
 in {
-  environment.systemPackages = lib.flatten _pkgs;
-  imports = lib.flatten _imports;
+  imports =
+    lib.optionals (settings.modules.editors.eanble) lib.flatten _imports;
+  config = mkIf (settings.modules.editors.eanble) {
+    environment.systemPackages = lib.flatten _pkgs;
+  };
 }
