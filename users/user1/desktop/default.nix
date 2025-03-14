@@ -434,8 +434,8 @@
       btop = {
         enable = true;
         theme = "adapta";
-        background = false;
-        rounded = true;
+        background = "False";
+        rounded = "True";
         update = 1000; # Update time in milliseconds
         temperature = "celsius"; # "celsius", "fahrenheit", "kelvin", "rankine"
         clock = "%I:%M %p";
