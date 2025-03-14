@@ -167,20 +167,23 @@ in {
           startupEditor = "none";
           tips.enabled = true;
           colorCustomizations = {
-            # Text Selection
-            # "editor.selectionBackground": "#020101", // Replace with your desired color code
-            # "editor.selectionHighlightBackground": "#850000bc", // Optional: for find matches highlight color
-            # "editor.inactiveSelectionBackground": "#1613beb7",
-            # Activity Bar
-            # "activityBar.background": "#2a2a2a",
-            # "activityBar.foreground":"#f90",
-            # "activityBar.inactiveForeground":"#ffffff",
-            # Title Bar
-            # "titleBar.activeBackground": "#2a2a2a",
-            # "titleBar.activeForeground": "#FAFCFC",
-            # Status Bar
-            # "statusBar.background": "#2a2a2a",
-            # "statusBar.border": "#94854eee",
+            # ---- Text Selection ---- #
+            # editor.selectionBackground = "#020101"; # Replace with your desired color code
+            # editor.selectionHighlightBackground = "#850000bc"; # Optional: for find matches highlight color
+            # editor.inactiveSelectionBackground = "#1613beb7";
+
+            # ---- Activity Bar ---- #
+            # activityBar.background = "#2a2a2a";
+            # activityBar.foreground = "#f90";
+            # activityBar.inactiveForeground = "#ffffff";
+
+            # ---- Title Bar ---- #
+            # titleBar.activeBackground = "#2a2a2a";
+            # titleBar.activeForeground = "#FAFCFC";
+
+            # ---- Status Bar ---- #
+            statusBar.background = "#2a2a2a";
+            statusBar.border = "#94854eee";
           };
         };
 
@@ -189,7 +192,7 @@ in {
           cursorBlinking = true;
           cursorStyle = "line";
           smoothScrolling = true;
-          # gpuAcceleration = "off";
+          gpuAcceleration = "on";
           fontFamily = "CaskaydiaCove Nerd Font";
           enableImages = true;
           fontLigatures = true;
@@ -204,7 +207,8 @@ in {
 
         # ---- Files and Explorer ---- #
         files = {
-          associations."*.css" = "tailwindcss";
+          # associations."*.css" = "tailwindcss";
+          associations."*.css" = "css";
           autoSave = "off";
           insertFinalNewline = true;
           trimFinalNewlines = true;
@@ -255,46 +259,73 @@ in {
         "javascript.inlayHints.variableTypes.enabled" = true;
         "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
           true;
-        "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" =
-          true;
+        javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName = true;
         "typescript.inlayHints.enumMemberValues.enabled" = true;
         "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
         "typescript.inlayHints.parameterNames.enabled" = "none";
         "typescript.inlayHints.variableTypes.enabled" = true;
         "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
         "typescript.inlayHints.parameterTypes.enabled" = true;
-        "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" =
+        typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName =
           true;
-        "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" =
-          true;
+        typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName = true;
+
+        # ShellScript
+        "[shellscript]" = {
+          editor.defaultFormatter = "foxundermoon.shell-format";
+        };
 
         # Update Settings
-        "update.showReleaseNotes" = false;
-        "update.mode" = "manual";
-        "extensions.autoUpdate" = false;
-        "extensions.autoCheckUpdates" = true;
-        "terminal.explorerKind" = "external";
+        update.showReleaseNotes = false;
+        update.mode = "manual";
+        extensions.autoUpdate = false;
+        extensions.autoCheckUpdates = true;
+        terminal.explorerKind = "external";
 
-        "security.workspace.trust.banner" = "never";
-        "security.workspace.trust.untrustedFiles" = "open";
+        security.workspace.trust.banner = "never";
+        security.workspace.trust.untrustedFiles = "open";
 
         # Linting
-        "css.lint.unknownAtRules" = "ignore";
-        "scss.lint.unknownAtRules" = "ignore";
-        "less.lint.unknownAtRules" = "ignore";
+        css.lint.unknownAtRules = "ignore";
+        scss.lint.unknownAtRules = "ignore";
+        less.lint.unknownAtRules = "ignore";
 
         # Vite
-        "vite.autoStart" = false;
-        "vite.https" = false;
+        vite.autoStart = false;
+        vite.https = false;
 
         # Miscellaneous
-        "application.shellEnvironmentResolutionTimeout" = 60;
-        "tabnine.experimentalAutoImports" = true;
-
-        nix.formatterPath = "nixfmt";
+        application.shellEnvironmentResolutionTimeout = 60;
+        tabnine.experimentalAutoImports = true;
         scm.showHistoryGraph = false;
 
-        "[nix]"."editor.tabSize" = 2;
+        "[nix]" = {
+          editor.inlayHints.enabled = "on";
+          editor.formatOnSave = true;
+          editor.tabSize = 2;
+          editor.insertSpaces = true;
+          editor.defaultFormatter = "jnoortheen.nix-ide";
+        };
+
+        "nix.hiddenLanguageServerErrors" = [
+          "textDocument/didSave"
+          "textDocument/definition"
+          "textDocument/completion"
+          "textDocument/documentSymbol"
+          "workspace/didChangeWatchedFiles"
+        ];
+
+        nix.enableLanguageServer = true;
+        nix.serverPath = "nixd";
+        nix.formatterPath = "nixfmt";
+        "nix.serverSettings" = {
+          "nixpkgs" = { "expr" = "import <nixpkgs> { }"; };
+          "formatting" = {
+            "command" = [
+              "nixfmt" # alejandra or nixfmt or nixpkgs-fmt
+            ];
+          };
+        };
 
         evenBetterToml.formatter.alignComments = false;
 
@@ -304,9 +335,61 @@ in {
         "[typescriptreact]".editor.defaultFormatter = "esbenp.prettier-vscode";
         diffEditor.ignoreTrimWhitespace = false;
 
-        "better-comments.highlightPlainText" = true;
-        "debug.allowBreakpointsEverywhere" = true;
-        "search.seedWithNearestWord" = true;
+        better-comments.highlightPlainText = true;
+        debug.allowBreakpointsEverywhere = true;
+        search.seedWithNearestWord = true;
+
+        "[conf]" = { editor.formatOnSave = false; };
+        "[jsonc]" = {
+          editor.defaultFormatter = "vscode.json-language-features";
+        };
+        "[json]" = {
+          editor.defaultFormatter = "vscode.json-language-features";
+        };
+        # ---- IndentRainbow
+        indentRainbow.indicatorStyle = "light";
+        indentRainbow.lightIndicatorStyleLineWidth = 2;
+        indentRainbow.colors = [
+          "rgba(151,208,90,0.59)"
+          "rgba(89,152,127,0.75)"
+          "rgba(182,173,61,0.79)"
+          "rgba(166,51,125,0.89)"
+          "rgba(148,236,61,0.54)"
+          "rgba(203,64,240,0.75)"
+          "rgba(238,214,137,1.0)"
+        ];
+        workbench.editor.enablePreview = true;
+        workbench.settings.openDefaultKeybindings = true;
+        editor.bracketPairColorization.independentColorPoolPerBracketType =
+          true;
+        html.format.wrapLineLength = 0;
+        workbench.preferredLightColorTheme = "Material Night Eighties";
+        rust-analyzer.rustfmt.overrideCommand = null;
+        notebook.breadcrumbs.showCodeCells = false;
+        breadcrumbs.showArrays = false;
+        breadcrumbs.showBooleans = false;
+        breadcrumbs.showClasses = false;
+        breadcrumbs.showConstants = false;
+        breadcrumbs.showConstructors = false;
+        breadcrumbs.showEnumMembers = false;
+        breadcrumbs.showEnums = false;
+        breadcrumbs.showEvents = false;
+        breadcrumbs.showFields = false;
+        breadcrumbs.showFunctions = false;
+        breadcrumbs.showInterfaces = false;
+        breadcrumbs.showKeys = false;
+        breadcrumbs.showVariables = false;
+        breadcrumbs.showTypeParameters = false;
+        breadcrumbs.showStructs = false;
+        breadcrumbs.showStrings = false;
+        breadcrumbs.showProperties = false;
+        breadcrumbs.showPackages = false;
+        breadcrumbs.showObjects = false;
+        breadcrumbs.showNumbers = false;
+        breadcrumbs.showNull = false;
+        breadcrumbs.showNamespaces = false;
+        breadcrumbs.showModules = false;
+        breadcrumbs.showMethods = false;
       };
       keybindings = [
         {
