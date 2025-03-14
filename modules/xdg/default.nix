@@ -21,15 +21,10 @@ let
     }) list);
 
   windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
-
-  editors = xdgAssociations "editor" editor mimeTypes._editor;
-
+  editors = xdgAssociations "editor" editor mimeTypes._text;
   image = xdgAssociations "image" imageViewer mimeTypes._images;
-
-  video = xdgAssociations "video" videoPlayer;
-
-  audio =
-    xdgAssociations "audio" audioPlayer [ "mp3" "m4a" "flac" "wav" "aac" ];
+  video = xdgAssociations "video" videoPlayer mimeTypes._videos;
+  audio = xdgAssociations "audio" audioPlayer mimeTypes._audio;
 
   browserTypes = (xdgAssociations "application" browser [
     "x-extension-htm"
@@ -59,7 +54,7 @@ let
     "text/plain" = [ "org.gnome.TextEditor" ];
     "x-scheme-handler/magnet" = torrentApp;
 
-  } // editors // image // video // audio // browserTypes);
+  } // editors // image // video // audio // browserTypes // windowsApps);
 
 in mkIf (settings.modules.xdg.enable) {
   environment.variables = {
