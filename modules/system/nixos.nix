@@ -26,7 +26,7 @@ in {
       options = "--delete-older-than 10d";
     };
     settings = {
-      sandbox = false;
+      sandbox = true;
       # color = true;
       connect-timeout = 0; # 0 means no limit
       download-attempts = 4;
@@ -43,11 +43,11 @@ in {
       substituters = [
         # high priority since it's almost always used
         "https://cache.nixos.org?priority=10"
+        "https://hyprland.cachix.org?priority=10"
 
         "https://cache.garnix.io"
         #"https://cuda-maintainers.cachix.org"
         "https://devenv.cachix.org"
-        "https://hyprland.cachix.org"
         "https://nix-community.cachix.org"
         #"https://nix-gaming.cachix.org"
         "https://nixpkgs-python.cachix.org"
@@ -77,8 +77,9 @@ in {
       auto-optimise-store = true;
     };
     extraOptions = ''
-      sandbox = false
-      max-jobs = 4
+      sandbox = true
+      max-jobs = auto
+      cores = 0
       auto-optimise-store = true
       experimental-features = nix-command flakes recursive-nix
     '';
@@ -387,6 +388,7 @@ in {
     nixpkgs-review
     statix # nvim-lint
     deadnix
+    cachix
 
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix

@@ -175,9 +175,9 @@ in {
 
       # AMD GPU optimizations
       # If you want full control over power settings, use:
-      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
-      "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
 
@@ -199,7 +199,7 @@ in {
       "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
       "amdgpu.dpm=1"
       "amdgpu.deep_color=1"
-      "amdgpu.vramlimit=1024"
+      "amdgpu.vramlimit=4096"
       "amdgpu.gttsize=4096"
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
@@ -311,7 +311,7 @@ in {
     enableRedistributableFirmware = true;
     amdgpu = {
       initrd.enable = true;
-      opencl.enable = false;
+      opencl.enable = true;
       legacySupport.enable = false;
       amdvlk = {
         enable = true;
@@ -414,6 +414,9 @@ in {
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
+    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
+    OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
+
     # HIP_VISIBLE_DEVICES = "0,2";
 
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
@@ -433,7 +436,7 @@ in {
     # ROC_ENABLE_PRE_VEGA = "1";
 
     GPU_FORCE_64BIT_PTR = "1";
-    GPU_MAX_ALLOC_PERCENT = "50";
+    GPU_MAX_ALLOC_PERCENT = "100";
     GPU_MAX_HEAP_SIZE = "50";
     GPU_MAX_USE_SYNC_OBJECTS = "1";
     GPU_SINGLE_ALLOC_PERCENT = "50";

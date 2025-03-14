@@ -134,7 +134,7 @@ in {
         # ---- Window Settings ---- #
         window = {
           menuBarVisibility = "toggle";
-          zoomLevel = 5;
+          zoomLevel = 1;
           autoDetectColorScheme = true;
         };
 
