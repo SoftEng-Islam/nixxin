@@ -2,7 +2,7 @@
 let
   inherit (lib) optionals mkIf;
   cacheInHome = "/home/${settings.user.username}/.cache";
-  mimeTypes = import /mimeTypes.nix;
+  mimeTypes = import (./. + "/mimeTypes.nix") { };
 
   # ---- Associations ---- #
   xdgAssociations = type: program: list:

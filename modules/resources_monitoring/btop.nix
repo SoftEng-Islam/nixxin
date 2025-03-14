@@ -65,7 +65,7 @@ in {
       shown_boxes = "proc cpu mem net"
 
       #* Update time in milliseconds, recommended 2000 ms or above for better sample times for graphs.
-      update_ms = ${settings.modules.resources_monitoring.btop.update}
+      update_ms = ${toString settings.modules.resources_monitoring.btop.update}
 
       #* Processes sorting, "pid" "program" "arguments" "threads" "user" "memory" "cpu lazy" "cpu responsive",
       #* "cpu lazy" sorts top process over time (easier to follow), "cpu responsive" updates top process directly.
