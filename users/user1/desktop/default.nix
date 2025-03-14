@@ -673,8 +673,11 @@
         # Default Torrent App, Ex:
         # - [ "org.qbittorrent.qBittorrent" ]
         # - [ "deluge" ]
-        torrentApp = [ "org.qbittorrent.qBittorrent" ];
+        torrentApp = [ "deluge" ];
 
+        # Default .exe runner, Ex:
+        # - [ "wine" ]
+        windowsExeFile = [ "wine" ];
       };
     };
     zram = {

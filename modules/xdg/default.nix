@@ -6,11 +6,12 @@ let
 
   # ---- Set Your Default Apps ---- #
   browser = settings.modules.xdg.defaults.webBrowser;
-  imageViewer = [ "org.gnome.Loupe" ];
-  videoPlayer = [ "mpv" ];
-  audioPlayer = [ "io.bassi.Amberol" ];
-  editor = [ "code" ];
-  torrentApp = [ "org.qbittorrent.qBittorrent" ];
+  imageViewer = settings.modules.xdg.defaults.imageViewer;
+  videoPlayer = settings.modules.xdg.defaults.videoPlayer;
+  audioPlayer = settings.modules.xdg.defaults.audioPlayer;
+  editor = settings.modules.xdg.defaults.editor;
+  torrentApp = settings.modules.xdg.defaults.torrentApp;
+  windowsExeFile = settings.modules.xdg.defaults.windowsExeFile;
 
   # ---- Associations ---- #
   xdgAssociations = type: program: list:
@@ -19,29 +20,15 @@ let
       value = program;
     }) list);
 
-  editors = xdgAssociations "editor" editor [
-    "application/x-shellscript"
-    "application/x-wine-extension-ini"
-    "application/x-zerosize"
-    "application/json"
-    "text/english"
-    "text/plain"
-    "text/x-makefile"
-    "text/x-c++hdr"
-    "text/x-c++src"
-    "text/x-chdr"
-    "text/x-csrc"
-    "text/x-java"
-    "text/x-moc"
-    "text/x-pascal"
-    "text/x-tcl"
-    "text/x-tex"
-    "application/x-shellscript"
-    "text/x-c"
-    "text/x-c++"
+  windowsApplications = xdgAssociations "windowsExeFile" windowsExeFile [
+    # com exe bat dll
+    "application/x-msdos-program"
   ];
-  image =
-    xdgAssociations "image" imageViewer [ "png" "svg" "svg+xml" "jpeg" "gif" ];
+
+  editors = xdgAssociations "editor" editor mimeTypes._editor;
+
+  image = xdgAssociations "image" imageViewer mimeTypes._images;
+
   video = xdgAssociations "video" videoPlayer [
     "mp4"
     "avi"
@@ -53,8 +40,10 @@ let
     "x-matroska"
     "x-ms-wmv"
   ];
+
   audio =
     xdgAssociations "audio" audioPlayer [ "mp3" "m4a" "flac" "wav" "aac" ];
+
   browserTypes = (xdgAssociations "application" browser [
     "x-extension-htm"
     "x-extension-html"
