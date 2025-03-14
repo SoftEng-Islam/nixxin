@@ -4,6 +4,13 @@ let
   cacheInHome = "/home/${settings.user.username}/.cache";
   mimeTypes = import /mimeTypes.nix;
 
+  # ---- Associations ---- #
+  xdgAssociations = type: program: list:
+    builtins.listToAttrs (map (e: {
+      name = "${type}/${e}";
+      value = program;
+    }) list);
+
   # ---- Set Your Default Apps ---- #
   browser = settings.modules.xdg.defaults.webBrowser;
   imageViewer = settings.modules.xdg.defaults.imageViewer;
@@ -13,35 +20,14 @@ let
   torrentApp = settings.modules.xdg.defaults.torrentApp;
   exeRunner = settings.modules.xdg.defaults.windowsExeFileRunner;
 
-  # ---- Associations ---- #
-  xdgAssociations = type: program: list:
-    builtins.listToAttrs (map (e: {
-      name = "${type}/${e}";
-      value = program;
-    }) list);
-
   windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
   editors = xdgAssociations "editor" editor mimeTypes._text;
   image = xdgAssociations "image" imageViewer mimeTypes._images;
   video = xdgAssociations "video" videoPlayer mimeTypes._videos;
   audio = xdgAssociations "audio" audioPlayer mimeTypes._audio;
 
-  browserTypes = (xdgAssociations "application" browser [
-    "x-extension-htm"
-    "x-extension-html"
-    "x-extension-shtml"
-    "x-extension-xht"
-    "x-extension-xhtml"
-    "xhtml_xml"
-    "xhtml+xml"
-  ]) // (xdgAssociations "x-scheme-handler" browser [
-    "about"
-    "ftp"
-    "http"
-    "https"
-    "unknown"
-    "x-www-browser"
-  ]);
+  webBrowser = (xdgAssociations "application" browser mimeTypes._browser)
+    // (xdgAssociations "x-scheme-handler" browser mimeTypes._web);
 
   # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
@@ -54,7 +40,7 @@ let
     "text/plain" = [ "org.gnome.TextEditor" ];
     "x-scheme-handler/magnet" = torrentApp;
 
-  } // editors // image // video // audio // browserTypes // windowsApps);
+  } // editors // image // video // audio // webBrowser // windowsApps);
 
 in mkIf (settings.modules.xdg.enable) {
   environment.variables = {

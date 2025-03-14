@@ -201,7 +201,7 @@
     "x-wavpack"
   ];
 
-  archives = [
+  _archives = [
     "application/bzip2"
     "application/gzip"
     "application/vnd.android.package-archive"
@@ -266,7 +266,7 @@
     "application/zip"
     "application/zstd"
   ];
-  html = [
+  _html = [
     "application/x-extension-htm"
     "application/x-extension-html"
     "application/x-extension-shtml"
@@ -276,11 +276,23 @@
     "text/html"
     "text/xml"
   ];
-  web = [
+  _web = [
     "default-web-browser"
-    "x-scheme-handler/chrome"
-    "x-scheme-handler/http"
-    "x-scheme-handler/https"
-    "x-scheme-handler/unknown"
+    "chrome"
+    "http"
+    "https"
+    "about"
+    "ftp"
+    "unknown"
+    "x-www-browser"
+  ];
+  _browser = [
+    "x-extension-htm"
+    "x-extension-html"
+    "x-extension-shtml"
+    "x-extension-xht"
+    "x-extension-xhtml"
+    "xhtml_xml"
+    "xhtml+xml"
   ];
 }

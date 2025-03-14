@@ -658,13 +658,14 @@
         videoPlayer = [ "mpv" ];
 
         # Default Audio Player:
+        # - [ "mpv" ]
         # - [ "io.bassi.Amberol" ]
-        audioPlayer = [ "io.bassi.Amberol" ];
+        audioPlayer = [ "mpv" ];
 
         # Default File Manager, Ex:
-        # - [ "nautilus" ]
+        # - [ "org.gnome.Nautilus" ]
         # - [ "thunar" ]
-        fileManager = "nautilus";
+        fileManager = [ "org.gnome.Nautilus" ];
 
         # Default Programming Code Editor, Ex:
         # - [ "code" ]
