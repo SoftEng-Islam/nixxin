@@ -114,7 +114,7 @@ let
     bradlc.vscode-tailwindcss
   ];
 in {
-  environment.systemPackages = with pkgs; [ vscode ];
+  environment.systemPackages = with pkgs; [ vscode-fhs ];
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
