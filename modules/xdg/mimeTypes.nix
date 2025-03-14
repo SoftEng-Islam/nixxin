@@ -178,6 +178,8 @@
     "video/x-theora"
     "video/x-theora+ogg"
   ];
+  _video =
+    [ "mp4" "avi" "mkv" "wmv" "ts" "webm" "quicktime" "x-matroska" "x-ms-wmv" ];
   archives = [
     "application/bzip2"
     "application/gzip"

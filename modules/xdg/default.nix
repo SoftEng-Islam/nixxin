@@ -11,7 +11,7 @@ let
   audioPlayer = settings.modules.xdg.defaults.audioPlayer;
   editor = settings.modules.xdg.defaults.editor;
   torrentApp = settings.modules.xdg.defaults.torrentApp;
-  windowsExeFile = settings.modules.xdg.defaults.windowsExeFile;
+  exeRunner = settings.modules.xdg.defaults.windowsExeFileRunner;
 
   # ---- Associations ---- #
   xdgAssociations = type: program: list:
@@ -20,26 +20,13 @@ let
       value = program;
     }) list);
 
-  windowsApplications = xdgAssociations "windowsExeFile" windowsExeFile [
-    # com exe bat dll
-    "application/x-msdos-program"
-  ];
+  windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
 
   editors = xdgAssociations "editor" editor mimeTypes._editor;
 
   image = xdgAssociations "image" imageViewer mimeTypes._images;
 
-  video = xdgAssociations "video" videoPlayer [
-    "mp4"
-    "avi"
-    "mkv"
-    "wmv"
-    "ts"
-    "webm"
-    "quicktime"
-    "x-matroska"
-    "x-ms-wmv"
-  ];
+  video = xdgAssociations "video" videoPlayer;
 
   audio =
     xdgAssociations "audio" audioPlayer [ "mp3" "m4a" "flac" "wav" "aac" ];

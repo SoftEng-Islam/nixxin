@@ -677,7 +677,7 @@
 
         # Default .exe runner, Ex:
         # - [ "wine" ]
-        windowsExeFile = [ "wine" ];
+        windowsExeFileRunner = [ "wine" ];
       };
     };
     zram = {
