@@ -14,7 +14,7 @@ let
   ];
 in {
   imports =
-    lib.optionals (settings.modules.editors.eanble) lib.flatten _imports;
+    lib.optionals (settings.modules.editors.enable) lib.flatten _imports;
   config = mkIf (settings.modules.editors.eanble) {
     environment.systemPackages = lib.flatten _pkgs;
   };
