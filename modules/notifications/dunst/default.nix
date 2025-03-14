@@ -6,10 +6,10 @@ let
 in {
   environment.systemPackages = with pkgs; [ dunst dunst-toggle-mode libnotify ];
 
-  nixpkgs.overlays =
-    [ (final: prev: { _custom = pkgs.callPackage ./dunst-nctui { }; }) ];
+  # nixpkgs.overlays =
+  #   [ (final: prev: { _custom = pkgs.callPackage ./dunst-nctui { }; }) ];
 
-  programs.dunst.enable = true;
+  # programs.dunst.enable = true;
   home-manager.users."${settings.user.username}" = {
     home.file.".config/dunst/dunstrc".source = ./dunstrc;
   };
