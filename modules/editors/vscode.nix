@@ -1,7 +1,7 @@
-{ settings, lib, pkgs, ... }:
+{ settings, inputs, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  extensions = with pkgs.vscode-extensions; [
+  nixpkgs-extensions = with pkgs.vscode-extensions; [
     ms-vscode.cpptools
     ms-vscode.cpptools-extension-pack
     ms-vscode.cmake-tools
@@ -33,8 +33,6 @@ let
     ms-python.vscode-pylance
     ms-python.python
     ms-python.debugpy
-  ];
-  nixpkgs-extensions = with pkgs.vscode-extensions; [
     arcticicestudio.nord-visual-studio-code
     esbenp.prettier-vscode
     editorconfig.editorconfig
@@ -43,7 +41,6 @@ let
     golang.go
     gleam.gleam
     phoenixframework.phoenix
-    jnoortheen.nix-ide
     rust-lang.rust-analyzer
     ms-python.python
     ms-python.vscode-pylance
@@ -94,13 +91,14 @@ let
     eww-yuck.yuck
   ];
 in {
+  nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
   environment.systemPackages = with pkgs; [ vscode-fhs ];
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
       mutableExtensionsDir = true;
       enableExtensionUpdateCheck = true;
-      extensions = extensions ++ nixpkgs-extensions ++ market-extensions;
+      extensions = nixpkgs-extensions ++ market-extensions;
       globalSnippets = {
         fixme = {
           body = [ "$LINE_COMMENT FIXME: $0" ];

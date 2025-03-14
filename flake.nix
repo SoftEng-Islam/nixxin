@@ -9,6 +9,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    ashell = {
+      # url = "path:/home/softeng/nixxin/modules/widgets/ashell/main";
+      url = "github:MalpenZibo/ashell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -96,11 +102,7 @@
     kitty-smart-tab.url = "github:yurikhan/kitty-smart-tab";
     kitty-smart-tab.flake = false;
 
-    ashell = {
-      # url = "path:/home/softeng/nixxin/modules/widgets/ashell/main";
-      url = "github:MalpenZibo/ashell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
