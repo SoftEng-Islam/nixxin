@@ -12,7 +12,7 @@ in {
     # ---- Themes ---- #
     # home.file.".config/btop/themes".source = ./themes;
     # home.file.".config/btop/btop.conf".source = ./btop.conf;
-    xdg.configFile.".config/btop/btop.conf".txt = ''
+    xdg.configFile.".config/btop/btop.conf".text = ''
       #? Config file for btop v. 1.2.2
 
       #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
