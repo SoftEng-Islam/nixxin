@@ -36,7 +36,7 @@
   ];
 
   # "image/"
-  _images = [
+  _image = [
     "svg+xml"
     "bmp"
     "jpeg"

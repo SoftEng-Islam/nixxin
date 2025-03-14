@@ -22,8 +22,8 @@ let
 
   windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
   editors = xdgAssociations "editor" editor mimeTypes._text;
-  image = xdgAssociations "image" imageViewer mimeTypes._images;
-  video = xdgAssociations "video" videoPlayer mimeTypes._videos;
+  image = xdgAssociations "image" imageViewer mimeTypes._image;
+  video = xdgAssociations "video" videoPlayer mimeTypes._video;
   audio = xdgAssociations "audio" audioPlayer mimeTypes._audio;
 
   webBrowser = (xdgAssociations "application" browser mimeTypes._browser)
