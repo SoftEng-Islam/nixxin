@@ -1,22 +1,12 @@
-{ settings, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.resources_monitoring.enable) {
-  home-manager.users.${settings.user.username} = {
-    programs.btop = {
-      enable = settings.modules.resources_monitoring.btop.enable;
-      settings = {
-        color_theme = "rose-pine";
-        theme_background = false;
-      };
-    };
-    # ---- Themes ---- #
-    # home.file.".config/btop/btop.conf".source = ./btop.conf;
-    home.file.".config/btop/themes".source = ./themes;
+in {
+  imports =
+    lib.optionals (settings.modules.resources_monitoring.enable) [ ./btop.nix ];
+  config = mkIf (settings.modules.resources_monitoring.enable) {
+    environment.systemPackages = with pkgs;
+      [
+        resources # Monitor your system resources and processes
+      ];
   };
-  environment.systemPackages = with pkgs; [
-    btop
-    # btop-rocm
-
-    resources # Monitor your system resources and processes
-  ];
 }

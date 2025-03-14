@@ -430,9 +430,15 @@
     };
     resources_monitoring = {
       enable = true;
+      resources_app = true;
       btop = {
         enable = true;
-        timeFormat = "12"; # or 24
+        theme = "adapta";
+        background = "False";
+        rounded = "True";
+        update = 1000; # Update time in milliseconds
+        temperature = "celsius"; # "celsius", "fahrenheit", "kelvin", "rankine"
+        clock = "%I:%M %p";
       };
     };
     screenshot = {
@@ -595,7 +601,7 @@
     virtualization = { enable = true; };
     wayland = { enable = true; };
     widgets = {
-      ashell = { enable = false; };
+      ashell = { enable = true; };
       ignis = { enable = false; };
     };
     window_manager = {
@@ -622,11 +628,12 @@
     xdg = {
       enable = true;
       defaults = {
+        # Select Your Default Apps:
         webBrowser = "edge"; # "edge", "chrome", "brave"
         fileManager = "nautilus"; # "thunar", "nautilus"
         imageViewer = "loupe"; # "feh", "loupe"
         videoPlayer = "mpv"; # "vlc", "celluloid", "mpv"
-        torrentApp = "qBittorrent";
+        torrentApp = "deluge"; # "deluge", "qBittorrent"
       };
     };
     zram = {
