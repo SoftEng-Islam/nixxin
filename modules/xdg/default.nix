@@ -5,31 +5,11 @@ let
   mimeTypes = import /mimeTypes.nix;
 
   # ---- Set Your Default Apps ---- #
-  # find /nix/store/ -name "*qbittorrent*.desktop"
-  # Default Web Browser:
-  # - [ "brave-browser" ]
-  # - [ "google-chrome" ]
-  browser = [ "brave-browser" ];
-
-  # Default Images Viewer:
-  # - [ "org.gnome.Loupe" ]
+  browser = settings.modules.xdg.defaults.webBrowser;
   imageViewer = [ "org.gnome.Loupe" ];
-
-  # Default Videos Player:
-  # - [ "mpv" ]
-  # - [ "io.github.celluloid_player.Celluloid" ]
   videoPlayer = [ "mpv" ];
-
-  # Default Audio Player:
-  # - [ "io.bassi.Amberol" ]
   audioPlayer = [ "io.bassi.Amberol" ];
-
-  # Default Programming Code Editor:
-  # - [ "code" ]
   editor = [ "code" ];
-
-  # Default Torrent App:
-  # - [ "org.qbittorrent.qBittorrent" ]
   torrentApp = [ "org.qbittorrent.qBittorrent" ];
 
   # ---- Associations ---- #

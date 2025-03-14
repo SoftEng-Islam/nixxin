@@ -434,8 +434,8 @@
       btop = {
         enable = true;
         theme = "adapta";
-        background = "False";
-        rounded = "True";
+        background = false;
+        rounded = true;
         update = 1000; # Update time in milliseconds
         temperature = "celsius"; # "celsius", "fahrenheit", "kelvin", "rankine"
         clock = "%I:%M %p";
@@ -629,13 +629,52 @@
     };
     xdg = {
       enable = true;
+      # Select Your Default Apps:
       defaults = {
-        # Select Your Default Apps:
-        webBrowser = "edge"; # "edge", "chrome", "brave"
-        fileManager = "nautilus"; # "thunar", "nautilus"
-        imageViewer = "loupe"; # "feh", "loupe"
-        videoPlayer = "mpv"; # "vlc", "celluloid", "mpv"
-        torrentApp = "deluge"; # "deluge", "qBittorrent"
+        #! [NOTICE]:
+        #! - Make Sure you have install/enable the apps to use as default.
+        #! - Write The name of apps without ".desktop" like:
+        #! - - [ "microsoft-edge" ] , Not [ "microsoft-edge.desktop" ]
+
+        # find /nix/store/ -name "*edge*.desktop"
+        # or
+        # fd -g '*edge*.desktop' /nix/store/
+
+        # Default Web Browser, Ex:
+        # - [ "microsoft-edge" ]
+        # - [ "brave-browser" ]
+        # - [ "google-chrome" ]
+        webBrowser = [ "microsoft-edge" ];
+
+        # Default Images Viewer, Ex:
+        # - [ "org.gnome.Loupe" ]
+        # - [ "feh" ]
+        imageViewer = [ "org.gnome.Loupe" ];
+
+        # Default Videos Player, Ex:
+        # - [ "mpv" ]
+        # - [ "io.github.celluloid_player.Celluloid" ]
+        # - [ "vlc" ]
+        videoPlayer = [ "mpv" ];
+
+        # Default Audio Player:
+        # - [ "io.bassi.Amberol" ]
+        audioPlayer = [ "io.bassi.Amberol" ];
+
+        # Default File Manager, Ex:
+        # - [ "nautilus" ]
+        # - [ "thunar" ]
+        fileManager = "nautilus";
+
+        # Default Programming Code Editor, Ex:
+        # - [ "code" ]
+        editor = [ "code" ];
+
+        # Default Torrent App, Ex:
+        # - [ "org.qbittorrent.qBittorrent" ]
+        # - [ "deluge" ]
+        torrentApp = [ "org.qbittorrent.qBittorrent" ];
+
       };
     };
     zram = {
