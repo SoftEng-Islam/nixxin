@@ -66,6 +66,8 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
+      gsettings-desktop-schemas
+
       # nautEnv
       nautilus
       file-roller

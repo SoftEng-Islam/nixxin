@@ -32,12 +32,12 @@ let
   # XDG MIME types
   associations = builtins.mapAttrs (_: v: (map (e: "${e}.desktop") v)) ({
     "application/pdf" = [ "org.pwmt.zathura-pdf-mupdf" ];
-    "application/x-bittorrent" = torrentApp;
-    "application/x-ms-dos-executable" = [ "wine" ];
     "application/zip" = [ "org.gnome.FileRoller" ];
     "inode/directory" = [ "org.gnome.Nautilus" ];
-    "text/html" = browser;
+    "application/x-ms-dos-executable" = [ "wine" ];
     "text/plain" = [ "org.gnome.TextEditor" ];
+    "text/html" = browser;
+    "application/x-bittorrent" = torrentApp;
     "x-scheme-handler/magnet" = torrentApp;
 
   } // editors // image // video // audio // webBrowser // windowsApps);
