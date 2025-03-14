@@ -6,13 +6,8 @@ let
     ms-vscode.cpptools-extension-pack
     ms-vscode.cmake-tools
     denoland.vscode-deno
-    EditorConfig
-    syler.sass-indented
     timonwong.shellcheck
-    rangav.vscode-thunder-client
-    Vue.volar
     redhat.vscode-yaml
-    rogalmic.bash-debug
     mads-hartmann.bash-ide-vscode
     aaron-bond.better-comments
     karunamurti.haml
@@ -20,50 +15,24 @@ let
     batisteo.vscode-django
     dbaeumer.vscode-eslint
     tamasfe.even-better-toml
-    GraphQL.vscode-graphql-syntax
     ecmel.vscode-html-css
     oderwat.indent-rainbow
-    brunnerh.insert-unicode
-    VisualStudioExptTeam.vscodeintellicode
-    VisualStudioExptTeam.intellicode-api-usage-examples
-    ms-vscode.vscode-typescript-next
-    ms-vscode.js-debug-nightly
-    Orta.vscode-jest
-    andys8.jest-snippets
     wholroyd.jinja
     ms-vsliveshare.vsliveshare
-    PKief.material-icon-theme
-    ms-vscode.Theme-MaterialKit
     jnoortheen.nix-ide
     christian-kohler.path-intellisense
-    csstools.postcss
     esbenp.prettier-vscode
-    mohsen1.prettify-json
-    Mukundan.python-docs
-    chrmarti.regex
-    Swellaby.rust-pack
     rust-lang.rust-analyzer
     foxundermoon.shell-format
     bradlc.vscode-tailwindcss
     tauri-apps.tauri-vscode
-    be5invis.toml
-    oijaz.unicode-latex
-    antfu.vite
     njpwerner.autodocstring
-    ms-python.autopep8
     ms-python.black-formatter
     streetsidesoftware.code-spell-checker
     ms-python.isort
-    DavidAnson.vscode-markdownlint
-    ms-python.mypy-type-checker
-    davidrockburn.py-pack
     ms-python.vscode-pylance
     ms-python.python
     ms-python.debugpy
-    ms-python.vscode-python-envs
-    KevinRose.vsc-python-indent
-    stuart.unique-window-colors
-    eww-yuck.yuck
   ];
   nixpkgs-extensions = with pkgs.vscode-extensions; [
     arcticicestudio.nord-visual-studio-code
@@ -88,30 +57,41 @@ let
     tomoki1207.pdf
   ];
   market-extensions = with pkgs.vscode-marketplace; [
-    denoland.vscode-deno
-    brian-anders.sublime-duplicate-text
-    cardinal90.multi-cursor-case-preserve
-    # pkgs.vscode-marketplace."cuelang.org".cue
-    pgourlain.erlang
-    jakebecker.elixir-ls
-    jallen7usa.vscode-cue-fmt
-    maximus136.change-string-case
+    EditorConfig.EditorConfig
+    syler.sass-indented
+    rangav.vscode-thunder-client
+    Vue.volar
     ms-python.isort
-    ms-vscode.sublime-keybindings
-    # ms-vscode.cpptools-extension-pack
     nico-castell.linux-desktop-file
-    # platformio.platformio-ide
-    # unifiedjs.vscode-mdx
-    # VisualStudioExptTeam.vscodeintellicode
-    xoronic.pestfile
-    # silabs.siliconlabssupportextension
-    # marus25.cortex-debug
-    # mcu-debug.debug-tracker-vscode
-    # mcu-debug.memory-view
-    # mcu-debug.rtos-views
-    # mcu-debug.peripheral-viewer
-    antfu.unocss
+    # antfu.unocss
     bradlc.vscode-tailwindcss
+    rogalmic.bash-debug
+    GraphQL.vscode-graphql-syntax
+    brunnerh.insert-unicode
+    VisualStudioExptTeam.vscodeintellicode
+    VisualStudioExptTeam.intellicode-api-usage-examples
+    ms-vscode.vscode-typescript-next
+    ms-vscode.js-debug-nightly
+    Orta.vscode-jest
+    andys8.jest-snippets
+    PKief.material-icon-theme
+    ms-vscode.Theme-MaterialKit
+    csstools.postcss
+    mohsen1.prettify-json
+    Mukundan.python-docs
+    chrmarti.regex
+    Swellaby.rust-pack
+    be5invis.toml
+    oijaz.unicode-latex
+    antfu.vite
+    ms-python.autopep8
+    DavidAnson.vscode-markdownlint
+    ms-python.mypy-type-checker
+    davidrockburn.py-pack
+    ms-python.vscode-python-envs
+    KevinRose.vsc-python-indent
+    stuart.unique-window-colors
+    eww-yuck.yuck
   ];
 in {
   environment.systemPackages = with pkgs; [ vscode-fhs ];
