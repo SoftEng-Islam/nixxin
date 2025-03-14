@@ -53,43 +53,44 @@ let
     ryu1kn.partial-diff
     tomoki1207.pdf
   ];
-  market-extensions = with pkgs.vscode-marketplace; [
-    EditorConfig.EditorConfig
-    syler.sass-indented
-    rangav.vscode-thunder-client
-    Vue.volar
-    ms-python.isort
-    nico-castell.linux-desktop-file
-    # antfu.unocss
-    bradlc.vscode-tailwindcss
-    rogalmic.bash-debug
-    GraphQL.vscode-graphql-syntax
-    brunnerh.insert-unicode
-    VisualStudioExptTeam.vscodeintellicode
-    VisualStudioExptTeam.intellicode-api-usage-examples
-    ms-vscode.vscode-typescript-next
-    ms-vscode.js-debug-nightly
-    Orta.vscode-jest
-    andys8.jest-snippets
-    PKief.material-icon-theme
-    ms-vscode.Theme-MaterialKit
-    csstools.postcss
-    mohsen1.prettify-json
-    Mukundan.python-docs
-    chrmarti.regex
-    Swellaby.rust-pack
-    be5invis.toml
-    oijaz.unicode-latex
-    antfu.vite
-    ms-python.autopep8
-    DavidAnson.vscode-markdownlint
-    ms-python.mypy-type-checker
-    davidrockburn.py-pack
-    ms-python.vscode-python-envs
-    KevinRose.vsc-python-indent
-    stuart.unique-window-colors
-    eww-yuck.yuck
-  ];
+  market-extensions = with pkgs.vscode-marketplace;
+    pkgs.vsx [
+      EditorConfig.EditorConfig
+      syler.sass-indented
+      rangav.vscode-thunder-client
+      Vue.volar
+      ms-python.isort
+      nico-castell.linux-desktop-file
+      # antfu.unocss
+      bradlc.vscode-tailwindcss
+      rogalmic.bash-debug
+      GraphQL.vscode-graphql-syntax
+      brunnerh.insert-unicode
+      VisualStudioExptTeam.vscodeintellicode
+      VisualStudioExptTeam.intellicode-api-usage-examples
+      ms-vscode.vscode-typescript-next
+      ms-vscode.js-debug-nightly
+      Orta.vscode-jest
+      andys8.jest-snippets
+      PKief.material-icon-theme
+      ms-vscode.Theme-MaterialKit
+      csstools.postcss
+      mohsen1.prettify-json
+      Mukundan.python-docs
+      chrmarti.regex
+      Swellaby.rust-pack
+      be5invis.toml
+      oijaz.unicode-latex
+      antfu.vite
+      ms-python.autopep8
+      DavidAnson.vscode-markdownlint
+      ms-python.mypy-type-checker
+      davidrockburn.py-pack
+      ms-python.vscode-python-envs
+      KevinRose.vsc-python-indent
+      stuart.unique-window-colors
+      eww-yuck.yuck
+    ];
 in {
   nixpkgs.overlays = [ inputs.nix-vscode-extensions.overlays.default ];
   environment.systemPackages = with pkgs; [ vscode-fhs ];
@@ -98,7 +99,7 @@ in {
       enable = true;
       mutableExtensionsDir = true;
       enableExtensionUpdateCheck = true;
-      extensions = nixpkgs-extensions ++ market-extensions;
+      extensions = nixpkgs-extensions; # ++ market-extensions;
       globalSnippets = {
         fixme = {
           body = [ "$LINE_COMMENT FIXME: $0" ];
@@ -107,6 +108,8 @@ in {
         };
       };
       userSettings = {
+        # This property will be used to generate settings.json:
+        # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
         editor = {
           fontFamily = "'CaskaydiaCove Nerd Font','JetBrainsMono Nerd Font'";
           fontLigatures = true;
@@ -370,6 +373,12 @@ in {
         breadcrumbs.showMethods = false;
       };
       keybindings = [
+        # See https://code.visualstudio.com/docs/getstarted/keybindings#_advanced-customization
+        {
+          key = "shift+cmd+j";
+          command = "workbench.action.focusActiveEditorGroup";
+          when = "terminalFocus";
+        }
         {
           key = "ctrl+c";
           command = "editor.action.clipboardCopyAction";
