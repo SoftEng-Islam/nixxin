@@ -193,7 +193,6 @@ in {
       "radeon.cik_support=0"
       "amdgpu.cik_support=1"
 
-      "amdgpu.audio=0"
       "amdgpu.sg_display=0" # Fixes display-related ROCm issues
       "amdgpu.noretry=0" # Improve memory handling
       "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
@@ -221,10 +220,20 @@ in {
       "amd_iommu=off"
       "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
-      # Audio and USB
+      # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
+      # Can fix issues where USB devices randomly stop working.
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
+
+      # Disables HDMI/DisplayPort audio output on AMD GPUs.
+      # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
+      "amdgpu.audio=0"
+
+      # Prevents audio crackling or delay issues by keeping the sound card active.
+      # If set to 1, the sound card powers down after a few seconds of inactivity.
       "snd_hda_intel.power_save=0"
-      "snd_hda_intel.probe_mask=1"
+
+      # Helps force-detect certain HDA (High Definition Audio) devices.
+      "snd_hda_intel.probe_mask=1" # (Force Specific Audio Codec Detection)
 
       # WIFI
       "rtl8xxxu_disable_hw_crypto=1"
