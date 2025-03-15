@@ -228,7 +228,7 @@
       varia = false;
       deluge = true;
       webtorrent_desktop = true;
-      bitmagnet = true;
+      bitmagnet = false;
     };
     development = {
       enable = true;
