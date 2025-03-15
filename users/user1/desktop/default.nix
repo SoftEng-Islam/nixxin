@@ -338,6 +338,7 @@
       enable = true; # To support gaming and install gaming stuff
       steam = { enable = false; };
       zeroad = { enable = false; }; # Free game of ancient warfare
+      chess = { enable = true; };
     };
     git = { enable = true; };
     graphics = {
