@@ -166,7 +166,7 @@
     android = {
       enable = true;
       scrcpy = true;
-      waydroid = false;
+      waydroid = true;
       development = true;
       android_studio = false;
     };
@@ -197,8 +197,8 @@
     community = {
       enable = true;
       discord = false;
-      ferdium = false;
-      mumble = false;
+      ferdium = true;
+      mumble = true;
       revolt = false;
       signal = false;
       slack = false;
@@ -235,6 +235,7 @@
       databases = {
         enable = false;
         monogodb = true;
+        postgresql = { enable = true; };
         MySQL = true;
         sql = true;
       };
@@ -336,7 +337,7 @@
     gaming = {
       enable = true; # To support gaming and install gaming stuff
       steam = { enable = false; };
-      zeroad = { enable = true; }; # Free game of ancient warfare
+      zeroad = { enable = false; }; # Free game of ancient warfare
     };
     git = { enable = true; };
     graphics = {
@@ -674,7 +675,7 @@
         # Default Torrent App, Ex:
         # - [ "org.qbittorrent.qBittorrent" ]
         # - [ "deluge" ]
-        torrentApp = [ "deluge" ];
+        torrentApp = [ "org.qbittorrent.qBittorrent" ];
 
         # Default .exe runner, Ex:
         # - [ "wine" ]

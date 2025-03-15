@@ -30,21 +30,16 @@ let
     # Streaming torrent app for Mac, Windows, and Linux
     (lib.optional settings.modules.data_transferring.webtorrent_desktop
       webtorrent_desktop)
-
-    # Self-hosted BitTorrent indexer, DHT crawler, and torrent search engine
-    (lib.optional settings.modules.data_transferring.bitmagnet bitmagnet)
   ];
 in {
   imports = optionals (settings.modules.data_transferring.enable or false) [
     ./curl
     ./qbittorrent
     ./aria.nix
+    ./bitmagnet.nix
   ];
-
   config = mkIf (settings.modules.data_transferring.enable or false) {
-
     environment.systemPackages = lib.flatten _pkgs;
-
     # Download Managers & CLI Downloads Utility
     environment.variables = {
       QT_LOGGING_RULES = "qt.gui.imageio.warning=false";

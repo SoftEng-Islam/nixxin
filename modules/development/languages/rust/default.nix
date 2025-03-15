@@ -1,8 +1,5 @@
 { settings, lib, pkgs, ... }:
-
-let
-  inherit (lib) mkIf;
-  # _rust = pkgs.rust-bin.selectLatestNightlyWith (toolchain: toolchain.default.override { extensions = [ "rust-src" ]; });
+let inherit (lib) mkIf;
 in mkIf (settings.modules.development.languages.rust) {
   home-manager.users.${settings.user.username} = {
     programs.vscode.extensions = with pkgs;
@@ -11,28 +8,31 @@ in mkIf (settings.modules.development.languages.rust) {
   environment.variables = {
     # Enables Rust backtraces for debugging.
     RUST_BACKTRACE = "1";
-    CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
-
-    CARGO_NET_GIT_FETCH_WITH_CLI = "true";
-    CARGO_HTTP_MULTIPLEXING = "false";
+    #
+    # CARGO_PROFILE_DEV_BUILD_OVERRIDE_DEBUG = "true";
+    #
+    # CARGO_NET_GIT_FETCH_WITH_CLI = "true";
+    #
+    # CARGO_HTTP_MULTIPLEXING = "false";
   };
   environment.systemPackages = with pkgs; [
-    # _rust
     cargo # Downloads your Rust project's dependencies and builds your project
-    cargo-tauri # Build smaller, faster, and more secure desktop apps with a web frontend
     cargo-asm
     cargo-flamegraph
-    rust-audit-info
-    rustc # A safe, concurrent, practical language (wrapper script)
-    rustup # The Rust toolchain installer
+    cargo-tauri # Build smaller, faster, and more secure desktop apps with a web frontend
+    clippy # Bunch of lints to catch common mistakes and improve your Rust code
+
     rust-analyzer # A modular compiler frontend for the Rust language
     rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
+    rust-audit-info # Command-line tool to extract the dependency trees embedded in binaries by cargo-auditable
+    rustc # A safe, concurrent, practical language (wrapper script)
     rustfmt # Tool for formatting Rust code according to style guidelines
-    clippy # Bunch of lints to catch common mistakes and improve your Rust code
-    rust-analyzer # Modular compiler frontend for the Rust language
+    rustup # The Rust toolchain installer
+
+    # To Open Rust Docs In Your Default Browser
     (writeScriptBin "rust-doc" ''
       #! ${stdenv.shell} -e
-      exec firefox "${rustc.doc}/share/doc/rust/html/index.html"
+      exec ${settings.modules.xdg.defaults.webBrowser} "${rustc.doc}/share/doc/rust/html/index.html"
     '')
   ];
 }
