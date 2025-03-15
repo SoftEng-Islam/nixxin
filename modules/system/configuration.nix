@@ -120,6 +120,7 @@ in {
 
     extraModprobeConfig = ''
       options binder_linux devices=binder,hwbinder,vndbinder
+      options 8188eu rtw_led_ctrl=1
     '';
 
     kernelParams = [
