@@ -32,7 +32,9 @@ in mkIf (settings.modules.development.languages.rust) {
     # To Open Rust Docs In Your Default Browser
     (writeScriptBin "rust-doc" ''
       #! ${stdenv.shell} -e
-      exec ${settings.modules.xdg.defaults.webBrowser} "${rustc.doc}/share/doc/rust/html/index.html"
+      exec ${
+        toString settings.modules.xdg.defaults.webBrowser
+      } "${rustc.doc}/share/doc/rust/html/index.html"
     '')
   ];
 }
