@@ -235,7 +235,7 @@
       enable = true;
       databases = {
         enable = true;
-        monogodb = false;
+        monogodb = { enable = true; };
         postgresql = { enable = true; };
         mysql = { enable = true; };
         sql = true;
