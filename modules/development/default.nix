@@ -18,6 +18,7 @@ in {
 
   environment.systemPackages = with pkgs;
     [
+      direnv
       bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
       at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
       atkmm # C++ wrappers for ATK accessibility toolkit
@@ -28,8 +29,6 @@ in {
       glib # C library of programming buildings blocks
       glibc
       gobject-introspection # A middleware layer between C libraries and language bindings
-      # gobject-introspection-unwrapped
-      # gobject-introspection.dev
       gtksourceviewmm
       harfbuzz # An OpenType text shaping engine
     ] ++ lib.flatten _pkgs;

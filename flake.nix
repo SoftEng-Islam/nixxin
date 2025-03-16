@@ -18,6 +18,12 @@
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 
+    # https://github.com/oxalica/rust-overlay
+    rust-overlay = {
+      url = "github:oxalica/rust-overlay";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # superfile.url = "github:yorukot/superfile";
     # xremap-flake.url = "github:xremap/nix-flake";
 

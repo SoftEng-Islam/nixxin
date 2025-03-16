@@ -134,16 +134,12 @@ in {
 
       "ibt=off"
       "psi=1"
+      # "pci=realloc"
 
-      # makes Linux pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
+      # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
       ''acpi_osi="Windows 2020"''
-      # this doesn't fix my ACPI Bios errors :c
-      # source: https://discordapp.com/channels/761178912230473768/1159412133117833286
       # "acpi_osi=Linux"
-
-      # "acpi_osi=Linux"
-      # "pci=realloc"
       # "acpi_enforce_resources=lax"
 
       # Black Screen Issues
@@ -151,8 +147,6 @@ in {
 
       "iommu=pt"
       "pcie_aspm=off"
-
-      # "drm.kms_helper.parallel_locks=1"
 
       "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"

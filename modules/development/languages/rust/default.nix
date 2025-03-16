@@ -1,6 +1,9 @@
-{ settings, lib, pkgs, ... }:
+{ settings, inputs, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.development.languages.rust) {
+
+  nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
+
   home-manager.users.${settings.user.username} = {
     programs.vscode.extensions = with pkgs;
       [ vscode-extensions.rust-lang.rust-analyzer ];
@@ -16,18 +19,20 @@ in mkIf (settings.modules.development.languages.rust) {
     # CARGO_HTTP_MULTIPLEXING = "false";
   };
   environment.systemPackages = with pkgs; [
+    rust-bin.stable.latest.default
+
     cargo # Downloads your Rust project's dependencies and builds your project
     cargo-asm
     cargo-flamegraph
     cargo-tauri # Build smaller, faster, and more secure desktop apps with a web frontend
     clippy # Bunch of lints to catch common mistakes and improve your Rust code
 
-    rust-analyzer # A modular compiler frontend for the Rust language
-    rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
-    rust-audit-info # Command-line tool to extract the dependency trees embedded in binaries by cargo-auditable
-    rustc # A safe, concurrent, practical language (wrapper script)
-    rustfmt # Tool for formatting Rust code according to style guidelines
-    rustup # The Rust toolchain installer
+    # rust-analyzer # A modular compiler frontend for the Rust language
+    # rust-analyzer-unwrapped # Modular compiler frontend for the Rust language
+    # rust-audit-info # Command-line tool to extract the dependency trees embedded in binaries by cargo-auditable
+    # rustc # A safe, concurrent, practical language (wrapper script)
+    # rustfmt # Tool for formatting Rust code according to style guidelines
+    # rustup # The Rust toolchain installer
 
     # To Open Rust Docs In Your Default Browser
     (writeScriptBin "rust-doc" ''
