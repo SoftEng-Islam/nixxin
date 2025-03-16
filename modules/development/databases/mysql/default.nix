@@ -6,6 +6,6 @@ in {
       enable = true;
       package = pkgs.mariadb;
     };
-    environment.systemPackages = with pkgs; [ mariadb maria ];
+    environment.systemPackages = with pkgs; [ mariadb ];
   };
 }
