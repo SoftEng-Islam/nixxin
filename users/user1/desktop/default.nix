@@ -238,7 +238,7 @@
         monogodb = { enable = true; };
         postgresql = { enable = true; };
         mysql = { enable = true; };
-        sql = true;
+        sql = { enable = true; };
       };
       languages = {
         enable = true;
