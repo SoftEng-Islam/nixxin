@@ -229,6 +229,7 @@
       deluge = true;
       webtorrent_desktop = true;
       bitmagnet = false;
+      transmission = true;
     };
     development = {
       enable = true;

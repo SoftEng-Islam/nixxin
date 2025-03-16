@@ -30,6 +30,10 @@ let
     # Streaming torrent app for Mac, Windows, and Linux
     (lib.optional settings.modules.data_transferring.webtorrent_desktop
       webtorrent_desktop)
+
+    # Torrent client
+    (lib.optional settings.modules.data_transferring.transmission
+      transmission_4)
   ];
 in {
   imports = optionals (settings.modules.data_transferring.enable or false) [
