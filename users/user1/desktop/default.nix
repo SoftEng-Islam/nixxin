@@ -234,8 +234,8 @@
     development = {
       enable = true;
       databases = {
-        enable = false;
-        monogodb = true;
+        enable = true;
+        monogodb = false;
         postgresql = { enable = true; };
         MySQL = true;
         sql = true;

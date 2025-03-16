@@ -1,11 +1,11 @@
-{ config, lib, pkgs, ... }:
-
-let
-  inherit (lib) mkIf;
-  cfg = config.icedos.apps;
-in mkIf (cfg.mysql) {
-  services.mysql = {
-    enable = true;
-    package = pkgs.mariadb;
+{ settings, config, lib, pkgs, ... }:
+let inherit (lib) mkIf;
+in {
+  config = mkIf (settings.modules.development.databases.mysql.enable) {
+    services.mysql = {
+      enable = true;
+      package = pkgs.mariadb;
+    };
+    environment.systemPackages = with pkgs; [ mariadb maria ];
   };
 }
