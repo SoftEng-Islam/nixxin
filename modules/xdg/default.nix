@@ -12,13 +12,13 @@ let
     }) list);
 
   # ---- Set Your Default Apps ---- #
-  browser = settings.modules.xdg.defaults.webBrowser;
-  imageViewer = settings.modules.xdg.defaults.imageViewer;
-  videoPlayer = settings.modules.xdg.defaults.videoPlayer;
-  audioPlayer = settings.modules.xdg.defaults.audioPlayer;
-  editor = settings.modules.xdg.defaults.editor;
-  torrentApp = settings.modules.xdg.defaults.torrentApp;
-  exeRunner = settings.modules.xdg.defaults.windowsExeFileRunner;
+  browser = [ settings.modules.xdg.defaults.webBrowser ];
+  imageViewer = [ settings.modules.xdg.defaults.imageViewer ];
+  videoPlayer = [ settings.modules.xdg.defaults.videoPlayer ];
+  audioPlayer = [ settings.modules.xdg.defaults.audioPlayer ];
+  editor = [ settings.modules.xdg.defaults.editor ];
+  torrentApp = [ settings.modules.xdg.defaults.torrentApp ];
+  exeRunner = [ settings.modules.xdg.defaults.windowsExeFileRunner ];
 
   windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
   editors = xdgAssociations "editor" editor mimeTypes._text;

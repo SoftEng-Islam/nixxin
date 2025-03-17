@@ -243,7 +243,8 @@
       languages = {
         enable = true;
         clang = true;
-        go = true;
+        dart = { enable = true; };
+        go = { enable = true; };
         python = true;
         ruby = true;
         rust = true;
@@ -644,44 +645,44 @@
         # fd -g '*edge*.desktop' /nix/store/
 
         # Default Web Browser, Ex:
-        # - [ "microsoft-edge" ]
-        # - [ "brave-browser" ]
-        # - [ "google-chrome" ]
-        webBrowser = [ "microsoft-edge" ];
+        # - "microsoft-edge"
+        # - "brave-browser"
+        # - "google-chrome"
+        webBrowser = "microsoft-edge";
 
         # Default Images Viewer, Ex:
-        # - [ "org.gnome.Loupe" ]
-        # - [ "feh" ]
-        imageViewer = [ "org.gnome.Loupe" ];
+        # - "org.gnome.Loupe"
+        # - "feh"
+        imageViewer = "org.gnome.Loupe";
 
         # Default Videos Player, Ex:
-        # - [ "mpv" ]
-        # - [ "io.github.celluloid_player.Celluloid" ]
-        # - [ "vlc" ]
-        videoPlayer = [ "mpv" ];
+        # - "mpv"
+        # - "io.github.celluloid_player.Celluloid"
+        # - "vlc"
+        videoPlayer = "mpv";
 
         # Default Audio Player:
-        # - [ "mpv" ]
-        # - [ "io.bassi.Amberol" ]
-        audioPlayer = [ "mpv" ];
+        # - "mpv"
+        # - "io.bassi.Amberol"
+        audioPlayer = "mpv";
 
         # Default File Manager, Ex:
-        # - [ "org.gnome.Nautilus" ]
-        # - [ "thunar" ]
-        fileManager = [ "org.gnome.Nautilus" ];
+        # - "org.gnome.Nautilus"
+        # - "thunar"
+        fileManager = "org.gnome.Nautilus";
 
         # Default Programming Code Editor, Ex:
-        # - [ "code" ]
-        editor = [ "code" ];
+        # - "code"
+        editor = "code";
 
         # Default Torrent App, Ex:
-        # - [ "org.qbittorrent.qBittorrent" ]
-        # - [ "deluge" ]
-        torrentApp = [ "org.qbittorrent.qBittorrent" ];
+        # - "org.qbittorrent.qBittorrent"
+        # - "deluge"
+        torrentApp = "org.qbittorrent.qBittorrent";
 
         # Default .exe runner, Ex:
-        # - [ "wine" ]
-        windowsExeFileRunner = [ "wine" ];
+        # - "wine"
+        windowsExeFileRunner = "wine";
       };
     };
     zram = {
