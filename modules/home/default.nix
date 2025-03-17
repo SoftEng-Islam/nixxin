@@ -1,6 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{ settings, lib, pkgs, ... }: {
   home-manager = {
     # extraSpecialArgs = { inherit inputs; };
     verbose = true;
@@ -22,4 +20,5 @@ in {
       manpages.enable = settings.modules.home.manual.manpages;
     };
   };
+  environment.systemPackages = with pkgs; [ home-manager ];
 }
