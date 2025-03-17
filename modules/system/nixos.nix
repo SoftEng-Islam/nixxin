@@ -28,10 +28,10 @@ in {
     settings = {
       sandbox = true;
       # color = true;
-      connect-timeout = 0; # 0 means no limit
-      download-attempts = 4;
-      download-buffer-size = 536870912;
-      http-connections = 0; # 0 means no limit
+      # connect-timeout = 0; # 0 means no limit
+      # download-attempts = 4;
+      # download-buffer-size = 536870912;
+      # http-connections = 0; # 0 means no limit
       keep-outputs = false;
       keep-derivations = false;
       # Enable flakes
@@ -76,10 +76,14 @@ in {
       # Auto clear nixos store
       auto-optimise-store = true;
     };
+    # ---- extraOptions ---- #
+    # sandbox = true
+    # max-jobs = auto
+    # cores = 0
+    # auto-optimise-store = true
+    # experimental-features = nix-command flakes recursive-nix
     extraOptions = ''
       sandbox = true
-      max-jobs = auto
-      cores = 0
       auto-optimise-store = true
       experimental-features = nix-command flakes recursive-nix
     '';
