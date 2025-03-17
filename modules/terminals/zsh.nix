@@ -63,7 +63,6 @@
     bindkey '^P' history-beginning-search-backward
     bindkey '^N' history-beginning-search-forward
 
-
     # Which plugins would you like to load?
     # Standard plugins can be found in $ZSH/plugins/
     # Custom plugins may be added to $ZSH_CUSTOM/plugins/
@@ -105,10 +104,8 @@
       LBUFFER=$(history -n 1 | fzf --height 50% --layout=reverse --border --query="$LBUFFER" --prompt="History > ")
       zle redisplay
     }
-    # Keybindings
-    # bindkey -e  # Use emacs mode (default)
     zle -N fzf-history-widget
-    # bindkey '^P' fzf-history-widget  # Bind Ctrl+P to trigger fzf history search
+    # bindkey '^H' fzf-history-widget  # Bind Ctrl+H to trigger fzf history search
 
 
     # ------------------------------------------ #
