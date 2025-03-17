@@ -77,13 +77,10 @@ in {
       auto-optimise-store = true;
     };
     # ---- extraOptions ---- #
-    # sandbox = true
-    # max-jobs = auto
     # cores = 0
-    # auto-optimise-store = true
-    # experimental-features = nix-command flakes recursive-nix
     extraOptions = ''
       sandbox = true
+      max-jobs = auto
       auto-optimise-store = true
       experimental-features = nix-command flakes recursive-nix
     '';
