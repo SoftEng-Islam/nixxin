@@ -15,6 +15,6 @@ let
     # GNOME's document viewer
     (lib.optional settings.modules.office.papers papers)
   ];
-in mkIf (settings.modules.office.enable) {
+in mkIf (settings.modules.office.enable or false) {
   environment.systemPackages = lib.flatten _pkgs;
 }

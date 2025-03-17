@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.overclock.lactd.enable) {
+in mkIf (settings.modules.overclock.lactd.enable or false) {
   # Linux GPU Configuration Tool for AMD and NVIDIA
   # We are creating the lact daemon service manually because the provided one hangs
   systemd.services.lactd = {
@@ -16,6 +16,13 @@ in mkIf (settings.modules.overclock.lactd.enable) {
     };
 
     wantedBy = [ "multi-user.target" ];
+  };
+  systemd.services.lact = {
+    enable = false;
+    description = "AMDGPU Control Daemon";
+    after = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
   };
   environment.systemPackages = with pkgs; [ lact ];
 }
