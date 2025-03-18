@@ -43,7 +43,7 @@
         disable_hyprland_qtutils_check = true;
 
         # whether to enable the ANR (app not responding) dialog when your apps hang
-        enable_anr_dialog = false;
+        # enable_anr_dialog = false;
 
         # The enable_swallow option in Hyprland allows a parent..
         # window (like a terminal) to "swallow" a child window (like a launched GUI app),
