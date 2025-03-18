@@ -34,7 +34,7 @@ in {
 
           # ---- Color scheme ---- #
           foreground #9c9c9c
-          background #101b1f
+          background #061318
           selection_foreground    #101b1f
           selection_background    #9c9c9c
           color0       #00384d
@@ -77,11 +77,11 @@ in {
 
 
           # Colors for marks (marked text in the terminal)
-          mark1_foreground #black
+          mark1_foreground #242424
           mark1_background #98d3cb
-          mark2_foreground #black
+          mark2_foreground #242424
           mark2_background #f2dcd3
-          mark3_foreground #black
+          mark3_foreground #242424
           mark3_background #f274bc
 
 
