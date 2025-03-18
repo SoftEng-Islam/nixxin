@@ -22,6 +22,7 @@ in {
     ./mpv
     ./cava.nix
     ./codex.nix
+    ./gstreamer.nix
     ./music.nix
   ];
   config = lib.optionals (settings.modules.media.enable or false) {

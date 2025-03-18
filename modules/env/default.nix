@@ -1,6 +1,4 @@
-{ config, lib, settings, pkgs, ... }:
-let inherit (lib) makeSearchPathOutput;
-in {
+{ config, lib, settings, pkgs, ... }: {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
@@ -94,7 +92,8 @@ in {
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";
 
-      GDK_PIXBUF_MODULE_FILE = "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
+      GDK_PIXBUF_MODULE_FILE =
+        "${pkgs.librsvg}/lib/gdk-pixbuf-2.0/2.10.0/loaders.cache";
 
       MOZ_DBUS_REMOTE = "1";
       # Enables Wayland for Mozilla apps and EGL.
@@ -106,26 +105,6 @@ in {
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
       # PKG_CONFIG_PATH = "${pkgs.glib}/lib/pkgconfig";
 
-      # Fix for missing audio/video information in properties https://github.com/NixOS/nixpkgs/issues/53631
-      GST_PLUGIN_SYSTEM_PATH_1_0 =
-        makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
-          gst-plugins-good
-          gst-plugins-bad
-          gst-plugins-ugly
-          gst-libav
-        ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
-
-      # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
-      GST_PLUGIN_PATH = "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0";
-      
-      GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
-        + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
-        + "${pkgs.networkmanager}/lib/girepository-1.0:"
-        + "${pkgs.gobject-introspection-unwrapped}/lib/girepository-1.0:"
-        + "${pkgs.gst_all_1.gstreamer}/lib/girepository-1.0:"
-        + "${pkgs.gst_all_1.gst-plugins-base}/lib/girepository-1.0:"
-        + "${pkgs.gst_all_1.gst-plugins-ugly}/lib/girepository-1.0:"
-        + "$GI_TYPELIB_PATH";
     };
   };
 }

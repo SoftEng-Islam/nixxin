@@ -622,7 +622,7 @@
         blur = { enable = true; };
         opacity = 0.9; # The windows Opacity
         shadow = { enable = true; }; # enable shadow for Hyprland
-        rounding = 10; # rounding corners for Hyprland windwos
+        rounding = 10; # Rounding Corners for Hyprland Windows
         dim_inactive = true;
         plugins = {
           hyprbars = true;
