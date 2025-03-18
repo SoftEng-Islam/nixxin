@@ -618,6 +618,12 @@
         # Pregenerated Colors to use in Hyprland
         genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
         animationSpeed = "medium"; # medium or slow
+        # Enable blur for windows
+        blur = { enable = true; };
+        opacity = 0.9; # The windows Opacity
+        shadow = { enable = true; }; # enable shadow for Hyprland
+        rounding = 10; # rounding corners for Hyprland windwos
+        dim_inactive = true;
         plugins = {
           hyprbars = true;
           hyprspace = true;
