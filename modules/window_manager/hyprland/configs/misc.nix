@@ -33,7 +33,17 @@
         # change the background color. (requires enabled disable_hyprland_logo)
         background_color = "rgb(000000)";
 
+        # disables the Hyprland splash rendering. (requires a monitor reload to take effect)
         disable_splash_rendering = true;
+
+        # disable the warning if XDG environment is externally managed
+        disable_xdg_env_checks = true;
+
+        # disable the warning if hyprland-qtutils is not installed
+        disable_hyprland_qtutils_check = true;
+
+        # whether to enable the ANR (app not responding) dialog when your apps hang
+        enable_anr_dialog = false;
 
         # The enable_swallow option in Hyprland allows a parent..
         # window (like a terminal) to "swallow" a child window (like a launched GUI app),
@@ -44,6 +54,7 @@
         swallow_regex = "(foot|kitty|allacritty|Alacritty)";
         swallow_exception_regex = ".*nvim.*"; # Exception: Don't swallow Neovim
 
+        # Whether Hyprland should focus an app that requests to be focused (an activate request)
         focus_on_activate = false;
 
         # Enforce any of the 3 default wallpapers. Setting this
@@ -51,17 +62,32 @@
         # “random”. [-1/0/1/2]
         force_default_wallpaper = 0;
 
-        initial_workspace_tracking = false;
+        # if enabled, windows will open on the workspace they were invoked on.
+        # 0 - disabled
+        # 1 - single-shot
+        # 2 - persistent (all children too)
+        initial_workspace_tracking = 0;
+
+        # whether to enable middle-click-paste (aka primary selection)
         middle_click_paste = false;
 
         # If DPMS is set to off, wake up the monitors if the mouse moves.
         mouse_move_enables_dpms = true;
-
+        # If DPMS is set to off, wake up the monitors if a key is pressed.
         key_press_enables_dpms = true;
+
+        # if there is a fullscreen or maximized window,
+        # decide whether a new tiled window opened should replace it,
+        # stay behind or disable the fullscreen/maximized state.
+        # 0 - behind
+        # 1 - takes over
+        # 2 - unfullscreen/unmaxize
         new_window_takes_over_fullscreen = 1;
-        # new_window_takes_over_fullscreen = 2;
-        # frame pre-rendering
+
+        # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
         render_ahead_of_time = false;
+        # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
+        render_ahead_safezone = 1;
       };
     };
   };

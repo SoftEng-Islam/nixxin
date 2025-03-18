@@ -15,6 +15,16 @@
       windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
       windowrule = float, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
 
+      # Fix: Force Dialogs & Pop-ups to Float
+      windowrulev2 = float,class:^(firefox|thunar|gedit|krita),title:^(Open File|Save As)
+      windowrulev2 = float,class:^(file-roller|pavucontrol|blueman-manager)
+      windowrulev2 = float,title:^(Open|Save|Preferences)
+      windowrulev2 = float,class:^(xdg-desktop-portal|org.kde.kdialog|nemo)
+      windowrulev2 = center, class:^(.*), title:^(Open File|Save As)
+      windowrulev2 = float,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$
+      windowrulev2 = center,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$
+
+
       # ---- Picture-in-Picture ---- #
       windowrulev2 = keepaspectratio, title:^(Picture(-| )in(-| )[Pp]icture)$
       windowrulev2 = move 73% 72%, title:^(Picture(-| )in(-| )[Pp]icture)$
