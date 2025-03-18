@@ -108,15 +108,16 @@
       withSystemd = true; # whether to build with systemd support
     })
 
-    hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprlang # The official implementation library for the hypr config language
     hyprlock # Hyprland's GPU-accelerated screen locking utility
     hyprpaper # A blazing fast wayland wallpaper utility
     hyprpicker # Wlroots-compatible Wayland color picker that does not suck
     hyprshot # Hyprshot is an utility to easily take screenshots in Hyprland using your mouse.
     hyprutils # Small C++ library for utilities used across the Hypr* ecosystem
+    hyprprop # An xprop replacement for Hyprland
+    hyprland-qtutils # Hyprland QT/qml utility apps
+    hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
-    hyprprop
 
     adwaita-qt6
     gojq
