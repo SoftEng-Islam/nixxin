@@ -34,7 +34,7 @@ in {
 
           # ---- Color scheme ---- #
           foreground #9c9c9c
-          background #061318
+          background #00080b
           selection_foreground    #101b1f
           selection_background    #9c9c9c
           color0       #00384d
@@ -173,7 +173,7 @@ in {
           window_border_width 0
           window_margin_width 0
 
-          # Tab-bar
+          # ---- Tab ---- #
           active_tab_font_style bold
           inactive_tab_font_style normal
           tab_bar_margin_width 7.0
@@ -181,6 +181,13 @@ in {
           tab_bar_style custom
           tab_bar_align left
           tab_separator " - "
+          map kitty_mod+right next_tab
+          map kitty_mod+left  previous_tab
+          map kitty_mod+shift+t     new_tab
+          map kitty_mod+shift+q     close_tab
+          map kitty_mod+.     move_tab_forward
+          map kitty_mod+,     move_tab_backward
+          map kitty_mod+alt+t set_tab_title
 
           # - Use additional nerd symbols
           # See https://github.com/be5invis/Iosevka/issues/248
