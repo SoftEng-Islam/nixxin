@@ -35,7 +35,6 @@ in {
     gst_all_1.gst-plugins-good
     gst_all_1.gst-plugins-rs
     gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-plugins-viperfx
     gst_all_1.gst-vaapi
     gst_all_1.gstreamer
   ];
