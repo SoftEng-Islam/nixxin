@@ -31,8 +31,8 @@
           gaps_workspaces = 50;
           border_size = 3;
           resize_on_border = true;
-          hover_icon_on_border = false;
-          extend_border_grab_area = 25;
+          hover_icon_on_border = true;
+          extend_border_grab_area = 30;
           "col.inactive_border" = "$surface";
           "col.active_border" = "$primary";
 

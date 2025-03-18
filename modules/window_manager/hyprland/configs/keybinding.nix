@@ -26,7 +26,6 @@
     };
     wayland.windowManager.hyprland.extraConfig = ''
       bind = $main, ESCAPE, killactive
-
       # -------------------------- #
       # ---- $main + Alphabet ---- #
       # -------------------------- #
@@ -41,9 +40,8 @@
       # bind = $main, I, exec,
       bind = $main, O, togglesplit
       bind = $main, P, exec, ignis toggle ignis_POWERMENU
-      # -------------
+
       #=> Second Row:
-      # -------------
       # bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # bind = $main, S, exec,
@@ -56,9 +54,8 @@
       # bind = $main, J, exec,
       # bind = $main, K, exec,
       bind = $main, L, exec, ${pkgs.hyprlock}/bin/hyprlock # Lock screen
-      # -------------
+
       #=> Third Row:
-      # -------------
       # bind = $main, Z, exec,
       bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code --password-store=gnome --enable-features=UseOzonePlatform --ozone-platform=wayland # Launch VSCode (editor)
