@@ -3,26 +3,28 @@ let inherit (lib) makeSearchPathOutput;
 in {
 
   environment.variables = {
+    # Allow apps to detect gstreamer plugins
+    GST_PLUGIN_PATH_1_0 = [ "/run/current-system/sw/lib/gstreamer-1.0" ];
+
     # Fix for missing audio/video information in properties https://github.com/NixOS/nixpkgs/issues/53631
-    GST_PLUGIN_SYSTEM_PATH_1_0 = makeSearchPathOutput "lib" "lib/gstreamer-1.0"
-      (with pkgs.gst_all_1; [
+    GST_PLUGIN_SYSTEM_PATH_1_0 =
+      lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" (with pkgs.gst_all_1; [
+        gst-plugins-base
         gst-plugins-good
         gst-plugins-bad
         gst-plugins-ugly
         gst-libav
       ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
 
-    # Allow apps to detect gstreamer plugins
-    GST_PLUGIN_PATH_1_0 = [ "/run/current-system/sw/lib/gstreamer-1.0" ];
-
     # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
-    GST_PLUGIN_PATH = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
-      pkgs.gst_all_1.gst-plugins-base
-      pkgs.gst_all_1.gst-plugins-good
-      pkgs.gst_all_1.gst-plugins-bad
-      pkgs.gst_all_1.gst-plugins-ugly
-      pkgs.gst_all_1.gst-libav
-    ];
+    GST_PLUGIN_PATH = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0"
+      (with pkgs.gst_all_1; [
+        gst-plugins-base
+        gst-plugins-good
+        gst-plugins-bad
+        gst-plugins-ugly
+        gst-libav
+      ]);
 
     GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
       + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
