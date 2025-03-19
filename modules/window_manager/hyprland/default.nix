@@ -9,7 +9,7 @@
     ./configs/general.nix
     ./configs/gestures.nix
     # ./configs/hypridle.nix
-    # ./configs/hyprlock.nix
+    ./configs/hyprlock.nix
     # ./configs/hyprpaper.nix
     ./configs/input.nix
     ./configs/keybinding.nix

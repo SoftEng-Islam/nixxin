@@ -1,7 +1,6 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) makeSearchPathOutput;
 in {
-
   environment.variables = {
     # Allow apps to detect gstreamer plugins
     GST_PLUGIN_PATH_1_0 = [ "/run/current-system/sw/lib/gstreamer-1.0" ];
@@ -48,5 +47,4 @@ in {
       gst-vaapi
       gstreamer
     ]);
-
 }

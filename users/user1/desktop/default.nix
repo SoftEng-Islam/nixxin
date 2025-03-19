@@ -1,6 +1,5 @@
 { pkgs, ... }: rec {
   user = {
-
     name = "Islam Ahmed"; # Name/Identifier
     username = "softeng"; # Username
     email = "softeng.islam@gmail.com"; # Email (git config)
@@ -44,26 +43,13 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERM = "kitty";
-    BROWSER = "brave";
+    BROWSER = "microsoft-edge";
 
-    # ---------------------
-    # ---- Lockscreen
-    # ---------------------
-    lockscreen = {
-      enable = true;
-      type = "hyprlock";
-      timeOut = 600; # 10min
-      name = "";
-      package = "";
-      font = "";
-    };
+    # Whether to enable ROCM
+    # Make Sure that your APU/GPU Supported before Enable it
     rocm = { enable = false; };
 
-    # ---------------------
-    # ---- IDLE
-    # ---------------------
-    # For Ex: You can set the idle-delay to 300 seconds (5 minutes) or
-    # 0 to Disable:
+    # [ IDLE ] For Ex: You can set the idle-delay to 300 seconds (5 minutes) or 0 to Disable:
     idle = { delay = 0; };
 
     # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
@@ -71,9 +57,7 @@
     # ---- Dotfiles Inforamtions ---- #
     dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
 
-    # ---------------------
     # ---- GTK
-    # ---------------------
     gtk = {
       # Material
       # adw-gtk3-dark
@@ -630,6 +614,14 @@
           bordersPlus = false;
           hyprexpo = false;
           hyprtrails = false;
+        };
+        lockscreen = {
+          enable = true;
+          type = "hyprlock";
+          timeOut = 600; # 10min
+          name = "";
+          package = "";
+          font = "";
         };
       };
     };

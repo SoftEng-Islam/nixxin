@@ -10,4 +10,5 @@
       };
     };
   };
+  environment.systemPackages = with pkgs; [ hyprpaper ];
 }
