@@ -7,6 +7,7 @@
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun, and Ignis.
       PATH = lib.unique [
+        "${pkgs.gst_all_1.gstreamer}/bin"
         "${pkgs.glib.dev}/bin"
         "${pkgs.nodejs}/bin"
         "${pkgs.nodePackages.npm}/bin"

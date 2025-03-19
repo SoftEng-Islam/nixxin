@@ -137,10 +137,10 @@ in {
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-
+      "preempt=full"
       "ibt=off"
       "psi=1"
-      # "pci=realloc"
+      "iommu=pt"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
@@ -148,11 +148,7 @@ in {
       # "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
-      # Black Screen Issues
-      # "nomodeset"
-
-      "iommu=pt"
-      "pcie_aspm=off"
+      # "nomodeset" # Black Screen Issues
 
       "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
       "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
@@ -201,6 +197,7 @@ in {
       "amdgpu.deep_color=1"
       "amdgpu.vramlimit=4096"
       "amdgpu.gttsize=4096"
+
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
       # "amdgpu.exp_hw_support=1"
@@ -209,6 +206,7 @@ in {
       # "amdgpu.vm_update_mode=3"
       # "amdgpu.unified_memory=1"
       # "amdgpu.memory_alloc_mode=2"
+      # "pci=realloc"
 
       # System Performance
       "preempt=voluntary"

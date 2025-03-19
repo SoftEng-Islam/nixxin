@@ -41,6 +41,9 @@ in {
         # Sound Player
         # recordbox # Relatively simple music player
 
+        libnice
+        glib.dev
+        pkg-config
       ];
   };
 }
