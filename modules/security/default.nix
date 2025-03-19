@@ -36,6 +36,22 @@ in mkIf (settings.modules.security.enable) {
       auth include login
     '';
 
+    # Remove certain resource limits for programs that needs them gone, mostly for heavier emulators.
+    pam.loginLimits = [
+      {
+        domain = "*";
+        type = "hard";
+        item = "memlock";
+        value = "unlimited";
+      }
+      {
+        domain = "*";
+        type = "soft";
+        item = "memlock";
+        value = "unlimited";
+      }
+    ];
+
     # Enable basic tpm2 support
     tpm2 = {
       enable = settings.modules.security.tpm2;

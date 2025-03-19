@@ -27,6 +27,9 @@ in {
     # Whether the installation process is allowed to modify EFI boot variables.
     loader.efi.canTouchEfiVariables = true;
 
+    # Make Memtest86+ available from the systemd-boot menu. Memtest86+ is a program for testing memory.
+    loader.systemd-boot.memtest86.enable = false;
+
     # NOTE!! disable to use GRUB instead of systemd-boot
     loader.systemd-boot.enable =
       if (settings.modules.system.boot.loader.manager.name == "SYSTEMD") then
@@ -54,6 +57,9 @@ in {
       devices = settings.modules.system.boot.loader.manager.grub.devices;
       device = settings.modules.system.boot.loader.manager.grub.device;
       useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
+
+      # Make Memtest86+, a memory testing program, available from the GRUB boot menu.
+      memtest86.enable = false;
       extraConfig =
         settings.modules.system.boot.loader.manager.grub.extraConfig;
       # extraEntries = ''
@@ -245,7 +251,7 @@ in {
       "vm.swappiness" = 10; # Use RAM more before swapping
       "vm.vfs_cache_pressure" = 50;
       "vm.dirty_background_ratio" = 2;
-      "vm.max_map_count" = 262144;
+      "vm.max_map_count" = 2147483642;
       # Write data to disk more frequently (prevents slowdowns)
       "vm.dirty_ratio" = 15;
 
@@ -405,6 +411,16 @@ in {
   # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
   environment.etc."OpenCL/vendors/amdocl64.icd".text =
     "${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so ";
+
+  # ------------------------------------------------
+  # ---- Kernel Thread Scheduler Optimization
+  # ------------------------------------------------
+  # Use the newest kernel thread scheduler.
+  services.scx = {
+    enable = true;
+    scheduler = "scx_lavd"; # "scx_rusty" or "scx_lavd"
+    package = pkgs.scx.full;
+  };
 
   # ------------------------------------------------
   # ---- Variables

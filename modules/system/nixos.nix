@@ -201,12 +201,6 @@ in {
       # don’t shutdown when power button is short-pressed
       HandlePowerKey=ignore
     '';
-    # ---- Optimization ---- #
-    scx = {
-      enable = false;
-      scheduler = "scx_rusty";
-      package = pkgs.scx.rustscheds;
-    };
   };
 
   environment.variables = {
