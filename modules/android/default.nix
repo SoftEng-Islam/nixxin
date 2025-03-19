@@ -12,10 +12,17 @@ in {
 
   config = mkIf (settings.modules.android.enable) {
     programs.adb.enable = true;
-    environment.systemPackages = with pkgs;
-      [
-        # Display and control Android devices over USB or TCP/IP
-        android-tools
-      ];
+    environment.systemPackages = with pkgs; [
+      # Display and control Android devices over USB or TCP/IP
+      android-tools
+
+      # Reverse tethering over ADB for Android.
+      gnirehtet
+
+      # Implementation of Microsoft's Media Transfer Protocol.
+      libmtp
+    ];
   };
+  # Adds the current user to the ADB users group.
+  users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
 }

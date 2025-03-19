@@ -32,26 +32,16 @@ lib.mkIf (settings.modules.media.codex) {
     SDL_image # SDL image library
     smpeg # MPEG decoding library
     srt # Secure, Reliable, Transport
-
+    libde265 # Open h.265 video codec implementation
     ab-av1 # AV1 re-encoding using ffmpeg, svt-av1 & vmaf
     dav1d # A cross-platform AV1 decoder focused on speed and correctness
     libaom # Alliance for Open Media AV1 codec library
     rav1e # The fastest and safest AV1 encoder
     svt-av1 # AV1-compliant encoder/decoder library core
-
+    v4l-utils
     x264 # Library for encoding H264/AVC video streams
     x265 # Library for encoding H.265/HEVC video streams
     xvidcore # MPEG-4 video codec for PC
-
-    # GStreamer
-    gst_all_1.gst-libav # FFmpeg/libav plugin for GStreamer
-    gst_all_1.gst-plugins-bad # GStreamer Bad Plugins
-    gst_all_1.gst-plugins-base # Base GStreamer plug-ins and helper libraries
-    gst_all_1.gst-plugins-good # GStreamer Good Plugins
-    gst_all_1.gst-plugins-rs # GStreamer plugins written in Rust
-    gst_all_1.gst-plugins-ugly # Gstreamer Ugly Plugins
-    gst_all_1.gstreamer # Open source multimedia framework
-    gst_all_1.gst-vaapi # Set of VAAPI GStreamer Plug-ins
 
     # Images
     graphicsmagick # GraphicsMagick is the swiss army knife of image processing

@@ -7,6 +7,7 @@ in {
 
     hardware = { alsa.enable = false; };
     services = {
+      playerctld.enable = true;
       pulseaudio.enable = false; # Enable sound with pipewire.
       pulseaudio.support32Bit = false;
       pipewire = {
@@ -72,6 +73,18 @@ in {
         }
       ];
     };
+
+    # Audio effects for PipeWire applications.
+    home-manager.users.${settings.user.username}.services.easyeffects = {
+      # Whether to enable EasyEffects.
+      # Necessitates programs.dconf.enable to be true.
+      enable = true;
+    };
+
+    # Adds MIDI soundfonts (if present) to /run/current-system/sw.
+    # Why this does not seem to be done by default is beyond me.
+    environment.pathsToLink = [ "/share/soundfonts" ];
+
     environment.systemPackages = with pkgs; [
       alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
       sof-firmware # Sound Open Firmware
@@ -87,6 +100,21 @@ in {
       calf # Set of high quality open source audio plugins for musicians
       lsp-plugins # Collection of open-source audio plugins
       easyeffects # Audio effects for PipeWire apps
+
+      # A lightweight and versatile audio player.
+      audacious
+
+      # View and edit tags for various audio files.
+      easytag
+
+      # Sound editor with graphical UI.
+      tenacity
+
+      # Midi sound fonts.
+      soundfont-fluid
+      soundfont-arachno
+      soundfont-ydp-grand
+      soundfont-generaluser
     ];
   };
 }

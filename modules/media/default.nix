@@ -31,12 +31,16 @@ in {
         # Command-line utility and library for controlling media players that implement MPRIS
         playerctl
 
+        # MOD playing library
+        libmodplug
+
         # Audio Control
-        pulsemixer
-        pwvucontrol
+        pulsemixer # Cli and curses mixer for pulseaudio
+        pwvucontrol # Pipewire Volume Control
 
         # Sound Player
-        # recordbox
+        # recordbox # Relatively simple music player
+
       ];
   };
 }

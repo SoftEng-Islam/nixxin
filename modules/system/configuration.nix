@@ -110,6 +110,7 @@ in {
       "msr"
       "uinput"
       "zenpower"
+      "v4l2loopback"
     ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
@@ -466,7 +467,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     linux-firmware # Binary firmware collection packaged by kernel.org
-
+    v4l-utils
     # ------------------------------------------------
     # ---- Boot Packages
     # ------------------------------------------------

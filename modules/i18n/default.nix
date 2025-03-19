@@ -111,5 +111,6 @@ in {
     # ibus-theme-tools
     # ibus-with-plugins
 
+    glibcLocales
   ];
 }
