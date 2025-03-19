@@ -43,6 +43,8 @@ lib.mkIf (settings.modules.media.codex) {
     x265 # Library for encoding H.265/HEVC video streams
     xvidcore # MPEG-4 video codec for PC
 
+    ffmpeg-headless # video editing
+
     # Images
     graphicsmagick # GraphicsMagick is the swiss army knife of image processing
     imagemagick # Software suite to create, edit, compose, or convert bitmap images

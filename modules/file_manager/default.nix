@@ -28,8 +28,13 @@ in {
       patool # portable archive file manager
       rsync # Fast incremental file transfer utility
 
+      # CLI programs required by file-roller
+      _7zz
+      binutils
+
       # archives
       p7zip
+
       # unrar # Utility for RAR archives
       # unrar-free # Free utility to extract files from RAR archives
       # unrar-wrapper # Backwards compatibility between unar and unrar

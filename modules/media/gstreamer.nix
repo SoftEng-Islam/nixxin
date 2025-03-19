@@ -12,9 +12,17 @@ in {
         gst-libav
       ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
 
+    # Allow apps to detect gstreamer plugins
+    GST_PLUGIN_PATH_1_0 = [ "/run/current-system/sw/lib/gstreamer-1.0" ];
+
     # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
-    GST_PLUGIN_PATH =
-      "${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0/:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0/:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:/${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:/${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0/";
+    GST_PLUGIN_PATH = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0" [
+      pkgs.gst_all_1.gst-plugins-base
+      pkgs.gst_all_1.gst-plugins-good
+      pkgs.gst_all_1.gst-plugins-bad
+      pkgs.gst_all_1.gst-plugins-ugly
+      pkgs.gst_all_1.gst-libav
+    ];
 
     GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
       + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
