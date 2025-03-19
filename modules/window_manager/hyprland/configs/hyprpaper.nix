@@ -10,5 +10,9 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ hyprpaper ];
+  environment.systemPackages = with pkgs;
+    [
+      # Blazing fast wayland wallpaper utility
+      hyprpaper
+    ];
 }

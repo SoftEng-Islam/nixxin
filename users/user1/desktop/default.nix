@@ -619,10 +619,9 @@
           enable = true;
           type = "hyprlock";
           timeOut = 600; # 10min
-          name = "";
-          package = "";
           font = "";
         };
+        hyprpaper = { enable = true; };
       };
     };
     windows = {
