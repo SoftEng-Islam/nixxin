@@ -2,12 +2,16 @@
 let inherit (lib) mkIf;
 in mkIf (settings.modules.development.languages.rust) {
 
+  # What is rust-overlay?
+  #
+  #
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home-manager.users.${settings.user.username} = {
     programs.vscode.extensions = with pkgs;
       [ vscode-extensions.rust-lang.rust-analyzer ];
   };
+
   environment.variables = {
     # Enables Rust backtraces for debugging.
     RUST_BACKTRACE = "1";
@@ -20,6 +24,7 @@ in mkIf (settings.modules.development.languages.rust) {
 
     # Allow cargo to download crates
     SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+
     # Enable colored cargo and rustc output
     TERMINFO = "${pkgs.ncurses.out}/share/terminfo";
   };
