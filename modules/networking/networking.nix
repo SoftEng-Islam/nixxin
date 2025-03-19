@@ -122,7 +122,7 @@
     tcpdump # Network sniffer
     nssmdns # The mDNS Name Service Switch (NSS) plug-in
     nmap # A free and open source utility for network discovery and security auditing
-    networkmanager
+    networkmanager # Network configuration and management tool
     networkmanagerapplet # NetworkManager control applet for GNOME
     networkmanager-openconnect # NetworkManager’s OpenConnect plugin
     wirelesstools # Wireless tools for Linux
@@ -131,7 +131,6 @@
     ipcalc # Simple IP network calculator
     bind # Domain name server
     nftables # The project that aims to replace the existing {ip,ip6,arp,eb}tables framework
-    networkmanager # Network configuration and management tool
     dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
     dhcping # Send DHCP request to find out if a DHCP server is running
     # firewalld # Firewall daemon with D-Bus interface

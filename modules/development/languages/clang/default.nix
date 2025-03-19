@@ -10,6 +10,7 @@ in {
 
       # CC = "${pkgs.clang}/bin/clang";
       # CXX = "${pkgs.clang}/bin/clang++";
+      LIBCLANG_PATH = "${pkgs.llvmPackages.libclang.lib}/lib";
     };
     environment.systemPackages = with pkgs; [
       valgrind # Valgrind is an award-winning instrumentation framework for building dynamic analysis tools.

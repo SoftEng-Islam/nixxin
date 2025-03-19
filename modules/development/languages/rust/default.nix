@@ -17,6 +17,11 @@ in mkIf (settings.modules.development.languages.rust) {
     # CARGO_NET_GIT_FETCH_WITH_CLI = "true";
     #
     # CARGO_HTTP_MULTIPLEXING = "false";
+
+    # Allow cargo to download crates
+    SSL_CERT_FILE = "${pkgs.cacert}/etc/ssl/certs/ca-bundle.crt";
+    # Enable colored cargo and rustc output
+    TERMINFO = "${pkgs.ncurses.out}/share/terminfo";
   };
   environment.systemPackages = with pkgs; [
     rust-bin.stable.latest.default

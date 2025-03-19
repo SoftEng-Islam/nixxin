@@ -193,5 +193,6 @@ in mkIf (settings.modules.xdg.enable) {
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
     xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
     libxdg_basedir # Implementation of the XDG Base Directory specification
+    shared-mime-info # Database of common MIME types
   ];
 }

@@ -26,17 +26,17 @@ in {
       + "$GI_TYPELIB_PATH";
   };
 
-  environment.systemPackages = with pkgs; [
-    gst123
-    gst_all_1.gst-editing-services
-    gst_all_1.gst-libav
-    gst_all_1.gst-plugins-bad
-    gst_all_1.gst-plugins-base
-    gst_all_1.gst-plugins-good
-    gst_all_1.gst-plugins-rs
-    gst_all_1.gst-plugins-ugly
-    gst_all_1.gst-vaapi
-    gst_all_1.gstreamer
-  ];
+  environment.systemPackages = with pkgs;
+    [ gst123 ] ++ (with gst_all_1; [
+      gst-editing-services
+      gst-libav
+      gst-plugins-bad
+      gst-plugins-base
+      gst-plugins-good
+      gst-plugins-rs
+      gst-plugins-ugly
+      gst-vaapi
+      gstreamer
+    ]);
 
 }

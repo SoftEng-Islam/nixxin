@@ -138,5 +138,7 @@
     wlsunset
     yad
     ydotool
+
+    gnome-control-center
   ];
 }
