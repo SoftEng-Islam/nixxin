@@ -111,10 +111,10 @@ in {
       tenacity
 
       # Midi sound fonts.
-      soundfont-fluid
-      soundfont-arachno
-      soundfont-ydp-grand
-      soundfont-generaluser
+      # soundfont-fluid
+      # soundfont-arachno
+      # soundfont-ydp-grand
+      # soundfont-generaluser
     ];
   };
 }
