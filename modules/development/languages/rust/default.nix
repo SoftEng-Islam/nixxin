@@ -7,7 +7,7 @@ in mkIf (settings.modules.development.languages.rust) {
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home-manager.users.${settings.user.username} = {
-    programs.vscode.extensions = with pkgs;
+    programs.vscode.profiles.default.extensions = with pkgs;
       [ vscode-extensions.rust-lang.rust-analyzer ];
   };
 
