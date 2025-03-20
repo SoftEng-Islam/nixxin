@@ -338,7 +338,7 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        #        amf
+        amf
         amdvlk # AMD Vulkan driver
         vulkan-validation-layers
         vulkan-tools
@@ -361,7 +361,7 @@ in {
         libva
         libva-utils
         vaapiVdpau
-        # ---- Unlocks OpenCL GPU acceleration ---- #
+        # ---- Unlocks OpenCL GPU Acceleration ---- #
         # rocmPackages.clr
         rocmPackages.clr.icd
         rocmPackages.rocm-runtime

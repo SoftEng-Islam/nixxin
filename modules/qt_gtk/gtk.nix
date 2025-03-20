@@ -22,12 +22,12 @@
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
-        # extraCss = ''
-        #   headerbar, .titlebar,
-        #   .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
-        #     border-radius: 0;
-        #   }
-        # '';
+        extraCss = ''
+          headerbar, .titlebar,
+          .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
+            border-radius: 0;
+          }
+        '';
       };
     };
   };

@@ -1,5 +1,5 @@
 {
-  description = "Nixxin Configuration.";
+  description = "NIXXIN DOTFILES.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
@@ -24,15 +24,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # superfile.url = "github:yorukot/superfile";
-    # xremap-flake.url = "github:xremap/nix-flake";
-
-    # Efficient Animated Wallpaper Daemon For Wayland, controlled at runtime
-    # swww.url = "github:LGFae/swww";
-
-    # nixvim.url = "github:nix-community/nixvim";
-    # nixvim.inputs.nixpkgs.follows = "nixpkgs";
-
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -40,54 +31,8 @@
     # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     # impurity.url = "github:outfoxxed/impurity.nix";
-    # thorium.url = "github:end-4/nix-thorium";
-
-    # wezterm = {
-    #   url = "github:wez/wezterm?dir=nix";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    # hyprutils = {
-    #   url = "github:hyprwm/hyprutils";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.systems.follows = "systems";
-    # };
-
-    # hyprland-qt-support = {
-    #   url = "github:hyprwm/hyprland-qt-support";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    #   inputs.systems.follows = "systems";
-    # };
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
-
-    # hyprland.url = "github:hyprwm/Hyprland?submodules=1";
-    # hyprland.inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
-
-    # hyprland = {
-    #   type = "git";
-    #   url = "https://github.com/hyprwm/Hyprland.git";
-    #   submodules = true;
-    #   # git ls-remote https://github.com/hyprwm/Hyprland.git refs/tags/v0.46.2
-    #   ref = "refs/tags/v0.46.2";
-    #   inputs.nixpkgs.follows = "nixpkgs"; # MESA/OpenGL HW workaround
-    # };
-
-    # hyprland-plugins.url = "github:hyprwm/hyprland-plugins";
-    # hyprland-plugins.inputs.hyprland.follows = "hyprland";
-
-    # hyprlock.url = "github:hyprwm/hyprlock";
-    # hyprlock.inputs.hyprland.follows = "hyprland";
-
-    # Hyprspace.url = "github:KZDKM/Hyprspace";
-    # Hyprspace.url = "github:ReshetnikovPavel/Hyprspace";
-    # Hyprspace.inputs.hyprland.follows = "hyprland";
-
-    #hyprpicker.url = "github:hyprwm/hyprpicker";
-    #hyprpicker.inputs.nixpkgs.follows = "nixpkgs";
-
-    #pyprland.url = "github:hyprland-community/pyprland";
-    #pyprland.inputs.nixpkgs.follows = "nixpkgs";
 
     # A Material You Color Generation Tool
     # matugen.url = "github:/InioX/Matugen";
