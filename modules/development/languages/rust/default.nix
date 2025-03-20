@@ -50,7 +50,7 @@ in mkIf (settings.modules.development.languages.rust) {
     (writeScriptBin "rust-doc" ''
       #! ${stdenv.shell} -e
       exec ${
-        toString settings.modules.xdg.defaults.webBrowser
+        toString settings.common.webBrowser
       } "${rustc.doc}/share/doc/rust/html/index.html"
     '')
   ];

@@ -51,12 +51,11 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERM = "kitty";
-    BROWSER = "microsoft-edge";
+    webBrowser = "microsoft-edge";
     mainFont = "CaskaydiaCove Nerd Font";
     videoPlayer = "";
     soundPlayer = "";
     imageViewer = "";
-    webBrowser = "";
 
     # [ IDLE ] For Ex: You can set the idle-delay to 300 seconds (5 minutes) or 0 to Disable:
     idle = { delay = 0; };
