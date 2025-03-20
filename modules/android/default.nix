@@ -24,5 +24,5 @@ in {
     ];
   };
   # Adds the current user to the ADB users group.
-  users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
+  # users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
 }
