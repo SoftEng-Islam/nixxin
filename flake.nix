@@ -18,6 +18,9 @@
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
+
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -26,15 +29,12 @@
 
     # impurity.url = "github:outfoxxed/impurity.nix";
 
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
-
     # A Material You Color Generation Tool
     # matugen.url = "github:/InioX/Matugen";
 
     # anytype.url = "github:/anyproto/anytype-ts";
     # anytype.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
 
   outputs = { self, nixpkgs, ... }@inputs:
