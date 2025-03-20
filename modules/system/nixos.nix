@@ -32,8 +32,10 @@ in {
       # download-attempts = 4;
       # download-buffer-size = 536870912;
       # http-connections = 0; # 0 means no limit
+
       keep-outputs = false;
       keep-derivations = false;
+
       # Enable flakes
       experimental-features =
         [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
@@ -68,16 +70,18 @@ in {
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
+
       trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
       allowed-users = [ "@wheel" "root" "${settings.user.username}" ];
+
       fallback = true;
       warn-dirty = true;
 
       # Auto clear nixos store
       auto-optimise-store = true;
     };
+
     # ---- extraOptions ---- #
-    # cores = 0
     extraOptions = ''
       sandbox = true
       max-jobs = auto
@@ -100,6 +104,7 @@ in {
     autoUpgrade.channel = settings.system.upgrade.channel;
     stateVersion = settings.system.stateVersion;
   };
+
   # ------------------------------------------------
   # ---- Enable automatic updates
   # ------------------------------------------------
