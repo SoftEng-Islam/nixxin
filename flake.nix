@@ -4,25 +4,19 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/master";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    ashell = {
-      # url = "path:/home/softeng/nixxin/modules/widgets/ashell/main";
-      url = "github:MalpenZibo/ashell";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # ashell.url = "path:/home/softeng/nixxin/modules/widgets/ashell/main";
+    ashell.url = "github:MalpenZibo/ashell";
+    ashell.inputs.nixpkgs.follows = "nixpkgs";
 
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 
     # https://github.com/oxalica/rust-overlay
-    rust-overlay = {
-      url = "github:oxalica/rust-overlay";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
     # aagl.inputs.nixpkgs.follows = "nixpkgs";
@@ -39,19 +33,6 @@
 
     # anytype.url = "github:/anyproto/anytype-ts";
     # anytype.inputs.nixpkgs.follows = "nixpkgs";
-
-    # ---- Terminals ---- #
-    smart-splits-nvim.url = "github:mrjones2014/smart-splits.nvim";
-    smart-splits-nvim.flake = false;
-
-    kitty-scrollback-nvim.url = "github:mikesmithgh/kitty-scrollback.nvim";
-    kitty-scrollback-nvim.flake = false;
-
-    kitty-smart-scroll.url = "github:yurikhan/kitty-smart-scroll";
-    kitty-smart-scroll.flake = false;
-
-    kitty-smart-tab.url = "github:yurikhan/kitty-smart-tab";
-    kitty-smart-tab.flake = false;
 
     nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
   };
