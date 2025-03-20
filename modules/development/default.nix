@@ -1,6 +1,6 @@
-{ settings, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) optionals mkIf;
   _pkgs = with pkgs; [
     # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
     (lib.optional settings.modules.development.apps.beekeeper beekeeper-studio)
@@ -14,22 +14,28 @@ let
     (lib.optional settings.modules.development.apps.insomnia insomnia)
   ];
 in {
-  imports = [ ./databases ./languages ./tools ];
+  imports = optionals (settings.modules.development.enable or false) [
+    ./databases
+    ./languages
+    ./tools
+  ];
 
-  environment.systemPackages = with pkgs;
-    [
-      direnv
-      bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
-      at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
-      atkmm # C++ wrappers for ATK accessibility toolkit
-      bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
-      cairo # A 2D graphics library with support for multiple output devices
-      cairomm # C++ bindings for the Cairo vector graphics library
-      gdk-pixbuf # A library for image loading and manipulation
-      glib # C library of programming buildings blocks
-      glibc
-      gobject-introspection # A middleware layer between C libraries and language bindings
-      gtksourceviewmm
-      harfbuzz # An OpenType text shaping engine
-    ] ++ lib.flatten _pkgs;
+  config = mkIf (settings.modules.development.enable) {
+    environment.systemPackages = with pkgs;
+      [
+        direnv
+        bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
+        at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
+        atkmm # C++ wrappers for ATK accessibility toolkit
+        bun # Incredibly fast JavaScript runtime, bundler, transpiler and package manager – all in one
+        cairo # A 2D graphics library with support for multiple output devices
+        cairomm # C++ bindings for the Cairo vector graphics library
+        gdk-pixbuf # A library for image loading and manipulation
+        glib # C library of programming buildings blocks
+        glibc
+        gobject-introspection # A middleware layer between C libraries and language bindings
+        gtksourceviewmm
+        harfbuzz # An OpenType text shaping engine
+      ] ++ lib.flatten _pkgs;
+  };
 }

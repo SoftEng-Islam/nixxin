@@ -9,7 +9,7 @@ let
   # gsettings set org.gnome.mutter check-alive-timeout 0
 
 in with lib.gvariant;
-mkIf (settings.modules.dconf.enable) {
+mkIf (settings.modules.dconf.enable or true) {
   programs.dconf.enable = true; # dconf
   environment.systemPackages = with pkgs;
     [
