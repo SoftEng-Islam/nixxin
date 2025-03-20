@@ -34,7 +34,7 @@
       VISUAL = settings.common.VISUAL;
 
       TERM = settings.common.TERM;
-      BROWSER = settings.common.BROWSER;
+      BROWSER = settings.common.webBrowser;
 
       # Fixes `bad interpreter: Text file busy`
       # https://github.com/NixOS/nixpkgs/issues/314713
