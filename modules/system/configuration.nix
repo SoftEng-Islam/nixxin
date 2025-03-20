@@ -16,6 +16,7 @@ in {
   boot = {
     # Change kernal to zen kernal
     kernelPackages = pkgs.linuxPackages_zen;
+    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
 
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
@@ -413,10 +414,13 @@ in {
   # ------------------------------------------------
   # ---- Kernel Thread Scheduler Optimization
   # ------------------------------------------------
+  # https://github.com/sched-ext/scx
+  # https://wiki.cachyos.org/configuration/sched-ext/
   # Use the newest kernel thread scheduler.
   services.scx = {
     enable = true;
-    scheduler = "scx_lavd"; # "scx_rusty" or "scx_lavd"
+    # scheduler = "scx_rusty"; # "scx_rusty" or "scx_lavd"
+    scheduler = "scx_bpfland";
     package = pkgs.scx.full;
   };
 
