@@ -7,10 +7,6 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # ashell.url = "path:/home/softeng/nixxin/modules/widgets/ashell/main";
-    ashell.url = "github:MalpenZibo/ashell";
-    ashell.inputs.nixpkgs.follows = "nixpkgs";
-
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
 

@@ -4,7 +4,7 @@ lib.mkIf (settings.modules.widgets.ignis.enable) {
   home-manager.users."${settings.user.username}" = {
     xdg.configFile = { "ignis".source = ./main; };
     # home.file.".config/ignis".source = ./main;
-    home.file.".local/share/themes/Material".source = ./Material;
+    # home.file.".local/share/themes/Material".source = ./Material;
   };
   environment.systemPackages = with pkgs;
     [
