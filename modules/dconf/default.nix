@@ -44,8 +44,8 @@ mkIf (settings.modules.dconf.enable) {
         cursor-blink = true;
         cursor-blink-time = 500;
         cursor-blink-timeout = 10;
-        cursor-size = settings.global.cursor.size;
-        cursor-theme = settings.global.cursor.name;
+        cursor-size = settings.common.cursor.size;
+        cursor-theme = settings.common.cursor.name;
         enable-animations = true;
         # enable-hot-corners
 
@@ -65,7 +65,7 @@ mkIf (settings.modules.dconf.enable) {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        gtk-theme = lib.mkForce "${settings.global.gtk.theme}";
+        gtk-theme = lib.mkForce "${settings.common.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
         icon-theme = "${settings.modules.styles.icons.nameInDark}";
@@ -146,7 +146,7 @@ mkIf (settings.modules.dconf.enable) {
       "org/gnome/desktop/session" = {
         # you can set the idle-delay to 300 seconds (5 minutes) or
         # 0 to Disable:
-        idle-delay = mkUint32 settings.global.idle.delay;
+        idle-delay = mkUint32 settings.common.idle.delay;
       };
 
       "org/gnome/shell/keybindings" = {

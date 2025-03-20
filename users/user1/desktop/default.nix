@@ -1,8 +1,12 @@
 { pkgs, ... }: rec {
+  # ----------------------------------------------
+  # ---- The User Information
+  # ----------------------------------------------
+  # - You must Change all Values here
   user = {
     name = "Islam Ahmed"; # Name/Identifier
     username = "softeng"; # Username
-    email = "softeng.islam@gmail.com"; # Email (git config)
+    email = "softeng.islam@gmail.com"; # Email
     devices = {
       desktop = {
         system = {
@@ -37,27 +41,32 @@
   home.backupFileExtension = null;
 
   # ----------------------------------------------
-  # ---- Global
+  # ---- Common for all Modules.
+  # We have this Object because of the..
+  # the "xdg defaults" and "env vars" and hyprland keybinding, etc...
+  # For Ex: You have BROWSER var, and xdg webBrowser
+  # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
-  global = {
+  common = {
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERM = "kitty";
     BROWSER = "microsoft-edge";
-
-    # Whether to enable ROCM
-    # Make Sure that your APU/GPU Supported before Enable it
-    rocm = { enable = false; };
+    mainFont = "CaskaydiaCove Nerd Font";
+    videoPlayer = "";
+    soundPlayer = "";
+    imageViewer = "";
+    webBrowser = "";
 
     # [ IDLE ] For Ex: You can set the idle-delay to 300 seconds (5 minutes) or 0 to Disable:
     idle = { delay = 0; };
 
-    # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
-
     # ---- Dotfiles Inforamtions ---- #
     dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
 
-    # ---- GTK
+    # wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
+
+    # ---- GTK ---- #
     gtk = {
       # Material
       # adw-gtk3-dark
@@ -66,9 +75,7 @@
       icon_cache = true;
     };
 
-    # ---------------------
-    # ---- Qt
-    # ---------------------
+    # ---- Qt ---- #
     qt = {
       style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
@@ -76,9 +83,7 @@
       SCALE_FACTOR = 1;
     };
 
-    # ---------------------
-    # ---- Icons
-    # ---------------------
+    # ---- Icons ---- #
     icons = {
       nameInLight = "Papirus";
       nameInDark = "Papirus-Dark";
@@ -88,9 +93,8 @@
       # "small" or "small-plus" or "medium" or "large" or "extra-large"
       icon_view_size = "large"; # Set icon size for nautilus file manager.
     };
-    # ---------------------
-    # ---- Cursor
-    # ---------------------
+
+    # ---- Cursor ---- #
     cursor = {
       # 16, 32, 48 or 64
       size = 24; # Cursor Size
@@ -140,7 +144,7 @@
   # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
-  # Modules: To Enable/disable && Options.
+  # Modules: To Enable/Disable && Options.
   # NOTE: The Options doesn't have effect if the module is disabled.
   modules = {
     ai = {
@@ -538,6 +542,8 @@
         info.enable = true;
         nixos.enable = true;
       };
+      # Whether to enable ROCM, Make Sure that your APU/GPU Supported before Enable it
+      rocm = { enable = false; };
     };
     terminals = {
       enable = true;

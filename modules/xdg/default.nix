@@ -124,7 +124,7 @@ in mkIf (settings.modules.xdg.enable) {
         #   chooser_cmd=slurp -d -b "${themeColors.background}bf" -c "${themeColors.primary}" -F "Iosevka NF" -w 1 -f %o -or
         # '';
         extraConfig = {
-          XDG_DOTFILES_DIR = "${settings.global.dotfilesDir}";
+          XDG_DOTFILES_DIR = "${settings.common.dotfilesDir}";
           XDG_BOOK_DIR = "/home/${settings.user.username}/Books";
           XDG_SCREENSHOTS_DIR =
             "/home/${settings.user.username}/Pictures/Screenshots";

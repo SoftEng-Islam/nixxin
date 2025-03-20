@@ -64,8 +64,8 @@ let
     ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store
 
     # ---- Set Cursor ---- #
-    hyprctl setcursor ${settings.global.cursor.name} ${
-      toString settings.global.cursor.size
+    hyprctl setcursor ${settings.common.cursor.name} ${
+      toString settings.common.cursor.size
     }
 
     # ---- Hyprland Fix ---- #3

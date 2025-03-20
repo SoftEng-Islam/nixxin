@@ -5,7 +5,6 @@ in {
     environment.systemPackages = with pkgs; [
       translate-shell
       translatelocally
-
     ];
   };
 }

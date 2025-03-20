@@ -30,11 +30,11 @@
       # XDG_DATA_HOME = "$HOME/.local/share";
       # PASSWORD_STORE_DIR = "$HOME/.local/share/password-store";
 
-      EDITOR = settings.global.EDITOR;
-      VISUAL = settings.global.VISUAL;
+      EDITOR = settings.common.EDITOR;
+      VISUAL = settings.common.VISUAL;
 
-      TERM = settings.global.TERM;
-      BROWSER = settings.global.BROWSER;
+      TERM = settings.common.TERM;
+      BROWSER = settings.common.BROWSER;
 
       # Fixes `bad interpreter: Text file busy`
       # https://github.com/NixOS/nixpkgs/issues/314713
@@ -78,11 +78,11 @@
       ELECTRON_ENABLE_WAYLAND = "1";
 
       # Configure the cursor theme and size for graphical sessions.
-      XCURSOR = settings.global.cursor.name;
-      XCURSOR_THEME = settings.global.cursor.name;
-      XCURSOR_SIZE = toString settings.global.cursor.size;
+      XCURSOR = settings.common.cursor.name;
+      XCURSOR_THEME = settings.common.cursor.name;
+      XCURSOR_SIZE = toString settings.common.cursor.size;
 
-      GTK_THEME = settings.global.gtk.theme;
+      GTK_THEME = settings.common.gtk.theme;
 
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";

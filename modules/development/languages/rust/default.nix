@@ -4,7 +4,6 @@ in mkIf (settings.modules.development.languages.rust) {
 
   # What is rust-overlay?
   #
-  #
   nixpkgs.overlays = [ inputs.rust-overlay.overlays.default ];
 
   home-manager.users.${settings.user.username} = {
