@@ -6,7 +6,7 @@ let
     ruby = pkgs.ruby;
     gemdir = ./devdocs; # Path to the cloned repository
   };
-in lib.mkIf (settings.modules.developement.tools.devdocs.enable)
+in lib.mkIf (settings.modules.developement.tools.devdocs.enable or false)
 pkgs.stdenv.mkDerivation rec {
   pname = "devdocs";
   version = "latest";

@@ -12,12 +12,15 @@ in {
   ];
 
   config = mkIf (settings.modules.development.languages.enable or false) {
-    environment.systemPackages = with pkgs;
-      [
-        # Command-line benchmarking tool
-        # hyperfine
-        # insomnia
-        # scc
-      ];
+    environment.systemPackages = with pkgs; [
+      # Command-line benchmarking tool
+      hyperfine
+
+      # The open-source, cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC. With Cloud, Local and Git storage.
+      insomnia
+
+      # Very fast accurate code counter with complexity calculations and COCOMO estimates written in pure Go
+      scc
+    ];
   };
 }

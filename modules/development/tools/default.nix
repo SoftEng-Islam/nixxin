@@ -1,11 +1,11 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.development.tools.enable) {
-  imports = lib.optionals (settings.modules.development.tools.enable) [
+in {
+  imports = lib.optionals (settings.modules.development.tools.enable or false) [
     ./devdocs
-    ./ide
+    # ./ide
   ];
-  config = mkIf (settings.modules.development.tools.enable) {
+  config = mkIf (settings.modules.development.tools.enable or false) {
 
     environment.systemPackages = with pkgs; [
       ansible # automation scripts
