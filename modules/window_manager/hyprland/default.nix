@@ -26,12 +26,12 @@
     ./configs/nix_scripts/gamemode.nix
   ];
   programs = {
-    uwsm.enable = false;
+    uwsm.enable = true;
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      withUWSM = true; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -80,8 +80,7 @@
     wayland.windowManager.hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
       package = pkgs.hyprland;
-      # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
-      systemd.enable = true;
+      systemd.enable = false;
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       settings = {
@@ -118,6 +117,7 @@
     hyprland-qtutils # Hyprland QT/qml utility apps
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
+    hyprsunset # Application to enable a blue-light filter on Hyprland
 
     adwaita-qt6
     gojq

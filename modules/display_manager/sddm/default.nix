@@ -4,8 +4,8 @@ in {
   imports = [ ./sddm-theme.nix ];
   services = {
     # ---- SDDM ---- #
-    displayManager.sddm.enable = false;
-    displayManager.sddm.wayland.enable = false;
+    displayManager.sddm.enable = true;
+    displayManager.sddm.wayland.enable = true;
     displayManager.sddm.package = pkgs.plasma5Packages.sddm;
   };
 }

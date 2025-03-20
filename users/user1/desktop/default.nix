@@ -213,7 +213,7 @@
       media-downloader = false;
       persepolis = false;
       varia = false;
-      deluge = true;
+      deluge = false;
       webtorrent_desktop = true;
       bitmagnet = false;
       transmission = true;
@@ -256,8 +256,8 @@
     };
     display_manager = { # Display/Login manager
       enable = true;
-      default = "gdm"; # gdm OR greetd OR tuigreet OR sddm
-      defaultSession = "hyprland"; # hyprland or hyprland-uwsm or gnome
+      default = "sddm"; # gdm OR greetd OR tuigreet OR sddm
+      defaultSession = "hyprland-uwsm"; # hyprland or hyprland-uwsm or gnome
     };
     editors = {
       enable = true;
