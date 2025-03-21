@@ -120,7 +120,7 @@
     (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       enableXWayland = false; # whether to enable XWayland
       legacyRenderer = true; # whether to use the legacy renderer (for old GPUs)
-      withSystemd = false; # whether to build with systemd support
+      withSystemd = true; # whether to build with systemd support
     })
 
     hyprlang # The official implementation library for the hypr config language

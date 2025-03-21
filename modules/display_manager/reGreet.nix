@@ -12,8 +12,8 @@
     #   export XDG_CONFIG_DIRS=/etc/xdg
     #   ${pkgs.greetd.regreet}/bin/regreet
     # '';
-    command =
-      "${pkgs.greetd.regreet}/bin/regreet";
+    # command = "${pkgs.greetd.regreet}/bin/regreet";
+    command = "Hyprland --config /etc/greetd/hyprland.conf";
 
     user = "greeter";
   };
@@ -21,18 +21,18 @@
   programs.regreet.enable = true;
   programs.regreet.package = pkgs.greetd.regreet;
 
-#  programs.regreet.theme.name = settings.common.gtk.theme;
-# programs.regreet.theme.package = settings.common.gtk.package;
+  programs.regreet.theme.name = settings.common.gtk.theme;
+  programs.regreet.theme.package = settings.common.gtk.package;
 
-#  programs.regreet.font.size = 16;
-#  programs.regreet.font.name = settings.common.mainFont.name;
-#  programs.regreet.font.package = settings.common.mainFont.package;
+  programs.regreet.font.size = 16;
+  programs.regreet.font.name = settings.common.mainFont.name;
+  programs.regreet.font.package = settings.common.mainFont.package;
 
-#  programs.regreet.iconTheme.name = settings.common.icons.nameInDark;
-#  programs.regreet.iconTheme.package = settings.common.icons.package;
+  programs.regreet.iconTheme.name = settings.common.icons.nameInDark;
+  programs.regreet.iconTheme.package = settings.common.icons.package;
 
-#  programs.regreet.cursorTheme.name = settings.common.cursor.name;
-#  programs.regreet.cursorTheme.package = settings.common.cursor.package;
+  programs.regreet.cursorTheme.name = settings.common.cursor.name;
+  programs.regreet.cursorTheme.package = settings.common.cursor.package;
 
   programs.regreet = {
     # https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml
@@ -50,8 +50,11 @@
 
       # The entries defined in this section will be passed to the session as environment variables when it is started
       env = {
-        ENV_VARIABLE =
-          "GTK_DATA_PREFIX=${pkgs.gtk4}/share GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0";
+        ENV_VARIABLE = ''
+          GTK_DATA_PREFIX=${pkgs.gtk4}/share
+          GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0
+          GTK_USE_PORTAL=0
+          GDK_DEBUG=no-portals'';
       };
 
       GTK = {
@@ -59,16 +62,16 @@
         application_prefer_dark_theme = true;
 
         # Cursor theme name
-        cursor_theme_name = "Adwaita";
+        # cursor_theme_name = "Adwaita";
 
         # Font name and size
-        font_name = "Cantarell 16";
+        # font_name = "Cantarell 16";
 
         # Icon theme name
-        icon_theme_name = "Adwaita";
+        # icon_theme_name = "Adwaita";
 
         # GTK theme name
-        theme_name = "Adwaita";
+        # theme_name = "Adwaita";
       };
       commands = {
         # The command used to reboot the system
@@ -104,5 +107,13 @@
       };
     };
   };
+  environment.etc."greetd/hyprland.conf".text = ''
+    exec-once = regreet; hyprctl dispatch exit
+    misc {
+        disable_hyprland_logo = true
+        disable_splash_rendering = true
+        disable_hyprland_qtutils_check = true
+    }
+  '';
   environment.systemPackages = with pkgs; [ gtk4 ];
 }
