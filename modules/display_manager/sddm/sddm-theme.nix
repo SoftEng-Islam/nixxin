@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  imgLink = "https://YOURIMAGELINK/image.png";
+  imgLink = (./. + "./orange_sunset.jpg");
 
   image = pkgs.fetchurl {
     url = imgLink;
