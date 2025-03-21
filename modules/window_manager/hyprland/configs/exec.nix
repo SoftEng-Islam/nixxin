@@ -1,7 +1,4 @@
 { settings, inputs, pkgs, ... }:
-
-# ${inputs.ashell.defaultPackage.${settings.system.architecture}}/bin/ashell
-
 let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash

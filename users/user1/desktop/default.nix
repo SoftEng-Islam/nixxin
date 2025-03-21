@@ -598,10 +598,7 @@
     users = { name = user.name; };
     virtualization = { enable = true; };
     wayland = { enable = true; };
-    widgets = {
-      ashell = { enable = false; };
-      ignis = { enable = true; };
-    };
+    widgets = { ignis = { enable = true; }; };
     window_manager = {
       enable = true;
       # ---- Hyprland ---- #

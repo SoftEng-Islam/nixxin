@@ -437,7 +437,7 @@ in {
     WLR_RENDERER_ALLOW_SOFTWARE = "0"; # enable software rendering for wlroots
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
-    # If you have graphical issues like missing transparency or graphical artifact you could launch ashell with WGPU_BACKEND=gl. This env var forces wgpu to use OpenGL instead of Vulkan
+    # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "gl";
 
     # Adjusts DRM devices, vsync, and atomic modes.

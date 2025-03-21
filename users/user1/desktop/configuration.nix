@@ -54,7 +54,6 @@
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
-    ../../../modules/widgets/ashell
     ../../../modules/widgets/ignis
     ../../../modules/window_manager
     ../../../modules/windows
