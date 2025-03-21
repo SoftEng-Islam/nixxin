@@ -1,4 +1,4 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }: {
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
@@ -25,8 +25,18 @@
     # nix scripts
     ./configs/nix_scripts/gamemode.nix
   ];
+  # Run XDG autostart, this is needed for a DE-less setup like Hyprland
+  services.xserver.desktopManager.runXdgAutostartIfNone = true;
+  programs.uwsm = {
+    enable = true;
+    waylandCompositors.hyprland = {
+      prettyName = "Hyprland";
+      comment = "Hyprland";
+      binPath = lib.getExe pkgs.hyprland;
+    };
+  };
+
   programs = {
-    uwsm.enable = true;
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
@@ -104,7 +114,7 @@
     (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       enableXWayland = false; # whether to enable XWayland
       legacyRenderer = true; # whether to use the legacy renderer (for old GPUs)
-      withSystemd = true; # whether to build with systemd support
+      withSystemd = false; # whether to build with systemd support
     })
 
     hyprlang # The official implementation library for the hypr config language

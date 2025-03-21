@@ -76,7 +76,13 @@ in mkIf (settings.modules.xdg.enable) {
       wlr.enable = true;
       xdgOpenUsePortal = true;
       config = {
-        common.default = "*"; # "*" or "gtk"
+        common = {
+          default = "*"; # "*" or "gtk"
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
+          "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
+          "org.freedesktop.portal.FileChooser" = [ "xdg-desktop-portal-gtk" ];
+        };
         hyprland.default = [ "hyprland" "gtk" ];
       };
       extraPortals = with pkgs;
@@ -86,7 +92,6 @@ in mkIf (settings.modules.xdg.enable) {
         ];
     };
   };
-
   # ---- Under Test ---- #
   # xdg.configFile = {
   #   "fish".source = ./.config/fish;

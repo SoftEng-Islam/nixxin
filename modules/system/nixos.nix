@@ -166,11 +166,12 @@ in {
     '';
 
     dbus.enable = true;
-    dbus.packages = [ pkgs.dconf ];
+    # Required for gnome3 pinentry
+    dbus.packages = [ pkgs.dconf pkgs.gcr ];
     dbus.implementation = "broker";
     accounts-daemon.enable = true;
-    fwupd.enable = false;
     udisks2.enable = true;
+    fwupd.enable = false;
 
     # Tumbler, A D-Bus thumbnailer service.
     tumbler.enable = true;
