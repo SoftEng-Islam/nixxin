@@ -40,10 +40,4 @@
       };
     };
   };
-
-  environment.systemPackages = with pkgs;
-    [
-      greetd
-      #  greetd.regreet
-    ];
 }
