@@ -5,7 +5,7 @@
   services.greetd.vt = 1;
 
   services.greetd.settings.default_session = {
-    # command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.greetd.regreet}";
+    command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.greetd.regreet}";
     # command = "${pkgs.greetd.regreet}/bin/regreet";
     # command = ''
     #   export XDG_DATA_DIRS=${pkgs.gtk4}/share
@@ -13,7 +13,7 @@
     #   ${pkgs.greetd.regreet}/bin/regreet
     # '';
     # command = "${pkgs.greetd.regreet}/bin/regreet";
-    command = "Hyprland --config /etc/greetd/hyprland.conf";
+    # command = "Hyprland --config /etc/greetd/hyprland.conf";
 
     user = "greeter";
   };
