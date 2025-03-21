@@ -33,7 +33,7 @@
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   programs.uwsm = {
-    enable = true;
+    enable = false;
     waylandCompositors.hyprland = {
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
@@ -47,7 +47,7 @@
     xwayland.enable = false;
     hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -96,7 +96,7 @@
     wayland.windowManager.hyprland = {
       enable = settings.modules.window_manager.hyprland.enable;
       package = pkgs.hyprland;
-      systemd.enable = false;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       settings = {

@@ -259,8 +259,8 @@
     };
     display_manager = { # Display/Login manager
       enable = true;
-      default = "reGreet"; # "gdm", "reGreet"
-      defaultSession = "hyprland-uwsm"; # "hyprland", "hyprland-uwsm"
+      default = "gdm"; # "gdm", "reGreet"
+      defaultSession = "hyprland"; # "hyprland", "hyprland-uwsm"
     };
     editors = {
       enable = true;
