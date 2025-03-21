@@ -1,4 +1,5 @@
 { settings, lib, pkgs, ... }: {
+
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
@@ -8,8 +9,10 @@
     ./configs/exec.nix
     ./configs/general.nix
     ./configs/gestures.nix
+
     # ./configs/hypridle.nix
     ./configs/hyprlock.nix
+
     # ./configs/hyprpaper.nix
     ./configs/input.nix
     ./configs/keybinding.nix
@@ -18,6 +21,7 @@
     ./configs/plugins
     ./configs/render.nix
     ./configs/rules.nix
+
     # ./configs/scripts.nix
     ./configs/source.nix
     ./hyprpolkitagent.nix
@@ -25,6 +29,7 @@
     # nix scripts
     ./configs/nix_scripts/gamemode.nix
   ];
+
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
   programs.uwsm = {
