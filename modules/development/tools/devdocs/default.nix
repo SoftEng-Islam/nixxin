@@ -14,7 +14,7 @@ in mkIf (settings.modules.development.tools.devdocs.enable) {
           sha256 = ""; # Run `nix-prefetch-git` to get the correct hash
         };
 
-        nativeBuildInputs = [ pkgs.ruby pkgs.bundler pkgs.thor pkgs.rack ];
+        nativeBuildInputs = [ pkgs.ruby pkgs.bundler pkgs.rack ];
 
         buildPhase = ''
           export GEM_HOME=$PWD/gems
