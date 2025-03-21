@@ -21,18 +21,18 @@
   programs.regreet.enable = true;
   programs.regreet.package = pkgs.greetd.regreet;
 
-  programs.regreet.theme.name = settings.common.gtk.theme;
-  programs.regreet.theme.package = settings.common.gtk.package;
+#  programs.regreet.theme.name = settings.common.gtk.theme;
+# programs.regreet.theme.package = settings.common.gtk.package;
 
-  programs.regreet.font.size = 16;
-  programs.regreet.font.name = settings.common.mainFont.name;
-  programs.regreet.font.package = settings.common.mainFont.package;
+#  programs.regreet.font.size = 16;
+#  programs.regreet.font.name = settings.common.mainFont.name;
+#  programs.regreet.font.package = settings.common.mainFont.package;
 
-  programs.regreet.iconTheme.name = settings.common.icons.nameInDark;
-  programs.regreet.iconTheme.package = settings.common.icons.package;
+#  programs.regreet.iconTheme.name = settings.common.icons.nameInDark;
+#  programs.regreet.iconTheme.package = settings.common.icons.package;
 
-  programs.regreet.cursorTheme.name = settings.common.cursor.name;
-  programs.regreet.cursorTheme.package = settings.common.cursor.package;
+#  programs.regreet.cursorTheme.name = settings.common.cursor.name;
+#  programs.regreet.cursorTheme.package = settings.common.cursor.package;
 
   programs.regreet = {
     # https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml
