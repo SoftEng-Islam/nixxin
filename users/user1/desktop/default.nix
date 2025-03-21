@@ -242,7 +242,7 @@
       };
       tools = {
         enable = true;
-        devdocs.enable = true;
+        devdocs.enable = false;
         ide = {
           PHPStorm = false;
           pyCharm = false;
