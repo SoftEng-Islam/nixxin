@@ -13,7 +13,7 @@
     #   ${pkgs.greetd.regreet}/bin/regreet
     # '';
     command =
-      "env GTK_DATA_PREFIX=${pkgs.gtk4}/share GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0 ${pkgs.greetd.regreet}/bin/regreet";
+      "${pkgs.greetd.regreet}/bin/regreet";
 
     user = "greeter";
   };
@@ -39,17 +39,70 @@
     # settings = (lib.importTOML ./regreet.toml) // {};
     settings = {
       background = {
+        # Path to the background image
         path = ./orange_sunset.jpg;
+        # How the background image covers the screen if the aspect ratio doesn't match
+        # Available values: "Fill", "Contain", "Cover", "ScaleDown"
+        # Refer to: https://docs.gtk.org/gtk4/enum.ContentFit.html
+        # NOTE: This is ignored if ReGreet isn't compiled with GTK v4.8 support.
         fit = "Fill"; # "Contain", "Fill"
       };
-      GTK = { application_prefer_dark_theme = true; };
 
+      # The entries defined in this section will be passed to the session as environment variables when it is started
+      env = {
+        ENV_VARIABLE =
+          "GTK_DATA_PREFIX=${pkgs.gtk4}/share GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0";
+      };
+
+      GTK = {
+        # Whether to use the dark theme
+        application_prefer_dark_theme = true;
+
+        # Cursor theme name
+        cursor_theme_name = "Adwaita";
+
+        # Font name and size
+        font_name = "Cantarell 16";
+
+        # Icon theme name
+        icon_theme_name = "Adwaita";
+
+        # GTK theme name
+        theme_name = "Adwaita";
+      };
       commands = {
+        # The command used to reboot the system
         reboot = [ "systemctl" "reboot" ];
+
+        # The command used to shut down the system
         poweroff = [ "systemctl" "poweroff" ];
+
+        # The command prefix for X11 sessions to start the X server
+        # x11_prefix = [ "startx" "/usr/bin/env" ];
+      };
+
+      appearance = {
+        # The message that initially displays on startup
+        greeting_msg = "Welcome back!";
+      };
+
+      widget.clock = {
+        # strftime format argument
+        # See https://docs.rs/jiff/0.1.14/jiff/fmt/strtime/index.html#conversion-specifications
+        format = "%a %H:%M";
+
+        # How often to update the text
+        resolution = "500ms";
+
+        # Override system timezone (IANA Time Zone Database name, aka /etc/zoneinfo path)
+        # Remove to use the system time zone.
+        timezone = "America/Chicago";
+
+        # Ask GTK to make the label at least this wide. This helps keeps the parent element layout and width consistent.
+        # Experiment with different widths, the interpretation of this value is entirely up to GTK.
+        label_width = 150;
       };
     };
   };
   environment.systemPackages = with pkgs; [ gtk4 ];
-
 }
