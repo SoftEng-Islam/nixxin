@@ -27,16 +27,11 @@
   programs.regreet.cursorTheme.package = settings.common.cursor.package;
 
   programs.regreet = {
+    # https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml
     settings = (lib.importTOML ./regreet.toml) // {
       background = {
         path = ./orange_sunset.jpg;
         fit = "Fill"; # "Contain", "Fill"
-      };
-      GTK = { application_prefer_dark_theme = false; };
-
-      commands = {
-        reboot = [ "systemctl" "reboot" ];
-        poweroff = [ "systemctl" "poweroff" ];
       };
     };
   };
