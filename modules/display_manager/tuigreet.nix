@@ -1,6 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{ settings, pkgs, ... }: {
   services.greetd = {
     enable = true;
     settings = {
@@ -32,5 +30,4 @@ in {
 
   # To prevent getting stuck at shutdown
   systemd.extraConfig = "DefaultTimeoutStopSec=10s";
-
 }

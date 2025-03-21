@@ -11,14 +11,12 @@ in {
   imports = lib.flatten _imports;
 
   # Desktop Manager & Display Manager
-  services = {
-    displayManager.enable = true;
+  services.displayManager.enable = true;
 
-    # ---- Set Default Session ---- #
-    displayManager.defaultSession =
-      settings.modules.display_manager.defaultSession;
+  # ---- Set Default Session ---- #
+  services.displayManager.defaultSession =
+    settings.modules.display_manager.defaultSession;
 
-    # ---- XSERVER ---- #
-    xserver.enable = true;
-  };
+  # ---- XSERVER ---- #
+  services.xserver.enable = true;
 }
