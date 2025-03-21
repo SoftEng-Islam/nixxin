@@ -37,7 +37,7 @@ let
     # dunst &
 
     # ---- Start IGNIS ---- #
-    ignis init &
+    # ignis init &
 
     # ---- Make nautilus Run in Background ---- #
     # nautilus --no-desktop &

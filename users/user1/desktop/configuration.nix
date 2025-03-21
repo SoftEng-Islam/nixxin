@@ -54,7 +54,6 @@
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
-    ../../../modules/widgets/ignis
     ../../../modules/window_manager
     ../../../modules/windows
     ../../../modules/xdg

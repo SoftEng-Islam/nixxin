@@ -6,15 +6,23 @@
 
   services.greetd.settings.default_session = {
     # command = "${lib.getExe pkgs.cage} -s -- ${lib.getExe pkgs.greetd.regreet}";
-    command = "${pkgs.greetd.regreet}/bin/regreet";
+    # command = "${pkgs.greetd.regreet}/bin/regreet";
+    # command = ''
+    #   export XDG_DATA_DIRS=${pkgs.gtk4}/share
+    #   export XDG_CONFIG_DIRS=/etc/xdg
+    #   ${pkgs.greetd.regreet}/bin/regreet
+    # '';
+    command =
+      "env GTK_DATA_PREFIX=${pkgs.gtk4}/share GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0 ${pkgs.greetd.regreet}/bin/regreet";
+
     user = "greeter";
   };
 
   programs.regreet.enable = true;
   programs.regreet.package = pkgs.greetd.regreet;
 
-  programs.regreet.theme.name = "Adwaita";
-  programs.regreet.theme.package = pkgs.gnome-themes-extra;
+  programs.regreet.theme.name = settings.common.gtk.theme;
+  programs.regreet.theme.package = settings.common.gtk.package;
 
   programs.regreet.font.size = 16;
   programs.regreet.font.name = settings.common.mainFont.name;
@@ -28,7 +36,7 @@
 
   programs.regreet = {
     # https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml
-    # settings = (lib.importTOML ./regreet.toml) // {}
+    # settings = (lib.importTOML ./regreet.toml) // {};
     settings = {
       background = {
         path = ./orange_sunset.jpg;
@@ -42,4 +50,6 @@
       };
     };
   };
+  environment.systemPackages = with pkgs; [ gtk4 ];
+
 }
