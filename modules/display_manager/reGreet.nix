@@ -28,10 +28,17 @@
 
   programs.regreet = {
     # https://github.com/rharish101/ReGreet/blob/main/regreet.sample.toml
-    settings = (lib.importTOML ./regreet.toml) // {
+    # settings = (lib.importTOML ./regreet.toml) // {}
+    settings = {
       background = {
         path = ./orange_sunset.jpg;
         fit = "Fill"; # "Contain", "Fill"
+      };
+      GTK = { application_prefer_dark_theme = true; };
+
+      commands = {
+        reboot = [ "systemctl" "reboot" ];
+        poweroff = [ "systemctl" "poweroff" ];
       };
     };
   };
