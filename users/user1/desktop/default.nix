@@ -52,7 +52,10 @@
     VISUAL = "nvim";
     TERM = "kitty";
     webBrowser = "microsoft-edge";
-    mainFont = "CaskaydiaCove Nerd Font";
+    mainFont.name = "CaskaydiaCove Nerd Font";
+    mainFont.package =
+      pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+
     videoPlayer = "";
     soundPlayer = "";
     imageViewer = "";
@@ -256,8 +259,8 @@
     };
     display_manager = { # Display/Login manager
       enable = true;
-      default = "sddm"; # gdm OR greetd OR tuigreet OR sddm
-      defaultSession = "hyprland-uwsm"; # hyprland or hyprland-uwsm or gnome
+      default = "reGreet"; # "gdm", "reGreet", "sddm"
+      defaultSession = "hyprland-uwsm"; # "hyprland", "hyprland-uwsm"
     };
     editors = {
       enable = true;
