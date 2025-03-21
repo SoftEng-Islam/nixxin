@@ -37,7 +37,8 @@
     waylandCompositors.hyprland = {
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
-      binPath = lib.getExe pkgs.hyprland;
+      # binPath = lib.getExe pkgs.hyprland;
+      binPath = "/run/current-system/sw/bin/Hyprland";
     };
   };
 
