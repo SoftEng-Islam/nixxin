@@ -390,7 +390,7 @@
       dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
       ethernet = "eno1";
       wlanInterface = "wlp0s19f2u5";
-      nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
+      nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
     };
     notifications = { enable = true; };
