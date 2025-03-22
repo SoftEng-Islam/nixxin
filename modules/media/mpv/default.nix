@@ -203,17 +203,17 @@ in lib.mkIf (settings.modules.media.mpv) {
       ];
     };
   };
-  system.build.mesaPkg = pkgs.mesa;
-  nixpkgs.overlays = [
-    (final: prev: {
-      mesa = prev.mesa.overrideAttrs (old: {
-        eglPlatforms = [ "wayland" ];
-        mesonFlags = (old.mesonFlags or [ ]) ++ [
-          "-Dgallium-xa=disabled" # Explicitly disable gallium-xa
-        ];
-      });
-    })
-  ];
+  # system.build.mesaPkg = pkgs.mesa;
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     mesa = prev.mesa.overrideAttrs (old: {
+  #       eglPlatforms = [ "wayland" ];
+  #       mesonFlags = (old.mesonFlags or [ ]) ++ [
+  #         "-Dgallium-xa=disabled" # Explicitly disable gallium-xa
+  #       ];
+  #     });
+  #   })
+  # ];
   environment.systemPackages = with pkgs; [
     driversi686Linux.vdpauinfo
     ffmpeg-full # Full ffmpeg with hwaccel support
