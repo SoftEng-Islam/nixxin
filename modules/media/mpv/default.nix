@@ -205,8 +205,9 @@ in lib.mkIf (settings.modules.media.mpv) {
   };
   nixpkgs.config.packageOverrides = pkgs: {
     mesa = pkgs.mesa.override {
-      galliumDrivers = [ "r600" "radeonsi" ];
+      galliumDrivers = [ "r600" "radeonsi" ]; # AMD drivers only
       vulkanDrivers = [ "amd" ];
+      withXa = false; # Explicitly disable XA to prevent build failure
     };
   };
   environment.systemPackages = with pkgs; [
