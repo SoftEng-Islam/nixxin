@@ -18,6 +18,8 @@
       enable = true;
       settings = {
         General = {
+          checkForUpdates = "false";
+          disabledTrayIcon = "true";
           contrastOpacity = 96;
           drawColor = "#ff2800";
           drawFontSize = "4";

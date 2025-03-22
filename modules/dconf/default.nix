@@ -19,6 +19,36 @@ mkIf (settings.modules.dconf.enable or true) {
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
+
+      "org/gnome/desktop/wm/preferences" = {
+        "button-layout" = lib.mkDefault "";
+      };
+      "org/gnome/nautilus/preferences" = {
+        "default-folder-viewer" = "list-view";
+        "migrated-gtk-settings" = true;
+        "search-filter-time-type" = "last_modified";
+        "search-view" = "list-view";
+      };
+
+      "org/gnome/nm-applet" = {
+        "disable-connected-notifications" = true;
+        "disable-vpn-notifications" = true;
+      };
+      "org/gtk/gtk4/settings/file-chooser" = { "show-hidden" = true; };
+
+      "org/gtk/settings/file-chooser" = {
+        "date-format" = "regular";
+        "location-mode" = "path-bar";
+        "show-hidden" = true;
+        "show-size-column" = true;
+        "show-type-column" = true;
+        "sort-column" = "name";
+        "sort-directories-first" = false;
+        "sort-order" = "ascending";
+        "type-format" = "category";
+        "view-type" = "list";
+      };
+
       # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
       # gnome-extensions list --enabled
       "org/gnome/shell" = { disable-user-extensions = true; };

@@ -199,5 +199,6 @@ in mkIf (settings.modules.xdg.enable) {
     xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
     libxdg_basedir # Implementation of the XDG Base Directory specification
     shared-mime-info # Database of common MIME types
+    mime-types
   ];
 }

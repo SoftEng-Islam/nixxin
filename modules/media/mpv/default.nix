@@ -203,6 +203,7 @@ in lib.mkIf (settings.modules.media.mpv) {
       ];
     };
   };
+
   # system.build.mesaPkg = pkgs.mesa;
   # nixpkgs.overlays = [
   #   (final: prev: {
@@ -214,6 +215,7 @@ in lib.mkIf (settings.modules.media.mpv) {
   #     });
   #   })
   # ];
+
   environment.systemPackages = with pkgs; [
     driversi686Linux.vdpauinfo
     ffmpeg-full # Full ffmpeg with hwaccel support

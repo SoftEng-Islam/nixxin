@@ -141,7 +141,6 @@ in {
       "preempt=full"
       "ibt=off"
       "psi=1"
-      "iommu=pt"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
@@ -198,6 +197,8 @@ in {
       "amdgpu.deep_color=1"
       "amdgpu.vramlimit=4096"
       "amdgpu.gttsize=4096"
+      # increases the timeout of GFX jobs
+      "amdgpu.lockup_timeout=5000"
 
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
@@ -217,7 +218,8 @@ in {
 
       # Power Management
       "workqueue.power_efficient=off"
-      "amd_iommu=off"
+      "amd_iommu=on"
+      "iommu=pt"
       "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
@@ -479,6 +481,9 @@ in {
     MESA_GL_VERSION_OVERRIDE = "4.6";
     MESA_GLSL_VERSION_OVERRIDE = "460";
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
+
+    DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+
   };
 
   environment.memoryAllocator.provider = "libc";
