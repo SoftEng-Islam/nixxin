@@ -1,6 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 let
-  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
+  _hwdec = "auto-save"; # auto, vaapi, vdpau, cuda
   _vo = "gpu"; # "gpu", "gpu-next"
 
   ytdlDesktop = ''
@@ -74,7 +74,8 @@ in lib.mkIf (settings.modules.media.mpv) {
         fullscreen = false;
         input-ipc-server = "/tmp/mpvsocket";
         load-auto-profiles = "no";
-        no-border = true;
+        # no-border = true;
+        top_bar = "no-border";
         msg-module = true;
         msg-color = true;
         term-osd-bar = true;
