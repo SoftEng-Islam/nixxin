@@ -32,7 +32,7 @@
       #=> First Row:
       # bind = $main, Q, killactive
       bind = $main, W, exec, ${settings.modules.xdg.defaults.webBrowser}
-      bind = $main, E, exec, ${pkgs.nautilus}/bin/nautilus --new-window & # Launch Nautilus (file manager)
+      bind = $main, E, exec, nohup ${pkgs.nautilus}/bin/nautilus --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
       bind = $main, T, exec, ${pkgs.kitty}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,

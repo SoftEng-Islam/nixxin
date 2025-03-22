@@ -339,7 +339,7 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amf
+        # amf
         amdvlk # AMD Vulkan driver
         vulkan-validation-layers
         vulkan-tools

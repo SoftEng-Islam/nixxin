@@ -1,6 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 let
-  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
+  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
   _vo = "gpu"; # "gpu", "gpu-next"
 
   ytdlDesktop = ''
@@ -112,7 +112,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         demuxer-mkv-subtitle-preroll-secs = 2;
         slang = "eng,en,ar";
         sub-ass-force-margins = true;
-        sub-ass-force-style = "Kerning=yes";
+        sub-ass-style-overrides = "Kerning=yes";
         sub-auto = "fuzzy";
         sub-blur = 10;
         sub-border-color = "#FF262626";
@@ -151,7 +151,6 @@ in lib.mkIf (settings.modules.media.mpv) {
         hwdec-codecs = "all";
         really-quiet = "yes";
         autofit = "65%";
-        border = "no";
         pause = false;
 
         # video
