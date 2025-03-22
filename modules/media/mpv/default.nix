@@ -203,13 +203,15 @@ in lib.mkIf (settings.modules.media.mpv) {
       ];
     };
   };
+  system.build.mesaPkg = pkgs.mesa;
   nixpkgs.overlays = [
     (final: prev: {
-      mesa = prev.mesa.override {
-        galliumDrivers = [ "r600" "radeonsi" ];
-        vulkanDrivers = [ "amd" ];
-        withXa = false;
-      };
+      mesa = prev.mesa.overrideAttrs (old: {
+        eglPlatforms = [ "wayland" ];
+        mesonFlags = (old.mesonFlags or [ ]) ++ [
+          "-Dgallium-xa=disabled" # Explicitly disable gallium-xa
+        ];
+      });
     })
   ];
   environment.systemPackages = with pkgs; [
@@ -234,9 +236,10 @@ in lib.mkIf (settings.modules.media.mpv) {
     nasm
     trash-cli
     vaapiVdpau
-    vaapiVdpau
     vdpauinfo
     vulkan-loader
     vulkan-tools # Includes `vulkaninfo`
+    libva-utils
+    vulkan-headers
   ];
 }
