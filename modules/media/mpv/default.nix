@@ -1,7 +1,8 @@
 { config, lib, settings, pkgs, ... }:
+
 let
   _hwdec = "auto-save"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu"; # "gpu", "gpu-next"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
 
   ytdlDesktop = ''
     [ytdl-desktop]
@@ -163,7 +164,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         tscale = "oversample";
         opengl-early-flush = "no";
         opengl-pbo = "no";
-        icc-profile-auto = true;
+        icc-profile-auto = false;
 
         # Audio
         ao = "pipewire";
@@ -202,11 +203,15 @@ in lib.mkIf (settings.modules.media.mpv) {
       ];
     };
   };
+  nixpkgs.config.packageOverrides = pkgs: {
+    mesa = pkgs.mesa.override {
+      galliumDrivers = [ "r600" "radeonsi" ];
+      vulkanDrivers = [ "amd" ];
+    };
+  };
   environment.systemPackages = with pkgs; [
-    # (mpv.override { scripts = [ mpvScripts.mpris ]; })
-    mpv
-    mpv-shim-default-shaders
     driversi686Linux.vdpauinfo
+    ffmpeg-full # Full ffmpeg with hwaccel support
     gnutls
     harfbuzz
     iconv
@@ -216,12 +221,19 @@ in lib.mkIf (settings.modules.media.mpv) {
     libmp3splt
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva
-    libva-utils
+    libva-utils # For testing VAAPI support
     libvdpau-va-gl
     lua
+    mesa
+    mesa.drivers # Ensures all Mesa drivers are available
+    mpv
+    mpv-shim-default-shaders
     nasm
+    trash-cli
+    vaapiVdpau
     vaapiVdpau
     vdpauinfo
-    trash-cli
+    vulkan-loader
+    vulkan-tools # Includes `vulkaninfo`
   ];
 }
