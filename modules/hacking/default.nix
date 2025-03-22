@@ -1,7 +1,7 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
+  # imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
   config = mkIf (settings.modules.hacking.enable) {
     environment.systemPackages = with pkgs; [
       # hashcat.overrideAttrs
