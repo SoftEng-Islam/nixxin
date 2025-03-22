@@ -207,6 +207,7 @@ in lib.mkIf (settings.modules.media.mpv) {
     mesa = pkgs.mesa.override {
       galliumDrivers = [ "r600" "radeonsi" ]; # AMD drivers only
       vulkanDrivers = [ "amd" ];
+      withGalliumXa = false;
     };
   };
   environment.systemPackages = with pkgs; [
