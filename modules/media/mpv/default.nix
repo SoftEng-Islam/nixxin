@@ -203,13 +203,15 @@ in lib.mkIf (settings.modules.media.mpv) {
       ];
     };
   };
-  nixpkgs.config.packageOverrides = pkgs: {
-    mesa = pkgs.mesa.override {
-      galliumDrivers = [ "r600" "radeonsi" ]; # AMD drivers only
-      vulkanDrivers = [ "amd" ];
-      withGalliumXa = false;
-    };
-  };
+  nixpkgs.overlays = [
+    (final: prev: {
+      mesa = prev.mesa.override {
+        galliumDrivers = [ "r600" "radeonsi" ];
+        vulkanDrivers = [ "amd" ];
+        withXa = false;
+      };
+    })
+  ];
   environment.systemPackages = with pkgs; [
     driversi686Linux.vdpauinfo
     ffmpeg-full # Full ffmpeg with hwaccel support
