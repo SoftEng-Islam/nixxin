@@ -53,7 +53,6 @@
     ../../../modules/ulauncher
     ../../../modules/users
     ../../../modules/virtualization
-    ../../../modules/wayland
     ../../../modules/windows
     ../../../modules/xdg
     ../../../modules/zram
