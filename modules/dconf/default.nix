@@ -24,7 +24,7 @@ mkIf (settings.modules.dconf.enable or true) {
         "button-layout" = lib.mkDefault "";
       };
       "org/gnome/nautilus/preferences" = {
-        "default-folder-viewer" = "list-view";
+        "default-folder-viewer" = "icon-view"; # "icon-view", "list-view"
         "migrated-gtk-settings" = true;
         "search-filter-time-type" = "last_modified";
         "search-view" = "list-view";
