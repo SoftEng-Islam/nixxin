@@ -3,6 +3,12 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
 
+    # ---- SWWW & Set Image as Background ---- #
+    ${pkgs.swww}/bin/swww-daemon --no-cache --format xrgb &
+    sleep 1
+    ${pkgs.swww}/bin/swww img ~/Pictures/Wallpapers/Study-table.png --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
+
+
     # dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
     # dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
     # dconf write /org/gnome/desktop/interface/document-font-name "'Noto Sans Medium 11'"
@@ -47,11 +53,6 @@ let
 
     # ---- hyprlock ---- #
     # ${pkgs.hyprlock}/bin/hyprlock
-
-    # ---- SWWW & Set Image as Background ---- #
-    ${pkgs.swww}/bin/swww-daemon --no-cache --format xrgb &
-    # sleep 1
-    ${pkgs.swww}/bin/swww img ~/Pictures/Wallpapers/Study-table.png --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
 
     # ---- Input Method ---- #
     #${pkgs.fcitx5}/bin/fcitx5
