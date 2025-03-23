@@ -6,7 +6,7 @@
 
         # ---- Blur ---- #
         blur = {
-          enabled = settings.modules.window_manager.hyprland.blur.enable;
+          enabled = settings.modules.hyprland.blur.enable;
           xray = true;
           ignore_opacity = true;
           special = true;
@@ -21,7 +21,7 @@
 
         # ---- Shadow ---- #
         shadow = {
-          enabled = settings.modules.window_manager.hyprland.shadow.enable;
+          enabled = settings.modules.hyprland.shadow.enable;
           range = 15;
           offset = "0 2";
           render_power = 2;

@@ -1,7 +1,7 @@
 { settings, ... }:
 
 let
-  animationSpeed = settings.modules.window_manager.hyprland.animationSpeed;
+  animationSpeed = settings.modules.hyprland.animationSpeed;
   animationDuration = if animationSpeed == "slow" then
     "4"
   else if animationSpeed == "medium" then
