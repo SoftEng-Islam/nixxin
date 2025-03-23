@@ -1,6 +1,6 @@
 # Display/Login manager
 { settings, lib, pkgs, ... }:
-let _imports = [ (./. + "/${settings.modules.dm.default}.nix") ];
+let _imports = [ (./. + "/${settings.modules.hyprland.dm.default}.nix") ];
 in {
   imports = lib.flatten _imports;
 
@@ -8,7 +8,8 @@ in {
   services.displayManager.enable = true;
 
   # ---- Set Default Session ---- #
-  services.displayManager.defaultSession = settings.modules.dm.defaultSession;
+  services.displayManager.defaultSession =
+    settings.modules.hyprland.dm.defaultSession;
 
   # ---- XSERVER ---- #
   services.xserver.enable = true;
