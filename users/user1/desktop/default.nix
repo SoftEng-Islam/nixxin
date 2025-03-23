@@ -257,11 +257,6 @@
         insomnia = true;
       };
     };
-    display_manager = { # Display/Login manager
-      enable = true;
-      default = "gdm"; # "gdm", "reGreet"
-      defaultSession = "hyprland"; # "hyprland", "hyprland-uwsm"
-    };
     editors = {
       enable = true;
       zedEditor = true;
@@ -354,6 +349,38 @@
         json = false;
         manpages = false;
       };
+    };
+    hyprland = {
+      enable = true;
+      dm = { # Display/Login manager
+        enable = true;
+        default = "gdm"; # "gdm", "reGreet"
+        defaultSession = "hyprland"; # "hyprland", "hyprland-uwsm"
+      };
+      # Pregenerated Colors to use in Hyprland
+      genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+      animationSpeed = "medium"; # medium or slow
+      # Enable blur for windows
+      blur = { enable = true; };
+      opacity = 0.9; # The windows Opacity
+      shadow = { enable = true; }; # enable shadow for Hyprland
+      rounding = 10; # Rounding Corners for Hyprland Windows
+      dim_inactive = true;
+      plugins = {
+        hyprbars = true;
+        hyprspace = true;
+        bordersPlus = false;
+        hyprexpo = false;
+        hyprtrails = false;
+      };
+      lockscreen = {
+        enable = true;
+        type = "hyprlock";
+        timeOut = 600; # 10min
+        font = "";
+      };
+      hyprpaper = { enable = true; };
+
     };
     i18n = {
       # ---- Date/Time & Languages ---- #
@@ -598,36 +625,6 @@
     users = { name = user.name; };
     virtualization = { enable = true; };
     wayland = { enable = true; };
-    window_manager = {
-      enable = true;
-      # ---- Hyprland ---- #
-      hyprland = {
-        enable = true;
-        # Pregenerated Colors to use in Hyprland
-        genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
-        animationSpeed = "medium"; # medium or slow
-        # Enable blur for windows
-        blur = { enable = true; };
-        opacity = 0.9; # The windows Opacity
-        shadow = { enable = true; }; # enable shadow for Hyprland
-        rounding = 10; # Rounding Corners for Hyprland Windows
-        dim_inactive = true;
-        plugins = {
-          hyprbars = true;
-          hyprspace = true;
-          bordersPlus = false;
-          hyprexpo = false;
-          hyprtrails = false;
-        };
-        lockscreen = {
-          enable = true;
-          type = "hyprlock";
-          timeOut = 600; # 10min
-          font = "";
-        };
-        hyprpaper = { enable = true; };
-      };
-    };
     windows = {
       enable = true;
       wine = { enable = true; };

@@ -1,8 +1,6 @@
 { settings, lib, pkgs, ... }:
-
 let inherit (lib) mkIf;
-in mkIf (settings.modules.wayland.enable) {
-  # environment.variables = { };
+in mkIf (settings.modules.wayland.enable or true) {
   environment.systemPackages = with pkgs; [
     libqalculate # Advanced calculator library
     mkvtoolnix-cli # Cross-platform tools for Matroska

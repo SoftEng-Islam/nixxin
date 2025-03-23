@@ -15,7 +15,6 @@
     ../../../modules/data_transferring
     ../../../modules/dconf
     ../../../modules/development
-    ../../../modules/display_manager
     ../../../modules/editors
     ../../../modules/emails
     ../../../modules/env
@@ -28,6 +27,7 @@
     ../../../modules/graphics
     ../../../modules/hacking
     ../../../modules/home
+    ../../../modules/hyprland
     ../../../modules/i18n
     ../../../modules/icons
     ../../../modules/image_viewer
@@ -54,7 +54,6 @@
     ../../../modules/users
     ../../../modules/virtualization
     ../../../modules/wayland
-    ../../../modules/window_manager
     ../../../modules/windows
     ../../../modules/xdg
     ../../../modules/zram

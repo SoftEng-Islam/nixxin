@@ -1,6 +1,10 @@
 { settings, lib, pkgs, ... }: {
 
   imports = [
+    ./hyprpolkitagent.nix
+    ./wayland.nix
+    ./dm
+
     ./configs/animations.nix
     ./configs/binds.nix
     ./configs/cursor.nix
@@ -24,7 +28,6 @@
 
     # ./configs/scripts.nix
     ./configs/source.nix
-    ./hyprpolkitagent.nix
 
     # nix scripts
     ./configs/nix_scripts/gamemode.nix
@@ -32,6 +35,9 @@
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
+
+  services.seatd.enable = lib.mkForce false;
+
   programs.uwsm = {
     enable = false;
     waylandCompositors.hyprland = {
@@ -46,7 +52,7 @@
     hyprlock.enable = true;
     xwayland.enable = false;
     hyprland = {
-      enable = settings.modules.window_manager.hyprland.enable;
+      enable = settings.modules.hyprland.enable;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = false;
       package = pkgs.hyprland;
@@ -94,7 +100,7 @@
     };
 
     wayland.windowManager.hyprland = {
-      enable = settings.modules.window_manager.hyprland.enable;
+      enable = settings.modules.hyprland.enable;
       package = pkgs.hyprland;
       systemd.enable = true;
       systemd.variables = [ "--all" ];

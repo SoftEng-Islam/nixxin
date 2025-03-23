@@ -1,5 +1,6 @@
+# Display/Login manager
 { settings, lib, pkgs, ... }:
-let _imports = [ (./. + "/${settings.modules.display_manager.default}.nix") ];
+let _imports = [ (./. + "/${settings.modules.dm.default}.nix") ];
 in {
   imports = lib.flatten _imports;
 
@@ -7,8 +8,7 @@ in {
   services.displayManager.enable = true;
 
   # ---- Set Default Session ---- #
-  services.displayManager.defaultSession =
-    settings.modules.display_manager.defaultSession;
+  services.displayManager.defaultSession = settings.modules.dm.defaultSession;
 
   # ---- XSERVER ---- #
   services.xserver.enable = true;
