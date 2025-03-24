@@ -8,9 +8,10 @@ let
     (lib.optional settings.modules.android.waydroid ./waydroid.nix)
   ];
 in {
-  imports = lib.flatten _android;
+  imports = lib.optionals (settings.modules.android.enable or false) lib.flatten
+    _android;
 
-  config = mkIf (settings.modules.android.enable) {
+  config = mkIf (settings.modules.android.enable or false) {
     programs.adb.enable = true;
     environment.systemPackages = with pkgs; [
       # Display and control Android devices over USB or TCP/IP
