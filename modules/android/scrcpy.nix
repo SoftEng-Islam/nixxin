@@ -1,5 +1,4 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.android.scrcpy) {
+lib.mkIf (settings.modules.android.scrcpy) {
   environment.systemPackages = with pkgs; [ scrcpy ];
 }

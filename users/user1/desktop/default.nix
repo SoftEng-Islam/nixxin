@@ -268,12 +268,7 @@
     };
     emails = {
       enable = true;
-      client = {
-        enable = true;
-        thunderbird = true;
-        geary = false;
-      };
-      handlers = false;
+      # thunderbird = true;
     };
     env = { enable = true; };
     file_manager = {
