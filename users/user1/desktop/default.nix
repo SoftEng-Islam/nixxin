@@ -262,7 +262,13 @@
       zedEditor = true;
       eclipse = false;
       helix = false;
-      vscode = true;
+      vscode = {
+        enable = true;
+        extensions_home = true;
+        globalSnippets_home = true;
+        userSettings_home = true;
+        keybindings_home = true;
+      };
       vscodium = false;
       gnomeTextEditor = true;
     };
