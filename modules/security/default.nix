@@ -5,6 +5,9 @@ in mkIf (settings.modules.security.enable) {
   security = {
     sudo.enable = true;
 
+    # during testing only 550K-650K of the tmpfs where used
+    # wrapperDirSize = "10M";
+
     # don't ask for password for wheel group
     sudo.wheelNeedsPassword = false;
 

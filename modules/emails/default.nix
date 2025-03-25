@@ -8,10 +8,23 @@ in {
         enable = true;
         # programs.thunderbird.nativeMessagingHosts = [];
         programs.thunderbird.package = pkgs.thunderbird-latest;
-
+        profiles = {
+          "main" = {
+            isDefault = true;
+            settings = {
+              "calendar.alarms.showmissed" = false;
+              "calendar.alarms.playsound" = false;
+              "calendar.alarms.show" = false;
+            };
+          };
+        };
       };
     };
 
+    services = {
+      orca.enable = false; # requires speechd
+      speechd.enable = false; # voice files are big and fat
+    };
     environment.systemPackages = with pkgs; [ thunderbird-latest birdtray ];
   };
 }
