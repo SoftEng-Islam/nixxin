@@ -6,8 +6,8 @@ in {
     home-manager.users.${settings.user.username} = {
       programs.thunderbird = {
         enable = true;
-        # programs.thunderbird.nativeMessagingHosts = [];
-        programs.thunderbird.package = pkgs.thunderbird-latest;
+        # nativeMessagingHosts = [];
+        package = pkgs.thunderbird-latest;
         profiles = {
           "main" = {
             isDefault = true;
