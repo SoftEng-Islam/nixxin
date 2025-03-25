@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) optionals mkIf;
+let inherit (lib) mkIf;
 in {
-  imports = optionals (settings.modules.audio.rnnoise.enable) [ ./rnnoise.nix ];
+  imports = [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable) {
 
@@ -78,7 +78,7 @@ in {
     home-manager.users.${settings.user.username}.services.easyeffects = {
       # Whether to enable EasyEffects.
       # Necessitates programs.dconf.enable to be true.
-      enable = true;
+      enable = false;
     };
 
     # Adds MIDI soundfonts (if present) to /run/current-system/sw.
