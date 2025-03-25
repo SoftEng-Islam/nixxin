@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   _imports = [
-    (lib.optional settings.modules.editors.vscode ./vscode.nix)
+    (lib.optional settings.modules.editors.vscode.enable ./vscode.nix)
     (lib.optional settings.modules.editors.zedEditor ./zed-editor.nix)
     (lib.optional settings.modules.editors.eclipse ./eclipse.nix)
     (lib.optional settings.modules.editors.helix ./helix.nix)
