@@ -46,9 +46,10 @@
       bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # bind = $main, S, exec,
       # bind = $main, D, exec,
-      bind = $main, F, 1, fullscreen,0
-      bind = $main, F, 2, fullscreen,1
-      bind = $main, F, 3, fullscreen,2
+      bind = $main, F, fullscreen,
+      #bind = $main Ctrl, F, 1, fullscreen 0
+      #bind = $main Ctrl, F, 2, fullscreen 1
+      #bind = $main Ctrl, F, 3, fullscreen 2
       # bind = $main, G, exec,
       # bind = $main, H, exec,
       # bind = $main, J, exec,
@@ -108,7 +109,6 @@
       # bind = $main, , exec, # $main + `_`
 
       # ---- Positioning Mode ---- #
-      bind = $main, F, fullscreen,
       bind = $main ALT, F, togglefloating,
       bind = $main C, W, centerwindow, 1
       bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
@@ -206,12 +206,11 @@
       # bind = $main I, 4, exec, ~/.config/ignis/scripts/recording.py pause
 
       # ---- Screen snip ---- #
-      bind = $main SHIFT, S, exec, mkdir -p ~/Pictures/Area && ~/.config/hypr/scripts/grimblast.sh --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
+      bind = $main SHIFT, S, exec, mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
 
       # ---- Full Screenshot ---- #
-      # bindl= ,Print, exec, ~/.config/hypr/scripts/grimblast.sh copysave screen ~/Pictures/Screenshots/Screenshot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screenshot >> clipboard & file
-      bindl= ,print,exec,${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave area ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png
+      bindl= , print, exec, ${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png
 
       # bind = $mainMod SHIFT, S, exec, grimblast --notify --freeze copysave area
       # bind = $mainMod, S, exec, grimblast --notify --freeze copysave output
