@@ -46,9 +46,9 @@
       bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # bind = $main, S, exec,
       # bind = $main, D, exec,
-      bind = $main F, 1, fullscreen,0
-      bind = $main F, 2, fullscreen,1
-      bind = $main F, 3, fullscreen,2
+      bind = $main, F, 1, fullscreen,0
+      bind = $main, F, 2, fullscreen,1
+      bind = $main, F, 3, fullscreen,2
       # bind = $main, G, exec,
       # bind = $main, H, exec,
       # bind = $main, J, exec,
@@ -108,8 +108,8 @@
       # bind = $main, , exec, # $main + `_`
 
       # ---- Positioning Mode ---- #
-      bind = $main SHIFT, F, fullscreen,
-      bind = $main T, F, togglefloating,
+      bind = $main, F, fullscreen,
+      bind = $main ALT, F, togglefloating,
       bind = $main C, W, centerwindow, 1
       bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
 
