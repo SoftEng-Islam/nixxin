@@ -4,7 +4,7 @@
 
 > [!WARNING]
 >
-> - Please don't use this script, still under development
+> - Please don't use this Project, still under development.
 >
 
 This repository is home to the Nix code that builds my systems.
