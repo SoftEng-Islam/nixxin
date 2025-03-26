@@ -2,6 +2,11 @@
 
 **Nixos** Enhancement Configurations
 
+
+![image](https://github.com/user-attachments/assets/b6d1ebd9-0fbd-4061-ba10-5c9286387bc3)
+
+
+
 > [!WARNING]
 >
 > - Please don't use this Project, still under development.
