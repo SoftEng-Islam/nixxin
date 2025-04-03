@@ -183,12 +183,12 @@ in {
       "amdgpu.gpu_recovery=1"
 
       # for Southern Islands (SI i.e. GCN 1) cards
-      #"radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-      #"amdgpu.si_support=1"
+      "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
+      "amdgpu.si_support=1"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      #"radeon.cik_support=0"
-      #"amdgpu.cik_support=1"
+      "radeon.cik_support=0"
+      "amdgpu.cik_support=1"
 
       "amdgpu.sg_display=0" # Fixes display-related ROCm issues
       "amdgpu.noretry=0" # Improve memory handling
