@@ -83,7 +83,7 @@ in {
 
     # ---- extraOptions ---- #
     extraOptions = ''
-      sandbox = true
+      sandbox = false
       max-jobs = auto
       auto-optimise-store = true
       experimental-features = nix-command flakes recursive-nix

@@ -105,6 +105,7 @@ in {
         "vfio_pci"
         "vfio"
         "xhci_pci"
+        "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "xhci_pci" "usb_storage" "usbhid" "sd_mod"
       ];
     };
     kernelModules = [

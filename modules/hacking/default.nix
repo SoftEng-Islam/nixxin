@@ -12,7 +12,7 @@ in {
       #     done
       #   '';
       # })
-      # hashcat # Fast password cracker
+      hashcat # Fast password cracker
       # hashcat-utils # Small utilities that are useful in advanced password cracking
       # john # John the Ripper password cracker
       # johnny # Open Source GUI frontend for John the Ripper
