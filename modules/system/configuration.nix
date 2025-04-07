@@ -105,7 +105,14 @@ in {
         "vfio_pci"
         "vfio"
         "xhci_pci"
-        "ahci" "ohci_pci" "ehci_pci" "pata_atiixp" "xhci_pci" "usb_storage" "usbhid" "sd_mod"
+        "ahci"
+        "ohci_pci"
+        "ehci_pci"
+        "pata_atiixp"
+        "xhci_pci"
+        "usb_storage"
+        "usbhid"
+        "sd_mod"
       ];
     };
     kernelModules = [
@@ -492,6 +499,7 @@ in {
   environment.systemPackages = with pkgs; [
     linux-firmware # Binary firmware collection packaged by kernel.org
     v4l-utils
+    dmidecode
     # ------------------------------------------------
     # ---- Boot Packages
     # ------------------------------------------------
