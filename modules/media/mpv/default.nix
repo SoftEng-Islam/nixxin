@@ -15,7 +15,6 @@ let
     profile-desc=cond:not dedicated_gpu()
     ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9][protocol!=http_dash_segments]+bestaudio/best
   '';
-Top
   languages = ''
     slang=enm,en,eng,de,deu,ger
     alang=ja,jp,jpn,en,eng,de,deu,ger
