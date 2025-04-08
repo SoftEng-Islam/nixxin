@@ -32,7 +32,7 @@
     ];
   };
 
-  fileSystems."/2009" = {
+  fileSystems."/data2" = {
     device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
     fsType = "btrfs";
     options = [
