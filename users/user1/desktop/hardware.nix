@@ -32,6 +32,8 @@
     ];
   };
 
+  # Don't Forget To Change The Owner of The Partition If Needed.
+  # sudo chown -R softeng:wheel /data2
   fileSystems."/data2" = {
     device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
     fsType = "xfs";
