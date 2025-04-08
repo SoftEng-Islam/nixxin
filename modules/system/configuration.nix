@@ -89,7 +89,7 @@ in {
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [ "amdgpu" ];
+      # kernelModules = [ "amdgpu" ];
 
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
@@ -98,6 +98,7 @@ in {
         "cryptd"
         "ehci_pci"
         "ohci_pci"
+        "pata_atiixp"
         "sd_mod"
         "usb_storage"
         "usbhid"
@@ -105,17 +106,10 @@ in {
         "vfio_pci"
         "vfio"
         "xhci_pci"
-        "ahci"
-        "ohci_pci"
-        "ehci_pci"
-        "pata_atiixp"
-        "xhci_pci"
-        "usb_storage"
-        "usbhid"
-        "sd_mod"
       ];
     };
     kernelModules = [
+      "radeon"
       "amd-pstate"
       "bfq"
       "binder_linux"
@@ -152,7 +146,8 @@ in {
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-      ''acpi_osi="Windows 2020"''
+      # ''acpi_osi="Windows 2020"''
+
       # "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
@@ -180,33 +175,33 @@ in {
 
       # AMD GPU optimizations
       # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
       # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
 
-      "amdgpu.dcfeaturemask=0x8"
-      "amdgpu.freesync_video=1"
-      "amdgpu.gpu_recovery=1"
+      # "amdgpu.dcfeaturemask=0x8"
+      # "amdgpu.freesync_video=1"
+      # "amdgpu.gpu_recovery=1"
 
       # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-      "amdgpu.si_support=1"
+      # "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
+      # "amdgpu.si_support=1"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=1"
+      # "radeon.cik_support=0"
+      # "amdgpu.cik_support=1"
 
-      "amdgpu.sg_display=0" # Fixes display-related ROCm issues
-      "amdgpu.noretry=0" # Improve memory handling
-      "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      "amdgpu.dpm=1"
-      "amdgpu.deep_color=1"
-      "amdgpu.vramlimit=4096"
-      "amdgpu.gttsize=4096"
-      # increases the timeout of GFX jobs
-      "amdgpu.lockup_timeout=5000"
+      # "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+      # "amdgpu.noretry=0" # Improve memory handling
+      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+      # "amdgpu.dpm=1"
+      # "amdgpu.deep_color=1"
+      # "amdgpu.vramlimit=4096"
+      # "amdgpu.gttsize=4096"
+      # # increases the timeout of GFX jobs
+      # "amdgpu.lockup_timeout=5000"
 
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
