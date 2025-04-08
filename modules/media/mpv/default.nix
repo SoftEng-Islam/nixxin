@@ -15,7 +15,7 @@ let
     profile-desc=cond:not dedicated_gpu()
     ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9][protocol!=http_dash_segments]+bestaudio/best
   '';
-
+Top
   languages = ''
     slang=enm,en,eng,de,deu,ger
     alang=ja,jp,jpn,en,eng,de,deu,ger
@@ -26,8 +26,8 @@ in lib.mkIf (settings.modules.media.mpv) {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
 
-    LIBVA_DRIVER_NAME = "radeonsi";
-    VDPAU_DRIVER = "radeonsi";
+    LIBVA_DRIVER_NAME = "radeonsi"; # ?
+    VDPAU_DRIVER = "radeonsi"; # ?
     VIDEO = "mpv";
 
     # vblank_mode = "0"; # ? Reduces latency
@@ -76,7 +76,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         input-ipc-server = "/tmp/mpvsocket";
         load-auto-profiles = "no";
         # no-border = true;
-        top_bar = "no-border";
+        # top_bar = "no-border"; #! Error parsing option top_bar (option not found)
         msg-module = true;
         msg-color = true;
         term-osd-bar = true;
