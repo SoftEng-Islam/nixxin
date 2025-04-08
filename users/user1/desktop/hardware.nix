@@ -34,18 +34,18 @@
 
   fileSystems."/2009" = {
     device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
-    fsType = "xfs";
-    # options = [
-    #   "rw"
-    #   "nofail"
-    #   "nodev"
-    #   "uid=1000"
-    #   "gid=1000"
-    #   "utf8"
-    #   "umask=022"
-    #   "exec"
-    #   "x-gvfs-show"
-    # ];
+    fsType = "btrfs";
+    options = [
+      "rw"
+      "nofail"
+      "nodev"
+      "uid=1000"
+      "gid=1000"
+      "utf8"
+      "umask=022"
+      "exec"
+      "x-gvfs-show"
+    ];
   };
 
   swapDevices = [{
