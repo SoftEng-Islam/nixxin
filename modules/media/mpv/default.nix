@@ -25,8 +25,8 @@ in lib.mkIf (settings.modules.media.mpv) {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
 
-    LIBVA_DRIVER_NAME = "radeonsi"; # ?
-    VDPAU_DRIVER = "radeonsi"; # ?
+    # LIBVA_DRIVER_NAME = "radeonsi"; # ?
+    # VDPAU_DRIVER = "radeonsi"; # ?
     VIDEO = "mpv";
 
     # vblank_mode = "0"; # ? Reduces latency
