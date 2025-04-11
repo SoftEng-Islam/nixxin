@@ -22,6 +22,9 @@ in {
 
       # Implementation of Microsoft's Media Transfer Protocol.
       libmtp
+
+      # Android's repo management tool
+      git-repo
     ];
   };
   # Adds the current user to the ADB users group.

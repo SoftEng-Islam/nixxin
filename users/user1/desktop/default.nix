@@ -434,7 +434,7 @@
     };
     overclock = {
       corectrl = { enable = true; };
-      lactd.enable = false;
+      lactd.enable = true;
     };
     power = { enable = true; };
     printing = { enable = false; };
