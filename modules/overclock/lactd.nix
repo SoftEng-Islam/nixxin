@@ -15,12 +15,12 @@ in mkIf (settings.modules.overclock.lactd.enable or false) {
     wantedBy = [ "multi-user.target" ];
   };
 
-  systemd.services.lact = {
-    enable = true;
-    description = "AMDGPU Control Daemon";
-    after = [ "multi-user.target" ];
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
-  };
+  # systemd.services.lact = {
+  #   enable = true;
+  #   description = "AMDGPU Control Daemon";
+  #   after = [ "multi-user.target" ];
+  #   wantedBy = [ "multi-user.target" ];
+  #   serviceConfig = { ExecStart = "${pkgs.lact}/bin/lact daemon"; };
+  # };
   environment.systemPackages = with pkgs; [ lact ];
 }
