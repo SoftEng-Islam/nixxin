@@ -37,11 +37,12 @@ in {
 
       # unrar # Utility for RAR archives
       # unrar-free # Free utility to extract files from RAR archives
-      # unrar-wrapper # Backwards compatibility between unar and unrar
-      unzip # An extraction utility for archives compressed in .zip format
-      xz
-      zip # Compressor/archiver for creating and modifying zipfiles
-      # rar # Utility for RAR archives
       # unar # Archive unpacker program
+      unrar-wrapper # Backwards compatibility between unar and unrar
+      rar # Utility for RAR archives
+
+      unzip # An extraction utility for archives compressed in .zip format
+      zip # Compressor/archiver for creating and modifying zipfiles
+      xz
     ];
 }
