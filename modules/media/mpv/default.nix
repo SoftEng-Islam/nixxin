@@ -2,7 +2,7 @@
 
 let
   _hwdec = "auto-save"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _vo = "gpu"; # "gpu", "gpu-next"
 
   ytdlDesktop = ''
     [ytdl-desktop]
@@ -156,7 +156,7 @@ in lib.mkIf (settings.modules.media.mpv) {
 
         # video
         vo = _vo;
-        gpu-api = "vulkan";
+        gpu-api = "opengl"; # "opengl", "vulkan"
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
 
