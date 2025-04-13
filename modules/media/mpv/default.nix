@@ -1,9 +1,9 @@
 { config, lib, settings, pkgs, ... }:
 
 let
-  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu-next"; # "gpu", "gpu-next"
-  _gpu-api = "vulkan"; # "opengl", "vulkan"
+  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
+  _vo = "gpu"; # "gpu", "gpu-next"
+  _gpu-api = "opengl"; # "opengl", "vulkan"
   ytdlDesktop = ''
     [ytdl-desktop]
     profile-desc=cond:dedicated_gpu()
@@ -25,8 +25,8 @@ in lib.mkIf (settings.modules.media.mpv) {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
 
-    # LIBVA_DRIVER_NAME = "radeonsi"; # ?
-    # VDPAU_DRIVER = "radeonsi"; # ?
+    LIBVA_DRIVER_NAME = "radeonsi"; # ?
+    VDPAU_DRIVER = "va_gl"; # ?
     VIDEO = "mpv";
 
     # vblank_mode = "0"; # ? Reduces latency
