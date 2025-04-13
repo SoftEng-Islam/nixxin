@@ -1,16 +1,16 @@
 { config, lib, settings, pkgs, ... }:
 
 let
-  _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
+  _vo = "gpu"; # "gpu", "gpu-next"
   _gpu-api = "opengl"; # "opengl", "vulkan"
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
 
-    LIBVA_DRIVER_NAME = "radeonsi"; # ?
-    VDPAU_DRIVER = "va_gl"; # ?
+    # LIBVA_DRIVER_NAME = "radeonsi"; # ?
+    # VDPAU_DRIVER = "va_gl"; # ?
     VIDEO = "mpv";
 
     # vblank_mode = "0"; # ? Reduces latency
