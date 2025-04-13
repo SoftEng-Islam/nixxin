@@ -1,9 +1,9 @@
 { config, lib, settings, pkgs, ... }:
 
 let
-  _hwdec = "auto-save"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu"; # "gpu", "gpu-next"
-
+  _hwdec = "auto"; # auto, vaapi, vdpau, cuda
+  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _gpu-api = "opengl"; # "opengl", "vulkan"
   ytdlDesktop = ''
     [ytdl-desktop]
     profile-desc=cond:dedicated_gpu()
@@ -156,7 +156,7 @@ in lib.mkIf (settings.modules.media.mpv) {
 
         # video
         vo = _vo;
-        gpu-api = "opengl"; # "opengl", "vulkan"
+        gpu-api = _gpu-api; # "opengl", "vulkan"
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
 
