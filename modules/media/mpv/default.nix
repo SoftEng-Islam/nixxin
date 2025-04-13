@@ -3,7 +3,7 @@
 let
   _hwdec = "auto"; # auto, vaapi, vdpau, cuda
   _vo = "gpu"; # "gpu", "gpu-next"
-  _gpu-api = "opengl"; # "opengl", "vulkan"
+  _gpu-api = "vulkan"; # "opengl", "vulkan"
   ytdlDesktop = ''
     [ytdl-desktop]
     profile-desc=cond:dedicated_gpu()
