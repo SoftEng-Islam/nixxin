@@ -2,7 +2,7 @@
 
 let
   _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu"; # "gpu", "gpu-next"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "opengl"; # "opengl", "vulkan"
   ytdlDesktop = ''
     [ytdl-desktop]
