@@ -4,22 +4,6 @@ let
   _hwdec = "vaapi"; # auto, vaapi, vdpau, cuda
   _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "opengl"; # "opengl", "vulkan"
-  ytdlDesktop = ''
-    [ytdl-desktop]
-    profile-desc=cond:dedicated_gpu()
-    ytdl-format=bestvideo[height<=?2160]+bestaudio/best
-  '';
-
-  ytdlLaptop = ''
-    [ytdl-laptop]
-    profile-desc=cond:not dedicated_gpu()
-    ytdl-format=bestvideo[height<=?1080][fps<=?30][vcodec!=?vp9][protocol!=http_dash_segments]+bestaudio/best
-  '';
-  languages = ''
-    slang=enm,en,eng,de,deu,ger
-    alang=ja,jp,jpn,en,eng,de,deu,ger
-  '';
-
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
