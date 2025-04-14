@@ -2,7 +2,7 @@
 
 let
   _hwdec = "auto-unsafe"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu"; # "gpu", "gpu-next"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "opengl"; # "opengl", "vulkan"
 
 in lib.mkIf (settings.modules.media.mpv) {
