@@ -89,7 +89,7 @@ in {
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      # kernelModules = [ "amdgpu" ];
+      kernelModules = [ "amdgpu" ];
 
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
