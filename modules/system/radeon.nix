@@ -1,3 +1,43 @@
-{ pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ radeon-profile radeontools ];
+{ config, lib, pkgs, ... }:
+
+let vaapiSupport = pkgs.libva.override { withVaapi = true; };
+in {
+  environment.systemPackages = with pkgs; [
+    mesa
+    mesa.drivers
+    libva
+    libva-utils
+    vaapiVdpau
+    libvdpau-va-gl
+    vdpauinfo
+    vulkan-loader
+    vulkan-tools
+    vulkan-headers
+    radeon-profile
+    radeontools
+    radeontop
+  ];
+
+  environment.variables = {
+    LIBVA_DRIVER_NAME = "r600"; # Specific driver for HD 7470
+    VDPAU_DRIVER = "va_gl"; # Use VA-API backend for VDPAU
+  };
+
+  hardware.opengl = {
+    enable = true;
+    driSupport = true;
+    driSupport32Bit = true;
+    extraPackages = with pkgs; [
+      libva
+      vaapiVdpau
+      libvdpau-va-gl
+      vulkan-loader
+    ];
+  };
+
+  services.xserver.videoDrivers = [ "modesetting" ]; # fallback driver
+
+  # Optional: Force software acceleration for unsupported codecs
+  nixpkgs.config.packageOverrides = pkgs: { ffmpeg = pkgs.ffmpeg-full; };
+
 }

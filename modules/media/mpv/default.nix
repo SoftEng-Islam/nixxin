@@ -2,8 +2,9 @@
 
 let
   _hwdec = "auto"; # auto, vaapi, vdpau, cuda
-  _vo = "gpu"; # "gpu", "gpu-next"
-  _gpu-api = "opengl"; # "opengl", "vulkan"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _gpu-api = "vulkan"; # "opengl", "vulkan"
+
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
@@ -141,6 +142,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         # video
         vo = _vo;
         gpu-api = _gpu-api; # "opengl", "vulkan"
+
         # Change this to "auto" or "vaapi" for AMD
         hwdec = _hwdec; # auto, vaapi, vdpau, cuda
 
