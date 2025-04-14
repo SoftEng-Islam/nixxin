@@ -28,5 +28,5 @@ in mkIf (settings.modules.system.radeon or false) {
   # services.xserver.videoDrivers = [ "modesetting" ]; # fallback driver
 
   # Optional: Force software acceleration for unsupported codecs
-  nixpkgs.config.packageOverrides = pkgs: { ffmpeg = pkgs.ffmpeg-full; };
+  # nixpkgs.config.packageOverrides = pkgs: { ffmpeg = pkgs.ffmpeg-full; };
 }
