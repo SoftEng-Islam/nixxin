@@ -1,7 +1,13 @@
 { config, lib, settings, pkgs, ... }:
-
 let
-  _hwdec = "no"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+
+  # no:	always use software decoding (default)
+  # auto:	enable any whitelisted hw decoder (see below)
+  # auto-unsafe:	forcibly enable any hw decoder found (see below)
+  # yes:	exactly the same as auto
+  # auto-safe:	exactly the same as auto
+  _hwdec = "auto-safe"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+
   _vo = "gpu"; # "gpu", "gpu-next"
   _gpu-api = "opengl"; # "opengl", "vulkan"
 
@@ -10,8 +16,8 @@ in lib.mkIf (settings.modules.media.mpv) {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
 
-    # LIBVA_DRIVER_NAME = "radeonsi"; # ?
-    # VDPAU_DRIVER = "va_gl"; # ?
+    LIBVA_DRIVER_NAME = "radeonsi"; # For VAAPI on AMD
+    VDPAU_DRIVER = "va_gl"; # Compatibility layer from VAAPI to VDPAU
     VIDEO = "mpv";
 
     # vblank_mode = "0"; # ? Reduces latency
