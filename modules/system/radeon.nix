@@ -1,7 +1,7 @@
-{ config, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 
 let vaapiSupport = pkgs.libva.override { withVaapi = true; };
-in {
+in lib.mkIf (settings.modules.system.radeon or false) {
   environment.systemPackages = with pkgs; [
     mesa
     mesa.drivers

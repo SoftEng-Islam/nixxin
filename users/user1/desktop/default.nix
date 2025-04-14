@@ -574,6 +574,7 @@
       };
       # Whether to enable ROCM, Make Sure that your APU/GPU Supported before Enable it
       rocm = { enable = false; };
+      radeon = true;
     };
     terminals = {
       enable = true;
