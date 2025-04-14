@@ -1,4 +1,6 @@
 { config, lib, settings, pkgs, ... }:
+# The [ MPV ] manual
+# https://mpv.io/manual/stable/
 let
 
   # no:	always use software decoding (default)
@@ -6,10 +8,10 @@ let
   # auto-unsafe:	forcibly enable any hw decoder found (see below)
   # yes:	exactly the same as auto
   # auto-safe:	exactly the same as auto
-  _hwdec = "vaapi-copy"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+  _hwdec = "vulkan"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
 
-  _vo = "gpu"; # "gpu", "gpu-next"
-  _gpu-api = "opengl"; # "opengl", "vulkan"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _gpu-api = "vulkan"; # "opengl", "vulkan"
 
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
