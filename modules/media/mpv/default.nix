@@ -15,11 +15,7 @@ in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
-
-    LIBVA_DRIVER_NAME = "radeonsi"; # For VAAPI on AMD
-    VDPAU_DRIVER = "va_gl"; # Compatibility layer from VAAPI to VDPAU
     VIDEO = "mpv";
-
     # vblank_mode = "0"; # ? Reduces latency
   };
   # https://github.com/mpv-player/mpv/wiki
