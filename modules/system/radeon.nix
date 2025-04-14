@@ -39,5 +39,4 @@ in {
 
   # Optional: Force software acceleration for unsupported codecs
   nixpkgs.config.packageOverrides = pkgs: { ffmpeg = pkgs.ffmpeg-full; };
-
 }
