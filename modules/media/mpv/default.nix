@@ -89,7 +89,16 @@ in lib.mkIf (settings.modules.media.mpv) {
         msg-color = true;
         msg-module = true;
       };
-      scripts = with pkgs; [ mpvScripts.mpris mpvScripts.thumbfast ];
+      defaultProfiles = [ "high-quality" ];
+      scripts = with pkgs.mpvScripts; [
+        mpris
+        thumbfast
+        uosc
+        cutter
+        quality-menu
+        mpv-cheatsheet
+        mpv-subtitle-lines
+      ];
     };
 
   };
