@@ -405,7 +405,7 @@ in {
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = [ "amdgpu" "radeon" ];
+  services.xserver.videoDrivers = [ "radeon" "amdgpu" "modesetting" ];
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;

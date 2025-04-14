@@ -25,7 +25,7 @@ in mkIf (settings.modules.system.radeon or false) {
     VDPAU_DRIVER = "va_gl"; # Use VA-API backend for VDPAU
   };
 
-  services.xserver.videoDrivers = [ "modesetting" ]; # fallback driver
+  # services.xserver.videoDrivers = [ "modesetting" ]; # fallback driver
 
   # Optional: Force software acceleration for unsupported codecs
   nixpkgs.config.packageOverrides = pkgs: { ffmpeg = pkgs.ffmpeg-full; };
