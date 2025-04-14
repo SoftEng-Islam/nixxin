@@ -351,6 +351,11 @@ in {
         # OpenCL runtime for AMD GPUs, part of the ROCm stack
         # rocmPackages.clr
 
+        libva
+        vaapiVdpau
+        libvdpau-va-gl
+        vulkan-loader
+
         # AMD Open Source Driver For Vulkan
         amdvlk
 

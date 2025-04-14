@@ -23,18 +23,6 @@ in lib.mkIf (settings.modules.system.radeon or false) {
     VDPAU_DRIVER = "va_gl"; # Use VA-API backend for VDPAU
   };
 
-  hardware.opengl = {
-    enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
-    extraPackages = with pkgs; [
-      libva
-      vaapiVdpau
-      libvdpau-va-gl
-      vulkan-loader
-    ];
-  };
-
   services.xserver.videoDrivers = [ "modesetting" ]; # fallback driver
 
   # Optional: Force software acceleration for unsupported codecs
