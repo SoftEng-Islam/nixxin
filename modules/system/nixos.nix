@@ -355,8 +355,8 @@ in {
 
     # ---- productivity ---- #
     # hugo # static site generator
-    # glow # markdown previewer in terminal
-    # graphviz # Graph visualization tools
+    glow # markdown previewer in terminal
+    graphviz # Graph visualization tools
 
     dbus # Simple interprocess messaging system
     dbus-broker # Linux D-Bus Message Broker
