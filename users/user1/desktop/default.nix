@@ -415,7 +415,7 @@
     };
     networking = {
       enable = true;
-      dnsResolver = "dnsmasq"; # dnsmasq or systemd-resolved
+      dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
       ethernet = "eno1";
       wlanInterface = "wlp0s19f2u5";
       nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ]; # Google's DNS
