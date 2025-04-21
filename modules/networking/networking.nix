@@ -13,7 +13,7 @@
     networkmanager = {
       enable = true;
       wifi.powersave = false;
-      dns = "none"; # "none" or "dnsmasq"
+      # dns = "none"; # "none" or "dnsmasq"
       # increase boot speed
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
