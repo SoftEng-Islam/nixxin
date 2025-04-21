@@ -264,10 +264,10 @@
       helix = false;
       vscode = {
         enable = true;
-        extensions_home = true;
-        globalSnippets_home = true;
-        userSettings_home = true;
-        keybindings_home = true;
+        extensions_home = false;
+        globalSnippets_home = false;
+        userSettings_home = false;
+        keybindings_home = false;
       };
       vscodium = false;
       gnomeTextEditor = true;
