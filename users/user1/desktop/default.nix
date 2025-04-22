@@ -51,7 +51,8 @@
     EDITOR = "nvim";
     VISUAL = "nvim";
     TERM = "kitty";
-    webBrowser = "microsoft-edge";
+    webBrowser =
+      "google-chrome-stable"; # "microsoft-edge", "google-chrome-stable"
     mainFont.name = "CaskaydiaCove Nerd Font";
     mainFont.package =
       pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
