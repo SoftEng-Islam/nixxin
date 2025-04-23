@@ -170,7 +170,7 @@ in {
 
       # ---- Swap ---- #
       "zswap.enabled=1"
-      "zswap.compressor=lz4"
+      "zswap.compressor=zstd"
       "zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
