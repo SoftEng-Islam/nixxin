@@ -23,6 +23,7 @@ in {
   config = mkIf (settings.modules.development.enable) {
     environment.systemPackages = with pkgs;
       [
+        devenv
         direnv
         bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
         at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
