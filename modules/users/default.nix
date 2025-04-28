@@ -47,6 +47,7 @@ in {
         "waydroid"
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
+        "softeng"
         # "nixos"
         # "root"
         # "sshd"
