@@ -4,8 +4,7 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.security.enable) {
   security = {
     sudo.enable = true;
-    acme.acceptTerms = true;
-    acme.certs."softeng".email = "softeng.islam@gmail.com";
+
     # during testing only 550K-650K of the tmpfs where used
     # wrapperDirSize = "10M";
 
