@@ -66,13 +66,6 @@
       max_execution_time = 300
     '';
   };
-  services.wordpress.sites.localhost = {
-    database = "wordpress";
-    databaseUser = "wordpress";
-    databasePasswordFile = "/run/keys/wordpress-db-password";
-    adminEmail = "admin@example.com";
-    title = "My WordPress Site";
-  };
   # services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
