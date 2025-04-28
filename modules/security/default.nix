@@ -5,8 +5,7 @@ in mkIf (settings.modules.security.enable) {
   security = {
     sudo.enable = true;
     acme.acceptTerms = true;
-    # security.acme.certs.<name>.email
-    acme.defaults.defaults.email = "softeng.islam@gmail.com";
+    acme.certs."softeng".email = "softeng.islam@gmail.com";
     # during testing only 550K-650K of the tmpfs where used
     # wrapperDirSize = "10M";
 
