@@ -49,6 +49,8 @@
     nginx
   ];
 
+  services.wordpress.sites."localhost" = { };
+
   home-manager.users.${settings.user.username} = {
     # home.sessionVariables = { };
     # home.sessionPath = [ "$HOME/.npm-global/bin:$PATH" ];
