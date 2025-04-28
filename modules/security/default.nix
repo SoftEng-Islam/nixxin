@@ -29,7 +29,7 @@ in mkIf (settings.modules.security.enable) {
     sudo.configFile = ''
       root   ALL=(ALL:ALL) SETENV: ALL
       %wheel ALL=(ALL:ALL) SETENV: ALL
-      celes  ALL=(ALL:ALL) SETENV: ALL
+      softeng ALL=(ALL:ALL) SETENV: ALL
     '';
 
     # Swaylock needs an entry in PAM to proberly unlock
