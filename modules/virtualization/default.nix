@@ -16,11 +16,12 @@ in mkIf (settings.modules.virtualization.enable) {
   # ----------------------------------------------
   # ---- System Packages
   # ----------------------------------------------
-  environment.systemPackages = with pkgs;
-    [
-      #for virtualisation virt-manager
-      # virtiofsd
-      # virt-manager
-      # distrobox
-    ];
+  environment.systemPackages = with pkgs; [
+    #for virtualisation virt-manager
+    # virtiofsd
+    virt-manager
+    # distrobox
+    kvmtool
+
+  ];
 }
