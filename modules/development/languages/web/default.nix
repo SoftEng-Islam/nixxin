@@ -51,15 +51,10 @@
 
   # Full minimal working PHP setup example
   services.nginx.enable = true;
-  services.nginx.virtualHosts."localhost" = {
-    root = "/var/www/wordpress"; # Or your WordPress files path
-    locations."~ .php$".extraConfig = ''
-      fastcgi_pass unix:${config.services.phpfpm.pools.www.socket};
-      fastcgi_index index.php;
-      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-      include fastcgi_params;
-    '';
-  };
+  services.phpfpm.pools."wordpress-localhost".phpOptions = ''
+    upload_max_filesize = 1G
+    post_max_size = 1G
+  '';
   services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
