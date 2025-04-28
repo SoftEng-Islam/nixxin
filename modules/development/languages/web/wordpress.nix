@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ inputs, config, lib, pkgs, ... }:
 
 let
   domain = "example.com";
@@ -46,6 +46,7 @@ let
   });
 
 in {
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   services = {
     nginx.virtualHosts.${domain} = {
       enableACME = true;
