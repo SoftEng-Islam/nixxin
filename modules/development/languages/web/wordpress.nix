@@ -46,10 +46,10 @@ let
   });
 
 in {
-  # imports = [ inputs.impermanence.nixosModules.impermanence ];
+  imports = [ inputs.impermanence.nixosModules.impermanence ];
   services = {
     nginx.virtualHosts.${domain} = {
-      enableACME = true;
+      # enableACME = true;
       forceSSL = true;
     };
 
@@ -66,6 +66,6 @@ in {
   # As this is a root on tmpfs system, we use the impermanence
   # NixOS module to persist WordPress state between reboots.
   # You can omit the next two lines if using a regular configuration.
-  # environment.persistence."/persist".directories =
-  #   [ "/var/lib/mysql" "/var/lib/wordpress" ];
+  environment.persistence."/persist".directories =
+    [ "/var/lib/mysql" "/var/lib/wordpress" ];
 }
