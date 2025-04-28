@@ -8,6 +8,7 @@ in {
       ensureDatabases = [ "wordpress" ];
       ensureUsers = [{
         name = "wordpress";
+        authenticationPlugin = "mysql_native_password";
         password = "1122";
         privileges = { "wordpress.*" = "ALL PRIVILEGES"; };
       }];
