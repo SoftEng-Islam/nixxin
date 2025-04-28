@@ -4,7 +4,7 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.security.enable) {
   security = {
     sudo.enable = true;
-
+    acme.acceptTerms = true;
     # during testing only 550K-650K of the tmpfs where used
     # wrapperDirSize = "10M";
 
