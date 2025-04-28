@@ -51,10 +51,28 @@
 
   # Full minimal working PHP setup example
   services.nginx.enable = true;
-  # services.phpfpm.pools."wordpress-localhost".phpOptions = ''
-  #   upload_max_filesize = 1G
-  #   post_max_size = 1G
-  # '';
+  services.phpfpm.pools.wordpress-localhost = {
+    user = "nginx";
+    group = "nginx";
+    settings = {
+      "listen.owner" = "nginx";
+      "listen.group" = "nginx";
+      "listen.mode" = "0660";
+    };
+    phpOptions = ''
+      upload_max_filesize = 1G
+      post_max_size = 1G
+      memory_limit = 512M
+      max_execution_time = 300
+    '';
+  };
+  services.wordpress.sites.localhost = {
+    database = "wordpress";
+    databaseUser = "wordpress";
+    databasePasswordFile = "/run/keys/wordpress-db-password";
+    adminEmail = "admin@example.com";
+    title = "My WordPress Site";
+  };
   # services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
