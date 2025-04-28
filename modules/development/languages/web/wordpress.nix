@@ -46,7 +46,7 @@ let
   });
 
 in {
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
+  # imports = [ inputs.impermanence.nixosModules.impermanence ];
   services = {
     nginx.virtualHosts.${domain} = {
       enableACME = true;
