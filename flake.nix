@@ -7,7 +7,7 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    inputs.impermanence.url = "github:nix-community/impermanence";
+    impermanence.url = "github:nix-community/impermanence";
 
     ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
     ignis.inputs.nixpkgs.follows = "nixpkgs";
