@@ -51,9 +51,12 @@
 
   # Full minimal working PHP setup example
   services.nginx.enable = true;
+
   services.phpfpm.pools.www = {
+    phpPackage = pkgs.php;
     user = "nginx";
     group = "nginx";
+    listen = "/run/phpfpm-www.sock";
     phpOptions = ''
       upload_max_filesize = 64M
       post_max_size = 128M
