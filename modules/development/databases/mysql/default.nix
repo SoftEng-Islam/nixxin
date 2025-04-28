@@ -5,6 +5,12 @@ in {
     services.mysql = {
       enable = true;
       package = pkgs.mariadb;
+      ensureDatabases = [ "wordpress" ];
+      ensureUsers = [{
+        name = "wordpress";
+        password = "1122";
+        privileges = { "wordpress.*" = "ALL PRIVILEGES"; };
+      }];
     };
     environment.systemPackages = with pkgs; [ mysql84 mariadb ];
   };
