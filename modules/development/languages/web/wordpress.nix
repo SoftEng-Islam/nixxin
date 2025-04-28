@@ -1,67 +1,27 @@
 { inputs, config, lib, pkgs, ... }:
 
-let
-  domain = "example.com";
-
-  # Auxiliary functions
-  fetchPackage = { name, version, hash, isTheme }:
-    pkgs.stdenv.mkDerivation rec {
-      inherit name version hash;
-      src = let type = if isTheme then "theme" else "plugin";
-      in pkgs.fetchzip {
-        inherit name version hash;
-        url = "https://downloads.wordpress.org/${type}/${name}.${version}.zip";
-      };
-      installPhase = "mkdir -p $out; cp -R * $out/";
-    };
-
-  fetchPlugin = { name, version, hash }:
-    (fetchPackage {
-      name = name;
-      version = version;
-      hash = hash;
-      isTheme = false;
-    });
-
-  fetchTheme = { name, version, hash }:
-    (fetchPackage {
-      name = name;
-      version = version;
-      hash = hash;
-      isTheme = true;
-    });
-
-  # Plugins
-  google-site-kit = (fetchPlugin {
-    name = "google-site-kit";
-    version = "1.103.0";
-    hash = "sha256-8QZ4XTCKVdIVtbTV7Ka4HVMiUGkBYkxsw8ctWDV8gxs=";
-  });
-
-  # Themes
-  astra = (fetchTheme {
-    name = "astra";
-    version = "4.1.5";
-    hash = "sha256-X3Jv2kn0FCCOPgrID0ZU8CuSjm/Ia/d+om/ShP5IBgA=";
-  });
-
+let domain = "example.com";
 in {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
-  services = {
-    nginx.virtualHosts.${domain} = {
-      # enableACME = true;
-      # forceSSL = true;
-    };
+  networking.firewall.allowedTCPPorts = [ 80 443 ];
 
-    wordpress = {
-      webserver = "nginx";
-      sites."${domain}" = {
-        plugins = { inherit google-site-kit; };
-        themes = { inherit astra; };
-        settings = { WP_DEFAULT_THEME = "astra"; };
-      };
-    };
+  services.httpd.enable = true;
+  services.httpd.adminAddr = "webmaster@example.org";
+  services.httpd.enablePHP = true; # oof... not a great idea in my opinion
+
+  services.httpd.virtualHosts."example.org" = {
+    documentRoot = "/var/www/example.org";
+    # want ssl + a let's encrypt certificate? add `forceSSL = true;` right here
   };
+
+  # services.mysql.enable = true;
+  # services.mysql.package = pkgs.mariadb;
+
+  # hacky way to create our directory structure and index page... don't actually use this
+  systemd.tmpfiles.rules = [
+    "d /var/www/example.org"
+    "f /var/www/example.org/index.php - - - - <?php phpinfo();"
+  ];
 
   # As this is a root on tmpfs system, we use the impermanence
   # NixOS module to persist WordPress state between reboots.
