@@ -49,10 +49,18 @@
     nginx
   ];
 
-  services.phpfpm.pools.www.phpOptions = ''
-    upload_max_filesize = 64M
-    post_max_size = 128M
-  '';
+  # Full minimal working PHP setup example
+  services.nginx.enable = true;
+  services.phpfpm.pools.www = {
+    user = "nginx";
+    group = "nginx";
+    phpOptions = ''
+      upload_max_filesize = 64M
+      post_max_size = 128M
+      memory_limit = 256M
+      max_execution_time = 300
+    '';
+  };
   services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
