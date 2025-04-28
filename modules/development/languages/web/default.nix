@@ -51,11 +51,11 @@
 
   # Full minimal working PHP setup example
   services.nginx.enable = true;
-  services.phpfpm.pools."wordpress-localhost".phpOptions = ''
-    upload_max_filesize = 1G
-    post_max_size = 1G
-  '';
-  services.wordpress.sites."localhost" = { };
+  # services.phpfpm.pools."wordpress-localhost".phpOptions = ''
+  #   upload_max_filesize = 1G
+  #   post_max_size = 1G
+  # '';
+  # services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
     # home.sessionVariables = { };
