@@ -1,5 +1,5 @@
 { settings, config, pkgs, ... }: {
-  imports = [ ./bun.nix ];
+  imports = [ ./bun.nix ./wordpress.nix ];
   environment.variables = {
     NODE_PATH = "${pkgs.nodejs_latest}/lib/node_modules";
 
@@ -50,22 +50,22 @@
   ];
 
   # Full minimal working PHP setup example
-  services.nginx.enable = true;
-  services.phpfpm.pools.wordpress-localhost = {
-    user = "nginx";
-    group = "nginx";
-    settings = {
-      "listen.owner" = "nginx";
-      "listen.group" = "nginx";
-      "listen.mode" = "0660";
-    };
-    phpOptions = ''
-      upload_max_filesize = 1G
-      post_max_size = 1G
-      memory_limit = 512M
-      max_execution_time = 300
-    '';
-  };
+  # services.nginx.enable = true;
+  # services.phpfpm.pools.wordpress-localhost = {
+  #   user = "nginx";
+  #   group = "nginx";
+  #   settings = {
+  #     "listen.owner" = "nginx";
+  #     "listen.group" = "nginx";
+  #     "listen.mode" = "0660";
+  #   };
+  #   phpOptions = ''
+  #     upload_max_filesize = 1G
+  #     post_max_size = 1G
+  #     memory_limit = 512M
+  #     max_execution_time = 300
+  #   '';
+  # };
   # services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
