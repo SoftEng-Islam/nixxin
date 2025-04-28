@@ -42,6 +42,11 @@
     # nodePackages_latest.uglify-js
     # nodePackages_latest.vue-cli
     # nodePackages_latest.vue-language-server
+
+    wordpress
+    php
+    mysql84
+    nginx
   ];
 
   home-manager.users.${settings.user.username} = {
