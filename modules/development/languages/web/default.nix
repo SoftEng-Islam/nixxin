@@ -51,17 +51,13 @@
 
   # Full minimal working PHP setup example
   services.nginx.enable = true;
-
-  services.phpfpm.pools.www = {
-    phpPackage = pkgs.php;
-    user = "nginx";
-    group = "nginx";
-    listen = "/run/phpfpm-www.sock";
-    phpOptions = ''
-      upload_max_filesize = 64M
-      post_max_size = 128M
-      memory_limit = 256M
-      max_execution_time = 300
+  services.nginx.virtualHosts."localhost" = {
+    root = "/var/www/wordpress"; # Or your WordPress files path
+    locations."~ .php$".extraConfig = ''
+      fastcgi_pass unix:${config.services.phpfpm.pools.www.socket};
+      fastcgi_index index.php;
+      fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include fastcgi_params;
     '';
   };
   services.wordpress.sites."localhost" = { };
