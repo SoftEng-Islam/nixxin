@@ -50,7 +50,7 @@ in {
   services = {
     nginx.virtualHosts.${domain} = {
       # enableACME = true;
-      forceSSL = true;
+      # forceSSL = true;
     };
 
     wordpress = {
