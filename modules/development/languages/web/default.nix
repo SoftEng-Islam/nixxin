@@ -49,6 +49,10 @@
     nginx
   ];
 
+  services.phpfpm.pools.www.phpOptions = ''
+    upload_max_filesize = 64M
+    post_max_size = 128M
+  '';
   services.wordpress.sites."localhost" = { };
 
   home-manager.users.${settings.user.username} = {
