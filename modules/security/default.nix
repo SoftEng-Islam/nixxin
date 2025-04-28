@@ -9,7 +9,7 @@ in mkIf (settings.modules.security.enable) {
     # wrapperDirSize = "10M";
 
     # don't ask for password for wheel group
-    sudo.wheelNeedsPassword = false;
+    sudo.wheelNeedsPassword = true;
 
     # show Password as stars in Terminals.
     sudo.extraConfig = ''
