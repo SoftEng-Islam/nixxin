@@ -7,11 +7,13 @@ in mkIf (settings.modules.virtualization.enable) {
   virtualisation = {
     spiceUSBRedirection.enable = true; # for virt-manager usb forwarding
     libvirtd = {
-      enable = false; # for qemu/kvm VMs in virt-manager
+      enable = true; # for qemu/kvm VMs in virt-manager
       allowedBridges = [ "nm-bridge" "virbr0" ];
-      qemu.runAsRoot = false;
+      qemu.runAsRoot = true;
     };
   };
+
+  programs.virt-manager.enable = true;
 
   # ----------------------------------------------
   # ---- System Packages
