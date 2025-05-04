@@ -1,6 +1,10 @@
 { inputs, config, lib, pkgs, ... }:
 
-let domain = "example.com";
+let
+  domain = "example.com";
+
+  # Setting custom php.ini configurations
+  _php = pkgs.php.buildEnv { extraConfig = "memory_limit = 2G"; };
 in {
   imports = [ inputs.impermanence.nixosModules.impermanence ];
   networking.firewall.allowedTCPPorts = [ 80 443 ];
@@ -29,5 +33,5 @@ in {
   environment.persistence."/persist".directories =
     [ "/var/lib/mysql" "/var/lib/wordpress" ];
 
-  environment.systemPackages = with pkgs; [ wordpress php mysql84 nginx ];
+  environment.systemPackages = with pkgs; [ wordpress _php mysql84 nginx ];
 }
