@@ -28,4 +28,6 @@ in {
   # You can omit the next two lines if using a regular configuration.
   environment.persistence."/persist".directories =
     [ "/var/lib/mysql" "/var/lib/wordpress" ];
+
+  environment.systemPackages = with pkgs; [ wordpress php mysql84 nginx ];
 }

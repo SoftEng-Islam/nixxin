@@ -42,11 +42,6 @@
     # nodePackages_latest.uglify-js
     # nodePackages_latest.vue-cli
     # nodePackages_latest.vue-language-server
-
-    wordpress
-    php
-    mysql84
-    nginx
   ];
 
   # Full minimal working PHP setup example
