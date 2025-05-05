@@ -9,6 +9,7 @@ in {
     ./ruby
     ./rust
     ./web
+    ./dart
   ];
 
   config = mkIf (settings.modules.development.languages.enable or false) {
