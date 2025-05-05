@@ -159,7 +159,7 @@
       scrcpy = true;
       waydroid = true;
       development = true;
-      android_studio = true;
+      android_studio = false;
     };
     audio = {
       enable = true;
