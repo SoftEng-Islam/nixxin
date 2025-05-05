@@ -649,7 +649,7 @@
         # - "microsoft-edge"
         # - "brave-browser"
         # - "google-chrome"
-        webBrowser = "microsoft-edge";
+        webBrowser = "google-chrome";
 
         # Default Images Viewer, Ex:
         # - "org.gnome.Loupe"
