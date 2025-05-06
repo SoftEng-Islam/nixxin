@@ -169,9 +169,9 @@ in {
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
-      "zswap.enabled=1"
-      "zswap.compressor=zstd"
-      "zswap.max_pool_percent=20"
+      #"zswap.enabled=1"
+      #"zswap.compressor=zstd"
+      #"zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
       # If you want full control over power settings, use:
@@ -220,10 +220,13 @@ in {
       "tsc=reliable"
 
       # Power Management
-      "workqueue.power_efficient=off"
-      "amd_iommu=on"
-      "iommu=pt"
-      "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      # "workqueue.power_efficient=off"
+      # "amd_iommu=on"
+      # "iommu=pt"
+      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
+
+      # Storage
+      "libata.force=noncq"
 
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.

@@ -9,9 +9,6 @@
 
     impermanence.url = "github:nix-community/impermanence";
 
-    ignis.url = "git+https://github.com/linkfrg/ignis?submodules=1";
-    ignis.inputs.nixpkgs.follows = "nixpkgs";
-
     # https://github.com/oxalica/rust-overlay
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
@@ -26,13 +23,6 @@
     # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
 
     # impurity.url = "github:outfoxxed/impurity.nix";
-
-    # A Material You Color Generation Tool
-    # matugen.url = "github:/InioX/Matugen";
-
-    # anytype.url = "github:/anyproto/anytype-ts";
-    # anytype.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

@@ -39,10 +39,8 @@
       # bind = $main, U, exec,
       # bind = $main, I, exec,
       bind = $main, O, togglesplit
-      bind = $main, P, exec, ignis toggle ignis_POWERMENU
 
       #=> Second Row:
-      # bind = $main, A, exec, ignis toggle ignis_LAUNCHER
       bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
       # bind = $main, S, exec,
       # bind = $main, D, exec,
@@ -191,20 +189,6 @@
       bindm = $main, mouse:272, movewindow # $main + `Left` Click
       bindm = $main, mouse:273, resizewindow # $main + `Right` Click
 
-      # --------------- #
-      # ---- ignis ---- #
-      # --------------- #
-      # bind = $main, F1, exec, ignis toggle ignis_LAUNCHER
-      # bind = $main, F2, exec, ignis toggle ignis_POWERMENU
-      # bind = $main, F3, exec, ignis toggle ignis_POWERMENU
-      #=> Restart Ignis
-      # bindr = $main Ctrl Alt, R, exec, hyprctl reload; killall ignis ydotool; ignis init &
-      #=> ignis Recording
-      # bind = $main I, 1, exec, ~/.config/ignis/scripts/recording.py start
-      # bind = $main I, 2, exec, ~/.config/ignis/scripts/recording.py continue
-      # bind = $main I, 3, exec, ~/.config/ignis/scripts/recording.py stop
-      # bind = $main I, 4, exec, ~/.config/ignis/scripts/recording.py pause
-
       # ---- Screen snip ---- #
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
       bind = $main SHIFT, S, exec, mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
@@ -223,13 +207,6 @@
 
       # ---- Color picker ---- #
       bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
-
-      # --------------------- #
-      # ---- Media binds ---- #
-      # --------------------- #
-      bind = ,XF86AudioRaiseVolume, exec, ${pkgs.pamixer}/bin/pamixer -i 5 && ignis open ignis_OSD
-      bind = ,XF86AudioLowerVolume, exec, ${pkgs.pamixer}/bin/pamixer -d 5 && ignis open ignis_OSD
-      bind = ,XF86AudioMute, exec, ${pkgs.pamixer}/bin/pamixer -t && ignis open ignis_OSD
     '';
   };
 }

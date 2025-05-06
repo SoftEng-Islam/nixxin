@@ -44,10 +44,6 @@
       layerrule = blur, shell:*
       layerrule = ignorealpha 0.6, shell:*
 
-      # ---- Ignis-Specific Layer Rules ---- #
-      layerrule = blur, ^(ignis_BAR.*)$
-      layerrule = noanim, ^(ignis_NOTIFICATION_POPUP.*|ignis_CONTROL_CENTER.*)$
-
       # ---- Blur Settings ---- #
       layerrule = blur, swaync-control-center  # Apply blur to swaync control center
       layerrule = blur, gtk-layer-shell        # Apply blur to GTK layer shell

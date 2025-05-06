@@ -198,7 +198,7 @@
       zoom = false;
     };
     computing = {
-      enable = true;
+      enable = false;
       default = "opencl"; # "pocl" OR "opencl"
     };
     dconf = { enable = true; };
@@ -274,7 +274,7 @@
       gnomeTextEditor = true;
     };
     emails = {
-      enable = true;
+      enable = false;
       # thunderbird = true;
     };
     env = { enable = true; };
@@ -283,7 +283,7 @@
       nautilus = true;
       thunar = false;
       nemo = false;
-      spacedrive = true;
+      spacedrive = false;
     };
     flags = { enable = false; };
     flatpak = { enable = false; };
@@ -337,9 +337,9 @@
       davinci = false;
       drawio = false;
       figmaLinux = false;
-      gimp = true;
+      gimp = false;
       inkscape = false;
-      lunacy = true;
+      lunacy = false;
       kolourpaint = false;
     };
     hacking = { enable = true; };
@@ -417,9 +417,7 @@
     networking = {
       enable = true;
       dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
-      ethernet = "eno1";
-      wlanInterface = "wlp0s19f2u5";
-      nameservers = [ "1.1.1.1" "8.8.8.8" "8.8.4.4" ]; # Google's DNS
+      nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
     };
     notifications = { enable = true; };
@@ -434,8 +432,8 @@
       libreoffice = true;
     };
     overclock = {
-      corectrl = { enable = true; };
-      lactd.enable = true;
+      corectrl = { enable = false; };
+      lactd.enable = false;
     };
     power = { enable = true; };
     printing = { enable = false; };
@@ -482,7 +480,7 @@
     ssh = { enable = false; };
     storage = {
       enable = true;
-      fstrim.enable = false;
+      fstrim.enable = true;
       beesd = { enable = false; };
     };
     styles = {
@@ -540,7 +538,7 @@
           mode = "UEFI"; # UEFI OR BIOS
           manager = {
             # Select The boot manager to enable
-            name = "SYSTEMD"; # GRUB or SYSTEMD
+            name = "GRUB"; # GRUB or SYSTEMD
 
             # device identifier for grub; only used for legacy (bios) boot mode
             # List all the devices with their by-id symlinks

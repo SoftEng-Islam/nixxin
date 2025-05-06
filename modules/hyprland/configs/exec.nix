@@ -42,9 +42,6 @@ let
     # ---- notification daemon ---- #
     # dunst &
 
-    # ---- Start IGNIS ---- #
-    # ignis init &
-
     # ---- Make nautilus Run in Background ---- #
     # nautilus --no-desktop &
 

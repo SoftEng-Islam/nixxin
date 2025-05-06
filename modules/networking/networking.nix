@@ -29,13 +29,6 @@
     };
     # interfaces.${wifiInterface}.useDHCP = true;
     # useNetworkd = true;
-
-    # This will help me to share The Wifi Internet connection through The PC to my Old Router that I will use as an Access Point.
-    # firewall.extraCommands = ''
-    #   iptables -t nat -A POSTROUTING -o ${settings.networks.wlanInterface} -j MASQUERADE
-    #   iptables -A FORWARD -i ${settings.networks.wlanInterface} -o ${settings.networks.ethernet} -m state --state RELATED,ESTABLISHED -j ACCEPT
-    #   iptables -A FORWARD -i ${settings.networks.ethernet} -o ${settings.networks.wlanInterface} -j ACCEPT
-    # '';
     nameservers = settings.modules.networking.nameservers;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
