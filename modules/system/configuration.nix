@@ -123,7 +123,7 @@ in {
     ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
-      rtl8188eus-aircrack
+    #  rtl8188eus-aircrack
       v4l2loopback
       # zenpower
     ];
@@ -369,7 +369,6 @@ in {
         vulkan-loader
 
         mesa
-        mesa.drivers
         mesa.opencl
         mesa-demos # Provides glxinfo, glxgears
         libglvnd
@@ -545,7 +544,7 @@ in {
     # ---- AMD Stuff
     # ------------------------------------------------
     # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    #    amf # AMD's closed source Advanced Media Framework (AMF) driver
+    # amf # AMD's closed source Advanced Media Framework (AMF) driver
     amd-blis # BLAS-compatible library optimized for AMD CPUs
     amd-ucodegen # Tool to generate AMD microcode files
     amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux

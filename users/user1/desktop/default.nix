@@ -251,7 +251,7 @@
       };
       apps = {
         enable = true;
-        beekeeper = true;
+        beekeeper = false; # error
         dbeaver = true;
         sqlitebrowser = true;
         bruno = true;
@@ -425,7 +425,6 @@
       enable = true;
       siyuan = true;
       evince = true;
-      okular = true;
       papers = true;
       zathura = true;
       obsidian = true;

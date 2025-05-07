@@ -6,7 +6,6 @@ let
 in mkIf (settings.modules.system.radeon or false) {
   environment.systemPackages = with pkgs; [
     mesa
-    mesa.drivers
     libva
     libva-utils
     vaapiVdpau

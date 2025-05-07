@@ -61,7 +61,7 @@ in {
     python-qt
 
     python312Full # High-level dynamically-typed programming language
-    openssl_3_3
+   
     autoconf
     automake
     bzip2 # High-quality data compression program

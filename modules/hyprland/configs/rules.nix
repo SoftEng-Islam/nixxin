@@ -5,9 +5,7 @@
       # windowrule = noblur,.*
       # windowrule = opacity 0.89 override 0.89 override, .* # Applies transparency to EVERY WINDOW
 
-      windowrule = float, ^(blueberry.py|guifetch|steam|pavucontrol)$
-      windowrule = pin, ^(pavucontrol)$
-      windowrule = size 900 500, ^(pavucontrol)$
+
       windowrulev2 = float, class:^(Waydroid|waydroid)$
       windowrulev2 = tile, class:(dev.warp.Warp)
 
@@ -32,7 +30,6 @@
       windowrulev2 = pin, title:^(Picture(-| )in(-| )[Pp]icture)$
 
       # ---- Tearing Fix ---- #
-      windowrule = immediate, .*\.exe
       windowrulev2 = immediate, class:(steam_app)
 
       # ---- No shadow for tiled windows ---- #

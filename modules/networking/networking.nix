@@ -97,7 +97,7 @@
     #    ];
   };
   environment.systemPackages = with pkgs; [
-    linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
+  #  linuxPackages.rtl8188eus-aircrack # RealTek RTL8188eus WiFi driver with monitor mode & frame injection support
     wpa_supplicant
     wpa_supplicant_gui
     sipcalc # Advanced console ip subnet calculator

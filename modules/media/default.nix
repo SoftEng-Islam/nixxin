@@ -11,7 +11,7 @@ let
     # ---- jellyfin ---- #
     (lib.optional settings.modules.media.jellyfin jellyfin-media-player)
     # ---- kdenlive ---- #
-    (lib.optional settings.modules.media.kdenlive kdenlive)
+    (lib.optional settings.modules.media.kdenlive kdePackages.kdenlive)
     # ---- shotcut ---- #
     (lib.optional settings.modules.media.shotcut shotcut)
   ];

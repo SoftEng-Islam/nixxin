@@ -131,7 +131,6 @@ in lib.mkIf (settings.modules.media.mpv) {
     libvdpau-va-gl
     lua
     mesa
-    mesa.drivers # Ensures all Mesa drivers are available
     mpv
     mpv-shim-default-shaders
     nasm

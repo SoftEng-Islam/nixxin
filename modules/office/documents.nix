@@ -10,8 +10,6 @@ let
     (lib.optional settings.modules.office.zathura zathura)
     # GNOME's document viewer
     (lib.optional settings.modules.office.evince evince)
-    # KDE document viewer
-    (lib.optional settings.modules.office.okular okular)
     # GNOME's document viewer
     (lib.optional settings.modules.office.papers papers)
   ];
