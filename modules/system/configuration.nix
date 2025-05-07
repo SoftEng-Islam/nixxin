@@ -123,8 +123,7 @@ in {
     ];
     blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
     extraModulePackages = with config.boot.kernelPackages; [
-      #rtl8188eus-aircrack
-      linuxPackages_zen.rtl8188eus-aircrack
+      rtl8188eus-aircrack
       v4l2loopback
       # zenpower
     ];
