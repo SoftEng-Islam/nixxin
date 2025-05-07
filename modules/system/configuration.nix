@@ -121,12 +121,12 @@ in {
       "zenpower"
       "v4l2loopback"
     ];
-    blacklistedKernelModules = [ "k10temp" "rtl8812au" "rtl8xxxu" "r8188eu" ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      rtl8188eus-aircrack
-      v4l2loopback
-      # zenpower
-    ];
+    blacklistedKernelModules = [ "k10temp" ];
+    extraModulePackages = with config.boot.kernelPackages;
+      [
+        v4l2loopback
+        # zenpower
+      ];
 
     extraModprobeConfig = ''
       options binder_linux devices=binder,hwbinder,vndbinder
