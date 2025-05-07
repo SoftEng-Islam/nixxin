@@ -25,8 +25,8 @@ in {
   config = mkIf (settings.modules.development.enable) {
     environment.systemPackages = with pkgs;
       [
-        devenv
-        direnv
+        devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
+        direnv # Shell extension that manages your environment
         bintools # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
         at-spi2-atk # Assistive Technology Service Provider Interface protocol definitions and daemon for D-Bus
         atkmm # C++ wrappers for ATK accessibility toolkit
@@ -35,10 +35,12 @@ in {
         cairomm # C++ bindings for the Cairo vector graphics library
         gdk-pixbuf # A library for image loading and manipulation
         glib # C library of programming buildings blocks
-        glibc
+        glibc # GNU C Library
         gobject-introspection # A middleware layer between C libraries and language bindings
-        gtksourceviewmm
+        gtksourceviewmm # C++ wrapper for gtksourceview
         harfbuzz # An OpenType text shaping engine
+        nginx # Reverse proxy and lightweight webserver
+        caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
       ] ++ lib.flatten _pkgs;
   };
 }
