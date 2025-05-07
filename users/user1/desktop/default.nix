@@ -441,10 +441,9 @@
       enable = true;
       screen = {
         enable = true;
-        blue = false;
-        gpu_recorder = false;
-        obs = false;
-        wf_recorder = false;
+        gpu_recorder = true;
+        obs = true;
+        wf_recorder = true;
       };
       sound.enable = false;
     };
