@@ -4,12 +4,11 @@ in {
   # Conditionally import all modules if `enable = true`
   imports = optionals (settings.modules.development.languages.enable or false) [
     ./clang
+    ./dart
     ./go
     ./python
     ./ruby
     ./rust
-    ./web
-    ./dart
   ];
 
   config = mkIf (settings.modules.development.languages.enable or false) {

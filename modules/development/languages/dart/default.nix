@@ -1,3 +1,1 @@
-{ settings, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ dart flutter ];
-}
+{ settings, pkgs, ... }: { environment.systemPackages = with pkgs; [ dart ]; }

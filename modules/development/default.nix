@@ -15,9 +15,11 @@ let
   ];
 in {
   imports = optionals (settings.modules.development.enable or false) [
+    ./android
     ./databases
     ./languages
     ./tools
+    ./web
   ];
 
   config = mkIf (settings.modules.development.enable) {

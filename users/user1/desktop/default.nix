@@ -158,7 +158,6 @@
       enable = true;
       scrcpy = true;
       waydroid = true;
-      development = true;
       android_studio = false;
     };
     audio = {
@@ -224,6 +223,7 @@
     };
     development = {
       enable = true;
+      android = { enable = true; };
       databases = {
         enable = true;
         monogodb = { enable = true; };
@@ -239,8 +239,8 @@
         python = true;
         ruby = true;
         rust = true;
-        web = true;
       };
+      web = { enable = true; };
       tools = {
         enable = true;
         devdocs.enable = false;

@@ -2,7 +2,6 @@
 let
   inherit (lib) mkIf;
   _android = [
-    (lib.optional settings.modules.android.development ./development.nix)
     (lib.optional settings.modules.android.android_studio ./android-studio.nix)
     (lib.optional settings.modules.android.scrcpy ./scrcpy.nix)
     (lib.optional settings.modules.android.waydroid ./waydroid.nix)
