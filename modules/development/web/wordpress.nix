@@ -1,7 +1,7 @@
 { config, pkgs, lib, ... }:
 let
   # php 8.1 is the easiest option - if you need  php 7.x then we can discuss https://github.com/fossar/nix-phps/ as an option
-  php' = pkgs.php81.buildEnv {
+  php' = pkgs.php.buildEnv {
     # any customizations to your `php.ini` go here
     extraConfig = ''
       memory_limit = 1024M
@@ -42,11 +42,11 @@ in {
     };
   };
 
-  services.caddy.extraConfig = ''
-    {
-      admin localhost:2020
-    }
-  '';
+  # services.caddy.extraConfig = ''
+  #   {
+  #     admin localhost:2020
+  #   }
+  # '';
   services.caddy.enable = true;
   services.caddy.virtualHosts."http://example.org:80".extraConfig = ''
     root * /var/www/example.org
@@ -56,4 +56,24 @@ in {
 
   # automatically create a directory for each site you will work on with appropriate ownership+permissions
   systemd.tmpfiles.rules = [ "d /var/www/example.org 0755 softeng users" ];
+
+  environment.systemPackages = with pkgs; [
+    devenv
+    direnv
+    php83Packages.php-codesniffer
+    (php.buildEnv {
+      extensions =
+        ({ enabled, all }: enabled ++ (with all; [ xdebug imagick ]));
+      extraConfig = ''
+        xdebug.mode = debug
+        xdebug.start_with_request = yes
+        xdebug.idekey = gdbp
+      '';
+    })
+    spacevim
+    wget
+    wmutils-core
+    wp-cli
+    caddy
+  ];
 }
