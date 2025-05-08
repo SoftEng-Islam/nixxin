@@ -89,12 +89,12 @@ in {
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      # kernelModules = [ "amdgpu" ];
+      kernelModules = [ "amdgpu" ];
 
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
-        # "amdgpu"
+        "amdgpu"
         "cryptd"
         "ehci_pci"
         "ohci_pci"
@@ -109,8 +109,9 @@ in {
       ];
     };
     kernelModules = [
-      "radeon"
-      # "amd-pstate"
+      # "radeon"
+      # "amdgpu"
+      "amd-pstate"
       "bfq"
       "binder_linux"
       "coretemp"
@@ -121,7 +122,7 @@ in {
       "zenpower"
       "v4l2loopback"
     ];
-    blacklistedKernelModules = [ "amdgpu" "k10temp" ];
+    blacklistedKernelModules = [ "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
         v4l2loopback
@@ -146,15 +147,14 @@ in {
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
       # ''acpi_osi="Windows 2020"''
-
       "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
 
-      # "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      # "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      # "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
+      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
+      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
+      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
 
       "elevator=bfq" # Optimized disk performance for desktops
 
@@ -163,8 +163,8 @@ in {
       "mitigations=off"
       "idle=nomwait"
       "processor.max_cstate=1"
-      # "amd_pstate=active" # Enables AMD's new power scaling
-      # "amd_pstate.shared_mem=1"
+      "amd_pstate=active" # Enables AMD's new power scaling
+      "amd_pstate.shared_mem=1"
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
@@ -174,33 +174,33 @@ in {
 
       # AMD GPU optimizations
       # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
-      "amdgpu.si_support=0"
+      "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
+      "amdgpu.si_support=1"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=1"
-      "amdgpu.cik_support=0"
+      "radeon.cik_support=0"
+      "amdgpu.cik_support=1"
 
       # If you want full control over power settings, use:
-      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
       # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      # "amdgpu.dcfeaturemask=0x8"
-      # "amdgpu.freesync_video=1"
-      # "amdgpu.gpu_recovery=1"
+      "amdgpu.dcfeaturemask=0x8"
+      "amdgpu.freesync_video=1"
+      "amdgpu.gpu_recovery=1"
 
-      # "amdgpu.sg_display=0" # Fixes display-related ROCm issues
-      # "amdgpu.noretry=0" # Improve memory handling
-      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      # "amdgpu.dpm=1"
-      # "amdgpu.deep_color=1"
-      # "amdgpu.vramlimit=4096"
-      # "amdgpu.gttsize=4096"
+      "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+      "amdgpu.noretry=0" # Improve memory handling
+      "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+      "amdgpu.dpm=1"
+      "amdgpu.deep_color=1"
+      "amdgpu.vramlimit=4096"
+      "amdgpu.gttsize=4096"
 
       # # increases the timeout of GFX jobs
-      #"amdgpu.lockup_timeout=5000"
+      "amdgpu.lockup_timeout=5000"
 
       # Disables HDMI/DisplayPort audio output on AMD GPUs.
       # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
@@ -328,11 +328,11 @@ in {
     enableRedistributableFirmware = true;
 
     amdgpu = {
-      initrd.enable = false;
-      opencl.enable = false;
-      legacySupport.enable = false;
+      initrd.enable = true;
+      opencl.enable = true;
+      legacySupport.enable = true;
       amdvlk = {
-        enable = false;
+        enable = true;
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
@@ -392,7 +392,7 @@ in {
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = [ "radeon" "amdgpu" "modesetting" ];
+  services.xserver.videoDrivers = [ "amdgpu" "radeon" "modesetting" ];
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;

@@ -120,7 +120,7 @@
 
     # GPU Information
     gpu = {
-      vendor = "amd"; # amd, intel, or nvidia
+      vendor = "amd"; # amd, or radeon, intel, or nvidia
       model = "Radeon RX 6700 XT"; # Example model
       bus = "pcie"; # pcie, agp, etc.
       vram = "12GB"; # Video RAM
@@ -140,6 +140,8 @@
       [ "nvidia" ] # Default driver for NVIDIA GPUs
     else if hardware.gpu.vendor == "intel" then
       [ "modesetting" ] # Default driver for Intel GPUs
+    else if hardware.gpu.vendor == "radeon" then
+      [ "radeon" ] # Default driver for Intel GPUs
     else
       [ "modesetting" ]; # Fallback driver
   };
