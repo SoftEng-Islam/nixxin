@@ -28,7 +28,7 @@
     hostName = "nixos"; # Hostname
     profile = "desktop"; # select a profile defined from my profiles directory
     architecture = "x86_64-linux"; # Replace with your system architecture
-    stateVersion = "24.05";
+    stateVersion = "24.11";
     upgrade = {
       enable = false;
       allowReboot = true;
