@@ -20,22 +20,22 @@ in {
   services.udisks2.enable = true;
   services.gvfs.enable = true;
 
-  systemd.user.services.nautilus = {
-    description = "Keep Nautilus Running in Background";
-    after = [ "graphical-session.target" ];
-    wantedBy = [ "default.target" ];
-    serviceConfig = {
-      Type = "simple";
-      ExecStart = "${pkgs.nautilus}/bin/nautilus --no-default-window";
-      Restart = "always"; # Restart Nautilus if it crashes
-      Environment = [
-        "XDG_CURRENT_DESKTOP=Hyprland"
-        "XDG_SESSION_TYPE=wayland"
-        "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
-        "DISPLAY=:0"
-      ];
-    };
-  };
+  # systemd.user.services.nautilus = {
+  #   description = "Keep Nautilus Running in Background";
+  #   after = [ "graphical-session.target" ];
+  #   wantedBy = [ "default.target" ];
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.nautilus}/bin/nautilus --no-default-window";
+  #     Restart = "always"; # Restart Nautilus if it crashes
+  #     Environment = [
+  #       "XDG_CURRENT_DESKTOP=Hyprland"
+  #       "XDG_SESSION_TYPE=wayland"
+  #       "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
+  #       "DISPLAY=:0"
+  #     ];
+  #   };
+  # };
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {

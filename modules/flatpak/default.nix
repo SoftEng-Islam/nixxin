@@ -38,5 +38,4 @@ in mkIf (settings.modules.flatpak.enable or false) {
   #     cache-dir=/var/lib/flatpak/cache
   #   '';
   # };
-
 }
