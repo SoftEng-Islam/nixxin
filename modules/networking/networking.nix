@@ -23,10 +23,11 @@
     dhcpcd.enable = false;
     useNetworkd = false;
     firewall = {
-      enable = false;
-      allowedTCPPorts = [ 53 ];
+      enable = true;
+      allowedTCPPorts = [ 53 80 443 8080 ];
       allowedUDPPorts = [ 53 67 ];
     };
+
     # interfaces.${wifiInterface}.useDHCP = true;
     # useNetworkd = true;
     nameservers = settings.modules.networking.nameservers;
