@@ -48,9 +48,11 @@ in {
   };
 
   # ---- Installation ---- #
-  # After you have downloaded both system and vendor image, extract them.
-  # Now move both vendor.img and system.img to `/etc/waydroid-extra/images/`
-  # Lastly, in your terminal enter this command `sudo waydroid init -f`
+  # 1- After you have downloaded both "system" and "vendor" image, extract them.
+  # 2- Now move both "vendor.img" and "system.img" to `/etc/waydroid-extra/images/`
+  # -- sudo mkdir -p /etc/waydroid-extra/images/
+  # -- sudo mv system.img vendor.img /etc/waydroid-extra/images/
+  # 3- Lastly, in your terminal enter this command `sudo waydroid init -f`
   # https://sourceforge.net/projects/waydroid/files/images/
   # aria2c https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/lineage-18.1-20250201-MAINLINE-waydroid_x86_64-vendor.zip/download
   # aria2c https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-18.1-20250201-GAPPS-waydroid_x86_64-system.zip/download
