@@ -1,37 +1,55 @@
-{ inputs, config, lib, pkgs, ... }:
-
+{ config, pkgs, lib, ... }:
 let
-  domain = "example.com";
-
-  # Setting custom php.ini configurations
-  _php = pkgs.php.buildEnv { extraConfig = "memory_limit = 2G"; };
+  # php 8.1 is the easiest option - if you need  php 7.x then we can discuss https://github.com/fossar/nix-phps/ as an option
+  php' = pkgs.php81.buildEnv {
+    # any customizations to your `php.ini` go here
+    extraConfig = ''
+      memory_limit = 1024M
+    '';
+  };
 in {
-  imports = [ inputs.impermanence.nixosModules.impermanence ];
-  networking.firewall.allowedTCPPorts = [ 80 443 ];
-
-  services.httpd.enable = true;
-  services.httpd.adminAddr = "webmaster@example.org";
-  services.httpd.enablePHP = true; # oof... not a great idea in my opinion
-
-  services.httpd.virtualHosts."example.org" = {
-    documentRoot = "/var/www/example.org";
-    # want ssl + a let's encrypt certificate? add `forceSSL = true;` right here
+  networking.hosts = {
+    # convenient if you're going to work on multiple sites
+    "127.0.0.1" = [ "example.org" ];
   };
 
-  # services.mysql.enable = true;
-  # services.mysql.package = pkgs.mariadb;
-
-  # hacky way to create our directory structure and index page... don't actually use this
-  systemd.tmpfiles.rules = [
-    "d /var/www/example.org"
-    "f /var/www/example.org/index.php - - - - <?php phpinfo();"
+  services.mysql.enable = true;
+  services.mysql.package = pkgs.mariadb;
+  services.mysql.ensureDatabases = [
+    # list a database for every site you want and they will be automatically created
+    "example"
+  ];
+  services.mysql.ensureUsers = [
+    # NOTE: it is important that `name` matches your `$USER` name, this allows us to avoid password authentication
+    {
+      name = "softeng";
+      ensurePermissions = { "*.*" = "ALL PRIVILEGES"; };
+    }
   ];
 
-  # As this is a root on tmpfs system, we use the impermanence
-  # NixOS module to persist WordPress state between reboots.
-  # You can omit the next two lines if using a regular configuration.
-  environment.persistence."/persist".directories =
-    [ "/var/lib/mysql" "/var/lib/wordpress" ];
+  services.phpfpm.pools."example.org" = {
+    user = "softeng";
+    group = "users";
+    phpPackage = php';
+    settings = {
+      "listen.owner" = config.services.caddy.user;
+      "listen.group" = config.services.caddy.group;
+      "pm" = "dynamic";
+      "pm.max_children" = 5;
+      "pm.start_servers" = 2;
+      "pm.min_spare_servers" = 1;
+      "pm.max_spare_servers" = 5;
+    };
+  };
 
-  environment.systemPackages = with pkgs; [ wordpress _php mysql84 nginx ];
+  services.caddy.enable = true;
+  # we'll keep it simple and stick to plain http for now, though caddy supports https relatively easily
+  services.caddy.virtualHosts."http://example.org:80".extraConfig = ''
+    root * /var/www/example.org
+    php_fastcgi unix/${config.services.phpfpm.pools."example.org".socket}
+    file_server
+  '';
+
+  # automatically create a directory for each site you will work on with appropriate ownership+permissions
+  systemd.tmpfiles.rules = [ "d /var/www/example.org 0755 softeng users" ];
 }
