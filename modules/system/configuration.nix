@@ -89,12 +89,12 @@ in {
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [ "amdgpu" ];
+      # kernelModules = [ "amdgpu" ];
 
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
-        "amdgpu"
+        # "amdgpu"
         "cryptd"
         "ehci_pci"
         "ohci_pci"
@@ -110,7 +110,7 @@ in {
     };
     kernelModules = [
       "radeon"
-      "amd-pstate"
+      # "amd-pstate"
       "bfq"
       "binder_linux"
       "coretemp"
@@ -121,7 +121,7 @@ in {
       "zenpower"
       "v4l2loopback"
     ];
-    blacklistedKernelModules = [ "k10temp" ];
+    blacklistedKernelModules = [ "amdgpu" "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
         v4l2loopback
