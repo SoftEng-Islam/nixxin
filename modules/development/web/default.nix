@@ -1,7 +1,7 @@
 { settings, config, pkgs, ... }: {
   imports = [
     ./bun.nix
-    ./php.nix
+    # ./php.nix
     # ./wordpress.nix
   ];
   environment.variables = {

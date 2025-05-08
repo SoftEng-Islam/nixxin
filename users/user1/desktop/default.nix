@@ -230,7 +230,7 @@
         enable = true;
         monogodb = { enable = true; };
         postgresql = { enable = true; };
-        mysql = { enable = true; };
+        mysql = { enable = false; };
         sql = { enable = true; };
       };
       languages = {
