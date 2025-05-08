@@ -173,17 +173,6 @@ in {
       #"zswap.max_pool_percent=20"
 
       # AMD GPU optimizations
-      # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
-      # If you have stability issues (freezes, black screens, crashes), try:
-      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
-      # Check If It’s Applied:
-      # cat /sys/module/amdgpu/parameters/ppfeaturemask
-
-      "amdgpu.dcfeaturemask=0x8"
-      "amdgpu.freesync_video=1"
-      "amdgpu.gpu_recovery=1"
-
       # for Southern Islands (SI i.e. GCN 1) cards
       "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
       "amdgpu.si_support=0"
@@ -192,15 +181,30 @@ in {
       "radeon.cik_support=1"
       "amdgpu.cik_support=0"
 
-      "amdgpu.sg_display=0" # Fixes display-related ROCm issues
-      "amdgpu.noretry=0" # Improve memory handling
-      "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      "amdgpu.dpm=1"
-      "amdgpu.deep_color=1"
-      "amdgpu.vramlimit=4096"
-      "amdgpu.gttsize=4096"
+      # If you want full control over power settings, use:
+      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # If you have stability issues (freezes, black screens, crashes), try:
+      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      # Check If It’s Applied:
+      # cat /sys/module/amdgpu/parameters/ppfeaturemask
+      # "amdgpu.dcfeaturemask=0x8"
+      # "amdgpu.freesync_video=1"
+      # "amdgpu.gpu_recovery=1"
+
+      # "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+      # "amdgpu.noretry=0" # Improve memory handling
+      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+      # "amdgpu.dpm=1"
+      # "amdgpu.deep_color=1"
+      # "amdgpu.vramlimit=4096"
+      # "amdgpu.gttsize=4096"
+
       # # increases the timeout of GFX jobs
-      "amdgpu.lockup_timeout=5000"
+      #"amdgpu.lockup_timeout=5000"
+
+      # Disables HDMI/DisplayPort audio output on AMD GPUs.
+      # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
+      # "amdgpu.audio=0"
 
       # "amdgpu.runpm=0"
       # "amdgpu.vm_size=8"
@@ -213,17 +217,17 @@ in {
       # "pci=realloc"
 
       # System Performance
-      "preempt=voluntary"
-      "preempt=full"
+      "preempt=voluntary" # or full
       "transparent_hugepage=never"
       "clocksource=tsc"
       "tsc=reliable"
 
       # Power Management
-      # "workqueue.power_efficient=off"
-      # "amd_iommu=on"
-      # "iommu=pt"
-      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      "workqueue.power_efficient=off" # General power responsiveness
+      "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      # These control IOMMU (Input-Output Memory Management Unit), used for device isolation and passthrough in virtualization.
+      "amd_iommu=on"
+      "iommu=pt"
 
       # Storage
       "libata.force=noncq"
@@ -231,10 +235,6 @@ in {
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
-
-      # Disables HDMI/DisplayPort audio output on AMD GPUs.
-      # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-      "amdgpu.audio=0"
 
       # Prevents audio crackling or delay issues by keeping the sound card active.
       # If set to 1, the sound card powers down after a few seconds of inactivity.
@@ -687,5 +687,7 @@ in {
 
     lshw # Provide detailed information on the hardware configuration of the machine
     lshw-gui
+
+    libglvnd
   ];
 }
