@@ -61,6 +61,9 @@
         "CLUTTER_BACKEND,wayland"
         # "AQ_DRM_DEVICES,/dev/dri/card2:/dev/dri/card1" # CHANGEME: Related to the GPU
 
+        "__GL_ALLOW_SOFTWARE,1"
+        "MOZ_DISABLE_RDD_SANDBOX,1"
+
         # --------- NVIDIA --------- #
         # This is from Hyprland Wiki. Below will be activated nvidia gpu detected
         # See hyprland wiki https://wiki.hyprland.org/Nvidia/#environment-variables
