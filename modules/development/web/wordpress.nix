@@ -13,8 +13,8 @@ in {
     "127.0.0.1" = [ "example.org" ];
   };
 
-  services.mysql.enable = true;
-  services.mysql.package = pkgs.mariadb;
+  # services.mysql.enable = true;
+  # services.mysql.package = pkgs.mariadb;
   services.mysql.ensureDatabases = [
     # list a database for every site you want and they will be automatically created
     "example"
