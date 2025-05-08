@@ -1,5 +1,8 @@
 { settings, config, pkgs, ... }: {
-  imports = [ ./bun.nix ./wordpress.nix ];
+  imports = [
+    ./bun.nix
+    # ./wordpress.nix
+  ];
   environment.variables = {
     NODE_PATH = "${pkgs.nodejs_latest}/lib/node_modules";
 
