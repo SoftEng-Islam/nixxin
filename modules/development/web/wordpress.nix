@@ -43,6 +43,12 @@ in {
   };
 
   services.caddy.enable = true;
+  services.caddy.extraConfig = ''
+    {
+      admin localhost:2020
+    }
+  '';
+
   # we'll keep it simple and stick to plain http for now, though caddy supports https relatively easily
   services.caddy.virtualHosts."http://example.org:80".extraConfig = ''
     root * /var/www/example.org
