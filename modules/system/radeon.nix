@@ -6,6 +6,9 @@ let
 in mkIf (settings.modules.system.radeon or false) {
   environment.systemPackages = with pkgs; [
     mesa
+    mesa_glu
+    mesa_i686
+    mesa-gl-headers
     libva
     libva-utils
     vaapiVdpau

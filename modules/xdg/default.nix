@@ -68,6 +68,8 @@ in mkIf (settings.modules.xdg.enable) {
       "${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}"
       "/home/${settings.user.username}/.local/share:/usr/local/share:/usr/share"
       "/run/current-system/sw/share"
+      "/var/lib/flatpak/exports/share"
+      "$HOME/.local/share/flatpak/exports/share"
     ];
   };
   xdg = {

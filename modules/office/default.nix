@@ -11,7 +11,6 @@ let
             --add-flags "--wayland-text-input-version=3"
         '';
       })))
-
     # Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync
     (optionals settings.modules.office.siyuan pkgs.siyuan)
   ];

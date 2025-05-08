@@ -288,7 +288,7 @@
       spacedrive = false;
     };
     flags = { enable = false; };
-    flatpak = { enable = false; };
+    flatpak = { enable = true; };
     fonts = {
       enable = true;
       main = {
@@ -429,11 +429,11 @@
       evince = true;
       papers = true;
       zathura = true;
-      obsidian = true;
+      obsidian = false; # ERROR: GPU DRIVERS
       libreoffice = true;
     };
     overclock = {
-      corectrl = { enable = false; };
+      corectrl.enable = false;
       lactd.enable = false;
     };
     power = { enable = true; };
