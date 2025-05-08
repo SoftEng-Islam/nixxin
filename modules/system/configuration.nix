@@ -140,7 +140,6 @@ in {
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
-      "preempt=full"
       "ibt=off"
       "psi=1"
 
@@ -164,8 +163,8 @@ in {
       "mitigations=off"
       "idle=nomwait"
       "processor.max_cstate=1"
-      "amd_pstate=active" # Enables AMD's new power scaling
-      "amd_pstate.shared_mem=1"
+      # "amd_pstate=active" # Enables AMD's new power scaling
+      # "amd_pstate.shared_mem=1"
       "clearcpuid=rdrand"
 
       # ---- Swap ---- #
@@ -215,6 +214,7 @@ in {
 
       # System Performance
       "preempt=voluntary"
+      "preempt=full"
       "transparent_hugepage=never"
       "clocksource=tsc"
       "tsc=reliable"
@@ -684,5 +684,8 @@ in {
 
     # Radeon open compute thunk interface
     # rocmPackages.rocm-thunk
+
+    lshw # Provide detailed information on the hardware configuration of the machine
+    lshw-gui
   ];
 }
