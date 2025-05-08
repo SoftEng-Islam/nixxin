@@ -42,12 +42,12 @@ in {
     };
   };
 
-  services.caddy.enable = true;
   services.caddy.extraConfig = ''
     {
       admin localhost:2020
     }
   '';
+  services.caddy.enable = true;
   services.caddy.virtualHosts."http://example.org:80".extraConfig = ''
     root * /var/www/example.org
     php_fastcgi unix/${config.services.phpfpm.pools."example.org".socket}
