@@ -47,12 +47,11 @@ in {
     {
       admin localhost:2020
     }
-
-    http://example.org:80 {
-      root * /var/www/example.org
-      php_fastcgi unix/${config.services.phpfpm.pools."example.org".socket}
-      file_server
-    }
+  '';
+  services.caddy.virtualHosts."http://example.org:80".extraConfig = ''
+    root * /var/www/example.org
+    php_fastcgi unix/${config.services.phpfpm.pools."example.org".socket}
+    file_server
   '';
 
   # automatically create a directory for each site you will work on with appropriate ownership+permissions
