@@ -328,11 +328,11 @@ in {
     enableRedistributableFirmware = true;
 
     amdgpu = {
-      initrd.enable = true;
-      opencl.enable = true;
-      legacySupport.enable = true;
+      initrd.enable = false;
+      opencl.enable = false;
+      legacySupport.enable = false;
       amdvlk = {
-        enable = true;
+        enable = false;
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
@@ -349,57 +349,42 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # OpenCL ICD definition for AMD GPUs using the ROCm stack
-        # rocmPackages.clr.icd
-        # OpenCL runtime for AMD GPUs, part of the ROCm stack
-        # rocmPackages.clr
-
-        libva
-        vaapiVdpau
-        libvdpau-va-gl
-        vulkan-loader
-
-        # AMD Open Source Driver For Vulkan
-        amdvlk
-
-        # amf
         amdvlk # AMD Vulkan driver
-        vulkan-validation-layers
-        vulkan-tools
-        vulkan-loader
-
-        mesa
-        mesa.opencl
-        mesa-demos # Provides glxinfo, glxgears
-        libglvnd
-        libva
-        libvdpau
-        xorg.libXv
-        xorg.libXvMC
-
-        # Hardware-accelerated video playpack
-        # VDPAU driver for the VAAPI library
-        vaapiVdpau
-        # VDPAU driver with OpenGL/VAAPI backend
-        libvdpau-va-gl
-        # Tool to query the Video Decode and Presentation API for Unix (VDPAU) abilities of the system
-        vdpauinfo
         libGL
         libGLU
+        libglvnd
         libGLX
         libva
         libva-utils
+        libvdpau
+        libvdpau-va-gl
+        mesa
+        mesa-demos # Provides glxinfo, glxgears
+        mesa.opencl
+        vaapiVdpau
+        vdpauinfo
+        vulkan-loader
+        vulkan-tools
+        vulkan-validation-layers
+        xorg.libXv
+        xorg.libXvMC
 
         # ---- Unlocks OpenCL GPU Acceleration ---- #
-        # rocmPackages.clr
-        rocmPackages.clr.icd
-        rocmPackages.rocm-runtime
+        # rocmPackages.rocm-runtime
         # rocmPackages.rocm-smi
         # rocmPackages.rocminfo
+
+        # OpenCL ICD definition for AMD GPUs using the ROCm stack
+        # rocmPackages.clr.icd
+
+        # OpenCL runtime for AMD GPUs, part of the ROCm stack
+        # rocmPackages.clr
       ];
 
       # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
+      extraPackages32 = [
+        # pkgs.driversi686Linux.amdvlk
+      ];
     };
   };
 
