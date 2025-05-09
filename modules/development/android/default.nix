@@ -7,6 +7,6 @@ in mkIf (settings.modules.development.android.enable) {
     gradle # Enterprise-grade build system
     dart
     flutter
-
+    android-tools
   ];
 }
