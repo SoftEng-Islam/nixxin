@@ -1,3 +1,6 @@
-{ settings, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.remote_desktop.enable) { imports = [ ./rdp.nix ]; }
+in mkIf {
+  imports =
+    lib.optionals (settings.modules.remote_desktop.enable) [ ./rdp.nix ];
+}
