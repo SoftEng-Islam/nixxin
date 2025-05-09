@@ -449,6 +449,10 @@
       };
       sound.enable = false;
     };
+    remote_desktop = {
+      enable = true;
+      rdp = { enable = true; };
+    };
     resources_monitoring = {
       enable = true;
       resources_app = true;
