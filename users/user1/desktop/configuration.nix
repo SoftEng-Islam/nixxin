@@ -41,6 +41,7 @@
     ../../../modules/printing
     ../../../modules/qt_gtk
     ../../../modules/recording
+    ../../../modules/remote_desktop
     ../../../modules/resources_monitoring
     ../../../modules/screenshot
     ../../../modules/security
