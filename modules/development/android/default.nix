@@ -8,5 +8,6 @@ in mkIf (settings.modules.development.android.enable) {
     dart
     flutter
     android-tools
+    androidenv
   ];
 }
