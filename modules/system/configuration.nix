@@ -181,7 +181,7 @@ in {
       "amdgpu.si_support=0"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=1"
+      "radeon.cik_support=0"
       "amdgpu.cik_support=0"
 
       # If you want full control over power settings, use:
