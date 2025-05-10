@@ -27,8 +27,8 @@ in {
   };
   home-manager.users.${settings.user.username} = {
 
-    xdg.desktopEntries.obsidian =
-      mkIf (settings.modules.office.obsidian or false) {
+    config = mkIf (settings.modules.office.obsidian or false) {
+      xdg.desktopEntries.obsidian = {
         name = "Obsidian";
         genericName = "Note-taking App";
         comment = "Markdown-based note-taking with GPU workarounds";
@@ -38,6 +38,7 @@ in {
         type = "Application";
         categories = [ "Office" "Utility" ];
       };
+    };
   };
   # environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
 }
