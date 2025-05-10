@@ -5,7 +5,7 @@ let
   _pkgs = with pkgs; [
     # Powerful knowledge base that works on top of a local folder of plain text Markdown files
     (optionals settings.modules.office.obsidian
-      (pkgs.writeShellScriptBin "obsidian-fixed" ''
+      (pkgs.writeShellScriptBin "obsidian" ''
         exec ${pkgs.obsidian}/bin/obsidian \
           --disable-gpu-sandbox \
           --use-gl=desktop \
