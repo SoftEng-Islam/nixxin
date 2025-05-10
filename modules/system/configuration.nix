@@ -382,9 +382,7 @@ in {
       ];
 
       # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages32 = [
-        # pkgs.driversi686Linux.amdvlk
-      ];
+      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
   };
 
@@ -448,16 +446,16 @@ in {
     # HIP_VISIBLE_DEVICES = "0,2";
 
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
-    WLR_RENDERER_ALLOW_SOFTWARE = "0"; # enable software rendering for wlroots
+    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "gl";
 
     # Adjusts DRM devices, vsync, and atomic modes.
-    WLR_DRM_DEVICES = "/dev/dri/card1";
-    WLR_DRM_NO_ATOMIC = "1";
-    WLR_VSYNC = "1";
+    # WLR_DRM_DEVICES = "/dev/dri/card1";
+    # WLR_DRM_NO_ATOMIC = "1";
+    # WLR_VSYNC = "1";
 
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     # ROCM_TARGET = "gfx700";
