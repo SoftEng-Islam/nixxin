@@ -17,7 +17,6 @@ let
     (optionals settings.modules.office.siyuan pkgs.siyuan)
   ];
 in {
-  environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
   imports = optionals (settings.modules.office.enable or false) [
     ./documents.nix
     ./libreoffice.nix
@@ -25,4 +24,5 @@ in {
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = lib.flatten _pkgs;
   };
+  environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
 }
