@@ -97,7 +97,7 @@ in {
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
-        "amdgpu"
+        # "amdgpu"
         "cryptd"
         "ehci_pci"
         "ohci_pci"
@@ -113,7 +113,7 @@ in {
     };
     kernelModules = [
       "radeon"
-      "amdgpu"
+      # "amdgpu"
       "amd-pstate"
       "bfq"
       "binder_linux"
@@ -177,33 +177,33 @@ in {
 
       # AMD GPU optimizations
       # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-      "amdgpu.si_support=1"
+      "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
+      "amdgpu.si_support=0"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=1"
+      "radeon.cik_support=1"
+      "amdgpu.cik_support=0"
 
       # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
       # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      "amdgpu.dcfeaturemask=0x8"
-      "amdgpu.freesync_video=1"
-      "amdgpu.gpu_recovery=1"
+      # "amdgpu.dcfeaturemask=0x8"
+      # "amdgpu.freesync_video=1"
+      # "amdgpu.gpu_recovery=1"
 
-      "amdgpu.sg_display=0" # Fixes display-related ROCm issues
-      "amdgpu.noretry=0" # Improve memory handling
-      "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      "amdgpu.dpm=1"
-      "amdgpu.deep_color=1"
-      "amdgpu.vramlimit=4096"
-      "amdgpu.gttsize=4096"
+      # "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+      # "amdgpu.noretry=0" # Improve memory handling
+      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+      # "amdgpu.dpm=1"
+      # "amdgpu.deep_color=1"
+      # "amdgpu.vramlimit=4096"
+      # "amdgpu.gttsize=4096"
 
       # # increases the timeout of GFX jobs
-      "amdgpu.lockup_timeout=5000"
+      # "amdgpu.lockup_timeout=5000"
 
       # Disables HDMI/DisplayPort audio output on AMD GPUs.
       # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
@@ -331,7 +331,7 @@ in {
     enableRedistributableFirmware = true;
 
     amdgpu = {
-      initrd.enable = true;
+      initrd.enable = false;
       opencl.enable = false;
       legacySupport.enable = true;
       amdvlk = {
@@ -393,7 +393,7 @@ in {
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = [ "amdgpu" "radeon" "modesetting" ];
+  services.xserver.videoDrivers = [ "radeon" "amdgpu" "modesetting" ];
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;

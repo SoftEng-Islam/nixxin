@@ -120,7 +120,7 @@
 
     # GPU Information
     gpu = {
-      vendor = "amd"; # amd, or radeon, intel, or nvidia
+      vendor = "radeon"; # amd, or radeon, intel, or nvidia
       model = "Radeon RX 6700 XT"; # Example model
       bus = "pcie"; # pcie, agp, etc.
       vram = "12GB"; # Video RAM
