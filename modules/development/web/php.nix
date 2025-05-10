@@ -93,5 +93,6 @@ in {
   };
   # caddy localhost root certificate
   security.pki.certificates = [ caddyLocalRootCert ];
+  environment.systemPackages = with pkgs; [ phpactor ];
 
 }
