@@ -2,20 +2,20 @@
 let
   inherit (lib) optionals mkIf;
 
-  _pkgs = [
+  _pkgs = with pkgs; [
     # Powerful knowledge base that works on top of a local folder of plain text Markdown files
-    # (optionals settings.modules.office.obsidian
-    #   (pkgs.writeShellScriptBin "obsidian-fixed" ''
-    #     exec ${pkgs.obsidian}/bin/obsidian \
-    #       --disable-gpu-sandbox \
-    #       --use-gl=desktop \
-    #       --enable-features=UseOzonePlatform \
-    #       --ozone-platform=x11 \
-    #       "$@"
-    #   ''))
-    (optionals settings.modules.office.obsidian pkgs.obsidian)
+    (optionals settings.modules.office.obsidian
+      (pkgs.writeShellScriptBin "obsidian-fixed" ''
+        exec ${pkgs.obsidian}/bin/obsidian \
+          --disable-gpu-sandbox \
+          --use-gl=desktop \
+          --enable-features=UseOzonePlatform \
+          --ozone-platform=x11 \
+          "$@"
+      ''))
+    # (optionals settings.modules.office.obsidian obsidian)
     # Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync
-    (optionals settings.modules.office.siyuan pkgs.siyuan)
+    (optionals settings.modules.office.siyuan siyuan)
   ];
 in {
   imports = optionals (settings.modules.office.enable or false) [
@@ -24,6 +24,18 @@ in {
   ];
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = lib.flatten _pkgs;
+    config = mkIf (settings.modules.office.obsidian or false) {
+      xdg.desktopEntries.obsidian = {
+        name = "Obsidian";
+        genericName = "Note-taking App";
+        comment = "Markdown-based note-taking with GPU workarounds";
+        exec = "obsidian %U";
+        icon = "obsidian"; # or path to a custom icon
+        terminal = false;
+        type = "Application";
+        categories = [ "Office" "Utility" ];
+      };
+    };
   };
   # environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
 }
