@@ -23,8 +23,8 @@ in mkIf (settings.modules.system.radeon or false) {
   ];
 
   environment.variables = {
-    LIBVA_DRIVER_NAME = "r600"; # Specific driver for HD 7470
-    VDPAU_DRIVER = "va_gl"; # Use VA-API backend for VDPAU
+    LIBVA_DRIVER_NAME = "radeonsi"; # or "r600"; # Specific driver for HD 7470
+    VDPAU_DRIVER = "radeonsi"; # or "va_gl"; # Use VA-API backend for VDPAU
   };
 
   # services.xserver.videoDrivers = [ "radeon" "modesetting" ]; # fallback driver

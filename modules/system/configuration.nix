@@ -89,7 +89,10 @@ in {
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [ "amdgpu" ];
+      kernelModules = [
+        "radeon"
+        # "amdgpu"
+      ];
 
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
@@ -109,8 +112,8 @@ in {
       ];
     };
     kernelModules = [
-      # "radeon"
-      # "amdgpu"
+      "radeon"
+      "amdgpu"
       "amd-pstate"
       "bfq"
       "binder_linux"
@@ -329,10 +332,10 @@ in {
 
     amdgpu = {
       initrd.enable = true;
-      opencl.enable = true;
+      opencl.enable = false;
       legacySupport.enable = true;
       amdvlk = {
-        enable = true;
+        enable = false;
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
