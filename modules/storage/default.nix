@@ -16,8 +16,8 @@
   # Without TRIM, SSDs can slow down over time due to inefficient block management.
   services.fstrim.enable = settings.modules.storage.fstrim.enable;
 
-  environment.systemPackages = with pkgs;
-    [
-      gparted # Graphical disk partitioning tool
-    ];
+  environment.systemPackages = with pkgs; [
+    gparted # Graphical disk partitioning tool
+    gnome-disk-utility
+  ];
 }
