@@ -24,5 +24,5 @@ in {
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = lib.flatten _pkgs;
   };
-  environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
+  # environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
 }
