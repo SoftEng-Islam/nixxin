@@ -34,23 +34,18 @@
         # Enable Wayland support for Electron apps
         "ELECTRON_ENABLE_WAYLAND,1"
         # Uncomment if using Electron apps older than version 28
-        "ELECTRON_OZONE_PLATFORM_HINT,wayland"
-        # "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        # "ELECTRON_OZONE_PLATFORM_HINT,wayland"
         # Electron apps version 28 and above (may help with compatibility)
-        # env = ELECTRON_OZONE_PLATFORM_HINT,auto
+        "ELECTRON_OZONE_PLATFORM_HINT,auto"
 
         # ---- QT ---- #
         "DISABLE_QT5_COMPAT,0"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM=wayland;xcb"
-        "QT_WAYLAND_DISABLE_WINDOWDECORATION,1"
+        "QT_QPA_PLATFORM,wayland;xcb"
 
         "MOZ_ENABLE_WAYLAND,1"
         "ANKI_WAYLAND,1"
         "NIXOS_OZONE_WL,1"
-
-        "__GL_GSYNC_ALLOWED,0"
-        "__GL_VRR_ALLOWED,0"
 
         # "WLR_DRM_NO_ATOMIC,1"
         # "WLR_BACKEND,vulkan"
@@ -73,6 +68,9 @@
 
         # additional ENV's for nvidia. Caution, activate with care
         # "GBM_BACKEND,nvidia-drm"
+
+        # "__GL_GSYNC_ALLOWED,0"
+        # "__GL_VRR_ALLOWED,0"
 
         # "__NV_PRIME_RENDER_OFFLOAD,1"
         # "__VK_LAYER_NV_optimus,NVIDIA_only"

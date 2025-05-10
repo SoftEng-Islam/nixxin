@@ -429,7 +429,7 @@
       evince = true;
       papers = true;
       zathura = true;
-      obsidian = false; # ERROR: GPU DRIVERS
+      obsidian = true; # ERROR: GPU DRIVERS
       libreoffice = true;
     };
     overclock = {
