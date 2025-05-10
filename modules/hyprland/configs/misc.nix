@@ -10,7 +10,7 @@
         # 0 - off,
         # 1 - on,
         # 2 - fullscreen only [0/1/2]
-        vrr = 1;
+        vrr = 0;
 
         # If true, the config will not reload automatically on save, and..
         # instead needs to be reloaded with hyprctl reload.
