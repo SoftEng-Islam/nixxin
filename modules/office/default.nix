@@ -24,18 +24,17 @@ in {
   ];
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = lib.flatten _pkgs;
-    config = mkIf (settings.modules.office.obsidian or false) {
-      xdg.desktopEntries.obsidian = {
-        name = "Obsidian";
-        genericName = "Note-taking App";
-        comment = "Markdown-based note-taking with GPU workarounds";
-        exec = "obsidian %U";
-        icon = "obsidian"; # or path to a custom icon
-        terminal = false;
-        type = "Application";
-        categories = [ "Office" "Utility" ];
-      };
-    };
   };
+  xdg.desktopEntries.obsidian =
+    mkIf (settings.modules.office.obsidian or false) {
+      name = "Obsidian";
+      genericName = "Note-taking App";
+      comment = "Markdown-based note-taking with GPU workarounds";
+      exec = "obsidian %U";
+      icon = "obsidian"; # or path to a custom icon
+      terminal = false;
+      type = "Application";
+      categories = [ "Office" "Utility" ];
+    };
   # environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
 }
