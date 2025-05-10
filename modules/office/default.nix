@@ -17,9 +17,7 @@ let
     (optionals settings.modules.office.siyuan pkgs.siyuan)
   ];
 in {
-  environment.variables = optionals (settings.modules.office.enable or false) {
-    "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1";
-  };
+  environment.variables = { "OBSIDIAN_USE_SOFTWARE_RENDERER" = "1"; };
   imports = optionals (settings.modules.office.enable or false) [
     ./documents.nix
     ./libreoffice.nix
