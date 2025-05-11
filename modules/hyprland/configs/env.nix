@@ -34,9 +34,9 @@
         # Enable Wayland support for Electron apps
         "ELECTRON_ENABLE_WAYLAND,1"
         # Uncomment if using Electron apps older than version 28
-        # "ELECTRON_OZONE_PLATFORM_HINT,wayland"
+        "ELECTRON_OZONE_PLATFORM_HINT,wayland"
         # Electron apps version 28 and above (may help with compatibility)
-        "ELECTRON_OZONE_PLATFORM_HINT,auto"
+        # "ELECTRON_OZONE_PLATFORM_HINT,auto"
 
         # ---- QT ---- #
         "DISABLE_QT5_COMPAT,0"

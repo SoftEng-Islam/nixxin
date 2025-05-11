@@ -10,7 +10,7 @@
         # 0 - off,
         # 1 - on,
         # 2 - fullscreen only [0/1/2]
-        vrr = 0;
+        vrr = 1;
 
         # If true, the config will not reload automatically on save, and..
         # instead needs to be reloaded with hyprctl reload.
@@ -85,7 +85,7 @@
         new_window_takes_over_fullscreen = 1;
 
         # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
-        render_ahead_of_time = false;
+        render_ahead_of_time = true;
         # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
         render_ahead_safezone = 1;
       };
