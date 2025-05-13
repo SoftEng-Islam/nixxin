@@ -337,11 +337,11 @@
       blender = false;
       darktable = false;
       davinci = false;
-      drawio = false;
+      drawio = true;
       figmaLinux = false;
-      gimp = false;
+      gimp = true;
       inkscape = false;
-      lunacy = false;
+      lunacy = true;
       kolourpaint = false;
     };
     hacking = { enable = true; };
@@ -433,6 +433,7 @@
       libreoffice = true;
     };
     overclock = {
+      enable = false;
       corectrl.enable = false;
       lactd.enable = false;
     };
