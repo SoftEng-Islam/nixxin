@@ -334,7 +334,7 @@
     git = { enable = true; };
     graphics = {
       enable = true;
-      blender = false;
+      blender = true;
       darktable = false;
       davinci = false;
       drawio = true;
