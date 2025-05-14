@@ -6,7 +6,9 @@
 
   # Install the patched rtl8188eus driver (supports monitor mode)
   boot.extraModulePackages = with config.boot.kernelPackages;
-    [ pkgs.linuxKernel.packages.linux_zen.rtl8188eus-aircrack ];
+    [
+
+    ];
 
   # Optional: Enable Aircrack-NG tools
   environment.systemPackages = with pkgs; [ aircrack-ng ];
