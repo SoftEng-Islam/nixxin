@@ -2,7 +2,7 @@
   imports = [
     ./networking.nix
     ./dnsmasq.nix
-    ./rtw.nix
+    # ./rtw.nix
     # ./RTL8188EUS.nix
   ];
   services.avahi.enable = true;
