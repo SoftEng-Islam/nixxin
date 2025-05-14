@@ -125,8 +125,7 @@
     # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       enableXWayland = false; # whether to enable XWayland
-      legacyRenderer =
-        false; # whether to use the legacy renderer (for old GPUs)
+      legacyRenderer = true; # whether to use the legacy renderer (for old GPUs)
       withSystemd = true; # whether to build with systemd support
     })
 
