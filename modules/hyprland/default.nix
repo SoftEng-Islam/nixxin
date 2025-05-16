@@ -140,7 +140,8 @@
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
     hyprsunset # Application to enable a blue-light filter on Hyprland
-
+    xwayland
+    xwayland-run
     adwaita-qt6
     gojq
     grim
