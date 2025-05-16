@@ -38,7 +38,7 @@
         # ---- QT ---- #
         "DISABLE_QT5_COMPAT,0"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_QPA_PLATFORM,wayland"
 
         "MOZ_ENABLE_WAYLAND,1"
         "ANKI_WAYLAND,1"
