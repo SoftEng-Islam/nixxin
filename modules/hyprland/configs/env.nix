@@ -30,11 +30,6 @@
         # Set the backend for GDK (GIMP Drawing Kit) to support Wayland and X11
         "GDK_BACKEND,wayland,x11"
 
-        # ---- Electron ---- #
-        # Enable Wayland support for Electron apps
-        "ELECTRON_ENABLE_WAYLAND,1"
-        "ELECTRON_OZONE_PLATFORM_HINT,auto"
-
         # ---- QT ---- #
         "DISABLE_QT5_COMPAT,0"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"

@@ -75,7 +75,12 @@
       CLUTTER_BACKEND = "wayland";
       ELM_ENGINE = "wayland_egl";
       ECORE_EVAS_ENGINE = "wayland_egl";
+
+      # ---- Electron ---- #
+      # Enable Wayland support for Electron apps
+      # ELECTRON_OZONE_PLATFORM_HINT = "auto";
       ELECTRON_ENABLE_WAYLAND = "1";
+      NIXOS_OZONE_WL = "1";
 
       # Configure the cursor theme and size for graphical sessions.
       XCURSOR = settings.common.cursor.name;
