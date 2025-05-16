@@ -28,7 +28,7 @@
         # env = WLR_DRM_NO_ATOMIC, 1
 
         # Set the backend for GDK (GIMP Drawing Kit) to support Wayland and X11
-        "GDK_BACKEND,wayland"
+        "GDK_BACKEND,wayland,x11"
 
         # ---- Electron ---- #
         # Enable Wayland support for Electron apps
@@ -38,7 +38,7 @@
         # ---- QT ---- #
         "DISABLE_QT5_COMPAT,0"
         "QT_AUTO_SCREEN_SCALE_FACTOR,1"
-        "QT_QPA_PLATFORM,wayland"
+        "QT_QPA_PLATFORM,wayland;xcb"
 
         "MOZ_ENABLE_WAYLAND,1"
         "ANKI_WAYLAND,1"
