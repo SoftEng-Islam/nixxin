@@ -211,7 +211,6 @@ in {
   environment.variables = {
     NIX_AUTO_RUN = "1"; # auto-run programs using nix-index-database
     NIXOS_XDG_OPEN_USE_PORTAL = "1"; # needed to open apps after web login
-    NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
     NIXPKGS_ALLOW_UNFREE = "1"; # support for non-free (proprietary) software.
 
     # NIXPKGS_ALLOW_INSECURE = "1";

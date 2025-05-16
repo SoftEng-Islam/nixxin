@@ -37,7 +37,6 @@
 
         "MOZ_ENABLE_WAYLAND,1"
         "ANKI_WAYLAND,1"
-        "NIXOS_OZONE_WL,1"
 
         # "WLR_DRM_NO_ATOMIC,1"
         # "WLR_BACKEND,vulkan"

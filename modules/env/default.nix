@@ -80,7 +80,7 @@
       # Enable Wayland support for Electron apps
       # ELECTRON_OZONE_PLATFORM_HINT = "auto";
       ELECTRON_ENABLE_WAYLAND = "1";
-      NIXOS_OZONE_WL = "1";
+      NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
 
       # Configure the cursor theme and size for graphical sessions.
       XCURSOR = settings.common.cursor.name;
