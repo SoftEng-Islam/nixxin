@@ -333,7 +333,7 @@ in {
     amdgpu = {
       initrd.enable = false;
       opencl.enable = false;
-      legacySupport.enable = true;
+      legacySupport.enable = false;
       amdvlk = {
         enable = false;
         support32Bit.enable = true;
@@ -453,7 +453,7 @@ in {
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
-    WGPU_BACKEND = "gl";
+    # WGPU_BACKEND = "gl";
 
     # Adjusts DRM devices, vsync, and atomic modes.
     # WLR_DRM_DEVICES = "/dev/dri/card1";
@@ -464,11 +464,11 @@ in {
     # ROCM_TARGET = "gfx700";
     # ROC_ENABLE_PRE_VEGA = "1";
 
-    GPU_FORCE_64BIT_PTR = "1";
-    GPU_MAX_ALLOC_PERCENT = "100";
-    GPU_MAX_HEAP_SIZE = "50";
-    GPU_MAX_USE_SYNC_OBJECTS = "1";
-    GPU_SINGLE_ALLOC_PERCENT = "50";
+    # GPU_FORCE_64BIT_PTR = "1";
+    # GPU_MAX_ALLOC_PERCENT = "100";
+    # GPU_MAX_HEAP_SIZE = "50";
+    # GPU_MAX_USE_SYNC_OBJECTS = "1";
+    # GPU_SINGLE_ALLOC_PERCENT = "50";
 
     # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
@@ -478,7 +478,7 @@ in {
 
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
-    AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
+    # AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
 
     #? What the Differante?
     VK_ICD_FILENAMES =
@@ -488,15 +488,14 @@ in {
     # VK_LAYER_PATH = "/etc/vulkan/layer.d";
     VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
 
-    AMD_VULKAN_DRIVER = "RADV";
+    # AMD_VULKAN_DRIVER = "RADV";
 
     # Improves OpenGL compatibility & speed.
     MESA_GL_VERSION_OVERRIDE = "4.6";
     MESA_GLSL_VERSION_OVERRIDE = "460";
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
 
-    DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
-
+    # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
   };
 
   environment.memoryAllocator.provider = "libc";
