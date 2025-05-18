@@ -21,10 +21,6 @@
       windowrulev2 = float,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$
       windowrulev2 = center,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$
 
-      windowrulev2 = noinitialfocus, class:.*
-      windowrulev2 = idleinhibit focus, class:.*
-
-
       # ---- Picture-in-Picture ---- #
       windowrulev2 = keepaspectratio, title:^(Picture(-| )in(-| )[Pp]icture)$
       windowrulev2 = move 73% 72%, title:^(Picture(-| )in(-| )[Pp]icture)$
