@@ -37,6 +37,7 @@ in mkIf (settings.modules.windows.enable) {
     yabridge
     yabridgectl
     samba4Full
+    cifs-utils
     directx-headers # Official D3D12 headers from Microsoft
     wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     wine64 # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
