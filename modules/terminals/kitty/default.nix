@@ -251,4 +251,8 @@ in {
       };
     };
   };
+  environment.systemPackages = with pkgs; [
+    noto-fonts
+    noto-fonts-extra # Includes Arabic
+  ];
 }
