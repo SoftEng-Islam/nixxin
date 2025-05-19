@@ -431,6 +431,7 @@
       zathura = true;
       obsidian = true; # ERROR: GPU DRIVERS
       libreoffice = true;
+      translators.enable = true;
     };
     overclock = {
       enable = false;
