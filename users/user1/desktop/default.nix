@@ -594,8 +594,8 @@
           package = pkgs.nerd-fonts.caskaydia-cove;
         };
         term = {
-          name = "kitty"; # Default terminal command
-          package = pkgs.kitty;
+          name = "wezterm"; # Default terminal command
+          package = pkgs.wezterm;
         };
       };
       kitty = {
