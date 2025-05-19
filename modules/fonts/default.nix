@@ -19,6 +19,7 @@ in mkIf (settings.modules.fonts.enable) {
       # ---- Noto Fonts ---- #
       noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-emoji # Color emoji font
+      noto-fonts-extra # Includes Arabic
 
       # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
@@ -42,7 +43,7 @@ in mkIf (settings.modules.fonts.enable) {
     fontconfig # Library for font customization and configuration
 
     # Latex
- #   texliveFull # TeX Live environment
-#    texlive.combined.scheme-full # TeX Live environment for scheme-full
+    #   texliveFull # TeX Live environment
+    #    texlive.combined.scheme-full # TeX Live environment for scheme-full
   ];
 }
