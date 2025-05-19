@@ -128,10 +128,13 @@ in {
           wayland_enable_ime no
           mouse_hide_wait 1
           disable_ligatures never
-          bidi_disable no
           visual_bell_duration 0.0
           adjust_line_height 0
           adjust_column_width 0
+
+          # Enable proper BiDi & shaping
+          bidi_disable no
+          text_composition_strategy legacy
 
 
           # misc
@@ -237,6 +240,13 @@ in {
           symbol_map U+F400-U+F532 Symbols Nerd Font
           # Material Design
           symbol_map U+F0001-U+F1AF0 Symbols Nerd Font
+
+          # Fallback for Arabic (Noto Sans Arabic has excellent shaping)
+          symbol_map U+0600-U+06FF Noto Sans Arabic
+          symbol_map U+0750-U+077F Noto Sans Arabic
+          symbol_map U+08A0-U+08FF Noto Sans Arabic
+          symbol_map U+FB50-U+FDFF Noto Sans Arabic
+          symbol_map U+FE70-U+FEFF Noto Sans Arabic
         '';
       };
     };
