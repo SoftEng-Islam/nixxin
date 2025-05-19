@@ -5,7 +5,35 @@
       enable = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      # extraConfig = ''  '';
+      extraConfig = ''
+        local wezterm = require 'wezterm'
+
+        local config = {}
+        config.front_end = 'WebGpu'
+        config.font = wezterm.font 'PragmataPro Mono Liga'
+        config.window_decorations = 'RESIZE'
+        config.warn_about_missing_glyphs = false
+        config.hide_tab_bar_if_only_one_tab = true
+        config.color_scheme = 'nordfox'
+
+        config.audible_bell = 'Disabled'
+
+        config.set_environment_variables = {
+          TERMINFO_DIRS = '/home/shinzui/.nix-profile/share/terminfo',
+          WSLENV = 'TERMINFO_DIRS',
+        }
+
+        config.mouse_bindings = {
+           -- and make CTRL-Click open hyperlinks
+          {
+            event={Up={streak=1, button="Left"}},
+            mods="CTRL",
+            action="OpenLinkAtMouseCursor",
+          },
+        }
+
+        return config
+      '';
     };
   };
 }
