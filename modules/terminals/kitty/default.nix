@@ -128,6 +128,11 @@ in {
           wayland_enable_ime no
           mouse_hide_wait 1
           disable_ligatures never
+          bidi_disable no
+          visual_bell_duration 0.0
+          adjust_line_height 0
+          adjust_column_width 0
+
 
           # misc
           map ctrl+shift+f5 load_config_file
