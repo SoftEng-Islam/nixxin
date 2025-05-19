@@ -586,12 +586,13 @@
       default = {
         shell = "zsh"; # bash
         font = {
-          family = "CaskaydiaCove Nerd Font";
-          bold = "CaskaydiaCove Nerd Font Bold";
-          italic = "CaskaydiaCove Nerd Font Italic";
-          bold_italic = "CaskaydiaCove Nerd Font Bold Italic";
+          # family = "CaskaydiaCove Nerd Font";
+          family = "FiraCode Nerd Font";
+          bold = "FiraCode Nerd Font Bold";
+          italic = "FiraCode Nerd Font Italic";
+          bold_italic = "FiraCode Nerd Font Bold Italic";
           size = 14;
-          package = pkgs.nerd-fonts.caskaydia-cove;
+          package = pkgs.nerd-fonts.fira-code;
         };
         term = {
           name = "kitty"; # Default terminal command
