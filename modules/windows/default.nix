@@ -36,7 +36,7 @@ in mkIf (settings.modules.windows.enable) {
     # Modern and transparent way to use Windows VST2 and VST3 plugins on Linux
     yabridge
     yabridgectl
-
+    samba4Full
     directx-headers # Official D3D12 headers from Microsoft
     wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     wine64 # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
