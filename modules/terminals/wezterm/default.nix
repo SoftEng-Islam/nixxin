@@ -20,8 +20,8 @@
         config.font_size = ${
           toString settings.modules.terminals.wezterm.fontSize
         }
-        config.font = wezterm.font ${settings.modules.terminals.wezterm.fontFamily}
-        config.color_scheme = ${settings.modules.terminals.wezterm.colorScheme}
+        config.font = wezterm.font "${settings.modules.terminals.wezterm.fontFamily}"
+        config.color_scheme = "${settings.modules.terminals.wezterm.colorScheme}"
 
         config.enable_tab_bar = true
 
