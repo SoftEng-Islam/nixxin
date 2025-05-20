@@ -37,11 +37,11 @@
         -- OpenGL - use GPU accelerated rasterization
         -- Software - use CPU-based rasterization.
         -- WebGpu - use GPU accelerated rasterization (Since: Version 20221119-145034-49b9839f)
-        config.front_end = 'WebGpu'
+        config.front_end = 'OpenGL'
 
-        config.window_decorations = 'RESIZE'
+
         config.warn_about_missing_glyphs = false
-        config.hide_tab_bar_if_only_one_tab = true
+        config.hide_tab_bar_if_only_one_tab = false
 
         config.audible_bell = 'Disabled'
 
@@ -61,20 +61,6 @@
           },
         }
 
-        -- Window Background Image
-        -- config.window_background_image = '/path/to/wallpaper.jpg'
-
-        config.window_background_image_hsb = {
-          -- Darken the background image by reducing it to 1/3rd
-          brightness = 0.3,
-
-          -- You can adjust the hue by scaling its value.
-          -- a multiplier of 1.0 leaves the value unchanged.
-          hue = 1.0,
-
-          -- You can adjust the saturation also.
-          saturation = 1.0,
-        }
         -- Finally, return the configuration to wezterm:
         return config
       '';
