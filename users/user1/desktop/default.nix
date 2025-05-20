@@ -586,7 +586,7 @@
       default = {
         shell = "zsh"; # bash
         font = {
-          # family = "CaskaydiaCove Nerd Font";
+          # family = "CaskaydiaCove Nerd Font"; # or "JetBrains Nerd Font"
           family = "FiraCode Nerd Font";
           bold = "FiraCode Nerd Font Bold";
           italic = "FiraCode Nerd Font Italic";
@@ -627,6 +627,7 @@
         shell = modules.terminals.default.shell;
         fontFamily = modules.terminals.default.font.family;
         fontSize = modules.terminals.default.font.size;
+        colorScheme = "Apple System Colors";
       };
     };
     tools = { enable = true; };

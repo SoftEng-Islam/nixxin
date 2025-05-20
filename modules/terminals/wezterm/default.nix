@@ -6,29 +6,40 @@
       enableZshIntegration = true;
       enableBashIntegration = true;
       extraConfig = ''
+        -- Pull in the wezterm API
         local wezterm = require 'wezterm'
 
-        local config = {}
-
+        -- This will hold the configuration.
         if wezterm.config_builder then
           config = wezterm.config_builder()
         end
 
-        config.color_scheme = 'Gruvbox Dark (Gogh)'
-        config.enable_tab_bar = false
-        config.font = wezterm.font 'Iosevka'
-        config.term = 'wezterm'
+        -- This is where you actually apply your config choices.
+
+        -- changing the font size and color scheme.
+        config.font_size = ${toString settings.terminals.wezterm.fontSize}
+        config.font = wezterm.font ${settings.terminals.wezterm.fontFamily}
+        config.color_scheme = ${settings.terminals.wezterm.colorScheme}
+
+        config.enable_tab_bar = true
+
         config.window_padding = { left = 2, right = 2, top = 2, bottom = 2, }
+        config.window_background_opacity = 0.7
+
         config.animation_fps = 1
+
         config.cursor_blink_ease_in = 'Constant'
         config.cursor_blink_ease_out = 'Constant'
+
+        # Specifies which render front-end to use. This option used to have more scope in earlier versions of wezterm, but today it allows three possible values:
+        #-- OpenGL - use GPU accelerated rasterization
+        #-- Software - use CPU-based rasterization.
+        #-- WebGpu - use GPU accelerated rasterization (Since: Version 20221119-145034-49b9839f)
         config.front_end = 'WebGpu'
 
-        config.font = wezterm.font 'PragmataPro Mono Liga'
         config.window_decorations = 'RESIZE'
         config.warn_about_missing_glyphs = false
         config.hide_tab_bar_if_only_one_tab = true
-        config.color_scheme = 'nordfox'
 
         config.audible_bell = 'Disabled'
 
@@ -36,6 +47,8 @@
           TERMINFO_DIRS = '/home/${settings.user.username}/.nix-profile/share/terminfo',
           WSLENV = 'TERMINFO_DIRS',
         }
+        config.term = 'wezterm'
+
 
         config.mouse_bindings = {
           -- and make CTRL-Click open hyperlinks
@@ -46,6 +59,21 @@
           },
         }
 
+        -- Window Background Image
+        -- config.window_background_image = '/path/to/wallpaper.jpg'
+
+        config.window_background_image_hsb = {
+          -- Darken the background image by reducing it to 1/3rd
+          brightness = 0.3,
+
+          -- You can adjust the hue by scaling its value.
+          -- a multiplier of 1.0 leaves the value unchanged.
+          hue = 1.0,
+
+          -- You can adjust the saturation also.
+          saturation = 1.0,
+        }
+        -- Finally, return the configuration to wezterm:
         return config
       '';
     };

@@ -58,7 +58,11 @@ in {
       devices = settings.modules.system.boot.loader.manager.grub.devices;
       device = settings.modules.system.boot.loader.manager.grub.device;
       useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
-
+      theme = with pkgs;
+        (sleek-grub-theme.override {
+          withStyle = "dark"; # (dark/light/orange/bigsur)
+          withBanner = "Boot Manager";
+        });
       # Make Memtest86+, a memory testing program, available from the GRUB boot menu.
       memtest86.enable = false;
       extraConfig =
@@ -513,7 +517,8 @@ in {
     grub2_efi
     grub2_full
     sleek-grub-theme
-    nixos-grub2-theme
+    # nixos-grub2-theme
+    # minimal-grub-theme
 
     # ------------------------------------------------
     # ---- Hardware Packages
