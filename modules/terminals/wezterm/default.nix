@@ -33,10 +33,10 @@
         config.cursor_blink_ease_in = 'Constant'
         config.cursor_blink_ease_out = 'Constant'
 
-        # Specifies which render front-end to use. This option used to have more scope in earlier versions of wezterm, but today it allows three possible values:
-        #-- OpenGL - use GPU accelerated rasterization
-        #-- Software - use CPU-based rasterization.
-        #-- WebGpu - use GPU accelerated rasterization (Since: Version 20221119-145034-49b9839f)
+        -- Specifies which render front-end to use. This option used to have more scope in earlier versions of wezterm, but today it allows three possible values:
+        -- OpenGL - use GPU accelerated rasterization
+        -- Software - use CPU-based rasterization.
+        -- WebGpu - use GPU accelerated rasterization (Since: Version 20221119-145034-49b9839f)
         config.front_end = 'WebGpu'
 
         config.window_decorations = 'RESIZE'
