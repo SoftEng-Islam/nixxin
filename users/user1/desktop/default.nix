@@ -596,7 +596,7 @@
         };
         # Default Terminal That will Appear when you click Super+T
         term = {
-          name = "wezterm";
+          name = "wezterm"; # To Run Press: Super + T
           package = pkgs.wezterm;
         };
       };
