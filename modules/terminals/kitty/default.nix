@@ -33,7 +33,7 @@ in {
           kitty_mod ctrl
 
           # ---- Color scheme ---- #
-          foreground #9c9c9c
+          foreground #7c7c7c
           background #00080b
           selection_foreground    #101b1f
           selection_background    #9c9c9c
@@ -171,7 +171,7 @@ in {
           # ---- Windows Customization ---- #
           remember_window_size no
           window_padding_width 7
-          background_opacity 0.80
+          background_opacity 0.75
           confirm_os_window_close 0
           hide_window_decorations yes
 
@@ -240,13 +240,6 @@ in {
           symbol_map U+F400-U+F532 Symbols Nerd Font
           # Material Design
           symbol_map U+F0001-U+F1AF0 Symbols Nerd Font
-
-          # Fallback for Arabic (Noto Sans Arabic has excellent shaping)
-          symbol_map U+0600-U+06FF Noto Sans Arabic
-          symbol_map U+0750-U+077F Noto Sans Arabic
-          symbol_map U+08A0-U+08FF Noto Sans Arabic
-          symbol_map U+FB50-U+FDFF Noto Sans Arabic
-          symbol_map U+FE70-U+FEFF Noto Sans Arabic
         '';
       };
     };

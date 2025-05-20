@@ -594,9 +594,10 @@
           size = 14;
           package = pkgs.nerd-fonts.fira-code;
         };
+        # Default Terminal That will Appear when you click Super+T
         term = {
-          name = "kitty"; # Default terminal command
-          package = pkgs.kitty;
+          name = "wezterm";
+          package = pkgs.wezterm;
         };
       };
       kitty = {
