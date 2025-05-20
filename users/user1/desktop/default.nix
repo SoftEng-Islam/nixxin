@@ -622,12 +622,12 @@
         shell = modules.terminals.default.shell;
         fontFamily = modules.terminals.default.font.family;
         fontSize = modules.terminals.default.font.size;
+        colorScheme = "Apple System Colors";
       };
       fish = {
         shell = modules.terminals.default.shell;
         fontFamily = modules.terminals.default.font.family;
         fontSize = modules.terminals.default.font.size;
-        colorScheme = "Apple System Colors";
       };
     };
     tools = { enable = true; };
