@@ -34,7 +34,7 @@
       bind = $main, W, exec, ${settings.modules.xdg.defaults.webBrowser}
       bind = $main, E, exec, nohup ${pkgs.nautilus}/bin/nautilus --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
-      bind = $main, T, exec, ${settings.terminals.default.term.package}/bin/kitty # Launch kitty (terminal)
+      bind = $main, T, exec, ${settings.modules.terminals.default.term.package}/bin/kitty # Launch kitty (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
       # bind = $main, I, exec,
