@@ -17,9 +17,11 @@
         -- This is where you actually apply your config choices.
 
         -- changing the font size and color scheme.
-        config.font_size = ${toString settings.terminals.wezterm.fontSize}
-        config.font = wezterm.font ${settings.terminals.wezterm.fontFamily}
-        config.color_scheme = ${settings.terminals.wezterm.colorScheme}
+        config.font_size = ${
+          toString settings.modules.terminals.wezterm.fontSize
+        }
+        config.font = wezterm.font ${settings.modules.terminals.wezterm.fontFamily}
+        config.color_scheme = ${settings.modules.terminals.wezterm.colorScheme}
 
         config.enable_tab_bar = true
 
