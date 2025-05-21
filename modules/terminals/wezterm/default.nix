@@ -30,6 +30,9 @@
 
         config.animation_fps = 1
 
+        -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar.
+        config.default_cursor_style = 'BlinkingBar'
+        config.cursor_thickness = "2px"
         config.cursor_blink_ease_in = 'Constant'
         config.cursor_blink_ease_out = 'Constant'
 
