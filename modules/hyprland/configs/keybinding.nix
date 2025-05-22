@@ -114,7 +114,7 @@
 
       # In hyprland.conf
       bind = ALT, Tab, cyclenext, currentworkspace
-      bind = ALT, SHIFT+Tab, cycleprev, currentworkspace
+      bind = ALT, SHIFT+Tab, cyclenext, prev, currentworkspace
 
 
       # -------------------- #
