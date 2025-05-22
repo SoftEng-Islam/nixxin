@@ -10,11 +10,11 @@
     # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
     # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
-    interfaces.enp3s0.useDHCP = false;
-    interfaces.enp3s0.ipv4.addresses = [{
-      address = "192.168.69.1";
-      prefixLength = 24;
-    }];
+    # interfaces.enp3s0.useDHCP = false;
+    # interfaces.enp3s0.ipv4.addresses = [{
+    #   address = "192.168.69.1";
+    #   prefixLength = 24;
+    # }];
 
     networkmanager = {
       enable = true;
@@ -24,11 +24,11 @@
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
 
-    nat = {
-      enable = true;
-      internalInterfaces = [ "enp4s0" ];
-      externalInterface = "wlp0s22f2u4";
-    };
+    # nat = {
+    #   enable = true;
+    #   internalInterfaces = [ "enp4s0" ];
+    #   externalInterface = "wlp0s22f2u4";
+    # };
 
     hostName = settings.system.hostName; # Define your hostname.
     nftables.enable = true;
