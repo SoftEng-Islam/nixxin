@@ -24,11 +24,11 @@
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
 
-    # nat = {
-    #   enable = true;
-    #   internalInterfaces = [ "enp4s0" ];
-    #   externalInterface = "wlp0s22f2u4";
-    # };
+    nat = {
+      enable = true;
+      internalInterfaces = [ "enp4s0" ];
+      externalInterface = "wlp0s22f2u4";
+    };
 
     hostName = settings.system.hostName; # Define your hostname.
     nftables.enable = true;
