@@ -7,8 +7,12 @@
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
-    # networking.interfaces.eno1.useDHCP = lib.mkDefault true;
-    # networking.interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
+
+    # interfaces.eno1.useDHCP = lib.mkDefault true;
+    # interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
+
+    interfaces.enp4s0.useDHCP = false;
+    interfaces.wlp0s22f2u4.useDHCP = true;
 
     # interfaces.enp3s0.useDHCP = false;
     # interfaces.enp3s0.ipv4.addresses = [{
@@ -39,9 +43,6 @@
       allowedTCPPorts = [ 53 80 443 8080 3389 ];
       allowedUDPPorts = [ 53 67 ];
     };
-
-    interfaces.enp4s0.useDHCP = true;
-    interfaces.wlp0s22f2u4.useDHCP = true;
 
     nameservers = settings.modules.networking.nameservers;
 
@@ -110,35 +111,6 @@
     #      "remote-config-proxy-prd.uca.cloud.unity3d.com"
     #    ];
   };
-
-  # Dispatcher script to control routing and DNS priority
-  environment.etc."NetworkManager/dispatcher.d/10-route-metrics".text = ''
-    #!/bin/sh
-
-    IFACE="$1"
-    STATUS="$2"
-
-    case "$IFACE" in
-      enp4s0)
-        if [ "$STATUS" = "up" ]; then
-          nmcli connection modify "$IFACE" ipv4.never-default yes
-          nmcli connection modify "$IFACE" ipv4.ignore-auto-dns yes
-          nmcli connection modify "$IFACE" connection.metric 200
-          nmcli connection up "$IFACE"
-        fi
-        ;;
-      wlp0s22f2u4)
-        if [ "$STATUS" = "up" ]; then
-          nmcli connection modify "$IFACE" connection.metric 100
-          nmcli connection up "$IFACE"
-        fi
-        ;;
-    esac
-  '';
-
-  # Make dispatcher script executable
-  systemd.tmpfiles.rules =
-    [ "z /etc/NetworkManager/dispatcher.d/10-route-metrics 0755 root root" ];
 
   environment.systemPackages = with pkgs; [
     wpa_supplicant
