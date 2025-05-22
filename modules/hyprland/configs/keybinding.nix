@@ -111,6 +111,12 @@
       bind = $main C, W, centerwindow, 1
       bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
 
+
+      # In hyprland.conf
+      bind = ALT, Tab, cyclenext, currentworkspace
+      bind = ALT, SHIFT+Tab, cycleprev, currentworkspace
+
+
       # -------------------- #
       # ---- Workspaces ---- #
       # -------------------- #
