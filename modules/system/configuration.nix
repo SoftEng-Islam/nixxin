@@ -322,11 +322,11 @@ in {
 
     plymouth = {
       enable = true;
-      theme = "glow";
+      theme = "flame";
       themePackages = with pkgs;
         [
           (adi1090x-plymouth-themes.override {
-            selected_themes = [ "glow" ]; # "glow", "flame", "green loader"
+            selected_themes = [ "flame" ]; # "glow", "flame", "green loader"
           })
         ];
     };
