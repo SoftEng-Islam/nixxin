@@ -322,7 +322,7 @@ in {
 
     plymouth = {
       enable = true;
-      theme = "cuts";
+      theme = "glow";
       themePackages = [
         (pkgs.adi1090x-plymouth-themes.override {
           selected_themes = [ "glow" ]; # "glow", "flame", "green loader"
