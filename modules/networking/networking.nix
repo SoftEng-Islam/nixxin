@@ -40,8 +40,9 @@
       allowedUDPPorts = [ 53 67 ];
     };
 
-    # interfaces.${wifiInterface}.useDHCP = true;
-    # useNetworkd = true;
+    interfaces.enp4s0.useDHCP = true;
+    interfaces.wlp0s22f2u4.useDHCP = true;
+
     nameservers = settings.modules.networking.nameservers;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -109,6 +110,36 @@
     #      "remote-config-proxy-prd.uca.cloud.unity3d.com"
     #    ];
   };
+
+  # Dispatcher script to control routing and DNS priority
+  environment.etc."NetworkManager/dispatcher.d/10-route-metrics".text = ''
+    #!/bin/sh
+
+    IFACE="$1"
+    STATUS="$2"
+
+    case "$IFACE" in
+      enp4s0)
+        if [ "$STATUS" = "up" ]; then
+          nmcli connection modify "$IFACE" ipv4.never-default yes
+          nmcli connection modify "$IFACE" ipv4.ignore-auto-dns yes
+          nmcli connection modify "$IFACE" connection.metric 200
+          nmcli connection up "$IFACE"
+        fi
+        ;;
+      wlp0s22f2u4)
+        if [ "$STATUS" = "up" ]; then
+          nmcli connection modify "$IFACE" connection.metric 100
+          nmcli connection up "$IFACE"
+        fi
+        ;;
+    esac
+  '';
+
+  # Make dispatcher script executable
+  systemd.tmpfiles.rules =
+    [ "z /etc/NetworkManager/dispatcher.d/10-route-metrics 0755 root root" ];
+
   environment.systemPackages = with pkgs; [
     wpa_supplicant
     wpa_supplicant_gui
@@ -157,4 +188,5 @@
 
     iftop # network monitoring
   ];
+
 }
