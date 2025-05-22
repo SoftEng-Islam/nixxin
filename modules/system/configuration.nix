@@ -320,8 +320,16 @@ in {
       features = { rust = true; };
     }];
 
-    plymouth.enable = true;
-    # plymouth.theme = "bgrt";
+    plymouth = {
+      enable = true;
+      theme = "cuts";
+      themePackages = [
+        (pkgs.adi1090x-plymouth-themes.override {
+          selected_themes = [ "glow" ]; # "glow", "flame", "green loader"
+        })
+      ];
+    };
+
   };
 
   # ------------------------------------------------

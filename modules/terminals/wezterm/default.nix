@@ -64,6 +64,25 @@
           },
         }
 
+        config.keys = {
+          -- Copy with Cmd+C (Super is the Windows/Command key)
+          {
+            key = "c",
+            mods = "SUPER",
+            action = wezterm.action.CopyTo("Clipboard"),
+          },
+
+          -- Paste with Cmd+V
+          {
+            key = "v",
+            mods = "SUPER",
+            action = wezterm.action.PasteFrom("Clipboard"),
+          },
+
+          -- You can add more key bindings as needed
+        },
+
+
         -- Finally, return the configuration to wezterm:
         return config
       '';
