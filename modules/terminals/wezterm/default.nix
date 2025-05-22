@@ -80,7 +80,7 @@
           },
 
           -- You can add more key bindings as needed
-        },
+        }
 
 
         -- Finally, return the configuration to wezterm:
