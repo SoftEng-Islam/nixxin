@@ -323,11 +323,12 @@ in {
     plymouth = {
       enable = true;
       theme = "glow";
-      themePackages = [
-        (pkgs.adi1090x-plymouth-themes.override {
-          selected_themes = [ "glow" ]; # "glow", "flame", "green loader"
-        })
-      ];
+      themePackages = with pkgs;
+        [
+          (adi1090x-plymouth-themes.override {
+            selected_themes = [ "glow" ]; # "glow", "flame", "green loader"
+          })
+        ];
     };
 
   };
@@ -527,6 +528,7 @@ in {
     sleek-grub-theme
     # nixos-grub2-theme
     # minimal-grub-theme
+    adi1090x-plymouth-themes
 
     # ------------------------------------------------
     # ---- Hardware Packages
