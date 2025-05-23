@@ -108,11 +108,12 @@ in {
   # ---- Enable automatic updates
   # ------------------------------------------------
   systemd.timers.nixos-upgrade = {
-    enable = true;
+    enable = false;
     timerConfig.OnCalendar = "weekly";
     wantedBy = [ "timers.target" ];
   };
   systemd.services.nixos-upgrade = {
+    enable = false;
     script = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --upgrade";
     serviceConfig.Type = "oneshot";
   };
@@ -125,11 +126,16 @@ in {
   # ------------------------------------------------
   # $ sudo nixos-rebuild switch --flake .#nixos alternative
   #  nh os switch .#nixos
-  programs.nh = { enable = true; };
   # Or using an environment variable
-  environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
+  # environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
   # Than you can just run: nh os switch -H default
   # -H => is for hostname, Like in your terminal => `user@hostname`
+  programs.nh = {
+    enable = true;
+    clean.enable = true;
+    clean.extraArgs = "--keep-since 4d --keep 3";
+    flake = "/home/${settings.user.username}/nixxin";
+  };
 
   programs = {
     command-not-found.enable = false;
