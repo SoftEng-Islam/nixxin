@@ -129,6 +129,7 @@ in {
   # Or using an environment variable
   environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
   # Than you can just run: nh os switch -H default
+  # -H => is for hostname, Like in your terminal => `user@hostname`
 
   programs = {
     command-not-found.enable = false;
