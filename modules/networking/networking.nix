@@ -6,7 +6,7 @@
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    useDHCP = lib.mkDefault false;
+    useDHCP = lib.mkDefault true;
 
     # interfaces.eno1.useDHCP = lib.mkDefault true;
     # interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
@@ -28,11 +28,11 @@
       # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
     };
 
-    nat = {
-      enable = true;
-      internalInterfaces = [ "enp4s0" ];
-      externalInterface = "wlp0s22f2u4";
-    };
+    # nat = {
+    #   enable = true;
+    #   internalInterfaces = [ "enp4s0" ];
+    #   externalInterface = "wlp0s22f2u4";
+    # };
 
     hostName = settings.system.hostName; # Define your hostname.
     nftables.enable = true;
