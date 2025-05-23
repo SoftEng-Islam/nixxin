@@ -120,6 +120,16 @@ in {
   # Nicely reload system units when changing configs
   # systemd.user.startServices = "sd-switch";
 
+  # ------------------------------------------------
+  # ---- Enable "nh" nix cli helper.
+  # ------------------------------------------------
+  # $ sudo nixos-rebuild switch --flake .#nixos alternative
+  #  nh os switch .#nixos
+  nh = { enable = true; };
+  # Or using an environment variable
+  environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
+  # Than you can just run: nh os switch
+
   programs = {
     command-not-found.enable = false;
 
@@ -128,10 +138,6 @@ in {
 
     gnupg.agent.enable = true;
     gnupg.agent.enableSSHSupport = true;
-
-    # ---- nh ---- #
-    # Enable "nh" nix cli helper.
-    nh = { enable = true; };
 
     # See https://nix.dev/permalink/stub-ld.
     # run unpatched dynamic binaries on NixOS
