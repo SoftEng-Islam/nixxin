@@ -125,7 +125,7 @@ in {
   # ------------------------------------------------
   # $ sudo nixos-rebuild switch --flake .#nixos alternative
   #  nh os switch .#nixos
-  nh = { enable = true; };
+  programs.nh = { enable = true; };
   # Or using an environment variable
   environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
   # Than you can just run: nh os switch -H default
