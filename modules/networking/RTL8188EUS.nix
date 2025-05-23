@@ -9,7 +9,10 @@
     [ rtl8188eus-aircrack ];
 
   # Optional: Enable Aircrack-NG tools
-  environment.systemPackages = with pkgs; [ rtl8188eus-aircrack ];
+  environment.systemPackages = with pkgs; [
+    rtl88xxau-aircrack
+    rtl8188eus-aircrack
+  ];
 
   # Optional: Disable power saving for better WiFi stability
   boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
