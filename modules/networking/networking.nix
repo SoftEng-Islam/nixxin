@@ -6,13 +6,13 @@
     # (the default) this is the recommended approach. When using systemd-networkd it's
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    useDHCP = lib.mkDefault true;
+    useDHCP = lib.mkDefault false;
 
     # interfaces.eno1.useDHCP = lib.mkDefault true;
     # interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
-    interfaces.enp4s0.useDHCP = false;
-    interfaces.wlp0s22f2u4.useDHCP = true;
+    interfaces.enp4s0.useDHCP = lib.mkDefault false;
+    interfaces.wlp0s22f2u4.useDHCP = lib.mkDefault true;
 
     # interfaces.enp3s0.useDHCP = false;
     # interfaces.enp3s0.ipv4.addresses = [{
