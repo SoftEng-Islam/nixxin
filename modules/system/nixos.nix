@@ -128,7 +128,7 @@ in {
   nh = { enable = true; };
   # Or using an environment variable
   environment.variables.FLAKE = "/home/${settings.user.username}/nixxin";
-  # Than you can just run: nh os switch
+  # Than you can just run: nh os switch -H default
 
   programs = {
     command-not-found.enable = false;
