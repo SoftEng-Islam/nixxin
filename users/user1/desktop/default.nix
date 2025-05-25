@@ -550,12 +550,16 @@
             # List all the devices with their by-id symlinks
             # ls -l /dev/disk/by-id/
             grub = {
-              fontSize = 18;
+              fontSize = 14;
               # nix path-info -r nixpkgs#sleek-grub-theme
-              theme = "${pkgs.sleek-grub-theme}/grub/themes/sleek";
+              theme = with pkgs;
+                (sleek-grub-theme.override {
+                  withStyle = "dark"; # (dark/light/orange/bigsur)
+                  withBanner = "Grub Boot Manager";
+                });
               osProber = false;
               efiSupport = true;
-              gfxmodeEfi = "1920x1080";
+              gfxmodeEfi = "auto";
               devices = [ "nodev" ];
               device = "nodev"; # Let GRUB automatically detect EFI
               extraConfig = ''

@@ -58,11 +58,7 @@ in {
       devices = settings.modules.system.boot.loader.manager.grub.devices;
       device = settings.modules.system.boot.loader.manager.grub.device;
       useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
-      theme = with pkgs;
-        (sleek-grub-theme.override {
-          withStyle = "dark"; # (dark/light/orange/bigsur)
-          withBanner = "Boot Manager";
-        });
+      theme = settings.modules.system.boot.loader.manager.grub.theme;
       # Make Memtest86+, a memory testing program, available from the GRUB boot menu.
       memtest86.enable = false;
       extraConfig =
@@ -116,8 +112,11 @@ in {
       ];
     };
     kernelModules = [
-      "radeon"
       # "amdgpu"
+      "radeon"
+
+      "8188eu"
+
       "amd-pstate"
       "bfq"
       "binder_linux"
