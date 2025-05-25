@@ -5,10 +5,9 @@
   boot.blacklistedKernelModules = [ "rtl8xxxu" "r8188eu" ];
 
   # Install the patched rtl8188eus driver (supports monitor mode)
-  boot.extraModulePackages = [
-    # rtl88xxau-aircrack
-    pkgs.linuxKernel.packages.linux_zen.rtl8188eus-aircrack
-  ];
+  boot.extraModulePackages =
+    [ pkgs.linuxKernel.packages.linux_zen.rtl8188eus-aircrack ];
+
   boot.kernelModules = [ "8188eu" ];
 
   # Optional: Disable power saving for better WiFi stability
