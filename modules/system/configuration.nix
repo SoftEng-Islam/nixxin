@@ -165,13 +165,34 @@ in {
       "elevator=bfq" # Optimized disk performance for desktops
 
       # CPU optimizations
-      "threadirqs"
-      "mitigations=off"
-      "idle=nomwait"
-      "processor.max_cstate=1"
-      "amd_pstate=active" # Enables AMD's new power scaling
+      "amd_iommu=on"
       "amd_pstate.shared_mem=1"
+      "amd_pstate=guided" # Enable AMD P-State driver
       "clearcpuid=rdrand"
+      "idle=nomwait"
+      "mitigations=off"
+      "processor.max_cstate=7" # Limit C-states for better response time
+      "threadirqs"
+
+      "scsi_mod.use_blk_mq=1" # Use multi-queue for faster I/O
+
+      # Memory security parameters
+      "slab_nomerge" # Disables merging of slabs of similar sizes
+      "vsyscall=none" # Disables legacy system call interface
+      "slub_debug=FZP" # Enables sanity checks (F), redzoning (Z) and poisoning (P).
+      "init_on_free=1" # Fill freed pages and heap objects with zeroes
+      "init_on_alloc=1" # to initialize memory on allocation (complements init_on_free=1).
+      "page_alloc.shuffle=1" # Helps detect memory issues earlier + Major security gain
+
+      # New memory management parameters
+      "hugepagesz=2M" # Enable 2MB huge pages
+      "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
+      "default_hugepagesz=2M" # Set default huge page size
+      "transparent_hugepage=madvise" # Enable transparent huge pages
+
+      "pti=on" # Page Table Isolation for security
+      # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
+      "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
 
       # ---- Swap ---- #
       #"zswap.enabled=1"
@@ -224,7 +245,6 @@ in {
 
       # System Performance
       "preempt=voluntary" # or full
-      "transparent_hugepage=never"
       "clocksource=tsc"
       "tsc=reliable"
 
@@ -260,13 +280,29 @@ in {
       "vm.user_reserve_kbytes" = 196608; # 1(2^17)
       "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
 
-      # Virtual memory tweaks
-      "vm.swappiness" = 10; # Use RAM more before swapping
-      "vm.vfs_cache_pressure" = 50;
-      "vm.dirty_background_ratio" = 2;
-      "vm.max_map_count" = 2147483642;
+      #! Swap related { Virtual memory tweaks }
+      # "vm.swappiness" = 10; # Use RAM more before swapping
+      "vm.swappiness" =
+        0; # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
+
+      #! Memory management
       # Write data to disk more frequently (prevents slowdowns)
-      "vm.dirty_ratio" = 15;
+      "vm.dirty_ratio" = 10; # Full writeback at 10%
+      "vm.page-cluster" = 3; # Default page clustering (test with 0 if needed)
+      "vm.min_free_kbytes" =
+        65536; # Reserve 64MB of free memory (adjust as needed)
+      "vm.dirty_background_ratio" = 5; # Background writeback at 5%
+      "vm.compaction_proactiveness" =
+        0; # Default memory compaction (change to 1 if fragmentation issues arise)
+
+      # Memory security
+      "vm.mmap_rnd_bits" = 32; # Increase ASLR entropy
+      "kernel.kptr_restrict" = 2; # Hide kernel pointers
+      "kernel.dmesg_restrict" = 1; # Restrict dmesg access
+      "vm.mmap_rnd_compat_bits" = 16; # Compatible ASLR entropy
+
+      "vm.vfs_cache_pressure" = 50;
+      "vm.max_map_count" = 2147483642;
 
       # Kernel Scheduler
       "kernel.sched_autogroup_enabled" = 0;
