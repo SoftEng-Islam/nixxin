@@ -3,21 +3,36 @@
 # to /etc/nixos/configuration.nix instead.
 { lib, settings, inputs, pkgs, modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  boot.initrd.availableKernelModules = [ "ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
-  
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/253b308e-f703-4da9-8116-d9bc6c38b69a";
-      fsType = "xfs";
-    };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/1459-5ECF";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/253b308e-f703-4da9-8116-d9bc6c38b69a";
+    fsType = "xfs";
+  };
+
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/1459-5ECF";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   swapDevices = [ ];
+
+  fileSystems."/home/softeng/Win" = {
+    device = "//192.168.1.3/C";
+    fsType = "cifs";
+    options = [
+      "username=win"
+      "password=1122"
+      "uid=1000"
+      "gid=100"
+      "iocharset=utf8"
+      "rw"
+      "nofail"
+    ];
+  };
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
@@ -37,24 +52,24 @@
 
   # Don't Forget To Change The Owner of The Partition If Needed.
   # sudo chown -R softeng:wheel /data2
-#  fileSystems."/data2" = {
-#    device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
-#    fsType = "xfs";
-#    options = [
-#      "rw"
-#      "nofail"
-#      "nodev"
-#      "uid=1000"
-#      "gid=1000"
-#      "utf8"
-#      "umask=022"
-#      "exec"
-#      "x-gvfs-show"
-#    ];
-#  };
+  #  fileSystems."/data2" = {
+  #    device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
+  #    fsType = "xfs";
+  #    options = [
+  #      "rw"
+  #      "nofail"
+  #      "nodev"
+  #      "uid=1000"
+  #      "gid=1000"
+  #      "utf8"
+  #      "umask=022"
+  #      "exec"
+  #      "x-gvfs-show"
+  #    ];
+  #  };
 
-#  swapDevices = [{
-    # device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
-    # size = 4 * 1024; # Size in MB for a 4GB swap file
- # }];
+  #  swapDevices = [{
+  # device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
+  # size = 4 * 1024; # Size in MB for a 4GB swap file
+  # }];
 }
