@@ -228,10 +228,10 @@
       android = { enable = true; };
       databases = {
         enable = true;
-        monogodb = { enable = true; };
-        postgresql = { enable = true; };
+        monogodb = { enable = false; };
+        postgresql = { enable = false; };
         mysql = { enable = false; };
-        sql = { enable = true; };
+        sql = { enable = false; };
       };
       languages = {
         enable = true;
