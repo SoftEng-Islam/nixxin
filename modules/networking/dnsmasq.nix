@@ -13,7 +13,7 @@
       # interface = "waydroid0";
       # bind-interfaces = true;
       # Provide DHCP settings (if applicable)
-      dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
+      # dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
     };
   };
   systemd.services.dnsmasq = {
