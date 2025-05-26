@@ -418,7 +418,7 @@
     };
     networking = {
       enable = true;
-      dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
+      dnsResolver = "dnsmasq"; # "dnsmasq" or "systemd-resolved"
       nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
     };

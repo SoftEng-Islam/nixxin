@@ -28,6 +28,13 @@
       address = "192.168.2.1"; # e.g., 192.168.1.1
     };
 
+    # Set up NAT (masquerading) on NixOS to forward packets from Ethernet to Wi-Fi
+    firewall.extraCommands = ''
+      iptables -t nat -A POSTROUTING -o wlp0s22f2u4 -j MASQUERADE
+      iptables -A FORWARD -i enp4s0 -o wlp0s22f2u4 -j ACCEPT
+      iptables -A FORWARD -i wlp0s22f2u4 -o enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+    '';
+
     #
     nameservers = settings.modules.networking.nameservers;
 
