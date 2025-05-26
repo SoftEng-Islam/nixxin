@@ -21,10 +21,12 @@
       }];
     };
 
-    defaultGateway.interface = "wlp0s22f2u4";
     # ip route | grep default
     # nmcli device show wlan0 | grep IP4.GATEWAY
-    # defaultGateway = "192.168.2.1"; # e.g., 192.168.1.1
+    defaultGateway = {
+      interface = "wlp0s22f2u4";
+      address = "192.168.2.1"; # e.g., 192.168.1.1
+    };
 
     #
     nameservers = settings.modules.networking.nameservers;
