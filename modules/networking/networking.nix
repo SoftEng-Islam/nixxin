@@ -11,10 +11,9 @@
     # interfaces.eno1.useDHCP = lib.mkDefault true;
     # interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
 
-    interfaces.enp4s0.useDHCP = lib.mkDefault false;
     interfaces.wlp0s22f2u4.useDHCP = lib.mkDefault true;
 
-    interfaces.enp3s0 = {
+    interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
         address = "192.168.1.2"; # Set static IP for local RDP
@@ -22,9 +21,10 @@
       }];
     };
 
+    defaultGateway.interface = "wlp0s22f2u4";
     # ip route | grep default
     # nmcli device show wlan0 | grep IP4.GATEWAY
-    defaultGateway = "192.168.2.1"; # e.g., 192.168.1.1
+    # defaultGateway = "192.168.2.1"; # e.g., 192.168.1.1
 
     #
     nameservers = settings.modules.networking.nameservers;
