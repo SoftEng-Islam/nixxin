@@ -30,7 +30,7 @@
     architecture = "x86_64-linux"; # Replace with your system architecture
     stateVersion = "24.11";
     upgrade = {
-      enable = false;
+      enable = true;
       allowReboot = true;
       # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";

@@ -14,11 +14,23 @@
     interfaces.enp4s0.useDHCP = lib.mkDefault false;
     interfaces.wlp0s22f2u4.useDHCP = lib.mkDefault true;
 
-    # interfaces.enp3s0.useDHCP = false;
-    # interfaces.enp3s0.ipv4.addresses = [{
-    #   address = "192.168.69.1";
-    #   prefixLength = 24;
-    # }];
+    interfaces.enp4s0.metric = 200;
+    interfaces.wlp0s22f2u4.metric = 100;
+
+    interfaces.enp3s0 = {
+      useDHCP = false; # Disable DHCP (so no default route or DNS is set)
+      ipv4.addresses = [{
+        address = "192.168.1.2"; # Set static IP for local RDP
+        prefixLength = 24;
+      }];
+    };
+
+    # ip route | grep default
+    # nmcli device show wlan0 | grep IP4.GATEWAY
+    defaultGateway = "192.168.2.1"; # e.g., 192.168.1.1
+
+    #
+    nameservers = settings.modules.networking.nameservers;
 
     networkmanager = {
       enable = true;
@@ -43,8 +55,6 @@
       allowedTCPPorts = [ 53 80 443 8080 3389 ];
       allowedUDPPorts = [ 53 67 ];
     };
-
-    nameservers = settings.modules.networking.nameservers;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
