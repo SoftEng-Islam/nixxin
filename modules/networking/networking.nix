@@ -14,9 +14,6 @@
     interfaces.enp4s0.useDHCP = lib.mkDefault false;
     interfaces.wlp0s22f2u4.useDHCP = lib.mkDefault true;
 
-    interfaces.enp4s0.metric = 200;
-    interfaces.wlp0s22f2u4.metric = 100;
-
     interfaces.enp3s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
