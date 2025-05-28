@@ -14,9 +14,9 @@ in {
   # ---- Boot Configuration
   # ------------------------------------------------
   boot = {
-    # Change kernal to zen kernal
-    kernelPackages = pkgs.linuxPackages_zen;
-    # kernelPackages = pkgs.linuxKernel.packages.linux_zen;
+    kernelPackages = pkgs.linuxPackages;
+    # Change kernel to zen kernal
+    # kernelPackages = pkgs.linuxPackages_zen;
 
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
@@ -377,6 +377,9 @@ in {
     cpu.amd.updateMicrocode = true;
     # cpu.amd.sev.enable = true;
     enableRedistributableFirmware = true;
+
+    # one of "xz", "zstd", "none", "auto"
+    firmwareCompression = "zstd";
 
     amdgpu = {
       initrd.enable = false;
