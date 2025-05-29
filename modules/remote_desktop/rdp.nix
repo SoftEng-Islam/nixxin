@@ -10,4 +10,18 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
   networking.firewall.enable = true;
   # Only needed if this PC should *receive* RDP connections (rare)
   # networking.firewall.allowedTCPPorts = [ 3389 ];
+
+  services.samba = {
+    enable = true;
+    openFirewall = true;
+    shares = {
+      shared = {
+        path = "/data";
+        browseable = true;
+        writable = true;
+        "guest ok" = true; # Optional: allows access without a password
+      };
+    };
+  };
+
 }
