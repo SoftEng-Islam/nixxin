@@ -29,18 +29,29 @@ in {
       sandbox = true;
       connect-timeout = 0; # 0 means no limit
       download-attempts = 4;
-      # download-buffer-size = 536870912;
       http-connections = 0; # 0 means no limit
-
       keep-outputs = false;
       keep-derivations = false;
-
-      # Enable flakes
-      experimental-features =
-        [ "nix-command" "flakes" "no-url-literals" "pipe-operators" ];
-
+      fallback = true;
+      warn-dirty = true;
       builders-use-substitutes = true;
 
+      # Auto clear nixos store
+      auto-optimise-store = true;
+
+      trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
+      allowed-users = [ "@wheel" "root" "${settings.user.username}" ];
+
+      # Enable flakes
+      experimental-features = [
+        "nix-command"
+        "flakes"
+        "no-url-literals"
+        "pipe-operators"
+        "recursive-nix"
+      ];
+
+      trusted-substituters = [ "https://nix-community.cachix.org" ];
       substituters = [
         # high priority since it's almost always used
         "https://cache.nixos.org?priority=10"
@@ -54,9 +65,6 @@ in {
         "https://nixpkgs-python.cachix.org"
         "https://nixpkgs-wayland.cachix.org"
       ];
-
-      trusted-substituters = [ "https://nix-community.cachix.org" ];
-
       # Enable cachix
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
@@ -69,24 +77,15 @@ in {
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
-
-      trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
-      allowed-users = [ "@wheel" "root" "${settings.user.username}" ];
-
-      fallback = true;
-      warn-dirty = true;
-
-      # Auto clear nixos store
-      auto-optimise-store = true;
     };
 
     # ---- extraOptions ---- #
-    extraOptions = ''
-      sandbox = true
-      max-jobs = auto
-      auto-optimise-store = true
-      experimental-features = nix-command flakes recursive-nix
-    '';
+    # extraOptions = ''
+    #   sandbox = true
+    #   max-jobs = auto
+    #   auto-optimise-store = true
+    #   experimental-features = nix-command flakes recursive-nix
+    # '';
   };
 
   nixpkgs = {
@@ -448,3 +447,4 @@ in {
     '')
   ];
 }
+

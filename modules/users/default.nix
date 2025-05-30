@@ -47,10 +47,6 @@ in {
         "waydroid"
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
-        "softeng"
-        # "nixos"
-        # "root"
-        # "sshd"
       ];
       uid = 1000;
       # packages = with pkgs; [ thunderbird ];
