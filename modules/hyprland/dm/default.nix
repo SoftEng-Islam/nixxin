@@ -8,8 +8,7 @@ in {
   services.displayManager.enable = true;
 
   # ---- Set Default Session ---- #
-  services.displayManager.defaultSession =
-    settings.modules.hyprland.dm.defaultSession;
+  services.displayManager.defaultSession =  settings.modules.hyprland.dm.defaultSession;
 
   # ---- XSERVER ---- #
   services.xserver.enable = true;

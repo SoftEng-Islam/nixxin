@@ -545,7 +545,7 @@
           mode = "UEFI"; # UEFI OR BIOS
           manager = {
             # Select The boot manager to enable
-            name = "GRUB"; # GRUB or SYSTEMD
+            name = "GRUB"; # "GRUB" or "SYSTEMD"
 
             # device identifier for grub; only used for legacy (bios) boot mode
             # List all the devices with their by-id symlinks

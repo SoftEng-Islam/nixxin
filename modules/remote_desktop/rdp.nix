@@ -14,7 +14,7 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
   services.samba = {
     enable = true;
     openFirewall = true;
-    shares = {
+    settings = {
       shared = {
         path = "/data";
         browseable = true;

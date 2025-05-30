@@ -56,6 +56,7 @@ in {
       efiSupport = settings.modules.system.boot.loader.manager.grub.efiSupport;
       gfxmodeEfi = settings.modules.system.boot.loader.manager.grub.gfxmodeEfi;
       devices = settings.modules.system.boot.loader.manager.grub.devices;
+
       device = settings.modules.system.boot.loader.manager.grub.device;
       useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
       theme = settings.modules.system.boot.loader.manager.grub.theme;
