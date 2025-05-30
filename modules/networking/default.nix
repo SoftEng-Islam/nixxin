@@ -3,7 +3,7 @@
     ./networking.nix
     ./dnsmasq.nix
     # ./rtw.nix
-    # ./RTL8188EUS.nix
+    ./RTL8188EUS.nix
   ];
   services.avahi.enable = true;
   services.avahi.publish.enable = true;

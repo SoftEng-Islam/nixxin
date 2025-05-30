@@ -14,10 +14,7 @@ in {
   # ---- Boot Configuration
   # ------------------------------------------------
   boot = {
-    kernelPackages = pkgs.linuxPackages;
-    # Change kernel to zen kernal
-    # kernelPackages = pkgs.linuxPackages_zen;
-
+    kernelPackages = settings.system.kernel;
     tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
     consoleLogLevel = 0;
