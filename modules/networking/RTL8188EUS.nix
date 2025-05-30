@@ -14,7 +14,7 @@
   boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
 
   # Optional: Enable Aircrack-NG tools
-  environment.systemPackages = with pkgs;
-    [ linuxKernel.packages.linux_zen.rtl8188eus-aircrack ];
+  # environment.systemPackages = with pkgs;
+  #   [ linuxKernel.packages.linux_6_14 ];
 
 }

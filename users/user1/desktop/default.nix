@@ -30,7 +30,7 @@
     architecture = "x86_64-linux"; # Replace with your system architecture
     stateVersion = "24.11";
 
-    # Change kernel to zen kernal
+    # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
     kernel = pkgs.linuxPackages;
 
     upgrade = {
