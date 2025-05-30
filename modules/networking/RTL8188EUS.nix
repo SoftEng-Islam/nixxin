@@ -13,8 +13,4 @@
   # Optional: Disable power saving for better WiFi stability
   boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
 
-  # Optional: Enable Aircrack-NG tools
-  # environment.systemPackages = with pkgs;
-  #   [ linuxKernel.packages.linux_6_14 ];
-
 }
