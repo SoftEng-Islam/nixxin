@@ -11,6 +11,6 @@
     '')
   ];
   home-manager.users.${settings.user.username} = {
-    home.file."qb/".source = ./qb;
+    # home.file."qb/".source = ./qb;
   };
 }
