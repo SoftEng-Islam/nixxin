@@ -47,6 +47,7 @@ in {
         "waydroid"
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
+        "sambashare"
       ];
       uid = 1000;
       # packages = with pkgs; [ thunderbird ];

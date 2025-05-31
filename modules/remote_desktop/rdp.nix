@@ -21,7 +21,6 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
         browseable = true;
         writable = true;
         "guest ok" = "yes"; # Optional: allows access without a password
-
       };
     };
   };
