@@ -24,7 +24,6 @@
 
     # impurity.url = "github:outfoxxed/impurity.nix";
   };
-
   outputs = { self, nixpkgs, ... }@inputs:
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
@@ -48,5 +47,10 @@
           ];
         };
       };
+      
     };
+
+
+
+
 }

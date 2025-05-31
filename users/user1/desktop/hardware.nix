@@ -20,8 +20,8 @@
 
   swapDevices = [ ];
 
-  fileSystems."/home/softeng/Win" = {
-    device = "//192.168.1.3/C";
+  fileSystems."/home/softeng/windows" = {
+    device = "//192.168.1.3/windows_shared";
     fsType = "cifs";
     options = [
       "username=win"
