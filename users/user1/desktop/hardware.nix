@@ -40,7 +40,7 @@
   };
 
   fileSystems."/data" = {
-    device = "/dev/disk/by-uuid/67F7388D1080E3AB";
+    device = "/dev/disk/by-uuid/386568e5-b764-4b52-bd15-bca3408a3ce7";
     # fsType = "ntfs-3g"; # if NTFS
     fsType = "btrfs";
     options = [ # With Option-by-Option Explanation
