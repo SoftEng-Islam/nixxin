@@ -306,10 +306,10 @@
         rgba_order = "rgb";
 
         size = {
-          main = 14; # Font size
-          apps = 16;
-          desktop = 18;
-          popups = 18;
+          main = 12; # Font size
+          apps = 14;
+          desktop = 15;
+          popups = 16;
         };
       };
       monospace = {
