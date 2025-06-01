@@ -81,7 +81,7 @@ mkIf (settings.modules.dconf.enable or true) {
 
         # ---- Fonts ---- #
         font-name = lib.mkForce "${settings.modules.fonts.main.name} ${
-            toString settings.modules.fonts.main.size
+            toString settings.modules.fonts.main.size.main
           }";
         document-font-name = lib.mkForce settings.modules.fonts.main.name;
         font-hinting = lib.mkForce settings.modules.fonts.main.hinting;
