@@ -39,19 +39,19 @@
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/67F7388D1080E3AB";
-    # fsType = "ntfs-3g"; // if NTFS
-    fsType = "btrfs";
+    fsType = "ntfs-3g"; # if NTFS
+    # fsType = "btrfs";
     options = [ # With Option-by-Option Explanation
       # This only for BTRFS
-      "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
-      "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
-      "nodev" # Don’t allow device files on this mount (security measure).
+      # "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
+      # "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
+      # "nodev" # Don’t allow device files on this mount (security measure).
 
       # This only for NTFS
-      # "uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
-      # "gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
-      # "utf8" # NTFS/ntfs-3g only – interpret file names as UTF-8.
-      # "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
+      "uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
+      "gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
+      "utf8" # NTFS/ntfs-3g only – interpret file names as UTF-8.
+      "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
 
       # For Both File System
       "rw" # Mount the filesystem as read-write.
