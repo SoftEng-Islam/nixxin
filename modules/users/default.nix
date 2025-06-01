@@ -48,6 +48,7 @@ in {
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
         "sambashare"
+        "${settings.user.username}"
       ];
       uid = 1000;
       # packages = with pkgs; [ thunderbird ];
