@@ -80,7 +80,9 @@ mkIf (settings.modules.dconf.enable or true) {
         # enable-hot-corners
 
         # ---- Fonts ---- #
-        font-name = lib.mkForce settings.modules.fonts.main.name;
+        font-name = lib.mkForce "${settings.modules.fonts.main.name} ${
+            toString settings.modules.fonts.main.size
+          }";
         document-font-name = lib.mkForce settings.modules.fonts.main.name;
         font-hinting = lib.mkForce settings.modules.fonts.main.hinting;
         font-rendering = lib.mkForce settings.modules.fonts.main.rendering;
