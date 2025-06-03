@@ -79,17 +79,21 @@ in mkIf (settings.modules.xdg.enable) {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = "gtk"; # "*" or "gtk"
-          "org.freedesktop.portal.FileChooser" = [ "gtk" ];
-          "org.freedesktop.portal.Settings" = [ "gtk" ];
-          "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-          "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
-          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          default = [ "termfilechooser" "gtk" ]; # "*" or "gtk"
+          # "org.freedesktop.portal.FileChooser" = [ "gtk" ];
+          # "org.freedesktop.portal.Settings" = [ "gtk" ];
+          # "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
+          # "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
+          # "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
         };
-        hyprland.default = [ "hyprland" "gtk" ];
+        hyprland = {
+          default = [ "termfilechooser" "gtk" "hyprland" ];
+          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
+        };
       };
       extraPortals = with pkgs; [
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-termfilechooser
         xdg-desktop-portal-hyprland
       ];
     };
