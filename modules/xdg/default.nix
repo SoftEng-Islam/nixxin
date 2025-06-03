@@ -79,7 +79,7 @@ in mkIf (settings.modules.xdg.enable) {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = "*"; # "*" or "gtk"
+          default = "gtk"; # "*" or "gtk"
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           "org.freedesktop.impl.portal.ScreenCast" = [ "hyprland" ];
           "org.freedesktop.impl.portal.Screenshot" = [ "hyprland" ];
@@ -87,11 +87,10 @@ in mkIf (settings.modules.xdg.enable) {
         };
         hyprland.default = [ "hyprland" "gtk" ];
       };
-      extraPortals = with pkgs;
-        [
-          xdg-desktop-portal-gtk
-          # xdg-desktop-portal-hyprland
-        ];
+      extraPortals = with pkgs; [
+        xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
+      ];
     };
   };
   # ---- Under Test ---- #
