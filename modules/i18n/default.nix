@@ -73,7 +73,7 @@ in {
       ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
       Restart = "always";
     };
-    WantedBy = [ "default.target" ];
+    wantedBy = [ "default.target" ];
   };
 
   # Configure Virtual Console
