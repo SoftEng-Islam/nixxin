@@ -68,7 +68,7 @@ in {
   };
 
   systemd.user.services.fcitx5 = {
-    Unit.Description = "Fcitx5 IME";
+    Description = "Fcitx5 IME";
     serviceConfig = {
       ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
       Restart = "always";
