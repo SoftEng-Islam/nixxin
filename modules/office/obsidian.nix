@@ -9,11 +9,11 @@ in mkIf (settings.modules.office.obsidian or true) {
           --disable-gpu-sandbox \
           --use-gl=desktop \
           --enable-features=UseOzonePlatform \
-          --ozone-platform=wayland \
+          --ozone-platform=x11 \
           --enable-wayland-ime \
           "$@"
       '')
-      # --ozone-platform=x11 \
+      # --ozone-platform=wayland \
       # (optionals settings.modules.office.obsidian obsidian)
       # Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync
       # obsidian
