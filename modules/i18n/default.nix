@@ -73,7 +73,7 @@ in {
       ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
       Restart = "always";
     };
-    Install.WantedBy = [ "default.target" ];
+    WantedBy = [ "default.target" ];
   };
 
   # Configure Virtual Console
