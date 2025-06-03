@@ -79,7 +79,7 @@ in mkIf (settings.modules.xdg.enable) {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = [ [ "hyprland;gtk" ] ]; # "*" or "gtk"
+          default = [ "hyprland;gtk" ]; # "*" or "gtk"
           "org.freedesktop.portal.Settings" = [ "gtk" ];
           "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
           "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
