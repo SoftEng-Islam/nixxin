@@ -9,6 +9,8 @@ in mkIf (settings.modules.office.obsidian or true) {
           --disable-gpu-sandbox \
           --use-gl=desktop \
           --enable-features=UseOzonePlatform \
+          --ozone-platform=wayland \
+          --enable-wayland-ime \
           "$@"
       '')
       # --ozone-platform=x11 \

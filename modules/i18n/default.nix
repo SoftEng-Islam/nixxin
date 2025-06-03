@@ -39,7 +39,12 @@ in {
     inputMethod = {
       enable = true;
       type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
-      fcitx5.addons = with pkgs; [ fcitx5-unikey fcitx5-with-addons ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-unikey
+        fcitx5-with-addons
+        fcitx5-configtool
+        fcitx5-gtk
+      ];
       # ibus.engines = [
       #   "m17n:en"  # English (US)
       #   "m17n:ara"     # Arabic using m17n engine
@@ -50,7 +55,8 @@ in {
   # Environment Variables for Input Method
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
-    GLFW_IM_MODULE = "ibus";
+    GLFW_IM_MODULE =
+      "fcitx"; # you had "ibus" — change to "fcitx" for consistency
     SDL_IM_MODULE = "fcitx";
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
@@ -59,6 +65,15 @@ in {
 
     # Defines the system language.
     # LANG = _i18n.defaultLocale;
+  };
+
+  systemd.user.services.fcitx5 = {
+    Unit.Description = "Fcitx5 IME";
+    Service = {
+      ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
+      Restart = "always";
+    };
+    Install.WantedBy = [ "default.target" ];
   };
 
   # Configure Virtual Console
