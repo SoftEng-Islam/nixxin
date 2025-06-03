@@ -195,7 +195,7 @@ in mkIf (settings.modules.xdg.enable) {
     desktop-file-utils
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    # xdg-desktop-portal-gnome
+    xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
