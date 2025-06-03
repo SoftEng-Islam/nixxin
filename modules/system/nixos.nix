@@ -100,6 +100,7 @@ in {
     autoUpgrade.enable = settings.system.upgrade.enable;
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot;
     autoUpgrade.channel = settings.system.upgrade.channel;
+    # autoUpgrade.flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
     stateVersion = settings.system.stateVersion;
   };
 
@@ -447,4 +448,3 @@ in {
     '')
   ];
 }
-

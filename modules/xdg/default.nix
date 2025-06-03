@@ -79,25 +79,22 @@ in mkIf (settings.modules.xdg.enable) {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = [ "termfilechooser" "gtk" ]; # "*" or "gtk"
-          # "org.freedesktop.portal.FileChooser" = [ "gtk" ];
-          # "org.freedesktop.portal.Settings" = [ "gtk" ];
-          # "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-          # "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
-          # "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          default = [ [ "hyprland;gtk" ] ]; # "*" or "gtk"
+          "org.freedesktop.portal.Settings" = [ "gtk" ];
+          "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
+          "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
+          "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+          "org.freedesktop.impl.portal.FileChooser" = [ "nautilus" ];
         };
-        hyprland = {
-          default = [ "termfilechooser" "gtk" "hyprland" ];
-          "org.freedesktop.impl.portal.FileChooser" = "termfilechooser";
-        };
+        hyprland = { default = [ "hyprland" ]; };
       };
       extraPortals = with pkgs; [
-        xdg-desktop-portal-gtk
-        xdg-desktop-portal-termfilechooser
         xdg-desktop-portal-hyprland
+        xdg-desktop-portal-gtk
       ];
     };
   };
+
   # ---- Under Test ---- #
   # xdg.configFile = {
   #   "fish".source = ./.config/fish;
