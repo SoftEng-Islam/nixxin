@@ -89,8 +89,8 @@ in mkIf (settings.modules.xdg.enable) {
         hyprland.default = [ "hyprland" "gtk" ];
       };
       extraPortals = with pkgs; [
-        xdg-desktop-portal-hyprland
         xdg-desktop-portal-gtk
+        xdg-desktop-portal-hyprland
       ];
     };
   };

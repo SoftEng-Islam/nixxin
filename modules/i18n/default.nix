@@ -55,8 +55,9 @@ in {
   # Environment Variables for Input Method
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
+    # https://fcitx-im.org/wiki/Setup_Fcitx_5
     GLFW_IM_MODULE =
-      "fcitx"; # you had "ibus" — change to "fcitx" for consistency
+      "ibus"; # This is a variable only used by kitty. You need to set it to `GLFW_IM_MODULE=ibus`.
     SDL_IM_MODULE = "fcitx";
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
