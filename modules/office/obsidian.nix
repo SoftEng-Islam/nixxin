@@ -9,9 +9,9 @@ in mkIf (settings.modules.office.obsidian or true) {
           --disable-gpu-sandbox \
           --use-gl=desktop \
           --enable-features=UseOzonePlatform \
-          --ozone-platform=x11 \
           "$@"
       '')
+      # --ozone-platform=x11 \
       # (optionals settings.modules.office.obsidian obsidian)
       # Privacy-first personal knowledge management system that supports complete offline usage, as well as end-to-end encrypted data sync
       # obsidian
@@ -33,7 +33,7 @@ in mkIf (settings.modules.office.obsidian or true) {
       comment = "Markdown-based note-taking with GPU workarounds";
       exec = "obsidian %U";
       icon = "obsidian"; # or path to a custom icon
-      terminal = true;
+      terminal = false;
       type = "Application";
       categories = [ "Office" "Utility" ];
     };
