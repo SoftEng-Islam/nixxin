@@ -79,10 +79,10 @@ in mkIf (settings.modules.xdg.enable) {
       xdgOpenUsePortal = true;
       config = {
         common = {
-          default = [ "gtk" ]; # "*" or "gtk"
-          # "org.freedesktop.portal.Settings" = [ "gtk" ];
-          # "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-          # "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
+          default = [ "*" ]; # "*" or "gtk"
+          "org.freedesktop.portal.Settings" = [ "gtk" ];
+          "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
+          "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           "org.freedesktop.impl.portal.FileChooser" = [ "nautilus" ];
         };
@@ -195,7 +195,7 @@ in mkIf (settings.modules.xdg.enable) {
     desktop-file-utils
     xdg-dbus-proxy # DBus proxy for Flatpak and others
     xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-gnome
+    # xdg-desktop-portal-gnome
     xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
     xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
     xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
