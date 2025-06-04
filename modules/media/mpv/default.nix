@@ -61,7 +61,7 @@ in lib.mkIf (settings.modules.media.mpv) {
       config = {
         vo = "gpu"; # avoid gpu-next
         gpu-api = "opengl"; # vulkan doesn't work
-        gpu-context = "x11"; # avoid wayland, r600 better with X11
+        gpu-context = "wayland"; # avoid wayland, r600 better with X11
         hwdec = "no"; # or "no" if it fails
         hwdec-codecs = "all";
         profile = "gpu-hq"; # good baseline
