@@ -86,7 +86,7 @@ in mkIf (settings.modules.xdg.enable) {
           "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
           "org.freedesktop.impl.portal.FileChooser" = [ "nautilus" ];
         };
-        hyprland = { default = [ "hyprland" ]; };
+        hyprland = { default = [ "hyprland" "gtk" ]; };
       };
       extraPortals = with pkgs; [
         xdg-desktop-portal-hyprland
