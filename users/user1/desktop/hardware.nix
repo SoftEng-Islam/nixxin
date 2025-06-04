@@ -21,7 +21,7 @@
   swapDevices = [ ];
 
   # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g)
-  fileSystems."/home/softeng/windows" = {
+  fileSystems."/windows" = {
     device = "//192.168.1.3/windows_shared";
     fsType = "cifs";
     options = [

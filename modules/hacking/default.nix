@@ -29,6 +29,8 @@ in {
       netop # Network monitor using bpf
       #netrw # Simple tool for transporting data over the network
       nettools # Set of tools for controlling the network subsystem in Linux
+
+      cowpatty
     ];
   };
 }
