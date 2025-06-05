@@ -124,7 +124,6 @@ in lib.mkIf (settings.modules.media.mpv) {
     libass
     libavc1394
     libavif
-    libmp3splt
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva
     libva-utils # For testing VAAPI support
