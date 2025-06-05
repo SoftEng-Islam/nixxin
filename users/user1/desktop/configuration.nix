@@ -15,7 +15,6 @@
     ../../../modules/data_transferring
     ../../../modules/dconf
     ../../../modules/development
-    ../../../modules/editors
     ../../../modules/emails
     ../../../modules/env
     ../../../modules/file_manager

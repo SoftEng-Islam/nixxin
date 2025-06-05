@@ -1,9 +1,9 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  imports = lib.optionals (settings.modules.development.tools.enable or false) [
-    ./devdocs
-    # ./ide
+  imports = lib.optionals (settings.modules.development.tools.enable or true) [
+    # ./devdocs
+    ./editors
   ];
   config = mkIf (settings.modules.development.tools.enable or false) {
 

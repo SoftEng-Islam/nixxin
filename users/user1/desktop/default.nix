@@ -253,7 +253,22 @@
       };
       web = { enable = true; };
       tools = {
-        enable = false;
+        enable = true;
+        editors = {
+          enable = true;
+          zedEditor = false;
+          eclipse = false;
+          helix = false;
+          vscode = {
+            enable = true;
+            extensions_home = false;
+            globalSnippets_home = false;
+            userSettings_home = false;
+            keybindings_home = false;
+          };
+          vscodium = false;
+          gnomeTextEditor = true;
+        };
         # devdocs.enable = false;
         # ide = {
         #   PHPStorm = false;
@@ -268,21 +283,6 @@
         bruno = false;
         insomnia = false;
       };
-    };
-    editors = {
-      enable = true;
-      zedEditor = false;
-      eclipse = false;
-      helix = false;
-      vscode = {
-        enable = true;
-        extensions_home = false;
-        globalSnippets_home = false;
-        userSettings_home = false;
-        keybindings_home = false;
-      };
-      vscodium = false;
-      gnomeTextEditor = true;
     };
     emails = {
       enable = false;
