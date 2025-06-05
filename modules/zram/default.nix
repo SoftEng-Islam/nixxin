@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.zram.enable) {
+in mkIf (settings.modules.zram.enable or false) {
   # Swap Tweaks for Performance
   # Run Command "zramctl"
   zramSwap = {

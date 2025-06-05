@@ -301,7 +301,7 @@
     fonts = {
       enable = true;
       main = {
-        # To Get "Path" of Package:
+        # To Get "Path" of Font Package:
         # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
         name = "CaskaydiaCove Nerd Font"; # Selected Font
         package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
@@ -311,7 +311,7 @@
         rgba_order = "rgb";
 
         size = {
-          main = 12; # Font size
+          main = 12; # The main font size
           apps = 14;
           desktop = 15;
           popups = 16;
@@ -393,7 +393,6 @@
         font = "";
       };
       hyprpaper = { enable = true; };
-
     };
     i18n = {
       # ---- Date/Time & Languages ---- #

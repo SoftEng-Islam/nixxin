@@ -13,17 +13,16 @@ in mkIf (settings.modules.virtualization.enable) {
     };
   };
 
-  programs.virt-manager.enable = true;
+  programs.virt-manager.enable = false;
 
   # ----------------------------------------------
   # ---- System Packages
   # ----------------------------------------------
   environment.systemPackages = with pkgs; [
-    #for virtualisation virt-manager
-    # virtiofsd
-    virt-manager
-    # distrobox
-    kvmtool
-
+    # For virtualisation virt-manager
+    virtiofsd # vhost-user virtio-fs device backend written in Rust
+    virt-manager # Desktop user interface for managing virtual machines
+    distrobox # Wrapper around podman or docker to create and start containers
+    kvmtool # Lightweight tool for hosting KVM guests
   ];
 }

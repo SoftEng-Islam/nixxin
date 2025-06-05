@@ -1,17 +1,22 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{ settings, pkgs, ... }: {
   users = {
     defaultUserShell = pkgs.zsh;
     groups.uinput.members = [ "${settings.user.username}" ];
     groups.input.members = [ "${settings.user.username}" ];
     users.${settings.user.username} = {
+
       isNormalUser = true;
       # isSystemUser = false;
-      # hashedPassword = "";
+
+      # To generate a hashed password run `mkpasswd`.
+      hashedPassword =
+        "$y$j9T$5HywFRGm/t.0VjspGLm8./$GtocDydBdCVWhVq8XaZnIUWUebqMQsS5rjJp7tSsRW/";
+
       description = settings.user.name;
       home = "/home/${settings.user.username}";
-      # shell = pkgs.zsh; # Set zsh as the default shell
+
+      shell = pkgs.zsh; # Set zsh as the default shell
+
       extraGroups = [
         "adbusers"
         "audio" # Access to audio devices.
