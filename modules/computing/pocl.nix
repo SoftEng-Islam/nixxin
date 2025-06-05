@@ -1,4 +1,4 @@
-{ settings, lib, pkgs }: {
+{ pkgs }: {
   # environment.variables = { };
   environment.systemPackages = with pkgs;
     [

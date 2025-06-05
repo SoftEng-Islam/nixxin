@@ -1,9 +1,8 @@
 { settings, config, lib, pkgs, ... }:
-let inherit (lib) optionals mkIf;
+let inherit (lib) mkIf;
 in {
   # "pocl" OR "opencl"
-  imports = optionals (settings.modules.computing.enable)
-    [ (./. + "/${settings.modules.computing.default}.nix") ];
+  imports = [ (./. + "/${settings.modules.computing.default}.nix") ];
 
   config = mkIf (settings.modules.computing.enable) {
     environment.systemPackages = with pkgs;
