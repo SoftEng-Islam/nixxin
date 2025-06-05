@@ -14,5 +14,9 @@ let
     (lib.optional settings.modules.community.zoom zoom-us)
   ];
 in mkIf (settings.modules.community.enable) {
-  environment.systemPackages = lib.flatten _cummunity;
+  environment.systemPackages = with pkgs;
+    lib.flatten _cummunity ++ [
+      zapzap # WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
+      caprine-bin # Elegant Facebook Messenger desktop app
+    ];
 }

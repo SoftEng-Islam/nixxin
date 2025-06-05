@@ -1,19 +1,18 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.tools.enable) {
+in mkIf (settings.modules.tools.enable or false) {
   environment.systemPackages = with pkgs; [
     gromit-mpx # Desktop annotation tool
     screenkey # A screencast tool to display your keys inspired by Screenflick
 
-    # ventoy # is marked as insecure, refusing to evaluate.
-    zotero
-    # zapzap
-    # caprine-bin
-    # topgrade
-    # tldr
-    # fscryptctl
-    # espanso
-    element
-    # duplicacy
+    # ventoy #! ERROR: is marked as insecure, refusing to evaluate.
+
+    zotero # Collect, organize, cite, and share your research sources
+    topgrade # Upgrade all the things
+    tldr # Simplified and community-driven man pages
+    fscryptctl # Small C tool for Linux filesystem encryption
+    espanso # Cross-platform Text Expander written in Rust
+    element # Periodic table on the command line
+    duplicacy # New generation cloud backup tool
   ];
 }
