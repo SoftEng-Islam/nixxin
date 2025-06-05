@@ -248,12 +248,12 @@
       };
       web = { enable = true; };
       tools = {
-        enable = true;
-        devdocs.enable = false;
-        ide = {
-          PHPStorm = false;
-          pyCharm = false;
-        };
+        enable = false;
+        # devdocs.enable = false;
+        # ide = {
+        #   PHPStorm = false;
+        #   pyCharm = false;
+        # };
       };
       apps = {
         enable = true;
