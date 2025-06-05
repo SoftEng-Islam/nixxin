@@ -52,15 +52,21 @@
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
   common = {
+    #* EDITOR Var: used for
     EDITOR = "nvim";
+    #* VISUAL Var: used for
     VISUAL = "nvim";
-    TERM = "kitty";
-    webBrowser =
-      "google-chrome-stable"; # "microsoft-edge", "google-chrome-stable"
-    mainFont.name = "CaskaydiaCove Nerd Font";
-    mainFont.package =
-      pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+    #* TERM Var: used for
+    TERM = "wezterm";
 
+    # webBrowser: SET TO "microsoft-edge" OR "google-chrome-stable"
+    webBrowser = "google-chrome-stable";
+
+    mainFont.name = "CaskaydiaCove Nerd Font";
+    # Typeface made for Developers.
+    mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
+
+    # Media Variables:
     videoPlayer = "";
     soundPlayer = "";
     imageViewer = "";
@@ -173,7 +179,7 @@
     bluetooth = { enable = false; };
     browsers = {
       enable = true; # To disable the whole module
-      brave = true;
+      brave = false;
       firefox = false;
       firefox-beta = false;
       google-chrome = true;
@@ -182,7 +188,6 @@
     camera = { enable = false; };
     cli = { # Collection of useful CLI apps
       enable = true;
-      aria = true;
       bat = true;
       eza = true;
       fd = true;
@@ -194,7 +199,7 @@
       enable = true;
       discord = false;
       ferdium = true;
-      mumble = true;
+      mumble = false;
       revolt = false;
       signal = false;
       slack = false;
@@ -213,7 +218,7 @@
       aria2 = true;
       axel = false;
       curl = true;
-      lux = true;
+      lux = false;
       wget2 = true;
       yt-dlp = true;
       motrix = false;
@@ -223,9 +228,9 @@
       persepolis = false;
       varia = false;
       deluge = false;
-      webtorrent_desktop = true;
+      webtorrent_desktop = false;
       bitmagnet = false;
-      transmission = true;
+      transmission = false;
     };
     development = {
       enable = true;
@@ -243,7 +248,7 @@
         dart = { enable = true; };
         go = { enable = true; };
         python = true;
-        ruby = true;
+        ruby = false;
         rust = true;
       };
       web = { enable = true; };
@@ -257,16 +262,16 @@
       };
       apps = {
         enable = true;
-        beekeeper = false; # error
-        dbeaver = true;
-        sqlitebrowser = true;
-        bruno = true;
-        insomnia = true;
+        beekeeper = false;
+        dbeaver = false;
+        sqlitebrowser = false;
+        bruno = false;
+        insomnia = false;
       };
     };
     editors = {
       enable = true;
-      zedEditor = true;
+      zedEditor = false;
       eclipse = false;
       helix = false;
       vscode = {
@@ -338,14 +343,14 @@
     git = { enable = true; };
     graphics = {
       enable = true;
-      blender = true;
+      blender = false;
       darktable = false;
       davinci = false;
-      drawio = true;
+      drawio = false;
       figmaLinux = false;
-      gimp = true;
+      gimp = false;
       inkscape = false;
-      lunacy = true;
+      lunacy = false;
       kolourpaint = false;
     };
     hacking = { enable = true; };
@@ -423,7 +428,7 @@
     networking = {
       enable = true;
       dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
-      nameservers = [ "8.8.8.8" "8.8.4.4" ]; # Google's DNS
+      nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
     };
     notifications = { enable = true; };
@@ -449,9 +454,9 @@
       enable = true;
       screen = {
         enable = true;
-        gpu_recorder = true;
-        obs = true;
-        wf_recorder = true;
+        gpu_recorder = false;
+        obs = false;
+        wf_recorder = false;
       };
       sound.enable = false;
     };
