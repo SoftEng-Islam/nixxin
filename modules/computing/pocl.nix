@@ -1,6 +1,4 @@
-{ settings, lib, pkgs }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.computing.enable) {
+{ settings, lib, pkgs }: {
   # environment.variables = { };
   environment.systemPackages = with pkgs;
     [
