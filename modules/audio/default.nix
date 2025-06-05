@@ -3,9 +3,12 @@ let inherit (lib) mkIf;
 in {
   imports = [ ./rnnoise.nix ];
 
-  config = mkIf (settings.modules.audio.enable) {
+  config = mkIf (settings.modules.audio.enable true) {
 
+    #? What is ALSA?
+    #* ALSA is:
     hardware = { alsa.enable = false; };
+
     services = {
       playerctld.enable = true;
       pulseaudio.enable = false; # Enable sound with pipewire.
@@ -19,11 +22,11 @@ in {
         jack.enable = true;
         wireplumber.enable = true;
         extraConfig.pipewire = {
-          "10-clock-rate" = {
-            "context.properties" = {
-              "default.clock.allowed-rates" = [ 44100 48000 96000 ];
-            };
-          };
+          # "10-clock-rate" = {
+          #   "context.properties" = {
+          #     "default.clock.allowed-rates" = [ 44100 48000 96000 ];
+          #   };
+          # };
           # "92-low-latency" = {
           #   "context.properties" = {
           #     "default.clock.rate" =
@@ -44,8 +47,8 @@ in {
       '';
     };
     security = {
-      rtkit.enable =
-        true; # Whether to enable the RealtimeKit system service "recommended"
+      # Whether to enable the RealtimeKit system service "recommended"
+      rtkit.enable = true;
       pam.loginLimits = [
         {
           domain = "@audio";

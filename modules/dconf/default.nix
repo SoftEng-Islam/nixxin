@@ -91,7 +91,11 @@ mkIf (settings.modules.dconf.enable or true) {
         font-rgba-order = lib.mkForce settings.modules.fonts.main.rgba_order;
 
         # gtk-color-palette
-        # gtk-color-scheme
+
+        # $ gsettings describe org.gnome.desktop.interface gtk-color-scheme
+        # $ gsettings get org.gnome.desktop.interface gtk-color-scheme
+        # gtk-color-scheme = lib.mkForce "${settings.modules.styles.colorScheme}";
+
         # gtk-enable-primary-paste
         # gtk-im-module
         # gtk-im-preedit-style

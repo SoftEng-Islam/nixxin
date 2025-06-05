@@ -208,8 +208,8 @@
       zoom = false;
     };
     computing = {
-      enable = false;
-      default = "opencl"; # "pocl" OR "opencl"
+      enable = true;
+      default = "pocl"; # "pocl" OR "opencl"
     };
     dconf = { enable = true; };
     data_transferring = { # Command-Line/Apps Download Utilities

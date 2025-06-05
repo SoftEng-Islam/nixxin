@@ -22,6 +22,9 @@ in {
       # Implementation of Microsoft's Media Transfer Protocol.
       libmtp
 
+      # FUSE Filesystem providing access to MTP devices
+      mtpfs
+
       # Android's repo management tool
       git-repo
     ];
