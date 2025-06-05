@@ -177,7 +177,7 @@
       firefox = false;
       firefox-beta = false;
       google-chrome = true;
-      microsoft-edge = true;
+      microsoft-edge = false;
     };
     camera = { enable = false; };
     cli = { # Collection of useful CLI apps
