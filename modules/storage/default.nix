@@ -7,7 +7,7 @@
   # If checksum mismatches are found, Btrfs attempts to repair them using redundant copies (if available).
   # Similar to ZFS scrub but for Btrfs filesystems.
   services.btrfs.autoScrub = {
-    enable = false;
+    enable = true;
     interval = "weekly";
   };
 

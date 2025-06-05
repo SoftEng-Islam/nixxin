@@ -6,7 +6,8 @@
   # Efficient for Large Filesystems: It uses a hashtable to manage deduplication efficiently without using excessive memory or CPU resources.
   # The beesd service is the system daemon that runs Bees.
   services.beesd = {
-    enable = settings.modules.storage.beesd.enable; # Enable the Bees service.
+    enable =
+      settings.modules.storage.beesd.enable or false; # Enable the Bees service.
     filesystems.btrfs = {
       # Specify the Btrfs filesystem to deduplicate.
       spec = "/mnt/btrfs";

@@ -1,4 +1,4 @@
-{ settings, config, lib, pkgs, ... }:
+{ settings, config, pkgs, ... }:
 # ------------------------------------------------
 # !NOTICE: You Must Read And Customize This File
 # ------------------------------------------------
@@ -7,8 +7,7 @@
 # -- Hardware Configuration
 # ------------------------------------------------
 
-let inherit (lib) mkIf;
-in {
+{
 
   # ------------------------------------------------
   # ---- Boot Configuration
