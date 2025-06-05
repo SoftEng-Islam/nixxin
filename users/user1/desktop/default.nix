@@ -45,7 +45,7 @@
   home.backupFileExtension = null;
 
   # ----------------------------------------------
-  # ---- Common for all Modules.
+  # ---- Common Is Shared configs for all Modules.
   # We have this Object because of the..
   # the "xdg defaults" and "env vars" and hyprland keybinding, etc...
   # For Ex: You have BROWSER var, and xdg webBrowser
@@ -81,14 +81,14 @@
 
     # ---- GTK ---- #
     gtk = {
-      # Material
-      # adw-gtk3-dark
       theme = "adw-gtk3-dark";
       package = pkgs.adw-gtk3;
       icon_cache = true;
     };
 
-    # ---- Qt ---- #
+    # ---------------------
+    # ---- Qt
+    # ---------------------
     qt = {
       style = "adwaita-dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
