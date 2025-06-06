@@ -57,7 +57,7 @@ in {
         "https://cache.nixos.org?priority=10"
         "https://hyprland.cachix.org?priority=10"
 
-        "https://cache.garnix.io"
+        #"https://cache.garnix.io"
         #"https://cuda-maintainers.cachix.org"
         "https://devenv.cachix.org"
         "https://nix-community.cachix.org"
@@ -74,7 +74,7 @@ in {
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
+        #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
     };
