@@ -173,9 +173,9 @@ in {
 
   services = {
     # Forces the GPU to always run at full power.
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", ATTR{power_dpm_state}="performance"
-    '';
+    # udev.extraRules = ''
+    #   ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", ATTR{power_dpm_state}="performance"
+    # '';
 
     dbus.enable = true;
     # Required for gnome3 pinentry
