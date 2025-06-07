@@ -642,7 +642,7 @@
         fontSize = modules.terminals.default.font.size;
       };
     };
-    tools = { enable = true; };
+    tools = { enable = false; };
     ulauncher.enable = true;
     users = { name = user.name; };
     virtualization = { enable = true; };

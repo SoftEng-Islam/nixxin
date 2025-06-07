@@ -13,6 +13,5 @@ in mkIf (settings.modules.tools.enable or false) {
     fscryptctl # Small C tool for Linux filesystem encryption
     espanso # Cross-platform Text Expander written in Rust
     element # Periodic table on the command line
-    duplicacy # New generation cloud backup tool
   ];
 }
