@@ -15,8 +15,8 @@ let
     # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
     # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
 
-    gsettings set org.gnome.desktop.interface gtk-theme adw-gtk3-dark
-    gsettings set org.gnome.desktop.interface color-scheme prefer-dark
+    # gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
+    # gsettings set org.gnome.desktop.interface color-scheme prefer-dark
     gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
     gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
     gsettings set org.gnome.desktop.interface font-name "CaskaydiaCove Nerd Font 10"
