@@ -32,7 +32,7 @@
       #=> First Row:
       # bind = $main, Q, killactive,
       bind = $main, W, exec, ${settings.modules.xdg.defaults.webBrowser}
-      bind = $main, E, exec, nohup ${pkgs.nautilus}/bin/nautilus --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
+      bind = $main, E, exec, GTK_THEME=${settings.common.gtk.GTK_THEME} ${pkgs.nautilus}/bin/nautilus --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
       bind = $main, T, exec, ${settings.modules.terminals.default.term.package}/bin/${settings.modules.terminals.default.term.name} # Launch (terminal)
       # bind = $main, Y, exec,
