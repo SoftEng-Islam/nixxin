@@ -13,7 +13,7 @@ in {
     #- Talks directly to your sound hardware (sound cards, audio codecs, DACs, etc.)
     #- Provides kernel drivers for nearly all audio chips (Intel, Realtek, etc.)
     #- Offers user-space tools to configure audio (e.g., alsamixer, aplay)
-    hardware.alsa.enable = false;
+    hardware.alsa.enable = true;
 
     services = {
       playerctld.enable = true;
@@ -37,39 +37,39 @@ in {
         wireplumber.enable = true;
 
         # Optional: Tweak for better sound quality
-        extraConfig.pipewire = {
-          "10-clock-rate" = {
-            "context.properties" = {
-              "default.clock.allowed-rates" = [ 44100 48000 96000 ];
-            };
-          };
-          "92-low-latency" = {
-            "context.properties" = {
-              "default.clock.rate" =
-                96000; # Maximum common sample rate for high-quality audio
-              "default.clock.quantum" =
-                64; # Smallest quantum for the lowest latency
-              "default.clock.min-quantum" = 64;
-              "default.clock.max-quantum" =
-                1024; # Maximum for flexibility if needed
-            };
-          };
-        };
+        # extraConfig.pipewire = {
+        #   "10-clock-rate" = {
+        #     "context.properties" = {
+        #       "default.clock.allowed-rates" = [ 44100 48000 96000 ];
+        #     };
+        #   };
+        #   "92-low-latency" = {
+        #     "context.properties" = {
+        #       "default.clock.rate" =
+        #         96000; # Maximum common sample rate for high-quality audio
+        #       "default.clock.quantum" =
+        #         64; # Smallest quantum for the lowest latency
+        #       "default.clock.min-quantum" = 64;
+        #       "default.clock.max-quantum" =
+        #         1024; # Maximum for flexibility if needed
+        #     };
+        #   };
+        # };
       };
-      udev.extraRules = ''
-        KERNEL=="rtc0", GROUP="audio"
-        KERNEL=="hpet", GROUP="audio"
-        KERNEL=="snd*", MODE="0660", GROUP="audio"
+      # udev.extraRules = ''
+      #   KERNEL=="rtc0", GROUP="audio"
+      #   KERNEL=="hpet", GROUP="audio"
+      #   KERNEL=="snd*", MODE="0660", GROUP="audio"
 
-        ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
-        ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
+      #   ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
+      #   ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
 
-        KERNEL=="tun", TAG+="systemd"
-        SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
-        SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-        SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
-        SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
-      '';
+      #   KERNEL=="tun", TAG+="systemd"
+      #   SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
+      #   SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+      #   SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
+      #   SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
+      # '';
     };
     security = {
       # Whether to enable the RealtimeKit system service "recommended"
@@ -106,7 +106,7 @@ in {
     home-manager.users.${settings.user.username}.services.easyeffects = {
       # Whether to enable EasyEffects.
       #! [Required] Necessitates programs.dconf.enable to be true.
-      enable = true;
+      enable = false;
     };
 
     # Adds MIDI soundfonts (if present) to /run/current-system/sw.
