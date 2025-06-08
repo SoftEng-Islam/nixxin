@@ -7,7 +7,7 @@ in {
 
     #? What is ALSA?
     #* ALSA is:
-    hardware = { alsa.enable = false; };
+    hardware = { alsa.enable = true; };
 
     services = {
       playerctld.enable = true;
@@ -43,7 +43,16 @@ in {
       udev.extraRules = ''
         KERNEL=="rtc0", GROUP="audio"
         KERNEL=="hpet", GROUP="audio"
-        KERNEL=="snd*", MODE="0660", GROUP="audio"  # Added for improved ALSA access
+        KERNEL=="snd*", MODE="0660", GROUP="audio"
+
+        ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
+        ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
+
+        KERNEL=="tun", TAG+="systemd"
+        SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
+        SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+        SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
+        SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
       '';
     };
     security = {
@@ -80,8 +89,8 @@ in {
     # Audio effects for PipeWire applications.
     home-manager.users.${settings.user.username}.services.easyeffects = {
       # Whether to enable EasyEffects.
-      # Necessitates programs.dconf.enable to be true.
-      enable = false;
+      #! [Required] Necessitates programs.dconf.enable to be true.
+      enable = true;
     };
 
     # Adds MIDI soundfonts (if present) to /run/current-system/sw.
@@ -89,15 +98,21 @@ in {
     environment.pathsToLink = [ "/share/soundfonts" ];
 
     environment.systemPackages = with pkgs; [
+      alsa-firmware
+      alsa-lib
+      alsa-tools
       alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
       sof-firmware # Sound Open Firmware
+
       # pulseaudio # Sound server for POSIX and Win32 systems
       # pulseaudio-ctl # Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils
+      # pulseaudioFull # Sound server for POSIX and Win32 systems
+
       pamixer # Pulseaudio command line mixer
       pavucontrol # PulseAudio Volume Control
       pipewire # Server and user space API to deal with multimedia pipelines
       pipecontrol # Pipewire control GUI program in Qt (Kirigami2)
-      pulseaudioFull # Sound server for POSIX and Win32 systems
+
       wireplumber # Modular session / policy manager for PipeWire
       ladspaPlugins # LADSPA format audio plugins
       calf # Set of high quality open source audio plugins for musicians
