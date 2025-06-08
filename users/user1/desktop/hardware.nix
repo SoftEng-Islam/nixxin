@@ -21,23 +21,23 @@
   swapDevices = [ ];
 
   # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g)
-  fileSystems."/windows" = {
-    device = "//192.168.1.3/windows_shared";
-    fsType = "cifs";
-    options = [
-      "username=win"
-      "password=1122"
-      "uid=1000"
-      "gid=100"
-      "iocharset=utf8"
-      "file_mode=0775"
-      "dir_mode=0775"
-      "rw"
-      "nofail"
-      "nounix"
-      # "user"
-    ];
-  };
+  # fileSystems."/windows" = {
+  #   device = "//192.168.1.3/windows_shared";
+  #   fsType = "cifs";
+  #   options = [
+  #     "username=win"
+  #     "password=1122"
+  #     "uid=1000"
+  #     "gid=100"
+  #     "iocharset=utf8"
+  #     "file_mode=0775"
+  #     "dir_mode=0775"
+  #     "rw"
+  #     "nofail"
+  #     "nounix"
+  #     # "user"
+  #   ];
+  # };
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/386568e5-b764-4b52-bd15-bca3408a3ce7";
