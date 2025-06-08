@@ -6,21 +6,37 @@ in {
   config = mkIf (settings.modules.audio.enable or true) {
 
     #? What is ALSA?
-    #* ALSA is:
-    hardware = { alsa.enable = true; };
+    # ALSA stands for Advanced Linux Sound Architecture.
+    # The Core Sound System in Linux
+    # At its core, ALSA is the low-level audio driver framework built into the Linux kernel.
+    # It:
+    #- Talks directly to your sound hardware (sound cards, audio codecs, DACs, etc.)
+    #- Provides kernel drivers for nearly all audio chips (Intel, Realtek, etc.)
+    #- Offers user-space tools to configure audio (e.g., alsamixer, aplay)
+    hardware.alsa.enable = true;
 
     services = {
       playerctld.enable = true;
       pulseaudio.enable = false; # Enable sound with pipewire.
       pulseaudio.support32Bit = false;
       pipewire = {
-        enable = true;
+        enable = lib.mkForce true;
         audio.enable = true;
+
+        # Integrate ALSA into PipeWire (instead of standalone)
         alsa.enable = true;
         alsa.support32Bit = true;
+
+        # Enable PulseAudio compatibility (for apps that expect pulseaudio)
         pulse.enable = true;
+
+        # Enable JACK support (for pro audio tools like Ardour)
         jack.enable = true;
+
+        # Enable a session manager (required)
         wireplumber.enable = true;
+
+        # Optional: Tweak for better sound quality
         extraConfig.pipewire = {
           "10-clock-rate" = {
             "context.properties" = {
@@ -106,10 +122,10 @@ in {
 
       # pulseaudio # Sound server for POSIX and Win32 systems
       # pulseaudio-ctl # Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils
-      # pulseaudioFull # Sound server for POSIX and Win32 systems
+      pulseaudioFull # Sound server for POSIX and Win32 systems
 
-      pamixer # Pulseaudio command line mixer
-      pavucontrol # PulseAudio Volume Control
+      pamixer # CLI volume control
+      pavucontrol # GUI volume control
       pipewire # Server and user space API to deal with multimedia pipelines
       pipecontrol # Pipewire control GUI program in Qt (Kirigami2)
 
@@ -117,7 +133,7 @@ in {
       ladspaPlugins # LADSPA format audio plugins
       calf # Set of high quality open source audio plugins for musicians
       lsp-plugins # Collection of open-source audio plugins
-      easyeffects # Audio effects for PipeWire apps
+      easyeffects # Real-time effects, EQ, bass boost, etc.
 
       # A lightweight and versatile audio player.
       audacious
@@ -125,7 +141,7 @@ in {
       # View and edit tags for various audio files.
       easytag
 
-      # Sound editor with graphical UI.
+      # Sound editor with graphical UI. Audio editor (like Audacity)
       tenacity
 
       # Midi sound fonts.
