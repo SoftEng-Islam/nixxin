@@ -51,9 +51,10 @@
           # "col.active_border"="rgba(673ab7ff) rgba(E62D42ff) 45deg";
 
           snap = { enabled = true; };
-          "ecosystem:no_update_news" = true;
-          "ecosystem:no_donation_nag" = true;
+
         };
+        "ecosystem:no_update_news" = true;
+        "ecosystem:no_donation_nag" = true;
       };
     };
   };
