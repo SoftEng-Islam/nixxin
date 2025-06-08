@@ -11,12 +11,6 @@ in {
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
   };
-  programs.zsh.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
-  };
-  programs.bash.sessionVariables = {
-    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
-  };
   home-manager.users.${settings.user.username} = {
     qt = {
       enable = true;
