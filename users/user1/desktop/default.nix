@@ -81,20 +81,32 @@
 
     # ---- GTK ---- #
     gtk = {
-      theme = "Breeze-Dark";
+      theme = "adw-gtk3-dark";
       icon_cache = false;
-      GTK_THEME = "Breeze-Dark"; # Env Variable
-      package = pkgs.kdePackages.breeze-gtk;
+      GTK_THEME = "adw-gtk3-dark"; # Env Variable
+      package = pkgs.adw-gtk3;
     };
 
     # ---------------------
     # ---- Qt
     # ---------------------
     qt = {
-      style = "Breeze-Dark";
-      platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
+      # The options are
+      # adwaita, adwaita-dark, adwaita-highcontrast, adawaita-highcontrastinverse: Use Adwaita Qt style with adwaita
+      # breeze: Use the Breeze style from breeze
+      # bb10bright, bb10dark, cleanlooks, gtk2, motif, plastique: Use styles from qtstyleplugins
+      # kvantum: Use styles from kvantum
+      style = "adwaita-dark";
+      # The options are
+      # gnome: Use GNOME theme with qgnomeplatform
+      # gtk2: Use GTK theme with qtstyleplugins
+      # kde: Use Qt settings from Plasma 5.
+      # kde6: Use Qt settings from Plasma 6.
+      # lxqt: Use LXQt style set using the lxqt-config-appearance application.
+      # qt5ct: Use Qt style set using the qt5ct and qt6ct applications.
+      platformTheme = "qt5ct";
+      package = pkgs.adwaita-qt;
       QT_QPA_PLATFORMTHEME = "qt5ct";
-      package = pkgs.libsForQt5.breeze-qt5;
       SCALE_FACTOR = 1;
     };
 

@@ -1,5 +1,8 @@
 { settings, inputs, pkgs, ... }:
 let
+  fontName = "${settings.modules.fonts.main.name} ${
+      toString settings.modules.fonts.main.size.main
+    }";
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
 
@@ -15,13 +18,11 @@ let
     # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
     # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
 
-    gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
-    gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.styles.colorScheme}
-    gsettings set org.gnome.desktop.interface cursor-theme Bibata-Modern-Classic
-    gsettings set org.gnome.desktop.interface icon-theme Papirus-Dark
-    gsettings set org.gnome.desktop.interface font-name "${settings.modules.fonts.main.name} ${
-      toString settings.modules.fonts.main.size.main
-    }"
+    # gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
+    # gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.styles.colorScheme}
+    # gsettings set org.gnome.desktop.interface cursor-theme ${settings.common.cursor.name}
+    # gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
+    # gsettings set org.gnome.desktop.interface font-name ${fontName}
 
     # ---- hyprpolkitagent for Hyprland ---- #
     systemctl --user start hyprpolkitagent
