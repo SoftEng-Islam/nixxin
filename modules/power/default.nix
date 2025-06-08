@@ -9,7 +9,7 @@ in mkIf (settings.modules.power.enable) {
     enable = true;
 
     # enable powertop auto tuning on startup.
-    # powertop.enable = true;
+    powertop.enable = true;
 
     # Often used values: "schedutil", "ondemand", "powersave", "performance"
     #
@@ -22,7 +22,7 @@ in mkIf (settings.modules.power.enable) {
     # "schedutil": Dynamically scales based on task scheduling
     #---- Best for modern CPUs (recommended)
     #
-    # cpuFreqGovernor = "schedutil"; # Adaptive CPU scheduling
+    cpuFreqGovernor = "schedutil"; # Adaptive CPU scheduling
     #
     # To verify the governor:
     # cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
@@ -35,11 +35,11 @@ in mkIf (settings.modules.power.enable) {
   # services.power-profiles-daemon.enable = false;
   # OR
   # Whether to enable auto-cpufreq daemon.
-  # services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.enable = true;
 
   # Upower, a DBus service that provides power management support to applications.
-  # services.upower.enable = lib.mkForce true;
-  # services.upower.package = pkgs.upower;
+  services.upower.enable = lib.mkForce true;
+  services.upower.package = pkgs.upower;
 
   # ------------------------------------------------
   # ---- TLP
