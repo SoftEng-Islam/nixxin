@@ -292,7 +292,6 @@ in {
     coreutils # The GNU Core Utilities
     cups # A standards-based printing system for UNIX
     gdb # The GNU Project debugger
-    # gnuchess # GNU Chess engine
     gnumake # A tool to control the generation of non-source files from sources
 
     # Other Tools
@@ -365,7 +364,7 @@ in {
     busybox # Tiny versions of common UNIX utilities in a single small executable
     fdupes # Identifies duplicate files residing within specified directories
 
-    # ---- productivity ---- #
+    # ---- Productivity ---- #
     # hugo # static site generator
     glow # markdown previewer in terminal
     graphviz # Graph visualization tools
@@ -376,7 +375,7 @@ in {
     libdbusmenu # Library for passing menu structures across DBus
     libdbusmenu-gtk3 # Library for passing menu structures across DBus
 
-    # nix related
+    # Nix Related
     # it provides the command `nom` works just like `nix`
     # with more details log output
     cached-nix-shell # fast nix-shell scripts
@@ -416,6 +415,9 @@ in {
 
     # Yet another nix cli helper
     nh
+
+    # System and service manager for Linux
+    udev
 
     (pkgs.writeShellScriptBin "toggle-services" ''
       SERVICES=("$@")

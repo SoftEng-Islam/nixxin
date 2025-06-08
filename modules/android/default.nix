@@ -20,7 +20,7 @@ in {
       gnirehtet
 
       # Implementation of Microsoft's Media Transfer Protocol.
-      # libmtp
+      libmtp
 
       # FUSE Filesystem providing access to MTP devices
       mtpfs

@@ -1,5 +1,8 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.android.android_studio or false) {
-  environment.systemPackages = with pkgs; [ android-studio ];
+lib.mkIf (settings.modules.android.android_studio or false) {
+  environment.systemPackages = with pkgs;
+    [
+      #Official IDE for Android (stable channel)
+      android-studio
+    ];
 }

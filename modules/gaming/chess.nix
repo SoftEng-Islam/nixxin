@@ -1,5 +1,8 @@
-{ settings, config, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.gaming.chess.enable) {
-  environment.systemPackages = with pkgs; [ gnome-chess ];
+{ settings, lib, pkgs, ... }:
+lib.mkIf (settings.modules.gaming.chess.enable) {
+  environment.systemPackages = with pkgs; [
+    gnome-chess
+    gnuchess # GNU Chess engine
+    chess-tui
+  ];
 }
