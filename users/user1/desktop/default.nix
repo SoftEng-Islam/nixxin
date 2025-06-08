@@ -364,7 +364,7 @@
       };
     };
     hyprland = {
-      enable = false;
+      enable = true;
       dm = { # Display/Login manager
         enable = true;
         default = "gdm"; # "gdm", "reGreet"
