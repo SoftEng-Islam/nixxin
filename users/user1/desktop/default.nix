@@ -81,18 +81,20 @@
 
     # ---- GTK ---- #
     gtk = {
-      theme = "adw-gtk3-dark";
-      package = pkgs.adw-gtk3;
-      icon_cache = true;
+      theme = "Breeze-Dark";
+      icon_cache = false;
+      GTK_THEME = "Breeze-Dark"; # Env Variable
+      package = pkgs.kdePackages.breeze-gtk;
     };
 
     # ---------------------
     # ---- Qt
     # ---------------------
     qt = {
-      style = "adwaita-dark";
+      style = "Breeze-Dark";
       platformTheme = "qt5ct"; # (one of "gnome", "gtk2", "kde", "lxqt", "qtct")
-      package = pkgs.kdePackages.breeze;
+      QT_QPA_PLATFORMTHEME = "qt5ct";
+      package = pkgs.libsForQt5.breeze-qt5;
       SCALE_FACTOR = 1;
     };
 

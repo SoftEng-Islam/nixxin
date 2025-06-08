@@ -5,11 +5,17 @@ in {
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
     QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
-    QT_QPA_PLATFORMTHEME = _qt_gtk.platformTheme;
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
     #  QT_PLATFORM_PLUGIN = "wayland";
     # Set the scale factor for Qt apps
     # Force QT to use wayland
     QT_QPA_PLATFORM = "wayland";
+  };
+  programs.zsh.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
+  };
+  programs.bash.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
   };
   home-manager.users.${settings.user.username} = {
     qt = {
