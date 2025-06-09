@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  #imports = [ ./rnnoise.nix ];
+  imports = [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable or true) {
 
@@ -14,6 +14,7 @@ in {
     #- Provides kernel drivers for nearly all audio chips (Intel, Realtek, etc.)
     #- Offers user-space tools to configure audio (e.g., alsamixer, aplay)
     hardware.alsa.enable = false;
+    hardware.pulseaudio.enable = false;
 
     services = {
       playerctld.enable = true;
@@ -37,39 +38,39 @@ in {
         wireplumber.enable = true;
 
         # Optional: Tweak for better sound quality
-        # extraConfig.pipewire = {
-        #   "10-clock-rate" = {
-        #     "context.properties" = {
-        #       "default.clock.allowed-rates" = [ 44100 48000 96000 ];
-        #     };
-        #   };
-        #   "92-low-latency" = {
-        #     "context.properties" = {
-        #       "default.clock.rate" =
-        #         96000; # Maximum common sample rate for high-quality audio
-        #       "default.clock.quantum" =
-        #         64; # Smallest quantum for the lowest latency
-        #       "default.clock.min-quantum" = 64;
-        #       "default.clock.max-quantum" =
-        #         1024; # Maximum for flexibility if needed
-        #     };
-        #   };
-        # };
+        extraConfig.pipewire = {
+          "10-clock-rate" = {
+            "context.properties" = {
+              "default.clock.allowed-rates" = [ 44100 48000 96000 ];
+            };
+          };
+          "92-low-latency" = {
+            "context.properties" = {
+              "default.clock.rate" =
+                96000; # Maximum common sample rate for high-quality audio
+              "default.clock.quantum" =
+                64; # Smallest quantum for the lowest latency
+              "default.clock.min-quantum" = 64;
+              "default.clock.max-quantum" =
+                1024; # Maximum for flexibility if needed
+            };
+          };
+        };
       };
-      # udev.extraRules = ''
-      #   KERNEL=="rtc0", GROUP="audio"
-      #   KERNEL=="hpet", GROUP="audio"
-      #   KERNEL=="snd*", MODE="0660", GROUP="audio"
+      udev.extraRules = ''
+        KERNEL=="rtc0", GROUP="audio"
+        KERNEL=="hpet", GROUP="audio"
+        KERNEL=="snd*", MODE="0660", GROUP="audio"
 
-      #   ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
-      #   ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
+        ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
+        ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
 
-      #   KERNEL=="tun", TAG+="systemd"
-      #   SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
-      #   SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-      #   SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
-      #   SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
-      # '';
+        KERNEL=="tun", TAG+="systemd"
+        SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
+        SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+        SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
+        SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
+      '';
     };
     security = {
       # Whether to enable the RealtimeKit system service "recommended"
@@ -102,6 +103,8 @@ in {
       ];
     };
 
+    sound.enable = true;
+
     # Audio effects for PipeWire applications.
     home-manager.users.${settings.user.username}.services.easyeffects = {
       # Whether to enable EasyEffects.
@@ -114,11 +117,11 @@ in {
     environment.pathsToLink = [ "/share/soundfonts" ];
 
     environment.systemPackages = with pkgs; [
-      alsa-firmware
-      alsa-lib
-      alsa-tools
-      alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
-      sof-firmware # Sound Open Firmware
+      # alsa-firmware
+      # alsa-lib
+      # alsa-tools
+      # alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
+      # sof-firmware # Sound Open Firmware
 
       # pulseaudio # Sound server for POSIX and Win32 systems
       # pulseaudio-ctl # Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils

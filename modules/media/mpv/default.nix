@@ -75,7 +75,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         deband = "no"; # save GPU cycles
         dither-depth = "auto";
 
-        ao = "pipewire"; # or "alsa"
+        ao = "alsa"; # or "alsa"
         volume = 100;
         volume-max = 150;
         alang = "en,eng";
