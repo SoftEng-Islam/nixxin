@@ -103,14 +103,12 @@ in {
       ];
     };
 
-    sound.enable = true;
-
     # Audio effects for PipeWire applications.
-    home-manager.users.${settings.user.username}.services.easyeffects = {
-      # Whether to enable EasyEffects.
-      #! [Required] Necessitates programs.dconf.enable to be true.
-      enable = false;
-    };
+    # home-manager.users.${settings.user.username}.services.easyeffects = {
+    # Whether to enable EasyEffects.
+    #! [Required] Necessitates programs.dconf.enable to be true.
+    # enable = false;
+    # };
 
     # Adds MIDI soundfonts (if present) to /run/current-system/sw.
     # Why this does not seem to be done by default is beyond me.
