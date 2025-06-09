@@ -13,14 +13,14 @@ in {
     #- Talks directly to your sound hardware (sound cards, audio codecs, DACs, etc.)
     #- Provides kernel drivers for nearly all audio chips (Intel, Realtek, etc.)
     #- Offers user-space tools to configure audio (e.g., alsamixer, aplay)
-    hardware.alsa.enable = true;
+    hardware.alsa.enable = false;
 
     services = {
       playerctld.enable = true;
       pulseaudio.enable = false; # Enable sound with pipewire.
       pulseaudio.support32Bit = false;
       pipewire = {
-        enable = lib.mkForce true;
+        enable = true;
         audio.enable = true;
 
         # Integrate ALSA into PipeWire (instead of standalone)
