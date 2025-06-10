@@ -74,6 +74,9 @@ let
 
     # ---- Apps To Start ---- #
     # telegram-desktop -startintray
+
+    # ---- The Screen Edge Actions ---- #
+    detect-mouse-position
   '';
 in {
   home-manager.users.${settings.user.username} = {

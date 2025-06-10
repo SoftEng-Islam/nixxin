@@ -3,6 +3,9 @@
 let
   detect-mouse-position = pkgs.writeShellScriptBin "detect-mouse-position" ''
     #!/bin/sh
+    # State tracking
+    edge_triggered=false
+
     while true; do
       # Get mouse position (format: "x,y")
       pos=$(${pkgs.hyprland}/bin/hyprctl cursorpos -j)
@@ -17,12 +20,21 @@ let
       # Define edge threshold (e.g., 10 pixels)
       edge_threshold=10
 
-
+      # Check bottom edge And
+      # Run overview if the Bottom Edge is reached
       if [ "$y" -ge "$((height - edge_threshold))" ]; then
-        # ${pkgs.libnotify}/bin/notify-send "Bottom edge reached!"
-        # Run overview if the Bottom Edge is reached
-        ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
+        if [ "$edge_triggered" = false ]; then
+          ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
+          edge_triggered=true
+        fi
+      else
+        edge_triggered=false  # Reset when leaving edge
       fi
+
+      # if [ "$y" -ge "$((height - edge_threshold))" ]; then
+      #   # ${pkgs.libnotify}/bin/notify-send "Bottom edge reached!"
+      #   ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
+      # fi
 
       # Check edges (using proper integer comparison)
       #if [ "$x" -le "$edge_threshold" ]; then
