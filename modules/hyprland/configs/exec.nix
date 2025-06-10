@@ -48,6 +48,9 @@ let
     # ---- Make nautilus Run in Background ---- #
     # nautilus --no-desktop &
 
+    rm -rf ~/.cache/thumbnails/*
+    nautilus -q
+
     # ---- DBUS ---- #
     # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
 

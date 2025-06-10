@@ -14,7 +14,6 @@ in {
     #- Provides kernel drivers for nearly all audio chips (Intel, Realtek, etc.)
     #- Offers user-space tools to configure audio (e.g., alsamixer, aplay)
     hardware.alsa.enable = false;
-    hardware.pulseaudio.enable = false;
 
     services = {
       playerctld.enable = true;

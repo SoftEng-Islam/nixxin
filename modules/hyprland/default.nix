@@ -40,6 +40,8 @@
 
     services.seatd.enable = lib.mkForce false;
 
+    services.gnome.core-shell.enable = true;
+
     programs.uwsm = {
       enable = false;
       waylandCompositors.hyprland = {

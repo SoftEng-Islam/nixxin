@@ -70,7 +70,7 @@
       bind = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
       bind = $main Ctrl, P, exec, pavucontrol # Launch pavucontrol (volume mixer)
       bind = $main Ctrl, T, exec, ${pkgs.kitty}/bin/kitty --class floating
-      bind = $main Ctrl, R, exec, hyprctl reload
+      bind = $main Ctrl, R, exec, hyprctl reload && rm -rf ~/.cache/thumbnails/* && nautilus -q
 
       # --------------------- #
       # ---- $main + Alt ---- #
@@ -115,6 +115,26 @@
       # In hyprland.conf
       bind = ALT, Tab, cyclenext, currentworkspace
       bind = ALT, SHIFT+Tab, cyclenext, prev, currentworkspace
+
+
+
+      # Zoom
+      # To zoom using Hyprland's built-in zoom utility
+      # bind = $mod, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')
+      # bind = $mod, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')
+
+      # binde = $mod, equal, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')
+      # binde = $mod, minus, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')
+      # binde = $mod, KP_ADD, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 1.1}')
+      # binde = $mod, KP_SUBTRACT, exec, hyprctl -q keyword cursor:zoom_factor $(hyprctl getoption cursor:zoom_factor | awk '/^float.*/ {print $2 * 0.9}')
+
+      # bind = $mod SHIFT, mouse_up, exec, hyprctl -q keyword cursor:zoom_factor 1
+      # bind = $mod SHIFT, mouse_down, exec, hyprctl -q keyword cursor:zoom_factor 1
+      # bind = $mod SHIFT, minus, exec, hyprctl -q keyword cursor:zoom_factor 1
+      # bind = $mod SHIFT, KP_SUBTRACT, exec, hyprctl -q keyword cursor:zoom_factor 1
+      # bind = $mod SHIFT, 0, exec, hyprctl -q keyword cursor:zoom_factor 1
+
+
 
 
       # -------------------- #
