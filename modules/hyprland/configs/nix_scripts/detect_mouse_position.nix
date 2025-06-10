@@ -5,33 +5,30 @@ let
     #!/bin/sh
     while true; do
       # Get mouse position (format: "x,y")
-      pos=$(${pkgs.hyprland}/bin/hyprctl cursorpos -j | ${pkgs.jq}/bin/jq -r '"\(.x),\(.y)"')
-      x=''${pos%,*}
-      y=''${pos#*,}
+      pos=$(${pkgs.hyprland}/bin/hyprctl cursorpos -j)
+      x=$(echo "$pos" | ${pkgs.jq}/bin/jq -r '.x')
+      y=$(echo "$pos" | ${pkgs.jq}/bin/jq -r '.y')
 
-      # Get screen resolution
-      res=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq -r '.[0].width,.[0].height' | tr '\n' ',')
-      width=''${res%,*}
-      height=''${res#*,}
+      # Get screen resolution (properly handle JSON output)
+      monitor=$(${pkgs.hyprland}/bin/hyprctl monitors -j | ${pkgs.jq}/bin/jq '.[0]')
+      width=$(echo "$monitor" | ${pkgs.jq}/bin/jq -r '.width')
+      height=$(echo "$monitor" | ${pkgs.jq}/bin/jq -r '.height')
 
       # Define edge threshold (e.g., 10 pixels)
       edge_threshold=10
 
-      # Run overview if the Bottom Edge is reached
-      if (( y >= height - edge_threshold )); then
+      # Check edges (using proper integer comparison)
+      if [ "$x" -le "$edge_threshold" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Left edge reached!"
+      elif [ "$x" -ge "$((width - edge_threshold))" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Right edge reached!"
+      elif [ "$y" -le "$edge_threshold" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Top edge reached!"
+      elif [ "$y" -ge "$((height - edge_threshold))" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Bottom edge reached!"
+        # Run overview if the Bottom Edge is reached
         ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
       fi
-
-      # Check edges
-      #if (( x <= edge_threshold )); then
-        # ${pkgs.libnotify}/bin/notify-send "Left edge reached!"   # Replace with your action
-      #elif (( x >= width - edge_threshold )); then
-        # ${pkgs.libnotify}/bin/notify-send "Right edge reached!"  # Replace with your action
-      #elif (( y <= edge_threshold )); then
-        # ${pkgs.libnotify}/bin/notify-send "Top edge reached!"    # Replace with your action
-      #elif (( y >= height - edge_threshold )); then
-        #${pkgs.libnotify}/bin/notify-send "Bottom edge reached!" # Replace with your action
-      #fi
 
       sleep 0.1  # Reduce CPU usage
     done
