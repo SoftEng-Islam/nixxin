@@ -17,18 +17,25 @@ let
       # Define edge threshold (e.g., 10 pixels)
       edge_threshold=10
 
-      # Check edges (using proper integer comparison)
-      if [ "$x" -le "$edge_threshold" ]; then
-        # ${pkgs.libnotify}/bin/notify-send "Left edge reached!"
-      elif [ "$x" -ge "$((width - edge_threshold))" ]; then
-        # ${pkgs.libnotify}/bin/notify-send "Right edge reached!"
-      elif [ "$y" -le "$edge_threshold" ]; then
-        # ${pkgs.libnotify}/bin/notify-send "Top edge reached!"
-      elif [ "$y" -ge "$((height - edge_threshold))" ]; then
+
+      if [ "$y" -ge "$((height - edge_threshold))" ]; then
         # ${pkgs.libnotify}/bin/notify-send "Bottom edge reached!"
         # Run overview if the Bottom Edge is reached
         ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
       fi
+
+      # Check edges (using proper integer comparison)
+      #if [ "$x" -le "$edge_threshold" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Left edge reached!"
+      #elif [ "$x" -ge "$((width - edge_threshold))" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Right edge reached!"
+      #elif [ "$y" -le "$edge_threshold" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Top edge reached!"
+      #elif [ "$y" -ge "$((height - edge_threshold))" ]; then
+        # ${pkgs.libnotify}/bin/notify-send "Bottom edge reached!"
+        # Run overview if the Bottom Edge is reached
+        # ${pkgs.hyprland}/bin/hyprctl dispatch overview:toggle
+      # fi
 
       sleep 0.1  # Reduce CPU usage
     done
