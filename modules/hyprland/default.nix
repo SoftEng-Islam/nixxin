@@ -31,7 +31,7 @@
 
     # nix scripts
     ./configs/nix_scripts/gamemode.nix
-    ./configs/nix_scripts/detect_mouse_position.nix
+    #./configs/nix_scripts/detect_mouse_position.nix
   ];
 
   config = lib.mkIf (settings.modules.hyprland.enable or true) {
