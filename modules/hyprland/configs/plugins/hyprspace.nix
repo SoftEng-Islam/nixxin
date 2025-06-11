@@ -26,7 +26,7 @@ in {
             #workspaceInactiveBorder =
             #workspaceActiveBackground =
             #workspaceInactiveBackground
-            dragAlpha = 0
+            dragAlpha = 1
             disableBlur = 1
             # ---- Layout ---- #
             panelHeight = 100

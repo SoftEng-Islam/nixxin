@@ -18,7 +18,7 @@ let
       height=$(echo "$monitor" | ${pkgs.jq}/bin/jq -r '.height')
 
       # Define edge threshold (e.g., 10 pixels)
-      edge_threshold=10
+      edge_threshold=1
 
       # Check bottom edge And
       # Run overview if the Bottom Edge is reached

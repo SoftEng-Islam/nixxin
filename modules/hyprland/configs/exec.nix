@@ -76,7 +76,7 @@ let
     # telegram-desktop -startintray
 
     # ---- The Screen Edge Actions ---- #
-    detect-mouse-position
+    # detect-mouse-position
   '';
 in {
   home-manager.users.${settings.user.username} = {
