@@ -184,7 +184,7 @@
       enable = true;
       scrcpy = true;
       waydroid = true;
-      android_studio = false;
+      android_studio = true;
     };
     audio = {
       enable = true;
