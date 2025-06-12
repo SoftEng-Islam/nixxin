@@ -6,16 +6,29 @@
         kb_variant = "";
         kb_model = "";
         kb_rules = "";
-        accel_profile = "flat";
         kb_options = "grp:alt_shift_toggle";
+
+        # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
+        # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
+        sensitivity = 0; # -0.3 # Adjust pointer sensitivity (speed)
+
+        # Sets the cursor acceleration profile.
+        #  Can be one of adaptive, flat.
+        #  Leave empty to use libinput’s default mode for your input device.
+        accel_profile = "adaptive";
+
         # follow_mouse = 1;
         # numlock_by_default = true;
+
         repeat_rate = 30;
         repeat_delay = 250;
-        sensitivity = -0.3; # Adjust pointer sensitivity (speed)
+
         # special_fallthrough = true;
+
         float_switch_override_focus = false;
+
         left_handed = false;
+
         touchpad = {
           clickfinger_behavior = true;
           disable_while_typing = true;
