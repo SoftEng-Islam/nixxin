@@ -47,11 +47,11 @@ in mkIf (settings.modules.development.languages.rust) {
     # clippy # Bunch of lints to catch common mistakes and improve your Rust code
 
     # To Open Rust Docs In Your Default Browser
-    (writeScriptBin "rust-doc" ''
+    (writeScriptBin "rust-book" ''
       #! ${stdenv.shell} -e
       exec ${
         toString settings.common.webBrowser
-      } "${rustc.doc}/share/doc/rust/html/index.html"
+      } "${rustc.doc}/share/doc/docs/html/book/index.html"
     '')
   ];
 }
