@@ -222,7 +222,7 @@
       zoom = false;
     };
     computing = {
-      enable = false;
+      enable = true;
       default = "pocl"; # "pocl" OR "opencl"
     };
     dconf = { enable = true; };
