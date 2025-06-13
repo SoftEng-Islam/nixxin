@@ -26,7 +26,7 @@ in {
       "${gst-plugins-bad}/lib/gstreamer-1.0"
       "${gst-plugins-ugly}/lib/gstreamer-1.0"
       "${gst-plugins-rs}/lib/gstreamer-1.0"
-      "${pkgs.pipewire.lib}/lib/gstreamer-1.0"
+      "${pkgs.pipewire}/lib/gstreamer-1.0"
       "${pkgs.pulseeffects-pw}/lib/gstreamer-1.0"
     ];
 
