@@ -31,14 +31,18 @@ in {
     ];
 
     # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
-    GST_PLUGIN_PATH = lib.makeSearchPathOutput "lib" "lib/gstreamer-1.0"
-      (with pkgs.gst_all_1; [
-        gst-plugins-base
-        gst-plugins-good
-        gst-plugins-bad
-        gst-plugins-ugly
-        gst-libav
-      ]);
+    GST_PLUGIN_PATH = with pkgs.gst_all_1; [
+      "${gstreamer}/lib/gstreamer-1.0"
+      "${gst-libav}/lib/gstreamer-1.0"
+      "${gst-vaapi}/lib/gstreamer-1.0"
+      "${gst-plugins-base}/lib/gstreamer-1.0"
+      "${gst-plugins-good}/lib/gstreamer-1.0"
+      "${gst-plugins-bad}/lib/gstreamer-1.0"
+      "${gst-plugins-ugly}/lib/gstreamer-1.0"
+      "${gst-plugins-rs}/lib/gstreamer-1.0"
+      "${pkgs.pipewire}/lib/gstreamer-1.0"
+      "${pkgs.pulseeffects-legacy}/lib/gstreamer-1.0"
+    ];
 
     GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
       + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
