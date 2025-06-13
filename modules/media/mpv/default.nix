@@ -75,6 +75,9 @@ in lib.mkIf (settings.modules.media.mpv) {
         deband = "no"; # save GPU cycles
         dither-depth = "auto";
 
+        # Fix stuttering playing 4k video
+        hdr-compute-peak = "no";
+
         ao = "alsa"; # or "alsa"
         volume = 100;
         volume-max = 150;
