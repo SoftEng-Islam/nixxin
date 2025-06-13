@@ -1,30 +1,27 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.power.enable) {
+in mkIf (settings.modules.power.enable or true) {
   # ------------------------------------------------
   # ---- Power Configuration
   # ------------------------------------------------
   # Best Power Optimizations for a Desktop
   powerManagement = {
-    enable = true;
+    enable = settings.modules.power.powerManagement.enable;
 
     # enable powertop auto tuning on startup.
-    powertop.enable = true;
+    powertop.enable = settings.modules.power.powerManagement.powertop;
 
     # Often used values: "schedutil", "ondemand", "powersave", "performance"
-    #
-    # "performance": Runs at max frequency always
-    #---- Best for gaming & real-time workloads
-    # "powersave": Runs at lowest frequency possible
-    #---- Best for battery life
-    # "ondemand": Increases frequency when needed
-    #---- Older, but decent balance
-    # "schedutil": Dynamically scales based on task scheduling
-    #---- Best for modern CPUs (recommended)
-    #
-    cpuFreqGovernor = "schedutil"; # Adaptive CPU scheduling
-    #
-    # To verify the governor:
+    # => "performance": Runs at max frequency always
+    # :: Best for gaming & real-time workloads
+    # => "powersave": Runs at lowest frequency possible
+    # :: Best for battery life
+    # => "ondemand": Increases frequency when needed
+    # :: Older, but decent balance
+    # => "schedutil": Dynamically scales based on task scheduling
+    # :: Best for modern CPUs (recommended)
+    cpuFreqGovernor = settings.modules.power.powerManagement.cpuFreqGovernor;
+    # Than verify the governor:
     # cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
 
     # cpufreq.min = 800000;
@@ -38,8 +35,7 @@ in mkIf (settings.modules.power.enable) {
   services.auto-cpufreq.enable = true;
 
   # Upower, a DBus service that provides power management support to applications.
-  services.upower.enable = lib.mkForce true;
-  services.upower.package = pkgs.upower;
+  services.upower.enable = true;
 
   # ------------------------------------------------
   # ---- TLP

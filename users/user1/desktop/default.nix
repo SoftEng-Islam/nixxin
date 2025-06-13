@@ -460,7 +460,16 @@
       corectrl.enable = false;
       lactd.enable = false;
     };
-    power = { enable = true; };
+    power = {
+      enable = true;
+      powerManagement = {
+        enable = true;
+        powertop = true;
+
+        # Often used values: "schedutil", "ondemand", "powersave", "performance"
+        cpuFreqGovernor = "performance";
+      };
+    };
     printing = { enable = false; };
     qt_gtk = { enable = true; };
     recording = {

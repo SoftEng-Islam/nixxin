@@ -1,7 +1,10 @@
 # ---- docs.nix ---- #
 { pkgs, ... }: {
   imports = [
+    ./brightness_control.nix
+
     ./configuration.nix
+
     ./nixos.nix
 
     ./opengl.nix

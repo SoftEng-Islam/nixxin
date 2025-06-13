@@ -435,6 +435,7 @@
       # To enable Vulkan support for 32-bit applications, also add:
       extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
+
   };
 
   # ------------------------------------------------
