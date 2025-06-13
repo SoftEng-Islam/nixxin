@@ -27,7 +27,7 @@ in {
       "${gst-plugins-ugly}/lib/gstreamer-1.0"
       "${gst-plugins-rs}/lib/gstreamer-1.0"
       "${pkgs.pipewire}/lib/gstreamer-1.0"
-      "${pkgs.pulseeffects-pw}/lib/gstreamer-1.0"
+      "${pkgs.pulseeffects-legacy}/lib/gstreamer-1.0"
     ];
 
     # Define paths for GStreamer plugins and GObject Introspection files, ensuring compatibility with various multimedia libraries.
