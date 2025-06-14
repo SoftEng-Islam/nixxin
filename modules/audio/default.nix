@@ -102,6 +102,14 @@ in {
       ];
     };
 
+    # https://github.com/noisetorch/NoiseTorch
+    # NoiseTorch-ng is an easy to use open source application for Linux with PulseAudio or PipeWire.
+    #  It creates a virtual microphone that suppresses noise in any application using RNNoise.
+    #  Use whichever conferencing or VOIP application you like and
+    #  simply select the filtered Virtual Microphone as input to torch the sound of your mechanical keyboard,
+    #  computer fans, trains and the likes.
+    programs.noisetorch.enable = true;
+
     # Audio effects for PipeWire applications.
     # home-manager.users.${settings.user.username}.services.easyeffects = {
     # Whether to enable EasyEffects.
