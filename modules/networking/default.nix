@@ -1,4 +1,4 @@
-{ ... }: {
+{ pkgs, ... }: {
   imports = [
     ./networking.nix
     ./dnsmasq.nix
@@ -8,4 +8,16 @@
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
+
+  environment.variables = {
+    #? What is GIO_EXTRA_MODULES?
+    #* It’s an environment variable used by GIO, a core part of the GLib/GTK stack.
+    #>> GIO provides things like:
+    #>> File system abstraction (opening FTP, HTTP, Google Drive, etc.)
+    #>> Network file access
+    #>> GVfs (GNOME Virtual file system)
+    #>> Proxy support
+    #>> TLS support
+    GIO_EXTRA_MODULES = with pkgs; [ "${glib-networking}/lib/gio/modules" ];
+  };
 }

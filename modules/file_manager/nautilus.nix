@@ -1,13 +1,21 @@
 { settings, pkgs, lib, config, ... }:
 let
-  nautEnv = pkgs.buildEnv {
+  nautilus-env = pkgs.buildEnv {
     name = "nautilus-env";
-    paths = with pkgs; [ nautilus nautilus-python nautilus-open-any-terminal ];
+    paths = with pkgs; [
+      (pkgs.writeShellScriptBin "nautilus" ''
+        export GST_PLUGIN_PATH_1_0="/run/current-system/sw/lib/gstreamer-1.0"
+        export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0"
+        exec ${pkgs.nautilus}/bin/nautilus "$@"
+      '')
+      nautilus-python
+      nautilus-open-any-terminal
+    ];
   };
 in {
   programs = {
     nautilus-open-any-terminal = {
-      enable = false;
+      enable = true;
       terminal = "kitty";
     };
     # Required by gnome file managers
@@ -67,30 +75,46 @@ in {
 
   environment = {
     systemPackages = with pkgs; [
+      # Our File Manager
+      nautilus-env
+
+      # Collection of GSettings schemas for settings shared by various components of a desktop
       gsettings-desktop-schemas
 
-      # nautEnv
-      (pkgs.writeShellScriptBin "nautilus" ''
-        export GST_PLUGIN_PATH_1_0="/run/current-system/sw/lib/gstreamer-1.0"
-        export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0"
-        exec ${pkgs.nautilus}/bin/nautilus "$@"
-      '')
-
+      # Archive manager for the GNOME desktop environment
       file-roller
-      gvfs # Mounts, trash, and remote filesystem support
-      udisks2 # Disk mounting support
+
+      # Mounts, trash, and remote filesystem support
+      gvfs
+
+      # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies
       udisks
+      udisks2 # Disk mounting support
 
-      # tracker # File indexing for Nautilus search
-
+      # Desktop-neutral user information store, search tool and indexer
       tinysparql
 
-      xdg-desktop-portal-gnome
+      # Quick previewer for Nautilus
+      sushi
+
+      # Graphical interface for version control intended to run on gnome and nautilus
+      turtle
+
+      # File indexing for Nautilus search
+      # tracker
+
+      # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
+      # xdg-desktop-portal-gnome
     ];
-    # pathsToLink = [ "/share/nautilus-python/extensions" ];
+    pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
-      # FILE_MANAGER = "nautilus";
-      # NAUTILUS_EXTENSION_DIR = lib.mkDefault "${nautEnv}/lib/nautilus/extensions-4";
+      FILE_MANAGER = "nautilus";
+
+      NAUTILUS_EXTENSION_DIR =
+        lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-3";
+
+      NAUTILUS_4_EXTENSION_DIR =
+        lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
     };
   };
 }
