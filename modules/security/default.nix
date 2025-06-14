@@ -1,72 +1,77 @@
 { settings, lib, pkgs, ... }:
 
 let inherit (lib) mkIf;
-in mkIf (settings.modules.security.enable) {
-  security = {
-    sudo.enable = true;
+in {
+  imports = [ ./gpg_agent.nix ];
 
-    # during testing only 550K-650K of the tmpfs where used
-    # wrapperDirSize = "10M";
+  config = mkIf (settings.modules.security.enable) {
+    security = {
+      sudo.enable = true;
 
-    # don't ask for password for wheel group
-    sudo.wheelNeedsPassword = true;
+      # during testing only 550K-650K of the tmpfs where used
+      # wrapperDirSize = "10M";
 
-    # show Password as stars in Terminals.
-    sudo.extraConfig = ''
-      Defaults        env_reset,pwfeedback
-    '';
+      # don't ask for password for wheel group
+      sudo.wheelNeedsPassword = true;
 
-    allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
+      # show Password as stars in Terminals.
+      sudo.extraConfig = ''
+        Defaults        env_reset,pwfeedback
+      '';
 
-    # Enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
-    polkit.enable = true;
+      allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
 
-    # rtkit is recommended for pipewire
-    rtkit.enable = true;
+      # Enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
+      polkit.enable = true;
 
-    isolate.enable = false;
+      # rtkit is recommended for pipewire
+      rtkit.enable = true;
 
-    sudo.configFile = ''
-      root   ALL=(ALL:ALL) SETENV: ALL
-      %wheel ALL=(ALL:ALL) SETENV: ALL
-      softeng ALL=(ALL:ALL) SETENV: ALL
-    '';
+      isolate.enable = false;
 
-    # Swaylock needs an entry in PAM to proberly unlock
-    pam.services.swaylock.text = ''
-      # PAM configuration file for the swaylock screen locker. By default, it includes
-      # the 'login' configuration file (see /etc/pam.d/login)
-      auth include login
-    '';
+      sudo.configFile = ''
+        root   ALL=(ALL:ALL) SETENV: ALL
+        %wheel ALL=(ALL:ALL) SETENV: ALL
+        softeng ALL=(ALL:ALL) SETENV: ALL
+      '';
 
-    # Remove certain resource limits for programs that needs them gone, mostly for heavier emulators.
-    pam.loginLimits = [
-      {
-        domain = "*";
-        type = "hard";
-        item = "memlock";
-        value = "unlimited";
-      }
-      {
-        domain = "*";
-        type = "soft";
-        item = "memlock";
-        value = "unlimited";
-      }
-    ];
+      # Swaylock needs an entry in PAM to proberly unlock
+      pam.services.swaylock.text = ''
+        # PAM configuration file for the swaylock screen locker. By default, it includes
+        # the 'login' configuration file (see /etc/pam.d/login)
+        auth include login
+      '';
 
-    # Enable basic tpm2 support
-    tpm2 = {
-      enable = settings.modules.security.tpm2;
-      pkcs11.enable = true;
-      tctiEnvironment.enable = true;
+      # Remove certain resource limits for programs that needs them gone, mostly for heavier emulators.
+      pam.loginLimits = [
+        {
+          domain = "*";
+          type = "hard";
+          item = "memlock";
+          value = "unlimited";
+        }
+        {
+          domain = "*";
+          type = "soft";
+          item = "memlock";
+          value = "unlimited";
+        }
+      ];
+
+      # Enable basic tpm2 support
+      tpm2 = {
+        enable = settings.modules.security.tpm2;
+        pkcs11.enable = true;
+        tctiEnvironment.enable = true;
+      };
+
+      # to create new namespaces.
+      unprivilegedUsernsClone = true;
     };
 
-    # to create new namespaces.
-    unprivilegedUsernsClone = true;
+    environment.systemPackages = with pkgs; [
+      openvpn # Robust and highly flexible tunneling application
+      protonvpn-cli # Linux command-line client for ProtonVPN
+    ];
   };
-  environment.systemPackages = with pkgs; [
-    openvpn # Robust and highly flexible tunneling application
-    protonvpn-cli # Linux command-line client for ProtonVPN
-  ];
 }
