@@ -18,6 +18,7 @@
     #>> GVfs (GNOME Virtual file system)
     #>> Proxy support
     #>> TLS support
-    GIO_EXTRA_MODULES = with pkgs; [ "${glib-networking}/lib/gio/modules" ];
+    # GIO_EXTRA_MODULES = with pkgs; [ "${glib-networking}/lib/gio/modules" ];
+    #! error: The option `environment.variables.GIO_EXTRA_MODULES' is defined multiple times while it's expected to be unique.
   };
 }
