@@ -2,7 +2,7 @@
 
 let inherit (lib) mkIf;
 in {
-  imports = [ ./gpg_agent.nix ];
+  # imports = [ ./gpg_agent.nix ];
 
   config = mkIf (settings.modules.security.enable) {
     security = {

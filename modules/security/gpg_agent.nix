@@ -1,7 +1,10 @@
-{ ... }: {
-  services.gpg-agent = {
+{ settings, ... }: {
+  security.pam.services.${settings.user.username} = {
     enable = true;
-    defaultCacheTtl = 14400;
-    maxCacheTtl = 43200;
+    noAutostart = true;
+  };
+  programs.gnupg.agent.settings = {
+    default-cache-ttl = 14400;
+    max-cache-ttl = 43200;
   };
 }
