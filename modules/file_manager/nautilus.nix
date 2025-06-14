@@ -70,12 +70,19 @@ in {
       gsettings-desktop-schemas
 
       # nautEnv
-      nautilus
+      (pkgs.writeShellScriptBin "nautilus" ''
+        export GST_PLUGIN_PATH_1_0="/run/current-system/sw/lib/gstreamer-1.0"
+        export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0"
+        exec ${pkgs.nautilus}/bin/nautilus "$@"
+      '')
+
       file-roller
       gvfs # Mounts, trash, and remote filesystem support
       udisks2 # Disk mounting support
       udisks
+
       # tracker # File indexing for Nautilus search
+
       tinysparql
 
       xdg-desktop-portal-gnome
