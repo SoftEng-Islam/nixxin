@@ -1,11 +1,14 @@
 { settings, pkgs, lib, config, ... }:
 let
+
+  # find /nix/store -name "*nautilus-env*"
+  # tree -L 2 /nix/store/xxxxxxxxxxxxxxxxx-nautilus-env
   nautilus-env = pkgs.buildEnv {
     name = "nautilus-env";
     paths = with pkgs; [
       (pkgs.writeShellScriptBin "nautilus" ''
         export GST_PLUGIN_PATH_1_0="/run/current-system/sw/lib/gstreamer-1.0"
-        export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0"
+        export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gstreamer}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-vaapi}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-rs}/lib/gstreamer-1.0:${pkgs.pipewire}/lib/gstreamer-1.0:${pkgs.pulseeffects-legacy}/lib/gstreamer-1.0""
         exec ${pkgs.nautilus}/bin/nautilus "$@"
       '')
       nautilus-python
@@ -109,9 +112,6 @@ in {
     pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
       FILE_MANAGER = "nautilus";
-
-      NAUTILUS_EXTENSION_DIR =
-        lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-3";
 
       NAUTILUS_4_EXTENSION_DIR =
         lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
