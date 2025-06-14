@@ -243,7 +243,7 @@
 
 
     # Enable arrow key navigation
-    autoload -U zle
+    # autoload -U zle
     bindkey -e  # emacs-style key bindings
     bindkey "^[[A" up-line-or-history
     bindkey "^[[B" down-line-or-history
