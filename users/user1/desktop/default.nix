@@ -57,7 +57,7 @@
     #* VISUAL Var: used for
     VISUAL = "nvim";
     #* TERM Var: used for
-    TERM = "wezterm";
+    TERM = "xterm-256color";
 
     # webBrowser: SET TO "microsoft-edge" OR "google-chrome-stable"
     webBrowser = "google-chrome-stable";

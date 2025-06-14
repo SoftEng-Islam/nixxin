@@ -52,7 +52,7 @@
           TERMINFO_DIRS = '/home/${settings.user.username}/.nix-profile/share/terminfo',
           WSLENV = 'TERMINFO_DIRS',
         }
-        config.term = 'wezterm'
+        config.term = '${settings.common.TERM}'
 
         config.mouse_bindings = {
           -- and make CTRL-Click open hyperlinks

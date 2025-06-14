@@ -240,5 +240,14 @@
     # Created by `pipx` on 2024-11-07 21:19:31
     export PATH="$PATH:/home/softeng/.local/bin"
 
+
+
+    # Enable arrow key navigation
+    autoload -U zle
+    bindkey -e  # emacs-style key bindings
+    bindkey "^[[A" up-line-or-history
+    bindkey "^[[B" down-line-or-history
+    bindkey "^[[C" forward-char
+    bindkey "^[[D" backward-char
   '';
 }
