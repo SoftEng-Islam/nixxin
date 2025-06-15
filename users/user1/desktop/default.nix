@@ -630,7 +630,7 @@
           package = pkgs.nerd-fonts.fira-code;
         };
         # Default Terminal That will Appear when you click Super+T
-        term = {
+        terminal = {
           name = "wezterm"; # To Run Press: Super + T
           package = pkgs.wezterm;
         };

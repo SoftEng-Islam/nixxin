@@ -16,20 +16,27 @@ let
     ];
   };
 in {
-  programs = {
-    nautilus-open-any-terminal = {
-      enable = true;
-      terminal = "kitty";
-    };
-    # Required by gnome file managers
-    file-roller.enable = true;
-    gnome-disks.enable = true;
-  };
+
+  # nautilus-open-any-terminal
+  programs.nautilus-open-any-terminal.enable = true;
+  programs.nautilus-open-any-terminal.terminal =
+    settings.modules.terminals.default.terminal.name;
+
+  # Required by gnome file managers
+  programs.file-roller.enable = true;
+  programs.gnome-disks.enable = true;
+
   # ---- Tracker3 ---- #
   services.gnome.tinysparql.enable = true; # indexing files
   services.gnome.localsearch.enable = true;
   services.udisks2.enable = true;
+  services.devmon.enable = true;
   services.gvfs.enable = true;
+
+  # thumbnails
+  services.tumbler.enable = true;
+
+  dbus.packages = with pkgs; [ nautilus-open-any-terminal ];
 
   # systemd.user.services.nautilus = {
   #   description = "Keep Nautilus Running in Background";
@@ -107,7 +114,14 @@ in {
       # tracker
 
       # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
-      # xdg-desktop-portal-gnome
+      xdg-desktop-portal-gnome
+
+      # A really easy way to scan both documents and photos.
+      simple-scan
+
+      # thumbnails
+      gst_all_1.gst-libav
+      ffmpegthumbnailer
     ];
     pathsToLink = [ "/share/nautilus-python/extensions" ];
     sessionVariables = {
