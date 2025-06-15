@@ -92,7 +92,7 @@ in {
     boot.tmp.cleanOnBoot = let cleaningMakesSense = !config.boot.tmp.useTmpfs;
     in cleaningMakesSense;
 
-    boot.kernelParams = [ "tmpfs.size=2G" ];
+    boot.kernelParams = [ "tmpfs.size=3G" ];
     # Fix a security hole in place for backwards compatibility. See desc in
     # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
     boot.loader.systemd-boot.editor = false;
