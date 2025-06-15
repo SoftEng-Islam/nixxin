@@ -32,7 +32,7 @@
       styles = { "alias" = "fg=magenta"; };
       highlighters = [ "main" "brackets" "pattern" ];
     };
-    oh-my-zsh = {
+    ohMyZsh = {
       enable = true;
       plugins = [ "git" ];
     };
@@ -43,8 +43,78 @@
       enableZshIntegration = true;
       settings = {
         # Prompt
-        format =
-          "[░▒▓](#a3aed2)[  ](bg:#a3aed2 fg:#090c0c)$battery[](fg:#a3aed2) $directory$all";
+        format = builtins.concatStringsSep "" [
+          "$username"
+          "$hostname"
+          "$kubernetes"
+          "$directory"
+          "$git_branch"
+          "$git_state"
+          "$git_status"
+          "$cmd_duration"
+          "$character"
+        ];
+        username = {
+          format = "[$user]($style)";
+          show_always = true;
+        };
+        hostname = {
+          ssh_only = false;
+          # ssh_symbol = "🌎 "  #  🌐 🌎 🌏
+          ssh_symbol = ""; # remove altogether
+          # style = "bold dimmed green" - default
+          style = "green";
+          format = "@[$ssh_symbol$hostname]($style)";
+        };
+
+        directory = {
+          truncation_length = 2;
+          truncation_symbol = ".../";
+          truncate_to_repo = false;
+          format = ":[$path]($style)[$read_only]($read_only_style) ";
+          style = "blue";
+        };
+
+        git_branch = {
+          #format = "on [$symbol$branch(:$remote_branch)]($style) "
+          symbol = ""; # default " "
+          format = "$symbol$branch($style)";
+          style = "bright-black";
+        };
+
+        git_status = {
+          ahead = ">"; # default "⇡"
+          behind = "<"; # default "⇣"
+        };
+
+        git_state = {
+          # default format
+          # format = '\([$state( $progress_current/$progress_total)]($style)\) '
+          style = "bright-black";
+        };
+
+        cmd_duration = {
+          show_milliseconds = true;
+          format = "[$duration]($style) ";
+          style = "yellow";
+        };
+
+        character = {
+          # default symbols
+          success_symbol = "[❯](green)";
+          error_symbol = "[❯](red)";
+          # success_symbol = '[➜](bold green)';
+          # error_symbol = '[✗](bold red)';
+          # success_symbol = '[\$](green)';
+          # error_symbol = '[\$](red)';
+        };
+
+        kubernetes = {
+          disabled = false;
+          #detect_files = ['k8s']
+          #detect_folders = ['k8s']
+          #detect_extensions = ['yaml']
+        };
 
         # Inserts a blank line between shell prompt
         add_newline = true;
@@ -66,13 +136,6 @@
               discharging_symbol = "󱟤";
             }
           ];
-        };
-
-        # directory plugin
-        directory = {
-          truncation_length = 1;
-          truncate_to_repo = false;
-          fish_style_pwd_dir_length = 1;
         };
       };
     };

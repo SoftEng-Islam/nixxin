@@ -67,6 +67,8 @@
         -- You can see the configuration in your version of wezterm by running..
         -- `wezterm show-keys --lua --key-table copy_mode`.
 
+        config.enable_scroll_bar = true
+
         -- Finally, return the configuration to wezterm:
         return config
       '';
