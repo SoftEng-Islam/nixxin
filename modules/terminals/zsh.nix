@@ -20,9 +20,7 @@
     autosuggestions.enable = true;
     # we'll call compinit in home-manager zsh module
     enableGlobalCompInit = false;
-    initContent = lib.mkOrder 1000 ''
-      [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    '';
+
     promptInit = ''
       eval "$(starship init zsh)"
     '';
@@ -77,6 +75,11 @@
           fish_style_pwd_dir_length = 1;
         };
       };
+    };
+    programs.zsh = {
+      initContent = lib.mkOrder 1000 ''
+        [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+      '';
     };
     home.file.".zshrc".text = ''
       # [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
