@@ -64,9 +64,6 @@
       styles = { "alias" = "fg=magenta"; };
       highlighters = [ "main" "brackets" "pattern" ];
     };
-    initExtra = ''
-      [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-    '';
     oh-my-zsh = {
       enable = true;
       extraConfig = ''
@@ -86,6 +83,7 @@
     zsh-completions
   ];
   home-manager.users.${settings.user.username}.home.file.".zshrc".text = ''
+    [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     # If you come from bash you might have to change your $PATH.
     # export PATH=$HOME/bin:/usr/local/bin:$PATH
     # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
