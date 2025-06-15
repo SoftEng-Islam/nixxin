@@ -1,4 +1,4 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }: {
   environment = {
     # enable zsh autocompletion for system packages (systemd, etc)
     pathsToLink = [ "/share/zsh" ];
@@ -60,7 +60,7 @@
       autosuggestions.enable = true;
       # we'll call compinit in home-manager zsh module
       enableGlobalCompInit = false;
-      initExtra = ''
+      initContent = lib.mkOrder 1000 ''
         [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       '';
       promptInit = ''
