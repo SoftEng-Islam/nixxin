@@ -139,6 +139,10 @@ in {
     };
     boot.kernelModules = [ "tcp_bbr" ];
 
+    # Change me later!
+    # user.initialPassword = "nixos";
+    # users.users.root.initialPassword = "nixos";
+
     environment.systemPackages = with pkgs; [
       openvpn # Robust and highly flexible tunneling application
       protonvpn-cli # Linux command-line client for ProtonVPN
