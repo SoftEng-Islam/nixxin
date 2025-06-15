@@ -324,7 +324,7 @@
       "net.ipv4.tcp_slow_start_after_idle" = 0;
       "net.ipv4.ip_forward" = true; # Enable IPv4 forwarding
       "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding
-      "net.core.default_qdisc" = "fq";
+      # "net.core.default_qdisc" = "fq";
       # sets the kernel’s TCP keepalive time to 120 seconds. To see the available parameters, run sysctl -a.
       "net.ipv4.tcp_keepalive_time" = 120;
 
