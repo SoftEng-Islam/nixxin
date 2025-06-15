@@ -36,8 +36,6 @@ in {
   # thumbnails
   services.tumbler.enable = true;
 
-  dbus.packages = with pkgs; [ nautilus-open-any-terminal ];
-
   # systemd.user.services.nautilus = {
   #   description = "Keep Nautilus Running in Background";
   #   after = [ "graphical-session.target" ];
