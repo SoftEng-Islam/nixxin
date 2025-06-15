@@ -10,7 +10,41 @@
 
   programs.starship = {
     enable = true;
-    settings = { battery.disabled = true; };
+    enableZshIntegration = true;
+    settings = {
+      # Prompt
+      format =
+        "[░▒▓](#a3aed2)[  ](bg:#a3aed2 fg:#090c0c)$battery[](fg:#a3aed2) $directory$all";
+
+      # Inserts a blank line between shell prompt
+      add_newline = true;
+
+      # Bettery status plugin
+      battery = {
+        disabled = true;
+        format =
+          "[▓](#a3aed2)[ $symbol ]('')[ $percentage ](bg:#a3aed2 fg:#090c0c)";
+        full_symbol = "󰁹";
+        charging_symbol = "󱟦";
+        display = [
+          {
+            threshold = 30;
+            discharging_symbol = "󱟥";
+          }
+          {
+            threshold = 90;
+            discharging_symbol = "󱟤";
+          }
+        ];
+      };
+
+      # directory plugin
+      directory = {
+        truncation_length = 1;
+        truncate_to_repo = false;
+        fish_style_pwd_dir_length = 1;
+      };
+    };
   };
 
   programs.zsh = {
@@ -29,6 +63,21 @@
       patterns = { "rm -rf *" = "fg=black,bg=red"; };
       styles = { "alias" = "fg=magenta"; };
       highlighters = [ "main" "brackets" "pattern" ];
+    };
+    autosuggestion.enable = true;
+    initExtra = ''
+      [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    '';
+    oh-my-zsh = {
+      enable = true;
+      extraConfig = ''
+        # ZSH AUTOCOMPLETE -> https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
+        zstyle ':autocomplete:*' list-lines 8
+        zstyle ':autocomplete:history-search:*' list-lines 8
+        zstyle ':autocomplete:history-incremental-search-*:*' list-lines 8
+        zstyle ':autocomplete:*' insert-unambiguous yes
+      '';
+      plugins = [ "git" ];
     };
   };
   environment.systemPackages = with pkgs; [
@@ -134,6 +183,9 @@
     zle -N fzf-history-widget
     # bindkey '^H' fzf-history-widget  # Bind Ctrl+H to trigger fzf history search
 
+    # Basic autocompletion
+    autoload -Uz compinit
+    compinit
 
     # ------------------------------------------ #
     # ----------- User configuration ----------- #
@@ -147,7 +199,7 @@
     # You can also set it to another string to have that shown instead of the default red dots.
     # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
     # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-    COMPLETION_WAITING_DOTS="true"
+    COMPLETION_WAITING_DOTS="false"
 
     # Uncomment the following line if you want to disable marking untracked files
     # under VCS as dirty. This makes repository status check for large repositories
@@ -268,15 +320,5 @@
     fi
     # Created by `pipx` on 2024-11-07 21:19:31
     export PATH="$PATH:/home/softeng/.local/bin"
-
-
-    defaultKeymap = "emacs";
-
-    # Enable arrow key navigation
-    # bindkey -e  # emacs-style key bindings
-    # bindkey "^[[A" up-line-or-history
-    # bindkey "^[[B" down-line-or-history
-    # bindkey "^[[C" forward-char
-    # bindkey "^[[D" backward-char
   '';
 }
