@@ -8,7 +8,7 @@
     ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
   };
 
-  programs.starship = {
+  home-manager.users.${settings.user.username}.programs.starship = {
     enable = true;
     enableZshIntegration = true;
     settings = {
