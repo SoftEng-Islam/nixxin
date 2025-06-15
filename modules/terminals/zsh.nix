@@ -57,7 +57,7 @@
     programs.zsh = {
       enable = true;
       enableCompletion = true;
-      autosuggestions.enable = true;
+      # autosuggestions.enable = true;
       # we'll call compinit in home-manager zsh module
       enableGlobalCompInit = false;
       initContent = lib.mkOrder 1000 ''
