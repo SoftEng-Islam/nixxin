@@ -133,8 +133,6 @@
     # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
     source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
 
-
-
     # ZSH AUTOCOMPLETE -> https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
     zstyle ':autocomplete:*' list-lines 8
     zstyle ':autocomplete:history-search:*' list-lines 8
