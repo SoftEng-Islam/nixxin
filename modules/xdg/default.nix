@@ -104,7 +104,7 @@ in mkIf (xdg.enable) {
       ];
     } // xdgConventions;
 
-    environment.systemPackages = with pkgs; [
+    systemPackages = with pkgs; [
       # used by `gio open` and xdp-gtk
       (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
         ${settings.terminals.default.terminal.name} "$@"
