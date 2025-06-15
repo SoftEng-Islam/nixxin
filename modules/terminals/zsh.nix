@@ -89,6 +89,12 @@
     SAVEHIST=2500
     setopt appendhistory
 
+    # Remove all duplicates in history
+    setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries when a new one is added
+    setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries to the history file
+    setopt HIST_REDUCE_BLANKS      # Remove superfluous blanks from each command line being added
+
+
     # -- nvm --
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
     [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
