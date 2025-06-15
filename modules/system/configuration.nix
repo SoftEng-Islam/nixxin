@@ -14,7 +14,7 @@
   # ------------------------------------------------
   boot = {
     kernelPackages = settings.system.kernel;
-    tmp.cleanOnBoot = true;
+    # tmp.cleanOnBoot = true;
     supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
     consoleLogLevel = 0;
 
