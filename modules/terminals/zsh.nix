@@ -19,8 +19,7 @@
     autosuggestions.enable = true;
     # we'll call compinit in home-manager zsh module
     enableGlobalCompInit = false;
-    promptInit = "";
-    initExtraBeforeCompInit = ''
+    promptInit = ''
       eval "$(starship init zsh)"
     '';
     # prefer to use home-manager dircolors module
