@@ -47,7 +47,7 @@
     };
   };
 
-  home-manager.users.${settings.user.username}.programs.zsh = {
+  programs.zsh = {
     enable = true;
     enableCompletion = true;
     autosuggestions.enable = true;
