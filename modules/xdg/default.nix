@@ -165,7 +165,7 @@ in mkIf (xdg.enable) {
       mime.enable = true;
       # icons.enable = true;
       # configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
-      cacheHome = "$HOME/.cache";
+      cacheHome = "/home/${username}/.cache";
       userDirs = {
         enable = true;
         createDirectories = true;
