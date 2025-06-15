@@ -107,7 +107,7 @@ in mkIf (xdg.enable) {
     systemPackages = with pkgs; [
       # used by `gio open` and xdp-gtk
       (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-        ${settings.terminals.default.terminal.name} "$@"
+        ${settings.modules.terminals.default.terminal.name} "$@"
       '')
 
       xdg-launch
