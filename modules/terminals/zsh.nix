@@ -14,7 +14,31 @@
       zsh-completions
     ];
   };
-
+  programs.zsh = {
+    enable = true;
+    enableCompletion = true;
+    autosuggestions.enable = true;
+    # we'll call compinit in home-manager zsh module
+    enableGlobalCompInit = false;
+    initContent = lib.mkOrder 1000 ''
+      [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    '';
+    promptInit = ''
+      eval "$(starship init zsh)"
+    '';
+    # prefer to use home-manager dircolors module
+    enableLsColors = false;
+    syntaxHighlighting = {
+      enable = true;
+      patterns = { "rm -rf *" = "fg=black,bg=red"; };
+      styles = { "alias" = "fg=magenta"; };
+      highlighters = [ "main" "brackets" "pattern" ];
+    };
+    oh-my-zsh = {
+      enable = true;
+      plugins = [ "git" ];
+    };
+  };
   home-manager.users.${settings.user.username} = {
     programs.starship = {
       enable = true;
@@ -52,31 +76,6 @@
           truncate_to_repo = false;
           fish_style_pwd_dir_length = 1;
         };
-      };
-    };
-    programs.zsh = {
-      enable = true;
-      enableCompletion = true;
-      # autosuggestions.enable = true;
-      # we'll call compinit in home-manager zsh module
-      # enableGlobalCompInit = false;
-      initContent = lib.mkOrder 1000 ''
-        [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-      '';
-      promptInit = ''
-        eval "$(starship init zsh)"
-      '';
-      # prefer to use home-manager dircolors module
-      enableLsColors = false;
-      syntaxHighlighting = {
-        enable = true;
-        patterns = { "rm -rf *" = "fg=black,bg=red"; };
-        styles = { "alias" = "fg=magenta"; };
-        highlighters = [ "main" "brackets" "pattern" ];
-      };
-      oh-my-zsh = {
-        enable = true;
-        plugins = [ "git" ];
       };
     };
     home.file.".zshrc".text = ''
