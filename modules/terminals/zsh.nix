@@ -8,6 +8,11 @@
     ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
   };
 
+  programs.starship = {
+    enable = true;
+    settings = { battery.disabled = true; };
+  };
+
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -15,6 +20,9 @@
     # we'll call compinit in home-manager zsh module
     enableGlobalCompInit = false;
     promptInit = "";
+    initExtraBeforeCompInit = ''
+      eval "$(starship init zsh)"
+    '';
     # prefer to use home-manager dircolors module
     enableLsColors = false;
     syntaxHighlighting = {
@@ -36,6 +44,8 @@
     # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
     # export QT_QPA_PLATFORMTHEME=qt5ct
 
+    export NIX_BUILD_SHELL=zsh
+
     # You may need to manually set your language environment
     # export LANG=en_US.UTF-8
 
@@ -55,9 +65,11 @@
     zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
     # Define the PROMPT
-    PROMPT=$'(%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b)=> {%F{yellow}%~%f} ''${vcs_info_msg_0_} \n%F{green}$%f '
+    # PROMPT=$'(%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b)=> {%F{yellow}%~%f} ''${vcs_info_msg_0_} \n%F{green}$%f '
     # Define the RPROMPT (right prompt)
     # RPROMPT=$'%F{red}RPROMPT%f'
+    # eval "$(starship init zsh)"
+
 
     [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
     bindkey '^P' history-beginning-search-backward
@@ -94,6 +106,16 @@
     setopt HIST_SAVE_NO_DUPS       # Don't write duplicate entries to the history file
     setopt HIST_REDUCE_BLANKS      # Remove superfluous blanks from each command line being added
 
+    setopt AUTO_CD
+    setopt AUTO_PUSHD
+    setopt PUSHD_IGNORE_DUPS
+    setopt EXTENDED_HISTORY
+    setopt SHARE_HISTORY
+    setopt HIST_EXPIRE_DUPS_FIRST
+    setopt HIST_IGNORE_DUPS
+    setopt HIST_IGNORE_SPACE
+    setopt HIST_VERIFY
+    setopt INTERACTIVE_COMMENTS
 
     # -- nvm --
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -203,6 +225,8 @@
     alias jctl="journalctl -p 3 -xb"
     # Recent installed packages
     alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
+    # To Update The System
+    #update = "sudo nixos-rebuild switch --flake /etc/nixos/#default";
 
     # ------------------------- #
     # -------- Plugins -------- #
@@ -222,18 +246,18 @@
     ZSH_AUTOSUGGEST_USE_FZF=true
 
     # Enable Wayland support for different apps
-    if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-      export WAYLAND=1
-      export QT_QPA_PLATFORM='wayland'
-      export GDK_BACKEND='wayland'
-      export MOZ_DBUS_REMOTE=1
-      export MOZ_ENABLE_WAYLAND=1
-      export _JAVA_AWT_WM_NONREPARENTING=1
-      export BEMENU_BACKEND=wayland
-      export CLUTTER_BACKEND=wayland
-      export ECORE_EVAS_ENGINE=wayland_egl
-      export ELM_ENGINE=wayland_egl
-    fi
+    # if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
+    #   export WAYLAND=1
+    #   export QT_QPA_PLATFORM='wayland'
+    #   export GDK_BACKEND='wayland'
+    #   export MOZ_DBUS_REMOTE=1
+    #   export MOZ_ENABLE_WAYLAND=1
+    #   export _JAVA_AWT_WM_NONREPARENTING=1
+    #   export BEMENU_BACKEND=wayland
+    #   export CLUTTER_BACKEND=wayland
+    #   export ECORE_EVAS_ENGINE=wayland_egl
+    #   export ELM_ENGINE=wayland_egl
+    # fi
 
     export FZF_BASE=/usr/share/fzf
 
@@ -247,6 +271,7 @@
     export PATH="$PATH:/home/softeng/.local/bin"
 
 
+    defaultKeymap = "emacs";
 
     # Enable arrow key navigation
     # autoload -U zle
@@ -255,5 +280,8 @@
     bindkey "^[[B" down-line-or-history
     bindkey "^[[C" forward-char
     bindkey "^[[D" backward-char
+
+    bindkey '^[[1;5D' backward-word;\n
+    bindkey '^[[1;5C' forward-word;\n
   '';
 }
