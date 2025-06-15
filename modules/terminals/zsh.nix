@@ -64,7 +64,6 @@
       styles = { "alias" = "fg=magenta"; };
       highlighters = [ "main" "brackets" "pattern" ];
     };
-    autosuggestion.enable = true;
     initExtra = ''
       [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
     '';
