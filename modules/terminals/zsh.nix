@@ -379,11 +379,12 @@
       export FZF_BASE=/usr/share/fzf
 
       # ----------------------- #
-      # Configuration for NixOS #
+      # Configuration For NixOS #
       # ----------------------- #
-      if ! grep -q "nix" /etc/os-release; then
-        # NIXOS configs
-      fi
+      # if ! grep -q "nix" /etc/os-release; then
+      #   Write Your nixos configs Here
+      # fi
+
       # Created by `pipx` on 2024-11-07 21:19:31
       export PATH="$PATH:/home/softeng/.local/bin"
     '';
