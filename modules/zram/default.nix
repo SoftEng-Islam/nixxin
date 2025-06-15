@@ -1,11 +1,11 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.zram.enable or false) {
+in mkIf (settings.modules.zram.enable or true) {
   # Swap Tweaks for Performance
   # Run Command "zramctl"
   zramSwap = {
     enable = true;
-    algorithm = settings.modules.zram.algorithm; # lz4 or zstd
+    algorithm = settings.modules.zram.algorithm or "lz4"; # lz4 or zstd
     memoryPercent = 50; # Uses 50% of RAM as compressed swap
     swapDevices = 1;
     priority = 100;

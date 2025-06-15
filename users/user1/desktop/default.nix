@@ -729,7 +729,7 @@
       };
     };
     zram = {
-      enable = false;
+      enable = true;
       algorithm = "lz4"; # "lz4", "zstd"
     };
   };
