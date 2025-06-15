@@ -168,7 +168,8 @@
       yad
       ydotool
 
-      gnome-control-center
+      junction
+      metadata-cleaner
     ];
   };
 }

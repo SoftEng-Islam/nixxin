@@ -1,7 +1,15 @@
-{ settings, config, lib, pkgs, ... }:
+# =>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>
+# xdg.nix
+# =>=>=>=>=>=>=>=>=>=>=>=>=>=>=>=>
+#
+# Set up and enforce XDG compliance. Other modules will take care of their own,
+# but this takes care of the general case
+{ settings, lib, pkgs, ... }:
 let
-  inherit (lib) optionals mkIf;
-  cacheInHome = "/home/${settings.user.username}/.cache";
+  inherit (lib) mkIf;
+
+  username = settings.user.username;
+  xdg = settings.modules.xdg;
   mimeTypes = import (./. + "/mimeTypes.nix") { };
 
   # ---- Associations ---- #
@@ -12,13 +20,13 @@ let
     }) list);
 
   # ---- Set Your Default Apps ---- #
-  browser = [ settings.modules.xdg.defaults.webBrowser ];
-  imageViewer = [ settings.modules.xdg.defaults.imageViewer ];
-  videoPlayer = [ settings.modules.xdg.defaults.videoPlayer ];
-  audioPlayer = [ settings.modules.xdg.defaults.audioPlayer ];
-  editor = [ settings.modules.xdg.defaults.editor ];
-  torrentApp = [ settings.modules.xdg.defaults.torrentApp ];
-  exeRunner = [ settings.modules.xdg.defaults.windowsExeFileRunner ];
+  browser = [ xdg.defaults.webBrowser ];
+  imageViewer = [ xdg.defaults.imageViewer ];
+  videoPlayer = [ xdg.defaults.videoPlayer ];
+  audioPlayer = [ xdg.defaults.audioPlayer ];
+  editor = [ xdg.defaults.editor ];
+  torrentApp = [ xdg.defaults.torrentApp ];
+  exeRunner = [ xdg.defaults.windowsExeFileRunner ];
 
   windowsApps = xdgAssociations "application" exeRunner [ "x-msdos-program" ];
   editors = xdgAssociations "editor" editor mimeTypes._text;
@@ -42,36 +50,81 @@ let
 
   } // editors // image // video // audio // webBrowser // windowsApps);
 
-in mkIf (settings.modules.xdg.enable) {
-  environment.variables = {
-    # XDG_RUNTIME_DIR = "/run/user/$(id -u)";
-    # XDG_RUNTIME_DIR = "/run/user/${toString config.users.users.${settings.user.username}.uid}";
-    # XDG_RUNTIME_DIR = "/run/user/1000";
+in mkIf (xdg.enable) {
+  environment = let
+    xdgConventions = {
+      # These are the defaults, and xdg.enable does set them, but due to load
+      # order, they're not set before environment.variables are set, which could
+      # cause race conditions.
+      XDG_CACHE_HOME = "$HOME/.cache";
+      XDG_CONFIG_HOME = "$HOME/.config";
+      XDG_DATA_HOME = "$HOME/.local/share";
+      XDG_BIN_HOME = "$HOME/.local/bin";
+    };
+  in {
+    # etc."mime.types".source = ./dotfiles/mime.types;
+    # shellAliases.open = "xdg-open";
+    # shellAliases.o = "xdg-open";
 
-    # Don't set this var
-    # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+    variables = {
+      # Don't set this var
+      # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
 
-    XDG_SESSION_TYPE = "wayland";
+      XDG_SESSION_TYPE = "wayland";
+      XDG_SCREENSHOTS_DIR = "/home/${username}/Pictures/Screenshots";
 
-    XDG_CACHE_HOME = cacheInHome;
-    XDG_CONFIG_HOME = "/home/${settings.user.username}/.config";
-    XDG_PICTURES_DIR = "/home/${settings.user.username}/Pictures";
-    XDG_SCREENSHOTS_DIR =
-      "/home/${settings.user.username}/Pictures/Screenshots";
-  };
-  environment.sessionVariables = {
-    XDG_DATA_DIRS = [
-      "${pkgs.gsettings-desktop-schemas}/share"
-      "${pkgs.nautilus}/share"
-      "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-      "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-      "${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}"
-      "/home/${settings.user.username}/.local/share:/usr/local/share:/usr/share"
-      "/run/current-system/sw/share"
-      "/var/lib/flatpak/exports/share"
-      "$HOME/.local/share/flatpak/exports/share"
+      # Conform more programs to XDG conventions. The rest are handled by their
+      # respective modules.
+      __GL_SHADER_DISK_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+      ASPELL_CONF = ''
+        per-conf $XDG_CONFIG_HOME/aspell/aspell.conf;
+        personal $XDG_CONFIG_HOME/aspell/en_US.pws;
+        repl $XDG_CONFIG_HOME/aspell/en.prepl;
+      '';
+      CUDA_CACHE_PATH = "$XDG_CACHE_HOME/nv";
+      HISTFILE = "$XDG_DATA_HOME/bash/history";
+      INPUTRC = "$XDG_CONFIG_HOME/readline/inputrc";
+      LESSHISTFILE = "$XDG_CACHE_HOME/lesshst";
+      WGETRC = "$XDG_CONFIG_HOME/wgetrc";
+      ANDROID_HOME = "$XDG_DATA_HOME/android";
+      GRIPHOME = "$XDG_CONFIG_HOME/grip";
+      PARALLEL_HOME = "$XDG_CONFIG_HOME/parallel";
+    } // xdgConventions;
+    sessionVariables = {
+      XDG_DATA_DIRS = [
+        "${pkgs.gsettings-desktop-schemas}/share"
+        "${pkgs.nautilus}/share"
+        "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
+        "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
+        "${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}"
+        "/home/${username}/.local/share:/usr/local/share:/usr/share"
+        "/run/current-system/sw/share"
+        "/var/lib/flatpak/exports/share"
+        "$HOME/.local/share/flatpak/exports/share"
+      ];
+    } // xdgConventions;
+
+    environment.systemPackages = with pkgs; [
+      # used by `gio open` and xdp-gtk
+      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
+        ${settings.terminals.default.terminal.name} "$@"
+      '')
+
+      xdg-launch
+      desktop-file-utils
+      xdg-dbus-proxy # DBus proxy for Flatpak and others
+      xdg-desktop-portal # Desktop integration portals for sandboxed apps
+      xdg-desktop-portal-gnome
+      xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
+      xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
+      xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
+      xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
+      libxdg_basedir # Implementation of the XDG Base Directory specification
+      shared-mime-info # Database of common MIME types
+      mime-types
     ];
   };
+
   xdg = {
     portal = {
       enable = true;
@@ -106,21 +159,21 @@ in mkIf (settings.modules.xdg.enable) {
   #   "starship.toml".source = ./.config/starship.toml;
   # };
 
-  home-manager.users.${settings.user.username} = {
+  home-manager.users.${username} = {
     xdg = {
       enable = true;
       mime.enable = true;
       # icons.enable = true;
       # configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
-      cacheHome = cacheInHome;
+      cacheHome = "$HOME/.cache";
       userDirs = {
         enable = true;
         createDirectories = true;
-        music = "/home/${settings.user.username}/Music";
-        videos = "/home/${settings.user.username}/Videos";
-        pictures = "/home/${settings.user.username}/Pictures";
-        download = "/home/${settings.user.username}/Downloads";
-        documents = "/home/${settings.user.username}/Documents";
+        music = "/home/${username}/Music";
+        videos = "/home/${username}/Videos";
+        pictures = "/home/${username}/Pictures";
+        download = "/home/${username}/Downloads";
+        documents = "/home/${username}/Documents";
         templates = null;
         desktop = null;
         publicShare = null;
@@ -134,9 +187,8 @@ in mkIf (settings.modules.xdg.enable) {
         # '';
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.common.dotfilesDir}";
-          XDG_BOOK_DIR = "/home/${settings.user.username}/Books";
-          XDG_SCREENSHOTS_DIR =
-            "/home/${settings.user.username}/Pictures/Screenshots";
+          XDG_BOOK_DIR = "/home/${username}/Books";
+          XDG_SCREENSHOTS_DIR = "/home/${username}/Pictures/Screenshots";
         };
       };
       mimeApps = {
@@ -179,30 +231,4 @@ in mkIf (settings.modules.xdg.enable) {
   # printing and others.
   services.dbus.enable = lib.mkDefault true;
   # xdg.portal.xdgOpenUsePortal = true;
-
-  environment = {
-    # etc."mime.types".source = ./dotfiles/mime.types;
-
-    # shellAliases.open = "xdg-open";
-    # shellAliases.o = "xdg-open";
-  };
-
-  environment.systemPackages = with pkgs; [
-    # used by `gio open` and xdp-gtk
-    (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-      foot "$@"
-    '')
-    xdg-launch
-    desktop-file-utils
-    xdg-dbus-proxy # DBus proxy for Flatpak and others
-    xdg-desktop-portal # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-gnome
-    xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-    xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
-    xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-    xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
-    libxdg_basedir # Implementation of the XDG Base Directory specification
-    shared-mime-info # Database of common MIME types
-    mime-types
-  ];
 }
