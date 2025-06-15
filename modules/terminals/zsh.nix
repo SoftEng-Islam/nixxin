@@ -225,7 +225,7 @@
     # Recent installed packages
     alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
     # To Update The System
-    #update = "sudo nixos-rebuild switch --flake /etc/nixos/#default";
+    # update = "sudo nixos-rebuild switch --flake /etc/nixos/#default";
 
     # ------------------------- #
     # -------- Plugins -------- #
@@ -273,14 +273,10 @@
     defaultKeymap = "emacs";
 
     # Enable arrow key navigation
-    # autoload -U zle
-    bindkey -e  # emacs-style key bindings
-    bindkey "^[[A" up-line-or-history
-    bindkey "^[[B" down-line-or-history
-    bindkey "^[[C" forward-char
-    bindkey "^[[D" backward-char
-
-    bindkey '^[[1;5D' backward-word;\n
-    bindkey '^[[1;5C' forward-word;\n
+    # bindkey -e  # emacs-style key bindings
+    # bindkey "^[[A" up-line-or-history
+    # bindkey "^[[B" down-line-or-history
+    # bindkey "^[[C" forward-char
+    # bindkey "^[[D" backward-char
   '';
 }
