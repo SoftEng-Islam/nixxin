@@ -128,6 +128,16 @@ in {
       # Incomplete protection again TIME-WAIT assassination
       "net.ipv4.tcp_rfc1337" = lib.mkDefault 1;
 
+      "net.core.rmem_max" = 16777216;
+      "net.core.wmem_max" = 16777216;
+      "net.core.rmem_default" = 1048576;
+      "net.core.wmem_default" = 1048576;
+      "net.ipv4.tcp_slow_start_after_idle" = 0;
+      "net.ipv4.ip_forward" = true; # Enable IPv4 forwarding
+      "net.ipv6.conf.all.forwarding" = true; # Enable IPv6 forwarding
+      # sets the kernel’s TCP keepalive time to 120 seconds. To see the available parameters, run sysctl -a.
+      "net.ipv4.tcp_keepalive_time" = 120;
+
       ## TCP optimization
       # TCP Fast Open is a TCP extension that reduces network latency by packing
       # data in the sender's initial TCP SYN. Setting 3 = enable TCP Fast Open for
