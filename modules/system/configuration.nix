@@ -474,6 +474,31 @@
     package = pkgs.scx.full;
   };
 
+  # Limit Systemd Journal Size
+  # https://wiki.archlinux.org/title/Systemd/Journal#Persistent_journals
+  # Optional: Move logs to RAM (careful—logs won't persist reboots)
+  services.journald.extraConfig = ''
+    # Store logs in RAM
+    Compress=yes
+    Storage=volatile
+    SystemMaxUse=100M
+    RuntimeMaxUse=50M
+    SystemMaxFileSize=50M
+  '';
+
+  # user-space Out-Of-Memory (OOM) killer.
+  # It’s a smarter and more targeted way to deal with low memory situations compared to the traditional kernel OOM killer.
+  systemd.oomd = {
+    # It will start monitoring system memory pressure and can proactively kill processes when memory is critically low — before the system freezes or hits swap hard.
+    enable = true;
+    # Use this to prevent system services (like daemons) from bringing down the whole system if memory gets tight.
+    enableRootSlice = true;
+    # Helps avoid a runaway background service from eating up all memory.
+    enableSystemSlice = true;
+    # If a user process uses too much RAM, oomd can kill it to protect the rest of the system.
+    enableUserSlices = true;
+  };
+
   # ------------------------------------------------
   # ---- Variables
   # ------------------------------------------------

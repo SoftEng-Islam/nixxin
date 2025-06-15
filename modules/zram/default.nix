@@ -6,7 +6,7 @@ in mkIf (settings.modules.zram.enable or true) {
   zramSwap = {
     enable = true;
     algorithm = settings.modules.zram.algorithm or "lz4"; # lz4 or zstd
-    memoryPercent = 50; # Uses 50% of RAM as compressed swap
+    memoryPercent = 30; # Uses 30% of RAM as compressed swap
     swapDevices = 1;
     priority = 100;
   };
