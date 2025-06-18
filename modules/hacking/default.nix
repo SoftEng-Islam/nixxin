@@ -1,4 +1,4 @@
-{ settings, config, lib, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
   # imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
@@ -13,9 +13,9 @@ in {
       #   '';
       # })
       hashcat # Fast password cracker
-      # hashcat-utils # Small utilities that are useful in advanced password cracking
-      # john # John the Ripper password cracker
-      # johnny # Open Source GUI frontend for John the Ripper
+      hashcat-utils # Small utilities that are useful in advanced password cracking
+      john # John the Ripper password cracker
+      johnny # Open Source GUI frontend for John the Ripper
       aircrack-ng # WiFi security auditing tools suite
 
       wireshark
@@ -31,6 +31,15 @@ in {
       nettools # Set of tools for controlling the network subsystem in Linux
 
       cowpatty
+
+      # Ncurses-based monitoring application for wireless network devices
+      wavemon
+
+      # Graphical wireless scanning for Linux
+      linssid
+
+      # Rewrite of the popular wireless network auditor, wifite
+      wifite2
     ];
   };
 }
