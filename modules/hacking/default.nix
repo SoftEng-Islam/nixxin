@@ -14,22 +14,46 @@ in {
       # })
       hashcat # Fast password cracker
       hashcat-utils # Small utilities that are useful in advanced password cracking
-      john # John the Ripper password cracker
-      johnny # Open Source GUI frontend for John the Ripper
-      aircrack-ng # WiFi security auditing tools suite
 
+      # John the Ripper password cracker
+      john
+
+      # Open Source GUI frontend for John the Ripper
+      johnny
+
+      # WiFi security auditing tools suite
+      aircrack-ng
+
+      # Powerful network protocol analyzer
       wireshark
-      airgorah # WiFi security auditing software mainly based on aircrack-ng tools suite
+
+      # WiFi security auditing software mainly based on aircrack-ng tools suite
+      airgorah
+
       xterm
+
+      # Utility for viewing/manipulating the MAC address of network interfaces
       macchanger
 
-      hcxdumptool # Small tool to capture packets from wlan devices
-      hcxtools # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
-      netcat # Free TLS/SSL implementation
-      netop # Network monitor using bpf
-      #netrw # Simple tool for transporting data over the network
-      nettools # Set of tools for controlling the network subsystem in Linux
+      # Small tool to capture packets from wlan devices
+      hcxdumptool
 
+      # Tools for capturing wlan traffic and conversion to hashcat and John the Ripper formats
+      hcxtools
+
+      # Free TLS/SSL implementation
+      netcat
+
+      # Network monitor using bpf
+      netop
+
+      # Simple tool for transporting data over the network
+      #netrw
+
+      # Set of tools for controlling the network subsystem in Linux
+      nettools
+
+      # Offline dictionary attack against WPA/WPA2 networks
       cowpatty
 
       # Ncurses-based monitoring application for wireless network devices
