@@ -6,4 +6,5 @@ in mkIf (settings.modules.computing.enable) {
     [
       pocl # Portable Computing Language
     ];
+  hardware.graphics.extraPackages = with pkgs; [ ocl-icd pocl ];
 }
