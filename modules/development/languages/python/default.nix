@@ -20,10 +20,11 @@ in {
   # Set environment variables for Python
   environment.sessionVariables = {
     # HACK: so pylint can resolve modules
-    PYTHONPATH = [
+    PYTHONPATH = lib.concatStringsSep ":" [
       "${python-final}/lib/python3.12/site-packages"
-      "${pkgs.python3.sitePackages}:$PYTHONPATH"
+      "${pkgs.python3.sitePackages}"
       "${pkgs.kitty}/lib/kitty"
+      "$PYTHONPATH" # keep this last if you want to append
     ];
     PYTHONHOME = "${pkgs.python3}";
 
@@ -36,7 +37,7 @@ in {
     # LDFLAGS = "-L${pkgs.zlib.out}/lib -L${pkgs.libffi.out}/lib -L${pkgs.readline.out}/lib -L${pkgs.bzip2.out}/lib -L${pkgs.openssl_3_3.out}/lib";
     # CONFIGURE_OPTS = "-with-openssl=${pkgs.openssl_3_3.dev}";
     # PYENV_VIRTUALENV_DISABLE_PROMPT = "1";
-    # LD_LIBRARY_PATH = lib.mkForce (lib.makeLibraryPath ldLibraryPaths);
+    # LD_LIBRARY_PATH = lib.makeLibraryPath ldLibraryPaths;
     # PYTHON_BUILD_HOOK = "echo 'Using NixOS dependencies'";
     # PYTHON_CFLAGS = "$CPPFLAGS";
     # PYTHON_LDFLAGS = "$LDFLAGS";
@@ -61,7 +62,7 @@ in {
     python-qt
 
     python312Full # High-level dynamically-typed programming language
-   
+
     autoconf
     automake
     bzip2 # High-quality data compression program

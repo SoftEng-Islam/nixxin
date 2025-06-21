@@ -12,6 +12,8 @@
     #  Optional If using Radeon drivers
     ./radeon.nix
 
+    ./ROCM.nix
+
     ./systemd.nix
   ];
   environment.systemPackages = with pkgs; [

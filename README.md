@@ -153,6 +153,15 @@ use `journalctl` to find problems:
 
     # To watch the shutdown and reboot steps in more detail:
     journalctl -b -1 | grep -Ei 'reboot|shutdown|poweroff|failed|error'
+
+    # 🔧 3. Save All Errors to a File
+    # You can store all logs for inspection:
+    journalctl -b -1 -p err > previous-boot-errors.log
+    journalctl -b -0 -p err > current-boot-errors.log
+
+    # 🧼 Optional: Filter Only NixOS-Related Services
+    #To focus on system services (NixOS modules), filter for systemd units:
+    journalctl -b -0 -p err -u '*'
 ```
 
 use chmod u+w /to/path if you have permissions errors:

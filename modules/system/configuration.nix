@@ -199,7 +199,6 @@
       # "amdgpu.freesync_video=1"
       # "amdgpu.gpu_recovery=1"
 
-      # "amdgpu.sg_display=0" # Fixes display-related ROCm issues
       # "amdgpu.noretry=0" # Improve memory handling
       # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
       # "amdgpu.dpm=1"
@@ -389,17 +388,6 @@
         vulkan-validation-layers
         xorg.libXv
         xorg.libXvMC
-
-        # ---- Unlocks OpenCL GPU Acceleration ---- #
-        # rocmPackages.rocm-runtime
-        # rocmPackages.rocm-smi
-        # rocmPackages.rocminfo
-
-        # OpenCL ICD definition for AMD GPUs using the ROCm stack
-        # rocmPackages.clr.icd
-
-        # OpenCL runtime for AMD GPUs, part of the ROCm stack
-        # rocmPackages.clr
       ];
 
       # To enable Vulkan support for 32-bit applications, also add:
@@ -425,25 +413,6 @@
   # Replace with your processor's model ID, use (cpuid)
   # cpuModelId = "00630F81";
   # };
-
-  # ---- Rocm Combined ---- #
-  # - Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-    "f /dev/shm/looking-glass 0660 dreamingcodes kvm -"
-  ];
-
-  # ------------------------------------------------
-  # ---- etc
-  # ------------------------------------------------
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
-  environment.etc."OpenCL/vendors/amdocl64.icd".text =
-    "${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so ";
 
   # ------------------------------------------------
   # ---- Kernel Thread Scheduler Optimization
@@ -487,9 +456,6 @@
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
-    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
-
     # HIP_VISIBLE_DEVICES = "0,2";
 
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
@@ -504,21 +470,11 @@
     # WLR_DRM_NO_ATOMIC = "1";
     # WLR_VSYNC = "1";
 
-    # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    # ROCM_TARGET = "gfx700";
-    # ROC_ENABLE_PRE_VEGA = "1";
-
     # GPU_FORCE_64BIT_PTR = "1";
     # GPU_MAX_ALLOC_PERCENT = "100";
     # GPU_MAX_HEAP_SIZE = "50";
     # GPU_MAX_USE_SYNC_OBJECTS = "1";
     # GPU_SINGLE_ALLOC_PERCENT = "50";
-
-    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
-
-    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
-    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
@@ -634,21 +590,6 @@
     driversi686Linux.mesa # An open source 3D graphics library
 
     # ------------------------------------------------
-    # ---- ROCM Packages
-    # ------------------------------------------------
-    # rocmPackages.clr
-    # rocmPackages.hip-common
-    # rocmPackages.hipblas
-    # rocmPackages.hipcc
-    # rocmPackages.hipcub
-    # rocmPackages.hipfft
-    # rocmPackages.hipify
-    # rocmPackages.hiprand
-    # rocmPackages.rocm-runtime
-    # rocmPackages.rocminfo
-    # rocmPackages.rpp-opencl
-
-    # ------------------------------------------------
     # ---- Vulkan
     # ------------------------------------------------
     dxvk # A Vulkan-based translation layer for Direct3D
@@ -700,21 +641,6 @@
 
     # Application to read current clocks of AMD Radeon cards
     radeon-profile
-
-    # ROCm Application for Reporting System Info
-    # rocmPackages.rocminfo
-
-    # System management interface for AMD GPUs supported by ROCm
-    # rocmPackages.rocm-smi
-
-    # Platform runtime for ROCm
-    # rocmPackages.rocm-runtime
-
-    # CMake modules for common build tasks for the ROCm stack
-    # rocmPackages.rocm-cmake
-
-    # Radeon open compute thunk interface
-    # rocmPackages.rocm-thunk
 
     lshw # Provide detailed information on the hardware configuration of the machine
     lshw-gui
