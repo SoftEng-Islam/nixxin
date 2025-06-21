@@ -603,12 +603,21 @@
             };
           };
         };
+        kernelParams = [
+          "usbcore.autosuspend=-1" # disable usb autosuspend
+          "usbhid.mousepoll=4" # Reduce USB mouse polling rate
+          "xhci_hcd.quirks=0x40" # USB3.0?g
+
+          # This disables specific USB ports at boot time.
+          # "usb-port.port_disable=1-11" # -.-
+        ];
         kernelModules = [
           # "amd-pstate"
           # "amdgpu"
           # "binder_linux"
           # "zenpower"
-
+          "usbhid"
+          "usbcore"
           "8188eu"
           "bfq"
           "coretemp"
@@ -619,6 +628,10 @@
           "uinput"
           "v4l2loopback"
         ];
+        extraModprobeConfig = ''
+          options usbcore autosuspend=-1
+          options binder_linux devices=binder,hwbinder,vndbinder
+        '';
       };
       docs = {
         enable = false;

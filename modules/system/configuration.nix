@@ -116,11 +116,9 @@
         # zenpower
       ];
 
-    extraModprobeConfig = ''
-      options binder_linux devices=binder,hwbinder,vndbinder
-    '';
+    extraModprobeConfig = settings.modules.system.boot.extraModprobeConfig;
 
-    kernelParams = [
+    kernelParams = settings.modules.system.boot.kernelParams ++ [
       # Reduce Boot Delay
       "quiet"
       "splash"
