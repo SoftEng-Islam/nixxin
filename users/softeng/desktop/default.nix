@@ -604,18 +604,18 @@
           };
         };
         kernelModules = [
+          # "amd-pstate"
           # "amdgpu"
           # "binder_linux"
-          # "amd-pstate"
           # "zenpower"
 
-          "radeon"
           "8188eu"
           "bfq"
           "coretemp"
           "fuse"
           "kvm-amd"
           "msr"
+          "radeon"
           "uinput"
           "v4l2loopback"
         ];

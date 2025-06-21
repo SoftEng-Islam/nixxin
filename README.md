@@ -118,9 +118,41 @@ Example:
 
 use `journalctl` to find problems:
 ```bash
+    # home-manager errors
     journalctl -xe | grep home-manager
-    # OR
-    journalctl -xeu home-manager-softeng.service | tail -50
+    # OR and replace [user] with your username like home-manager-softeng
+    journalctl -xeu home-manager-[user].service | tail -50
+
+    # Boot Errors
+    # Show all errors from the current boot:
+    journalctl -b -p err
+
+    # Or to include warnings:
+    journalctl -b -p warning
+
+    # To see the previous boot (e.g. after a reboot):
+    journalctl -b -1 -p err
+    # You can go back further with -2, -3, etc.
+
+    # 🔁 2. Reboot/Shutdown Errors
+    # To see logs from the last shutdown or reboot, you can look at sessions that ended:
+    journalctl --list-boots
+    # You’ll see something like:
+    # -2 9d2d9c7a1b504d9fbb65dd... Wed 2025-06-20
+    # -1 1d12c34b5a234abcd123456... Thu 2025-06-21
+    #  0 abcdef1234567890abcdef... Fri 2025-06-21
+    # Then use one of the boots:
+    journalctl -b -1 -p err
+
+    # For shutdown logs, filter by shutdown target:
+    journalctl | grep -i shutdown
+
+    # Or use:
+    journalctl -u systemd-poweroff.service
+    journalctl -u systemd-shutdown
+
+    # To watch the shutdown and reboot steps in more detail:
+    journalctl -b -1 | grep -Ei 'reboot|shutdown|poweroff|failed|error'
 ```
 
 use chmod u+w /to/path if you have permissions errors:
