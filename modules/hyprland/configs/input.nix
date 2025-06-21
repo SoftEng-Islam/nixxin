@@ -15,7 +15,7 @@
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
         #  Leave empty to use libinput’s default mode for your input device.
-        accel_profile = "adaptive";
+        accel_profile = "";
 
         # follow_mouse = 1;
         # numlock_by_default = true;

@@ -394,6 +394,12 @@
 
   };
 
+  services.libinput = {
+    enable = true;
+    # mouse.accelSpeed = "-0.5";
+    mouse.accelProfile = "adaptive"; # one of "flat", "adaptive", "custom"
+
+  };
   # ------------------------------------------------
   # ---- AMD Configuration
   # ------------------------------------------------
@@ -644,5 +650,7 @@
     lshw-gui
 
     libglvnd
+
+    libinput
   ];
 }

@@ -194,9 +194,6 @@ in {
     # Populates contents of /bin and /usr/bin/
     envfs.enable = true;
 
-    # Enable touchpad support (enabled default in most desktopManager).
-    libinput.mouse.accelSpeed = "-0.5";
-
     # The color management daemon.
     colord.enable = true;
 
