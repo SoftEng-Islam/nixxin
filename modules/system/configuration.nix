@@ -108,23 +108,7 @@
         "xhci_pci"
       ];
     };
-    kernelModules = [
-      # "amdgpu"
-      "radeon"
-
-      "8188eu"
-
-      "amd-pstate"
-      "bfq"
-      "binder_linux"
-      "coretemp"
-      "fuse"
-      "kvm-amd"
-      "msr"
-      "uinput"
-      "zenpower"
-      "v4l2loopback"
-    ];
+    kernelModules = settings.modules.system.boot.kernelModules;
     blacklistedKernelModules = [ "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages;
       [

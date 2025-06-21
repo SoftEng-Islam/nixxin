@@ -569,6 +569,9 @@
       };
     };
     system = {
+      # Whether to enable ROCM, Make Sure that your APU/GPU Supported before Enable it
+      rocm = { enable = false; };
+      radeon = true;
       boot = {
         loader = {
           timeout = 3; # seconds
@@ -600,6 +603,22 @@
             };
           };
         };
+        kernelModules = [
+          # "amdgpu"
+          # "binder_linux"
+          # "amd-pstate"
+          # "zenpower"
+
+          "radeon"
+          "8188eu"
+          "bfq"
+          "coretemp"
+          "fuse"
+          "kvm-amd"
+          "msr"
+          "uinput"
+          "v4l2loopback"
+        ];
       };
       docs = {
         enable = false;
@@ -612,9 +631,7 @@
         info.enable = true;
         nixos.enable = true;
       };
-      # Whether to enable ROCM, Make Sure that your APU/GPU Supported before Enable it
-      rocm = { enable = false; };
-      radeon = true;
+
     };
     terminals = {
       enable = true;
