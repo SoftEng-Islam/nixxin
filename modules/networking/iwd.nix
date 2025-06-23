@@ -13,7 +13,8 @@
       backend = "iwd"; # "wpa_supplicant" or "iwd"
     };
   };
-  wireless.iwd = {
+
+  networking.wireless.iwd = {
     # Example commands manage Wi-Fi connections:
     #- iwctl
     #-- device list             # List wireless devices
