@@ -151,7 +151,7 @@ let
       })
     ];
   });
-in lib.mkIf (settings.modules.graphics.davinci) buildFHSEnv {
+in buildFHSEnv lib.mkIf (settings.modules.graphics.davinci or false) {
   inherit (davinci) pname version;
 
   targetPkgs = pkgs:
