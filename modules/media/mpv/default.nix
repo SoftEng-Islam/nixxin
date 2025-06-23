@@ -14,6 +14,21 @@ let
   _gpu-api = "opengl"; # "opengl", "vulkan"
 
 in lib.mkIf (settings.modules.media.mpv) {
+
+  nixpkgs.overlays = [
+    (self: super: {
+      mpv-unwrapped = super.mpv-unwrapped.override {
+        libbluray = super.libbluray.override {
+          withAACS = true;
+          withBDplus = true;
+        };
+      };
+    })
+  ];
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
   environment.variables = {
     # ls /run/opengl-driver/lib/dri/
     # vainfo
@@ -133,6 +148,9 @@ in lib.mkIf (settings.modules.media.mpv) {
     libvdpau-va-gl
     lua
     mesa
+
+    mpv-unwrapped
+
     mpv
     mpv-shim-default-shaders
     nasm

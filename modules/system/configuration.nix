@@ -404,6 +404,7 @@
     mouse.accelProfile = "adaptive"; # one of "flat", "adaptive", "custom"
   };
 
+  # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.
   services.gpm.enable = true;
 
   # ------------------------------------------------

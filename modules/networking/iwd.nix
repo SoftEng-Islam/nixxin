@@ -1,4 +1,7 @@
 { settings, lib, pkgs, ... }: {
+  # give wireless cards time to turn on
+  systemd.services.iwd.serviceConfig.ExecStartPre =
+    "${pkgs.coreutils}/bin/sleep 2";
 
   # Wireless configuration
   # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
@@ -31,6 +34,8 @@
         AddressRandomization = "once";
         AddressRandomizationRange = "full";
         EnableNetworkConfiguration = true;
+        # attempt to find a better AP every 10 seconds (default is 60)
+        RoamRetryInterval = "10";
       };
       DriverQuirks.UseDefaultInterface = true;
       Settings.AutoConnect = true;
