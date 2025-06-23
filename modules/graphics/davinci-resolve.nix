@@ -1,8 +1,8 @@
-{ stdenv, lib, cacert, curl, perl, runCommandLocal, unzip, appimage-run
-, addDriverRunpath, dbus, libGLU, xorg, buildFHSEnv, buildFHSEnvChroot, bash
-, writeText, ocl-icd, xkeyboard_config, glib, libarchive, libxcrypt, python3
-, aprutil, makeDesktopItem, copyDesktopItems, jq, studioVariant ? true
-, common-updater-scripts, writeShellApplication, }:
+{ settings, stdenv, lib, cacert, curl, perl, runCommandLocal, unzip
+, appimage-run, addDriverRunpath, dbus, libGLU, xorg, buildFHSEnv
+, buildFHSEnvChroot, bash, writeText, ocl-icd, xkeyboard_config, glib
+, libarchive, libxcrypt, python3, aprutil, makeDesktopItem, copyDesktopItems, jq
+, studioVariant ? true, common-updater-scripts, writeShellApplication, }:
 let
   davinci = (stdenv.mkDerivation rec {
     pname = "davinci-resolve${lib.optionalString studioVariant "-studio"}";
@@ -151,7 +151,7 @@ let
       })
     ];
   });
-in buildFHSEnv {
+in lib.mkIf (settings.modules.graphics.davinci) buildFHSEnv {
   inherit (davinci) pname version;
 
   targetPkgs = pkgs:
