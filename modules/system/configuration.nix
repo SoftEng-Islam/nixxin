@@ -336,7 +336,7 @@
   # ---- Hardware Configuration
   # ------------------------------------------------
   hardware = {
-    firmware = pkgs.linux-firmware;
+    firmware = [ pkgs.linux-firmware ];
     uinput.enable = true;
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
