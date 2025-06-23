@@ -30,10 +30,11 @@ mkIf (settings.modules.dconf.enable or true) {
         "search-view" = "list-view";
       };
 
-      "org/gnome/nm-applet" = {
-        "disable-connected-notifications" = true;
-        "disable-vpn-notifications" = true;
-      };
+      # "org/gnome/nm-applet" = {
+      #   "disable-connected-notifications" = true;
+      #   "disable-vpn-notifications" = true;
+      # };
+
       "org/gtk/gtk4/settings/file-chooser" = { "show-hidden" = true; };
 
       "org/gtk/settings/file-chooser" = {

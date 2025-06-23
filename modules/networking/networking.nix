@@ -1,6 +1,21 @@
 { settings, lib, pkgs, ... }: {
-  systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
+
+  systemd.network = {
+    # enable = true;
+    wait-online.enable = false;
+    # wait-online.anyInterface = true;
+  };
+
+  services = {
+    hostapd.enable = false;
+    resolved.enable =
+      if (settings.modules.networking.dnsResolver == "systemd-resolved") then
+        true
+      else
+        false; # Systemd DNS Resolver Daemon, systemd-resolved.
+  };
+
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -14,6 +29,14 @@
     nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = false;
+
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # ~~~~ Wireless Settings ~~~~
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
+    # disable wpa_supplicant, we have networkmanager and iwd
+    wireless.enable = lib.mkForce false; # Whether to disable wpa_supplicant.
+    wireless.scanOnLowSignal = false;
 
     firewall = {
       enable = true;
@@ -36,9 +59,8 @@
         # "stable": Generate a stable, hashed MAC address
         # "stable-ssid": Generate a stable MAC addressed based on Wi-Fi network
         macAddress = "random";
-        # increase boot speed
-        # backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
       };
+
       ethernet = { macAddress = "preserve"; };
     };
 
@@ -63,72 +85,32 @@
     #   externalInterface = "wlp0s22f2u4";
     # };
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # ~~~~ Wireless Settings ~~~~
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
-    wireless.enable = false; # Default false # wpa_supplicant.
-
-    # Wireless configuration
-    # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
-    # - WPA2, WPA3, and Enterprise authentication.
-    # - Improved performance and resource usage.
-    # - Integration with NetworkManager/systemd-networkd.
-    wireless.iwd = {
-      # Example commands manage Wi-Fi connections:
-      #- iwctl
-      #-- device list             # List wireless devices
-      #-- station wlan0 scan      # Scan for networks
-      #-- station wlan0 get-networks  # Show available networks
-      #-- station wlan0 connect SSID  # Connect to a network
-      enable = false;
-      settings = {
-        Network = {
-          EnableIPv6 = true;
-          RoutePriorityOffset = 300;
-        };
-        # MAC address randomization
-        General = {
-          AddressRandomization = "once";
-          AddressRandomizationRange = "full";
-          EnableNetworkConfiguration = true;
-        };
-        Settings.AutoConnect = true;
-      };
-    };
     # extraHosts = ''
     #   127.0.0.1 softeng.home
     # '';
-  };
-  services = {
-    hostapd.enable = false;
-    resolved.enable =
-      if (settings.modules.networking.dnsResolver == "systemd-resolved") then
-        true
-      else
-        false; # Systemd DNS Resolver Daemon, systemd-resolved.
-  };
-  networking.hosts = {
-    #    "0.0.0.0" = [
-    #      "overseauspider.yuanshen.com"
-    #      "log-upload-os.hoyoverse.com"
-    #      "log-upload-os.mihoyo.com"
-    #      "dump.gamesafe.qq.com"
-    #
-    #      "log-upload.mihoyo.com"
-    #      "devlog-upload.mihoyo.com"
-    #      "uspider.yuanshen.com"
-    #      "sg-public-data-api.hoyoverse.com"
-    #      "public-data-api.mihoyo.com"
-    #
-    #      "prd-lender.cdp.internal.unity3d.com"
-    #      "thind-prd-knob.data.ie.unity3d.com"
-    #      "thind-gke-usc.prd.data.corp.unity3d.com"
-    #      "cdp.cloud.unity3d.com"
-    #      "remote-config-proxy-prd.uca.cloud.unity3d.com"
-    #    ];
+    hosts = {
+      #    "0.0.0.0" = [
+      #      "overseauspider.yuanshen.com"
+      #      "log-upload-os.hoyoverse.com"
+      #      "log-upload-os.mihoyo.com"
+      #      "dump.gamesafe.qq.com"
+      #
+      #      "log-upload.mihoyo.com"
+      #      "devlog-upload.mihoyo.com"
+      #      "uspider.yuanshen.com"
+      #      "sg-public-data-api.hoyoverse.com"
+      #      "public-data-api.mihoyo.com"
+      #
+      #      "prd-lender.cdp.internal.unity3d.com"
+      #      "thind-prd-knob.data.ie.unity3d.com"
+      #      "thind-gke-usc.prd.data.corp.unity3d.com"
+      #      "cdp.cloud.unity3d.com"
+      #      "remote-config-proxy-prd.uca.cloud.unity3d.com"
+      #    ];
+    };
   };
 
+  # environment.etc."resolv.conf".text = "nameserver 8.8.8.8";
   environment.systemPackages = with pkgs; [
     wpa_supplicant
     wpa_supplicant_gui

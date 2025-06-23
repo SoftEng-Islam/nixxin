@@ -2,7 +2,10 @@
 
 let inherit (lib) mkIf;
 in mkIf (settings.modules.ssh.enable) {
-  services.openssh.enable = true; # Enable the OpenSSH daemon.
+  services.openssh = {
+    enable = true;
+    settings.PasswordAuthentication = false;
+  };
   environment.systemPackages = with pkgs; [
     ssh-agents
     ssh-audit

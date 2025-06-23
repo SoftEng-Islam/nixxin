@@ -336,7 +336,7 @@
   # ---- Hardware Configuration
   # ------------------------------------------------
   hardware = {
-    firmware = [ pkgs.linux-firmware ];
+    firmware = with pkgs; [ linux-firmware sof-firmware wireless-regdb ];
     # one of "xz", "zstd", "none", "auto"
     firmwareCompression = "auto";
 
@@ -395,12 +395,17 @@
 
   };
 
+  # ------------------------------------------------
+  # ---- Services Configuration
+  # ------------------------------------------------
   services.libinput = {
     enable = true;
     # mouse.accelSpeed = "-0.5";
     mouse.accelProfile = "adaptive"; # one of "flat", "adaptive", "custom"
-
   };
+
+  services.gpm.enable = true;
+
   # ------------------------------------------------
   # ---- AMD Configuration
   # ------------------------------------------------
