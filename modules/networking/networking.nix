@@ -23,10 +23,23 @@
 
     networkmanager = {
       enable = true;
-      wifi.powersave = false;
+      logLevel = "OFF";
+      dhcp = "internal"; # one of "dhcpcd", "internal"
       # dns = "none"; # "none" or "dnsmasq"
-      # increase boot speed
-      # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
+      wifi = {
+        powersave = false;
+        scanRandMacAddress = true;
+        # "XX:XX:XX:XX:XX:XX": MAC address of the interface
+        # "permanent": Use the permanent MAC address of the device
+        # "preserve": Don’t change the MAC address of the device upon activation
+        # "random": Generate a randomized value upon each connect
+        # "stable": Generate a stable, hashed MAC address
+        # "stable-ssid": Generate a stable MAC addressed based on Wi-Fi network
+        macAddress = "random";
+        # increase boot speed
+        # backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
+      };
+      ethernet = { macAddress = "preserve"; };
     };
 
     interfaces.enp4s0 = {

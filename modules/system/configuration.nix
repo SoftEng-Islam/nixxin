@@ -337,14 +337,14 @@
   # ------------------------------------------------
   hardware = {
     firmware = [ pkgs.linux-firmware ];
+    # one of "xz", "zstd", "none", "auto"
+    firmwareCompression = "auto";
+
     uinput.enable = true;
     enableAllFirmware = true;
     cpu.amd.updateMicrocode = true;
     # cpu.amd.sev.enable = true;
     enableRedistributableFirmware = true;
-
-    # one of "xz", "zstd", "none", "auto"
-    firmwareCompression = "zstd";
 
     amdgpu = {
       initrd.enable = false;
