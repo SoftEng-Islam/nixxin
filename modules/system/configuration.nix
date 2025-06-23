@@ -338,7 +338,7 @@
   hardware = {
     firmware = with pkgs; [ linux-firmware sof-firmware wireless-regdb ];
     # one of "xz", "zstd", "none", "auto"
-    firmwareCompression = "auto";
+    firmwareCompression = "zstd";
 
     uinput.enable = true;
     enableAllFirmware = true;
