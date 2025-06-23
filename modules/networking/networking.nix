@@ -7,11 +7,27 @@
     # still possible to use this option, but it's recommended to use it in conjunction
     # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
     useDHCP = lib.mkDefault true;
+    # interfaces.[interface].useDHCP = lib.mkDefault true;
+    nameservers = settings.modules.networking.nameservers;
 
-    # interfaces.eno1.useDHCP = lib.mkDefault true;
-    # interfaces.wlp0s16f1u2.useDHCP = lib.mkDefault true;
+    hostName = settings.system.hostName; # Define your hostname.
+    nftables.enable = true;
+    dhcpcd.enable = false;
+    useNetworkd = false;
 
-    interfaces.wlp0s22f2u4.useDHCP = lib.mkDefault true;
+    firewall = {
+      enable = true;
+      allowedTCPPorts = [ 53 80 443 8080 3389 ];
+      allowedUDPPorts = [ 53 67 ];
+    };
+
+    networkmanager = {
+      enable = true;
+      wifi.powersave = false;
+      # dns = "none"; # "none" or "dnsmasq"
+      # increase boot speed
+      # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
+    };
 
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
@@ -23,36 +39,16 @@
 
     # ip route | grep default
     # nmcli device show wlan0 | grep IP4.GATEWAY
-    defaultGateway = {
-      interface = "wlp0s22f2u4";
-      address = "192.168.2.1"; # e.g., 192.168.1.1
-    };
-
-    nameservers = settings.modules.networking.nameservers;
-
-    networkmanager = {
-      enable = true;
-      wifi.powersave = false;
-      # dns = "none"; # "none" or "dnsmasq"
-      # increase boot speed
-      # wifi.backend = "wpa_supplicant"; # "wpa_supplicant" or "iwd"
-    };
+    # defaultGateway = {
+    # interface = "wlp0s22f2u4";
+    # address = "192.168.2.1"; # e.g., 192.168.1.1
+    # };
 
     # nat = {
     #   enable = true;
     #   internalInterfaces = [ "enp4s0" ];
     #   externalInterface = "wlp0s22f2u4";
     # };
-
-    hostName = settings.system.hostName; # Define your hostname.
-    nftables.enable = true;
-    dhcpcd.enable = false;
-    useNetworkd = false;
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 53 80 443 8080 3389 ];
-      allowedUDPPorts = [ 53 67 ];
-    };
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
