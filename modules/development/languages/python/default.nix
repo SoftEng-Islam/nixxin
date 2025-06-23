@@ -20,12 +20,12 @@ in {
   # Set environment variables for Python
   environment.sessionVariables = {
     # HACK: so pylint can resolve modules
-    PYTHONPATH = lib.concatStringsSep ":" [
-      "${python-final}/lib/python3.12/site-packages"
-      "${pkgs.python3.sitePackages}"
-      "${pkgs.kitty}/lib/kitty"
-      "$PYTHONPATH" # keep this last if you want to append
-    ];
+    # PYTHONPATH = lib.concatStringsSep ":" [
+    #   "${python-final}/lib/python3.12/site-packages"
+    #   "${pkgs.python3.sitePackages}"
+    #   "${pkgs.kitty}/lib/kitty"
+    #   "$PYTHONPATH" # keep this last if you want to append
+    # ];
     PYTHONHOME = "${pkgs.python3}";
 
     # PYENV_ROOT = "$HOME/.pyenv";

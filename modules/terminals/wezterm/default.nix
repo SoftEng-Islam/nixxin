@@ -46,6 +46,8 @@
         config.warn_about_missing_glyphs = false
         config.hide_tab_bar_if_only_one_tab = false
 
+        config.window_close_confirmation = 'NeverPrompt'
+
         config.audible_bell = 'Disabled'
 
         config.set_environment_variables = {
@@ -68,6 +70,7 @@
         -- `wezterm show-keys --lua --key-table copy_mode`.
 
         config.enable_scroll_bar = true
+
 
         -- Finally, return the configuration to wezterm:
         return config
