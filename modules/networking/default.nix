@@ -4,7 +4,7 @@
     ./dnsmasq.nix
 
     # ./rtw.nix
-
+    ./iwd.nix
     ./RTL8188EUS.nix
   ];
   services.avahi.enable = true;
