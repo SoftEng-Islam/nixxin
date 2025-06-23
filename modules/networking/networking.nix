@@ -16,6 +16,8 @@
         false; # Systemd DNS Resolver Daemon, systemd-resolved.
   };
 
+  services.networkd-dispatcher.enable = true;
+
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
     # (the default) this is the recommended approach. When using systemd-networkd it's
@@ -28,7 +30,7 @@
     hostName = settings.system.hostName; # Define your hostname.
     nftables.enable = true;
     dhcpcd.enable = false;
-    useNetworkd = false;
+    useNetworkd = true;
 
     # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
     # ~~~~ Wireless Settings ~~~~
@@ -45,7 +47,7 @@
     };
 
     networkmanager = {
-      enable = true;
+      enable = false;
       logLevel = "OFF";
       dhcp = "internal"; # one of "dhcpcd", "internal"
       # dns = "none"; # "none" or "dnsmasq"
@@ -129,9 +131,11 @@
     tcpdump # Network sniffer
     nssmdns # The mDNS Name Service Switch (NSS) plug-in
     nmap # A free and open source utility for network discovery and security auditing
-    networkmanager # Network configuration and management tool
-    networkmanagerapplet # NetworkManager control applet for GNOME
-    networkmanager-openconnect # NetworkManager’s OpenConnect plugin
+
+    # networkmanager # Network configuration and management tool
+    # networkmanagerapplet # NetworkManager control applet for GNOME
+    # networkmanager-openconnect # NetworkManager’s OpenConnect plugin
+
     wirelesstools # Wireless tools for Linux
     inetutils # Collection of common network programs
     ipset # Administration tool for IP sets
