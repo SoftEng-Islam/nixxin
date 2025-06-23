@@ -31,7 +31,6 @@
       };
       # MAC address randomization
       General = {
-        UseDefaultInterface = true;
         AddressRandomization = "once";
         AddressRandomizationRange = "full";
         EnableNetworkConfiguration = true;
