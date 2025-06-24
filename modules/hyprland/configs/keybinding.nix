@@ -94,7 +94,7 @@
       # ---- $main + Tag ---- #
       # --------------------- #
       #=> Launch Gnome Control Center
-      bind = $main, grave, exec, GTK_THEME=${settings.common.gtk.GTK_THEME} XDG_CURRENT_DESKTOP="gnome" gnome-control-center # $main + ~
+      # bind = $main, grave, exec, # $main + ~
       # bind = $main, , exec, # $main + <
       # bind = $main, , exec, # $main + >
       # bind = $main, , exec, # $main + /?

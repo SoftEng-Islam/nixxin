@@ -54,18 +54,10 @@
       wifi = {
         powersave = false;
         scanRandMacAddress = true;
-        # "XX:XX:XX:XX:XX:XX": MAC address of the interface
-        # "permanent": Use the permanent MAC address of the device
-        # "preserve": Don’t change the MAC address of the device upon activation
-        # "random": Generate a randomized value upon each connect
-        # "stable": Generate a stable, hashed MAC address
-        # "stable-ssid": Generate a stable MAC addressed based on Wi-Fi network
         macAddress = "random";
       };
-
       ethernet = { macAddress = "preserve"; };
     };
-
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
@@ -116,6 +108,7 @@
   environment.systemPackages = with pkgs; [
     wpa_supplicant
     wpa_supplicant_gui
+
     sipcalc # Advanced console ip subnet calculator
     iperf # Tool to measure IP bandwidth using UDP or TCP
     netcat # Free TLS/SSL implementation
@@ -140,8 +133,10 @@
     nftables # The project that aims to replace the existing {ip,ip6,arp,eb}tables framework
     dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
     dhcping # Send DHCP request to find out if a DHCP server is running
+
     # firewalld # Firewall daemon with D-Bus interface
-    firewalld-gui # Firewall daemon with D-Bus interface
+    # firewalld-gui # Firewall daemon with D-Bus interface
+
     hostapd # A user space daemon for access point and authentication servers
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
 

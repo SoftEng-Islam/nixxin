@@ -380,9 +380,9 @@
     hyprland = {
       enable = true;
       dm = { # Display/Login manager
-        enable = true;
+        enable = false;
         default = "gdm"; # "gdm", "reGreet"
-        defaultSession = "hyprland"; # "hyprland", "hyprland-uwsm"
+        defaultSession = "hyprland";
       };
       # Pregenerated Colors to use in Hyprland
       genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
