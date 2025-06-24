@@ -1,4 +1,5 @@
-{ settings, config, pkgs, ... }: {
+{ settings, config, lib, pkgs, ... }:
+lib.mkIf (settings.modules.networking.rtw or false) {
 
   # Enable rtw88 kernel module
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtw88 ];

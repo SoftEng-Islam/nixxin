@@ -36,7 +36,7 @@ in {
   # disable wpa_supplicant, we have networkmanager and iwd
   networking.wireless = {
     enable = lib.mkForce false;
-    wireless.scanOnLowSignal = false;
+    scanOnLowSignal = false;
   };
 
   networking.networkmanager = {

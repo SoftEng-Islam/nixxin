@@ -447,6 +447,7 @@
       iwd = true;
       waypipe = false;
       rtl8188eus-aircrack = false;
+      rtw = false;
     };
     notifications = { enable = true; };
     office = {
