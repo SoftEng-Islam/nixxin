@@ -1,4 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+
+lib.mkIf (settings.modules.networking.iwd or true) {
   # give wireless cards time to turn on
   systemd.services.iwd.serviceConfig.ExecStartPre =
     "${pkgs.coreutils}/bin/sleep 2";

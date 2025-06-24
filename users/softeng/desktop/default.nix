@@ -444,6 +444,8 @@
       nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
       networkManager = true;
+      iwd = true;
+      rtl8188eus-aircrack = false;
     };
     notifications = { enable = true; };
     office = {

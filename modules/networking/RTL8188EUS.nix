@@ -1,6 +1,5 @@
-{ config, ... }:
-
-{
+{ settings, lib, config, pgks, ... }:
+lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
   # Blacklist conflicting drivers
   boot.blacklistedKernelModules = [ "rtl8xxxu" "r8188eu" ];
 
