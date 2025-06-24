@@ -132,10 +132,6 @@
     nssmdns # The mDNS Name Service Switch (NSS) plug-in
     nmap # A free and open source utility for network discovery and security auditing
 
-    # networkmanager # Network configuration and management tool
-    # networkmanagerapplet # NetworkManager control applet for GNOME
-    # networkmanager-openconnect # NetworkManager’s OpenConnect plugin
-
     wirelesstools # Wireless tools for Linux
     inetutils # Collection of common network programs
     ipset # Administration tool for IP sets
