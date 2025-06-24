@@ -24,7 +24,7 @@ in {
     false; # Systemd DNS Resolver Daemon, systemd-resolved.
 
   networking.firewall = {
-    enable = false;
+    enable = true;
     allowedTCPPorts = [ 53 80 443 8080 3389 ];
     allowedUDPPorts = [ 53 67 ];
   };
