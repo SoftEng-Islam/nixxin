@@ -445,6 +445,7 @@
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
       networkManager = true;
       iwd = true;
+      waypipe = false;
       rtl8188eus-aircrack = false;
     };
     notifications = { enable = true; };

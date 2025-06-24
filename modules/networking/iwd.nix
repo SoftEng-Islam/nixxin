@@ -23,7 +23,7 @@ lib.mkIf (settings.modules.networking.iwd or true) {
     #-- station wlan0 scan      # Scan for networks
     #-- station wlan0 get-networks  # Show available networks
     #-- station wlan0 connect SSID  # Connect to a network
-    enable = true;
+    enable = settings.modules.networking.iwd;
     settings = {
 
       Network = {
