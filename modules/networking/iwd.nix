@@ -8,11 +8,11 @@
   # - WPA2, WPA3, and Enterprise authentication.
   # - Improved performance and resource usage.
   # - Integration with NetworkManager/systemd-networkd.
-  networking.networkmanager = {
-    wifi = {
-      backend = "iwd"; # "wpa_supplicant" or "iwd"
-    };
-  };
+  # networking.networkmanager = {
+  #   wifi = {
+  #     backend = "iwd"; # "wpa_supplicant" or "iwd"
+  #   };
+  # };
 
   networking.wireless.iwd = {
     # Example commands manage Wi-Fi connections:
