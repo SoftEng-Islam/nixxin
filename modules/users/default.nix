@@ -39,7 +39,7 @@
         "lp" # Manage printers.
         "lxd"
         "network"
-        #"networkmanager" # Permissions to manage network connections.
+        "networkmanager" # Permissions to manage network connections.
         "plugdev"
         "polkitd" # Ensures proper permission handling
         "qemu"
@@ -60,7 +60,7 @@
         "${settings.user.username}"
       ];
       uid = 1000;
-      # packages = with pkgs; [ thunderbird ];
+      packages = with pkgs; [ thunderbird ];
     };
   };
 }

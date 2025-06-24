@@ -443,6 +443,7 @@
       dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
       nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
+      networkManager = true;
     };
     notifications = { enable = true; };
     office = {

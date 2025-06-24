@@ -1,22 +1,49 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let dnsResolver = settings.modules.networking.dnsResolver;
+in {
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  systemd.network = {
-    # enable = true;
-    wait-online.enable = false;
-    # wait-online.anyInterface = true;
-  };
+  systemd.network.enable = true;
+  systemd.network.wait-online.enable = false;
+  systemd.network.wait-online.timeout = 0;
+  systemd.network.wait-online.anyInterface = true;
 
-  services = {
-    hostapd.enable = false;
-    resolved.enable =
-      if (settings.modules.networking.dnsResolver == "systemd-resolved") then
-        true
-      else
-        false; # Systemd DNS Resolver Daemon, systemd-resolved.
-  };
-
+  services.hostapd.enable = false;
   services.networkd-dispatcher.enable = true;
+
+  services.resolved.enable = if (dnsResolver == "systemd-resolved") then
+    true
+  else
+    false; # Systemd DNS Resolver Daemon, systemd-resolved.
+
+  networking.firewall = {
+    enable = false;
+    allowedTCPPorts = [ 53 80 443 8080 3389 ];
+    allowedUDPPorts = [ 53 67 ];
+  };
+
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # ~~~~ Wireless Settings ~~~~
+  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
+  # disable wpa_supplicant, we have networkmanager and iwd
+  networking.wireless = {
+    enable = lib.mkForce false;
+    wireless.scanOnLowSignal = false;
+  };
+
+  networking.networkmanager = {
+    enable = settings.modules.networking.networkManager;
+    logLevel = "OFF";
+    dhcp = "internal"; # one of "dhcpcd", "internal"
+    # dns = "none"; # "none" or "dnsmasq"
+    wifi = {
+      powersave = false;
+      scanRandMacAddress = true;
+      macAddress = "random";
+    };
+    ethernet = { macAddress = "preserve"; };
+  };
 
   networking = {
     # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
@@ -32,32 +59,6 @@
     dhcpcd.enable = false;
     useNetworkd = true;
 
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # ~~~~ Wireless Settings ~~~~
-    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
-    # disable wpa_supplicant, we have networkmanager and iwd
-    wireless.enable = lib.mkForce false; # Whether to disable wpa_supplicant.
-    wireless.scanOnLowSignal = false;
-
-    firewall = {
-      enable = true;
-      allowedTCPPorts = [ 53 80 443 8080 3389 ];
-      allowedUDPPorts = [ 53 67 ];
-    };
-
-    networkmanager = {
-      enable = false;
-      logLevel = "OFF";
-      dhcp = "internal"; # one of "dhcpcd", "internal"
-      # dns = "none"; # "none" or "dnsmasq"
-      wifi = {
-        powersave = false;
-        scanRandMacAddress = true;
-        macAddress = "random";
-      };
-      ethernet = { macAddress = "preserve"; };
-    };
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
