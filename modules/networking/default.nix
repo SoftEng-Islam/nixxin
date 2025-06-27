@@ -9,7 +9,7 @@ in {
   systemd.network.enable = true;
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
-  systemd.network.wait-online.anyInterface = true;
+  systemd.network.wait-online.anyInterface = false;
 
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
@@ -103,57 +103,95 @@ in {
     enable = settings.modules.networking.networkManager;
     logLevel = "OFF";
     dhcp = "internal"; # one of "dhcpcd", "internal"
-
+    # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
-      # keyfile.path = where networkmanager should look for connection credentials
-      keyfile.path = "/var/lib/NetworkManager/system-connections";
+      # [device]
+      device."wifi.scan-rand-mac-address" = "no";
+      # macAddress = "random";
+      # Wireless configuration
+      # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
+      # - WPA2, WPA3, and Enterprise authentication.
+      # - Improved performance and resource usage.
+      # - Integration with NetworkManager/systemd-networkd.
+      # "wpa_supplicant" or "iwd"
+      device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
-      # logging.audit = false;  #< default
-      logging.level = "INFO";
+      # [ifupdown]
+      ifupdown."managed" = "false";
+
+      # [connection]
+      connection = {
+        "wifi.powersave" = "0";
+        # "connection.llmnr" = 2; # Disable LLMNR
+        # "connection.mdns" = 2; # Disable mDNS
+        # "wifi.cloned-mac-address" = "stable";
+        # "ipv6.ipv6-privacy" = "2";
+      };
+
+      # [main]
+      main."plugins" = "keyfile";
+      # main."dhcp"="internal";
+      # main."dns" = "systemd-resolved";
+      # main."rc-manager" = "unmanaged";
+
+      # [keyfile]
+      # To get The MAC Address run this Command:
+      # nmcli device show [wifiInterface] | grep HWADDR
+      keyfile."unmanaged-devices" = "mac:CE:CD:2A:8C:8D:B3";
+
+      # [logging]
+      logging."audit" = "false"; # < default
+      logging."level" = "OFF";
     };
+
+    # wifi.macAddress = "CE:CD:2A:8C:8D:B3";
+    # wifi.powersave = false;
+    # wifi.scanRandMacAddress = false;
 
     # dns = "none"; # "none" or "dnsmasq"
-    wifi = {
-      powersave = false;
-      scanRandMacAddress = false;
-      macAddress = "random";
-      backend =
-        settings.modules.networking.wifiBackend; # "wpa_supplicant" OR "iwd"
-    };
     ethernet = { macAddress = "preserve"; };
   };
 
-  networking.networkmanager.package =
-    pkgs.networkmanager-split.daemon.overrideAttrs (upstream: {
-      # postPatch = (upstream.postPatch or "") + ''
-      #   substituteInPlace src/{core/org.freedesktop.NetworkManager,nm-dispatcher/nm-dispatcher}.conf --replace-fail \
-      #     'user="root"' 'user="networkmanager"'
-      # '';
-      postInstall = (upstream.postInstall or "") + ''
-        # allow the bus to owned by either root or networkmanager users
-        # use the group here, that way ordinary users can be elevated to control networkmanager
-        # (via e.g. `nmcli`)
-        confs=(nm-dispatcher.conf)
-        confs+=(org.freedesktop.NetworkManager.conf)
-        for f in "''${confs[@]}" ; do
-          substitute $out/share/dbus-1/system.d/$f \
-            $out/share/dbus-1/system.d/networkmanager-$f \
-            --replace-fail 'user="root"' 'group="networkmanager"'
-        done
-
-        # remove unused services to prevent any unexpected interactions
-        rm $out/etc/systemd/system/{nm-cloud-setup.service,nm-cloud-setup.timer,nm-priv-helper.service}
-      '';
-    });
-
   environment.etc."NetworkManager/system-connections".source =
     "/var/lib/NetworkManager/system-connections";
+
+  # Wifi PowerManagement
+  # environment.etc."NetworkManager/conf.d/99-wifi-no-powersave.conf".text = ''
+  #   [connection]
+  #   wifi.powersave = 2
+  #   wifi.cloned-mac-address = preserve
+  #   ethernet.cloned-mac-address = preserve
+
+  #   [device]
+  #   wifi.backend = iwd
+  #   wifi.scan-rand-mac-address = false
+  # '';
+
+  # environment.etc."NetworkManager/conf.d/wifi_rand_mac.conf" = {
+  #   text = ''
+  #     [device-mac-randomization]
+  #     # "yes" is already the default for scanning
+  #     wifi.scan-rand-mac-address=yes
+
+  #     [connection-mac-randomization]
+  #     # Randomize MAC for every ethernet connection
+  #     #ethernet.cloned-mac-address=random
+  #     # Generate a random MAC ethernet connection
+  #     ethernet.cloned-mac-address=stable
+  #     # Generate a randomized value upon each connection
+  #     #wifi.cloned-mac-address=random
+  #     # Generate a random MAC for each WiFi and associate the two permanently
+  #     wifi.cloned-mac-address=stable
+  #   '';
+  #   mode = "0400";
+  # };
 
   # the default backend is "wpa_supplicant".
   # wpa_supplicant reliably picks weak APs to connect to.
   # see: <https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/474>
   # iwd is an alternative that shouldn't have this problem
   # docs:
+  # - <https://wiki.archlinux.org/title/Iwd>
   # - <https://nixos.wiki/wiki/Iwd>
   # - <https://iwd.wiki.kernel.org/networkmanager>
   # - `man iwd.config`  for global config
@@ -178,6 +216,19 @@ in {
       }
     });
   '';
+
+  environment.variables = {
+    #? What is GIO_EXTRA_MODULES?
+    #* It’s an environment variable used by GIO, a core part of the GLib/GTK stack.
+    #>> GIO provides things like:
+    #>> File system abstraction (opening FTP, HTTP, Google Drive, etc.)
+    #>> Network file access
+    #>> GVfs (GNOME Virtual file system)
+    #>> Proxy support
+    #>> TLS support
+    # GIO_EXTRA_MODULES = with pkgs; [ "${glib-networking}/lib/gio/modules" ];
+    #! error: The option `environment.variables.GIO_EXTRA_MODULES' is defined multiple times while it's expected to be unique.
+  };
 
   # environment.etc."resolv.conf".text = "nameserver 8.8.8.8";
   environment.systemPackages = with pkgs; [
@@ -227,17 +278,4 @@ in {
 
     iftop # network monitoring
   ];
-
-  environment.variables = {
-    #? What is GIO_EXTRA_MODULES?
-    #* It’s an environment variable used by GIO, a core part of the GLib/GTK stack.
-    #>> GIO provides things like:
-    #>> File system abstraction (opening FTP, HTTP, Google Drive, etc.)
-    #>> Network file access
-    #>> GVfs (GNOME Virtual file system)
-    #>> Proxy support
-    #>> TLS support
-    # GIO_EXTRA_MODULES = with pkgs; [ "${glib-networking}/lib/gio/modules" ];
-    #! error: The option `environment.variables.GIO_EXTRA_MODULES' is defined multiple times while it's expected to be unique.
-  };
 }

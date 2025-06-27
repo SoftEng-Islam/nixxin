@@ -150,7 +150,7 @@
       vram = "12GB"; # Video RAM
     };
 
-    # APU Information (if applicable)
+    # APU Information (If Applicable)
     apu = {
       enabled = true; # Whether an APU is present
       vendor = "amd"; # amd or intel
@@ -444,6 +444,7 @@
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
       networkManager = true;
       wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
+      iwd = true;
       rtl8188eus-aircrack = true;
       waypipe = false;
       rtw = false;

@@ -1,21 +1,8 @@
 { settings, lib, pkgs, ... }:
-
-lib.mkIf
-(if (settings.modules.networking.wifiBackend == "iwd") then true else false) {
+lib.mkIf (settings.modules.networking.iwd or true) {
   # give wireless cards time to turn on
   systemd.services.iwd.serviceConfig.ExecStartPre =
     "${pkgs.coreutils}/bin/sleep 2";
-
-  # Wireless configuration
-  # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
-  # - WPA2, WPA3, and Enterprise authentication.
-  # - Improved performance and resource usage.
-  # - Integration with NetworkManager/systemd-networkd.
-  networking.networkmanager = {
-    wifi = {
-      backend = "iwd"; # "wpa_supplicant" or "iwd"
-    };
-  };
 
   networking.wireless.iwd = {
     # Example commands manage Wi-Fi connections:
@@ -26,7 +13,6 @@ lib.mkIf
     #-- station wlan0 connect SSID  # Connect to a network
     enable = settings.modules.networking.iwd;
     settings = {
-
       Network = {
         EnableIPv6 = true;
         RoutePriorityOffset = 300;
