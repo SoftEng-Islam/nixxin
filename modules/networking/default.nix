@@ -33,7 +33,6 @@ in {
     nameservers = settings.modules.networking.nameservers;
 
     hostName = settings.system.hostName; # Define your hostname.
-    nftables.enable = true;
     dhcpcd.enable = false;
     useNetworkd = true;
 
@@ -89,10 +88,26 @@ in {
     enable = true;
     allowedTCPPorts = [ 53 80 443 8080 3389 ];
     allowedUDPPorts = [ 53 67 ];
-    extraCommands = ''
-      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wlp0s22f2u4 -j MASQUERADE
-      ${pkgs.iptables}/bin/iptables -A FORWARD -i enp4s0 -o wlp0s22f2u4 -j ACCEPT
-      ${pkgs.iptables}/bin/iptables -A FORWARD -i wlp0s22f2u4 -o enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+  };
+
+  networking.enableRalinkFirmware = true;
+
+  networking.nftables = {
+    enable = true;
+    ruleset = ''
+      table ip nat {
+        chain postrouting {
+          type nat hook postrouting priority 100;
+          oifname "wlp0s22f2u4" masquerade
+        }
+      }
+      table ip filter {
+        chain forward {
+          type filter hook forward priority 0;
+          iifname "enp4s0" oifname "wlp0s22f2u4" accept
+          iifname "wlp0s22f2u4" oifname "enp4s0" ct state related,established accept
+        }
+      }
     '';
   };
 
