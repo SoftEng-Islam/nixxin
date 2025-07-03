@@ -64,6 +64,17 @@ in {
 
       # Rewrite of the popular wireless network auditor, wifite
       wifite2
+
+      # https://github.com/vanhauser-thc/thc-hydra/
+      # Very fast network logon cracker which support many different services
+      thc-hydra
+
+      # Cli tool for importing and exporting Hashicorp Vault secrets
+      vault-medusa
+
+      # Speedy, parallel, and modular, login brute-forcer
+      medusa
+
     ];
   };
 }

@@ -26,7 +26,7 @@
   system = {
     name = "nixos";
     hostName = "nixos"; # Hostname
-    profile = "desktop"; # select a profile defined from my profiles directory
+    profile = "desktop"; # Select a profile defined from my profiles directory
     architecture = "x86_64-linux"; # Replace with your system architecture
     stateVersion = "24.11";
 
@@ -444,8 +444,8 @@
       dnsmasq = { settings = { server = modules.networks.nameservers; }; };
       networkManager = true;
       wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
-      iwd = true;
-      rtl8188eus-aircrack = true;
+      iwd = false;
+      rtl8188eus-aircrack = false;
       waypipe = false;
       rtw = false;
     };
@@ -456,7 +456,7 @@
       evince = true;
       papers = true;
       zathura = true;
-      obsidian = true; # ERROR: GPU DRIVERS
+      obsidian = true;
       libreoffice = true;
       translators.enable = true;
     };
@@ -594,7 +594,7 @@
               theme = with pkgs;
                 (sleek-grub-theme.override {
                   withStyle = "dark"; # (dark/light/orange/bigsur)
-                  withBanner = "Grub Boot Manager";
+                  withBanner = "GRUB Boot Manager";
                 });
               osProber = false;
               efiSupport = true;
@@ -610,8 +610,8 @@
         };
         kernelParams = [
           "usbcore.autosuspend=-1" # disable usb autosuspend
-          "usbhid.mousepoll=4" # Reduce USB mouse polling rate
-          "xhci_hcd.quirks=0x40" # USB3.0?g
+          #"usbhid.mousepoll=4" # Reduce USB mouse polling rate
+          #"xhci_hcd.quirks=0x40" # USB3.0?g
 
           # This disables specific USB ports at boot time.
           # "usb-port.port_disable=1-11" # -.-

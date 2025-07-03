@@ -14,20 +14,21 @@ lib.mkIf (settings.modules.networking.iwd or true) {
     enable = settings.modules.networking.iwd;
     settings = {
       Network = {
-        EnableIPv6 = true;
-        RoutePriorityOffset = 300;
-        NameResolvingService = "none";
+        # EnableIPv6 = true;
+        # RoutePriorityOffset = 300;
+        # NameResolvingService = "none";
       };
       # MAC address randomization
       General = {
-        AddressRandomization = "once";
-        AddressRandomizationRange = "full";
-        EnableNetworkConfiguration = true;
+        # AddressRandomization = "once";
+        # AddressRandomizationRange = "full";
+        # EnableNetworkConfiguration = true;
+
         # attempt to find a better AP every 10 seconds (default is 60)
-        RoamRetryInterval = "10";
+        # RoamRetryInterval = "10";
       };
-      DriverQuirks.UseDefaultInterface = true;
-      Settings.AutoConnect = true;
+      # DriverQuirks.UseDefaultInterface = true;
+      # Settings.AutoConnect = true;
     };
   };
   environment.systemPackages = with pkgs; [ impala iwd ];

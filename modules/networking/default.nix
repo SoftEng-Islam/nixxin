@@ -94,8 +94,9 @@ in {
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
+  # You can not use networking.networkmanager with networking.wireless.
   networking.wireless = {
-    enable = lib.mkForce false;
+    enable = false;
     scanOnLowSignal = false;
   };
 
@@ -106,8 +107,8 @@ in {
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [device]
-      device."wifi.scan-rand-mac-address" = "no";
-      # macAddress = "random";
+      device."wifi.scan-rand-mac-address" = "yes";
+
       # Wireless configuration
       # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
       # - WPA2, WPA3, and Enterprise authentication.
@@ -117,7 +118,7 @@ in {
       device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
       # [ifupdown]
-      ifupdown."managed" = "false";
+      # ifupdown."managed" = "true";
 
       # [connection]
       connection = {
@@ -130,18 +131,18 @@ in {
 
       # [main]
       main."plugins" = "keyfile";
-      # main."dhcp"="internal";
-      # main."dns" = "systemd-resolved";
-      # main."rc-manager" = "unmanaged";
+      #main."dhcp" = "internal";
+      #main."dns" = "systemd-resolved";
+      #main."rc-manager" = "unmanaged";
 
       # [keyfile]
       # To get The MAC Address run this Command:
       # nmcli device show [wifiInterface] | grep HWADDR
-      keyfile."unmanaged-devices" = "mac:CE:CD:2A:8C:8D:B3";
+      # keyfile."unmanaged-devices" = "mac:CA:B5:C5:97:AD:C4";
 
       # [logging]
-      logging."audit" = "false"; # < default
-      logging."level" = "OFF";
+      # logging."audit" = "false"; # < default
+      # logging."level" = "OFF";
     };
 
     # wifi.macAddress = "CE:CD:2A:8C:8D:B3";
@@ -152,8 +153,8 @@ in {
     ethernet = { macAddress = "preserve"; };
   };
 
-  environment.etc."NetworkManager/system-connections".source =
-    "/var/lib/NetworkManager/system-connections";
+  # environment.etc."NetworkManager/system-connections".source =
+  #   "/var/lib/NetworkManager/system-connections";
 
   # Wifi PowerManagement
   # environment.etc."NetworkManager/conf.d/99-wifi-no-powersave.conf".text = ''
@@ -234,6 +235,10 @@ in {
   environment.systemPackages = with pkgs; [
     wpa_supplicant
     wpa_supplicant_gui
+
+    networkmanager
+    networkmanagerapplet
+    ifwifi
 
     sipcalc # Advanced console ip subnet calculator
     iperf # Tool to measure IP bandwidth using UDP or TCP

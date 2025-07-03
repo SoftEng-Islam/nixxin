@@ -42,6 +42,8 @@ in {
       tea # Gitea official CLI client
       timer # sleep with progress
       tio # Serial console TTY
+
+      pv
     ];
   };
 }
