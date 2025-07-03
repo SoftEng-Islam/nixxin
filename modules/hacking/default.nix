@@ -74,7 +74,6 @@ in {
 
       # Speedy, parallel, and modular, login brute-forcer
       medusa
-
     ];
   };
 }
