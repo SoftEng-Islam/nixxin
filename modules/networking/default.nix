@@ -45,6 +45,8 @@ in {
       }];
     };
 
+    # defaultGateway = "192.168.1.1";
+
     # ip route | grep default
     # nmcli device show wlan0 | grep IP4.GATEWAY
     # defaultGateway = {
@@ -87,6 +89,11 @@ in {
     enable = true;
     allowedTCPPorts = [ 53 80 443 8080 3389 ];
     allowedUDPPorts = [ 53 67 ];
+    extraCommands = ''
+      sudo iptables -t nat -A POSTROUTING -o wlp0s22f2u4 -j MASQUERADE
+      sudo iptables -A FORWARD -i enp4s0 -o wlp0s22f2u4 -j ACCEPT
+      sudo iptables -A FORWARD -i wlp0s22f2u4 -o enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+    '';
   };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
