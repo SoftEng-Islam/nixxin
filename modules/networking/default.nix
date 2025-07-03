@@ -40,7 +40,7 @@ in {
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
-        address = "192.168.10.2"; # Set static IP for local RDP
+        address = "192.168.10.1"; # Set static IP for local RDP
         prefixLength = 24;
       }];
     };
