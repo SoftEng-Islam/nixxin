@@ -90,9 +90,9 @@ in {
     allowedTCPPorts = [ 53 80 443 8080 3389 ];
     allowedUDPPorts = [ 53 67 ];
     extraCommands = ''
-      iptables -t nat -A POSTROUTING -o wlp0s22f2u4 -j MASQUERADE
-      iptables -A FORWARD -i enp4s0 -o wlp0s22f2u4 -j ACCEPT
-      iptables -A FORWARD -i wlp0s22f2u4 -o enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -t nat -A POSTROUTING -o wlp0s22f2u4 -j MASQUERADE
+      ${pkgs.iptables}/bin/iptables -A FORWARD -i enp4s0 -o wlp0s22f2u4 -j ACCEPT
+      ${pkgs.iptables}/bin/iptables -A FORWARD -i wlp0s22f2u4 -o enp4s0 -m state --state RELATED,ESTABLISHED -j ACCEPT
     '';
   };
 
