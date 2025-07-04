@@ -39,7 +39,9 @@ in {
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       ipv4.addresses = [{
-        address = "192.168.10.1"; # Set static IP for local RDP
+        # sudo ip addr flush dev enp4s0
+        # sudo ip addr add 192.168.10.2/24 dev enp4s0
+        address = "192.168.10.3"; # Set static IP for local RDP
         prefixLength = 24;
       }];
     };
@@ -90,8 +92,6 @@ in {
     allowedUDPPorts = [ 53 67 ];
   };
 
-  networking.enableRalinkFirmware = true;
-
   networking.nftables = {
     enable = true;
     ruleset = ''
@@ -101,6 +101,7 @@ in {
           oifname "wlp0s22f2u4" masquerade
         }
       }
+
       table ip filter {
         chain forward {
           type filter hook forward priority 0;
