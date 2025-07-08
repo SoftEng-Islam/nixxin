@@ -461,9 +461,9 @@
       translators.enable = true;
     };
     overclock = {
-      enable = false;
-      corectrl.enable = false;
-      lactd.enable = false;
+      enable = true;
+      corectrl.enable = true;
+      lactd.enable = true;
     };
     power = {
       enable = true;
