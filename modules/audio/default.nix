@@ -3,6 +3,8 @@ let inherit (lib) mkIf;
 in {
   imports = [ ./rnnoise.nix ];
 
+  boot.kernelModules = [ "snd_emu10k1" ];
+
   config = mkIf (settings.modules.audio.enable or true) {
 
     #? What is ALSA?
@@ -124,8 +126,8 @@ in {
     environment.systemPackages = with pkgs; [
       # alsa-firmware
       # alsa-lib
-      # alsa-tools
-      # alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
+      alsa-tools
+      alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
       # sof-firmware # Sound Open Firmware
 
       # pulseaudio # Sound server for POSIX and Win32 systems
