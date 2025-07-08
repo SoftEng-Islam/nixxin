@@ -3,9 +3,8 @@ let inherit (lib) mkIf;
 in {
   imports = [ ./rnnoise.nix ];
 
-  boot.kernelModules = [ "snd_emu10k1" ];
-
   config = mkIf (settings.modules.audio.enable or true) {
+    boot.kernelModules = [ "snd_emu10k1" ];
 
     #? What is ALSA?
     # ALSA stands for Advanced Linux Sound Architecture.
