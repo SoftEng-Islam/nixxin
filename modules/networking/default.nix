@@ -41,7 +41,7 @@ in {
       ipv4.addresses = [{
         # sudo ip addr flush dev enp4s0
         # sudo ip addr add 192.168.10.2/24 dev enp4s0
-        address = "192.168.10.3"; # Set static IP for local RDP
+        address = "192.168.10.2"; # Set static IP for local RDP
         prefixLength = 24;
       }];
     };
