@@ -1,5 +1,7 @@
 { settings, lib, pkgs, ... }:
-let dnsResolver = settings.modules.networking.dnsResolver;
+let
+  dnsResolver = settings.modules.networking.dnsResolver;
+  wifiInterface = "wlp0s19f2u5";
 in {
   imports =
     [ ./dnsmasq.nix ./iwd.nix ./RTL8188EUS.nix ./rtw.nix ./waypipe.nix ];
@@ -41,7 +43,7 @@ in {
       ipv4.addresses = [{
         # sudo ip addr flush dev enp4s0
         # sudo ip addr add 192.168.10.2/24 dev enp4s0
-        address = "192.168.10.2"; # Set static IP for local RDP
+        address = "192.168.10.1"; # Set static IP for local RDP
         prefixLength = 24;
       }];
     };
@@ -98,15 +100,14 @@ in {
       table ip nat {
         chain postrouting {
           type nat hook postrouting priority 100;
-          oifname "wlp0s22f2u4" masquerade
+          oifname "${wifiInterface}" masquerade
         }
       }
-
       table ip filter {
         chain forward {
           type filter hook forward priority 0;
-          iifname "enp4s0" oifname "wlp0s22f2u4" accept
-          iifname "wlp0s22f2u4" oifname "enp4s0" ct state related,established accept
+          iifname "enp4s0" oifname "${wifiInterface}" accept
+          iifname "${wifiInterface}" oifname "enp4s0" ct state related,established accept
         }
       }
     '';

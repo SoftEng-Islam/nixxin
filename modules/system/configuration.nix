@@ -659,5 +659,12 @@
     libglvnd
 
     libinput
+
+    # Requirements PC Diagnose
+    lm_sensors
+    smartmontools
+    dmidecode
+    pciutils
+    coreutils
   ];
 }
