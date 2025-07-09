@@ -445,7 +445,7 @@
       networkManager = true;
       wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
       iwd = false;
-      rtl8188eus-aircrack = true;
+      rtl8188eus-aircrack = false;
       waypipe = false;
       rtw = false;
     };
