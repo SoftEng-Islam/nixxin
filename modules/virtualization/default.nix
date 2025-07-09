@@ -5,9 +5,9 @@ in mkIf (settings.modules.virtualization.enable) {
   # ---- virtualisation
   # ----------------------------------------------
   virtualisation = {
-    spiceUSBRedirection.enable = true; # for virt-manager usb forwarding
+    spiceUSBRedirection.enable = false; # for virt-manager usb forwarding
     libvirtd = {
-      enable = true; # for qemu/kvm VMs in virt-manager
+      enable = false; # for qemu/kvm VMs in virt-manager
       allowedBridges = [ "nm-bridge" "virbr0" ];
       qemu.runAsRoot = true;
     };
@@ -18,11 +18,12 @@ in mkIf (settings.modules.virtualization.enable) {
   # ----------------------------------------------
   # ---- System Packages
   # ----------------------------------------------
-  environment.systemPackages = with pkgs; [
-    # For virtualisation virt-manager
-    virtiofsd # vhost-user virtio-fs device backend written in Rust
-    virt-manager # Desktop user interface for managing virtual machines
-    distrobox # Wrapper around podman or docker to create and start containers
-    kvmtool # Lightweight tool for hosting KVM guests
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # For virtualisation virt-manager
+      # virtiofsd # vhost-user virtio-fs device backend written in Rust
+      # virt-manager # Desktop user interface for managing virtual machines
+      # distrobox # Wrapper around podman or docker to create and start containers
+      # kvmtool # Lightweight tool for hosting KVM guests
+    ];
 }
