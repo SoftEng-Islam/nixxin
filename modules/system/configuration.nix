@@ -137,39 +137,38 @@
 
       # "nomodeset" # Black Screen Issues
 
-      "vt.default_red=30,243,166,249,137,245,148,186,88,243,166,249,137,245,148,166"
-      "vt.default_grn=30,139,227,226,180,194,226,194,91,139,227,226,180,194,226,173"
-      "vt.default_blu=46,168,161,175,250,231,213,222,112,168,161,175,250,231,213,200"
-
       "elevator=bfq" # Optimized disk performance for desktops
 
       # CPU optimizations
       "amd_iommu=on"
-      "amd_pstate.shared_mem=1"
-      "amd_pstate=guided" # Enable AMD P-State driver
+
+      # FX CPUs do NOT have P-State.
+      # "amd_pstate.shared_mem=1"
+      # "amd_pstate=guided" # Enable AMD P-State driver
+
       "clearcpuid=rdrand"
       "idle=nomwait"
       "mitigations=off"
-      "processor.max_cstate=7" # Limit C-states for better response time
+      # "processor.max_cstate=1" # Limit C-states for better response time
       "threadirqs"
 
       "scsi_mod.use_blk_mq=1" # Use multi-queue for faster I/O
 
       # Memory security parameters
-      "slab_nomerge" # Disables merging of slabs of similar sizes
+      # "slab_nomerge" # Disables merging of slabs of similar sizes
       "vsyscall=none" # Disables legacy system call interface
-      "slub_debug=FZP" # Enables sanity checks (F), redzoning (Z) and poisoning (P).
-      "init_on_free=1" # Fill freed pages and heap objects with zeroes
-      "init_on_alloc=1" # to initialize memory on allocation (complements init_on_free=1).
+      # "slub_debug=FZP" # Enables sanity checks (F), redzoning (Z) and poisoning (P).
+      # "init_on_free=1" # Fill freed pages and heap objects with zeroes
+      # "init_on_alloc=1" # to initialize memory on allocation (complements init_on_free=1).
       "page_alloc.shuffle=1" # Helps detect memory issues earlier + Major security gain
 
       # New memory management parameters
-      "hugepagesz=2M" # Enable 2MB huge pages
-      "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
-      "default_hugepagesz=2M" # Set default huge page size
+      # "hugepagesz=2M" # Enable 2MB huge pages
+      # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
+      # "default_hugepagesz=2M" # Set default huge page size
       "transparent_hugepage=madvise" # Enable transparent huge pages
 
-      "pti=on" # Page Table Isolation for security
+      # "pti=on" # Page Table Isolation for security
       # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
       "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
 
@@ -180,12 +179,12 @@
 
       # AMD GPU optimizations
       # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
-      "amdgpu.si_support=0"
+      # "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
+      # "amdgpu.si_support=0"
 
       # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=0"
+      # "radeon.cik_support=0"
+      # "amdgpu.cik_support=0"
 
       # If you want full control over power settings, use:
       # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
@@ -223,8 +222,8 @@
 
       # System Performance
       "preempt=voluntary" # or full
-      "clocksource=tsc"
-      "tsc=reliable"
+      # "clocksource=tsc"
+      # "tsc=reliable"
 
       # Power Management
       "workqueue.power_efficient=off" # General power responsiveness
@@ -234,7 +233,7 @@
       "iommu=pt"
 
       # Storage
-      "libata.force=noncq"
+      # "libata.force=noncq"
 
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.
