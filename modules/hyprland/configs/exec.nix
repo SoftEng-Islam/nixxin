@@ -6,6 +6,9 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
 
+    #* ---- Set `GTK_THEME` Env Variable ---- #
+    export GTK_THEME=${settings.common.gtk.GTK_THEME}
+
     # ---- SWWW & Set Image as Background ---- #
     ${pkgs.swww}/bin/swww-daemon --no-cache --format xrgb &
     sleep 1
@@ -18,7 +21,7 @@ let
     # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
     # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
 
-    # gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
+    gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
     # gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.styles.colorScheme}
     # gsettings set org.gnome.desktop.interface cursor-theme ${settings.common.cursor.name}
     # gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
@@ -75,7 +78,7 @@ let
     # ---- Apps To Start ---- #
     # telegram-desktop -startintray
 
-    # ---- The Screen Edge Actions ---- #
+    #! ---- The Screen Edge Actions ---- #
     # detect-mouse-position
   '';
 in {

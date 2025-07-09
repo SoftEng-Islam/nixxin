@@ -33,7 +33,7 @@
       # bind = $main, Q, killactive,
       bind = $main, W, exec, ${settings.modules.xdg.defaults.webBrowser}
       bind = $main, E, exec, GTK_THEME=${settings.common.gtk.GTK_THEME} ${pkgs.nautilus}/bin/nautilus --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
-      bind = $main, R, exec, ${pkgs.resources}/bin/resources
+      bind = $main, R, exec, GTK_THEME=${settings.common.gtk.GTK_THEME} ${pkgs.resources}/bin/resources
       bind = $main, T, exec, ${settings.modules.terminals.default.terminal.package}/bin/${settings.modules.terminals.default.terminal.name} # Launch (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,

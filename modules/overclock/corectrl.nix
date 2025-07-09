@@ -5,9 +5,7 @@ in mkIf (settings.modules.overclock.corectrl.enable or false) {
   environment.systemPackages = with pkgs; [ corectrl ];
 
   # corectrl to overclock your CPU APU GPU
-  programs.corectrl = {
-    enable = true;
-    gpuOverclock.enable = true;
-    gpuOverclock.ppfeaturemask = "0xfff7ffff";
-  };
+  programs.corectrl.enable = true;
+  hardware.amdgpu.overdrive.enable = true;
+  hardware.amdgpu.overdrive.ppfeaturemask = "0xffffffff";
 }
