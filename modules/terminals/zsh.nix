@@ -19,7 +19,7 @@
     enableCompletion = true;
     autosuggestions.enable = true;
     # we'll call compinit in home-manager zsh module
-    enableGlobalCompInit = false;
+    # enableGlobalCompInit = false;
 
     promptInit = ''
       eval "$(starship init zsh)"
@@ -242,7 +242,8 @@
       [ -s "/home/softeng/.bun/_bun" ] && source "/home/softeng/.bun/_bun"
 
       # Set-up FZF key bindings (CTRL R for fuzzy history finder)
-      source <(fzf --zsh)
+      # source <(fzf --zsh)
+      source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       # Fuzzy search in history as you type
       function fzf-history-widget {
         LBUFFER=$(history -n 1 | fzf --height 50% --layout=reverse --border --query="$LBUFFER" --prompt="History > ")
@@ -252,8 +253,8 @@
       # bindkey '^H' fzf-history-widget  # Bind Ctrl+H to trigger fzf history search
 
       # Basic autocompletion
-      # autoload -Uz compinit
-      # compinit
+      autoload -Uz compinit
+      compinit
 
       # ------------------------------------------ #
       # ----------- User configuration ----------- #
