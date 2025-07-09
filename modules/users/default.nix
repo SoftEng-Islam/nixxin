@@ -35,7 +35,7 @@
         "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
-        "libvirtd"
+        # "libvirtd"
         "lp" # Manage printers.
         "lxd"
         "network"
