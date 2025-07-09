@@ -145,6 +145,8 @@
       # '';
     };
     home.file.".zshrc".text = ''
+      zmodload zsh/zprof
+
       # [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       # If you come from bash you might have to change your $PATH.
       # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -387,6 +389,8 @@
 
       # Created by `pipx` on 2024-11-07 21:19:31
       export PATH="$PATH:/home/softeng/.local/bin"
+
+      zprof
     '';
   };
 
