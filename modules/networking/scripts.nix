@@ -6,15 +6,19 @@ lib.mkIf (settings.modules.networking.scripts) {
     writeShellScriptBin
     "monitor-mode-on"
     ''
+      sudo modprobe -r rtl8xxxu
+      sudo modprobe 8188eu
       sudo airmon-ng check kill
       sudo ip link set wlp0s22f2u4 down
       sudo iw dev wlp0s22f2u4 set type monitor
     ''
 
-    # Disable Network Manager and Enter monitor mode
+    # Disable monitor mode
     writeShellScriptBin
     "monitor-mode-off"
     ''
+      sudo modprobe -r 8188eu
+      sudo modprobe rtl8xxxu
       sudo airmon-ng stop wlp0s22f2u4
       sudo ip link set wlp0s22f2u4 up
       sudo iw dev wlp0s22f2u4 set type managed

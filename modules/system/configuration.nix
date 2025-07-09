@@ -666,5 +666,12 @@
     dmidecode
     pciutils
     coreutils
+
+    # make stuff
+    gnumake
+    gcc
+    pkg-config
+    automake
+    autoconf
   ];
 }

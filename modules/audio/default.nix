@@ -6,6 +6,9 @@ in {
   config = mkIf (settings.modules.audio.enable or true) {
     boot.kernelModules = [ "snd_emu10k1" ];
 
+    # Better scheduling for better CPU cycles & audio performance
+    services.system76-scheduler = { enable = true; };
+
     #? What is ALSA?
     # ALSA stands for Advanced Linux Sound Architecture.
     # The Core Sound System in Linux
