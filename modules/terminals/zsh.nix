@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }: {
   environment = {
     # enable zsh autocompletion for system packages (systemd, etc)
-    pathsToLink = [ "/share/zsh" ];
+    # pathsToLink = [ "/share/zsh" ];
     variables = {
       # Path to your oh-my-zsh installation.
       # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -140,9 +140,9 @@
       };
     };
     programs.zsh = {
-      # initContent = lib.mkOrder 1000 ''
-      #   [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-      # '';
+      initContent = lib.mkOrder 1000 ''
+        [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+      '';
     };
     home.file.".zshrc".text = ''
       # zmodload zsh/zprof
