@@ -4,5 +4,6 @@ lib.mkIf (settings.modules.gaming.chess.enable) {
     gnome-chess
     gnuchess # GNU Chess engine
     chess-tui
+    gambit-chess
   ];
 }
