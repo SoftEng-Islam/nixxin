@@ -46,6 +46,7 @@ in {
       pv
 
       # Fast incremental file transfer utility
+      # rsync -ah --progress source/ destination/
       rsync
     ];
   };
