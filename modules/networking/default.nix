@@ -131,7 +131,7 @@ in {
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [device]
-      device."wifi.scan-rand-mac-address" = "yes";
+      device."wifi.scan-rand-mac-address" = "no";
 
       # Wireless configuration
       # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
