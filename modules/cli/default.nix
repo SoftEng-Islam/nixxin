@@ -44,6 +44,9 @@ in {
       tio # Serial console TTY
 
       pv
+
+      # Fast incremental file transfer utility
+      rsync
     ];
   };
 }
