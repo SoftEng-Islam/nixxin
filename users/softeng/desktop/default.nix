@@ -34,8 +34,8 @@
     kernel = pkgs.linuxPackages;
 
     upgrade = {
-      enable = false;
-      allowReboot = false;
+      enable = true;
+      allowReboot = true;
       # Run `nix-channel --list` to get channels
       channel = "https://channels.nixos.org/nixos-unstable";
     };
