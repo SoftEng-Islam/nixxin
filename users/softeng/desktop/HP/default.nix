@@ -576,7 +576,7 @@
     system = {
       # Whether to enable ROCM, Make Sure that your APU/GPU Supported before Enable it
       rocm = { enable = false; };
-      radeon = true;
+      radeon = false;
       boot = {
         loader = {
           timeout = 3; # seconds
@@ -596,7 +596,7 @@
                   withStyle = "dark"; # (dark/light/orange/bigsur)
                   withBanner = "GRUB Boot Manager";
                 });
-              osProber = false;
+              osProber = true;
               efiSupport = true;
               gfxmodeEfi = "1920x1080";
               devices = [ "nodev" ];
@@ -610,16 +610,59 @@
         };
         kernelParams = [
           "usbcore.autosuspend=-1" # disable usb autosuspend
-          #"usbhid.mousepoll=4" # Reduce USB mouse polling rate
+          "usbhid.mousepoll=4" # Reduce USB mouse polling rate
           #"xhci_hcd.quirks=0x40" # USB3.0?g
 
           # This disables specific USB ports at boot time.
           # "usb-port.port_disable=1-11" # -.-
+
+          # AMD GPU optimizations
+          # for Southern Islands (SI i.e. GCN 1) cards
+          "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
+          "amdgpu.si_support=1"
+
+          # for Sea Islands (CIK i.e. GCN 2) cards
+          "radeon.cik_support=0"
+          "amdgpu.cik_support=1"
+
+          # If you want full control over power settings, use:
+          "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+          # If you have stability issues (freezes, black screens, crashes), try:
+          # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+          # Check If It’s Applied:
+          # cat /sys/module/amdgpu/parameters/ppfeaturemask
+          # "amdgpu.dcfeaturemask=0x8"
+          # "amdgpu.freesync_video=1"
+          "amdgpu.gpu_recovery=1"
+
+          # "amdgpu.noretry=0" # Improve memory handling
+          # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+          # "amdgpu.dpm=1"
+          # "amdgpu.deep_color=1"
+          # "amdgpu.vramlimit=4096"
+          "amdgpu.gttsize=4096"
+
+          # # increases the timeout of GFX jobs
+          "amdgpu.lockup_timeout=5000"
+
+          # Disables HDMI/DisplayPort audio output on AMD GPUs.
+          # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
+          # "amdgpu.audio=0"
+
+          # "amdgpu.runpm=0"
+          # "amdgpu.vm_size=8"
+          # "amdgpu.exp_hw_support=1"
+          # "amdgpu.vm_fragment_size=9"
+          # "amdgpu.vm_fault_stop=2"
+          # "amdgpu.vm_update_mode=3"
+          # "amdgpu.unified_memory=1"
+          # "amdgpu.memory_alloc_mode=2"
+          # "pci=realloc"
         ];
         kernelModules = [
           # "amd-pstate"
-          # "amdgpu"
-          # "binder_linux"
+          "amdgpu"
+          "binder_linux"
           # "zenpower"
           "usbhid"
           "usbcore"
@@ -629,7 +672,7 @@
           "fuse"
           "kvm-amd"
           "msr"
-          "radeon"
+          # "radeon"
           "uinput"
           "v4l2loopback"
         ];
@@ -637,9 +680,21 @@
           options usbcore autosuspend=-1
           options binder_linux devices=binder,hwbinder,vndbinder
         '';
+        initrd = {
+          kernelModules = [
+            "amdgpu"
+            # "radeon"
+          ];
+        };
+      };
+      amdgpu = {
+        initrd = true;
+        opencl = false;
+        legacySupport = false;
+        amdvlk = true;
       };
       docs = {
-        enable = false;
+        enable = true;
         doc.enable = true;
         man = {
           enable = true;

@@ -86,11 +86,6 @@
     initrd = {
       verbose = false;
       # systemd.dbus.enable = false;
-      kernelModules = [
-        "radeon"
-        # "amdgpu"
-      ];
-
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
@@ -139,9 +134,6 @@
 
       "elevator=bfq" # Optimized disk performance for desktops
 
-      # CPU optimizations
-      "amd_iommu=on"
-
       # FX CPUs do NOT have P-State.
       # "amd_pstate.shared_mem=1"
       # "amd_pstate=guided" # Enable AMD P-State driver
@@ -149,6 +141,7 @@
       "clearcpuid=rdrand"
       "idle=nomwait"
       "mitigations=off"
+
       # "processor.max_cstate=1" # Limit C-states for better response time
       "threadirqs"
 
@@ -176,49 +169,6 @@
       #"zswap.enabled=1"
       #"zswap.compressor=zstd"
       #"zswap.max_pool_percent=20"
-
-      # AMD GPU optimizations
-      # for Southern Islands (SI i.e. GCN 1) cards
-      # "radeon.si_support=1" # Ensures Radeon drivers don’t interfere
-      # "amdgpu.si_support=0"
-
-      # for Sea Islands (CIK i.e. GCN 2) cards
-      # "radeon.cik_support=0"
-      # "amdgpu.cik_support=0"
-
-      # If you want full control over power settings, use:
-      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
-      # If you have stability issues (freezes, black screens, crashes), try:
-      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
-      # Check If It’s Applied:
-      # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      # "amdgpu.dcfeaturemask=0x8"
-      # "amdgpu.freesync_video=1"
-      # "amdgpu.gpu_recovery=1"
-
-      # "amdgpu.noretry=0" # Improve memory handling
-      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      # "amdgpu.dpm=1"
-      # "amdgpu.deep_color=1"
-      # "amdgpu.vramlimit=4096"
-      # "amdgpu.gttsize=4096"
-
-      # # increases the timeout of GFX jobs
-      # "amdgpu.lockup_timeout=5000"
-
-      # Disables HDMI/DisplayPort audio output on AMD GPUs.
-      # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-      # "amdgpu.audio=0"
-
-      # "amdgpu.runpm=0"
-      # "amdgpu.vm_size=8"
-      # "amdgpu.exp_hw_support=1"
-      # "amdgpu.vm_fragment_size=9"
-      # "amdgpu.vm_fault_stop=2"
-      # "amdgpu.vm_update_mode=3"
-      # "amdgpu.unified_memory=1"
-      # "amdgpu.memory_alloc_mode=2"
-      # "pci=realloc"
 
       # System Performance
       "preempt=voluntary" # or full
@@ -346,11 +296,11 @@
     enableRedistributableFirmware = true;
 
     amdgpu = {
-      initrd.enable = false;
-      opencl.enable = false;
-      legacySupport.enable = false;
+      initrd.enable = settings.modules.system.amdgpu.initrd;
+      opencl.enable = settings.modules.system.amdgpu.opencl;
+      legacySupport.enable = settings.modules.system.amdgpu.legacySupport;
       amdvlk = {
-        enable = false;
+        enable = settings.modules.system.amdgpu.amdvlk;
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
@@ -410,7 +360,7 @@
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = [ "radeon" "amdgpu" "modesetting" ];
+  services.xserver.videoDrivers = [ "amdgpu" "radeon" "modesetting" ];
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;
@@ -498,7 +448,7 @@
     # VK_LAYER_PATH = "/etc/vulkan/layer.d";
     VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
 
-    # AMD_VULKAN_DRIVER = "RADV";
+    AMD_VULKAN_DRIVER = "RADV";
 
     # Improves OpenGL compatibility & speed.
     MESA_GL_VERSION_OVERRIDE = "4.6";
