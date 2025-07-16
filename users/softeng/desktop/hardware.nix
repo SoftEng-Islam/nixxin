@@ -7,6 +7,7 @@
     [ "ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
 
+  # lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/253b308e-f703-4da9-8116-d9bc6c38b69a";
     fsType = "xfs";
