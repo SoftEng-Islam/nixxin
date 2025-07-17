@@ -11,7 +11,7 @@ let
   _hwdec = "vaapi"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
 
   _vo = "gpu"; # "gpu", "gpu-next"
-  _gpu-api = "opengl"; # "opengl", "vulkan"
+  _gpu-api = "vulkan"; # "opengl", "vulkan"
 
 in lib.mkIf (settings.modules.media.mpv) {
 
@@ -74,10 +74,10 @@ in lib.mkIf (settings.modules.media.mpv) {
     programs.mpv = {
       enable = true;
       config = {
-        vo = "gpu"; # avoid gpu-next
-        gpu-api = "opengl"; # vulkan doesn't work
+        vo = _vo; # avoid gpu-next
+        gpu-api = _gpu-api; # vulkan doesn't work
         gpu-context = "wayland"; # avoid wayland, r600 better with X11
-        hwdec = "no"; # or "no" if it fails
+        hwdec = _hwdec; # or "no" if it fails
         hwdec-codecs = "all";
         profile = "gpu-hq"; # good baseline
         fullscreen = false;
