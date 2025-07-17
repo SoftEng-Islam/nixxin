@@ -8,7 +8,7 @@ let
   # auto-unsafe:	forcibly enable any hw decoder found (see below)
   # yes:	exactly the same as auto
   # auto-safe:	exactly the same as auto
-  _hwdec = "auto"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+  _hwdec = "auto-unsafe"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
 
   _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "vulkan"; # "opengl", "vulkan"
@@ -74,8 +74,8 @@ in lib.mkIf (settings.modules.media.mpv) {
     programs.mpv = {
       enable = true;
       config = {
-        vo = _vo; # avoid gpu-next
-        gpu-api = _gpu-api; # vulkan doesn't work
+        vo = _vo;
+        gpu-api = _gpu-api;
         gpu-context = "wayland"; # avoid wayland, r600 better with X11
         hwdec = _hwdec; # or "no" if it fails
         hwdec-codecs = "all";
