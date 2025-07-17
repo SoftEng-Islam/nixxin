@@ -8,9 +8,9 @@ let
   # auto-unsafe:	forcibly enable any hw decoder found (see below)
   # yes:	exactly the same as auto
   # auto-safe:	exactly the same as auto
-  _hwdec = "vaapi"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+  _hwdec = "auto"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
 
-  _vo = "gpu"; # "gpu", "gpu-next"
+  _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "vulkan"; # "opengl", "vulkan"
 
 in lib.mkIf (settings.modules.media.mpv) {
