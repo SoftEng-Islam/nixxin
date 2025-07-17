@@ -89,7 +89,7 @@
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "ahci"
-        # "amdgpu"
+        "amdgpu"
         "cryptd"
         "ehci_pci"
         "ohci_pci"
