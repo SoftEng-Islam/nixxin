@@ -428,7 +428,8 @@
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
-    # WGPU_BACKEND = "gl";
+    WGPU_BACKEND = "gl"; # vulkan, metal, dx12, gl
+    WGPU_POWER_PREF = "low"; # Prefer integrated GPU
 
     # Adjusts DRM devices, vsync, and atomic modes.
     # WLR_DRM_DEVICES = "/dev/dri/card1";
@@ -573,6 +574,7 @@
     vulkan-validation-layers
     vulkan-volk
     driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
+    wgpu-utils
     # ------------------------------------------------
     # ---- AMD Packages
     # ------------------------------------------------
