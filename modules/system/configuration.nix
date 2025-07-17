@@ -444,10 +444,11 @@
 
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
-    # AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
+    AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
 
     #? What the Differante?
-    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    VK_ICD_FILENAMES =
+      "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
     # VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
 
     # VK_LAYER_PATH = "/etc/vulkan/layer.d";
