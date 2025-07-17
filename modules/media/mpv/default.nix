@@ -155,13 +155,16 @@ in lib.mkIf (settings.modules.media.mpv) {
 
     mpv
     mpv-shim-default-shaders
+    libGL
+    libva
+    libva-utils
+    mesa.drivers
     nasm
     trash-cli
     vaapiVdpau
     vdpauinfo
+    vulkan-headers
     vulkan-loader
     vulkan-tools # Includes `vulkaninfo`
-    libva-utils
-    vulkan-headers
   ];
 }

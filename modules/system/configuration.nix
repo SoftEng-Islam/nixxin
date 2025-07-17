@@ -362,6 +362,7 @@
   # Video Drivers
   services.xserver.videoDrivers = [
     "amdgpu"
+    "ati"
     #  "radeon"
     #  "modesetting"
   ];
