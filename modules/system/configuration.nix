@@ -441,18 +441,17 @@
     # AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
 
     #? What the Differante?
-    VK_ICD_FILENAMES =
-      "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
     # VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
 
     # VK_LAYER_PATH = "/etc/vulkan/layer.d";
-    VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
+    # VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
 
-    AMD_VULKAN_DRIVER = "RADV";
+    # AMD_VULKAN_DRIVER = "RADV";
 
     # Improves OpenGL compatibility & speed.
-    MESA_GL_VERSION_OVERRIDE = "4.6";
-    MESA_GLSL_VERSION_OVERRIDE = "460";
+    # MESA_GL_VERSION_OVERRIDE = "4.6";
+    # MESA_GLSL_VERSION_OVERRIDE = "460";
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
 
     # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
