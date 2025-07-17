@@ -12,5 +12,15 @@
   # => Often used with GLSL (OpenGL Shading Language) for writing shaders
   # => Alternative APIs: Vulkan, DirectX, Metal
 
-  environment.systemPackages = with pkgs; [ freeglut glew glfw libGL libGLU ];
+  environment.systemPackages = with pkgs; [
+    mesa
+    mesa_glu
+    mesa_i686
+    mesa-gl-headers
+    freeglut
+    glew
+    glfw
+    libGL
+    libGLU
+  ];
 }
