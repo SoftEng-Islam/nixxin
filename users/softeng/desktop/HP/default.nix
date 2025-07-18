@@ -31,7 +31,7 @@
     stateVersion = "24.11";
 
     # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
-    kernel = pkgs.linuxPackages_zen;
+    kernel = pkgs.linuxPackages;
 
     upgrade = {
       enable = true;
@@ -578,6 +578,7 @@
       rocm = { enable = false; };
       radeon = false;
       boot = {
+        tmp.useTmpfs = false;
         loader = {
           timeout = 3; # seconds
           mode = "UEFI"; # UEFI OR BIOS

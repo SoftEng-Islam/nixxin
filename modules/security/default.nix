@@ -86,7 +86,7 @@ in {
     # This makes it the default unless explicitly overridden elsewhere (e.g., in another module or config).
     # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
     # on ssd systems, and volatile! Because it's wiped on reboot.
-    boot.tmp.useTmpfs = lib.mkDefault true;
+    boot.tmp.useTmpfs = lib.mkDefault settings.modules.system.boot.tmp.useTmpfs;
     # If not using tmpfs, which is naturally purged on reboot, we must clean it
     # /tmp ourselves. /tmp should be volatile storage!
     boot.tmp.cleanOnBoot = let cleaningMakesSense = !config.boot.tmp.useTmpfs;
