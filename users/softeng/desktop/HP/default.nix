@@ -31,7 +31,7 @@
     stateVersion = "24.11";
 
     # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
-    kernel = pkgs.linuxPackages;
+    kernel = pkgs.linuxPackages_zen;
 
     upgrade = {
       enable = true;
