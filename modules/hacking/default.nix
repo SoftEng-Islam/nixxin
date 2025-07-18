@@ -5,7 +5,8 @@ in {
   config = mkIf (settings.modules.hacking.enable) {
     environment.variables = {
       ROC_ENABLE_PRE_VEGA = "1";
-      RUSTICL_ENABLE = "llvmpipe"; # "llvmpipe" or "radeonsi"
+      # iris, llvmpipe, nouveau, panfrost, radeonsi,
+      RUSTICL_ENABLE = "radeonsi";
     };
     environment.systemPackages = with pkgs; [
       # hashcat.overrideAttrs

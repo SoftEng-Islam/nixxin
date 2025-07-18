@@ -662,9 +662,10 @@
         ];
         kernelModules = [
           # "amd-pstate"
-          "amdgpu"
-          "binder_linux"
           # "zenpower"
+          "amdgpu"
+          "radeon"
+          "binder_linux"
           "usbhid"
           "usbcore"
           "8188eu"
@@ -673,7 +674,6 @@
           "fuse"
           "kvm-amd"
           "msr"
-          # "radeon"
           "uinput"
           "v4l2loopback"
         ];
@@ -681,12 +681,7 @@
           options usbcore autosuspend=-1
           options binder_linux devices=binder,hwbinder,vndbinder
         '';
-        initrd = {
-          kernelModules = [
-            "amdgpu"
-            # "radeon"
-          ];
-        };
+        initrd = { kernelModules = [ "amdgpu" "radeon" ]; };
       };
       amdgpu = {
         initrd = true;

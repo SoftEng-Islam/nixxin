@@ -424,8 +424,8 @@
   environment.variables = {
     # HIP_VISIBLE_DEVICES = "0,2";
 
-    ROC_ENABLE_PRE_VEGA = "1";
-    RUSTICL_ENABLE = "llvmpipe"; # "llvmpipe" or "radeonsi"
+    # ROC_ENABLE_PRE_VEGA = "1";
+    # RUSTICL_ENABLE = "radeonsi"; # "llvmpipe" or "radeonsi"
 
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
     WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
