@@ -578,7 +578,7 @@
       rocm = { enable = false; };
       radeon = false;
       boot = {
-        tmp.useTmpfs = false;
+        tmp.useTmpfs = true;
         loader = {
           timeout = 3; # seconds
           mode = "UEFI"; # UEFI OR BIOS
