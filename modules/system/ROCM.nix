@@ -1,3 +1,4 @@
+# https://nixos.wiki/wiki/AMD_GPU
 { settings, lib, pkgs, ... }:
 lib.mkIf (settings.modules.system.rocm.enable or false) {
   boot.kernelModules = [
@@ -28,6 +29,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   in [
     "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];
 
   # ------------------------------------------------
@@ -47,6 +49,8 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     # ROCM_TARGET = "gfx700";
     # ROC_ENABLE_PRE_VEGA = "1";
+
+    ROC_ENABLE_PRE_VEGA = "1";
 
     # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
     # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
@@ -85,5 +89,8 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
 
     # Radeon open compute thunk interface
     rocmPackages.rocm-thunk
+
+    # You should also install the clinfo package to verify that OpenCL is correctly setup (or check in the program you use to see if it is now available, such as in Darktable).
+    clinfo
   ];
 }

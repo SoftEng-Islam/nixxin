@@ -617,6 +617,7 @@
           # "usb-port.port_disable=1-11" # -.-
 
           # AMD GPU optimizations
+          # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
           # for Southern Islands (SI i.e. GCN 1) cards
           "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
           "amdgpu.si_support=1"
