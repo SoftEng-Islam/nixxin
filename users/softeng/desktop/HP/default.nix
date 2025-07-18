@@ -638,11 +638,13 @@
           "amdgpu.gpu_recovery=1"
 
           # "amdgpu.noretry=0" # Improve memory handling
-          # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+          "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
           # "amdgpu.dpm=1"
           # "amdgpu.deep_color=1"
           # "amdgpu.vramlimit=4096"
           "amdgpu.gttsize=4096"
+
+          "amdgpu.vm_fragment_size=9"
 
           # # increases the timeout of GFX jobs
           "amdgpu.lockup_timeout=5000"

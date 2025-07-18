@@ -158,7 +158,6 @@ in lib.mkIf (settings.modules.media.mpv) {
     libGL
     libva
     libva-utils
-    mesa.drivers
     nasm
     trash-cli
     vaapiVdpau
