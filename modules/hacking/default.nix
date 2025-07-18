@@ -3,6 +3,10 @@ let inherit (lib) mkIf;
 in {
   # imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
   config = mkIf (settings.modules.hacking.enable) {
+    environment.variables = {
+      ROC_ENABLE_PRE_VEGA = "1";
+      RUSTICL_ENABLE = "llvmpipe"; # "llvmpipe" or "radeonsi"
+    };
     environment.systemPackages = with pkgs; [
       # hashcat.overrideAttrs
       # (old: {
