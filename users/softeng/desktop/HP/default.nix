@@ -377,10 +377,6 @@
     };
     hyprland = {
       enable = true;
-      dm = { # Display/Login manager
-        enable = true;
-        defaultSession = "hyprland";
-      };
       # Pregenerated Colors to use in Hyprland
       genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
       animationSpeed = "medium"; # medium or slow
