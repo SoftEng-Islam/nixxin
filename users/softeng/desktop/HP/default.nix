@@ -131,46 +131,6 @@
   };
 
   # ----------------------------------------------
-  # ---- Hardware
-  # ----------------------------------------------
-  hardware = {
-    # CPU Information
-    cpu = {
-      vendor = "amd"; # amd, intel, or other
-      model = "Ryzen 7 5800X"; # Example model
-      cores = 8; # Number of cores
-      threads = 16; # Number of threads
-    };
-
-    # GPU Information
-    gpu = {
-      vendor = "radeon"; # amd, or radeon, intel, or nvidia
-      model = "Radeon RX 6700 XT"; # Example model
-      bus = "pcie"; # pcie, agp, etc.
-      vram = "12GB"; # Video RAM
-    };
-
-    # APU Information (If Applicable)
-    apu = {
-      enabled = true; # Whether an APU is present
-      vendor = "amd"; # amd or intel
-      model = "Ryzen 7 5700G"; # Example model
-    };
-
-    # Video Drivers (based on GPU vendor)
-    videoDrivers = if hardware.gpu.vendor == "amd" then
-      [ "amdgpu" ] # Default driver for AMD GPUs
-    else if hardware.gpu.vendor == "nvidia" then
-      [ "nvidia" ] # Default driver for NVIDIA GPUs
-    else if hardware.gpu.vendor == "intel" then
-      [ "modesetting" ] # Default driver for Intel GPUs
-    else if hardware.gpu.vendor == "radeon" then
-      [ "radeon" ] # Default driver for Intel GPUs
-    else
-      [ "modesetting" ]; # Fallback driver
-  };
-
-  # ----------------------------------------------
   # ---- Modules
   # ----------------------------------------------
   # Modules: To Enable/Disable && Options.
@@ -200,14 +160,9 @@
       microsoft-edge = false;
     };
     camera = { enable = false; };
-    cli = { # Collection of useful CLI apps
+    cli_tools = { # Collection of useful CLI apps
       enable = true;
-      bat = true;
-      eza = true;
-      fd = true;
-      fzf = true;
-      lf = true;
-      lout = true;
+
     };
     community = {
       enable = true;
