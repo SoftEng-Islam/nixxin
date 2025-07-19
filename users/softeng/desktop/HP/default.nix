@@ -628,6 +628,28 @@
           "radeon.cik_support=0"
           "amdgpu.cik_support=1"
 
+          # Disables AMD's IOMMU (Input-Output Memory Management Unit).
+          # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
+          # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
+          "amd_iommu=off"
+
+          # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
+          "amdgpu.sched_hw_submission=4"
+
+          # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
+          # pages_min sets the minimum number of memory pages reserved for the GPU.
+          # Each page is 4 KiB, so:
+          # (1048576*4096) / 1073741824 = 4 GiB
+          # (2097152*4096) / 1073741824 = 8 GiB
+          # 1048576 pages = 4 GiB
+          # 2097152 pages = 8 GiB
+          # You can increase this value to 2097152 (8 GiB) if you want to reserve more memory.
+          "ttm.pages_min=1048576"
+
+          # Disables the Linux audit subsystem.
+          # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
+          "audit=0"
+
           # If you want full control over power settings, use:
           "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
           # If you have stability issues (freezes, black screens, crashes), try:
@@ -635,35 +657,60 @@
           # Check If It’s Applied:
           # cat /sys/module/amdgpu/parameters/ppfeaturemask
           # "amdgpu.dcfeaturemask=0x8"
-          # "amdgpu.freesync_video=1"
-          "amdgpu.gpu_recovery=1"
 
-          # "amdgpu.noretry=0" # Improve memory handling
           "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-          # "amdgpu.dpm=1"
-          # "amdgpu.deep_color=1"
-          # "amdgpu.vramlimit=4096"
-          # "amdgpu.gttsize=4096"
-
-          # "amdgpu.vm_fragment_size=-1"
-
           "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
-          "amdgpu.lockup_timeout=0" # Optional: disable GPU lockup timeout
           "amdgpu.debugmask=1" # Enables some debugging logs
 
           # Disables HDMI/DisplayPort audio output on AMD GPUs.
           # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-          # "amdgpu.audio=0"
+          "amdgpu.audio=0"
 
-          # "amdgpu.runpm=0"
-          # "amdgpu.vm_size=8"
-          # "amdgpu.exp_hw_support=1"
-          # "amdgpu.vm_fragment_size=9"
-          # "amdgpu.vm_fault_stop=2"
-          # "amdgpu.vm_update_mode=3"
-          # "amdgpu.unified_memory=1"
-          # "amdgpu.memory_alloc_mode=2"
-          # "pci=realloc"
+          # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
+          "amdgpu.dpm=1"
+
+          # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
+          "amdgpu.runpm=0"
+
+          # Enables FreeSync support in video playback (if supported).
+          # "amdgpu.freesync_video=1"
+
+          # Enables 10-bit or 12-bit deep color support (if monitor supports it).
+          # "amdgpu.deep_color=1"
+
+          # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
+          "amdgpu.vramlimit=4096"
+
+          # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
+          "amdgpu.gttsize=4096"
+
+          # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
+          "amdgpu.unified_memory=1"
+
+          # Controls how memory is allocated:
+          # 0: Prefer VRAM
+          # 1: Even balance
+          # 2: Prefer GTT (shared RAM)
+          # 💡 Use 2 for APUs with little VRAM.
+          "amdgpu.memory_alloc_mode=2"
+
+          # Sets the virtual address space size in GB.
+          # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
+          "amdgpu.vm_size=8"
+
+          # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
+          # Larger values = fewer page table entries = better perf on large buffers.
+          # Set -1 to let driver decide automatically.
+          # "amdgpu.vm_fragment_size=-1"
+
+          # Set amdgpu.lockup_timeout in order to control the TDR for each ring
+          # 0 (GFX): 5s (was 10s)
+          # 1 (Compute): 10s (was 60s wtf)
+          # 2 (SDMA): 10s (was 10s)
+          # 3 (Video): 5s (was 10s)
+          "amdgpu.lockup_timeout=5000,10000,10000,5000"
+
+          "amdgpu.noretry=0" # Improve memory handling
         ];
         kernelModules = [
           # "amd-pstate"

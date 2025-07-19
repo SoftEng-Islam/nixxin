@@ -97,9 +97,9 @@
         "sd_mod"
         "usb_storage"
         "usbhid"
-        "vfio_iommu_type1"
-        "vfio_pci"
-        "vfio"
+        # "vfio_iommu_type1"
+        # "vfio_pci"
+        # "vfio"
         "xhci_pci"
       ];
     };
@@ -177,10 +177,8 @@
 
       # Power Management
       "workqueue.power_efficient=off" # General power responsiveness
-      "pcie_aspm=off" # Disables PCIe power saving (better performance)
-      # These control IOMMU (Input-Output Memory Management Unit), used for device isolation and passthrough in virtualization.
-      "amd_iommu=on"
-      "iommu=pt"
+
+      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # Storage
       # "libata.force=noncq"

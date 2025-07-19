@@ -3,6 +3,7 @@
   "python.analysis.extraPaths": [
     "stubs"
   ],
+  "nixEnvSelector.useFlakes": true,
   "workbench.editor.enablePreview": true,
   "[nix]": {
     "editor.defaultFormatter": "jnoortheen.nix-ide"

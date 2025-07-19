@@ -1,5 +1,33 @@
+# Propagates environment variables to make apps that use direct rendering work
+# on non-NixOS systems. This is needed by kitty and Neovide
 { settings, lib, pkgs, ... }:
-lib.mkIf (settings.modules.graphics.mesa) {
+with pkgs;
+(let
+  enable32bits = true;
+  mesa-drivers = [ mesa ];
+  # ++ lib.optional enable32bits pkgsi686Linux.mesa.drivers;
+  intel-driver = [ intel-media-driver vaapiIntel ];
+  # Note: intel-media-driver is disabled for i686 until https://github.com/NixOS/nixpkgs/issues/140471 is fixed
+  # ++ lib.optionals enable32bits [ /* pkgsi686Linux.intel-media-driver */ driversi686Linux.vaapiIntel ];
+  libvdpau = [ libvdpau-va-gl ];
+  # ++ lib.optional enable32bits pkgsi686Linux.libvdpau-va-gl;
+  glxindirect = runCommand "mesa_glxindirect" { } ''
+    mkdir -p $out/lib
+    ln -s ${mesa.drivers}/lib/libGLX_mesa.so.0 $out/lib/libGLX_indirect.so.0
+  '';
+  # generate a file with the listing of all the icd files
+  icd = runCommand "mesa_icd" { } (
+    # 64 bits icd
+    ''
+      ls ${mesa.drivers}/share/vulkan/icd.d/*.json > f
+    ''
+    #  32 bits ones
+    # + lib.optionalString enable32bits ''
+    #   ls ${pkgsi686Linux.mesa.drivers}/share/vulkan/icd.d/*.json >> f
+    # ''
+    # concat everything as a one line string with ":" as seperator
+    + ''cat f | xargs | sed "s/ /:/g" > $out'');
+in lib.mkIf (settings.modules.graphics.mesa) {
   environment.systemPackages = with pkgs; [
     mesa
     mesa-demos
@@ -67,4 +95,4 @@ lib.mkIf (settings.modules.graphics.mesa) {
     ZINK_BATCH_COUNT = "8";
     # ZINK_SHADER_CACHE_DIR = "/home/${settings.user.username}/.cache/zink_shader_cache_db";
   };
-}
+})
