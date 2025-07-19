@@ -7,6 +7,5 @@
     ./fd.nix
     ./fzf.nix
     ./lf.nix
-    ./shell.nix
   ];
 }
