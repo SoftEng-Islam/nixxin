@@ -1,8 +1,8 @@
 { settings, lib, pkgs, ... }:
 let
+  _file_manager = settings.modules.file_manager;
   # inherit (lib) mkIf;
-  _pkgs = with pkgs;
-    [ (lib.optional settings.modules.file_manager.spacedrive spacedrive) ];
+  _pkgs = with pkgs; [ (lib.optional _file_manager.spacedrive spacedrive) ];
 
   # find /nix/store -name "*nautilus-env*"
   # tree -L 2 /nix/store/xxxxxxxxxxxxxxxxx-nautilus-env

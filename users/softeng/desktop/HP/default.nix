@@ -305,10 +305,7 @@
     env = { enable = true; };
     file_manager = {
       enable = true;
-      nautilus = true;
-      thunar = false;
-      nemo = false;
-      spacedrive = false;
+      spacedrive = true;
     };
     flags = { enable = false; };
     flatpak = { enable = false; };

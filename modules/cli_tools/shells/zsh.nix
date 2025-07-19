@@ -253,8 +253,8 @@
       # bindkey '^H' fzf-history-widget  # Bind Ctrl+H to trigger fzf history search
 
       # Basic autocompletion
-      autoload -Uz compinit
-      compinit
+      # autoload -Uz compinit
+      # compinit
 
       # ------------------------------------------ #
       # ----------- User configuration ----------- #
