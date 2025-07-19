@@ -9,18 +9,18 @@ lib.mkIf (settings.modules.graphics.mesa) {
   ];
   environment.variables = with pkgs; {
 
-    # LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
+    LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
     # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
-    # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
-    # LD_LIBRARY_PATH = "${lib.makeLibraryPath mesa-drivers}:${
-    #     lib.makeSearchPathOutput "lib" "lib/vdpau" libvdpau
-    #   }:${
-    #     lib.makeLibraryPath [ glxindirect libglvnd vulkan-loader xorg.libICE ]
-    #   }";
-    # VK_LAYER_PATH = "${vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-    # VK_ICD_FILENAMES = "$(cat ${icd})";
-    # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
-    # __EGL_VENDOR_LIBRARY_DIRS = "${mesa.drivers}/share/glvnd/egl_vendor.d/";
+    LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
+    LD_LIBRARY_PATH = "${lib.makeLibraryPath mesa-drivers}:${
+        lib.makeSearchPathOutput "lib" "lib/vdpau" libvdpau
+      }:${
+        lib.makeLibraryPath [ glxindirect libglvnd vulkan-loader xorg.libICE ]
+      }";
+    VK_LAYER_PATH = "${vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+    VK_ICD_FILENAMES = "$(cat ${icd})";
+    OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+    __EGL_VENDOR_LIBRARY_DIRS = "${mesa.drivers}/share/glvnd/egl_vendor.d/";
 
     # Rusticl OpenCL
     RUSTICL_CL_VERSION = "3.0";
@@ -43,7 +43,7 @@ lib.mkIf (settings.modules.graphics.mesa) {
 
     GST_VAAPI_ALL_DRIVERS = "1";
     LIBGL_ALWAYS_SOFTWARE = "0";
-    LIBVA_DRIVERS_PATH = "/usr/lib/dri";
+    # LIBVA_DRIVERS_PATH = "/usr/lib/dri";
     LP_NUM_THREADS = "8";
     MESA_DISK_CACHE_DATABASE = "1";
     MESA_DISK_CACHE_SINGLE_FILE = "0";
@@ -55,7 +55,7 @@ lib.mkIf (settings.modules.graphics.mesa) {
     # OCL driver location
     # nix build nixpkgs#mesa.opencl --print-out-paths --no-link
     # OCL_ICD_VENDORS = "/home/${settings.user.username}/.local/etc/OpenCL/vendors";
-    OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
+    # OCL_ICD_VENDORS = "/run/opengl-driver/etc/OpenCL/vendors";
     # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
 
     # ONEAPI_DEVICE_SELECTOR = "opencl:cpu";
