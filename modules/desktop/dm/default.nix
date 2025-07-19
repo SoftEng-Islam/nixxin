@@ -1,4 +1,25 @@
+# Display/Login manager
 { settings, lib, pkgs, ... }: {
+
+  # Desktop Manager & Display Manager
+  services.displayManager.enable = true;
+
+  # ---- Set Default Session ---- #
+  services.displayManager.defaultSession =
+    settings.modules.hyprland.dm.defaultSession;
+
+  # To Use SDDM
+  # services.displayManager.sddm.enable = true;
+  # services.displayManager.sddm.wayland.enable = true;
+  # To Use GDM
+  # services.displayManager.gdm.wayland = true;
+  # services.displayManager.gdm.enable = true;
+  # services.displayManager.gdm.autoSuspend = true;
+
+  # ---- XSERVER ---- #
+  services.xserver.enable = true;
+  services.xserver.autorun = false;
+
   services.greetd.enable = true;
 
   # The virtual console (tty) that greetd should use. This option also disables getty on that tty.
@@ -18,19 +39,20 @@
     user = "greeter";
   };
 
+  # Rnable regreet
   programs.regreet.enable = true;
   programs.regreet.package = pkgs.greetd.regreet;
-
+  # Set theme
   programs.regreet.theme.name = settings.common.gtk.theme;
   programs.regreet.theme.package = settings.common.gtk.package;
-
+  # Fonts
   programs.regreet.font.size = 16;
   programs.regreet.font.name = settings.common.mainFont.name;
   programs.regreet.font.package = settings.common.mainFont.package;
-
+  # Icons
   programs.regreet.iconTheme.name = settings.common.icons.nameInDark;
   programs.regreet.iconTheme.package = settings.common.icons.package;
-
+  # Cursor
   programs.regreet.cursorTheme.name = settings.common.cursor.name;
   programs.regreet.cursorTheme.package = settings.common.cursor.package;
 
@@ -49,13 +71,11 @@
       };
 
       # The entries defined in this section will be passed to the session as environment variables when it is started
-      env = {
-        ENV_VARIABLE = ''
-          GTK_DATA_PREFIX=${pkgs.gtk4}/share
-          GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0
-          GTK_USE_PORTAL=0
-          GDK_DEBUG=no-portals'';
-      };
+      env.ENV_VARIABLE = ''
+        GTK_DATA_PREFIX=${pkgs.gtk4}/share
+        GTK_PATH=${pkgs.gtk4}/lib/gtk-4.0
+        GTK_USE_PORTAL=0
+        GDK_DEBUG=no-portals'';
 
       GTK = {
         # Whether to use the dark theme
@@ -84,10 +104,8 @@
         # x11_prefix = [ "startx" "/usr/bin/env" ];
       };
 
-      appearance = {
-        # The message that initially displays on startup
-        greeting_msg = "Welcome back!";
-      };
+      # The message that initially displays on startup
+      appearance.greeting_msg = "Welcome back!";
 
       widget.clock = {
         # strftime format argument
@@ -99,7 +117,7 @@
 
         # Override system timezone (IANA Time Zone Database name, aka /etc/zoneinfo path)
         # Remove to use the system time zone.
-        timezone = "America/Chicago";
+        timezone = settings.modules.i18n.timezone;
 
         # Ask GTK to make the label at least this wide. This helps keeps the parent element layout and width consistent.
         # Experiment with different widths, the interpretation of this value is entirely up to GTK.
