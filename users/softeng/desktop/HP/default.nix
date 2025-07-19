@@ -356,6 +356,7 @@
     };
     git = { enable = true; };
     graphics = {
+      mesa = true;
       enable = true;
       blender = false;
       darktable = false;

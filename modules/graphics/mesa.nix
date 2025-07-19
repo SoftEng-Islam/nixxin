@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }:
-lib.mkIf (settings.modules.system.mesa) {
+lib.mkIf (settings.modules.graphics.mesa) {
   environment.systemPackages = with pkgs; [
     mesa
     mesa-demos
