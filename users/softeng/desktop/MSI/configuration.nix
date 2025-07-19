@@ -9,7 +9,7 @@
     ../../../../modules/bluetooth
     ../../../../modules/browsers
     ../../../../modules/camera
-    ../../../../modules/cli
+    ../../../../modules/cli_tools
     ../../../../modules/community
     ../../../../modules/computing
     ../../../../modules/data_transferring
@@ -17,7 +17,6 @@
     ../../../../modules/development
     ../../../../modules/emails
     ../../../../modules/env
-    ../../../../modules/file_manager
     ../../../../modules/flags
     ../../../../modules/flatpak
     ../../../../modules/fonts
@@ -26,10 +25,8 @@
     ../../../../modules/graphics
     ../../../../modules/hacking
     ../../../../modules/home
-    ../../../../modules/hyprland
     ../../../../modules/i18n
     ../../../../modules/icons
-    ../../../../modules/image_viewer
     ../../../../modules/keyborad_remapper
     ../../../../modules/media
     ../../../../modules/networking
@@ -38,23 +35,19 @@
     ../../../../modules/overclock
     ../../../../modules/power
     ../../../../modules/printing
-    ../../../../modules/qt_gtk
     ../../../../modules/recording
     ../../../../modules/remote_desktop
     ../../../../modules/resources_monitoring
-    ../../../../modules/screenshot
     ../../../../modules/security
     ../../../../modules/sound_editor
     ../../../../modules/ssh
     ../../../../modules/storage
     ../../../../modules/system
-    ../../../../modules/terminals
     ../../../../modules/tools
     ../../../../modules/ulauncher
     ../../../../modules/users
     ../../../../modules/virtualization
     ../../../../modules/windows
-    ../../../../modules/xdg
     ../../../../modules/zram
   ];
 }
