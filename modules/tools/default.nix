@@ -5,7 +5,7 @@ in mkIf (settings.modules.tools.enable or false) {
     gromit-mpx # Desktop annotation tool
     screenkey # A screencast tool to display your keys inspired by Screenflick
 
-    # ventoy #! ERROR: is marked as insecure, refusing to evaluate.
+    ventoy-bin
 
     zotero # Collect, organize, cite, and share your research sources
     topgrade # Upgrade all the things

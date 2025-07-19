@@ -1,16 +1,17 @@
 { settings, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf optional;
+  _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (lib.optional settings.modules.graphics.blender blender)
-    (lib.optional settings.modules.graphics.darktable darktable)
-    # (lib.optional settings.modules.graphics.davinci davinci-resolve)
-    (lib.optional settings.modules.graphics.drawio drawio)
-    (lib.optional settings.modules.graphics.figmaLinux figma-linux)
-    (lib.optional settings.modules.graphics.gimp gimp)
-    (lib.optional settings.modules.graphics.inkscape inkscape)
-    (lib.optional settings.modules.graphics.lunacy lunacy)
-    (lib.optional settings.modules.graphics.kolourpaint kolourpaint)
+    (optional _graphics_pkgs.blender blender)
+    (optional _graphics_pkgs.darktable darktable)
+    (optional _graphics_pkgs.davinci davinci-resolve)
+    (optional _graphics_pkgs.drawio drawio)
+    (optional _graphics_pkgs.figmaLinux figma-linux)
+    (optional _graphics_pkgs.gimp gimp)
+    (optional _graphics_pkgs.inkscape inkscape)
+    (optional _graphics_pkgs.lunacy lunacy)
+    (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 in {
   imports = [
