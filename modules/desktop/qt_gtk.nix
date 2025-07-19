@@ -42,12 +42,15 @@ in {
   environment.variables = {
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
-    QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
-    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
-    #  QT_PLATFORM_PLUGIN = "wayland";
+
     # Set the scale factor for Qt apps
+    QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
+
     # Force QT to use wayland
+    # QT_PLATFORM_PLUGIN = "wayland";
     QT_QPA_PLATFORM = "wayland";
+
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
@@ -82,7 +85,7 @@ in {
     # webkitgtk # Web content rendering engine, GTK port
     webkitgtk_6_0
     webp-pixbuf-loader
-    wrapGAppsHook
+    # wrapGAppsHook
     yad
     ydotool
 
