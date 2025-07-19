@@ -1,5 +1,8 @@
-{ settings, pkgs, lib, config, ... }:
+{ settings, lib, pkgs, ... }:
 let
+  # inherit (lib) mkIf;
+  _pkgs = with pkgs;
+    [ (lib.optional settings.modules.file_manager.spacedrive spacedrive) ];
 
   # find /nix/store -name "*nautilus-env*"
   # tree -L 2 /nix/store/xxxxxxxxxxxxxxxxx-nautilus-env
@@ -17,6 +20,10 @@ let
   };
 in {
 
+  home-manager.users.${settings.user.username} = {
+    programs.dircolors = { enable = true; };
+  };
+
   # nautilus-open-any-terminal
   programs.nautilus-open-any-terminal.enable = true;
   programs.nautilus-open-any-terminal.terminal =
@@ -31,27 +38,11 @@ in {
   services.gnome.localsearch.enable = true;
   services.udisks2.enable = true;
   services.devmon.enable = true;
-  services.gvfs.enable = true;
+  services.gvfs.enable = true; # Mount, trash, and other functionalities
+  services.gvfs.package = pkgs.gnome.gvfs;
 
   # thumbnails
   services.tumbler.enable = true;
-
-  # systemd.user.services.nautilus = {
-  #   description = "Keep Nautilus Running in Background";
-  #   after = [ "graphical-session.target" ];
-  #   wantedBy = [ "default.target" ];
-  #   serviceConfig = {
-  #     Type = "simple";
-  #     ExecStart = "${pkgs.nautilus}/bin/nautilus --no-default-window";
-  #     Restart = "always"; # Restart Nautilus if it crashes
-  #     Environment = [
-  #       "XDG_CURRENT_DESKTOP=Hyprland"
-  #       "XDG_SESSION_TYPE=wayland"
-  #       "DBUS_SESSION_BUS_ADDRESS=unix:path=%t/bus"
-  #       "DISPLAY=:0"
-  #     ];
-  #   };
-  # };
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
@@ -81,8 +72,36 @@ in {
     };
   };
 
-  environment = {
-    systemPackages = with pkgs; [
+  environment.pathsToLink = [ "/share/nautilus-python/extensions" ];
+  environment.sessionVariables.FILE_MANAGER = "nautilus";
+  environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR =
+    lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
+
+  environment.systemPackages = with pkgs;
+    lib.flatten _pkgs ++ [
+
+      file # A program that shows the type of files
+      lsof # Tool to list open files
+      patool # portable archive file manager
+      rsync # Fast incremental file transfer utility
+
+      # CLI programs required by file-roller
+      _7zz
+      binutils
+
+      # archives
+      p7zip
+
+      # unrar # Utility for RAR archives
+      # unrar-free # Free utility to extract files from RAR archives
+      # unar # Archive unpacker program
+      unrar-wrapper # Backwards compatibility between unar and unrar
+      rar # Utility for RAR archives
+
+      unzip # An extraction utility for archives compressed in .zip format
+      zip # Compressor/archiver for creating and modifying zipfiles
+      xz
+
       # Our File Manager
       nautilus-env
 
@@ -120,13 +139,6 @@ in {
       # thumbnails
       gst_all_1.gst-libav
       ffmpegthumbnailer
-    ];
-    pathsToLink = [ "/share/nautilus-python/extensions" ];
-    sessionVariables = {
-      FILE_MANAGER = "nautilus";
 
-      NAUTILUS_4_EXTENSION_DIR =
-        lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
-    };
-  };
+    ];
 }
