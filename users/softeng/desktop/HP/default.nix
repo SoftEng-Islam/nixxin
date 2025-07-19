@@ -643,7 +643,7 @@
           # "amdgpu.dpm=1"
           # "amdgpu.deep_color=1"
           # "amdgpu.vramlimit=4096"
-          "amdgpu.gttsize=4096"
+          # "amdgpu.gttsize=4096"
 
           # "amdgpu.vm_fragment_size=-1"
 

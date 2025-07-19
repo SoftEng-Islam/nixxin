@@ -7,7 +7,21 @@ lib.mkIf (settings.modules.graphics.mesa) {
     mesa_glu
     mesa_i686
   ];
-  environment.variables = {
+  environment.variables = with pkgs; {
+
+    # LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
+    # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
+    # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
+    # LD_LIBRARY_PATH = "${lib.makeLibraryPath mesa-drivers}:${
+    #     lib.makeSearchPathOutput "lib" "lib/vdpau" libvdpau
+    #   }:${
+    #     lib.makeLibraryPath [ glxindirect libglvnd vulkan-loader xorg.libICE ]
+    #   }";
+    # VK_LAYER_PATH = "${vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+    # VK_ICD_FILENAMES = "$(cat ${icd})";
+    # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+    # __EGL_VENDOR_LIBRARY_DIRS = "${mesa.drivers}/share/glvnd/egl_vendor.d/";
+
     # Rusticl OpenCL
     RUSTICL_CL_VERSION = "3.0";
     RUSTICL_DEVICE_TYPE = "gpu";
