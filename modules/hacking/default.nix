@@ -6,7 +6,7 @@ in {
     environment.variables = {
       ROC_ENABLE_PRE_VEGA = "1";
       # iris, llvmpipe, nouveau, panfrost, radeonsi,
-      RUSTICL_ENABLE = "radeonsi";
+      # RUSTICL_ENABLE = "radeonsi";
     };
     environment.systemPackages = with pkgs; [
       # hashcat.overrideAttrs

@@ -13,7 +13,11 @@ let
     (lib.optional settings.modules.graphics.kolourpaint kolourpaint)
   ];
 in {
-  # imports = [ ./davinci-resolve.nix ];
+  imports = [
+    ./mesa.nix
+    # ./vulkan.nix
+    # ./davinci-resolve.nix
+  ];
   config = lib.optionals (settings.modules.graphics.enable) {
     environment.systemPackages = lib.flatten _graphics;
   };

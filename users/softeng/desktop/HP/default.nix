@@ -644,10 +644,11 @@
           # "amdgpu.vramlimit=4096"
           "amdgpu.gttsize=4096"
 
-          "amdgpu.vm_fragment_size=9"
+          # "amdgpu.vm_fragment_size=-1"
 
-          # # increases the timeout of GFX jobs
-          "amdgpu.lockup_timeout=5000"
+          "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
+          "amdgpu.lockup_timeout=0" # Optional: disable GPU lockup timeout
+          "amdgpu.debugmask=1" # Enables some debugging logs
 
           # Disables HDMI/DisplayPort audio output on AMD GPUs.
           # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
