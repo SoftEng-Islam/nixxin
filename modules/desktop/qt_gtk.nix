@@ -1,15 +1,17 @@
-# GTK  Stuff & Themes & Graphical Interfaces
-{ settings, pkgs, ... }: {
+# Themes & Graphical Interfaces
+{ settings, pkgs, ... }:
+let _qt_gtk = settings.common.qt;
+in {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
       gtk2.configLocation =
         "/home/${settings.user.username}/.config/gtk-2.0/gtkrc";
-      # theme = {
-      #   name = lib.mkForce settings.gtkTheme;
-      #   package = lib.mkForce settings.gtkPackage;
-      # };
+      theme = {
+        name = settings.common.gtk.theme;
+        package = settings.settings.common.gtk.package;
+      };
       gtk3 = {
         bookmarks = [
           "file:///home/${settings.user.username}/Downloads"
@@ -30,8 +32,41 @@
         '';
       };
     };
+    qt = {
+      enable = true;
+      platformTheme.name = _qt_gtk.platformTheme;
+      style.name = _qt_gtk.style;
+    };
+  };
+
+  environment.variables = {
+    # Enable automatic screen scaling for Qt apps
+    QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
+    QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
+    #  QT_PLATFORM_PLUGIN = "wayland";
+    # Set the scale factor for Qt apps
+    # Force QT to use wayland
+    QT_QPA_PLATFORM = "wayland";
   };
   environment.systemPackages = with pkgs; [
+    # QT & KDE Stuff
+    adwaita-qt
+    adwaita-qt6
+    gsettings-qt
+    libsForQt5.qt5.qtgraphicaleffects
+    libsForQt5.qt5.qtquickcontrols2
+    libsForQt5.qt5ct # Qt5 Configuration Tool
+    libsForQt5.qwt
+    qt5.qtgraphicaleffects
+    qt5.qtimageformats
+    qt5.qtquickcontrols2
+    qt6.qtbase
+    qt6.qtdeclarative
+    qt6.qtsvg
+    qt6.qtwayland
+
+    # GTK
     adw-gtk3
 
     gobject-introspection
@@ -50,5 +85,6 @@
     wrapGAppsHook
     yad
     ydotool
+
   ];
 }

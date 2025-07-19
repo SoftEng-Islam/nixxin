@@ -41,6 +41,4 @@
     TTYVHangup = true;
     TTYVTDisallocate = true;
   };
-
-  environment.systemPackages = with pkgs; [ gtk4 ];
 }
