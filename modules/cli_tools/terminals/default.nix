@@ -1,1 +1,9 @@
-{ ... }: { imports = [ ./alacritty ./kitty ./tmux ./wezterm ]; }
+{ ... }: {
+  imports = [
+    # ./alacritty
+    # ./fish
+    # ./kitty
+    # ./tmux
+    ./wezterm
+  ];
+}

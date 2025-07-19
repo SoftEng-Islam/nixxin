@@ -1,14 +1,7 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) optionals mkIf;
 in {
-  # imports = optionals (settings.modules.cli.enable or false) [
-  #   ./bat.nix
-  #   ./eza.nix
-  #   ./fd.nix
-  #   ./fzf.nix
-  #   ./lf.nix
-  #   ./lout.nix
-  # ];
+  imports = [ ./neofetch ./nvim ./prompt ./shells ./terminals ./utilities ];
 
   config = mkIf (settings.modules.cli.enable) {
     environment.shells = with pkgs; [ zsh ];
