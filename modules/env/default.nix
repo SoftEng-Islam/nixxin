@@ -106,8 +106,6 @@
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
 
-      LIBGL_ALWAYS_SOFTWARE = "1";
-
       # QUOTING_STYLE = "literal";
       PKG_CONFIG_PATH = "$HOME/.nix-profile/lib/pkgconfig:/usr/lib/pkgconfig";
       # PKG_CONFIG_PATH = "$(nix eval nixpkgs.zlib.dev.outPath --raw)/lib/pkgconfig:$PKG_CONFIG_PATH";
