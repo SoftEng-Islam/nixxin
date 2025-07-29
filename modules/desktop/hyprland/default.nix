@@ -60,7 +60,7 @@
     xwayland.enable = true;
     hyprland = {
       enable = true;
-      withUWSM = true; # Launch Hyprland with the UWSM session manager.
+      withUWSM = false; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = true;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -109,7 +109,7 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
-      systemd.enable = false;
+      systemd.enable = true;
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -135,7 +135,7 @@
       enableXWayland = true; # whether to enable XWayland
       # whether to use the legacy renderer (for old GPUs)
       legacyRenderer = false;
-      withSystemd = false; # whether to build with systemd support
+      withSystemd = true; # whether to build with systemd support
     })
 
 
