@@ -10,7 +10,7 @@ let
 
 in with lib.gvariant;
 mkIf (settings.modules.dconf.enable or true) {
-  programs.dconf.enable = true; # dconf
+  programs.dconf.enable = true;
   environment.systemPackages = with pkgs;
     [
       dconf # dconf is a simple key/value storage system that is heavily optimised for reading.

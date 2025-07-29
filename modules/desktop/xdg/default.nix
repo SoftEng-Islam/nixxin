@@ -118,13 +118,13 @@ in {
       xdg-launch
       xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
       xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-      desktop-file-utils
       # xdg-dbus-proxy # DBus proxy for Flatpak and others
       # xdg-desktop-portal # Desktop integration portals for sandboxed apps
       # xdg-desktop-portal-gnome
-      # xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
+      xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
       # xdg-desktop-portal-hyprland
-      # xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
+      
+      desktop-file-utils
       libxdg_basedir # Implementation of the XDG Base Directory specification
       shared-mime-info # Database of common MIME types
       mime-types
@@ -134,25 +134,24 @@ in {
   xdg.portal = {
     enable     = true;
     wlr.enable = false; # disable wlr if using Hyprland
-    
-    #xdgOpenUsePortal = true;
-
-    config = {
-      common = {
-        default = [ "hyprland" ];
-        "org.freedesktop.portal.Settings"   = [ "hyprland" ];
-        "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-        "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
-        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-        "org.freedesktop.impl.portal.FileChooser" = [ "hyprland" ];
-        "org.freedesktop.portal.OpenURI"   = [ "hyprland" ];
-      };
-      hyprland = {
-        default = [ "hyprland" "gtk" ];
-      };
-    };
+    xdgOpenUsePortal = true;
+    # config = {
+    #   common = {
+    #     default = [ "*" ];
+    #     "org.freedesktop.portal.Settings"   = [ "hyprland" ];
+    #     "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
+    #     "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
+    #     "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+    #     "org.freedesktop.impl.portal.FileChooser" = [ "hyprland" ];
+    #     "org.freedesktop.portal.OpenURI"   = [ "hyprland" ];
+    #   };
+    #   hyprland = {
+    #     default = [ "hyprland" ];
+    #   };
+    # };
 
     extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
       xdg-desktop-portal-hyprland
     ];
 
@@ -237,5 +236,5 @@ in {
   # (org.freedesktop.portal.Desktop) and object path
   # (/org/freedesktop/portal/desktop).
   # The portal interfaces include APIs for file access, opening URIs, printing and others.
-  # services.dbus.enable = lib.mkDefault true;
+  services.dbus.enable = lib.mkDefault true;
 }

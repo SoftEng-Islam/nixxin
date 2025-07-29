@@ -187,11 +187,11 @@ in {
     #   ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", ATTR{power_dpm_state}="performance"
     # '';
 
-    # dbus.enable = true;
-    # dbus.dbusPackage = pkgs.dbus;
-    # dbus.packages = [ pkgs.dconf pkgs.gcr ];
-    # dbus.brokerPackage = pkgs.dbus-broker;
-    # dbus.implementation = "dbus"; "dbus" or ""broker";
+    dbus.enable = true;
+    dbus.dbusPackage = pkgs.dbus;
+    dbus.packages = [ pkgs.dconf pkgs.gcr ];
+    dbus.brokerPackage = pkgs.dbus-broker;
+    dbus.implementation = "dbus"; "dbus" or ""broker";
     accounts-daemon.enable = true;
     udisks2.enable = true;
     fwupd.enable = true;
