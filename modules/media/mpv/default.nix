@@ -2,7 +2,7 @@
 # The [ MPV ] manual
 # https://mpv.io/manual/stable/
 let
-  _hwdec = "auto-safe"; # mpv --hwdec=help
+  _hwdec = "no"; # mpv --hwdec=help
   _vo = "gpu-next"; # "gpu", "gpu-next"
   _gpu-api = "auto"; # mpv --gpu-api=help
 
