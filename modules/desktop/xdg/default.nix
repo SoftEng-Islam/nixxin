@@ -237,5 +237,5 @@ in {
   # (org.freedesktop.portal.Desktop) and object path
   # (/org/freedesktop/portal/desktop).
   # The portal interfaces include APIs for file access, opening URIs, printing and others.
-  services.dbus.enable = lib.mkDefault true;
+  # services.dbus.enable = lib.mkDefault true;
 }
