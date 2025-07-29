@@ -2,37 +2,12 @@
 # The [ MPV ] manual
 # https://mpv.io/manual/stable/
 let
-
-  # no:	always use software decoding (default)
-  # auto:	enable any whitelisted hw decoder (see below)
-  # auto-unsafe:	forcibly enable any hw decoder found (see below)
-  # yes:	exactly the same as auto
-  # auto-safe:	exactly the same as auto
-  _hwdec = "no"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
-
+  _hwdec = "auto-safe"; # mpv --hwdec=help
   _vo = "gpu-next"; # "gpu", "gpu-next"
-  _gpu-api = "opengl"; # "opengl", "vulkan"
+  _gpu-api = "auto"; # mpv --gpu-api=help
 
 in lib.mkIf (settings.modules.media.mpv) {
-
-  # nixpkgs.overlays = [
-  #   (self: super: {
-  #     mpv-unwrapped = super.mpv-unwrapped.override {
-  #       libbluray = super.libbluray.override {
-  #         withAACS = true;
-  #         withBDplus = true;
-  #       };
-  #     };
-  #   })
-  # ];
-
-  nixpkgs.config.packageOverrides = pkgs: {
-    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
-  };
-
   environment.variables = {
-    # ls /run/opengl-driver/lib/dri/
-    # vainfo
     VIDEO = "mpv";
     # vblank_mode = "0"; # ? Reduces latency
   };
@@ -135,7 +110,7 @@ in lib.mkIf (settings.modules.media.mpv) {
       config = {
         vo = _vo;
         gpu-api = _gpu-api;
-        gpu-context = "x11"; # avoid wayland, r600 better with X11
+        gpu-context = "auto";
         hwdec = _hwdec; # or "no" if it fails
         hwdec-codecs = "all";
         profile = "gpu-hq"; # good baseline
@@ -150,12 +125,12 @@ in lib.mkIf (settings.modules.media.mpv) {
         dither-depth = "auto";
         autofit = "100%";
         window-maximized = "yes";
- 
 
         # Fix stuttering playing 4k video
         hdr-compute-peak = "no";
 
-        ao = "pipewire"; # "pipewire" or "alsa"
+        ao = "alsa,pulse,pipewire,openal"; # mpv --ao=help
+
         volume = 100;
         volume-max = 150;
         alang = "en,eng";
