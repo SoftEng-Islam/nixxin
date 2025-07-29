@@ -99,8 +99,8 @@ in lib.mkIf (settings.modules.media.mpv) {
           dvbinSupport = false;
           jackaudioSupport = false;
           javascriptSupport = false;
-          alsaSupport = false;
-          pulseSupport = false;
+          alsaSupport = true;
+          pulseSupport = true;
           pipewireSupport = true;
           rubberbandSupport = false;
           sixelSupport = false;
