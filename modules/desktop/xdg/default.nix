@@ -118,11 +118,11 @@ in {
       xdg-launch
       xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
       xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-      # xdg-dbus-proxy # DBus proxy for Flatpak and others
-      # xdg-desktop-portal # Desktop integration portals for sandboxed apps
-      # xdg-desktop-portal-gnome
+      xdg-dbus-proxy # DBus proxy for Flatpak and others
+      xdg-desktop-portal # Desktop integration portals for sandboxed apps
+      xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-      # xdg-desktop-portal-hyprland
+      xdg-desktop-portal-hyprland
       
       desktop-file-utils
       libxdg_basedir # Implementation of the XDG Base Directory specification
