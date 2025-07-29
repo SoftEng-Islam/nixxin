@@ -1,0 +1,52 @@
+{ settings, lib, pkgs, ... }: {
+  imports = [
+    ./hardware.nix
+
+    # ---- Modules ---- #
+    ../../../../modules/ai
+    ../../../../modules/android
+    ../../../../modules/audio
+    ../../../../modules/bluetooth
+    ../../../../modules/browsers
+    ../../../../modules/camera
+    ../../../../modules/cli_tools
+    ../../../../modules/community
+    ../../../../modules/computing
+    ../../../../modules/data_transferring
+    ../../../../modules/dconf
+    ../../../../modules/development
+    ../../../../modules/emails
+    ../../../../modules/env
+    ../../../../modules/flags
+    ../../../../modules/flatpak
+    ../../../../modules/fonts
+    ../../../../modules/gaming
+    ../../../../modules/git
+    ../../../../modules/graphics
+    ../../../../modules/hacking
+    ../../../../modules/home
+    ../../../../modules/i18n
+    ../../../../modules/icons
+    ../../../../modules/keyborad_remapper
+    ../../../../modules/media
+    ../../../../modules/networking
+    ../../../../modules/notifications
+    ../../../../modules/office
+    ../../../../modules/overclock
+    ../../../../modules/power
+    ../../../../modules/printing
+    ../../../../modules/recording
+    ../../../../modules/remote_desktop
+    ../../../../modules/resources_monitoring
+    ../../../../modules/security
+    ../../../../modules/sound_editor
+    ../../../../modules/ssh
+    ../../../../modules/storage
+    ../../../../modules/system
+    ../../../../modules/ulauncher
+    ../../../../modules/users
+    ../../../../modules/virtualization
+    ../../../../modules/windows
+    ../../../../modules/zram
+  ];
+}

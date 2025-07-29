@@ -1,0 +1,201 @@
+{ config, lib, settings, pkgs, ... }:
+# The [ MPV ] manual
+# https://mpv.io/manual/stable/
+let
+
+  # no:	always use software decoding (default)
+  # auto:	enable any whitelisted hw decoder (see below)
+  # auto-unsafe:	forcibly enable any hw decoder found (see below)
+  # yes:	exactly the same as auto
+  # auto-safe:	exactly the same as auto
+  _hwdec = "no"; # no, auto, auto-unsafe, vaapi, vdpau, cuda
+
+  _vo = "gpu-next"; # "gpu", "gpu-next"
+  _gpu-api = "opengl"; # "opengl", "vulkan"
+
+in lib.mkIf (settings.modules.media.mpv) {
+
+  # nixpkgs.overlays = [
+  #   (self: super: {
+  #     mpv-unwrapped = super.mpv-unwrapped.override {
+  #       libbluray = super.libbluray.override {
+  #         withAACS = true;
+  #         withBDplus = true;
+  #       };
+  #     };
+  #   })
+  # ];
+
+  nixpkgs.config.packageOverrides = pkgs: {
+    vaapiIntel = pkgs.vaapiIntel.override { enableHybridCodec = true; };
+  };
+
+  environment.variables = {
+    # ls /run/opengl-driver/lib/dri/
+    # vainfo
+    VIDEO = "mpv";
+    # vblank_mode = "0"; # ? Reduces latency
+  };
+  
+  # https://github.com/mpv-player/mpv/wiki
+  home-manager.users.${settings.user.username} = {
+
+    home.file.".config/mpv/shaders".source = ./shaders;
+    # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
+    #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio
+    #   + "\n" + videoOutput + "\n" + osdConfig;
+
+    xdg.configFile = {
+      "mpv/script-opts/osc.conf".text = ''
+        windowcontrols=no
+      '';
+    };
+
+    xdg.configFile."mpv/script-opts/uosc.conf".text = lib.concatStrings [
+     "opacity="
+     ",timeline=0.1"
+     ",position=0.2"
+     ",chapters=0.075"
+     ",slider=0.1"
+     ",slider_gauge=0.2"
+     ",controls=0"
+     ",speed=0.2"
+     ",menu=1"
+     ",submenu=0.4"
+     ",border=1"
+     ",title=1"
+     ",tooltip=1"
+     ",thumbnail=1"
+     ",curtain=0.8"
+     ",idle_indicator=0.8"
+     ",audio_indicator=0.5"
+     ",buffering_indicator=0.3"
+     ",playlist_position=0.8"
+    ];
+
+    # xdg.configFile."mpv/script-opts/osc.conf".source = ./osc.conf;
+
+    programs.mpv = {
+      enable = true;
+      package = pkgs.mpv-unwrapped.wrapper {
+        mpv = pkgs.mpv-unwrapped.override {
+          ffmpeg = pkgs.ffmpeg-full;
+          openalSupport = true;
+          sdl2Support = true;
+          vaapiSupport = true;
+          waylandSupport = true;
+          vdpauSupport = false;
+          vapoursynthSupport = false;
+          drmSupport = true;
+          vulkanSupport = true;
+          x11Support = false;
+          cddaSupport = false;
+          archiveSupport = false;
+          bluraySupport = false;
+          bs2bSupport = false;
+          cacaSupport = false;
+          cmsSupport = false;
+          dvdnavSupport = false;
+          dvbinSupport = false;
+          jackaudioSupport = false;
+          javascriptSupport = false;
+          alsaSupport = false;
+          pulseSupport = false;
+          pipewireSupport = true;
+          rubberbandSupport = false;
+          sixelSupport = false;
+          zimgSupport = false;
+
+          libplacebo = pkgs.libplacebo.overrideAttrs (oldAttrs: rec {
+            version = "7.349.0";
+            src = pkgs.fetchFromGitLab {
+              domain = "code.videolan.org";
+              owner = "videolan";
+              repo = "libplacebo";
+              tag = "v${version}";
+              hash = "sha256-mIjQvc7SRjE1Orb2BkHK+K1TcRQvzj2oUOCUT4DzIuA=";
+            };
+          });
+        };
+        scripts = with pkgs.mpvScripts; [
+          mpris
+          thumbfast
+          uosc
+          cutter
+          quality-menu
+          mpv-cheatsheet
+          mpv-subtitle-lines
+
+          # inhibit-gnome
+          # modernz
+          # mpv-cheatsheet
+        ];
+      };
+
+      config = {
+        vo = _vo;
+        gpu-api = _gpu-api;
+        gpu-context = "x11"; # avoid wayland, r600 better with X11
+        hwdec = _hwdec; # or "no" if it fails
+        hwdec-codecs = "all";
+        profile = "gpu-hq"; # good baseline
+        fullscreen = false;
+        keep-open = "yes";
+        force-window = "immediate";
+        term-osd-bar = true;
+        scale = "bilinear"; # faster than lanczos
+        cscale = "bilinear";
+        tscale = "linear";
+        deband = "no"; # save GPU cycles
+        dither-depth = "auto";
+        autofit = "100%";
+        window-maximized = "yes";
+ 
+
+        # Fix stuttering playing 4k video
+        hdr-compute-peak = "no";
+
+        ao = "pipewire"; # "pipewire" or "alsa"
+        volume = 100;
+        volume-max = 150;
+        alang = "en,eng";
+        slang = "en,eng,ar";
+
+        sub-auto = "fuzzy";
+        sub-font-size = 32;
+        sub-border-size = 2.5;
+
+        osd-level = 1;
+        msg-color = true;
+        msg-module = true;
+      };
+      defaultProfiles = [ "high-quality" ];
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    # driversi686Linux.vdpauinfo
+    # vdpauinfo
+    
+    gnutls
+    harfbuzz
+    iconv
+    libass
+    libavc1394
+    libavif
+    libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
+    libva
+    libva-utils # For testing VAAPI support
+    libvdpau-va-gl
+    lua
+    mesa
+    mpv-shim-default-shaders
+    libGL
+    nasm
+    trash-cli
+    vaapiVdpau
+    vulkan-headers
+    vulkan-loader
+    vulkan-tools # Includes `vulkaninfo`
+  ];
+}

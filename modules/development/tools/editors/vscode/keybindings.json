@@ -1,0 +1,60 @@
+[
+  {
+    "command": "workbench.action.focusActiveEditorGroup",
+    "key": "shift+cmd+j",
+    "when": "terminalFocus"
+  },
+  {
+    "command": "editor.action.clipboardCopyAction",
+    "key": "ctrl+c",
+    "when": "textInputFocus"
+  },
+  {
+    "command": "editor.action.moveLinesDownAction",
+    "key": "alt+down",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "editor.action.moveLinesUpAction",
+    "key": "alt+up",
+    "when": "editorTextFocus && !editorReadonly"
+  },
+  {
+    "command": "editor.action.sortLinesAscending",
+    "key": "ctrl+shift+s"
+  },
+  {
+    "command": "editor.action.removeDuplicateLines",
+    "key": "ctrl+shift+r"
+  },
+  {
+    "command": "workbench.action.terminal.copySelection",
+    "key": "ctrl+c",
+    "when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"
+  },
+  {
+    "command": "-workbench.action.terminal.copySelection",
+    "key": "ctrl+shift+c",
+    "when": "terminalTextSelectedInFocused || terminalFocus && terminalHasBeenCreated && terminalTextSelected || terminalFocus && terminalProcessSupported && terminalTextSelected || terminalFocus && terminalTextSelected && terminalTextSelectedInFocused || terminalHasBeenCreated && terminalTextSelected && terminalTextSelectedInFocused || terminalProcessSupported && terminalTextSelected && terminalTextSelectedInFocused"
+  },
+  {
+    "command": "workbench.action.terminal.paste",
+    "key": "ctrl+v",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "command": "-workbench.action.terminal.paste",
+    "key": "ctrl+shift+v",
+    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+  },
+  {
+    "command": "-workbench.action.terminal.openNativeConsole",
+    "key": "ctrl+shift+c",
+    "when": "!terminalFocus"
+  },
+  {
+    "command": "-editor.action.addCommentLine",
+    "key": "ctrl+k ctrl+c",
+    "when": "editorTextFocus && !editorReadonly"
+  }
+]
