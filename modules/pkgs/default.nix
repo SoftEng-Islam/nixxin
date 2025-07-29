@@ -188,11 +188,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     whois # Intelligent WHOIS client from Debian
     busybox # Tiny versions of common UNIX utilities in a single small executable
     fdupes # Identifies duplicate files residing within specified directories
-    dbus # Simple interprocess messaging system
-    dbus-broker # Linux D-Bus Message Broker
     d-spy # D-Bus exploration tool
-    libdbusmenu # Library for passing menu structures across DBus
-    libdbusmenu-gtk3 # Library for passing menu structures across DBus
     udev    # System and service manager for Linux
 
 
