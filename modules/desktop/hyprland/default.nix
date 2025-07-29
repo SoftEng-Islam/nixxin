@@ -46,7 +46,7 @@
   services.gnome.core-shell.enable = true;
 
   programs.uwsm = {
-    enable = false;
+    enable = true;
     waylandCompositors.hyprland = {
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
@@ -60,7 +60,7 @@
     xwayland.enable = true;
     hyprland = {
       enable = true;
-      withUWSM = false; # Launch Hyprland with the UWSM session manager.
+      withUWSM = true; # Launch Hyprland with the UWSM session manager.
       xwayland.enable = true;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
@@ -109,7 +109,7 @@
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
-      systemd.enable = true;
+      systemd.enable = false;
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -133,9 +133,9 @@
     # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       enableXWayland = true; # whether to enable XWayland
-      legacyRenderer =
-        false; # whether to use the legacy renderer (for old GPUs)
-      withSystemd = true; # whether to build with systemd support
+      # whether to use the legacy renderer (for old GPUs)
+      legacyRenderer = false;
+      withSystemd = false; # whether to build with systemd support
     })
 
 

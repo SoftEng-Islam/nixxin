@@ -98,7 +98,7 @@ in {
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode-fhs; # vscode or vscodium or  vscode-fhs
+      package = pkgs.vscode; # vscode or vscodium or  vscode-fhs
       mutableExtensionsDir = true;
       profiles.default = {
         enableExtensionUpdateCheck = true;

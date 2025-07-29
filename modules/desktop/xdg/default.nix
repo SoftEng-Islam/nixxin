@@ -70,9 +70,7 @@ in {
       GTK_USE_PORTAL = "1";
 
       NIXOS_XDG_OPEN_USE_PORTAL = "1";
-
-      # Don't set this var
-      # XDG_CURRENT_DESKTOP = "Hyprland"; #"GNOME" or "Hyprland";
+      NIX_XDG_DESKTOP_PORTAL_DIR = "/run/current-system/sw/share/xdg-desktop-portal/portals";
 
       XDG_SESSION_TYPE = "wayland";
       XDG_SCREENSHOTS_DIR = "/home/${username}/Pictures/Screenshots";
@@ -95,7 +93,6 @@ in {
       PARALLEL_HOME = "$XDG_CONFIG_HOME/parallel";
     } // xdgConventions;
     sessionVariables = {
-      XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_DATA_DIRS = [
         "${pkgs.gsettings-desktop-schemas}/share"
         "${pkgs.nautilus}/share"
@@ -131,28 +128,36 @@ in {
     ];
   };
 
+
+  xdg.menus.enable = true;
+  xdg.icons.enable = true;
+  xdg.autostart.enable = true;
+  xdg.mime.enable = true;
+  
+  xdg.portal.enable = true;
+  xdg.portal.wlr.enable = false; # disable wlr if using Hyprland
+  xdg.portal.xdgOpenUsePortal = true;
+
+
   xdg.portal = {
-    enable     = true;
-    wlr.enable = false; # disable wlr if using Hyprland
-    xdgOpenUsePortal = true;
-    # config = {
-    #   common = {
-    #     default = [ "*" ];
-    #     "org.freedesktop.portal.Settings"   = [ "hyprland" ];
-    #     "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-    #     "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
-    #     "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-    #     "org.freedesktop.impl.portal.FileChooser" = [ "hyprland" ];
-    #     "org.freedesktop.portal.OpenURI"   = [ "hyprland" ];
-    #   };
-    #   hyprland = {
-    #     default = [ "hyprland" ];
-    #   };
-    # };
+    config = {
+      common = {
+        default = [ "*" ];
+        "org.freedesktop.portal.Settings"   = [ "hyprland" ];
+        "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
+        "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
+        "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+        "org.freedesktop.impl.portal.FileChooser" = [ "hyprland" ];
+        "org.freedesktop.portal.OpenURI"   = [ "hyprland" ];
+      };
+      hyprland = {
+        default = [ "hyprland" ];
+      };
+    };
 
     extraPortals = with pkgs; [
       xdg-desktop-portal-gtk
-      xdg-desktop-portal-hyprland
+      # xdg-desktop-portal-hyprland
     ];
 
   };

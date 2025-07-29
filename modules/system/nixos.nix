@@ -191,7 +191,7 @@ in {
     dbus.dbusPackage = pkgs.dbus;
     dbus.packages = [ pkgs.dconf pkgs.gcr ];
     dbus.brokerPackage = pkgs.dbus-broker;
-    dbus.implementation = "dbus"; # "dbus" or "broker";
+    dbus.implementation = "broker"; # "dbus" or "broker";
     accounts-daemon.enable = true;
     udisks2.enable = true;
     fwupd.enable = true;
