@@ -9,12 +9,10 @@ let
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = {
     VIDEO = "mpv";
-    # vblank_mode = "0"; # ? Reduces latency
   };
   
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
-
     home.file.".config/mpv/shaders".source = ./shaders;
     # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
     #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio

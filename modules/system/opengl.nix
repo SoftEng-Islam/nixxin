@@ -12,6 +12,11 @@
   # => Often used with GLSL (OpenGL Shading Language) for writing shaders
   # => Alternative APIs: Vulkan, DirectX, Metal
 
+
+  environment.variables = {
+    vblank_mode = "0"; # ? Reduces latency
+  };
+
   environment.systemPackages = with pkgs; [
     mesa
     mesa_glu
