@@ -20,7 +20,8 @@
     enable = true;
     settings = {
       initial_session = {
-        command = "${pkgs.dbus}/bin/dbus-run-session Hyprland";
+        # command = "${pkgs.dbus}/bin/dbus-run-session Hyprland";
+        command = "Hyprland";
         user = settings.user.username;
       };
       default_session = let 
