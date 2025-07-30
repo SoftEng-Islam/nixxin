@@ -6,8 +6,9 @@
 { settings, lib, pkgs, ... }:
 let _power = settings.modules.power;
 in lib.mkIf (_power.enable or true) {
-
+  # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
   powerManagement.enable = _power.powerManagement.enable;
+
   # enable powertop auto tuning on startup.
   powerManagement.powertop.enable = _power.powerManagement.powertop;
 
@@ -19,13 +20,11 @@ in lib.mkIf (_power.enable or true) {
   powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
   powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
   powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
-
-  # Than verify the governor:
+  # To verify/check the current CPU frequency:
   # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
   # A DBus daemon that allows changing system behavior based upon user-selected power profiles.
-  # services.power-profiles-daemon.enable = false;
-  # OR
+  services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
 
   # Upower, a DBus service that provides power management support to applications.
@@ -40,7 +39,7 @@ in lib.mkIf (_power.enable or true) {
   #---- by limiting CPU power or turning off USB devices.
   # Don’t use TLP on a desktop. It’s meant for battery-powered devices.
   services.tlp = {
-    enable = false;
+    enable = _power.tlp.enable;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -84,10 +83,6 @@ in lib.mkIf (_power.enable or true) {
     };
   };
   environment.systemPackages = with pkgs; [
-    # ------------------------------------------------
-    # ---- Power Packages
-    # ------------------------------------------------
-    tlp
     upower
     upower-notify
     power-profiles-daemon
