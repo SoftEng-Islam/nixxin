@@ -107,11 +107,6 @@ in {
     } // xdgConventions;
 
     systemPackages = with pkgs; [
-      # used by `gio open` and xdp-gtk
-      (pkgs.writeShellScriptBin "xdg-terminal-exec" ''
-        ${settings.modules.terminals.default.terminal.name} "$@"
-      '')
-
       xdg-launch
       xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
       xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
@@ -120,7 +115,6 @@ in {
       xdg-desktop-portal-gnome
       xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
       xdg-desktop-portal-hyprland
-      
       desktop-file-utils
       libxdg_basedir # Implementation of the XDG Base Directory specification
       shared-mime-info # Database of common MIME types
@@ -133,7 +127,7 @@ in {
   xdg.icons.enable = true;
   xdg.autostart.enable = true;
   xdg.mime.enable = true;
-  
+
   xdg.portal.enable = true;
   xdg.portal.wlr.enable = false; # disable wlr if using Hyprland
   xdg.portal.xdgOpenUsePortal = true;
@@ -159,80 +153,26 @@ in {
       xdg-desktop-portal-gtk
       # xdg-desktop-portal-hyprland
     ];
-
   };
-
-  # ---- Under Test ---- #
-  # xdg.configFile = {
-  #   "fish".source = ./.config/fish;
-  #   "foot".source = ./.config/foot;
-  #   "fuzzel".source = ./.config/fuzzel;
-  #   "mpv".source = ./.config/mpv;
-  #   "thorium-flags.conf".source = ./.config/thorium-flags.conf;
-  #   "starship.toml".source = ./.config/starship.toml;
-  # };
 
   home-manager.users.${username} = {
     xdg = {
       enable = true;
       mime.enable = true;
-      # icons.enable = true;
-      # configFile."gtk-4.0/gtk.css".enable = lib.mkForce true;
       cacheHome = "/home/${username}/.cache";
       userDirs = {
         enable = true;
         createDirectories = true;
-        music = "/home/${username}/Music";
-        videos = "/home/${username}/Videos";
-        pictures = "/home/${username}/Pictures";
-        download = "/home/${username}/Downloads";
-        documents = "/home/${username}/Documents";
         templates = null;
         desktop = null;
         publicShare = null;
-        # data = [ "/usr/share" "/usr/local/share" ];
-        # xdg.configFile."mimeapps.list".force = true;
-        # xdg.configFile."xdg-desktop-portal-wlr/config".text = ''
-        #   [screencast]
-        #   max_fps=30
-        #   chooser_type=simple
-        #   chooser_cmd=slurp -d -b "${themeColors.background}bf" -c "${themeColors.primary}" -F "Iosevka NF" -w 1 -f %o -or
-        # '';
         extraConfig = {
           XDG_DOTFILES_DIR = "${settings.common.dotfilesDir}";
           XDG_BOOK_DIR = "/home/${username}/Books";
           XDG_SCREENSHOTS_DIR = "/home/${username}/Pictures/Screenshots";
         };
       };
-      mimeApps = {
-        enable = true;
-        defaultApplications = associations;
-        # defaultapps = with lib;
-        #   with mimeTypes;
-        #   mkMerge (mapAttrsToList (n: ms: genAttrs ms (_: [ "${n}.desktop" ])) {
-        #     # TODO: make nvim use kitty as terminal
-        #     "kitty-open" = text ++ [ "text/*" ];
-        #     "google-chrome" = html ++ web;
-        #     "imv" = images;
-        #     "mpv" = media;
-        #     "org.gnome.FileRoller" = archives;
-        #     "kitty" = [ "application/x-shellscript" ];
-        #     "amfora" = [ "x-scheme-handler/gemini" ];
-        #     "Postman" = [ "x-scheme-handler/postman" ];
-        #     # "neomutt" = [
-        #     #   "message/rfc822"
-        #     #   "x-scheme-handler/mailto"
-        #     # ];
-        #     # "newsboat" = [
-        #     #   "x-scheme-handler/news"
-        #     #   "x-scheme-handler/rss+xml"
-        #     #   "x-scheme-handler/x-extension-rss"
-        #     #   "x-scheme-handler/feed"
-        #     # ];
-        #     # transmission-gtk =
-        #     #   [ "application/x-bittorrent" "x-scheme-handler/magnet" ];
-        #   });
-      };
+      mimeApps.defaultApplications = associations;
     };
   };
 

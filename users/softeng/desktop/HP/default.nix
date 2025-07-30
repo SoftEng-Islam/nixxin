@@ -10,7 +10,7 @@
   user.name = "Islam Ahmed"; # Name/Identifier
   user.username = "softeng"; # Username
   user.email = "softeng.islam@gmail.com"; # Email
-  
+
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
@@ -18,7 +18,7 @@
   system.hostName = "nixos"; # Hostname
   system.profile = "desktop"; # Select a profile defined from my profiles directory
   system.architecture = "x86_64-linux"; # Replace with your system architecture
-  
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
@@ -26,7 +26,7 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  
+
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
   useTmpfs = true; # disable it before install a custom Linux Kernel.
@@ -95,7 +95,7 @@
   common.cursor.name = "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
   common.cursor.package = pkgs.bibata-cursors;
 
-    
+
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
   # ----------------------------------------------
@@ -104,49 +104,49 @@
   # Set true to Enable, and false to Disable.
   modules.pkgs.enable = true;
   modules.system.enable = true;
-  modules.security.enable = true;     
+  modules.security.enable = true;
   modules.graphics.enable = true;
   modules.fonts.enable = true;
-  modules.development.enable = true; 
+  modules.development.enable = true;
   modules.cli_tools.enable = true;
-  modules.ulauncher.enable = true;  
-  modules.computing.enable = true;          
+  modules.ulauncher.enable = true;
+  modules.computing.enable = true;
   modules.browsers.enable = true;
-  modules.storage.enable = true;       
+  modules.storage.enable = true;
   modules.users.enable = true;
-  modules.data_transferring.enable = true;  
-  modules.hacking.enable = true;   
-  modules.dconf.enable = true;              
-  modules.env.enable = true;          
+  modules.data_transferring.enable = true;
+  modules.hacking.enable = true;
+  modules.dconf.enable = true;
+  modules.env.enable = true;
   modules.desktop.enable = true;
-  modules.media.enable = true;          
-  modules.git.enable = true;     
-  modules.i18n.enable = true;     
-  modules.networking.enable = true;         
-  modules.power.enable = true;             
-  modules.overclock.enable = true;     
-  modules.office.enable = true;        
-  modules.icons.enable = true;             
+  modules.media.enable = true;
+  modules.git.enable = true;
+  modules.i18n.enable = true;
+  modules.networking.enable = true;
+  modules.power.enable = true;
+  modules.overclock.enable = true;
+  modules.office.enable = true;
+  modules.icons.enable = true;
   modules.virtualization.enable = true;
   modules.zram.enable = false;
-  modules.ssh.enable = false;           
-  modules.ai.enable = false;         
-  modules.emails.enable = true;      
-  modules.flatpak.enable = false;  
-  modules.notifications.enable = true; 
-  modules.printing.enable = false;             
-  modules.android.enable = true;    
-  modules.camera.enable = false;    
-  modules.recording.enable = true;             
-  modules.sound_editor.enable = true;   
+  modules.ssh.enable = false;
+  modules.ai.enable = false;
+  modules.emails.enable = true;
+  modules.flatpak.enable = false;
+  modules.notifications.enable = true;
+  modules.printing.enable = false;
+  modules.android.enable = true;
+  modules.camera.enable = false;
+  modules.recording.enable = true;
+  modules.sound_editor.enable = true;
   modules.windows.enable = true;
-  modules.audio.enable = true;     
+  modules.audio.enable = true;
   modules.gaming.enable = true;
-  modules.remote_desktop.enable = true;       
-  modules.bluetooth.enable = false; 
-  modules.community.enable = true; 
+  modules.remote_desktop.enable = true;
+  modules.bluetooth.enable = false;
+  modules.community.enable = true;
 
-  
+
   # ----------------------------------------------
   # ---- Modules Configuration (Options)
   # ----------------------------------------------
@@ -167,14 +167,14 @@
   modules.browsers.firefox.enable = false;
   modules.browsers.firefox-beta.enable = false;
   modules.browsers.microsoft-edge.enable = true;
-  
+
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
   cli_tools.prompt.enable = true;
   cli_tools.shells.enable = true;
   cli_tools.terminals.enable = true;
   cli_tools.utilities.enable = true;
 
-  # [ Community ]  
+  # [ Community ]
   modules.community.telegram.enable = true;
   modules.community.ferdium.enable = false;
   modules.community.discord.enable = false;
@@ -267,7 +267,7 @@
     main.antialiasing = "grayscale";
     main.hinting = "medium"; # (one of "none", "slight", "medium", "full")
     main.rendering = "automatic";
-    main.rgba_order = "rgb";        
+    main.rgba_order = "rgb";
     main.size.main = 12; # The main font size
     main.size.apps = 14;
     main.size.desktop = 15;
@@ -350,7 +350,7 @@
   modules.networking.networkManager = true;
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = false;
+  modules.networking.rtl8188eus-aircrack = true;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
 
@@ -362,7 +362,7 @@
   modules.office.obsidian = true;
   modules.office.libreoffice = true;
   modules.office.translators.enable = true;
-  
+
   # [ overclock ]
   modules.overclock.corectrl.enable = true;
   modules.overclock.lactd.enable = true;
@@ -379,7 +379,7 @@
   modules.recording.screen.obs = false;
   modules.recording.screen.wf_recorder = false;
   modules.recording.sound.enable = false;
-  
+
   # [ remote_desktop ]
   modules.remote_desktop.rdp.enable = true;
 
@@ -407,7 +407,7 @@
   # [sound_editor]
   modules.sound_editor.audacity = false;
 
-  # [ storage ] 
+  # [ storage ]
   modules.storage.fstrim.enable = true;
   modules.storage.beesd.enable = false;
 
@@ -586,7 +586,7 @@
       options usbcore autosuspend=-1
       options binder_linux devices=binder,hwbinder,vndbinder
     '';
-    boot.initrd.kernelModules = [ 
+    boot.initrd.kernelModules = [
        "amdgpu"
        "radeon"
      ];
