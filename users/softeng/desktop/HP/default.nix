@@ -376,6 +376,8 @@
   modules.power.powerManagement.powertop = true;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"
   modules.power.powerManagement.cpuFreqGovernor = "performance";
+  modules.power.powerManagement.cpufreq.min = 800000; # 800MHz
+  modules.power.powerManagement.cpufreq.max = 4100000; # 4.1GHz
 
   # [ Recording ]
   modules.recording.screen.enable = true;

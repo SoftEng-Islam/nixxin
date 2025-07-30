@@ -1,37 +1,31 @@
+# ------------------------------------------------
+# ---- Power Configuration
+# ------------------------------------------------
+# In this module, we configure power management settings for the system.
+# This includes CPU frequency scaling, power management services, and TLP settings.
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.power.enable or true) {
-  # ------------------------------------------------
-  # ---- Power Configuration
-  # ------------------------------------------------
-  # Best Power Optimizations for a Desktop
-  powerManagement = {
-    enable = settings.modules.power.powerManagement.enable;
+let _power = settings.modules.power;
+in lib.mkIf (_power.enable or true) {
 
-    # enable powertop auto tuning on startup.
-    powertop.enable = settings.modules.power.powerManagement.powertop;
+  powerManagement.enable = _power.powerManagement.enable;
+  # enable powertop auto tuning on startup.
+  powerManagement.powertop.enable = _power.powerManagement.powertop;
 
-    # Often used values: "schedutil", "ondemand", "powersave", "performance"
-    # => "performance": Runs at max frequency always
-    # :: Best for gaming & real-time workloads
-    # => "powersave": Runs at lowest frequency possible
-    # :: Best for battery life
-    # => "ondemand": Increases frequency when needed
-    # :: Older, but decent balance
-    # => "schedutil": Dynamically scales based on task scheduling
-    # :: Best for modern CPUs (recommended)
-    cpuFreqGovernor = settings.modules.power.powerManagement.cpuFreqGovernor;
-    # Than verify the governor:
-    # cat /sys/devices/system/cpu/cpu*/cpufreq/scaling_governor
+  # Often used values: "schedutil", "ondemand", "powersave", "performance".
+  # [performance]: Runs at max frequency always :: Best for gaming & real-time workloads
+  # [powersave]: Runs at lowest frequency possible :: Best for battery life
+  # [ondemand]: Increases frequency when needed :: Older, but decent balance
+  # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
+  powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
+  powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
+  powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
 
-    # cpufreq.min = 800000;
-    # cpufreq.max = 2200000;
-  };
+  # Than verify the governor:
+  # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
-  # a DBus daemon that allows changing system behavior based upon user-selected power profiles.
+  # A DBus daemon that allows changing system behavior based upon user-selected power profiles.
   # services.power-profiles-daemon.enable = false;
   # OR
-  # Whether to enable auto-cpufreq daemon.
   services.auto-cpufreq.enable = true;
 
   # Upower, a DBus service that provides power management support to applications.

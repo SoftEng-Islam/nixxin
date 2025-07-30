@@ -219,26 +219,31 @@ in {
     # AC adapter plugged/unplugged 🔌
     acpid.enable = true;
 
-    # Populates contents of /bin and /usr/bin/
-    # envfs.enable = false;
-
     # The color management daemon.
-    # colord.enable = true;
+    colord.enable = true;
 
     # An automatic device mounting daemon.
     devmon.enable = true;
 
     # A DBus service that provides location information for accessing.
     # geoclue2.enable = true;
+    # geoclue2.enableWifi = true;
+
+    # Populates contents of /bin and /usr/bin/
+    # envfs.enable = false;
 
     # A userspace virtual filesystem.
-    # gvfs.enable = true; # A lot of mpris packages require it.
+    gvfs.enable = true; # A lot of mpris packages require it.
 
     # Printing support through the CUPS daemon.
     # printing.enable = false; # Enable CUPS to print documents.
 
     # sysprof profiling daemon.
-    # sysprof.enable = true; # Whether to enable sysprof profiling daemon.
+    # sysprof is a system-wide profiler that collects performance data.
+    # It can be used to analyze the performance of applications and the system.
+    # It is useful for debugging performance issues and optimizing applications.
+    # It can be used to profile applications, system services, and the kernel.
+    sysprof.enable = true;
 
     logind.extraConfig = ''
       # don’t shutdown when power button is short-pressed
@@ -250,6 +255,9 @@ in {
     NIX_AUTO_RUN = "1"; # auto-run programs using nix-index-database
     NIXPKGS_ALLOW_UNFREE = "1"; # support for non-free (proprietary) software.
     NIXPKGS_ALLOW_INSECURE = "1";
+    # NIXPKGS_ALLOW_BROKEN = "1"; # allow broken packages to be installed.
+    # NIXPKGS_ALLOW_UNFREE_OVERLAYS = "1"; # allow unfree overlays to be used.
+    # NIXPKGS_ALLOW_BROKEN_OVERLAYS = "1"; # allow broken overlays to be used.
   };
 
   home-manager.users.${settings.user.username} = {
@@ -259,7 +267,14 @@ in {
         [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
 
       sessionVariables = {
+        # Set the default pager to less
+        # This is useful for programs that use a pager, such as `man` or `git log`
+        # It allows you to scroll through the output using the arrow keys or page up
+        # and page down keys.
+        # You can also use the space bar to scroll down one page at a time.
+        # You can also use the `q` key to quit the pager.
         PAGER = "less";
+
         LESS = "-R";
         VIRTUAL_ENV_DISABLE_PROMPT = "1";
         PIPENV_SHELL_FANCY = "1";
