@@ -138,11 +138,11 @@ in {
   };
 
   programs = {
-    
-    # - 
+
+    # -
     command-not-found.enable = true;
-    
-    # - 
+
+    # -
     fuse.userAllowOther = true;
 
     # Some programs need SUID wrappers, can be configured further or are
@@ -153,9 +153,13 @@ in {
     #   enableSSHSupport = true;
     # };
 
-
     # See https://nix.dev/permalink/stub-ld.
-    # run unpatched dynamic binaries on NixOS
+    #? what is nix-ld?
+    # Nix-ld is a tool that allows you to run unpatched dynamic binaries on NixOS.
+    # It works by creating a profile that contains the necessary libraries and
+    # environment variables to run the binary.
+    # It is similar to the `nix run` command, but it does not require
+    # the binary to be built with Nix.
     nix-ld = {
       enable = true;
       # Include libstdc++ in the nix-ld profile
@@ -179,13 +183,20 @@ in {
     };
   };
 
-
   # List services that you want to enable:
   services = {
     # Forces the GPU to always run at full power.
-    # udev.extraRules = ''
-    #   ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card0", ATTR{power_dpm_state}="performance"
-    # '';
+    # This is useful for gaming or other GPU-intensive tasks.
+    # If you have a laptop, you may want to disable this.
+    # To check if this is working, run:
+    # `lspci -k | grep -A 2 VGA`
+    # `sudo sh -c 'echo performance > /sys/class/drm/card0/device/power_dpm_state'`
+    # `sudo sh -c 'echo performance > /sys/class/drm/card1/device/power_dpm_state'`
+    # `sudo sh -c 'echo performance > /sys/class/drm/card*/device/power_dpm_state'`
+    # Note: This is not recommended for laptops, as it can cause overheating.
+    udev.extraRules = ''
+      ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card*", ATTR{power_dpm_state}="performance"
+    '';
 
     dbus.enable = true;
     dbus.dbusPackage = pkgs.dbus;
@@ -298,9 +309,7 @@ in {
 
     # Yet another nix cli helper
     nh
-    
-    
-    
+
     (pkgs.writeShellScriptBin "toggle-services" ''
       SERVICES=("$@")
 

@@ -16,7 +16,8 @@
   # ----------------------------------------------
   system.name = "nixos";
   system.hostName = "nixos"; # Hostname
-  system.profile = "desktop"; # Select a profile defined from my profiles directory
+  system.profile =
+    "desktop"; # Select a profile defined from my profiles directory
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
@@ -29,12 +30,11 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  useTmpfs = true; # disable it before install a custom Linux Kernel.
+  useTmpfs = false; # disable it before install a custom Linux Kernel.
   system.upgrade.enable = false;
   system.upgrade.allowReboot = false;
   # Run `nix-channel --list` to get channels
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
-
 
   # ----------------------------------------------
   # ---- Home-Manager Information And Configuration
@@ -52,7 +52,6 @@
   home.manual.json = false;
   home.manual.manpages = false;
 
-
   # ----------------------------------------------
   # ---- Common Is Shared configs for all Modules.
   # We have this Object because of the..
@@ -60,9 +59,9 @@
   # For Ex: You have BROWSER var, and xdg webBrowser
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
-  common.EDITOR = "nvim"; #? EDITOR Var: used for
-  common.VISUAL = "nvim"; #? VISUAL Var: used for
-  common.TERM = "xterm-256color"; #? TERM Var: used for
+  common.EDITOR = "nvim"; # ? EDITOR Var: used for
+  common.VISUAL = "nvim"; # ? VISUAL Var: used for
+  common.TERM = "xterm-256color"; # ? TERM Var: used for
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";
   common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
@@ -73,7 +72,8 @@
   # [ IDLE ] For Ex: You can set the idle-delay to 300 seconds (5 minutes) or 0 to Disable:
   common.idle = { delay = 0; };
   # [ Dotfiles ] Inforamtions ---- #
-  common.dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
+  common.dotfilesDir =
+    "/home/${user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   # [ GTK ]
   common.gtk.theme = "adw-gtk3-dark";
@@ -92,9 +92,9 @@
   common.icons.package = pkgs.papirus-icon-theme;
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
-  common.cursor.name = "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
+  common.cursor.name =
+    "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
   common.cursor.package = pkgs.bibata-cursors;
-
 
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
@@ -145,7 +145,6 @@
   modules.remote_desktop.enable = true;
   modules.bluetooth.enable = false;
   modules.community.enable = true;
-
 
   # ----------------------------------------------
   # ---- Modules Configuration (Options)
@@ -263,7 +262,8 @@
     # To Get "Path" of Font Package:
     # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
     main.name = "CaskaydiaCove Nerd Font"; # Selected Font
-    main.package = pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+    main.package =
+      pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
     main.antialiasing = "grayscale";
     main.hinting = "medium"; # (one of "none", "slight", "medium", "full")
     main.rendering = "automatic";
@@ -300,12 +300,14 @@
   modules.graphics.kolourpaint = false;
 
   # [ Hyprland ]
-  modules.desktop.hyprland.genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+  modules.desktop.hyprland.genColorsPath =
+    /home/${user.username}/.cache/hypr/colors.conf;
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = true;
   modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
   modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
-  modules.desktop.hyprland.rounding = 10; # Rounding Corners for Hyprland Windows
+  modules.desktop.hyprland.rounding =
+    10; # Rounding Corners for Hyprland Windows
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
   modules.desktop.hyprland.plugins.hyprspace = false;
@@ -344,13 +346,15 @@
   modules.media.music = false;
 
   # [networking]
-  modules.networking.dnsResolver = "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
-  modules.networking.nameservers = [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
+  modules.networking.dnsResolver =
+    "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
+  modules.networking.nameservers =
+    [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.networkManager = true;
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
 
@@ -437,14 +441,16 @@
 
   modules.system = {
     oom = false; # user-space Out-Of-Memory (OOM) killer.
-    rocm.enable = false; # Make Sure that your APU/GPU Supported before Enable it
+    rocm.enable =
+      false; # Make Sure that your APU/GPU Supported before Enable it
     radeon = false;
-    videoDrivers = ["amdgpu"];
+    videoDrivers = [ "amdgpu" ];
     boot.plymouth.enable = true;
     boot.tmp.useTmpfs = useTmpfs;
     boot.loader.timeout = 3; # seconds
     boot.loader.mode = "UEFI"; # UEFI OR BIOS
-    boot.loader.manager.name = "SYSTEMD"; # Select The boot manager "GRUB" or "SYSTEMD
+    boot.loader.manager.name =
+      "SYSTEMD"; # Select The boot manager "GRUB" or "SYSTEMD
     boot.loader.manager.grub = {
       fontSize = 14;
       osProber = true;
@@ -520,10 +526,10 @@
       "amdgpu.audio=0"
 
       # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
-       "amdgpu.dpm=1"
+      "amdgpu.dpm=1"
 
       # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
-       "amdgpu.runpm=0"
+      "amdgpu.runpm=0"
 
       # Enables FreeSync support in video playback (if supported).
       # "amdgpu.freesync_video=1"
@@ -532,24 +538,24 @@
       # "amdgpu.deep_color=1"
 
       # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
-       "amdgpu.vramlimit=4096"
+      "amdgpu.vramlimit=4096"
 
       # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
-       "amdgpu.gttsize=4096"
+      "amdgpu.gttsize=4096"
 
       # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
-       "amdgpu.unified_memory=1"
+      "amdgpu.unified_memory=1"
 
       # Controls how memory is allocated:
       # 0: Prefer VRAM
       # 1: Even balance
       # 2: Prefer GTT (shared RAM)
       # 💡 Use 2 for APUs with little VRAM.
-       "amdgpu.memory_alloc_mode=2"
+      "amdgpu.memory_alloc_mode=2"
 
       # Sets the virtual address space size in GB.
       # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
-       "amdgpu.vm_size=8"
+      "amdgpu.vm_size=8"
 
       # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
       # Larger values = fewer page table entries = better perf on large buffers.
@@ -586,13 +592,8 @@
       options usbcore autosuspend=-1
       options binder_linux devices=binder,hwbinder,vndbinder
     '';
-    boot.initrd.kernelModules = [
-       "amdgpu"
-       "radeon"
-     ];
-    boot.blacklistedKernelModules = [
-      "snd_usb_audio"
-    ];
+    boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
+    boot.blacklistedKernelModules = [ "snd_usb_audio" ];
     amdgpu.initrd = true;
     amdgpu.opencl = false;
     amdgpu.legacySupport = false;
