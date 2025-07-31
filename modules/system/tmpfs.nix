@@ -20,6 +20,13 @@ in {
   boot.tmp.tmpfsSize = settings.modules.system.boot.tmp.tmpfsSize;
   # boot.kernelParams = [ "tmpfs.size=2G" ];
 
+  # boot.kernel.sysctl = {
+  #   "vm.swappiness" = 180;
+  #   "vm.watermark_boost_factor" = 0;
+  #   "vm.watermark_scale_factor" = 125;
+  #   "vm.page-cluster" = 0;
+  # };
+
   nixpkgs.overlays = [
     # nixos-rebuild ignores tmpdir set (elsewhere in file) to avoid OOS
     # during build when tmp on tmpfs. workaround is this overlay. see:
