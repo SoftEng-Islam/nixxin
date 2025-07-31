@@ -6,8 +6,8 @@
 # -- Boot Configuration
 # -- Hardware Configuration
 # ------------------------------------------------
-
-{
+let _system = settings.modules.system;
+in {
 
   # ------------------------------------------------
   # ---- Boot Configuration
@@ -19,7 +19,7 @@
     consoleLogLevel = 0;
 
     # Boot Time out in seconds
-    loader.timeout = settings.modules.system.boot.loader.timeout;
+    loader.timeout = _system.boot.loader.timeout;
 
     # Whether the installation process is allowed to modify EFI boot variables.
     loader.efi.canTouchEfiVariables = true;
@@ -29,58 +29,27 @@
 
     # NOTE!! disable to use GRUB instead of systemd-boot
     loader.systemd-boot.enable =
-      if (settings.modules.system.boot.loader.manager.name == "SYSTEMD") then
-        true
-      else
-        false;
+      if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
 
     bootspec.enable =
-      if (settings.modules.system.boot.loader.manager.name == "SYSTEMD") then
-        true
-      else
-        false;
+      if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
 
     loader.grub = {
       enable =
-        if (settings.modules.system.boot.loader.manager.name == "GRUB") then
-          true
-        else
-          false;
+        if (_system.boot.loader.manager.name == "GRUB") then true else false;
 
-      fontSize = settings.modules.system.boot.loader.manager.grub.fontSize;
+      fontSize = _system.boot.loader.manager.grub.fontSize;
       # theme = settings.boot.loader.manager.grub.theme;
-      efiSupport = settings.modules.system.boot.loader.manager.grub.efiSupport;
-      gfxmodeEfi = settings.modules.system.boot.loader.manager.grub.gfxmodeEfi;
-      devices = settings.modules.system.boot.loader.manager.grub.devices;
+      efiSupport = _system.boot.loader.manager.grub.efiSupport;
+      gfxmodeEfi = _system.boot.loader.manager.grub.gfxmodeEfi;
+      devices = _system.boot.loader.manager.grub.devices;
 
-      device = settings.modules.system.boot.loader.manager.grub.device;
-      useOSProber = settings.modules.system.boot.loader.manager.grub.osProber;
-      theme = settings.modules.system.boot.loader.manager.grub.theme;
+      device = _system.boot.loader.manager.grub.device;
+      useOSProber = _system.boot.loader.manager.grub.osProber;
+      theme = _system.boot.loader.manager.grub.theme;
       # Make Memtest86+, a memory testing program, available from the GRUB boot menu.
       memtest86.enable = false;
-      extraConfig =
-        settings.modules.system.boot.loader.manager.grub.extraConfig;
-      # extraEntries = ''
-      #   menuentry 'Arch Linux' {
-      #   	insmod part_gpt
-      #   	insmod ext2
-      #   	search --no-floppy --fs-uuid --set=root d8ac40a1-c821-402f-b593-baf82f4efc31
-      #   	linux /boot/vmlinuz-linux root=UUID=d8ac40a1-c821-402f-b593-baf82f4efc31 rw
-      #   	initrd /boot/initramfs-linux.img
-      #   }
-
-      #   menuentry 'Windows Boot Manager (on /dev/sdb2)' --class windows --class os $menuentry_id_option 'osprober-efi-0AEE-1E17' {
-      #   	insmod part_gpt
-      #   	insmod fat
-      #   	set root='hd0,gpt1'
-      #   	if [ x$feature_platform_search_hint = xy ]; then
-      #   	  search --no-floppy --fs-uuid --set=root --hint-bios=hd0,gpt1 --hint-efi=hd0,gpt1 --hint-baremetal=ahci0,gpt1  0AEE-1E17
-      #   	else
-      #   	  search --no-floppy --fs-uuid --set=root 0AEE-1E17
-      #   	fi
-      #   	chainloader /EFI/Microsoft/Boot/bootmgfw.efi
-      #   }
-      # '';
+      extraConfig = _system.boot.loader.manager.grub.extraConfig;
     };
 
     initrd = {
@@ -97,24 +66,16 @@
         "sd_mod"
         "usb_storage"
         "usbhid"
-        # "vfio_iommu_type1"
-        # "vfio_pci"
-        # "vfio"
         "xhci_pci"
       ];
     };
-    kernelModules = settings.modules.system.boot.kernelModules;
-    blacklistedKernelModules =
-      settings.modules.system.boot.blacklistedKernelModules ++ [ "k10temp" ];
-    extraModulePackages = with config.boot.kernelPackages;
-      [
-        v4l2loopback
-        # zenpower
-      ];
+    kernelModules = _system.boot.kernelModules;
+    blacklistedKernelModules = _system.boot.blacklistedKernelModules
+      ++ [ "k10temp" ];
+    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    extraModprobeConfig = _system.boot.extraModprobeConfig;
 
-    extraModprobeConfig = settings.modules.system.boot.extraModprobeConfig;
-
-    kernelParams = settings.modules.system.boot.kernelParams ++ [
+    kernelParams = _system.boot.kernelParams ++ [
       # Reduce Boot Delay
       "quiet"
       "splash"
@@ -200,42 +161,6 @@
     ];
 
     kernel.sysctl = {
-      # Users will do scary things and suddenly require more memory,
-      # so let's take a bunch of spares from the cache so we don't OOM
-      # as easily.
-      "vm.user_reserve_kbytes" = 196608; # 1(2^17)
-      "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
-
-      #! Swap related { Virtual memory tweaks }
-      # "vm.swappiness" = 10; # Use RAM more before swapping
-      "vm.swappiness" =
-        0; # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
-
-      #! Memory management
-      # Write data to disk more frequently (prevents slowdowns)
-      "vm.dirty_ratio" = 10; # Full writeback at 10%
-      "vm.page-cluster" = 3; # Default page clustering (test with 0 if needed)
-      "vm.min_free_kbytes" =
-        65536; # Reserve 64MB of free memory (adjust as needed)
-      "vm.dirty_background_ratio" = 5; # Background writeback at 5%
-      "vm.compaction_proactiveness" =
-        0; # Default memory compaction (change to 1 if fragmentation issues arise)
-
-      # Memory security
-      "vm.mmap_rnd_bits" = 32; # Increase ASLR entropy
-      "kernel.kptr_restrict" = 2; # Hide kernel pointers
-      "kernel.dmesg_restrict" = 1; # Restrict dmesg access
-      "vm.mmap_rnd_compat_bits" = 16; # Compatible ASLR entropy
-
-      "vm.vfs_cache_pressure" = 50;
-      "vm.max_map_count" = 2147483642;
-
-      # Kernel Scheduler
-      "kernel.sched_autogroup_enabled" = 0;
-      "kernel.sched_child_runs_first" = 1;
-      "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
-      "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
-
       # Disables watchdog timer (can improve latency)
       "kernel.nmi_watchdog" = 0;
 
@@ -252,11 +177,6 @@
       "kernel.unprivileged_userns_clone" = 1;
     };
 
-    # extraModprobeConfig = ''
-    # blacklist r8188eu
-    # blacklist rtl8xxxu
-    # '';
-
     # The Linux kernel does not have Rust language support enabled by default.
     # For kernel versions 6.7 or newer,
     # experimental Rust support can be enabled.
@@ -268,7 +188,7 @@
     }];
 
     plymouth = {
-      enable = settings.modules.system.boot.plymouth.enable;
+      enable = _system.boot.plymouth.enable;
       theme = "flame";
       themePackages = with pkgs;
         [
@@ -296,11 +216,11 @@
     # cpu.amd.sev.enable = true; #?
 
     amdgpu = {
-      initrd.enable = settings.modules.system.amdgpu.initrd;
-      opencl.enable = settings.modules.system.amdgpu.opencl;
-      legacySupport.enable = settings.modules.system.amdgpu.legacySupport;
+      initrd.enable = _system.amdgpu.initrd;
+      opencl.enable = _system.amdgpu.opencl;
+      legacySupport.enable = _system.amdgpu.legacySupport;
       amdvlk = {
-        enable = settings.modules.system.amdgpu.amdvlk;
+        enable = _system.amdgpu.amdvlk;
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
@@ -361,7 +281,7 @@
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = settings.modules.system.videoDrivers;
+  services.xserver.videoDrivers = _system.videoDrivers;
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;

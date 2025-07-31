@@ -16,26 +16,26 @@ in {
     nixos.enable = _docs.nixos.enable;
   };
 
+  nix.package = pkgs.nixVersions.latest;
+  nix.gc.automatic = false;
+  nix.gc.dates = "03:15";
+  nix.gc.options = "--delete-older-than 10d";
   nix = {
-    package = pkgs.nixVersions.latest;
-    gc = {
-      automatic = false;
-      dates = "03:15";
-      options = "--delete-older-than 10d";
-    };
     settings = {
       sandbox = true;
       keep-outputs = false;
       keep-derivations = false;
       fallback = true; # don't fail if remote builder unavailable
       warn-dirty = true;
-      builders-use-substitutes = true;
-      download-buffer-size = 536870912; # 512MiB
+      max-jobs = 1;
       min-free = 1073741824; # 1 GiB
+      download-buffer-size = 536870912; # 512MiB
       use-xdg-base-directories = true;
+      builders-use-substitutes = true;
+
       # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
       http-connections = 128;
-      max-jobs = 1;
+
       # max-silent-time = 3600; # kills build after 1hr with no logging
       max-substitution-jobs = 128;
 
@@ -59,8 +59,6 @@ in {
         # high priority since it's almost always used
         "https://cache.nixos.org?priority=10"
         "https://hyprland.cachix.org?priority=10"
-
-        #"https://cache.garnix.io"
         #"https://cuda-maintainers.cachix.org"
         "https://devenv.cachix.org"
         "https://nix-community.cachix.org"
@@ -77,7 +75,6 @@ in {
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-        #"cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
       ];
     };

@@ -20,12 +20,44 @@ in {
   boot.tmp.tmpfsSize = settings.modules.system.boot.tmp.tmpfsSize;
   # boot.kernelParams = [ "tmpfs.size=2G" ];
 
-  # boot.kernel.sysctl = {
-  #   "vm.swappiness" = 180;
-  #   "vm.watermark_boost_factor" = 0;
-  #   "vm.watermark_scale_factor" = 125;
-  #   "vm.page-cluster" = 0;
-  # };
+  boot.kernel.sysctl = {
+    # Users will do scary things and suddenly require more memory,
+    # so let's take a bunch of spares from the cache so we don't OOM
+    # as easily.
+    "vm.user_reserve_kbytes" = 196608; # 1(2^17)
+    "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
+
+    #! Memory management
+    # Write data to disk more frequently (prevents slowdowns)
+    "vm.dirty_ratio" = 10; # Full writeback at 10%
+    "vm.min_free_kbytes" =
+      65536; # Reserve 64MB of free memory (adjust as needed)
+    "vm.dirty_background_ratio" = 5; # Background writeback at 5%
+    "vm.compaction_proactiveness" =
+      0; # Default memory compaction (change to 1 if fragmentation issues arise)
+
+    # Memory security
+    "vm.mmap_rnd_bits" = 32; # Increase ASLR entropy
+    "kernel.kptr_restrict" = 2; # Hide kernel pointers
+    "kernel.dmesg_restrict" = 1; # Restrict dmesg access
+    "vm.mmap_rnd_compat_bits" = 16; # Compatible ASLR entropy
+
+    #! Swap related { Virtual memory tweaks }
+    "vm.swappiness" =
+      0; # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
+    "vm.watermark_boost_factor" = 0;
+    "vm.watermark_scale_factor" = 125;
+    "vm.page-cluster" = 0;
+
+    "vm.vfs_cache_pressure" = 50;
+    "vm.max_map_count" = 2147483642;
+
+    # Kernel Scheduler
+    "kernel.sched_autogroup_enabled" = 0;
+    "kernel.sched_child_runs_first" = 1;
+    "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
+    "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
+  };
 
   nixpkgs.overlays = [
     # nixos-rebuild ignores tmpdir set (elsewhere in file) to avoid OOS

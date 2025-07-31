@@ -3,7 +3,7 @@
   imports = [
     ./brightness_control.nix
     ./configuration.nix
-    ./tmpfs.nix
+    ./memory.nix
     ./display_manager.nix
     ./btop.nix
     ./nixos.nix

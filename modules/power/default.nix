@@ -23,7 +23,7 @@ in lib.mkIf (_power.enable or true) {
   # To verify/check the current CPU frequency:
   # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
-  # A DBus daemon that allows changing system behavior based upon user-selected power profiles.
+  # This is the service that lets you pick power profiles in the gnome UI.  It conflicts with auto-cpufreq
   services.power-profiles-daemon.enable = false;
   services.auto-cpufreq.enable = true;
 
