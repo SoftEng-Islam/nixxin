@@ -30,11 +30,14 @@ in {
     #! Memory management
     # Write data to disk more frequently (prevents slowdowns)
     "vm.dirty_ratio" = 10; # Full writeback at 10%
-    "vm.min_free_kbytes" =
-      65536; # Reserve 64MB of free memory (adjust as needed)
+
+    # Reserve 64MB of free memory (adjust as needed)
+    "vm.min_free_kbytes" = 65536;
+
     "vm.dirty_background_ratio" = 5; # Background writeback at 5%
-    "vm.compaction_proactiveness" =
-      0; # Default memory compaction (change to 1 if fragmentation issues arise)
+
+    # Default memory compaction (change to 1 if fragmentation issues arise)
+    "vm.compaction_proactiveness" = 0;
 
     # Memory security
     "vm.mmap_rnd_bits" = 32; # Increase ASLR entropy
@@ -43,8 +46,8 @@ in {
     "vm.mmap_rnd_compat_bits" = 16; # Compatible ASLR entropy
 
     #! Swap related { Virtual memory tweaks }
-    "vm.swappiness" =
-      0; # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
+    # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
+    "vm.swappiness" = 0;
     "vm.watermark_boost_factor" = 0;
     "vm.watermark_scale_factor" = 125;
     "vm.page-cluster" = 0;
