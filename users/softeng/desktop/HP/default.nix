@@ -30,7 +30,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  useTmpfs = false; # disable it before install a custom Linux Kernel.
+  useTmpfs = true; # disable it before install a custom Linux Kernel.
   system.upgrade.enable = false;
   system.upgrade.allowReboot = false;
   # Run `nix-channel --list` to get channels
@@ -450,6 +450,7 @@
     videoDrivers = [ "amdgpu" ];
     boot.plymouth.enable = true;
     boot.tmp.useTmpfs = useTmpfs;
+    boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
     boot.loader.timeout = 3; # seconds
     boot.loader.mode = "UEFI"; # UEFI OR BIOS
     boot.loader.manager.name =

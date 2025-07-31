@@ -17,8 +17,8 @@ in {
   # If not using tmpfs, which is naturally purged on reboot, we must clean it
   # /tmp ourselves. /tmp should be volatile storage!
   boot.tmp.cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
-  boot.kernelParams = [ "tmpfs.size=2G" ];
-  boot.tmp.tmpfsSize = "50%";
+  boot.tmp.tmpfsSize = settings.modules.system.boot.tmp.tmpfsSize;
+  # boot.kernelParams = [ "tmpfs.size=2G" ];
 
   nixpkgs.overlays = [
     # nixos-rebuild ignores tmpdir set (elsewhere in file) to avoid OOS
