@@ -1,14 +1,6 @@
 # ---- docs.nix ---- #
 { settings, lib, pkgs, ... }:
-let
-  _docs = settings.modules.system.docs;
-
-  # /var/tmp doesn't seem to be on tmpfs like /tmp (when using zram) but
-  # seems to contain near duplicate systemd unit folders?...
-  # dir must exist on a new system to avoid error as nixos-rebuild uses
-  # mktemp -d and won't implicitly create parents
-  nixTmpDir = "/var/tmp";
-
+let _docs = settings.modules.system.docs;
 in {
 
   # For Faster Rebuilding Disable These
@@ -292,35 +284,6 @@ in {
         ERL_AFLAGS = "-kernel shell_history enabled";
       };
     };
-  };
-
-  nixpkgs.overlays = [
-    # nixos-rebuild ignores tmpdir set (elsewhere in file) to avoid OOS
-    # during build when tmp on tmpfs. workaround is this overlay. see:
-    # https://github.com/NixOS/nixpkgs/issues/293114#issuecomment-2381582141
-    (_final: prev: {
-      nixos-rebuild = prev.nixos-rebuild.overrideAttrs (oldAttrs: {
-        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ prev.makeWrapper ];
-        postInstall = oldAttrs.postInstall + ''
-          wrapProgram $out/bin/nixos-rebuild --set TMPDIR ${nixTmpDir}
-        '';
-      });
-    })
-  ];
-
-  # prevent OOS error during builds when using zram/tmp on tmpfs
-  systemd.services.nix-daemon.environment.TMPDIR = nixTmpDir;
-  systemd.tmpfiles.rules = [ "d ${nixTmpDir} 0755 root root 1d" ];
-  # OOM config (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)
-  systemd.slices."nix-daemon".sliceConfig = {
-    ManagedOOMMemoryPressure = "kill";
-    ManagedOOMMemoryPressureLimit = "90%";
-  };
-  systemd.services."nix-daemon".serviceConfig = {
-    Slice = "nix-daemon.slice";
-    # If kernel OOM does occur, strongly prefer
-    # killing nix-daemon child processes
-    OOMScoreAdjust = 1000;
   };
 
   environment.systemPackages = with pkgs; [

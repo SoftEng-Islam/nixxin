@@ -104,7 +104,8 @@
       ];
     };
     kernelModules = settings.modules.system.boot.kernelModules;
-    blacklistedKernelModules = settings.modules.system.boot.blacklistedKernelModules ++ [ "k10temp" ];
+    blacklistedKernelModules =
+      settings.modules.system.boot.blacklistedKernelModules ++ [ "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages;
       [
         v4l2loopback
@@ -126,7 +127,7 @@
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-       ''acpi_osi="Windows 2020"''
+      ''acpi_osi="Windows 2020"''
       # "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
@@ -285,12 +286,12 @@
   hardware = {
     firmware = with pkgs; [ linux-firmware sof-firmware wireless-regdb ];
     # one of "xz", "zstd", "none", "auto"
-    firmwareCompression = "zstd"; #?
+    firmwareCompression = "zstd"; # ?
 
     uinput.enable = true;
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
-    
+
     cpu.amd.updateMicrocode = true;
     # cpu.amd.sev.enable = true; #?
 
@@ -399,19 +400,6 @@
     SystemMaxFileSize=50M
   '';
 
-  # user-space Out-Of-Memory (OOM) killer.
-  # It’s a smarter and more targeted way to deal with low memory situations compared to the traditional kernel OOM killer.
-  systemd.oomd = {
-    # It will start monitoring system memory pressure and can proactively kill processes when memory is critically low — before the system freezes or hits swap hard.
-    enable = settings.modules.system.oom;
-    # Use this to prevent system services (like daemons) from bringing down the whole system if memory gets tight.
-    enableRootSlice = true;
-    # Helps avoid a runaway background service from eating up all memory.
-    enableSystemSlice = true;
-    # If a user process uses too much RAM, oomd can kill it to protect the rest of the system.
-    enableUserSlices = true;
-  };
-
   # ------------------------------------------------
   # ---- Variables
   # ------------------------------------------------
@@ -449,5 +437,4 @@
   };
 
   environment.memoryAllocator.provider = "libc";
-
 }

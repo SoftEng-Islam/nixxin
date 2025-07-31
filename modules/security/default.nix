@@ -5,7 +5,7 @@
 # It includes settings for kernel protection, sudo configuration,
 # polkit, rtkit, tpm2 support, and system security tweaks.
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
-{ settings, config, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }: {
   # imports = [ ./gpg_agent.nix ];
   config = lib.mkIf (settings.modules.security.enable or true) {
     security = {
@@ -77,19 +77,6 @@
       # So we don't have to do this later...
       acme.acceptTerms = true;
     };
-
-    #? [boot.tmp.useTmpfs] What it does:
-    # Mounts /tmp as a tmpfs — a RAM-backed filesystem.
-    # This means files in /tmp are stored in memory, not on your SSD or disk.
-    # Very fast read/write (RAM speed)
-    # Good for SSD lifespan (fewer writes)
-    # Automatically wiped on reboot (volatile — nothing persists).
-    boot.tmp.useTmpfs = lib.mkDefault settings.modules.system.boot.tmp.useTmpfs;
-    # If not using tmpfs, which is naturally purged on reboot, we must clean it
-    # /tmp ourselves. /tmp should be volatile storage!
-    boot.tmp.cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
-    boot.kernelParams = [ "tmpfs.size=2G" ];
-    boot.tmp.tmpfsSize = "50%";
 
     # Fix a security hole in place for backwards compatibility. See desc in
     # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
