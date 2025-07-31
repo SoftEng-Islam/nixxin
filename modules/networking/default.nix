@@ -6,6 +6,7 @@ in {
   imports =
     [ ./dnsmasq.nix ./iwd.nix ./RTL8188EUS.nix ./rtw.nix ./waypipe.nix ];
 
+  # disable waiting for network to be online during boot.
   boot.initrd.systemd.network.wait-online.enable = false;
 
   systemd.network.enable = true;
@@ -13,6 +14,12 @@ in {
   systemd.network.wait-online.timeout = 0;
   systemd.network.wait-online.anyInterface = false;
 
+  # avahi-daemon is a service that implements the mDNS/DNS-SD protocol, allowing devices to discover each other on a local network without needing a central DNS server.
+  # It is commonly used for service discovery in local networks, such as finding printers, file shares, and other devices.
+  # avahi-daemon is often used in conjunction with NetworkManager or systemd-networkd to provide mDNS support.
+  # It allows devices to advertise their services and discover services offered by other devices on the same local network.
+  # avahi-daemon is typically used in home networks or small office networks where devices need to communicate with each other without manual configuration
+  # or a central DNS server.
   services.avahi.enable = true;
   services.avahi.publish.enable = true;
   services.avahi.publish.userServices = true;
@@ -40,12 +47,12 @@ in {
 
     interfaces.enp4s0 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
-      ipv4.addresses = [{
-        # sudo ip addr flush dev enp4s0
-        # sudo ip addr add 192.168.10.2/24 dev enp4s0
-        address = "192.168.10.1"; # Set static IP for local RDP
-        prefixLength = 24;
-      }];
+      # ipv4.addresses = [{
+      #   # sudo ip addr flush dev enp4s0
+      #   # sudo ip addr add 192.168.10.2/24 dev enp4s0
+      #   address = "192.168.10.1"; # Set static IP for local RDP
+      #   prefixLength = 24;
+      # }];
     };
 
     # defaultGateway = "192.168.1.1";
@@ -53,8 +60,8 @@ in {
     # ip route | grep default
     # nmcli device show wlan0 | grep IP4.GATEWAY
     # defaultGateway = {
-    # interface = "wlp0s22f2u4";
-    # address = "192.168.2.1"; # e.g., 192.168.1.1
+    #   interface = "wlp0s22f2u4";
+    #   address = "192.168.2.1"; # e.g., 192.168.1.1
     # };
 
     # nat = {
@@ -95,7 +102,7 @@ in {
   };
 
   networking.nftables = {
-    enable = true;
+    enable = false; # Use nftables instead of iptables
     ruleset = ''
       table ip nat {
         chain postrouting {

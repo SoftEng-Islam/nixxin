@@ -1,8 +1,14 @@
 # ---- docs.nix ---- #
 { settings, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf;
   _docs = settings.modules.system.docs;
+
+  # /var/tmp doesn't seem to be on tmpfs like /tmp (when using zram) but
+  # seems to contain near duplicate systemd unit folders?...
+  # dir must exist on a new system to avoid error as nixos-rebuild uses
+  # mktemp -d and won't implicitly create parents
+  nixTmpDir = "/var/tmp";
+
 in {
 
   # For Faster Rebuilding Disable These
@@ -27,16 +33,21 @@ in {
     };
     settings = {
       sandbox = true;
-      # connect-timeout = 500; # 0 means no limit
-      # download-attempts = 4;
-      #http-connections = 0; # 0 means no limit
       keep-outputs = false;
       keep-derivations = false;
-      fallback = true;
+      fallback = true; # don't fail if remote builder unavailable
       warn-dirty = true;
       builders-use-substitutes = true;
+      download-buffer-size = 536870912; # 512MiB
+      min-free = 1073741824; # 1 GiB
+      use-xdg-base-directories = true;
+      # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
+      http-connections = 128;
+      max-jobs = 1;
+      # max-silent-time = 3600; # kills build after 1hr with no logging
+      max-substitution-jobs = 128;
 
-      # Auto clear nixos store
+      # Optimise new store contents - `nix-store optimise` cleans old
       auto-optimise-store = true;
 
       trusted-users = [ "@wheel" "root" "${settings.user.username}" ];
@@ -280,6 +291,38 @@ in {
         PIPENV_SHELL_FANCY = "1";
         ERL_AFLAGS = "-kernel shell_history enabled";
       };
+    };
+  };
+
+  nixpkgs.overlays = [
+    # nixos-rebuild ignores tmpdir set (elsewhere in file) to avoid OOS
+    # during build when tmp on tmpfs. workaround is this overlay. see:
+    # https://github.com/NixOS/nixpkgs/issues/293114#issuecomment-2381582141
+    (_final: prev: {
+      nixos-rebuild = prev.nixos-rebuild.overrideAttrs (oldAttrs: {
+        nativeBuildInputs = oldAttrs.nativeBuildInputs ++ [ prev.makeWrapper ];
+        postInstall = oldAttrs.postInstall + ''
+          wrapProgram $out/bin/nixos-rebuild --set TMPDIR ${nixTmpDir}
+        '';
+      });
+    })
+  ];
+
+  systemd = {
+    # prevent OOS error during builds when using zram/tmp on tmpfs
+    services.nix-daemon.environment.TMPDIR = nixTmpDir;
+    tmpfiles.rules = [ "d ${nixTmpDir} 0755 root root 1d" ];
+
+    # OOM config (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)
+    slices."nix-daemon".sliceConfig = {
+      ManagedOOMMemoryPressure = "kill";
+      ManagedOOMMemoryPressureLimit = "90%";
+    };
+    services."nix-daemon".serviceConfig = {
+      Slice = "nix-daemon.slice";
+      # If kernel OOM does occur, strongly prefer
+      # killing nix-daemon child processes
+      OOMScoreAdjust = 1000;
     };
   };
 

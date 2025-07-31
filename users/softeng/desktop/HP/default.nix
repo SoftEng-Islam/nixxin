@@ -371,7 +371,7 @@
   modules.overclock.corectrl.enable = true;
   modules.overclock.lactd.enable = true;
 
-  # [Power]
+  # [ Power ]
   modules.power.powerManagement.enable = true;
   modules.power.powerManagement.powertop = true;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"

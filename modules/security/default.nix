@@ -1,10 +1,13 @@
-{ settings, config, lib, pkgs, ... }:
-
-let inherit (lib) mkIf;
-in {
+# ----------------------------------------------
+# ---- Security Module Configuration
+# ----------------------------------------------
+# This Module configures security settings for the system.
+# It includes settings for kernel protection, sudo configuration,
+# polkit, rtkit, tpm2 support, and system security tweaks.
+# It also sets up systemd-boot, kernel parameters, and user namespaces.
+{ settings, config, lib, pkgs, ... }: {
   # imports = [ ./gpg_agent.nix ];
-
-  config = mkIf (settings.modules.security.enable) {
+  config = lib.mkIf (settings.modules.security.enable or true) {
     security = {
       # System security tweaks
       protectKernelImage = true;
@@ -39,11 +42,11 @@ in {
       '';
 
       # Swaylock needs an entry in PAM to proberly unlock
-      pam.services.swaylock.text = ''
-        # PAM configuration file for the swaylock screen locker. By default, it includes
-        # the 'login' configuration file (see /etc/pam.d/login)
-        auth include login
-      '';
+      # pam.services.swaylock.text = ''
+      #   # PAM configuration file for the swaylock screen locker. By default, it includes
+      #   # the 'login' configuration file (see /etc/pam.d/login)
+      #   auth include login
+      # '';
 
       # Remove certain resource limits for programs that needs them gone, mostly for heavier emulators.
       pam.loginLimits = [
@@ -78,21 +81,16 @@ in {
     #? [boot.tmp.useTmpfs] What it does:
     # Mounts /tmp as a tmpfs — a RAM-backed filesystem.
     # This means files in /tmp are stored in memory, not on your SSD or disk.
-    #* ✅ Pros:
     # Very fast read/write (RAM speed)
     # Good for SSD lifespan (fewer writes)
     # Automatically wiped on reboot (volatile — nothing persists).
-    #* 🔄 Why lib.mkDefault true?
-    # This makes it the default unless explicitly overridden elsewhere (e.g., in another module or config).
-    # tmpfs = /tmp is mounted in ram. Doing so makes temp file management speedy
-    # on ssd systems, and volatile! Because it's wiped on reboot.
     boot.tmp.useTmpfs = lib.mkDefault settings.modules.system.boot.tmp.useTmpfs;
     # If not using tmpfs, which is naturally purged on reboot, we must clean it
     # /tmp ourselves. /tmp should be volatile storage!
-    boot.tmp.cleanOnBoot = let cleaningMakesSense = !config.boot.tmp.useTmpfs;
-    in cleaningMakesSense;
-
+    boot.tmp.cleanOnBoot = lib.mkDefault (!config.boot.tmp.useTmpfs);
     boot.kernelParams = [ "tmpfs.size=2G" ];
+    boot.tmp.tmpfsSize = "50%";
+
     # Fix a security hole in place for backwards compatibility. See desc in
     # nixpkgs/nixos/modules/system/boot/loader/systemd-boot/systemd-boot.nix
     boot.loader.systemd-boot.editor = false;
