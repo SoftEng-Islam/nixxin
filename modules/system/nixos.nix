@@ -308,22 +308,19 @@ in {
     })
   ];
 
-  systemd = {
-    # prevent OOS error during builds when using zram/tmp on tmpfs
-    services.nix-daemon.environment.TMPDIR = nixTmpDir;
-    tmpfiles.rules = [ "d ${nixTmpDir} 0755 root root 1d" ];
-
-    # OOM config (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)
-    slices."nix-daemon".sliceConfig = {
-      ManagedOOMMemoryPressure = "kill";
-      ManagedOOMMemoryPressureLimit = "90%";
-    };
-    services."nix-daemon".serviceConfig = {
-      Slice = "nix-daemon.slice";
-      # If kernel OOM does occur, strongly prefer
-      # killing nix-daemon child processes
-      OOMScoreAdjust = 1000;
-    };
+  # prevent OOS error during builds when using zram/tmp on tmpfs
+  systemd.services.nix-daemon.environment.TMPDIR = nixTmpDir;
+  systemd.tmpfiles.rules = [ "d ${nixTmpDir} 0755 root root 1d" ];
+  # OOM config (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)
+  systemd.slices."nix-daemon".sliceConfig = {
+    ManagedOOMMemoryPressure = "kill";
+    ManagedOOMMemoryPressureLimit = "90%";
+  };
+  systemd.services."nix-daemon".serviceConfig = {
+    Slice = "nix-daemon.slice";
+    # If kernel OOM does occur, strongly prefer
+    # killing nix-daemon child processes
+    OOMScoreAdjust = 1000;
   };
 
   environment.systemPackages = with pkgs; [
