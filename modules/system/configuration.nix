@@ -213,7 +213,14 @@ in {
     enableRedistributableFirmware = true;
 
     cpu.amd.updateMicrocode = true;
-    # cpu.amd.sev.enable = true; #?
+
+    # What is the cpu.amd.sev.enable?
+    # AMD Secure Encrypted Virtualization (SEV) is a technology that allows virtual machines
+    # to run with encrypted memory, providing an additional layer of security.
+    # It is typically used in server environments to protect sensitive data in virtual machines.
+    # It is not commonly used on desktop systems, and enabling it may not be necessary unless
+    # you have specific security requirements or are running virtual machines that benefit from it.
+    cpu.amd.sev.enable = false;
 
     amdgpu = {
       initrd.enable = _system.amdgpu.initrd;
