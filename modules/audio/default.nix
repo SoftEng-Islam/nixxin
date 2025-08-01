@@ -4,13 +4,32 @@ in {
   imports = [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable or true) {
-
-    home-manager.users.${settings.user.username}.xdg.configFile."wireplumber/main.lua.d/50-default-sink.lua".text =
-      ''
-        default_audio_sink = "alsa_output.pci-0000_00_14.2.analog-stereo"
+    # WirePlumber configuration [https://wiki.archlinux.org/title/WirePlumber]
+    # To get The id of your audio sink, run:
+    # wpctl status
+    # Then use the inspect command to view the object's detail and list all properties in that object:
+    # wpctl inspect {object_id}
+    environment.etc = {
+      "wireplumber/wireplumber.conf.d/set-priorities.conf".text = ''
+        monitor.alsa.rules = [
+          {
+            matches = [
+              {
+                node.name = "alsa_output.pci-0000_00_14.2.analog-stereo"
+              }
+            ]
+            actions = {
+              update-props = {
+                priority.driver = 100
+                priority.session = 100
+              }
+            }
+          }
+        ]
       '';
+    };
 
-    boot.kernelModules = [ "snd_emu10k1" ];
+    # boot.kernelModules = [ "snd_emu10k1" ];
 
     # Better scheduling for better CPU cycles & audio performance
     # services.system76-scheduler = { enable = true; };
