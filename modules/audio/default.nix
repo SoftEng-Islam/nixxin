@@ -4,6 +4,12 @@ in {
   imports = [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable or true) {
+
+    home-manager.users.${settings.user.username}.xdg.configFile."wireplumber/main.lua.d/50-default-sink.lua".text =
+      ''
+        default_audio_sink = "alsa_output.pci-0000_00_14.2.analog-stereo"
+      '';
+
     boot.kernelModules = [ "snd_emu10k1" ];
 
     # Better scheduling for better CPU cycles & audio performance
