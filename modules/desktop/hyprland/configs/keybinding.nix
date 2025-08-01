@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ settings, pkgs, ... }:
 # let socat = lib.getExe pkgs.socat; in
 {
   home-manager.users.${settings.user.username} = {
@@ -218,7 +218,7 @@
       bindm = $main, mouse:272, movewindow # $main + `Left` Click
       bindm = $main, mouse:273, resizewindow # $main + `Right` Click
 
-      # ---- Screen snip ---- #
+      # ---- Screen Snip ---- #
       bind = Ctrl, Print, exec, grim -g "$(slurp)" - | swappy -f - # Screen snip >> edit
       bind = $main SHIFT, S, exec, mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_"$(date '+%Y-%m-%d_%H.%M.%S')".png # Screen snip
 
@@ -234,8 +234,16 @@
       # bind = Super+Shift,T,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract -l eng "tmp.png" - | wl-copy && rm "tmp.png" # Screen snip to text >> clipboard
       # bind = Ctrl+Super+Shift,S,exec,grim -g "$(slurp $SLURP_ARGS)" "tmp.png" && tesseract "tmp.png" - | wl-copy && rm "tmp.png" # [hidden]
 
-      # ---- Color picker ---- #
+      # ---- Color Picker ---- #
       bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
+
+      # ---- audio volume bindings ---- #
+      binddel=,XF86AudioRaiseVolume,Raise volume 󰝝 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      binddel=,XF86AudioLowerVolume,Lower volume 󰝞 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      binddl=,XF86AudioMute,Toggle mute 󰝟 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SINK@ toggle
+
+      # ---- audio mic bindings ---- #
+      bindl=,XF86AudioMicMute, exec, "${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SOURCE@ toggle
     '';
   };
 }
