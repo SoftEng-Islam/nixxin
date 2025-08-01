@@ -10,6 +10,10 @@ in {
     # Then use the inspect command to view the object's detail and list all properties in that object:
     # wpctl inspect {object_id}
     environment.etc = {
+      "pulse/default.pa".text = ''
+        set-default-sink alsa_output.pci-0000_00_14.2.analog-stereo
+      '';
+
       "wireplumber/wireplumber.conf.d/set-priorities.conf".text = ''
         monitor.alsa.rules = [
           {
