@@ -1,4 +1,6 @@
 { settings, lib, pkgs, ... }:
+# https://wiki.archlinux.org/title/WirePlumber
+# https://wiki.archlinux.org/title/PulseAudio/Examples
 let inherit (lib) mkIf;
 in {
   imports = [ ./rnnoise.nix ];

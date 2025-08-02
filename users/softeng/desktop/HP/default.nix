@@ -354,7 +354,7 @@
   modules.networking.networkManager = true;
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
 
@@ -496,6 +496,9 @@
       # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
       "amd_iommu=off"
 
+      "split_lock_mitigate=off" # prevents some games from being slowed
+      "random.trust_cpu=on"
+
       # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
       "amdgpu.sched_hw_submission=4"
 
@@ -576,10 +579,16 @@
       "amdgpu.noretry=0" # Improve memory handling
     ];
     boot.kernelModules = [
-      # "amd-pstate"
-      # "zenpower"
-      "amdgpu"
-      "radeon"
+      "amd-pstate" # AMD CPU P-State driver for better power management
+      "acpi_cpufreq" # ACPI CPU frequency scaling driver
+      "cpufreq_performance"
+      "cpufreq_powersave"
+      "cpufreq_ondemand"
+      "cpufreq_conservative"
+      "amdgpu" # AMD GPU driver
+      "radeon" # Legacy AMD GPU driver (for older cards)
+      "k10temp" # Temperature monitoring
+      "i2c_hid" # Input devices
       "binder_linux"
       "usbhid"
       "usbcore"
@@ -587,7 +596,7 @@
       "bfq"
       "coretemp"
       "fuse"
-      "kvm-amd"
+      "kvm-amd" # AMD Virtualization
       "msr"
       "uinput"
       "v4l2loopback"
