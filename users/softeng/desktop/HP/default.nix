@@ -542,6 +542,8 @@
       # Enables FreeSync support in video playback (if supported).
       # "amdgpu.freesync_video=1"
 
+      "processor.ignore_ppc=1"
+
       # Enables 10-bit or 12-bit deep color support (if monitor supports it).
       # "amdgpu.deep_color=1"
 
@@ -586,6 +588,7 @@
       "cpufreq_powersave"
       "cpufreq_ondemand"
       "cpufreq_conservative"
+      "powernow-k8"
       "amdgpu" # AMD GPU driver
       "radeon" # Legacy AMD GPU driver (for older cards)
       "k10temp" # Temperature monitoring
