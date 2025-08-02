@@ -496,6 +496,7 @@
       # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
       "amd_iommu=off"
 
+      "amdgpu.tearfree=1"
       "split_lock_mitigate=off" # prevents some games from being slowed
       "random.trust_cpu=on"
 
