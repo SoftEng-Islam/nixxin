@@ -354,7 +354,7 @@
   modules.networking.networkManager = true;
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = false;
+  modules.networking.rtl8188eus-aircrack = true;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
 
