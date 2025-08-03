@@ -45,15 +45,7 @@ in {
     dhcpcd.enable = false;
     useNetworkd = true;
 
-    interfaces.eno1 = {
-      useDHCP = false; # Disable DHCP (so no default route or DNS is set)
-      # ipv4.addresses = [{
-      #   # sudo ip addr flush dev enp4s0
-      #   # sudo ip addr add 192.168.10.2/24 dev enp4s0
-      #   address = "192.168.10.1"; # Set static IP for local RDP
-      #   prefixLength = 24;
-      # }];
-    };
+    interfaces = settings.modules.networking.interfaces;
 
     # defaultGateway = "192.168.1.1";
 
@@ -81,14 +73,13 @@ in {
     # };
   };
 
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [ 53 80 443 8080 3389 ];
-    allowedUDPPorts = [ 53 67 ];
-  };
+  networking.firewall.enable = settings.modules.networking.firewall.enable;
+  networking.firewall.allowedTCPPorts = [ 53 80 443 8080 3389 ];
+  networking.firewall.allowedUDPPorts = [ 53 67 ];
 
+  # Use nftables instead of iptables
+  networking.nftables.enable = settings.modules.networking.nftables.enable;
   networking.nftables = {
-    enable = false; # Use nftables instead of iptables
     ruleset = ''
       table ip nat {
         chain postrouting {
@@ -112,10 +103,8 @@ in {
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
-  networking.wireless = {
-    enable = false;
-    scanOnLowSignal = false;
-  };
+  networking.wireless.enable = false;
+  networking.wireless.scanOnLowSignal = false;
 
   networking.networkmanager = {
     enable = settings.modules.networking.networkManager;

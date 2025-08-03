@@ -352,11 +352,24 @@
     [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.networkManager = true;
+  modules.networking.interfaces = {
+    eno1 = {
+      useDHCP = false; # Disable DHCP (so no default route or DNS is set)
+      # ipv4.addresses = [{
+      #   # sudo ip addr flush dev enp4s0
+      #   # sudo ip addr add 192.168.10.2/24 dev enp4s0
+      #   address = "192.168.10.1"; # Set static IP for local RDP
+      #   prefixLength = 24;
+      # }];
+    };
+  };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
   modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
+  modules.networking.firewall.enable = true;
+  modules.networking.nftables.enable = false; # Use nftables instead of iptables
 
   # [office]
   modules.office.siyuan = true;
