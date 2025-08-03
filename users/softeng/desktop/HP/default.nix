@@ -30,7 +30,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  useTmpfs = true; # disable it before install a custom Linux Kernel.
+  useTmpfs = false; # disable it before install a custom Linux Kernel.
   system.upgrade.enable = false;
   system.upgrade.allowReboot = false;
   # Run `nix-channel --list` to get channels
