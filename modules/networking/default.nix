@@ -45,7 +45,7 @@ in {
     dhcpcd.enable = false;
     useNetworkd = true;
 
-    interfaces.enp4s0 = {
+    interfaces.eno1 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       # ipv4.addresses = [{
       #   # sudo ip addr flush dev enp4s0
