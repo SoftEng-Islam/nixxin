@@ -159,9 +159,6 @@ in {
     ethernet = { macAddress = "preserve"; };
   };
 
-  # environment.etc."NetworkManager/system-connections".source =
-  #   "/var/lib/NetworkManager/system-connections";
-
   # Wifi PowerManagement
   # environment.etc."NetworkManager/conf.d/99-wifi-no-powersave.conf".text = ''
   #   [connection]
@@ -173,46 +170,6 @@ in {
   #   wifi.backend = iwd
   #   wifi.scan-rand-mac-address = false
   # '';
-
-  # environment.etc."NetworkManager/conf.d/wifi_rand_mac.conf" = {
-  #   text = ''
-  #     [device-mac-randomization]
-  #     # "yes" is already the default for scanning
-  #     wifi.scan-rand-mac-address=yes
-
-  #     [connection-mac-randomization]
-  #     # Randomize MAC for every ethernet connection
-  #     #ethernet.cloned-mac-address=random
-  #     # Generate a random MAC ethernet connection
-  #     ethernet.cloned-mac-address=stable
-  #     # Generate a randomized value upon each connection
-  #     #wifi.cloned-mac-address=random
-  #     # Generate a random MAC for each WiFi and associate the two permanently
-  #     wifi.cloned-mac-address=stable
-  #   '';
-  #   mode = "0400";
-  # };
-
-  # the default backend is "wpa_supplicant".
-  # wpa_supplicant reliably picks weak APs to connect to.
-  # see: <https://gitlab.freedesktop.org/NetworkManager/NetworkManager/-/issues/474>
-  # iwd is an alternative that shouldn't have this problem
-  # docs:
-  # - <https://wiki.archlinux.org/title/Iwd>
-  # - <https://nixos.wiki/wiki/Iwd>
-  # - <https://iwd.wiki.kernel.org/networkmanager>
-  # - `man iwd.config`  for global config
-  # - `man iwd.network` for per-SSID config
-  # use `iwctl` to control
-  # networking.networkmanager.wifi.backend = "iwd";
-  # networking.wireless.iwd.enable = true;
-  # networking.wireless.iwd.settings = {
-  #   # auto-connect to a stronger network if signal drops below this value
-  #   # bedroom -> bedroom connection is -35 to -40 dBm
-  #   # bedroom -> living room connection is -60 dBm
-  #   General.RoamThreshold = "-52";  # default -70
-  #   General.RoamThreshold5G = "-52";  # default -76
-  # };
 
   # allow networkmanager to control systemd-resolved,
   # which it needs to do to apply new DNS settings when using systemd-resolved.
