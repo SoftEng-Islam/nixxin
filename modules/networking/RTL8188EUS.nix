@@ -39,7 +39,7 @@ lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
     [
       # Aircrack-ng kernel module for Realtek 88XXau network cards (8811au, 8812au, 8814au and 8821au chipsets) with monitor mode and injection support.
       # rtl88xxau-aircrack
-      rtl8188eus-aircrack
+      linuxKernel.packages.linux_zen.rtl8188eus-aircrack
     ];
 
   boot.kernelModules = [ "8188eu" ];
