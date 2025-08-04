@@ -91,7 +91,7 @@ in {
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
       # ''acpi_osi="Windows 2020"''
       "acpi_osi=Linux"
-      # "acpi_enforce_resources=lax"
+      "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
 
