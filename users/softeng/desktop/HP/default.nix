@@ -365,9 +365,9 @@
   };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
-  modules.networking.rtw = true;
+  modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
   modules.networking.nftables.enable = false; # Use nftables instead of iptables
 

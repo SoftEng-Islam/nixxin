@@ -1,6 +1,6 @@
 { settings, inputs, lib, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.development.languages.rust) {
+in mkIf (settings.modules.development.languages.rust or false) {
 
   # What is rust-overlay?
   #
