@@ -15,6 +15,5 @@ lib.mkIf (settings.modules.networking.rtw or false) {
 
   networking.wireless.driver = "rtw_8821cu";
 
-  environment.systemPackages = with pkgs;
-    [ linuxKernel.packages.linux_zen.rtw88 ];
+  # environment.systemPackages = with pkgs; [ linuxKernel.packages.linux_zen.rtw88 ];
 }
