@@ -6,6 +6,15 @@
 { settings, lib, pkgs, ... }:
 let _power = settings.modules.power;
 in lib.mkIf (_power.enable or true) {
+  boot.kernelModules = settings.modules.power.boot.kernelModules or [
+    "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    "cpufreq_performance" # Performance CPU frequency scaling driver
+    "cpufreq_powersave" # Powersave CPU frequency scaling driver
+    "cpufreq_ondemand" # On-demand CPU frequency scaling driver
+    "cpufreq_conservative" # Conservative CPU frequency scaling driver
+    "powernow-k8" # AMD PowerNow! driver for CPU frequency scaling
+  ];
+
   # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
   powerManagement.enable = _power.powerManagement.enable;
 
@@ -89,5 +98,6 @@ in lib.mkIf (_power.enable or true) {
     poweralertd
     powercap
     cpupower-gui
+    cpufrequtils
   ];
 }

@@ -392,6 +392,15 @@
   modules.power.powerManagement.cpufreq.min = 800000; # 800MHz
   modules.power.powerManagement.cpufreq.max = 4100000; # 4.1GHz
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
+  modules.power.boot.kernelModules = [
+    "amd-pstate" # AMD CPU P-State driver for better power management
+    "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    "cpufreq_performance"
+    "cpufreq_powersave"
+    "cpufreq_ondemand"
+    "cpufreq_conservative"
+    "powernow-k8"
+  ];
 
   # [ Recording ]
   modules.recording.screen.enable = true;
@@ -595,13 +604,6 @@
       "amdgpu.noretry=0" # Improve memory handling
     ];
     boot.kernelModules = [
-      # "amd-pstate" # AMD CPU P-State driver for better power management
-      # "acpi_cpufreq" # ACPI CPU frequency scaling driver
-      # "cpufreq_performance"
-      # "cpufreq_powersave"
-      # "cpufreq_ondemand"
-      # "cpufreq_conservative"
-      # "powernow-k8"
       "amdgpu" # AMD GPU driver
       "radeon" # Legacy AMD GPU driver (for older cards)
       "k10temp" # Temperature monitoring
