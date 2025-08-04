@@ -1,4 +1,4 @@
-{ settings, config, pkgs, ... }: {
+{ settings, config, inputs, pkgs, ... }: {
   #* OpenGL (Open Graphics Library) is a cross-platform,
   #* open standard API for rendering 2D and 3D vector graphics.
   #* It allows developers to communicate with the GPU to create visually rich applications such as:
@@ -17,6 +17,7 @@
   };
 
   environment.systemPackages = with pkgs; [
+    nixGL.packages.${system}.auto.nixGLDefault
     mesa
     mesa_glu
     mesa_i686
