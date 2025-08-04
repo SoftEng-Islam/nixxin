@@ -17,7 +17,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    inputs.nixGL.packages.${system}.nixGLDefault
+    inputs.nixGL.packages.${system}.default
     mesa
     mesa_glu
     mesa_i686
