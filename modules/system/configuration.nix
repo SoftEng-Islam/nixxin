@@ -89,17 +89,13 @@ in {
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-      ''acpi_osi="Windows 2020"''
-      # "acpi_osi=Linux"
+      # ''acpi_osi="Windows 2020"''
+      "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
 
       "elevator=bfq" # Optimized disk performance for desktops
-
-      # FX CPUs do NOT have P-State.
-      # "amd_pstate.shared_mem=1"
-      # "amd_pstate=guided" # Enable AMD P-State driver
 
       "clearcpuid=rdrand"
       "idle=nomwait"
@@ -290,9 +286,6 @@ in {
   # ------------------------------------------------
   # Video Drivers
   services.xserver.videoDrivers = _system.videoDrivers;
-
-  # Enable auto-epp for amd active pstate.
-  services.auto-epp.enable = false;
 
   # services.ucodenix = {
   # enable = true;

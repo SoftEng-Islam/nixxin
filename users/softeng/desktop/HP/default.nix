@@ -401,6 +401,11 @@
     "cpufreq_conservative"
     "powernow-k8"
   ];
+  modules.power.boot.kernelParams = [
+    # FX CPUs do NOT have P-State.
+    "amd_pstate.shared_mem=1"
+    "amd_pstate=active" # Enable AMD P-State driver
+  ];
 
   # [ Recording ]
   modules.recording.screen.enable = true;
@@ -516,7 +521,7 @@
       # Disables AMD's IOMMU (Input-Output Memory Management Unit).
       # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
       # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
-      "amd_iommu=off"
+      "amd_iommu=on"
 
       "amdgpu.tearfree=1"
       "split_lock_mitigate=off" # prevents some games from being slowed

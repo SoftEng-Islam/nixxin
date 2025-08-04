@@ -15,6 +15,11 @@ in lib.mkIf (_power.enable or true) {
     "powernow-k8" # AMD PowerNow! driver for CPU frequency scaling
   ];
 
+  boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
+
+  # Enable auto-epp for amd active pstate.
+  services.auto-epp.enable = true;
+
   # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
   powerManagement.enable = _power.powerManagement.enable;
 
