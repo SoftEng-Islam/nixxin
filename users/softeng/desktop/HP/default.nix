@@ -593,14 +593,16 @@
       "amdgpu.lockup_timeout=5000,10000,10000,5000"
 
       "amdgpu.noretry=0" # Improve memory handling
+
+      "amd_pstate=active"
     ];
     boot.kernelModules = [
       "amd-pstate" # AMD CPU P-State driver for better power management
-      "acpi_cpufreq" # ACPI CPU frequency scaling driver
-      "cpufreq_performance"
-      "cpufreq_powersave"
-      "cpufreq_ondemand"
-      "cpufreq_conservative"
+      # "acpi_cpufreq" # ACPI CPU frequency scaling driver
+      # "cpufreq_performance"
+      # "cpufreq_powersave"
+      # "cpufreq_ondemand"
+      # "cpufreq_conservative"
       "powernow-k8"
       "amdgpu" # AMD GPU driver
       "radeon" # Legacy AMD GPU driver (for older cards)
