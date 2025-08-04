@@ -5,8 +5,7 @@ lib.mkIf (settings.modules.networking.rtw or false) {
   boot.extraModulePackages = with config.boot.kernelPackages; [ rtw88 ];
 
   # Blacklist conflicting drivers (if needed)
-  boot.blacklistedKernelModules =
-    [ "rtl8812au" "rtl8xxxu" "r8188eu" "rtw_8821cu" "rtl8192cu" "rtw_core" ];
+  # boot.blacklistedKernelModules = [ "rtl8812au" "rtl8xxxu" "r8188eu" "rtw_8821cu" "rtl8192cu" "rtw_core" ];
 
   # Enable monitor mode and injection (optional)
   boot.kernelParams = [
