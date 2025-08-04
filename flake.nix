@@ -11,7 +11,7 @@
 
     nixGL.url = "github:nix-community/nixGL";
     nixGL.inputs.nixpkgs.follows = "nixpkgs";
-    nixGL.inputs.flake-utils.follows = "flake-utils";
+    # nixGL.inputs.flake-utils.follows = "flake-utils";
 
     # https://github.com/oxalica/rust-overlay
     rust-overlay.url = "github:oxalica/rust-overlay";
