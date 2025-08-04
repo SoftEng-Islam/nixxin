@@ -88,5 +88,6 @@ in lib.mkIf (_power.enable or true) {
     power-profiles-daemon
     poweralertd
     powercap
+    cpupower-gui
   ];
 }
