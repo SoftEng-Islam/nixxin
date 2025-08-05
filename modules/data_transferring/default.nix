@@ -21,7 +21,8 @@ let
     (lib.optional settings.modules.data_transferring.media-downloader.enable
       media-downloader)
     # GUI for aria2
-    (lib.optional settings.modules.data_transferring.persepolis.enable persepolis)
+    (lib.optional settings.modules.data_transferring.persepolis.enable
+      persepolis)
     # Simple download manager based on aria2 and libadwaita
     (lib.optional settings.modules.data_transferring.varia.enable varia)
     # Torrent client
@@ -43,7 +44,7 @@ in {
     ./bitmagnet.nix
   ];
   config = mkIf (settings.modules.data_transferring.enable or false) {
-    environment.systemPackages = lib.flatten _pkgs;
+    environment.systemPackages = lib.flatten _pkgs ++ [ pkgs.vdhcoapp ];
     # Download Managers & CLI Downloads Utility
     environment.variables = {
       QT_LOGGING_RULES = "qt.gui.imageio.warning=false";
