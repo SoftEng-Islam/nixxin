@@ -5,7 +5,7 @@ with pkgs;
 (let
   enable32bits = true;
   mesa-drivers = [ mesa ];
-  # ++ lib.optional enable32bits pkgsi686Linux.mesa.drivers;
+  # ++ lib.optional enable32bits pkgsi686Linux.mesa;
   intel-driver = [ intel-media-driver vaapiIntel ];
   # Note: intel-media-driver is disabled for i686 until https://github.com/NixOS/nixpkgs/issues/140471 is fixed
   # ++ lib.optionals enable32bits [ /* pkgsi686Linux.intel-media-driver */ driversi686Linux.vaapiIntel ];
@@ -13,17 +13,17 @@ with pkgs;
   # ++ lib.optional enable32bits pkgsi686Linux.libvdpau-va-gl;
   glxindirect = runCommand "mesa_glxindirect" { } ''
     mkdir -p $out/lib
-    ln -s ${mesa.drivers}/lib/libGLX_mesa.so.0 $out/lib/libGLX_indirect.so.0
+    ln -s ${mesa}/lib/libGLX_mesa.so.0 $out/lib/libGLX_indirect.so.0
   '';
   # generate a file with the listing of all the icd files
   icd = runCommand "mesa_icd" { } (
     # 64 bits icd
     ''
-      ls ${mesa.drivers}/share/vulkan/icd.d/*.json > f
+      ls ${mesa}/share/vulkan/icd.d/*.json > f
     ''
     #  32 bits ones
     # + lib.optionalString enable32bits ''
-    #   ls ${pkgsi686Linux.mesa.drivers}/share/vulkan/icd.d/*.json >> f
+    #   ls ${pkgsi686Linux.mesa}/share/vulkan/icd.d/*.json >> f
     # ''
     # concat everything as a one line string with ":" as seperator
     + ''cat f | xargs | sed "s/ /:/g" > $out'');
@@ -46,16 +46,16 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # VK_ICD_FILENAMES = "$(cat ${icd})";
 
     OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
-    __EGL_VENDOR_LIBRARY_DIRS = "${mesa.drivers}/share/glvnd/egl_vendor.d/";
+    __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
     # Rusticl OpenCL
     RUSTICL_CL_VERSION = "3.0";
     RUSTICL_DEVICE_TYPE = "gpu";
     RUSTICL_ENABLE = "radeonsi";
-    
+
     # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
     # RUSTICL_FEATURES = "fp64";
-    
+
     RUSTICL_MAX_WORK_GROUPS = "128";
 
     # Mesa OpenGL (somewhat useful)
@@ -97,8 +97,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # ZINK_SHADER_CACHE_DIR = "/home/${settings.user.username}/.cache/zink_shader_cache_db";
   };
 
-  environment.systemPackages = with pkgs;
-  [
+  environment.systemPackages = with pkgs; [
     mesa # An open source 3D graphics library
     mesa-gl-headers
     mesa_glu # OpenGL utility library
