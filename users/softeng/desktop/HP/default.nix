@@ -630,7 +630,7 @@
       options binder_linux devices=binder,hwbinder,vndbinder
     '';
     boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-    boot.blacklistedKernelModules = [ "snd_usb_audio" ];
+    boot.blacklistedKernelModules = [ "snd_usb_audio hp_wmi" ];
     amdgpu.initrd = true;
     amdgpu.opencl = false;
     amdgpu.legacySupport = false;

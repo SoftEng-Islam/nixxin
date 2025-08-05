@@ -72,9 +72,18 @@ in {
     kernelModules = _system.boot.kernelModules;
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
-    extraModulePackages = with config.boot.kernelPackages; [ v4l2loopback ];
+    boot.kernelModules = [
+      "v4l2loopback"
+      # "snd-hda-codec-realtek"
+      # "hp_wmi"
+    ];
+    extraModulePackages = [
+      # config.hardware.nvidia.package
+      config.boot.kernelPackages.v4l2loopback
+      # pkgs.snd-hda-codec-realtek
+      # pkgs.hp-wmi-fan-control
+    ];
     extraModprobeConfig = _system.boot.extraModprobeConfig;
-
     kernelParams = _system.boot.kernelParams ++ [
       # Reduce Boot Delay
       "quiet"
@@ -89,8 +98,8 @@ in {
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-      # ''acpi_osi="Windows 2020"''
-      "acpi_osi=Linux"
+      ''acpi_osi="Windows 2020"''
+      # "acpi_osi=Linux"
       "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
