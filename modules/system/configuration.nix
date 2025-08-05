@@ -69,14 +69,13 @@ in {
         "xhci_pci"
       ];
     };
-    kernelModules = _system.boot.kernelModules;
-    blacklistedKernelModules = _system.boot.blacklistedKernelModules
-      ++ [ "k10temp" ];
-    boot.kernelModules = [
+    kernelModules = _system.boot.kernelModules ++ [
       "v4l2loopback"
       # "snd-hda-codec-realtek"
       # "hp_wmi"
     ];
+    blacklistedKernelModules = _system.boot.blacklistedKernelModules
+      ++ [ "k10temp" ];
     extraModulePackages = [
       # config.hardware.nvidia.package
       config.boot.kernelPackages.v4l2loopback
