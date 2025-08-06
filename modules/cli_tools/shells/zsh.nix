@@ -153,7 +153,6 @@ in {
       # RPROMPT=$'%F{red}RPROMPT%f'
       # eval "$(starship init zsh)"
 
-
       [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
       bindkey '^P' history-beginning-search-backward
       bindkey '^N' history-beginning-search-forward
