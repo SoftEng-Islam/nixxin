@@ -1,6 +1,1 @@
-{ ... }: {
-  imports = [
-    ./lout.nix
-    # ./starship.nix
-  ];
-}
+{ ... }: { imports = [ ./starship.nix ]; }

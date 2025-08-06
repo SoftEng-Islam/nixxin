@@ -9,6 +9,7 @@ in {
     ./libreoffice.nix
     ./obsidian.nix
     ./translators.nix
+    ./lout.nix
   ];
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = lib.flatten _pkgs;
