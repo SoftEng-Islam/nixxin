@@ -38,8 +38,8 @@ let
       "$cmd_duration"
       "$status"
       "$line_break"
-      "[❯](bold purple)"
-      "\${custom.space}"
+      # "[❯](bold purple)"
+      # "\${custom.space}"
     ];
     custom.space = {
       when = "! test $env";
@@ -47,6 +47,8 @@ let
     };
     continuation_prompt = "∙  ┆ ";
     line_break = { disabled = false; };
+    line_break = { disable = false; };
+
     status = {
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
@@ -62,6 +64,15 @@ let
       vicmd_symbol = "[](bold yellow)";
       # format = "$symbol [|](bold bright-black) ";
     };
+    character = {
+      # default symbols
+      success_symbol = "[❯](green)";
+      error_symbol = "[❯](red)";
+      # success_symbol = '[➜](bold green)';
+      # error_symbol = '[✗](bold red)';
+      # success_symbol = '[\$](green)';
+      # error_symbol = '[\$](red)';
+    };
     hostname = {
       ssh_only = false;
       disabled = false;
@@ -76,21 +87,15 @@ let
       style_user = "bold blue";
     };
     cmd_duration = {
+      disabled = true;
       min_time = 1000;
-      format = "[$duration ](fg:yellow)";
-    };
-    line_break = { disable = false; };
-    git_status = {
-      deleted = "✗";
-      modified = "✶";
-      staged = "✓";
-      stashed = "≡";
+      show_milliseconds = true;
+      format = "[$duration]($style) ";
+      style = "yellow";
     };
     nix_shell = {
       symbol = " ";
       heuristic = true;
-    };
-    nix_shell = {
       disabled = false;
       format =
         "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
@@ -100,21 +105,25 @@ let
       format = "[$symbol ](yellow dimmed)";
     };
     directory = {
-      format = builtins.concatStringsSep "" [
-        " [${pad.left}](fg:bright-black)"
-        "[$path](bg:bright-black fg:white)"
-        "[${pad.right}](fg:bright-black)"
-        " [$read_only](fg:yellow)"
-      ];
+      format = ":[$path]($style)[$read_only]($read_only_style) ";
+      truncation_symbol = ".../";
+      truncate_to_repo = false;
+      style = "blue";
       read_only = " ";
-      truncate_to_repo = true;
-      truncation_length = 4;
-      truncation_symbol = "";
+      truncation_length = 2;
     };
     git_branch = {
       symbol = "";
-      style = "";
+      style = "bright-black";
       format = "[ $symbol $branch](fg:purple)(:$remote_branch)";
+    };
+    git_status = {
+      deleted = "✗";
+      modified = "✶";
+      staged = "✓";
+      stashed = "≡";
+      ahead = "⇡";
+      behind = "⇣";
     };
     os = {
       disabled = false;
