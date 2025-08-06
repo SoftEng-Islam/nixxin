@@ -15,7 +15,7 @@
   # ---- System Information And Configuration
   # ----------------------------------------------
   system.name = "nixos";
-  system.hostName = "quark"; # Hostname
+  system.hostName = "nixos"; # Hostname
   system.profile =
     "desktop"; # Select a profile defined from my profiles directory
   system.architecture = "x86_64-linux"; # Replace with your system architecture
@@ -368,7 +368,7 @@
   };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = false;
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
