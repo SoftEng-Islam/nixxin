@@ -12,7 +12,6 @@ let
   starship_settings = {
     "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
-    enableZshIntegration = true;
     format = builtins.concatStringsSep "" [
       "$nix_shell"
       "$os"
@@ -48,7 +47,7 @@ let
       format = "[$symbol](fg:red)";
       map_symbol = true;
       disabled = false;
-      error_symbol = "[](bold red)";
+      # error_symbol = "[](bold red)";
       success_symbol = "[](bold green)";
       vicmd_symbol = "[](bold yellow)";
       # format = "$symbol [|](bold bright-black) ";
@@ -166,7 +165,7 @@ in {
     '';
 
     programs.starship.enable = true;
-    programs.starship.enableZshIntegration = true;
+    # programs.starship.enableZshIntegration = true;
 
     programs.nushell = {
       extraEnv = ''
