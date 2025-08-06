@@ -72,131 +72,55 @@ in {
       zsh-completions
     ];
   };
+  # Set the default shell to Zsh
+  environment.shells = with pkgs; [ zsh ];
+  users.defaultUserShell = pkgs.zsh;
+  programs.zsh.enable = true;
+  programs.zsh.autosuggestions = true;
+  programs.zsh.enableAutosuggestions = true;
+  programs.zsh.enableBashCompletion = true;
+  programs.zsh.enableCompletion = true;
+  programs.zsh.enableGlobalCompInit = true;
+  programs.zsh.enableLsColors = true;
+  programs.zsh.enableSyntaxHighlighting = true;
+  programs.zsh.histFile = "$HOME/.zsh_history";
+  programs.zsh.histSize = "3000";
+  programs.zsh.interactiveShellInit = "";
+  programs.zsh.loginShellInit = "";
+  programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.ohMyZsh.plugins = [
+    "colored-man-pages"
+    "command-not-found"
+    # "direnv"
+    "fzf"
+    "git"
+    # Prevent running pasted command
+    "safe-paste"
+    "sudo"
+    "systemd"
+    "tmux"
+  ];
+  programs.zsh.ohMyZsh.cacheDir = "$HOME/.cache/oh-my-zsh";
+  programs.zsh.ohMyZsh.preLoaded = "";
+  # programs.zsh.ohMyZsh.theme = ""; # we will use starship
+
   programs.zsh = {
-    enable = true;
-    enableCompletion = false;
-    autosuggestions.enable = true;
     # we'll call compinit in home-manager zsh module
     # enableGlobalCompInit = false;
 
     promptInit = ''
       eval "$(starship init zsh)"
     '';
-    # prefer to use home-manager dircolors module
-    enableLsColors = false;
+
     syntaxHighlighting = {
       enable = true;
       patterns = { "rm -rf *" = "fg=black,bg=red"; };
       styles = { "alias" = "fg=magenta"; };
       highlighters = [ "main" "brackets" "pattern" ];
     };
-    ohMyZsh = {
-      enable = true;
-      plugins = [ "git" ];
-    };
   };
+
   home-manager.users.${settings.user.username} = {
-    programs.starship = {
-      enable = true;
-      enableZshIntegration = true;
-      settings = {
-        # Prompt
-        format = builtins.concatStringsSep "" [
-          "$username"
-          "$hostname"
-          "$kubernetes"
-          "$directory"
-          "$git_branch"
-          "$git_state"
-          "$git_status"
-          "$cmd_duration"
-          "$character"
-        ];
-        username = {
-          format = "[$user]($style)";
-          show_always = true;
-        };
-        hostname = {
-          ssh_only = false;
-          # ssh_symbol = "🌎 "  #  🌐 🌎 🌏
-          ssh_symbol = ""; # remove altogether
-          # style = "bold dimmed green" - default
-          style = "green";
-          format = "@[$ssh_symbol$hostname]($style)";
-        };
-
-        directory = {
-          truncation_length = 2;
-          truncation_symbol = ".../";
-          truncate_to_repo = false;
-          format = ":[$path]($style)[$read_only]($read_only_style) ";
-          style = "blue";
-        };
-
-        git_branch = {
-          #format = "on [$symbol$branch(:$remote_branch)]($style) "
-          symbol = ""; # default " "
-          format = "$symbol$branch($style)";
-          style = "bright-black";
-        };
-
-        git_status = {
-          ahead = ">"; # default "⇡"
-          behind = "<"; # default "⇣"
-        };
-
-        git_state = {
-          # default format
-          # format = '\([$state( $progress_current/$progress_total)]($style)\) '
-          style = "bright-black";
-        };
-
-        cmd_duration = {
-          show_milliseconds = true;
-          format = "[$duration]($style) ";
-          style = "yellow";
-        };
-
-        character = {
-          # default symbols
-          success_symbol = "[❯](green)";
-          error_symbol = "[❯](red)";
-          # success_symbol = '[➜](bold green)';
-          # error_symbol = '[✗](bold red)';
-          # success_symbol = '[\$](green)';
-          # error_symbol = '[\$](red)';
-        };
-
-        kubernetes = {
-          disabled = false;
-          #detect_files = ['k8s']
-          #detect_folders = ['k8s']
-          #detect_extensions = ['yaml']
-        };
-
-        # Inserts a blank line between shell prompt
-        add_newline = true;
-
-        # Bettery status plugin
-        battery = {
-          disabled = true;
-          format =
-            "[▓](#a3aed2)[ $symbol ]('')[ $percentage ](bg:#a3aed2 fg:#090c0c)";
-          full_symbol = "󰁹";
-          charging_symbol = "󱟦";
-          display = [
-            {
-              threshold = 30;
-              discharging_symbol = "󱟥";
-            }
-            {
-              threshold = 90;
-              discharging_symbol = "󱟤";
-            }
-          ];
-        };
-      };
-    };
     programs.zsh = {
       initContent = lib.mkOrder 1000 ''
         [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
@@ -270,10 +194,10 @@ in {
 
 
       # Optimized history settings
-      HISTFILE=~/.zsh_history
-      HISTSIZE=2500
-      SAVEHIST=2500
-      setopt appendhistory
+      # HISTFILE=~/.zsh_history
+      # HISTSIZE=2500
+      # SAVEHIST=2500
+      # setopt appendhistory
 
       # Remove all duplicates in history
       setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries when a new one is added

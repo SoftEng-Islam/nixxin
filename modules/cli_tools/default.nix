@@ -15,11 +15,6 @@
   programs.nix-index.enableFishIntegration = true;
   programs.nix-index-database.comma.enable = true;
 
-  # Set the default shell to Zsh
-  environment.shells = with pkgs; [ zsh ];
-  users.defaultUserShell = pkgs.zsh;
-  programs.zsh.enable = true;
-
   # for home-manager, use programs.bash.initExtra instead
   programs.bash.interactiveShellInit = ''
     source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
@@ -27,10 +22,6 @@
   programs.zsh.interactiveShellInit = ''
     source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
   '';
-
-  home-manager.users.${settings.user.username} = {
-    programs.bat.enable = true;
-  };
 
   environment.systemPackages = with pkgs; [
     bashInteractive

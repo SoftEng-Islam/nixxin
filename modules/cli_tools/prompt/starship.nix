@@ -47,8 +47,6 @@ let
     };
     continuation_prompt = "∙  ┆ ";
     line_break = { disabled = false; };
-    line_break = { disable = false; };
-
     status = {
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
@@ -157,10 +155,10 @@ let
   tomlFormat = pkgs.formats.toml { };
   starshipCmd = "${pkgs.starship}/bin/starship";
 in {
-  environment.systemPackages = with pkgs;
-    [
-      starship # starship # Minimal, blazing fast, and extremely customizable prompt for any shell
-    ];
+  programs.starship.enable = true;
+  programs.starship.interactiveOnly = false;
+  programs.starship.package = pkgs.starship;
+  programs.starship.presets = [ "nerd-font-symbols" ];
   home-manager.users.${settings.user.username} = {
     home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
@@ -175,6 +173,9 @@ in {
     programs.zsh.initExtra = ''
       eval "$(${starshipCmd} init zsh)"
     '';
+
+    programs.starship.enable = true;
+    programs.starship.enableZshIntegration = true;
 
     programs.nushell = {
       extraEnv = ''
