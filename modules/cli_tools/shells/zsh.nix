@@ -57,24 +57,19 @@ let
   };
 
 in {
-  environment = {
-    # enable zsh autocompletion for system packages (systemd, etc)
-    # pathsToLink = [ "/share/zsh" ];
-    variables = {
-      # Path to your oh-my-zsh installation.
-      # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
-      ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
-    };
-    systemPackages = with pkgs; [
-      # completions and manpage install
-      zsh-abbr
-      # completions
-      zsh-completions
-    ];
-  };
+  # enable zsh autocompletion for system packages (systemd, etc)
+  environment.pathsToLink = [ "/share/zsh" ];
+
+  # Path to your oh-my-zsh installation.
+  # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
+  environment.variables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
+
+  environment.systemPackages = with pkgs; [ zsh-abbr zsh-completions ];
+
   # Set the default shell to Zsh
-  environment.shells = with pkgs; [ zsh ];
+  environment.shells = [ pkgs.zsh ];
   users.defaultUserShell = pkgs.zsh;
+
   programs.zsh.enable = true;
   programs.zsh.autosuggestions = true;
   programs.zsh.enableAutosuggestions = true;
@@ -91,33 +86,30 @@ in {
   programs.zsh.ohMyZsh.plugins = [
     "colored-man-pages"
     "command-not-found"
-    # "direnv"
     "fzf"
     "git"
-    # Prevent running pasted command
-    "safe-paste"
     "sudo"
     "systemd"
     "tmux"
+    "extract"
+    # Prevent running pasted command
+    "safe-paste"
+
+    # "direnv"
   ];
   programs.zsh.ohMyZsh.cacheDir = "$HOME/.cache/oh-my-zsh";
   programs.zsh.ohMyZsh.preLoaded = "";
   # programs.zsh.ohMyZsh.theme = ""; # we will use starship
 
-  programs.zsh = {
-    # we'll call compinit in home-manager zsh module
-    # enableGlobalCompInit = false;
+  programs.zsh.promptInit = ''
+    eval "$(starship init zsh)"
+  '';
 
-    promptInit = ''
-      eval "$(starship init zsh)"
-    '';
-
-    syntaxHighlighting = {
-      enable = true;
-      patterns = { "rm -rf *" = "fg=black,bg=red"; };
-      styles = { "alias" = "fg=magenta"; };
-      highlighters = [ "main" "brackets" "pattern" ];
-    };
+  programs.zsh.syntaxHighlighting = {
+    enable = true;
+    patterns = { "rm -rf *" = "fg=black,bg=red"; };
+    styles = { "alias" = "fg=magenta"; };
+    highlighters = [ "main" "brackets" "pattern" ];
   };
 
   home-manager.users.${settings.user.username} = {
@@ -172,9 +164,9 @@ in {
       # Example format: plugins=(rails git textmate ruby lighthouse)
       # Add wisely, as too many plugins slow down shell startup.
       plugins=(
-        git
-        fzf
-        extract
+        # git
+        # fzf
+        # extract
         # zsh-completions
         # zsh-autocomplete
         # zsh-autosuggestions
@@ -376,5 +368,4 @@ in {
       # zprof
     '';
   };
-
 }

@@ -10,16 +10,6 @@ let
     right = "";
   };
   starship_settings = {
-    # aws.disabled = true;
-    # gcloud.disabled = true;
-    # kubernetes.disabled = false;
-    # git_branch.style = "242";
-    # directory.style = "blue";
-    # directory.truncate_to_repo = false;
-    # directory.truncation_length = 8;
-    # python.disabled = true;
-    # ruby.disabled = true;
-
     add_newline = true;
     enableZshIntegration = true;
     format = builtins.concatStringsSep "" [
