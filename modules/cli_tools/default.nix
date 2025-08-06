@@ -11,9 +11,9 @@
   ];
 
   # Enable the nix-index
-  programs.nix-index.enable = true;
-  programs.nix-index.enableFishIntegration = true;
-  programs.nix-index-database.comma.enable = true;
+  # programs.nix-index.enable = true;
+  # programs.nix-index.enableFishIntegration = true;
+  # programs.nix-index-database.comma.enable = true;
 
   # for home-manager, use programs.bash.initExtra instead
   programs.bash.interactiveShellInit = ''
