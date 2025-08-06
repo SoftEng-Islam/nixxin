@@ -10,6 +10,7 @@ let
     right = "";
   };
   starship_settings = {
+    "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
     enableZshIntegration = true;
     format = builtins.concatStringsSep "" [
