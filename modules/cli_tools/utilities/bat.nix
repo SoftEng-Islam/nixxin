@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.bat = {
-      enable = true;
+      enable = settings.modules.cli_tools.utilities.bat.enable or true;
       extraPackages = with pkgs.bat-extras; [ batdiff batman batgrep batwatch ];
       config = {
         map-syntax = [ "*.jenkinsfile:Groovy" "*.props:Java Properties" ];

@@ -10,6 +10,16 @@ let
     right = "";
   };
   starship_settings = {
+    # aws.disabled = true;
+    # gcloud.disabled = true;
+    # kubernetes.disabled = false;
+    # git_branch.style = "242";
+    # directory.style = "blue";
+    # directory.truncate_to_repo = false;
+    # directory.truncation_length = 8;
+    # python.disabled = true;
+    # ruby.disabled = true;
+
     add_newline = true;
     enableZshIntegration = true;
     format = builtins.concatStringsSep "" [
@@ -43,19 +53,23 @@ let
       not_executable_symbol = " Can't Execute E";
       sigint_symbol = "󰂭 ";
       signal_symbol = "󱑽 ";
-      success_symbol = "";
+      # success_symbol = "";
       format = "[$symbol](fg:red)";
       map_symbol = true;
       disabled = false;
       error_symbol = "[](bold red)";
-      # success_symbol = "[](bold green)";
+      success_symbol = "[](bold green)";
       vicmd_symbol = "[](bold yellow)";
       # format = "$symbol [|](bold bright-black) ";
     };
     hostname = {
-      ssh_only = true;
-      format = "[$hostname](bold blue) ";
+      ssh_only = false;
       disabled = false;
+      # ssh_symbol = "🌐 "  #  🌐 🌎 🌏
+      ssh_symbol = ""; # remove altogether
+      # style = "bold dimmed green" - default
+      style = "green";
+      format = "@[$ssh_symbol$hostname]($style)";
     };
     username = {
       show_always = true;
@@ -65,7 +79,7 @@ let
       min_time = 1000;
       format = "[$duration ](fg:yellow)";
     };
-    line_break = { disable = true; };
+    line_break = { disable = false; };
     git_status = {
       deleted = "✗";
       modified = "✶";

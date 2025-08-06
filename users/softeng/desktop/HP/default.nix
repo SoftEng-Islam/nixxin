@@ -168,10 +168,13 @@
   modules.browsers.microsoft-edge.enable = true;
 
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
-  cli_tools.prompt.enable = true;
-  cli_tools.shells.enable = true;
-  cli_tools.terminals.enable = true;
-  cli_tools.utilities.enable = true;
+  modules.cli_tools.prompt.enable = true;
+  modules.cli_tools.shells.enable = true;
+  modules.cli_tools.terminals.enable = true;
+  modules.cli_tools.utilities.enable = true;
+  modules.cli_tools.utilities.bat.enable = true;
+  modules.cli_tools.utilities.direnv.enable = false;
+  modules.cli_tools.utilities.emacs.enable = true;
 
   # [ Community ]
   modules.community.telegram.enable = true;

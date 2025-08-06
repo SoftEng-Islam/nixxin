@@ -8,7 +8,7 @@
   #
 
   programs.direnv = {
-    enable = true;
+    enable = settings.modules.cli_tools.utilities.direnv.enable or false;
     loadInNixShell = true;
     nix-direnv.enable = true;
     enableZshIntegration = true;

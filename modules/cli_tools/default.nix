@@ -1,14 +1,21 @@
-{ settings, lib, pkgs, ... }: 
-# lib.mkIf (settings.modules.cli_tools.enable or true) 
+{ settings, lib, nix-index-database, pkgs, ... }:
+# lib.mkIf (settings.modules.cli_tools.enable or true)
 {
-  imports = [ 
-   ./neofetch
-   ./prompt
-   ./shells
-   ./terminals
-   ./utilities
+  imports = [
+    ./neofetch
+    ./prompt
+    ./shells
+    ./terminals
+    ./utilities
+    nix-index-database.hmModules.nix-index
   ];
 
+  # Enable the nix-index
+  programs.nix-index.enable = true;
+  programs.nix-index.enableFishIntegration = true;
+  programs.nix-index-database.comma.enable = true;
+
+  # Set the default shell to Zsh
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;
   programs.zsh.enable = true;

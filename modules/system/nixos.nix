@@ -306,7 +306,7 @@ in {
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
     nixpkgs-review
-    statix # nvim-lint
+    statix # Lints and suggestions for the nix programming language
     deadnix
     cachix
 
