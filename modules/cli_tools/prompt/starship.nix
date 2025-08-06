@@ -15,6 +15,7 @@ let
     format = builtins.concatStringsSep "" [
       "$nix_shell"
       "$os"
+      "$hostname"
       "$directory"
       "$container"
       "$git_branch $git_status"
@@ -28,8 +29,8 @@ let
       "$cmd_duration"
       "$status"
       "$line_break"
-      # "[❯](bold purple)"
-      # "\${custom.space}"
+      "[❯](bold purple)"
+      "\${custom.space}"
     ];
     custom.space = {
       when = "! test $env";
