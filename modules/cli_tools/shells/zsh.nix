@@ -79,7 +79,7 @@ in {
   programs.zsh.enableLsColors = true;
   programs.zsh.enableSyntaxHighlighting = true;
   programs.zsh.histFile = "$HOME/.zsh_history";
-  programs.zsh.histSize = "3000";
+  programs.zsh.histSize = 3000;
   programs.zsh.interactiveShellInit = "";
   programs.zsh.loginShellInit = "";
   programs.zsh.ohMyZsh.enable = true;
