@@ -203,26 +203,6 @@
         "type": "github"
       }
     },
-    "nix-index-database": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1754195341,
-        "narHash": "sha256-YL71IEf2OugH3gmAsxQox6BJI0KOcHKtW2QqT/+s2SA=",
-        "owner": "Mic92",
-        "repo": "nix-index-database",
-        "rev": "b7fcd4e26d67fca48e77de9b0d0f954b18ae9562",
-        "type": "github"
-      },
-      "original": {
-        "owner": "Mic92",
-        "repo": "nix-index-database",
-        "type": "github"
-      }
-    },
     "nixGL": {
       "inputs": {
         "flake-utils": [
@@ -285,7 +265,6 @@
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
         "impermanence": "impermanence",
-        "nix-index-database": "nix-index-database",
         "nixGL": "nixGL",
         "nixpkgs": "nixpkgs_2",
         "rust-overlay": "rust-overlay",

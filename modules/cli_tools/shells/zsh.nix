@@ -71,7 +71,7 @@ in {
   users.defaultUserShell = pkgs.zsh;
 
   programs.zsh.enable = true;
-  programs.zsh.autosuggestions = true;
+  programs.zsh.autosuggestions.enable = true;
   programs.zsh.enableAutosuggestions = true;
   programs.zsh.enableBashCompletion = true;
   programs.zsh.enableCompletion = true;
