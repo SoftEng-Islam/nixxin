@@ -72,12 +72,10 @@ in {
 
   programs.zsh.enable = true;
   programs.zsh.autosuggestions.enable = true;
-  programs.zsh.enableAutosuggestions = true;
   programs.zsh.enableBashCompletion = true;
   programs.zsh.enableCompletion = true;
   programs.zsh.enableGlobalCompInit = true;
   programs.zsh.enableLsColors = true;
-  programs.zsh.enableSyntaxHighlighting = true;
   programs.zsh.histFile = "$HOME/.zsh_history";
   programs.zsh.histSize = 3000;
   programs.zsh.interactiveShellInit = "";
