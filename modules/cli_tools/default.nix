@@ -1,14 +1,7 @@
-{ settings, lib, nix-index-database, pkgs, ... }:
+{ settings, lib, pkgs, ... }:
 # lib.mkIf (settings.modules.cli_tools.enable or true)
 {
-  imports = [
-    ./neofetch
-    ./prompt
-    ./shells
-    ./terminals
-    ./utilities
-    nix-index-database.hmModules.nix-index
-  ];
+  imports = [ ./neofetch ./prompt ./shells ./terminals ./utilities ];
 
   # Enable the nix-index
   # programs.nix-index.enable = true;
