@@ -151,7 +151,7 @@ in {
   programs.starship.package = pkgs.starship;
   programs.starship.presets = [ "nerd-font-symbols" ];
   home-manager.users.${settings.user.username} = {
-    home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
+    # home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
     xdg.configFile."starship.toml" = {
       source = tomlFormat.generate "starship-config" starship_settings;
