@@ -5,10 +5,10 @@ stdenv.mkDerivation {
   version = "${kernel.version}-unstable-2024-09-18";
 
   src = fetchFromGitHub {
-    owner = "aircrack-ng";
+    owner = "SimplyCEO";
     repo = "rtl8188eus";
-    rev = "f969c544ab6100da3d80a5709e077f920f2df698";
-    sha256 = "sha256-uwO2nDDff4t0PZw3mLWmUPOHHftDgoaBaWMXQKHQunI=";
+    rev = "d0c8c3b7bd42d54b0416ff43b69afab27dc6cf94";
+    sha256 = "sha256-+kLylMUd9U+TiMsg8xnz5TOdNwql8fdsz4VbEXmWpT0=";
   };
 
   prePatch = ''
