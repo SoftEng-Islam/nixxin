@@ -47,10 +47,7 @@ let
       format = "[$symbol](fg:red)";
       map_symbol = true;
       disabled = false;
-      # error_symbol = "[](bold red)";
       success_symbol = "[](bold green)";
-      vicmd_symbol = "[](bold yellow)";
-      # format = "$symbol [|](bold bright-black) ";
     };
     character = {
       # default symbols
