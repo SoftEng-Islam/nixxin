@@ -368,7 +368,7 @@
   };
   modules.networking.wifiBackend = "iwd"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = true;
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
