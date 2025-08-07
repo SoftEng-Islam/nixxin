@@ -124,7 +124,7 @@ in {
       device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
       # [ifupdown]
-      ifupdown."managed" = "false";
+      # ifupdown."managed" = "false";
 
       # [connection]
       connection = {
@@ -144,7 +144,7 @@ in {
       # [keyfile]
       # To get The MAC Address run this Command:
       # nmcli device show [wifiInterface] | grep HWADDR
-      keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
+      # keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
 
       # [logging]
       # logging."audit" = "false"; # < default
