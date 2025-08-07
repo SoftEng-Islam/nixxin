@@ -113,7 +113,7 @@ in {
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [device]
-      # device."wifi.scan-rand-mac-address" = "no";
+      device."wifi.scan-rand-mac-address" = "no";
 
       # Wireless configuration
       # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
@@ -124,7 +124,7 @@ in {
       device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
       # [ifupdown]
-      # ifupdown."managed" = "true";
+      ifupdown."managed" = "false";
 
       # [connection]
       connection = {
@@ -136,7 +136,7 @@ in {
       };
 
       # [main]
-      # main."plugins" = "keyfile";
+      main."plugins" = "keyfile";
       #main."dhcp" = "internal";
       #main."dns" = "systemd-resolved";
       #main."rc-manager" = "unmanaged";
@@ -144,7 +144,7 @@ in {
       # [keyfile]
       # To get The MAC Address run this Command:
       # nmcli device show [wifiInterface] | grep HWADDR
-      # keyfile."unmanaged-devices" = "mac:CA:B5:C5:97:AD:C4";
+      keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
 
       # [logging]
       # logging."audit" = "false"; # < default
