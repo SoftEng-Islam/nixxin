@@ -20,6 +20,7 @@
     bashInteractive
 
     nanorc # Improved Nano Syntax Highlighting Files
+    micro # Modern and intuitive terminal-based text editor
     vim # The most popular clone of the VI editor
     zsh # The Z shell
 

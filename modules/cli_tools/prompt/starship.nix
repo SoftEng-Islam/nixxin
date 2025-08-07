@@ -15,6 +15,7 @@ let
     format = builtins.concatStringsSep "" [
       "$nix_shell"
       "$os"
+      "$username"
       "$hostname"
       "$directory"
       "$container"
@@ -27,28 +28,23 @@ let
       "$c"
       "$golang"
       "$cmd_duration"
+      "$continuation_prompt"
       "$status"
       "$line_break"
       "[❯](bold purple)"
       "\${custom.space}"
     ];
-    custom.space = {
-      when = "! test $env";
-      format = "  ";
-    };
     continuation_prompt = "∙  ┆ ";
-    line_break = { disabled = false; };
     status = {
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
       not_executable_symbol = " Can't Execute E";
       sigint_symbol = "󰂭 ";
       signal_symbol = "󱑽 ";
-      # success_symbol = "";
       format = "[$symbol](fg:red)";
       map_symbol = true;
       disabled = false;
-      success_symbol = "[](bold green)";
+      success_symbol = "[✓](bold green)";
     };
     character = {
       # default symbols
@@ -62,8 +58,8 @@ let
     hostname = {
       ssh_only = false;
       disabled = false;
-      # ssh_symbol = "🌐 "  #  🌐 🌎 🌏
-      ssh_symbol = ""; # remove altogether
+      ssh_symbol = "🌐 "; # 🌐 🌎 🌏
+      # ssh_symbol = ""; # remove altogether
       # style = "bold dimmed green" - default
       style = "green";
       format = "@[$ssh_symbol$hostname]($style)";
@@ -139,6 +135,12 @@ let
     golang = lang "" "blue";
     dart = lang "" "blue";
     elixir = lang "" "purple";
+
+    line_break = { disabled = false; };
+    custom.space = {
+      when = "! test $env";
+      format = " ";
+    };
   };
   tomlFormat = pkgs.formats.toml { };
   starshipCmd = "${pkgs.starship}/bin/starship";
