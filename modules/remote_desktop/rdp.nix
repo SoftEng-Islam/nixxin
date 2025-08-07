@@ -13,7 +13,7 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
   networking.firewall.allowedTCPPorts = [ 139 445 ];
   networking.firewall.allowedUDPPorts = [ 137 138 ];
   services.samba = {
-    enable = true;
+    enable = false;
     openFirewall = true;
     settings = {
       shared = {
