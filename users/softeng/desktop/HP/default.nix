@@ -627,10 +627,12 @@
       "msr"
       "uinput"
       "v4l2loopback"
+      "rt2800usb"
     ];
     boot.extraModprobeConfig = ''
       options usbcore autosuspend=-1
       options binder_linux devices=binder,hwbinder,vndbinder
+      options rt2800usb nohwcrypt=1
     '';
     boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
     boot.blacklistedKernelModules = [ "snd_usb_audio hp_wmi" ];

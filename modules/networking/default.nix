@@ -105,6 +105,7 @@ in {
   # You can not use networking.networkmanager with networking.wireless.
   networking.wireless.enable = false;
   networking.wireless.scanOnLowSignal = false;
+  networking.wireless.userControlled.enable = true;
 
   networking.networkmanager = {
     enable = settings.modules.networking.networkManager;

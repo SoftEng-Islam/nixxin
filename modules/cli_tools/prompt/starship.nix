@@ -4,7 +4,6 @@ let
     symbol = icon;
     format = "[$symbol ](${color})";
   };
-  os = icon: fg: "[${icon} ](fg:${fg})";
   pad = {
     left = "";
     right = "";
@@ -118,6 +117,11 @@ let
       full_symbol = "🔋 ";
       charging_symbol = "⚡️ ";
       discharging_symbol = "💀 ";
+    };
+    package = {
+      disabled = true;
+      format = " [$symbol$version]($style)";
+      symbol = "📦 ";
     };
   };
   tomlFormat = pkgs.formats.toml { };
