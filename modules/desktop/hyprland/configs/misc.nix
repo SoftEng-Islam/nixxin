@@ -83,11 +83,13 @@
         # 1 - takes over
         # 2 - unfullscreen/unmaxize
         new_window_takes_over_fullscreen = 1;
+        exit_window_retains_fullscreen = true;
 
         # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
         # render_ahead_of_time = false;
         # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
         # render_ahead_safezone = 1;
+
       };
     };
   };

@@ -28,7 +28,7 @@ lib.mkIf (settings.modules.networking.iwd or true) {
         # RoamRetryInterval = "10";
       };
       # DriverQuirks.UseDefaultInterface = true;
-      # Settings.AutoConnect = true;
+      Settings.AutoConnect = true;
     };
   };
   environment.systemPackages = with pkgs; [ impala iwd ];

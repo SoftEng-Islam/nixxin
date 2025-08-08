@@ -13,6 +13,9 @@
 
         # if disabled, will not pass the mouse events to apps / dragging windows around if a keybind has been triggered.
         pass_mouse_when_bound = false;
+
+        movefocus_cycles_fullscreen = true;
+
       };
     };
   };
