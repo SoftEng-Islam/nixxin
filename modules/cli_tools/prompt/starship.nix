@@ -53,7 +53,7 @@ let
       style = "yellow";
     };
     nix_shell = {
-      disabled = false;
+      disabled = true;
       symbol = " ";
       heuristic = true;
       format =
@@ -92,20 +92,8 @@ let
       behind = "⇣";
     };
     os = {
-      disabled = false;
+      disabled = true;
       format = "$symbol";
-    };
-    os.symbols = {
-      Arch = os "" "bright-blue";
-      Alpine = os "" "bright-blue";
-      Debian = os "" "red)";
-      EndeavourOS = os "" "purple";
-      Fedora = os "" "blue";
-      NixOS = os "" "blue";
-      openSUSE = os "" "green";
-      SUSE = os "" "green";
-      Ubuntu = os "" "bright-purple";
-      Macos = os "" "white";
     };
     python = lang "" "yellow";
     nodejs = lang "󰛦" "bright-blue";
