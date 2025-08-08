@@ -30,6 +30,7 @@ let
     };
     continuation_prompt = "∙  ┆ ";
     status = {
+      disabled = true;
       symbol = "✗";
       not_found_symbol = "󰍉 Not Found";
       not_executable_symbol = " Can't Execute E";
@@ -37,7 +38,6 @@ let
       signal_symbol = "󱑽 ";
       format = "[$symbol](fg:red)";
       map_symbol = true;
-      disabled = false;
       success_symbol = "[✓](bold green)";
     };
     character = {
@@ -53,9 +53,9 @@ let
       style = "yellow";
     };
     nix_shell = {
+      disabled = false;
       symbol = " ";
       heuristic = true;
-      disabled = false;
       format =
         "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
     };
@@ -92,7 +92,7 @@ let
       behind = "⇣";
     };
     os = {
-      disabled = true;
+      disabled = false;
       format = "$symbol";
     };
     os.symbols = {
