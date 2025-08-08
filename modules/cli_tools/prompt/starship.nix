@@ -13,27 +13,115 @@ let
     "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
     format = builtins.concatStringsSep "" [
-      "$nix_shell"
-      "$os"
       "$username"
       "$hostname"
+      "$localip"
+      "$shlvl"
+      "$singularity"
+      "$kubernetes"
       "$directory"
-      "$container"
-      "$git_branch $git_status"
-      "$python"
-      "$nodejs"
-      "$lua"
-      "$rust"
-      "$java"
+      "$vcsh"
+      "$fossil_branch"
+      "$fossil_metrics"
+      "$git_branch"
+      "$git_commit"
+      "$git_state"
+      "$git_metrics"
+      "$git_status"
+      "$hg_branch"
+      "$pijul_channel"
+      "$docker_context"
+      "$package"
       "$c"
+      "$cmake"
+      "$cobol"
+      "$daml"
+      "$dart"
+      "$deno"
+      "$dotnet"
+      "$elixir"
+      "$elm"
+      "$erlang"
+      "$fennel"
+      "$gleam"
       "$golang"
-      "$cmd_duration"
-      "$continuation_prompt"
-      "$status"
-      "$line_break"
+      "$guix_shell"
+      "$haskell"
+      "$haxe"
+      "$helm"
+      "$java"
+      "$julia"
+      "$kotlin"
+      "$gradle"
+      "$lua"
+      "$nim"
+      "$nodejs"
+      "$ocaml"
+      "$opa"
+      "$perl"
+      "$php"
+      "$pulumi"
+      "$purescript"
+      "$python"
+      "quarto"
+      "raku"
+      "rlang"
+      "red"
+      "ruby"
+      "rust"
+      "scala"
+      "solidity"
+      "swift"
+      "terraform"
+      "typst"
+      "vlang"
+      "vagrant"
+      "zig"
+      "buf"
+      "nix_shell"
+      "conda"
+      "meson"
+      "spack"
+      "memory_usage"
+      "aws"
+      "gcloud"
+      "openstack"
+      "azure"
+      "nats"
+      "direnv"
+      "env_var"
+      "mise"
+      "crystal"
+      "custom"
+      "sudo"
+      "cmd_duration"
+      "line_break"
+      "jobs"
+      "battery"
+      "time"
+      "status"
+      "os"
+      "container"
+      "netns"
+      "shell"
+      "character"
       "[❯](bold purple)"
       "\${custom.space}"
     ];
+    username = {
+      disabled = false;
+      format = "[$user]($style)";
+      show_always = true;
+      style_user = "bold purple";
+      style_root = "bold red";
+    };
+    hostname = {
+      disabled = false;
+      ssh_only = false;
+      ssh_symbol = "🌐 "; # 🌐 🌎 🌏
+      style = "yellow";
+      format = "@[$ssh_symbol$hostname]($style)";
+    };
     continuation_prompt = "∙  ┆ ";
     status = {
       symbol = "✗";
@@ -47,26 +135,9 @@ let
       success_symbol = "[✓](bold green)";
     };
     character = {
-      # default symbols
+      disabled = false;
       success_symbol = "[❯](green)";
       error_symbol = "[❯](red)";
-      # success_symbol = '[➜](bold green)';
-      # error_symbol = '[✗](bold red)';
-      # success_symbol = '[\$](green)';
-      # error_symbol = '[\$](red)';
-    };
-    hostname = {
-      ssh_only = false;
-      disabled = false;
-      ssh_symbol = "🌐 "; # 🌐 🌎 🌏
-      # ssh_symbol = ""; # remove altogether
-      # style = "bold dimmed green" - default
-      style = "green";
-      format = "@[$ssh_symbol$hostname]($style)";
-    };
-    username = {
-      show_always = true;
-      style_user = "bold blue";
     };
     cmd_duration = {
       disabled = true;
@@ -87,12 +158,19 @@ let
       format = "[$symbol ](yellow dimmed)";
     };
     directory = {
+      disabled = false;
       format = ":[$path]($style)[$read_only]($read_only_style) ";
+      home_symbol = "~";
       truncation_symbol = ".../";
-      truncate_to_repo = false;
+      truncate_to_repo = true;
       style = "blue";
       read_only = " ";
-      truncation_length = 2;
+      read_only_style = "red";
+      truncation_length = 3;
+    };
+    direnv = {
+      disabled = false;
+      symbol = "direnv ";
     };
     git_branch = {
       symbol = "";
@@ -108,7 +186,7 @@ let
       behind = "⇣";
     };
     os = {
-      disabled = false;
+      disabled = true;
       format = "$symbol";
     };
     os.symbols = {
@@ -140,6 +218,12 @@ let
     custom.space = {
       when = "! test $env";
       format = " ";
+    };
+    battery = {
+      disabled = false;
+      full_symbol = "🔋 ";
+      charging_symbol = "⚡️ ";
+      discharging_symbol = "💀 ";
     };
   };
   tomlFormat = pkgs.formats.toml { };
