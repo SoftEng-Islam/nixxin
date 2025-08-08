@@ -14,17 +14,17 @@
   # gnome polkit and keyring are used for hyprland sessions
   services.gnome.gnome-keyring.enable = true; # User's credentials manager
   security.pam.services.greetd.enableGnomeKeyring = true;
-  
+
   # Init session with hyprland
   services.greetd = {
     enable = true;
     settings = {
-      initial_session = {
-        # command = "${pkgs.dbus}/bin/dbus-run-session Hyprland";
-        command = "Hyprland";
-        user = settings.user.username;
-      };
-      default_session = let 
+      # initial_session = {
+      #   # command = "${pkgs.dbus}/bin/dbus-run-session Hyprland";
+      #   command = "Hyprland";
+      #   user = settings.user.username;
+      # };
+      default_session = let
         tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
         tuigreetOptions = [
           "--remember"
