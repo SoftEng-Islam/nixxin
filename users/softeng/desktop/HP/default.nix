@@ -96,6 +96,11 @@
     "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
   common.cursor.package = pkgs.bibata-cursors;
 
+  # This environment variable is used to set a custom directory for scripts that will be
+  # executed by the user (command line/hyprland keybinding). It is often used to store personal scripts or utilities
+  # that you want to run from the command line without specifying the full path.
+  scriptsDir = "/home/${user.username}/scripts";
+
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
   # ----------------------------------------------

@@ -6,6 +6,8 @@ lib.mkIf (settings.modules.env.enable or true) {
   environment = {
     # localBinInPath = false;
     variables = {
+      scriptsDir = settings.scriptsDir;
+
       # Customizes the PATH environment variable to include directories for tools like Node.js,
       # Python, Sass, Yarn, Bun.
       PATH = lib.unique [
@@ -93,7 +95,6 @@ lib.mkIf (settings.modules.env.enable or true) {
 
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
-
 
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";
