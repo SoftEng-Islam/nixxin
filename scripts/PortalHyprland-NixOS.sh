@@ -18,5 +18,5 @@ for portal in $portal_list; do
 done
 
 # If no valid executable is found, report an error
-echo "No valid xdg-portal-desktop found"
+echo "ERROR: No valid xdg-portal-desktop found"
 exit
