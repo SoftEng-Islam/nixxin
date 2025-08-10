@@ -19,6 +19,24 @@ mkIf (settings.modules.dconf.enable or true) {
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
+      "org/gnome/nautilus/list-view" = {
+        default-column-order = [
+          "name"
+          "size"
+          "type"
+          "owner"
+          "group"
+          "permissions"
+          "where"
+          "date_modified"
+          "date_modified_with_time"
+          "date_accessed"
+          "recency"
+          "starred"
+          "detailed_type"
+        ];
+        default-visible-columns = [ "name" "size" "type" "owner" ];
+      };
 
       "org/gnome/desktop/wm/preferences" = {
         "button-layout" = lib.mkDefault "";
