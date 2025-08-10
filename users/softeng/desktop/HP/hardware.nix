@@ -64,7 +64,7 @@
     ];
   };
 
-  fileSystems."/media" = {
+  fileSystems."/data2" = {
     device = "/dev/disk/by-uuid/f532f234-9e5a-4c3e-a788-dada20ea6c56";
     # fsType = "ntfs-3g"; # if NTFS
     fsType = "btrfs";
