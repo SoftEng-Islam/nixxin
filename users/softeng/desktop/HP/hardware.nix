@@ -51,8 +51,8 @@
       "nodev" # Don’t allow device files on this mount (security measure).
 
       # This only for NTFS
-      # "uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
-      # "gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
+      #"uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
+      #"gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
       # "utf8" # NTFS/ntfs-3g only – interpret file names as UTF-8.
       # "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
 
@@ -63,8 +63,6 @@
       "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
     ];
   };
-
-
 
   fileSystems."/media" = {
     device = "/dev/disk/by-uuid/f532f234-9e5a-4c3e-a788-dada20ea6c56";
@@ -89,7 +87,6 @@
       "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
     ];
   };
-
 
   # Don't Forget To Change The Owner of The Partition If Needed.
   # sudo chown -R softeng:wheel /data2
