@@ -75,8 +75,8 @@
       "nodev" # Don’t allow device files on this mount (security measure).
 
       # This only for NTFS
-      # "uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
-      # "gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
+      "uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
+      "gid=100" # NTFS/ntfs-3g only – set default group to group ID 1000.
       # "utf8" # NTFS/ntfs-3g only – interpret file names as UTF-8.
       # "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
 
