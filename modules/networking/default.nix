@@ -125,7 +125,7 @@ in {
       device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
       # [ifupdown]
-      # ifupdown."managed" = "false";
+      ifupdown."managed" = "true";
 
       # [connection]
       connection = {
@@ -138,9 +138,9 @@ in {
 
       # [main]
       main."plugins" = "keyfile";
-      #main."dhcp" = "internal";
-      #main."dns" = "systemd-resolved";
-      #main."rc-manager" = "unmanaged";
+      main."dhcp" = "internal";
+      main."dns" = "systemd-resolved";
+      main."rc-manager" = "unmanaged";
 
       # [keyfile]
       # To get The MAC Address run this Command:
