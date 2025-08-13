@@ -53,10 +53,13 @@ let
     };
     nix_shell = {
       disabled = false;
-      format = "[$symbol$state]($style) ";
-      symbol = " ";
+      format = " [$symbol$state( ($name))]($style) ";
+      symbol = "❄️ ";
       style = "bold blue";
       heuristic = true;
+      impure_msg = "[impure shell](bold red)";
+      pure_msg = "[pure shell](bold green)";
+      unknown_msg = "[unknown shell](bold yellow)";
     };
     container = {
       symbol = " 󰏖";
@@ -94,18 +97,6 @@ let
       disabled = true;
       format = "$symbol";
     };
-    python = lang "" "yellow";
-    nodejs = lang "󰛦" "bright-blue";
-    bun = lang "󰛦" "blue";
-    deno = lang "󰛦" "blue";
-    lua = lang "󰢱" "blue";
-
-    rust = lang "" "red";
-    java = lang "" "red";
-    c = lang "" "blue";
-    golang = lang "" "blue";
-    dart = lang "" "blue";
-    elixir = lang "" "purple";
 
     line_break = { disabled = false; };
     custom.space = {
