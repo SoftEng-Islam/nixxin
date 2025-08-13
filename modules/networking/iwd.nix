@@ -13,7 +13,7 @@ lib.mkIf (settings.modules.networking.iwd or true) {
     #-- station wlan0 get-networks  # Show available networks
     #-- station wlan0 connect SSID  # Connect to a network
     enable = settings.modules.networking.iwd;
-    package = pkgs.eiwd;
+    # package = pkgs.eiwd;
     settings = {
       Network = {
         # EnableIPv6 = true;
