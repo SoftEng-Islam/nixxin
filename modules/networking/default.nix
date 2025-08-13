@@ -32,20 +32,17 @@ in {
   else
     false; # Systemd DNS Resolver Daemon, systemd-resolved.
 
+  networking.dhcpcd.enable = false;
+
+  networking.useDHCP = false; # Use DHCP for all interfaces by default.
+  # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
+
+  networking.useNetworkd = true;
+  networking.nameservers = settings.modules.networking.nameservers;
+  networking.hostName = settings.system.hostName; # Define your hostname.
+  networking.interfaces = settings.modules.networking.interfaces;
+
   networking = {
-    # Enables DHCP on each ethernet and wireless interface. In case of scripted networking
-    # (the default) this is the recommended approach. When using systemd-networkd it's
-    # still possible to use this option, but it's recommended to use it in conjunction
-    # with explicit per-interface declarations with `networking.interfaces.<interface>.useDHCP`.
-    useDHCP = lib.mkDefault true;
-    # interfaces.[interface].useDHCP = lib.mkDefault true;
-    nameservers = settings.modules.networking.nameservers;
-
-    hostName = settings.system.hostName; # Define your hostname.
-    dhcpcd.enable = false;
-    useNetworkd = true;
-
-    interfaces = settings.modules.networking.interfaces;
 
     # defaultGateway = "192.168.1.1";
 
