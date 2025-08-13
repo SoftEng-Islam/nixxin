@@ -359,7 +359,6 @@
   modules.networking.nameservers =
     [ "8.8.8.8" "8.8.4.4" "1.1.1.1" "1.0.0.1" ]; # Google's DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
-  modules.networking.networkManager = true;
   modules.networking.interfaces = {
     eno1 = {
       useDHCP = false; # Disable DHCP (so no default route or DNS is set)
