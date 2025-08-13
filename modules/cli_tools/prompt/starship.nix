@@ -52,11 +52,11 @@ let
       style = "yellow";
     };
     nix_shell = {
-      disabled = true;
+      disabled = false;
+      format = "[$symbol$state]($style) ";
       symbol = " ";
+      style = "bold blue";
       heuristic = true;
-      format =
-        "[${pad.left}](fg:white)[ ](bg:white fg:black)[${pad.right}](fg:white) ";
     };
     container = {
       symbol = " 󰏖";
