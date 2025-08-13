@@ -4,10 +4,6 @@ let
     symbol = icon;
     format = "[$symbol ](${color})";
   };
-  pad = {
-    left = "";
-    right = "";
-  };
   starship_settings = {
     "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
@@ -52,9 +48,9 @@ let
       style = "yellow";
     };
     nix_shell = {
-      disabled = false;
+      disabled = true;
       format = " [$symbol$state( ($name))]($style) ";
-      symbol = "❄️ ";
+      symbol = " ";
       style = "bold blue";
       heuristic = true;
       impure_msg = "[impure shell](bold red)";
@@ -83,7 +79,7 @@ let
     git_branch = {
       symbol = "";
       style = "bright-black";
-      format = "[ $symbol $branch](fg:purple)(:$remote_branch)";
+      format = "[ $symbol $branch](fg:purple)(:$remote_branch) ";
     };
     git_status = {
       deleted = "✗";
