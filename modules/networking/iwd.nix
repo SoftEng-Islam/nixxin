@@ -4,6 +4,7 @@ lib.mkIf (settings.modules.networking.iwd or true) {
   systemd.services.iwd.serviceConfig.ExecStartPre =
     "${pkgs.coreutils}/bin/sleep 2";
 
+  # services.connman.wifi.backend = "iwd";
   networking.wireless.iwd = {
     # Example commands manage Wi-Fi connections:
     #- iwctl
@@ -12,11 +13,12 @@ lib.mkIf (settings.modules.networking.iwd or true) {
     #-- station wlan0 get-networks  # Show available networks
     #-- station wlan0 connect SSID  # Connect to a network
     enable = settings.modules.networking.iwd;
+    package = pkgs.eiwd;
     settings = {
       Network = {
         # EnableIPv6 = true;
         # RoutePriorityOffset = 300;
-        # NameResolvingService = "none";
+        NameResolvingService = "systemd";
       };
       # MAC address randomization
       General = {
@@ -31,5 +33,5 @@ lib.mkIf (settings.modules.networking.iwd or true) {
       Settings.AutoConnect = true;
     };
   };
-  environment.systemPackages = with pkgs; [ impala iwd ];
+  environment.systemPackages = with pkgs; [ impala eiwd ];
 }
