@@ -33,5 +33,5 @@ lib.mkIf (settings.modules.networking.iwd or true) {
       Settings.AutoConnect = true;
     };
   };
-  environment.systemPackages = with pkgs; [ impala eiwd ];
+  environment.systemPackages = with pkgs; [ impala iwd ];
 }
