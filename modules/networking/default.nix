@@ -9,7 +9,7 @@ in {
   # disable waiting for network to be online during boot.
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  systemd.network.enable = true;
+  systemd.network.enable = true; # Enable systemd-networkd
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
   systemd.network.wait-online.anyInterface = false;
@@ -27,10 +27,8 @@ in {
   services.hostapd.enable = false;
   services.networkd-dispatcher.enable = true;
 
-  services.resolved.enable = if (dnsResolver == "systemd-resolved") then
-    true
-  else
-    false; # Systemd DNS Resolver Daemon, systemd-resolved.
+  # Systemd DNS Resolver Daemon, systemd-resolved.
+  services.resolved.enable = (dnsResolver == "systemd-resolved");
 
   networking.dhcpcd.enable = false;
 
@@ -105,7 +103,7 @@ in {
   networking.wireless.userControlled.enable = true;
 
   networking.networkmanager = {
-    enable = settings.modules.networking.networkManager;
+    enable = (settings.modules.networking.iwd == false);
     logLevel = "OFF";
     dhcp = "internal"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
