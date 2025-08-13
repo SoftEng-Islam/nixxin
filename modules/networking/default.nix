@@ -218,7 +218,7 @@ in {
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
     # iptables # A program to configure the Linux IP packet filtering ruleset
 
-    iptables-legacy # A program to configure the Linux IP packet filtering ruleset
+    # iptables-legacy # A program to configure the Linux IP packet filtering ruleset
     iw # Tool to use nl80211
     networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
     routedns # DNS stub resolver, proxy and router
