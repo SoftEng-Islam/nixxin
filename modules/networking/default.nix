@@ -32,7 +32,7 @@ in {
 
   networking.dhcpcd.enable = false;
 
-  networking.useDHCP = false; # Use DHCP for all interfaces by default.
+  networking.useDHCP = true; # Use DHCP for all interfaces by default.
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
   networking.useNetworkd = true;
