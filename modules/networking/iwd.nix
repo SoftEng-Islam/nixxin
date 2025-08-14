@@ -1,3 +1,6 @@
+# https://man.archlinux.org/man/iwd.config.5.en
+# https://wiki.archlinux.org/title/Network_configuration/Wireless
+# https://wiki.archlinux.org/title/Iwd
 { settings, lib, pkgs, ... }:
 lib.mkIf (settings.modules.networking.iwd or true) {
   # give wireless cards time to turn on
@@ -22,14 +25,15 @@ lib.mkIf (settings.modules.networking.iwd or true) {
       };
       # MAC address randomization
       General = {
-        # AddressRandomization = "once";
-        # AddressRandomizationRange = "full";
-        # EnableNetworkConfiguration = true;
+        EnableNetworkConfiguration = true;
 
         # attempt to find a better AP every 10 seconds (default is 60)
-        # RoamRetryInterval = "10";
+        RoamRetryInterval = "600";
+
+        RoamThreshold = "-85";
+        Country = "US"; # Set your country code
+
       };
-      # DriverQuirks.UseDefaultInterface = true;
       Settings.AutoConnect = true;
     };
   };
