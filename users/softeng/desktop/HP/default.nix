@@ -370,8 +370,8 @@
       # }];
     };
   };
-  modules.networking.wifiBackend = "iwd"; # "wpa_supplicant" OR "iwd"
-  modules.networking.iwd = false; # Enable iwd for Wi-Fi management
+  modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
+  modules.networking.iwd = (modules.networking.wifiBackend == "iwd");
   modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
