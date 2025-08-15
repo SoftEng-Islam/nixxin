@@ -20,6 +20,11 @@ in lib.mkIf (_power.enable or true) {
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;
 
+  # KERNEL=="renderD128", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="4"
+  services.udev.extraRules = ''
+    KERNEL=="card1", SUBSYSTEM=="drm", DRIVER=="amdgpu", ATTR{power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="compute"
+  '';
+
   # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
   powerManagement.enable = _power.powerManagement.enable;
 

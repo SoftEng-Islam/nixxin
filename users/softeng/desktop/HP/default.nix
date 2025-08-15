@@ -613,6 +613,9 @@
       "amdgpu.lockup_timeout=5000,10000,10000,5000"
 
       "amdgpu.noretry=0" # Improve memory handling
+
+      "net.ifnames=0"
+      "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
     ];
     boot.kernelModules = [
       "amdgpu" # AMD GPU driver
