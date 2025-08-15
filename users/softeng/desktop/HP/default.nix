@@ -2,7 +2,7 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ lib, pkgs, ... }: rec {
+{ pkgs, ... }: rec {
   # ----------------------------------------------
   # ---- The User Information
   # ----------------------------------------------
@@ -359,8 +359,7 @@
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     eno1 = {
-      useDHCP =
-        lib.mkForce false; # Disable DHCP (so no default route or DNS is set)
+      useDHCP = false; # Disable DHCP (so no default route or DNS is set)
       # ipv4.addresses = [{
       #   # sudo ip addr flush dev enp4s0
       #   # sudo ip addr add 192.168.10.2/24 dev enp4s0
