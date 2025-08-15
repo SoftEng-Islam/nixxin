@@ -513,6 +513,11 @@
       # This disables specific USB ports at boot time.
       # "usb-port.port_disable=1-11" # -.-
 
+      "retbleed=off" # Disable Retbleed mitigation
+      "tsc=reliable"
+      "clocksource=tsc"
+      "no_timer_check"
+
       # AMD GPU optimizations
       # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
       # for Southern Islands (SI i.e. GCN 1) cards
