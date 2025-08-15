@@ -16,8 +16,6 @@
   # ----------------------------------------------
   system.name = "nixos";
   system.hostName = "nixos"; # Hostname
-  system.profile =
-    "desktop"; # Select a profile defined from my profiles directory
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
