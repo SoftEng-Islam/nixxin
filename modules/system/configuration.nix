@@ -181,14 +181,6 @@ in {
       # grep NoNewPrivs /proc/*/status
       "kernel.unprivileged_userns_clone" = 1;
 
-      "vm.watermark_boost_factor" = 0;
-      "vm.watermark_scale_factor" = 125;
-
-      # https://wiki.archlinux.org/title/Gaming#Increase_vm.max_map_count
-      "vm.max_map_count" = "2147483642";
-      # https://wiki.archlinux.org/title/Gaming#Tweaking_kernel_parameters_for_response_time_consistency
-      # Avoid stalls on memory allocations
-      "vm.min_free_kbytes" = 128 * 1024; # default of 66 * 1024
     };
 
     # The Linux kernel does not have Rust language support enabled by default.

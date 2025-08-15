@@ -31,9 +31,6 @@ in {
     # Write data to disk more frequently (prevents slowdowns)
     "vm.dirty_ratio" = 10; # Full writeback at 10%
 
-    # Reserve 64MB of free memory (adjust as needed)
-    "vm.min_free_kbytes" = 65536;
-
     "vm.dirty_background_ratio" = 5; # Background writeback at 5%
 
     # Default memory compaction (change to 1 if fragmentation issues arise)
@@ -53,13 +50,18 @@ in {
     "vm.page-cluster" = 0;
 
     "vm.vfs_cache_pressure" = 50;
-    "vm.max_map_count" = 2147483642;
 
     # Kernel Scheduler
     "kernel.sched_autogroup_enabled" = 0;
     "kernel.sched_child_runs_first" = 1;
     "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
     "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
+
+    # https://wiki.archlinux.org/title/Gaming#Increase_vm.max_map_count
+    "vm.max_map_count" = "2147483642";
+    # https://wiki.archlinux.org/title/Gaming#Tweaking_kernel_parameters_for_response_time_consistency
+    # Avoid stalls on memory allocations
+    "vm.min_free_kbytes" = 128 * 1024; # default of 66 * 1024
   };
 
   nixpkgs.overlays = [
