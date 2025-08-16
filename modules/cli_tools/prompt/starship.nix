@@ -136,15 +136,15 @@ in {
     programs.starship.enable = true;
     # programs.starship.enableZshIntegration = true;
 
-    programs.nushell = {
-      extraEnv = ''
-        mkdir ${config.xdg.cacheHome}/starship
-        ${starshipCmd} init nu | save -f ${config.xdg.cacheHome}/starship/init.nu
-      '';
-      extraConfig = ''
-        use ${config.xdg.cacheHome}/starship/init.nu
-      '';
-    };
+    # programs.nushell = {
+    #   extraEnv = ''
+    #     mkdir ${config.xdg.cacheHome}/starship
+    #     ${starshipCmd} init nu | save -f ${config.xdg.cacheHome}/starship/init.nu
+    #   '';
+    #   extraConfig = ''
+    #     use ${config.xdg.cacheHome}/starship/init.nu
+    #   '';
+    # };
   };
   environment.systemPackages = with pkgs; [ tmux ];
 }
