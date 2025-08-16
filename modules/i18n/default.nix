@@ -56,8 +56,7 @@ in {
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
   environment.variables = {
     # https://fcitx-im.org/wiki/Setup_Fcitx_5
-    GLFW_IM_MODULE =
-      "ibus"; # This is a variable only used by kitty. You need to set it to `GLFW_IM_MODULE=ibus`.
+    GLFW_IM_MODULE = "ibus"; # This is a variable only used by kitty.
     SDL_IM_MODULE = "fcitx";
     GTK_IM_MODULE = "fcitx";
     QT_IM_MODULE = "fcitx";
@@ -65,7 +64,7 @@ in {
     XMODIFIERS = "@im=fcitx";
 
     # Defines the system language.
-    # LANG = _i18n.defaultLocale;
+    LANG = _i18n.defaultLocale;
   };
 
   systemd.user.services.fcitx5 = {

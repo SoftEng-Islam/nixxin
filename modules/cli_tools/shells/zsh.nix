@@ -127,9 +127,6 @@ in {
 
       export NIX_BUILD_SHELL=zsh
 
-      # You may need to manually set your language environment
-      # export LANG=en_US.UTF-8
-
       # ------------------------ #
       # ------ User Theme ------ #
       # ------------------------ #
@@ -160,7 +157,7 @@ in {
       # Custom plugins may be added to $ZSH_CUSTOM/plugins/
       # Example format: plugins=(rails git textmate ruby lighthouse)
       # Add wisely, as too many plugins slow down shell startup.
-      plugins=(
+      # plugins=(
         # git
         # fzf
         # extract
@@ -169,7 +166,7 @@ in {
         # zsh-autosuggestions
         # zsh-syntax-highlighting
         # zsh-history-substring-search
-      )
+      # )
 
       # To get the package path
       # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -224,8 +221,8 @@ in {
       # bindkey '^H' fzf-history-widget  # Bind Ctrl+H to trigger fzf history search
 
       # Basic autocompletion
-      autoload -Uz compinit
-      compinit
+      # autoload -Uz compinit
+      # compinit
 
       # ------------------------------------------ #
       # ----------- User configuration ----------- #
@@ -252,7 +249,7 @@ in {
       # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
       # The following line to use case-sensitive completion.
-      CASE_SENSITIVE="false"
+      CASE_SENSITIVE="true"
       # Uncomment the following line to use hyphen-insensitive completion.
       # Case-sensitive completion must be off. _ and - will be interchangeable.
       HYPHEN_INSENSITIVE="true"
@@ -277,11 +274,11 @@ in {
       # # HIST_STAMPS="mm/dd/yyyy"
 
       # Preferred editor for local and remote sessions
-      if [[ -n $SSH_CONNECTION ]]; then
-        export EDITOR='vim'
-      else
-        export EDITOR='nvim'
-      fi
+      # if [[ -n $SSH_CONNECTION ]]; then
+      #   export EDITOR='vim'
+      # else
+      #   export EDITOR='nvim'
+      # fi
 
 
       # ----------------------------- #
