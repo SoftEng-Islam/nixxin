@@ -43,7 +43,7 @@
           "CaskaydiaCove Nerd Font"
         })
         -- disable ligatures
-        config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
+        -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
 
         -- ----------------------------
         -- Colors & Appearance
