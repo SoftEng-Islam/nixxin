@@ -44,7 +44,7 @@ in mkIf (settings.modules.fonts.enable) {
   environment.systemPackages = with pkgs; [
     font-manager
     fontconfig # Library for font customization and configuration
-
+    fribidi
     # Latex
     #   texliveFull # TeX Live environment
     #    texlive.combined.scheme-full # TeX Live environment for scheme-full
