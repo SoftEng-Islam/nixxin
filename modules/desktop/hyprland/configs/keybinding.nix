@@ -56,7 +56,7 @@
 
       #=> Third Row:
       # bind = $main, Z, exec,
-      bind = $main, X, exec, gnome-text-editor --new-window # Launch GNOME Text Editor
+      bind = $main, X, exec, GTK_THEME=${settings.common.gtk.GTK_THEME} gnome-text-editor --new-window # Launch GNOME Text Editor
       bind = $main, C, exec, code # Launch VSCode (editor)
       # bind = $main, V, exec,
       # bind = $main, B, exec,

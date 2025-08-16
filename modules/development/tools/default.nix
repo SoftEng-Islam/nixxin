@@ -15,6 +15,7 @@ in {
       stripe-cli # Command-line tool for Stripe
       watchman # required by react native
       jira-cli-go # Feature-rich interactive Jira command line
+      notepad-next # Notepad++ clone
     ];
   };
 }

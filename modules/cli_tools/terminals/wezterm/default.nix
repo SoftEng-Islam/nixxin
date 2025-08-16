@@ -9,26 +9,54 @@
         -- Pull in the wezterm API
         local wezterm = require 'wezterm'
 
-        -- This will hold the configuration.
+        -- This table will hold the configuration.
+        local config = {}
+
+        -- In newer versions of wezterm, use the config_builder which will
+        -- help provide clearer error messages
         if wezterm.config_builder then
           config = wezterm.config_builder()
         end
 
         -- This is where you actually apply your config choices.
+        config.initial_rows = 25
+        config.initial_cols = 100
+        config.scrollback_lines = 10000
 
-        -- changing the font size and color scheme.
+
+        -- ----------------------------
+        -- Font size and color scheme.
+        -- ----------------------------
+        config.bidi_enabled = true
+        config.bidi_direction = "AutoLeftToRight"
+        config.bold_brightens_ansi_colors = "BrightAndBold"
+        config.underline_position = -3.5
+        config.underline_thickness = 1
+        config.font = wezterm.font("${settings.modules.terminals.wezterm.fontFamily}", {weight="Regular", italic=true})
         config.font_size = ${
           toString settings.modules.terminals.wezterm.fontSize
         }
-        config.font = wezterm.font "${settings.modules.terminals.wezterm.fontFamily}"
+        config.font = wezterm.font_with_fallback({
+          "${settings.modules.terminals.wezterm.fontFamily}",
+          "JetBrains Nerd Font",
+          "Amiri",
+          "Noto Sans Arabic"
+          "CaskaydiaCove Nerd Font"
+        })
+
+        -- ----------------------------
+        -- Colors & Appearance
+        -- ----------------------------
         config.color_scheme = "${settings.modules.terminals.wezterm.colorScheme}"
-
-        config.enable_tab_bar = true
-
         config.window_padding = { left = 5, right = 5, top = 5, bottom = 5, }
         config.window_background_opacity = 1
-
+        config.enable_tab_bar = true
         config.animation_fps = 1
+        config.warn_about_missing_glyphs = false
+        config.hide_tab_bar_if_only_one_tab = false
+        config.window_close_confirmation = 'NeverPrompt'
+        config.audible_bell = 'Disabled'
+
 
         -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar.
         config.default_cursor_style = 'BlinkingBar'
@@ -41,14 +69,6 @@
         -- Software - use CPU-based rasterization.
         -- WebGpu - use GPU accelerated rasterization (Since: Version 20221119-145034-49b9839f)
         config.front_end = 'OpenGL'
-
-
-        config.warn_about_missing_glyphs = false
-        config.hide_tab_bar_if_only_one_tab = false
-
-        config.window_close_confirmation = 'NeverPrompt'
-
-        config.audible_bell = 'Disabled'
 
         config.set_environment_variables = {
           TERMINFO_DIRS = '/home/${settings.user.username}/.nix-profile/share/terminfo',

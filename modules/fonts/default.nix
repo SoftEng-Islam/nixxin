@@ -23,6 +23,9 @@ in mkIf (settings.modules.fonts.enable) {
 
       # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
+
+      # Arabic Fonts
+      amiri
     ];
     fontconfig = {
       enable = true;
