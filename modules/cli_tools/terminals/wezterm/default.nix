@@ -37,10 +37,9 @@
           toString settings.modules.terminals.wezterm.fontSize
         }
         config.font = wezterm.font_with_fallback({
-          "${settings.modules.terminals.wezterm.fontFamily}",
           "JetBrains Nerd Font",
           "Amiri",
-          "Noto Sans Arabic"
+          "Noto Sans Arabic",
           "CaskaydiaCove Nerd Font"
         })
 
