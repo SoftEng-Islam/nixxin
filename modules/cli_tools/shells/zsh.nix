@@ -318,6 +318,7 @@ in {
       alias nano="micro" # Use micro as the default editor
       alias reboot="sudo reboot"
       alias nixclean="sudo nix-collect-garbage --delete-older-than 1d"
+      alias trans="trans -no-bidi"
 
       # ------------------------- #
       # -------- Plugins -------- #
