@@ -167,7 +167,7 @@
   modules.browsers.google-chrome.enable = true;
   modules.browsers.brave.enable = false;
   modules.browsers.firefox.enable = false;
-  modules.browsers.firefox-beta.enable = false;
+  modules.browsers.firefox-beta.enable = true;
   modules.browsers.microsoft-edge.enable = true;
 
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
