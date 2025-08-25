@@ -102,8 +102,6 @@
         --   {key="c", mods="CTRL|SHIFT", action="SendString", args={ "\x03" }},
         -- }
 
-
-
         -- Finally, return the configuration to wezterm:
         return config
       '';
