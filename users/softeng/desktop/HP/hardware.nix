@@ -63,6 +63,29 @@
       "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
     ];
   };
+  fileSystems."/SSDisk" = {
+    device = "/dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf";
+    # fsType = "ntfs-3g"; # if NTFS
+    fsType = "btrfs";
+    options = [ # With Option-by-Option Explanation
+      # This only for BTRFS
+      "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
+      "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
+      "nodev" # Don’t allow device files on this mount (security measure).
+
+      # This only for NTFS
+      #"uid=1000" # NTFS/ntfs-3g only – set default file ownership to user ID 1000 (your user).
+      #"gid=1000" # NTFS/ntfs-3g only – set default group to group ID 1000.
+      # "utf8" # NTFS/ntfs-3g only – interpret file names as UTF-8.
+      # "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
+
+      # For Both File System
+      "rw" # Mount the filesystem as read-write.
+      "nofail" # Don’t fail boot if this mount fails (useful for external or optional drives).
+      "exec" # Allow executing binaries from this mount.
+      "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
+    ];
+  };
 
   fileSystems."/data2" = {
     device = "/dev/disk/by-uuid/f532f234-9e5a-4c3e-a788-dada20ea6c56";

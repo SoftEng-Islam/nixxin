@@ -58,7 +58,7 @@ let
 
 in {
   # enable zsh autocompletion for system packages (systemd, etc)
-  environment.pathsToLink = [ "/share/zsh" ];
+  # environment.pathsToLink = [ "/share/zsh" ];
 
   # Path to your oh-my-zsh installation.
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -111,11 +111,11 @@ in {
   };
 
   home-manager.users.${settings.user.username} = {
-    programs.zsh = {
-      initContent = lib.mkOrder 1000 ''
-        [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
-      '';
-    };
+    # programs.zsh = {
+    #   initContent = lib.mkOrder 1000 ''
+    #     [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
+    #   '';
+    # };
     home.file.".zshrc".text = ''
       # zmodload zsh/zprof
 
@@ -170,7 +170,7 @@ in {
 
       # To get the package path
       # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
-      source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
+      # source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
 
       # ZSH AUTOCOMPLETE -> https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
       zstyle ':autocomplete:*' list-lines 8
