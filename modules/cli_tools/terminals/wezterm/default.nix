@@ -90,7 +90,7 @@
             mods="CTRL",
             action="OpenLinkAtMouseCursor",
           },
-          -- super-t open new tab in new dir
+          -- CTRL-SHIFT-t open new tab in new dir
           {
             key = 't',
             mods = 'CTRL|SHIFT',
@@ -98,7 +98,7 @@
               cwd = wezterm.home_dir,
             },
           },
-          -- shift-super-t open new tab in same dir
+          -- CTRL-ALT-t open new tab in same dir
           {
             key = 't',
             mods = 'CTRL|ALT',
