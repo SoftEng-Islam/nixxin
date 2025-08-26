@@ -77,12 +77,32 @@
         }
         config.term = '${settings.common.TERM}'
 
+        -- Start zsh as login shell
+        config.default_prog = { "/bin/zsh", "-l" }
+
+        -- Always start new windows/tabs in this directory
+        config.default_cwd = wezterm.home_dir
+
         config.mouse_bindings = {
           -- and make CTRL-Click open hyperlinks
           {
             event={Up={streak=1, button="Left"}},
             mods="CTRL",
             action="OpenLinkAtMouseCursor",
+          },
+          -- super-t open new tab in new dir
+          {
+            key = 't',
+            mods = 'CTRL|SHIFT',
+            action = wezterm.action.SpawnCommandInNewTab {
+              cwd = wezterm.home_dir,
+            },
+          },
+          -- shift-super-t open new tab in same dir
+          {
+            key = 't',
+            mods = 'CTRL|ALT',
+            action = wezterm.action.SpawnTab 'CurrentPaneDomain'
           },
         }
 
