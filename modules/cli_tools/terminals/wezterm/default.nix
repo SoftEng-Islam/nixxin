@@ -90,6 +90,16 @@
             mods="CTRL",
             action="OpenLinkAtMouseCursor",
           },
+        }
+
+        -- copy_mode
+        -- You can see the configuration in your version of wezterm by running..
+        -- `wezterm show-keys --lua --key-table copy_mode`.
+
+        config.enable_scroll_bar = true
+
+        -- config.disable_default_key_bindings = true
+        config.keys = {
           -- CTRL-SHIFT-t open new tab in new dir
           {
             key = 't',
@@ -105,22 +115,6 @@
             action = wezterm.action.SpawnTab 'CurrentPaneDomain'
           },
         }
-
-        -- copy_mode
-        -- You can see the configuration in your version of wezterm by running..
-        -- `wezterm show-keys --lua --key-table copy_mode`.
-
-        config.enable_scroll_bar = true
-
-        -- config.disable_default_key_bindings = true
-        -- config.keys = {
-        --   -- Make CTRL-C copy to clipboard
-        --   {key="c", mods="CTRL", action="CopyTo", args={ "ClipboardAndPrimarySelection" }},
-        --   -- Make CTRL-V paste from clipboard
-        --   {key="v", mods="CTRL", action="PasteFrom", args={ "ClipboardAndPrimarySelection" }},
-        --   -- Make CTRL-Shift-C Terminate the current process
-        --   {key="c", mods="CTRL|SHIFT", action="SendString", args={ "\x03" }},
-        -- }
 
         -- Finally, return the configuration to wezterm:
         return config
