@@ -78,7 +78,7 @@
         config.term = '${settings.common.TERM}'
 
         -- Start zsh as login shell
-        # config.default_prog = { "/bin/zsh", "-l" }
+        -- config.default_prog = { "/bin/zsh", "-l" }
 
         -- Always start new windows/tabs in this directory
         config.default_cwd = wezterm.home_dir
