@@ -1,11 +1,4 @@
-{ config, lib, pkgs, ... }:
-
-let
-  inherit (lib) mkIf optional;
-  cfg = config.icedos.tailscale;
-in mkIf (cfg.enable) {
-  environment.systemPackages = with pkgs;
-    [ tailscale ] ++ optional (cfg.enableTrayscale) trayscale;
-
+{ settings, lib, pkgs, ... }: {
+  environment.systemPackages = with pkgs; [ tailscale ];
   services.tailscale.enable = true;
 }
