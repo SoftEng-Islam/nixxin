@@ -131,6 +131,19 @@
       # Bufferbloat mitigations + slight improvement in throughput & latency
       "net.ipv4.tcp_congestion_control" = "bbr";
       "net.core.default_qdisc" = "cake";
+
+      "net.core.somaxconn" = 4096;
+      "net.ipv4.tcp_fin_timeout" = 10;
+
+      "kernel.kptr_restrict" = 2;
+      "kernel.dmesg_restrict" = 1;
+      "kernel.unprivileged_bpf_disabled" = 1;
+
+      "net.ipv4.conf.all.proxy_arp" = 0;
+      "net.netfilter.nf_conntrack_max" = 262144;
+
+      "net.netfilter.nf_conntrack_tcp_loose" = 1; # safer default
+      "net.ipv4.conf.all.log_martians" = 1; # log suspicious packets
     };
     boot.kernelModules = [ "tcp_bbr" ];
 
@@ -138,9 +151,9 @@
     # user.initialPassword = "nixos";
     # users.users.root.initialPassword = "nixos";
 
-    environment.systemPackages = with pkgs; [
-      openvpn # Robust and highly flexible tunneling application
-      protonvpn-cli # Linux command-line client for ProtonVPN
-    ];
+    environment.systemPackages = with pkgs;
+      [
+        openvpn # Robust and highly flexible tunneling application
+      ];
   };
 }
