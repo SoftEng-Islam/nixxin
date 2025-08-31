@@ -23,6 +23,11 @@
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
+    # hyprtasking = {
+    #   url = "github:raybbian/hyprtasking";
+    #   inputs.hyprland.follows = "hyprland";
+    # };
+
     # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
 
     # aagl.url = "github:ezKEa/aagl-gtk-on-nix";

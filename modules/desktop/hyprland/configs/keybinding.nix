@@ -157,7 +157,8 @@
       bind = $main, 0, workspace, 10
 
 
-
+      # Hyprtasking
+      # "$mainMod, tab, hyprtasking:toggle, cursor"
 
       # --------------------- #
       # ---- Move Window ---- #
