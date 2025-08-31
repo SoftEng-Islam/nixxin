@@ -69,7 +69,7 @@
 
       # Wezterm specific rules
       # windowrule = opacity 0.6 0.5, class:^(wezterm)$
-      windowrulev2 = blur,class:(Wezterm)
+      # windowrulev2 = blur,class:(Wezterm)
       windowrulev2 = noborder,class:(Wezterm)
       windowrulev2 = nodim,class:(Wezterm)
       windowrulev2 = noshadow,class:(Wezterm)
