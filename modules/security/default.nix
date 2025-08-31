@@ -6,7 +6,11 @@
 # polkit, rtkit, tpm2 support, and system security tweaks.
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
 { settings, lib, pkgs, ... }: {
-  # imports = [ ./gpg_agent.nix ];
+  imports = [
+    ./vpn/protonVPN
+    ./vpn/tailscale
+    # ./gpg_agent.nix
+  ];
   config = lib.mkIf (settings.modules.security.enable or true) {
     security = {
       # System security tweaks
@@ -149,9 +153,11 @@
     # user.initialPassword = "nixos";
     # users.users.root.initialPassword = "nixos";
 
-    environment.systemPackages = with pkgs;
-      [
-        openvpn # Robust and highly flexible tunneling application
-      ];
+    networking.firewall.checkReversePath = false;
+
+    environment.systemPackages = with pkgs; [
+      wireguard-tools
+      openvpn # Robust and highly flexible tunneling application
+    ];
   };
 }
