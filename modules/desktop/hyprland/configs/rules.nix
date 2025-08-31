@@ -86,7 +86,11 @@
       # Extra rules for specific apps
       windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
       windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$
+      windowrulev2 = nodim,class:^(mpv)$
       windowrulev2 = idleinhibit focus, class:^(mpv)$
+      windowrulev2 = noblur,class:^(mpv)$
+
+
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
       windowrulev2 = float,class:^(zenity)$
       windowrulev2 = center,class:^(zenity)$
