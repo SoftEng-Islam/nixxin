@@ -458,7 +458,7 @@
     colorScheme = "prefer-dark";
     window.opacity = 0.9; # The windows Opacity
     window.blur = true; # Enable blur for windows
-    window.shadow = true; # enable shadow for Hyprland
+    window.shadow = false; # enable shadow for Hyprland
     window.rounding = 10; # rounding corners for Hyprland windwos
     window.dim_inactive = true;
     window.title.fontStyle = "bold";

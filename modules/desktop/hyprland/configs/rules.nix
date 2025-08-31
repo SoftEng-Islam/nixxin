@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
-      # windowrule = noblur,.*
+      windowrule = noblur,.*
       # windowrule = opacity 0.89 override 0.89 override, .* # Applies transparency to EVERY WINDOW
 
 

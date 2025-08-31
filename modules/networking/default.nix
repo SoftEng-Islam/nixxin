@@ -72,6 +72,7 @@ in {
   networking.firewall.enable = settings.modules.networking.firewall.enable;
   networking.firewall.allowedTCPPorts = [ 53 80 443 8080 3389 51820 ];
   networking.firewall.allowedUDPPorts = [ 53 67 51820 ];
+  # Allow ephemeral ranges for better peer discovery in torrent clients
   networking.firewall.allowedTCPPortRanges = [{
     from = 49152;
     to = 65535;
@@ -81,6 +82,13 @@ in {
     from = 49152;
     to = 65535;
   }];
+
+  services.miniupnpd = {
+    enable = true;
+    externalInterface = "wlan0"; # replace with your WAN interface
+    internalIPs = [ "192.168.1.0/24" ]; # your LAN range
+    natpmp = true; # also enable NAT-PMP alongside UPnP
+  };
 
   # Use nftables instead of iptables
   networking.nftables.enable = settings.modules.networking.nftables.enable;
