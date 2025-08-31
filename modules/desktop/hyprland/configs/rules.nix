@@ -84,36 +84,36 @@
       windowrule = opacity 0.85, class:^(nautilus)$
 
       # Extra rules for specific apps
-      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
-      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
-      windowrulev2 = idleinhibit focus, class:^(mpv)$"
-      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$"
-      windowrulev2 = float,class:^(zenity)$"
-      windowrulev2 = center,class:^(zenity)$"
-      windowrulev2 = size 850 500,class:^(zenity)$"
-      windowrulev2 = float,class:^(pavucontrol)$"
-      windowrulev2 = float,class:^(SoundWireServer)$"
-      windowrulev2 = float,class:^(.sameboy-wrapped)$"
-      windowrulev2 = float,class:^(file_progress)$"
-      windowrulev2 = float,class:^(confirm)$"
-      windowrulev2 = float,class:^(dialog)$"
-      windowrulev2 = float,class:^(download)$"
-      windowrulev2 = float,class:^(notification)$"
-      windowrulev2 = float,class:^(error)$"
-      windowrulev2 = float,class:^(confirmreset)$"
-      windowrulev2 = float,title:^(Open File)$"
-      windowrulev2 = float,title:^(branchdialog)$"
-      windowrulev2 = float,title:^(Confirm to replace files)$"
-      windowrulev2 = float,title:^(File Operation Progress)$"
+      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
+      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$
+      windowrulev2 = idleinhibit focus, class:^(mpv)$
+      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
+      windowrulev2 = float,class:^(zenity)$
+      windowrulev2 = center,class:^(zenity)$
+      windowrulev2 = size 850 500,class:^(zenity)$
+      windowrulev2 = float,class:^(pavucontrol)$
+      windowrulev2 = float,class:^(SoundWireServer)$
+      windowrulev2 = float,class:^(.sameboy-wrapped)$
+      windowrulev2 = float,class:^(file_progress)$
+      windowrulev2 = float,class:^(confirm)$
+      windowrulev2 = float,class:^(dialog)$
+      windowrulev2 = float,class:^(download)$
+      windowrulev2 = float,class:^(notification)$
+      windowrulev2 = float,class:^(error)$
+      windowrulev2 = float,class:^(confirmreset)$
+      windowrulev2 = float,title:^(Open File)$
+      windowrulev2 = float,title:^(branchdialog)$
+      windowrulev2 = float,title:^(Confirm to replace files)$
+      windowrulev2 = float,title:^(File Operation Progress)$
 
       # -------------------------
       # xwaylandvideobridge rules
       # -------------------------
-      "opacity 0.0 override,class:^(xwaylandvideobridge)$"
-      "noanim,class:^(xwaylandvideobridge)$"
-      "noinitialfocus,class:^(xwaylandvideobridge)$"
-      "maxsize 1 1,class:^(xwaylandvideobridge)$"
-      "noblur,class:^(xwaylandvideobridge)$"
+      windowrulev2 = opacity 0.0 override,class:^(xwaylandvideobridge)$
+      windowrulev2 = noanim,class:^(xwaylandvideobridge)$
+      windowrulev2 = noinitialfocus,class:^(xwaylandvideobridge)$
+      windowrulev2 = maxsize 1 1,class:^(xwaylandvideobridge)$
+      windowrulev2 = noblur,class:^(xwaylandvideobridge)$
     '';
   };
 }
