@@ -81,7 +81,7 @@
       # ----------------------
       # Nautilus specific rules
       # ----------------------
-      windowrule = opacity 0.85, class:^(nautilus)$
+      windowrule = opacity 0.85, class:^(org.gnome.Nautilus)$
 
       # Extra rules for specific apps
       windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
