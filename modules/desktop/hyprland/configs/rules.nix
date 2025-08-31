@@ -3,7 +3,7 @@
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
       # windowrule = noblur,.*
-      # windowrule = opacity 0.89 override 0.89 override, .* # Applies transparency to EVERY WINDOW
+      windowrule = opacity 1.0 override 0.80 override, .* # Applies transparency to EVERY WINDOW
 
 
       windowrulev2 = float, class:^(Waydroid|waydroid)$
