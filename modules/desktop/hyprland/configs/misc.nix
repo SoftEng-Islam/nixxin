@@ -51,7 +51,8 @@
         # When the child window is closed, the parent window reappears.
         enable_swallow = false;
         # # Only these terminals will swallow
-        swallow_regex = "(foot|kitty|allacritty|Alacritty)";
+        swallow_regex = "(wezterm|foot|kitty|allacritty|Alacritty)";
+        # swallow_regex = "^(wezterm)$";
         swallow_exception_regex = ".*nvim.*"; # Exception: Don't swallow Neovim
 
         # Whether Hyprland should focus an app that requests to be focused (an activate request)
@@ -89,7 +90,6 @@
         # render_ahead_of_time = false;
         # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
         # render_ahead_safezone = 1;
-
       };
     };
   };

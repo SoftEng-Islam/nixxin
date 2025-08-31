@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
-      windowrule = noblur,.*
+      # windowrule = noblur,.*
       # windowrule = opacity 0.89 override 0.89 override, .* # Applies transparency to EVERY WINDOW
 
 
@@ -53,8 +53,8 @@
       windowrulev2 = float, class:^(ulauncher)$
       windowrulev2 = center, class:^(ulauncher)$
       windowrulev2 = noborder, class:^(ulauncher)$
-      windowrulev2 = noshadow, class:^(ulauncher)$
-      windowrulev2 = noblur, class:^(ulauncher)$
+      # windowrulev2 = noshadow, class:^(ulauncher)$
+      # windowrulev2 = noblur, class:^(ulauncher)$
 
       # idle inhibit while watching videos
       windowrulev2 = idleinhibit focus, class:^(mpv|.+exe|celluloid)$
@@ -66,6 +66,15 @@
 
       # Fix some dragging issues with XWayland
       windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+
+      # Wezterm specific rules
+      # windowrule = opacity 0.6 0.5, class:^(wezterm)$
+      windowrulev2 = blur,class:(Wezterm)
+      windowrulev2 = noborder,class:(Wezterm)
+      windowrulev2 = nodim,class:(Wezterm)
+      windowrulev2 = noshadow,class:(Wezterm)
+      # windowrulev2 = rounding 0,class:(Wezterm)
+      windowrulev2 = opacity 0.95 override 0.85 override,class:^Wezterm$
     '';
   };
 }
