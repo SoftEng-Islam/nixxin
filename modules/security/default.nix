@@ -135,7 +135,6 @@
       "net.core.somaxconn" = 4096;
       "net.ipv4.tcp_fin_timeout" = 10;
 
-      "kernel.kptr_restrict" = 2;
       "kernel.unprivileged_bpf_disabled" = 1;
 
       "net.ipv4.conf.all.proxy_arp" = 0;
