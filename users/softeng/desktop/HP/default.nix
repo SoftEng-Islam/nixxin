@@ -311,7 +311,7 @@
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = true;
   modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
+  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding =
     10; # Rounding Corners for Hyprland Windows
   modules.desktop.hyprland.dim_inactive = true;

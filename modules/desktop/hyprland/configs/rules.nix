@@ -3,8 +3,7 @@
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
       # windowrule = noblur,.*
-      windowrule = opacity 1.0 override 0.80 override, .* # Applies transparency to EVERY WINDOW
-
+      # windowrule = opacity 1.0 override 0.80 override, .* # Applies transparency to EVERY WINDOW
 
       windowrulev2 = float, class:^(Waydroid|waydroid)$
       windowrulev2 = tile, class:(dev.warp.Warp)
@@ -27,6 +26,7 @@
       windowrulev2 = size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$
       windowrulev2 = float, title:^(Picture(-| )in(-| )[Pp]icture)$
       windowrulev2 = pin, title:^(Picture(-| )in(-| )[Pp]icture)$
+      windowrulev2 = opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$"
 
       # ---- Tearing Fix ---- #
       windowrulev2 = immediate, class:(steam_app)
@@ -67,14 +67,53 @@
       # Fix some dragging issues with XWayland
       windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
 
+      # ----------------------
       # Wezterm specific rules
+      # ----------------------
       # windowrule = opacity 0.6 0.5, class:^(wezterm)$
       # windowrulev2 = blur,class:(Wezterm)
       windowrulev2 = noborder,class:(Wezterm)
       windowrulev2 = nodim,class:(Wezterm)
       windowrulev2 = noshadow,class:(Wezterm)
-      # windowrulev2 = rounding 0,class:(Wezterm)
-      windowrulev2 = opacity 0.95 override 0.85 override,class:^Wezterm$
+      windowrulev2 = rounding 0,class:(Wezterm)
+      windowrulev2 = opacity 0.90 override 0.85 override,class:^Wezterm$
+
+      # ----------------------
+      # Nautilus specific rules
+      # ----------------------
+      windowrule = opacity 0.85, class:^(nautilus)$
+
+      # Extra rules for specific apps
+      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*imv.*)$"
+      windowrulev2 = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$"
+      windowrulev2 = idleinhibit focus, class:^(mpv)$"
+      windowrulev2 = idleinhibit fullscreen, class:^(firefox)$"
+      windowrulev2 = float,class:^(zenity)$"
+      windowrulev2 = center,class:^(zenity)$"
+      windowrulev2 = size 850 500,class:^(zenity)$"
+      windowrulev2 = float,class:^(pavucontrol)$"
+      windowrulev2 = float,class:^(SoundWireServer)$"
+      windowrulev2 = float,class:^(.sameboy-wrapped)$"
+      windowrulev2 = float,class:^(file_progress)$"
+      windowrulev2 = float,class:^(confirm)$"
+      windowrulev2 = float,class:^(dialog)$"
+      windowrulev2 = float,class:^(download)$"
+      windowrulev2 = float,class:^(notification)$"
+      windowrulev2 = float,class:^(error)$"
+      windowrulev2 = float,class:^(confirmreset)$"
+      windowrulev2 = float,title:^(Open File)$"
+      windowrulev2 = float,title:^(branchdialog)$"
+      windowrulev2 = float,title:^(Confirm to replace files)$"
+      windowrulev2 = float,title:^(File Operation Progress)$"
+
+      # -------------------------
+      # xwaylandvideobridge rules
+      # -------------------------
+      "opacity 0.0 override,class:^(xwaylandvideobridge)$"
+      "noanim,class:^(xwaylandvideobridge)$"
+      "noinitialfocus,class:^(xwaylandvideobridge)$"
+      "maxsize 1 1,class:^(xwaylandvideobridge)$"
+      "noblur,class:^(xwaylandvideobridge)$"
     '';
   };
 }

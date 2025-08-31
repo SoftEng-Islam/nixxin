@@ -205,6 +205,24 @@
       bind = $main Alt, up, swapwindow, u # u: up
       bind = $main Alt, down, swapwindow, d # d: down
 
+
+      # -------------------------
+      # window control
+      # -------------------------
+      # "$mainMod SHIFT, left, movewindow, l"
+      # "$mainMod SHIFT, right, movewindow, r"
+      # "$mainMod SHIFT, up, movewindow, u"
+      # "$mainMod SHIFT, down, movewindow, d"
+      # "$mainMod CTRL, left, resizeactive, -80 0"
+      # "$mainMod CTRL, right, resizeactive, 80 0"
+      # "$mainMod CTRL, up, resizeactive, 0 -80"
+      # "$mainMod CTRL, down, resizeactive, 0 80"
+      # "$mainMod ALT, left, moveactive,  -80 0"
+      # "$mainMod ALT, right, moveactive, 80 0"
+      # "$mainMod ALT, up, moveactive, 0 -80"
+      # "$mainMod ALT, down, moveactive, 0 80"
+
+
       binde = , XF86MonBrightnessUp, exec, brightnessctl s +5%
       binde = , XF86MonBrightnessDown, exec, brightnessctl s 5%-
 
