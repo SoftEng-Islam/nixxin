@@ -116,8 +116,9 @@ in {
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
-  networking.wireless.enable = false;
-  networking.wireless.scanOnLowSignal = false;
+  networking.wireless.enable =
+    (settings.modules.networking.wifiBackend == "wpa_supplicant");
+  networking.wireless.scanOnLowSignal = true;
   networking.wireless.userControlled.enable = true;
 
   networking.networkmanager = {
@@ -187,13 +188,13 @@ in {
 
   # allow networkmanager to control systemd-resolved,
   # which it needs to do to apply new DNS settings when using systemd-resolved.
-  security.polkit.extraConfig = ''
-    polkit.addRule(function(action, subject) {
-      if (subject.isInGroup("networkmanager") && action.id.indexOf("org.freedesktop.resolve1.") == 0) {
-        return polkit.Result.YES;
-      }
-    });
-  '';
+  # security.polkit.extraConfig = ''
+  # polkit.addRule(function(action, subject) {
+  # if (subject.isInGroup("networkmanager") && action.id.indexOf("org.freedesktop.resolve1.") == 0) {
+  # return polkit.Result.YES;
+  # }
+  # });
+  # '';
 
   # environment.etc."resolv.conf".text = "nameserver 8.8.8.8";
   environment.systemPackages = with pkgs; [
