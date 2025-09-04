@@ -3,6 +3,8 @@
     ./hardware.nix
     ./home.nix
 
+    ../../../../scripts
+
     # ---- Modules ---- #
     ../../../../modules/ai
     ../../../../modules/android
