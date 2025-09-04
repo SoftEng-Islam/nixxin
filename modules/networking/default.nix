@@ -132,8 +132,7 @@ in {
   networking.wireless.userControlled.enable = true;
 
   networking.networkmanager = {
-    enable = (settings.modules.networking.iwd == false
-      && settings.modules.networking.wifiBackend != "wpa_supplicant");
+    enable = true;
     logLevel = "OFF";
     dhcp = "internal"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
