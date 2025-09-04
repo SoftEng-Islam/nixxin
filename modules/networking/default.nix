@@ -127,8 +127,7 @@ in {
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
-  networking.wireless.enable =
-    (settings.modules.networking.wifiBackend == "wpa_supplicant");
+  networking.wireless.enable = false;
   networking.wireless.scanOnLowSignal = true;
   networking.wireless.userControlled.enable = true;
 
