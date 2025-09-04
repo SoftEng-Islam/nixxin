@@ -34,7 +34,7 @@ let
 
     # Torrent client
     (lib.optional settings.modules.data_transferring.transmission.enable
-      transmission_4)
+      transmission_4-gtk)
   ];
 in {
   imports = optionals (settings.modules.data_transferring.enable or false) [
@@ -42,6 +42,7 @@ in {
     ./qbittorrent
     ./aria.nix
     ./bitmagnet.nix
+    ./torrent.nix
   ];
   config = mkIf (settings.modules.data_transferring.enable or false) {
     environment.systemPackages = lib.flatten _pkgs ++ [ pkgs.vdhcoapp ];

@@ -1,7 +1,8 @@
 { settings, lib, pkgs, ... }:
 let
+  inherit (lib) mkDefault mkForce;
   dnsResolver = settings.modules.networking.dnsResolver;
-  wifiInterface = "wlp0s19f2u5";
+  wifiInterface = "wlan0";
 in {
   imports =
     [ ./dnsmasq.nix ./iwd.nix ./RTL8188EUS.nix ./rtw.nix ./waypipe.nix ];
@@ -28,15 +29,25 @@ in {
   services.networkd-dispatcher.enable = true;
 
   # Systemd DNS Resolver Daemon, systemd-resolved.
-  services.resolved.enable = (dnsResolver == "systemd-resolved");
+  services.resolved = {
+    enable = mkDefault (dnsResolver == "systemd-resolved");
+    dnssec = "allow-downgrade";
+    domains = [ "~." ];
+    fallbackDns = settings.modules.networking.nameservers;
+    extraConfig = ''
+      DNSOverTLS=yes
+    '';
+  };
 
-  networking.dhcpcd.enable = false;
+  networking.firewall.allowPing = mkDefault false;
+  networking.firewall.logRefusedConnections = mkDefault false;
 
   # Use DHCP for all interfaces by default.
-  networking.useDHCP = lib.mkDefault true;
+  networking.useDHCP = mkDefault true;
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
-  networking.useNetworkd = true;
+  networking.dhcpcd.enable = true;
+  networking.useNetworkd = mkDefault false;
   networking.nameservers = settings.modules.networking.nameservers;
   networking.hostName = settings.system.hostName; # Define your hostname.
   networking.interfaces = settings.modules.networking.interfaces;
@@ -129,6 +140,7 @@ in {
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [device]
+      # "yes" is already the default for scanning
       device."wifi.scan-rand-mac-address" = "yes";
 
       # Wireless configuration
@@ -147,8 +159,19 @@ in {
         "wifi.powersave" = "0";
         # "connection.llmnr" = 2; # Disable LLMNR
         # "connection.mdns" = 2; # Disable mDNS
-        # "wifi.cloned-mac-address" = "stable";
         # "ipv6.ipv6-privacy" = "2";
+
+        # Randomize MAC for every ethernet connection
+        # ethernet.cloned-mac-address=random
+
+        # Generate a random MAC ethernet connection
+        "ethernet.cloned-mac-address" = "stable";
+
+        # Generate a randomized value upon each connection
+        #wifi.cloned-mac-address=random
+
+        # Generate a random MAC for each WiFi and associate the two permanently
+        "wifi.cloned-mac-address" = "stable";
       };
 
       # [main]

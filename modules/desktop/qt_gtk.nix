@@ -51,6 +51,9 @@ in {
     QT_QPA_PLATFORM = "wayland";
 
     QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
+
+    # fix old GTK3 applications
+    GDK_GL = "gles";
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff

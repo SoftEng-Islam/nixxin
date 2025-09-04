@@ -24,10 +24,6 @@
 
     # ./configs/scripts.nix
     ./configs/source.nix
-
-    # nix scripts
-    ./configs/nix_scripts/gamemode.nix
-    #./configs/nix_scripts/detect_mouse_position.nix
   ];
 
   # -----------------------------------
@@ -36,7 +32,7 @@
   security.polkit.enable = true;
   security.polkit.package = pkgs.polkit;
   systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
-	
+
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
@@ -137,7 +133,6 @@
       legacyRenderer = false;
       withSystemd = true; # whether to build with systemd support
     })
-
 
     # -----------------------------------
     # hyprpolkitagent

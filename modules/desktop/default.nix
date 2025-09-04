@@ -1,5 +1,5 @@
-{ settings, lib, ... }: {
-  imports = lib.optionals (settings.modules.desktop.enable or true)  [
+{ settings, lib, pkgs, ... }: {
+  imports = lib.optionals (settings.modules.desktop.enable or true) [
     ./hyprland
     # ./xdg
     ./file_manager.nix
@@ -8,4 +8,5 @@
     ./screenshot.nix
     ./tools.nix
   ];
+  environment.systemPackages = with pkgs; [ bitwarden-cli bitwarden-desktop ];
 }

@@ -157,6 +157,8 @@ in {
     environment.pathsToLink = [ "/share/soundfonts" ];
 
     environment.systemPackages = with pkgs; [
+      helvum
+
       # alsa-firmware
       # alsa-lib
       alsa-tools
