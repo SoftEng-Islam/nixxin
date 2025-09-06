@@ -127,7 +127,7 @@ in {
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
-  networking.wireless.enable = false;
+  networking.wireless.enable = lib.mkForce false;
   networking.wireless.scanOnLowSignal = true;
   networking.wireless.userControlled.enable = true;
 
@@ -217,6 +217,34 @@ in {
   # }
   # });
   # '';
+
+  environment.variables = {
+    # nmtui colors
+    # Elements: root, border, window, shadow, title, button, actbutton, checkbox, actcheckbox, entry, label, listbox, actlistbox, textbox, acttextbox, helpline, roottext, emptyscale, fullscale, disentry, compactbutton, actsellistbox, sellistbox
+    # Syntax: <element>=<fg>,<bg>
+    NEWT_COLORS = ''
+      root=default,default
+      border=black,lightgray
+      window=white,lightgray
+      shadow=white,black
+      title=black,lightgray
+      label=black,lightgray
+      listbox=black,lightgray
+      actlistbox=black,lightgray
+      helpline=black,lightgray
+      button=black,blue
+      actbutton=black,blue
+      checkbox=black,blue
+      actcheckbox=black,blue
+      entry=black,blue
+      textbox=black,blue
+      acttextbox=black,blue
+      roottext=black,blue
+      disentry=black,blue
+      actsellistbox=black,blue
+      sellistbox=black,blue
+    '';
+  };
 
   # environment.etc."resolv.conf".text = "nameserver 8.8.8.8";
   environment.systemPackages = with pkgs; [
