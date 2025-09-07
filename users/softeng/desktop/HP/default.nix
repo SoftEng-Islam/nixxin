@@ -354,7 +354,7 @@
   # [networking]
   modules.networking.dnsResolver =
     "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
-  modules.networking.nameservers = [ "1.1.1.1" "1.0.0.1" ]; # DNS
+  modules.networking.nameservers = [ "8.8.8.8" "8.8.4.4" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     eno1 = {
