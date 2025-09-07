@@ -115,7 +115,7 @@
           enable_stdout_logs = true;
         };
         # active color
-        "$primary" = "rgba(9141ACff)";
+        "$primary" = "rgba(3A944Aff)";
         # inactive color
         "$surface" = "rgba(191919ff)";
       };
