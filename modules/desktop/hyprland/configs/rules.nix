@@ -86,11 +86,11 @@
       # ----------------------
       # MPV/IMV spacific rules
       # ----------------------
-      windowrulev = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$
-      windowrulev = nodim,class:^(mpv)$
-      windowrulev = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
-      windowrulev = idleinhibit focus, class:^(mpv)$
-      windowrulev = noblur,class:^(mpv)$
+      windowrule = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$
+      windowrule = nodim,class:^(mpv)$
+      windowrule = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
+      windowrule = idleinhibit focus, class:^(mpv)$
+      windowrule = noblur,class:^(mpv)$
 
       # Extra rules for specific apps
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
