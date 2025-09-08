@@ -29,7 +29,7 @@
   # Sonarr
   #
   services.sonarr = {
-    enable = true;
+    enable = false;
     openFirewall = true;
   };
 
