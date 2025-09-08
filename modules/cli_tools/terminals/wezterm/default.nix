@@ -49,8 +49,8 @@
         -- Colors & Appearance
         -- ----------------------------
         config.color_scheme = "${settings.modules.terminals.wezterm.colorScheme}"
-        config.window_padding = { left = 5, right = 5, top = 5, bottom = 5, }
-        config.window_background_opacity = 0.8
+        config.window_padding = { left = 8, right = 15, top = 10, bottom = 10, }
+        config.window_background_opacity = 0.9
         config.enable_tab_bar = true
         config.animation_fps = 1
         config.warn_about_missing_glyphs = false
