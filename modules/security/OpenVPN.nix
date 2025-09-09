@@ -19,6 +19,11 @@
   environment.etc."openvpn/home.auth".source = ./home.auth;
   environment.etc."openvpn/home.auth".mode = "0600";
 
+  environment.etc."openvpn/update-resolv-conf" = {
+    source = ./update-resolv-conf.sh; # put your script in your repo
+    mode = "0755"; # executable
+  };
+
   environment.systemPackages = with pkgs; [
     openvpn # Robust and highly flexible tunneling application
     openresolv # Program to manage /etc/resolv.conf
