@@ -1,8 +1,9 @@
 { settings, lib, pkgs, ... }: {
   services.openvpn.servers.protonvpn = {
-    config = ''
-      config /etc/openvpn/protonvpn.ovpn
-    '';
+    home = {
+      config =
+        builtins.readFile /home/${settings.user.username}/openvpn/home.ovpn;
+    };
     autoStart = true;
   };
   environment.systemPackages = with pkgs; [
