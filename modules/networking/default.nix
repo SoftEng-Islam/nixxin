@@ -246,7 +246,6 @@ in {
     '';
   };
 
-  # environment.etc."resolv.conf".text = "nameserver 8.8.8.8";
   environment.systemPackages = with pkgs; [
     wpa_supplicant
     wpa_supplicant_gui
