@@ -252,7 +252,7 @@ in {
     wpa_supplicant_gui
 
     networkmanager
-    # networkmanagerapplet
+    networkmanagerapplet
     ifwifi
 
     sipcalc # Advanced console ip subnet calculator
