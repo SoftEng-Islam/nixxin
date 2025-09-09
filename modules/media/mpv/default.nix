@@ -76,7 +76,6 @@ in lib.mkIf (settings.modules.media.mpv) {
           rubberbandSupport = false;
           sixelSupport = false;
           zimgSupport = false;
-          save-position-on-quit = true;
           libplacebo = pkgs.libplacebo.overrideAttrs (oldAttrs: rec {
             version = "7.349.0";
             src = pkgs.fetchFromGitLab {
@@ -121,6 +120,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         dither-depth = "auto";
         autofit = "100%";
         window-maximized = "yes";
+        save-position-on-quit = true;
 
         # Fix stuttering playing 4k video
         hdr-compute-peak = "no";
