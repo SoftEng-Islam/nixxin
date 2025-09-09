@@ -95,7 +95,7 @@ in {
   }];
 
   services.miniupnpd = {
-    enable = true;
+    enable = false;
     externalInterface = "wlan0"; # WAN side
     internalIPs = [ "wlan0" ]; # LAN side (must be iface name, not CIDR)
     natpmp = true; # also enable NAT-PMP alongside UPnP
