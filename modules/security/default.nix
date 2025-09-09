@@ -10,6 +10,7 @@
     ./vpn/protonVPN
     ./vpn/tailscale
     # ./gpg_agent.nix
+    ./OpenVPN.nix
   ];
   config = lib.mkIf (settings.modules.security.enable or true) {
     security = {

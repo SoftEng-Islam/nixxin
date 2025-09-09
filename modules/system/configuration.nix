@@ -288,7 +288,7 @@ in {
   };
 
   # NTP for automated system clock adjustments.
-  services.ntp.enable = true;
+  # services.ntp.enable = true;
 
   # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.
   services.gpm.enable = true;
