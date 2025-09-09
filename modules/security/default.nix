@@ -158,6 +158,10 @@
     environment.systemPackages = with pkgs; [
       wireguard-tools
       openvpn # Robust and highly flexible tunneling application
+      # openvpn3
+      wireguard-ui
+      wireguard-tools
+      networkmanager-openvpn
     ];
   };
 }
