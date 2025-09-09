@@ -13,10 +13,10 @@
     home = {
       autoStart = true;
       updateResolvConf = true;
-      config = builtins.readFile ./home.ovpn;
+      config = builtins.readFile ./home-tcp.ovpn;
     };
   };
-  environment.etc."openvpn/home.auth".source = ./home-tcp.auth;
+  environment.etc."openvpn/home.auth".source = ./home.auth;
   environment.etc."openvpn/home.auth".mode = "0600";
 
   environment.systemPackages = with pkgs; [
