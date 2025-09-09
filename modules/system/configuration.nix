@@ -287,6 +287,9 @@ in {
     mouse.accelProfile = "adaptive"; # one of "flat", "adaptive", "custom"
   };
 
+  # NTP for automated system clock adjustments.
+  services.ntp.enable = true;
+
   # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.
   services.gpm.enable = true;
 
