@@ -1,0 +1,25 @@
+{ settings, lib, pkgs, ... }: {
+  # Enable Wireguard
+  networking.wireguard.enable = true;
+
+  networking.wireguard.interfaces = {
+    wg0 = {
+      # The IP address of your client inside the tunnel
+      ips = [ "10.2.0.2/32" ];
+
+      # Private key (make sure to use NixOS secrets instead of committing this!)
+      privateKey = "kHLjKIUiIOdfzWBRjr+oFsX6ac1x7o98hrd7mpiwNGA=";
+
+      # If you want DNS inside the tunnel:
+      dns = [ "10.2.0.1" ];
+
+      peers = [{
+        publicKey = "x3+j+hjTA71JZ1tfdU60tg+T0btT9ixH5yk2yE7EAXU=";
+        allowedIPs = [ "0.0.0.0/0" "::/0" ];
+        endpoint = "185.132.132.26:51820";
+        persistentKeepalive = 25; # recommended for NAT traversal
+      }];
+    };
+  };
+  environment.systemPackages = with pkgs; [ wireguard-ui wireguard-tools ];
+}

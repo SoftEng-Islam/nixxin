@@ -157,5 +157,6 @@
     openvpn # Robust and highly flexible tunneling application
     openresolv # Program to manage /etc/resolv.conf
     networkmanager-openvpn
+    # openvpn3
   ];
 }

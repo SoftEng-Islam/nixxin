@@ -7,10 +7,10 @@
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
 { settings, lib, pkgs, ... }: {
   imports = [
-    ./vpn/protonVPN
+    # ./vpn/protonVPN
+    ./wireguard
     ./vpn/tailscale
     # ./gpg_agent.nix
-    ./OpenVPN.nix
   ];
   config = lib.mkIf (settings.modules.security.enable or true) {
     security = {
@@ -155,14 +155,5 @@
     # users.users.root.initialPassword = "nixos";
 
     networking.firewall.checkReversePath = false;
-
-    environment.systemPackages = with pkgs; [
-      wireguard-tools
-      openvpn # Robust and highly flexible tunneling application
-      # openvpn3
-      wireguard-ui
-      wireguard-tools
-      networkmanager-openvpn
-    ];
   };
 }
