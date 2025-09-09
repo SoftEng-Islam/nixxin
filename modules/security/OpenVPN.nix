@@ -77,7 +77,7 @@
         reneg-sec 0
 
         remote-cert-tls server
-        auth-user-pass
+        auth-user-pass /etc/openvpn/home.auth
 
         script-security 2
         # up /etc/openvpn/update-resolv-conf
