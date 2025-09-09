@@ -9,6 +9,8 @@
       config = builtins.readFile ./home.ovpn;
     };
   };
+  environment.etc."openvpn/home.auth".source = ./home.auth;
+
   environment.systemPackages = with pkgs; [
     openvpn # Robust and highly flexible tunneling application
     networkmanager-openvpn
