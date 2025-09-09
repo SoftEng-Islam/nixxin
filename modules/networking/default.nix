@@ -82,7 +82,7 @@ in {
 
   networking.firewall.enable = settings.modules.networking.firewall.enable;
   networking.firewall.allowedTCPPorts = [ 53 80 443 8080 3389 51820 ];
-  networking.firewall.allowedUDPPorts = [ 53 67 51820 ];
+  networking.firewall.allowedUDPPorts = [ 53 67 51820 1194 ];
   # Allow ephemeral ranges for better peer discovery in torrent clients
   networking.firewall.allowedTCPPortRanges = [{
     from = 49152;
