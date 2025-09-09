@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }: {
-  services.openvpn.servers.protonvpn = {
+  services.openvpn.servers = {
     # Unless `autoStart = false;', all entries here start automatically as a
     # systemd service. To stop the `home' OpenVPN client service, run `sudo
     # systemctl stop openvpn-home'.
