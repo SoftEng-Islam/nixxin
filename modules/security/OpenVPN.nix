@@ -21,6 +21,7 @@
 
   environment.systemPackages = with pkgs; [
     openvpn # Robust and highly flexible tunneling application
+    openresolv # Program to manage /etc/resolv.conf
     networkmanager-openvpn
   ];
 }
