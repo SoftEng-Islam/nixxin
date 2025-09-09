@@ -7,10 +7,8 @@ let
   _gpu-api = "auto"; # mpv --gpu-api=help
 
 in lib.mkIf (settings.modules.media.mpv) {
-  environment.variables = {
-    VIDEO = "mpv";
-  };
-  
+  environment.variables = { VIDEO = "mpv"; };
+
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
     home.file.".config/mpv/shaders".source = ./shaders;
@@ -25,25 +23,25 @@ in lib.mkIf (settings.modules.media.mpv) {
     };
 
     xdg.configFile."mpv/script-opts/uosc.conf".text = lib.concatStrings [
-     "opacity="
-     ",timeline=0.1"
-     ",position=0.2"
-     ",chapters=0.075"
-     ",slider=0.1"
-     ",slider_gauge=0.2"
-     ",controls=0"
-     ",speed=0.2"
-     ",menu=1"
-     ",submenu=0.4"
-     ",border=1"
-     ",title=1"
-     ",tooltip=1"
-     ",thumbnail=1"
-     ",curtain=0.8"
-     ",idle_indicator=0.8"
-     ",audio_indicator=0.5"
-     ",buffering_indicator=0.3"
-     ",playlist_position=0.8"
+      "opacity="
+      ",timeline=0.1"
+      ",position=0.2"
+      ",chapters=0.075"
+      ",slider=0.1"
+      ",slider_gauge=0.2"
+      ",controls=0"
+      ",speed=0.2"
+      ",menu=1"
+      ",submenu=0.4"
+      ",border=1"
+      ",title=1"
+      ",tooltip=1"
+      ",thumbnail=1"
+      ",curtain=0.8"
+      ",idle_indicator=0.8"
+      ",audio_indicator=0.5"
+      ",buffering_indicator=0.3"
+      ",playlist_position=0.8"
     ];
 
     # xdg.configFile."mpv/script-opts/osc.conf".source = ./osc.conf;
@@ -78,7 +76,7 @@ in lib.mkIf (settings.modules.media.mpv) {
           rubberbandSupport = false;
           sixelSupport = false;
           zimgSupport = false;
-
+          save-position-on-quit = true;
           libplacebo = pkgs.libplacebo.overrideAttrs (oldAttrs: rec {
             version = "7.349.0";
             src = pkgs.fetchFromGitLab {
@@ -149,7 +147,7 @@ in lib.mkIf (settings.modules.media.mpv) {
   environment.systemPackages = with pkgs; [
     # driversi686Linux.vdpauinfo
     # vdpauinfo
-    
+
     gnutls
     harfbuzz
     iconv
