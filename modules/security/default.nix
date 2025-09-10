@@ -155,5 +155,23 @@
     # users.users.root.initialPassword = "nixos";
 
     networking.firewall.checkReversePath = false;
+    environment.systemPackages = with pkgs; [ resolv_wrapper ];
   };
 }
+
+# softeng@phone:.../nixxin   main [⇡]
+# ❯  wg-quick up wg0
+# Warning: `/nix/store/q6rf1d1zy0klvglhj3bwhkibiafym0wh-wg-NL-FREE-219.conf' is world accessible
+# [#] ip link add dev wg0 type wireguard
+# [#] wg setconf wg0 /dev/fd/63
+# [#] ip -4 address add 10.2.0.2/32 dev wg0
+# [#] ip link set mtu 1420 up dev wg0
+# [#] resolvconf -a wg0 -m 0 -x
+# resolvconf is disabled on this system but was used anyway:
+# /nix/store/b0dqjwzjm49bf3n1ccmvamhhxkind743-openresolv-3.16.5/sbin/.resolvconf-wrapped -a wg0 -m 0 -x
+# [#] ip link delete dev wg0
+
+# softeng@phone:.../nixxin   main [✶⇡]
+# ❯  resolvconf
+# resolvconf is disabled on this system but was used anyway:
+# /nix/store/b0dqjwzjm49bf3n1ccmvamhhxkind743-openresolv-3.16.5/sbin/.resolvconf-wrapped
