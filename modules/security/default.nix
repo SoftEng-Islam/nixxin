@@ -155,7 +155,7 @@
     # users.users.root.initialPassword = "nixos";
 
     networking.firewall.checkReversePath = false;
-    environment.systemPackages = with pkgs; [ resolv_wrapper ];
+    # environment.systemPackages = with pkgs; [ resolv_wrapper ];
   };
 }
 
