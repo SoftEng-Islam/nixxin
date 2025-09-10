@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }: {
   # Enable Wireguard
-  networking.wireguard.enable = false;
+  networking.wireguard.enable = true;
 
   environment.etc."/etc/wireguard/wg0.conf".source = ./wg-NL-FREE-219.conf;
 
