@@ -2,6 +2,10 @@
   # Enable Wireguard
   networking.wireguard.enable = true;
 
+  # sudo mkdir -p /etc/wireguard
+  # echo "TheKey=" | sudo tee /etc/wireguard/wg0.key
+  # sudo chmod 600 /etc/wireguard/wg0.key
+
   # environment.etc."wireguard/wg0.conf".source = ./wg-NL-FREE-219.conf;
 
   networking.wireguard.interfaces = {
@@ -10,7 +14,8 @@
       ips = [ "10.2.0.2/32" ];
 
       # Private key (make sure to use NixOS secrets instead of committing this!)
-      privateKey = "kHLjKIUiIOdfzWBRjr+oFsX6ac1x7o98hrd7mpiwNGA=";
+      # privateKey = "TheKey=";
+      privateKeyFile = "/etc/wireguard/wg0.key"; # put your private key here
 
       peers = [{
         publicKey = "x3+j+hjTA71JZ1tfdU60tg+T0btT9ixH5yk2yE7EAXU=";
