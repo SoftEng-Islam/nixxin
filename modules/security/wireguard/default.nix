@@ -6,6 +6,10 @@
   # echo "TheKey=" | sudo tee /etc/wireguard/wg0.key
   # sudo chmod 600 /etc/wireguard/wg0.key
 
+  # To get DNS:
+  # resolvectl dns
+  # resolvectl status
+
   # environment.etc."wireguard/wg0.conf".source = ./wg-NL-FREE-219.conf;
 
   networking.wireguard.interfaces = {
