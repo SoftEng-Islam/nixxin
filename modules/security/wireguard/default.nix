@@ -2,7 +2,7 @@
   # Enable Wireguard
   networking.wireguard.enable = true;
 
-  environment.etc."/etc/wireguard/wg0.conf".source = ./wg-NL-FREE-219.conf;
+  environment.etc."wireguard/wg0.conf".source = ./wg-NL-FREE-219.conf;
 
   # networking.wireguard.interfaces = {
   #   wg0 = {
