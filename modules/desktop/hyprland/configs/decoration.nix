@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.decoration = {
-        rounding = settings.modules.styles.window.rounding;
+        rounding = settings.modules.desktop.hyprland.rounding;
 
         # ---- Blur ---- #
         blur = {
@@ -33,7 +33,7 @@
         };
 
         # ---- Dim ---- #
-        dim_inactive = settings.modules.styles.window.dim_inactive;
+        dim_inactive = settings.modules.desktop.hyprland.dim_inactive;
         dim_strength = 0.2;
         dim_special = 0;
       };

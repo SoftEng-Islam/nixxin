@@ -11,11 +11,7 @@ let
 in with lib.gvariant;
 mkIf (settings.modules.dconf.enable or true) {
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs;
-    [
-      dconf # dconf is a simple key/value storage system that is heavily optimised for reading.
-      # dconf-editor # GSettings editor for GNOME
-    ];
+  environment.systemPackages = with pkgs; [ dconf ];
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
@@ -39,6 +35,7 @@ mkIf (settings.modules.dconf.enable or true) {
       };
 
       "org/gnome/desktop/wm/preferences" = {
+        # We don't want buttons because of using ( Hyprland + hyprbars)
         "button-layout" = lib.mkDefault "";
       };
       "org/gnome/nautilus/preferences" = {
@@ -89,7 +86,7 @@ mkIf (settings.modules.dconf.enable or true) {
         clock-show-date = true;
         clock-show-seconds = false;
         clock-show-weekday = true;
-        color-scheme = settings.modules.styles.colorScheme;
+        color-scheme = settings.modules.dconf.colorScheme;
         cursor-blink = true;
         cursor-blink-time = 500;
         cursor-blink-timeout = 10;
@@ -113,7 +110,7 @@ mkIf (settings.modules.dconf.enable or true) {
 
         # $ gsettings describe org.gnome.desktop.interface gtk-color-scheme
         # $ gsettings get org.gnome.desktop.interface gtk-color-scheme
-        # gtk-color-scheme = lib.mkForce "${settings.modules.styles.colorScheme}";
+        # gtk-color-scheme = lib.mkForce "${settings.modules.dconf.colorScheme}";
 
         # gtk-enable-primary-paste
         # gtk-im-module
@@ -123,7 +120,7 @@ mkIf (settings.modules.dconf.enable or true) {
         gtk-theme = lib.mkForce "${settings.common.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
-        icon-theme = "${settings.modules.styles.icons.nameInDark}";
+        icon-theme = "${settings.modules.dconf.icons.nameInDark}";
         # locate-pointer
         # menubar-accel
         # menubar-detachable

@@ -212,6 +212,16 @@
   modules.data_transferring.bitmagnet.enable = false;
   modules.data_transferring.transmission.enable = true;
 
+  # [ Hacking ]
+  modules.hacking.hashcat.enable = true;
+
+  # Dconf
+  # $ dconf read /org/gnome/desktop/interface/color-scheme
+  modules.dconf.colorScheme = "prefer-dark";
+  modules.dconf.icons.nameInDark = common.icons.nameInDark;
+  # "small" or "small-plus" or "medium" or "large" or "extra-large"
+  modules.dconf.icons.icon_view_size = "large"; # Set icons size for nautilus.
+
   # [ development ]
   modules.development.android.enable = false;
   # [ development ] [ databases ]
@@ -450,16 +460,10 @@
   modules.storage.beesd.enable = false;
 
   modules.styles = {
-    # Blue, Teal, Green, Yellow, Orange, Red, Pink, Purple, Slate
-    mainColor.name = "red";
-    mainColor.hash = "B91C1C";
     mode = "dark"; # "dark" or "light"
-    colorScheme = "prefer-dark";
     window.opacity = 0.9; # The windows Opacity
     window.blur = true; # Enable blur for windows
     window.shadow = false; # enable shadow for Hyprland
-    window.rounding = 10; # rounding corners for Hyprland windwos
-    window.dim_inactive = true;
     window.title.fontStyle = "bold";
     window.title.fontSize = 20;
     window.border.active.color = modules.styles.mainColor;
@@ -469,8 +473,6 @@
     icons.nameInLight = "Papirus";
     icons.nameInDark = "Papirus-Dark";
     icons.package = pkgs.papirus-icon-theme;
-    # "small" or "small-plus" or "medium" or "large" or "extra-large"
-    icons.icon_view_size = "large"; # Set icon size for nautilus file manager.
   };
 
   modules.system = {
