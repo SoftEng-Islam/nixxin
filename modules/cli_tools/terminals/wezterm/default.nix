@@ -139,7 +139,7 @@
           },
           { key = 'c', mods = 'ALT', action = wezterm.action.CopyTo 'ClipboardAndPrimarySelection' },
           { key = 'v', mods = 'ALT', action = wezterm.action.PasteFrom 'Clipboard' },
-        },
+        }
 
         -- Finally, return the configuration to wezterm:
         return config
