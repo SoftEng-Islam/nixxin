@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }: {
   # Enable Wireguard
-  networking.wireguard.enable = true;
+  networking.wireguard.enable = false;
 
   # sudo mkdir -p /etc/wireguard
   # echo "TheKey=" | sudo tee /etc/wireguard/wg0.key
