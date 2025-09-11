@@ -115,9 +115,9 @@
           enable_stdout_logs = true;
         };
         # active color
-        "$primary" = "rgba(3A944Aff)";
+        "$primary" = settings.modules.desktop.hyprland.border.active.color;
         # inactive color
-        "$surface" = "rgba(191919ff)";
+        "$surface" = settings.modules.desktop.hyprland.border.inactive.color;
       };
       # extraConfig = ''
       # '';

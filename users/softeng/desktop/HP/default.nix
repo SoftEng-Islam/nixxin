@@ -321,9 +321,20 @@
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = true;
   modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
-  modules.desktop.hyprland.rounding =
-    10; # Rounding Corners for Hyprland Windows
+  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
+  modules.desktop.hyprland.rounding = 10; # Rounding Corners
+  # => `static` colors to use
+  #- Blue   => rgba(3584E4ff) #- Teal   => rgba(2190A4ff)
+  #- Green  => rgba(3A944Aff) #- Yellow => rgba(C88800ff)
+  #- Ornage => rgba(ED5B00ff) #- Red    => rgba(E62D42ff)
+  #- Pink   => rgba(D56199ff) #- Purple => rgba(9141ACff)
+  #- Slate  => rgba(6F8396ff) #-
+
+  # => `graid colors ex:
+  # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
+  modules.desktop.hyprland.border.inactive.color = "rgba(191919ff)";
+  modules.desktop.hyprland.border.active.color = "rgba(ED5B00ff)";
+  modules.desktop.hyprland.border.size = 4;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
   modules.desktop.hyprland.plugins.hyprspace = false;
