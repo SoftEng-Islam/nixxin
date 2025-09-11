@@ -459,22 +459,6 @@
   modules.storage.fstrim.enable = true;
   modules.storage.beesd.enable = false;
 
-  modules.styles = {
-    mode = "dark"; # "dark" or "light"
-    window.opacity = 0.9; # The windows Opacity
-    window.blur = true; # Enable blur for windows
-    window.shadow = false; # enable shadow for Hyprland
-    window.title.fontStyle = "bold";
-    window.title.fontSize = 20;
-    window.border.active.color = modules.styles.mainColor;
-    window.border.active.size = 4;
-    window.border.inactive.color = "#ddd8";
-    window.border.inactive.size = 4;
-    icons.nameInLight = "Papirus";
-    icons.nameInDark = "Papirus-Dark";
-    icons.package = pkgs.papirus-icon-theme;
-  };
-
   modules.system = {
     oom = false; # user-space Out-Of-Memory (OOM) killer.
     rocm.enable =
