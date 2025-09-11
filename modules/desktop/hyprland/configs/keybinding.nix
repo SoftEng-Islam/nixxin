@@ -83,9 +83,8 @@
       # ----------------------- #
       # ---- $main + F1:F12
       # ----------------------- #
-      # bind = $main, F1, exec, ToggleUI
+      bind = $main, F1, exec, toggleInternet
       bind = $main, F2, exec, run-gamemode
-      bind = $main, FN, exec, run-gamemode
       # bind = $main, F3, exec, run-gamemode
       # bind = $main, F4, exec, run-gamemode
       # bind = $main, F5, exec, run-gamemode
