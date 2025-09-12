@@ -30,7 +30,7 @@ in {
 
   # Systemd DNS Resolver Daemon, systemd-resolved.
   services.resolved = {
-    enable = mkDefault (dnsResolver == "systemd-resolved");
+    enable = mkDefault (dnsResolver == "resolved");
     dnssec = "allow-downgrade";
     domains = [ "~." ];
     fallbackDns = settings.modules.networking.nameservers;

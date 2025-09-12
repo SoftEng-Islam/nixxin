@@ -360,21 +360,20 @@
   modules.image_viewer.loupe = true;
 
   # [ Media ]
-  modules.media.mpv = true;
-  modules.media.vlc = true;
-  modules.media.cava = false;
-  modules.media.glide = false;
-  modules.media.codex = true;
-  modules.media.clapper = false;
-  modules.media.celluloid = true;
-  modules.media.jellyfin = false;
-  modules.media.kdenlive = false;
-  modules.media.shotcut = true;
+  modules.media.codex = true; # video/sound codecs libs and packags
+  modules.media.cava = false; # Audio Visualizer for Alsa
+  modules.media.mpv = true; # media player
+  modules.media.vlc = true; # media player
+  modules.media.glide = false; # media player
+  modules.media.clapper = false; # media player
+  modules.media.celluloid = true; # media player
+  modules.media.jellyfin = false; # media player
+  modules.media.kdenlive = true; # video Editor
+  modules.media.shotcut = true; # video Editor
   modules.media.music = false;
 
   # [networking]
-  modules.networking.dnsResolver =
-    "systemd-resolved"; # "dnsmasq" or "systemd-resolved"
+  modules.networking.dnsResolver = "systemd-resolved"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [ "10.2.0.1" "1.1.1.1" "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {

@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf optional;
+  inherit (lib) optionals optional;
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
     (optional _graphics_pkgs.blender blender)
@@ -14,7 +14,7 @@ let
     # (optional _graphics_pkgs.davinci davinci-resolve)
   ];
 in {
-  imports = lib.optionals (settings.modules.graphics.enable or true) [
+  imports = optionals (settings.modules.graphics.enable or true) [
     ./mesa.nix
     ./vulkan.nix
     # ./davinci-resolve.nix

@@ -1,4 +1,4 @@
-{ settings, lib, config, ... }:
+{ settings, lib, config, pkgs, ... }:
 lib.mkIf (settings.modules.media.cava) {
   home-manager.users.${settings.user.username} = {
     programs.cava = {
@@ -18,4 +18,5 @@ lib.mkIf (settings.modules.media.cava) {
       };
     };
   };
+  environment.systemPackages = with pkgs; [ cava ];
 }
