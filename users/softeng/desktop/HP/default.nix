@@ -373,7 +373,7 @@
   modules.media.music = false;
 
   # [networking]
-  modules.networking.dnsResolver = "systemd-resolved"; # "dnsmasq" or "resolved"
+  modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [ "10.2.0.1" "1.1.1.1" "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
