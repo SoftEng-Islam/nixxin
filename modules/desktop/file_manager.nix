@@ -121,7 +121,7 @@ in {
       sushi
 
       # Graphical interface for version control intended to run on gnome and nautilus
-      turtle
+      # turtle
 
       # File indexing for Nautilus search
       # tracker

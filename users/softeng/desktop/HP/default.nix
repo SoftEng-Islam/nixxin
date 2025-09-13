@@ -127,7 +127,7 @@
   modules.i18n.enable = true;
   modules.networking.enable = true;
   modules.power.enable = true;
-  modules.overclock.enable = true;
+  modules.overclock.enable = false;
   modules.office.enable = true;
   modules.icons.enable = true;
   modules.virtualization.enable = true;
