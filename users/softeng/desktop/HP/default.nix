@@ -536,16 +536,6 @@
       # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
       "amdgpu.sched_hw_submission=4"
 
-      # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
-      # pages_min sets the minimum number of memory pages reserved for the GPU.
-      # Each page is 4 KiB, so:
-      # (1048576*4096) / 1073741824 = 4 GiB
-      # (2097152*4096) / 1073741824 = 8 GiB
-      # 1048576 pages = 4 GiB
-      # 2097152 pages = 8 GiB
-      # You can increase this value to 2097152 (8 GiB) if you want to reserve more memory.
-      "ttm.pages_min=1048576"
-
       # Disables the Linux audit subsystem.
       # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
       "audit=0"
@@ -583,8 +573,19 @@
       # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
       "amdgpu.vramlimit=4096"
 
+      # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
+      # pages_min sets the minimum number of memory pages reserved for the GPU.
+      # Each page is 4 KiB, so:
+      # (1048576*4096) / 1073741824 = 4 GiB
+      # (2097152*4096) / 1073741824 = 8 GiB
+      # 1048576 pages = 4 GiB
+      # 2097152 pages = 8 GiB
+      # You can increase this value to 2097152 (8 GiB) if you want to reserve more memory.
+      # "ttm.pages_min=1048576"
+
       # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
-      "amdgpu.gttsize=4096"
+      # "amdgpu.gttsize=4096" This option is deprecated.
+      # "amdgpu.ttm.pages_limit=4096"
 
       # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
       "amdgpu.unified_memory=1"
