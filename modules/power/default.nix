@@ -17,18 +17,18 @@ in lib.mkIf (_power.enable or true) {
 
   boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
 
-  system.activationScripts = {
-    # Limit CPU frequency to 4GHz
-    fixCpuFreq = ''
-      for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
-        if [ -d "$cpu/cpufreq" ]; then
-          echo "Setting frequency limits for $(basename "$cpu")"
-          echo 4000000 > "$cpu/cpufreq/scaling_max_freq"
-          echo 4000000 > "$cpu/cpufreq/scaling_min_freq"
-        fi
-      done
-    '';
-  };
+  # system.activationScripts = {
+  #   # Limit CPU frequency to 4GHz
+  #   fixCpuFreq = ''
+  #     for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
+  #       if [ -d "$cpu/cpufreq" ]; then
+  #         echo "Setting frequency limits for $(basename "$cpu")"
+  #         echo 4000000 > "$cpu/cpufreq/scaling_max_freq"
+  #         echo 4000000 > "$cpu/cpufreq/scaling_min_freq"
+  #       fi
+  #     done
+  #   '';
+  # };
 
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;
@@ -66,7 +66,7 @@ in lib.mkIf (_power.enable or true) {
 
   # This is the service that lets you pick power profiles in the gnome UI.  It conflicts with auto-cpufreq
   services.power-profiles-daemon.enable = false;
-  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.enable = settings.modules.power.auto-cpufreq.enable;
 
   # Upower, a DBus service that provides power management support to applications.
   services.upower.enable = true;

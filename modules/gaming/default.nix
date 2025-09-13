@@ -1,7 +1,10 @@
 { settings, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
-  _pkgs = [ (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad) ];
+  _pkgs = [
+    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
+    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
+  ];
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
