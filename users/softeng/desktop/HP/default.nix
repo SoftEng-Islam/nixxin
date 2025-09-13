@@ -585,7 +585,7 @@
 
       # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
       # "amdgpu.gttsize=4096" This option is deprecated.
-      # "amdgpu.ttm.pages_limit=4096"
+      "amdgpu.ttm.pages_limit=4096"
 
       # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
       "amdgpu.unified_memory=1"
@@ -595,7 +595,7 @@
       # 1: Even balance
       # 2: Prefer GTT (shared RAM)
       # 💡 Use 2 for APUs with little VRAM.
-      "amdgpu.memory_alloc_mode=2"
+      "amdgpu.memory_alloc_mode=0"
 
       # Sets the virtual address space size in GB.
       # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
