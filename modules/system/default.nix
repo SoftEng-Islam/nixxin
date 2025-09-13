@@ -12,6 +12,7 @@
     ./ROCM.nix
     ./systemd.nix
     ./udev.nix
+    ./resources.nix
   ];
   environment.systemPackages = with pkgs; [
     e2fsprogs

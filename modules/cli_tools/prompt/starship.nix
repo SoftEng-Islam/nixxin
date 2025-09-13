@@ -73,7 +73,7 @@ let
       truncation_length = 3;
     };
     direnv = {
-      disabled = false;
+      disabled = true;
       symbol = "direnv ";
     };
     git_branch = {
