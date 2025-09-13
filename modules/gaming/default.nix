@@ -4,8 +4,6 @@ let
   _pkgs = [
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-unwrapped)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
-    (lib.optional settings.modules.gaming.zeroad.enable
-      pkgs.zeroadPackages.zeroad)
   ];
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
