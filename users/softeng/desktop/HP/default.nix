@@ -29,8 +29,8 @@
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
   useTmpfs = false; # disable it before install a custom Linux Kernel.
-  system.upgrade.enable = false;
-  system.upgrade.allowReboot = false;
+  system.upgrade.enable = true;
+  system.upgrade.allowReboot = true;
   # Run `nix-channel --list` to get channels
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
 
@@ -46,9 +46,9 @@
   # release notes.
   home.stateVersion = "25.05"; # ! Please read the comment before changing.
   home.backupFileExtension = null;
-  home.manual.html = false;
-  home.manual.json = false;
-  home.manual.manpages = false;
+  home.manual.html = true;
+  home.manual.json = true;
+  home.manual.manpages = true;
 
   # ----------------------------------------------
   # ---- Common Is Shared configs for all Modules.

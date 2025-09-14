@@ -161,7 +161,7 @@ in {
     # It is similar to the `nix run` command, but it does not require
     # the binary to be built with Nix.
     nix-ld = {
-      enable = false;
+      enable = true;
       # Include libstdc++ in the nix-ld profile
       libraries = with pkgs; [
         # curl
