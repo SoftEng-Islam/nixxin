@@ -6,12 +6,7 @@
 # polkit, rtkit, tpm2 support, and system security tweaks.
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
 { settings, lib, pkgs, ... }: {
-  imports = [
-    # ./vpn/protonVPN
-    ./wireguard
-    ./vpn/tailscale
-    # ./gpg_agent.nix
-  ];
+  imports = [ ./vpn ./gpg_agent.nix ];
   config = lib.mkIf (settings.modules.security.enable or true) {
     security = {
       # System security tweaks

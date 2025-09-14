@@ -1,4 +1,10 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let vpn = settings.modules.vpn;
+in {
+  # WireGuard is a modern VPN (Virtual Private Network) protocol and software designed to create secure point-to-point connections
+  # between devices over the internet.
+  # It’s known for being simple, fast, and very secure compared to older VPN protocols like OpenVPN or IPSec.
+
   # Enable Wireguard
   networking.wireguard.enable = false;
 
