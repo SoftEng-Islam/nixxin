@@ -1,5 +1,6 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+{
   # To Test VPN:
   # https://dnsleaktest.com/results.html
-  imports = [ ./openvpn ./protonVPN ./tailscale ./wireguard ];
+  # imports = [ ./openvpn ./protonVPN ./tailscale ./wireguard ];
 }
