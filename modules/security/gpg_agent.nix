@@ -1,7 +1,7 @@
 { settings, ... }: {
   security.pam.services.${settings.user.username} = {
     enable = true;
-    noAutostart = true;
+    # noAutostart = true;
   };
   programs.gnupg.agent.settings = {
     default-cache-ttl = 14400;
