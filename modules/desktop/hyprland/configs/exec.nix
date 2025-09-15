@@ -84,6 +84,8 @@ let
 
     #! ---- The Screen Edge Actions ---- #
     # detect-mouse-position
+
+    ashell
   '';
 in {
   home-manager.users.${settings.user.username} = {
