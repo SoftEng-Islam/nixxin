@@ -29,8 +29,8 @@
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
   useTmpfs = false; # disable it before install a custom Linux Kernel.
-  system.upgrade.enable = true;
-  system.upgrade.allowReboot = true;
+  system.upgrade.enable = false;
+  system.upgrade.allowReboot = false;
   # Run `nix-channel --list` to get channels
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
 
