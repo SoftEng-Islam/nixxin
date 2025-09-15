@@ -470,6 +470,9 @@
   modules.storage.fstrim.enable = true;
   modules.storage.beesd.enable = false;
 
+  # [ Notifications ]
+  modules.notifications.dunst.enable = true;
+
   modules.system = {
     oom = false; # user-space Out-Of-Memory (OOM) killer.
     rocm.enable =
