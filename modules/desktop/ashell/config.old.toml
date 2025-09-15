@@ -16,6 +16,10 @@ app_launcher_cmd = "~/.config/rofi/launcher.sh"
 # without a value the related button will not appear
 # optional, default None
 clipboard_cmd = "cliphist-rofi-img | wl-copy"
+# Maximum number of chars that can be present in the window title
+# after that the title will be truncated
+# optional, default 150
+truncate_title_after_length = 150
 
 # Declare which modules should be used and in which position in the status bar.
 # This is the list of all possible modules
@@ -35,23 +39,13 @@ clipboard_cmd = "cliphist-rofi-img | wl-copy"
 # optional, the following is the default configuration
 [modules]
 # The modules that will be displayed on the left side of the status bar
-left = ["Workspaces"]
+left = [ "Workspaces" ]
 # The modules that will be displayed in the center of the status bar
-center = ["WindowTitle"]
+center = [ "WindowTitle" ]
 # The modules that will be displayed on the right side of the status bar
 # The nested modules array will form a group sharing the same element in the status bar
 # You can also use custom modules to extend the normal set of options, see configuration below
-right = ["SystemInfo", ["Clock", "Privacy", "Settings"], "CustomNotifications"]
-
-# Update module configuration.
-# Without a value the related button will not appear.
-# optional, default None
-[updates]
-# The check command will be used to retrieve the update list.
-# It should return something like `package_name version_from -> version_to\n`
-check_cmd = "checkupdates; paru -Qua"
-# The update command is used to init the OS update process
-update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
+right = [ "Tray", "SystemInfo", [ "Clock", "Privacy", "Settings" ], "CustomNotifications" ]
 
 # Workspaces module configuration, optional
 [workspaces]
@@ -74,27 +68,12 @@ enable_workspace_filling = false
 # In addition to the 4 workspaces described above it will also show workspaces 5 and 6
 # Only works with `enable_workspace_filling = true`
 
-# WindowTitle module configuration, optional
-[window_title]
-# The information to get from your active window.
-# Possible modes are:
-# - Title
-# - Class
-# optional, default Title
-mode = "Title"
-
-# Maximum number of chars that can be present in the window title
-# after that the title will be truncated
-# optional, default 150
-truncate_title_after_length = 150
-
 # keyboardLayout module configuration
 # optional
 # Maps layout names to arbitrary labels, which can be any text, including unicode symbols as shown below
 # If using Hyprland the names can be found in `hyprctl devices | grep "active keymap"`
 [keyboard_layout.labels]
 "English (US)" = "🇺🇸"
-"Russian" = "🇷🇺"
 
 # The system module configuration
 # optional
@@ -113,7 +92,7 @@ truncate_title_after_length = 150
 # If for example you want to dispay the usage of the root and home partition
 # you can use the following configuration
 # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-indicators = ["Cpu", "Memory", "Temperature"]
+indicators = [ "Cpu", "Memory", "Temperature" ]
 
 # CPU indicator thresholds
 # optional
@@ -181,12 +160,6 @@ alert = ".*notification"
 # without a value the related button will not appear
 # optional, default None
 lock_cmd = "hyprlock &"
-# commands used to respectively shutdown, suspend, reboot and logout
-# all optional, without values the defaults shown here will be used
-logout_cmd = "loginctl kill-user $(whoami)"
-reboot_cmd = "systemctl reboot"
-shutdown_cmd = "shutdown now"
-suspend_cmd = "systemctl suspend"
 # command used to open the sinks audio settings
 # without a value the related button will not appear
 # optional default None
@@ -223,7 +196,7 @@ remove_airplane_btn = true
 # text = "#ffffff" # optional default base text color
 [appearance]
 # optional, default iced.rs font
-font_name = "Comic Sans MS"
+font_name = "CaskaydiaMonoNerdFont"
 # The style of the main bar, possible values are: Islands | Solid | Gradient
 # optional, default Islands
 style = "Islands"
@@ -243,12 +216,12 @@ danger_color = "#f38ba8"
 # base default text color
 text_color = "#f38ba8"
 # this is a list of color that will be used in the workspace module (one color for each monitor)
-workspace_colors = ["#fab387", "#b4befe"]
+workspace_colors = [ "#fab387", "#b4befe" ]
 # this is a list of color that will be used in the workspace module
 # for the special workspace (one color for each monitor)
 # optional, default None
 # without a value the workspaceColors list will be used
-special_workspace_colors = ["#a6e3a1", "#f38ba8"]
+special_workspace_colors = [ "#a6e3a1", "#f38ba8" ]
 
 # menu options
 [appearance.menu]
