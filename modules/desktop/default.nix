@@ -1,5 +1,6 @@
 { settings, lib, pkgs, ... }: {
   imports = lib.optionals (settings.modules.desktop.enable or true) [
+    ./ashell
     ./hyprland
     # ./xdg
     ./file_manager.nix
