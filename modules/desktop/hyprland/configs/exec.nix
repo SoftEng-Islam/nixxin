@@ -47,6 +47,7 @@ let
 
     # ---- notification daemon ---- #
     # dunst &
+    swaync &
 
     # ---- Make nautilus Run in Background ---- #
     # nautilus --no-desktop &

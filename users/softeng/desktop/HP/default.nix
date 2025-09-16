@@ -473,6 +473,7 @@
 
   # [ Notifications ]
   modules.notifications.dunst.enable = false;
+  modules.notifications.swaync.enable = true;
 
   modules.system = {
     oom = false; # user-space Out-Of-Memory (OOM) killer.
