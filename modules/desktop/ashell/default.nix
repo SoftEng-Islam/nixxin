@@ -242,7 +242,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       font_name = "${settings.modules.fonts.main.name}"
       # The style of the main bar, possible values are: Islands | Solid | Gradient
       # optional, default Islands
-      style = "Gradient"
+      style = "Solid"
       # The opacity of the main bar, possible values are: 0.0 to 1.0
       # optional, default 1.0
       opacity = 0.9
@@ -273,7 +273,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       opacity = 0.8
       # The backdrop of the menu, possible values are: 0.0 to 1.0
       # optional, default 0.0
-      backdrop = 0.5
+      backdrop = 0.0
 
     '';
   };
