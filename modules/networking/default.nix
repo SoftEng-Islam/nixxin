@@ -10,7 +10,7 @@ in {
   # disable waiting for network to be online during boot.
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  systemd.network.enable = false; # Enable systemd-networkd
+  systemd.network.enable = lib.mkForce false; # Enable systemd-networkd
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
   systemd.network.wait-online.anyInterface = false;
@@ -47,7 +47,7 @@ in {
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
   networking.dhcpcd.enable = true;
-  networking.useNetworkd = mkDefault true;
+  networking.useNetworkd = mkDefault false;
   networking.nameservers = settings.modules.networking.nameservers;
   networking.hostName = settings.system.hostName; # Define your hostname.
   networking.interfaces = settings.modules.networking.interfaces;
