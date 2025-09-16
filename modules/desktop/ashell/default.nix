@@ -51,17 +51,17 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # The modules that will be displayed on the right side of the status bar
       # The nested modules array will form a group sharing the same element in the status bar
       # You can also use custom modules to extend the normal set of options, see configuration below
-      right = ["SystemInfo", "KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
+      right = ["KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
 
       # Update module configuration.
       # Without a value the related button will not appear.
       # optional, default None
-      [updates]
+      # [updates]
       # The check command will be used to retrieve the update list.
       # It should return something like `package_name version_from -> version_to\n`
-      check_cmd = "checkupdates; paru -Qua"
+      # check_cmd = "checkupdates; paru -Qua"
       # The update command is used to init the OS update process
-      update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
+      # update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
 
       # Workspaces module configuration, optional
       [workspaces]
@@ -105,16 +105,16 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       [keyboard_layout.labels]
       "English (US)" = "🇺🇸"
       "Arabic" = "🇸🇦"
-      "Russian" = "🇷🇺"
-      "Italian" = "🇮🇹"
-      "Spanish" = "🇪🇸"
-      "French" = "🇫🇷"
-      "German" = "🇩🇪"
+      # "Russian" = "🇷🇺"
+      # "Italian" = "🇮🇹"
+      # "Spanish" = "🇪🇸"
+      # "French" = "🇫🇷"
+      # "German" = "🇩🇪"
 
 
       # The system module configuration
       # optional
-      [system]
+      # [system]
       # System information shown in the status bar
       # The possible values are:
       #  - Cpu
@@ -129,39 +129,39 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # If for example you want to dispay the usage of the root and home partition
       # you can use the following configuration
       # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-      indicators = ["DownloadSpeed", "UploadSpeed"]
+      # indicators = ["DownloadSpeed", "UploadSpeed"]
 
       # CPU indicator thresholds
       # optional
-      [system.cpu]
+      # [system.cpu]
       # cpu indicator warning level (default 60)
-      warn_threshold = 60
+      # warn_threshold = 60
       # cpu indicator alert level (default 80)
-      alert_threshold = 80
+      # alert_threshold = 80
 
       # Memory indicator thresholds
       # optional
-      [system.memory]
+      # [system.memory]
       # mem indicator warning level (default 70)
-      warn_threshold = 70
+      # warn_threshold = 70
       # mem indicator alert level (default 85)
-      alert_threshold = 85
+      # alert_threshold = 85
 
       # Memory swap indicator thresholds
       # optional
-      [system.temperature]
+      # [system.temperature]
       # temperature indicator warning level (default 60)
-      warn_threshold = 60
+      # warn_threshold = 60
       # temperature indicator alert level (default 80)
-      alert_threshold = 80
+      # alert_threshold = 80
 
       # Disk indicator thresholds
       # optional
-      [system.disk]
+      # [system.disk]
       # disk indicator warning level (default 80)
-      warn_threshold = 80
+      # warn_threshold = 80
       # disk indicator alert level (default 90)
-      alert_threshold = 90
+      # alert_threshold = 90
 
       # Clock module configuration
       [clock]

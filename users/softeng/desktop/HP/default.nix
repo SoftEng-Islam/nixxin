@@ -63,6 +63,8 @@
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";
   common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
+  common.primaryColor = "rgba(9141ACff)";
+  common.surfaceColor = "rgba(191919ff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
   common.soundPlayer = "";
@@ -332,8 +334,8 @@
 
   # => `graid colors ex:
   # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
-  modules.desktop.hyprland.border.inactive.color = "rgba(191919ff)";
-  modules.desktop.hyprland.border.active.color = "rgba(ED5B00ff)";
+  modules.desktop.hyprland.border.inactive.color = common.surfaceColor;
+  modules.desktop.hyprland.border.active.color = common.primaryColor;
   modules.desktop.hyprland.border.size = 4;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
@@ -375,7 +377,7 @@
 
   # [networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [ "10.2.0.1" "1.1.1.1" "8.8.8.8" ]; # DNS
+  modules.networking.nameservers = [ "8.8.8.8" "1.1.1.1" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     eno1 = {
@@ -539,14 +541,14 @@
       "random.trust_cpu=on"
 
       # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
-      "amdgpu.sched_hw_submission=4"
+      # "amdgpu.sched_hw_submission=4"
 
       # Disables the Linux audit subsystem.
       # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
       "audit=0"
 
       # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
       # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
@@ -562,21 +564,21 @@
       "amdgpu.audio=0"
 
       # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
-      "amdgpu.dpm=1"
+      # "amdgpu.dpm=1"
 
       # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
-      "amdgpu.runpm=0"
+      # "amdgpu.runpm=0"
 
       # Enables FreeSync support in video playback (if supported).
       # "amdgpu.freesync_video=1"
 
-      "processor.ignore_ppc=1"
+      # "processor.ignore_ppc=1"
 
       # Enables 10-bit or 12-bit deep color support (if monitor supports it).
       # "amdgpu.deep_color=1"
 
       # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
-      "amdgpu.vramlimit=4096"
+      # "amdgpu.vramlimit=4096"
 
       # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
       # pages_min sets the minimum number of memory pages reserved for the GPU.
@@ -590,35 +592,35 @@
 
       # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
       # "amdgpu.gttsize=4096" This option is deprecated.
-      "amdgpu.ttm.pages_limit=4096"
+      # "amdgpu.ttm.pages_limit=4096"
 
       # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
-      "amdgpu.unified_memory=1"
+      # "amdgpu.unified_memory=1"
 
       # Controls how memory is allocated:
       # 0: Prefer VRAM
       # 1: Even balance
       # 2: Prefer GTT (shared RAM)
       # 💡 Use 2 for APUs with little VRAM.
-      "amdgpu.memory_alloc_mode=0"
+      # "amdgpu.memory_alloc_mode=0"
 
       # Sets the virtual address space size in GB.
       # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
-      "amdgpu.vm_size=8"
+      # "amdgpu.vm_size=8"
 
       # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
       # Larger values = fewer page table entries = better perf on large buffers.
       # Set -1 to let driver decide automatically.
-      "amdgpu.vm_fragment_size=9"
+      # "amdgpu.vm_fragment_size=9"
 
       # Set amdgpu.lockup_timeout in order to control the TDR for each ring
       # 0 (GFX): 5s (was 10s)
       # 1 (Compute): 10s (was 60s wtf)
       # 2 (SDMA): 10s (was 10s)
       # 3 (Video): 5s (was 10s)
-      "amdgpu.lockup_timeout=5000,10000,10000,5000"
+      # "amdgpu.lockup_timeout=5000,10000,10000,5000"
 
-      "amdgpu.noretry=0" # Improve memory handling
+      # "amdgpu.noretry=0" # Improve memory handling
 
       "net.ifnames=0"
       "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)

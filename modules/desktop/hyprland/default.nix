@@ -117,9 +117,9 @@ in {
           enable_stdout_logs = true;
         };
         # active color
-        "$primary" = settings.modules.desktop.hyprland.border.active.color;
+        "$primary" = settings.common.primaryColor;
         # inactive color
-        "$surface" = settings.modules.desktop.hyprland.border.inactive.color;
+        "$surface" = settings.common.surfaceColor;
       };
       # extraConfig = ''
       # '';
