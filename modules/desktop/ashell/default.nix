@@ -166,7 +166,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # Clock module configuration
       [clock]
       # clock format see: https://docs.rs/chrono/latest/chrono/format/strftime/index.html
-      format = "%a %d %b %R"
+      format = "%a %d %b %I:%M %p"
 
       # Media player module configuration
       [media_player]
@@ -279,5 +279,9 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
 
     '';
   };
-  environment.systemPackages = with pkgs; [ ashell swaynotificationcenter ];
+  environment.systemPackages = with pkgs; [
+    ashell
+    swaynotificationcenter
+    networkmanagerapplet
+  ];
 }
