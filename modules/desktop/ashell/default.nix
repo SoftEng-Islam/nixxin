@@ -169,9 +169,9 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       format = "%a %d %b %I:%M %p"
 
       # Media player module configuration
-      [media_player]
+      # [media_player]
       # optional, default 100
-      max_title_length = 100
+      # max_title_length = 100
 
       # Custom modules configuration (you can have multiple)
       [[CustomModule]]
@@ -214,18 +214,18 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # command used to open the network settings
       # without a value the related button will not appear
       # optional, default None
-      wifi_more_cmd = "nm-connection-editor"
+      # wifi_more_cmd = "nm-connection-editor"
       # command used to open the VPN settings
       # without a value the related button will not appear
       # optional, default None
-      vpn_more_cmd = "nm-connection-editor"
+      # vpn_more_cmd = "nm-connection-editor"
       # command used to open the Bluetooth settings
       # without a value the related button will not appear
       # optional, default None
-      bluetooth_more_cmd = "blueman-manager"
+      # bluetooth_more_cmd = "blueman-manager"
       # option to remove the airplane button
       # optional, default false
-      remove_airplane_btn = false
+      remove_airplane_btn = true
 
       # Appearance configuration
       [appearance]
