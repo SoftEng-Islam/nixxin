@@ -26,7 +26,7 @@ in {
   services.avahi.publish.userServices = true;
 
   services.hostapd.enable = false;
-  services.networkd-dispatcher.enable = true;
+  services.networkd-dispatcher.enable = false;
 
   # Systemd DNS Resolver Daemon, systemd-resolved.
   services.resolved = {
