@@ -132,12 +132,12 @@ in {
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
   # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
-  networking.wireless.enable = lib.mkForce false;
-  networking.wireless.scanOnLowSignal = true;
+  networking.wireless.enable = lib.mkForce true;
+  networking.wireless.scanOnLowSignal = false;
   networking.wireless.userControlled.enable = true;
 
   networking.networkmanager = {
-    enable = true;
+    enable = false;
     logLevel = "OFF";
     dhcp = "internal"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
