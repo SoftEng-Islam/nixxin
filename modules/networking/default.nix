@@ -10,7 +10,7 @@ in {
   # disable waiting for network to be online during boot.
   boot.initrd.systemd.network.wait-online.enable = false;
 
-  systemd.network.enable = lib.mkForce false; # Enable systemd-networkd
+  systemd.network.enable = lib.mkForce false;
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
   systemd.network.wait-online.anyInterface = false;
@@ -139,7 +139,7 @@ in {
   networking.networkmanager = {
     enable = true;
     logLevel = "OFF";
-    dhcp = "internal"; # one of "dhcpcd", "internal"
+    dhcp = "dhcpcd"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [device]
