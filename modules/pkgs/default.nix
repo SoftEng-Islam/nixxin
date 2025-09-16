@@ -1,4 +1,4 @@
-{settings, lib, pkgs, ...}:
+{ settings, lib, pkgs, ... }:
 
 lib.mkIf (settings.modules.pkgs.enable or false) {
   environment.systemPackages = with pkgs; [
@@ -61,7 +61,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     spirv-tools
     libunwind
     llvm
-
 
     # ---- Radeon Cards
     radeontools
@@ -189,8 +188,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     busybox # Tiny versions of common UNIX utilities in a single small executable
     fdupes # Identifies duplicate files residing within specified directories
     d-spy # D-Bus exploration tool
-    udev    # System and service manager for Linux
-
+    udev # System and service manager for Linux
 
     hyprlang # The official implementation library for the hypr config language
     hyprlock # Hyprland's GPU-accelerated screen locking utility
@@ -203,8 +201,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     hyprland-protocols # Wayland protocol extensions for Hyprland
     hyprwayland-scanner # A Hyprland version of wayland-scanner in and for C++
     hyprsunset # Application to enable a blue-light filter on Hyprland
-    xwayland
-    xwayland-run
     adwaita-qt6
     gojq
     grim
@@ -243,7 +239,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     egl-wayland # EGLStream-based Wayland external platform
 
     gsettings-desktop-schemas # Crucial for many GTK/GNOME apps and portals
-    gnome-themes-extra  # Provides common GTK themes and assets, might be needed
+    gnome-themes-extra # Provides common GTK themes and assets, might be needed
 
     # ---- Productivity ---- #
     # hugo # static site generator

@@ -346,6 +346,7 @@
   modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;
+  modules.desktop.xwayland.enable = false;
 
   # [i18n] Date/Time & Languages
   modules.i18n.timeFormat = 12;

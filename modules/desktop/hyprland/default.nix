@@ -1,4 +1,6 @@
-{ settings, inputs, lib, pkgs, ... }: {
+{ settings, inputs, lib, pkgs, ... }:
+let xwaylandEnabled = settings.modules.desktop.xwayland.enable or false;
+in {
 
   imports = [
     ./configs/animations.nix
@@ -53,11 +55,11 @@
 
   programs = {
     hyprlock.enable = true;
-    xwayland.enable = true;
+    xwayland.enable = xwaylandEnabled;
     hyprland = {
       enable = true;
       withUWSM = false; # Launch Hyprland with the UWSM session manager.
-      xwayland.enable = true;
+      xwayland.enable = xwaylandEnabled;
       package = pkgs.hyprland;
       # package = inputs.hyprland.packages.${pkgs.system}.hyprland;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
@@ -128,7 +130,7 @@
   environment.systemPackages = with pkgs; [
     # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
     (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-      enableXWayland = true; # whether to enable XWayland
+      enableXWayland = xwaylandEnabled; # whether to enable XWayland
       # whether to use the legacy renderer (for old GPUs)
       legacyRenderer = false;
       withSystemd = true; # whether to build with systemd support
