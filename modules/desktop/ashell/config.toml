@@ -37,11 +37,11 @@ clipboard_cmd = "cliphist-rofi-img | wl-copy"
 # The modules that will be displayed on the left side of the status bar
 left = ["Workspaces"]
 # The modules that will be displayed in the center of the status bar
-center = ["WindowTitle"]
+center = ["Clock"]
 # The modules that will be displayed on the right side of the status bar
 # The nested modules array will form a group sharing the same element in the status bar
 # You can also use custom modules to extend the normal set of options, see configuration below
-right = ["SystemInfo", ["Clock", "Privacy", "Settings"], "CustomNotifications"]
+right = ["SystemInfo", "KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
 
 # Update module configuration.
 # Without a value the related button will not appear.
@@ -67,7 +67,7 @@ visibility_mode = "All"
 # the workspace 1 and the workspace 4, the module will show also
 # two more workspaces, the workspace 2 and the workspace 3
 # optional, default false
-enable_workspace_filling = false
+enable_workspace_filling = true
 
 # If you want to see more workspaces prefilled, set the number here:
 # max_workspaces = 6
