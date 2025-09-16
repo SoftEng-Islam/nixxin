@@ -14,6 +14,8 @@ let
     sleep 1
     ${pkgs.swww}/bin/swww img ~/Pictures/desktop.png --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
 
+    # ---- Start Ashell a status bar ---- #
+    ashell
 
     # dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
     # dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
@@ -86,7 +88,6 @@ let
     #! ---- The Screen Edge Actions ---- #
     # detect-mouse-position
 
-    ashell
   '';
 in {
   home-manager.users.${settings.user.username} = {
