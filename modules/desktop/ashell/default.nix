@@ -21,7 +21,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # App launcher command, it will be used to open the launcher,
       # without a value the related button will not appear
       # optional, default None
-      app_launcher_cmd = "ulauncher-toggle"
+      app_launcher_cmd = "${pkgs.ulauncher}/bin/ulauncher-toggle"
       # Clipboard command, it will be used to open the clipboard menu,
       # without a value the related button will not appear
       # optional, default None
@@ -180,7 +180,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # The default icon for this custom module
       icon = ""
       # The command that will be executed on click
-      command = "swaync-client -t -sw"
+      command = "${pkgs.swaynotificationcenter}/bin/swaync-client -t -sw"
       # You can optionally configure your custom module to update the UI using another command
       # The output right now follows the waybar json-style output, using the `alt` and `text` field
       # E.g. `{"text": "3", "alt": "notification"}`
@@ -279,5 +279,5 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
 
     '';
   };
-  environment.systemPackages = with pkgs; [ ashell ];
+  environment.systemPackages = with pkgs; [ ashell swaynotificationcenter ];
 }

@@ -472,7 +472,7 @@
   modules.storage.beesd.enable = false;
 
   # [ Notifications ]
-  modules.notifications.dunst.enable = true;
+  modules.notifications.dunst.enable = false;
 
   modules.system = {
     oom = false; # user-space Out-Of-Memory (OOM) killer.
