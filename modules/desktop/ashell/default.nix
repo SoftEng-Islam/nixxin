@@ -243,9 +243,9 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # used as a base background color for header module button
       # background_color = "#1e1e2e"
       # used as a accent color
-      primary_color = "#939393ff"
+      primary_color = "#ceb6e0ff"
       # used for darker background color
-      secondary_color = "#ffffffff"
+      secondary_color = "#313131ff"
       # used for success message or happy state
       success_color = "#a6e3a1"
       # used for danger message or danger state (the weak version is used for the warning state
