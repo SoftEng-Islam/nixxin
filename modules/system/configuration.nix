@@ -349,7 +349,7 @@ in {
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
-    WGPU_POWER_PREF = "low"; # Prefer integrated GPU
+    WGPU_POWER_PREF = "high"; # Prefer integrated GPU
 
     # Adjusts DRM devices, vsync, and atomic modes.
     # WLR_DRM_DEVICES = "/dev/dri/card1";
