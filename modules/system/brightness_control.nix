@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }: {
-  # it depends on your monitor and GPU driver support.
+  # It depends on your monitor and GPU driver support.
   # Details:
   # External LCD Monitor over VGA/DVI/HDMI/DisplayPort:
   # If the monitor has no DDC/CI support, you cannot control brightness via software.

@@ -88,6 +88,7 @@ in {
       "quiet"
       "splash"
       "loglevel=3"
+      "udev.log_level=3"
       "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
@@ -110,7 +111,8 @@ in {
       "mitigations=off"
 
       # "processor.max_cstate=1" # Limit C-states for better response time
-      "threadirqs"
+
+      "threadirqs" # ?
 
       "scsi_mod.use_blk_mq=1" # Use multi-queue for faster I/O
 
@@ -180,7 +182,6 @@ in {
       # Run this command to check if a process has NoNewPrivileges set:
       # grep NoNewPrivs /proc/*/status
       "kernel.unprivileged_userns_clone" = 1;
-
     };
 
     # The Linux kernel does not have Rust language support enabled by default.
@@ -237,11 +238,11 @@ in {
         support32Bit.enable = true;
         supportExperimental.enable = true;
         settings = {
-          IFH = 0;
-          ShaderCacheMode = 1;
-          EnableVmAlwaysValid = 1;
-          IdleAfterSubmitGpuMask = 1;
-          AllowVkPipelineCachingToDisk = 1;
+          IFH = 0; # ?
+          ShaderCacheMode = 1; # ?
+          EnableVmAlwaysValid = 1; # ?
+          IdleAfterSubmitGpuMask = 1; # ?
+          AllowVkPipelineCachingToDisk = 1; # ?
         };
       };
     };
@@ -347,7 +348,7 @@ in {
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
-    WGPU_BACKEND = "gl"; # vulkan, metal, dx12, gl
+    WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
     WGPU_POWER_PREF = "low"; # Prefer integrated GPU
 
     # Adjusts DRM devices, vsync, and atomic modes.

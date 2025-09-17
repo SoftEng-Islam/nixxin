@@ -63,7 +63,7 @@
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";
   common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
-  common.primaryColor = "rgba(9141ACff)";
+  common.primaryColor = "rgba(9141ACff)"; # used by hyprland
   common.surfaceColor = "rgba(191919ff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
@@ -77,7 +77,7 @@
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   # [ GTK ]
   common.gtk.theme = "adw-gtk3-dark";
-  common.gtk.icon_cache = false;
+  common.gtk.icon_cache = true;
   common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
   # [ QT ]
@@ -92,8 +92,7 @@
   common.icons.package = pkgs.papirus-icon-theme;
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
-  common.cursor.name =
-    "Bibata-Modern-Classic"; # "Bibata-Modern-Ice" Cursor Name
+  common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
   common.cursor.package = pkgs.bibata-cursors;
 
   # This environment variable is used to set a custom directory for scripts that will be
@@ -178,7 +177,7 @@
   modules.cli_tools.terminals.enable = true;
   modules.cli_tools.utilities.enable = true;
   modules.cli_tools.utilities.bat.enable = true;
-  modules.cli_tools.utilities.direnv.enable = false;
+  modules.cli_tools.utilities.direnv.enable = true;
   modules.cli_tools.utilities.emacs.enable = true;
 
   # [ Community ]
@@ -283,7 +282,7 @@
     main.package =
       pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
     main.antialiasing = "grayscale";
-    main.hinting = "medium"; # (one of "none", "slight", "medium", "full")
+    main.hinting = "full"; # (one of "none", "slight", "medium", "full")
     main.rendering = "automatic";
     main.rgba_order = "rgb";
     main.size.main = 12; # The main font size
@@ -348,7 +347,7 @@
   modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;
-  modules.desktop.xwayland.enable = false;
+  modules.desktop.xwayland.enable = true; # keep enabled
 
   # [i18n] Date/Time & Languages
   modules.i18n.timeFormat = 12;
@@ -541,7 +540,7 @@
       "random.trust_cpu=on"
 
       # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
-      # "amdgpu.sched_hw_submission=4"
+      "amdgpu.sched_hw_submission=4"
 
       # Disables the Linux audit subsystem.
       # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
@@ -550,13 +549,13 @@
       # If you want full control over power settings, use:
       # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
-      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      # "amdgpu.dcfeaturemask=0x8"
+      "amdgpu.dcfeaturemask=0x8"
 
       # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      # "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
+      "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
       # "amdgpu.debugmask=1" # Enables some debugging logs
 
       # Disables HDMI/DisplayPort audio output on AMD GPUs.
@@ -564,21 +563,21 @@
       "amdgpu.audio=0"
 
       # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
-      # "amdgpu.dpm=1"
+      "amdgpu.dpm=1"
 
       # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
-      # "amdgpu.runpm=0"
+      "amdgpu.runpm=0"
 
       # Enables FreeSync support in video playback (if supported).
       # "amdgpu.freesync_video=1"
 
-      # "processor.ignore_ppc=1"
+      "processor.ignore_ppc=1"
 
       # Enables 10-bit or 12-bit deep color support (if monitor supports it).
       # "amdgpu.deep_color=1"
 
       # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
-      # "amdgpu.vramlimit=4096"
+      "amdgpu.vramlimit=4096"
 
       # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
       # pages_min sets the minimum number of memory pages reserved for the GPU.
@@ -592,35 +591,35 @@
 
       # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
       # "amdgpu.gttsize=4096" This option is deprecated.
-      # "amdgpu.ttm.pages_limit=4096"
+      "amdgpu.ttm.pages_limit=4096"
 
       # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
-      # "amdgpu.unified_memory=1"
+      "amdgpu.unified_memory=1"
 
       # Controls how memory is allocated:
       # 0: Prefer VRAM
       # 1: Even balance
       # 2: Prefer GTT (shared RAM)
       # 💡 Use 2 for APUs with little VRAM.
-      # "amdgpu.memory_alloc_mode=0"
+      "amdgpu.memory_alloc_mode=0"
 
       # Sets the virtual address space size in GB.
       # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
-      # "amdgpu.vm_size=8"
+      "amdgpu.vm_size=8"
 
       # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
       # Larger values = fewer page table entries = better perf on large buffers.
       # Set -1 to let driver decide automatically.
-      # "amdgpu.vm_fragment_size=9"
+      "amdgpu.vm_fragment_size=9"
 
       # Set amdgpu.lockup_timeout in order to control the TDR for each ring
       # 0 (GFX): 5s (was 10s)
       # 1 (Compute): 10s (was 60s wtf)
       # 2 (SDMA): 10s (was 10s)
       # 3 (Video): 5s (was 10s)
-      # "amdgpu.lockup_timeout=5000,10000,10000,5000"
+      "amdgpu.lockup_timeout=5000,10000,10000,5000"
 
-      # "amdgpu.noretry=0" # Improve memory handling
+      "amdgpu.noretry=0" # Improve memory handling
 
       "net.ifnames=0"
       "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
