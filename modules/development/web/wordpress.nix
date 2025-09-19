@@ -63,8 +63,6 @@ in {
   systemd.tmpfiles.rules = [ "d /var/www/example.org 0755 softeng users" ];
 
   environment.systemPackages = with pkgs; [
-    devenv
-    direnv
     php83Packages.php-codesniffer
     (php.buildEnv {
       extensions =

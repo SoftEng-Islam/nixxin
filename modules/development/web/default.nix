@@ -1,4 +1,5 @@
-{ settings, config, pkgs, ... }: {
+{ settings, lib, config, pkgs, ... }:
+lib.mkIf (settings.modules.development.web.enable or false) {
   imports = [
     ./bun.nix
     # ./php.nix

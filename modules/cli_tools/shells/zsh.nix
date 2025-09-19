@@ -90,10 +90,10 @@ in {
     "systemd"
     "tmux"
     "extract"
+    "direnv"
+
     # Prevent running pasted command
     "safe-paste"
-
-    # "direnv"
   ];
   programs.zsh.ohMyZsh.cacheDir = "$HOME/.cache/oh-my-zsh";
   programs.zsh.ohMyZsh.preLoaded = "";

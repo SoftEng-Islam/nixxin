@@ -44,8 +44,6 @@ lib.mkIf (settings.modules.env.enable or true) {
       # https://github.com/NixOS/nixpkgs/issues/314713
       UV_USE_IO_URING = "0";
 
-      DIRENV_LOG_FORMAT = "";
-
       NVM_DIR = "$HOME/.nvm";
       PNPM_HOME = "/home/softeng/.local/share/pnpm";
       # Set the default editors for CLI-based tools.

@@ -250,7 +250,7 @@
   modules.development.apps.insomnia = true;
   # [ development ] [ tools ]
   modules.development.tools.enable = true;
-  modules.development.tools.devdocs.enable = false;
+  modules.development.tools.devenv.enable = true;
   modules.development.tools.editors.enable = true;
   modules.development.tools.editors.zedEditor = true;
   modules.development.tools.editors.eclipse = false;
