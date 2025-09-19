@@ -14,6 +14,7 @@ in {
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
   systemd.network.wait-online.anyInterface = false;
+  systemd.services.NetworkManager-wait-online.enable = false;
 
   # avahi-daemon is a service that implements the mDNS/DNS-SD protocol, allowing devices to discover each other on a local network without needing a central DNS server.
   # It is commonly used for service discovery in local networks, such as finding printers, file shares, and other devices.
@@ -268,7 +269,6 @@ in {
     dnsutils # Domain name server
     avahi # mDNS/DNS-SD implementation
 
-    ntp # An implementation of the Network Time Protocol
     openresolv # A program to manage /etc/resolv.conf
     radvd # IPv6 Router Advertisement Daemon
     tcpdump # Network sniffer

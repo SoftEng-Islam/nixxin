@@ -168,7 +168,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
     bpftrace # High-level tracing language for Linux eBPF
     ethtool # Utility for controlling network drivers and hardware
-    fwupd # The Linux Vendor Firmware Service is a secure portal which allows hardware vendors to upload firmware updates.
     geoclue2 # Geolocation framework and some data providers
     linux-pam # Pluggable Authentication Modules, a flexible mechanism for authenticating user
     lm_sensors # for `sensors` command, Tools for reading hardware sensors

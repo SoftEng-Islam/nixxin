@@ -224,7 +224,7 @@ in {
     # dbus.implementation = "broker"; # "dbus" or "broker";
     accounts-daemon.enable = true;
     udisks2.enable = true;
-    fwupd.enable = true;
+    fwupd.enable = false; # Firmware update daemon --- IGNORE ---
 
     # Tumbler, A D-Bus thumbnailer service.
     tumbler.enable = true;

@@ -413,7 +413,7 @@
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
-  modules.power.powerManagement.powertop = true;
+  modules.power.powerManagement.powertop = false;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"
   modules.power.powerManagement.cpuFreqGovernor = "performance";
   modules.power.powerManagement.cpufreq.min = 800000; # 800MHz
