@@ -25,7 +25,7 @@
       caddy # Fast and extensible multi-platform HTTP/1-2-3 web server with automatic HTTPS
 
       # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
-      beekeeper-studio
+      # beekeeper-studio
 
       # Universal SQL Client for developers, DBA and analysts. Supports MySQL, PostgreSQL, MariaDB, SQLite, and more
       dbeaver-bin
