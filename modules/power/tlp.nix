@@ -1,4 +1,5 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+lib.mkIf (settings.modules.power.tlp.enable or false) {
   # ------------------------------------------------
   # ---- TLP
   # ------------------------------------------------
@@ -8,7 +9,7 @@
   #---- by limiting CPU power or turning off USB devices.
   # Don’t use TLP on a desktop. It’s meant for battery-powered devices.
   services.tlp = {
-    enable = settings.modules.power.tlp.enable or false;
+    enable = true;
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
@@ -51,4 +52,5 @@
       INTEL_GPU_MIN_FREQ_ON_BAT = 600;
     };
   };
+  environment.systemPackages = with pkgs; [ tlp ];
 }
