@@ -487,8 +487,7 @@
     boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
     boot.loader.timeout = 3; # seconds
     boot.loader.mode = "UEFI"; # UEFI OR BIOS
-    boot.loader.manager.name =
-      "SYSTEMD"; # Select The boot manager "GRUB" or "SYSTEMD
+    boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
     boot.loader.manager.grub = {
       fontSize = 14;
       osProber = true;
@@ -508,17 +507,8 @@
       '';
     };
     boot.kernelParams = [
-      "usbcore.autosuspend=-1" # disable usb autosuspend
-      "usbhid.mousepoll=4" # Reduce USB mouse polling rate
-      #"xhci_hcd.quirks=0x40" # USB3.0?g
-
-      # This disables specific USB ports at boot time.
-      # "usb-port.port_disable=1-11" # -.-
-
-      "retbleed=off" # Disable Retbleed mitigation
-      "tsc=reliable"
-      "clocksource=tsc"
-      "no_timer_check"
+      # "usbcore.autosuspend=-1" # disable usb autosuspend
+      # "usbhid.mousepoll=4" # Reduce USB mouse polling rate
 
       # AMD GPU optimizations
       # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
@@ -535,9 +525,14 @@
       # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
       "amd_iommu=on"
 
-      "amdgpu.tearfree=1"
+      "amdgpu.tearfree=1" # ?
+      "random.trust_cpu=on" # ?
+      "tsc=reliable"
+      "clocksource=tsc"
+      "no_timer_check"
+
       "split_lock_mitigate=off" # prevents some games from being slowed
-      "random.trust_cpu=on"
+      "retbleed=off" # Disable Retbleed mitigation
 
       # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
       "amdgpu.sched_hw_submission=4"
@@ -547,12 +542,12 @@
       "audit=0"
 
       # If you want full control over power settings, use:
-      # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
       # If you have stability issues (freezes, black screens, crashes), try:
-      "amdgpu.ppfeaturemask=0xFFF7FFFF"
+      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
       # Check If It’s Applied:
       # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      "amdgpu.dcfeaturemask=0x8"
+      "amdgpu.dcfeaturemask=0x8" # ?
 
       # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
       "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
@@ -621,7 +616,7 @@
 
       "amdgpu.noretry=0" # Improve memory handling
 
-      "net.ifnames=0"
+      "net.ifnames=0" # ?
       "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
     ];
     boot.kernelModules = [
@@ -648,7 +643,7 @@
       options rt2800usb nohwcrypt=1
     '';
     boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-    boot.blacklistedKernelModules = [ "snd_usb_audio hp_wmi" ];
+    boot.blacklistedKernelModules = [ "hp_wmi" ];
     amdgpu.initrd = true;
     amdgpu.opencl = false;
     amdgpu.legacySupport = false;
