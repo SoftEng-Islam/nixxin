@@ -28,7 +28,8 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  useTmpfs = true; # disable it before install a custom Linux Kernel.
+  system.useTmpfs = true; # disable it before install a custom Linux Kernel.
+  system.enableLogs = true; # To enable logs
   system.upgrade.enable = false;
   system.upgrade.allowReboot = false;
   # Run `nix-channel --list` to get channels
@@ -389,7 +390,7 @@
       # }];
     };
   };
-  modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
+  modules.networking.wifiBackend = "iwd"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = (modules.networking.wifiBackend == "iwd");
   modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
@@ -485,7 +486,7 @@
     radeon = false;
     videoDrivers = [ "amdgpu" ];
     boot.plymouth.enable = true;
-    boot.tmp.useTmpfs = useTmpfs;
+    boot.tmp.useTmpfs = system.useTmpfs;
     boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
     boot.loader.timeout = 3; # seconds
     boot.loader.mode = "UEFI"; # UEFI OR BIOS
