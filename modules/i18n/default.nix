@@ -18,8 +18,12 @@ in {
 
   # Set your time zone.
   time.timeZone = _i18n.timezone;
-  services.timesyncd.enable = false;
-  services.chrony.enable = true;
+  services.timesyncd.enable = true;
+  services.chrony.enable = false;
+
+  # NTP for automated system clock adjustments.
+  services.ntp.enable = false;
+
   # Internationalisation Properties.
   i18n = {
     defaultLocale = _i18n.defaultLocale;
