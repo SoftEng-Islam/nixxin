@@ -17,35 +17,8 @@ in lib.mkIf (_power.enable or true) {
 
   boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
 
-  # system.activationScripts = {
-  #   # Limit CPU frequency to 4GHz
-  #   fixCpuFreq = ''
-  #     for cpu in /sys/devices/system/cpu/cpu[0-9]*; do
-  #       if [ -d "$cpu/cpufreq" ]; then
-  #         echo "Setting frequency limits for $(basename "$cpu")"
-  #         echo 4000000 > "$cpu/cpufreq/scaling_max_freq"
-  #         echo 4000000 > "$cpu/cpufreq/scaling_min_freq"
-  #       fi
-  #     done
-  #   '';
-  # };
-
   # Enable auto-epp for amd active pstate.
   services.auto-epp.enable = false;
-
-  # Work around performance issues with amdgpu power scaling
-  # https://wiki.archlinux.org/title/AMDGPU#Screen_artifacts_and_frequency_problem
-  # https://wiki.archlinux.org/title/AMDGPU#Power_profiles
-  # 0=BOOTUP_DEFAULT 1=3D_FULL_SCREEN 2=POWER_SAVING 3=VIDEO 4=VR 5=COMPUTE 6=CUSTOM
-  #!! cardX or renderX must match the correct gpu
-  #?? lspci
-  #?? ls -l /dev/dri/by-path/*
-  #?? sudo udevadm trigger /dev/dri/by-path/*
-  #?? grep '*' /sys/class/drm/card*/device/pp_power_profile_mode
-  # KERNEL=="renderD128", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="4"
-  services.udev.extraRules = ''
-    KERNEL=="card1", SUBSYSTEM=="drm", DRIVER=="amdgpu", ATTR{power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="5"
-  '';
 
   # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
   powerManagement.enable = _power.powerManagement.enable;
@@ -59,73 +32,17 @@ in lib.mkIf (_power.enable or true) {
   # [ondemand]: Increases frequency when needed :: Older, but decent balance
   # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
   powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
+
   # powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
   # powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
   # To verify/check the current CPU frequency:
   # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
-  # This is the service that lets you pick power profiles in the gnome UI.  It conflicts with auto-cpufreq
+  # This is the service that lets you pick power profiles in the gnome UI.
+  #! It conflicts with auto-cpufreq
   services.power-profiles-daemon.enable = false;
-  services.auto-cpufreq.enable = settings.modules.power.auto-cpufreq.enable;
 
-  # Upower, a DBus service that provides power management support to applications.
-  services.upower.enable = true;
-
-  # ------------------------------------------------
-  # ---- TLP
-  # ------------------------------------------------
-  # Should You Use TLP on a Desktop?
-  #---- No, TLP is designed for laptops to improve battery life by reducing power
-  #---- consumption. On a desktop, it is not necessary and can cause performance issues
-  #---- by limiting CPU power or turning off USB devices.
-  # Don’t use TLP on a desktop. It’s meant for battery-powered devices.
-  services.tlp = {
-    enable = _power.tlp.enable;
-    settings = {
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "balance";
-      CPU_ENERGY_PERF_POLICY_ON_AC = "balance_performance";
-      CPU_DRIVER_OPMODE_ON_AC = "active";
-      CPU_DRIVER_OPMODE_ON_BAT = "active";
-
-      WIFI_PWR_ON_AC = "on";
-      WIFI_PWR_ON_BAT = "on";
-      RUNTIME_PM_ON_AC = "auto";
-      RUNTIME_PM_ON_BAT = "auto";
-
-      CPU_MIN_PERF_ON_AC = 10;
-      CPU_MAX_PERF_ON_AC = 100;
-      CPU_MIN_PERF_ON_BAT = 10;
-      CPU_MAX_PERF_ON_BAT = 50;
-
-      CPU_BOOST_ON_AC = 1;
-      CPU_BOOST_ON_BAT = 0;
-
-      CPU_HWP_DYN_BOOST_ON_AC = 1;
-      CPU_HWP_DYN_BOOST_ON_BAT = 0;
-
-      START_CHARGE_THRESH_BAT0 = 75;
-      STOP_CHARGE_THRESH_BAT0 = 80;
-
-      MEM_SLEEP_ON_AC = "deep";
-      MEM_SLEEP_ON_BAT = "deep";
-
-      PLATFORM_PROFILE_ON_AC = "performance";
-      PLATFORM_PROFILE_ON_BAT = "low-power";
-
-      RADEON_DPM_STATE_ON_AC = "performance";
-      RADEON_DPM_STATE_ON_BAT = "battery";
-      RADEON_POWER_PROFILE_ON_AC = "high";
-      RADEON_POWER_PROFILE_ON_BAT = "low";
-
-      INTEL_GPU_MIN_FREQ_ON_AC = 600;
-      INTEL_GPU_MIN_FREQ_ON_BAT = 600;
-    };
-  };
   environment.systemPackages = with pkgs; [
-    upower
-    upower-notify
     power-profiles-daemon
     poweralertd
     powercap

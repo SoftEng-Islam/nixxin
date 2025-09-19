@@ -418,6 +418,7 @@
   modules.power.powerManagement.cpufreq.min = 800000; # 800MHz
   modules.power.powerManagement.cpufreq.max = 4100000; # 4.1GHz
   modules.power.auto-cpufreq.enable = false;
+  modules.power.upower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
     "amd-pstate" # AMD CPU P-State driver for better power management
