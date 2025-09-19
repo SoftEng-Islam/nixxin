@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }:
-lib.mkIf (settings.modules.power.performance.enable or true) {
+lib.mkIf (settings.modules.power.performance.enable or false) {
   # system.activationScripts = {
   #   # Limit CPU frequency to 4GHz
   #   fixCpuFreq = ''
