@@ -9,7 +9,8 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
     # };
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
-      log_level = "warn"
+      # log_level = "warn"
+      log_level = "ashell::services=info"
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
       # All: the status bar will be displayed on all the available outputs, example: outputs = "All"
       # active: the status bar will be displayed on the active output, example: outputs = "Active"
