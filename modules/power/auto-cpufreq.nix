@@ -1,6 +1,7 @@
 # https://github.com/AdnanHodzic/auto-cpufreq
-{ settings, lib, config, pkgs, ... }: {
-  services.auto-cpufreq.enable = settings.modules.power.auto-cpufreq.enable;
+{ settings, lib, pkgs, ... }:
+lib.mkIf (settings.modules.power.auto-cpufreq.enable or false) {
+  services.auto-cpufreq.enable = true;
   services.auto-cpufreq.settings = {
     battery = {
       governor = "powersave";
