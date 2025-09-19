@@ -1,17 +1,14 @@
 { settings, lib, config, pkgs, ... }:
 lib.mkIf (settings.modules.development.web.enable or false) {
-  imports = [
-    ./bun.nix
-    # ./php.nix
-    # ./wordpress.nix
-  ];
   environment.variables = {
     NODE_PATH = "${pkgs.nodejs_latest}/lib/node_modules";
 
     # npm set prefix ~/.npm-global
     # Then, append your PATH with $HOME/.npm-global/bin.
     NPM_CONFIG_PREFIX = "/home/${settings.user.username}/.npm-global";
+    BUN_INSTALL = "$HOME/.bun";
   };
+
   environment.systemPackages = with pkgs; [
     corepack_latest # yarn, pnpm
     nodejs_latest # Event-driven I/O framework for the V8 JavaScript engine
@@ -77,6 +74,7 @@ lib.mkIf (settings.modules.development.web.enable or false) {
       ".npm-packages/lib/.keep".text = "";
     };
 
+    programs.bun = { enable = true; };
     xdg.configFile.".bunfig.toml".source = ./.bunfig.toml;
   };
 }
