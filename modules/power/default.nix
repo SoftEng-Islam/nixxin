@@ -6,7 +6,13 @@
 { settings, lib, pkgs, ... }:
 let _power = settings.modules.power;
 in lib.mkIf (_power.enable or true) {
-  imports = [ ./auto-cpufreq.nix ./performance.nix ./tlp.nix ./upower.nix ];
+  imports = [
+    ./auto-cpufreq.nix
+    ./cpupower.nix
+    ./performance.nix
+    ./tlp.nix
+    ./upower.nix
+  ];
 
   boot.kernelModules = settings.modules.power.boot.kernelModules or [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
