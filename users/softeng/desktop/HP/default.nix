@@ -390,7 +390,7 @@
       # }];
     };
   };
-  modules.networking.wifiBackend = "iwd"; # "wpa_supplicant" OR "iwd"
+  modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = (modules.networking.wifiBackend == "iwd");
   modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
