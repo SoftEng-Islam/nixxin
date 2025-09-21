@@ -134,12 +134,12 @@ in lib.mkIf (settings.modules.media.mpv) {
 
         # Subtitle
         sub-auto = "fuzzy";
-        sub-font-size = 30;
-        sub-outline-size = 1.65;
-        sub-color = "#d1d1d1ff";
+        sub-font-size = 32;
+        sub-outline-size = 2.5;
+        sub-color = "#dededeff";
         sub-outline-color = "#000000";
         sub-use-margins = "yes";
-        sub-ass-override = "force";
+        # sub-ass-override = "force";
 
         osd-level = 1;
         msg-color = true;
