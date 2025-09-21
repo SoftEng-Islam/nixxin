@@ -62,7 +62,7 @@ in lib.mkIf (settings.modules.media.mpv) {
           x11Support = false;
           cddaSupport = false;
           archiveSupport = false;
-          bluraySupport = false;
+          bluraySupport = true;
           bs2bSupport = false;
           cacaSupport = false;
           cmsSupport = false;
@@ -132,9 +132,14 @@ in lib.mkIf (settings.modules.media.mpv) {
         alang = "en,eng";
         slang = "en,eng,ar";
 
+        # Subtitle
         sub-auto = "fuzzy";
-        sub-font-size = 32;
-        sub-border-size = 2.5;
+        sub-font-size = 30;
+        sub-outline-size = 1.65;
+        sub-color = "#d1d1d1ff";
+        sub-outline-color = "#000000";
+        sub-use-margins = "yes";
+        sub-ass-override = "force";
 
         osd-level = 1;
         msg-color = true;
