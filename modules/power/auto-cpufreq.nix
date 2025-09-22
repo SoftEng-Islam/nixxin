@@ -9,7 +9,7 @@ lib.mkIf (settings.modules.power.auto-cpufreq.enable or false) {
     };
     charger = {
       governor = "performance";
-      turbo = "auto";
+      turbo = "always";
     };
   };
   environment.systemPackages = with pkgs; [ auto-cpufreq ];
