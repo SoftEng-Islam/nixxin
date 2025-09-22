@@ -423,7 +423,7 @@
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    "amd-pstate" # AMD CPU P-State driver for better power management
+    # "amd-pstate" # AMD CPU P-State driver for better power management
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     # "cpufreq_performance"
     # "cpufreq_powersave"

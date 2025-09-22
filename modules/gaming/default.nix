@@ -19,7 +19,7 @@ in {
             renice = 20;
             softrealtime = "auto";
             inhibit_screensaver = 1;
-            desiredgov = "performance";
+            desiredgov = "performance"; # "performance"
           };
           gpu = {
             apply_gpu_optimisations = "accept-responsibility";
