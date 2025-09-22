@@ -129,7 +129,7 @@
   modules.i18n.enable = true;
   modules.networking.enable = true;
   modules.power.enable = true;
-  modules.overclock.enable = false;
+  modules.overclock.enable = true;
   modules.office.enable = true;
   modules.icons.enable = true;
   modules.virtualization.enable = true;
@@ -139,7 +139,7 @@
   modules.emails.enable = true;
   modules.flatpak.enable = false;
   modules.notifications.enable = true;
-  modules.printing.enable = false;
+  modules.printing.enable = true;
   modules.android.enable = true;
   modules.camera.enable = false;
   modules.recording.enable = true;
