@@ -91,7 +91,7 @@ in mkIf (settings.modules.git.enable) {
 
       };
       ignores = [
-        ".direnv"
+        ".devenv"
         "*.swp"
         "*~"
         "*result*"

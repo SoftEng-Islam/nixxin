@@ -90,7 +90,6 @@ in {
     "systemd"
     "tmux"
     "extract"
-    "direnv"
 
     # Prevent running pasted command
     "safe-paste"

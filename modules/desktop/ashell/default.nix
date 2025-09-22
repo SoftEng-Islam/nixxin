@@ -115,7 +115,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
 
       # The system module configuration
       # optional
-      # [system]
+      [system]
       # System information shown in the status bar
       # The possible values are:
       #  - Cpu
@@ -130,7 +130,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # If for example you want to dispay the usage of the root and home partition
       # you can use the following configuration
       # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-      # indicators = ["DownloadSpeed", "UploadSpeed"]
+      indicators = ["DownloadSpeed", "UploadSpeed"]
 
       # CPU indicator thresholds
       # optional

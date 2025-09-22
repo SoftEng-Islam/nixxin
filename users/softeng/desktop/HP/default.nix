@@ -178,7 +178,7 @@
   modules.cli_tools.terminals.enable = true;
   modules.cli_tools.utilities.enable = true;
   modules.cli_tools.utilities.bat.enable = true;
-  modules.cli_tools.utilities.direnv.enable = true;
+  modules.cli_tools.utilities.direnv.enable = false;
   modules.cli_tools.utilities.emacs.enable = true;
 
   # [ Community ]
@@ -375,7 +375,7 @@
   modules.media.shotcut = true; # video Editor
   modules.media.music = false;
 
-  # [networking]
+  # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [ "8.8.8.8" "1.1.1.1" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
@@ -398,7 +398,7 @@
   modules.networking.firewall.enable = true;
   modules.networking.nftables.enable = false; # Use nftables instead of iptables
 
-  # [office]
+  # [Office]
   modules.office.siyuan = true;
   modules.office.evince = true;
   modules.office.papers = true;
