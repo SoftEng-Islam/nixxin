@@ -423,7 +423,7 @@
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    # "amd-pstate" # AMD CPU P-State driver for better power management
+    "amd-pstate" # AMD CPU P-State driver for better power management
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     # "cpufreq_performance"
     # "cpufreq_powersave"
@@ -433,8 +433,8 @@
   ];
   modules.power.boot.kernelParams = [
     # FX CPUs do NOT have P-State.
-    # "amd_pstate.shared_mem=1"
-    # "amd_pstate=active" # Enable AMD P-State driver
+    "amd_pstate.shared_mem=1"
+    "amd_pstate=active" # Enable AMD P-State driver
   ];
 
   # [ Recording ]
