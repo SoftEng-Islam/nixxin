@@ -416,25 +416,25 @@
   modules.power.powerManagement.powertop = false;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"
   modules.power.powerManagement.cpuFreqGovernor = "performance";
-  modules.power.powerManagement.cpufreq.min = 800000; # 800MHz
-  modules.power.powerManagement.cpufreq.max = 4100000; # 4.1GHz
-  modules.power.auto-cpufreq.enable = false;
+  modules.power.powerManagement.cpufreq.min = 1800000; # 800MHz
+  modules.power.powerManagement.cpufreq.max = 4000000; # 4.1GHz
+  modules.power.auto-cpufreq.enable = true;
   modules.power.upower.enable = false;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    #  "amd-pstate" # AMD CPU P-State driver for better power management
-    #  "acpi_cpufreq" # ACPI CPU frequency scaling driver
-    #  "cpufreq_performance"
-    #  "cpufreq_powersave"
-    #  "cpufreq_ondemand"
-    #  "cpufreq_conservative"
-    #  "powernow-k8"
+    # "amd-pstate" # AMD CPU P-State driver for better power management
+    "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    # "cpufreq_performance"
+    # "cpufreq_powersave"
+    # "cpufreq_ondemand"
+    # "cpufreq_conservative"
+    # "powernow-k8"
   ];
   modules.power.boot.kernelParams = [
     # FX CPUs do NOT have P-State.
-    "amd_pstate.shared_mem=1"
-    "amd_pstate=active" # Enable AMD P-State driver
+    # "amd_pstate.shared_mem=1"
+    # "amd_pstate=active" # Enable AMD P-State driver
   ];
 
   # [ Recording ]
