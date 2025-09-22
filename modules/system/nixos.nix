@@ -213,9 +213,9 @@ in {
     # `sudo sh -c 'echo performance > /sys/class/drm/card1/device/power_dpm_state'`
     # `sudo sh -c 'echo performance > /sys/class/drm/card*/device/power_dpm_state'`
     # Note: This is not recommended for laptops, as it can cause overheating.
-    udev.extraRules = ''
-      ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card*", ATTR{power_dpm_state}="performance"
-    '';
+    # udev.extraRules = ''
+    #   ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card*", ATTR{power_dpm_state}="performance"
+    # '';
 
     # dbus.enable = true;
     # dbus.dbusPackage = pkgs.dbus;

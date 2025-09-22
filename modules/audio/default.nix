@@ -91,20 +91,20 @@ in {
           };
         };
       };
-      udev.extraRules = ''
-        KERNEL=="rtc0", GROUP="audio"
-        KERNEL=="hpet", GROUP="audio"
-        KERNEL=="snd*", MODE="0660", GROUP="audio"
+      # udev.extraRules = ''
+      #   KERNEL=="rtc0", GROUP="audio"
+      #   KERNEL=="hpet", GROUP="audio"
+      #   KERNEL=="snd*", MODE="0660", GROUP="audio"
 
-        ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
-        ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
+      #   ENV{INTERFACE}=="veth*", ENV{NM_UNMANAGED}="1"
+      #   ENV{INTERFACE}=="ve-*", ENV{NM_UNMANAGED}="1"
 
-        KERNEL=="tun", TAG+="systemd"
-        SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
-        SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
-        SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
-        SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
-      '';
+      #   KERNEL=="tun", TAG+="systemd"
+      #   SUBSYSTEM=="input", KERNEL=="mice", TAG+="systemd"
+      #   SUBSYSTEM=="misc", KERNEL=="uinput", MODE="0660", GROUP="uinput", OPTIONS+="static_node=uinput"
+      #   SUBSYSTEM=="misc", KERNEL=="sgx_enclave",   SYMLINK+="sgx/enclave"
+      #   SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
+      # '';
     };
     security = {
       # Whether to enable the RealtimeKit system service "recommended"

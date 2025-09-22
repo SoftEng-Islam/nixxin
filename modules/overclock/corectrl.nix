@@ -6,6 +6,6 @@ in mkIf (settings.modules.overclock.corectrl.enable or false) {
 
   # corectrl to overclock your CPU APU GPU
   programs.corectrl.enable = true;
-  hardware.amdgpu.overdrive.enable = true;
-  hardware.amdgpu.overdrive.ppfeaturemask = "0xffffffff";
+  hardware.amdgpu.overdrive.enable = false;
+  # hardware.amdgpu.overdrive.ppfeaturemask = "0xffffffff";
 }

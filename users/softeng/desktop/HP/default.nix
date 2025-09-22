@@ -419,7 +419,7 @@
   modules.power.powerManagement.cpufreq.min = 1800000; # 800MHz
   modules.power.powerManagement.cpufreq.max = 4000000; # 4.1GHz
   modules.power.auto-cpufreq.enable = true;
-  modules.power.upower.enable = false;
+  modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
@@ -528,7 +528,6 @@
       # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
       "amd_iommu=on"
 
-      "amdgpu.tearfree=1" # ?
       "random.trust_cpu=on" # ?
       "tsc=reliable"
       "clocksource=tsc"
@@ -591,16 +590,6 @@
       # "amdgpu.gttsize=4096" This option is deprecated.
       "amdgpu.ttm.pages_limit=4096"
 
-      # Enables unified memory model between GPU and CPU. Can improve memory sharing on APU systems.
-      "amdgpu.unified_memory=1"
-
-      # Controls how memory is allocated:
-      # 0: Prefer VRAM
-      # 1: Even balance
-      # 2: Prefer GTT (shared RAM)
-      # 💡 Use 2 for APUs with little VRAM.
-      "amdgpu.memory_alloc_mode=0"
-
       # Sets the virtual address space size in GB.
       # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
       "amdgpu.vm_size=8"
@@ -627,26 +616,25 @@
       "radeon" # Legacy AMD GPU driver (for older cards)
       "k10temp" # Temperature monitoring
       "i2c_hid" # Input devices
-      "binder_linux"
       "usbhid"
       "usbcore"
-      "8188eu"
       "bfq"
       "coretemp"
       "fuse"
       "kvm-amd" # AMD Virtualization
       "msr"
       "uinput"
-      "v4l2loopback"
+      # "v4l2loopback"
       "rt2800usb"
     ];
     boot.extraModprobeConfig = ''
       options usbcore autosuspend=-1
-      options binder_linux devices=binder,hwbinder,vndbinder
       options rt2800usb nohwcrypt=1
     '';
     boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-    boot.blacklistedKernelModules = [ "hp_wmi" ];
+    boot.blacklistedKernelModules = [
+      # "hp_wmi"
+    ];
     amdgpu.initrd = true;
     amdgpu.opencl = false;
     amdgpu.legacySupport = false;

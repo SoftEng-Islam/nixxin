@@ -71,7 +71,7 @@ in {
     };
     kernelModules = _system.boot.kernelModules ++ [
       "acpi_cpufreq"
-      "v4l2loopback"
+      # "v4l2loopback"
       # "snd-hda-codec-realtek"
       # "hp_wmi"
     ];
@@ -79,7 +79,7 @@ in {
       ++ [ "k10temp" ];
     extraModulePackages = [
       # config.hardware.nvidia.package
-      config.boot.kernelPackages.v4l2loopback
+      # config.boot.kernelPackages.v4l2loopback
       # pkgs.snd-hda-codec-realtek
       # pkgs.hp-wmi-fan-control
     ];
@@ -105,9 +105,6 @@ in {
 
       # "nomodeset" # Black Screen Issues
 
-      "elevator=bfq" # Optimized disk performance for desktops
-
-      "clearcpuid=rdrand"
       "idle=nomwait"
       "mitigations=off"
 
