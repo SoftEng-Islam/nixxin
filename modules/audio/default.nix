@@ -106,36 +106,8 @@ in {
       #   SUBSYSTEM=="misc", KERNEL=="sgx_provision", SYMLINK+="sgx/provision"
       # '';
     };
-    security = {
-      # Whether to enable the RealtimeKit system service "recommended"
-      rtkit.enable = true;
-      pam.loginLimits = [
-        {
-          domain = "@audio";
-          item = "memlock";
-          type = "-";
-          value = "unlimited";
-        }
-        {
-          domain = "@audio";
-          item = "rtprio";
-          type = "-";
-          value = "99";
-        }
-        {
-          domain = "@audio";
-          item = "nofile";
-          type = "soft";
-          value = "99999";
-        }
-        {
-          domain = "@audio";
-          item = "nofile";
-          type = "hard";
-          value = "524288";
-        }
-      ];
-    };
+    # Whether to enable the RealtimeKit system service "recommended"
+    security.rtkit.enable = true;
 
     # https://github.com/noisetorch/NoiseTorch
     # NoiseTorch-ng is an easy to use open source application for Linux with PulseAudio or PipeWire.

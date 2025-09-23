@@ -169,7 +169,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     bpftrace # High-level tracing language for Linux eBPF
     ethtool # Utility for controlling network drivers and hardware
     geoclue2 # Geolocation framework and some data providers
-    linux-pam # Pluggable Authentication Modules, a flexible mechanism for authenticating user
     lm_sensors # for `sensors` command, Tools for reading hardware sensors
     lsof # list open files
     ltrace # library call monitoring

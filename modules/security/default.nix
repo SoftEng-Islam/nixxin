@@ -41,29 +41,6 @@
         softeng ALL=(ALL:ALL) SETENV: ALL
       '';
 
-      # Swaylock needs an entry in PAM to proberly unlock
-      # pam.services.swaylock.text = ''
-      #   # PAM configuration file for the swaylock screen locker. By default, it includes
-      #   # the 'login' configuration file (see /etc/pam.d/login)
-      #   auth include login
-      # '';
-
-      # Remove certain resource limits for programs that needs them gone, mostly for heavier emulators.
-      pam.loginLimits = [
-        {
-          domain = "*";
-          type = "hard";
-          item = "memlock";
-          value = "unlimited";
-        }
-        {
-          domain = "*";
-          type = "soft";
-          item = "memlock";
-          value = "unlimited";
-        }
-      ];
-
       # Enable basic tpm2 support
       tpm2 = {
         enable = settings.modules.security.tpm2;

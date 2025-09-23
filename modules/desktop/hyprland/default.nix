@@ -28,13 +28,6 @@ in {
     ./configs/source.nix
   ];
 
-  # -----------------------------------
-  # hyprpolkitagent
-  # -----------------------------------
-  security.polkit.enable = true;
-  security.polkit.package = pkgs.polkit;
-  systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
-
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
   services.xserver.desktopManager.runXdgAutostartIfNone = true;
 
@@ -44,7 +37,7 @@ in {
   services.gnome.core-shell.enable = true;
 
   programs.uwsm = {
-    enable = true;
+    enable = false;
     waylandCompositors.hyprland = {
       prettyName = "Hyprland";
       comment = "Hyprland compositor managed by UWSM";
@@ -127,22 +120,14 @@ in {
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;
   };
-  environment.systemPackages = with pkgs; [
-    # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
-    (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-      enableXWayland = xwaylandEnabled; # whether to enable XWayland
-      # whether to use the legacy renderer (for old GPUs)
-      legacyRenderer = false;
-      withSystemd = true; # whether to build with systemd support
-    })
-
-    # -----------------------------------
-    # hyprpolkitagent
-    # -----------------------------------
-    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
-    # inputs.hyprutils
-    # inputs.hyprland-qt-support
-    # hyprpolkitagent # Polkit authentication agent written in QT/QML
-    polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+      (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+        enableXWayland = xwaylandEnabled; # whether to enable XWayland
+        # whether to use the legacy renderer (for old GPUs)
+        legacyRenderer = false;
+        withSystemd = true; # whether to build with systemd support
+      })
+    ];
 }

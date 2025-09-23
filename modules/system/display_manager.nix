@@ -11,10 +11,6 @@
   services.xserver.enable = true;
   services.xserver.autorun = false;
 
-  # Gnome polkit and keyring are used for hyprland sessions
-  services.gnome.gnome-keyring.enable = false; # User's credentials manager
-  security.pam.services.greetd.enableGnomeKeyring = false;
-
   # Init session with hyprland
   services.greetd = {
     enable = true;
