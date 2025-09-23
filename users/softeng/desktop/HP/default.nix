@@ -635,9 +635,7 @@
       options rt2800usb nohwcrypt=1
     '';
     boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-    boot.blacklistedKernelModules = [
-      # "hp_wmi"
-    ];
+    boot.blacklistedKernelModules = [ "hp_wmi" ];
     amdgpu.initrd = true;
     amdgpu.opencl = false;
     amdgpu.legacySupport = false;
