@@ -283,6 +283,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   environment.systemPackages = with pkgs; [
     ashell
     swaynotificationcenter
-    networkmanagerapplet
+    # networkmanagerapplet
   ];
 }
