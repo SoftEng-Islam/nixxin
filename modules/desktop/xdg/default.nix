@@ -46,7 +46,7 @@ let
     "application/x-bittorrent" = torrentApp;
     "x-scheme-handler/magnet" = torrentApp;
   } // editors // image // video // audio // webBrowser // windowsApps);
-in {
+in lib.mkIf (xdg.enable or true) {
   environment = let
     xdgConventions = {
       # These are the defaults, and xdg.enable does set them, but due to load

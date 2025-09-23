@@ -268,6 +268,7 @@
 
   # [ desktop ]
   modules.desktop.tools = false;
+  modules.desktop.xdg.enable = true;
 
   # [Emails]
   modules.emails.thunderbird = true;
