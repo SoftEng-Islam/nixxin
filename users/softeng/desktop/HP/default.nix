@@ -351,6 +351,7 @@
   modules.desktop.hyprland.hyprpaper.enable = true;
   modules.desktop.xwayland.enable = true; # keep enabled
   modules.desktop.keyring.enable = true; # keep enabled
+  modules.desktop.polkit.enable = true; # keep enabled
 
   # [i18n] Date/Time & Languages
   modules.i18n.timeFormat = 12;
