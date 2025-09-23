@@ -105,17 +105,12 @@ in lib.mkIf (xdg.enable or true) {
   xdg.portal.wlr.enable = false; # disable wlr if using Hyprland
   xdg.portal.xdgOpenUsePortal = true;
 
-  # xdg.portal.config.common = {
-  #   default = [ "*" ];
-  #   "org.freedesktop.portal.Settings" = [ "hyprland" ];
-  #   "org.freedesktop.portal.ScreenCast" = [ "hyprland" ];
-  #   "org.freedesktop.portal.Screenshot" = [ "hyprland" ];
-  #   "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
-  #   "org.freedesktop.impl.portal.FileChooser" = [ "hyprland" ];
-  #   "org.freedesktop.portal.OpenURI" = [ "hyprland" ];
-  # };
-  # xdg.portal.config.hyprland = { default = [ "hyprland" ]; };
-  xdg.portals.extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
+  xdg.portal.config.common.default = [ "hyprland" "gtk" ];
+  xdg.portal.config.hyprland = { default = [ "hyprland" ]; };
+  xdg.portals.extraPortals = with pkgs; [
+    xdg-desktop-portal-hyprland
+    xdg-desktop-portal-gtk
+  ];
 
   home-manager.users.${username} = {
     xdg = {

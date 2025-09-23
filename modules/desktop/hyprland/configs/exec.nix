@@ -35,16 +35,15 @@ let
       inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
     }/libexec/hyprpolkitagent"
     # ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
-    # ${pkgs.hyprpolkitagent}/libexec/.hyprpolkitagent-wrapped
 
     # ---- hyprpolkitagent for Hyprland with uwsm ---- #
     # systemctl --user enable --now hyprpolkitagent.service
 
     # Core components (authentication, lock screen, notification daemon)
-    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=secrets
+    ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
     # ---- polkit-gnome ---- #
-    #${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1
+    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1
 
 
     # ---- notification daemon ---- #

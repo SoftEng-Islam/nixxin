@@ -19,7 +19,6 @@ lib.mkIf (settings.modules.media.codex) {
     # libcaca # A graphics library that outputs text instead of pixels
     libgcrypt # General-purpose cryptographic library
     libjpeg # A faster (using SIMD) libjpeg implementation
-    libmicrodns # Minimal mDNS resolver library, used by VLC
     libmodplug # MOD playing library
     # libmtp # An implementation of Microsoft's Media Transfer Protocol
     # libogg # Media container library to manipulate Ogg files

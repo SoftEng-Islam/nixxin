@@ -118,8 +118,6 @@ in {
 
       "threadirqs" # ?
 
-      "scsi_mod.use_blk_mq=1" # Use multi-queue for faster I/O
-
       # Memory security parameters
       # "slab_nomerge" # Disables merging of slabs of similar sizes
       "vsyscall=none" # Disables legacy system call interface

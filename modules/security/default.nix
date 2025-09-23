@@ -115,9 +115,6 @@
       "kernel.unprivileged_bpf_disabled" = 1;
 
       "net.ipv4.conf.all.proxy_arp" = 0;
-      "net.netfilter.nf_conntrack_max" = 262144;
-
-      "net.netfilter.nf_conntrack_tcp_loose" = 1; # safer default
       "net.ipv4.conf.all.log_martians" = 1; # log suspicious packets
     };
     boot.kernelModules = [ "tcp_bbr" ];

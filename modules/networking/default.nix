@@ -16,16 +16,6 @@ in {
   systemd.network.wait-online.anyInterface = false;
   systemd.services.NetworkManager-wait-online.enable = false;
 
-  # avahi-daemon is a service that implements the mDNS/DNS-SD protocol, allowing devices to discover each other on a local network without needing a central DNS server.
-  # It is commonly used for service discovery in local networks, such as finding printers, file shares, and other devices.
-  # avahi-daemon is often used in conjunction with NetworkManager or systemd-networkd to provide mDNS support.
-  # It allows devices to advertise their services and discover services offered by other devices on the same local network.
-  # avahi-daemon is typically used in home networks or small office networks where devices need to communicate with each other without manual configuration
-  # or a central DNS server.
-  services.avahi.enable = true;
-  services.avahi.publish.enable = true;
-  services.avahi.publish.userServices = true;
-
   services.hostapd.enable = false;
   services.networkd-dispatcher.enable = false;
 
@@ -110,21 +100,21 @@ in {
   # Use nftables instead of iptables
   networking.nftables.enable = settings.modules.networking.nftables.enable;
   networking.nftables = {
-    ruleset = ''
-      table ip nat {
-        chain postrouting {
-          type nat hook postrouting priority 100;
-          oifname "${wifiInterface}" masquerade
-        }
-      }
-      table ip filter {
-        chain forward {
-          type filter hook forward priority 0;
-          iifname "enp4s0" oifname "${wifiInterface}" accept
-          iifname "${wifiInterface}" oifname "enp4s0" ct state related,established accept
-        }
-      }
-    '';
+    # ruleset = ''
+    #   table ip nat {
+    #     chain postrouting {
+    #       type nat hook postrouting priority 100;
+    #       oifname "${wifiInterface}" masquerade
+    #     }
+    #   }
+    #   table ip filter {
+    #     chain forward {
+    #       type filter hook forward priority 0;
+    #       iifname "enp4s0" oifname "${wifiInterface}" accept
+    #       iifname "${wifiInterface}" oifname "enp4s0" ct state related,established accept
+    #     }
+    #   }
+    # '';
   };
 
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -267,15 +257,12 @@ in {
     tcpdump # Network sniffer
     bandwhich # CLI utility for displaying current network utilization
     dnsutils # Domain name server
-    avahi # mDNS/DNS-SD implementation
 
     openresolv # A program to manage /etc/resolv.conf
     radvd # IPv6 Router Advertisement Daemon
     tcpdump # Network sniffer
-    nssmdns # The mDNS Name Service Switch (NSS) plug-in
     nmap # A free and open source utility for network discovery and security auditing
 
-    wirelesstools # Wireless tools for Linux
     inetutils # Collection of common network programs
     ipset # Administration tool for IP sets
     ipcalc # Simple IP network calculator

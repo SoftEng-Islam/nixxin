@@ -15,7 +15,7 @@
   # ---- System Information And Configuration
   # ----------------------------------------------
   system.name = "nixos";
-  system.hostName = "phone"; # Hostname
+  system.hostName = "nixi"; # Hostname
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
@@ -411,7 +411,7 @@
   modules.office.translators.enable = true;
 
   # [ overclock ]
-  modules.overclock.corectrl.enable = false;
+  modules.overclock.corectrl.enable = true;
   modules.overclock.lactd.enable = false;
 
   # [ Power ]

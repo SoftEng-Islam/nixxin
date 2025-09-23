@@ -51,12 +51,6 @@ in {
 
     "vm.vfs_cache_pressure" = 50;
 
-    # Kernel Scheduler
-    "kernel.sched_autogroup_enabled" = 0;
-    "kernel.sched_child_runs_first" = 1;
-    "kernel.sched_min_granularity_ns" = 10000000; # Improves CPU scheduling
-    "kernel.sched_wakeup_granularity_ns" = 15000000; # Faster thread response
-
     # https://wiki.archlinux.org/title/Gaming#Increase_vm.max_map_count
     "vm.max_map_count" = "2147483642";
     # https://wiki.archlinux.org/title/Gaming#Tweaking_kernel_parameters_for_response_time_consistency
