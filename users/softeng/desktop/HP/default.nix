@@ -15,7 +15,7 @@
   # ---- System Information And Configuration
   # ----------------------------------------------
   system.name = "nixos";
-  system.hostName = "nixi"; # Hostname
+  system.hostName = "phone"; # Hostname
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
