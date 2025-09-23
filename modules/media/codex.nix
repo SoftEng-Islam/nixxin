@@ -22,7 +22,6 @@ lib.mkIf (settings.modules.media.codex) {
     libmicrodns # Minimal mDNS resolver library, used by VLC
     libmodplug # MOD playing library
     # libmtp # An implementation of Microsoft's Media Transfer Protocol
-    # libnfs # NFS client library
     # libogg # Media container library to manipulate Ogg files
     # libopus # Open, royalty-free, highly versatile audio codec
     libpng # The official reference implementation for the PNG file format with animation patch

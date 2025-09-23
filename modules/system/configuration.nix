@@ -15,7 +15,13 @@ in {
   boot = {
     kernelPackages = settings.system.kernel;
     # tmp.cleanOnBoot = true;
-    supportedFilesystems = [ "btrfs" "ext4" "fat32" "nfs" "ntfs" ];
+    supportedFilesystems = [
+      "btrfs"
+      "ext4"
+      "fat32"
+      # "nfs"
+      "ntfs"
+    ];
     consoleLogLevel = 0;
 
     # Boot Time out in seconds
@@ -288,6 +294,8 @@ in {
 
   # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.
   services.gpm.enable = true;
+
+  # services.nfs.server.enable = false;
 
   # ------------------------------------------------
   # ---- AMD Configuration

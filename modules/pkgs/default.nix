@@ -107,7 +107,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     fuse3 # Library that allows filesystems to be implemented in user space
     mtools # Utilities to access MS-DOS disks
     mtpfs # FUSE Filesystem providing access to MTP devices
-    nfs-utils # Linux user-space NFS utilities
+    # nfs-utils # Linux user-space NFS utilities
     ntfs3g # FUSE-based NTFS driver with full write support
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool

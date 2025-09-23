@@ -11,9 +11,9 @@
   services.xserver.enable = true;
   services.xserver.autorun = false;
 
-  # gnome polkit and keyring are used for hyprland sessions
-  services.gnome.gnome-keyring.enable = true; # User's credentials manager
-  security.pam.services.greetd.enableGnomeKeyring = true;
+  # Gnome polkit and keyring are used for hyprland sessions
+  services.gnome.gnome-keyring.enable = false; # User's credentials manager
+  security.pam.services.greetd.enableGnomeKeyring = false;
 
   # Init session with hyprland
   services.greetd = {
@@ -27,13 +27,15 @@
       default_session = let
         tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
         tuigreetOptions = [
+          "--debug /home/${settings.user.username}/.config/tuigreet/debug.log"
           "--remember"
           "--time"
           "--asterisks"
           "--time-format '%I:%M %p | %a - %h | %F'"
           "--greeting 'Just Developer'"
           # Make sure theme is wrapped in single quotes. See https://github.com/apognu/tuigreet/issues/147
-          "--theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red'"
+          # "--theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red'"
+          "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'"
           "--cmd Hyprland"
         ];
         flags = lib.concatStringsSep " " tuigreetOptions;
