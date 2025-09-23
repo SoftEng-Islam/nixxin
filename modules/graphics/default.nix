@@ -11,13 +11,11 @@ let
     (optional _graphics_pkgs.inkscape inkscape)
     (optional _graphics_pkgs.lunacy lunacy)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
-    # (optional _graphics_pkgs.davinci davinci-resolve)
   ];
 in {
   imports = optionals (settings.modules.graphics.enable or true) [
     ./mesa.nix
     ./vulkan.nix
-    # ./davinci-resolve.nix
   ];
   config = lib.mkIf (settings.modules.graphics.enable or true) {
     environment.systemPackages = lib.flatten _graphics;
