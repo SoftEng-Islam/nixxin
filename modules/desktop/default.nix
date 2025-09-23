@@ -1,5 +1,7 @@
 { settings, lib, pkgs, ... }: {
   imports = lib.optionals (settings.modules.desktop.enable or true) [
+    ./keyring.nix
+    ./polkit.nix
     ./ashell
     ./hyprland
     # ./xdg

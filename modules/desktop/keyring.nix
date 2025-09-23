@@ -1,28 +1,17 @@
+# keyring.nix
+# Handles credential/key storage for apps (GNOME Keyring for now, but could be extended later for KeePassXC or pass).
 { settings, lib, inputs, pkgs, ... }:
 lib.mkIf (settings.modules.desktop.keyring.enable or true) {
+  # Make sure user and greetd PAM can unlock the keyring
   security.pam.services.${settings.user.username} = { enable = true; };
-
-  # Gnome polkit and keyring are used for hyprland sessions
-  services.gnome.gnome-keyring.enable = true; # User's credentials manager
   security.pam.services.greetd.enableGnomeKeyring = true;
 
-  # -----------------------------------
-  # hyprpolkitagent
-  # -----------------------------------
-  security.polkit.enable = true;
-  security.polkit.package = pkgs.polkit;
-  systemd.services.polkit = { serviceConfig.NoNewPrivileges = false; };
+  # GNOME Keyring (default secret service provider)
+  services.gnome.gnome-keyring.enable = true; # User's credentials manager
 
-  environment.systemPackages = with pkgs; [
-    linux-pam # Pluggable Authentication Modules, a flexible mechanism for authenticating user
-
-    # -----------------------------------
-    # hyprpolkitagent
-    # -----------------------------------
-    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
-    # inputs.hyprutils
-    # inputs.hyprland-qt-support
-    # hyprpolkitagent # Polkit authentication agent written in QT/QML
-    polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      # Tools to manage/view secrets if you want them
+      seahorse # optional: GUI for managing secrets in gnome-keyring
+    ];
 }
