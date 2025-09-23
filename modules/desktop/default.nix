@@ -11,5 +11,4 @@
     ./screenshot.nix
     ./tools.nix
   ];
-  environment.systemPackages = with pkgs; [ bitwarden-cli bitwarden-desktop ];
 }

@@ -9,9 +9,10 @@ lib.mkIf (settings.modules.desktop.keyring.enable or true) {
   # GNOME Keyring (default secret service provider)
   services.gnome.gnome-keyring.enable = true; # User's credentials manager
 
-  environment.systemPackages = with pkgs;
-    [
-      # Tools to manage/view secrets if you want them
-      seahorse # optional: GUI for managing secrets in gnome-keyring
-    ];
+  environment.systemPackages = with pkgs; [
+    # Tools to manage/view secrets if you want them
+    seahorse # optional: GUI for managing secrets in gnome-keyring
+    bitwarden-cli
+    bitwarden-desktop
+  ];
 }
