@@ -14,5 +14,6 @@ lib.mkIf (settings.modules.desktop.keyring.enable or true) {
     seahorse # optional: GUI for managing secrets in gnome-keyring
     bitwarden-cli
     bitwarden-desktop
+    keepassxc
   ];
 }
