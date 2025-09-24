@@ -268,7 +268,7 @@
 
   # [ desktop ]
   modules.desktop.tools = false;
-  modules.desktop.xdg.enable = false;
+  modules.desktop.xdg.enable = true;
 
   # [Emails]
   modules.emails.thunderbird = true;
@@ -412,7 +412,7 @@
 
   # [ overclock ]
   modules.overclock.corectrl.enable = true;
-  modules.overclock.lactd.enable = false;
+  modules.overclock.lactd.enable = true;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;

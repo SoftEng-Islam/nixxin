@@ -50,12 +50,11 @@ in lib.mkIf (xdg.enable or true) {
   environment = let
     xdgConventions = {
       # These are the defaults, and xdg.enable does set them, but due to load
-      # order, they're not set before environment.variables are set, which could
-      # cause race conditions.
-      XDG_CACHE_HOME = "$HOME/.cache";
-      XDG_CONFIG_HOME = "$HOME/.config";
-      XDG_DATA_HOME = "$HOME/.local/share";
-      XDG_BIN_HOME = "$HOME/.local/bin";
+      # order, they're not set before environment.variables are set, which could cause race conditions.
+      # XDG_CACHE_HOME = "$HOME/.cache";
+      # XDG_CONFIG_HOME = "$HOME/.config";
+      # XDG_DATA_HOME = "$HOME/.local/share";
+      # XDG_BIN_HOME = "$HOME/.local/bin";
     };
   in {
     variables = {
@@ -63,32 +62,14 @@ in lib.mkIf (xdg.enable or true) {
       GTK_USE_PORTAL = "1";
       NIXOS_XDG_OPEN_USE_PORTAL = "1";
       # NIX_XDG_DESKTOP_PORTAL_DIR = "/run/current-system/sw/share/xdg-desktop-portal/portals";
-      XDG_SESSION_TYPE = "wayland";
       XDG_SCREENSHOTS_DIR = "/home/${username}/Pictures/Screenshots";
-    } // xdgConventions;
-    sessionVariables = {
-      # XDG_DATA_DIRS = [
-      # "${pkgs.gsettings-desktop-schemas}/share"
-      # "${pkgs.nautilus}/share"
-      # "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
-      # "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
-      # "${pkgs.gtk4}/share/gsettings-schemas/${pkgs.gtk4.name}"
-      # "/home/${username}/.local/share:/usr/local/share:/usr/share"
-      # "/run/current-system/sw/share"
-      # "/var/lib/flatpak/exports/share"
-      # "$HOME/.local/share/flatpak/exports/share"
-      # ];
-    } // xdgConventions;
+    };
+    # sessionVariables = { } // xdgConventions;
 
     systemPackages = with pkgs; [
       xdg-launch
       xdg-utils # A set of command line tools that assist apps with a variety of desktop integration tasks
       xdg-user-dirs # Tool to help manage well known user directories like the desktop folder and the music folder
-      #  xdg-dbus-proxy # DBus proxy for Flatpak and others
-      # xdg-desktop-portal # Desktop integration portals for sandboxed apps
-      # xdg-desktop-portal-gnome
-      # xdg-desktop-portal-gtk # Desktop integration portals for sandboxed apps
-      # xdg-desktop-portal-hyprland
       desktop-file-utils
       libxdg_basedir # Implementation of the XDG Base Directory specification
       shared-mime-info # Database of common MIME types
@@ -100,13 +81,11 @@ in lib.mkIf (xdg.enable or true) {
   xdg.icons.enable = true;
   xdg.autostart.enable = true;
   xdg.mime.enable = true;
-
   xdg.portal.enable = true;
   xdg.portal.wlr.enable = false; # disable wlr if using Hyprland
   xdg.portal.xdgOpenUsePortal = true;
-
-  # xdg.portal.config.common.default = [ "hyprland" "gtk" ];
-  # xdg.portal.config.hyprland = { default = [ "hyprland" ]; };
+  xdg.portal.config.common.default = [ "hyprland" "gtk" ];
+  xdg.portal.config.hyprland = { default = [ "hyprland" ]; };
   xdg.portals.extraPortals = with pkgs; [
     xdg-desktop-portal-hyprland
     xdg-desktop-portal-gtk
