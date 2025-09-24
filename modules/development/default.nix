@@ -4,10 +4,11 @@ let
   development = settings.modules.development;
 
   _imports = [
-    (optional development.tools.editors.vscode.enable ./vscode.nix)
-    (optional development.tools.editors.zedEditor ./zed-editor.nix)
-    (optional development.tools.editors.eclipse ./eclipse.nix)
-    (optional development.tools.editors.helix ./helix.nix)
+    (optional development.vscode.enable ./vscode.nix)
+    (optional development.zedEditor ./zed-editor.nix)
+    (optional development.emacs ./emacs.nix)
+    (optional development.eclipse ./eclipse.nix)
+    (optional development.helix ./helix.nix)
   ];
 
 in {
@@ -33,7 +34,6 @@ in {
 
       # https://devenv.sh/
       devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
-
     ];
   };
 }

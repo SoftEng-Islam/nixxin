@@ -224,41 +224,12 @@
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
   modules.dconf.icons.icon_view_size = "large"; # Set icons size for nautilus.
 
-  # [ development ]
-  modules.development.android.enable = false;
-  # [ development ] [ databases ]
-  modules.development.databases.enable = false;
-  modules.development.databases.monogodb = { enable = false; };
-  modules.development.databases.postgresql = { enable = false; };
-  modules.development.databases.mysql = { enable = false; };
-  modules.development.databases.sql = { enable = false; };
-  # [ development ] [ languages ]
-  modules.development.languages.enable = false;
-  modules.development.languages.clang = false;
-  modules.development.languages.dart.enable = false;
-  modules.development.languages.go.enable = false;
-  modules.development.languages.python = false;
-  modules.development.languages.ruby = false;
-  modules.development.languages.rust = false;
-  # [ development ] [ web ]
-  modules.development.web.enable = false;
-  # [ development ] [ apps ]
-  modules.development.apps.enable = true;
-  modules.development.apps.beekeeper = false;
-  modules.development.apps.dbeaver = true;
-  modules.development.apps.sqlitebrowser = true;
-  modules.development.apps.bruno = true;
-  modules.development.apps.insomnia = true;
-  # [ development ] [ tools ]
-  modules.development.tools.enable = true;
-  modules.development.tools.devenv.enable = true;
-  modules.development.tools.editors.enable = true;
-  modules.development.tools.editors.zedEditor = true;
-  modules.development.tools.editors.eclipse = false;
-  modules.development.tools.editors.helix = true;
-  modules.development.tools.editors.vscodium = false;
-  modules.development.tools.editors.gnomeTextEditor = true;
-  modules.development.tools.editors.vscode = {
+  # [ Development ]
+  modules.development.zedEditor = true;
+  modules.development.emacs = true;
+  modules.development.eclipse = false;
+  modules.development.helix = true;
+  modules.development.vscode = {
     enable = true;
     extensions_home = false;
     globalSnippets_home = false;
