@@ -54,7 +54,8 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # -- sudo mv system.img vendor.img /etc/waydroid-extra/images/
   # 3- Lastly, in your terminal enter this command `sudo waydroid init -f`
   # https://sourceforge.net/projects/waydroid/files/images/
-  # aria2c https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/lineage-18.1-20250201-MAINLINE-waydroid_x86_64-vendor.zip/download
+  # https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/
+  # aria2c  https://netix.dl.sourceforge.net/project/waydroid/images/vendor/waydroid_x86_64/lineage-20.0-20250809-MAINLINE-waydroid_x86_64-vendor.zip?viasf=1
   # aria2c https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-18.1-20250201-GAPPS-waydroid_x86_64-system.zip/download
 
   # Additional configurations and notes:
