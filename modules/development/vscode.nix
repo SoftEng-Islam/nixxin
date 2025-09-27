@@ -102,19 +102,19 @@ in {
       mutableExtensionsDir = true;
       profiles.default = {
         enableExtensionUpdateCheck = true;
-        extensions = lib.optionals
-          (settings.modules.development.tools.editors.vscode.extensions_home)
+        extensions =
+          lib.optionals (settings.modules.development.vscode.extensions_home)
           nixpkgs-extensions; # ++ market-extensions;
-        globalSnippets = mkIf
-          (settings.modules.development.tools.editors.vscode.globalSnippets_home) {
+        globalSnippets =
+          mkIf (settings.modules.development.vscode.globalSnippets_home) {
             fixme = {
               body = [ "$LINE_COMMENT FIXME: $0" ];
               description = "Insert a FIXME remark";
               prefix = [ "fixme" ];
             };
           };
-        userSettings = mkIf
-          (settings.modules.development.tools.editors.vscode.userSettings_home) {
+        userSettings =
+          mkIf (settings.modules.development.vscode.userSettings_home) {
             # This property will be used to generate settings.json:
             # https://code.visualstudio.com/docs/getstarted/settings#_settingsjson
             editor = {
