@@ -30,7 +30,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       lowest-speed-limit=50K       # Kill connections slower than 50 KB/s
 
       # -------- Files --------
-      dir=${config.home.homeDirectory}//Downloads              # Default download directory
+      dir=~/Downloads              # Default download directory
       file-allocation=falloc       # Fast allocation (use prealloc if ext3/FAT32)
       max-concurrent-downloads=5     # total concurrent files
       max-file-not-found=2           # fail faster if mirrors are broken
