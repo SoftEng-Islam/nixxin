@@ -1,11 +1,6 @@
 { settings, lib, config, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.data_transferring.aria.enable or true) {
-  # Aria2 Help commands
-  # aria2c -h
-  # aria2c -h#http
-  # aria2c -h#advanced
-
   home-manager.users.${settings.user.username} = {
     xdg.configFile."aria2/aria2.conf".text = ''
       # ===============================
@@ -13,7 +8,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # ===============================
 
       # -------- General --------
-      continue='true'              # Resume downloads
+      continue=true                # Resume downloads
       max-concurrent-downloads=5   # How many files to download at once
       summary-interval=5           # Status update every 5s
       console-log-level=warn       # Cleaner output (warn, error, info, debug)
@@ -32,8 +27,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # -------- Files --------
       dir=~/Downloads              # Default download directory
       file-allocation=falloc       # Fast allocation (use prealloc if ext3/FAT32)
-      max-concurrent-downloads=5     # total concurrent files
-      max-file-not-found=2           # fail faster if mirrors are broken
+      max-file-not-found=2         # Fail faster if mirrors are broken
 
       # -------- BitTorrent --------
       enable-dht=true              # Enable DHT (IPv4)
