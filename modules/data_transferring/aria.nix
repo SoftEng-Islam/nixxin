@@ -15,7 +15,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       timeout=15
       max-tries=20
       retry-wait=5
-      lowest-speed-limit=50K
+      lowest-speed-limit=0
       file-allocation=falloc
       max-file-not-found=2
       enable-dht=true
