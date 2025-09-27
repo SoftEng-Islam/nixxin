@@ -47,8 +47,5 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
     '';
   };
 
-  environment.systemPackages = with pkgs; [
-    aria2
-    (writeShellScriptBin "a2c" "aria2c -j 16 -s 16 $@")
-  ];
+  environment.systemPackages = with pkgs; [ aria2 ];
 }
