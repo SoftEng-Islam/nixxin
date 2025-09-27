@@ -3,12 +3,7 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.data_transferring.aria.enable or true) {
   home-manager.users.${settings.user.username} = {
     home.file.".config/aria2/aria2.conf".text = lib.mkForce ''
-      # ===============================
-      #  Aria2 Optimized Configuration
-      # ===============================
-
-      # -------- General --------
-      continue=true                # Resume downloads
+      continue=true
       max-concurrent-downloads=5   # How many files to download at once
       summary-interval=5           # Status update every 5s
       console-log-level=warn       # Cleaner output (warn, error, info, debug)
