@@ -383,8 +383,8 @@ in {
             breadcrumbs.showModules = false;
             breadcrumbs.showMethods = false;
           };
-        keybindings = lib.optionals
-          (settings.modules.development.tools.editors.vscode.keybindings_home) [
+        keybindings =
+          lib.optionals (settings.modules.development.vscode.keybindings_home) [
             # See https://code.visualstudio.com/docs/getstarted/keybindings#_advanced-customization
             {
               key = "shift+cmd+j";
