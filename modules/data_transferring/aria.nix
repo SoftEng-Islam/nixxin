@@ -4,7 +4,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
   home-manager.users.${settings.user.username} = {
     home.file.".config/aria2/aria2.conf".text = lib.mkForce ''
       continue=true
-      max-concurrent-downloads=5   # How many files to download at once
+      max-concurrent-downloads=5
       summary-interval=5           # Status update every 5s
       console-log-level=warn       # Cleaner output (warn, error, info, debug)
 
