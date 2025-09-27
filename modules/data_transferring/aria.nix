@@ -2,7 +2,7 @@
 let inherit (lib) mkIf;
 in mkIf (settings.modules.data_transferring.aria.enable or true) {
   home-manager.users.${settings.user.username} = {
-    xdg.configFile."aria2/aria2.conf".text = ''
+    xdg.configFile."aria2/aria2.conf".text = lib.mkForce ''
       # ===============================
       #  Aria2 Optimized Configuration
       # ===============================
