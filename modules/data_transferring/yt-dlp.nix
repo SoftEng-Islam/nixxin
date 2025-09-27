@@ -1,7 +1,7 @@
 { settings, lib, config, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.yt-dlp = {
-      enable = true;
+      enable = settings.modules.data_transferring.yt-dlp.enable or false;
       settings = {
         embed-thumbnail = true;
         embed-metadata = true;
@@ -14,5 +14,5 @@
       };
     };
   };
-  environment.systemPackages = with pkgs; [ yt-dlp aria2 ];
+  environment.systemPackages = with pkgs; [ aria2 ];
 }
