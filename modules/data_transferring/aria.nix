@@ -3,18 +3,19 @@ let inherit (lib) mkIf;
 in mkIf (settings.modules.data_transferring.aria.enable or true) {
   home-manager.users.${settings.user.username} = {
     home.file.".config/aria2/aria2.conf".text = lib.mkForce ''
+      dir=~/Downloads
       continue=true
+      async-dns=false
       max-concurrent-downloads=5
       summary-interval=5
       console-log-level=warn
       split=16
-      max-connection-per-server=16
+      max-connection-per-server=10
       min-split-size=1M
       timeout=15
-      max-tries=10
+      max-tries=20
       retry-wait=5
       lowest-speed-limit=50K
-      dir=~/Downloads
       file-allocation=falloc
       max-file-not-found=2
       enable-dht=true
