@@ -237,6 +237,7 @@
   };
 
   # [ desktop ]
+  modules.desktop.ashell.enable = true;
   modules.desktop.tools = false;
   modules.desktop.xdg.enable = true;
 
