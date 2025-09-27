@@ -13,7 +13,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # ===============================
 
       # -------- General --------
-      continue=true                # Resume downloads
+      continue='true'              # Resume downloads
       max-concurrent-downloads=5   # How many files to download at once
       summary-interval=5           # Status update every 5s
       console-log-level=warn       # Cleaner output (warn, error, info, debug)
