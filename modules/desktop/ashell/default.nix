@@ -1,12 +1,6 @@
 { settings, lib, pkgs, ... }:
-
 lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   home-manager.users.${settings.user.username} = {
-    # home.file.".config/ashell/config.toml" = {
-    #   source = ./config.toml;
-    #   recursive = true;
-    #   executable = true;
-    # };
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
       # log_level = "warn"
@@ -277,7 +271,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # The backdrop of the menu, possible values are: 0.0 to 1.0
       # optional, default 0.0
       backdrop = 0.0
-
     '';
   };
   environment.systemPackages = with pkgs; [
