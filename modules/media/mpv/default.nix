@@ -12,15 +12,10 @@ in lib.mkIf (settings.modules.media.mpv) {
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
     home.file.".config/mpv/shaders".source = ./shaders;
-    # home.file.".config/mpv/mpv.conf".text = mpvConfig + "\n" + ytdlDesktop
-    #   + "\n" + ytdlLaptop + "\n" + subtitles + "\n" + languages + "\n" + audio
-    #   + "\n" + videoOutput + "\n" + osdConfig;
-
     home.file.".config/mpv/input.conf".text = ''
-      # Subtitle sync controls
-      z sub-delay -0.1   # Show subtitles 0.1s earlier
-      x sub-delay +0.1   # Show subtitles 0.1s later
-      shift+z sub-delay 0 # Reset subtitle delay
+      z sub-delay -0.1
+      x sub-delay +0.1
+      shift+z sub-delay 0
     '';
 
     xdg.configFile = {
