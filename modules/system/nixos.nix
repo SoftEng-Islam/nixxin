@@ -108,12 +108,12 @@ in {
   # ---- Enable automatic updates
   # ------------------------------------------------
   systemd.timers.nixos-upgrade = {
-    enable = false;
+    enable = true;
     timerConfig.OnCalendar = "weekly";
     wantedBy = [ "timers.target" ];
   };
   systemd.services.nixos-upgrade = {
-    enable = false;
+    enable = true;
     script = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --upgrade";
     serviceConfig.Type = "oneshot";
   };
