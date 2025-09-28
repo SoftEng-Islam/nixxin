@@ -149,6 +149,15 @@ in lib.mkIf (settings.modules.media.mpv) {
     };
   };
 
+  home-manager.users.${settings.user.username} = {
+    home.file.".config/mpv/input.conf".text = ''
+      # Subtitle sync controls
+      z sub-delay -0.1   # Show subtitles 0.1s earlier
+      x sub-delay +0.1   # Show subtitles 0.1s later
+      shift+z sub-delay 0 # Reset subtitle delay
+    '';
+  };
+
   environment.systemPackages = with pkgs; [
     # driversi686Linux.vdpauinfo
     # vdpauinfo
