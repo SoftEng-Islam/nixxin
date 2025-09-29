@@ -8,15 +8,15 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    impermanence.url = "github:nix-community/impermanence";
+    # impermanence.url = "github:nix-community/impermanence";
 
     nixGL.url = "github:nix-community/nixGL";
     nixGL.inputs.nixpkgs.follows = "nixpkgs";
     nixGL.inputs.flake-utils.follows = "flake-utils";
 
     # https://github.com/oxalica/rust-overlay
-    rust-overlay.url = "github:oxalica/rust-overlay";
-    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    # rust-overlay.url = "github:oxalica/rust-overlay";
+    # rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
