@@ -244,4 +244,5 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # glow # markdown previewer in terminal
     # graphviz # Graph visualization tools
   ];
+  nixpkgs.config.permittedInsecurePackages = [ "libsoup-2.74.3" ];
 }
