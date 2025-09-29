@@ -20,7 +20,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # ---- Hardware Packages
     # ------------------------------------------------
     cpuid
-    llvmPackages.mlir # Multi-Level IR Compiler Framework
+    # llvmPackages.mlir # Multi-Level IR Compiler Framework
     pciutils # Collection of programs for inspecting and manipulating configuration of PCI devices
 
     # ------------------------------------------------
@@ -139,7 +139,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
 
     libgcc
     libpulseaudio
-    llvmPackages_12.bintools # System binary utilities (wrapper script)
     meson
     mlocate
     pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
