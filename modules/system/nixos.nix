@@ -263,11 +263,6 @@ in {
     # It is useful for debugging performance issues and optimizing applications.
     # It can be used to profile applications, system services, and the kernel.
     sysprof.enable = true;
-
-    logind.extraConfig = ''
-      # don’t shutdown when power button is short-pressed
-      HandlePowerKey=ignore
-    '';
   };
 
   environment.variables = {
