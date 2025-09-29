@@ -35,7 +35,6 @@
     zsh-completions # Additional completion definitions for zsh
     zsh-f-sy-h
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
-    zsh-git-prompt # Informative git prompt for zsh
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
     # powerline # Ultimate statusline/prompt utility
     # powerline-fonts
