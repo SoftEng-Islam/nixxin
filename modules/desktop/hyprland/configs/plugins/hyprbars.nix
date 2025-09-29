@@ -1,14 +1,12 @@
 { settings, lib, pkgs, ... }:
 let
-  hyprbars = (pkgs.hyprlandPlugins.hyprbars.override {
-    # Make sure it's using the same hyprland package as we are
-    hyprland = pkgs.hyprland;
-  }).overrideAttrs (old: {
+  hyprbars = pkgs.hyprlandPlugins.hyprbars.overrideAttrs (old: {
     # Yeet the initialization notification (I hate it)
     postPatch = (old.postPatch or "") + ''
       ${lib.getExe pkgs.gnused} -i '/Initialized successfully/d' main.cpp
     '';
   });
+
   close-window = pkgs.writeShellScriptBin "close-window" ''
     wid=$(hyprctl activewindow -j | jq -r '.address')
     if [ -n "$wid" ] && [ "$wid" != "null" ]; then
@@ -17,10 +15,8 @@ let
   '';
 in {
   home-manager.users.${settings.user.username} = {
-    wayland.windowManager.hyprland.plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.hyprbars
-      hyprbars
-    ];
+    wayland.windowManager.hyprland.plugins = [ hyprbars ];
+
     wayland.windowManager.hyprland.extraConfig = ''
       # ------------------ #
       # ---- hyprbars ---- #
@@ -38,16 +34,15 @@ in {
         bar_precedence_over_border = true
 
         bar_color = $surface
-        #col.text = $onSurface
         col.text = $primary
 
         # ---- Example buttons (R -> L) ---- #
-        # hyprbars-button = Background Color, Size, On-click, Foreground Color
         hyprbars-button = rgba(E62D42ff),20,, close-window, rgba(FFFFFF50) #? Close
         hyprbars-button = rgba(3A944Aff),20,=, hyprctl dispatch fullscreen 1, rgba(FFFFFF50) #? Maximize
         hyprbars-button = rgba(C88800ff),20,~, hyprctl dispatch togglefloating, rgba(FFFFFF50) #? Minimize / Floating toggle
       }
     '';
   };
+
   environment.systemPackages = [ close-window pkgs.jq ];
 }

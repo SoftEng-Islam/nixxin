@@ -1,11 +1,12 @@
-{ settings, lib, pkgs, ... }:
+{ settings, lib, ... }:
 let
+  inherit (lib) optional;
+  plugins = settings.modules.desktop.hyprland.plugins;
   _hyprPlugins = [
-    (lib.optional settings.modules.desktop.hyprland.plugins.bordersPlus
-      ./borders-plus.nix)
-    (lib.optional settings.modules.desktop.hyprland.plugins.hyprbars ./hyprbars.nix)
-    (lib.optional settings.modules.desktop.hyprland.plugins.hyprexpo ./hyprexpo.nix)
-    (lib.optional settings.modules.desktop.hyprland.plugins.hyprspace ./hyprspace.nix)
-    (lib.optional settings.modules.desktop.hyprland.plugins.hyprtrails ./hyprtrails.nix)
+    (optional plugins.bordersPlus ./borders-plus.nix)
+    (optional plugins.hyprbars ./hyprbars.nix)
+    (optional plugins.hyprexpo ./hyprexpo.nix)
+    (optional plugins.hyprspace ./hyprspace.nix)
+    (optional plugins.hyprtrails ./hyprtrails.nix)
   ];
 in { imports = lib.flatten _hyprPlugins; }

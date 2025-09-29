@@ -1,7 +1,6 @@
 { settings, inputs, lib, pkgs, ... }:
 let xwaylandEnabled = settings.modules.desktop.xwayland.enable or false;
 in {
-
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix

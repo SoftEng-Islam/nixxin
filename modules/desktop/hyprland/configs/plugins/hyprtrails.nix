@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ settings, pkgs, ... }:
 let
   hyprtrails = (pkgs.hyprlandPlugins.hyprtrails.override {
     # Make sure it's using the same hyprland package as we are
