@@ -4,7 +4,7 @@ lib.mkIf (settings.modules.power.cpupower.enable or false) {
   environment.systemPackages = with pkgs; [
     cpupower-gui
     # cpufrequtils
-    linuxKernel.packages.linux_zen.perf
+    perf-tools
     linuxKernel.packages.linux_zen.cpupower
   ];
 }
