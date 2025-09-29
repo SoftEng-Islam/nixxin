@@ -21,7 +21,7 @@
       #   user = settings.user.username;
       # };
       default_session = let
-        tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
+        tuigreet = "${pkgs.greetd.tuigreet}/bin/tuigreet";
         tuigreetOptions = [
           "--debug /home/${settings.user.username}/.config/tuigreet/debug.log"
           "--remember"
