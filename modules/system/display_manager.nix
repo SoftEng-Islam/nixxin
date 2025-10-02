@@ -1,6 +1,5 @@
 # Display/Login manager
 { settings, lib, pkgs, ... }: {
-
   # Desktop Manager & Display Manager
   services.displayManager.enable = true;
 
@@ -15,11 +14,6 @@
   services.greetd = {
     enable = true;
     settings = {
-      # initial_session = {
-      #   # command = "${pkgs.dbus}/bin/dbus-run-session Hyprland";
-      #   command = "Hyprland";
-      #   user = settings.user.username;
-      # };
       default_session = let
         tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
         tuigreetOptions = [

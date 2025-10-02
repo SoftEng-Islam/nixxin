@@ -453,173 +453,178 @@
   modules.notifications.dunst.enable = false;
   modules.notifications.swaync.enable = true;
 
-  modules.system = {
-    oom = false; # user-space Out-Of-Memory (OOM) killer.
-    rocm.enable =
-      false; # Make Sure that your APU/GPU Supported before Enable it
-    radeon = false;
-    videoDrivers = [ "amdgpu" ];
-    boot.plymouth.enable = true;
-    boot.tmp.useTmpfs = system.useTmpfs;
-    boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
-    boot.loader.timeout = 3; # seconds
-    boot.loader.mode = "UEFI"; # UEFI OR BIOS
-    boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
-    boot.loader.manager.grub = {
-      fontSize = 14;
-      osProber = true;
-      efiSupport = true;
-      gfxmodeEfi = "1920x1080";
-      devices = [ "nodev" ];
-      device = "nodev"; # Let GRUB automatically detect EFI
-      # nix path-info -r nixpkgs#sleek-grub-theme
-      theme = with pkgs;
-        (sleek-grub-theme.override {
-          withStyle = "dark"; # (dark/light/orange/bigsur)
-          withBanner = "GRUB Boot Manager";
-        });
-      extraConfig = ''
-        # GRUB_DISABLE_OS_PROBER=true
-        # GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
-      '';
-    };
-    boot.kernelParams = [
-      # "usbcore.autosuspend=-1" # disable usb autosuspend
-      # "usbhid.mousepoll=4" # Reduce USB mouse polling rate
-
-      # AMD GPU optimizations
-      # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
-      # for Southern Islands (SI i.e. GCN 1) cards
-      "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-      "amdgpu.si_support=1"
-
-      # for Sea Islands (CIK i.e. GCN 2) cards
-      "radeon.cik_support=0"
-      "amdgpu.cik_support=1"
-
-      # Disables AMD's IOMMU (Input-Output Memory Management Unit).
-      # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
-      # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
-      # "amd_iommu=on"
-
-      "random.trust_cpu=on" # ?
-      "tsc=reliable"
-      "clocksource=tsc"
-      "no_timer_check"
-
-      "split_lock_mitigate=off" # prevents some games from being slowed
-      "retbleed=off" # Disable Retbleed mitigation
-
-      # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
-      "amdgpu.sched_hw_submission=4"
-
-      # Disables the Linux audit subsystem.
-      # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
-      "audit=0"
-
-      # If you want full control over power settings, use:
-      "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
-      # If you have stability issues (freezes, black screens, crashes), try:
-      # "amdgpu.ppfeaturemask=0xFFF7FFFF"
-      # Check If It’s Applied:
-      # cat /sys/module/amdgpu/parameters/ppfeaturemask
-      # "amdgpu.dcfeaturemask=0x8" # ?
-
-      # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
-      # "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
-      # "amdgpu.debugmask=1" # Enables some debugging logs
-
-      # Disables HDMI/DisplayPort audio output on AMD GPUs.
-      # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-      "amdgpu.audio=0"
-
-      # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
-      # "amdgpu.dpm=1"
-
-      # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
-      # "amdgpu.runpm=0"
-
-      # Enables FreeSync support in video playback (if supported).
-      # "amdgpu.freesync_video=1"
-
-      # "processor.ignore_ppc=1"
-
-      # Enables 10-bit or 12-bit deep color support (if monitor supports it).
-      # "amdgpu.deep_color=1"
-
-      # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
-      # "amdgpu.vramlimit=4096"
-
-      # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
-      # pages_min sets the minimum number of memory pages reserved for the GPU.
-      # Each page is 4 KiB, so:
-      # (1048576*4096) / 1073741824 = 4 GiB
-      # (2097152*4096) / 1073741824 = 8 GiB
-      # 1048576 pages = 4 GiB
-      # 2097152 pages = 8 GiB
-      # You can increase this value to 2097152 (8 GiB) if you want to reserve more memory.
-      # "ttm.pages_min=1048576"
-
-      # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
-      # "amdgpu.gttsize=4096" This option is deprecated.
-      # "amdgpu.ttm.pages_limit=4096"
-
-      # Sets the virtual address space size in GB.
-      # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
-      # "amdgpu.vm_size=8"
-
-      # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
-      # Larger values = fewer page table entries = better perf on large buffers.
-      # Set -1 to let driver decide automatically.
-      # "amdgpu.vm_fragment_size=9"
-
-      # Set amdgpu.lockup_timeout in order to control the TDR for each ring
-      # 0 (GFX): 5s (was 10s)
-      # 1 (Compute): 10s (was 60s wtf)
-      # 2 (SDMA): 10s (was 10s)
-      # 3 (Video): 5s (was 10s)
-      # "amdgpu.lockup_timeout=5000,10000,10000,5000"
-
-      # "amdgpu.noretry=0" # Improve memory handling
-
-      "net.ifnames=0" # ?
-      "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
-    ];
-    boot.kernelModules = [
-      "amdgpu" # AMD GPU driver
-      "radeon" # Legacy AMD GPU driver (for older cards)
-      "k10temp" # Temperature monitoring
-      "i2c_hid" # Input devices
-      "usbhid"
-      "usbcore"
-      "bfq"
-      "coretemp"
-      "fuse"
-      "kvm-amd" # AMD Virtualization
-      "msr"
-      "uinput"
-      # "v4l2loopback"
-      "rt2800usb"
-    ];
-    boot.extraModprobeConfig = ''
-      options usbcore autosuspend=-1
-      options rt2800usb nohwcrypt=1
+  # [ SYSTEM ]
+  modules.system.radeon = false;
+  modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
+  modules.system.rocm.enable = false; # If your APU/GPU Support it
+  modules.system.videoDrivers = [ "amdgpu" ];
+  # [ BOOT ]
+  modules.system.boot.plymouth.enable = true;
+  modules.system.boot.tmp.useTmpfs = system.useTmpfs;
+  modules.system.boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
+  modules.system.boot.loader.timeout = 3; # seconds
+  modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
+  modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
+  modules.system.boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
+  modules.system.boot.blacklistedKernelModules = [ "hp_wmi" ];
+  # [ GRUB ]
+  modules.system.boot.loader.manager.grub = {
+    fontSize = 14;
+    osProber = true;
+    efiSupport = true;
+    gfxmodeEfi = "1920x1080";
+    devices = [ "nodev" ];
+    device = "nodev"; # Let GRUB automatically detect EFI
+    # nix path-info -r nixpkgs#sleek-grub-theme
+    theme = with pkgs;
+      (sleek-grub-theme.override {
+        withStyle = "dark"; # (dark/light/orange/bigsur)
+        withBanner = "GRUB Boot Manager";
+      });
+    extraConfig = ''
+      # GRUB_DISABLE_OS_PROBER=true
+      # GRUB_CMDLINE_LINUX="root=UUID=ba8daecb-c5d6-4dc9-bc51-a38b344ca6ed rootflags=subvol=@"
     '';
-    boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-    boot.blacklistedKernelModules = [ "hp_wmi" ];
-    amdgpu.initrd = true;
-    amdgpu.opencl = false;
-    amdgpu.legacySupport = false;
-    amdgpu.amdvlk = true;
-
-    docs.enable = true;
-    docs.doc.enable = true;
-    docs.dev.enable = true;
-    docs.info.enable = true;
-    docs.nixos.enable = true;
-    docs.man.enable = true;
-    docs.man.generateCaches = false;
   };
+  # [ kernelParams ]
+  modules.system.boot.kernelParams = [
+    # "usbcore.autosuspend=-1" # disable usb autosuspend
+    # "usbhid.mousepoll=4" # Reduce USB mouse polling rate
+
+    # AMD GPU optimizations
+    # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
+    # for Southern Islands (SI i.e. GCN 1) cards
+    "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
+    "amdgpu.si_support=1"
+
+    # for Sea Islands (CIK i.e. GCN 2) cards
+    "radeon.cik_support=0"
+    "amdgpu.cik_support=1"
+
+    # Disables AMD's IOMMU (Input-Output Memory Management Unit).
+    # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
+    # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
+    # "amd_iommu=on"
+
+    "random.trust_cpu=on" # ?
+    "tsc=reliable"
+    "clocksource=tsc"
+    "no_timer_check"
+
+    "split_lock_mitigate=off" # prevents some games from being slowed
+    "retbleed=off" # Disable Retbleed mitigation
+
+    # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
+    "amdgpu.sched_hw_submission=4"
+
+    # Disables the Linux audit subsystem.
+    # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
+    "audit=0"
+
+    # If you want full control over power settings, use:
+    "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+    # If you have stability issues (freezes, black screens, crashes), try:
+    # "amdgpu.ppfeaturemask=0xFFF7FFFF"
+    # Check If It’s Applied:
+    # cat /sys/module/amdgpu/parameters/ppfeaturemask
+    # "amdgpu.dcfeaturemask=0x8" # ?
+
+    # "amdgpu.dc=1" # Enables Display Core (improves multi-display support)
+    # "amdgpu.gpu_recovery=1" # Auto-recover from GPU hangs (safe)
+    # "amdgpu.debugmask=1" # Enables some debugging logs
+
+    # Disables HDMI/DisplayPort audio output on AMD GPUs.
+    # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
+    "amdgpu.audio=0"
+
+    # Enables Dynamic Power Management (DPM). Allows the GPU to adjust its clock and voltage for power saving and performance.
+    # "amdgpu.dpm=1"
+
+    # Disables runtime power management. Helps keep the GPU always powered on (useful for debugging or fixing suspend/resume issues).
+    # "amdgpu.runpm=0"
+
+    # Enables FreeSync support in video playback (if supported).
+    # "amdgpu.freesync_video=1"
+
+    # "processor.ignore_ppc=1"
+
+    # Enables 10-bit or 12-bit deep color support (if monitor supports it).
+    # "amdgpu.deep_color=1"
+
+    # Limits visible VRAM to 4096 MB (4 GB). Can help with compatibility on buggy BIOSes or old systems.
+    # "amdgpu.vramlimit=4096"
+
+    # ttm stands for Translation Table Maps — a core part of the GPU memory manager in the Linux kernel used by TTM-based drivers, like AMDGPU.
+    # pages_min sets the minimum number of memory pages reserved for the GPU.
+    # Each page is 4 KiB, so:
+    # (1048576*4096) / 1073741824 = 4 GiB
+    # (2097152*4096) / 1073741824 = 8 GiB
+    # 1048576 pages = 4 GiB
+    # 2097152 pages = 8 GiB
+    # You can increase this value to 2097152 (8 GiB) if you want to reserve more memory.
+    # "ttm.pages_min=1048576"
+
+    # Sets the GTT (Graphics Translation Table) memory size in MB. This is memory used when VRAM runs out (from system RAM).
+    # "amdgpu.gttsize=4096" This option is deprecated.
+    # "amdgpu.ttm.pages_limit=4096"
+
+    # Sets the virtual address space size in GB.
+    # 🚀 Increasing can help with large OpenCL/Vulkan workloads.
+    # "amdgpu.vm_size=8"
+
+    # Sets page fragment size (2⁹ = 512 KiB) for GPU virtual memory.
+    # Larger values = fewer page table entries = better perf on large buffers.
+    # Set -1 to let driver decide automatically.
+    # "amdgpu.vm_fragment_size=9"
+
+    # Set amdgpu.lockup_timeout in order to control the TDR for each ring
+    # 0 (GFX): 5s (was 10s)
+    # 1 (Compute): 10s (was 60s wtf)
+    # 2 (SDMA): 10s (was 10s)
+    # 3 (Video): 5s (was 10s)
+    # "amdgpu.lockup_timeout=5000,10000,10000,5000"
+
+    # "amdgpu.noretry=0" # Improve memory handling
+
+    "net.ifnames=0" # ?
+    "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
+  ];
+  # [ kernelModules ]
+  modules.system.boot.kernelModules = [
+    "amdgpu" # AMD GPU driver
+    "radeon" # Legacy AMD GPU driver (for older cards)
+    "k10temp" # Temperature monitoring
+    "i2c_hid" # Input devices
+    "usbhid"
+    "usbcore"
+    "bfq"
+    "coretemp"
+    "fuse"
+    "kvm-amd" # AMD Virtualization
+    "msr"
+    "uinput"
+    # "v4l2loopback"
+    "rt2800usb"
+  ];
+  # [ extraModprobeConfig ]
+  modules.system.boot.extraModprobeConfig = ''
+    options usbcore autosuspend=-1
+    options rt2800usb nohwcrypt=1
+  '';
+  # [ AMDGPU ]
+  modules.system.amdgpu.initrd = true;
+  modules.system.amdgpu.opencl = false;
+  modules.system.amdgpu.legacySupport = false;
+  modules.system.amdgpu.amdvlk = true;
+  # [ Docs ]
+  modules.system.docs.enable = true;
+  modules.system.docs.doc.enable = true;
+  modules.system.docs.dev.enable = true;
+  modules.system.docs.info.enable = true;
+  modules.system.docs.nixos.enable = true;
+  modules.system.docs.man.enable = true;
+  modules.system.docs.man.generateCaches = false;
+
   modules.terminals = {
     default = {
       shell = "zsh"; # bash
