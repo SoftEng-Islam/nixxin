@@ -162,7 +162,7 @@
   modules.android.android_studio.enable = false;
 
   # [Audio]
-  modules.audio.rnnoise.enable = true; # Noise Canceling
+  modules.audio.rnnoise.enable = false; # Noise Canceling
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = true;
@@ -274,7 +274,7 @@
 
   # [gaming]
   modules.gaming.steam.enable = false;
-  modules.gaming.zeroad.enable = true; # Free game of ancient warfare
+  modules.gaming.zeroad.enable = false; # Free game of ancient warfare
   modules.gaming.chess.enable = true;
 
   # [ Graphics ]
