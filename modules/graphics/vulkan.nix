@@ -45,7 +45,6 @@
     # AMD_VULKAN_DRIVER = "RADV";
   };
   environment.systemPackages = with pkgs; [
-    amdvlk # AMD Open Source Driver For Vulkan
     dxvk # A Vulkan-based translation layer for Direct3D
     gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
     vkbasalt # Vulkan post processing layer for Linux
@@ -63,7 +62,6 @@
     vulkan-tools-lunarg
     vulkan-validation-layers
     vulkan-volk
-    driversi686Linux.amdvlk # AMD Open Source Driver For Vulkan
     wgpu-utils
 
   ];

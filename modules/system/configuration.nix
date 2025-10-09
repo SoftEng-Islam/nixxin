@@ -241,7 +241,6 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        # amdvlk # AMD Vulkan driver
         libGL
         libGLU
         libglvnd
@@ -262,9 +261,6 @@ in {
         xorg.libXvMC
         pocl
       ];
-
-      # To enable Vulkan support for 32-bit applications, also add:
-      extraPackages32 = [ pkgs.driversi686Linux.amdvlk ];
     };
 
   };

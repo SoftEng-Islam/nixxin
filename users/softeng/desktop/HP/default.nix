@@ -615,7 +615,6 @@
   modules.system.amdgpu.initrd = true;
   modules.system.amdgpu.opencl = false;
   modules.system.amdgpu.legacySupport = false;
-  modules.system.amdgpu.amdvlk = true;
   # [ Docs ]
   modules.system.docs.enable = true;
   modules.system.docs.doc.enable = true;
