@@ -235,25 +235,13 @@ in {
       initrd.enable = _system.amdgpu.initrd;
       opencl.enable = _system.amdgpu.opencl;
       legacySupport.enable = _system.amdgpu.legacySupport;
-      amdvlk = {
-        enable = _system.amdgpu.amdvlk;
-        support32Bit.enable = true;
-        supportExperimental.enable = true;
-        settings = {
-          IFH = 0; # ?
-          ShaderCacheMode = 1; # ?
-          EnableVmAlwaysValid = 1; # ?
-          IdleAfterSubmitGpuMask = 1; # ?
-          AllowVkPipelineCachingToDisk = 1; # ?
-        };
-      };
     };
 
     graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk # AMD Vulkan driver
+        # amdvlk # AMD Vulkan driver
         libGL
         libGLU
         libglvnd
