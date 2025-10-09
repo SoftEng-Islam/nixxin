@@ -4,7 +4,6 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
   environment.systemPackages = with pkgs; [
     remmina # graphical
     freerdp # command-line
-    barrier # Optional: mouse/keyboard sharing
   ];
   # Allow outbound RDP (client to Windows)
   networking.firewall.enable = true;
