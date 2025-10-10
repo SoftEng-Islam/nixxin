@@ -100,7 +100,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # If using Hyprland the names can be found in `hyprctl devices | grep "active keymap"`
       [keyboard_layout.labels]
       "English (US)" = "🇺🇸"
-      "Arabic" = "🇸🇦"
+      "Arabic (EG)" = "🇸🇦"
       # "Russian" = "🇷🇺"
       # "Italian" = "🇮🇹"
       # "Spanish" = "🇪🇸"
@@ -121,35 +121,35 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       #  - UploadSpeed
       # If for example you want to dispay the usage of the root and home partition
       # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-      indicators = [ "DownloadSpeed" , "UploadSpeed" ]
+      indicators = ["DownloadSpeed", "UploadSpeed"]
 
       # CPU indicator thresholds
-      [system.cpu]
+      # [system.cpu]
       # cpu indicator warning level (default 60)
-      warn_threshold = 60
+      # warn_threshold = 60
       # cpu indicator alert level (default 80)
-      alert_threshold = 80
+      # alert_threshold = 80
 
       # Memory indicator thresholds
-      [system.memory]
+      # [system.memory]
       # mem indicator warning level (default 70)
-      warn_threshold = 70
+      # warn_threshold = 70
       # mem indicator alert level (default 85)
-      alert_threshold = 85
+      # alert_threshold = 85
 
       # Memory swap indicator thresholds
-      [system.temperature]
+      # [system.temperature]
       # temperature indicator warning level (default 60)
-      warn_threshold = 60
+      # warn_threshold = 60
       # temperature indicator alert level (default 80)
-      alert_threshold = 80
+      # alert_threshold = 80
 
       # Disk indicator thresholds
-      [system.disk]
+      # [system.disk]
       # disk indicator warning level (default 80)
-      warn_threshold = 80
+      # warn_threshold = 80
       # disk indicator alert level (default 90)
-      alert_threshold = 90
+      # alert_threshold = 90
 
       # Clock module configuration
       [clock]

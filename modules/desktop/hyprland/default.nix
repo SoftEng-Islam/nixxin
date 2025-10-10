@@ -33,7 +33,7 @@ in {
   # Allows Hyprland to run without root privileges
   services.seatd.enable = lib.mkForce false;
 
-  services.gnome.core-shell.enable = true;
+  services.gnome.core-shell.enable = false;
 
   programs.uwsm = {
     enable = false;

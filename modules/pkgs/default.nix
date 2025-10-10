@@ -234,7 +234,7 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     egl-wayland # EGLStream-based Wayland external platform
 
     gsettings-desktop-schemas # Crucial for many GTK/GNOME apps and portals
-    gnome-themes-extra # Provides common GTK themes and assets, might be needed
+    # gnome-themes-extra # Provides common GTK themes and assets, might be needed
 
     # ---- Productivity ---- #
     # hugo # static site generator
