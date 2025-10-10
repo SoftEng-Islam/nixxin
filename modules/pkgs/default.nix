@@ -165,7 +165,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
 
     # ---- Linux ---- #
     binutils # Tools for manipulating binaries (linker, assembler, etc.) (wrapper script)
-    bpftrace # High-level tracing language for Linux eBPF
     ethtool # Utility for controlling network drivers and hardware
     geoclue2 # Geolocation framework and some data providers
     lm_sensors # for `sensors` command, Tools for reading hardware sensors
