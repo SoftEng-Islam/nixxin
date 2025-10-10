@@ -25,6 +25,6 @@ in {
       orca.enable = false; # requires speechd
       speechd.enable = false; # voice files are big and fat
     };
-    environment.systemPackages = with pkgs; [ thunderbird-latest birdtray ];
+    environment.systemPackages = with pkgs; [ thunderbird-latest ];
   };
 }
