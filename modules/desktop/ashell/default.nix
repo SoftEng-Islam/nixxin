@@ -40,13 +40,13 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # optional, the following is the default configuration
       [modules]
       # The modules that will be displayed on the left side of the status bar
-      left = ["Workspaces"]
+      left = [ "AppLauncher" ,"Workspaces" ]
       # The modules that will be displayed in the center of the status bar
       center = ["Clock"]
       # The modules that will be displayed on the right side of the status bar
       # The nested modules array will form a group sharing the same element in the status bar
       # You can also use custom modules to extend the normal set of options, see configuration below
-      right = ["KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
+      right = [ "SystemInfo",  "KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
 
       # Update module configuration.
       # Without a value the related button will not appear.
@@ -105,7 +105,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # "Spanish" = "🇪🇸"
       # "French" = "🇫🇷"
       # "German" = "🇩🇪"
-
 
       # The system module configuration
       # optional
