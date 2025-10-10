@@ -3,23 +3,25 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   home-manager.users.${settings.user.username} = {
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
-      # log_level = "warn"
-      log_level = "ashell::services=info"
+      log_level = "warn"
+      # log_level = "ashell::services=info"
+
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
       # All: the status bar will be displayed on all the available outputs, example: outputs = "All"
       # active: the status bar will be displayed on the active output, example: outputs = "Active"
       # list of outputs: the status bar will be displayed on the outputs listed here, example: outputs = { Targets = ["DP-1", "eDP-1"] }
       # if the outputs is not available the bar will be displayed in the active output
       outputs = "All"
+
       # Bar position, possible values Top | Bottom.
       position = "Top"
+
       # App launcher command, it will be used to open the launcher,
       # without a value the related button will not appear
-      # optional, default None
       app_launcher_cmd = "${pkgs.ulauncher}/bin/ulauncher-toggle"
+
       # Clipboard command, it will be used to open the clipboard menu,
       # without a value the related button will not appear
-      # optional, default None
       clipboard_cmd = "cliphist-rofi-img | wl-copy"
 
       # Declare which modules should be used and in which position in the status bar.
@@ -37,20 +39,20 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       #  - Privacy
       #  - MediaPlayer
       #  - Settings
-      # optional, the following is the default configuration
       [modules]
+
       # The modules that will be displayed on the left side of the status bar
       left = [ "AppLauncher" ,"Workspaces" ]
+
       # The modules that will be displayed in the center of the status bar
       center = ["Clock"]
+
       # The modules that will be displayed on the right side of the status bar
       # The nested modules array will form a group sharing the same element in the status bar
       # You can also use custom modules to extend the normal set of options, see configuration below
       right = [ "SystemInfo",  "KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
 
-      # Update module configuration.
-      # Without a value the related button will not appear.
-      # optional, default None
+      # Update module configuration. Without a value the related button will not appear.
       # [updates]
       # The check command will be used to retrieve the update list.
       # It should return something like `package_name version_from -> version_to\n`
@@ -107,7 +109,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # "German" = "🇩🇪"
 
       # The system module configuration
-      # optional
       [system]
       # System information shown in the status bar
       # The possible values are:
@@ -119,43 +120,37 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       #  - IpAddress
       #  - DownloadSpeed
       #  - UploadSpeed
-      # optional, the following is the default configuration
       # If for example you want to dispay the usage of the root and home partition
-      # you can use the following configuration
       # systemInfo = [ { disk = "/" }, { disk = "/home" } ]
-      indicators = ["DownloadSpeed", "UploadSpeed"]
+      indicators = [ "DownloadSpeed" , "UploadSpeed" ]
 
       # CPU indicator thresholds
-      # optional
-      # [system.cpu]
-      # cpu indicator warning level (default 60)
-      # warn_threshold = 60
-      # cpu indicator alert level (default 80)
-      # alert_threshold = 80
+      [system.cpu]
+      cpu indicator warning level (default 60)
+      warn_threshold = 60
+      cpu indicator alert level (default 80)
+      alert_threshold = 80
 
       # Memory indicator thresholds
-      # optional
-      # [system.memory]
-      # mem indicator warning level (default 70)
-      # warn_threshold = 70
-      # mem indicator alert level (default 85)
-      # alert_threshold = 85
+      [system.memory]
+      mem indicator warning level (default 70)
+      warn_threshold = 70
+      mem indicator alert level (default 85)
+      alert_threshold = 85
 
       # Memory swap indicator thresholds
-      # optional
-      # [system.temperature]
-      # temperature indicator warning level (default 60)
-      # warn_threshold = 60
-      # temperature indicator alert level (default 80)
-      # alert_threshold = 80
+      [system.temperature]
+      temperature indicator warning level (default 60)
+      warn_threshold = 60
+      temperature indicator alert level (default 80)
+      alert_threshold = 80
 
       # Disk indicator thresholds
-      # optional
-      # [system.disk]
-      # disk indicator warning level (default 80)
-      # warn_threshold = 80
-      # disk indicator alert level (default 90)
-      # alert_threshold = 90
+      [system.disk]
+      disk indicator warning level (default 80)
+      warn_threshold = 80
+      disk indicator alert level (default 90)
+      alert_threshold = 90
 
       # Clock module configuration
       [clock]
@@ -205,10 +200,12 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # without a value the related button will not appear
       # optional, default None
       audio_sources_more_cmd = "pavucontrol -t 4"
+
       # command used to open the network settings
       # without a value the related button will not appear
       # optional, default None
-      # wifi_more_cmd = "nm-connection-editor"
+      wifi_more_cmd = "nm-connection-editor"
+
       # command used to open the VPN settings
       # without a value the related button will not appear
       # optional, default None
