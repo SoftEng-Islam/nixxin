@@ -136,7 +136,7 @@ in {
       # pulseaudio-ctl # Control pulseaudio volume from the shell or mapped to keyboard shortcuts. No need for alsa-utils
       pulseaudioFull # Sound server for POSIX and Win32 systems
 
-      pamixer # CLI volume control
+      # pamixer # CLI volume control
       pavucontrol # GUI volume control
       pipewire # Server and user space API to deal with multimedia pipelines
       pipecontrol # Pipewire control GUI program in Qt (Kirigami2)
