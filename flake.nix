@@ -8,35 +8,14 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # impermanence.url = "github:nix-community/impermanence";
-
-    nixGL.url = "github:nix-community/nixGL";
-    nixGL.inputs.nixpkgs.follows = "nixpkgs";
-    nixGL.inputs.flake-utils.follows = "flake-utils";
-
-    # https://github.com/oxalica/rust-overlay
-    # rust-overlay.url = "github:oxalica/rust-overlay";
-    # rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+    # nixGL.url = "github:nix-community/nixGL";
+    # nixGL.inputs.nixpkgs.follows = "nixpkgs";
+    # nixGL.inputs.flake-utils.follows = "flake-utils";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
-
-    # hyprtasking = {
-    #   url = "github:raybbian/hyprtasking";
-    #   inputs.hyprland.follows = "hyprland";
-    # };
-
-    # nix-vscode-extensions.url = "github:nix-community/nix-vscode-extensions";
-
-    # aagl.url = "github:ezKEa/aagl-gtk-on-nix";
-    # aagl.inputs.nixpkgs.follows = "nixpkgs";
-
-    # nix-ld.url = "github:Mic92/nix-ld";
-    # nix-ld.inputs.nixpkgs.follows = "nixpkgs";
-
-    # impurity.url = "github:outfoxxed/impurity.nix";
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let
