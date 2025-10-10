@@ -169,7 +169,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     geoclue2 # Geolocation framework and some data providers
     lm_sensors # for `sensors` command, Tools for reading hardware sensors
     lsof # list open files
-    ltrace # library call monitoring
     man
     man-db
     man-pages # Linux development manual pages
