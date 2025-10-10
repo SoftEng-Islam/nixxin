@@ -12,7 +12,6 @@ in mkIf (settings.modules.system.radeon or false) {
     libva
     libva-utils
     vaapiVdpau
-    libvdpau-va-gl
     vdpauinfo
     vulkan-loader
     vulkan-tools

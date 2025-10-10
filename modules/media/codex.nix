@@ -4,7 +4,6 @@ lib.mkIf (settings.modules.media.codex) {
   environment.systemPackages = with pkgs; [
     mediainfo # Supplies technical and tag information about a video or audio file
 
-    libvdpau-va-gl # VDPAU driver with OpenGL/VAAPI backend
     ffmpeg-full # A complete, cross-platform solution to record, convert and stream audio and video
     ffmpegthumbnailer # A lightweight video thumbnailer
     playerctl # Command-line utility and library for controlling media players that implement MPRIS

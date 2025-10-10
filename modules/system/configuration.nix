@@ -248,7 +248,6 @@ in {
         libva
         libva-utils
         libvdpau
-        libvdpau-va-gl
         mesa
         mesa-demos # Provides glxinfo, glxgears
         mesa.opencl

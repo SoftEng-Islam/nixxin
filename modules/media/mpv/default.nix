@@ -164,7 +164,6 @@ in lib.mkIf (settings.modules.media.mpv) {
     libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva
     libva-utils # For testing VAAPI support
-    libvdpau-va-gl
     lua
     mesa
     mpv-shim-default-shaders
