@@ -96,7 +96,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       truncate_title_after_length = 150
 
       # keyboardLayout module configuration
-      # optional
       # Maps layout names to arbitrary labels, which can be any text, including unicode symbols as shown below
       # If using Hyprland the names can be found in `hyprctl devices | grep "active keymap"`
       [keyboard_layout.labels]
@@ -126,30 +125,30 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
 
       # CPU indicator thresholds
       [system.cpu]
-      cpu indicator warning level (default 60)
+      # cpu indicator warning level (default 60)
       warn_threshold = 60
-      cpu indicator alert level (default 80)
+      # cpu indicator alert level (default 80)
       alert_threshold = 80
 
       # Memory indicator thresholds
       [system.memory]
-      mem indicator warning level (default 70)
+      # mem indicator warning level (default 70)
       warn_threshold = 70
-      mem indicator alert level (default 85)
+      # mem indicator alert level (default 85)
       alert_threshold = 85
 
       # Memory swap indicator thresholds
       [system.temperature]
-      temperature indicator warning level (default 60)
+      # temperature indicator warning level (default 60)
       warn_threshold = 60
-      temperature indicator alert level (default 80)
+      # temperature indicator alert level (default 80)
       alert_threshold = 80
 
       # Disk indicator thresholds
       [system.disk]
-      disk indicator warning level (default 80)
+      # disk indicator warning level (default 80)
       warn_threshold = 80
-      disk indicator alert level (default 90)
+      # disk indicator alert level (default 90)
       alert_threshold = 90
 
       # Clock module configuration
