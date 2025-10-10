@@ -346,7 +346,7 @@
   modules.media.celluloid = true; # media player
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = true; # video Editor
-  modules.media.shotcut = true; # video Editor
+  modules.media.shotcut = false; # video Editor
   modules.media.music = false;
 
   # [Networking]
