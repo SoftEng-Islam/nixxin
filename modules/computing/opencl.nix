@@ -19,7 +19,6 @@
     # intel-graphics-compiler
     # opencl-clhpp # OpenCL Host API C++ bindings
     opencl-headers # Khronos OpenCL headers version 2023.12.14
-    clblast # Tuned OpenCL BLAS library
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
     clpeak # Tool which profiles OpenCL devices to find their peak capacities
     khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
