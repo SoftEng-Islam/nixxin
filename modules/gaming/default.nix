@@ -14,14 +14,17 @@ in {
       (final: prev: {
         nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {
           postPatch = ''
-            substituteInPlace CMakeLists.txt \
-              --replace "cmake_minimum_required(VERSION 2.8)" \
-                        "cmake_minimum_required(VERSION 3.5)"
+            echo ">>> Fixing CMake minimum version in nvidia-texture-tools ..."
+            # Match both "2.6" and "2.8" or any similar low version
+            sed -i '1s/cmake_minimum_required *(VERSION [0-9.]\+)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt
           '';
+
+          # Add the required policy flag to CMake
+          cmakeFlags = (old.cmakeFlags or [ ])
+            ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
         });
       })
     ];
-
     programs = {
       gamemode = {
         # https://feralinteractive.github.io/gamemode/
