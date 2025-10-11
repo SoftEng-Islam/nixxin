@@ -8,6 +8,20 @@ let
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
+
+    # fix nvidia-texture-tools build error for 0ad
+    nixpkgs.overlays = [
+      (final: prev: {
+        nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {
+          postPatch = ''
+            substituteInPlace CMakeLists.txt \
+              --replace "cmake_minimum_required(VERSION 2.8)" \
+                        "cmake_minimum_required(VERSION 3.5)"
+          '';
+        });
+      })
+    ];
+
     programs = {
       gamemode = {
         # https://feralinteractive.github.io/gamemode/

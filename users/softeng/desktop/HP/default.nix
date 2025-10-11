@@ -351,7 +351,7 @@
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [ "8.8.8.8" "1.1.1.1" ]; # DNS
+  modules.networking.nameservers = [ "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     # eno1 = {
