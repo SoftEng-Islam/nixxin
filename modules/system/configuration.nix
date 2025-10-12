@@ -241,25 +241,25 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        amdvlk
-        libGL
-        libGLU
-        libglvnd
-        libGLX
-        libva
-        libva-utils
-        libvdpau
-        mesa
-        mesa-demos # Provides glxinfo, glxgears
-        mesa.opencl
-        vaapiVdpau
-        vdpauinfo
         vulkan-loader
         vulkan-tools
         vulkan-validation-layers
-        xorg.libXv
-        xorg.libXvMC
-        pocl
+        mesa
+        mesa-demos # Provides glxinfo, glxgears
+        mesa.opencl
+        libclc
+        # libGL
+        # libGLU
+        # libglvnd
+        # libGLX
+        # libvdpau
+        libva
+        libva-utils
+        vaapiVdpau
+        vdpauinfo
+        # xorg.libXv
+        # xorg.libXvMC
+        # pocl
       ];
     };
 
