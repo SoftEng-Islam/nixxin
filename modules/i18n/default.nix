@@ -68,7 +68,7 @@ in {
     XMODIFIERS = "@im=fcitx";
 
     # Do NOT set GTK_IM_MODULE (avoids that warning)
-    GTK_IM_MODULE = "";
+    GTK_IM_MODULE = lib.mkForce "";
 
     # Defines the system language.
     LANG = _i18n.defaultLocale;
