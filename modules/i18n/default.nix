@@ -58,27 +58,30 @@ in {
 
   # Environment Variables for Input Method
   # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
+  # https://fcitx-im.org/wiki/Setup_Fcitx_5
   environment.variables = {
-    # https://fcitx-im.org/wiki/Setup_Fcitx_5
-    GLFW_IM_MODULE = "ibus"; # This is a variable only used by kitty.
-    SDL_IM_MODULE = "fcitx";
-    GTK_IM_MODULE = "fcitx";
-    QT_IM_MODULE = "fcitx";
+    # Wayland-native input frontend
     INPUT_METHOD = "fcitx";
+
+    # Support for XWayland apps
+    QT_IM_MODULE = "fcitx";
     XMODIFIERS = "@im=fcitx";
+
+    # Do NOT set GTK_IM_MODULE (avoids that warning)
+    GTK_IM_MODULE = "";
 
     # Defines the system language.
     LANG = _i18n.defaultLocale;
   };
 
-  systemd.user.services.fcitx5 = {
-    description = "Fcitx5 IME";
-    serviceConfig = {
-      ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
-      Restart = "always";
-    };
-    wantedBy = [ "default.target" ];
-  };
+  # systemd.user.services.fcitx5 = {
+  #   description = "Fcitx5 IME";
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
+  #     Restart = "always";
+  #   };
+  #   wantedBy = [ "default.target" ];
+  # };
 
   # Configure Virtual Console
   console = {
