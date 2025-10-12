@@ -8,8 +8,7 @@ let
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
-
-    # fix nvidia-texture-tools build error for 0ad
+    # Fix nvidia-texture-tools build error for 0ad
     nixpkgs.overlays = [
       (final: prev: {
         nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {

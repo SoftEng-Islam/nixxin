@@ -3,8 +3,8 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   home-manager.users.${settings.user.username} = {
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
-      log_level = "warn"
       # log_level = "ashell::services=info"
+      log_level = "warn"
 
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
       # All: the status bar will be displayed on all the available outputs, example: outputs = "All"
@@ -50,7 +50,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # The modules that will be displayed on the right side of the status bar
       # The nested modules array will form a group sharing the same element in the status bar
       # You can also use custom modules to extend the normal set of options, see configuration below
-      right = [ ["SystemInfo"],  "KeyboardLayout", ["Privacy"], "Settings", "CustomNotifications"]
+      right = [ "SystemInfo", "Tray", "KeyboardLayout", ["Privacy", "Settings"], "CustomNotifications"]
 
       # Update module configuration. Without a value the related button will not appear.
       # [updates]
@@ -108,7 +108,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # "German" = "🇩🇪"
 
       # The system module configuration
-      [system]
+      [system_info]
       # System information shown in the status bar
       # The possible values are:
       #  - Cpu
