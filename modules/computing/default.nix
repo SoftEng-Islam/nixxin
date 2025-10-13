@@ -1,4 +1,4 @@
-{ settings, inputs, config, lib, pkgs, ... }:
+{ settings, config, lib, pkgs, ... }:
 let inherit (lib) optionals mkIf;
 in {
   # "pocl" OR "opencl"
