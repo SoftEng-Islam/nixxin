@@ -24,7 +24,12 @@
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-      pkgs = import nixpkgs { system = settings.system.architecture; };
+      pkgs = import nixpkgs {
+        system = settings.system.architecture;
+        overlays = overlays;
+      };
+      overlays = [ inputs.nixos-opencl.overlays.default ];
+
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
