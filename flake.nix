@@ -24,11 +24,7 @@
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-      overlays = [ inputs.nixos-opencl.overlays.default ];
-      pkgs = import nixpkgs {
-        system = settings.system.architecture;
-        overlays = overlays;
-      };
+      pkgs = import nixpkgs { system = settings.system.architecture; };
 
     in {
       # NixOS configuration entrypoint.
@@ -41,10 +37,11 @@
             inherit _SETTINGS;
             inherit settings;
           };
-          nixpkgs = { overlays = [ inputs.nixos-opencl.overlays.default ]; };
           modules = [
             # inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
+            inputs.nixos-opencl.nixosModules.default
+
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
