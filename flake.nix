@@ -24,11 +24,11 @@
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
+      overlays = [ inputs.nixos-opencl.overlays.default ];
       pkgs = import nixpkgs {
         system = settings.system.architecture;
         overlays = overlays;
       };
-      overlays = [ inputs.nixos-opencl.overlays.default ];
 
     in {
       # NixOS configuration entrypoint.
