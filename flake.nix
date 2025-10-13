@@ -16,6 +16,9 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+
+    nixos-opencl.url = "path:./nixos-opencl";
+    nixos-opencl.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let
