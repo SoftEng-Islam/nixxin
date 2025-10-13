@@ -241,7 +241,7 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-        clvk
+
         vulkan-loader
         vulkan-tools
         vulkan-validation-layers
