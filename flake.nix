@@ -36,10 +36,9 @@
             inherit _SETTINGS;
             inherit settings;
           };
+
+          nixpkgs.overlays = [ inputs.nixos-opencl.overlays.default ];
           modules = [
-            {
-              nixpkgs.overlays = [ inputs.nixos-opencl.overlays.default ];
-            }
             # inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
             (./. + _SETTINGS.path + "/configuration.nix")
