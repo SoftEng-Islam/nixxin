@@ -135,10 +135,13 @@ mkIf (settings.modules.dconf.enable or true) {
         # toolbar-style
         # toolkit-accessibility
       };
+      # gsettings set org.gnome.nautilus.preferences show-image-thumbnails 'always'
+      # gsettings set org.gnome.nautilus.preferences thumbnail-limit 104857600
       "org/gnome/desktop/thumbnail-cache" = {
         maximum-age = 200;
         maximum-size = 2048;
       };
+
       "org/gnome/mutter" = {
         center-new-windows = true;
         check-alive-timeout = 0;

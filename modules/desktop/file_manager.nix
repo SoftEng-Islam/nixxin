@@ -64,6 +64,12 @@ in {
     # };
   };
 
+  # helps with GIO-based file access
+  services.gnome.glib-networking.enable = true;
+
+  # Register Nautilus GSettings schemas globally
+  environment.pathsToLink = [ "/share/glib-2.0/schemas" ];
+
   # environment.pathsToLink = [ "/share/nautilus-python/extensions" ];
   environment.sessionVariables.FILE_MANAGER = "nautilus";
   # environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
