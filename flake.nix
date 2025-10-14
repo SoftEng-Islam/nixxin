@@ -40,8 +40,6 @@
           modules = [
             # inputs.stylix.nixosModules.stylix
             inputs.home-manager.nixosModules.home-manager
-            inputs.nixos-opencl.nixosModules.default
-
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
