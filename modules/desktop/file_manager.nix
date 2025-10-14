@@ -32,9 +32,6 @@ in {
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.gvfs.package = pkgs.gnome.gvfs;
 
-  # thumbnails
-  services.tumbler.enable = true;
-
   home-manager.users.${settings.user.username} = {
     programs.dircolors = { enable = true; };
     dconf.settings = {
