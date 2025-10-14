@@ -75,12 +75,7 @@ in {
         "xhci_pci"
       ];
     };
-    kernelModules = _system.boot.kernelModules ++ [
-      "acpi_cpufreq"
-      # "v4l2loopback"
-      # "snd-hda-codec-realtek"
-      # "hp_wmi"
-    ];
+    kernelModules = _system.boot.kernelModules ++ [ "acpi_cpufreq" ];
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
     extraModulePackages = [
@@ -241,7 +236,8 @@ in {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
-
+        vulkan-memory-allocator
+        vulkan-extension-layer
         vulkan-loader
         vulkan-tools
         vulkan-validation-layers
@@ -249,21 +245,20 @@ in {
         mesa-demos # Provides glxinfo, glxgears
         mesa.opencl
         libclc
-        # libGL
-        # libGLU
-        # libglvnd
-        # libGLX
-        # libvdpau
+        libGL
+        libGLU
+        libglvnd
+        libGLX
+        libvdpau
         libva
         libva-utils
         vaapiVdpau
         vdpauinfo
-        # xorg.libXv
-        # xorg.libXvMC
-        # pocl
+        xorg.libXv
+        xorg.libXvMC
+        pocl
       ];
     };
-
   };
 
   # ------------------------------------------------
@@ -278,22 +273,11 @@ in {
   # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.
   services.gpm.enable = true;
 
-  # services.nfs.server.enable = false;
-
   # ------------------------------------------------
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
   services.xserver.videoDrivers = _system.videoDrivers;
-
-  # services.ucodenix = {
-  # enable = true;
-  # docs: https://github.com/e-tho/ucodenix?tab=readme-ov-file#usage
-  # cpuid -1 -l 1 -r | sed -n 's/.*eax=0x\([0-9a-f]*\).*/\U\1/p'
-  # 00630F81
-  # Replace with your processor's model ID, use (cpuid)
-  # cpuModelId = "00630F81";
-  # };
 
   # ------------------------------------------------
   # ---- Kernel Thread Scheduler Optimization
@@ -324,11 +308,6 @@ in {
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
-    # HIP_VISIBLE_DEVICES = "0,2";
-
-    # ROC_ENABLE_PRE_VEGA = "1";
-    # RUSTICL_ENABLE = "radeonsi"; # "llvmpipe" or "radeonsi"
-
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
     WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
     # WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
@@ -337,24 +316,8 @@ in {
     WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
     WGPU_POWER_PREF = "high"; # Prefer integrated GPU
 
-    # Adjusts DRM devices, vsync, and atomic modes.
-    # WLR_DRM_DEVICES = "/dev/dri/card1";
-    # WLR_DRM_NO_ATOMIC = "1";
-    # WLR_VSYNC = "1";
-
-    # GPU_FORCE_64BIT_PTR = "1";
-    # GPU_MAX_ALLOC_PERCENT = "100";
-    # GPU_MAX_HEAP_SIZE = "50";
-    # GPU_MAX_USE_SYNC_OBJECTS = "1";
-    # GPU_SINGLE_ALLOC_PERCENT = "50";
-
-    # Improves OpenGL compatibility & speed.
-    # MESA_GL_VERSION_OVERRIDE = "4.6";
-    # MESA_GLSL_VERSION_OVERRIDE = "460";
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
-
-    # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
   };
 
-  environment.memoryAllocator.provider = "libc";
+  # environment.memoryAllocator.provider = "libc";
 }

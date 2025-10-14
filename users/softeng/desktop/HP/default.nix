@@ -28,7 +28,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = false; # disable it before install a custom Linux Kernel.
+  system.useTmpfs = true; # disable it before install a custom Linux Kernel.
   system.enableLogs = true; # To enable logs
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
@@ -604,7 +604,7 @@
     "msr"
     "uinput"
     # "v4l2loopback"
-    "rt2800usb"
+    # "rt2800usb"
   ];
   # [ extraModprobeConfig ]
   modules.system.boot.extraModprobeConfig = ''

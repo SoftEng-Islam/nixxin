@@ -7,9 +7,8 @@ in {
   imports =
     [ ./dnsmasq.nix ./iwd.nix ./RTL8188EUS.nix ./rtw.nix ./waypipe.nix ];
 
-  # disable waiting for network to be online during boot.
+  # Disable waiting for network.
   boot.initrd.systemd.network.wait-online.enable = false;
-
   systemd.network.enable = lib.mkForce false;
   systemd.network.wait-online.enable = false;
   systemd.network.wait-online.timeout = 0;
@@ -121,7 +120,6 @@ in {
   # ~~~~ Wireless Settings ~~~~
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
   # If your system only uses a wired Ethernet connection, you can disable wireless support to simplify your configuration and save resources.
-  # disable wpa_supplicant, we have networkmanager and iwd
   # You can not use networking.networkmanager with networking.wireless.
   networking.wireless.enable = lib.mkForce false;
   networking.wireless.scanOnLowSignal = false;
@@ -228,7 +226,7 @@ in {
       listbox=black,lightgray
       actlistbox=black,lightgray
       helpline=black,lightgray
-      button=black,blue
+      button=black,green
       actbutton=black,blue
       checkbox=black,blue
       actcheckbox=black,blue
@@ -247,7 +245,6 @@ in {
     wpa_supplicant_gui
 
     networkmanager
-    # networkmanagerapplet
     ifwifi
 
     sipcalc # Advanced console ip subnet calculator

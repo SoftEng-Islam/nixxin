@@ -31,7 +31,7 @@ in {
       min-free = 1073741824; # 1 GiB
       download-buffer-size = 536870912; # 512MiB
       use-xdg-base-directories = true;
-      # builders-use-substitutes = true;
+      builders-use-substitutes = true;
 
       # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
       # http-connections = 128;
@@ -54,29 +54,29 @@ in {
         "recursive-nix"
       ];
 
-      # trusted-substituters = [ "https://nix-community.cachix.org" ];
-      # substituters = [
-      #   # high priority since it's almost always used
-      #   "https://cache.nixos.org?priority=10"
-      #   "https://hyprland.cachix.org?priority=10"
-      #   #"https://cuda-maintainers.cachix.org"
-      #   "https://devenv.cachix.org"
-      #   "https://nix-community.cachix.org"
-      #   #"https://nix-gaming.cachix.org"
-      #   "https://nixpkgs-python.cachix.org"
-      #   "https://nixpkgs-wayland.cachix.org"
-      # ];
+      trusted-substituters = [ "https://nix-community.cachix.org" ];
+      substituters = [
+        # high priority since it's almost always used
+        "https://cache.nixos.org?priority=10"
+        "https://hyprland.cachix.org?priority=10"
+        #"https://cuda-maintainers.cachix.org"
+        "https://devenv.cachix.org"
+        "https://nix-community.cachix.org"
+        #"https://nix-gaming.cachix.org"
+        "https://nixpkgs-python.cachix.org"
+        "https://nixpkgs-wayland.cachix.org"
+      ];
       # Enable cachix
-      # trusted-public-keys = [
-      #   "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
-      #   "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
-      #   "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      #   #"cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
-      #   "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
-      #   "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-      #   "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
-      #   "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
-      # ];
+      trusted-public-keys = [
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+        #"cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
+        "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
+        "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
+        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
+        "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+      ];
     };
 
     # ---- extraOptions ---- #
@@ -145,13 +145,8 @@ in {
     # -
     fuse.userAllowOther = true;
 
-    # Some programs need SUID wrappers, can be configured further or are
-    # started in user sessions.
+    # Some programs need SUID wrappers, can be configured further or are started in user sessions.
     # mtr.enable = true;
-    # gnupg.agent = {
-    #   enable = true;
-    #   enableSSHSupport = true;
-    # };
 
     # See https://nix.dev/permalink/stub-ld.
     #? what is nix-ld?
@@ -300,8 +295,6 @@ in {
 
   environment.systemPackages = with pkgs; [
     # Nix Related Packages
-    # it provides the command `nom` works just like `nix`
-    # with more details log output
     cached-nix-shell # fast nix-shell scripts
     fmt # Small, safe and fast formatting library
     home-manager # A Nix-based user environment configurator
