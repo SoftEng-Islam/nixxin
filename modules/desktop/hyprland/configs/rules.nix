@@ -78,6 +78,15 @@
       windowrulev2 = rounding 0,class:(Wezterm)
       windowrule = opacity 0.90 override 0.85 override,class:(Wezterm)
 
+      # --------------------
+      # 0ad rules
+      # --------------------
+      windowrule = noborder,class:^(0ad)$
+      windowrule = nodim,class:^(0ad)$
+      windowrule = noshadow,class:^(0ad)$
+      windowrule = noblur,class:^(0ad)$
+
+
       # ----------------------
       # Nautilus specific rules
       # ----------------------

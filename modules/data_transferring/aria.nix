@@ -26,5 +26,6 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
     '';
   };
 
+  # aria2c --enable-rpc
   environment.systemPackages = with pkgs; [ aria2 ];
 }
