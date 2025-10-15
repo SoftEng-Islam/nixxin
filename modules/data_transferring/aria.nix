@@ -12,9 +12,9 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # The directory to store the downloaded file.
       # dir=/home/${settings.user.username}/.aria2/downloads
       # Downloads the URIs listed in FILE.
-      input-file=/home/${settings.user.username}/.aria2/aria2.session
+      # input-file=/home/${settings.user.username}/.aria2/aria2.session
       # Save error/unfinished downloads to FILE on exit.
-      save-session=/home/${settings.user.username}/.aria2/aria2.session
+      # save-session=/home/${settings.user.username}/.aria2/aria2.session
       # Save error/unfinished downloads to a file specified by --save-session option every SEC seconds. If 0 is given, file will be saved only when aria2 exits. Default: 0
       save-session-interval=60
       # Set the maximum number of parallel downloads for every queue item. See also the --split option. Default: 5
