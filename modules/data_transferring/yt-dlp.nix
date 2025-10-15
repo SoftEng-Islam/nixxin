@@ -3,14 +3,13 @@
     programs.yt-dlp = {
       enable = settings.modules.data_transferring.yt-dlp.enable or false;
       settings = {
-        embed-thumbnail = true;
-        embed-metadata = true;
-        embed-chapters = true;
+        # embed-thumbnail = true;
+        # embed-metadata = true;
+        # embed-chapters = true;
         sponsorblock-mark = "all";
         downloader = lib.getExe pkgs.aria2;
         cookies-from-browser = "chrome";
-        format =
-          "bestvideo[height<=?1080][fps<=?60][ext!=webm][vcodec!=?av1]+bestaudio/best";
+        format = "bestvideo[height<=?1080][fps<=?60]+bestaudio/best";
       };
     };
   };
