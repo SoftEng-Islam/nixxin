@@ -55,7 +55,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # 3- Lastly, in your terminal enter this command `sudo waydroid init -f`
   # https://sourceforge.net/projects/waydroid/files/images/
   # https://sourceforge.net/projects/waydroid/files/images/vendor/waydroid_x86_64/
-  # wget  https://netix.dl.sourceforge.net/project/waydroid/images/vendor/waydroid_x86_64/lineage-20.0-20250809-MAINLINE-waydroid_x86_64-vendor.zip?viasf=1
+  # wget https://netix.dl.sourceforge.net/project/waydroid/images/vendor/waydroid_x86_64/lineage-20.0-20250809-MAINLINE-waydroid_x86_64-vendor.zip?viasf=1
   # wget https://sourceforge.net/projects/waydroid/files/images/system/lineage/waydroid_x86_64/lineage-18.1-20250201-GAPPS-waydroid_x86_64-system.zip/download
 
   # Additional configurations and notes:
