@@ -1,6 +1,10 @@
 { settings, lib, config, pkgs, ... }:
 let inherit (lib) mkIf;
 in mkIf (settings.modules.data_transferring.aria.enable or true) {
+  # ----- The manual of aria2 -----
+  # https://aria2.github.io/manual/en/html/aria2c.html
+
+  # ----- The configuration of aria2 -----
   home-manager.users.${settings.user.username} = {
     home.file.".config/aria2/aria2.conf".text = lib.mkForce ''
       # Continue downloading a partially downloaded file.
@@ -14,7 +18,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # Save error/unfinished downloads to a file specified by --save-session option every SEC seconds. If 0 is given, file will be saved only when aria2 exits. Default: 0
       save-session-interval=60
       # Set the maximum number of parallel downloads for every queue item. See also the --split option. Default: 5
-      max-concurrent-downloads=5
+      max-concurrent-downloads=2
       # Set max overall download speed in bytes/sec. 0 means unrestricted. Default: 0
       max-overall-download-limit=0
       # Set max download speed per each download in bytes/sec. 0 means unrestricted. Default: 0
@@ -24,7 +28,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
 
       ### Advanced ###
       # Restart download from scratch if the corresponding control file doesn't exist. Default: false
-      allow-overwrite=true
+      allow-overwrite=false
       # If false is given, aria2 aborts download when a piece length is different from one in a control file. If true is given, you can proceed but some download progress will be lost. Default: false
       allow-piece-length-change=true
       # Always resume download. If true is given, aria2 always tries to resume download and if resume is not possible, aborts download. If false is given, when all given URIs do not support resume or aria2 encounters N URIs which does not support resume, aria2 downloads file from scratch. Default: true
@@ -74,13 +78,19 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
 
       ### HTTP/FTP/SFTP ###
       # The maximum number of connections to one server for each download. Default: 1
-      max-connection-per-server=16
+      max-connection-per-server=4
       # aria2 does not split less than 2*SIZE byte range. Possible Values: 1M -1024M. Default: 20M
-      min-split-size=8M
+      min-split-size=20M
       # Download a file using N connections. The number of connections to the same host is restricted by the --max-connection-per-server option. Default: 5
-      split=32
+      split=5
       # Set user agent for HTTP(S) downloads. Default: aria2/$VERSION, $VERSION is replaced by package version.
       user-agent=Transmission/2.77
+
+      remove-control-file=false
+      auto-save-interval=30
+      max-tries=50
+      retry-wait=6
+      timeout=120
     '';
   };
 
