@@ -75,7 +75,17 @@ in {
         "xhci_pci"
       ];
     };
-    kernelModules = _system.boot.kernelModules ++ [ "acpi_cpufreq" ];
+    kernelModules = _system.boot.kernelModules ++ [
+      "acpi_cpufreq"
+      "ip_tables"
+      "iptable_filter"
+      "iptable_nat"
+      "nf_nat"
+      "nf_conntrack"
+      "x_tables"
+      "xt_conntrack"
+      "xt_MASQUERADE"
+    ];
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
     extraModulePackages = [
