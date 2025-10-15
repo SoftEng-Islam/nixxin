@@ -24,7 +24,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # Set max download speed per each download in bytes/sec. 0 means unrestricted. Default: 0
       max-download-limit=0
       # Make aria2 quiet (no console output). Default: false
-      quiet=true
+      quiet=false
 
       ### Advanced ###
       # Restart download from scratch if the corresponding control file doesn't exist. Default: false
@@ -34,7 +34,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
       # Always resume download. If true is given, aria2 always tries to resume download and if resume is not possible, aborts download. If false is given, when all given URIs do not support resume or aria2 encounters N URIs which does not support resume, aria2 downloads file from scratch. Default: true
       always-resume=true
       # Enable asynchronous DNS. Default: true
-      async-dns=false
+      async-dns=true
       # Rename file name if the same file already exists. This option works only in HTTP(S)/FTP download. Default: true
       auto-file-renaming=true
       # Handle quoted string in Content-Disposition header as UTF-8 instead of ISO-8859-1, for example, the filename parameter, but not the extended version filename. Default: false
@@ -55,7 +55,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
 
       ### RPC ###
       # Enable JSON-RPC/XML-RPC server. Default: false
-      enable-rpc=true
+      enable-rpc=false
       # Pause download after added. This option is effective only when --enable-rpc=true is given. Default: false
       # pause=false
       # Save the uploaded torrent or metalink meta data in the directory specified by --dir option. If false is given to this option, the downloads added will not be saved by --save-session option. Default: true
