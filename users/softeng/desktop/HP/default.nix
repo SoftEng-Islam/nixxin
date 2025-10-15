@@ -370,7 +370,7 @@
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
-  modules.networking.nftables.enable = false; # Use nftables instead of iptables
+  modules.networking.nftables.enable = true;
 
   # [Office]
   modules.office.siyuan = true;

@@ -264,7 +264,6 @@ in {
     ipset # Administration tool for IP sets
     ipcalc # Simple IP network calculator
     bind # Domain name server
-    nftables # The project that aims to replace the existing {ip,ip6,arp,eb}tables framework
     dhcpcd # A client for the Dynamic Host Configuration Protocol (DHCP)
     dhcping # Send DHCP request to find out if a DHCP server is running
 
@@ -273,9 +272,11 @@ in {
 
     hostapd # A user space daemon for access point and authentication servers
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux
-    # iptables # A program to configure the Linux IP packet filtering ruleset
 
+    nftables # The project that aims to replace the existing {ip,ip6,arp,eb}tables framework
+    # iptables # A program to configure the Linux IP packet filtering ruleset
     # iptables-legacy # A program to configure the Linux IP packet filtering ruleset
+
     iw # Tool to use nl80211
     networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
     routedns # DNS stub resolver, proxy and router
