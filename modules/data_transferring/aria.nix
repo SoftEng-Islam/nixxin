@@ -78,7 +78,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or true) {
 
       ### HTTP/FTP/SFTP ###
       # The maximum number of connections to one server for each download. Default: 1
-      max-connection-per-server=8
+      max-connection-per-server=1
       # aria2 does not split less than 2*SIZE byte range. Possible Values: 1M -1024M. Default: 20M
       min-split-size=20M
       # Download a file using N connections. The number of connections to the same host is restricted by the --max-connection-per-server option. Default: 5
