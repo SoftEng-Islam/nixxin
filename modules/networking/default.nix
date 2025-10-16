@@ -275,7 +275,7 @@ in {
 
     # nftables # The project that aims to replace the existing {ip,ip6,arp,eb}tables framework
     iptables # A program to configure the Linux IP packet filtering ruleset
-    # iptables-legacy # A program to configure the Linux IP packet filtering ruleset
+    iptables-legacy # A program to configure the Linux IP packet filtering ruleset
 
     iw # Tool to use nl80211
     networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
