@@ -8,8 +8,8 @@
         # embed-chapters = true;
         sponsorblock-mark = "all";
         # downloader = lib.getExe pkgs.aria2;
-        # downloader = "aria2c";
-        # downloader-args = "aria2c:'-c -x8 -s8 -j1 -k1024M'";
+        downloader = "aria2c";
+        downloader-args = "aria2c:'-c -x8 -s8 -j1 -k1024M'";
         cookies-from-browser = "chrome";
         format = "bestvideo[height<=?1080][fps<=?60]+bestaudio/best";
       };
