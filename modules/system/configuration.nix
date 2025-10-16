@@ -77,19 +77,20 @@ in {
     };
     kernelModules = _system.boot.kernelModules ++ [
       "acpi_cpufreq"
-      # "ip_tables"
-      # "iptable_filter"
-      # "iptable_nat"
-      # "nf_nat"
-      # "nf_conntrack"
-      # "x_tables"
-      # "xt_conntrack"
-      # "xt_MASQUERADE"
+      "ip_tables"
+      "iptable_filter"
+      "iptable_nat"
+      "nf_nat"
+      "nf_conntrack"
+      "x_tables"
+      "xt_conntrack"
+      "xt_MASQUERADE"
     ];
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
     extraModulePackages = [
-      pkgs.iptables-nftables-compat
+      pkgs.iptables
+      pkgs.iptables-legacy
       # config.hardware.nvidia.package
       # config.boot.kernelPackages.v4l2loopback
       # pkgs.snd-hda-codec-realtek
