@@ -89,7 +89,7 @@ in {
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
     extraModulePackages = [
-      "iptables"
+      pkgs.iptables-nftables-compat
       # config.hardware.nvidia.package
       # config.boot.kernelPackages.v4l2loopback
       # pkgs.snd-hda-codec-realtek

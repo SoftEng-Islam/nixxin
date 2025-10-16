@@ -25,7 +25,7 @@ let
 in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
-  virtualisation = { waydroid.enable = true; };
+  virtualisation.waydroid.enable = true;
 
   # ----------------------------------------------
   # ---- LXD
@@ -218,10 +218,19 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
   ];
   environment.systemPackages = with pkgs; [
-    waydroid # Waydroid is a container-based approach to boot a full Android system on a regular GNU/Linux system like Nixos
-    wl-clipboard
+    (pkgs.waydroid.overrideAttrs (old: {
+      postInstall = (old.postInstall or "") + ''
+        substituteInPlace $out/lib/waydroid/data/scripts/waydroid-net.sh \
+          --replace "iptables " "iptables-nft " \
+          --replace "iptables-save" "iptables-nft-save" \
+          --replace "iptables-restore" "iptables-nft-restore"
+      '';
+    }))
     waydroid-ui
     weston
+
+    wl-clipboard
+
     (writeShellScriptBin "waydroid-choose-gpu" ''
       lspci="$(lspci -nn | grep '\[03')" # https://pci-ids.ucw.cz/read/PD/03
 
