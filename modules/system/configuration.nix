@@ -90,7 +90,7 @@ in {
       ++ [ "k10temp" ];
     extraModulePackages = [
       pkgs.iptables
-      pkgs.iptables-legacy
+      # pkgs.iptables-legacy
       # config.hardware.nvidia.package
       # config.boot.kernelPackages.v4l2loopback
       # pkgs.snd-hda-codec-realtek
