@@ -350,7 +350,7 @@
   modules.media.music = false;
 
   # [Networking]
-  modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
+  modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [ "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
