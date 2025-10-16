@@ -7,7 +7,9 @@
         # embed-metadata = true;
         # embed-chapters = true;
         sponsorblock-mark = "all";
-        downloader = lib.getExe pkgs.aria2;
+        # downloader = lib.getExe pkgs.aria2;
+        downloader = "aria2c";
+        downloader-args = "aria2c:'-c -x8 -s8 -k1M'";
         cookies-from-browser = "chrome";
         format = "bestvideo[height<=?1080][fps<=?60]+bestaudio/best";
       };
