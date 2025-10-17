@@ -4,18 +4,21 @@ let
     patches = (old.patches or [ ]) ++ [
       (pkgs.writeText "waydroid-net-nft.patch" ''
         diff --git a/data/scripts/waydroid-net.sh b/data/scripts/waydroid-net.sh
+        index 1111111..2222222 100755
         --- a/data/scripts/waydroid-net.sh
         +++ b/data/scripts/waydroid-net.sh
-        @@ -1,6 +1,9 @@
+        @@ -1,6 +1,11 @@
         #!/bin/bash
         # Waydroid network setup script
         #
         -LXC_USE_NFT=false
         +LXC_USE_NFT=true
         +
-        +# Force nft backend for iptables
+        +# Force nft backend for iptables compatibility
         +export IPTABLES=iptables-nft
         +export IP6TABLES=ip6tables-nft
+        +
+        +echo "Waydroid networking configured to use nftables backend."
       '')
     ];
   });
