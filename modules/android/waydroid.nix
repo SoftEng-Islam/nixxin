@@ -233,25 +233,25 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Use the patched version of waydroid
   virtualisation.waydroid.package = myWaydroid;
 
-  systemd.services.waydroid-container = {
-    description = "Waydroid Container";
-    wantedBy = [ "multi-user.target" ];
-    path = with pkgs; [
-      getent
-      iptables
-      iproute2
-      kmod
-      nftables
-      util-linux
-      which
-    ];
-    unitConfig = { ConditionPathExists = "/var/lib/waydroid/lxc/waydroid"; };
-    serviceConfig = {
-      ExecStart = "${pkgs.waydroid}/bin/waydroid -w container start";
-      ExecStop = "${pkgs.waydroid}/bin/waydroid container stop";
-      ExecStopPost = "${pkgs.waydroid}/bin/waydroid session stop";
-    };
-  };
+  # systemd.services.waydroid-container = {
+  #   description = "Waydroid Container";
+  #   wantedBy = [ "multi-user.target" ];
+  #   path = with pkgs; [
+  #     getent
+  #     iptables
+  #     iproute2
+  #     kmod
+  #     nftables
+  #     util-linux
+  #     which
+  #   ];
+  #   unitConfig = { ConditionPathExists = "/var/lib/waydroid/lxc/waydroid"; };
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.waydroid}/bin/waydroid -w container start";
+  #     ExecStop = "${pkgs.waydroid}/bin/waydroid container stop";
+  #     ExecStopPost = "${pkgs.waydroid}/bin/waydroid session stop";
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     # waydroid
