@@ -13,6 +13,7 @@ in {
   ];
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = with pkgs;
-      [ notion-app trilium-desktop gnome-pomodoro ] ++ lib.flatten _pkgs;
+      [ notion-app-enhanced trilium-desktop gnome-pomodoro ]
+      ++ lib.flatten _pkgs;
   };
 }
