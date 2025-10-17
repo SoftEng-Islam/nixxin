@@ -12,6 +12,7 @@ in {
     ./lout.nix
   ];
   config = mkIf (settings.modules.office.enable or false) {
-    environment.systemPackages = lib.flatten _pkgs;
+    environment.systemPackages = with pkgs;
+      [ notion-app trilium-desktop ] ++ lib.flatten _pkgs;
   };
 }
