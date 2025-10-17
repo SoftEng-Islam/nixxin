@@ -11,14 +11,14 @@
         downloader = "aria2c";
         downloader-args = "aria2c:'-c -x8 -s8 -j3 -k1024M'";
         cookies-from-browser = "chrome";
-        format = "bestvideo[height<=1080][fps<=?60]+bestaudio/best";
-        extraConfig = ''
-          -f "bestvideo[height<=1080]+bestaudio/best"
-          --cookies
-          --abort-on-unavailable-fragments
-          --abort-on-error
-        '';
+        # format = "bestvideo[height<=1080][fps<=?60]+bestaudio/best";
       };
+      extraConfig = ''
+        -f "bestvideo[height<=1080]+bestaudio/best"
+        --cookies
+        --abort-on-unavailable-fragments
+        --abort-on-error
+      '';
     };
   };
   environment.systemPackages = with pkgs; [ aria2 ];
