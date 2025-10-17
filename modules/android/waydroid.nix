@@ -1,26 +1,12 @@
 { settings, lib, pkgs, ... }:
 let
   myWaydroid = pkgs.waydroid.overrideAttrs (old: {
-    patches = (old.patches or [ ]) ++ [
-      (pkgs.writeText "waydroid-net-nft.patch" ''
-        diff --git a/data/scripts/waydroid-net.sh b/data/scripts/waydroid-net.sh
-        index 1111111..2222222 100755
-        --- a/data/scripts/waydroid-net.sh
-        +++ b/data/scripts/waydroid-net.sh
-        @@ -1,6 +1,11 @@
-        #!/bin/bash
-        # Waydroid network setup script
-        #
-        -LXC_USE_NFT=false
-        +LXC_USE_NFT=true
-        +
-        +# Force nft backend for iptables compatibility
-        +export IPTABLES=iptables-nft
-        +export IP6TABLES=ip6tables-nft
-        +
-        +echo "Waydroid networking configured to use nftables backend."
-      '')
-    ];
+    postPatch = (old.postPatch or "") + ''
+      echo ">> Forcing nftables in waydroid-net.sh..."
+      substituteInPlace data/scripts/waydroid-net.sh \
+        --replace "LXC_USE_NFT=false" "LXC_USE_NFT=true" \
+        --replace "# Waydroid network setup script" "# Waydroid network setup script\nexport IPTABLES=iptables-nft\nexport IP6TABLES=ip6tables-nft"
+    '';
   });
   waydroid-ui = pkgs.writeShellScriptBin "waydroid-ui" ''
     export WAYLAND_DISPLAY=wayland-0
