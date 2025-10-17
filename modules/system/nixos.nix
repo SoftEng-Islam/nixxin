@@ -268,6 +268,7 @@ in {
     # NIXPKGS_ALLOW_BROKEN = "1"; # allow broken packages to be installed.
     # NIXPKGS_ALLOW_UNFREE_OVERLAYS = "1"; # allow unfree overlays to be used.
     # NIXPKGS_ALLOW_BROKEN_OVERLAYS = "1"; # allow broken overlays to be used.
+    NIXPKGS_ALLOW_UNSUPPORTED_SYSTEM = "1";
   };
 
   home-manager.users.${settings.user.username} = {
