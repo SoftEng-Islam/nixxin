@@ -1,5 +1,27 @@
 { settings, lib, pkgs, ... }:
 let
+  myWaydroid = pkgs.waydroid.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [
+      (pkgs.writeText "waydroid-net-nft.patch" ''
+        diff --git a/lib/waydroid/data/scripts/waydroid-net.sh b/lib/waydroid/data/scripts/waydroid-net.sh
+        --- a/lib/waydroid/data/scripts/waydroid-net.sh
+        +++ b/lib/waydroid/data/scripts/waydroid-net.sh
+        @@ -1,6 +1,9 @@
+        #!/bin/bash
+        # Waydroid network setup script
+        #
+        -LXC_USE_NFT=false
+        +LXC_USE_NFT=true
+        +
+        +# Force nft backend for iptables
+        +export IPTABLES=iptables-nft
+        +export IP6TABLES=ip6tables-nft
+      '')
+    ];
+
+    # optional: make sure dependencies like nftables are available in PATH
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.nftables ];
+  });
   waydroid-ui = pkgs.writeShellScriptBin "waydroid-ui" ''
     export WAYLAND_DISPLAY=wayland-0
     ${pkgs.weston}/bin/weston -Swayland-1 --width=600 --height=1000 --shell="kiosk-shell.so" &
@@ -208,6 +230,8 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
 
   virtualisation.lxc.enable = true;
+  # Use the patched version of waydroid
+  virtualisation.waydroid.package = myWaydroid;
 
   systemd.services.waydroid-container = {
     description = "Waydroid Container";
@@ -230,7 +254,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   environment.systemPackages = with pkgs; [
-    waydroid
+    # waydroid
     waydroid-ui
     weston
     wl-clipboard
