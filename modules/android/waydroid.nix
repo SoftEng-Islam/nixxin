@@ -3,9 +3,9 @@ let
   myWaydroid = pkgs.waydroid.overrideAttrs (old: {
     patches = (old.patches or [ ]) ++ [
       (pkgs.writeText "waydroid-net-nft.patch" ''
-        diff --git a/lib/waydroid/data/scripts/waydroid-net.sh b/lib/waydroid/data/scripts/waydroid-net.sh
-        --- a/lib/waydroid/data/scripts/waydroid-net.sh
-        +++ b/lib/waydroid/data/scripts/waydroid-net.sh
+        diff --git a/data/scripts/waydroid-net.sh b/data/scripts/waydroid-net.sh
+        --- a/data/scripts/waydroid-net.sh
+        +++ b/data/scripts/waydroid-net.sh
         @@ -1,6 +1,9 @@
         #!/bin/bash
         # Waydroid network setup script
@@ -18,9 +18,6 @@ let
         +export IP6TABLES=ip6tables-nft
       '')
     ];
-
-    # optional: make sure dependencies like nftables are available in PATH
-    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.nftables ];
   });
   waydroid-ui = pkgs.writeShellScriptBin "waydroid-ui" ''
     export WAYLAND_DISPLAY=wayland-0
