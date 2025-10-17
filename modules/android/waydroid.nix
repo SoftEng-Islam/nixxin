@@ -217,7 +217,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     path = with pkgs; [
       getent
       iptables
-      iproute
+      iproute2
       kmod
       nftables
       util-linux
