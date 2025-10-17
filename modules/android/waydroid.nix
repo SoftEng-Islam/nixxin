@@ -203,10 +203,28 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
+  systemd.tmpfiles.rules = [
+    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
+  ];
+
+  virtualisation.lxc.enable = true;
+
   systemd.services.waydroid-container = {
     description = "Waydroid Container";
 
     wantedBy = [ "multi-user.target" ];
+
+    path = with pkgs; [
+      getent
+      iptables
+      iproute
+      kmod
+      nftables
+      util-linux
+      which
+    ];
+
+    unitConfig = { ConditionPathExists = "/var/lib/waydroid/lxc/waydroid"; };
 
     serviceConfig = {
       ExecStart = "${pkgs.waydroid}/bin/waydroid -w container start";
@@ -214,9 +232,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       ExecStopPost = "${pkgs.waydroid}/bin/waydroid session stop";
     };
   };
-  systemd.tmpfiles.rules = [
-    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
-  ];
+
   environment.systemPackages = with pkgs; [
     waydroid
     waydroid-ui
