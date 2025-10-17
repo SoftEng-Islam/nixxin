@@ -211,9 +211,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   systemd.services.waydroid-container = {
     description = "Waydroid Container";
-
     wantedBy = [ "multi-user.target" ];
-
     path = with pkgs; [
       getent
       iptables
@@ -223,9 +221,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       util-linux
       which
     ];
-
     unitConfig = { ConditionPathExists = "/var/lib/waydroid/lxc/waydroid"; };
-
     serviceConfig = {
       ExecStart = "${pkgs.waydroid}/bin/waydroid -w container start";
       ExecStop = "${pkgs.waydroid}/bin/waydroid container stop";
