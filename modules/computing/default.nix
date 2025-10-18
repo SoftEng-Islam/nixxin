@@ -7,6 +7,7 @@ in {
 
   config = mkIf (settings.modules.computing.enable) {
     environment.systemPackages = with pkgs; [
+      inputs.nixos-opencl.packages.${system}.clvk
       # Portable abstraction of hierarchical architectures for high-performance computing
       (hwloc.override { x11Support = true; })
       ocl-icd

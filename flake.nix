@@ -12,6 +12,9 @@
     # nixGL.inputs.nixpkgs.follows = "nixpkgs";
     # nixGL.inputs.flake-utils.follows = "flake-utils";
 
+    nixos-opencl.url = "git+https://github.com/kpet/clvk.git?submodules=1";
+    nixos-opencl.flake = false;
+
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
