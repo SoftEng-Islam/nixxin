@@ -1,4 +1,4 @@
-{ stdenv, lib, fetchgit, cmake, python3, git, pkg-config, llvmPackages }:
+{ pkgs, stdenv, lib, fetchgit, cmake, python3, git, pkg-config, llvmPackages }:
 
 stdenv.mkDerivation rec {
   pname = "clvk-git";
