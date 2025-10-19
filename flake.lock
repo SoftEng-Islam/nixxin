@@ -188,6 +188,22 @@
         "type": "github"
       }
     },
+    "nixos-opencl": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1740319904,
+        "narHash": "sha256-5kPINf9jruSKDG7SUCLxZYDzzQYa1YzLByq1xe5NhTo=",
+        "ref": "refs/heads/main",
+        "rev": "981bd02290a6b5fc68a0101d8f1b0550a5207111",
+        "revCount": 17,
+        "type": "git",
+        "url": "https://github.com/Snektron/nixos-opencl"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/Snektron/nixos-opencl"
+      }
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1748929857,
@@ -226,6 +242,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
+        "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_2",
         "systems": "systems_3"
       }
