@@ -29,45 +29,19 @@ let
     # gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
     # gsettings set org.gnome.desktop.interface font-name ${fontName}
 
-    # ---- hyprpolkitagent for Hyprland ---- #
-    systemctl --user start hyprpolkitagent
-    # ${
-      inputs.hyprpolkitagent.packages.${pkgs.system}.hyprpolkitagent
-    }/libexec/hyprpolkitagent"
-    # ${pkgs.hyprpolkitagent}/libexec/hyprpolkitagent
-
-    # ---- hyprpolkitagent for Hyprland with uwsm ---- #
-    # systemctl --user enable --now hyprpolkitagent.service
 
     # Core components (authentication, lock screen, notification daemon)
     ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
-    # ---- polkit-gnome ---- #
-    # ${pkgs.polkit_gnome}/polkit-gnome-authentication-agent-1
-
-
     # ---- notification daemon ---- #
-    # dunst &
     swaync &
 
-    # ---- Make nautilus Run in Background ---- #
-    # nautilus --no-desktop &
-
-    rm -rf ~/.cache/thumbnails/*
-    nautilus -q
-
     # ---- DBUS ---- #
-    # ${pkgs.dbus}/bin/dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     # kill active portals and restart them
-    $scriptsDir/PortalHyprland-NixOS.sh
+    # $scriptsDir/PortalHyprland-NixOS.sh
 
-    # ---- hyprlock ---- #
-    # ${pkgs.hyprlock}/bin/hyprlock
-
-    # ---- Input Method ---- #
-    #${pkgs.fcitx5}/bin/fcitx5
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
@@ -77,9 +51,6 @@ let
     hyprctl setcursor ${settings.common.cursor.name} ${
       toString settings.common.cursor.size
     }
-
-    # ---- Hyprland Fix ---- #3
-    # hyprpm reload
 
     # ---- Apps To Start ---- #
     # telegram-desktop -startintray

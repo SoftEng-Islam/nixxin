@@ -37,7 +37,6 @@
           "col.active_border" = "$primary";
 
           snap = { enabled = true; };
-
         };
         "ecosystem:no_update_news" = true;
         "ecosystem:no_donation_nag" = true;
