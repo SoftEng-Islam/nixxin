@@ -7,10 +7,10 @@ stdenv.mkDerivation rec {
 
   src = fetchgit {
     url = "https://github.com/kpet/clvk.git";
-    rev = "refs/heads/main";
+    rev = "main";
     fetchSubmodules = true;
+    sha256 = "sha256-TKmtbVBeu1hHoff+E5dkmcb5p8JaXUNv6Sg8lH/bSSQ=";
   };
-
   nativeBuildInputs = [ cmake pkg-config python3 ];
 
   buildInputs = with llvmPackages_19;
