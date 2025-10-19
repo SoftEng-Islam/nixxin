@@ -7,7 +7,7 @@ stdenv.mkDerivation rec {
 
   src = fetchgit {
     url = "https://github.com/kpet/clvk.git";
-    rev = "main";
+    rev = "refs/heads/main";
     fetchSubmodules = true;
   };
 
