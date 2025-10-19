@@ -41,7 +41,9 @@
           ];
         };
       };
-
+      # --- Packages ---
+      packages.${settings.system.architecture}.clvk =
+        pkgs.callPackage ./pkgs/clvk.nix { inherit pkgs; };
     };
 
 }
