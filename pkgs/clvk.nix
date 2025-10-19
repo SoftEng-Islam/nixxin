@@ -1,51 +1,39 @@
-{ lib, stdenv, fetchgit, cmake, config, python3, pkg-config, spirv-tools
-, spirv-headers, vulkan-headers, vulkan-loader, llvmPackages_19, pkgs, ... }:
+{ stdenv, lib, fetchgit, cmake, python3, git, pkg-config, llvmPackages }:
 
 stdenv.mkDerivation rec {
-  pname = "clvk";
-  version = "git";
+  pname = "clvk-git";
+  version = "unstable";
 
   src = fetchgit {
     url = "https://github.com/kpet/clvk.git";
     rev = "main";
-    fetchSubmodules = true;
+    fetchSubmodules = true; # keep this
     sha256 = "sha256-TKmtbVBeu1hHoff+E5dkmcb5p8JaXUNv6Sg8lH/bSSQ=";
   };
-  nativeBuildInputs = [ cmake pkg-config python3 ];
 
-  buildInputs = with llvmPackages_19;
-    with pkgs; [
-      llvm
-      clang-unwrapped
-      vulkan-headers
-      vulkan-loader
-      spirv-tools
-      spirv-headers
-    ];
+  nativeBuildInputs = [ cmake python3 git pkg-config ];
+  buildInputs = [ llvmPackages.clang llvmPackages.llvm ];
 
-  patchPhase = ''
-    echo "Disabling CLVK's internal fetch_sources.py network fetch..."
-    substituteInPlace external/clspv/utils/fetch_sources.py \
-      --replace "git clone" "echo SKIP git clone"
+  # run the fetch_sources.py script before CMake
+  preConfigure = ''
+    echo ">>> Running CLVK dependency fetch script..."
+    cd external/clspv
+    ${python3}/bin/python3 utils/fetch_sources.py
+    cd ../../
   '';
 
-  cmakeFlags = [
-    "-DCLVK_USE_SYSTEM_SPIRV_HEADERS=ON"
-    "-DCLVK_USE_SYSTEM_SPIRV_TOOLS=ON"
-    "-DCLVK_BUILD_TESTS=OFF"
-  ];
-
+  cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Release" ];
   installPhase = ''
     mkdir -p $out/bin
-    cp -r bin include lib $out/ || true
+    cp -r bin/* $out/bin || true
+    cp -r lib/* $out/lib || true
   '';
 
   meta = with lib; {
-    description =
-      "An implementation of OpenCL for Vulkan using clspv and Vulkan compute";
+    description = "OpenCL over Vulkan implementation (CLVK)";
     homepage = "https://github.com/kpet/clvk";
-    license = licenses.asl20;
-    maintainers = [ maintainers.yourname or "SoftEng-Islam" ];
+    license = licenses.mit;
+    maintainers = [ maintainers.example ];
     platforms = platforms.linux;
   };
 }
