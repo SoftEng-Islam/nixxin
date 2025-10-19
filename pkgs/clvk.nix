@@ -1,39 +1,55 @@
-{ pkgs, stdenv, lib, fetchgit, cmake, python3, git, pkg-config, llvmPackages }:
+{ pkgs, stdenv, lib, cmake, python3, llvmPackages, fetchFromGitHub }:
 
 stdenv.mkDerivation rec {
   pname = "clvk-git";
   version = "unstable";
 
-  src = fetchgit {
-    url = "https://github.com/kpet/clvk.git";
-    rev = "main";
-    fetchSubmodules = true; # keep this
-    sha256 = "sha256-TKmtbVBeu1hHoff+E5dkmcb5p8JaXUNv6Sg8lH/bSSQ=";
+  src = fetchFromGitHub {
+    owner = "kpet";
+    repo = "clvk";
+    rev = "7a0e432e9d3c3f882a28b60469b928d17ce4d4e1"; # main at 2025-10
+    hash = "sha256-TKmtbVBeu1hHoff+E5dkmcb5p8JaXUNv6Sg8lH/bSSQ=";
   };
 
-  nativeBuildInputs = with pkgs; [ cmake python3 git pkg-config ];
-  buildInputs = with pkgs; [ llvmPackages.clang llvmPackages.llvm ];
+  # Pre-fetch the clspv dependency manually
+  clspvSrc = fetchFromGitHub {
+    owner = "google";
+    repo = "clspv";
+    rev = "refs/tags/v2025.1"; # latest known stable
+    hash =
+      "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # fix with nix-prefetch-url
+  };
 
-  # run the fetch_sources.py script before CMake
+  nativeBuildInputs = with pkgs; [
+    cmake
+    python3
+    llvmPackages.llvm
+    llvmPackages.clang
+  ];
+
   preConfigure = ''
-    echo ">>> Running CLVK dependency fetch script..."
-    cd external/clspv
-    ${pkgs.python3}/bin/python3 utils/fetch_sources.py
-    cd ../../
+    echo "Injecting clspv source..."
+    rm -rf external/clspv
+    cp -r ${clspvSrc} external/clspv
   '';
 
-  cmakeFlags = [ "-DCMAKE_BUILD_TYPE=Release" ];
+  buildInputs = with pkgs.llvmPackages_19;
+    with pkgs; [
+      llvm
+      clang-unwrapped
+      vulkan-headers
+      vulkan-loader
+    ];
+
   installPhase = ''
     mkdir -p $out/bin
-    cp -r bin/* $out/bin || true
-    cp -r lib/* $out/lib || true
+    cp bin/clvk $out/bin/
   '';
 
-  meta = with lib; {
-    description = "OpenCL over Vulkan implementation (CLVK)";
+  meta = {
+    description = "OpenCL implementation on Vulkan using clspv";
     homepage = "https://github.com/kpet/clvk";
-    license = licenses.mit;
-    maintainers = [ maintainers.example ];
-    platforms = platforms.linux;
+    license = lib.licenses.asl20;
+    maintainers = [ ];
   };
 }
