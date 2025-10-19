@@ -2,10 +2,8 @@
 let inherit (lib) optionals mkIf;
 in {
   # "pocl" OR "opencl"
-  imports = optionals (settings.modules.computing.enable) [
-    (./. + "/${settings.modules.computing.default}.nix")
-    ./clvk.nix
-  ];
+  imports = optionals (settings.modules.computing.enable)
+    [ (./. + "/${settings.modules.computing.default}.nix") ];
 
   config = mkIf (settings.modules.computing.enable) {
     environment.systemPackages = with pkgs; [
