@@ -1,5 +1,5 @@
-{ lib, stdenv, fetchgit, cmake, python3, pkg-config, spirv-tools, spirv-headers
-, vulkan-headers, vulkan-loader, llvmPackages_19, pkgs, ... }:
+{ lib, stdenv, fetchgit, cmake, config, python3, pkg-config, spirv-tools
+, spirv-headers, vulkan-headers, vulkan-loader, llvmPackages_19, pkgs, ... }:
 
 stdenv.mkDerivation rec {
   pname = "clvk";
