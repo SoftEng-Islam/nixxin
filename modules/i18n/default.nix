@@ -64,12 +64,7 @@ in {
     inputMethod = {
       enable = true;
       type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
-      fcitx5.addons = with pkgs; [
-        fcitx5-unikey
-        fcitx5-with-addons
-        fcitx5-configtool
-        fcitx5-gtk
-      ];
+      fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-configtool fcitx5-fluent ];
       fcitx5.settings.addons = { pinyin.globalSection.EmojiEnabled = "True"; };
       fcitx5.waylandFrontend = true;
     };
