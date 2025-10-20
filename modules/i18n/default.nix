@@ -2,6 +2,28 @@
 let
   inherit (lib) mkIf;
   _i18n = settings.modules.i18n;
+
+  _fcitx5_with_addons =
+    pkgs.fcitx5-with-addons.override { addons = with pkgs; [ fcitx5-gtk ]; };
+
+  gtk2_cache = pkgs.runCommand "gtk2-immodule.cache" {
+    preferLocalBuild = true;
+    allowSubstitutes = false;
+    buildInputs = [ pkgs.gtk2 _fcitx5_with_addons ];
+  } ''
+    mkdir -p $out/etc/gtk-2.0/
+    GTK_PATH=${_fcitx5_with_addons}/lib/gtk-2.0/ gtk-query-immodules-2.0 > $out/etc/gtk-2.0/immodules.cache
+  '';
+
+  gtk3_cache = pkgs.runCommand "gtk3-immodule.cache" {
+    preferLocalBuild = true;
+    allowSubstitutes = false;
+    buildInputs = [ pkgs.gtk3 _fcitx5_with_addons ];
+  } ''
+    mkdir -p $out/etc/gtk-3.0/
+    GTK_PATH=${_fcitx5_with_addons}/lib/gtk-3.0/ gtk-query-immodules-3.0 > $out/etc/gtk-3.0/immodules.cache
+  '';
+
 in {
   # -------------------------------- #
   # Internationalisation & Time Zone
@@ -39,7 +61,6 @@ in {
       LC_TIME = _i18n.defaultLocale;
       LC_ALL = _i18n.defaultLocale;
     };
-    # Configure Input Method (IBus for GNOME)
     inputMethod = {
       enable = true;
       type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
@@ -49,10 +70,8 @@ in {
         fcitx5-configtool
         fcitx5-gtk
       ];
-      # ibus.engines = [
-      #   "m17n:en"  # English (US)
-      #   "m17n:ara"     # Arabic using m17n engine
-      # ];
+      fcitx5.settings.addons = { pinyin.globalSection.EmojiEnabled = "True"; };
+      fcitx5.waylandFrontend = true;
     };
   };
 
@@ -108,31 +127,35 @@ in {
       "fdf6e3"
     ];
   };
-  # IBus Daemon as a User Service
-  systemd.services.ibus-daemon = {
-    enable = true;
-    description = "IBus Input Method Framework Daemon";
-    restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
-    serviceConfig = {
-      ExecStart = "${pkgs.ibus}/bin/ibus-daemon --xim --daemonize";
-      Restart = "on-failure"; # Restart only on failure
-    };
-    wantedBy = [ "default.target" ]; # Ensures it starts on user session login
-  };
-  # Include IBus in System Packages
+
+  # # IBus Daemon as a User Service
+  # systemd.services.ibus-daemon = {
+  #   enable = true;
+  #   description = "IBus Input Method Framework Daemon";
+  #   restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
+  #   serviceConfig = {
+  #     ExecStart = "${pkgs.ibus}/bin/ibus-daemon --xim --daemonize";
+  #     Restart = "on-failure"; # Restart only on failure
+  #   };
+  #   wantedBy = [ "default.target" ]; # Ensures it starts on user session login
+  # };
+
   environment.systemPackages = with pkgs; [
-    fcitx5
-    fcitx5-skk-qt
-    fcitx5-m17n
-    fcitx5-configtool
-    fcitx5-fluent
-    fcitx5-gtk
+    gtk2_cache
+    gtk3_cache
+
+    # fcitx5
+    # fcitx5-skk-qt
+    # fcitx5-m17n
+    # fcitx5-configtool
+    # fcitx5-fluent
+    # fcitx5-gtk
 
     # ibus
     # ibus-engines.m17n
     # ibus-theme-tools
     # ibus-with-plugins
 
-    glibcLocales
+    # glibcLocales
   ];
 }
