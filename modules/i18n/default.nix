@@ -76,13 +76,9 @@ in {
       fcitx5.settings = {
         # Global fcitx5 settings
         globalOptions = {
-          # 🔤 Switch between input methods using Alt+Shift
-          SwitchInputMethod = "Alt+Shift";
-          # Optional: Reverse direction with Shift+Alt
-          SwitchInputMethodReverse = "Shift+Alt";
-
-          # Optional: toggle fcitx on/off if you want
-          ActivateInputMethod = "Ctrl+alt";
+          SwitchInputMethod = [ "Alt+Shift" ];
+          SwitchInputMethodReverse = [ "Shift+Alt" ];
+          ActivateInputMethod = [ "Ctrl+alt" ];
         };
 
         # Input method order
