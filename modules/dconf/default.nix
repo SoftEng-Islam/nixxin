@@ -142,15 +142,15 @@ mkIf (settings.modules.dconf.enable or true) {
         maximum-size = 2048;
       };
 
-      "org/gnome/mutter" = {
-        center-new-windows = true;
-        check-alive-timeout = 0;
-        dynamic-workspaces = false;
-        edge-tiling = true;
-        experimental-features = "['scale-monitor-framebuffer']";
-        num-workspaces = 6;
-        workspaces-only-on-primary = true;
-      };
+      # "org/gnome/mutter" = {
+      #   center-new-windows = true;
+      #   check-alive-timeout = 0;
+      #   dynamic-workspaces = false;
+      #   edge-tiling = true;
+      #   experimental-features = "['scale-monitor-framebuffer']";
+      #   num-workspaces = 6;
+      #   workspaces-only-on-primary = true;
+      # };
 
       # gsettings reset org.gnome.desktop.input-sources sources
       # gsettings get org.gnome.desktop.input-sources sources
