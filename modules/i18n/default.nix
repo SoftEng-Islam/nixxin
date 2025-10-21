@@ -82,7 +82,7 @@ in {
           SwitchInputMethodReverse = "Shift+Alt";
 
           # Optional: toggle fcitx on/off if you want
-          ActivateInputMethod = "Ctrl+space";
+          ActivateInputMethod = "Ctrl+alt";
         };
 
         # Input method order
