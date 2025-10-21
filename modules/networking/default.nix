@@ -218,25 +218,25 @@ in {
     # Syntax: <element>=<fg>,<bg>
     NEWT_COLORS = ''
       root=default,default
-      border=black,lightgray
-      window=white,lightgray
+      border=black,gray
+      window=white,gray
       shadow=white,black
-      title=black,lightgray
-      label=black,lightgray
-      listbox=black,lightgray
-      actlistbox=black,lightgray
-      helpline=black,lightgray
+      title=black,gray
+      label=black,gray
+      listbox=black,gray
+      actlistbox=black,gray
+      helpline=black,gray
       button=black,green
       actbutton=black,blue
       checkbox=black,blue
       actcheckbox=black,blue
       entry=black,blue
-      textbox=black,blue
-      acttextbox=black,blue
-      roottext=black,blue
-      disentry=black,blue
-      actsellistbox=black,blue
-      sellistbox=black,blue
+      textbox=black,green
+      acttextbox=black,green
+      roottext=black,green
+      disentry=black,green
+      actsellistbox=black,green
+      sellistbox=black,green
     '';
   };
 

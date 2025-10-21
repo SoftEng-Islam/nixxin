@@ -2,28 +2,6 @@
 let
   inherit (lib) mkIf;
   _i18n = settings.modules.i18n;
-
-  _fcitx5_with_addons =
-    pkgs.fcitx5-with-addons.override { addons = with pkgs; [ fcitx5-gtk ]; };
-
-  gtk2_cache = pkgs.runCommand "gtk2-immodule.cache" {
-    preferLocalBuild = true;
-    allowSubstitutes = false;
-    buildInputs = [ pkgs.gtk2 _fcitx5_with_addons ];
-  } ''
-    mkdir -p $out/etc/gtk-2.0/
-    GTK_PATH=${_fcitx5_with_addons}/lib/gtk-2.0/ gtk-query-immodules-2.0 > $out/etc/gtk-2.0/immodules.cache
-  '';
-
-  gtk3_cache = pkgs.runCommand "gtk3-immodule.cache" {
-    preferLocalBuild = true;
-    allowSubstitutes = false;
-    buildInputs = [ pkgs.gtk3 _fcitx5_with_addons ];
-  } ''
-    mkdir -p $out/etc/gtk-3.0/
-    GTK_PATH=${_fcitx5_with_addons}/lib/gtk-3.0/ gtk-query-immodules-3.0 > $out/etc/gtk-3.0/immodules.cache
-  '';
-
 in {
   # -------------------------------- #
   # Internationalisation & Time Zone
@@ -61,59 +39,17 @@ in {
       LC_TIME = _i18n.defaultLocale;
       LC_ALL = _i18n.defaultLocale;
     };
-    inputMethod = {
-      enable = true;
-      type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
-      fcitx5.addons = with pkgs; [
-        fcitx5-m17n
-        fcitx5-gtk
-        fcitx5-configtool
-        fcitx5-fluent
-      ];
-      fcitx5.settings.addons = { pinyin.globalSection.EmojiEnabled = "True"; };
-      fcitx5.waylandFrontend = true;
-      # Declarative configuration
-      fcitx5.settings = {
-        # Global fcitx5 settings
-        globalOptions = {
-          SwitchInputMethod = [ "Alt+Shift" ];
-          SwitchInputMethodReverse = [ "Shift+Alt" ];
-          ActivateInputMethod = [ "Ctrl+alt" ];
-        };
-
-        # Input method order
-        inputMethod = { "GroupOrder" = "keyboard-us;m17n:ar"; };
-      };
-
-    };
   };
 
-  # Environment Variables for Input Method
-  # See https://fcitx-im.org/wiki/Using_Fcitx_5_on_Wayland
-  # https://fcitx-im.org/wiki/Setup_Fcitx_5
   environment.variables = {
-    # Wayland-native input frontend
-    INPUT_METHOD = "fcitx";
-
-    # Support for XWayland apps
-    QT_IM_MODULE = "fcitx";
-    XMODIFIERS = "@im=fcitx";
-
     # Do NOT set GTK_IM_MODULE (avoids that warning)
-    GTK_IM_MODULE = lib.mkForce "fcitx";
+    # GTK_IM_MODULE = lib.mkForce "";
 
     # Defines the system language.
     LANG = _i18n.defaultLocale;
-  };
 
-  # systemd.user.services.fcitx5 = {
-  #   description = "Fcitx5 IME";
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.fcitx5}/bin/fcitx5";
-  #     Restart = "always";
-  #   };
-  #   wantedBy = [ "default.target" ];
-  # };
+    GLFW_IM_MODULE = "ibus"; # fallback for some games
+  };
 
   # Configure Virtual Console
   console = {
@@ -141,34 +77,4 @@ in {
     ];
   };
 
-  # # IBus Daemon as a User Service
-  # systemd.services.ibus-daemon = {
-  #   enable = true;
-  #   description = "IBus Input Method Framework Daemon";
-  #   restartIfChanged = false; # Prevent unnecessary restarts during rebuild.
-  #   serviceConfig = {
-  #     ExecStart = "${pkgs.ibus}/bin/ibus-daemon --xim --daemonize";
-  #     Restart = "on-failure"; # Restart only on failure
-  #   };
-  #   wantedBy = [ "default.target" ]; # Ensures it starts on user session login
-  # };
-
-  environment.systemPackages = with pkgs; [
-    gtk2_cache
-    gtk3_cache
-
-    # fcitx5
-    # fcitx5-skk-qt
-    # fcitx5-m17n
-    # fcitx5-configtool
-    # fcitx5-fluent
-    # fcitx5-gtk
-
-    # ibus
-    # ibus-engines.m17n
-    # ibus-theme-tools
-    # ibus-with-plugins
-
-    # glibcLocales
-  ];
 }

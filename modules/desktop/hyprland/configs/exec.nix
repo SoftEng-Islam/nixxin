@@ -5,7 +5,6 @@ let
     }";
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
-
     #* ---- Set `GTK_THEME` Env Variable ---- #
     export GTK_THEME=${settings.common.gtk.GTK_THEME}
 
@@ -29,7 +28,6 @@ let
     # gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
     # gsettings set org.gnome.desktop.interface font-name ${fontName}
 
-
     # Core components (authentication, lock screen, notification daemon)
     ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
 
@@ -41,7 +39,6 @@ let
     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     # kill active portals and restart them
     # $scriptsDir/PortalHyprland-NixOS.sh
-
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store
