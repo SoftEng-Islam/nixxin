@@ -64,9 +64,31 @@ in {
     inputMethod = {
       enable = true;
       type = "fcitx5"; # "ibus", "fcitx5", "nabi", "uim", "hime", "kime"
-      fcitx5.addons = with pkgs; [ fcitx5-gtk fcitx5-configtool fcitx5-fluent ];
+      fcitx5.addons = with pkgs; [
+        fcitx5-m17n
+        fcitx5-gtk
+        fcitx5-configtool
+        fcitx5-fluent
+      ];
       fcitx5.settings.addons = { pinyin.globalSection.EmojiEnabled = "True"; };
       fcitx5.waylandFrontend = true;
+      # Declarative configuration
+      fcitx5.settings = {
+        # Global fcitx5 settings
+        globalOptions = {
+          # 🔤 Switch between input methods using Alt+Shift
+          SwitchInputMethod = "Alt+Shift";
+          # Optional: Reverse direction with Shift+Alt
+          SwitchInputMethodReverse = "Shift+Alt";
+
+          # Optional: toggle fcitx on/off if you want
+          ActivateInputMethod = "Ctrl+space";
+        };
+
+        # Input method order
+        inputMethod = { "GroupOrder" = "keyboard-us;m17n:ar"; };
+      };
+
     };
   };
 
