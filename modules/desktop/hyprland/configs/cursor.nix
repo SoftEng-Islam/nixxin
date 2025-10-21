@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.cursor = {
-        no_hardware_cursors = false;
+        no_hardware_cursors = true;
         enable_hyprcursor = false;
         warp_on_change_workspace = true;
 
@@ -13,10 +13,10 @@
         inactive_timeout = 2;
 
         # minimum refresh rate for cursor movement when no_break_fs_vrr is active. Set to minimum supported refresh rate or higher
-        min_refresh_rate = 35;
+        # min_refresh_rate = 35;
 
         # Hides the cursor when you press any key until the mouse is moved.
-        hide_on_key_press = true;
+        # hide_on_key_press = true;
       };
     };
   };

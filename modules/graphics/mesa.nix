@@ -20,7 +20,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # Rusticl OpenCL
     RUSTICL_CL_VERSION = "3.0";
     RUSTICL_DEVICE_TYPE = "gpu";
-    RUSTICL_ENABLE = "swrast:0";
+    RUSTICL_ENABLE = "radeonsi";
 
     # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
     # RUSTICL_FEATURES = "fp64";
