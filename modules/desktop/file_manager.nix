@@ -23,7 +23,8 @@
 
       # "small" or "small-plus" or "medium" or "large" or "extra-large"
       "org/gnome/nautilus/icon-view" = {
-        default-zoom-level = settings.modules.dconf.icons.icon_view_size;
+        default-zoom-level =
+          settings.modules.desktop.dconf.icons.icon_view_size;
       };
 
       "org/gtk/gtk4/settings/file-chooser" = {

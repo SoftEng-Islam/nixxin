@@ -23,7 +23,7 @@ let
     # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
 
     gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
-    # gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.dconf.colorScheme}
+    # gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.desktop.dconf.colorScheme}
     # gsettings set org.gnome.desktop.interface cursor-theme ${settings.common.cursor.name}
     # gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
     # gsettings set org.gnome.desktop.interface font-name ${fontName}
