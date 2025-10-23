@@ -1,5 +1,6 @@
 { settings, lib, pkgs, ... }: {
   imports = lib.optionals (settings.modules.desktop.enable or true) [
+    ./dconf.nix
     ./keyring.nix
     ./polkit.nix
     ./ashell

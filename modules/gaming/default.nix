@@ -2,7 +2,7 @@
 let
   inherit (lib) mkIf;
   _pkgs = [
-    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
+    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-unwrapped)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
   ];
 in {

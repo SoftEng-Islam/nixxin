@@ -1,24 +1,4 @@
-{ settings, lib, pkgs, ... }:
-let
-  # find /nix/store -name "*nautilus-env*"
-  # tree -L 2 /nix/store/xxxxxxxxxxxxxxxxx-nautilus-env
-  # nautilus-env = pkgs.buildEnv {
-  #   name = "nautilus-env";
-  #   paths = with pkgs; [
-  #     (pkgs.writeShellScriptBin "nautilus" ''
-  #       export GST_PLUGIN_PATH_1_0="/run/current-system/sw/lib/gstreamer-1.0"
-  #       export GST_PLUGIN_SYSTEM_PATH_1_0="${pkgs.gst_all_1.gstreamer}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-vaapi}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-rs}/lib/gstreamer-1.0:${pkgs.pipewire}/lib/gstreamer-1.0:${pkgs.pulseeffects-legacy}/lib/gstreamer-1.0"
-  #       exec ${pkgs.nautilus}/bin/nautilus "$@"
-  #     '')
-  #     nautilus-python
-  #     nautilus-open-any-terminal
-  #   ];
-  # };
-in {
-
-  # ---- nautilus-open-any-terminal ---- #
-  # programs.nautilus-open-any-terminal.enable = true;
-  # programs.nautilus-open-any-terminal.terminal = settings.modules.terminals.default.terminal.name;
+{ settings, lib, pkgs, ... }: {
 
   # Required by gnome file managers
   programs.file-roller.enable = true;
@@ -51,14 +31,6 @@ in {
         show-hidden = true;
       };
     };
-
-    # home.file = {
-    #   "Templates/new".text = "";
-    #   "Templates/new.cfg".text = "";
-    #   "Templates/new.ini".text = "";
-    #   "Templates/new.sh".text = "";
-    #   "Templates/new.txt".text = "";
-    # };
   };
 
   # helps with GIO-based file access
@@ -95,8 +67,6 @@ in {
     zip # Compressor/archiver for creating and modifying zipfiles
     xz
 
-    # Our File Manager
-    # nautilus-env
     nautilus
 
     # Collection of GSettings schemas for settings shared by various components of a desktop
@@ -114,21 +84,6 @@ in {
 
     # Desktop-neutral user information store, search tool and indexer
     tinysparql
-
-    # Quick previewer for Nautilus
-    sushi
-
-    # Graphical interface for version control intended to run on gnome and nautilus
-    # turtle
-
-    # File indexing for Nautilus search
-    # tracker
-
-    # Backend implementation for xdg-desktop-portal for the GNOME desktop environment
-    xdg-desktop-portal-gnome
-
-    # A really easy way to scan both documents and photos.
-    simple-scan
 
     # thumbnails
     gst_all_1.gst-libav

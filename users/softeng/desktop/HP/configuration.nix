@@ -16,7 +16,6 @@
     ../../../../modules/community
     ../../../../modules/computing
     ../../../../modules/data_transferring
-    ../../../../modules/dconf
     ../../../../modules/desktop
     ../../../../modules/development
     ../../../../modules/emails

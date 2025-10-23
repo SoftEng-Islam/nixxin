@@ -6,30 +6,29 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      gtk2.configLocation =
-        "/home/${settings.user.username}/.config/gtk-2.0/gtkrc";
+      # gtk2.configLocation = "/home/${settings.user.username}/.config/gtk-2.0/gtkrc";
       theme = {
         name = settings.common.gtk.theme;
         package = settings.common.gtk.package;
       };
       gtk3 = {
-        bookmarks = [
-          "file:///home/${settings.user.username}/Downloads"
-          "file:///home/${settings.user.username}/Documents"
-          "file:///home/${settings.user.username}/Pictures"
-          "file:///home/${settings.user.username}/Music"
-          "file:///home/${settings.user.username}/Videos"
-          # "file:///home/${settings.user.username}/Dev"
-          # "file:///home/${settings.user.username}/GitHub"
-          # "file:///home/${settings.user.username}/.config"
-          # "file:///mnt/Windows"
-        ];
-        extraCss = ''
-          headerbar, .titlebar,
-          .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
-            border-radius: 0;
-          }
-        '';
+        # bookmarks = [
+        #   "file:///home/${settings.user.username}/Downloads"
+        #   "file:///home/${settings.user.username}/Documents"
+        #   "file:///home/${settings.user.username}/Pictures"
+        #   "file:///home/${settings.user.username}/Music"
+        #   "file:///home/${settings.user.username}/Videos"
+        #   # "file:///home/${settings.user.username}/Dev"
+        #   # "file:///home/${settings.user.username}/GitHub"
+        #   # "file:///home/${settings.user.username}/.config"
+        #   # "file:///mnt/Windows"
+        # ];
+        # extraCss = ''
+        #   headerbar, .titlebar,
+        #   .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
+        #     border-radius: 0;
+        #   }
+        # '';
       };
     };
     qt = {
@@ -53,7 +52,7 @@ in {
     QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
 
     # fix old GTK3 applications
-    GDK_GL = "gles";
+    # GDK_GL = "gles";
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff

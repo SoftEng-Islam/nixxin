@@ -77,7 +77,7 @@
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   # [ GTK ]
   common.gtk.theme = "adw-gtk3-dark";
-  common.gtk.icon_cache = false;
+  common.gtk.icon_cache = true;
   common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
   # [ QT ]
@@ -120,7 +120,6 @@
   modules.users.enable = true;
   modules.data_transferring.enable = true;
   modules.hacking.enable = true;
-  modules.dconf.enable = true;
   modules.env.enable = true;
   modules.desktop.enable = true;
   modules.media.enable = true;
@@ -216,13 +215,6 @@
   # [ Hacking ]
   modules.hacking.hashcat.enable = true;
 
-  # Dconf
-  # $ dconf read /org/gnome/desktop/interface/color-scheme
-  modules.dconf.colorScheme = "prefer-dark";
-  modules.dconf.icons.nameInDark = common.icons.nameInDark;
-  # "small" or "small-plus" or "medium" or "large" or "extra-large"
-  modules.dconf.icons.icon_view_size = "large"; # Set icons size for nautilus.
-
   # [ Development ]
   modules.development.zedEditor = true;
   modules.development.emacs = true;
@@ -240,6 +232,12 @@
   modules.desktop.ashell.enable = true;
   modules.desktop.tools = false;
   modules.desktop.xdg.enable = true;
+  # $ dconf read /org/gnome/desktop/interface/color-scheme
+  modules.desktop.dconf.colorScheme = "prefer-dark";
+  modules.desktop.dconf.icons.nameInDark = common.icons.nameInDark;
+  # "small" or "small-plus" or "medium" or "large" or "extra-large"
+  modules.desktop.dconf.icons.icon_view_size =
+    "large"; # Set icons size for nautilus.
 
   # [Emails]
   modules.emails.thunderbird = true;
