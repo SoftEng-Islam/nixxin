@@ -11,17 +11,17 @@ in {
         package = settings.common.gtk.package;
       };
       gtk3 = {
-        # bookmarks = [
-        #   "file:///home/${settings.user.username}/Downloads"
-        #   "file:///home/${settings.user.username}/Documents"
-        #   "file:///home/${settings.user.username}/Pictures"
-        #   "file:///home/${settings.user.username}/Music"
-        #   "file:///home/${settings.user.username}/Videos"
-        #   # "file:///home/${settings.user.username}/Dev"
-        #   # "file:///home/${settings.user.username}/GitHub"
-        #   # "file:///home/${settings.user.username}/.config"
-        #   # "file:///mnt/Windows"
-        # ];
+        bookmarks = [
+          "file:///home/${settings.user.username}/Downloads"
+          "file:///home/${settings.user.username}/Documents"
+          "file:///home/${settings.user.username}/Pictures"
+          "file:///home/${settings.user.username}/Music"
+          "file:///home/${settings.user.username}/Videos"
+          # "file:///home/${settings.user.username}/Dev"
+          # "file:///home/${settings.user.username}/GitHub"
+          # "file:///home/${settings.user.username}/.config"
+          # "file:///mnt/Windows"
+        ];
         # extraCss = ''
         #   headerbar, .titlebar,
         #   .csd:not(.popup):not(tooltip):not(messagedialog) decoration{
