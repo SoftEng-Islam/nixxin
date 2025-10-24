@@ -6,7 +6,6 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      # gtk2.configLocation = "/home/${settings.user.username}/.config/gtk-2.0/gtkrc";
       theme = {
         name = settings.common.gtk.theme;
         package = settings.common.gtk.package;
