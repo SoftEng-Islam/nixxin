@@ -80,7 +80,7 @@ in with lib.gvariant; {
         clock-show-date = true;
         clock-show-seconds = false;
         clock-show-weekday = true;
-        color-scheme = settings.modules.dconf.colorScheme;
+        color-scheme = settings.modules.desktop.dconf.colorScheme;
         cursor-blink = true;
         cursor-blink-time = 500;
         cursor-blink-timeout = 10;
