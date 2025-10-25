@@ -8,16 +8,16 @@ let
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
-    # Fix nvidia-texture-tools build error for 0ad
     nixpkgs.overlays = [
-      # Patch nvidia-texture-tools CMake version
       (final: prev: {
         nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {
           postPatch = ''
             echo ">>> Fixing CMake minimum version in nvidia-texture-tools ..."
+            # Match both "2.6" and "2.8" or any similar low version
             sed -i '1s/cmake_minimum_required *(VERSION [0-9.]\+)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt
           '';
 
+          # Add the required policy flag to CMake
           cmakeFlags = (old.cmakeFlags or [ ])
             ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
         });
