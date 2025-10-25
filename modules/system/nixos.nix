@@ -101,6 +101,7 @@ in {
     autoUpgrade.dates = "daily";
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot or true;
     autoUpgrade.channel = settings.system.upgrade.channel;
+    autoUpgrade.operation = "switch";
     autoUpgrade.flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
     stateVersion = settings.system.stateVersion;
   };
