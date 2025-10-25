@@ -10,13 +10,6 @@ in {
   config = mkIf (settings.modules.gaming.enable) {
     # Fix nvidia-texture-tools build error for 0ad
     nixpkgs.overlays = [
-      # Force 0 A.D. to use SDL2 instead of SDL3
-      (final: prev: {
-        zeroad = prev.zeroad.override {
-          sdl2 = prev.SDL2; # force SDL2 backend
-        };
-      })
-
       # Patch nvidia-texture-tools CMake version
       (final: prev: {
         nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {

@@ -79,7 +79,7 @@
       windowrule = opacity 0.90 override 0.85 override,class:(Wezterm)
 
       # --------------------
-      # 0ad rules
+      # 0 A.D. rules
       # --------------------
       windowrule = noborder,class:^(0ad)$
       windowrule = nodim,class:^(0ad)$
