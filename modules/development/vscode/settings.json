@@ -1,0 +1,345 @@
+{
+  "[conf]": {
+    "editor": {
+      "formatOnSave": false
+    }
+  },
+  "[css]": {
+    "editor": {
+      "defaultFormatter": "esbenp.prettier-vscode"
+    }
+  },
+  "[javascript]": {
+    "editor": {
+      "defaultFormatter": "esbenp.prettier-vscode"
+    }
+  },
+  "[json]": {
+    "editor": {
+      "defaultFormatter": "vscode.json-language-features"
+    }
+  },
+  "[jsonc]": {
+    "editor": {
+      "defaultFormatter": "vscode.json-language-features"
+    }
+  },
+  "[nix]": {
+    "editor": {
+      "defaultFormatter": "jnoortheen.nix-ide",
+      "formatOnSave": true,
+      "inlayHints": {
+        "enabled": "on"
+      },
+      "insertSpaces": true,
+      "tabSize": 2
+    }
+  },
+  "[shellscript]": {
+    "editor": {
+      "defaultFormatter": "foxundermoon.shell-format"
+    }
+  },
+  "[typescript]": {
+    "editor": {
+      "defaultFormatter": "esbenp.prettier-vscode"
+    }
+  },
+  "[typescriptreact]": {
+    "editor": {
+      "defaultFormatter": "esbenp.prettier-vscode"
+    }
+  },
+  "application": {
+    "shellEnvironmentResolutionTimeout": 60
+  },
+  "better-comments": {
+    "highlightPlainText": true
+  },
+  "breadcrumbs": {
+    "showArrays": false,
+    "showBooleans": false,
+    "showClasses": false,
+    "showConstants": false,
+    "showConstructors": false,
+    "showEnumMembers": false,
+    "showEnums": false,
+    "showEvents": false,
+    "showFields": false,
+    "showFunctions": false,
+    "showInterfaces": false,
+    "showKeys": false,
+    "showMethods": false,
+    "showModules": false,
+    "showNamespaces": false,
+    "showNull": false,
+    "showNumbers": false,
+    "showObjects": false,
+    "showPackages": false,
+    "showProperties": false,
+    "showStrings": false,
+    "showStructs": false,
+    "showTypeParameters": false,
+    "showVariables": false
+  },
+  "css": {
+    "lint": {
+      "unknownAtRules": "ignore"
+    }
+  },
+  "debug": {
+    "allowBreakpointsEverywhere": true
+  },
+  "diffEditor": {
+    "ignoreTrimWhitespace": false
+  },
+  "editor": {
+    "bracketPairColorization": {
+      "independentColorPoolPerBracketType": true
+    },
+    "cursorBlinking": "expand",
+    "cursorSmoothCaretAnimation": "explicit",
+    "cursorWidth": 3,
+    "fontFamily": "'CaskaydiaCove Nerd Font','JetBrainsMono Nerd Font'",
+    "fontLigatures": true,
+    "fontSize": 14,
+    "fontWeight": "bold",
+    "formatOnPaste": true,
+    "formatOnSave": true,
+    "inlineSuggest": {
+      "syntaxHighlightingEnabled": true
+    },
+    "lineHeight": 25,
+    "minimap": {
+      "enabled": false
+    },
+    "mouseWheelZoom": true,
+    "occurrencesHighlight": "off",
+    "renderWhitespace": "all",
+    "smoothScrolling": true,
+    "suggest": {
+      "localityBonus": true
+    },
+    "tabSize": 4
+  },
+  "evenBetterToml": {
+    "formatter": {
+      "alignComments": false
+    }
+  },
+  "explorer": {
+    "confirmDelete": false,
+    "confirmDragAndDrop": false,
+    "confirmPasteNative": false
+  },
+  "extensions": {
+    "autoCheckUpdates": true,
+    "autoUpdate": false
+  },
+  "files": {
+    "associations": {
+      "*.css": "css"
+    },
+    "autoSave": "off",
+    "insertFinalNewline": true,
+    "trimFinalNewlines": true,
+    "trimTrailingWhitespace": true
+  },
+  "git": {
+    "autofetch": true,
+    "confirmSync": false
+  },
+  "gitlens": {
+    "codeLens": {
+      "enabled": false
+    },
+    "defaultDateFormat": "YYYY-MM-DD HH:mm",
+    "defaultDateLocale": "system",
+    "defaultDateShortFormat": "YYYY-M-D",
+    "defaultTimeFormat": "HH:mm",
+    "statusBar": {
+      "enabled": false
+    },
+    "views": {
+      "repositories": {
+        "showContributors": false,
+        "showStashes": true,
+        "showTags": false,
+        "showWorktrees": false
+      }
+    }
+  },
+  "html": {
+    "format": {
+      "wrapLineLength": 0
+    }
+  },
+  "indentRainbow": {
+    "colors": [
+      "rgba(151,208,90,0.59)",
+      "rgba(89,152,127,0.75)",
+      "rgba(182,173,61,0.79)",
+      "rgba(166,51,125,0.89)",
+      "rgba(148,236,61,0.54)",
+      "rgba(203,64,240,0.75)",
+      "rgba(238,214,137,1.0)"
+    ],
+    "indicatorStyle": "light",
+    "lightIndicatorStyleLineWidth": 2
+  },
+  "intelephense": {},
+  "javascript": {
+    "inlayHints": {
+      "variableTypes": {
+        "suppressWhenTypeMatchesName": true
+      }
+    }
+  },
+  "javascript.format.semicolons": "insert",
+  "javascript.inlayHints.enumMemberValues.enabled": true,
+  "javascript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "javascript.inlayHints.parameterNames.enabled": "none",
+  "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName": true,
+  "javascript.inlayHints.parameterTypes.enabled": true,
+  "javascript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "javascript.inlayHints.variableTypes.enabled": true,
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "less": {
+    "lint": {
+      "unknownAtRules": "ignore"
+    }
+  },
+  "nix": {
+    "enableLanguageServer": true,
+    "formatterPath": "nixfmt",
+    "serverPath": "nixd"
+  },
+  "nix.hiddenLanguageServerErrors": [
+    "textDocument/didSave",
+    "textDocument/definition",
+    "textDocument/completion",
+    "textDocument/documentSymbol",
+    "workspace/didChangeWatchedFiles"
+  ],
+  "nix.serverSettings": {
+    "formatting": {
+      "command": [
+        "nixfmt"
+      ]
+    },
+    "nixpkgs": {
+      "expr": "import <nixpkgs> { }"
+    }
+  },
+  "notebook": {
+    "breadcrumbs": {
+      "showCodeCells": false
+    }
+  },
+  "rust-analyzer": {
+    "rustfmt": {
+      "overrideCommand": null
+    }
+  },
+  "scm": {
+    "showHistoryGraph": false
+  },
+  "scss": {
+    "lint": {
+      "unknownAtRules": "ignore"
+    }
+  },
+  "search": {
+    "seedWithNearestWord": true
+  },
+  "security": {
+    "workspace": {
+      "trust": {
+        "banner": "never",
+        "untrustedFiles": "open"
+      }
+    }
+  },
+  "tabnine": {
+    "experimentalAutoImports": true
+  },
+  "terminal": {
+    "explorerKind": "external",
+    "integrated": {
+      "cursorBlinking": true,
+      "cursorStyle": "line",
+      "cursorStyleInactive": "line",
+      "cursorWidth": 2,
+      "defaultProfile": {
+        "linux": "zsh"
+      },
+      "enableImages": true,
+      "enableMultiLinePasteWarning": "never",
+      "environmentChangesRelaunch": false,
+      "fontFamily": "CaskaydiaCove Nerd Font",
+      "fontLigatures": true,
+      "fontSize": 14,
+      "fontWeight": "bold",
+      "gpuAcceleration": "on",
+      "smoothScrolling": true
+    }
+  },
+  "typescript": {
+    "inlayHints": {
+      "parameterNames": {
+        "suppressWhenArgumentMatchesName": true
+      },
+      "variableTypes": {
+        "suppressWhenTypeMatchesName": true
+      }
+    }
+  },
+  "typescript.format.semicolons": "insert",
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "typescript.inlayHints.functionLikeReturnTypes.enabled": true,
+  "typescript.inlayHints.parameterNames.enabled": "none",
+  "typescript.inlayHints.parameterTypes.enabled": true,
+  "typescript.inlayHints.propertyDeclarationTypes.enabled": true,
+  "typescript.inlayHints.variableTypes.enabled": true,
+  "update": {
+    "mode": "manual",
+    "showReleaseNotes": false
+  },
+  "vite": {
+    "autoStart": false,
+    "https": false
+  },
+  "window": {
+    "autoDetectColorScheme": true,
+    "menuBarVisibility": "toggle",
+    "zoomLevel": 1
+  },
+  "workbench": {
+    "colorCustomizations": {
+      "statusBar": {
+        "background": "#2a2a2a",
+        "border": "#94854eee"
+      }
+    },
+    "colorTheme": "One Dark Pro Darker",
+    "editor": {
+      "enablePreview": true,
+      "highlightModifiedTabs": true
+    },
+    "iconTheme": "material-icon-theme",
+    "list": {
+      "smoothScrolling": true
+    },
+    "preferredLightColorTheme": "Material Night Eighties",
+    "settings": {
+      "openDefaultKeybindings": true
+    },
+    "sideBar": {
+      "location": "right"
+    },
+    "startupEditor": "none",
+    "tips": {
+      "enabled": true
+    }
+  }
+}
