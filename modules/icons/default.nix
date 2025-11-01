@@ -10,7 +10,7 @@ in mkIf (settings.modules.icons.enable or true) {
       papirus-icon-theme = prev.papirus-icon-theme.overrideAttrs (old: {
         fixupPhase = ''
           # settings
-          color=orange
+          color=yellow
           THEME_DIR=$out/share/icons/Papirus
 
           # see change_color
