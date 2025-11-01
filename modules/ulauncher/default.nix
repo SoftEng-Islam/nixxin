@@ -30,10 +30,10 @@ in {
           source = ./config;
         };
       };
-      home.file = {
-        ".config/ulauncher/scripts.json".source =
-          ./ulauncher-custom-scripts/config/scripts.json;
-      };
+      # home.file = {
+      #   ".config/ulauncher/scripts.json".source =
+      #     ./config/extensions/ulauncher-custom-scripts/config/scripts.json;
+      # };
     };
   };
 }
