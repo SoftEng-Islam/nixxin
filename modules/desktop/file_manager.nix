@@ -12,6 +12,30 @@
   services.gvfs.enable = true; # Mount, trash, and other functionalities
   services.gvfs.package = pkgs.gnome.gvfs;
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      __dontExport = true; # avoids polluting package set
+
+      gnome = prev.gnome // {
+        nautilus = prev.gnome.nautilus.overrideAttrs (old: rec {
+          preFixup = with prev;
+            let py = python3.withPackages (ps: with ps; [ ps.pygobject3 ]);
+            in ''
+              gappsWrapperArgs+=(
+                # Thumbnailers
+                --prefix XDG_DATA_DIRS : "${gdk-pixbuf}/share"
+                --prefix XDG_DATA_DIRS : "${librsvg}/share"
+                --prefix XDG_DATA_DIRS : "${shared-mime-info}/share"
+
+                # Python bindings for Nautilus extensions
+                --prefix PYTHONPATH : ${py}/${py.sitePackages}
+              )
+            '';
+        });
+      };
+    })
+  ];
+
   home-manager.users.${settings.user.username} = {
     programs.dircolors = { enable = true; };
     dconf.settings = {

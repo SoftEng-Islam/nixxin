@@ -26,7 +26,7 @@
 }
 .item-name {
   color: @textColor;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .selected.item-box {
@@ -39,7 +39,7 @@
 }
 .selected.item-box .item-name {
   color: @textColor;
-  font-size: 1.2rem;
+  font-size: 1.0rem;
 }
 
 .item-shortcut {
@@ -47,7 +47,7 @@
 }
 .selected.item-box .item-shortcut {
   color: @accentColor;
-  font-size: 1.1rem;
+  font-size: 1.0rem;
 }
 
 .selected.item-box {

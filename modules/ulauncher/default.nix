@@ -1,39 +1,42 @@
+# modules/ulauncher/default.nix
+# ==============================================================================
+# Ulauncher Application Launcher Configuration
+# ==============================================================================
 { settings, config, lib, pkgs, ... }:
-let inherit (lib) mkIf;
+let ulauncher_config = ./config;
 in {
-  # imports = mkIf (settings.modules.ulauncher.enable) [ ./extensions.nix ];
   config = lib.optionals (settings.modules.ulauncher.enable) {
     environment.systemPackages = with pkgs; [ ulauncher ];
     home-manager.users.${settings.user.username} = {
-      # Ulauncher service configuration
+      # =============================================================================
+      # Service Configuration
+      # =============================================================================
       systemd.user.services.ulauncher = {
         Unit = {
           Description = "ulauncher application launcher service";
           Documentation = "https://ulauncher.io";
+          After = [ "graphical-session-pre.target" ];
           PartOf = [ "graphical-session.target" ];
         };
-
         Service = {
           Type = "simple";
           ExecStart =
             "${pkgs.bash}/bin/bash -lc '${pkgs.ulauncher}/bin/ulauncher --hide-window'";
-          Restart = "always";
+          Restart = "on-failure";
+          RestartSec = 3;
         };
-
-        Install.WantedBy = [ "graphical-session.target" ];
+        Install = { WantedBy = [ "graphical-session.target" ]; };
       };
 
-      # Source ulauncher configuration from this repository
+      # =============================================================================
+      # Configuration Files
+      # =============================================================================
       xdg.configFile = {
         "ulauncher" = {
           recursive = true;
-          source = ./config;
+          source = "${ulauncher_config}";
         };
       };
-      # home.file = {
-      #   ".config/ulauncher/scripts.json".source =
-      #     ./config/extensions/ulauncher-custom-scripts/config/scripts.json;
-      # };
     };
   };
 }

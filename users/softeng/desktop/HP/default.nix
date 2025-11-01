@@ -90,6 +90,9 @@
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
   common.icons.package = pkgs.papirus-icon-theme;
+  # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
+  common.icons.folder-color = "yellow";
+
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
