@@ -76,7 +76,7 @@ let
 in {
   home-manager.users.${settings.user.username} = {
     home.packages = [ changeWallpaper ];
-    home.file."Pictures/wallpapers".source = builtins.toPath ../Wallpapers;
+    # home.file."Pictures/wallpapers".source = builtins.toPath ../Wallpapers;
 
   };
   environment.systemPackages = with pkgs; [ swww ];
