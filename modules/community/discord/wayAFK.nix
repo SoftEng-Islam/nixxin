@@ -1,0 +1,1 @@
+# https://github.com/Colonial-Dev/WayAFK
