@@ -124,27 +124,27 @@
   modules.git.enable = true;
   modules.i18n.enable = true;
   modules.networking.enable = true;
-  modules.power.enable = false;
-  modules.overclock.enable = false;
+  modules.power.enable = true;
+  modules.overclock.enable = true;
   modules.office.enable = true;
   modules.icons.enable = true;
   modules.virtualization.enable = true;
   modules.zram.enable = false;
   modules.ssh.enable = false;
   modules.ai.enable = false;
-  modules.emails.enable = false;
+  modules.emails.enable = true;
   modules.notifications.enable = true;
-  modules.printing.enable = false;
+  modules.printing.enable = true;
   modules.android.enable = true;
   modules.camera.enable = false;
-  modules.recording.enable = false;
+  modules.recording.enable = true;
   modules.sound_editor.enable = false;
-  modules.windows.enable = false;
+  modules.windows.enable = true;
   modules.audio.enable = true;
   modules.gaming.enable = true;
   modules.remote_desktop.enable = false;
   modules.bluetooth.enable = false;
-  modules.community.enable = false;
+  modules.community.enable = true;
 
   # ----------------------------------------------
   # ---- Modules Configuration (Options)
@@ -273,9 +273,9 @@
   modules.graphics.blender = true;
   modules.graphics.darktable = false;
   modules.graphics.davinci = false;
-  modules.graphics.drawio = false;
-  modules.graphics.figmaLinux = false;
-  modules.graphics.gimp = false;
+  modules.graphics.drawio = true;
+  modules.graphics.figmaLinux = true;
+  modules.graphics.gimp = true;
   modules.graphics.inkscape = false;
   modules.graphics.lunacy = true;
   modules.graphics.kolourpaint = false;
