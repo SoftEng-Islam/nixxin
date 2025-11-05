@@ -22,6 +22,7 @@
     # yt-dlp.url = "github:yt-dlp/yt-dlp/master";
     # yt-dlp.flake = false;
 
+    yt-dlp-src.url = "path:./pkgs/yt-dlp";
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let

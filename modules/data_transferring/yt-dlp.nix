@@ -2,8 +2,8 @@
   home-manager.users.${settings.user.username} = {
     programs.yt-dlp = {
       enable = settings.modules.data_transferring.yt-dlp.enable or false;
-      # package = inputs.yt-dlp.packages.${pkgs.system}.default;
-      package = pkgs.yt-dlp;
+      package = inputs.yt-dlp.packages.${pkgs.system}.default;
+      # package = pkgs.yt-dlp;
 
       settings = {
         # embed-thumbnail = true;
