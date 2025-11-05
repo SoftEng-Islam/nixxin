@@ -16,9 +16,9 @@ let
     mkdir -p "$CACHE_DIR"
 
     # User-configurable time (change as needed)
-    DAYS=0
+    DAYS=1
     HOURS=0
-    MINUTES=1
+    MINUTES=0
 
     # Convert total time to seconds
     INTERVAL=$(( (DAYS*24*60*60) + (HOURS*60*60) + (MINUTES*60) ))
