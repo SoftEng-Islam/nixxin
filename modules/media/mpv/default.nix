@@ -95,10 +95,10 @@ in lib.mkIf (settings.modules.media.mpv) {
       config = {
         vo = _vo;
         gpu-api = _gpu-api;
-        gpu-context = "wayland";
+        gpu-context = "auto";
         hwdec = _hwdec; # or "no" if it fails
         hwdec-codecs = "all";
-        profile = "gpu-hq"; # good baseline
+        profile = "high-quality"; # good baseline
         fullscreen = false;
         keep-open = "yes";
         force-window = "immediate";
