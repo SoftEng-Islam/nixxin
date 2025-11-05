@@ -8,7 +8,7 @@ let
     #* ---- Set `GTK_THEME` Env Variable ---- #
     # export GTK_THEME=${settings.common.gtk.GTK_THEME}
 
-    changeWallpaper
+    changeWallpaper & disown
     sleep 1
 
     # ---- Start Ashell a status bar ---- #
