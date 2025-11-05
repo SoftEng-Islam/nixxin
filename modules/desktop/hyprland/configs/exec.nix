@@ -12,9 +12,9 @@ let
     systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP PATH
 
-    # changeWallpaper
-    ${pkgs.swww}/bin/swww-daemon --no-cache --format xrgb &
-    ${pkgs.swww}/bin/swww img ~/Pictures/desktop.png --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
+    changeWallpaper
+    # ${pkgs.swww}/bin/swww-daemon --no-cache --format xrgb &
+    # ${pkgs.swww}/bin/swww img ~/Pictures/desktop.png --transition-bezier .43,1.19,1,.4 --transition-fps 30 --transition-type grow --transition-pos 0.925,0.977 --transition-duration 2
     sleep 1
 
     # ---- Start Ashell a status bar ---- #
