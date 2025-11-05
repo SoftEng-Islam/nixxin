@@ -5,7 +5,7 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     flake-utils.url = "github:numtide/flake-utils";
     yt-dlp-src = {
-      url = "github:yt-dlp/yt-dl";
+      url = "github:yt-dlp/yt-dlp";
       flake = false;
     };
   };
