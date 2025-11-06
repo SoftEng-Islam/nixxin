@@ -22,6 +22,9 @@
     # yt-dlp.url = "github:yt-dlp/yt-dlp/master";
     # yt-dlp.flake = false;
 
+    ashell.url = "github:MalpenZibo/ashell";
+    ashell.flake = true;
+
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
   };
   outputs = { self, nixpkgs, ... }@inputs:

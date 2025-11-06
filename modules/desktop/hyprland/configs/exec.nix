@@ -3,6 +3,7 @@ let
   fontName = "${settings.modules.fonts.main.name} ${
       toString settings.modules.fonts.main.size.main
     }";
+  ashell = inputs.ashell.packages.${pkgs.system}.default;
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     #* ---- Set `GTK_THEME` Env Variable ---- #
@@ -12,7 +13,8 @@ let
     sleep 1
 
     # ---- Start Ashell a status bar ---- #
-    ${pkgs.ashell}/bin/ashell
+
+    ${ashell}/bin/ashell
 
     # ---- DBUS ---- #
     systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
