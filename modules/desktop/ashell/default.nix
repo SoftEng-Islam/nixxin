@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }:
+{ settings, inputs, lib, pkgs, ... }:
 lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   home-manager.users.${settings.user.username} = {
     xdg.configFile."ashell/config.toml".text = ''
