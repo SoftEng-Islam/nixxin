@@ -102,10 +102,10 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       [keyboard_layout.labels]
       "English (US)" = "🇺🇸"
       "Arabic (EG)" = "🇸🇦"
+      "French (FR)" = "🇫🇷"
       # "Russian" = "🇷🇺"
       # "Italian" = "🇮🇹"
       # "Spanish" = "🇪🇸"
-      # "French" = "🇫🇷"
       # "German" = "🇩🇪"
 
       # The system module configuration
