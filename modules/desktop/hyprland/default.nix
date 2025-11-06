@@ -7,7 +7,7 @@ in {
     ./configs/cursor.nix
     ./configs/decoration.nix
     ./configs/env.nix
-    ./configs/exec.nix
+    (import ./configs/exec.nix { inherit pkgs inputs; })
     ./configs/general.nix
     ./configs/gestures.nix
 
