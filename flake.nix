@@ -1,13 +1,13 @@
 {
-  description = "NIXXIN Configs.";
+  description = "NIXXIN Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
+    flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # flake-utils.url = "github:numtide/flake-utils";
     # nixGL.url = "github:nix-community/nixGL";
     # nixGL.inputs.nixpkgs.follows = "nixpkgs";
     # nixGL.inputs.flake-utils.follows = "flake-utils";
@@ -18,9 +18,6 @@
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
-
-    # yt-dlp.url = "github:yt-dlp/yt-dlp/master";
-    # yt-dlp.flake = false;
 
     ashell.url = "github:MalpenZibo/ashell";
     ashell.flake = true;
@@ -50,9 +47,5 @@
           ];
         };
       };
-      # --- Packages ---
-      # packages.${settings.system.architecture}.clvk =
-      #   pkgs.callPackage ./pkgs/clvk.nix { inherit pkgs; };
     };
-
 }

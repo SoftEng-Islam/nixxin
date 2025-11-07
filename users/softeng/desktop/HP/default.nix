@@ -179,7 +179,7 @@
   # [ Community ]
   modules.community.telegram.enable = true;
   modules.community.ferdium.enable = false;
-  modules.community.discord.enable = false;
+  modules.community.discord.enable = true;
   modules.community.mumble.enable = false;
   modules.community.revolt.enable = false;
   modules.community.signal.enable = false;

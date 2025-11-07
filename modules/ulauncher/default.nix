@@ -23,7 +23,7 @@ in {
           ExecStart =
             "${pkgs.bash}/bin/bash -lc '${pkgs.ulauncher}/bin/ulauncher --hide-window'";
           Restart = "always";
-          RestartSec = 3;
+          RestartSec = 2;
         };
         Install = { WantedBy = [ "graphical-session.target" ]; };
       };

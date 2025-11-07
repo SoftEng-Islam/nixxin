@@ -71,13 +71,11 @@ let
       # Sleep for interval
       sleep "$INTERVAL"
     done
-
   '';
 in {
   home-manager.users.${settings.user.username} = {
     home.packages = [ changeWallpaper ];
     # home.file."Pictures/wallpapers".source = builtins.toPath ../Wallpapers;
-
   };
   environment.systemPackages = with pkgs; [ swww ];
 }
