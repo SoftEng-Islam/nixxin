@@ -1,6 +1,5 @@
 { settings, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf;
+let inherit (lib) mkIf;
 in {
   imports = lib.optionals (settings.modules.android.enable or false) [
     ./android-studio.nix
@@ -11,6 +10,8 @@ in {
   config = mkIf (settings.modules.android.enable or false) {
     programs.adb.enable = true;
     environment.systemPackages = with pkgs; [
+      mtkclient
+
       # Display and control Android devices over USB or TCP/IP
       android-tools
 

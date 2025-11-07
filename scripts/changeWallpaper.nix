@@ -16,8 +16,9 @@ let
     mkdir -p "$CACHE_DIR"
 
     # User-configurable time (change as needed)
-    DAYS=1
-    HOURS=0
+    # The Image Will stay for a spacific time before go to next one
+    DAYS=0
+    HOURS=12
     MINUTES=0
 
     # Convert total time to seconds
