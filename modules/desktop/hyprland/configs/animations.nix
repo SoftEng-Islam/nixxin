@@ -55,22 +55,23 @@ in {
           # "workspaces, 1, ${animationDuration}, menu_decel, slide"
           # "specialWorkspace, 1, ${animationDuration}, md3_decel, slidevert"
 
-          "global, 1, 10, default"
-          "border, 1, 5.39, easeOutQuint"
-          "windows, 1, 4.79, easeOutQuint"
-          "windowsIn, 1, 4.1, easeOutQuint, popin 87%"
-          "windowsOut, 1, 1.49, linear, popin 87%"
-          "fadeIn, 1, 1.73, almostLinear"
-          "fadeOut, 1, 1.46, almostLinear"
-          "fade, 1, 3.03, quick"
-          "layers, 1, 3.81, easeOutQuint"
-          "layersIn, 1, 4, easeOutQuint, fade"
-          "layersOut, 1, 1.5, linear, fade"
-          "fadeLayersIn, 1, 1.79, almostLinear"
-          "fadeLayersOut, 1, 1.39, almostLinear"
-          "workspaces, 1, 1.94, almostLinear, fade"
-          "workspacesIn, 1, 1.21, almostLinear, fade"
-          "workspacesOut, 1, 1.94, almostLinear, fade"
+          "global, 1, 12, default" # Slightly slower global speed
+          "border, 1, 6.0, easeOutCubic" # Smooth border transitions
+          "windows, 1, 5.5, easeOutCubic" # Slightly slower than before
+          "windowsIn, 1, 4.5, easeOutBack, popin 90%" # Pop-in with gentle overshoot
+          "windowsOut, 1, 2.0, easeInOutQuad, popin 90%" # Smooth exit
+          "fadeIn, 1, 2.0, almostLinear" # Soft fade in
+          "fadeOut, 1, 1.8, almostLinear" # Soft fade out
+          "fade, 1, 3.5, quick" # Overall fade timing
+          "layers, 1, 4.0, easeOutCubic" # Layer movement smooth
+          "layersIn, 1, 4.2, easeOutCubic, fade" # Smooth layer entrance
+          "layersOut, 1, 1.8, easeInOutQuad, fade" # Smooth layer exit
+          "fadeLayersIn, 1, 2.0, almostLinear" # Layer fade in
+          "fadeLayersOut, 1, 1.6, almostLinear" # Layer fade out
+          "workspaces, 1, 2.2, almostLinear, fade" # Workspace switch smooth
+          "workspacesIn, 1, 1.5, almostLinear, fade" # Workspace entry
+          "workspacesOut, 1, 2.2, almostLinear, fade" # Workspace exit
+
         ];
       };
     };
