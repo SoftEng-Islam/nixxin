@@ -164,6 +164,7 @@ in {
       # Common native libraries used during build
       libfontenc
       fontconfig
+      freetype
       zlib # compression
       zstd # compression
       xz # compression
