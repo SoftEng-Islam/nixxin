@@ -174,6 +174,9 @@ in {
       acl # access-control lists
       attr # file attributes
       curl # downloads
+      libxrender
+      libx11
+      libxrandr
     ];
   };
 
@@ -278,8 +281,7 @@ in {
     nixd # Feature-rich Nix language server interoperating with C++ nix
     nil # Yet another language server for Nix
 
-    # Nix Formatters:
-    # alejandra # Uncompromising Nix Code Formatter [alejandra file.nix]
+    # Nix Formatters
     nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
 
@@ -288,35 +290,5 @@ in {
 
     # Yet another nix cli helper
     nh
-
-    (pkgs.writeShellScriptBin "toggle-services" ''
-      SERVICES=("$@")
-
-      toggleService() {
-          SERVICE="$1"
-
-          if [[ ! "$SERVICE" == *".service"* ]]; then SERVICE="''${SERVICE}.service"; fi
-
-          if systemctl list-unit-files "$SERVICE" &>/dev/null; then
-              if systemctl is-active --quiet "$SERVICE"; then
-                  echo "Stopping \"$SERVICE\"..."
-                  sudo systemctl stop "$SERVICE"
-              else
-                  echo "Starting \"$SERVICE\"..."
-                  sudo systemctl start "$SERVICE"
-              fi
-          else
-              echo "\"$SERVICE\" does not exist"
-          fi
-      }
-
-      # Retain sudo
-      trap "exit" INT TERM; trap "kill 0" EXIT; sudo -v || exit $?; sleep 1; while true; do sleep 60; sudo -nv; done 2>/dev/null &
-
-      for i in "''${SERVICES[@]}"
-      do
-          toggleService "$i"
-      done
-    '')
   ];
 }

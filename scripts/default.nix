@@ -4,5 +4,6 @@
     ./networks/wifiMonitorMode.nix
     ./networks/toggleInternet.nix
     ./changeWallpaper.nix
+    ./toggle-services.nix
   ];
 }
