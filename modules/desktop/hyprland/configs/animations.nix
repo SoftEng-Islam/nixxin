@@ -26,6 +26,7 @@ in {
           "easeOutQuint,0.23,1,0.32,1"
           "easeOutBack,0.25,1.5,0.5,1" # for windowsIn popin
           "quick,0.15,0,0.1,1"
+          "slidePop,0.25,1.2,0.35,1.05"
         ];
         animation = [
           "global, 1, 12, default"
@@ -33,8 +34,8 @@ in {
           "windows, 1, 5.5, easeOutQuint"
           "windowsIn, 1, 4.5, easeOutBack, popin 90%"
           "windowsOut, 1, 2.0, easeOutQuint, popin 90%"
-          "fadeIn, 1, 2.0, almostLinear"
-          "fadeOut, 1, 1.8, almostLinear"
+          "fadeIn, 1, 1.5, slidePop"
+          "fadeOut, 1, 1.2, slidePop"
           "fade, 1, 3.5, quick"
           "layers, 1, 4.0, easeOutQuint"
           "layersIn, 1, 4.2, easeOutQuint"
@@ -46,7 +47,6 @@ in {
           "workspacesOut, 1, 2.2, easeOutQuint"
         ];
       };
-
     };
   };
 }
