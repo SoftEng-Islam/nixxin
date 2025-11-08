@@ -20,8 +20,13 @@
     (self: super: {
       gnome = super.gnome.overrideScope (gself: gsuper: {
         nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
-          buildInputs = nsuper.buildInputs
-            ++ (with pkgs.gst_all_1; [ gst-plugins-good gst-plugins-bad ]);
+          buildInputs = nsuper.buildInputs ++ (with pkgs; [
+            gst_all_1.gst-plugins-good
+            gst_all_1.gst-plugins-bad
+            gst_all_1.gst-plugins-base
+            gst_all_1.gstreamer
+            gst_all_1.gst-libav
+          ]);
         });
       });
     })
@@ -101,6 +106,5 @@
     # thumbnails
     gst_all_1.gst-libav
     ffmpegthumbnailer
-
   ];
 }
