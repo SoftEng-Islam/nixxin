@@ -1,5 +1,6 @@
 { settings, lib, pkgs, ... }: {
 
+  # https://nixos.wiki/wiki/Nautilus
   # Nautilus stores “recent files” in:
   # ~/.local/share/recently-used.xbel
 
@@ -16,26 +17,13 @@
   services.gvfs.package = pkgs.gnome.gvfs;
 
   nixpkgs.overlays = [
-    (final: prev: {
-      __dontExport = true; # avoids polluting package set
-
-      gnome = prev.gnome // {
-        nautilus = prev.gnome.nautilus.overrideAttrs (old: rec {
-          preFixup = with prev;
-            let py = python3.withPackages (ps: with ps; [ ps.pygobject3 ]);
-            in ''
-              gappsWrapperArgs+=(
-                # Thumbnailers
-                --prefix XDG_DATA_DIRS : "${gdk-pixbuf}/share"
-                --prefix XDG_DATA_DIRS : "${librsvg}/share"
-                --prefix XDG_DATA_DIRS : "${shared-mime-info}/share"
-
-                # Python bindings for Nautilus extensions
-                --prefix PYTHONPATH : ${py}/${py.sitePackages}
-              )
-            '';
+    (self: super: {
+      gnome = super.gnome.overrideScope' (gself: gsuper: {
+        nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
+          buildInputs = nsuper.buildInputs
+            ++ (with pkgs.gst_all_1; [ gst-plugins-good gst-plugins-bad ]);
         });
-      };
+      });
     })
   ];
 
