@@ -162,6 +162,8 @@ in {
       stdenv.cc.cc.lib
 
       # Common native libraries used during build
+      libfontenc
+      fontconfig
       zlib # compression
       zstd # compression
       xz # compression
