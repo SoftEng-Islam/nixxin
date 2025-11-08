@@ -165,6 +165,7 @@ in {
       libfontenc
       fontconfig
       freetype
+      libxext
       zlib # compression
       zstd # compression
       xz # compression
