@@ -21,7 +21,10 @@ in {
       settings.animations = {
         enabled = true;
         bezier = [
-          "linear,0,0,1,1"
+          "default,0.12,0.92,0.08,1.0"
+          "wind,0.12,0.92,0.08,1.0"
+          "overshot,0.18,0.95,0.22,1.03"
+          "liner,1,1,1,1"
           "almostLinear,0.5,0.5,0.75,1.0"
           "easeOutQuint,0.23,1,0.32,1"
           "easeOutBack,0.25,1.5,0.5,1" # for windowsIn popin
