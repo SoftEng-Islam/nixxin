@@ -71,7 +71,6 @@ in {
           "workspaces, 1, 2.2, almostLinear, fade" # Workspace switch smooth
           "workspacesIn, 1, 1.5, almostLinear, fade" # Workspace entry
           "workspacesOut, 1, 2.2, almostLinear, fade" # Workspace exit
-
         ];
       };
     };
