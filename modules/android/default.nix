@@ -10,7 +10,7 @@ in {
   config = mkIf (settings.modules.android.enable or false) {
     programs.adb.enable = true;
     environment.systemPackages = with pkgs; [
-      mtkclient
+      libusb1
 
       # Display and control Android devices over USB or TCP/IP
       android-tools

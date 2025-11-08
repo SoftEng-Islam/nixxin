@@ -149,32 +149,32 @@ in {
   # It is similar to the `nix run` command, but it does not require
   # the binary to be built with Nix.
   programs.nix-ld = {
-    enable = false;
+    enable = true;
     # Include libstdc++ in the nix-ld profile
-    # libraries = with pkgs; [
-    #   # Standard compilers & runtime
-    #   gcc # provides /run/current-system/sw/bin/gcc
-    #   libgcc # libgcc_s, etc.
-    #   glibc_multi # if you need multilib support
+    libraries = with pkgs; [
+      # Standard compilers & runtime
+      gcc # provides /run/current-system/sw/bin/gcc
+      libgcc # libgcc_s, etc.
+      glibc_multi # if you need multilib support
 
-    #   stdenv.cc # C compiler environment
-    #   stdenv.cc.cc # explicit cc
-    #   stdenv.cc.cc.lib
+      stdenv.cc # C compiler environment
+      stdenv.cc.cc # explicit cc
+      stdenv.cc.cc.lib
 
-    #   # Common native libraries used during build
-    #   zlib # compression
-    #   zstd # compression
-    #   xz # compression
-    #   bzip2 # compression
-    #   libssh # SSH support (if needed)
-    #   openssl # TLS, crypto
-    #   libxml2 # XML parsing (if your tooling needs it)
-    #   systemd # for ldconfig and related
-    #   util-linux # mount, etc.
-    #   acl # access-control lists
-    #   attr # file attributes
-    #   curl # downloads
-    # ];
+      # Common native libraries used during build
+      zlib # compression
+      zstd # compression
+      xz # compression
+      bzip2 # compression
+      libssh # SSH support (if needed)
+      openssl # TLS, crypto
+      libxml2 # XML parsing (if your tooling needs it)
+      systemd # for ldconfig and related
+      util-linux # mount, etc.
+      acl # access-control lists
+      attr # file attributes
+      curl # downloads
+    ];
   };
 
   # List services that you want to enable:
