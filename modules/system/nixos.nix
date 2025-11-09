@@ -168,7 +168,6 @@ in {
       libxext
       glib
       libpng12
-      libflashtool
       gcc
       libsm
       libice
