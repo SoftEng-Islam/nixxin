@@ -168,6 +168,10 @@ in {
       libxext
       glib
       libpng12
+      libflashtool
+      gcc
+      libsm
+      libice
       # windows.mcfgthreads
       zlib # compression
       zstd # compression
