@@ -167,6 +167,7 @@ in {
       freetype
       libxext
       glib
+      libpng12
       # windows.mcfgthreads
       zlib # compression
       zstd # compression
