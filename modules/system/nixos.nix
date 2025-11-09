@@ -166,6 +166,8 @@ in {
       fontconfig
       freetype
       libxext
+      glib
+      # windows.mcfgthreads
       zlib # compression
       zstd # compression
       xz # compression
