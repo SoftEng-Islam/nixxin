@@ -13,6 +13,12 @@ in {
   ];
   config = mkIf (settings.modules.office.enable or false) {
     environment.systemPackages = with pkgs;
-      [ wlsunset gammastep gucharmap ] ++ lib.flatten _pkgs;
+      [
+        wlsunset
+        gammastep
+        gucharmap
+        # anki
+        anki-bin
+      ] ++ lib.flatten _pkgs;
   };
 }
