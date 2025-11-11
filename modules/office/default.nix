@@ -12,6 +12,7 @@ in {
     ./n8n.nix
   ];
   config = mkIf (settings.modules.office.enable or false) {
+
     environment.systemPackages = with pkgs;
       [
         wlsunset

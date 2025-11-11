@@ -85,8 +85,8 @@
       # ----------------------- #
       bind = $main, F1, exec, sudo toggleInternet
       bind = $main, F2, exec, run-gamemode
-      # bind = $main, F3, exec, run-gamemode
-      # bind = $main, F4, exec, run-gamemode
+      bind = $main, F3, exec, ${pkgs.hyprshade}/bin/hyprshade toggle blue-light-filter
+      bind = $main, F4, exec, ${pkgs.hyprshade}/bin/hyprshade toggle grayscale
       # bind = $main, F5, exec, run-gamemode
       # bind = $main, F6, exec, run-gamemode
 
