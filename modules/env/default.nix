@@ -6,6 +6,8 @@ lib.mkIf (settings.modules.env.enable or true) {
   environment = {
     # localBinInPath = false;
     variables = {
+      DEVENVD_DISABLE_VERSION_CHECK = "1";
+      DEVENVD_NO_ANALYTICS = "1";
       EDITOR = settings.common.EDITOR;
       VISUAL = settings.common.VISUAL;
 
