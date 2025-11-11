@@ -85,9 +85,8 @@
       # ----------------------- #
       bind = $main, F1, exec, sudo toggleInternet
       bind = $main, F2, exec, run-gamemode
-      bind = $main, F3, exec, ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter50.glsl
-      bind = $main, F4, exec, ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/invert-colors.glsl
-
+      bind = $main, F3, exec, ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl
+      # bind = $main, F4, exec, ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/invert-colors.glsl
       # bind = $main, F5, exec, run-gamemode
       # bind = $main, F6, exec, run-gamemode
 
