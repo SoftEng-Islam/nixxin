@@ -118,6 +118,7 @@ in {
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;
+    home.file.".config/hypr/shaders".source = ./shaders;
   };
   environment.systemPackages = with pkgs;
     [

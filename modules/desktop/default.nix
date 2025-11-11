@@ -24,6 +24,11 @@
       #   end_time = 06:00:00
       # '';
 
+      # Copied from: https://github.com/TheRiceCold/dots/blob/d25001db1529195174b214fe61e507522ea2195d/home/wolly/kaizen/desktop/wayland/hyprland/ecosystem/hyprshade.nix#L35C4-L50C8
+      # "hypr/shaders/grayscale.glsl".text = '''';
+
+      # Edited from: https://github.com/loqusion/hyprshade/blob/main/shaders/blue-light-filter.glsl.mustache
+      # "hypr/shaders/blue-light-filter.glsl.mustache".text = '''';
     };
   };
 
