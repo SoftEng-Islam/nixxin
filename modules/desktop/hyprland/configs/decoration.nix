@@ -14,10 +14,10 @@
           popups = true;
           popups_ignorealpha = 0.6;
           size = 8;
-          passes = 1;
-          brightness = 0.8;
+          passes = 4;
+          brightness = 0.5;
           noise = 0.0;
-          contrast = 0.8;
+          contrast = 0.5;
         };
 
         # ---- Shadow ---- #
