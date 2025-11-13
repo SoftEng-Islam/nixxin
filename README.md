@@ -3,7 +3,8 @@
 **Nixos** Enhancement Configurations
 
 
-![image](https://github.com/user-attachments/assets/b6d1ebd9-0fbd-4061-ba10-5c9286387bc3)
+<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/26137a3f-8a2d-4e5d-9a53-d71c03f9f2ad" />
+
 
 
 
