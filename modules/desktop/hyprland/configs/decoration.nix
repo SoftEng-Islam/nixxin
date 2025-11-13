@@ -16,7 +16,7 @@
           size = 8;
           passes = 1;
           brightness = 0.8;
-          noise = 0.1;
+          noise = 0.0;
           contrast = 0.8;
         };
 
