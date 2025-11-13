@@ -37,6 +37,12 @@ in {
       gtk4 = {
         enable = true;
         colorScheme = "dark";
+        extraCss = ''
+          .nautilus-window {
+            background: transparent;
+            backdrop-filter: blur(20px);
+          }
+        '';
       };
     };
     qt = {
