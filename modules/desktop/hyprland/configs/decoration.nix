@@ -11,13 +11,13 @@
           ignore_opacity = true;
           special = true;
           new_optimizations = true;
-          passes = 4;
-          brightness = 1;
-          noise = 1.0;
-          contrast = 1;
           popups = true;
           popups_ignorealpha = 0.6;
           size = 8;
+          passes = 1;
+          brightness = 0.8;
+          noise = 0.1;
+          contrast = 0.8;
         };
 
         # ---- Shadow ---- #

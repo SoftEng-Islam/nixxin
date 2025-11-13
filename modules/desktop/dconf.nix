@@ -145,7 +145,6 @@ in with lib.gvariant; {
       #   num-workspaces = 6;
       #   workspaces-only-on-primary = true;
       # };
-
     };
   };
 }
