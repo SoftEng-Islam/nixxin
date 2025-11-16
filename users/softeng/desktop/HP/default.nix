@@ -28,7 +28,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = false; # disable it before install a custom Linux Kernel.
+  system.useTmpfs = true; # disable it before install a custom Linux Kernel.
   system.enableLogs = true; # To enable logs
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
@@ -57,13 +57,24 @@
   # For Ex: You have BROWSER var, and xdg webBrowser
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
+
   common.EDITOR = "nvim"; # ? EDITOR Var: used for
   common.VISUAL = "nvim"; # ? VISUAL Var: used for
   common.TERM = "xterm-256color"; # ? TERM Var: used for
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";
   common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
-  common.primaryColor = "rgba(9141ACff)"; # used by hyprland
+
+  # => `static` colors to use
+  #- Blue   => rgba(3584E4ff) #- Teal   => rgba(2190A4ff)
+  #- Green  => rgba(3A944Aff) #- Yellow => rgba(C88800ff)
+  #- Ornage => rgba(ED5B00ff) #- Red    => rgba(E62D42ff)
+  #- Pink   => rgba(D56199ff) #- Purple => rgba(9141ACff)
+  #- Slate  => rgba(6F8396ff) #-
+
+  # => `graid colors ex:
+  # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
+  common.primaryColor = "rgba(E62D42ff)"; # used by hyprland
   common.surfaceColor = "rgba(191919ff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
@@ -162,10 +173,10 @@
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = true;
-  modules.browsers.brave.enable = false;
-  modules.browsers.firefox.enable = false;
-  modules.browsers.firefox-beta.enable = false;
-  modules.browsers.microsoft-edge.enable = false;
+  modules.browsers.brave.enable = true;
+  modules.browsers.firefox.enable = true;
+  modules.browsers.firefox-beta.enable = true;
+  modules.browsers.microsoft-edge.enable = true;
 
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
   modules.cli_tools.prompt.enable = true;
@@ -288,15 +299,6 @@
   modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
   modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
-  # => `static` colors to use
-  #- Blue   => rgba(3584E4ff) #- Teal   => rgba(2190A4ff)
-  #- Green  => rgba(3A944Aff) #- Yellow => rgba(C88800ff)
-  #- Ornage => rgba(ED5B00ff) #- Red    => rgba(E62D42ff)
-  #- Pink   => rgba(D56199ff) #- Purple => rgba(9141ACff)
-  #- Slate  => rgba(6F8396ff) #-
-
-  # => `graid colors ex:
-  # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
   modules.desktop.hyprland.border.inactive.color = common.surfaceColor;
   modules.desktop.hyprland.border.active.color = common.primaryColor;
   modules.desktop.hyprland.border.size = 3;

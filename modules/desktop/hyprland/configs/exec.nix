@@ -11,6 +11,7 @@ let
     # ---- DBUS ---- #
     systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
     dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP PATH
+    ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl
 
     # ---- Set Desktop Wallpaper ---- #
     changeWallpaper & disown
