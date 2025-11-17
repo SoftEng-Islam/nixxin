@@ -34,6 +34,8 @@ in {
 
       # https://devenv.sh/
       devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
+
+      zeal
     ];
   };
 }
