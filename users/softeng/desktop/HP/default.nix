@@ -601,6 +601,8 @@
       #! - Make Sure you have install/enable the apps to use as default.
       #! - Write The name of apps without ".desktop" like:
       #! - - [ "microsoft-edge" ] , Not [ "microsoft-edge.desktop" ]
+      # $ xdg-mime default google-chrome.desktop x-scheme-handler/http
+      # $ xdg-mime default google-chrome.desktop x-scheme-handler/https
 
       # find /nix/store/ -name "*edge*.desktop"
       # or
