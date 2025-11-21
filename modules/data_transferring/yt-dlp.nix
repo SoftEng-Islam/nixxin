@@ -12,7 +12,7 @@
         sponsorblock-mark = "all";
         # downloader = lib.getExe pkgs.aria2;
         downloader = "aria2c";
-        downloader-args = "aria2c:'-c -x10 -s10 -j4 -k1024M'";
+        downloader-args = "aria2c:'-c -x12 -s12 -j8 -k1024M'";
         # cookies-from-browser = "chrome";
       };
       extraConfig = ''
