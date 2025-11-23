@@ -4,7 +4,7 @@
 let
   _hwdec = "vaapi"; # mpv --hwdec=help
   _vo = "gpu"; # mpv --vo=help
-  _gpu-api = "vulkan"; # mpv --gpu-api=help
+  _gpu-api = "auto"; # mpv --gpu-api=help
 
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = { VIDEO = "mpv"; };
@@ -97,20 +97,21 @@ in lib.mkIf (settings.modules.media.mpv) {
         gpu-api = _gpu-api;
         gpu-context = "auto";
         hwdec = _hwdec; # or "no" if it fails
-        hwdec-codecs = "all";
-        profile = "high-quality"; # good baseline
+        # hwdec-codecs = "all";
+        profile = "gpu-hq"; # good baseline
         fullscreen = false;
         keep-open = "yes";
         force-window = "immediate";
         term-osd-bar = true;
-        scale = "bilinear"; # faster than lanczos
-        cscale = "bilinear";
-        tscale = "linear";
-        deband = "no"; # save GPU cycles
-        dither-depth = "auto";
-        autofit = "100%";
+        # scale = "bilinear"; # faster than lanczos
+        # cscale = "bilinear";
+        # tscale = "linear";
+        deband = "auto"; # no: to save GPU cycles
+        # dither-depth = "auto";
+        # autofit = "100%";
         window-maximized = "yes";
         save-position-on-quit = true;
+        # video-sync = "display-resample"; # (default: audio)
 
         # Fix stuttering playing 4k video
         hdr-compute-peak = "no";
@@ -131,7 +132,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         sub-use-margins = "yes";
         # sub-ass-override = "force";
 
-        osd-level = 1;
+        osd-level = 1; # ?
         msg-color = true;
         msg-module = true;
       };
@@ -140,8 +141,9 @@ in lib.mkIf (settings.modules.media.mpv) {
         x = "add sub-delay 0.1";
         Z = "add audio-delay -0.1";
         X = "add audio-delay 0.1";
+        r = "add sub-pos -1";
+        t = "add sub-pos +1";
       };
-
       defaultProfiles = [ "high-quality" ];
     };
   };

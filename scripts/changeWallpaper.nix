@@ -18,7 +18,7 @@ let
     # User-configurable time (change as needed)
     # The Image Will stay for a spacific time before go to next one
     DAYS=0
-    HOURS=12
+    HOURS=6
     MINUTES=0
 
     # Convert total time to seconds
