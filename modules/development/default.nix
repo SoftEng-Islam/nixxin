@@ -35,7 +35,10 @@ in {
       # https://devenv.sh/
       devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
 
+      # AI Tools fro developers
+      copilot-cli
       code-cursor
+      antigravity
     ];
   };
 }
