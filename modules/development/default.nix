@@ -38,7 +38,7 @@ in {
       # AI Tools fro developers
       copilot-cli
       code-cursor
-      antigravity
+      # antigravity
     ];
   };
 }
