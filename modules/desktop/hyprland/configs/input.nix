@@ -17,7 +17,7 @@
         #  Leave empty to use libinput’s default mode for your input device.
         accel_profile = "";
 
-        # follow_mouse = 1;
+        follow_mouse = 1;
         # numlock_by_default = true;
 
         repeat_rate = 30;

@@ -39,6 +39,7 @@ in {
       copilot-cli
       code-cursor
       # antigravity
+      # antigravity-fhs
     ];
   };
 }
