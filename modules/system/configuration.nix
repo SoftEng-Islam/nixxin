@@ -125,14 +125,6 @@ in {
 
       "threadirqs" # ?
 
-      # Memory security parameters
-      # "slab_nomerge" # Disables merging of slabs of similar sizes
-      "vsyscall=none" # Disables legacy system call interface
-      # "slub_debug=FZP" # Enables sanity checks (F), redzoning (Z) and poisoning (P).
-      # "init_on_free=1" # Fill freed pages and heap objects with zeroes
-      # "init_on_alloc=1" # to initialize memory on allocation (complements init_on_free=1).
-      "page_alloc.shuffle=1" # Helps detect memory issues earlier + Major security gain
-
       # New memory management parameters
       # "hugepagesz=2M" # Enable 2MB huge pages
       # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
@@ -164,13 +156,6 @@ in {
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
-
-      # Prevents audio crackling or delay issues by keeping the sound card active.
-      # If set to 1, the sound card powers down after a few seconds of inactivity.
-      "snd_hda_intel.power_save=0"
-
-      # Helps force-detect certain HDA (High Definition Audio) devices.
-      "snd_hda_intel.probe_mask=1" # (Force Specific Audio Codec Detection)
 
       # WIFI
       "rtl8xxxu_disable_hw_crypto=1"
@@ -216,7 +201,6 @@ in {
           })
         ];
     };
-
   };
 
   # ------------------------------------------------
@@ -324,8 +308,8 @@ in {
   # ------------------------------------------------
   environment.variables = {
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
-    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-    WLR_NO_HARDWARE_CURSORS = "1"; # disable hardware cursors for wlroots
+    WLR_RENDERER_ALLOW_SOFTWARE = "0"; # enable software rendering for wlroots
+    WLR_NO_HARDWARE_CURSORS = "0"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
@@ -333,6 +317,4 @@ in {
 
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
   };
-
-  # environment.memoryAllocator.provider = "libc";
 }

@@ -1,7 +1,6 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
 { pkgs, ... }: rec {
   # ----------------------------------------------
   # ---- The User Information
@@ -28,7 +27,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = true; # disable it before install a custom Linux Kernel.
+  system.useTmpfs = true; # Disable it before install/update Linux Kernel.
   system.enableLogs = true; # To enable logs
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
@@ -391,7 +390,7 @@
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
-    # "amd-pstate" # AMD CPU P-State driver for better power management
+    "amd-pstate" # AMD CPU P-State driver for better power management
     # "cpufreq_performance"
     # "cpufreq_powersave"
     # "cpufreq_ondemand"
@@ -525,6 +524,12 @@
 
     "net.ifnames=0" # ?
     "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
+
+    "amd_iommu=off" # some HP laptops throttle with IOMMU on
+    "processor.max_cstate=1" # prevents deep sleep, ensures max boost
+
+    "amd_pstate=active"
+    "amd_pstate.shared_mem=1"
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
