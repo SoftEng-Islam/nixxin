@@ -12,13 +12,14 @@
         sponsorblock-mark = "all";
         # downloader = lib.getExe pkgs.aria2;
         downloader = "aria2c";
-        downloader-args = "aria2c:'-c -x12 -s12 -j8 -k1024M'";
+        downloader-args = "aria2c:'-c -x12 -s12 -j10 -k1024M'";
         # cookies-from-browser = "chrome";
       };
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
         --abort-on-unavailable-fragments
         --abort-on-error
+        --extractor-args "youtube:player_client=default"
       '';
     };
   };
