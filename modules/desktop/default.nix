@@ -32,5 +32,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ hyprshade ];
+  environment.systemPackages = with pkgs; [ hyprshade quickshell ];
 }
