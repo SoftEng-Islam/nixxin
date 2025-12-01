@@ -256,22 +256,6 @@
         "type": "github"
       }
     },
-    "nixpkgs-waydroid": {
-      "locked": {
-        "lastModified": 1761349924,
-        "narHash": "sha256-51nAkYMoNuxPLHsrZrs6kzGfb8Oq6occsB7Ty5arirU=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "098c4d08d7dff9673a1cf1af6b477b3595932f10",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "pull/455257/head",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1748929857,
@@ -327,7 +311,6 @@
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-waydroid": "nixpkgs-waydroid",
         "systems": "systems_4",
         "yt-dlp-src": "yt-dlp-src"
       }
