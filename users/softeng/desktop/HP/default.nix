@@ -384,7 +384,7 @@
   modules.power.powerManagement.cpuFreqGovernor = "performance";
   modules.power.powerManagement.cpufreq.min = 1800000; # 1800MHz
   modules.power.powerManagement.cpufreq.max = 3900000; # 4.1GHz
-  modules.power.auto-cpufreq.enable = true;
+  modules.power.auto-cpufreq.enable = false;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
@@ -399,8 +399,8 @@
   ];
   modules.power.boot.kernelParams = [
     # FX CPUs do NOT have P-State.
-    # "amd_pstate.shared_mem=1"
-    # "amd_pstate=active" # Enable AMD P-State driver
+    "amd_pstate.shared_mem=1"
+    "amd_pstate=active" # Enable AMD P-State driver
   ];
 
   # [ Recording ]

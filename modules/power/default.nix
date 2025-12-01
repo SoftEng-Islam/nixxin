@@ -50,8 +50,8 @@ in {
     # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
     # This is the service that lets you pick power profiles in the gnome UI.
-    #! It conflicts with auto-cpufreq
-    services.power-profiles-daemon.enable = false;
+    #! It conflicts with auto-cpufreq, so enable only one of the two.
+    services.power-profiles-daemon.enable = true;
 
     environment.systemPackages = with pkgs; [
       power-profiles-daemon
