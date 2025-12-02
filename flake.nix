@@ -28,7 +28,9 @@
     let
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-      pkgs = import nixpkgs { system = settings.system.architecture; };
+      # pkgs = import nixpkgs { system = settings.system.architecture; };
+      pkgs = nixpkgs.legacyPackages.${settings.system.architecture};
+
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname

@@ -52,7 +52,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # automatically inject persistent Android props
   # environment.etc."waydroid/waydroid_base.prop".source = waydroidBaseProps;
 
-  environment.systemPackages = with pkgs; [ wl-clipboard ];
+  environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
 
   # ---- Installation & Useful Inforamtion ---- #
   # 1- After you have downloaded both "system" and "vendor" image, extract them.
