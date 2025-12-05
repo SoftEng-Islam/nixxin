@@ -12,12 +12,9 @@
     # nixGL.inputs.nixpkgs.follows = "nixpkgs";
     # nixGL.inputs.flake-utils.follows = "flake-utils";
 
-    # disko.url = "github:nix-community/disko";
-    # disko.inputs.nixpkgs.follows = "nixpkgs";
-
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
+    # nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
 
     ashell.url = "github:MalpenZibo/ashell";
     ashell.flake = true;

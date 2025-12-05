@@ -18,6 +18,8 @@ in {
     ./vulkan.nix
   ];
   config = lib.mkIf (settings.modules.graphics.enable or true) {
-    environment.systemPackages = lib.flatten _graphics;
+    environment.systemPackages = with pkgs;
+      [ imagemagick jpegoptim optipng pngquant webp-pixbuf-loader libwebp ]
+      ++ lib.flatten _graphics;
   };
 }

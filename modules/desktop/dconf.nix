@@ -9,7 +9,7 @@ let
 
 in with lib.gvariant; {
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs; [ dconf ];
+  environment.systemPackages = with pkgs; [ dconf gsettings-desktop-schemas ];
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
@@ -35,6 +35,18 @@ in with lib.gvariant; {
       "org/gnome/desktop/wm/preferences" = {
         # We don't want buttons because of using ( Hyprland + hyprbars)
         "button-layout" = lib.mkDefault "";
+      };
+
+      "org/gnome/desktop/peripherals/mouse" = {
+        "speed" = 1;
+        "accel-profile" = "adaptive";
+        "natural-scroll" = false;
+        "double-click" = 600;
+      };
+
+      "org/gnome/desktop/peripherals/keyboard" = {
+        "delay" = 200;
+        "repeat-interval" = 10;
       };
 
       "org/gnome/nautilus/preferences" = {
@@ -136,15 +148,7 @@ in with lib.gvariant; {
         maximum-size = 2048;
       };
 
-      # "org/gnome/mutter" = {
-      #   center-new-windows = true;
-      #   check-alive-timeout = 0;
-      #   dynamic-workspaces = false;
-      #   edge-tiling = true;
-      #   experimental-features = "['scale-monitor-framebuffer']";
-      #   num-workspaces = 6;
-      #   workspaces-only-on-primary = true;
-      # };
+      "org/gnome/mutter" = { "check-alive-timeout" = 60000; };
     };
   };
 }

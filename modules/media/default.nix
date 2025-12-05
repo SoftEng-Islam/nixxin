@@ -20,10 +20,12 @@ in {
   imports = lib.optionals (settings.modules.media.enable or true) [
     ./celluloid
     ./mpv
-    ./cava.nix
+    # ./cava.nix
     ./codex.nix
     ./gstreamer.nix
     ./music.nix
+    ./images.nix
+    ./text.nix
   ];
   config = lib.mkIf (settings.modules.media.enable or true) {
     environment.systemPackages = with pkgs;
@@ -37,9 +39,6 @@ in {
         # Audio Control
         pulsemixer # Cli and curses mixer for pulseaudio
         pwvucontrol # Pipewire Volume Control
-
-        # Sound Player
-        # recordbox # Relatively simple music player
 
         libnice
         glib.dev

@@ -339,7 +339,7 @@
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = true; # video Editor
   modules.media.shotcut = false; # video Editor
-  modules.media.music = false;
+  modules.media.music = true; # Music Player
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"

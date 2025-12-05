@@ -1,9 +1,5 @@
 { pkgs, ... }: {
   environment.systemPackages = with pkgs; [
-
-    # Extremely simplistic image viewing.
-    feh
-
     # Take screenshots with grimblast.
     grimblast
 
@@ -19,6 +15,8 @@
 
     # A software suite to create, edit, compose, or convert bitmap images.
     imagemagick
+    libheif
+    libavif
 
     # JPEG XL image format reference implementation.
     libjxl
@@ -46,6 +44,5 @@
 
     # Image viewers.
     lxqt.lximage-qt
-
   ];
 }
