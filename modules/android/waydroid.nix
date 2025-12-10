@@ -29,8 +29,9 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       enable = true;
       # To Update Run This command:
       # sudo nix flake update nixpkgs-waydroid
-      # package =        inputs.nixpkgs-waydroid.legacyPackages.${pkgs.system}.waydroid-nftables;
-      package = pkgs.waydroid-nftables;
+      package =
+        inputs.nixpkgs-waydroid.legacyPackages.${pkgs.system}.waydroid-nftables;
+      # package = pkgs.waydroid-nftables;
     };
   };
 
