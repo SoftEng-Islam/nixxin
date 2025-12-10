@@ -57,8 +57,8 @@
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
 
-  common.EDITOR = "nvim"; # ? EDITOR Var: used for
-  common.VISUAL = "nvim"; # ? VISUAL Var: used for
+  common.EDITOR = "micro"; # ? EDITOR Var: used for
+  common.VISUAL = "micro"; # ? VISUAL Var: used for
   common.TERM = "xterm-256color"; # ? TERM Var: used for
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";

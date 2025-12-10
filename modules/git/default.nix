@@ -51,7 +51,7 @@ in mkIf (settings.modules.git.enable) {
         github.user = settings.user.username; # Sets the GitHub username.
 
         core = {
-          editor = "nvim"; # Sets Neovim as the default Git editor.
+          editor = "micro"; # Sets Neovim as the default Git editor.
           autocrlf = false; # Disables automatic line ending conversion.
 
           # Optimizes Git performance for large repos.
