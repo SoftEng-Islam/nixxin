@@ -27,7 +27,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = true; # Disable it before install/update Linux Kernel.
+  system.useTmpfs = false; # Disable it before install/update Linux Kernel.
   system.enableLogs = true; # To enable logs
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
