@@ -19,7 +19,6 @@ in mkIf (settings.modules.fonts.enable) {
       # ---- Noto Fonts ---- #
       noto-fonts # Beautiful and free fonts for many languages
       noto-fonts-color-emoji # Color emoji font
-      noto-fonts-extra # Includes Arabic
 
       # ---- Nerd Fonts ---- #
       nerd-fonts.caskaydia-cove
