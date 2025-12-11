@@ -5,7 +5,6 @@
   # ~/.local/share/recently-used.xbel
 
   # Required by gnome file managers
-  programs.file-roller.enable = true;
   programs.gnome-disks.enable = true;
 
   # ---- Tracker3 ---- #
