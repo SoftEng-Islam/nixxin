@@ -115,7 +115,6 @@ in {
         # via
 
         # Install Gaming & Benchmarking Tools
-        glxinfo # Shows GPU info
         vulkan-tools # Tests Vulkan performance
         vkmark # Vulkan benchmark
         mesa-demos # OpenGL test tools
