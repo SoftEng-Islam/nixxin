@@ -12,7 +12,7 @@ let
 in {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.plugins = [
-      # inputs.hyprland-plugins.packages.${pkgs.system}.borders-plus-plus
+      # inputs.hyprland-plugins.packages.${pkgs.stdenv.hostPlatform.system}.borders-plus-plus
       borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''

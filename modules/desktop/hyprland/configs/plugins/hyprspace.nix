@@ -13,7 +13,7 @@ in {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       plugins = [
-        # inputs.Hyprspace.packages.${pkgs.system}.Hyprspace
+        # inputs.Hyprspace.packages.${pkgs.stdenv.hostPlatform.system}.Hyprspace
         pkgs.hyprlandPlugins.hyprspace
       ];
       extraConfig = ''

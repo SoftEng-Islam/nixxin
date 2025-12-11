@@ -10,7 +10,7 @@ lib.mkIf (settings.modules.desktop.polkit.enable or true) {
     # -----------------------------------
     # hyprpolkitagent
     # -----------------------------------
-    inputs.hyprpolkitagent.packages."${pkgs.system}".hyprpolkitagent
+    inputs.hyprpolkitagent.packages."${pkgs.stdenv.hostPlatform.system}".hyprpolkitagent
     # inputs.hyprutils
     # inputs.hyprland-qt-support
     # hyprpolkitagent # Polkit authentication agent written in QT/QML

@@ -2,7 +2,8 @@
   home-manager.users.${settings.user.username} = {
     programs.yt-dlp = {
       enable = settings.modules.data_transferring.yt-dlp.enable or false;
-      package = inputs.yt-dlp-src.packages.${pkgs.system}.default;
+      package =
+        inputs.yt-dlp-src.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # package = pkgs.yt-dlp;
 
       settings = {
