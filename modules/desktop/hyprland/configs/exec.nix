@@ -4,7 +4,7 @@ let
       toString settings.modules.fonts.main.size.main
     }";
 
-  ashell = inputs.ashell.${pkgs.system};
+  ashell = inputs.ashell;
 
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
