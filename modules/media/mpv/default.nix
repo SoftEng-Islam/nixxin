@@ -167,7 +167,7 @@ in lib.mkIf (settings.modules.media.mpv) {
     libGL
     nasm
     trash-cli
-    vaapiVdpau
+    libva-vdpau-driver
     vulkan-headers
     vulkan-loader
     vulkan-tools # Includes `vulkaninfo`

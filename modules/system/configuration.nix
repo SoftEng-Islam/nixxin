@@ -251,7 +251,7 @@ in {
         libvdpau
         libva
         libva-utils
-        vaapiVdpau
+        libva-vdpau-driver
         vdpauinfo
         xorg.libXv
         xorg.libXvMC

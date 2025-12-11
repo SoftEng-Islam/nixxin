@@ -11,7 +11,7 @@ in mkIf (settings.modules.system.radeon or false) {
     mesa-gl-headers
     libva
     libva-utils
-    vaapiVdpau
+    libva-vdpau-driver
     vdpauinfo
     vulkan-loader
     vulkan-tools
