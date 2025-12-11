@@ -44,7 +44,7 @@
     fzf # Command-line fuzzy finder written in Go
 
     bat # Cat(1) clone with syntax highlighting and Git integration
-    du-dust # du + rust = dust. Like du but more intuitive
+    dust # du + rust = dust. Like du but more intuitive
     duf # Disk Usage/Free Utility
     file # Program that shows the type of files
     gnugrep # GNU implementation of the Unix grep command
