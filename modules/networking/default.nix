@@ -277,7 +277,7 @@ in {
     iw # Tool to use nl80211
     networkd-dispatcher # Dispatcher service for systemd-networkd connection status changes
     routedns # DNS stub resolver, proxy and router
-    trust-dns # A Rust based DNS client, server, and resolver
+    hickory-dns # A Rust based DNS client, server, and resolver
     mtr # A network diagnostics tool
     ethtool # Utility for controlling network drivers and hardware
     nettools # A set of tools for controlling the network subsystem in Linux
