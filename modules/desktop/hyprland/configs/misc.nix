@@ -53,7 +53,8 @@
         # # Only these terminals will swallow
         swallow_regex = "(wezterm|foot|kitty|allacritty|Alacritty)";
         # swallow_regex = "^(wezterm)$";
-        swallow_exception_regex = ".*nvim.*"; # Exception: Don't swallow Neovim
+        swallow_exception_regex =
+          ".*micro.*"; # Exception: Don't swallow Micro editor
 
         # Whether Hyprland should focus an app that requests to be focused (an activate request)
         focus_on_activate = false;

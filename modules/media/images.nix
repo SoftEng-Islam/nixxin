@@ -43,6 +43,6 @@
     upscayl
 
     # Image viewers.
-    lxqt.lximage-qt
+    # lxqt.lximage-qt # (commented out for now due to issues with Wayland)
   ];
 }

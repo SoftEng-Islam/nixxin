@@ -274,9 +274,9 @@ in {
 
       # Preferred editor for local and remote sessions
       # if [[ -n $SSH_CONNECTION ]]; then
-      #   export EDITOR='vim'
+      #   export EDITOR='micro'
       # else
-      #   export EDITOR='nvim'
+      #   export EDITOR='micro'
       # fi
 
 
