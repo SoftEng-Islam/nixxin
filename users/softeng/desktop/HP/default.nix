@@ -504,7 +504,7 @@
     "retbleed=off" # Disable Retbleed mitigation
 
     # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
-    "amdgpu.sched_hw_submission=4"
+    # "amdgpu.sched_hw_submission=4"
 
     # Disables the Linux audit subsystem.
     # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
