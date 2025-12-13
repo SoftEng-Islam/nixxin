@@ -6,10 +6,10 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      iconTheme = {
-        name = settings.common.icons.nameInDark;
-        package = settings.common.icons.package;
-      };
+      # iconTheme = {
+      #   name = settings.common.icons.nameInDark;
+      #   package = settings.common.icons.package;
+      # };
       gtk2 = {
         enable = true;
         # gtk2.theme.name = settings.common.gtk.GTK_THEME;
