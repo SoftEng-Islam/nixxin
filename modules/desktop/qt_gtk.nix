@@ -43,7 +43,7 @@ in {
       gtk4 = {
         enable = true;
         colorScheme = "dark";
-        extraConfig = { gtk-theme-name = "Adwaita"; };
+        extraConfig = { gtk-theme-name = "Adwaita-dark"; };
         # extraCss = ''
         #   .nautilus-window {
         #     background: transparent;

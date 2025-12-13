@@ -85,9 +85,9 @@
     "/home/${user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   # [ GTK ]
-  common.gtk.theme = "Adwaita";
+  common.gtk.theme = "Adwaita-dark";
   common.gtk.icon_cache = false;
-  common.gtk.GTK_THEME = "Adwaita"; # Env Variable
+  common.gtk.GTK_THEME = "Adwaita-dark"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
   # [ QT ]
   common.qt.style = "adwaita-dark";
