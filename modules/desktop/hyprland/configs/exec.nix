@@ -39,7 +39,7 @@ let
     Telegram -startintray & disown
 
     # ---- Set The Appearence ---- #
-    # dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita'"
+    dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
     # dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
     # dconf write /org/gnome/desktop/interface/document-font-name "'Noto Sans Medium 11'"
     # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
