@@ -7,8 +7,8 @@
     VK_ICD_FILENAMES = "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
     # Vulkan Layer path — system-wide layer files
-    VK_LAYER_PATH =
-      "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+    # VK_LAYER_PATH =
+    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
 
     # Enable present_wait extension (helps with frame timing on Wayland)
     VK_KHR_PRESENT_WAIT_ENABLED = "1";
@@ -33,7 +33,7 @@
 
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
-    AMD_VULKAN_ICD = "RADV"; # Force RADV instead of AMDVLK
+    AMD_VULKAN_ICD = "radv"; # Force RADV instead of AMDVLK
 
     #? What the Differante?
     # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";

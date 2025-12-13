@@ -39,7 +39,6 @@ lib.mkIf (settings.modules.env.enable or true) {
       #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
 
       # LD_PRELOAD = "${pkgs.vulkan-loader}/lib/libvulkan.so";
-      AMD_VULKAN_ICD = "radv";
 
       # Don't add certain commands to the history file.
       HISTIGNORE = "&:[bf]g:c:clear:history:exit:q:pwd:* --help";
