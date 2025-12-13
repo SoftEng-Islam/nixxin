@@ -85,9 +85,9 @@
     "/home/${user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
   # [ GTK ]
-  common.gtk.theme = "adw-gtk3-dark";
+  common.gtk.theme = "Adwaita";
   common.gtk.icon_cache = false;
-  common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
+  common.gtk.GTK_THEME = "Adwaita"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
   # [ QT ]
   common.qt.style = "adwaita-dark";
@@ -391,7 +391,6 @@
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
-    "amd-pstate" # AMD CPU P-State driver for better power management
   ];
 
   # [ Recording ]
@@ -511,8 +510,6 @@
     # "amdgpu.audio=0"
 
     # "amd_iommu=off" # some HP laptops throttle with IOMMU on
-    "amd_pstate=active"
-    "amd_pstate.shared_mem=1"
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
