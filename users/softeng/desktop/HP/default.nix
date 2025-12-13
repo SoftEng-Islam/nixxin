@@ -84,11 +84,13 @@
   common.dotfilesDir =
     "/home/${user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
+
   # [ GTK ]
   common.gtk.theme = "adw-gtk3-dark";
   common.gtk.icon_cache = true;
   common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
+
   # [ QT ]
   common.qt.style = "adwaita-dark";
   common.qt.platformTheme = "qt5ct";

@@ -33,17 +33,17 @@ in {
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
-        extraCss = ''
-          headerbar, .titlebar,
-          .csd:not(.popup):not(tooltip):not(messagedialog) decoration {
-            border-radius: 0;
-          }
-        '';
+        # extraCss = ''
+        #   headerbar, .titlebar,
+        #   .csd:not(.popup):not(tooltip):not(messagedialog) decoration {
+        #     border-radius: 0;
+        #   }
+        # '';
       };
       gtk4 = {
         enable = true;
         colorScheme = "dark";
-        extraConfig = { gtk-theme-name = "Adwaita-dark"; };
+        extraConfig = { gtk-theme-name = settings.common.gtk.GTK_THEME; };
         # extraCss = ''
         #   .nautilus-window {
         #     background: transparent;
@@ -62,7 +62,7 @@ in {
   environment.variables = {
     GTK_THEME = settings.common.gtk.GTK_THEME;
     GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
-    QT_STYLE_OVERRIDE = "Adwaita-Dark";
+    QT_STYLE_OVERRIDE = "adwaita-dark";
 
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
@@ -77,11 +77,9 @@ in {
     QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
 
     # fix old GTK3 applications
-    GDK_GL = "always"; # "gles" "disable" "always"
+    # GDK_GL = "always"; # "gles" "disable" "always"
   };
   environment.systemPackages = with pkgs; [
-    gnome-themes-extra
-
     # QT & KDE Stuff
     adwaita-qt
     adwaita-qt6

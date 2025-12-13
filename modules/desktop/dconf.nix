@@ -152,7 +152,7 @@ in with lib.gvariant; {
         maximum-size = 2048;
       };
 
-      # "org/gnome/mutter" = { "check-alive-timeout" = 60000; };
+      "org/gnome/mutter" = { "check-alive-timeout" = 60000; };
     };
   };
 }
