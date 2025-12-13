@@ -60,6 +60,10 @@ in {
   };
 
   environment.variables = {
+    GTK_THEME = "Adwaita-dark";
+    GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
+    QT_STYLE_OVERRIDE = "Adwaita-Dark";
+
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
@@ -76,6 +80,8 @@ in {
     GDK_GL = "always"; # "gles" "disable" "always"
   };
   environment.systemPackages = with pkgs; [
+    gnome-themes-extra
+
     # QT & KDE Stuff
     adwaita-qt
     adwaita-qt6
