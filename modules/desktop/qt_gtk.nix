@@ -6,7 +6,7 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      colorScheme = "dark";
+      # colorScheme = "dark";
       # cursorTheme.name = settings.common.cursor.name;
       # cursorTheme.package = settings.common.cursor.package;
       # cursorTheme.size = settings.common.cursor.size;
@@ -14,18 +14,18 @@ in {
         name = settings.common.icons.nameInDark;
         package = settings.common.icons.package;
       };
-      gtk2 = { enable = true; };
+      # gtk2 = { enable = true; };
       gtk3 = {
         enable = true;
-        colorScheme = "dark";
-        extraConfig = {
-          gtk-decoration-layout = "menu:";
-          gtk-xft-antialias = 1;
-          gtk-xft-hinting = 1;
-          gtk-xft-hintstyle = "hintfull";
-          gtk-xft-rgba = "rgb";
-          gtk-recent-files-enabled = false;
-        };
+        # colorScheme = "dark";
+        # extraConfig = {
+        #   gtk-decoration-layout = "menu:";
+        #   gtk-xft-antialias = 1;
+        #   gtk-xft-hinting = 1;
+        #   gtk-xft-hintstyle = "hintfull";
+        #   gtk-xft-rgba = "rgb";
+        #   gtk-recent-files-enabled = false;
+        # };
 
         bookmarks = [
           "file:///home/${settings.user.username}/Downloads"
@@ -45,15 +45,15 @@ in {
         #   }
         # '';
       };
-      gtk4 = {
-        enable = true;
-        # extraCss = ''
-        #   .nautilus-window {
-        #     background: transparent;
-        #     backdrop-filter: blur(20px);
-        #   }
-        # '';
-      };
+      # gtk4 = {
+      # enable = true;
+      # extraCss = ''
+      #   .nautilus-window {
+      #     background: transparent;
+      #     backdrop-filter: blur(20px);
+      #   }
+      # '';
+      # };
     };
     qt = {
       enable = true;
@@ -64,7 +64,7 @@ in {
 
   environment.variables = {
     # GTK_THEME = settings.common.gtk.GTK_THEME;
-    GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
+    # GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
     QT_STYLE_OVERRIDE = "adwaita-dark";
 
     # Enable automatic screen scaling for Qt apps
