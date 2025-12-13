@@ -86,12 +86,13 @@
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
-  common.gtk.theme = "Adwaita-dark";
-  common.gtk.icon_cache = true;
+  # common.gtk.theme = "adw-gtk3-dark";
   # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
-  common.gtk.GTK_THEME = "Adwaita-dark"; # Env Variable
   # common.gtk.package = pkgs.adw-gtk3;
-  common.gtk.package = pkgs.gnome-themes-extra;
+  common.gtk.theme = "WhiteSur-Dark";
+  common.gtk.GTK_THEME = "WhiteSur-Dark"; # Env Variable
+  common.gtk.package = pkgs.whitesur-gtk-theme;
+  common.gtk.icon_cache = true;
 
   # [ QT ]
   common.qt.style = "Adwaita-dark";
@@ -100,11 +101,22 @@
   common.qt.QT_QPA_PLATFORMTHEME = "qt5ct";
   common.qt.SCALE_FACTOR = 1;
   # [ ICONS ]
-  common.icons.nameInLight = "Papirus";
-  common.icons.nameInDark = "Papirus-Dark";
-  common.icons.package = pkgs.papirus-icon-theme;
+
+  # common.icons.nameInLight = "Papirus";
+  # common.icons.nameInDark = "Papirus-Dark";
+  # common.icons.package = pkgs.papirus-icon-theme;
+  # Papirus folder color
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
   common.icons.folder-color = "yellow";
+
+  common.icons.nameInLight = "WhiteSur";
+  common.icons.nameInDark = "WhiteSur-dark";
+  common.icons.package = pkgs.pkgs.whitesur-icon-theme.override {
+    boldPanelIcons = true;
+    alternativeIcons = true;
+    # Specify theme color variant(s) [default/purple/pink/red/orange/yellow/green/grey/all]
+    themeVariants = [ "yellow" ];
+  };
 
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
@@ -297,8 +309,8 @@
   modules.desktop.hyprland.genColorsPath =
     /home/${user.username}/.cache/hypr/colors.conf;
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
-  modules.desktop.hyprland.blur.enable = true;
-  modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
+  modules.desktop.hyprland.blur.enable = false;
+  modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
   modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = common.surfaceColor;

@@ -37,14 +37,6 @@ let
 
     # ---- Apps To Start ---- #
     Telegram -startintray & disown
-
-    # ---- Set The Appearence ---- #
-    dconf write /org/gnome/desktop/interface/gtk-theme "'Adwaita-dark'"
-    # dconf write /org/gnome/desktop/interface/icon-theme "'Flat-Remix-Red-Dark'"
-    # dconf write /org/gnome/desktop/interface/document-font-name "'Noto Sans Medium 11'"
-    # dconf write /org/gnome/desktop/interface/font-name "'Noto Sans Medium 11'"
-    # dconf write /org/gnome/desktop/interface/monospace-font-name "'Noto Sans Mono Medium 11'"
-
   '';
 in {
   home-manager.users.${settings.user.username} = {
@@ -53,8 +45,3 @@ in {
     };
   };
 }
-# gsettings set org.gnome.desktop.interface gtk-theme ${settings.common.gtk.theme}
-# gsettings set org.gnome.desktop.interface color-scheme ${settings.modules.desktop.dconf.colorScheme}
-# gsettings set org.gnome.desktop.interface cursor-theme ${settings.common.cursor.name}
-# gsettings set org.gnome.desktop.interface icon-theme ${settings.common.icons.nameInDark}
-# gsettings set org.gnome.desktop.interface font-name ${fontName}

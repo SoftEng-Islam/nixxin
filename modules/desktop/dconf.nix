@@ -127,7 +127,7 @@ in with lib.gvariant; {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        gtk-theme = lib.mkForce "${settings.common.gtk.GTK_THEME}";
+        gtk-theme = lib.mkForce "${settings.common.gtk.theme}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
         icon-theme = "${settings.modules.desktop.dconf.icons.nameInDark}";

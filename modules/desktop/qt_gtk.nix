@@ -12,11 +12,11 @@ in {
       # };
       gtk2 = {
         enable = true;
-        # gtk2.theme.name = settings.common.gtk.GTK_THEME;
+        # gtk2.theme.name = settings.common.gtk.theme;
       };
       gtk3 = {
         enable = true;
-        theme.name = settings.common.gtk.GTK_THEME;
+        theme.name = settings.common.gtk.theme;
         # extraConfig = {
         #   gtk-decoration-layout = "menu:";
         #   gtk-xft-antialias = 1;
@@ -40,7 +40,7 @@ in {
       };
       gtk4 = {
         enable = true;
-        theme.name = settings.common.gtk.GTK_THEME;
+        theme.name = settings.common.gtk.theme;
       };
     };
     qt = {
@@ -48,10 +48,15 @@ in {
       platformTheme.name = _qt_gtk.platformTheme;
       style.name = _qt_gtk.style;
     };
+    # Set the gtk css files in ~/.config
+    # home.file.".config/gtk-3.0".source =
+    #   "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark/gtk-3.0";
+    # home.file.".config/gtk-4.0".source =
+    #   "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark/gtk-4.0";
   };
 
   environment.variables = {
-    # GTK_THEME = settings.common.gtk.GTK_THEME;
+    GTK_THEME = settings.common.gtk.GTK_THEME;
     # GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
     QT_STYLE_OVERRIDE = "Adwaita-dark";
 

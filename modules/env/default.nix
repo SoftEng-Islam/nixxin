@@ -66,8 +66,6 @@ lib.mkIf (settings.modules.env.enable or true) {
       XCURSOR_THEME = settings.common.cursor.name;
       XCURSOR_SIZE = toString settings.common.cursor.size;
 
-      # GTK_THEME = "adw-gtk3-dark";
-
       # FONTCONFIG_PATH = "/etc/fonts";
       # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
 
