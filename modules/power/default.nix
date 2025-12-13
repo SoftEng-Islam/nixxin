@@ -44,14 +44,15 @@ in {
     # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
     powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
 
-    # powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
-    # powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
+    powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
+    powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
     # To verify/check the current CPU frequency:
     # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
     # This is the service that lets you pick power profiles in the gnome UI.
     #! It conflicts with auto-cpufreq, so enable only one of the two.
-    services.power-profiles-daemon.enable = true;
+    services.power-profiles-daemon.enable =
+      _power.powerManagement.power-profiles-daemon.enable;
 
     environment.systemPackages = with pkgs; [
       power-profiles-daemon

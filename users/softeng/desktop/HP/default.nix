@@ -14,7 +14,7 @@
   # ---- System Information And Configuration
   # ----------------------------------------------
   system.name = "nixos";
-  system.hostName = "android"; # Hostname
+  system.hostName = "nixxin"; # Hostname
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
@@ -56,7 +56,6 @@
   # For Ex: You have BROWSER var, and xdg webBrowser
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
-
   common.EDITOR = "micro"; # ? EDITOR Var: used for
   common.VISUAL = "micro"; # ? VISUAL Var: used for
   common.TERM = "xterm-256color"; # ? TERM Var: used for
@@ -382,9 +381,11 @@
   modules.power.powerManagement.powertop = false;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"
   modules.power.powerManagement.cpuFreqGovernor = "performance";
-  modules.power.powerManagement.cpufreq.min = 1800000; # 1800MHz
-  modules.power.powerManagement.cpufreq.max = 3900000; # 4.1GHz
-  modules.power.auto-cpufreq.enable = false;
+  modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
+  modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
+  modules.power.auto-cpufreq.enable = true;
+  #! It conflicts with auto-cpufreq, so enable only one of the two.
+  modules.power.power-profiles-daemon.enable = false;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
@@ -500,9 +501,6 @@
     "clocksource=tsc"
     "no_timer_check"
 
-    "split_lock_mitigate=off" # prevents some games from being slowed
-    "retbleed=off" # Disable Retbleed mitigation
-
     # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
     # "amdgpu.sched_hw_submission=4"
 
@@ -520,14 +518,9 @@
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-    "amdgpu.audio=0"
+    # "amdgpu.audio=0"
 
-    "net.ifnames=0" # ?
-    "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
-
-    "amd_iommu=off" # some HP laptops throttle with IOMMU on
-    "processor.max_cstate=1" # prevents deep sleep, ensures max boost
-
+    # "amd_iommu=off" # some HP laptops throttle with IOMMU on
     "amd_pstate=active"
     "amd_pstate.shared_mem=1"
   ];
@@ -654,6 +647,5 @@
       windowsExeFileRunner = "wine";
     };
   };
-
   modules.zram.algorithm = "lz4"; # "lz4", "zstd"
 }

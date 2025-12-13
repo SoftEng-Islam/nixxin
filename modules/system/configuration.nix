@@ -112,53 +112,60 @@ in {
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-      # ''acpi_osi="Windows 2020"''
+      ''acpi_osi="Windows 2020"''
       # "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
-
       "idle=nomwait"
-      "mitigations=off"
 
-      # "processor.max_cstate=1" # Limit C-states for better response time
+      # Disable Mitigation
+      "mitigations=off"
+      "split_lock_mitigate=off" # prevents some games from being slowed
+      "retbleed=off" # Disable Retbleed mitigation
+
+      # Limit C-states for better response time
+      "processor.max_cstate=1" # prevents deep sleep, ensures max boost
 
       "threadirqs" # ?
 
-      # New memory management parameters
-      # "hugepagesz=2M" # Enable 2MB huge pages
-      # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
-      # "default_hugepagesz=2M" # Set default huge page size
-      "transparent_hugepage=madvise" # Enable transparent huge pages
-
-      # "pti=on" # Page Table Isolation for security
-      # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
-      "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
-
-      # ---- Swap ---- #
-      #"zswap.enabled=1"
-      #"zswap.compressor=zstd"
-      #"zswap.max_pool_percent=20"
-
-      # System Performance
+      # ---- System Performance ---- #
       "preempt=full" # voluntary or full
+      "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
       # "clocksource=tsc"
       # "tsc=reliable"
+      # "pti=on" # Page Table Isolation for security
+      # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
 
-      # Power Management
+      # ---- Power Management ---- #
       "workqueue.power_efficient=off" # General power responsiveness
-
       # "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
-      # Storage
-      # "libata.force=noncq"
-
+      # ---- USB Devices ---- #
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.
       "usbcore.autosuspend=-1" # Prevents USB disconnect issues
 
-      # WIFI
+      # ---- WIFI ---- #
       "rtl8xxxu_disable_hw_crypto=1"
+
+      # ---- Networking ---- #
+      "net.ifnames=0" # ?
+      "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
+
+      # ---- Storage ---- #
+      # "libata.force=noncq"
+
+      # ---- New memory management parameters ---- #
+      # "hugepagesz=2M" # Enable 2MB huge pages
+      # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
+      # "default_hugepagesz=2M" # Set default huge page size
+      # "transparent_hugepage=madvise" # Enable transparent huge pages
+
+      # ---- Swap ---- #
+      # "zswap.enabled=1"
+      # "zswap.compressor=zstd"
+      # "zswap.max_pool_percent=20"
     ];
 
     kernel.sysctl = {

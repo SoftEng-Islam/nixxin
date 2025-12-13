@@ -40,7 +40,7 @@
         disable_xdg_env_checks = true;
 
         # disable the warning if hyprland-qtutils is not installed
-        disable_hyprland_qtutils_check = true;
+        # disable_hyprland_qtutils_check = true;
 
         # whether to enable the ANR (app not responding) dialog when your apps hang
         # enable_anr_dialog = false;
