@@ -271,7 +271,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
   };
   environment.systemPackages = with pkgs; [
     # This doesn't work
-    inputs.ashell.defaultPackage.${pkgs.system}
+    pkgs.ashell
     swaynotificationcenter
     networkmanagerapplet
   ];

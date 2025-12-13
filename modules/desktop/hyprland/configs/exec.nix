@@ -4,7 +4,7 @@ let
       toString settings.modules.fonts.main.size.main
     }";
 
-  ashell = inputs.ashell.defaultPackage.${pkgs.system};
+  # ashell = inputs.ashell.defaultPackage.${pkgs.system};
 
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
@@ -18,7 +18,7 @@ let
     sleep 1
 
     # ---- Start Ashell a status bar ---- #
-    ${ashell}/bin/ashell & disown
+    ${pkgs.ashell}/bin/ashell & disown
 
     # Core components (authentication, lock screen, notification daemon)
     ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh
