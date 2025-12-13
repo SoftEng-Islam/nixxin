@@ -38,7 +38,10 @@ in {
           # "file:///mnt/Windows"
         ];
       };
-      # gtk4 = { enable = true; };
+      gtk4 = {
+        enable = true;
+        theme.name = settings.common.gtk.GTK_THEME;
+      };
     };
     qt = {
       enable = true;
