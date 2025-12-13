@@ -88,7 +88,7 @@
   common.gtk.theme = "Adwaita-dark";
   common.gtk.icon_cache = false;
   common.gtk.GTK_THEME = "Adwaita-dark"; # Env Variable
-  common.gtk.package = pkgs.gnome-themes-extra;
+  common.gtk.package = pkgs.adw-gtk3;
   # [ QT ]
   common.qt.style = "adwaita-dark";
   common.qt.platformTheme = "qt5ct";
