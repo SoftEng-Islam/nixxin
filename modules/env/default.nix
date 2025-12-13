@@ -62,7 +62,7 @@ lib.mkIf (settings.modules.env.enable or true) {
       NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
 
       # Configure the cursor theme and size for graphical sessions.
-      XCURSOR = settings.common.cursor.name;
+      XCURSOR_PATH = "${settings.common.cursor.package}/share/icons";
       XCURSOR_THEME = settings.common.cursor.name;
       XCURSOR_SIZE = toString settings.common.cursor.size;
 

@@ -119,9 +119,13 @@
   };
 
   # [ CURSOR ]
+  # common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
+  # common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
+  # common.cursor.package = pkgs.bibata-cursors;
+
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
-  common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
-  common.cursor.package = pkgs.bibata-cursors;
+  common.cursor.name = "WhiteSur-cursors"; # or "Bibata-Modern-Ice"
+  common.cursor.package = pkgs.whitesur-cursors;
 
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]

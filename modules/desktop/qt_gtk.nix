@@ -37,10 +37,12 @@ in {
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
       gtk4 = {
         enable = true;
         theme.name = settings.common.gtk.theme;
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
     };
     qt = {
@@ -48,6 +50,16 @@ in {
       platformTheme.name = _qt_gtk.platformTheme;
       style.name = _qt_gtk.style;
     };
+
+    xdg.configFile = {
+      "gtk-4.0/gtk.css".source =
+        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk.css";
+      "gtk-4.0/gtk-dark.css".source =
+        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk-dark.css";
+      "gtk-4.0/gtk.gresource".source =
+        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk.gresource";
+    };
+
     # Set the gtk css files in ~/.config
     # home.file.".config/gtk-3.0".source =
     #   "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark/gtk-3.0";
