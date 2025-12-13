@@ -10,9 +10,13 @@ in {
         name = settings.common.icons.nameInDark;
         package = settings.common.icons.package;
       };
-      # gtk2 = { enable = true; };
+      gtk2 = {
+        enable = true;
+        # gtk2.theme.name = settings.common.gtk.GTK_THEME;
+      };
       gtk3 = {
         enable = true;
+        theme.name = settings.common.gtk.GTK_THEME;
         # extraConfig = {
         #   gtk-decoration-layout = "menu:";
         #   gtk-xft-antialias = 1;
