@@ -16,8 +16,8 @@
 
     # nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
 
-    ashell.url = "github:MalpenZibo/ashell";
-    ashell.flake = true;
+    # ashell.url = "github:MalpenZibo/ashell";
+    # ashell.flake = true;
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
   };
