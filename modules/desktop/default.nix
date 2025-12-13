@@ -7,7 +7,7 @@
     ./hyprland
     ./file_manager.nix
     ./image_viewer.nix
-    ./qt_gtk.nix
+    # ./qt_gtk.nix
     ./screenshot.nix
     ./tools.nix
   ];
