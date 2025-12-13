@@ -80,6 +80,5 @@ lib.mkIf (settings.modules.env.enable or true) {
       MOZ_ENABLE_WAYLAND = "1";
       EGL_PLATFORM = "wayland";
     };
-    sessionVariables = { GTK_THEME = settings.common.gtk.GTK_THEME; };
   };
 }

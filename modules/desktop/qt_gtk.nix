@@ -60,7 +60,7 @@ in {
   };
 
   environment.variables = {
-    GTK_THEME = "Adwaita-dark";
+    GTK_THEME = settings.common.gtk.GTK_THEME;
     GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
     QT_STYLE_OVERRIDE = "Adwaita-Dark";
 
