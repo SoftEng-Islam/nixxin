@@ -6,7 +6,7 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      # colorScheme = "dark";
+      colorScheme = "dark";
       # cursorTheme.name = settings.common.cursor.name;
       # cursorTheme.package = settings.common.cursor.package;
       # cursorTheme.size = settings.common.cursor.size;
@@ -17,7 +17,6 @@ in {
       # gtk2 = { enable = true; };
       gtk3 = {
         enable = true;
-        # colorScheme = "dark";
         # extraConfig = {
         #   gtk-decoration-layout = "menu:";
         #   gtk-xft-antialias = 1;
@@ -45,15 +44,6 @@ in {
         #   }
         # '';
       };
-      # gtk4 = {
-      # enable = true;
-      # extraCss = ''
-      #   .nautilus-window {
-      #     background: transparent;
-      #     backdrop-filter: blur(20px);
-      #   }
-      # '';
-      # };
     };
     qt = {
       enable = true;
