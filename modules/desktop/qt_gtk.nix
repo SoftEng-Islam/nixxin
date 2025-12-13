@@ -6,6 +6,10 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
+      colorScheme = "dark";
+      # cursorTheme.name = settings.common.cursor.name;
+      # cursorTheme.package = settings.common.cursor.package;
+      # cursorTheme.size = settings.common.cursor.size;
       theme = {
         name = settings.common.gtk.theme;
         package = settings.common.gtk.package;
@@ -16,6 +20,8 @@ in {
       };
       gtk2 = { enable = true; };
       gtk3 = {
+        enable = true;
+        colorScheme = "dark";
         bookmarks = [
           "file:///home/${settings.user.username}/Downloads"
           "file:///home/${settings.user.username}/Documents"
