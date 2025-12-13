@@ -10,10 +10,6 @@ in {
       # cursorTheme.name = settings.common.cursor.name;
       # cursorTheme.package = settings.common.cursor.package;
       # cursorTheme.size = settings.common.cursor.size;
-      theme = {
-        name = settings.common.gtk.theme;
-        package = settings.common.gtk.package;
-      };
       iconTheme = {
         name = settings.common.icons.nameInDark;
         package = settings.common.icons.package;
@@ -22,6 +18,15 @@ in {
       gtk3 = {
         enable = true;
         colorScheme = "dark";
+        extraConfig = {
+          gtk-decoration-layout = "menu:";
+          gtk-xft-antialias = 1;
+          gtk-xft-hinting = 1;
+          gtk-xft-hintstyle = "hintfull";
+          gtk-xft-rgba = "rgb";
+          gtk-recent-files-enabled = false;
+        };
+
         bookmarks = [
           "file:///home/${settings.user.username}/Downloads"
           "file:///home/${settings.user.username}/Documents"
@@ -42,8 +47,6 @@ in {
       };
       gtk4 = {
         enable = true;
-        colorScheme = "dark";
-        extraConfig = { gtk-theme-name = settings.common.gtk.GTK_THEME; };
         # extraCss = ''
         #   .nautilus-window {
         #     background: transparent;
@@ -60,7 +63,7 @@ in {
   };
 
   environment.variables = {
-    GTK_THEME = settings.common.gtk.GTK_THEME;
+    # GTK_THEME = settings.common.gtk.GTK_THEME;
     GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
     QT_STYLE_OVERRIDE = "adwaita-dark";
 
