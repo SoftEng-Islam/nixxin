@@ -6,10 +6,6 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      # colorScheme = "dark";
-      # cursorTheme.name = settings.common.cursor.name;
-      # cursorTheme.package = settings.common.cursor.package;
-      # cursorTheme.size = settings.common.cursor.size;
       iconTheme = {
         name = settings.common.icons.nameInDark;
         package = settings.common.icons.package;
@@ -37,14 +33,8 @@ in {
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
-        # extraCss = ''
-        #   headerbar, .titlebar,
-        #   .csd:not(.popup):not(tooltip):not(messagedialog) decoration {
-        #     border-radius: 0;
-        #   }
-        # '';
       };
-      gtk4 = { enable = true; };
+      # gtk4 = { enable = true; };
     };
     qt = {
       enable = true;
@@ -92,6 +82,7 @@ in {
 
     # GTK
     adw-gtk3
+    libadwaita
 
     gobject-introspection
     gtk_engines # Theme engines for GTK 2
