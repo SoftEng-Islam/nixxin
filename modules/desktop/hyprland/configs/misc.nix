@@ -21,7 +21,7 @@
         allow_session_lock_restore = false;
 
         # If true, will animate manual window resizes/moves
-        animate_manual_resizes = true;
+        animate_manual_resizes = false;
 
         # If true, will animate windows being dragged by mouse,
         # note that this can cause weird behavior on some curves

@@ -138,7 +138,7 @@
   modules.office.enable = true;
   modules.icons.enable = true;
   modules.virtualization.enable = true;
-  modules.zram.enable = false;
+  modules.zram.enable = true;
   modules.ssh.enable = false;
   modules.ai.enable = false;
   modules.emails.enable = true;
@@ -295,7 +295,7 @@
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = true;
   modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
+  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = common.surfaceColor;
   modules.desktop.hyprland.border.active.color = common.primaryColor;
@@ -392,16 +392,6 @@
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     "amd-pstate" # AMD CPU P-State driver for better power management
-    # "cpufreq_performance"
-    # "cpufreq_powersave"
-    # "cpufreq_ondemand"
-    # "cpufreq_conservative"
-    # "powernow-k8"
-  ];
-  modules.power.boot.kernelParams = [
-    # FX CPUs do NOT have P-State.
-    "amd_pstate.shared_mem=1"
-    "amd_pstate=active" # Enable AMD P-State driver
   ];
 
   # [ Recording ]
@@ -458,8 +448,8 @@
   modules.system.boot.loader.timeout = 3; # seconds
   modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
-  modules.system.boot.initrd.kernelModules = [ "amdgpu" "radeon" ];
-  modules.system.boot.blacklistedKernelModules = [ "hp_wmi" ];
+  modules.system.boot.initrd.kernelModules = [ "amdgpu" ];
+  modules.system.boot.blacklistedKernelModules = [ "hp_wmi" "radeon" ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
     fontSize = 14;
@@ -527,7 +517,7 @@
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
     "amdgpu" # AMD GPU driver
-    "radeon" # Legacy AMD GPU driver (for older cards)
+    # "radeon" # Legacy AMD GPU driver (for older cards)
     "k10temp" # Temperature monitoring
     "i2c_hid" # Input devices
     "usbhid"
