@@ -127,7 +127,7 @@ in with lib.gvariant; {
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        # gtk-theme = lib.mkForce "${settings.common.gtk.GTK_THEME}";
+        gtk-theme = lib.mkForce "${settings.common.gtk.GTK_THEME}";
         # gtk-timeout-initial
         # gtk-timeout-repeat
         icon-theme = "${settings.modules.desktop.dconf.icons.nameInDark}";
@@ -152,7 +152,7 @@ in with lib.gvariant; {
         maximum-size = 2048;
       };
 
-      "org/gnome/mutter" = { "check-alive-timeout" = 60000; };
+      "org/gnome/mutter" = { check-alive-timeout = 60000; };
     };
   };
 }
