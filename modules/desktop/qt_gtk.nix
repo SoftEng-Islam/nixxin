@@ -6,7 +6,7 @@ in {
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-      colorScheme = "dark";
+      # colorScheme = "dark";
       # cursorTheme.name = settings.common.cursor.name;
       # cursorTheme.package = settings.common.cursor.package;
       # cursorTheme.size = settings.common.cursor.size;
@@ -44,6 +44,7 @@ in {
         #   }
         # '';
       };
+      gtk4 = { enable = true; };
     };
     qt = {
       enable = true;
