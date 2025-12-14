@@ -55,32 +55,9 @@ in {
 
     # nix build nixpkgs#adw-gtk3 --print-out-paths --no-link
     xdg.configFile = {
-      # "gtk-3.0/gtk.css".source =
-      #   "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/gtk.css";
-      "gtk-3.0/gtk.css".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/gtk-dark.css";
-      "gtk-3.0/assets".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/assets";
-      "gtk-3.0/thumbnail.png".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/thumbnail.png";
-
-      # "gtk-4.0/gtk.css".source =
-      #   "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/gtk.css";
-      "gtk-4.0/dark.css".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/gtk-dark.css";
-      "gtk-4.0/assets".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/assets";
-      "gtk-4.0/libadwaita.css".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/libadwaita.css";
-      "gtk-4.0/libadwaita-tweaks.css".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/libadwaita-tweaks.css";
+      "gtk-3.0".source = ./gtk/adw-gtk3-dark/gtk-3.0;
+      "gtk-4.0".source = ./gtk/adw-gtk3-dark/gtk-4.0;
     };
-
-    # Set the gtk css files in ~/.config
-    # home.file.".config/gtk-3.0".source =
-    #   "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark/gtk-3.0";
-    # home.file.".config/gtk-4.0".source =
-    #   "${pkgs.adw-gtk3}/share/themes/adw-gtk3-dark/gtk-4.0";
   };
 
   environment.variables = {
