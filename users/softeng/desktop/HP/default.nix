@@ -89,9 +89,11 @@
   # common.gtk.theme = "adw-gtk3-dark";
   # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   # common.gtk.package = pkgs.adw-gtk3;
+
   common.gtk.theme = "WhiteSur-Dark";
   common.gtk.GTK_THEME = "WhiteSur-Dark"; # Env Variable
   common.gtk.package = pkgs.whitesur-gtk-theme;
+
   common.gtk.icon_cache = true;
 
   # [ QT ]
@@ -111,7 +113,7 @@
 
   common.icons.nameInLight = "WhiteSur";
   common.icons.nameInDark = "WhiteSur-dark";
-  common.icons.package = pkgs.pkgs.whitesur-icon-theme.override {
+  common.icons.package = pkgs.whitesur-icon-theme.override {
     boldPanelIcons = true;
     alternativeIcons = true;
     # Specify theme color variant(s) [default/purple/pink/red/orange/yellow/green/grey/all]

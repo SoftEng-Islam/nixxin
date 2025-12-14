@@ -16,7 +16,7 @@ in {
       };
       gtk3 = {
         enable = true;
-        theme.name = settings.common.gtk.theme;
+        # theme.name = settings.common.gtk.theme;
         # extraConfig = {
         #   gtk-decoration-layout = "menu:";
         #   gtk-xft-antialias = 1;
@@ -37,13 +37,14 @@ in {
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
-        # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        # colorScheme = "dark";
       };
       gtk4 = {
-        enable = true;
-        theme.name = settings.common.gtk.theme;
-        colorScheme = "dark";
-        # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        # enable = true;
+        # theme.name = settings.common.gtk.theme;
+        # colorScheme = "dark";
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
     };
     qt = {
