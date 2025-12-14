@@ -4,49 +4,49 @@ let _qt_gtk = settings.common.qt;
 in {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
-    # gtk = {
-    #   enable = true;
-    #   # iconTheme = {
-    #   #   name = settings.common.icons.nameInDark;
-    #   #   package = settings.common.icons.package;
-    #   # };
-    #   gtk2 = {
-    #     enable = true;
-    #     # gtk2.theme.name = settings.common.gtk.theme;
-    #   };
-    #   gtk3 = {
-    #     enable = true;
-    #     theme.name = settings.common.gtk.theme;
-    #     # extraConfig = {
-    #     #   gtk-decoration-layout = "menu:";
-    #     #   gtk-xft-antialias = 1;
-    #     #   gtk-xft-hinting = 1;
-    #     #   gtk-xft-hintstyle = "hintfull";
-    #     #   gtk-xft-rgba = "rgb";
-    #     #   gtk-recent-files-enabled = false;
-    #     # };
+    gtk = {
+      enable = true;
+      # iconTheme = {
+      #   name = settings.common.icons.nameInDark;
+      #   package = settings.common.icons.package;
+      # };
+      gtk2 = {
+        enable = true;
+        # gtk2.theme.name = settings.common.gtk.theme;
+      };
+      gtk3 = {
+        enable = true;
+        theme.name = settings.common.gtk.theme;
+        # extraConfig = {
+        #   gtk-decoration-layout = "menu:";
+        #   gtk-xft-antialias = 1;
+        #   gtk-xft-hinting = 1;
+        #   gtk-xft-hintstyle = "hintfull";
+        #   gtk-xft-rgba = "rgb";
+        #   gtk-recent-files-enabled = false;
+        # };
 
-    #     bookmarks = [
-    #       "file:///home/${settings.user.username}/Downloads"
-    #       "file:///home/${settings.user.username}/Documents"
-    #       "file:///home/${settings.user.username}/Pictures"
-    #       "file:///home/${settings.user.username}/Music"
-    #       "file:///home/${settings.user.username}/Videos"
-    #       # "file:///home/${settings.user.username}/Dev"
-    #       # "file:///home/${settings.user.username}/GitHub"
-    #       # "file:///home/${settings.user.username}/.config"
-    #       # "file:///mnt/Windows"
-    #     ];
-    #     extraConfig = { "gtk-application-prefer-dark-theme" = true; };
-    #     colorScheme = "dark";
-    #   };
-    #   gtk4 = {
-    #     enable = true;
-    #     theme.name = settings.common.gtk.theme;
-    #     colorScheme = "dark";
-    #     extraConfig = { "gtk-application-prefer-dark-theme" = true; };
-    #   };
-    # };
+        bookmarks = [
+          "file:///home/${settings.user.username}/Downloads"
+          "file:///home/${settings.user.username}/Documents"
+          "file:///home/${settings.user.username}/Pictures"
+          "file:///home/${settings.user.username}/Music"
+          "file:///home/${settings.user.username}/Videos"
+          # "file:///home/${settings.user.username}/Dev"
+          # "file:///home/${settings.user.username}/GitHub"
+          # "file:///home/${settings.user.username}/.config"
+          # "file:///mnt/Windows"
+        ];
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        colorScheme = "dark";
+      };
+      gtk4 = {
+        enable = true;
+        theme.name = settings.common.gtk.theme;
+        colorScheme = "dark";
+        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+      };
+    };
     qt = {
       enable = true;
       platformTheme.name = _qt_gtk.platformTheme;
@@ -55,11 +55,15 @@ in {
 
     # nix build nixpkgs#adw-gtk3 --print-out-paths --no-link
     xdg.configFile = {
-      "gtk-3.0".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0";
+      "gtk-3.0/gtk.css".source =
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/gtk.css";
+      "gtk-3.0/gtk-dark.css".source =
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0/gtk-dark.css";
 
-      "gtk-4.0".source =
-        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0";
+      "gtk-4.0/gtk.css".source =
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/gtk.css";
+      "gtk-4.0/gtk-dark.css".source =
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0/gtk-dark.css";
     };
 
     # Set the gtk css files in ~/.config

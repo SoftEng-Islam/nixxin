@@ -103,6 +103,8 @@
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
   common.icons.package = pkgs.papirus-icon-theme;
+  # common.icons.package = pkgs.papirus-icon-theme.override { color = "bluegrey"; };
+
   # Papirus folder color
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
   common.icons.folder-color = "yellow";
