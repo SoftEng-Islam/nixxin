@@ -86,13 +86,9 @@
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
-  # common.gtk.theme = "adw-gtk3-dark";
-  # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
-  # common.gtk.package = pkgs.adw-gtk3;
-
-  common.gtk.theme = "WhiteSur-Dark";
-  common.gtk.GTK_THEME = "WhiteSur-Dark"; # Env Variable
-  common.gtk.package = pkgs.whitesur-gtk-theme;
+  common.gtk.theme = "adw-gtk3-dark";
+  common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
+  common.gtk.package = pkgs.adw-gtk3;
 
   common.gtk.icon_cache = true;
 
@@ -104,30 +100,17 @@
   common.qt.SCALE_FACTOR = 1;
   # [ ICONS ]
 
-  # common.icons.nameInLight = "Papirus";
-  # common.icons.nameInDark = "Papirus-Dark";
-  # common.icons.package = pkgs.papirus-icon-theme;
+  common.icons.nameInLight = "Papirus";
+  common.icons.nameInDark = "Papirus-Dark";
+  common.icons.package = pkgs.papirus-icon-theme;
   # Papirus folder color
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
   common.icons.folder-color = "yellow";
 
-  common.icons.nameInLight = "WhiteSur";
-  common.icons.nameInDark = "WhiteSur-dark";
-  common.icons.package = pkgs.whitesur-icon-theme.override {
-    boldPanelIcons = true;
-    alternativeIcons = true;
-    # Specify theme color variant(s) [default/purple/pink/red/orange/yellow/green/grey/all]
-    themeVariants = [ "yellow" ];
-  };
-
   # [ CURSOR ]
-  # common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
-  # common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
-  # common.cursor.package = pkgs.bibata-cursors;
-
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
-  common.cursor.name = "WhiteSur-cursors"; # or "Bibata-Modern-Ice"
-  common.cursor.package = pkgs.whitesur-cursors;
+  common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
+  common.cursor.package = pkgs.bibata-cursors;
 
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
