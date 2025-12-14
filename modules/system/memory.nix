@@ -29,7 +29,7 @@ in {
 
     #! Memory management
     # Write data to disk more frequently (prevents slowdowns)
-    "vm.dirty_ratio" = 10; # Full writeback at 10%
+    "vm.dirty_ratio" = 15; # Full writeback at 15%
 
     "vm.dirty_background_ratio" = 5; # Background writeback at 5%
 
@@ -44,7 +44,7 @@ in {
 
     #! Swap related { Virtual memory tweaks }
     # Change this value as needed (0-100) 0 makes kernel avoid swap as much as possible
-    "vm.swappiness" = 0;
+    "vm.swappiness" = 10;
     "vm.watermark_boost_factor" = 0;
     "vm.watermark_scale_factor" = 125;
     "vm.page-cluster" = 0;

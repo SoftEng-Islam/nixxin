@@ -22,14 +22,15 @@ in {
     settings = {
       sandbox = true;
       keep-outputs = false;
+      max-jobs = "auto";
       keep-derivations = false;
       fallback = true; # don't fail if remote builder unavailable
       warn-dirty = true;
-      # max-jobs = 1;
       min-free = 1073741824; # 1 GiB
       download-buffer-size = 536870912; # 512MiB
       use-xdg-base-directories = true;
       builders-use-substitutes = true;
+      cores = 0;
 
       # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
       # http-connections = 128;
@@ -54,6 +55,7 @@ in {
 
       trusted-substituters = [ "https://nix-community.cachix.org" ];
       substituters = [
+        "https://cache.nixos.org"
         # high priority since it's almost always used
         "https://cache.nixos.org?priority=10"
         "https://hyprland.cachix.org?priority=10"
@@ -64,6 +66,7 @@ in {
         "https://nixpkgs-python.cachix.org"
         "https://nixpkgs-wayland.cachix.org"
       ];
+
       # Enable cachix
       trusted-public-keys = [
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="

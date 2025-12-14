@@ -306,7 +306,7 @@
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = common.surfaceColor;
   modules.desktop.hyprland.border.active.color = common.primaryColor;
-  modules.desktop.hyprland.border.size = 3;
+  modules.desktop.hyprland.border.size = 1;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
   modules.desktop.hyprland.plugins.hyprspace = false;
@@ -456,6 +456,7 @@
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
   modules.system.boot.initrd.kernelModules = [ "amdgpu" ];
   modules.system.boot.blacklistedKernelModules = [ "hp_wmi" "radeon" ];
+
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
     fontSize = 14;

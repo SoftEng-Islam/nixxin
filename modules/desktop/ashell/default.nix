@@ -4,7 +4,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
       # log_level = "ashell::services=info"
-      log_level = "warn"
+      # log_level = "warn"
       enable_esc_key = false
 
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
@@ -101,8 +101,8 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # If using Hyprland the names can be found in `hyprctl devices | grep "active keymap"`
       [keyboard_layout.labels]
       "English (US)" = "🇺🇸"
-      "Arabic (EG)" = "🇸🇦"
-      "French (FR)" = "🇫🇷"
+      "Arabic (Egypt)" = "🇸🇦"
+      "French" = "🇫🇷"
       # "Russian" = "🇷🇺"
       # "Italian" = "🇮🇹"
       # "Spanish" = "🇪🇸"
@@ -229,10 +229,10 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
 
       # The opacity of the main bar, possible values are: 0.0 to 1.0
       # optional, default 1.0
-      opacity = 0.9
+      opacity = 1.0
 
       # used as a base background color for header module button
-      # background_color = "#1e1e2e"
+      # background_color = "#131313ff"
       # used as a accent color
       primary_color = "#ceb6e0ff"
       # used for darker background color
@@ -242,10 +242,10 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # used for danger message or danger state (the weak version is used for the warning state
       danger_color = "#ff5353ff"
       # base default text color
-      text_color = "#b9b9b9ff"
+      text_color = "#d5d5d5ff"
 
       # this is a list of color that will be used in the workspace module (one color for each monitor)
-      workspace_colors = ["#b787faff", "#b4befe"]
+      workspace_colors = ["#ff9e9eff", "#b4befeff"]
 
       # this is a list of color that will be used in the workspace module
       # for the special workspace (one color for each monitor)
@@ -263,7 +263,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       [appearance.menu]
       # The opacity of the menu, possible values are: 0.0 to 1.0
       # optional, default 1.0
-      opacity = 0.8
+      opacity = 1.0
       # The backdrop of the menu, possible values are: 0.0 to 1.0
       # optional, default 0.0
       backdrop = 0.0
