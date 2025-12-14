@@ -75,7 +75,7 @@
       windowrulev2 = nodim,class:(Wezterm)
       windowrulev2 = noshadow,class:(Wezterm)
       windowrulev2 = rounding 0,class:(Wezterm)
-      windowrule = opacity 0.90 override 0.85 override,class:(Wezterm)
+      # windowrule = opacity 0.90 override 0.85 override,class:(Wezterm)
 
       # --------------------
       # 0 A.D. rules
