@@ -37,12 +37,13 @@ in {
           # "file:///home/${settings.user.username}/.config"
           # "file:///mnt/Windows"
         ];
-        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
       gtk4 = {
         enable = true;
         theme.name = settings.common.gtk.theme;
-        extraConfig = { "gtk-application-prefer-dark-theme" = true; };
+        color-scheme = "dark";
+        # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
     };
     qt = {
