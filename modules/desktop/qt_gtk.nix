@@ -55,10 +55,10 @@ in {
 
     # nix build nixpkgs#adw-gtk3 --print-out-paths --no-link
     xdg.configFile = {
-      "gtk-3.0/gtk.css".source =
+      "gtk-3.0".source =
         "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0";
 
-      "gtk-4.0/gtk.css".source =
+      "gtk-4.0".source =
         "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0";
     };
 
