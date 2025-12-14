@@ -42,7 +42,7 @@ in {
       gtk4 = {
         enable = true;
         theme.name = settings.common.gtk.theme;
-        color-scheme = "dark";
+        colorScheme = "dark";
         # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
       };
     };
