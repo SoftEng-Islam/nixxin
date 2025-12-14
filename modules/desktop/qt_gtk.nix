@@ -53,13 +53,13 @@ in {
       style.name = _qt_gtk.style;
     };
 
+    # nix build nixpkgs#adw-gtk3 --print-out-paths --no-link
     xdg.configFile = {
+      "gtk-3.0/gtk.css".source =
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-3.0";
+
       "gtk-4.0/gtk.css".source =
-        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk.css";
-      "gtk-4.0/gtk-dark.css".source =
-        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk-dark.css";
-      "gtk-4.0/gtk.gresource".source =
-        "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}/gtk-4.0/gtk.gresource";
+        "${settings.common.gtk.package}/share/themes/adw-gtk3-dark/gtk-4.0";
     };
 
     # Set the gtk css files in ~/.config
