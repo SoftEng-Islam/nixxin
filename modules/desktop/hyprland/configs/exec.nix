@@ -35,7 +35,7 @@ let
     sleep 1
 
     # ---- Apps To Start ---- #
-    Telegram -startintray & disown
+    # Telegram -startintray & disown
   '';
 in {
   home-manager.users.${settings.user.username} = {

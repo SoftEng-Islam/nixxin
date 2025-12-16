@@ -22,9 +22,7 @@
           "--time"
           "--asterisks"
           "--time-format '%I:%M %p | %a - %h | %F'"
-          "--greeting 'Just Developer'"
-          # Make sure theme is wrapped in single quotes. See https://github.com/apognu/tuigreet/issues/147
-          # "--theme 'border=blue;text=cyan;prompt=green;time=red;action=blue;button=white;container=black;input=red'"
+          "--greeting 'Hello There!'"
           "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'"
           "--cmd Hyprland"
         ];

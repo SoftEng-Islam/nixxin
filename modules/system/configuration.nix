@@ -103,12 +103,15 @@ in {
       "splash"
       "loglevel=3"
       "udev.log_level=3"
-      "rd.systemd.show_status=false"
       "rd.udev.log_level=3"
       "udev.log_priority=3"
       "ibt=off"
       "psi=1"
       "nowatchdog=0"
+      "systemd.show_status=false"
+      "rd.systemd.show_status=false"
+      "rd.udev.log_priority=3"
+      "vt.global_cursor_default=0"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
