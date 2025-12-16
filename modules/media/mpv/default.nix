@@ -102,6 +102,9 @@ in lib.mkIf (settings.modules.media.mpv) {
         hwdec = _hwdec; # or "no" if it fails
         # hwdec-codecs = "all";
         profile = "gpu-hq"; # good baseline
+        # Shaders
+        glsl-shaders =
+          [ "~~/shaders/AMD/FSR.glsl" "~~/shaders/AMD/CAS-scaled.glsl" ];
         fullscreen = false;
         keep-open = "yes";
         force-window = "immediate";
@@ -109,7 +112,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         # scale = "bilinear"; # faster than lanczos
         # cscale = "bilinear";
         # tscale = "linear";
-        deband = "auto"; # no: to save GPU cycles
+        deband = "yes";
         # dither-depth = "auto";
         # autofit = "100%";
         window-maximized = "yes";
@@ -152,9 +155,6 @@ in lib.mkIf (settings.modules.media.mpv) {
   };
 
   environment.systemPackages = with pkgs; [
-    # driversi686Linux.vdpauinfo
-    # vdpauinfo
-
     gnutls
     harfbuzz
     iconv
