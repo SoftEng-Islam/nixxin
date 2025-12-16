@@ -36,6 +36,10 @@
 .input {
     color: @input_color;
     border-radius: 12px;
+    padding: 16px;
+    border: none;
+    outline: none;
+    box-shadow: none;
 }
 
 /**
@@ -54,7 +58,7 @@
 
 .item-text {
     color: alpha (@item_text, 0.5);
-} 
+}
 .item-name {
     color: @item_name;
 }

@@ -2,7 +2,7 @@
 # The [ MPV ] manual
 # https://mpv.io/manual/stable/
 let
-  _hwdec = "vaapi"; # mpv --hwdec=help
+  _hwdec = "vaapi-copy"; # "vaapi"; # mpv --hwdec=help
   # _vo = "gpu"; # mpv --vo=help
   # _gpu-api = "auto"; # mpv --gpu-api=help
   _hwdec-codecs = "all"; # mpv --hwdec-codecs=help
