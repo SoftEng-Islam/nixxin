@@ -72,8 +72,8 @@
 
   # => `graid colors ex:
   # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
-  common.primaryColor = "rgba(E62D42ff)"; # used by hyprland
-  common.surfaceColor = "rgba(2190A4ff)";
+  common.primaryColor = "rgba(E62D42ff)";
+  common.surfaceColor = "rgba(1e1e1eff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
   common.soundPlayer = "";
