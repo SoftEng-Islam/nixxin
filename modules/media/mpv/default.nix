@@ -3,8 +3,11 @@
 # https://mpv.io/manual/stable/
 let
   _hwdec = "vaapi"; # mpv --hwdec=help
-  _vo = "gpu"; # mpv --vo=help
-  _gpu-api = "auto"; # mpv --gpu-api=help
+  # _vo = "gpu"; # mpv --vo=help
+  # _gpu-api = "auto"; # mpv --gpu-api=help
+  _hwdec-codecs = "all"; # mpv --hwdec-codecs=help
+  _vo = "gpu-next"; # mpv --vo=help
+  _gpu-api = "vulkan"; # mpv --gpu-api=help
 
 in lib.mkIf (settings.modules.media.mpv) {
   environment.variables = { VIDEO = "mpv"; };
