@@ -304,9 +304,9 @@
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
   modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
-  modules.desktop.hyprland.border.inactive.color = common.surfaceColor;
+  modules.desktop.hyprland.border.inactive.color = "rgba(474747ff)";
   modules.desktop.hyprland.border.active.color = common.primaryColor;
-  modules.desktop.hyprland.border.size = 1;
+  modules.desktop.hyprland.border.size = 2;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
   modules.desktop.hyprland.plugins.hyprspace = false;
