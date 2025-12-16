@@ -43,9 +43,11 @@ in with lib.gvariant; {
 
       "org/gnome/desktop/peripherals/mouse" = {
         "speed" = 1;
+        # (adaptive, flat, none)
         "accel-profile" = "adaptive";
         "natural-scroll" = false;
-        "double-click" = 600;
+        # (800ms) for double click to open a file
+        "double-click" = 800;
       };
 
       "org/gnome/desktop/peripherals/keyboard" = {

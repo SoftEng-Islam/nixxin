@@ -41,20 +41,17 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       #  - MediaPlayer
       #  - Settings
       [modules]
-
       # The modules that will be displayed on the left side of the status bar
       left = [ "AppLauncher" ,"Workspaces" ]
-
       # The modules that will be displayed in the center of the status bar
       center = ["Clock"]
-
       # The modules that will be displayed on the right side of the status bar
       # The nested modules array will form a group sharing the same element in the status bar
       # You can also use custom modules to extend the normal set of options, see configuration below
       right = [ "SystemInfo", "Tray", "KeyboardLayout", ["Privacy", "Settings"], "CustomNotifications"]
 
-      # Update module configuration. Without a value the related button will not appear.
       # [updates]
+      # Update module configuration. Without a value the related button will not appear.
       # The check command will be used to retrieve the update list.
       # It should return something like `package_name version_from -> version_to\n`
       # check_cmd = "checkupdates; paru -Qua"
@@ -218,17 +215,12 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       # optional, default false
       remove_airplane_btn = true
 
-      # Appearance configuration
       [appearance]
-      # optional, default iced.rs font
+      # ---- optional, default iced.rs font
       font_name = "${settings.modules.fonts.main.name}"
-
-      # The style of the main bar, possible values are: Islands | Solid | Gradient
-      # optional, default Islands
-      style = "Solid"
-
-      # The opacity of the main bar, possible values are: 0.0 to 1.0
-      # optional, default 1.0
+      # ---- The style of the main bar, possible values are: Islands | Solid | Gradient, optional, default Islands
+      style = "Islands"
+      # ---- The opacity of the main bar, possible values are: 0.0 to 1.0 optional, default 1.0
       opacity = 1.0
 
       # used as a base background color for header module button
@@ -245,7 +237,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or true) {
       text_color = "#d5d5d5ff"
 
       # this is a list of color that will be used in the workspace module (one color for each monitor)
-      workspace_colors = ["#ff9e9eff", "#b4befeff"]
+      workspace_colors = ["#ffc2c2ff", "#c7feb4ff"]
 
       # this is a list of color that will be used in the workspace module
       # for the special workspace (one color for each monitor)
