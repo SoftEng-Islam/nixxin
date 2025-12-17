@@ -56,7 +56,6 @@ in {
     environment.systemPackages = with pkgs; [
       power-profiles-daemon
       poweralertd
-      powercap
       cpupower-gui
       cpufrequtils
     ];

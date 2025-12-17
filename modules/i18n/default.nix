@@ -1,7 +1,5 @@
-{ settings, lib, pkgs, ... }:
-let
-  inherit (lib) mkIf;
-  _i18n = settings.modules.i18n;
+{ settings, pkgs, ... }:
+let _i18n = settings.modules.i18n;
 in {
   # -------------------------------- #
   # Internationalisation & Time Zone
@@ -58,22 +56,22 @@ in {
     font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
     # useXkbConfig = false; # If set, configure the virtual console keymap from the xserver keyboard settings.
     colors = [
-      "002b36"
-      "dc322f"
-      "859900"
-      "b58900"
-      "268bd2"
-      "d33682"
-      "2aa198"
-      "eee8d5"
-      "002b36"
-      "cb4b16"
-      "586e75"
-      "657b83"
-      "839496"
-      "6c71c4"
-      "93a1a1"
-      "fdf6e3"
+      "1e1e2e" # Black
+      "f38ba8" # Red
+      "a6e3a1" # Green
+      "f9e2af" # Yellow
+      "89b4fa" # Blue
+      "cba6f7" # Magenta
+      "94e2d5" # Cyan
+      "cdd6f4" # White
+      "585b70" # Bright Black
+      "f38ba8" # Bright Red
+      "a6e3a1" # Bright Green
+      "f9e2af" # Bright Yellow
+      "89b4fa" # Bright Blue
+      "cba6f7" # Bright Magenta
+      "94e2d5" # Bright Cyan
+      "a6adc8" # Bright White
     ];
   };
 

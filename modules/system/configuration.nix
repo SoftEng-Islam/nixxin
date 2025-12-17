@@ -1,4 +1,4 @@
-{ settings, config, pkgs, ... }:
+{ settings, pkgs, ... }:
 # ------------------------------------------------
 # !NOTICE: You Must Read And Customize This File
 # ------------------------------------------------
@@ -143,7 +143,7 @@ in {
 
       # ---- Power Management ---- #
       "workqueue.power_efficient=off" # General power responsiveness
-      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # ---- USB Devices ---- #
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
@@ -164,7 +164,8 @@ in {
       # "hugepagesz=2M" # Enable 2MB huge pages
       # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
       # "default_hugepagesz=2M" # Set default huge page size
-      # "transparent_hugepage=madvise" # Enable transparent huge pages
+      "transparent_hugepage=always" # Enable transparent huge pages
+      "amdgpu.gpu_recovery=1" # Enable GPU recovery
 
       # ---- Swap ---- #
       # "zswap.enabled=1"

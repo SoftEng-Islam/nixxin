@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.bat = {
       enable = settings.modules.cli_tools.utilities.bat.enable or false;
@@ -6,7 +6,7 @@
       config = {
         map-syntax = [ "*.jenkinsfile:Groovy" "*.props:Java Properties" ];
         pager = "less -FR";
-        theme = "TwoDark";
+        theme = "catppuccin-mocha";
       };
       # syntaxes = { };
       # themes = { };

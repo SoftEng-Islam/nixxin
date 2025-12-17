@@ -23,8 +23,8 @@
           "--asterisks"
           "--time-format '%I:%M %p | %a - %h | %F'"
           "--greeting 'Hello There!'"
-          "--theme 'border=magenta;text=cyan;prompt=green;time=red;action=blue;button=yellow;container=black;input=red'"
-          "--cmd Hyprland"
+          "--theme 'border=magenta;text=white;prompt=magenta;time=white;action=magenta;button=white;container=black;input=white'"
+          "--cmd 'dbus-run-session Hyprland > /dev/null 2>&1'"
         ];
         flags = lib.concatStringsSep " " tuigreetOptions;
       in {

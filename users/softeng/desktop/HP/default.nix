@@ -390,7 +390,7 @@
   modules.power.powerManagement.cpuFreqGovernor = "performance";
   modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
   modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
-  modules.power.auto-cpufreq.enable = true;
+  modules.power.auto-cpufreq.enable = false;
   #! It conflicts with auto-cpufreq, so enable only one of the two.
   modules.power.power-profiles-daemon.enable = false;
   modules.power.upower.enable = true;
@@ -576,7 +576,7 @@
       shell = modules.terminals.default.shell;
       fontFamily = modules.terminals.default.font.family;
       fontSize = modules.terminals.default.font.size;
-      colorScheme = "Apple System Colors";
+      colorScheme = "Catppuccin Mocha";
     };
   };
 
