@@ -59,6 +59,7 @@ in {
     };
 
     initrd = {
+      systemd.enable = true;
       verbose = false;
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization

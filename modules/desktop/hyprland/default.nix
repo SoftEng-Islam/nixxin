@@ -61,6 +61,7 @@ in {
   environment.variables = {
     LIBSEAT_BACKEND = "logind";
     HYPRLAND_TRACE = 0; # 1 to enable more verbose logging.
+    AQ_TRACE = 0;
 
     HYPRCURSOR_THEME = settings.common.cursor.name;
     HYPRCURSOR_SIZE = toString settings.common.cursor.size;
@@ -102,8 +103,8 @@ in {
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       settings = {
         debug = {
-          disable_logs = false;
-          enable_stdout_logs = true;
+          disable_logs = true;
+          enable_stdout_logs = false;
         };
         # active color
         "$primary" = settings.common.primaryColor;

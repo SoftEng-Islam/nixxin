@@ -37,13 +37,12 @@ lib.mkIf (settings.modules.env.enable or false) {
       #   pkgs.xorg.libXrandr
       # ]}";
 
-      # Set backend rendering to Wayland.
-      # SDL_VIDEODRIVER = "wayland";
-      # BEMENU_BACKEND = "wayland";
-      # GDK_BACKEND = "wayland";
-      # CLUTTER_BACKEND = "wayland";
-      # ELM_ENGINE = "wayland_egl";
-      # ECORE_EVAS_ENGINE = "wayland_egl";
+      SDL_VIDEODRIVER = "wayland";
+      BEMENU_BACKEND = "wayland";
+      GDK_BACKEND = "wayland";
+      CLUTTER_BACKEND = "wayland";
+      ELM_ENGINE = "wayland_egl";
+      ECORE_EVAS_ENGINE = "wayland_egl";
 
       # ---- Electron ---- #
       # Enable Wayland support for Electron apps
