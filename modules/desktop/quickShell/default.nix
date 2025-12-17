@@ -5,5 +5,5 @@
     home.files."~/.config/quickshell/overview".source = ./quickshell/overview;
   };
 
-  environment.systemPackages = with pkgs; [ quickshell hyprshade ];
+  environment.systemPackages = with pkgs; [ quickshell ];
 }

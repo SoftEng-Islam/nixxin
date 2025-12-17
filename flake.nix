@@ -14,15 +14,6 @@
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    # quickshell = {
-    #   # add ?ref=<tag> to track a tag
-    #   url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-
-    #   # THIS IS IMPORTANT
-    #   # Mismatched system dependencies will lead to crashes and other issues.
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     # nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
 
     # ashell.url = "github:MalpenZibo/ashell";

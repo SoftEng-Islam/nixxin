@@ -22,8 +22,7 @@ in {
 
   boot.kernel.sysctl = {
     # Users will do scary things and suddenly require more memory,
-    # so let's take a bunch of spares from the cache so we don't OOM
-    # as easily.
+    # so let's take a bunch of spares from the cache so we don't OOM as easily.
     "vm.user_reserve_kbytes" = 196608; # 1(2^17)
     "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
 
@@ -72,7 +71,7 @@ in {
     })
   ];
 
-  # prevent OOS error during builds when using zram/tmp on tmpfs
+  # Prevent OOS error during builds when using zram/tmp on tmpfs
   systemd.services.nix-daemon.environment.TMPDIR = nixTmpDir;
   systemd.tmpfiles.rules = [ "d ${nixTmpDir} 0755 root root 1d" ];
   # OOM config (https://discourse.nixos.org/t/nix-build-ate-my-ram/35752)

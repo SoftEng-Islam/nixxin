@@ -2,7 +2,7 @@
 { settings, config, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 in {
-  config = mkIf (settings.modules.emails.enable or true) {
+  config = mkIf (settings.modules.emails.enable or false) {
     home-manager.users.${settings.user.username} = {
       programs.thunderbird = {
         enable = true;

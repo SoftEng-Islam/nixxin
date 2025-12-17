@@ -5,7 +5,7 @@ let inherit (lib) mkIf;
 in {
   # imports = [ ./rnnoise.nix ];
 
-  config = mkIf (settings.modules.audio.enable or true) {
+  config = mkIf (settings.modules.audio.enable or false) {
     # WirePlumber configuration [https://wiki.archlinux.org/title/WirePlumber]
     # To get The id of your audio sink, run:
     # wpctl status

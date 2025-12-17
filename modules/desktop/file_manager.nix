@@ -80,6 +80,7 @@
     unrar-wrapper # Backwards compatibility between unar and unrar
     rar # Utility for RAR archives
 
+    gzip
     unzip # An extraction utility for archives compressed in .zip format
     zip # Compressor/archiver for creating and modifying zipfiles
     xz

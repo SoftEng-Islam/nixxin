@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) mkIf;
 
-in mkIf (settings.modules.icons.enable or true) {
+in mkIf (settings.modules.icons.enable or false) {
   nixpkgs.overlays = [
     (final: prev: {
       # ------------------------------

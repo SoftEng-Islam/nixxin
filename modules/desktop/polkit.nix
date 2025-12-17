@@ -1,5 +1,5 @@
 { settings, inputs, lib, pkgs, ... }:
-lib.mkIf (settings.modules.desktop.polkit.enable or true) {
+lib.mkIf (settings.modules.desktop.polkit.enable or false) {
 
   # -----------------------------------
   # hyprpolkitagent

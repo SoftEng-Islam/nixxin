@@ -99,9 +99,9 @@ in {
 
   # Upgrade System
   system = {
-    autoUpgrade.enable = settings.system.upgrade.enable or true;
+    autoUpgrade.enable = settings.system.upgrade.enable or false;
     autoUpgrade.dates = "daily";
-    autoUpgrade.allowReboot = settings.system.upgrade.allowReboot or true;
+    autoUpgrade.allowReboot = settings.system.upgrade.allowReboot or false;
     autoUpgrade.channel = settings.system.upgrade.channel;
     autoUpgrade.operation = "switch";
     autoUpgrade.flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
@@ -223,13 +223,6 @@ in {
 
     # Printing support through the CUPS daemon.
     # printing.enable = false; # Enable CUPS to print documents.
-
-    # sysprof profiling daemon.
-    # sysprof is a system-wide profiler that collects performance data.
-    # It can be used to analyze the performance of applications and the system.
-    # It is useful for debugging performance issues and optimizing applications.
-    # It can be used to profile applications, system services, and the kernel.
-    sysprof.enable = true;
   };
 
   environment.variables = {

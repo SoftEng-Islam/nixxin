@@ -1,12 +1,13 @@
 { settings, lib, pkgs, ... }:
-# lib.mkIf (settings.modules.cli_tools.enable or true)
+# lib.mkIf (settings.modules.cli_tools.enable or false)
 {
   imports = [ ./neofetch ./prompt ./shells ./terminals ./utilities ];
 
   # Enable the nix-index
-  # programs.nix-index.enable = true;
+  programs.nix-index.enable = true;
+  programs.nix-index.enableZshIntegration = true;
+  programs.nix-index.enableBashIntegration = true;
   # programs.nix-index.enableFishIntegration = true;
-  # programs.nix-index-database.comma.enable = true;
 
   # for home-manager, use programs.bash.initExtra instead
   programs.bash.interactiveShellInit = ''
@@ -16,6 +17,14 @@
     source ${pkgs.nix-index}/etc/profile.d/command-not-found.sh
   '';
 
+  environment.variables = {
+    # Don't add certain commands to the history file.
+    HISTIGNORE = "&:[bf]g:c:clear:history:exit:q:pwd:* --help";
+
+    # Ignore commands that start with spaces and duplicates.
+    HISTCONTROL = "ignoreboth";
+
+  };
   environment.systemPackages = with pkgs; [
     bashInteractive
 
@@ -79,5 +88,7 @@
     # Fast incremental file transfer utility
     # rsync -ah --progress source/ destination/
     rsync
+
+    glow # markdown previewer in terminal
   ];
 }

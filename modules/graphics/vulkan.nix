@@ -43,6 +43,13 @@
     # VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
 
     # AMD_VULKAN_DRIVER = "RADV";
+
+    # VK_LAYER_PATH =
+    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+    # VULKAN_SDK =
+    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+
+    # LD_PRELOAD = "${pkgs.vulkan-loader}/lib/libvulkan.so";
   };
   environment.systemPackages = with pkgs; [
     dxvk # A Vulkan-based translation layer for Direct3D

@@ -1,6 +1,6 @@
 { config, lib, settings, pkgs, ... }:
 
-lib.mkIf (settings.modules.env.enable or true) {
+lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
@@ -8,6 +8,7 @@ lib.mkIf (settings.modules.env.enable or true) {
     variables = {
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";
+
       EDITOR = settings.common.EDITOR;
       VISUAL = settings.common.VISUAL;
 
@@ -18,40 +19,23 @@ lib.mkIf (settings.modules.env.enable or true) {
       # https://github.com/NixOS/nixpkgs/issues/314713
       UV_USE_IO_URING = "0";
 
-      # Ignore commands that start with spaces and duplicates.
-      HISTCONTROL = "ignoreboth";
-
       # vulkan-loader and libGL shared libs are necessary for hardware decoding
-      LD_LIBRARY_PATH = lib.mkForce "${pkgs.lib.makeLibraryPath [
-        pkgs.glslang
-        pkgs.libGL
-        pkgs.libxkbcommon # keyboard support for winit
-        pkgs.stdenv.cc.cc # libstdc++.so.6
-        pkgs.vulkan-extension-layer
-        pkgs.vulkan-headers
-        pkgs.vulkan-loader # libvulkan.so
-        pkgs.vulkan-tools
-        pkgs.vulkan-tools-lunarg
-        pkgs.vulkan-validation-layers # validation layer runtime
-        pkgs.vulkan-volk
-        pkgs.xorg.libX11
-        pkgs.xorg.libXcursor
-        pkgs.xorg.libXi
-        pkgs.xorg.libXrandr
-      ]}";
-      # VK_LAYER_PATH =
-      #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-      # VULKAN_SDK =
-      #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
-      # LD_PRELOAD = "${pkgs.vulkan-loader}/lib/libvulkan.so";
-
-      # Don't add certain commands to the history file.
-      HISTIGNORE = "&:[bf]g:c:clear:history:exit:q:pwd:* --help";
-
-      # Adjust rendering settings for OpenGL and graphics drivers.
-      # LIBGL_DRI3_ENABLE = "1";
-      # LIBGL_ALWAYS_INDIRECT = "1";
+      # LD_LIBRARY_PATH = lib.mkForce "${pkgs.lib.makeLibraryPath [
+      #   pkgs.glslang
+      #   pkgs.libGL
+      #   pkgs.libxkbcommon # keyboard support for winit
+      #   pkgs.vulkan-extension-layer
+      #   pkgs.vulkan-headers
+      #   pkgs.vulkan-loader # libvulkan.so
+      #   pkgs.vulkan-tools
+      #   pkgs.vulkan-tools-lunarg
+      #   pkgs.vulkan-validation-layers # validation layer runtime
+      #   pkgs.vulkan-volk
+      #   pkgs.xorg.libX11
+      #   pkgs.xorg.libXcursor
+      #   pkgs.xorg.libXi
+      #   pkgs.xorg.libXrandr
+      # ]}";
 
       # Set backend rendering to Wayland.
       # SDL_VIDEODRIVER = "wayland";
@@ -72,9 +56,6 @@ lib.mkIf (settings.modules.env.enable or true) {
         lib.mkForce "${settings.common.cursor.package}/share/icons";
       XCURSOR_THEME = settings.common.cursor.name;
       XCURSOR_SIZE = toString settings.common.cursor.size;
-
-      # FONTCONFIG_PATH = "/etc/fonts";
-      # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
 
       # Java-specific setting for better compatibility with Wayland.
       _JAVA_AWT_WM_NONREPARENTING = "1";

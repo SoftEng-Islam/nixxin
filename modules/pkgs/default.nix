@@ -5,34 +5,9 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # ------------------------------------------------
     # ---- Hardware Packages
     # ------------------------------------------------
-    cpuid
-
-    # ------------------------------------------------
-    # ---- AMD Stuff
-    # ------------------------------------------------
-    # amd-libflame # LAPACK-compatible linear algebra library optimized for AMD CPUs
-    # amf # AMD's closed source Advanced Media Framework (AMF) driver
-    # amd-blis # BLAS-compatible library optimized for AMD CPUs
-    # amd-ucodegen # Tool to generate AMD microcode files
-    # amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
-    # amdenc # AMD Encode Core Library
-    # amdgpu_top # Tool to display AMDGPU usage
-    # aocl-utils # Interface to all AMD AOCL libraries to access CPU features
-    # microcode-amd # AMD Processor microcode patch
-    # microcodeAmd
-    # nvtopPackages.amd
-    # amd-blis # BLAS-compatible library optimized for AMD CPUs
-    # amd-ucodegen # Tool to generate AMD microcode files
-    # amdctl # Set P-State voltages and clock speeds on recent AMD CPUs on Linux
-    # amdenc # AMD Encode Core Library
-    # microcode-amd # AMD Processor microcode patch
-    # microcodeAmd # AMD Processor microcode patch
-    xorg.xf86videoamdgpu
 
     # glaxnimate # Simple vector animation program.
-    # glmark2 # OpenGL (ES) 2.0 benchmark
     # hwdata # Hardware Database, including Monitors, pci.ids, usb.ids, and video cards
-    # libdrm # Direct Rendering Manager library and headers
     # libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     # libva # An implementation for VA-API (Video Acceleration API)
     # openal # OpenAL alternative
@@ -41,18 +16,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # spirv-llvm-translator
     # spirv-tools
     # libunwind
-
-    # lshw # Provide detailed information on the hardware configuration of the machine
-    # lshw-gui
-
-    # Requirements PC Diagnose
-    # lm_sensors
-    # smartmontools
-    # dmidecode
-    # pciutils
-    # coreutils
-
-    gzip
 
     # ---- Disks & Filesystem ---- #
     cifs-utils
@@ -104,16 +67,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # mlocate
     # pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
 
-    # Databases
-    # sqlite # A self-contained, serverless, zero-configuration, transactional SQL database engine
-
-    # Sass (Css)
-    # dart-sass # The reference implementation of Sass, written in Dart
-    # grass-sass # A Sass compiler written purely in Rust
-    # libsass # A C/C++ implementation of a Sass compiler
-    # rsass # Sass reimplemented in rust with nom
-    # sassc # A front-end for libsass
-
     # ---- misc ---- #
     cowsay
     file
@@ -150,7 +103,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
 
     # ---- Productivity ---- #
     # hugo # static site generator
-    # glow # markdown previewer in terminal
     # graphviz # Graph visualization tools
   ];
   nixpkgs.config.permittedInsecurePackages = [ "libsoup-2.74.3" ];

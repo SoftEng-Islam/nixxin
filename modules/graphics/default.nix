@@ -13,13 +13,23 @@ let
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 in {
-  imports = optionals (settings.modules.graphics.enable or true) [
+  imports = optionals (settings.modules.graphics.enable or false) [
     ./mesa.nix
+    ./openGL.nix
     ./vulkan.nix
   ];
-  config = lib.mkIf (settings.modules.graphics.enable or true) {
+  config = lib.mkIf (settings.modules.graphics.enable or false) {
     environment.systemPackages = with pkgs;
-      [ imagemagick jpegoptim optipng pngquant webp-pixbuf-loader libwebp ]
-      ++ lib.flatten _graphics;
+      [
+        imagemagick
+        jpegoptim
+        optipng
+        pngquant
+        webp-pixbuf-loader
+        libwebp
+        libdrm # Direct Rendering Manager library and headers
+        xorg.xf86videoamdgpu
+
+      ] ++ lib.flatten _graphics;
   };
 }

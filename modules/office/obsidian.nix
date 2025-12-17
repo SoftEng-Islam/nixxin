@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 let inherit (lib) optionals mkIf;
-in mkIf (settings.modules.office.obsidian or true) {
+in mkIf (settings.modules.office.obsidian or false) {
   environment.systemPackages = with pkgs;
     [
       # Powerful knowledge base that works on top of a local folder of plain text Markdown files

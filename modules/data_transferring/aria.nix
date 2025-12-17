@@ -1,6 +1,6 @@
 { settings, lib, config, pkgs, ... }:
 let inherit (lib) mkIf;
-in mkIf (settings.modules.data_transferring.aria.enable or true) {
+in mkIf (settings.modules.data_transferring.aria.enable or false) {
   # ----- The manual of aria2 -----
   # https://aria2.github.io/manual/en/html/aria2c.html
 

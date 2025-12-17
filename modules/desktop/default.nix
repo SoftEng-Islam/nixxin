@@ -1,5 +1,5 @@
 { inputs, settings, lib, pkgs, ... }: {
-  imports = lib.optionals (settings.modules.desktop.enable or true) [
+  imports = lib.optionals (settings.modules.desktop.enable or false) [
     ./dconf.nix
     ./keyring.nix
     ./polkit.nix
@@ -10,6 +10,7 @@
     ./qt_gtk.nix
     ./screenshot.nix
     ./tools.nix
+    ./quickShell
   ];
 
   programs.appimage.enable = true;
@@ -32,10 +33,5 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [
-    # inputs.quickshell.packages.${settings.system.architecture}.default
-    quickshell
-    hyprshade
-    quickshell
-  ];
+  environment.systemPackages = with pkgs; [ hyprshade ];
 }

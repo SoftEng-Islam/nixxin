@@ -29,7 +29,7 @@ let
     (optional data.transmission.enable transmission_4-gtk)
   ];
 in {
-  imports = optionals (data.enable or true) [
+  imports = optionals (data.enable or false) [
     ./curl
     ./qbittorrent
     ./aria.nix
@@ -37,7 +37,7 @@ in {
     ./torrent.nix
     ./yt-dlp.nix
   ];
-  config = mkIf (settings.modules.data_transferring.enable or true) {
+  config = mkIf (settings.modules.data_transferring.enable or false) {
     environment.systemPackages = lib.flatten _pkgs ++ [ pkgs.vdhcoapp ];
     # Download Managers & CLI Downloads Utility
     environment.variables = {

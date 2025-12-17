@@ -7,7 +7,7 @@
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
 { settings, lib, pkgs, ... }: {
   imports = [ ./vpn ./gpg_agent.nix ];
-  config = lib.mkIf (settings.modules.security.enable or true) {
+  config = lib.mkIf (settings.modules.security.enable or false) {
     security = {
       # System security tweaks
       protectKernelImage = true;

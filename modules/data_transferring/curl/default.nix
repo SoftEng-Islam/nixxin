@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }:
 
-lib.mkIf (settings.modules.data_transferring.curl.enable or true) {
+lib.mkIf (settings.modules.data_transferring.curl.enable or false) {
   home-manager.users.${settings.user.username}.home.file.".curlrc" = {
     text = ''
       # this is a sample .curlrc file

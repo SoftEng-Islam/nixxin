@@ -43,8 +43,6 @@ in lib.mkIf (settings.modules.media.mpv) {
       ",playlist_position=0.8"
     ];
 
-    # xdg.configFile."mpv/script-opts/osc.conf".source = ./osc.conf;
-
     programs.mpv = {
       enable = true;
       package = pkgs.mpv-unwrapped.wrapper {

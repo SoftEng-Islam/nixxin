@@ -1,7 +1,7 @@
 # keyring.nix
 # Handles credential/key storage for apps (GNOME Keyring for now, but could be extended later for KeePassXC or pass).
 { settings, lib, inputs, pkgs, ... }:
-lib.mkIf (settings.modules.desktop.keyring.enable or true) {
+lib.mkIf (settings.modules.desktop.keyring.enable or false) {
   # Make sure user and greetd PAM can unlock the keyring
   security.pam.services.${settings.user.username} = { enable = true; };
   security.pam.services.greetd.enableGnomeKeyring = true;

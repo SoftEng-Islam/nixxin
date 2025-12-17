@@ -1,5 +1,5 @@
 { settings, inputs, lib, pkgs, ... }:
-lib.mkIf (settings.modules.desktop.ashell.enable or true) {
+lib.mkIf (settings.modules.desktop.ashell.enable or false) {
   home-manager.users.${settings.user.username} = {
     xdg.configFile."ashell/config.toml".text = ''
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload

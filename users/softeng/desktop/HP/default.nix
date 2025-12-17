@@ -27,8 +27,8 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = false; # Disable it before install/update Linux Kernel.
-  system.enableLogs = true; # To enable logs
+  system.useTmpfs = true; # Disable it before install/update Linux Kernel.
+  system.enableLogs = false; # To enable logs
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
@@ -72,7 +72,7 @@
 
   # => `graid colors ex:
   # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
-  common.primaryColor = "rgba(E62D42ff)";
+  common.primaryColor = "rgba(9141ACff)";
   common.surfaceColor = "rgba(1e1e1eff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
@@ -349,7 +349,7 @@
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [ "8.8.8.8" ]; # DNS
+  modules.networking.nameservers = [ "1.1.1.1" "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     # eno1 = {

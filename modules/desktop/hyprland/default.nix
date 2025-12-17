@@ -58,25 +58,22 @@ in {
     };
   };
 
-  environment = {
-    variables = {
-      LIBSEAT_BACKEND = "logind";
+  environment.variables = {
+    LIBSEAT_BACKEND = "logind";
+    HYPRLAND_TRACE = 0; # 1 to enable more verbose logging.
 
-      HYPRCURSOR_THEME = settings.common.cursor.name;
-      HYPRCURSOR_SIZE = toString settings.common.cursor.size;
+    HYPRCURSOR_THEME = settings.common.cursor.name;
+    HYPRCURSOR_SIZE = toString settings.common.cursor.size;
 
-      # HYPRLAND_TRACE = 1; # Enables more verbose logging.
+    # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
+    # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
 
-      # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
-      # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
+    # Disables management of variables in systemd and dbus activation environments.
+    # HYPRLAND_NO_SD_VARS = 1;
 
-      # Disables management of variables in systemd and dbus activation environments.
-      # HYPRLAND_NO_SD_VARS = 1;
-
-      # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
-      QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
-      _JAVA_AWT_WM_NONREPARENTING = "1";
-    };
+    # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
+    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
+    _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
   systemd.sleep.extraConfig = ''

@@ -17,7 +17,7 @@ let
   ];
 
 in {
-  imports = lib.optionals (settings.modules.media.enable or true) [
+  imports = lib.optionals (settings.modules.media.enable or false) [
     ./celluloid
     ./mpv
     # ./cava.nix
@@ -27,7 +27,7 @@ in {
     ./images.nix
     ./text.nix
   ];
-  config = lib.mkIf (settings.modules.media.enable or true) {
+  config = lib.mkIf (settings.modules.media.enable or false) {
     environment.systemPackages = with pkgs;
       lib.flatten _pkgs ++ [
         # Command-line utility and library for controlling media players that implement MPRIS

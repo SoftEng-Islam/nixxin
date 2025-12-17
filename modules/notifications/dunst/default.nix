@@ -3,7 +3,7 @@
 let
   # dunst-toggle-mode = pkgs.writeScriptBin "dunst-toggle-mode"
   #   (builtins.readFile ./scripts/dunst-toggle-mode.sh);
-in lib.mkIf (settings.notifications.dunst.enable or true) {
+in lib.mkIf (settings.notifications.dunst.enable or false) {
   environment.systemPackages = with pkgs; [
     dunst
     # dunst-toggle-mode

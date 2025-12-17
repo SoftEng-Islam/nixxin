@@ -1,5 +1,5 @@
 { settings, lib, pkgs, ... }:
-lib.mkIf (settings.modules.android.scrcpy.enable or true) {
+lib.mkIf (settings.modules.android.scrcpy.enable or false) {
   environment.systemPackages = with pkgs; [
     # Display and control Android devices over USB or TCP/IP
     scrcpy

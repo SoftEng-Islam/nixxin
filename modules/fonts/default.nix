@@ -40,6 +40,10 @@ in mkIf (settings.modules.fonts.enable) {
       };
     };
   };
+  environment.variables = {
+    # FONTCONFIG_PATH = "/etc/fonts";
+    # FONTCONFIG_FILE = "/etc/fonts/fonts.conf";
+  };
   environment.systemPackages = with pkgs; [
     font-manager
     fontconfig # Library for font customization and configuration

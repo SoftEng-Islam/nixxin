@@ -2,7 +2,7 @@
 # https://wiki.archlinux.org/title/Network_configuration/Wireless
 # https://wiki.archlinux.org/title/Iwd
 { settings, lib, pkgs, ... }:
-lib.mkIf (settings.modules.networking.iwd or true) {
+lib.mkIf (settings.modules.networking.iwd or false) {
   # give wireless cards time to turn on
   systemd.services.iwd.serviceConfig.ExecStartPre =
     "${pkgs.coreutils}/bin/sleep 2";
