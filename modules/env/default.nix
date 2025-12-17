@@ -23,15 +23,21 @@ lib.mkIf (settings.modules.env.enable or true) {
 
       # vulkan-loader and libGL shared libs are necessary for hardware decoding
       LD_LIBRARY_PATH = lib.mkForce "${pkgs.lib.makeLibraryPath [
-        pkgs.libGL
         pkgs.glslang
-        pkgs.vulkan-headers
-        pkgs.vulkan-loader
-        pkgs.vulkan-validation-layers
+        pkgs.libGL
+        pkgs.libxkbcommon # keyboard support for winit
+        pkgs.stdenv.cc.cc # libstdc++.so.6
         pkgs.vulkan-extension-layer
+        pkgs.vulkan-headers
+        pkgs.vulkan-loader # libvulkan.so
         pkgs.vulkan-tools
         pkgs.vulkan-tools-lunarg
+        pkgs.vulkan-validation-layers # validation layer runtime
         pkgs.vulkan-volk
+        pkgs.xorg.libX11
+        pkgs.xorg.libXcursor
+        pkgs.xorg.libXi
+        pkgs.xorg.libXrandr
       ]}";
       # VK_LAYER_PATH =
       #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";

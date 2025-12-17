@@ -1,4 +1,4 @@
-{ settings, lib, pkgs, ... }: {
+{ inputs, settings, lib, pkgs, ... }: {
   imports = lib.optionals (settings.modules.desktop.enable or true) [
     ./dconf.nix
     ./keyring.nix
@@ -32,5 +32,10 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ hyprshade quickshell ];
+  environment.systemPackages = with pkgs; [
+    # inputs.quickshell.packages.${settings.system.architecture}.default
+    quickshell
+    hyprshade
+    quickshell
+  ];
 }

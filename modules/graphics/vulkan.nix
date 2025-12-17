@@ -52,13 +52,13 @@
     shaderc
     vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
     vulkan-headers # Vulkan Header files and API registry
+    vulkan-loader
     vulkan-tools # Khronos official Vulkan Tools and Utilities
     vulkan-utility-libraries # Set of utility libraries for Vulkan
     vulkan-caps-viewer
     vulkan-cts
     vulkan-hdr-layer-kwin6
     vulkan-helper
-    vulkan-loader
     vulkan-memory-allocator
     vulkan-tools-lunarg
     vulkan-validation-layers
