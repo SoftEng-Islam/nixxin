@@ -102,34 +102,16 @@ in {
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [
       # Reduce Boot Delay
-      # "quiet"
-      # "splash"
-      # "loglevel=0"
-      # "udev.log_level=0"
-      # "rd.udev.log_level=0"
-      # "udev.log_priority=0"
-      # "ibt=off"
-      # "psi=1"
-      # "nowatchdog=0"
-      # "systemd.show_status=false"
-      # "rd.systemd.show_status=false"
-      # "rd.udev.log_priority=0"
-      # "vt.global_cursor_default=0"
-      # "fbcon=nodefer"
-
       "quiet"
       "splash"
-      "loglevel=0"
-
-      "systemd.show_status=false"
+      "loglevel=3"
+      "udev.log_level=3"
       "rd.systemd.show_status=false"
-      "systemd.log_level=emerg"
-
-      "udev.log_level=0"
-      "rd.udev.log_level=0"
-
-      "nowatchdog"
-      "vt.global_cursor_default=0"
+      "rd.udev.log_level=3"
+      "udev.log_priority=3"
+      "ibt=off"
+      "psi=1"
+      "nowatchdog=0"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
