@@ -13,7 +13,6 @@
   # Init session with hyprland
   services.greetd = {
     enable = true;
-    vt = 1;
     settings = {
       default_session = let
         tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
