@@ -60,6 +60,7 @@ in {
 
     initrd = {
       systemd.enable = true;
+      systemd.dbus.enable = true;
       verbose = false;
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
@@ -75,6 +76,7 @@ in {
         "usbhid"
         "xhci_pci"
       ];
+      kernelModules = [ "amdgpu" ];
     };
     kernelModules = _system.boot.kernelModules ++ [
       "acpi_cpufreq"
@@ -102,17 +104,18 @@ in {
       # Reduce Boot Delay
       "quiet"
       "splash"
-      "loglevel=3"
-      "udev.log_level=3"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
+      "loglevel=0"
+      "udev.log_level=0"
+      "rd.udev.log_level=0"
+      "udev.log_priority=0"
       "ibt=off"
       "psi=1"
       "nowatchdog=0"
       "systemd.show_status=false"
       "rd.systemd.show_status=false"
-      "rd.udev.log_priority=3"
+      "rd.udev.log_priority=0"
       "vt.global_cursor_default=0"
+      "fbcon=nodefer"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.

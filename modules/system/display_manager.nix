@@ -13,6 +13,7 @@
   # Init session with hyprland
   services.greetd = {
     enable = true;
+    vt = 1;
     settings = {
       default_session = let
         tuigreet = "${pkgs.tuigreet}/bin/tuigreet";
@@ -24,7 +25,7 @@
           "--time-format '%I:%M %p | %a - %h | %F'"
           "--greeting 'Hello There!'"
           "--theme 'border=magenta;text=white;prompt=magenta;time=white;action=magenta;button=white;container=black;input=white'"
-          "--cmd 'dbus-run-session Hyprland > /dev/null 2>&1'"
+          "--cmd 'Hyprland > /dev/null 2>&1'"
         ];
         flags = lib.concatStringsSep " " tuigreetOptions;
       in {
