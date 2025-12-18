@@ -60,24 +60,25 @@ in {
 
     initrd = {
       systemd.enable = true;
-      systemd.dbus.enable = true;
+      systemd.dbus.enable = false;
       verbose = false;
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
-        "amdgpu"
+        # "amdgpu"
         "ahci"
         "cryptd"
+        "sd_mod"
+        "usb_storage"
+        "xhci_pci"
         "ehci_pci"
         "ohci_pci"
         "pata_atiixp"
-        "sd_mod"
-        "usb_storage"
         "usbhid"
-        "xhci_pci"
       ];
-      kernelModules = [ "amdgpu" ];
+      # kernelModules = [ "amdgpu" ];
     };
+
     kernelModules = _system.boot.kernelModules ++ [
       "acpi_cpufreq"
       # "ip_tables"
@@ -104,14 +105,12 @@ in {
       # Reduce Boot Delay
       "quiet"
       "splash"
-      "loglevel=3"
-      "udev.log_level=3"
+      "loglevel=0"
+      "systemd.show_status=false"
       "rd.systemd.show_status=false"
-      "rd.udev.log_level=3"
-      "udev.log_priority=3"
-      "ibt=off"
-      "psi=1"
-      "nowatchdog=0"
+      "udev.log_level=0"
+      "rd.udev.log_level=0"
+      "plymouth.ignore-serial-consoles"
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
@@ -128,7 +127,7 @@ in {
       "retbleed=off" # Disable Retbleed mitigation
 
       # Limit C-states for better response time
-      "processor.max_cstate=1" # prevents deep sleep, ensures max boost
+      "processor.max_cstate=0" # prevents deep sleep, ensures max boost
 
       "threadirqs" # ?
 
@@ -324,7 +323,7 @@ in {
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
-    WGPU_POWER_PREF = "high"; # Prefer integrated GPU
+    # WGPU_POWER_PREF = "high"; # Prefer integrated GPU
 
     AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
   };
