@@ -42,6 +42,13 @@ in {
 
       antigravity
       postman
+
+      mongodb
+      mongodb-compass
+      mongodb-cli
+      mongodb-ce
+      mongodb-tools
+      mongodb-atlas-cli
     ];
   };
 }
