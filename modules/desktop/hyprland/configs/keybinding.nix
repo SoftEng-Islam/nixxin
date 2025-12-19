@@ -109,7 +109,8 @@
       # ---- Positioning Mode ---- #
       bind = $main ALT, F, togglefloating,
       bind = $main C, W, centerwindow, 1
-      bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
+      # bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
+      bind = $main, TAB, exec, qs ipc -c overview call overview toggle
 
 
       # In hyprland.conf

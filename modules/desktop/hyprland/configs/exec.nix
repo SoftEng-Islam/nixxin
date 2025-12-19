@@ -36,6 +36,9 @@ let
 
     # ---- Apps To Start ---- #
     # Telegram -startintray & disown
+
+    Auto-start the overview (add to Hyprland config):
+    qs -c overview & disown
   '';
 in {
   home-manager.users.${settings.user.username} = {
