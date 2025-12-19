@@ -10,7 +10,7 @@
     ./qt_gtk.nix
     ./screenshot.nix
     ./tools.nix
-    # ./quickShell
+    ./quickShell
   ];
 
   programs.appimage.enable = true;

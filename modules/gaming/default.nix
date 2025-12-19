@@ -10,17 +10,6 @@ in {
   config = mkIf (settings.modules.gaming.enable) {
     nixpkgs.overlays = [
       (final: prev: {
-        # --- zeroad Vulkan wrapper ---
-        zeroad = prev.zeroad.overrideAttrs (old: {
-          nativeBuildInputs = (old.nativeBuildInputs or [ ])
-            ++ [ final.makeWrapper ];
-
-          postInstall = (old.postInstall or "") + ''
-            wrapProgram $out/bin/0ad \
-              --prefix LD_LIBRARY_PATH : ${final.vulkan-loader}/lib
-          '';
-        });
-
         # --- existing override ---
         nvidia-texture-tools = prev.nvidia-texture-tools.overrideAttrs (old: {
           postPatch = ''
@@ -110,6 +99,9 @@ in {
 
     environment.systemPackages = with pkgs;
       [
+        zeroad # Zero overhead AMD GPU driver for Linux
+        zeroad-data # Data files for the Zero overhead AMD GPU driver for Linux
+
         # steam-run # Run commands in the same FHS environment that is used for Steam
         # gamescope # SteamOS session compositing window manager
         # lutris # Open Source gaming platform for GNU/Linux
@@ -126,6 +118,7 @@ in {
 
         # Install Gaming & Benchmarking Tools
         vulkan-tools # Tests Vulkan performance
+        vulkan-loader # Vulkan loader library
         vkmark # Vulkan benchmark
         mesa-demos # OpenGL test tools
         mesa_i686 # Extra OpenGL tools
