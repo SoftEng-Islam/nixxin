@@ -37,7 +37,7 @@ let
     # ---- Apps To Start ---- #
     # Telegram -startintray & disown
 
-    Auto-start the overview (add to Hyprland config):
+    # Auto-start the overview of QuickShell
     qs -c overview & disown
   '';
 in {
