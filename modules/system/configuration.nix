@@ -59,7 +59,7 @@ in {
     };
 
     initrd = {
-      systemd.enable = true;
+      systemd.enable = false;
       systemd.dbus.enable = false;
       verbose = false;
       # systemd.dbus.enable = false;

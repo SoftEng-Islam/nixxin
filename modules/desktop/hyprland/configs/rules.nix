@@ -5,6 +5,12 @@
       # windowrule = noblur,.*
       # windowrule = opacity 1.0 override 0.80 override, .* # Applies transparency to EVERY WINDOW
 
+      # ---- Popup/Context Menu Fix ---- #
+      # Fix for right-click menus that extend beyond the parent window
+      # This ensures clicks register on the popup even when outside the parent app
+      windowrulev2 = stayfocused, class:^()$, title:^()$, floating:1
+      windowrulev2 = minsize 1 1, class:^()$, title:^()$, floating:1
+
       # windowrulev2 = tile, class:^(Waydroid)$
       windowrulev2 = tile, class:(dev.warp.Warp)
 
