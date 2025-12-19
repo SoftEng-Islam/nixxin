@@ -543,7 +543,7 @@
   '';
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;
-  modules.system.amdgpu.opencl = false;
+  modules.system.amdgpu.opencl = true;
   modules.system.amdgpu.legacySupport = false;
   # [ Docs ]
   modules.system.docs.enable = true;
