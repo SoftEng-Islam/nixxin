@@ -10,7 +10,7 @@ in mkIf (settings.modules.computing.enable) {
     # - https://gitlab.freedesktop.org/mesa/mesa/-/merge_requests/19385
     mesa.opencl
     ocl-icd
-    pocl
+    # pocl
   ];
   environment.variables = {
     # Optional: For Polaris cards (Radeon 500 series) OpenCL support
