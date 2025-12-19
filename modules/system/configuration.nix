@@ -265,7 +265,7 @@ in {
         vdpauinfo
         xorg.libXv
         xorg.libXvMC
-        pocl
+        # pocl
       ];
     };
   };
