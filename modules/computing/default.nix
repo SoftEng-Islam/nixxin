@@ -18,7 +18,7 @@ in mkIf (settings.modules.computing.enable) {
     # RUSTICL_ENABLE = "radeonsi";
   };
   environment.systemPackages = with pkgs; [
-    ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
+    # ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
     openal # OpenAL alternative
     # intel-graphics-compiler
     # opencl-clhpp # OpenCL Host API C++ bindings
