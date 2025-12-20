@@ -1,0 +1,92 @@
+/**
+ * App Window
+ */
+@define-color window_bg #2e2e32;
+@define-color white #ffffff;
+@define-color window_border_color @white;
+@define-color prefs_background @white;
+
+/**
+ * Input
+ */
+@define-color selected_bg_color #6f8396;
+@define-color selected_fg_color @white;
+@define-color input_color @white;
+@define-color caret_color @white;
+
+/**
+ * Result items
+ */
+@define-color item_name @white;
+@define-color item_text @white;
+@define-color item_box_selected @white;
+@define-color item_text_selected @white;
+@define-color item_name_selected @white;
+@define-color item_shortcut_color @white;
+@define-color item_shortcut_color_sel @white;
+
+.app {
+    background-color: @window_bg;
+    border-color: alpha (@window_border_color, 0.15);
+    box-shadow: 0 1px 3px 3px rgba(0, 0, 0, 0), 0 2px 6px 1px rgba(0, 0, 0, 0.1), 0 3px 10px 5px rgba(0, 0, 0, 0.07), 0 0 0 1px rgba(0, 0, 0, 0.005);
+    margin: -6px;
+    border-radius: 16px;
+}
+
+.input {
+    color: @input_color;
+    border-radius: 12px;
+}
+
+/**
+ * Selected text in input
+ */
+.input *:selected,
+.input *:focus,
+*:selected:focus {
+    background-color: alpha (@selected_bg_color, 0.9);
+    color: @selected_fg_color;
+}
+
+.result-box {
+    margin: 0px 6px 0px 6px;
+}
+
+.item-text {
+    color: alpha (@item_text, 0.5);
+} 
+.item-name {
+    color: @item_name;
+}
+
+.selected.item-box {
+    background-color: alpha (@item_box_selected, 0.096);
+    border: none;
+    border-radius: 12px;
+}
+.selected.item-box .item-text {
+    color: alpha (@item_text_selected, 0.8);
+}
+.selected.item-box .item-name {
+    color: @item_name_selected;
+}
+.item-shortcut {
+    color: alpha (@item_shortcut_color, 0.5);
+    text-shadow: none;
+}
+.selected.item-box .item-shortcut {
+    color: alpha (@item_shortcut_color_sel, 0.8);
+    text-shadow: none;
+}
+
+.prefs-btn {
+    opacity: 1;
+}
+
+.prefs-btn:hover {
+    background-color: alpha (@prefs_background, 0.1);
+}
+
+.no-window-shadow {
+    margin: -20px;
+}

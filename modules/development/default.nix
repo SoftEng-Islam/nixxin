@@ -49,6 +49,14 @@ in {
       mongodb-ce
       mongodb-tools
       mongodb-atlas-cli
+
+      nodejs
+      deno
+      yarn
+      pnpm
+      corepack
+      typescript
+      typescript-go
     ];
   };
 }
