@@ -127,7 +127,6 @@
   modules.fonts.enable = true;
   modules.development.enable = true;
   modules.cli_tools.enable = true;
-  modules.ulauncher.enable = true;
   modules.computing.enable = true;
   modules.browsers.enable = true;
   modules.storage.enable = true;

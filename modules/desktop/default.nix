@@ -11,6 +11,7 @@
     ./screenshot.nix
     ./tools.nix
     ./quickShell
+    ./rofi.nix
   ];
 
   programs.appimage.enable = true;

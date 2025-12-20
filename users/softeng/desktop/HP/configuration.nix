@@ -42,7 +42,6 @@
     ../../../../modules/ssh
     ../../../../modules/storage
     ../../../../modules/system
-    ../../../../modules/ulauncher
     ../../../../modules/users
     ../../../../modules/virtualization
     ../../../../modules/windows

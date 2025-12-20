@@ -19,7 +19,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
 
       # App launcher command, it will be used to open the launcher,
       # without a value the related button will not appear
-      app_launcher_cmd = "${pkgs.ulauncher}/bin/ulauncher-toggle"
+      app_launcher_cmd = "${pkgs.rofi}/bin/rofi -modi run -show drun -show-icons"
 
       # Clipboard command, it will be used to open the clipboard menu,
       # without a value the related button will not appear

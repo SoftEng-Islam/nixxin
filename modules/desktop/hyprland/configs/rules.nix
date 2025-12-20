@@ -53,14 +53,6 @@
       layerrule = blur, launcher               # Apply blur to launcher
       layerrule = blur, notifications          # Apply blur to notifications
 
-      # ---- ulauncher Rules ---- #
-      windowrulev2 = plugin:hyprbars:nobar, class:^(ulauncher)$
-      windowrulev2 = stayfocused, class:^(ulauncher)$
-      windowrulev2 = float, class:^(ulauncher)$
-      windowrulev2 = center, class:^(ulauncher)$
-      windowrulev2 = noborder, class:^(ulauncher)$
-      windowrulev2 = noshadow, class:^(ulauncher)$
-
       # idle inhibit while watching videos
       windowrulev2 = idleinhibit focus, class:^(mpv|.+exe|celluloid)$
       windowrulev2 = idleinhibit focus, class:^(zen)$, title:^(.*YouTube.*)$

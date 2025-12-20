@@ -41,7 +41,7 @@
       bind = $main, O, togglesplit
 
       #=> Second Row:
-      bind = $main, A, exec, ${pkgs.ulauncher}/bin/ulauncher-toggle
+      bind = $main, A, exec, ${pkgs.rofi}/bin/rofi -modi run -show drun -show-icons
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen,

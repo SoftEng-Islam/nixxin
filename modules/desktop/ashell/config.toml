@@ -11,7 +11,7 @@ position = "Top"
 # App launcher command, it will be used to open the launcher,
 # without a value the related button will not appear
 # optional, default None
-app_launcher_cmd = "ulauncher-toggle"
+app_launcher_cmd = "${pkgs.rofi}/bin/rofi -modi run -show drun -show-icons"
 # Clipboard command, it will be used to open the clipboard menu,
 # without a value the related button will not appear
 # optional, default None
