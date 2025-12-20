@@ -30,6 +30,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    illogical-impulse.url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
+    illogical-impulse.inputs.nixpkgs.follows = "nixpkgs";
+
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let

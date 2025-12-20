@@ -5,7 +5,7 @@ let
   } ''
     mkdir -p $out/bin
     makeWrapper ${
-      inputs.quickshell.packages.${pkgs.system}.default
+      inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default
     }/bin/qs $out/bin/qs \
       --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qtbase}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
       --prefix QT_PLUGIN_PATH : "${pkgs.qt6.qt5compat}/${pkgs.qt6.qtbase.qtPluginPrefix}" \
@@ -16,6 +16,9 @@ let
 
 in {
   # git clone https://github.com/Shanu-Kumawat/quickshell-overview ~/.config/quickshell/overview
+  # qs -c overview &
+  # exec-once = qs -c overview
+  # bind = Super, TAB, exec, qs ipc -c overview call overview toggle
 
   home-manager.users.${settings.user.username} = {
     home.file."~/.config/quickshell/overview".source = ./overview;
