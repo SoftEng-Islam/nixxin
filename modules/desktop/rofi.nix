@@ -6,141 +6,105 @@
       enable = true;
 
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
-        /**
-        * Copyright: deadguy
-        * (edited by Litarvan)
-        */
+               /**
+         * Modern Glass Rofi Theme
+         * Rounded • Centered • Blur-ready
+         */
 
         configuration {
-          display-drun:    "Activate";
-          display-run:     "Execute";
-          display-window:  "Window";
-          show-icons:      true;
-          sidebar-mode:    true;
-          font: "Roboto 11";
+          show-icons: true;
+          sidebar-mode: false;
+          font: "Roboto 12";
         }
 
         * {
-          background-color:            transparent;
-          text-color:                  #b2aea8;
-          selbg:                       #3949A3;
-          actbg:                       #262626;
-          urgbg:                       #e53935;
-          winbg:                       #B3BEFF;
+          background-color: transparent;
+          text-color: #e5e7eb;
 
-          selected-normal-foreground:  @winbg;
-          normal-foreground:           @text-color;
-          selected-normal-background:  @actbg;
-          normal-background:           @background-color;
+          accent: #7aa2f7;
+          surface: #0f1117cc;   /* translucent background */
+          surface-alt: #161925cc;
 
-          selected-urgent-foreground:  @background-color;
-          urgent-foreground:           @text-color;
-          selected-urgent-background:  @urgbg;
-          urgent-background:           @background-color;
+          selected-bg: #7aa2f722;
+          selected-fg: #ffffff;
 
-          selected-active-foreground:  @winbg;
-          active-foreground:           @text-color;
-          selected-active-background:  @actbg;
-          active-background:           @selbg;
+          urgent-bg: #f7768ecc;
+          border-color: #7aa2f755;
 
-          line-margin:                 2;
-          line-padding:                2;
-          separator-style:             "none";
-          hide-scrollbar:              "true";
-          margin:                      0;
-          padding:                     0;
+          border-radius: 14px;
+          padding: 0;
+          margin: 0;
         }
 
         window {
           transparency: "real";
-          background-color: #000000AA;
-          location:  north west;
-          anchor:    north west;
-          height:    50%;
-          width:    18%;
-          orientation:  horizontal;
-          children:  [mainbox];
-          x-offset:  29px;
-          y-offset:  57px;
+          location: center;
+          anchor: center;
+
+          width: 420px;
+          height: 480px;
+
+          background-color: @surface;
+          border: 1px;
+          border-color: @border-color;
+          border-radius: 14px;
+
+          children: [ mainbox ];
         }
 
         mainbox {
-          spacing:  0.8em;
-          children: [entry, listview ];
-        }
-
-        button { padding: 5px 2px; }
-
-        button selected {
-          background-color: @active-background;
-          text-color:       @background-color;
+          padding: 18px;
+          spacing: 14px;
+          children: [ inputbar, listview ];
         }
 
         inputbar {
-          padding: 5px;
-          spacing: 5px;
+          background-color: @surface-alt;
+          border-radius: 10px;
+          padding: 10px 12px;
+          spacing: 8px;
+        }
+
+        prompt {
+          enabled: false;
+        }
+
+        entry {
+          text-color: @text-color;
+          placeholder: "Search…";
         }
 
         listview {
-          spacing: 0.5em;
+          background-color: transparent;
+          spacing: 6px;
           dynamic: false;
-          cycle:   false;
+          scrollbar: false;
         }
 
-        element { padding: 10px; }
-
-        entry {
-          expand:         false;
-          text-color:     @normal-foreground;
-          vertical-align: 1;
-          padding:        5px;
-        }
-
-        element normal.normal {
-          background-color: @normal-background;
-          text-color:       @normal-foreground;
-        }
-
-        element normal.urgent {
-          background-color: @urgent-background;
-          text-color:       @urgent-foreground;
-        }
-
-        element normal.active {
-          background-color: @active-background;
-          text-color:       @active-foreground;
+        element {
+          padding: 10px 12px;
+          border-radius: 10px;
+          background-color: transparent;
+          text-color: @text-color;
         }
 
         element selected.normal {
-          background-color: @selected-normal-background;
-          text-color:       @selected-normal-foreground;
-          border:           0 5px solid 0 0;
-          border-color:      @active-background;
+          background-color: @selected-bg;
+          text-color: @selected-fg;
         }
 
         element selected.urgent {
-          background-color: @selected-urgent-background;
-          text-color:       @selected-urgent-foreground;
+          background-color: @urgent-bg;
+          text-color: @selected-fg;
         }
 
-        element selected.active {
-          background-color: @selected-active-background;
-          text-color:       @selected-active-foreground;
+        element-icon {
+          size: 20px;
+          margin: 0 8px 0 0;
         }
 
-        element alternate.normal {
-          background-color: @normal-background;
-          text-color:       @normal-foreground;
-        }
-
-        element alternate.urgent {
-          background-color: @urgent-background;
-          text-color:       @urgent-foreground;
-        }
-
-        element alternate.active {
-          background-color: @active-background;
-          text-color:       @active-foreground;
+        element-text {
+          vertical-align: 0.5;
         }
       '');
     };
