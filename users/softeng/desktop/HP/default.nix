@@ -576,7 +576,7 @@
       shell = modules.terminals.default.shell;
       fontFamily = modules.terminals.default.font.family;
       fontSize = modules.terminals.default.font.size;
-      colorScheme = "Catppuccin Mocha";
+      colorScheme = "Abernathy";
     };
   };
 
