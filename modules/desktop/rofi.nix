@@ -14,6 +14,8 @@
         case-sensitive = false;
         drun-display-format = "{name}";
         display-drun = "Apps";
+        # Force Papirus icons
+        icon-theme = "Papirus-Dark";
         combi-modes = "drun,window,run";
       };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
