@@ -17,9 +17,9 @@
         combi-modes = "drun,window,run";
       };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
-        /**
+         /**
          * Modern Solid Rofi Theme
-         * Rounded • Centered • Opaque
+         * Centered • Rounded • Clean
          */
 
         configuration {
@@ -32,16 +32,14 @@
           background-color: transparent;
           text-color: #e6e9ef;
 
-          /* Core colors */
+          /* Palette */
           blue: #7aa2f7;
           red:  #f7768e;
 
-          surface: #0f1117;        /* fully opaque */
-          surface-alt: #161925;    /* input background */
+          surface: #0f1117;
+          surface-alt: #161925;
 
-          selected-bg: #1e3a8a;   /* blue base */
-          selected-accent: #f7768e;
-
+          selected-bg: #1e293b;
           border-color: #2a2e3f;
 
           border-radius: 14px;
@@ -102,8 +100,7 @@
         element selected.normal {
           background-color: @selected-bg;
           text-color: #ffffff;
-          border: 0px 0px 0px 3px;
-          border-color: @selected-accent;   /* red accent stripe */
+          border: 0;
         }
 
         element selected.urgent {
@@ -117,6 +114,7 @@
         }
 
         element-text {
+          markup: true;
           vertical-align: 0.5;
         }
       '');
