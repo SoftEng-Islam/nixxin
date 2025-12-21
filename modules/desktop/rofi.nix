@@ -18,8 +18,8 @@
       };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
         /**
-         * Modern Glass Rofi Theme
-         * Rounded • Centered • Blur-ready
+         * Modern Solid Rofi Theme
+         * Rounded • Centered • Opaque
          */
 
         configuration {
@@ -30,17 +30,19 @@
 
         * {
           background-color: transparent;
-          text-color: #e5e7eb;
+          text-color: #e6e9ef;
 
-          accent: #7aa2f7;
-          surface: #0f1117cc;   /* translucent background */
-          surface-alt: #161925cc;
+          /* Core colors */
+          blue: #7aa2f7;
+          red:  #f7768e;
 
-          selected-bg: #7aa2f722;
-          selected-fg: #ffffff;
+          surface: #0f1117;        /* fully opaque */
+          surface-alt: #161925;    /* input background */
 
-          urgent-bg: #f7768ecc;
-          border-color: #7aa2f755;
+          selected-bg: #1e3a8a;   /* blue base */
+          selected-accent: #f7768e;
+
+          border-color: #2a2e3f;
 
           border-radius: 14px;
           padding: 0;
@@ -48,7 +50,6 @@
         }
 
         window {
-          transparency: "real";
           location: center;
           anchor: center;
 
@@ -88,7 +89,6 @@
         listview {
           background-color: transparent;
           spacing: 6px;
-          dynamic: false;
           scrollbar: false;
         }
 
@@ -101,12 +101,14 @@
 
         element selected.normal {
           background-color: @selected-bg;
-          text-color: @selected-fg;
+          text-color: #ffffff;
+          border: 0px 0px 0px 3px;
+          border-color: @selected-accent;   /* red accent stripe */
         }
 
         element selected.urgent {
-          background-color: @urgent-bg;
-          text-color: @selected-fg;
+          background-color: @red;
+          text-color: #ffffff;
         }
 
         element-icon {

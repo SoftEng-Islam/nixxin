@@ -41,7 +41,7 @@
       bind = $main, O, togglesplit
 
       #=> Second Row:
-      bind = $main, A, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show combi -show-icons
+      bind = $main, A, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen,
