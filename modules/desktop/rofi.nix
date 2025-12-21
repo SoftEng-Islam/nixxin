@@ -4,9 +4,20 @@
   home-manager.users.${settings.user.username} = {
     programs.rofi = {
       enable = true;
-
+      plugins = [ pkgs.rofi-calc ];
+      package = pkgs.rofi.override { plugins = [ pkgs.rofi-emoji ]; };
+      extraConfig = {
+        matching = "fuzzy";
+        tokenize = true;
+        sort = true;
+        sorting-method = "fzf";
+        case-sensitive = false;
+        drun-display-format = "{name}";
+        display-drun = "Apps";
+        combi-modes = "drun,window,run";
+      };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
-               /**
+        /**
          * Modern Glass Rofi Theme
          * Rounded • Centered • Blur-ready
          */
