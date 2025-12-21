@@ -14,6 +14,7 @@ let
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
+    services.mongodb.enable = true;
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
     environment.systemPackages = with pkgs; [
       gnome-text-editor

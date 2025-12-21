@@ -71,7 +71,8 @@ in {
   };
 
   networking.firewall.enable = settings.modules.networking.firewall.enable;
-  networking.firewall.allowedTCPPorts = [ 53 80 443 8080 3389 51820 ];
+  networking.firewall.allowedTCPPorts =
+    [ 53 80 443 8080 3389 51820 27018 3000 ];
   networking.firewall.allowedUDPPorts = [ 53 67 51820 1194 ];
   # networking.firewall.extraCommands = ''
   #   # Block everything except wg0
