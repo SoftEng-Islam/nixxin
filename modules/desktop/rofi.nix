@@ -54,7 +54,7 @@
           width: 520px;
 
           border-radius: 14px;
-          background-color: #0f1117;
+          background-color:            black / 10%;
         }
 
         /*****----- Main Box -----*****/
@@ -68,13 +68,13 @@
         /*****----- Inputbar -----*****/
         inputbar {
           spacing: 12px;
-          background-color: transparent;
+          background-color:            white / 5%;
           children: [ textbox-prompt-colon, entry];
         }
 
         textbox-prompt-colon {
           enabled: true;
-          background-color: #161925;
+          background-color:            transparent;
           text-color: #7aa2f7;
           expand: false;
           padding: 12px 16px;
@@ -86,7 +86,7 @@
         entry {
           padding: 12px 16px;
           border-radius: 10px;
-          background-color: #161925;
+          background-color:            transparent;
           text-color: #e6e9ef;
 
           placeholder: "Search…";
@@ -162,8 +162,8 @@
 
         textbox {
           text-color: inherit;
+          background-color:            transparent;
         }
-
       '');
     };
   };
