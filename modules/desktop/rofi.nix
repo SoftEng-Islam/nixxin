@@ -48,6 +48,7 @@
 
         /*****----- Main Window -----*****/
         window {
+          transparency:                "real";
           location: center;
           anchor: center;
           width: 520px;
