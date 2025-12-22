@@ -54,7 +54,7 @@
           width: 520px;
 
           border-radius: 14px;
-          background-color:            black / 50%;
+          background-color:            black / 70%;
         }
 
         /*****----- Main Box -----*****/
