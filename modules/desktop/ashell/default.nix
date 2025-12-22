@@ -5,6 +5,8 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # Ashell log level filter, possible values "debug" | "info" | "warn" | "error". Needs reload
       # log_level = "ashell::services=info"
       # log_level = "warn"
+
+      #? What this does ?
       enable_esc_key = false
 
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
@@ -19,11 +21,11 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
 
       # App launcher command, it will be used to open the launcher,
       # without a value the related button will not appear
-      app_launcher_cmd = "${pkgs.rofi}/bin/rofi -modi run -show drun -show-icons"
+      app_launcher_cmd = "pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons"
 
       # Clipboard command, it will be used to open the clipboard menu,
       # without a value the related button will not appear
-      clipboard_cmd = "cliphist-rofi-img | wl-copy"
+      # clipboard_cmd = "cliphist-rofi-img | wl-copy"
 
       # Declare which modules should be used and in which position in the status bar.
       # This is the list of all possible modules
@@ -58,7 +60,6 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # The update command is used to init the OS update process
       # update_cmd = 'alacritty -e bash -c "paru; echo Done - Press enter to exit; read" &'
 
-      # Workspaces module configuration, optional
       [workspaces]
       # The visibility mode of the workspaces, possible values are:
       # All: all the workspaces will be displayed
@@ -80,18 +81,18 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # Only works with `enable_workspace_filling = true`
 
       # WindowTitle module configuration, optional
-      [window_title]
+      # [window_title]
       # The information to get from your active window.
       # Possible modes are:
       # - Title
       # - Class
       # optional, default Title
-      mode = "Title"
+      # mode = "Title"
 
       # Maximum number of chars that can be present in the window title
       # after that the title will be truncated
       # optional, default 150
-      truncate_title_after_length = 150
+      # truncate_title_after_length = 150
 
       # keyboardLayout module configuration
       # Maps layout names to arbitrary labels, which can be any text, including unicode symbols as shown below
@@ -149,17 +150,14 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # disk indicator alert level (default 90)
       # alert_threshold = 90
 
-      # Clock module configuration
       [clock]
       # clock format see: https://docs.rs/chrono/latest/chrono/format/strftime/index.html
       format = "%a %d %b %I:%M %p"
 
-      # Media player module configuration
       # [media_player]
       # optional, default 100
       # max_title_length = 100
 
-      # Custom modules configuration (you can have multiple)
       [[CustomModule]]
       # The name will link the module in your left/center/right definition
       name = "CustomNotifications"
@@ -177,22 +175,23 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # Another regex can optionally show a red "alert" dot on the icon
       alert = ".*notification"
 
-      # Settings module configuration
       [settings]
-      # command used for lock the system
-      # without a value the related button will not appear
+      # command used for lock the system without a value the related button will not appear
       # optional, default None
       lock_cmd = "hyprlock &"
+
       # commands used to respectively shutdown, suspend, reboot and logout
       # all optional, without values the defaults shown here will be used
       logout_cmd = "loginctl kill-user $(whoami)"
       reboot_cmd = "systemctl reboot"
       shutdown_cmd = "shutdown now"
       suspend_cmd = "systemctl suspend"
+
       # command used to open the sinks audio settings
       # without a value the related button will not appear
       # optional default None
       audio_sinks_more_cmd = "pavucontrol -t 3"
+
       # command used to open the sources audio settings
       # without a value the related button will not appear
       # optional, default None
@@ -207,10 +206,12 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # without a value the related button will not appear
       # optional, default None
       # vpn_more_cmd = "nm-connection-editor"
+
       # command used to open the Bluetooth settings
       # without a value the related button will not appear
       # optional, default None
       # bluetooth_more_cmd = "blueman-manager"
+
       # option to remove the airplane button
       # optional, default false
       remove_airplane_btn = true
@@ -219,16 +220,16 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # ---- optional, default iced.rs font
       font_name = "${settings.modules.fonts.main.name}"
       # ---- The style of the main bar, possible values are: Islands | Solid | Gradient, optional, default Islands
-      style = "Islands"
+      style = "Solid"
       # ---- The opacity of the main bar, possible values are: 0.0 to 1.0 optional, default 1.0
-      opacity = 1.0
+      opacity = 0.8
 
       # used as a base background color for header module button
-      # background_color = "#131313ff"
+      # background_color = "#222222ff"
       # used as a accent color
       primary_color = "#ceb6e0ff"
       # used for darker background color
-      secondary_color = "#313131ff"
+      secondary_color = "#000000ff"
       # used for success message or happy state
       success_color = "#a6e3a1"
       # used for danger message or danger state (the weak version is used for the warning state
@@ -237,7 +238,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       text_color = "#d5d5d5ff"
 
       # this is a list of color that will be used in the workspace module (one color for each monitor)
-      workspace_colors = ["#ffc2c2ff", "#c7feb4ff"]
+      workspace_colors = ["#cdaeffff", "#c7feb4ff"]
 
       # this is a list of color that will be used in the workspace module
       # for the special workspace (one color for each monitor)
@@ -255,10 +256,10 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       [appearance.menu]
       # The opacity of the menu, possible values are: 0.0 to 1.0
       # optional, default 1.0
-      opacity = 1.0
+      opacity = 0.8
       # The backdrop of the menu, possible values are: 0.0 to 1.0
       # optional, default 0.0
-      backdrop = 0.0
+      backdrop = 0.5
     '';
   };
   environment.systemPackages = with pkgs; [

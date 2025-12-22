@@ -24,7 +24,6 @@
         repeat_delay = 250;
 
         # special_fallthrough = true;
-
         float_switch_override_focus = false;
 
         left_handed = false;

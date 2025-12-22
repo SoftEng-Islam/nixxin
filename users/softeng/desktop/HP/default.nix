@@ -64,15 +64,29 @@
   common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
 
   # => `static` colors to use
-  #- Blue   => rgba(3584E4ff) #- Teal   => rgba(2190A4ff)
-  #- Green  => rgba(3A944Aff) #- Yellow => rgba(C88800ff)
-  #- Ornage => rgba(ED5B00ff) #- Red    => rgba(E62D42ff)
-  #- Pink   => rgba(D56199ff) #- Purple => rgba(9141ACff)
-  #- Slate  => rgba(6F8396ff) #-
+  #- Orange => hsl(23,  70%, 50%)
+  #- Yellow => hsl(41,  70%, 50%)
+  #- Green  => hsl(131, 70%, 50%)
+  #- Teal   => hsl(189, 70%, 50%)
+  #- Slate  => hsl(209, 70%, 50%)
+  #- Blue   => hsl(213, 70%, 50%)
+  #- Purple => hsl(285, 70%, 50%)
+  #- Pink   => hsl(331, 70%, 50%)
+  #- Red    => hsl(353, 70%, 50%)
+
+  #- Orange => #d96b26ff
+  #- Yellow => #d9a026ff
+  #- Green  => #26d947ff
+  #- Teal   => #26bed9ff
+  #- Slate  => #2682d9ff
+  #- Blue   => #2677d9ff
+  #- Purple => #ac26d9ff
+  #- Pink   => #d9267dff
+  #- Red    => #d9263bff
 
   # => `graid colors ex:
   # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
-  common.primaryColor = "rgba(9141ACff)";
+  common.primaryColor = "rgba(26d947ff)"; # the Color code without '#' tag
   common.surfaceColor = "rgba(1e1e1eff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
@@ -299,13 +313,13 @@
   modules.desktop.hyprland.genColorsPath =
     /home/${user.username}/.cache/hypr/colors.conf;
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
-  modules.desktop.hyprland.blur.enable = false;
-  modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
+  modules.desktop.hyprland.blur.enable = true;
+  modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
+  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
   modules.desktop.hyprland.border.active.color = common.primaryColor;
-  modules.desktop.hyprland.border.size = 2;
+  modules.desktop.hyprland.border.size = 4;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
   modules.desktop.hyprland.plugins.hyprspace = false;

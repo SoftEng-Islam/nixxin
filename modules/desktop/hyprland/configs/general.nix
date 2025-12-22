@@ -9,7 +9,6 @@
           smart_resizing = true;
           force_split = 1; # 0 or 1 or 2
           special_scale_factor = 1; # [0 - 1]
-          # no_gaps_when_only = 0;
         };
         master = {
           new_status = "master";
@@ -33,7 +32,8 @@
           resize_on_border = true;
           hover_icon_on_border = true;
           extend_border_grab_area = 10;
-          "col.inactive_border" = "$surface";
+          "col.inactive_border" =
+            settings.modules.desktop.hyprland.border.inactive.color;
           "col.active_border" = "$primary";
 
           snap = { enabled = true; };

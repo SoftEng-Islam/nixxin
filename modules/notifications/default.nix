@@ -1,7 +1,5 @@
-{ settings, config, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
-  imports = [ ./dunst ];
+{ settings, pkgs, ... }: {
+  imports = [ ./dunst ./swaync ];
 
   environment.systemPackages = with pkgs; [
     notify # Notify allows sending the output from any tool to Slack, Discord and Telegram
