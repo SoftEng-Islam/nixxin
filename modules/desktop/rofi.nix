@@ -48,13 +48,12 @@
 
         /*****----- Main Window -----*****/
         window {
-          transparency:                "real";
           location: center;
           anchor: center;
           width: 520px;
 
           border-radius: 14px;
-          background-color:            black / 70%;
+          background-color: #0f1117;
         }
 
         /*****----- Main Box -----*****/
@@ -68,7 +67,7 @@
         /*****----- Inputbar -----*****/
         inputbar {
           spacing: 12px;
-          background-color:            white / 5%;
+          background-color: transparent;
           children: [ textbox-prompt-colon, entry];
         }
 

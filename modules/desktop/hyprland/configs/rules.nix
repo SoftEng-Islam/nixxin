@@ -99,7 +99,7 @@
       # # Keep it above everything
       # windowrulev2 = stayfocused,class:^(Rofi)$
       # windowrulev2 = pin,class:^(Rofi)$
-      layerrule = blur, ^(rofi)$
+      # layerrule = blur, ^(rofi)$
 
       # ----------------------
       # Nautilus specific rules
