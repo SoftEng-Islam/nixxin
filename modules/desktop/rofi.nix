@@ -19,9 +19,9 @@
       };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
         /**
-        * Modern Solid Rofi Theme
-        * Centered • Rounded • Large & Readable
-        */
+          * Modern Solid Rofi Theme
+          * Centered • Rounded • Large & Readable
+          */
 
         configuration {
           show-icons: true;
@@ -76,7 +76,6 @@
           spacing: 10px;
         }
 
-        #?
         prompt {
           enabled: false;
         }
@@ -89,7 +88,7 @@
         listview {
           background-color: transparent;
           spacing: 8px;
-          scrollbar: true;
+          scrollbar: false;
         }
 
         element {
