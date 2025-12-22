@@ -25,7 +25,7 @@
 
         configuration {
           show-icons: true;
-          sidebar-mode: false;
+          sidebar-mode: true;
           font: "Roboto 14";
         }
 
@@ -88,7 +88,7 @@
         listview {
           background-color: transparent;
           spacing: 8px;
-          scrollbar: false;
+          scrollbar: true;
         }
 
         element {

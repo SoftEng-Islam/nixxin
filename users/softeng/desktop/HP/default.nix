@@ -86,7 +86,7 @@
 
   # => `graid colors ex:
   # "rgba(673ab7ff) rgba(E62D42ff) 45deg";
-  common.primaryColor = "rgba(26d947ff)"; # the Color code without '#' tag
+  common.primaryColor = "rgba(d9267dff)"; # the Color code without '#' tag
   common.surfaceColor = "rgba(1e1e1eff)";
   # [ Media ] Variables:
   common.videoPlayer = "";
