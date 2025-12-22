@@ -54,7 +54,7 @@
           width: 520px;
 
           border-radius: 14px;
-          background-color:            black / 10%;
+          background-color:            black / 50%;
         }
 
         /*****----- Main Box -----*****/
@@ -74,7 +74,7 @@
 
         textbox-prompt-colon {
           enabled: true;
-          background-color:            transparent;
+          background-color: #161925;
           text-color: #7aa2f7;
           expand: false;
           padding: 12px 16px;
@@ -86,7 +86,7 @@
         entry {
           padding: 12px 16px;
           border-radius: 10px;
-          background-color:            transparent;
+          background-color: #161925;
           text-color: #e6e9ef;
 
           placeholder: "Search…";
@@ -162,8 +162,8 @@
 
         textbox {
           text-color: inherit;
-          background-color:            transparent;
         }
+
       '');
     };
   };
