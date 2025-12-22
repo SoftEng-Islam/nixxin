@@ -6,8 +6,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
       # log_level = "ashell::services=info"
       # log_level = "warn"
 
-      #? What this does ?
-      enable_esc_key = false
+      enable_esc_key = true
 
       # Possible status bar outputs, values could be: All, Active, or a list of outputs
       # All: the status bar will be displayed on all the available outputs, example: outputs = "All"
@@ -25,7 +24,7 @@ lib.mkIf (settings.modules.desktop.ashell.enable or false) {
 
       # Clipboard command, it will be used to open the clipboard menu,
       # without a value the related button will not appear
-      # clipboard_cmd = "cliphist-rofi-img | wl-copy"
+      # clipboard_cmd = "${pkgs.cliphist}/bin/cliphist-rofi-img | ${pkgs.wl-clipboard}/bin/wl-paste"
 
       # Declare which modules should be used and in which position in the status bar.
       # This is the list of all possible modules
