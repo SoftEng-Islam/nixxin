@@ -10,7 +10,7 @@ let
     (optional development.eclipse ./eclipse.nix)
     (optional development.helix ./helix.nix)
   ];
-  HOME = config.home.homeDirectory;
+  HOME = settings.HOME;
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
