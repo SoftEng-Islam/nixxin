@@ -14,7 +14,7 @@ let
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
-    home-manager.users.user.${settings.user.username} = {
+    home-manager.users.${settings.user.username} = {
       home.variables = {
         # --- pnpm ---
         PNPM_HOME = "${HOME}/.local/share/pnpm";
