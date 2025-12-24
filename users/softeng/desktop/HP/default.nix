@@ -9,7 +9,7 @@
   user.name = "Islam Ahmed"; # Name/Identifier
   user.username = "softeng"; # Username
   user.email = "softeng.islam@gmail.com"; # Email
-
+  HOME = "/home/${user.username}"; # Home Directory
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
