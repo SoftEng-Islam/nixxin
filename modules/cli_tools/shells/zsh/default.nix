@@ -1,8 +1,9 @@
-{ config, pkgs, lib, ... }:
+{ settings, config, pkgs, lib, ... }:
 
 let
   inherit (lib) mapAttrs;
   cfg = config.icedos;
+  HOME = settings.HOME;
 in {
   home-manager.users = mapAttrs (user: _: {
     programs.zsh.enable = true;
