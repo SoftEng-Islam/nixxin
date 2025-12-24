@@ -14,23 +14,25 @@ let
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
-    environment.variables = {
-      # --- pnpm ---
-      PNPM_HOME = "${HOME}/.local/share/pnpm";
-      PNPM_STORE_DIR = "${HOME}/.local/share/pnpm-store";
-      PNPM_STATE_DIR = "${HOME}/.local/state/pnpm-state";
 
-      # --- npm ---
-      NPM_CONFIG_USERCONFIG = "${HOME}/.config/npm/npmrc";
-      NPM_CONFIG_CACHE = "${HOME}/.cache/npm";
-      NPM_CONFIG_PREFIX = "${HOME}/.local/share/npm";
+    home-manager.users.${settings.user.username} = {
+      home.sessionVariables = {
+        PNPM_HOME = "${HOME}/.local/share/pnpm";
+        PNPM_STORE_DIR = "${HOME}/.local/share/pnpm-store";
+        PNPM_STATE_DIR = "${HOME}/.local/state/pnpm-state";
 
-      # --- yarn ---
-      YARN_CACHE_FOLDER = "${HOME}/.cache/yarn";
-      YARN_GLOBAL_FOLDER = "${HOME}/.local/share/yarn";
+        # --- npm ---
+        NPM_CONFIG_USERCONFIG = "${HOME}/.config/npm/npmrc";
+        NPM_CONFIG_CACHE = "${HOME}/.cache/npm";
+        NPM_CONFIG_PREFIX = "${HOME}/.local/share/npm";
 
-      # Node REPL
-      NODE_REPL_HISTORY = "${HOME}/.local/share/node/repl_history";
+        # --- yarn ---
+        YARN_CACHE_FOLDER = "${HOME}/.cache/yarn";
+        YARN_GLOBAL_FOLDER = "${HOME}/.local/share/yarn";
+
+        # Node REPL
+        NODE_REPL_HISTORY = "${HOME}/.local/share/node/repl_history";
+      };
     };
     services.mongodb.enable = true;
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
