@@ -2,7 +2,7 @@
 
 let
   inherit (lib) mapAttrs;
-  cfg = config.icedos;
+  # cfg = config.icedos;
   HOME = settings.HOME;
 in {
   home-manager.users = mapAttrs (user: _: {
@@ -14,7 +14,7 @@ in {
 
       ".config/zsh/p10k-theme.zsh".source = ./p10k-theme.zsh;
     };
-  }) cfg.system.users;
+  });
 
   programs.zsh = {
     enable = true;
