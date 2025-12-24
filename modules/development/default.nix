@@ -21,20 +21,20 @@ in {
 
       # --- npm ---
       # Prefer XDG paths
-      NPM_CONFIG_USERCONFIG = "$HOME/.config/npm/npmrc";
-      NPM_CONFIG_CACHE = "$HOME/.cache/npm";
-      NPM_CONFIG_PREFIX = "$HOME/.local/share/npm";
+      NPM_CONFIG_USERCONFIG = "${HOME}/.config/npm/npmrc";
+      NPM_CONFIG_CACHE = "${HOME}/.cache/npm";
+      NPM_CONFIG_PREFIX = "${HOME}/.local/share/npm";
 
       # --- pnpm ---
-      PNPM_HOME = "$HOME/.local/share/pnpm";
-      PNPM_STORE_PATH = "$HOME/.cache/pnpm-store";
+      PNPM_HOME = "${HOME}/.local/share/pnpm";
+      PNPM_STORE_PATH = "${HOME}/.cache/pnpm-store";
 
       # --- yarn ---
-      YARN_CACHE_FOLDER = "$HOME/.cache/yarn";
-      YARN_GLOBAL_FOLDER = "$HOME/.local/share/yarn";
+      YARN_CACHE_FOLDER = "${HOME}/.cache/yarn";
+      YARN_GLOBAL_FOLDER = "${HOME}/.local/share/yarn";
 
       # Node REPL history (keep it out of $HOME root)
-      NODE_REPL_HISTORY = "$HOME/.local/share/node/repl_history";
+      NODE_REPL_HISTORY = "${HOME}/.local/share/node/repl_history";
     };
     services.mongodb.enable = true;
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
