@@ -33,7 +33,7 @@ in {
       YARN_CACHE_FOLDER = "${HOME}/.cache/yarn";
       YARN_GLOBAL_FOLDER = "${HOME}/.local/share/yarn";
 
-      # Node REPL history (keep it out of $HOME root)
+      # Node REPL history (keep it out of ${HOME} root)
       NODE_REPL_HISTORY = "${HOME}/.local/share/node/repl_history";
     };
     services.mongodb.enable = true;

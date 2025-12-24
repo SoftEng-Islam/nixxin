@@ -1,6 +1,8 @@
 # ---- docs.nix ---- #
 { settings, lib, pkgs, ... }:
-let _docs = settings.modules.system.docs;
+let
+  _docs = settings.modules.system.docs;
+  HOME = settings.HOME;
 in {
 
   # For Faster Rebuilding Disable These
@@ -138,7 +140,7 @@ in {
     enable = true;
     clean.enable = true;
     clean.extraArgs = "--keep-since 4d --keep 3";
-    flake = "/home/${settings.user.username}/nixxin";
+    flake = "${HOME}/nixxin";
   };
 
   programs.command-not-found.enable = false;
@@ -238,8 +240,12 @@ in {
   home-manager.users.${settings.user.username} = {
     programs.home-manager.enable = true;
     home = {
-      sessionPath =
-        [ "$HOME/.bin" "$HOME/.local/bin" "$HOME/.cargo/bin" "$HOME/.go/bin" ];
+      sessionPath = [
+        "${HOME}/.bin"
+        "${HOME}/.local/bin"
+        "${HOME}/.cargo/bin"
+        "${HOME}/.go/bin"
+      ];
 
       sessionVariables = {
         # Set the default pager to less

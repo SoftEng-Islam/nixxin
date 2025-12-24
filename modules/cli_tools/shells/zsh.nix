@@ -1,5 +1,6 @@
 { settings, lib, pkgs, ... }:
 let
+  HOME = settings.HOME;
   myAliases = {
     # Set-up icons for files/folders in terminal
     # ls = "eza -a --icons";
@@ -76,7 +77,7 @@ in {
   programs.zsh.enableCompletion = true;
   programs.zsh.enableGlobalCompInit = true;
   programs.zsh.enableLsColors = true;
-  programs.zsh.histFile = "$HOME/.zsh_history";
+  programs.zsh.histFile = "${HOME}/.zsh_history";
   programs.zsh.histSize = 3000;
   programs.zsh.interactiveShellInit = "";
   programs.zsh.loginShellInit = "";
@@ -94,7 +95,7 @@ in {
     # Prevent running pasted command
     "safe-paste"
   ];
-  programs.zsh.ohMyZsh.cacheDir = "$HOME/.cache/oh-my-zsh";
+  programs.zsh.ohMyZsh.cacheDir = "${HOME}/.cache/oh-my-zsh";
   programs.zsh.ohMyZsh.preLoaded = "";
   # programs.zsh.ohMyZsh.theme = ""; # we will use starship
 
@@ -120,7 +121,7 @@ in {
 
       # [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       # If you come from bash you might have to change your $PATH.
-      # export PATH=$HOME/bin:/usr/local/bin:$PATH
+      # export PATH=${HOME}/bin:/usr/local/bin:$PATH
       # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
       # export QT_QPA_PLATFORMTHEME=qt5ct
 
@@ -206,7 +207,7 @@ in {
       # -- nvm end --
 
       # bun completions
-      [ -s "/home/softeng/.bun/_bun" ] && source "/home/softeng/.bun/_bun"
+      [ -s "${HOME}/.bun/_bun" ] && source "${HOME}/.bun/_bun"
 
       # Set-up FZF key bindings (CTRL R for fuzzy history finder)
       # source <(fzf --zsh)
@@ -360,7 +361,7 @@ in {
       # fi
 
       # Created by `pipx` on 2024-11-07 21:19:31
-      export PATH="$PATH:/home/softeng/.local/bin"
+      export PATH="$PATH:${HOME}/.local/bin"
 
       # zprof
     '';

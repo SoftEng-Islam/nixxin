@@ -62,7 +62,7 @@ in {
 
   environment.variables = {
     GTK_THEME = settings.common.gtk.GTK_THEME;
-    # GTK2_RC_FILES = "$HOME/.config/gtk-2.0/gtkrc";
+    # GTK2_RC_FILES = "${HOME}/.config/gtk-2.0/gtkrc";
     QT_STYLE_OVERRIDE = "Adwaita-dark";
 
     # Enable automatic screen scaling for Qt apps

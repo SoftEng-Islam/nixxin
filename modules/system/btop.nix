@@ -1,5 +1,7 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  HOME = settings.HOME;
 in {
   home-manager.users.${settings.user.username} = {
     programs.btop = {
@@ -15,7 +17,7 @@ in {
       #? Config file for btop v. 1.2.2
 
       #* Name of a btop++/bpytop/bashtop formatted ".theme" file, "Default" and "TTY" for builtin themes.
-      #* Themes should be placed in "../share/btop/themes" relative to binary or "$HOME/.config/btop/themes"
+      #* Themes should be placed in "../share/btop/themes" relative to binary or "${HOME}/.config/btop/themes"
       color_theme = ${settings.modules.resources_monitoring.btop.theme}
 
       #* If the theme set background should be shown, set to False if you want terminal background transparency.
@@ -214,9 +216,9 @@ in {
       log_level = "DEBUG"
     '';
   };
-  environment.systemPackages = with pkgs; [ 
-    btop 
-    # btop-rocm         
+  environment.systemPackages = with pkgs; [
+    btop
+    # btop-rocm
     resources # Monitor your system resources and processes
- ];
+  ];
 }
