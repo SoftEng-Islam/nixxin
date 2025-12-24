@@ -1,7 +1,7 @@
 { settings, config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf optionals optional flatten;
-  development = settings.modules.development;
+  development = settings.HOME;
 
   _imports = [
     (optional development.vscode.enable ./vscode.nix)
