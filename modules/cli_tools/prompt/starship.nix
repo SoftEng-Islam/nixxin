@@ -39,8 +39,8 @@ let
     };
     character = {
       disabled = false;
-      success_symbol = "[$](bold green)";
-      error_symbol = "[$](red)";
+      success_symbol = "[❯](bold green)";
+      error_symbol = "[❯](red)";
     };
     cmd_duration = {
       disabled = true;
