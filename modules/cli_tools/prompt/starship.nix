@@ -7,6 +7,8 @@ let
   starship_settings = {
     "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
+    # Wait 10 milliseconds for starship to check files under the current directory.
+    scan_timeout = 10;
     format =
       builtins.concatStringsSep "" [ "$all" "$character" "\${custom.space}" ];
     username = {
@@ -37,8 +39,8 @@ let
     };
     character = {
       disabled = false;
-      success_symbol = "[❯](bold green)";
-      error_symbol = "[❯](red)";
+      success_symbol = "[$](bold green)";
+      error_symbol = "[$](red)";
     };
     cmd_duration = {
       disabled = true;
