@@ -53,7 +53,7 @@
           width: 520px;
 
           border-radius: 14px;
-          background-color: #0f1117cc;
+          background-color: #23232389;
         }
 
         /*****----- Main Box -----*****/
@@ -73,10 +73,11 @@
 
         textbox-prompt-colon {
           enabled: true;
-          background-color: #161925;
+          background-color: #23232389;
           text-color: #7aa2f7;
           expand: false;
           padding: 12px 16px;
+          padding-right: 17px;
           border: 0px;
           border-radius: 10px;
           str: "";
@@ -85,7 +86,7 @@
         entry {
           padding: 12px 16px;
           border-radius: 10px;
-          background-color: #161925;
+          background-color: #23232389;
           text-color: #e6e9ef;
 
           placeholder: "Search…";
@@ -113,15 +114,15 @@
         }
 
         element normal.active {
-          background-color: #1a1d2b;
+          background-color: #23232389;
         }
 
         element selected.normal {
-          background-color: #1e293b;
+          background-color: #23232389;
         }
 
         element selected.active {
-          background-color: #2a2f4a;
+          background-color: #23232389;
         }
 
         element-icon {
@@ -143,19 +144,19 @@
         button {
           padding: 10px 14px;
           border-radius: 10px;
-          background-color: #161925;
+          background-color: #16192589;
           text-color: #9aa5ce;
         }
 
         button selected {
-          background-color: #7aa2f7;
-          text-color: #0f1117;
+          background-color: #714affff;
+          text-color: #b3b3b3ff;
         }
 
         /*****----- Messages -----*****/
         error-message {
           padding: 20px;
-          background-color: #1e293b;
+          background-color: #1f2125a2;
           text-color: #f7768e;
         }
 

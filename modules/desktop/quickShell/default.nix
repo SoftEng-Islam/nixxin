@@ -21,7 +21,7 @@ in {
   # bind = Super, TAB, exec, qs ipc -c overview call overview toggle
 
   home-manager.users.${settings.user.username} = {
-    home.file."~/.config/quickshell/overview".source = ./overview;
+    home.file.".config/quickshell/overview".source = ./overview;
   };
 
   environment.systemPackages = with pkgs; [
