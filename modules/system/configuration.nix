@@ -119,7 +119,8 @@ in {
       # "acpi_enforce_resources=lax"
 
       # "nomodeset" # Black Screen Issues
-      "idle=nomwait"
+      # "nomodeset" # Black Screen Issues
+      # "idle=nomwait"
 
       # Disable Mitigation
       "mitigations=off"
@@ -129,7 +130,7 @@ in {
       # Limit C-states for better response time
       "processor.max_cstate=0" # prevents deep sleep, ensures max boost
 
-      "threadirqs" # ?
+      # "threadirqs" # ?
 
       # ---- System Performance ---- #
       "preempt=full" # voluntary or full
@@ -213,6 +214,8 @@ in {
     };
   };
 
+  powerManagement.cpuFreqGovernor = "performance";
+
   # ------------------------------------------------
   # ---- Hardware Configuration
   # ------------------------------------------------
@@ -249,7 +252,7 @@ in {
         vulkan-extension-layer
         vulkan-loader
         vulkan-tools
-        vulkan-validation-layers
+        # vulkan-validation-layers
         mesa
         mesa-demos # Provides glxinfo, glxgears
         mesa.opencl
@@ -318,7 +321,7 @@ in {
   # ------------------------------------------------
   environment.variables = {
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
-    WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
+    # WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
     WLR_NO_HARDWARE_CURSORS = "0"; # disable hardware cursors for wlroots
 
     # This env var forces wgpu to use OpenGL instead of Vulkan

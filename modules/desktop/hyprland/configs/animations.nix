@@ -3,17 +3,17 @@
 let
   animationSpeed = settings.modules.desktop.hyprland.animationSpeed;
   animationDuration = if animationSpeed == "slow" then
-    "4"
+    "3"
   else if animationSpeed == "medium" then
-    "2.5"
+    "2.0"
   else
-    "1.5";
+    "1.0";
   borderDuration = if animationSpeed == "slow" then
-    "10"
+    "8"
   else if animationSpeed == "medium" then
-    "6"
+    "5"
   else
-    "3";
+    "2";
 
 in {
   home-manager.users.${settings.user.username} = {

@@ -53,7 +53,7 @@
           width: 520px;
 
           border-radius: 14px;
-          background-color: #0f1117;
+          background-color: #0f1117cc;
         }
 
         /*****----- Main Box -----*****/

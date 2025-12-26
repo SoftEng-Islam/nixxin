@@ -13,8 +13,8 @@
           new_optimizations = true;
           popups = true;
           popups_ignorealpha = 0.6;
-          size = 8;
-          passes = 2;
+          size = 3;
+          passes = 1;
           brightness = 0.5;
           noise = 0.0;
           contrast = 0.5;
@@ -22,7 +22,7 @@
 
         # ---- Shadow ---- #
         shadow = {
-          enabled = settings.modules.desktop.hyprland.shadow.enable;
+          enabled = false;
           range = 15;
           offset = "0 2";
           render_power = 2;
