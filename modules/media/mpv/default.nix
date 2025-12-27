@@ -86,13 +86,16 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "gpu-next"; # mpv --vo=help
+        vo = "gpu"; # mpv --vo=help
 
         # Allow only Vulkan (requires a valid/working --spirv-compiler)
         gpu-api = "vulkan"; # mpv --gpu-api=help
+        vulkan-async-compute = "yes";
+        vulkan-async-transfer = "yes";
+        vulkan-queue-count = 1;
 
         gpu-context = "auto"; # mpv --gpu-context=help
-        hwdec = "auto"; # mpv --hwdec=help
+        hwdec = "auto-safe"; # mpv --hwdec=help
         profile = "fast"; # mpv --profile=help
         dither-depth = "auto";
         hdr-compute-peak = "no"; # Fix stuttering playing 4k video
