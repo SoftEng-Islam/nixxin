@@ -1,15 +1,7 @@
 { config, lib, settings, pkgs, ... }:
 # The [ MPV ] manual
 # https://mpv.io/manual/stable/
-let
-  _hwdec = "vaapi-copy"; # "vaapi"; # mpv --hwdec=help
-  # _vo = "gpu"; # mpv --vo=help
-  # _gpu-api = "auto"; # mpv --gpu-api=help
-  _hwdec-codecs = "all"; # mpv --hwdec-codecs=help
-  _vo = "gpu-next"; # mpv --vo=help
-  _gpu-api = "vulkan"; # mpv --gpu-api=help
-
-in lib.mkIf (settings.modules.media.mpv) {
+lib.mkIf (settings.modules.media.mpv) {
   environment.variables = { VIDEO = "mpv"; };
 
   # https://github.com/mpv-player/mpv/wiki
@@ -94,34 +86,31 @@ in lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = _vo;
-        gpu-api = _gpu-api;
-        gpu-context = "auto";
-        hwdec = _hwdec; # or "no" if it fails
-        # hwdec-codecs = "all";
-        profile = "gpu-hq"; # good baseline
+        vo = "gpu-next"; # mpv --vo=help
+
+        # Allow only Vulkan (requires a valid/working --spirv-compiler)
+        gpu-api = "vulkan"; # mpv --gpu-api=help
+
+        gpu-context = "auto"; # mpv --gpu-context=help
+        hwdec = "auto"; # mpv --hwdec=help
+        profile = "fast"; # mpv --profile=help
+        dither-depth = "auto";
+        hdr-compute-peak = "no"; # Fix stuttering playing 4k video
+        opengl-pbo = "yes";
+        deband = "yes";
+
         # Shaders
-        glsl-shaders =
-          [ "~~/shaders/AMD/FSR.glsl" "~~/shaders/AMD/CAS-scaled.glsl" ];
+        # glsl-shaders = [ "~~/shaders/AMD/FSR.glsl" "~~/shaders/AMD/CAS-scaled.glsl" ];
+
         fullscreen = false;
         keep-open = "yes";
         force-window = "immediate";
         term-osd-bar = true;
-        # scale = "bilinear"; # faster than lanczos
-        # cscale = "bilinear";
-        # tscale = "linear";
-        deband = "yes";
-        # dither-depth = "auto";
-        # autofit = "100%";
         window-maximized = "yes";
         save-position-on-quit = true;
-        # video-sync = "display-resample"; # (default: audio)
 
-        # Fix stuttering playing 4k video
-        hdr-compute-peak = "no";
-
+        # Audio
         ao = "alsa,pulse,pipewire,openal"; # mpv --ao=help
-
         volume = 100;
         volume-max = 150;
         alang = "en,eng";
@@ -131,8 +120,8 @@ in lib.mkIf (settings.modules.media.mpv) {
         sub-auto = "fuzzy";
         sub-font-size = 32;
         sub-outline-size = 2.5;
-        sub-color = "#dededeff";
-        sub-outline-color = "#000000";
+        sub-color = "#fffae1ff";
+        sub-outline-color = "#414141ff";
         sub-use-margins = "yes";
         # sub-ass-override = "force";
 
@@ -148,7 +137,7 @@ in lib.mkIf (settings.modules.media.mpv) {
         r = "add sub-pos -1";
         t = "add sub-pos +1";
       };
-      defaultProfiles = [ "high-quality" ];
+      # defaultProfiles = [ "high-quality" ];
     };
   };
 

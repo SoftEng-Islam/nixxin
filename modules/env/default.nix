@@ -19,24 +19,6 @@ lib.mkIf (settings.modules.env.enable or false) {
       # https://github.com/NixOS/nixpkgs/issues/314713
       UV_USE_IO_URING = "0";
 
-      # vulkan-loader and libGL shared libs are necessary for hardware decoding
-      # LD_LIBRARY_PATH = lib.mkForce "${pkgs.lib.makeLibraryPath [
-      #   pkgs.glslang
-      #   pkgs.libGL
-      #   pkgs.libxkbcommon # keyboard support for winit
-      #   pkgs.vulkan-extension-layer
-      #   pkgs.vulkan-headers
-      #   pkgs.vulkan-loader # libvulkan.so
-      #   pkgs.vulkan-tools
-      #   pkgs.vulkan-tools-lunarg
-      #   pkgs.vulkan-validation-layers # validation layer runtime
-      #   pkgs.vulkan-volk
-      #   pkgs.xorg.libX11
-      #   pkgs.xorg.libXcursor
-      #   pkgs.xorg.libXi
-      #   pkgs.xorg.libXrandr
-      # ]}";
-
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";
       GDK_BACKEND = "wayland";

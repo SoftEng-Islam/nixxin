@@ -13,7 +13,7 @@
   # => Alternative APIs: Vulkan, DirectX, Metal
 
   environment.variables = {
-    vblank_mode = "0"; # ? Reduces latency
+    # vblank_mode = "0"; # ? Reduces latency
 
     # Adjust rendering settings for OpenGL and graphics drivers.
     LIBGL_DRI3_ENABLE = "1";

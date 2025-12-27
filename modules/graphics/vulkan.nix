@@ -6,16 +6,8 @@
     # Vulkan ICD files — this should point to the system-wide location from Mesa
     VK_ICD_FILENAMES = "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
-    # Vulkan Layer path — system-wide layer files
-    # VK_LAYER_PATH =
-    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
     # Enable present_wait extension (helps with frame timing on Wayland)
     VK_KHR_PRESENT_WAIT_ENABLED = "1";
-
-    # You are not using Optimus or NVIDIA, so these are not needed:
-    # __VK_LAYER_NV_optimus = "NVIDIA_only";   ← REMOVE
-    # VK_DEVICE_FILTER = "intel";             ← REMOVE
 
     # Presentation mode — "mailbox" is good for low-latency triple buffering
     VK_PRESENT_MODE = "mailbox";
@@ -34,28 +26,12 @@
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
     AMD_VULKAN_ICD = "radv"; # Force RADV instead of AMDVLK
-
-    #? What the Differante?
-    # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-    # VK_ICD_FILENAMES = "${pkgs.amdvlk}/share/vulkan/icd.d/amd_icd64.json";
-
-    # VK_LAYER_PATH = "/etc/vulkan/layer.d";
-    # VK_LAYER_PATH = "/run/opengl-driver/share/vulkan/explicit_layer.d";
-
-    # AMD_VULKAN_DRIVER = "RADV";
-
-    # VK_LAYER_PATH =
-    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-    # VULKAN_SDK =
-    #   "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
-    # LD_PRELOAD = "${pkgs.vulkan-loader}/lib/libvulkan.so";
   };
   environment.systemPackages = with pkgs; [
     dxvk # A Vulkan-based translation layer for Direct3D
     gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
     vkbasalt # Vulkan post processing layer for Linux
-    # vkquake # Vulkan Quake port based on QuakeSpasm
+
     shaderc
     vulkan-extension-layer # Layers providing Vulkan features when native support is unavailable
     vulkan-headers # Vulkan Header files and API registry
