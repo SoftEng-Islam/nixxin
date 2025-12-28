@@ -1,4 +1,15 @@
-{ settings, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+let
+  # Convert rgba(RRGGBBAA) to #RRGGBBAA for Rofi
+  toRasi = color:
+    let
+      # strip "rgba(" and ")"
+      hex = lib.removeSuffix ")" (lib.removePrefix "rgba(" color);
+    in "#${hex}";
+
+  primary = toRasi settings.common.primaryColor;
+  surface = toRasi settings.common.surfaceColor;
+in {
   home-manager.users.${settings.user.username} = {
     programs.rofi = {
       enable = true;
@@ -38,12 +49,16 @@
         /*****----- Global Properties -----*****/
         * {
           font: "${settings.modules.fonts.main.name} 12";
-          background: ${settings.common.surfaceColor};
+          background: ${surface};
           foreground: #FFFFFF;
-          primary: ${settings.common.primaryColor};
-          accent: ${settings.common.primaryColor};
-          background-alt: ${settings.common.surfaceColor};
-          background-transparent: ${settings.common.surfaceColor}cc; /* Use semi-transparent surface */
+          primary: ${primary};
+          accent: ${primary};
+          background-alt: ${surface};
+          background-transparent: ${
+            toRasi (lib.substring 0
+              ((lib.stringLength settings.common.surfaceColor) - 3)
+              settings.common.surfaceColor + "cc)")
+          }; /* Opacity 80% */
 
           background-color: transparent;
           text-color: @foreground;
