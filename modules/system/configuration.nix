@@ -321,6 +321,7 @@ in {
   # ------------------------------------------------
   environment.variables = {
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
+
     # WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
     WLR_NO_HARDWARE_CURSORS = "0"; # disable hardware cursors for wlroots
 

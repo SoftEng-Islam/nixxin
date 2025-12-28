@@ -97,10 +97,27 @@ lib.mkIf (settings.modules.media.mpv) {
         gpu-context = "auto"; # mpv --gpu-context=help
         hwdec = "auto-safe"; # mpv --hwdec=help
         profile = "fast"; # mpv --profile=help
-        dither-depth = "auto";
+        dither-depth = "no";
         hdr-compute-peak = "no"; # Fix stuttering playing 4k video
         opengl-pbo = "yes";
-        deband = "yes";
+        deband = "no";
+
+        # Aggressive performance: fastest scaling
+        scale = "bilinear";
+        cscale = "bilinear";
+        dscale = "bilinear";
+
+        # Framedrop for smooth playback
+        video-sync = "audio";
+        framedrop = "vo";
+
+        # Reduce decoder threads for weak CPUs
+        vd-lavc-threads = 2;
+
+        # Cache settings
+        cache = "yes";
+        demuxer-max-bytes = "50M";
+        demuxer-readahead-secs = 5;
 
         # Shaders
         # glsl-shaders = [ "~~/shaders/AMD/FSR.glsl" "~~/shaders/AMD/CAS-scaled.glsl" ];
