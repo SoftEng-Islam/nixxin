@@ -17,7 +17,7 @@
 
     # Adjust rendering settings for OpenGL and graphics drivers.
     LIBGL_DRI3_ENABLE = "1";
-    LIBGL_ALWAYS_INDIRECT = "1";
+    # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
   };
 
   environment.systemPackages = with pkgs; [
