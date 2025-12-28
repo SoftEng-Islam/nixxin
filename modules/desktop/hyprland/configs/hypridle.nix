@@ -16,7 +16,7 @@ let
 in {
   home-manager.users.${settings.user.username} = {
     services.hypridle = {
-      enable = false;
+      enable = true;
       settings = {
         general = {
           before_sleep_cmd =

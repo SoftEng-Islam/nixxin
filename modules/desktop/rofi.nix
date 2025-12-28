@@ -19,151 +19,211 @@
       };
       theme = builtins.toString (pkgs.writeText "rofi-theme" ''
         /**
-         * Dark Smooth Rofi Theme
-         * Based on adi1090x layout
-         * Enhanced for modern dark UI
+         * Premium Glassmorphic Rofi Theme
+         * Perfectly Integrated with System Colors
          */
 
         /*****----- Configuration -----*****/
         configuration {
           modi: "drun,filebrowser,window";
           show-icons: true;
-
-          display-drun: "Apps";
-          display-run: "Run";
-          display-filebrowser: "Files";
-          display-window: "Windows";
-
-          drun-display-format: "{name}\n<span size='small' alpha='70%'>{generic}</span>";
-
-          window-format: "{c}\n<span size='small' alpha='70%'>Workspace {w}</span>";
+          display-drun: "APPS";
+          display-run: "RUN";
+          display-filebrowser: "FILES";
+          display-window: "WINDOWS";
+          drun-display-format: "{name}";
+          window-format: "{c} · {t}";
         }
 
         /*****----- Global Properties -----*****/
         * {
-          font: "Iosevka Nerd Font 12";
-          text-color: #e6e9ef;
+          font: "${settings.fonts.main.name} 12";
+          background: ${settings.common.surfaceColor};
+          foreground: #FFFFFF;
+          primary: ${settings.common.primaryColor};
+          accent: ${settings.common.primaryColor};
+          background-alt: ${settings.common.surfaceColor};
+          background-transparent: ${settings.common.surfaceColor}cc; /* Use semi-transparent surface */
+
           background-color: transparent;
+          text-color: @foreground;
         }
 
         /*****----- Main Window -----*****/
         window {
+          transparency: "real";
           location: center;
           anchor: center;
-          width: 520px;
+          fullscreen: false;
+          width: 600px;
+          x-offset: 0px;
+          y-offset: 0px;
 
-          border-radius: 14px;
-          background-color: #23232389;
+          enabled: true;
+          margin: 0px;
+          padding: 0px;
+          border: 2px solid;
+          border-radius: ${
+            toString settings.modules.desktop.hyprland.rounding
+          }px;
+          border-color: @primary;
+          cursor: "default";
+          background-color: @background-transparent;
         }
 
         /*****----- Main Box -----*****/
         mainbox {
-          padding: 26px;
-          spacing: 18px;
+          enabled: true;
+          spacing: 20px;
+          margin: 0px;
+          padding: 40px;
+          border: 0px solid;
+          border-radius: 0px 0px 0px 0px;
+          border-color: @primary;
           background-color: transparent;
-          children: [ inputbar, mode-switcher, listview];
+          children: [ "inputbar", "mode-switcher", "listview" ];
         }
 
         /*****----- Inputbar -----*****/
         inputbar {
+          enabled: true;
           spacing: 12px;
+          margin: 0px;
+          padding: 0px;
+          border: 0px solid;
+          border-radius: 0px;
+          border-color: @primary;
           background-color: transparent;
-          children: [ textbox-prompt-colon, entry];
+          text-color: @foreground;
+          children: [ "prompt", "entry" ];
         }
 
-        textbox-prompt-colon {
+        prompt {
           enabled: true;
-          background-color: #23232389;
-          text-color: #7aa2f7;
-          expand: false;
           padding: 12px 16px;
-          padding-right: 17px;
-          border: 0px;
-          border-radius: 10px;
-          str: "";
+          border-radius: 12px;
+          background-color: @primary;
+          text-color: @background;
+          font: "${settings.fonts.main.name} Bold 12";
         }
 
         entry {
+          enabled: true;
           padding: 12px 16px;
-          border-radius: 10px;
-          background-color: #23232389;
-          text-color: #e6e9ef;
-
-          placeholder: "Search…";
-          placeholder-color: #9aa5ce;
+          border-radius: 12px;
+          background-color: @background-alt;
+          text-color: inherit;
+          cursor: text;
+          placeholder: "Search applications...";
+          placeholder-color: inherit;
         }
 
         /*****----- Listview -----*****/
         listview {
-          lines: 6;
-          spacing: 10px;
+          enabled: true;
+          columns: 1;
+          lines: 8;
+          cycle: true;
+          dynamic: true;
           scrollbar: false;
+          layout: vertical;
+          reverse: false;
+          fixed-height: true;
+          fixed-columns: true;
+
+          spacing: 8px;
+          margin: 0px;
+          padding: 0px;
+          border: 0px solid;
+          border-radius: 0px;
+          border-color: @primary;
           background-color: transparent;
+          text-color: @foreground;
+          cursor: "default";
         }
 
         /*****----- Elements -----*****/
         element {
-          padding: 14px 16px;
+          enabled: true;
+          spacing: 12px;
+          margin: 0px;
+          padding: 10px 15px;
+          border: 0px solid;
           border-radius: 12px;
+          border-color: @primary;
           background-color: transparent;
+          text-color: @foreground;
           cursor: pointer;
         }
 
         element normal.normal {
           background-color: transparent;
-        }
-
-        element normal.active {
-          background-color: #23232389;
+          text-color: @foreground;
         }
 
         element selected.normal {
-          background-color: #23232389;
-        }
-
-        element selected.active {
-          background-color: #23232389;
+          background-color: @primary;
+          text-color: @background;
         }
 
         element-icon {
-          size: 28px;
-          margin: 0 10px 0 0;
+          background-color: transparent;
+          text-color: inherit;
+          size: 32px;
+          cursor: inherit;
         }
 
         element-text {
-          markup: true;
+          background-color: transparent;
+          text-color: inherit;
+          highlight: inherit;
+          cursor: inherit;
           vertical-align: 0.5;
+          horizontal-align: 0.0;
         }
 
         /*****----- Mode Switcher -----*****/
         mode-switcher {
-          spacing: 12px;
+          enabled: true;
+          spacing: 10px;
+          margin: 0px;
+          padding: 0px;
+          border: 0px solid;
+          border-radius: 0px;
+          border-color: @primary;
           background-color: transparent;
+          text-color: @foreground;
         }
 
         button {
-          padding: 10px 14px;
+          padding: 10px;
           border-radius: 10px;
-          background-color: #16192589;
-          text-color: #9aa5ce;
+          background-color: @background-alt;
+          text-color: inherit;
+          cursor: pointer;
         }
 
         button selected {
-          background-color: #714affff;
-          text-color: #b3b3b3ff;
+          background-color: @primary;
+          text-color: @background;
         }
 
-        /*****----- Messages -----*****/
+        /*****----- Message -----*****/
         error-message {
           padding: 20px;
-          background-color: #1f2125a2;
-          text-color: #f7768e;
+          border: 2px solid;
+          border-radius: 12px;
+          border-color: @primary;
+          background-color: @background;
+          text-color: @foreground;
         }
-
         textbox {
-          text-color: inherit;
+          background-color: transparent;
+          text-color: @foreground;
+          vertical-align: 0.5;
+          horizontal-align: 0.0;
+          highlight: none;
         }
-
       '');
     };
   };

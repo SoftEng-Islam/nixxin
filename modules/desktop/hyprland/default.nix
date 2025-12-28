@@ -11,7 +11,7 @@ in {
     ./configs/general.nix
     ./configs/gestures.nix
 
-    # ./configs/hypridle.nix
+    ./configs/hypridle.nix
     ./configs/hyprlock.nix
 
     # ./configs/hyprpaper.nix
@@ -77,12 +77,12 @@ in {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowSuspendThenHibernate=no
-    AllowHybridSleep=no
-  '';
+  # systemd.sleep.extraConfig = ''
+  #   AllowSuspend=no
+  #   AllowHibernation=no
+  #   AllowSuspendThenHibernate=no
+  #   AllowHybridSleep=no
+  # '';
 
   home-manager.users.${settings.user.username} = {
 

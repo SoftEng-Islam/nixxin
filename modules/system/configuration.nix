@@ -128,7 +128,7 @@ in {
       "retbleed=off" # Disable Retbleed mitigation
 
       # Limit C-states for better response time
-      "processor.max_cstate=0" # prevents deep sleep, ensures max boost
+      # "processor.max_cstate=0" # prevents deep sleep, ensures max boost
 
       # "threadirqs" # ?
 
@@ -141,13 +141,13 @@ in {
       # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
 
       # ---- Power Management ---- #
-      "workqueue.power_efficient=off" # General power responsiveness
-      "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      # "workqueue.power_efficient=off" # General power responsiveness
+      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # ---- USB Devices ---- #
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
       # Can fix issues where USB devices randomly stop working.
-      "usbcore.autosuspend=-1" # Prevents USB disconnect issues
+      # "usbcore.autosuspend=-1" # Prevents USB disconnect issues
 
       # ---- WIFI ---- #
       "rtl8xxxu_disable_hw_crypto=1"
