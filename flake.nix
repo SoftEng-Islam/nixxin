@@ -8,9 +8,9 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # nixGL.url = "github:nix-community/nixGL";
-    # nixGL.inputs.nixpkgs.follows = "nixpkgs";
-    # nixGL.inputs.flake-utils.follows = "flake-utils";
+    nixGL.url = "github:nix-community/nixGL";
+    nixGL.inputs.nixpkgs.follows = "nixpkgs";
+    nixGL.inputs.flake-utils.follows = "flake-utils";
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
@@ -36,10 +36,18 @@
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let
+      # _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
+      # settings = _SETTINGS.profile;
+      # pkgs = nixpkgs.legacyPackages.${settings.system.architecture};
+
+      # 1. Import with empty pkgs just to read static system config
+      _bootstrap = import (./. + "/_settings.nix") { pkgs = { }; };
+      arch = _bootstrap.profile.system.architecture;
+      # 2. Define pkgs using the extracted architecture
+      pkgs = nixpkgs.legacyPackages.${arch};
+      # 3. Import settings again with real pkgs for full usage
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-      # pkgs = import nixpkgs { system = settings.system.architecture; };
-      pkgs = nixpkgs.legacyPackages.${settings.system.architecture};
 
     in {
       # NixOS configuration entrypoint.

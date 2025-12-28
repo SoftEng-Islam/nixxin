@@ -29,7 +29,7 @@ in {
         libwebp
         libdrm # Direct Rendering Manager library and headers
         xorg.xf86videoamdgpu
-
+        meshoptimizer
       ] ++ lib.flatten _graphics;
   };
 }

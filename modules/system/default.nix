@@ -18,5 +18,6 @@
     e2fsprogs
     smartmontools
     util-linux
+    uutils-coreutils-noprefix
   ];
 }
