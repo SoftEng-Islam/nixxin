@@ -37,7 +37,7 @@
 
         /*****----- Global Properties -----*****/
         * {
-          font: "${settings.fonts.main.name} 12";
+          font: "${settings.modules.fonts.main.name} 12";
           background: ${settings.common.surfaceColor};
           foreground: #FFFFFF;
           primary: ${settings.common.primaryColor};
@@ -104,7 +104,7 @@
           border-radius: 12px;
           background-color: @primary;
           text-color: @background;
-          font: "${settings.fonts.main.name} Bold 12";
+          font: "${settings.modules.fonts.main.name} Bold 12";
         }
 
         entry {
