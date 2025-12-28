@@ -61,7 +61,6 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     VAAPI_COMPAT = "1";
     VAAPI_MPEG4_ENABLED = "1";
     VDPAU_DRIVER = "va_gl";
-    VK_WSI_MODE = "wayland";
     ZINK_BATCH_COUNT = "8";
     # ZINK_SHADER_CACHE_DIR = "/home/${settings.user.username}/.cache/zink_shader_cache_db";
   };

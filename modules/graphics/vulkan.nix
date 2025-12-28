@@ -20,7 +20,6 @@
     VK_LOADER_DISABLE_LAYER_MESA = "1";
 
     # Tell Mesa to prefer Wayland
-    MESA_VK_WSI_LIST = "wayland";
     VK_WSI_MODE = "wayland";
 
     # Fixes screen tearing in games & Hyprland.
