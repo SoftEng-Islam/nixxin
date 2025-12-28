@@ -12,12 +12,7 @@
     # nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
     # ashell.url = "github:MalpenZibo/ashell";
     # ashell.flake = true; yt-dlp-src.url = "path:./pkgs/yt-dlp";
-    quickshell = {
-      # add ?ref=<tag> to track a tag url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-      # THIS IS IMPORTANT
-      # Mismatched system dependencies will lead to crashes and other issues.
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+
     # illogical-impulse.url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
     # illogical-impulse.inputs.nixpkgs.follows = "nixpkgs";
   };
