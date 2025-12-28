@@ -5,9 +5,7 @@ let
     ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
     if [ $? == 1 ]; then
       if [ "$action" == "lock" ]; then
-        ${
-          inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock
-        }/bin/hyprlock
+        ${pkgs.hyprlock}/bin/hyprlock
       elif [ "$action" == "suspend" ]; then
         ${pkgs.systemd}/bin/systemctl suspend
       fi
@@ -21,15 +19,10 @@ in {
         general = {
           before_sleep_cmd =
             "${pkgs.stdenv.hostPlatform.system}/bin/loginctl lock-session";
-          after_sleep_cmd = "${
-              inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-            }/bin/hyprctl dispatch dpms on";
+          after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
           ignore_dbus_inhibit = true;
-          lock_cmd = "pidof ${
-              inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock
-            }/bin/hyprlock || ${
-              inputs.hyprlock.packages.${pkgs.stdenv.hostPlatform.system}.hyprlock
-            }/bin/hyprlock";
+          lock_cmd =
+            "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
         };
         listener = [
           {
