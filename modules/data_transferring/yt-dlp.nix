@@ -18,6 +18,7 @@
       };
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
+        --remote-components ejs:npm
         --abort-on-unavailable-fragments
         --abort-on-error
         --extractor-args "youtube:player_client=default"
