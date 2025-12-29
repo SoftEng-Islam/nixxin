@@ -177,8 +177,8 @@ in {
         }
 
         element selected.normal {
-          background-color: @primary;
-          text-color: @background;
+          background-color: #181410;
+          text-color: #ffffff;
         }
 
         element-icon {
@@ -219,8 +219,8 @@ in {
         }
 
         button selected {
-          background-color: @primary;
-          text-color: @background;
+          background-color: #181410;
+          text-color: #ffffff;
         }
 
         /*****----- Message -----*****/
