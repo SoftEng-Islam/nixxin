@@ -14,6 +14,10 @@ let
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
+    # PNPM Configuration
+    # pnpm config set prefix ~/.local/share/pnpm --global
+    # mkdir -p ~/.pnpm-store
+    # pnpm config set store-dir ~/.pnpm-store --global
     environment.sessionVariables = {
       PATH = "$PATH:${HOME}/.local/share/pnpm";
     };

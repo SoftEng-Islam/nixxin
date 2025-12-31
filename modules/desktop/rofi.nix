@@ -177,7 +177,7 @@ in {
         }
 
         element selected.normal {
-          background-color: #1e1e1eff;
+          background-color: #171717ff;
           text-color: #ffffff;
         }
 
@@ -219,7 +219,7 @@ in {
         }
 
         button selected {
-          background-color: #1e1e1eff;
+          background-color: #171717ff;
           text-color: #ffffff;
         }
 
