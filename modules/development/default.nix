@@ -14,6 +14,9 @@ let
 in {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
+    environment.sessionVariables = {
+      PATH = "$PATH:${HOME}/.local/share/pnpm";
+    };
 
     home-manager.users.${settings.user.username} = {
       home.sessionVariables = {
