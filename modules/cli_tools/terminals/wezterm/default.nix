@@ -59,7 +59,7 @@
         config.audible_bell = 'Disabled'
         config.colors = {
           -- The color of the scrollbar "thumb"; the portion that represents the current viewport
-          scrollbar_thumb = '#161616',
+          scrollbar_thumb = '#31008dff',
         }
 
 
