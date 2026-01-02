@@ -87,7 +87,7 @@
       # windowrule = nofocus,class:^(0ad)$
 
       # ===============================
-      # Rofi  Visual Enhancements
+      # Rofi Visual Enhancements
       # ===============================
       # Always float and center
       windowrulev2 = float,class:^(Rofi)$
@@ -99,8 +99,8 @@
       # # Keep it above everything
       windowrulev2 = stayfocused,class:^(Rofi)$
       # windowrulev2 = pin,class:^(Rofi)$
-      layerrule = blur, rofi
-      layerrule = ignorealpha 0.5, rofi
+      # layerrule = blur, rofi
+      # layerrule = ignorealpha 0.5, rofi
 
       # ----------------------
       # Nautilus specific rules
