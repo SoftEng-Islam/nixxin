@@ -40,10 +40,15 @@ in {
           show-icons: true;
           display-drun: "APPS";
           display-run: "RUN";
+          terminal: "wezterm";
+          cycle: false;
+          hide-scrollbar: false;
           display-filebrowser: "FILES";
+          disable-history: false;
           display-window: "WINDOWS";
           drun-display-format: "{name}";
           window-format: "{c} · {t}";
+          opacity: 0.5;
         }
 
         /*****----- Global Properties -----*****/

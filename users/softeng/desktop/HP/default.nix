@@ -193,7 +193,7 @@
   modules.browsers.google-chrome.enable = true;
   modules.browsers.brave.enable = true;
   modules.browsers.firefox.enable = true;
-  modules.browsers.firefox-beta.enable = true;
+  modules.browsers.firefox-beta.enable = false;
   modules.browsers.microsoft-edge.enable = true;
 
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
@@ -203,7 +203,7 @@
   modules.cli_tools.utilities.enable = true;
   modules.cli_tools.utilities.bat.enable = true;
   modules.cli_tools.utilities.direnv.enable = false;
-  modules.cli_tools.utilities.emacs.enable = false;
+  modules.cli_tools.utilities.emacs.enable = true;
 
   # [ Community ]
   modules.community.telegram.enable = true;
@@ -242,7 +242,7 @@
   modules.development.zedEditor = false;
   modules.development.emacs = false;
   modules.development.eclipse = false;
-  modules.development.helix = false;
+  modules.development.helix = true;
   modules.development.vscode = {
     enable = true;
     extensions_home = false;
