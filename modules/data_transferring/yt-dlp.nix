@@ -18,9 +18,11 @@
       };
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
+        --download-archive downloaded.txt
         --remote-components ejs:npm
         --abort-on-unavailable-fragments
         --abort-on-error
+        # --ignore-errors
         --extractor-args "youtube:player_client=default"
       '';
     };
