@@ -1,7 +1,7 @@
 { settings, lib, pkgs, ... }:
 # lib.mkIf (settings.modules.cli_tools.enable or false)
 {
-  imports = [ ./neofetch ./prompt ./shells ./terminals ./utilities ];
+  imports = [ ./neofetch ./prompt ./shells ./terminals ./utilities ./editors ];
 
   # Enable the nix-index
   programs.nix-index.enable = true;
@@ -27,9 +27,6 @@
   };
   environment.systemPackages = with pkgs; [
     bashInteractive
-
-    nanorc # Improved Nano Syntax Highlighting Files
-    micro # Modern and intuitive terminal-based text editor
     vim # The most popular clone of the VI editor
     zsh # The Z shell
 
@@ -45,9 +42,7 @@
     zsh-f-sy-h
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
-    # powerline # Ultimate statusline/prompt utility
-    # powerline-fonts
-    # powerline-rs
+
     bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
     fzf # Command-line fuzzy finder written in Go

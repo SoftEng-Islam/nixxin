@@ -233,14 +233,14 @@
   modules.data_transferring.deluge.enable = false;
   modules.data_transferring.webtorrent_desktop.enable = false;
   modules.data_transferring.bitmagnet.enable = false;
-  modules.data_transferring.transmission.enable = true;
+  modules.data_transferring.transmission.enable = false;
 
   # [ Hacking ]
   modules.hacking.hashcat.enable = true;
 
   # [ Development ]
   modules.development.zedEditor = false;
-  modules.development.emacs = false;
+  modules.development.emacs = true;
   modules.development.eclipse = false;
   modules.development.helix = true;
   modules.development.vscode = {
