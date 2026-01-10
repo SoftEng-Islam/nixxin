@@ -44,12 +44,20 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   systemd.tmpfiles.rules = [ "d /var/lib/misc 0755 root root -" ];
   systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
   systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
+
+  # Mount host directories to waydroid
+  systemd = {
+    packages = [ pkgs.waydroid-helper ];
+    services.waydroid-mount.wantedBy = [ "multi-user.target" ];
+  };
+
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
 
   environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
   # automatically inject persistent Android props
+  # cat /var/lib/waydroid/waydroid_base.prop
   # environment.etc."waydroid/waydroid_base.prop".source = waydroidBaseProps;
 
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];

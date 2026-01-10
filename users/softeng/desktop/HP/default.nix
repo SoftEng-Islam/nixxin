@@ -307,7 +307,7 @@
   modules.graphics.gimp = true;
   modules.graphics.inkscape = true;
   modules.graphics.lunacy = true;
-  modules.graphics.kolourpaint = true;
+  modules.graphics.kolourpaint = false;
 
   # [ Hyprland ]
   modules.desktop.hyprland.genColorsPath =
