@@ -38,7 +38,10 @@ in {
     ./yt-dlp.nix
   ];
   config = mkIf (settings.modules.data_transferring.enable or false) {
-    environment.systemPackages = lib.flatten _pkgs ++ [ pkgs.vdhcoapp ];
+    environment.systemPackages = with pkgs;
+      [
+        # vdhcoapp
+      ] ++ lib.flatten _pkgs;
     # Download Managers & CLI Downloads Utility
     environment.variables = {
       QT_LOGGING_RULES = "qt.gui.imageio.warning=false";

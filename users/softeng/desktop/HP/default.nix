@@ -265,7 +265,7 @@
   modules.emails.thunderbird = true;
 
   # [file_manager]
-  modules.file_manager.spacedrive = true;
+  modules.file_manager.spacedrive = false;
 
   # [fonts]
   modules.fonts = {
@@ -300,14 +300,14 @@
   # [ Graphics ]
   modules.graphics.mesa = true;
   modules.graphics.blender = true;
-  modules.graphics.darktable = false;
+  modules.graphics.darktable = true;
   modules.graphics.davinci = false;
   modules.graphics.drawio = true;
   modules.graphics.figmaLinux = true;
   modules.graphics.gimp = true;
-  modules.graphics.inkscape = false;
+  modules.graphics.inkscape = true;
   modules.graphics.lunacy = true;
-  modules.graphics.kolourpaint = false;
+  modules.graphics.kolourpaint = true;
 
   # [ Hyprland ]
   modules.desktop.hyprland.genColorsPath =
@@ -404,8 +404,6 @@
   modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
   modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
   modules.power.auto-cpufreq.enable = false;
-  #! It conflicts with auto-cpufreq, so enable only one of the two.
-  modules.power.power-profiles-daemon.enable = false;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops

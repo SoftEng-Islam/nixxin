@@ -48,7 +48,7 @@ in {
           display-window: "WINDOWS";
           drun-display-format: "{name}";
           window-format: "{c} · {t}";
-          opacity: 0.5;
+          opacity: 1;
         }
 
         /*****----- Global Properties -----*****/
