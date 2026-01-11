@@ -34,8 +34,10 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     options = [ "defaults" ];
   };
 
-  # for dnsmasq.leases
-  systemd.tmpfiles.rules = [ "d /var/lib/misc 0755 root root -" ];
+  systemd.tmpfiles.rules = [
+    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
+    "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
+  ];
   # systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
   # systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
 
@@ -46,7 +48,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   services.geoclue2.enable = true;
-
+  boot.kernelParams = [ "psi=1" ];
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
@@ -55,23 +57,23 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop
-  systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
-    {
-      user = "root";
-      group = "root";
-      mode = "0644";
-      argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
-        sys.use_memfd=true
-        ro.hardware.egl=mesa
-        ro.hardware.vulkan=radeon
-        ro.hardware.camera=v4l2
-        ro.opengles.version=196610
-        waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
-        waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
-        waydroid.tools_version=1.5.4
-        ro.vndk.lite=true
-      '');
-    };
+  # systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
+  #   {
+  #     user = "root";
+  #     group = "root";
+  #     mode = "0644";
+  #     argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
+  #       sys.use_memfd=true
+  #       ro.hardware.egl=mesa
+  #       ro.hardware.vulkan=radeon
+  #       ro.hardware.camera=v4l2
+  #       ro.opengles.version=196610
+  #       waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
+  #       waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
+  #       waydroid.tools_version=1.5.4
+  #       ro.vndk.lite=true
+  #     '');
+  #   };
 
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
 
