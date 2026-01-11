@@ -1,0 +1,50 @@
+softeng@nixxin:.../nixxin   main
+❯  sudo nixos-rebuild switch --flake .#nixxin
+[sudo] password for softeng:
+building the system configuration...
+evaluation warning: 'system' has been renamed to/replaced by 'stdenv.hostPlatform.system'
+error: Cannot build '/nix/store/d8d211vq17vwwbi2arz6z078pymakgq1-clvk-latest.drv'.
+       Reason: builder failed with exit code 1.
+       Output paths:
+         /nix/store/sw8q60lj0h8hqcqcw2i7lbr9dkggbw1q-clvk-latest
+       Last 25 log lines:
+       >    34 | void CL_API_CALL clvk_restore_device_properties(cl_device_id device) {
+       >       |                                                 ~~~~~~~~~~~~~^~~~~~
+       > [3835/3841] Building CXX object src/CMakeFiles/OpenCL-objects.dir/tracing.cpp.o
+       > [3836/3841] Building CXX object src/CMakeFiles/OpenCL-objects.dir/utils.cpp.o
+       > [3837/3841] Building CXX object src/CMakeFiles/OpenCL-objects.dir/queue.cpp.o
+       > In file included from /nix/store/qarrb8yfby1yyypm32vabzgxgq3w41ma-gcc-15.2.0/include/c++/15.2.0/bits/shared_ptr_atomic.h:33,
+       >                  from /nix/store/qarrb8yfby1yyypm32vabzgxgq3w41ma-gcc-15.2.0/include/c++/15.2.0/memory:83,
+       >                  from /build/source/src/init.hpp:17,
+       >                  from /build/source/src/queue.cpp:20:
+       > In member function 'std::__atomic_base<_IntTp>::__int_type std::__atomic_base<_IntTp>::fetch_sub(__int_type, std::memory_order) [with _ITp = long unsigned int]',
+       >     inlined from 'void cvk_command_queue::group_completed()' at /build/source/src/queue.hpp:233:56,
+       >     inlined from 'void cvk_command_group::execute_cmds_in_executor()' at /build/source/src/queue.cpp:355:27:
+       > /nix/store/qarrb8yfby1yyypm32vabzgxgq3w41ma-gcc-15.2.0/include/c++/15.2.0/bits/atomic_base.h:641:34: warning: 'long unsigned int __atomic_fetch_sub_8(volatile void*, long unsigned int, int)' writing 8 bytes into a region of size 0 overflows the destination [-Wstringop-overflow=]
+       >   641 |       { return __atomic_fetch_sub(&_M_i, __i, int(__m)); }
+       >       |                ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~
+       > In member function 'void cvk_command_group::execute_cmds_in_executor()':
+       > cc1plus: note: destination object is likely at address zero
+       > [3838/3841] Building CXX object src/CMakeFiles/OpenCL-objects.dir/program.cpp.o
+       > [3839/3841] Linking CXX static library src/libOpenCL-static.a
+       > [3840/3841] Linking CXX shared library libOpenCL.so.0.1
+       > [3841/3841] Creating library symlink libOpenCL.so.1 libOpenCL.so
+       > buildPhase completed in 2 hours 46 minutes 54 seconds
+       > Running phase: installPhase
+       > cp: missing destination file operand after '/nix/store/sw8q60lj0h8hqcqcw2i7lbr9dkggbw1q-clvk-latest/lib/'
+       > Try 'cp --help' for more information.
+       For full logs, run:
+         nix log /nix/store/d8d211vq17vwwbi2arz6z078pymakgq1-clvk-latest.drv
+error: Cannot build '/nix/store/vyfbakzs81j1cq2w8px0bni534qfmkay-graphics-drivers.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/pq033kljxwwaspqwv74wfgsl006xx7dn-graphics-drivers
+error: Cannot build '/nix/store/qmnxagrzwc8p4ak0idlwzgb9bc9jpci5-system-path.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/0mczfax554k6bd28say8ag2k5vg01rl5-system-path
+error: Cannot build '/nix/store/1gx4av5hx34hjfgra3xl2g06s838zgx1-nixos-system-nixxin-26.05.20251208.addf7cf.drv'.
+       Reason: 1 dependency failed.
+       Output paths:
+         /nix/store/988xzcxn8pfs9aanha4382mwacx3mdmn-nixos-system-nixxin-26.05.20251208.addf7cf
+Command 'nix --extra-experimental-features 'nix-command flakes' build --print-out-paths '.#nixosConfigurations."nixxin".config.system.build.toplevel' --no-link' returned non-zero exit status 1.
