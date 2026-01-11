@@ -16,19 +16,19 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
+        # Fetch LLVM manually because clspv needs it and we can't run the python script
+        llvmProject = pkgs.fetchFromGitHub {
+          owner = "llvm";
+          repo = "llvm-project";
+          rev = "e68a20e0b7623738d6af736d3aa02625cba6126a";
+          sha256 = "0qs9dxxyva2zj7371ppzn30hxh2n123s3rp52cdi89zyk7ksjcr2";
+        };
+
         # Define clvk derivation since it's missing from nixpkgs
         clvk = pkgs.stdenv.mkDerivation {
           pname = "clvk";
           version = "latest";
           src = clvk-src;
-
-          # Fetch LLVM manually because clspv needs it and we can't run the python script
-          llvm-project = pkgs.fetchFromGitHub {
-            owner = "llvm";
-            repo = "llvm-project";
-            rev = "e68a20e0b7623738d6af736d3aa02625cba6126a";
-            sha256 = "0qs9dxxyva2zj7371ppzn30hxh2n123s3rp52cdi89zyk7ksjcr2";
-          };
 
           nativeBuildInputs = with pkgs; [ cmake ninja python3 git pkg-config ];
 
@@ -56,7 +56,7 @@
 
             # Provide LLVM to clspv
             mkdir -p external/clspv/third_party/llvm
-            cp -r --no-preserve=mode $llvm-project/* external/clspv/third_party/llvm/
+            cp -r --no-preserve=mode ${llvmProject}/* external/clspv/third_party/llvm/
 
             # Ensure CMAKE_PREFIX_PATH finds vulkan
             export CMAKE_PREFIX_PATH=${pkgs.vulkan-headers}:${pkgs.vulkan-loader}:$CMAKE_PREFIX_PATH
