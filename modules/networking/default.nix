@@ -266,7 +266,7 @@ in {
     dhcping # Send DHCP request to find out if a DHCP server is running
 
     # firewalld # Firewall daemon with D-Bus interface
-    # firewalld-gui # Firewall daemon with D-Bus interface
+    firewalld-gui # Firewall daemon with D-Bus interface
 
     hostapd # A user space daemon for access point and authentication servers
     iproute2 # A collection of utilities for controlling TCP/IP networking and traffic control in Linux

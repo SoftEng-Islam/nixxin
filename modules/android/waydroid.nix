@@ -12,12 +12,6 @@ let
     /dev/hwbinder = hidl
   '';
 
-  # waydroidBaseProps = pkgs.writeText "waydroid_base.prop" ''
-  #   # Waydroid persistent display properties
-  #   # persist.waydroid.width=1920
-  #   # persist.waydroid.height=1080
-  #   # persist.waydroid.multi_window=true
-  # '';
 in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
@@ -51,14 +45,33 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
 
+  services.geoclue2.enable = true;
+
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
 
   environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
-  # automatically inject persistent Android props
+
+  # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop
-  # environment.etc."waydroid/waydroid_base.prop".source = waydroidBaseProps;
+  systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
+    {
+      user = "root";
+      group = "root";
+      mode = "0644";
+      argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
+        sys.use_memfd=true
+        ro.hardware.egl=mesa
+        ro.hardware.vulkan=radeon
+        ro.hardware.camera=v4l2
+        ro.opengles.version=196610
+        waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
+        waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
+        waydroid.tools_version=1.5.4
+        ro.vndk.lite=true
+      '');
+    };
 
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
 
