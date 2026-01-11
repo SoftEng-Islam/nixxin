@@ -36,8 +36,8 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   # for dnsmasq.leases
   systemd.tmpfiles.rules = [ "d /var/lib/misc 0755 root root -" ];
-  systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
-  systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
+  # systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
+  # systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
 
   # Mount host directories to waydroid
   systemd = {
