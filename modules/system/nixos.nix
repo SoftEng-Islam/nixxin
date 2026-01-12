@@ -102,6 +102,7 @@ in {
   # Upgrade System
   system = {
     autoUpgrade.enable = settings.system.upgrade.enable or false;
+    autoUpgrade.upgrade = settings.system.upgrade.enable or false;
     autoUpgrade.dates = "daily";
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot or false;
     autoUpgrade.channel = settings.system.upgrade.channel;
