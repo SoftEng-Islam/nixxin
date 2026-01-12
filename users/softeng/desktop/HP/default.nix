@@ -29,8 +29,8 @@
   system.kernel = pkgs.linuxPackages_zen;
   system.useTmpfs = true; # Disable it before install/update Linux Kernel.
   system.enableLogs = false; # To enable logs
-  system.upgrade.enable = true;
-  system.upgrade.allowReboot = true;
+  system.upgrade.enable = false;
+  system.upgrade.allowReboot = false;
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
 
   # ----------------------------------------------
