@@ -14,7 +14,7 @@
   outputs = { self, nixpkgs, flake-utils, clvk-src }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${pkgs.stdenv.hostPlatform.system};
+        pkgs = nixpkgs.legacyPackages.${system};
 
         # Fetch LLVM manually because clspv needs it and we can't run the python script
         llvmProject = pkgs.fetchFromGitHub {
