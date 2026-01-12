@@ -64,13 +64,15 @@
 
           installPhase = ''
             mkdir -p $out/bin $out/lib
-            cp -r lib/*.so $out/lib/
+            cp -d *.so* $out/lib/
             # Check if clvk binary exists or if it's just a lib
-            if [ -f bin/clvk ]; then
-              cp bin/clvk $out/bin/
+            if [ -f clvk ]; then
+              cp clvk $out/bin/
             fi
             # Copy clspv if built
-            if [ -f external/clspv/bin/clspv ]; then
+            if [ -f clspv ]; then
+               cp clspv $out/bin/
+            elif [ -f external/clspv/bin/clspv ]; then
                cp external/clspv/bin/clspv $out/bin/
             fi
           '';
