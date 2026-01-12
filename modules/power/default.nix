@@ -53,7 +53,6 @@ in {
     #! It conflicts with auto-cpufreq, so enable only one of the two.
     services.power-profiles-daemon.enable =
       (_power.auto-cpufreq.enable == false);
-
     environment.systemPackages = with pkgs; [
       power-profiles-daemon
       poweralertd

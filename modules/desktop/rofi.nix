@@ -88,7 +88,7 @@ in {
           }px;
           border-color: @primary;
           cursor: "default";
-          background-color: @background-transparent;
+          background-color: @background;
         }
 
         /*****----- Main Box -----*****/

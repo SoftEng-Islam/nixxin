@@ -40,36 +40,56 @@ let
       exit 1
     fi
 
-    # Restore state or initialize
+    # Function to set wallpaper
+    set_wall() {
+        local img="$1"
+        echo "Setting wallpaper: $img"
+        ${pkgs.swww}/bin/swww img "$img" \
+            --transition-bezier .43,1.19,1,.4 \
+            --transition-type grow \
+            --transition-fps 30 \
+            --transition-pos 0.925,0.977 \
+            --transition-duration 2 \
+            --transition-angle 30
+    }
+
+    # Restore state
     if [[ -f "$STATE_FILE" ]]; then
+      INDEX=0
+      LAST_CHANGED=0
       source "$STATE_FILE"
-      echo "Resuming from last image index: $INDEX"
     else
       INDEX=0
-      echo "INDEX=$INDEX" > "$STATE_FILE"
+      LAST_CHANGED=0
     fi
 
-    # Infinite loop
+    NOW=$(date +%s)
+    ELAPSED=$((NOW - LAST_CHANGED))
+
+    # Handle startup state
+    if [[ ! -f "$STATE_FILE" ]]; then
+        # First run, start fresh
+        set_wall "''${IMAGES[$INDEX]}"
+        LAST_CHANGED=$(date +%s)
+        echo "INDEX=$INDEX" > "$STATE_FILE"
+        echo "LAST_CHANGED=$LAST_CHANGED" >> "$STATE_FILE"
+        sleep "$INTERVAL"
+    elif (( ELAPSED < INTERVAL )); then
+        # Resume waiting
+        echo "Resuming previous wallpaper..."
+        set_wall "''${IMAGES[$INDEX]}"
+        sleep $((INTERVAL - ELAPSED))
+    fi
+
+    # Main Loop
     while true; do
-      IMAGE="''${IMAGES[$INDEX]}"
-      echo "Setting wallpaper: $IMAGE"
-
-      # Optional startup blur effect (simulate windshield clean)
-      ${pkgs.swww}/bin/swww img "$IMAGE" \
-        --transition-bezier .43,1.19,1,.4 \
-        --transition-type grow \
-        --transition-fps 30 \
-        --transition-pos 0.925,0.977 \
-        --transition-duration 2 \
-        --transition-angle 30
-
-      # Save current index
-      echo "INDEX=$INDEX" > "$STATE_FILE"
-
-      # Next image
       INDEX=$(( (INDEX + 1) % TOTAL ))
+      set_wall "''${IMAGES[$INDEX]}"
 
-      # Sleep for interval
+      LAST_CHANGED=$(date +%s)
+      echo "INDEX=$INDEX" > "$STATE_FILE"
+      echo "LAST_CHANGED=$LAST_CHANGED" >> "$STATE_FILE"
+
       sleep "$INTERVAL"
     done
   '';
