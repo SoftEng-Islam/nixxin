@@ -34,10 +34,6 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     options = [ "defaults" ];
   };
 
-  systemd.tmpfiles.rules = [
-    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
-    "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
-  ];
   # systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
   # systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
 
@@ -46,6 +42,9 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     packages = [ pkgs.waydroid-helper ];
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
+
+  # Force disable waydroid service so that it is not started at boot
+  systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
 
   services.geoclue2.enable = true;
   boot.kernelParams = [ "psi=1" ];
@@ -86,12 +85,20 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # sudo mount --bind ~/Pictures ~/.local/share/waydroid/data/media/0/Pictures
   # sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
 
-  fileSystems."/home/${settings.user.username}/Waydroid" = {
-    device =
-      "/home/${settings.user.username}/.local/share/waydroid/data/media/0/PC";
-    fsType = "none";
-    options = [ "bind" "create" "rw" ];
-  };
+  # Mount a shared folder from the host to the waydroid container under /Shared
+  fileSystems."/home/${settings.user.username}/.local/share/waydroid/data/media/0/Shared" =
+    {
+      device = "/home/${settings.user.username}/Waydroid";
+      # fsType = "none";
+      options = [ "bind" "create" "rw" ];
+    };
+
+  systemd.tmpfiles.rules = [
+    "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
+    "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
+    # Set proper permissions for the shared folder
+    "d /home/${settings.user.username}/Waydroid 0755 ${settings.user.username} users -"
+  ];
 
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
 
