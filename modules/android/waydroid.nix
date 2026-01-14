@@ -75,6 +75,24 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   #     '');
   #   };
 
+  # Setting up a shared folder
+  # sudo mount --bind <source> ~/.local/share/waydroid/data/media/0/<target>
+  # Then verify that the target folder exists:
+  # sudo ls ~/.local/share/waydroid/data/media/0/
+  # Examples:
+  # sudo mount --bind ~/Documents ~/.local/share/waydroid/data/media/0/Documents
+  # sudo mount --bind ~/Downloads ~/.local/share/waydroid/data/media/0/Download
+  # sudo mount --bind ~/Music ~/.local/share/waydroid/data/media/0/Music
+  # sudo mount --bind ~/Pictures ~/.local/share/waydroid/data/media/0/Pictures
+  # sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
+
+  fileSystems."/home/${settings.user.username}/Waydroid" = {
+    device =
+      "/home/${settings.user.username}/.local/share/waydroid/data/media/0/PC";
+    fsType = "none";
+    options = [ "bind" "create" "rw" ];
+  };
+
   environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
 
   # ---- Installation & Useful Inforamtion ---- #

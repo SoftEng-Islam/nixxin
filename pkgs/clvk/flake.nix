@@ -6,8 +6,7 @@
     flake-utils.url = "github:numtide/flake-utils";
 
     clvk-src = {
-      url =
-        "git+https://github.com/kpet/clvk?rev=78aa08afbc7f2d724924e84505906e4cbec87878&submodules=1";
+      url = "git+https://github.com/kpet/clvk.git?submodules=1";
       flake = false;
     };
   };
@@ -42,13 +41,10 @@
           buildInputs = [
             llvmPackages.llvm
             llvmPackages.clang-unwrapped
-            llvmPackages.libclc
             pkgs.vulkan-headers
             pkgs.vulkan-loader
-            spirv-llvm-translator
           ];
 
-          # Patches to revert problematic clspv commits
           patches = [
             (pkgs.fetchpatch {
               url =
