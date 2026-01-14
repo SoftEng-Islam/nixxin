@@ -15,6 +15,7 @@ let
 in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
+  # or https://docs.waydro.id/usage/install-on-desktops
 
   virtualisation = {
     # lxc.enable = true;
@@ -100,7 +101,29 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /home/${settings.user.username}/Waydroid 0755 ${settings.user.username} users -"
   ];
 
-  environment.systemPackages = with pkgs; [ wl-clipboard waydroid-helper ];
+  environment.systemPackages = with pkgs; [
+    wl-clipboard
+    waydroid-helper
+
+    (pkgs.writeShellApplication {
+      name = "waydroid-aid";
+      runtimeInputs =
+        [ pkgs.waydroid-nftables pkgs.waydroid-helper pkgs.wl-clipboard ];
+      text = ''
+        sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        echo "Paste clipboard in this website below"
+        echo "https://www.google.com/android/uncertified"
+        echo "Then run"
+        echo "waydroid session stop"
+        sudo mount --bind ~/Documents ~/.local/share/waydroid/data/media/0/Documents
+        sudo mount --bind ~/Downloads ~/.local/share/waydroid/data/media/0/Download
+        sudo mount --bind ~/Music ~/.local/share/waydroid/data/media/0/Music
+        sudo mount --bind ~/Pictures ~/.local/share/waydroid/data/media/0/Pictures
+        sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
+      '';
+    })
+
+  ];
 
   # ---- Installation & Useful Inforamtion ---- #
   # 1- After you have downloaded both "system" and "vendor" image, extract them.
