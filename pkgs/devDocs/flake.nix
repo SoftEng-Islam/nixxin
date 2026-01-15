@@ -1,28 +1,26 @@
 {
-  description = "DevDocs As a Package For Nix";
+  description = "A very basic flake";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-    devDocs-src = {
-      url = "github:yt-dlp/yt-dlp";
-      flake = false;
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, flake-utils, devDocs-src }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs = { self, nixpkgs, utils }:
+    { } // utils.lib.eachDefaultSystem (system:
       let
-        pkgs = nixpkgs.legacyPackages.${system};
-
-        # Build your app here
-        devDocs = "";
-
-      in {
-        packages.default = devDocs;
-        apps.default = {
-          type = "app";
-          program = "${devDocs}/bin/devDocs";
+        pkgs = import nixpkgs { inherit system; };
+        gems = pkgs.bundlerEnv {
+          name = "devdocs-env";
+          ruby = pkgs.ruby;
+          gemdir  = ./.;
         };
+      in
+      {
+        devShell = with pkgs; mkShell {
+          buildInputs = [
+            nodejs
+          ];
+        } // gems.env;
       });
 }
