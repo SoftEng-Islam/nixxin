@@ -87,6 +87,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
 
   # Mount a shared folder from the host to the waydroid container under /Shared
+  # sudo chown softeng:wheel /home/[user]/Waydroid
   fileSystems."/home/${settings.user.username}/Waydroid" = {
     device =
       "/home/${settings.user.username}/.local/share/waydroid/data/media/0/Shared";
