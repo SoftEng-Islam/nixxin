@@ -87,12 +87,12 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
 
   # Mount a shared folder from the host to the waydroid container under /Shared
-  fileSystems."/home/${settings.user.username}/.local/share/waydroid/data/media/0/Shared" =
-    {
-      device = "/home/${settings.user.username}/Waydroid";
-      # fsType = "none";
-      options = [ "bind" "create" "rw" ];
-    };
+  fileSystems."/home/${settings.user.username}/Waydroid" = {
+    device =
+      "/home/${settings.user.username}/.local/share/waydroid/data/media/0/Shared";
+    fsType = "none";
+    options = [ "bind" "create" "rw" ];
+  };
 
   systemd.tmpfiles.rules = [
     "d /var/lib/misc 0755 root root -" # for dnsmasq.leases

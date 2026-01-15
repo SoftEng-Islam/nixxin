@@ -28,7 +28,7 @@ in {
       git-repo
 
       # Fast and easy Android emulation
-      genymotion
+      # genymotion
     ];
   };
   # Adds the current user to the ADB users group.
