@@ -17,7 +17,7 @@ in {
     ./mesa.nix
     ./openGL.nix
     ./vulkan.nix
-    # ./clvk.nix
+    ./clvk.nix
   ];
   config = lib.mkIf (settings.modules.graphics.enable or false) {
     environment.systemPackages = with pkgs;
