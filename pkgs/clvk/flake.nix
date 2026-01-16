@@ -16,9 +16,6 @@
       packages = forAllSystems (system: pkgs: rec {
         llvmPackages = pkgs.llvmPackages_19;
 
-        # -------------------
-        # CLVK
-        # -------------------
         clvk = pkgs.stdenv.mkDerivation {
           pname = "clvk";
           version = "git";
@@ -27,8 +24,7 @@
             owner = "kpet";
             repo = "clvk";
             rev = "e0630327e3fda63dd5274376e95a9a48a3c9e3e6";
-            sha256 =
-              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace
+            sha256 = "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=";
             fetchSubmodules = true;
           };
 
@@ -37,23 +33,31 @@
           buildInputs =
             [ llvmPackages.llvm pkgs.vulkan-headers pkgs.vulkan-loader ];
 
+          # Note: fetch_sources.py usually fails in Nix because it needs internet.
+          # If you use fetchSubmodules = true, you likely don't need this script.
           preConfigure = ''
-            cd $src/external/clspv
-            python3 utils/fetch_sources.py
+            if [ -d "external/clspv" ]; then
+              cd external/clspv
+              # Only run if absolutely necessary; might require nix-prefetch-url work
+              # python3 utils/fetch_sources.py
+              cd ../..
+            fi
           '';
 
           postPatch = ''
-            substituteInPlace $src/external/clspv/lib/CMakeLists.txt \
-              --replace '${CLSPV_LLVM_BINARY_DIR}/lib/cmake/clang/ClangConfig.cmake' \
-              ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
+            substituteInPlace external/clspv/lib/CMakeLists.txt \
+              --replace '${
+                "''${CLSPV_LLVM_BINARY_DIR}"
+              }/lib/cmake/clang/ClangConfig.cmake' \
+              "${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake"
 
-            substituteInPlace $src/external/clspv/CMakeLists.txt \
-              --replace '${CLSPV_LLVM_BINARY_DIR}/tools/clang/include' \
-              ${llvmPackages.clang-unwrapped.dev}/include
+            substituteInPlace external/clspv/CMakeLists.txt \
+              --replace '${"''${CLSPV_LLVM_BINARY_DIR}"}/tools/clang/include' \
+              "${llvmPackages.clang-unwrapped.dev}/include"
 
-            substituteInPlace $src/src/config.def \
-              --replace DEFAULT_LLVMSPIRV_BINARY_PATH \"${pkgs.spirv-llvm-translator}/bin/llvm-spirv\" \
-              --replace DEFAULT_CLSPV_BINARY_PATH \"$out/clspv\"
+            substituteInPlace src/config.def \
+              --replace 'DEFAULT_LLVMSPIRV_BINARY_PATH' "\"${pkgs.spirv-llvm-translator}/bin/llvm-spirv\"" \
+              --replace 'DEFAULT_CLSPV_BINARY_PATH' "\"$out/clspv\""
           '';
 
           cmakeFlags =
