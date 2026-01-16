@@ -254,59 +254,59 @@
               buildInputs = [ llvmPackages.llvm vulkan-headers vulkan-loader ];
 
               patches = [
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/022d17206ec3aca899f72593b8f3d2bf5b5192ec.patch";
-                  hash = "sha256-RJX4/Eec7UUFED7zudJTAORPjXSUdTKi/YXhIdk/kxU=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  revert = true;
-                })
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/419bc4ba6d1b6ff01c8f2f8ac2306307d9022cc9.patch";
-                  hash = "sha256-VzP6/oU3POtxDZ3kH/0IoUTmUzB+Lo3KmQD2ajsq0ko=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  excludes = [ "external/clspv/deps.json" ];
-                  revert = true;
-                })
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/48acbf93dccdfca586210713d9d55cde40e40b54.patch";
-                  hash = "sha256-d8JKmKxLQa6Vxzw0cLXG/ldpxCZ4Iml5w2Tn4aSeCmQ=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  excludes = [ "external/clspv/deps.json" ];
-                  revert = true;
-                })
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/ae643967b8a7b0402420b95cf101c179fe059f45.patch";
-                  hash = "sha256-Czu06caNJjFBVSg6uoWFPJQul8Hhqi/hou/AcymVhI4=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  excludes = [ "external/clspv/deps.json" ];
-                  revert = true;
-                })
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/b8c19faca7317d64922396aa2ee44029dbf38b7c.patch";
-                  hash = "sha256-S2SmeM84XU9Wd2XA3DFmBXK2AEz4tClOgaEGHPoBBaY=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  excludes = [ "external/clspv/deps.json" ];
-                  revert = true;
-                })
-                (fetchpatch {
-                  url =
-                    "https://github.com/google/clspv/commit/7bfeccd7be6ea317c07de9f8d7ceb86cb2579d20.patch";
-                  hash = "sha256-qys2hQyciQmkvaD1LF4qoGxbUD0qiO0DTY7ryY+HalU=";
-                  stripLen = 1;
-                  extraPrefix = "external/clspv/";
-                  excludes = [ "external/clspv/deps.json" ];
-                  revert = true;
-                })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/022d17206ec3aca899f72593b8f3d2bf5b5192ec.patch";
+                #   hash = "sha256-RJX4/Eec7UUFED7zudJTAORPjXSUdTKi/YXhIdk/kxU=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   revert = true;
+                # })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/419bc4ba6d1b6ff01c8f2f8ac2306307d9022cc9.patch";
+                #   hash = "sha256-VzP6/oU3POtxDZ3kH/0IoUTmUzB+Lo3KmQD2ajsq0ko=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   excludes = [ "external/clspv/deps.json" ];
+                #   revert = true;
+                # })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/48acbf93dccdfca586210713d9d55cde40e40b54.patch";
+                #   hash = "sha256-d8JKmKxLQa6Vxzw0cLXG/ldpxCZ4Iml5w2Tn4aSeCmQ=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   excludes = [ "external/clspv/deps.json" ];
+                #   revert = true;
+                # })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/ae643967b8a7b0402420b95cf101c179fe059f45.patch";
+                #   hash = "sha256-Czu06caNJjFBVSg6uoWFPJQul8Hhqi/hou/AcymVhI4=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   excludes = [ "external/clspv/deps.json" ];
+                #   revert = true;
+                # })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/b8c19faca7317d64922396aa2ee44029dbf38b7c.patch";
+                #   hash = "sha256-S2SmeM84XU9Wd2XA3DFmBXK2AEz4tClOgaEGHPoBBaY=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   excludes = [ "external/clspv/deps.json" ];
+                #   revert = true;
+                # })
+                # (fetchpatch {
+                #   url =
+                #     "https://github.com/google/clspv/commit/7bfeccd7be6ea317c07de9f8d7ceb86cb2579d20.patch";
+                #   hash = "sha256-qys2hQyciQmkvaD1LF4qoGxbUD0qiO0DTY7ryY+HalU=";
+                #   stripLen = 1;
+                #   extraPrefix = "external/clspv/";
+                #   excludes = [ "external/clspv/deps.json" ];
+                #   revert = true;
+                # })
               ];
 
               postPatch = ''
