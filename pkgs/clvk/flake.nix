@@ -127,20 +127,29 @@
 
             dontStrip = true;
           });
-          pocl = pkgs.callPackage ({ stdenv, cmake, ninja, python3, llvmPackages
-            , ocl-icd, libxml2, runCommand, pkg-config, spirv-llvm-translator
-            , opencl-headers, hwloc, spirv-tools }:
-            stdenv.mkDerivation {
+
+          pocl = pkgs.callPackage ({ stdenv, gcc-unwrapped, cmake, ninja
+            , python3, llvmPackages, ocl-icd, libxml2, runCommand, pkg-config
+            , spirv-llvm-translator, opencl-headers, hwloc, spirv-tools }:
+            let
+              # POCL needs libgcc.a and libgcc_s.so. Note that libgcc_s.so is a linker script and not
+              # a symlink, hence we also need libgcc_s.so.1.
+              libgcc = runCommand "libgcc" { } ''
+                mkdir -p $out/lib
+                cp ${gcc-unwrapped}/lib/gcc/*/*/libgcc.a $out/lib/
+                ln -s ${gcc-unwrapped.lib}/lib/libgcc_s.so $out/lib/
+                ln -s ${gcc-unwrapped.lib}/lib/libgcc_s.so.1 $out/lib/
+              '';
+            in stdenv.mkDerivation {
               pname = "pocl";
               version = "git";
-              src = pocl-src;
 
-              nativeBuildInputs = [ cmake ninja python3 ];
+              nativeBuildInputs = [ cmake ninja python3 llvmPackages.clang ];
 
               buildInputs = with llvmPackages; [
                 llvm
                 clang-unwrapped
-                clang-unwrapped.dev # <- required for ClangConfig.cmake
+                clang-unwrapped.lib
                 ocl-icd
                 spirv-llvm-translator
                 libxml2
@@ -150,10 +159,9 @@
                 hwloc
               ];
 
-              postPatch = ''
-                # Set CMAKE_PREFIX_PATH so CMake finds Clang
-                export CMAKE_PREFIX_PATH="${llvmPackages.clang-unwrapped.dev}:${CMAKE_PREFIX_PATH}"
+              src = pocl-src;
 
+              postPatch = ''
                 substituteInPlace cmake/LLVM.cmake \
                   --replace NO_CMAKE_PATH "" \
                   --replace NO_CMAKE_ENVIRONMENT_PATH "" \
@@ -164,12 +172,15 @@
                 "-DENABLE_ICD=ON"
                 "-DENABLE_TESTS=OFF"
                 "-DENABLE_EXAMPLES=OFF"
+                # Required to make POCL play nice with Mesa
+                # See https://github.com/pocl/pocl/blob/main/README.packaging
+                "-DSTATIC_LLVM=ON"
+                "-DEXTRA_HOST_LD_FLAGS=-L${libgcc}/lib"
               ];
-
-              stdenv = pkgs.clang19Stdenv;
             }) {
               inherit (packages.${system})
                 llvmPackages spirv-llvm-translator spirv-tools;
+              stdenv = pkgs.clang19Stdenv;
             };
 
           shady = pkgs.callPackage
