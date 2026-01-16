@@ -20,7 +20,8 @@
     # ashell.flake = true;
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
-    # clvk-pkg.url = "path:./pkgs/clvk";
+
+    opencl-flake.url = "path:./pkgs/clvk";
 
     quickshell = {
       # add ?ref=<tag> to track a tag
