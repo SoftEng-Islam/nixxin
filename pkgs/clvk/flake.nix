@@ -21,7 +21,7 @@
           pname = "clvk";
           version = "git";
 
-          # fetch inside derivation
+          # fetch CLVK repository inside the derivation
           src = pkgs.fetchFromGitHub {
             owner = "kpet";
             repo = "clvk";
