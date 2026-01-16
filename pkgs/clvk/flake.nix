@@ -21,10 +21,11 @@
           pname = "clvk";
           version = "git";
 
+          # fetch inside derivation
           src = pkgs.fetchFromGitHub {
             owner = "kpet";
             repo = "clvk";
-            rev = "e0630327e3fda63dd5274376e95a9a48a3c9e3e6"; # fixed commit
+            rev = "e0630327e3fda63dd5274376e95a9a48a3c9e3e6";
             sha256 =
               "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace with actual hash
             fetchSubmodules = true;
@@ -35,7 +36,6 @@
           buildInputs =
             [ llvmPackages.llvm pkgs.vulkan-headers pkgs.vulkan-loader ];
 
-          # Use $src inside the derivation (not ${src})
           preConfigure = ''
             cd $src/external/clspv
             python3 utils/fetch_sources.py
