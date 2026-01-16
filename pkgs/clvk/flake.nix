@@ -21,7 +21,6 @@
           pname = "clvk";
           version = "git";
 
-          # Fetch CLVK with submodules
           src = pkgs.fetchFromGitHub {
             owner = "kpet";
             repo = "clvk";
@@ -36,21 +35,22 @@
           buildInputs =
             [ llvmPackages.llvm pkgs.vulkan-headers pkgs.vulkan-loader ];
 
+          # Use $src inside the derivation (not ${src})
           preConfigure = ''
-            cd ${src}/external/clspv
+            cd $src/external/clspv
             python3 utils/fetch_sources.py
           '';
 
           postPatch = ''
-            substituteInPlace ${src}/external/clspv/lib/CMakeLists.txt \
+            substituteInPlace $src/external/clspv/lib/CMakeLists.txt \
               --replace $\{CLSPV_LLVM_BINARY_DIR\}/lib/cmake/clang/ClangConfig.cmake \
                 ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
 
-            substituteInPlace ${src}/external/clspv/CMakeLists.txt \
+            substituteInPlace $src/external/clspv/CMakeLists.txt \
               --replace $\{CLSPV_LLVM_BINARY_DIR\}/tools/clang/include \
                 ${llvmPackages.clang-unwrapped.dev}/include
 
-            substituteInPlace ${src}/src/config.def \
+            substituteInPlace $src/src/config.def \
               --replace DEFAULT_LLVMSPIRV_BINARY_PATH "${spirv-llvm-translator}/bin/llvm-spirv" \
               --replace DEFAULT_CLSPV_BINARY_PATH "$out/clspv"
           '';
