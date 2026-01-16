@@ -69,6 +69,7 @@ in {
       code-cursor
 
       antigravity
+      windsurf
       postman
 
       mongodb
