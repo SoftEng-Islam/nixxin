@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "clvk-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768142439,
+        "narHash": "sha256-tb03B8jcrnAnglmfwEiXe7DUUZ+3a+Bks6bz7h0c7Xg=",
+        "ref": "refs/heads/main",
+        "rev": "2b31cbc0c3b8321a6d2ca13efb157760d60c38a6",
+        "revCount": 773,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -186,6 +204,22 @@
         "type": "github"
       }
     },
+    "mesa-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768526966,
+        "narHash": "sha256-rOIEDJn0GxuLA/tNLcjC39PrrTCQyotScZSns/RK4/Y=",
+        "ref": "refs/heads/main",
+        "rev": "b72d347d1c3b9e829971fbdabf993b68776083c1",
+        "revCount": 217145,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      }
+    },
     "nixGL": {
       "inputs": {
         "flake-utils": [
@@ -243,6 +277,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1751274312,
+        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1765186076,
         "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
         "owner": "NixOS",
@@ -254,6 +304,41 @@
         "owner": "NixOS",
         "ref": "nixos-unstable",
         "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "opencl-flake": {
+      "inputs": {
+        "clvk-src": "clvk-src",
+        "mesa-src": "mesa-src",
+        "nixpkgs": "nixpkgs_3",
+        "pocl-src": "pocl-src",
+        "shady-src": "shady-src",
+        "zig-src": "zig-src"
+      },
+      "locked": {
+        "path": "./pkgs/clvk",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/clvk",
+        "type": "path"
+      },
+      "parent": []
+    },
+    "pocl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768382612,
+        "narHash": "sha256-3EqyHp+pXkKhowKMqV8ydOPI6ScovhrnAwNLO80Up0Q=",
+        "owner": "pocl",
+        "repo": "pocl",
+        "rev": "1d4a0765ff515090d4742fb138cf45455eaa9bab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pocl",
+        "repo": "pocl",
         "type": "github"
       }
     },
@@ -284,9 +369,28 @@
         "hyprpolkitagent": "hyprpolkitagent",
         "nixGL": "nixGL",
         "nixpkgs": "nixpkgs_2",
+        "opencl-flake": "opencl-flake",
         "quickshell": "quickshell",
         "systems": "systems_3",
         "yt-dlp-src": "yt-dlp-src"
+      }
+    },
+    "shady-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760696211,
+        "narHash": "sha256-loHyD+tXQFob5sD2J6J4VrYbvzE+JxlfBwUkxXYn7RY=",
+        "ref": "refs/heads/main",
+        "rev": "dd2787a7ebf78f8b51192bb23322057cfa8636c3",
+        "revCount": 2829,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shady-gang/shady.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shady-gang/shady.git"
       }
     },
     "systems": {
@@ -352,7 +456,7 @@
     "yt-dlp-src": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "yt-dlp-src": "yt-dlp-src_2"
       },
       "locked": {
@@ -379,6 +483,22 @@
         "owner": "yt-dlp",
         "repo": "yt-dlp",
         "type": "github"
+      }
+    },
+    "zig-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764207772,
+        "narHash": "sha256-0S3zyaOJRJRl5wMFuiy/MvphrH226v5bT3ikWgzFKKs=",
+        "ref": "refs/heads/master",
+        "rev": "738d2be9d6b6ef3ff3559130c05159ef53336224",
+        "revCount": 36058,
+        "type": "git",
+        "url": "https://github.com/ziglang/zig"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/ziglang/zig"
       }
     }
   },
