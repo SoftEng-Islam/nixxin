@@ -1,5 +1,23 @@
 {
   "nodes": {
+    "clvk-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1739707162,
+        "narHash": "sha256-YuNPClicCrVlGx6F4LymCw/rfLtOVCX3FsY26tQ1sAg=",
+        "ref": "refs/heads/main",
+        "rev": "e0630327e3fda63dd5274376e95a9a48a3c9e3e6",
+        "revCount": 722,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      }
+    },
     "flake-utils": {
       "inputs": {
         "systems": "systems"
@@ -243,6 +261,22 @@
     },
     "nixpkgs_3": {
       "locked": {
+        "lastModified": 1740162160,
+        "narHash": "sha256-SSYxFhqCOb3aiPb6MmN68yEzBIltfom8IgRz7phHscM=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "11415c7ae8539d6292f2928317ee7a8410b28bb9",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
         "lastModified": 1765186076,
         "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
         "owner": "NixOS",
@@ -256,6 +290,21 @@
         "repo": "nixpkgs",
         "type": "github"
       }
+    },
+    "opencl-flake": {
+      "inputs": {
+        "clvk-src": "clvk-src",
+        "nixpkgs": "nixpkgs_3"
+      },
+      "locked": {
+        "path": "./pkgs/clvk",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/clvk",
+        "type": "path"
+      },
+      "parent": []
     },
     "quickshell": {
       "inputs": {
@@ -284,6 +333,7 @@
         "hyprpolkitagent": "hyprpolkitagent",
         "nixGL": "nixGL",
         "nixpkgs": "nixpkgs_2",
+        "opencl-flake": "opencl-flake",
         "quickshell": "quickshell",
         "systems": "systems_3",
         "yt-dlp-src": "yt-dlp-src"
@@ -352,7 +402,7 @@
     "yt-dlp-src": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "yt-dlp-src": "yt-dlp-src_2"
       },
       "locked": {

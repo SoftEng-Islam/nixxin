@@ -1,16 +1,9 @@
 {
   description = "CLVK (OpenCL on Vulkan) for NixOS";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; };
 
-    clvk-src = {
-      url = "git+https://github.com/kpet/clvk.git?submodules=1";
-      flake = false;
-    };
-  };
-
-  outputs = { self, nixpkgs, clvk-src }:
+  outputs = { self, nixpkgs }:
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
@@ -24,43 +17,54 @@
         spirv-llvm-translator = pkgs.spirv-llvm-translator;
         spirv-tools = pkgs.spirv-tools;
 
-        clvk = pkgs.callPackage ({ stdenv, cmake, ninja, python3, llvmPackages
-          , spirv-tools, vulkan-headers, vulkan-loader, shaderc, glslang
-          , fetchpatch, spirv-llvm-translator }:
-          stdenv.mkDerivation {
-            pname = "clvk";
-            version = "git";
+        clvk = pkgs.stdenv.mkDerivation {
+          pname = "clvk";
+          version = "git";
 
-            src = clvk-src;
-
-            nativeBuildInputs = [ cmake ninja python3 shaderc glslang ];
-            buildInputs = [ llvmPackages.llvm vulkan-headers vulkan-loader ];
-
-            postPatch = ''
-              substituteInPlace external/clspv/lib/CMakeLists.txt \
-                --replace $\{CLSPV_LLVM_BINARY_DIR\}/lib/cmake/clang/ClangConfig.cmake \
-                  ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
-
-              substituteInPlace external/clspv/CMakeLists.txt \
-                --replace $\{CLSPV_LLVM_BINARY_DIR\}/tools/clang/include \
-                  ${llvmPackages.clang-unwrapped.dev}/include
-
-              substituteInPlace src/config.def \
-                --replace DEFAULT_LLVMSPIRV_BINARY_PATH \"${spirv-llvm-translator}/bin/llvm-spirv\" \
-                --replace DEFAULT_CLSPV_BINARY_PATH \"$out/clspv\"
-            '';
-
-            cmakeFlags =
-              [ "-DCLVK_CLSPV_ONLINE_COMPILER=ON" "-DCLVK_BUILD_TESTS=OFF" ];
-
-            postInstall = ''
-              mkdir -p $out/etc/OpenCL/vendors
-              echo $out/libOpenCL.so > $out/etc/OpenCL/vendors/clvk.icd
-            '';
-          }) {
-            inherit llvmPackages spirv-llvm-translator spirv-tools;
-            stdenv = pkgs.clang19Stdenv;
+          # Fetch CLVK with submodules
+          src = pkgs.fetchFromGitHub {
+            owner = "kpet";
+            repo = "clvk";
+            rev = "e0630327e3fda63dd5274376e95a9a48a3c9e3e6"; # fixed commit
+            sha256 =
+              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace with actual hash
+            fetchSubmodules = true;
           };
+
+          nativeBuildInputs =
+            [ pkgs.cmake pkgs.ninja pkgs.python3 pkgs.shaderc pkgs.glslang ];
+          buildInputs =
+            [ llvmPackages.llvm pkgs.vulkan-headers pkgs.vulkan-loader ];
+
+          preConfigure = ''
+            cd ${src}/external/clspv
+            python3 utils/fetch_sources.py
+          '';
+
+          postPatch = ''
+            substituteInPlace ${src}/external/clspv/lib/CMakeLists.txt \
+              --replace $\{CLSPV_LLVM_BINARY_DIR\}/lib/cmake/clang/ClangConfig.cmake \
+                ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
+
+            substituteInPlace ${src}/external/clspv/CMakeLists.txt \
+              --replace $\{CLSPV_LLVM_BINARY_DIR\}/tools/clang/include \
+                ${llvmPackages.clang-unwrapped.dev}/include
+
+            substituteInPlace ${src}/src/config.def \
+              --replace DEFAULT_LLVMSPIRV_BINARY_PATH "${spirv-llvm-translator}/bin/llvm-spirv" \
+              --replace DEFAULT_CLSPV_BINARY_PATH "$out/clspv"
+          '';
+
+          cmakeFlags =
+            [ "-DCLVK_CLSPV_ONLINE_COMPILER=ON" "-DCLVK_BUILD_TESTS=OFF" ];
+
+          postInstall = ''
+            mkdir -p $out/etc/OpenCL/vendors
+            echo $out/libOpenCL.so > $out/etc/OpenCL/vendors/clvk.icd
+          '';
+
+          stdenv = pkgs.clang19Stdenv;
+        };
       });
 
       overlays.default = final: prev: {
