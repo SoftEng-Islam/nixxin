@@ -1,5 +1,5 @@
 {
-  description = "CLVK (OpenCL on Vulkan) for NixOS";
+  description = "OpenCL packages for NixOS";
 
   inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11"; };
 
@@ -7,27 +7,28 @@
     let
       systems = [ "x86_64-linux" "aarch64-linux" ];
       lib = nixpkgs.lib;
+
       forAllSystems = f:
         lib.genAttrs systems
         (system: let pkgs = nixpkgs.legacyPackages.${system}; in f system pkgs);
+
     in rec {
       packages = forAllSystems (system: pkgs: rec {
         llvmPackages = pkgs.llvmPackages_19;
 
-        spirv-llvm-translator = pkgs.spirv-llvm-translator;
-        spirv-tools = pkgs.spirv-tools;
-
+        # -------------------
+        # CLVK
+        # -------------------
         clvk = pkgs.stdenv.mkDerivation {
           pname = "clvk";
           version = "git";
 
-          # fetch CLVK repository inside the derivation
           src = pkgs.fetchFromGitHub {
             owner = "kpet";
             repo = "clvk";
             rev = "e0630327e3fda63dd5274376e95a9a48a3c9e3e6";
             sha256 =
-              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace with actual hash
+              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace
             fetchSubmodules = true;
           };
 
@@ -43,16 +44,16 @@
 
           postPatch = ''
             substituteInPlace $src/external/clspv/lib/CMakeLists.txt \
-              --replace $\{CLSPV_LLVM_BINARY_DIR\}/lib/cmake/clang/ClangConfig.cmake \
-                ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
+              --replace '${CLSPV_LLVM_BINARY_DIR}/lib/cmake/clang/ClangConfig.cmake' \
+              ${llvmPackages.clang-unwrapped.dev}/lib/cmake/clang/ClangConfig.cmake
 
             substituteInPlace $src/external/clspv/CMakeLists.txt \
-              --replace $\{CLSPV_LLVM_BINARY_DIR\}/tools/clang/include \
-                ${llvmPackages.clang-unwrapped.dev}/include
+              --replace '${CLSPV_LLVM_BINARY_DIR}/tools/clang/include' \
+              ${llvmPackages.clang-unwrapped.dev}/include
 
             substituteInPlace $src/src/config.def \
-              --replace DEFAULT_LLVMSPIRV_BINARY_PATH "${spirv-llvm-translator}/bin/llvm-spirv" \
-              --replace DEFAULT_CLSPV_BINARY_PATH "$out/clspv"
+              --replace DEFAULT_LLVMSPIRV_BINARY_PATH \"${pkgs.spirv-llvm-translator}/bin/llvm-spirv\" \
+              --replace DEFAULT_CLSPV_BINARY_PATH \"$out/clspv\"
           '';
 
           cmakeFlags =
@@ -62,35 +63,111 @@
             mkdir -p $out/etc/OpenCL/vendors
             echo $out/libOpenCL.so > $out/etc/OpenCL/vendors/clvk.icd
           '';
+        };
 
-          stdenv = pkgs.clang19Stdenv;
+        # -------------------
+        # Mesa (OpenCL)
+        # -------------------
+        mesa = pkgs.stdenv.mkDerivation {
+          pname = "mesa";
+          version = "git";
+
+          src = pkgs.fetchgit {
+            url = "https://gitlab.freedesktop.org/mesa/mesa.git";
+            rev = "master";
+            sha256 =
+              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace
+          };
+
+          nativeBuildInputs =
+            [ pkgs.meson pkgs.ninja pkgs.python3 pkgs.pkg-config ];
+          buildInputs =
+            [ llvmPackages.llvm pkgs.spirv-tools pkgs.spirv-llvm-translator ];
+
+          mesonFlags = [ "-Db_ndebug=false" "--buildtype=debug" ];
+        };
+
+        # -------------------
+        # POCL
+        # -------------------
+        pocl = pkgs.stdenv.mkDerivation {
+          pname = "pocl";
+          version = "git";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "pocl";
+            repo = "pocl";
+            rev = "main";
+            sha256 =
+              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace
+          };
+
+          nativeBuildInputs =
+            [ pkgs.cmake pkgs.ninja pkgs.python3 llvmPackages.clang ];
+          buildInputs = [
+            llvmPackages.llvm
+            pkgs.ocl-icd
+            pkgs.spirv-llvm-translator
+            pkgs.libxml2
+            pkgs.pkg-config
+          ];
+
+          cmakeFlags = [
+            "-DENABLE_ICD=ON"
+            "-DENABLE_TESTS=OFF"
+            "-DENABLE_EXAMPLES=OFF"
+            "-DSTATIC_LLVM=ON"
+          ];
+        };
+
+        # -------------------
+        # Shady
+        # -------------------
+        shady = pkgs.stdenv.mkDerivation {
+          pname = "shady";
+          version = "git";
+
+          src = pkgs.fetchFromGitHub {
+            owner = "shady-gang";
+            repo = "shady";
+            rev = "main";
+            sha256 =
+              "sha256-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA="; # replace
+            fetchSubmodules = true;
+          };
+
+          nativeBuildInputs = [ pkgs.cmake pkgs.ninja pkgs.python3 ];
+          buildInputs = [ llvmPackages.llvm pkgs.libxml2 ];
+
+          cmakeFlags =
+            [ "-DSHADY_ENABLE_SAMPLES=OFF" "-DSHADY_USE_FETCHCONTENT=OFF" ];
         };
       });
 
-      overlays.default = final: prev: {
-        clvk = self.packages.${final.system}.clvk;
-      };
+      # -------------------
+      # Dev shells
+      # -------------------
+      devShells = forAllSystems (system: pkgs: rec {
+        clvk = pkgs.mkShell {
+          packages =
+            [ pkgs.khronos-ocl-icd-loader pkgs.clinfo packages.${system}.clvk ];
 
-      devShells = forAllSystems (system: pkgs:
-        let
-          ld_library_path = lib.makeLibraryPath [ pkgs.khronos-ocl-icd-loader ];
-        in {
-          clvk = pkgs.mkShell {
-            name = "nix-opencl-clvk";
+          shellHook = ''
+            export OCL_ICD_VENDORS="${
+              packages.${system}.clvk
+            }/etc/OpenCL/vendors/"
+          '';
+        };
 
-            packages = [
-              pkgs.khronos-ocl-icd-loader
-              pkgs.clinfo
-              self.packages.${system}.clvk
-            ];
+        mesa = pkgs.mkShell {
+          packages =
+            [ pkgs.khronos-ocl-icd-loader pkgs.clinfo packages.${system}.mesa ];
+        };
 
-            shellHook = ''
-              export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${ld_library_path}"
-              export OCL_ICD_VENDORS="${
-                self.packages.${system}.clvk
-              }/etc/OpenCL/vendors/"
-            '';
-          };
-        });
+        pocl = pkgs.mkShell {
+          packages =
+            [ pkgs.khronos-ocl-icd-loader pkgs.clinfo packages.${system}.pocl ];
+        };
+      });
     };
 }
