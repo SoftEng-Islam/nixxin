@@ -17,7 +17,10 @@ group :app do
   gem 'chunky_png'
   gem 'erubi'
   # gem 'image_optim_pack', platforms: :ruby
-  gem 'image_optim_pack', platforms: :ruby unless ENV['NIX_BUILD']
+  # gem 'image_optim_pack', platforms: :ruby unless ENV['NIX_BUILD']
+  group :binary_tools do
+    gem 'image_optim_pack'
+  end
   gem 'image_optim'
   gem 'rack-ssl-enforcer'
   gem 'rack'

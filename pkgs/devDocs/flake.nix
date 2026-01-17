@@ -17,6 +17,7 @@
           name = "devdocs-env";
           inherit ruby;
           gemdir = ./.;
+          env = { NIX_BUILD = "1"; };
         };
       in {
         packages.default = gems;
