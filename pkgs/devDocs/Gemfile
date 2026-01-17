@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
-ruby '3.3.6'
+ruby '>= 3.3', '< 3.5'
 
 
 gem 'activesupport', require: false
 gem 'html-pipeline'
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.15'
 gem 'pry-byebug'
 gem 'rake'
 gem 'terminal-table'
@@ -16,7 +16,8 @@ group :app do
   gem 'browser'
   gem 'chunky_png'
   gem 'erubi'
-  gem 'image_optim_pack', platforms: :ruby
+  # gem 'image_optim_pack', platforms: :ruby
+  gem 'image_optim_pack', platforms: :ruby unless ENV['NIX_BUILD']
   gem 'image_optim'
   gem 'rack-ssl-enforcer'
   gem 'rack'
@@ -27,7 +28,7 @@ group :app do
   gem 'sprockets-helpers'
   gem 'sprockets-sass'
   gem 'sprockets'
-  gem 'thin'
+  # gem 'thin'
 end
 
 group :production do
