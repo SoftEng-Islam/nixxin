@@ -1,31 +1,35 @@
 {
   description = "DevDocs flake";
 
-  inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    flake-utils.url = "github:numtide/flake-utils";
-  };
+  inputs = { nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; };
 
   outputs = { self, nixpkgs }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
 
-        ruby = pkgs.ruby_3_3;
+      ruby = pkgs.ruby_3_3;
 
-        gems = pkgs.bundlerEnv {
-          name = "devdocs-env";
-          inherit ruby;
-          gemdir = ./.;
-          env = { NIX_BUILD = "1"; };
-          groups = [ "default" ];
-        };
-      in {
-        packages.default = gems;
+      gems = pkgs.bundlerEnv {
+        name = "devdocs-env";
+        inherit ruby;
+        gemdir = ./.;
+        groups = [ "default" ];
+      };
+    in {
+      packages.${system}.default = gems;
 
-        devShells.default = pkgs.mkShell {
-          inputsFrom = [ gems ];
-          packages = [ pkgs.nodejs ruby ];
-        };
-      });
+      devShells.${system}.default = pkgs.mkShell {
+        inputsFrom = [ gems ];
+        packages = [
+          ruby
+          pkgs.nodejs
+          pkgs.pngquant
+          pkgs.jpegoptim
+          pkgs.optipng
+          pkgs.gifsicle
+          pkgs.svgo
+        ];
+      };
+    };
 }
