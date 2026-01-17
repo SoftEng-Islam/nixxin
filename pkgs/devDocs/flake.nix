@@ -18,6 +18,7 @@
           inherit ruby;
           gemdir = ./.;
           env = { NIX_BUILD = "1"; };
+          groups = [ "default" ];
         };
       in {
         packages.default = gems;
