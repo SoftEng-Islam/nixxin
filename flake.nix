@@ -23,6 +23,8 @@
 
     # opencl-flake.url = "path:./pkgs/clvk";
 
+    devDocs-flake.url = "path:./pkgs/devDocs";
+
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

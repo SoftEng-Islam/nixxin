@@ -1,5 +1,5 @@
 {
-  description = "A very basic flake";
+  description = "DevDocs flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -13,14 +13,9 @@
         gems = pkgs.bundlerEnv {
           name = "devdocs-env";
           ruby = pkgs.ruby;
-          gemdir  = ./.;
+          gemdir = ./.;
         };
-      in
-      {
-        devShell = with pkgs; mkShell {
-          buildInputs = [
-            nodejs
-          ];
-        } // gems.env;
+      in {
+        devShell = with pkgs; mkShell { buildInputs = [ nodejs ]; } // gems.env;
       });
 }

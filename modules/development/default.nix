@@ -1,4 +1,4 @@
-{ settings, config, lib, pkgs, ... }:
+{ settings, inputs, config, lib, pkgs, ... }:
 let
   inherit (lib) mkIf optionals optional flatten;
   development = settings.modules.development;
@@ -44,6 +44,8 @@ in {
     services.mongodb.enable = true;
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
     environment.systemPackages = with pkgs; [
+      inputs.devDocs-flake.devShell.${pkgs.stdenv.hostPlatform.system}.devShell
+
       gnome-text-editor
 
       # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows
