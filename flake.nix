@@ -21,7 +21,7 @@
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
 
-    opencl-flake.url = "path:./pkgs/clvk";
+    # opencl-flake.url = "path:./pkgs/clvk";
 
     quickshell = {
       # add ?ref=<tag> to track a tag

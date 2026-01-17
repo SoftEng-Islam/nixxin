@@ -78,6 +78,7 @@ in {
       mongodb-ce
       mongodb-tools
       mongodb-atlas-cli
+      mongosh
 
       nodejs
       deno
