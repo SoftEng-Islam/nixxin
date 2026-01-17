@@ -7,15 +7,20 @@
   };
 
   outputs = { self, nixpkgs, utils }:
-    { } // utils.lib.eachDefaultSystem (system:
+    utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
+
         gems = pkgs.bundlerEnv {
           name = "devdocs-env";
           ruby = pkgs.ruby;
           gemdir = ./.;
         };
       in {
-        devShell = with pkgs; mkShell { buildInputs = [ nodejs ]; } // gems.env;
+        packages.default = gems;
+
+        devShells.default = pkgs.mkShell { buildInputs = [ pkgs.nodejs ]; }
+          // gems.env;
       });
+
 }
