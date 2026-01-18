@@ -1,0 +1,5927 @@
+{
+    "core11": {
+        "features": {
+            "multiview": 1,
+            "multiviewGeometryShader": 1,
+            "multiviewTessellationShader": 1,
+            "protectedMemory": 0,
+            "samplerYcbcrConversion": 1,
+            "shaderDrawParameters": 1,
+            "storageBuffer16BitAccess": 1,
+            "storageInputOutput16": 0,
+            "storagePushConstant16": 1,
+            "uniformAndStorageBuffer16BitAccess": 1,
+            "variablePointers": 1,
+            "variablePointersStorageBuffer": 1
+        },
+        "properties": {
+            "deviceLUID": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "deviceLUIDValid": 0,
+            "deviceNodeMask": 0,
+            "deviceUUID": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            "driverUUID": [
+                65,
+                77,
+                68,
+                45,
+                77,
+                69,
+                83,
+                65,
+                45,
+                68,
+                82,
+                86,
+                0,
+                0,
+                0,
+                0
+            ],
+            "maxMemoryAllocationSize": "4294967292",
+            "maxMultiviewInstanceIndex": 2147483647,
+            "maxMultiviewViewCount": 8,
+            "maxPerSetDescriptors": 22369621,
+            "pointClippingBehavior": 0,
+            "protectedNoFault": 0,
+            "subgroupQuadOperationsInAllStages": 1,
+            "subgroupSize": 64,
+            "subgroupSupportedOperations": 1791,
+            "subgroupSupportedStages": 63
+        }
+    },
+    "core12": {
+        "features": {
+            "bufferDeviceAddress": 1,
+            "bufferDeviceAddressCaptureReplay": 1,
+            "bufferDeviceAddressMultiDevice": 0,
+            "descriptorBindingPartiallyBound": 1,
+            "descriptorBindingSampledImageUpdateAfterBind": 1,
+            "descriptorBindingStorageBufferUpdateAfterBind": 1,
+            "descriptorBindingStorageImageUpdateAfterBind": 1,
+            "descriptorBindingStorageTexelBufferUpdateAfterBind": 1,
+            "descriptorBindingUniformBufferUpdateAfterBind": 1,
+            "descriptorBindingUniformTexelBufferUpdateAfterBind": 1,
+            "descriptorBindingUpdateUnusedWhilePending": 1,
+            "descriptorBindingVariableDescriptorCount": 1,
+            "descriptorIndexing": 1,
+            "drawIndirectCount": 1,
+            "hostQueryReset": 1,
+            "imagelessFramebuffer": 1,
+            "runtimeDescriptorArray": 1,
+            "samplerFilterMinmax": 1,
+            "samplerMirrorClampToEdge": 1,
+            "scalarBlockLayout": 1,
+            "separateDepthStencilLayouts": 1,
+            "shaderBufferInt64Atomics": 1,
+            "shaderFloat16": 0,
+            "shaderInputAttachmentArrayDynamicIndexing": 1,
+            "shaderInputAttachmentArrayNonUniformIndexing": 1,
+            "shaderInt8": 1,
+            "shaderOutputLayer": 1,
+            "shaderOutputViewportIndex": 1,
+            "shaderSampledImageArrayNonUniformIndexing": 1,
+            "shaderSharedInt64Atomics": 1,
+            "shaderStorageBufferArrayNonUniformIndexing": 1,
+            "shaderStorageImageArrayNonUniformIndexing": 1,
+            "shaderStorageTexelBufferArrayDynamicIndexing": 1,
+            "shaderStorageTexelBufferArrayNonUniformIndexing": 1,
+            "shaderSubgroupExtendedTypes": 1,
+            "shaderUniformBufferArrayNonUniformIndexing": 1,
+            "shaderUniformTexelBufferArrayDynamicIndexing": 1,
+            "shaderUniformTexelBufferArrayNonUniformIndexing": 1,
+            "storageBuffer8BitAccess": 1,
+            "storagePushConstant8": 1,
+            "subgroupBroadcastDynamicId": 1,
+            "timelineSemaphore": 1,
+            "uniformAndStorageBuffer8BitAccess": 1,
+            "uniformBufferStandardLayout": 1,
+            "vulkanMemoryModel": 1,
+            "vulkanMemoryModelAvailabilityVisibilityChains": 0,
+            "vulkanMemoryModelDeviceScope": 1
+        },
+        "properties": {
+            "conformanceVersion": "1.4.0.0",
+            "denormBehaviorIndependence": 1,
+            "driverID": 3,
+            "driverInfo": "Mesa 25.3.1",
+            "driverName": "radv",
+            "filterMinmaxImageComponentMapping": 0,
+            "filterMinmaxSingleComponentFormats": 1,
+            "framebufferIntegerColorSampleCounts": 1,
+            "independentResolve": 1,
+            "independentResolveNone": 1,
+            "maxDescriptorSetUpdateAfterBindInputAttachments": 8388606,
+            "maxDescriptorSetUpdateAfterBindSampledImages": 8388606,
+            "maxDescriptorSetUpdateAfterBindSamplers": 8388606,
+            "maxDescriptorSetUpdateAfterBindStorageBuffers": 8388606,
+            "maxDescriptorSetUpdateAfterBindStorageBuffersDynamic": 8,
+            "maxDescriptorSetUpdateAfterBindStorageImages": 8388606,
+            "maxDescriptorSetUpdateAfterBindUniformBuffers": 8388606,
+            "maxDescriptorSetUpdateAfterBindUniformBuffersDynamic": 16,
+            "maxPerStageDescriptorUpdateAfterBindInputAttachments": 8388606,
+            "maxPerStageDescriptorUpdateAfterBindSampledImages": 8388606,
+            "maxPerStageDescriptorUpdateAfterBindSamplers": 8388606,
+            "maxPerStageDescriptorUpdateAfterBindStorageBuffers": 8388606,
+            "maxPerStageDescriptorUpdateAfterBindStorageImages": 8388606,
+            "maxPerStageDescriptorUpdateAfterBindUniformBuffers": 8388606,
+            "maxPerStageUpdateAfterBindResources": 8388606,
+            "maxTimelineSemaphoreValueDifference": "18446744073709551615",
+            "maxUpdateAfterBindDescriptorsInAllPools": 67108863,
+            "quadDivergentImplicitLod": 0,
+            "robustBufferAccessUpdateAfterBind": 1,
+            "roundingModeIndependence": 1,
+            "shaderDenormFlushToZeroFloat16": 0,
+            "shaderDenormFlushToZeroFloat32": 1,
+            "shaderDenormFlushToZeroFloat64": 0,
+            "shaderDenormPreserveFloat16": 0,
+            "shaderDenormPreserveFloat32": 1,
+            "shaderDenormPreserveFloat64": 0,
+            "shaderInputAttachmentArrayNonUniformIndexingNative": 0,
+            "shaderRoundingModeRTEFloat16": 0,
+            "shaderRoundingModeRTEFloat32": 1,
+            "shaderRoundingModeRTEFloat64": 0,
+            "shaderRoundingModeRTZFloat16": 0,
+            "shaderRoundingModeRTZFloat32": 1,
+            "shaderRoundingModeRTZFloat64": 0,
+            "shaderSampledImageArrayNonUniformIndexingNative": 0,
+            "shaderSignedZeroInfNanPreserveFloat16": 0,
+            "shaderSignedZeroInfNanPreserveFloat32": 1,
+            "shaderSignedZeroInfNanPreserveFloat64": 0,
+            "shaderStorageBufferArrayNonUniformIndexingNative": 0,
+            "shaderStorageImageArrayNonUniformIndexingNative": 0,
+            "shaderUniformBufferArrayNonUniformIndexingNative": 0,
+            "supportedDepthResolveModes": 15,
+            "supportedStencilResolveModes": 13
+        }
+    },
+    "core13": {
+        "features": {
+            "computeFullSubgroups": 1,
+            "descriptorBindingInlineUniformBlockUpdateAfterBind": 1,
+            "dynamicRendering": 1,
+            "inlineUniformBlock": 1,
+            "maintenance4": 1,
+            "pipelineCreationCacheControl": 1,
+            "privateData": 1,
+            "robustImageAccess": 1,
+            "shaderDemoteToHelperInvocation": 1,
+            "shaderIntegerDotProduct": 1,
+            "shaderTerminateInvocation": 1,
+            "shaderZeroInitializeWorkgroupMemory": 1,
+            "subgroupSizeControl": 1,
+            "synchronization2": 1,
+            "textureCompressionASTC_HDR": 0
+        },
+        "properties": {
+            "integerDotProduct16BitMixedSignednessAccelerated": 0,
+            "integerDotProduct16BitSignedAccelerated": 0,
+            "integerDotProduct16BitUnsignedAccelerated": 0,
+            "integerDotProduct32BitMixedSignednessAccelerated": 0,
+            "integerDotProduct32BitSignedAccelerated": 0,
+            "integerDotProduct32BitUnsignedAccelerated": 0,
+            "integerDotProduct4x8BitPackedMixedSignednessAccelerated": 0,
+            "integerDotProduct4x8BitPackedSignedAccelerated": 0,
+            "integerDotProduct4x8BitPackedUnsignedAccelerated": 0,
+            "integerDotProduct64BitMixedSignednessAccelerated": 0,
+            "integerDotProduct64BitSignedAccelerated": 0,
+            "integerDotProduct64BitUnsignedAccelerated": 0,
+            "integerDotProduct8BitMixedSignednessAccelerated": 0,
+            "integerDotProduct8BitSignedAccelerated": 0,
+            "integerDotProduct8BitUnsignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating16BitMixedSignednessAccelerated": 0,
+            "integerDotProductAccumulatingSaturating16BitSignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating16BitUnsignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating32BitMixedSignednessAccelerated": 0,
+            "integerDotProductAccumulatingSaturating32BitSignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating32BitUnsignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating4x8BitPackedMixedSignednessAccelerated": 0,
+            "integerDotProductAccumulatingSaturating4x8BitPackedSignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating4x8BitPackedUnsignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating64BitMixedSignednessAccelerated": 0,
+            "integerDotProductAccumulatingSaturating64BitSignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating64BitUnsignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating8BitMixedSignednessAccelerated": 0,
+            "integerDotProductAccumulatingSaturating8BitSignedAccelerated": 0,
+            "integerDotProductAccumulatingSaturating8BitUnsignedAccelerated": 0,
+            "maxBufferSize": "4294967292",
+            "maxComputeWorkgroupSubgroups": 4294967295,
+            "maxDescriptorSetInlineUniformBlocks": 64,
+            "maxDescriptorSetUpdateAfterBindInlineUniformBlocks": 64,
+            "maxInlineUniformBlockSize": 4194304,
+            "maxInlineUniformTotalSize": 65535,
+            "maxPerStageDescriptorInlineUniformBlocks": 134217728,
+            "maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks": 134217728,
+            "maxSubgroupSize": 64,
+            "minSubgroupSize": 64,
+            "requiredSubgroupSizeStages": 0,
+            "storageTexelBufferOffsetAlignmentBytes": "4",
+            "storageTexelBufferOffsetSingleTexelAlignment": 1,
+            "uniformTexelBufferOffsetAlignmentBytes": "4",
+            "uniformTexelBufferOffsetSingleTexelAlignment": 1
+        }
+    },
+    "environment": {
+        "appversion": "4.03",
+        "architecture": "x86_64",
+        "comment": "",
+        "name": "nixos",
+        "ostype": -1,
+        "reportversion": "4.0",
+        "submitter": "",
+        "version": "26.05"
+    },
+    "extended": {
+        "devicefeatures2": [
+            {
+                "extension": "VK_AMD_shader_early_and_late_fragment_tests",
+                "name": "shaderEarlyAndLateFragmentTests",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "transformFeedback",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "geometryStreams",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_pipeline_robustness",
+                "name": "pipelineRobustness",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_conditional_rendering",
+                "name": "conditionalRendering",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_conditional_rendering",
+                "name": "inheritedConditionalRendering",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_depth_clip_enable",
+                "name": "depthClipEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "inlineUniformBlock",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "descriptorBindingInlineUniformBlockUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderInputAttachmentArrayDynamicIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderUniformTexelBufferArrayDynamicIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageTexelBufferArrayDynamicIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderUniformBufferArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderSampledImageArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageBufferArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageImageArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderInputAttachmentArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderUniformTexelBufferArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageTexelBufferArrayNonUniformIndexing",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingUniformBufferUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingSampledImageUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingStorageImageUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingStorageBufferUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingUniformTexelBufferUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingStorageTexelBufferUpdateAfterBind",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingUpdateUnusedWhilePending",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingPartiallyBound",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "descriptorBindingVariableDescriptorCount",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "runtimeDescriptorArray",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_vertex_attribute_divisor",
+                "name": "vertexAttributeInstanceRateDivisor",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_vertex_attribute_divisor",
+                "name": "vertexAttributeInstanceRateZeroDivisor",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_scalar_block_layout",
+                "name": "scalarBlockLayout",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "subgroupSizeControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "computeFullSubgroups",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_image_atomic_int64",
+                "name": "shaderImageInt64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_image_atomic_int64",
+                "name": "sparseImageInt64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_memory_priority",
+                "name": "memoryPriority",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_buffer_device_address",
+                "name": "bufferDeviceAddress",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_buffer_device_address",
+                "name": "bufferDeviceAddressCaptureReplay",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_buffer_device_address",
+                "name": "bufferDeviceAddressMultiDevice",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_ycbcr_image_arrays",
+                "name": "ycbcrImageArrays",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_provoking_vertex",
+                "name": "provokingVertexLast",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_provoking_vertex",
+                "name": "transformFeedbackPreservesProvokingVertex",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "rectangularLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "bresenhamLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "smoothLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "stippledRectangularLines",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "stippledBresenhamLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "stippledSmoothLines",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderBufferFloat32Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderBufferFloat32AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderBufferFloat64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderBufferFloat64AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderSharedFloat32Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderSharedFloat32AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderSharedFloat64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderSharedFloat64AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderImageFloat32Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "shaderImageFloat32AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "sparseImageFloat32Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float",
+                "name": "sparseImageFloat32AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_host_query_reset",
+                "name": "hostQueryReset",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state",
+                "name": "extendedDynamicState",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_map_memory_placed",
+                "name": "memoryMapPlaced",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_map_memory_placed",
+                "name": "memoryMapRangePlaced",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_map_memory_placed",
+                "name": "memoryUnmapReserve",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderBufferFloat16Atomics",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderBufferFloat16AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderBufferFloat16AtomicMinMax",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderBufferFloat32AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderBufferFloat64AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderSharedFloat16Atomics",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderSharedFloat16AtomicAdd",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderSharedFloat16AtomicMinMax",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderSharedFloat32AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderSharedFloat64AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "shaderImageFloat32AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_atomic_float2",
+                "name": "sparseImageFloat32AtomicMinMax",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_swapchain_maintenance1",
+                "name": "swapchainMaintenance1",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_demote_to_helper_invocation",
+                "name": "shaderDemoteToHelperInvocation",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_texel_buffer_alignment",
+                "name": "texelBufferAlignment",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_bias_control",
+                "name": "depthBiasControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_bias_control",
+                "name": "leastRepresentableValueForceUnormRepresentation",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_bias_control",
+                "name": "floatRepresentation",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_bias_control",
+                "name": "depthBiasExact",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_device_memory_report",
+                "name": "deviceMemoryReport",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_robustness2",
+                "name": "robustBufferAccess2",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_robustness2",
+                "name": "robustImageAccess2",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_robustness2",
+                "name": "nullDescriptor",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_custom_border_color",
+                "name": "customBorderColors",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_custom_border_color",
+                "name": "customBorderColorWithoutFormat",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_private_data",
+                "name": "privateData",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_pipeline_creation_cache_control",
+                "name": "pipelineCreationCacheControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBuffer",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBufferCaptureReplay",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBufferImageLayoutIgnored",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBufferPushDescriptors",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_graphics_pipeline_library",
+                "name": "graphicsPipelineLibrary",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_ycbcr_2plane_444_formats",
+                "name": "ycbcr2plane444Formats",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_image_robustness",
+                "name": "robustImageAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_image_compression_control",
+                "name": "imageCompressionControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_attachment_feedback_loop_layout",
+                "name": "attachmentFeedbackLoopLayout",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_4444_formats",
+                "name": "formatA4R4G4B4",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_4444_formats",
+                "name": "formatA4B4G4R4",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_device_fault",
+                "name": "deviceFault",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_device_fault",
+                "name": "deviceFaultVendorBinary",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_vertex_input_dynamic_state",
+                "name": "vertexInputDynamicState",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_device_address_binding_report",
+                "name": "reportAddressBinding",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_clip_control",
+                "name": "depthClipControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_primitive_topology_list_restart",
+                "name": "primitiveTopologyListRestart",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_primitive_topology_list_restart",
+                "name": "primitiveTopologyPatchListRestart",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state2",
+                "name": "extendedDynamicState2",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state2",
+                "name": "extendedDynamicState2LogicOp",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state2",
+                "name": "extendedDynamicState2PatchControlPoints",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_color_write_enable",
+                "name": "colorWriteEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_primitives_generated_query",
+                "name": "primitivesGeneratedQuery",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_primitives_generated_query",
+                "name": "primitivesGeneratedQueryWithRasterizerDiscard",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_primitives_generated_query",
+                "name": "primitivesGeneratedQueryWithNonZeroStreams",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_global_priority_query",
+                "name": "globalPriorityQuery",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_image_view_min_lod",
+                "name": "minLod",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_multi_draw",
+                "name": "multiDraw",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_image_2d_view_of_3d",
+                "name": "image2DViewOf3D",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_image_2d_view_of_3d",
+                "name": "sampler2DViewOf3D",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_depth_clamp_zero_one",
+                "name": "depthClampZeroOne",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_non_seamless_cube_map",
+                "name": "nonSeamlessCubeMap",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_nested_command_buffer",
+                "name": "nestedCommandBuffer",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_nested_command_buffer",
+                "name": "nestedCommandBufferRendering",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_nested_command_buffer",
+                "name": "nestedCommandBufferSimultaneousUse",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3TessellationDomainOrigin",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3DepthClampEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3PolygonMode",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3RasterizationSamples",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3SampleMask",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3AlphaToCoverageEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3AlphaToOneEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3LogicOpEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ColorBlendEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ColorBlendEquation",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ColorWriteMask",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3RasterizationStream",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ConservativeRasterizationMode",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ExtraPrimitiveOverestimationSize",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3DepthClipEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3SampleLocationsEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ColorBlendAdvanced",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ProvokingVertexMode",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3LineRasterizationMode",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3LineStippleEnable",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3DepthClipNegativeOneToOne",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ViewportWScalingEnable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ViewportSwizzle",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageToColorEnable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageToColorLocation",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageModulationMode",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageModulationTableEnable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageModulationTable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3CoverageReductionMode",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3RepresentativeFragmentTestEnable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "extendedDynamicState3ShadingRateImageEnable",
+                "supported": false
+            },
+            {
+                "extension": "VK_EXT_shader_module_identifier",
+                "name": "shaderModuleIdentifier",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_object",
+                "name": "shaderObject",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_mutable_descriptor_type",
+                "name": "mutableDescriptorType",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_legacy_vertex_attributes",
+                "name": "legacyVertexAttributes",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_dynamic_rendering_unused_attachments",
+                "name": "dynamicRenderingUnusedAttachments",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_attachment_feedback_loop_dynamic_state",
+                "name": "attachmentFeedbackLoopDynamicState",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_shader_replicated_composites",
+                "name": "shaderReplicatedComposites",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_depth_clamp_control",
+                "name": "depthClampControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_EXT_zero_initialize_device_memory",
+                "name": "zeroInitializeDeviceMemory",
+                "supported": true
+            },
+            {
+                "extension": "VK_INTEL_shader_integer_functions2",
+                "name": "shaderIntegerFunctions2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_dynamic_rendering",
+                "name": "dynamicRendering",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_multiview",
+                "name": "multiview",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_multiview",
+                "name": "multiviewGeometryShader",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_multiview",
+                "name": "multiviewTessellationShader",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_float16_int8",
+                "name": "shaderFloat16",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_shader_float16_int8",
+                "name": "shaderInt8",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storageBuffer16BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "uniformAndStorageBuffer16BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storagePushConstant16",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_16bit_storage",
+                "name": "storageInputOutput16",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_imageless_framebuffer",
+                "name": "imagelessFramebuffer",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_variable_pointers",
+                "name": "variablePointersStorageBuffer",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_variable_pointers",
+                "name": "variablePointers",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_sampler_ycbcr_conversion",
+                "name": "samplerYcbcrConversion",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_subgroup_extended_types",
+                "name": "shaderSubgroupExtendedTypes",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_8bit_storage",
+                "name": "storageBuffer8BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_8bit_storage",
+                "name": "uniformAndStorageBuffer8BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_8bit_storage",
+                "name": "storagePushConstant8",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_atomic_int64",
+                "name": "shaderBufferInt64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_atomic_int64",
+                "name": "shaderSharedInt64Atomics",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_clock",
+                "name": "shaderSubgroupClock",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_clock",
+                "name": "shaderDeviceClock",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_global_priority",
+                "name": "globalPriorityQuery",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_timeline_semaphore",
+                "name": "timelineSemaphore",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_vulkan_memory_model",
+                "name": "vulkanMemoryModel",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_vulkan_memory_model",
+                "name": "vulkanMemoryModelDeviceScope",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_vulkan_memory_model",
+                "name": "vulkanMemoryModelAvailabilityVisibilityChains",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_shader_terminate_invocation",
+                "name": "shaderTerminateInvocation",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_dynamic_rendering_local_read",
+                "name": "dynamicRenderingLocalRead",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_quad_control",
+                "name": "shaderQuadControl",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_separate_depth_stencil_layouts",
+                "name": "separateDepthStencilLayouts",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_present_wait",
+                "name": "presentWait",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_uniform_buffer_standard_layout",
+                "name": "uniformBufferStandardLayout",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_buffer_device_address",
+                "name": "bufferDeviceAddress",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_buffer_device_address",
+                "name": "bufferDeviceAddressCaptureReplay",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_buffer_device_address",
+                "name": "bufferDeviceAddressMultiDevice",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_pipeline_executable_properties",
+                "name": "pipelineExecutableInfo",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "shaderIntegerDotProduct",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_present_id",
+                "name": "presentId",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_synchronization2",
+                "name": "synchronization2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_subgroup_uniform_control_flow",
+                "name": "shaderSubgroupUniformControlFlow",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_zero_initialize_workgroup_memory",
+                "name": "shaderZeroInitializeWorkgroupMemory",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_workgroup_memory_explicit_layout",
+                "name": "workgroupMemoryExplicitLayout",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_workgroup_memory_explicit_layout",
+                "name": "workgroupMemoryExplicitLayoutScalarBlockLayout",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_workgroup_memory_explicit_layout",
+                "name": "workgroupMemoryExplicitLayout8BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_workgroup_memory_explicit_layout",
+                "name": "workgroupMemoryExplicitLayout16BitAccess",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_untyped_pointers",
+                "name": "shaderUntypedPointers",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance4",
+                "name": "maintenance4",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_subgroup_rotate",
+                "name": "shaderSubgroupRotate",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_subgroup_rotate",
+                "name": "shaderSubgroupRotateClustered",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_maximal_reconvergence",
+                "name": "shaderMaximalReconvergence",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "maintenance5",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_present_id2",
+                "name": "presentId2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_present_wait2",
+                "name": "presentWait2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaries",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_compute_shader_derivatives",
+                "name": "computeDerivativeGroupQuads",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_compute_shader_derivatives",
+                "name": "computeDerivativeGroupLinear",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_vertex_attribute_divisor",
+                "name": "vertexAttributeInstanceRateDivisor",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_vertex_attribute_divisor",
+                "name": "vertexAttributeInstanceRateZeroDivisor",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls2",
+                "name": "shaderFloatControls2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "rectangularLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "bresenhamLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "smoothLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "stippledRectangularLines",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "stippledBresenhamLines",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "stippledSmoothLines",
+                "supported": false
+            },
+            {
+                "extension": "VK_KHR_shader_expect_assume",
+                "name": "shaderExpectAssume",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance6",
+                "name": "maintenance6",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_relaxed_extended_instruction",
+                "name": "shaderRelaxedExtendedInstruction",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maintenance7",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance8",
+                "name": "maintenance8",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_maintenance9",
+                "name": "maintenance9",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_depth_clamp_zero_one",
+                "name": "depthClampZeroOne",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_robustness2",
+                "name": "robustBufferAccess2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_robustness2",
+                "name": "robustImageAccess2",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_robustness2",
+                "name": "nullDescriptor",
+                "supported": true
+            },
+            {
+                "extension": "VK_NV_compute_shader_derivatives",
+                "name": "computeDerivativeGroupQuads",
+                "supported": false
+            },
+            {
+                "extension": "VK_NV_compute_shader_derivatives",
+                "name": "computeDerivativeGroupLinear",
+                "supported": true
+            },
+            {
+                "extension": "VK_VALVE_mutable_descriptor_type",
+                "name": "mutableDescriptorType",
+                "supported": true
+            },
+            {
+                "extension": "VK_KHR_shader_draw_parameters",
+                "name": "shaderDrawParameters",
+                "supported": true
+            }
+        ],
+        "deviceproperties2": [
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "shaderEngineCount",
+                "value": "1"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "shaderArraysPerEngineCount",
+                "value": "1"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "computeUnitsPerShaderArray",
+                "value": "6"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "simdPerComputeUnit",
+                "value": "4"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "wavefrontsPerSimd",
+                "value": "10"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "wavefrontSize",
+                "value": "64"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "sgprsPerSimd",
+                "value": "512"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "minSgprAllocation",
+                "value": "8"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "maxSgprAllocation",
+                "value": "104"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "sgprAllocationGranularity",
+                "value": "8"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "vgprsPerSimd",
+                "value": "256"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "minVgprAllocation",
+                "value": "4"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "maxVgprAllocation",
+                "value": "256"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties",
+                "name": "vgprAllocationGranularity",
+                "value": "4"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties2",
+                "name": "shaderCoreFeatures",
+                "value": "0"
+            },
+            {
+                "extension": "VK_AMD_shader_core_properties2",
+                "name": "activeComputeUnitCount",
+                "value": "6"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackStreams",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackBuffers",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackBufferSize",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackStreamDataSize",
+                "value": "512"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackBufferDataSize",
+                "value": "512"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "maxTransformFeedbackBufferDataStride",
+                "value": "512"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "transformFeedbackQueries",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "transformFeedbackStreamsLinesTriangles",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "transformFeedbackRasterizationStreamSelect",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_transform_feedback",
+                "name": "transformFeedbackDraw",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_pipeline_robustness",
+                "name": "defaultRobustnessStorageBuffers",
+                "value": "2"
+            },
+            {
+                "extension": "VK_EXT_pipeline_robustness",
+                "name": "defaultRobustnessUniformBuffers",
+                "value": "2"
+            },
+            {
+                "extension": "VK_EXT_pipeline_robustness",
+                "name": "defaultRobustnessVertexInputs",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_pipeline_robustness",
+                "name": "defaultRobustnessImages",
+                "value": "3"
+            },
+            {
+                "extension": "VK_EXT_discard_rectangles",
+                "name": "maxDiscardRectangles",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_sampler_filter_minmax",
+                "name": "filterMinmaxSingleComponentFormats",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_sampler_filter_minmax",
+                "name": "filterMinmaxImageComponentMapping",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "maxInlineUniformBlockSize",
+                "value": "4194304"
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "maxPerStageDescriptorInlineUniformBlocks",
+                "value": "134217728"
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "maxPerStageDescriptorUpdateAfterBindInlineUniformBlocks",
+                "value": "134217728"
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "maxDescriptorSetInlineUniformBlocks",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_inline_uniform_block",
+                "name": "maxDescriptorSetUpdateAfterBindInlineUniformBlocks",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_sample_locations",
+                "name": "sampleLocationSampleCounts",
+                "value": "14"
+            },
+            {
+                "extension": "VK_EXT_sample_locations",
+                "name": "maxSampleLocationGridSize",
+                "value": [
+                    2,
+                    2
+                ]
+            },
+            {
+                "extension": "VK_EXT_sample_locations",
+                "name": "sampleLocationCoordinateRange",
+                "value": [
+                    0,
+                    0.9375
+                ]
+            },
+            {
+                "extension": "VK_EXT_sample_locations",
+                "name": "sampleLocationSubPixelBits",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_sample_locations",
+                "name": "variableSampleLocations",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxUpdateAfterBindDescriptorsInAllPools",
+                "value": "67108863"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderUniformBufferArrayNonUniformIndexingNative",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderSampledImageArrayNonUniformIndexingNative",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageBufferArrayNonUniformIndexingNative",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderStorageImageArrayNonUniformIndexingNative",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "shaderInputAttachmentArrayNonUniformIndexingNative",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "robustBufferAccessUpdateAfterBind",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "quadDivergentImplicitLod",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindSamplers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindUniformBuffers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindStorageBuffers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindSampledImages",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindStorageImages",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageDescriptorUpdateAfterBindInputAttachments",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxPerStageUpdateAfterBindResources",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindSamplers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindUniformBuffers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindUniformBuffersDynamic",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindStorageBuffers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindStorageBuffersDynamic",
+                "value": "8"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindSampledImages",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindStorageImages",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_indexing",
+                "name": "maxDescriptorSetUpdateAfterBindInputAttachments",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_external_memory_host",
+                "name": "minImportedHostPointerAlignment",
+                "value": "4096"
+            },
+            {
+                "extension": "VK_EXT_vertex_attribute_divisor",
+                "name": "maxVertexAttribDivisor",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_pci_bus_info",
+                "name": "pciDomain",
+                "value": "0"
+            },
+            {
+                "extension": "VK_EXT_pci_bus_info",
+                "name": "pciBus",
+                "value": "0"
+            },
+            {
+                "extension": "VK_EXT_pci_bus_info",
+                "name": "pciDevice",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_pci_bus_info",
+                "name": "pciFunction",
+                "value": "0"
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "minSubgroupSize",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "maxSubgroupSize",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "maxComputeWorkgroupSubgroups",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_subgroup_size_control",
+                "name": "requiredSubgroupSizeStages",
+                "value": "0"
+            },
+            {
+                "extension": "VK_EXT_provoking_vertex",
+                "name": "provokingVertexModePerPipeline",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_provoking_vertex",
+                "name": "transformFeedbackPreservesTriangleFanProvokingVertex",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_line_rasterization",
+                "name": "lineSubPixelPrecisionBits",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_map_memory_placed",
+                "name": "minPlacedMemoryMapAlignment",
+                "value": "4096"
+            },
+            {
+                "extension": "VK_EXT_texel_buffer_alignment",
+                "name": "storageTexelBufferOffsetAlignmentBytes",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_texel_buffer_alignment",
+                "name": "storageTexelBufferOffsetSingleTexelAlignment",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_texel_buffer_alignment",
+                "name": "uniformTexelBufferOffsetAlignmentBytes",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_texel_buffer_alignment",
+                "name": "uniformTexelBufferOffsetSingleTexelAlignment",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_robustness2",
+                "name": "robustStorageBufferAccessSizeAlignment",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_robustness2",
+                "name": "robustUniformBufferAccessSizeAlignment",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_custom_border_color",
+                "name": "maxCustomBorderColorSamplers",
+                "value": "4096"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "combinedImageSamplerDescriptorSingleArray",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "bufferlessPushDescriptors",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "allowSamplerImageViewPostSubmitCreation",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBufferOffsetAlignment",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxDescriptorBufferBindings",
+                "value": "32"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxResourceDescriptorBufferBindings",
+                "value": "32"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxSamplerDescriptorBufferBindings",
+                "value": "32"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxEmbeddedImmutableSamplerBindings",
+                "value": "32"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxEmbeddedImmutableSamplers",
+                "value": "8388606"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "bufferCaptureReplayDescriptorDataSize",
+                "value": "8"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "imageCaptureReplayDescriptorDataSize",
+                "value": "8"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "imageViewCaptureReplayDescriptorDataSize",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "samplerCaptureReplayDescriptorDataSize",
+                "value": "4"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "accelerationStructureCaptureReplayDescriptorDataSize",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "samplerDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "combinedImageSamplerDescriptorSize",
+                "value": "96"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "sampledImageDescriptorSize",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "storageImageDescriptorSize",
+                "value": "32"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "uniformTexelBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "robustUniformTexelBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "storageTexelBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "robustStorageTexelBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "uniformBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "robustUniformBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "storageBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "robustStorageBufferDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "inputAttachmentDescriptorSize",
+                "value": "64"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "accelerationStructureDescriptorSize",
+                "value": "16"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxSamplerDescriptorBufferRange",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "maxResourceDescriptorBufferRange",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "samplerDescriptorBufferAddressSpaceSize",
+                "value": "4294967292"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "resourceDescriptorBufferAddressSpaceSize",
+                "value": "4294967292"
+            },
+            {
+                "extension": "VK_EXT_descriptor_buffer",
+                "name": "descriptorBufferAddressSpaceSize",
+                "value": "4294967292"
+            },
+            {
+                "extension": "VK_EXT_graphics_pipeline_library",
+                "name": "graphicsPipelineLibraryFastLinking",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_graphics_pipeline_library",
+                "name": "graphicsPipelineLibraryIndependentInterpolationDecoration",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "hasPrimary",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "hasRender",
+                "value": "true"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "primaryMajor",
+                "value": "226"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "primaryMinor",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "renderMajor",
+                "value": "226"
+            },
+            {
+                "extension": "VK_EXT_physical_device_drm",
+                "name": "renderMinor",
+                "value": "128"
+            },
+            {
+                "extension": "VK_EXT_multi_draw",
+                "name": "maxMultiDrawCount",
+                "value": "2048"
+            },
+            {
+                "extension": "VK_EXT_nested_command_buffer",
+                "name": "maxCommandBufferNestingLevel",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_EXT_extended_dynamic_state3",
+                "name": "dynamicPrimitiveTopologyUnrestricted",
+                "value": "false"
+            },
+            {
+                "extension": "VK_EXT_shader_module_identifier",
+                "name": "shaderModuleIdentifierAlgorithmUUID",
+                "value": [
+                    77,
+                    69,
+                    83,
+                    65,
+                    45,
+                    66,
+                    76,
+                    65,
+                    75,
+                    69,
+                    51,
+                    0,
+                    0,
+                    0,
+                    0,
+                    0
+                ]
+            },
+            {
+                "extension": "VK_EXT_shader_object",
+                "name": "shaderBinaryUUID",
+                "value": [
+                    204,
+                    136,
+                    12,
+                    231,
+                    89,
+                    0,
+                    38,
+                    106,
+                    237,
+                    162,
+                    169,
+                    159,
+                    53,
+                    167,
+                    66,
+                    169
+                ]
+            },
+            {
+                "extension": "VK_EXT_shader_object",
+                "name": "shaderBinaryVersion",
+                "value": "1"
+            },
+            {
+                "extension": "VK_EXT_legacy_vertex_attributes",
+                "name": "nativeUnalignedPerformance",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_multiview",
+                "name": "maxMultiviewViewCount",
+                "value": "8"
+            },
+            {
+                "extension": "VK_KHR_multiview",
+                "name": "maxMultiviewInstanceIndex",
+                "value": "2147483647"
+            },
+            {
+                "extension": "VK_KHR_push_descriptor",
+                "name": "maxPushDescriptors",
+                "value": "32"
+            },
+            {
+                "extension": "VK_KHR_maintenance2",
+                "name": "pointClippingBehavior",
+                "value": "0"
+            },
+            {
+                "extension": "VK_KHR_maintenance3",
+                "name": "maxPerSetDescriptors",
+                "value": "22369621"
+            },
+            {
+                "extension": "VK_KHR_maintenance3",
+                "name": "maxMemoryAllocationSize",
+                "value": "4294967292"
+            },
+            {
+                "extension": "VK_KHR_driver_properties",
+                "name": "driverID",
+                "value": "3"
+            },
+            {
+                "extension": "VK_KHR_driver_properties",
+                "name": "driverName",
+                "value": "radv"
+            },
+            {
+                "extension": "VK_KHR_driver_properties",
+                "name": "driverInfo",
+                "value": "Mesa 25.3.1"
+            },
+            {
+                "extension": "VK_KHR_driver_properties",
+                "name": "conformanceVersion",
+                "value": "1.4.0.0"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "denormBehaviorIndependence",
+                "value": "1"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "roundingModeIndependence",
+                "value": "1"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderSignedZeroInfNanPreserveFloat16",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderSignedZeroInfNanPreserveFloat32",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderSignedZeroInfNanPreserveFloat64",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormPreserveFloat16",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormPreserveFloat32",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormPreserveFloat64",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormFlushToZeroFloat16",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormFlushToZeroFloat32",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderDenormFlushToZeroFloat64",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTEFloat16",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTEFloat32",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTEFloat64",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTZFloat16",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTZFloat32",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_shader_float_controls",
+                "name": "shaderRoundingModeRTZFloat64",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_depth_stencil_resolve",
+                "name": "supportedDepthResolveModes",
+                "value": "15"
+            },
+            {
+                "extension": "VK_KHR_depth_stencil_resolve",
+                "name": "supportedStencilResolveModes",
+                "value": "13"
+            },
+            {
+                "extension": "VK_KHR_depth_stencil_resolve",
+                "name": "independentResolveNone",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_depth_stencil_resolve",
+                "name": "independentResolve",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_timeline_semaphore",
+                "name": "maxTimelineSemaphoreValueDifference",
+                "value": "18446744073709551615"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct8BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct8BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct8BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct4x8BitPackedUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct4x8BitPackedSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct4x8BitPackedMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct16BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct16BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct16BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct32BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct32BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct32BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct64BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct64BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProduct64BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating8BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating8BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating8BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating4x8BitPackedUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating4x8BitPackedSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating4x8BitPackedMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating16BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating16BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating16BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating32BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating32BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating32BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating64BitUnsignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating64BitSignedAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_shader_integer_dot_product",
+                "name": "integerDotProductAccumulatingSaturating64BitMixedSignednessAccelerated",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_maintenance4",
+                "name": "maxBufferSize",
+                "value": "4294967292"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "earlyFragmentMultisampleCoverageAfterSampleCounting",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "earlyFragmentSampleMaskTestBeforeSampleCounting",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "depthStencilSwizzleOneSupport",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "polygonModePointSize",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "nonStrictSinglePixelWideLinesUseParallelogram",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance5",
+                "name": "nonStrictWideLinesUseParallelogram",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaryInternalCache",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaryInternalCacheControl",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaryPrefersInternalCache",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaryPrecompiledInternalCache",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_pipeline_binary",
+                "name": "pipelineBinaryCompressedData",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_compute_shader_derivatives",
+                "name": "meshAndTaskShaderDerivatives",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_vertex_attribute_divisor",
+                "name": "maxVertexAttribDivisor",
+                "value": "4294967295"
+            },
+            {
+                "extension": "VK_KHR_vertex_attribute_divisor",
+                "name": "supportsNonZeroFirstInstance",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_line_rasterization",
+                "name": "lineSubPixelPrecisionBits",
+                "value": "4"
+            },
+            {
+                "extension": "VK_KHR_maintenance6",
+                "name": "blockTexelViewCompatibleMultipleLayers",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance6",
+                "name": "maxCombinedImageSamplerDescriptorCount",
+                "value": "3"
+            },
+            {
+                "extension": "VK_KHR_maintenance6",
+                "name": "fragmentShadingRateClampCombinerInputs",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "robustFragmentShadingRateAttachmentAccess",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "separateDepthStencilAttachmentAccess",
+                "value": "true"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetTotalUniformBuffersDynamic",
+                "value": "16"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetTotalStorageBuffersDynamic",
+                "value": "8"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetTotalBuffersDynamic",
+                "value": "24"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetUpdateAfterBindTotalUniformBuffersDynamic",
+                "value": "16"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetUpdateAfterBindTotalStorageBuffersDynamic",
+                "value": "8"
+            },
+            {
+                "extension": "VK_KHR_maintenance7",
+                "name": "maxDescriptorSetUpdateAfterBindTotalBuffersDynamic",
+                "value": "24"
+            },
+            {
+                "extension": "VK_KHR_maintenance9",
+                "name": "image2DViewOf3DSparse",
+                "value": "false"
+            },
+            {
+                "extension": "VK_KHR_maintenance9",
+                "name": "defaultVertexAttributeValue",
+                "value": "0"
+            },
+            {
+                "extension": "VK_KHR_robustness2",
+                "name": "robustStorageBufferAccessSizeAlignment",
+                "value": "4"
+            },
+            {
+                "extension": "VK_KHR_robustness2",
+                "name": "robustUniformBufferAccessSizeAlignment",
+                "value": "4"
+            }
+        ]
+    },
+    "extensions": [
+        {
+            "extensionName": "VK_KHR_8bit_storage",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_16bit_storage",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_bind_memory2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_buffer_device_address",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_calibrated_timestamps",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_compute_shader_derivatives",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_copy_commands2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_create_renderpass2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_dedicated_allocation",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_KHR_deferred_host_operations",
+            "specVersion": 4
+        },
+        {
+            "extensionName": "VK_KHR_depth_clamp_zero_one",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_depth_stencil_resolve",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_descriptor_update_template",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_device_group",
+            "specVersion": 4
+        },
+        {
+            "extensionName": "VK_KHR_draw_indirect_count",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_driver_properties",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_dynamic_rendering",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_dynamic_rendering_local_read",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_fence",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_fence_fd",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_memory",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_memory_fd",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_semaphore",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_external_semaphore_fd",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_format_feature_flags2",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_get_memory_requirements2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_global_priority",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_image_format_list",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_imageless_framebuffer",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_incremental_present",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_line_rasterization",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_load_store_op_none",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance1",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_maintenance2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance3",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance4",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_maintenance5",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance6",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance7",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance8",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_maintenance9",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_map_memory2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_multiview",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_pipeline_binary",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_pipeline_executable_properties",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_pipeline_library",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_present_id",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_present_id2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_present_wait",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_present_wait2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_push_descriptor",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_relaxed_block_layout",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_robustness2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_sampler_mirror_clamp_to_edge",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_KHR_sampler_ycbcr_conversion",
+            "specVersion": 14
+        },
+        {
+            "extensionName": "VK_KHR_separate_depth_stencil_layouts",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_atomic_int64",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_clock",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_draw_parameters",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_expect_assume",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_float16_int8",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_float_controls",
+            "specVersion": 4
+        },
+        {
+            "extensionName": "VK_KHR_shader_float_controls2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_integer_dot_product",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_maximal_reconvergence",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_non_semantic_info",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_quad_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_relaxed_extended_instruction",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_subgroup_extended_types",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_subgroup_rotate",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_shader_subgroup_uniform_control_flow",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_terminate_invocation",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_shader_untyped_pointers",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_spirv_1_4",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_storage_buffer_storage_class",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_swapchain",
+            "specVersion": 70
+        },
+        {
+            "extensionName": "VK_KHR_swapchain_mutable_format",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_synchronization2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_timeline_semaphore",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_KHR_uniform_buffer_standard_layout",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_variable_pointers",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_vertex_attribute_divisor",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_vulkan_memory_model",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_KHR_workgroup_memory_explicit_layout",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_KHR_zero_initialize_workgroup_memory",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_4444_formats",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_attachment_feedback_loop_dynamic_state",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_attachment_feedback_loop_layout",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_buffer_device_address",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_calibrated_timestamps",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_color_write_enable",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_conditional_rendering",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_custom_border_color",
+            "specVersion": 12
+        },
+        {
+            "extensionName": "VK_EXT_depth_bias_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_depth_clamp_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_depth_clamp_zero_one",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_depth_clip_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_depth_clip_enable",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_depth_range_unrestricted",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_descriptor_buffer",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_descriptor_indexing",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_device_address_binding_report",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_device_fault",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_device_memory_report",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_discard_rectangles",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_display_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_dynamic_rendering_unused_attachments",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_extended_dynamic_state",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_extended_dynamic_state2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_extended_dynamic_state3",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_external_memory_acquire_unmodified",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_external_memory_dma_buf",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_external_memory_host",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_global_priority",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_global_priority_query",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_graphics_pipeline_library",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_hdr_metadata",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_EXT_host_query_reset",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_image_2d_view_of_3d",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_image_compression_control",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_image_robustness",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_image_view_min_lod",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_inline_uniform_block",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_legacy_vertex_attributes",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_line_rasterization",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_load_store_op_none",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_map_memory_placed",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_memory_budget",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_memory_priority",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_multi_draw",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_mutable_descriptor_type",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_nested_command_buffer",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_non_seamless_cube_map",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_pci_bus_info",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_physical_device_drm",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_pipeline_creation_cache_control",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_EXT_pipeline_creation_feedback",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_pipeline_robustness",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_primitive_topology_list_restart",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_primitives_generated_query",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_private_data",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_provoking_vertex",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_queue_family_foreign",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_robustness2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_sample_locations",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_sampler_filter_minmax",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_scalar_block_layout",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_separate_stencil_usage",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_atomic_float",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_atomic_float2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_demote_to_helper_invocation",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_image_atomic_int64",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_module_identifier",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_object",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_replicated_composites",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_stencil_export",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_subgroup_ballot",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_subgroup_vote",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_shader_viewport_index_layer",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_subgroup_size_control",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_swapchain_maintenance1",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_texel_buffer_alignment",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_tooling_info",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_transform_feedback",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_vertex_attribute_divisor",
+            "specVersion": 3
+        },
+        {
+            "extensionName": "VK_EXT_vertex_input_dynamic_state",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_EXT_ycbcr_2plane_444_formats",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_ycbcr_image_arrays",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_EXT_zero_initialize_device_memory",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_buffer_marker",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_draw_indirect_count",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_AMD_gcn_shader",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_memory_overallocation_behavior",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_mixed_attachment_samples",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_ballot",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_core_properties",
+            "specVersion": 2
+        },
+        {
+            "extensionName": "VK_AMD_shader_core_properties2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_early_and_late_fragment_tests",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_explicit_vertex_parameter",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_fragment_mask",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_image_load_store_lod",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_shader_trinary_minmax",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_AMD_texture_gather_bias_lod",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_GOOGLE_decorate_string",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_GOOGLE_hlsl_functionality1",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_GOOGLE_user_type",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_INTEL_shader_integer_functions2",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_NV_compute_shader_derivatives",
+            "specVersion": 1
+        },
+        {
+            "extensionName": "VK_VALVE_mutable_descriptor_type",
+            "specVersion": 1
+        }
+    ],
+    "features": {
+        "alphaToOne": 1,
+        "depthBiasClamp": 1,
+        "depthBounds": 1,
+        "depthClamp": 1,
+        "drawIndirectFirstInstance": 1,
+        "dualSrcBlend": 1,
+        "fillModeNonSolid": 1,
+        "fragmentStoresAndAtomics": 1,
+        "fullDrawIndexUint32": 1,
+        "geometryShader": 1,
+        "imageCubeArray": 1,
+        "independentBlend": 1,
+        "inheritedQueries": 1,
+        "largePoints": 1,
+        "logicOp": 1,
+        "multiDrawIndirect": 1,
+        "multiViewport": 1,
+        "occlusionQueryPrecise": 1,
+        "pipelineStatisticsQuery": 1,
+        "robustBufferAccess": 1,
+        "sampleRateShading": 1,
+        "samplerAnisotropy": 1,
+        "shaderClipDistance": 1,
+        "shaderCullDistance": 1,
+        "shaderFloat64": 1,
+        "shaderImageGatherExtended": 1,
+        "shaderInt16": 1,
+        "shaderInt64": 1,
+        "shaderResourceMinLod": 1,
+        "shaderResourceResidency": 1,
+        "shaderSampledImageArrayDynamicIndexing": 1,
+        "shaderStorageBufferArrayDynamicIndexing": 1,
+        "shaderStorageImageArrayDynamicIndexing": 1,
+        "shaderStorageImageExtendedFormats": 1,
+        "shaderStorageImageMultisample": 1,
+        "shaderStorageImageReadWithoutFormat": 1,
+        "shaderStorageImageWriteWithoutFormat": 1,
+        "shaderTessellationAndGeometryPointSize": 1,
+        "shaderUniformBufferArrayDynamicIndexing": 1,
+        "sparseBinding": 0,
+        "sparseResidency16Samples": 0,
+        "sparseResidency2Samples": 0,
+        "sparseResidency4Samples": 0,
+        "sparseResidency8Samples": 0,
+        "sparseResidencyAliased": 0,
+        "sparseResidencyBuffer": 0,
+        "sparseResidencyImage2D": 0,
+        "sparseResidencyImage3D": 0,
+        "tessellationShader": 1,
+        "textureCompressionASTC_LDR": 0,
+        "textureCompressionBC": 1,
+        "textureCompressionETC2": 0,
+        "variableMultisampleRate": 1,
+        "vertexPipelineStoresAndAtomics": 1,
+        "wideLines": 1
+    },
+    "formats": [
+        [
+            1,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            2,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            3,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            4,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            5,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            6,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            7,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            8,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            9,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            10,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            11,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            12,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            13,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "1073794179",
+                "supported": true
+            }
+        ],
+        [
+            14,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            15,
+            {
+                "bufferFeatures": "16",
+                "linearTilingFeatures": "122241",
+                "optimalTilingFeatures": "122241",
+                "supported": true
+            }
+        ],
+        [
+            16,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            17,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            18,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            19,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            20,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            21,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            22,
+            {
+                "bufferFeatures": "16",
+                "linearTilingFeatures": "56705",
+                "optimalTilingFeatures": "56705",
+                "supported": true
+            }
+        ],
+        [
+            23,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            24,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            25,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            26,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            27,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            28,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            29,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            30,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            31,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            32,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            33,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            34,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            35,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            36,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            37,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            38,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            39,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            40,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            41,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            42,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            43,
+            {
+                "bufferFeatures": "16",
+                "linearTilingFeatures": "56705",
+                "optimalTilingFeatures": "56705",
+                "supported": true
+            }
+        ],
+        [
+            44,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            45,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            46,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            47,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            48,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            49,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            50,
+            {
+                "bufferFeatures": "16",
+                "linearTilingFeatures": "56705",
+                "optimalTilingFeatures": "56705",
+                "supported": true
+            }
+        ],
+        [
+            51,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            52,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            53,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            54,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            55,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            56,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            57,
+            {
+                "bufferFeatures": "16",
+                "linearTilingFeatures": "56705",
+                "optimalTilingFeatures": "56705",
+                "supported": true
+            }
+        ],
+        [
+            58,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            59,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            60,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            61,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            62,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            63,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            64,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            65,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            66,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            67,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            68,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            69,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            70,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            71,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            72,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            73,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            74,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            75,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            76,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            77,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            78,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            79,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            80,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            81,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            82,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            83,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            84,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            85,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            86,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            87,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            88,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            89,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            90,
+            {
+                "bufferFeatures": "536870976",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            91,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            92,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            93,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            94,
+            {
+                "bufferFeatures": "80",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            95,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            96,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            97,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            98,
+            {
+                "bufferFeatures": "120",
+                "linearTilingFeatures": "52359",
+                "optimalTilingFeatures": "52359",
+                "supported": true
+            }
+        ],
+        [
+            99,
+            {
+                "bufferFeatures": "120",
+                "linearTilingFeatures": "52359",
+                "optimalTilingFeatures": "52359",
+                "supported": true
+            }
+        ],
+        [
+            100,
+            {
+                "bufferFeatures": "120",
+                "linearTilingFeatures": "122247",
+                "optimalTilingFeatures": "122247",
+                "supported": true
+            }
+        ],
+        [
+            101,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            102,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            103,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            104,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "49153",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            105,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "49153",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            106,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "53249",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            107,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            108,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "52355",
+                "optimalTilingFeatures": "52355",
+                "supported": true
+            }
+        ],
+        [
+            109,
+            {
+                "bufferFeatures": "536871000",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            110,
+            {
+                "bufferFeatures": "112",
+                "linearTilingFeatures": "49158",
+                "optimalTilingFeatures": "49158",
+                "supported": true
+            }
+        ],
+        [
+            111,
+            {
+                "bufferFeatures": "112",
+                "linearTilingFeatures": "49158",
+                "optimalTilingFeatures": "49158",
+                "supported": true
+            }
+        ],
+        [
+            112,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "49152",
+                "optimalTilingFeatures": "49152",
+                "supported": true
+            }
+        ],
+        [
+            113,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            114,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            115,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            116,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            117,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            118,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            119,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            120,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            121,
+            {
+                "bufferFeatures": "64",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": true
+            }
+        ],
+        [
+            122,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            123,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "54273",
+                "optimalTilingFeatures": "54273",
+                "supported": true
+            }
+        ],
+        [
+            124,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "122371",
+                "supported": true
+            }
+        ],
+        [
+            125,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            126,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "122371",
+                "supported": true
+            }
+        ],
+        [
+            127,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "52737",
+                "supported": true
+            }
+        ],
+        [
+            128,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "54785",
+                "supported": true
+            }
+        ],
+        [
+            129,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            130,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "54785",
+                "supported": true
+            }
+        ],
+        [
+            131,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            132,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            133,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            134,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            135,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            136,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            137,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            138,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            139,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            140,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            141,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            142,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            143,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            144,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            145,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            146,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "119809",
+                "supported": true
+            }
+        ],
+        [
+            147,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            148,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            149,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            150,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            151,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            152,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            153,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            154,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            155,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            156,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            157,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            158,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            159,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            160,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            161,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            162,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            163,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            164,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            165,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            166,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            167,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            168,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            169,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            170,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            171,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            172,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            173,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            174,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            175,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            176,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            177,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            178,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            179,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            180,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            181,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            182,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            183,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            184,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156000,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156001,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156002,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156003,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156004,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156005,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156006,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156007,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            1000156008,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            1000156009,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156010,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156011,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156012,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156013,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156014,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156015,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156016,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156017,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "122243",
+                "optimalTilingFeatures": "122243",
+                "supported": true
+            }
+        ],
+        [
+            1000156018,
+            {
+                "bufferFeatures": "88",
+                "linearTilingFeatures": "56707",
+                "optimalTilingFeatures": "56707",
+                "supported": true
+            }
+        ],
+        [
+            1000156019,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156020,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156021,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156022,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156023,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156024,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156025,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156026,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156027,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156028,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "0",
+                "optimalTilingFeatures": "0",
+                "supported": false
+            }
+        ],
+        [
+            1000156029,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156030,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156031,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ],
+        [
+            1000156032,
+            {
+                "bufferFeatures": "0",
+                "linearTilingFeatures": "13029377",
+                "optimalTilingFeatures": "13029377",
+                "supported": true
+            }
+        ]
+    ],
+    "instance": {
+        "extensions": [
+            {
+                "extensionName": "VK_KHR_device_group_creation",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_display",
+                "specVersion": 23
+            },
+            {
+                "extensionName": "VK_KHR_external_fence_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_external_memory_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_external_semaphore_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_get_display_properties2",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_get_physical_device_properties2",
+                "specVersion": 2
+            },
+            {
+                "extensionName": "VK_KHR_get_surface_capabilities2",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_surface",
+                "specVersion": 25
+            },
+            {
+                "extensionName": "VK_KHR_surface_protected_capabilities",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_KHR_wayland_surface",
+                "specVersion": 6
+            },
+            {
+                "extensionName": "VK_KHR_xcb_surface",
+                "specVersion": 6
+            },
+            {
+                "extensionName": "VK_KHR_xlib_surface",
+                "specVersion": 6
+            },
+            {
+                "extensionName": "VK_EXT_acquire_drm_display",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_acquire_xlib_display",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_debug_report",
+                "specVersion": 10
+            },
+            {
+                "extensionName": "VK_EXT_debug_utils",
+                "specVersion": 2
+            },
+            {
+                "extensionName": "VK_EXT_direct_mode_display",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_display_surface_counter",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_headless_surface",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_surface_maintenance1",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_EXT_swapchain_colorspace",
+                "specVersion": 5
+            },
+            {
+                "extensionName": "VK_KHR_portability_enumeration",
+                "specVersion": 1
+            },
+            {
+                "extensionName": "VK_LUNARG_direct_driver_loading",
+                "specVersion": 1
+            }
+        ],
+        "layers": [
+            {
+                "description": "Open-source implementation of the VK_AMD_anti_lag extension.",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_MESA_anti_lag",
+                "specVersion": 4210991
+            },
+            {
+                "description": "Linux device selection layer",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_MESA_device_select",
+                "specVersion": 4210991
+            },
+            {
+                "description": "Open-source implementation of the VK_AMD_anti_lag extension.",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_MESA_anti_lag",
+                "specVersion": 4210991
+            },
+            {
+                "description": "Linux device selection layer",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_MESA_device_select",
+                "specVersion": 4210991
+            },
+            {
+                "description": "WSI HDR Layer (x86_64)",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_hdr_wsi",
+                "specVersion": 4206813
+            },
+            {
+                "description": "a post processing layer",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_VKBASALT_post_processing_64",
+                "specVersion": 4206815
+            },
+            {
+                "description": "a post processing layer",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_VKBASALT_post_processing_32",
+                "specVersion": 4206815
+            },
+            {
+                "description": "Khronos Validation Layer",
+                "extensions": [
+                ],
+                "implementationVersion": 1,
+                "layerName": "VK_LAYER_KHRONOS_validation",
+                "specVersion": 4211016
+            }
+        ]
+    },
+    "layers": [
+        {
+            "description": "Linux device selection layer",
+            "extensions": [
+            ],
+            "implementationVersion": 1,
+            "layerName": "VK_LAYER_MESA_device_select",
+            "specVersion": 4210991
+        }
+    ],
+    "memory": {
+        "memoryHeapCount": 2,
+        "memoryHeaps": [
+            {
+                "flags": 0,
+                "size": "0xc5d30000"
+            },
+            {
+                "flags": 1,
+                "size": "0x18ba62000"
+            }
+        ],
+        "memoryTypeCount": 7,
+        "memoryTypes": [
+            {
+                "heapIndex": 1,
+                "propertyFlags": 1
+            },
+            {
+                "heapIndex": 1,
+                "propertyFlags": 1
+            },
+            {
+                "heapIndex": 0,
+                "propertyFlags": 6
+            },
+            {
+                "heapIndex": 1,
+                "propertyFlags": 7
+            },
+            {
+                "heapIndex": 1,
+                "propertyFlags": 7
+            },
+            {
+                "heapIndex": 0,
+                "propertyFlags": 14
+            },
+            {
+                "heapIndex": 0,
+                "propertyFlags": 14
+            }
+        ]
+    },
+    "platformdetails": {
+    },
+    "profiles": [
+        {
+            "profileName": "VP_KHR_roadmap_2022",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_KHR_roadmap_2024",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_LUNARG_desktop_baseline_2022",
+            "specVersion": 2,
+            "supported": true
+        },
+        {
+            "profileName": "VP_LUNARG_desktop_baseline_2023",
+            "specVersion": 2,
+            "supported": true
+        },
+        {
+            "profileName": "VP_LUNARG_desktop_baseline_2024",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_LUNARG_minimum_requirements_1_0",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_LUNARG_minimum_requirements_1_1",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_LUNARG_minimum_requirements_1_2",
+            "specVersion": 1,
+            "supported": false
+        },
+        {
+            "profileName": "VP_LUNARG_minimum_requirements_1_3",
+            "specVersion": 1,
+            "supported": false
+        }
+    ],
+    "properties": {
+        "apiVersion": 4206920,
+        "apiVersionText": "1.3.328",
+        "deviceID": 4883,
+        "deviceName": "AMD Radeon R7 Graphics (RADV KAVERI)",
+        "deviceType": 1,
+        "deviceTypeText": "INTEGRATED_GPU",
+        "driverVersion": 104869889,
+        "driverVersionText": "25.3.1",
+        "headerversion": 330,
+        "limits": {
+            "bufferImageGranularity": "0x1",
+            "discreteQueuePriorities": 2,
+            "framebufferColorSampleCounts": 15,
+            "framebufferDepthSampleCounts": 15,
+            "framebufferNoAttachmentsSampleCounts": 15,
+            "framebufferStencilSampleCounts": 15,
+            "lineWidthGranularity": 0.125,
+            "lineWidthRange": [
+                0,
+                8
+            ],
+            "maxBoundDescriptorSets": 32,
+            "maxClipDistances": 8,
+            "maxColorAttachments": 8,
+            "maxCombinedClipAndCullDistances": 8,
+            "maxComputeSharedMemorySize": 65536,
+            "maxComputeWorkGroupCount": [
+                4294967295,
+                65535,
+                65535
+            ],
+            "maxComputeWorkGroupInvocations": 1024,
+            "maxComputeWorkGroupSize": [
+                1024,
+                1024,
+                1024
+            ],
+            "maxCullDistances": 8,
+            "maxDescriptorSetInputAttachments": 8388606,
+            "maxDescriptorSetSampledImages": 8388606,
+            "maxDescriptorSetSamplers": 8388606,
+            "maxDescriptorSetStorageBuffers": 8388606,
+            "maxDescriptorSetStorageBuffersDynamic": 8,
+            "maxDescriptorSetStorageImages": 8388606,
+            "maxDescriptorSetUniformBuffers": 8388606,
+            "maxDescriptorSetUniformBuffersDynamic": 16,
+            "maxDrawIndexedIndexValue": 4294967295,
+            "maxDrawIndirectCount": 4294967295,
+            "maxFragmentCombinedOutputResources": 8388606,
+            "maxFragmentDualSrcAttachments": 1,
+            "maxFragmentInputComponents": 128,
+            "maxFragmentOutputAttachments": 8,
+            "maxFramebufferHeight": 16384,
+            "maxFramebufferLayers": 1024,
+            "maxFramebufferWidth": 16384,
+            "maxGeometryInputComponents": 64,
+            "maxGeometryOutputComponents": 128,
+            "maxGeometryOutputVertices": 256,
+            "maxGeometryShaderInvocations": 32,
+            "maxGeometryTotalOutputComponents": 1024,
+            "maxImageArrayLayers": 2048,
+            "maxImageDimension1D": 16384,
+            "maxImageDimension2D": 16384,
+            "maxImageDimension3D": 2048,
+            "maxImageDimensionCube": 16384,
+            "maxInterpolationOffset": 2,
+            "maxMemoryAllocationCount": 4294967295,
+            "maxPerStageDescriptorInputAttachments": 8388606,
+            "maxPerStageDescriptorSampledImages": 8388606,
+            "maxPerStageDescriptorSamplers": 8388606,
+            "maxPerStageDescriptorStorageBuffers": 8388606,
+            "maxPerStageDescriptorStorageImages": 8388606,
+            "maxPerStageDescriptorUniformBuffers": 8388606,
+            "maxPerStageResources": 8388606,
+            "maxPushConstantsSize": 256,
+            "maxSampleMaskWords": 1,
+            "maxSamplerAllocationCount": 65536,
+            "maxSamplerAnisotropy": 16,
+            "maxSamplerLodBias": 16,
+            "maxStorageBufferRange": 4294967295,
+            "maxTessellationControlPerPatchOutputComponents": 120,
+            "maxTessellationControlPerVertexInputComponents": 128,
+            "maxTessellationControlPerVertexOutputComponents": 128,
+            "maxTessellationControlTotalOutputComponents": 4096,
+            "maxTessellationEvaluationInputComponents": 128,
+            "maxTessellationEvaluationOutputComponents": 128,
+            "maxTessellationGenerationLevel": 64,
+            "maxTessellationPatchSize": 32,
+            "maxTexelBufferElements": 4294967295,
+            "maxTexelGatherOffset": 31,
+            "maxTexelOffset": 31,
+            "maxUniformBufferRange": 4294967295,
+            "maxVertexInputAttributeOffset": 4294967295,
+            "maxVertexInputAttributes": 32,
+            "maxVertexInputBindingStride": 2048,
+            "maxVertexInputBindings": 32,
+            "maxVertexOutputComponents": 128,
+            "maxViewportDimensions": [
+                16384,
+                16384
+            ],
+            "maxViewports": 16,
+            "minInterpolationOffset": -2,
+            "minMemoryMapAlignment": "0x1000",
+            "minStorageBufferOffsetAlignment": "0x4",
+            "minTexelBufferOffsetAlignment": "0x4",
+            "minTexelGatherOffset": -32,
+            "minTexelOffset": -32,
+            "minUniformBufferOffsetAlignment": "0x4",
+            "mipmapPrecisionBits": 8,
+            "nonCoherentAtomSize": "0x40",
+            "optimalBufferCopyOffsetAlignment": "0x1",
+            "optimalBufferCopyRowPitchAlignment": "0x1",
+            "pointSizeGranularity": 0.125,
+            "pointSizeRange": [
+                0,
+                8191.875
+            ],
+            "sampledImageColorSampleCounts": 15,
+            "sampledImageDepthSampleCounts": 15,
+            "sampledImageIntegerSampleCounts": 15,
+            "sampledImageStencilSampleCounts": 15,
+            "sparseAddressSpaceSize": "0",
+            "standardSampleLocations": 1,
+            "storageImageSampleCounts": 15,
+            "strictLines": 0,
+            "subPixelInterpolationOffsetBits": 8,
+            "subPixelPrecisionBits": 8,
+            "subTexelPrecisionBits": 8,
+            "timestampComputeAndGraphics": 1,
+            "timestampPeriod": 10,
+            "viewportBoundsRange": [
+                -32768,
+                32767
+            ],
+            "viewportSubPixelBits": 8
+        },
+        "pipelineCacheUUID": [
+            204,
+            136,
+            12,
+            231,
+            89,
+            0,
+            38,
+            106,
+            237,
+            162,
+            169,
+            159,
+            53,
+            167,
+            66,
+            169
+        ],
+        "sparseProperties": {
+            "residencyAlignedMipSize": 0,
+            "residencyNonResidentStrict": 0,
+            "residencyStandard2DBlockShape": 0,
+            "residencyStandard2DMultisampleBlockShape": 0,
+            "residencyStandard3DBlockShape": 0
+        },
+        "subgroupProperties": {
+            "quadOperationsInAllStages": true,
+            "subgroupSize": 64,
+            "supportedOperations": 1791,
+            "supportedStages": 63
+        },
+        "vendorID": 4098
+    },
+    "queues": [
+        {
+            "minImageTransferGranularity": {
+                "depth": 1,
+                "height": 1,
+                "width": 1
+            },
+            "queueCount": 1,
+            "queueFlags": 15,
+            "supportsPresent": false,
+            "timestampValidBits": 64
+        },
+        {
+            "minImageTransferGranularity": {
+                "depth": 1,
+                "height": 1,
+                "width": 1
+            },
+            "queueCount": 4,
+            "queueFlags": 14,
+            "supportsPresent": false,
+            "timestampValidBits": 64
+        }
+    ],
+    "surfacecapabilites": {
+        "validSurface": false
+    }
+}

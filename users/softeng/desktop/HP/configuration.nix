@@ -14,7 +14,6 @@
     ../../../../modules/camera
     ../../../../modules/cli_tools
     ../../../../modules/community
-    ../../../../modules/computing
     ../../../../modules/data_transferring
     ../../../../modules/desktop
     ../../../../modules/development

@@ -17,9 +17,33 @@ in {
     ./mesa.nix
     ./openGL.nix
     ./vulkan.nix
-    # ./clvk.nix
+    ./nixos-opencl.nix
   ];
   config = lib.mkIf (settings.modules.graphics.enable or false) {
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        vulkan-memory-allocator
+        vulkan-extension-layer
+        vulkan-loader
+        vulkan-tools
+        libclc
+        libGL
+        libGLU
+        libglvnd
+        libGLX
+        libvdpau
+        libva
+        libva-utils
+        libva-vdpau-driver
+        vdpauinfo
+        xorg.libXv
+        xorg.libXvMC
+      ];
+    };
+
     environment.systemPackages = with pkgs;
       [
         imagemagick
