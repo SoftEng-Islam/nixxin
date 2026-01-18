@@ -17,7 +17,7 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl) {
     OCL_ICD_VENDORS = let
       drivers = [
         nixos-opencl.packages.${system}.clvk
-        nixos-opencl.packages.${system}.pocl
+        # nixos-opencl.packages.${system}.pocl
         # nixos-opencl.packages.${system}.mesa
       ];
     in pkgs.symlinkJoin {
