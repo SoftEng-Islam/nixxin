@@ -258,6 +258,25 @@
         "type": "github"
       }
     },
+    "nixos-opencl": {
+      "inputs": {
+        "clvk-src": "clvk-src",
+        "mesa-src": "mesa-src",
+        "nixpkgs": "nixpkgs_3",
+        "pocl-src": "pocl-src",
+        "shady-src": "shady-src",
+        "zig-src": "zig-src"
+      },
+      "locked": {
+        "path": "./pkgs/nixos-opencl",
+        "type": "path"
+      },
+      "original": {
+        "path": "./pkgs/nixos-opencl",
+        "type": "path"
+      },
+      "parent": []
+    },
     "nixpkgs": {
       "locked": {
         "lastModified": 1768564909,
@@ -292,22 +311,6 @@
     },
     "nixpkgs_3": {
       "locked": {
-        "lastModified": 1765186076,
-        "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "addf7cf5f383a3101ecfba091b98d0a1263dc9b8",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "ref": "nixos-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nixpkgs_4": {
-      "locked": {
         "lastModified": 1740162160,
         "narHash": "sha256-SSYxFhqCOb3aiPb6MmN68yEzBIltfom8IgRz7phHscM=",
         "owner": "nixos",
@@ -318,6 +321,22 @@
       "original": {
         "owner": "nixos",
         "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1765186076,
+        "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "addf7cf5f383a3101ecfba091b98d0a1263dc9b8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -337,25 +356,6 @@
         "repo": "nixpkgs",
         "type": "github"
       }
-    },
-    "opencl-flake": {
-      "inputs": {
-        "clvk-src": "clvk-src",
-        "mesa-src": "mesa-src",
-        "nixpkgs": "nixpkgs_4",
-        "pocl-src": "pocl-src",
-        "shady-src": "shady-src",
-        "zig-src": "zig-src"
-      },
-      "locked": {
-        "path": "./pkgs/clvk",
-        "type": "path"
-      },
-      "original": {
-        "path": "./pkgs/clvk",
-        "type": "path"
-      },
-      "parent": []
     },
     "pocl-src": {
       "flake": false,
@@ -400,8 +400,8 @@
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
         "nixGL": "nixGL",
-        "nixpkgs": "nixpkgs_3",
-        "opencl-flake": "opencl-flake",
+        "nixos-opencl": "nixos-opencl",
+        "nixpkgs": "nixpkgs_4",
         "quickshell": "quickshell",
         "systems": "systems_4",
         "yt-dlp-src": "yt-dlp-src"
