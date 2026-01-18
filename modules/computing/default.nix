@@ -26,7 +26,7 @@ in mkIf (settings.modules.computing.enable) {
     opencl-headers # Khronos OpenCL headers version 2023.12.14
     clinfo # Print all known information about all available OpenCL platforms and devices in the system
     clpeak # Tool which profiles OpenCL devices to find their peak capacities
-    # khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
+    khronos-ocl-icd-loader # Official Khronos OpenCL ICD Loader
     # Portable abstraction of hierarchical architectures for high-performance computing
     (hwloc.override { x11Support = true; })
   ];
