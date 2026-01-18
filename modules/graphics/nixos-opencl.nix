@@ -6,7 +6,7 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl) {
   environment.systemPackages = with pkgs; [
     clinfo
     opencl-headers
-    nixos-opencl.packages.${system}.clvk
+    # nixos-opencl.packages.${system}.clvk
   ];
   hardware.graphics.extraPackages = with pkgs;
     [
