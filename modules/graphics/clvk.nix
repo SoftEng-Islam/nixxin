@@ -4,7 +4,7 @@ let
   nixos-opencl = inputs.nixos-opencl;
 in {
   environment.systemPackages = [ pkgs.clinfo pkgs.opencl-headers ];
-  hardware.graphics.extraPackages = [ pkgs.khronos-opencl-icd-loader ];
+  # hardware.graphics.extraPackages = [ pkgs.khronos-opencl-icd-loader ];
   environment.sessionVariables = {
     OCL_ICD_VENDORS =
       let drivers = [ nixos-opencl.${system}.pocl nixos-opencl.${system}.clvk ];
