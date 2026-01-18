@@ -8,7 +8,7 @@ in {
   environment.sessionVariables = {
     OCL_ICD_VENDORS = let
       drivers = [
-        nixos-opencl.packages.${system}.pocl
+        # nixos-opencl.packages.${system}.pocl
         nixos-opencl.packages.${system}.clvk
       ];
     in pkgs.symlinkJoin {

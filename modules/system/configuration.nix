@@ -255,7 +255,7 @@ in {
         # vulkan-validation-layers
         mesa
         mesa-demos # Provides glxinfo, glxgears
-        mesa.opencl
+        # mesa.opencl
         libclc
         libGL
         libGLU
