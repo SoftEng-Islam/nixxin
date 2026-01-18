@@ -1,10 +1,10 @@
-{ settings, inputs, pkgs, lib, ... }:
+{ inputs, pkgs, ... }:
 let
   system = pkgs.stdenv.hostPlatform.system;
   nixos-opencl = inputs.nixos-opencl;
 in {
   environment.systemPackages = with pkgs; [ clinfo opencl-headers ];
-  hardware.graphics.extraPackages = with pkgs; [ khronos-ocl-icd-loader ];
+  hardware.graphics.extraPackages = [ ];
   environment.sessionVariables = {
     OCL_ICD_VENDORS = let
       drivers = [

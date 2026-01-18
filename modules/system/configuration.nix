@@ -247,29 +247,28 @@ in {
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs;
-        [
-          # vulkan-memory-allocator
-          # vulkan-extension-layer
-          # vulkan-loader
-          # vulkan-tools
+      extraPackages = with pkgs; [
+        vulkan-memory-allocator
+        vulkan-extension-layer
+        vulkan-loader
+        vulkan-tools
 
-          # mesa
-          # mesa-demos # Provides glxinfo, glxgears
-          # mesa.opencl
-          # libclc
-          # libGL
-          # libGLU
-          # libglvnd
-          # libGLX
-          # libvdpau
-          # libva
-          # libva-utils
-          # libva-vdpau-driver
-          # vdpauinfo
-          # xorg.libXv
-          # xorg.libXvMC
-        ];
+        mesa
+        mesa-demos # Provides glxinfo, glxgears
+        # mesa.opencl
+        libclc
+        libGL
+        libGLU
+        libglvnd
+        libGLX
+        libvdpau
+        libva
+        libva-utils
+        libva-vdpau-driver
+        vdpauinfo
+        xorg.libXv
+        xorg.libXvMC
+      ];
     };
   };
 

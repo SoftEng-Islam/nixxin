@@ -298,7 +298,7 @@
   modules.gaming.chess.enable = true;
 
   # [ Graphics ]
-  modules.graphics.mesa = false;
+  modules.graphics.mesa = true;
   modules.graphics.blender = true;
   modules.graphics.darktable = true;
   modules.graphics.davinci = false;

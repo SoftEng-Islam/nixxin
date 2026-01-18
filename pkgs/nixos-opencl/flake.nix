@@ -537,9 +537,7 @@
 
             clvk = { vendors = packages.${system}.clvk; };
           } // lib.attrsets.optionalAttrs (pkgs.stdenv.hostPlatform.isx86_64) {
-            # rocm = {
-            #   vendors = pkgs.rocmPackages.clr;
-            # };
+            rocm = { vendors = pkgs.rocmPackages.clr; };
 
             intel-cpu = {
               vendors =
