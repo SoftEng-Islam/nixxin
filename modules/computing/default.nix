@@ -16,7 +16,7 @@ in mkIf (settings.modules.computing.enable) {
   environment.variables = {
     # Optional: For Polaris cards (Radeon 500 series) OpenCL support
     ROC_ENABLE_PRE_VEGA = "1";
-    # RUSTICL_ENABLE = "radeonsi";
+    RUSTICL_ENABLE = "radeonsi";
   };
   environment.systemPackages = with pkgs; [
     # ocl-icd # OpenCL ICD Loader for opencl-headers-2023.12.14
