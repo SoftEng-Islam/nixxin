@@ -44,7 +44,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   # ------------------------------------------------
   environment.variables = {
     ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
     # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
     # ROCM_TARGET = "gfx700";
