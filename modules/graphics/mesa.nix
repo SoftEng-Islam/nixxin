@@ -14,7 +14,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
 
     # VK_ICD_FILENAMES = "$(cat ${icd})";
 
-    # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+    OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
     __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
     # Rusticl OpenCL
