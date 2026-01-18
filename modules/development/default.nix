@@ -44,9 +44,9 @@ in {
     services.mongodb.enable = true;
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
     environment.systemPackages = with pkgs; [
-      # inputs.devDocs-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
+      inputs.devDocs-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      ruby
+      ruby_3_4
       bundler
 
       gnome-text-editor
