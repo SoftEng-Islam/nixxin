@@ -256,7 +256,7 @@ in {
         mesa
         mesa-demos # Provides glxinfo, glxgears
         # mesa.opencl
-        libclc
+        # libclc
         libGL
         libGLU
         libglvnd
