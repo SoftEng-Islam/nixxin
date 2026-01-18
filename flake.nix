@@ -23,7 +23,7 @@
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
-    nixos-opencl.inputs.nixpkgs.follows = "nixpkgs";
+    # nixos-opencl.inputs.nixpkgs.follows = "nixpkgs";
 
     devDocs-flake.url = "path:./pkgs/devDocs";
     devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
