@@ -48,6 +48,7 @@ in {
 
       ruby_3_4
       bundler
+      bundix
 
       gnome-text-editor
 
