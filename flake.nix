@@ -21,7 +21,7 @@
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
 
-    # opencl-flake.url = "path:./pkgs/clvk";
+    opencl-flake.url = "path:./pkgs/clvk";
 
     devDocs-flake.url = "path:./pkgs/devDocs";
 
