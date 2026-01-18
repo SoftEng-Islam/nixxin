@@ -21,7 +21,7 @@ in {
   ];
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
-    graphics = {
+    hardware.graphics = {
       enable = true;
       enable32Bit = true;
       extraPackages = with pkgs; [
