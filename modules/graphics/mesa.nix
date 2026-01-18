@@ -31,7 +31,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # MESA_GL_VERSION_OVERRIDE = "4.6";
     # MESA_GLSL_VERSION_OVERRIDE = "460";
     # MESA_NO_ERROR = "1";
-    # MESA_LOADER_DRIVER_OVERRIDE = "radeonsi,zink";
+    MESA_LOADER_DRIVER_OVERRIDE = "radeonsi,zink";
 
     # Shader cache
     MESA_SHADER_CACHE_MAX_SIZE = "32G";
