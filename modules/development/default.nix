@@ -47,7 +47,7 @@ in {
       # inputs.devDocs-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
 
       ruby
-      rubyPackages.bundler
+      bundler
 
       gnome-text-editor
 

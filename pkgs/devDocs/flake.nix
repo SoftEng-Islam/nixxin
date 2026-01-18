@@ -8,7 +8,7 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; };
 
-      ruby = pkgs.ruby_3_3;
+      ruby = pkgs.ruby_3_4;
 
       gems = pkgs.bundlerEnv {
         name = "devdocs-env";
