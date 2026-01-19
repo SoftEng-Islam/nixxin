@@ -11,7 +11,7 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl) {
   hardware.graphics.extraPackages = with pkgs;
     [
       # Official Khronos OpenCL ICD Loader
-      khronos-ocl-icd-loader
+      (lib.hiPrio khronos-ocl-icd-loader)
     ];
   environment.sessionVariables = {
     OCL_ICD_VENDORS = let
