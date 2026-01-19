@@ -28,28 +28,27 @@ in {
       package = pkgs.mesa;
       package32 = pkgs.pkgsi686Linux.mesa;
       # Note: amdvlk has been deprecated, RADV is now the default driver
-      extraPackages = with pkgs;
-        [
-          # amdvlk removed - RADV is now the default AMD Vulkan driver
-          # libva # Video acceleration API
-          # libvdpau-va-gl # VDPAU backend for video acceleration
+      extraPackages = with pkgs; [
+        # amdvlk removed - RADV is now the default AMD Vulkan driver
+        libva # Video acceleration API
+        libvdpau-va-gl # VDPAU backend for video acceleration
 
-          # vulkan-memory-allocator
-          # vulkan-extension-layer
-          # vulkan-loader
-          # vulkan-tools
-          # libclc
-          # libGL
-          # libGLU
-          # libglvnd
-          # libGLX
-          # libvdpau
-          # libva-utils
-          # libva-vdpau-driver
-          # vdpauinfo
-          # xorg.libXv
-          # xorg.libXvMC
-        ];
+        vulkan-memory-allocator
+        vulkan-extension-layer
+        vulkan-loader
+        vulkan-tools
+        libclc
+        libGL
+        libGLU
+        libglvnd
+        libGLX
+        libvdpau
+        libva-utils
+        libva-vdpau-driver
+        vdpauinfo
+        xorg.libXv
+        xorg.libXvMC
+      ];
     };
 
     environment.systemPackages = with pkgs;
