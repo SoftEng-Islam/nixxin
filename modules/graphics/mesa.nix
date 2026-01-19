@@ -11,41 +11,37 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     mesa_glu
     mesa-demos
   ];
-  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
-    mesa_i686
-    intel-media-driver
-    intel-vaapi-driver
-  ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux;
+    [
+      mesa_i686
+      # intel-media-driver
+      # intel-vaapi-driver
+    ];
   environment.variables = with pkgs; {
-    # some apps dont like integrated + discreet and default to integrated
-    # this should fix that
-    # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    # Some apps dont like integrated + discreet and default to integrated so this should fix that
     __EGL_VENDOR_LIBRARY_FILENAMES =
-      "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+      "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+
     RADV_PERFTEST =
       "gpl,nogttspill,nircache,localbos,video_decode,video_encode,sam";
-    # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
-    MESA_GLTHREAD = "true";
+
     __GL_SYNC_TO_VBLANK = "1";
     __GL_THREADED_OPTIMIZATIONS = "1";
-    VDPAU_DRIVER = "radeonsi";
-    LIBVA_DRIVER_NAME = "radeonsi";
-    __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
     __GL_VRR_ALLOWED = "1";
-    VK_DRIVER_FILES = "${lib.concatStringsSep ":" [
-      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
-      "${pkgs.mesa_i686}/share/vulkan/icd.d/radeon_icd.i686.json"
-    ]}";
+    __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
+    LIBVA_DRIVER_NAME = "radeonsi";
+    VDPAU_DRIVER = "va_gl"; # or "va_gl" for libvdpau-va-gl
+
+    # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
+    MESA_GLTHREAD = "true";
 
     # Performance optimization
     MESA_VK_WSI_PRESENT_MODE = "fifo";
 
-    # Optional: For Polaris cards (Radeon 500 series) OpenCL support
-    # ROC_ENABLE_PRE_VEGA = "1";
-
     LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
     # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
-    LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
+    # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
 
     OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
 
@@ -83,12 +79,12 @@ in lib.mkIf (settings.modules.graphics.mesa) {
   };
 
   environment.systemPackages = with pkgs; [
-    mesa # An open source 3D graphics library
-    mesa-gl-headers
-    mesa_glu # OpenGL utility library
-    mesa_i686 # Open source 3D graphics library
-    mesa-demos # Collection of demos and test programs for OpenGL and Mesa
-    driversi686Linux.mesa # An open source 3D graphics library
+    # mesa # An open source 3D graphics library
+    # mesa-gl-headers
+    # mesa_glu # OpenGL utility library
+    # mesa_i686 # Open source 3D graphics library
+    # mesa-demos # Collection of demos and test programs for OpenGL and Mesa
+    # driversi686Linux.mesa # An open source 3D graphics library
 
     openal # OpenAL alternative
     opencl-headers # Khronos OpenCL headers version 2023.12.14
