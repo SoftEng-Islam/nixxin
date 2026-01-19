@@ -16,9 +16,9 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl) {
   environment.sessionVariables = {
     OCL_ICD_VENDORS = let
       drivers = [
+        nixos-opencl.packages.${system}.mesa
         nixos-opencl.packages.${system}.clvk
-        # nixos-opencl.packages.${system}.pocl
-        # nixos-opencl.packages.${system}.mesa
+        nixos-opencl.packages.${system}.pocl
       ];
     in pkgs.symlinkJoin {
       name = "opencl-vendors";
