@@ -1,0 +1,116 @@
+{
+  "nodes": {
+    "clvk-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768142439,
+        "narHash": "sha256-tb03B8jcrnAnglmfwEiXe7DUUZ+3a+Bks6bz7h0c7Xg=",
+        "ref": "refs/heads/main",
+        "rev": "2b31cbc0c3b8321a6d2ca13efb157760d60c38a6",
+        "revCount": 773,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/kpet/clvk.git"
+      }
+    },
+    "mesa-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768760468,
+        "narHash": "sha256-P0CfwBH34x2KPPE1eQ05GuIbnlIFiE3oXWTWbx7RPu8=",
+        "ref": "refs/heads/main",
+        "rev": "091b43b970f3cc996f27314cccc64cee0aa9155a",
+        "revCount": 217218,
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1768564909,
+        "narHash": "sha256-Kell/SpJYVkHWMvnhqJz/8DqQg2b6PguxVWOuadbHCc=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "e4bae1bd10c9c57b2cf517953ab70060a828ee6f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "pocl-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768382612,
+        "narHash": "sha256-3EqyHp+pXkKhowKMqV8ydOPI6ScovhrnAwNLO80Up0Q=",
+        "owner": "pocl",
+        "repo": "pocl",
+        "rev": "1d4a0765ff515090d4742fb138cf45455eaa9bab",
+        "type": "github"
+      },
+      "original": {
+        "owner": "pocl",
+        "repo": "pocl",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "clvk-src": "clvk-src",
+        "mesa-src": "mesa-src",
+        "nixpkgs": "nixpkgs",
+        "pocl-src": "pocl-src",
+        "shady-src": "shady-src",
+        "zig-src": "zig-src"
+      }
+    },
+    "shady-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1760696211,
+        "narHash": "sha256-loHyD+tXQFob5sD2J6J4VrYbvzE+JxlfBwUkxXYn7RY=",
+        "ref": "refs/heads/main",
+        "rev": "dd2787a7ebf78f8b51192bb23322057cfa8636c3",
+        "revCount": 2829,
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shady-gang/shady.git"
+      },
+      "original": {
+        "submodules": true,
+        "type": "git",
+        "url": "https://github.com/shady-gang/shady.git"
+      }
+    },
+    "zig-src": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1764207772,
+        "narHash": "sha256-0S3zyaOJRJRl5wMFuiy/MvphrH226v5bT3ikWgzFKKs=",
+        "ref": "refs/heads/master",
+        "rev": "738d2be9d6b6ef3ff3559130c05159ef53336224",
+        "revCount": 36058,
+        "type": "git",
+        "url": "https://github.com/ziglang/zig"
+      },
+      "original": {
+        "type": "git",
+        "url": "https://github.com/ziglang/zig"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

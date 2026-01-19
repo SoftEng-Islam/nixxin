@@ -5,7 +5,17 @@ with pkgs;
 (let mesa-drivers = [ mesa ];
 in lib.mkIf (settings.modules.graphics.mesa) {
 
-  hardware.graphics.extraPackages = with pkgs; [ mesa ];
+  hardware.graphics.extraPackages = with pkgs; [
+    mesa
+    mesa-gl-headers
+    mesa_glu
+    mesa-demos
+  ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+    mesa_i686
+    intel-media-driver
+    intel-vaapi-driver
+  ];
   environment.variables = with pkgs; {
     # some apps dont like integrated + discreet and default to integrated
     # this should fix that
@@ -18,9 +28,9 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     MESA_GLTHREAD = "true";
     __GL_SYNC_TO_VBLANK = "1";
     __GL_THREADED_OPTIMIZATIONS = "1";
-    LIBVA_DRIVER_NAME = "nvidia";
+    VDPAU_DRIVER = "radeonsi";
+    LIBVA_DRIVER_NAME = "radeonsi";
     __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
-    NVD_BACKEND = "direct";
     __GL_VRR_ALLOWED = "1";
     VK_DRIVER_FILES = "${lib.concatStringsSep ":" [
       "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
@@ -31,7 +41,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     MESA_VK_WSI_PRESENT_MODE = "fifo";
 
     # Optional: For Polaris cards (Radeon 500 series) OpenCL support
-    ROC_ENABLE_PRE_VEGA = "1";
+    # ROC_ENABLE_PRE_VEGA = "1";
 
     LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
     # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
