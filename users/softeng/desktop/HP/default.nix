@@ -393,8 +393,8 @@
   modules.office.translators.enable = true;
 
   # [ overclock ]
-  modules.overclock.corectrl.enable = false;
-  modules.overclock.lactd.enable = false;
+  modules.overclock.corectrl.enable = true;
+  modules.overclock.lactd.enable = true;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
