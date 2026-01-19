@@ -264,9 +264,7 @@
       "inputs": {
         "clvk-src": "clvk-src",
         "mesa-src": "mesa-src",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
+        "nixpkgs": "nixpkgs_2",
         "pocl-src": "pocl-src",
         "shady-src": "shady-src",
         "zig-src": "zig-src"
@@ -298,6 +296,22 @@
       }
     },
     "nixpkgs_2": {
+      "locked": {
+        "lastModified": 1751274312,
+        "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "50ab793786d9de88ee30ec4e4c24fb4236fc2674",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.11",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
       "locked": {
         "lastModified": 1765186076,
         "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
@@ -357,7 +371,7 @@
         "hyprpolkitagent": "hyprpolkitagent",
         "nixGL": "nixGL",
         "nixos-opencl": "nixos-opencl",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "quickshell": "quickshell",
         "systems": "systems_4",
         "yt-dlp-src": "yt-dlp-src"

@@ -1,6 +1,6 @@
 { settings, lib, pkgs, ... }: {
   environment.variables = with pkgs; {
-
+    WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
     # Avoid legacy switchable GPU hints (if you only have one GPU)
     # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 

@@ -7,6 +7,15 @@ in lib.mkIf (settings.modules.graphics.mesa) {
 
   hardware.graphics.extraPackages = with pkgs; [ mesa ];
   environment.variables = with pkgs; {
+
+    LIBVA_DRIVER_NAME = "nvidia";
+    __GLX_VENDOR_LIBRARY_NAME = "amd"; # mesa or nvidia or intel or amd
+    NVD_BACKEND = "direct";
+    __GL_VRR_ALLOWED = "1";
+
+    # Performance optimization
+    MESA_VK_WSI_PRESENT_MODE = "fifo";
+
     # Optional: For Polaris cards (Radeon 500 series) OpenCL support
     ROC_ENABLE_PRE_VEGA = "1";
 

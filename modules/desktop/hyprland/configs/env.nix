@@ -67,7 +67,6 @@
         # FOR VM and POSSIBLY NVIDIA
         # LIBGL_ALWAYS_SOFTWARE software mesa rendering
         # "LIBGL_ALWAYS_SOFTWARE,1"
-        # "WLR_RENDERER_ALLOW_SOFTWARE,1"
 
         # nvidia firefox (for hardware acceleration on FF)?
         # check this post https://github.com/elFarto/nvidia-vaapi-driver#configuration

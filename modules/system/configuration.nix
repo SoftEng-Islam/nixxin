@@ -294,8 +294,9 @@ in {
   environment.variables = {
     # Optimize rendering and disable hardware cursors for Wayland-based compositors.
 
-    # WLR_RENDERER_ALLOW_SOFTWARE = "1"; # enable software rendering for wlroots
-    WLR_NO_HARDWARE_CURSORS = "0"; # disable hardware cursors for wlroots
+    # Remove problematic variables that can cause issues with modern Hyprland
+    # WLR_RENDERER_ALLOW_SOFTWARE = "1";  # Only for debugging
+    # WLR_NO_HARDWARE_CURSORS = "1";     # Only if cursor issues occur
 
     # This env var forces wgpu to use OpenGL instead of Vulkan
     WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl

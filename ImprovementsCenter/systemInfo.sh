@@ -10,3 +10,5 @@ vulkan-helper physical-versions
 vulkan-helper instance-version
 vulkan-helper nvapi-path
 export RUST_BACKTRACE=full && vulkan-helper nvapi-path
+
+lspci -nn | grep VGA
