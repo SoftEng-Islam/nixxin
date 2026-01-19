@@ -56,6 +56,10 @@ in {
         xorg.libXvMC
       ];
     };
+    hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa
+      vulkan-loader
+    ];
 
     environment.systemPackages = with pkgs;
       [
