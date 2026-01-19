@@ -5,7 +5,7 @@
     # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
     # Vulkan ICD files — this should point to the system-wide location from Mesa
-    # VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
     # Enable present_wait extension (helps with frame timing on Wayland)
     # VK_KHR_PRESENT_WAIT_ENABLED = "1";
