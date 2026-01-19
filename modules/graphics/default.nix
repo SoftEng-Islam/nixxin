@@ -17,7 +17,7 @@ in {
     ./mesa.nix
     ./openGL.nix
     ./vulkan.nix
-    ./nixos-opencl.nix
+    # ./nixos-opencl.nix
   ];
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 

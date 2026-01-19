@@ -2,7 +2,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   nixos-opencl = inputs.nixos-opencl;
-in lib.mkIf (settings.modules.graphics.nixos-opencl) {
+in lib.mkIf (settings.modules.graphics.nixos-opencl or false) {
   environment.systemPackages = with pkgs; [
     clinfo
     opencl-headers

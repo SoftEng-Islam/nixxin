@@ -2,7 +2,7 @@
   description = "OpenCL packages for NixOS";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     mesa-src = {
       url = "git+https://gitlab.freedesktop.org/mesa/mesa.git";
