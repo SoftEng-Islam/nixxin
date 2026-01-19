@@ -37,7 +37,8 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
     LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
 
-    OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+
     __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
     # Rusticl OpenCL
