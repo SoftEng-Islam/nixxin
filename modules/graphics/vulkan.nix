@@ -1,16 +1,17 @@
 { settings, lib, pkgs, ... }: {
   environment.variables = with pkgs; {
-    WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
+    # WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
+
     # Avoid legacy switchable GPU hints (if you only have one GPU)
     DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
     # Vulkan ICD files — this should point to the system-wide location from Mesa
-    VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
+    # VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
-    VK_DRIVER_FILES = "${lib.concatStringsSep ":" [
-      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
-      "${pkgs.mesa_i686}/share/vulkan/icd.d/radeon_icd.i686.json"
-    ]}";
+    # VK_DRIVER_FILES = "${lib.concatStringsSep ":" [
+    #   "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
+    #   "${pkgs.mesa_i686}/share/vulkan/icd.d/radeon_icd.i686.json"
+    # ]}";
 
     # Enable present_wait extension (helps with frame timing on Wayland)
     # VK_KHR_PRESENT_WAIT_ENABLED = "1";
