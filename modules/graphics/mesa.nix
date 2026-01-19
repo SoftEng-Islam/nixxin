@@ -22,8 +22,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     # __EGL_VENDOR_LIBRARY_FILENAMES =  "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
     # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-    RADV_PERFTEST =
-      "gpl,nogttspill,nircache,localbos,video_decode,video_encode,sam";
+    RADV_PERFTEST = "gpl,nogttspill,nircache,localbos,sam";
 
     # __GL_SYNC_TO_VBLANK = "1";
     # __GL_THREADED_OPTIMIZATIONS = "1";
