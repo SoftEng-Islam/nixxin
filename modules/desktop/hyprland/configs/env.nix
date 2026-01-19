@@ -46,32 +46,6 @@
 
         "__GL_ALLOW_SOFTWARE,1"
         "MOZ_DISABLE_RDD_SANDBOX,1"
-
-        # --------- NVIDIA --------- #
-        # This is from Hyprland Wiki. Below will be activated nvidia gpu detected
-        # See hyprland wiki https://wiki.hyprland.org/Nvidia/#environment-variables
-        # "LIBVA_DRIVER_NAME,nvidia"
-        # "__GLX_VENDOR_LIBRARY_NAME,nvidia"
-        # "NVD_BACKEND,direct"
-
-        # additional ENV's for nvidia. Caution, activate with care
-        # "GBM_BACKEND,nvidia-drm"
-
-        # "__GL_GSYNC_ALLOWED,0"
-        # "__GL_VRR_ALLOWED,0"
-
-        # "__NV_PRIME_RENDER_OFFLOAD,1"
-        # "__VK_LAYER_NV_optimus,NVIDIA_only"
-        # "WLR_DRM_NO_ATOMIC,1"
-
-        # FOR VM and POSSIBLY NVIDIA
-        # LIBGL_ALWAYS_SOFTWARE software mesa rendering
-        # "LIBGL_ALWAYS_SOFTWARE,1"
-
-        # nvidia firefox (for hardware acceleration on FF)?
-        # check this post https://github.com/elFarto/nvidia-vaapi-driver#configuration
-        # "MOZ_DISABLE_RDD_SANDBOX,1"
-        # "EGL_PLATFORM,wayland"
       ];
     };
   };

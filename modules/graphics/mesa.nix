@@ -19,19 +19,17 @@ in lib.mkIf (settings.modules.graphics.mesa) {
     ];
   environment.variables = with pkgs; {
     # Some apps dont like integrated + discreet and default to integrated so this should fix that
-    __EGL_VENDOR_LIBRARY_FILENAMES =
-      "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    # __EGL_VENDOR_LIBRARY_FILENAMES =  "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
     # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-    RADV_PERFTEST =
-      "gpl,nogttspill,nircache,localbos,video_decode,video_encode,sam";
+    # RADV_PERFTEST =      "gpl,nogttspill,nircache,localbos,video_decode,video_encode,sam";
 
-    __GL_SYNC_TO_VBLANK = "1";
-    __GL_THREADED_OPTIMIZATIONS = "1";
-    __GL_VRR_ALLOWED = "1";
-    __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
+    # __GL_SYNC_TO_VBLANK = "1";
+    # __GL_THREADED_OPTIMIZATIONS = "1";
+    # __GL_VRR_ALLOWED = "1";
+    # __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
     LIBVA_DRIVER_NAME = "radeonsi";
-    VDPAU_DRIVER = "va_gl"; # or "va_gl" for libvdpau-va-gl
+    VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
     # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
     MESA_GLTHREAD = "true";
@@ -45,7 +43,7 @@ in lib.mkIf (settings.modules.graphics.mesa) {
 
     OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
 
-    __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
+    # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
     # Rusticl OpenCL
     # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
@@ -75,7 +73,6 @@ in lib.mkIf (settings.modules.graphics.mesa) {
 
     # VAAPI_COMPAT = "1";
     # VAAPI_MPEG4_ENABLED = "1";
-    # VDPAU_DRIVER = "va_gl";
   };
 
   environment.systemPackages = with pkgs; [
