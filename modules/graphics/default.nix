@@ -37,6 +37,12 @@ in {
         vulkan-extension-layer
         vulkan-loader
         vulkan-tools
+        vulkan-utility-libraries
+        vulkan-headers
+        vulkan-helper
+        vulkan-tools-lunarg
+        vulkan-volk
+
         libclc
         libGL
         libGLU
