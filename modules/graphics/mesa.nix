@@ -7,11 +7,25 @@ in lib.mkIf (settings.modules.graphics.mesa) {
 
   hardware.graphics.extraPackages = with pkgs; [ mesa ];
   environment.variables = with pkgs; {
-
+    # some apps dont like integrated + discreet and default to integrated
+    # this should fix that
+    # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    __EGL_VENDOR_LIBRARY_FILENAMES =
+      "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+    RADV_PERFTEST =
+      "gpl,nogttspill,nircache,localbos,video_decode,video_encode,sam";
+    # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
+    MESA_GLTHREAD = "true";
+    __GL_SYNC_TO_VBLANK = "1";
+    __GL_THREADED_OPTIMIZATIONS = "1";
     LIBVA_DRIVER_NAME = "nvidia";
-    __GLX_VENDOR_LIBRARY_NAME = "amd"; # mesa or nvidia or intel or amd
+    __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
     NVD_BACKEND = "direct";
     __GL_VRR_ALLOWED = "1";
+    VK_DRIVER_FILES = "${lib.concatStringsSep ":" [
+      "${pkgs.mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json"
+      "${pkgs.mesa_i686}/share/vulkan/icd.d/radeon_icd.i686.json"
+    ]}";
 
     # Performance optimization
     MESA_VK_WSI_PRESENT_MODE = "fifo";
