@@ -533,7 +533,6 @@
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
     "amdgpu" # AMD GPU driver
-    # "radeon" # Legacy AMD GPU driver (for older cards)
     "k10temp" # Temperature monitoring
     "i2c_hid" # Input devices
     "usbhid"
@@ -544,8 +543,10 @@
     "kvm-amd" # AMD Virtualization
     "msr"
     "uinput"
-    # "v4l2loopback"
-    # "rt2800usb"
+    # Generic DRM helpers (usually auto‑loaded, but explicit for determinism)
+
+    "drm"
+    "drm_kms_helper"
   ];
   # [ extraModprobeConfig ]
   modules.system.boot.extraModprobeConfig = ''

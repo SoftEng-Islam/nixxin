@@ -12,11 +12,13 @@
   # => Often used with GLSL (OpenGL Shading Language) for writing shaders
   # => Alternative APIs: Vulkan, DirectX, Metal
 
+  hardware.graphics.extraPackages = with pkgs; [ libglvnd ];
+
   environment.variables = {
     # vblank_mode = "0"; # ? Reduces latency
 
     # Adjust rendering settings for OpenGL and graphics drivers.
-    # LIBGL_DRI3_ENABLE = "1";
+    LIBGL_DRI3_ENABLE = "1";
 
     # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
   };

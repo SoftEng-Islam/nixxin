@@ -193,6 +193,16 @@ in {
       libxrender
       libx11
       libxrandr
+
+      vulkan-loader
+      libGL
+      vkd3d
+      libva
+      libva-utils
+      libdrm
+      vulkan-loader
+      vulkan-validation-layers
+      vulkan-extension-layer
     ];
   };
 

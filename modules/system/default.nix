@@ -20,4 +20,10 @@
     util-linux
     uutils-coreutils-noprefix
   ];
+
+  # Runtime filesystem expectations (some legacy apps)
+  systemd.tmpfiles.rules = [
+    "d /tmp/.X11-unix 1777 root root 10d"
+    "d /tmp/.ICE-unix 1777 root root 10d"
+  ];
 }

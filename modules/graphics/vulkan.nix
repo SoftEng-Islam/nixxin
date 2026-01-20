@@ -20,10 +20,11 @@
     VK_PRESENT_MODE = "mailbox";
 
     # Disable problematic/unused Vulkan layers
-    # VK_LOADER_LAYERS_DISABLE = "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
+    VK_LOADER_LAYERS_DISABLE =
+      "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
 
     # Tell Mesa to prefer Wayland
-    # VK_WSI_MODE = "wayland";
+    VK_WSI_MODE = "wayland";
 
     # Fixes screen tearing in games & Hyprland.
     # vulkaninfo | grep "driverName"
@@ -34,8 +35,21 @@
 
     # VK_LAYER_PATH = "${vulkan-validation-layers}/share/vulkan/explicit_layer.d";
   };
+  hardware.graphics.extraPackages = with pkgs; [
+    dxvk
+    vkdt
+    vkquake
+    vkd3d
+    libva
+    libva-utils
+    libdrm
+    vulkan-loader
+    vulkan-validation-layers
+    vulkan-extension-layer
+  ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [ mesa amdvlk ];
   environment.systemPackages = with pkgs; [
-    dxvk # A Vulkan-based translation layer for Direct3D
+
     shaderc # Collection of tools, libraries and tests for shader compilation
     vkbasalt # Vulkan post processing layer for Linux
     vulkan-cts # Khronos Vulkan Conformance Tests
