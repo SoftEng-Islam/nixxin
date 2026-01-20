@@ -21,7 +21,7 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl or false) {
     OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
       name = "opencl-vendors";
       paths = [
-        "${nixos-opencl.packages.${system}.mesa}/etc/OpenCL/vendors"
+        "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
         "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
         "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
       ];
