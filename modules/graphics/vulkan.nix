@@ -47,7 +47,7 @@
     vulkan-validation-layers
     vulkan-extension-layer
   ];
-  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [ mesa amdvlk ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [ mesa ];
   environment.systemPackages = with pkgs; [
 
     shaderc # Collection of tools, libraries and tests for shader compilation
