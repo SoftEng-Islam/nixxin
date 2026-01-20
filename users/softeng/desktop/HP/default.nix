@@ -544,7 +544,6 @@
     "msr"
     "uinput"
     # Generic DRM helpers (usually auto‑loaded, but explicit for determinism)
-
     "drm"
     "drm_kms_helper"
   ];
