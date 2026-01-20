@@ -15,17 +15,17 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl or false) {
     ];
   environment.sessionVariables = {
     # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
-    OCL_ICD_VENDORS =
-      "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/";
-    # OCL_ICD_VENDORS = let
-    #   drivers = [
-    #     nixos-opencl.packages.${system}.mesa
-    #     nixos-opencl.packages.${system}.clvk
-    #     nixos-opencl.packages.${system}.pocl
-    #   ];
-    # in pkgs.symlinkJoin {
-    #   name = "opencl-vendors";
-    #   paths = drivers;
-    # };
+    # OCL_ICD_VENDORS = "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/";
+
+    # This is the default for Mesa, but we set it explicitly to ensure
+    OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
+      name = "opencl-vendors";
+      paths = [
+        "${nixos-opencl.packages.${system}.mesa}/etc/OpenCL/vendors"
+        "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
+        "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
+      ];
+    }}";
+
   };
 }
