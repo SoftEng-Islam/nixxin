@@ -13,7 +13,9 @@
         gems = pkgs.bundlerEnv {
           name = "devdocs-env";
           ruby = pkgs.ruby_3_4;
-          gemdir = ./.;
+          # gemdir = ./.;
+          gemfile = ./Gemfile;
+          lockfile = ./Gemfile.lock;
         };
       in {
         packages.default = gems;
