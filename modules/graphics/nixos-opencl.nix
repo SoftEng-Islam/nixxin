@@ -14,8 +14,8 @@ in lib.mkIf (settings.modules.graphics.nixos-opencl or false) {
       (lib.hiPrio khronos-ocl-icd-loader)
     ];
   environment.sessionVariables = {
-    # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
-    # OCL_ICD_VENDORS = "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/";
+    CLVK_SPIRV_ARCH = "spir64";
+    CLVK_PHYSICAL_ADDRESSING = 1;
 
     # This is the default for Mesa, but we set it explicitly to ensure
     OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
