@@ -12,7 +12,7 @@
         pkgs = import nixpkgs { inherit system; };
         gems = pkgs.bundlerEnv {
           name = "devdocs-env";
-          ruby = pkgs.ruby;
+          ruby = pkgs.ruby_3_4;
           gemdir = ./.;
         };
       in {
