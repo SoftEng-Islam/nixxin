@@ -10,7 +10,7 @@
     { } // utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
-        targetRuby = pkgs.ruby_3_4.withPackages (ps: with ps; [ nokogiri pry ]);
+        targetRuby = pkgs.ruby_3_4;
         myBundler = pkgs.bundler.override { ruby = targetRuby; };
         gems = pkgs.bundlerEnv {
           name = "devdocs-env";
@@ -21,10 +21,6 @@
         };
       in {
         packages.default = gems;
-        devShell = with pkgs; mkShell { buildInputs = [ nodejs ]; } // gems.env;
-        # stdenv.mkDerivation {
-        #   name = "site";
-        #   buildInputs = [ targetRuby myBundler env ];
-        # }
+        # devShell = with pkgs; mkShell { buildInputs = [ nodejs ]; } // gems.env;
       });
 }
