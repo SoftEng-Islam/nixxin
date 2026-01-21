@@ -16,7 +16,7 @@
           gemdir = ./.;
         };
       in {
-        packages.${system}.default = gems;
+        packages.default = gems;
 
         devShell = with pkgs; mkShell { buildInputs = [ nodejs ]; } // gems.env;
       });
