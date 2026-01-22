@@ -69,6 +69,13 @@
           };
           modules = [
             # inputs.stylix.nixosModules.stylix
+            {
+              nixpkgs.overlays = [
+                (final: prev: {
+                  devdocs = prev.callPackage ./pkgs/devDocs { };
+                })
+              ];
+            }
             inputs.home-manager.nixosModules.home-manager
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
