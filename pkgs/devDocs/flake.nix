@@ -1,32 +1,11 @@
-{ pkgs }:
+{
+  description = "DevDocs package";
 
-let
-  ruby = pkgs.ruby_3_4;
-  targetRuby = pkgs.ruby_3_4;
-  myBundler = pkgs.bundler.override { ruby = targetRuby; };
-  gems = pkgs.bundlerEnv {
-    name = "devdocs-gems";
-    # inherit ruby;
-    ruby = targetRuby;
-    bundler = myBundler;
-    gemdir = ./.;
-    extraConfigPaths = [ "${./.}/.ruby-version" ];
-  };
-in pkgs.stdenv.mkDerivation {
-  pname = "devdocs";
-  version = "unstable";
+  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  src = ./.;
-
-  nativeBuildInputs = [ gems gems.wrappedRuby ];
-
-  installPhase = ''
-    mkdir -p $out
-    cp -r . $out/
-  '';
-
-  meta = {
-    description = "DevDocs packaged with bundlerEnv";
-    platforms = ruby.meta.platforms;
-  };
+  outputs = { self, nixpkgs }:
+    let
+      system = "x86_64-linux";
+      pkgs = import nixpkgs { inherit system; };
+    in { packages.${system}.default = pkgs.callPackage ./default.nix { }; };
 }
