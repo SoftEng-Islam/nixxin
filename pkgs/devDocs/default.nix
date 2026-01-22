@@ -3,12 +3,12 @@
 let
   ruby = pkgs.ruby_3_4;
   targetRuby = pkgs.ruby_3_4;
-  myBundler = pkgs.bundler.override { ruby = targetRuby; };
+  # myBundler = pkgs.bundler.override { ruby = targetRuby; };
   gems = pkgs.bundlerEnv {
     name = "devdocs-gems";
     # inherit ruby;
     ruby = targetRuby;
-    bundler = myBundler;
+    # bundler = myBundler;
     gemdir = ./.;
     extraConfigPaths = [ "${./.}/.ruby-version" ];
   };
