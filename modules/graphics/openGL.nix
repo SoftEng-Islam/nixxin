@@ -23,17 +23,19 @@
     # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
   };
 
-  environment.systemPackages = with pkgs; [
-    # inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
-    mesa
-    mesa_glu
-    mesa_i686
-    mesa-gl-headers
-    freeglut
-    glew
-    glfw
-    libGL
-    libGLU
-    # glmark2 # OpenGL (ES) 2.0 benchmark
-  ];
+  environment.systemPackages = with pkgs;
+    [
+      inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
+      # mesa
+      # mesa_glu
+      # mesa_i686
+      # mesa-gl-headers
+      # glew
+      # glfw
+      # libGL
+      # libGLU
+      # freeglut
+
+      # glmark2 # OpenGL (ES) 2.0 benchmark
+    ];
 }

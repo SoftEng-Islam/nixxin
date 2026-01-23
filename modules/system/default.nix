@@ -13,6 +13,7 @@
     ./udev.nix
     ./resources.nix
     ./trace.nix
+    ./systeminfo.nix
   ];
   environment.systemPackages = with pkgs; [
     e2fsprogs

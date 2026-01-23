@@ -5,21 +5,21 @@ with pkgs;
 (let mesa-drivers = [ mesa ];
 in lib.mkIf (settings.modules.graphics.mesa) {
 
-  hardware.graphics.extraPackages = with pkgs; [
-    mesa
-    mesa-gl-headers
-    mesa_glu
-    mesa-demos
-  ];
+  hardware.graphics.extraPackages = with pkgs;
+    [
+      # mesa
+      # mesa-gl-headers
+      # mesa_glu
+      # mesa-demos
+    ];
   hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux;
     [
-      mesa_i686
-      # intel-media-driver
-      # intel-vaapi-driver
+      # mesa_i686
     ];
   environment.variables = with pkgs; {
     # Some apps dont like integrated + discreet and default to integrated so this should fix that
-    __EGL_VENDOR_LIBRARY_FILENAMES =  "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+    __EGL_VENDOR_LIBRARY_FILENAMES =
+      "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
     # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
     RADV_PERFTEST = "gpl,nogttspill,nircache,sam";

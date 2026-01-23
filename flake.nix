@@ -14,8 +14,6 @@
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    # nixpkgs-waydroid.url = "github:NixOS/nixpkgs/pull/455257/head";
-
     # ashell.url = "github:MalpenZibo/ashell";
     # ashell.flake = true;
 
@@ -23,10 +21,9 @@
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
-    # nixos-opencl.inputs.nixpkgs.follows = "nixpkgs";
 
-    devDocs-flake.url = "path:./pkgs/devDocs";
-    devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
+    # devDocs-flake.url = "path:./pkgs/devDocs";
+    # devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     quickshell = {
       # add ?ref=<tag> to track a tag
@@ -68,14 +65,6 @@
             inherit settings;
           };
           modules = [
-            # inputs.stylix.nixosModules.stylix
-            {
-              nixpkgs.overlays = [
-                (final: prev: {
-                  devdocs = prev.callPackage ./pkgs/devDocs { };
-                })
-              ];
-            }
             inputs.home-manager.nixosModules.home-manager
             (./. + _SETTINGS.path + "/configuration.nix")
           ];

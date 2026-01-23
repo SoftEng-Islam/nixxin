@@ -46,8 +46,6 @@ in {
     environment.systemPackages = with pkgs; [
       # inputs.devDocs-flake.packages.${pkgs.stdenv.hostPlatform.system}.default
 
-      devdocs
-
       ruby_3_4
       bundler
       bundix

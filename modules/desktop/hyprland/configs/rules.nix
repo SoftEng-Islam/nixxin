@@ -11,7 +11,9 @@
       windowrulev2 = stayfocused, class:^()$, title:^()$, floating:1
       windowrulev2 = minsize 1 1, class:^()$, title:^()$, floating:1
 
-      # windowrulev2 = tile, class:^(Waydroid)$
+      # ---- Waydroid ---- #
+      windowrule = fullscreen, class:^(Waydroid)$
+
       windowrulev2 = tile, class:(dev.warp.Warp)
 
       # ---- Dialogs ---- #

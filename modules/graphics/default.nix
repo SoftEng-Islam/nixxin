@@ -43,14 +43,16 @@ in {
         vulkan-tools-lunarg
         vulkan-volk
 
+        glew
+        glfw
         libclc
         libGL
         libGLU
         libglvnd
         libGLX
-        libvdpau
         libva-utils
         libva-vdpau-driver
+        libvdpau
         vdpauinfo
         xorg.libXv
         xorg.libXvMC
