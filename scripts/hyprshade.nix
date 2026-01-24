@@ -5,10 +5,10 @@ let
     hyprshadeCurrent=$(hyprshade current)
     if ["$hyprshadeCurrent" = "blue-light-filter"] ; then
       ${pkgs.hyprshade}/bin/hyprshade off
-      ${pkgs.libnotify}/bin/notify-send 'blue-light-filter ended'";
+      ${pkgs.libnotify}/bin/notify-send 'blue-light-filter ended';
       exit
     fi
     ${pkgs.hyprshade}/bin/hyprshade on ~/.config/hypr/shaders/blue-light-filter.glsl
-    start = "${pkgs.libnotify}/bin/notify-send 'blue-light-filter started'";
+    start = "${pkgs.libnotify}/bin/notify-send 'blue-light-filter started';
   '';
 in { environment.systemPackages = [ blue-filter ]; }
