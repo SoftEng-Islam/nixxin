@@ -98,29 +98,56 @@ in {
       };
     };
 
+    # Enable Vulkan support with proper library paths
+    hardware.opengl = {
+      enable = true;
+      driSupport = true;
+      driSupport32Bit = true;
+      extraPackages = with pkgs; [
+        # Vulkan packages
+        vulkan-loader
+        vulkan-tools
+        vulkan-validation-layers
+        vulkan-extension-layer
+        libvulkan_intel
+        libvulkan_radeon
+        amdvlk
+      ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [ vulkan-loader vulkan-tools ];
+    };
+
+    # Set up Vulkan environment variables
+    environment.variables = {
+      VK_ICD_FILENAMES =
+        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+      VK_LOADER_DEBUG = "all";
+    };
+
+    systemd.user.sessionVariables = {
+      LD_LIBRARY_PATH = [ "${pkgs.vulkan-loader}/lib" ];
+    };
+
     environment.systemPackages = with pkgs;
       [
-        zeroad # Zero overhead AMD GPU driver for Linux
-        zeroad-data # Data files for the Zero overhead AMD GPU driver for Linux
+        # 0 A.D. with Vulkan support
+        (zeroad.override { withVulkan = true; })
+        zeroad-data
 
-        # steam-run # Run commands in the same FHS environment that is used for Steam
-        # gamescope # SteamOS session compositing window manager
-        # lutris # Open Source gaming platform for GNU/Linux
-        # retroarch # Multi-platform emulator frontend for libretro cores
-        # retroarch-assets # Assets needed for RetroArch
-        # retroarch-joypad-autoconfig # Joypad autoconfig files
-        # (mangohud.override { lowerBitnessSupport = true; })
-        gamemode # Optimise Linux system performance on demand
+        # Vulkan tools and libraries
+        vulkan-tools
+        vulkan-headers
+        vulkan-validation-layers
+        vulkan-extension-layer
 
-        # Yet another keyboard configurator
-        # via
+        # Graphics utilities
+        glxinfo
+        vdpauinfo
+        clinfo
 
-        boost
-        icu
-        libpng
+        # Game optimization
+        gamemode
 
-        # CLI program and API to automate the installation and update of GloriousEggroll's Proton-GE
-        # protonup
+        # ... (rest of your packages)
       ] ++ lib.flatten _pkgs;
   };
 }
