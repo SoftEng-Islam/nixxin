@@ -1,161 +1,45 @@
 { settings, inputs, lib, pkgs, ... }:
 let
   inherit (lib) optionals optional;
-
-  # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
-
-  # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
   mesa-drivers = [ nixos-opencl.packages.${system}.mesa ];
   mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
-
-  # Vulkan ICD (Installable Client Driver) configuration
   icds = pkgs.lib.strings.concatStringsSep ":" [
     "${mesa_icd_dir}/radeon_icd.x86_64.json"
     "${mesa_icd_dir}/lvp_icd.x86_64.json"
   ];
 
-  # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender blender) # 3D modeling and animation
-    (optional _graphics_pkgs.darktable darktable) # RAW photo editor
-    (optional _graphics_pkgs.drawio drawio) # Diagramming tool
-    (optional _graphics_pkgs.figmaLinux figma-linux) # UI/UX design tool
-    (optional _graphics_pkgs.gimp gimp) # Image manipulation
-    (optional _graphics_pkgs.inkscape inkscape) # Vector graphics editor
-    (optional _graphics_pkgs.lunacy lunacy) # Design tool
-    (optional _graphics_pkgs.kolourpaint kolourpaint) # Simple paint program
+    (optional _graphics_pkgs.blender blender)
+    (optional _graphics_pkgs.darktable darktable)
+    (optional _graphics_pkgs.drawio drawio)
+    (optional _graphics_pkgs.figmaLinux figma-linux)
+    (optional _graphics_pkgs.gimp gimp)
+    (optional _graphics_pkgs.inkscape inkscape)
+    (optional _graphics_pkgs.lunacy lunacy)
+    (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
-
-  # ========== Package Collections ==========
-
-  # Core graphics libraries and drivers
-  coreGraphicsPackages = with pkgs; [
-    # Graphics APIs and libraries
-    libGL
-    libGLU
-    libGLX
-    libglvnd
-    libclc
-    glew
-    glfw
-
-    # Video acceleration
-    libva
-    libva-utils
-    libva-vdpau-driver
-    libvdpau
-    libvdpau-va-gl # VDPAU backend for video acceleration
-    vdpauinfo
-
-    # X11 video drivers
-    xorg.libXv
-    xorg.libXvMC
-    xorg.xf86videoamdgpu
-
-    # Image processing
-    imagemagick
-    jpegoptim
-    optipng
-    pngquant
-    webp-pixbuf-loader
-    libwebp
-    meshoptimizer
-
-    # OpenAL for audio
-    openal
-  ];
-
-  # Vulkan packages
-  vulkanPackages = with pkgs; [
-    # Core Vulkan
-    vulkan-loader
-    vulkan-headers
-    vulkan-extension-layer
-    vulkan-validation-layers
-    vulkan-utility-libraries
-
-    # Vulkan tools and utilities
-    vulkan-tools
-    vulkan-tools-lunarg
-    vulkan-helper
-    vulkan-memory-allocator
-    vulkan-volk
-    vulkan-cts
-
-    # Vulkan applications
-    vkbasalt
-    vkdt
-    vkquake
-
-    # Vulkan-related
-    dxvk
-    vkd3d
-    shaderc
-    wgpu-utils
-  ];
-
-  # OpenCL and compute
-  openclPackages = with pkgs; [
-    opencl-headers
-    clinfo
-    clpeak
-    (hwloc.override { x11Support = true; })
-  ];
-
-  # Graphics tools and utilities
-  graphicsTools = with pkgs; [
-    # GPU information and monitoring
-    gpu-viewer
-    vulkan-caps-viewer
-
-    # Intel specific
-    inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
-  ];
-
-  # 32-bit packages
-  packages32 = with pkgs.pkgsi686Linux; [ mesa_i686 vulkan-loader ];
-
 in {
   imports = optionals (settings.modules.graphics.enable or false)
     [ ./nixos-opencl.nix ];
-
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
-    # ========== Graphics Stack Configuration ==========
-    #
-    # This module configures the graphics stack including:
-    # - OpenGL: Cross-platform 2D/3D rendering API
-    # - Vulkan: Next-gen low-overhead graphics API
-    # - OpenCL: Heterogeneous computing framework
-    # - Hardware acceleration (VA-API, VDPAU)
-    #
-    # Key components configured:
-    # - Mesa 3D Graphics Library (OpenGL/Vulkan implementations)
-    # - AMD/Intel/NVIDIA driver support
-    # - 32-bit compatibility libraries
-    # - Development tools and utilities
+    #* OpenGL (Open Graphics Library) is a cross-platform,
+    #* open standard API for rendering 2D and 3D vector graphics.
+    #* It allows developers to communicate with the GPU to create visually rich applications such as:
+    # => Games
+    # => CAD software
+    # => Desktop environments and compositors (like Hyprland or GNOME)
+
+    #* Key Points:
+    # => Written in C; has bindings in many languages (C++, Python, Rust, etc.)
+    # => Managed by the Khronos Group
+    # => Often used with GLSL (OpenGL Shading Language) for writing shaders
+    # => Alternative APIs: Vulkan, DirectX, Metal
 
     environment.variables = {
-      # ---- nixos-opencl Start ----
-      CLVK_SPIRV_ARCH = "spir64";
-      CLVK_PHYSICAL_ADDRESSING = 1;
-
-      # This is the default for Mesa, but we set it explicitly to ensure
-      OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
-        name = "opencl-vendors";
-        paths = [
-          "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.shady}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.spirv2clc}/etc/OpenCL/vendors"
-        ];
-      }}";
-      # ---- nixos-opencl End ----
-
       # WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
@@ -255,30 +139,117 @@ in {
       # VAAPI_MPEG4_ENABLED = "1";
     };
 
-    # ========== Hardware Graphics Configuration ==========
     hardware.graphics = {
       enable = true;
       enable32Bit = true;
-
       # Use unstable Mesa for better performance with latest Hyprland
       package = pkgs.mesa;
       package32 = pkgs.pkgsi686Linux.mesa;
-
       # Note: amdvlk has been deprecated, RADV is now the default driver
-      extraPackages = with pkgs;
-        [
+      extraPackages = with pkgs; [
+        # amdvlk removed - RADV is now the default AMD Vulkan driver
+        libva # Video acceleration API
+        libvdpau-va-gl # VDPAU backend for video acceleration
 
-          # Official Khronos OpenCL ICD Loader
-          (lib.hiPrio khronos-ocl-icd-loader)
-        ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages;
+        vulkan-memory-allocator
+        vulkan-extension-layer
+        vulkan-loader
+        vulkan-tools
+        vulkan-utility-libraries
+        vulkan-headers
+        vulkan-helper
+        vulkan-tools-lunarg
+        vulkan-volk
+
+        glew
+        glfw
+        libclc
+        libGL
+        libGLU
+        libglvnd
+        libGLX
+        libva-utils
+        libva-vdpau-driver
+        libvdpau
+        vdpauinfo
+        xorg.libXv
+        xorg.libXvMC
+        dxvk
+        vkdt
+        vkquake
+        vkd3d
+        libva
+        libva-utils
+        libdrm
+        vulkan-loader
+        vulkan-validation-layers
+        vulkan-extension-layer
+        libglvnd
+        mesa-drivers
+      ];
     };
+    hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa_i686
+      vulkan-loader
+    ];
 
-    # 32-bit graphics packages for compatibility
-    hardware.graphics.extraPackages32 = packages32;
-
-    # ========== System Packages ==========
     environment.systemPackages = with pkgs;
-      [ clinfo opencl-headers ] ++ coreGraphicsPackages ++ vulkanPackages
-      ++ openclPackages ++ graphicsTools ++ lib.flatten _graphics;
+      [
+        imagemagick
+        jpegoptim
+        optipng
+        pngquant
+        webp-pixbuf-loader
+        libwebp
+        libdrm # Direct Rendering Manager library and headers
+        xorg.xf86videoamdgpu
+        meshoptimizer
+
+        # mesa # An open source 3D graphics library
+        # mesa-gl-headers
+        # mesa_glu # OpenGL utility library
+        # mesa_i686 # Open source 3D graphics library
+        # mesa-demos # Collection of demos and test programs for OpenGL and Mesa
+        # driversi686Linux.mesa # An open source 3D graphics library
+
+        openal # OpenAL alternative
+        opencl-headers # Khronos OpenCL headers version 2023.12.14
+        clinfo # Print all known information about all available OpenCL platforms and devices in the system
+        clpeak # Tool which profiles OpenCL devices to find their peak capacities
+
+        # Portable abstraction of hierarchical architectures for high-performance computing
+        (hwloc.override { x11Support = true; })
+
+        inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
+        # mesa
+        # mesa_glu
+        # mesa_i686
+        # mesa-gl-headers
+        # glew
+        # glfw
+        # libGL
+        # libGLU
+        # freeglut
+
+        # glmark2 # OpenGL (ES) 2.0 benchmark
+
+        shaderc # Collection of tools, libraries and tests for shader compilation
+        vkbasalt # Vulkan post processing layer for Linux
+        vulkan-cts # Khronos Vulkan Conformance Tests
+        vulkan-headers # Vulkan Header files and API registry
+        vulkan-helper # Simple CLI app used to interface with basic Vulkan APIs
+        vulkan-loader # LunarG Vulkan loader
+        vulkan-memory-allocator # Easy to integrate Vulkan memory allocation library
+        vulkan-tools # Khronos official Vulkan Tools and Utilities
+        vulkan-tools-lunarg # LunarG Vulkan Tools and Utilities
+        vulkan-utility-libraries # Set of utility libraries for Vulkan
+        vulkan-volk # Meta loader for Vulkan API
+        wgpu-utils # Safe and portable GPU abstraction in Rust, implementing WebGPU API
+
+        # Apps
+        gpu-viewer # A front-end to glxinfo, vulkaninfo, clinfo and es2_info
+        vulkan-caps-viewer # Vulkan hardware capability viewer
+
+      ] ++ lib.flatten _graphics;
   };
 }

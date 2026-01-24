@@ -41,9 +41,10 @@ in {
             gpu_device = 1;
             amd_performance_level = "high";
             nv_powermizer_mode = 1;
+
             # APU specific settings
-            igpu_power_control = "yes";
-            igpu_high_performance = "yes";
+            # igpu_high_performance = "yes";
+            # igpu_power_control = "yes";
           };
           custom = {
             start = "${pkgs.libnotify}/bin/notify-send 'GameMode started'";
@@ -111,17 +112,8 @@ in {
         # (mangohud.override { lowerBitnessSupport = true; })
         gamemode # Optimise Linux system performance on demand
 
-        gamescope
-
         # Yet another keyboard configurator
         # via
-
-        # Install Gaming & Benchmarking Tools
-        vulkan-tools # Tests Vulkan performance
-        vulkan-loader # Vulkan loader library
-        vkmark # Vulkan benchmark
-        mesa-demos # OpenGL test tools
-        mesa_i686 # Extra OpenGL tools
 
         boost
         icu

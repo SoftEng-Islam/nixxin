@@ -100,7 +100,8 @@
             inherit (packages.${system})
               llvmPackages spirv-tools spirv-llvm-translator;
             # Compilation with stdenv segfaults for some reason
-            stdenv = pkgs.gcc14Stdenv;
+            # stdenv = pkgs.gcc14Stdenv;
+            stdenv = pkgs.gcc15Stdenv;
           }).overrideAttrs (old: {
             version = "git";
             src = mesa-src;
@@ -572,14 +573,13 @@
 
           # This environment can be used to get our mesa build's Vulkan drivers too
           mesa-vulkan = let
-            mesa_icd_dir =
-              "${packages.${system}.mesa.drivers}/share/vulkan/icd.d";
+            mesa_icd_dir = "${packages.${system}.mesa}/share/vulkan/icd.d";
             icds = pkgs.lib.strings.concatStringsSep ":" [
               "${mesa_icd_dir}/radeon_icd.x86_64.json"
               "${mesa_icd_dir}/lvp_icd.x86_64.json"
             ];
           in pkgs.mkShell {
-            packages = [ self.packages.${system}.mesa.drivers ];
+            packages = [ self.packages.${system}.mesa ];
 
             shellHook = ''
               export VK_DRIVER_FILES=${icds}
