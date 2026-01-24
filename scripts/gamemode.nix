@@ -4,7 +4,7 @@
 # Edit to your liking of course. If animations are enabled, it disables all the pretty stuff. Otherwise, the script reloads your config to grab your defaults.
 # The hotkey toggle will be WIN+F1, but you can change this to whatever you want.
 let
-  run-gamemode = pkgs.writeShellScriptBin "run-gamemode" ''
+  runGamemode = pkgs.writeShellScriptBin "run-gamemode" ''
     hyprshadeCurrent=$(hyprshade current)
     HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
     if [ "$HYPRGAMEMODE" = 1 ] ; then
@@ -20,9 +20,10 @@ let
       exit
     fi
     hyprctl reload
-    if ["$hyprshadeCurrent" = "blue-light-filter"] ; then
+    sleep 0.5
+    if [ "$hyprshadeCurrent" = "blue-light-filter" ] ; then
       ${pkgs.hyprshade}/bin/hyprshade on ~/.config/hypr/shaders/blue-light-filter.glsl
-      ${pkgs.libnotify}/bin/notify-send 'blue-light-filter started';
+      ${pkgs.libnotify}/bin/notify-send "blue-light-filter started";
     fi
   '';
-in { environment.systemPackages = [ run-gamemode ]; }
+in { environment.systemPackages = [ runGamemode ]; }
