@@ -118,12 +118,15 @@ in {
         "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
       VK_LOADER_DEBUG = "all";
       LD_LIBRARY_PATH = [ "${pkgs.vulkan-loader}/lib" ];
+      VK_DRIVER_FILES =
+        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
+
     };
 
     environment.systemPackages = with pkgs;
       [
         # 0 A.D. with Vulkan support
-        (zeroad.override { withVulkan = true; })
+        zeroad
         zeroad-data
 
         # Vulkan tools and libraries
