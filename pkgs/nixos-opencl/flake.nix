@@ -100,8 +100,8 @@
             inherit (packages.${system})
               llvmPackages spirv-tools spirv-llvm-translator;
             # Compilation with stdenv segfaults for some reason
-            # stdenv = pkgs.gcc14Stdenv;
-            stdenv = pkgs.gcc15Stdenv;
+            stdenv = pkgs.gcc14Stdenv;
+
           }).overrideAttrs (old: {
             version = "git";
             src = mesa-src;
