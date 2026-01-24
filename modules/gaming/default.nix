@@ -136,7 +136,6 @@ in {
         vulkan-extension-layer
 
         # Graphics utilities
-        glxinfo
         vdpauinfo
         clinfo
 
