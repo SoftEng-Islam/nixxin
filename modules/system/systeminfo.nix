@@ -1,4 +1,4 @@
-{ config, pkgs, ... }: {
+{ settings, config, pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
     # A monitor of resources.
@@ -33,7 +33,7 @@
   ];
 
   # Fastfetch, like Neofetch, but in C, much faster, and actually maintained.
-  home-manager.users.${config.custom.name}.programs.fastfetch = {
+  home-manager.users.${settings.user.username}.programs.fastfetch = {
     # Whether to enable fastfetch.
     enable = true;
 
