@@ -5,5 +5,6 @@
     ./networks/toggleInternet.nix
     ./changeWallpaper.nix
     ./toggle-services.nix
+    ./hyprshade.nix
   ];
 }
