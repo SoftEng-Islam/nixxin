@@ -17,6 +17,7 @@ let
           keyword general:gaps_out 0;\
           keyword general:border_size 0;\
           keyword decoration:rounding 0"
+      exit
     fi
     hyprctl reload
     if ["$hyprshadeCurrent" = "blue-light-filter"] ; then
