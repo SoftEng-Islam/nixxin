@@ -108,8 +108,6 @@ in {
         vulkan-tools
         vulkan-validation-layers
         vulkan-extension-layer
-        libvulkan_intel
-        libvulkan_radeon
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ vulkan-loader vulkan-tools ];
     };
