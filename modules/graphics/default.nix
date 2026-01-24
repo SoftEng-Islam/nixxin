@@ -119,9 +119,6 @@ let
   packages32 = with pkgs.pkgsi686Linux; [ mesa_i686 vulkan-loader ];
 
 in {
-  imports = optionals (settings.modules.graphics.enable or false)
-    [ ./nixos-opencl.nix ];
-
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     # ========== Graphics Stack Configuration ==========
