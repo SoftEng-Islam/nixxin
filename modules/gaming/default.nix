@@ -99,10 +99,9 @@ in {
     };
 
     # Enable Vulkan support with proper library paths
-    hardware.opengl = {
+    hardware.graphics = {
       enable = true;
-      driSupport = true;
-      driSupport32Bit = true;
+      enable32Bit = true;
       extraPackages = with pkgs; [
         # Vulkan packages
         vulkan-loader
@@ -111,7 +110,6 @@ in {
         vulkan-extension-layer
         libvulkan_intel
         libvulkan_radeon
-        amdvlk
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ vulkan-loader vulkan-tools ];
     };
