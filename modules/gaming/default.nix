@@ -121,9 +121,6 @@ in {
       VK_ICD_FILENAMES =
         "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
       VK_LOADER_DEBUG = "all";
-    };
-
-    systemd.user.sessionVariables = {
       LD_LIBRARY_PATH = [ "${pkgs.vulkan-loader}/lib" ];
     };
 
