@@ -100,7 +100,7 @@ let
   # OpenCL and compute
   openclPackages = with pkgs; [
     opencl-headers
-    clinfo
+    # clinfo
     clpeak
     (hwloc.override { x11Support = true; })
   ];
