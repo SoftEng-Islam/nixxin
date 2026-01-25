@@ -147,7 +147,7 @@ in {
           "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.shady}/etc/OpenCL/vendors"
+          # "${nixos-opencl.packages.${system}.shady}/etc/OpenCL/vendors"
           # "${nixos-opencl.packages.${system}.spirv2clc}/etc/OpenCL/vendors"
         ];
       }}";
