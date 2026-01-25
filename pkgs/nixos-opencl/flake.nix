@@ -53,7 +53,7 @@
                 owner = "KhronosGroup";
                 repo = "SPIRV-Headers";
                 rev = "54a521dd130ae1b2f38fef79b09515702d135bdd";
-                hash = "sha256-PScDq8HhQPFUs78N75QyL9oEykmjZmAhdxCAqQ0LJds=";
+                # hash = "sha256-PScDq8HhQPFUs78N75QyL9oEykmjZmAhdxCAqQ0LJds=";
                 # Add this line to allow fetching from any ref
                 allRefs = true;
               };
