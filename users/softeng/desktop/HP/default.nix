@@ -311,9 +311,9 @@
   modules.desktop.hyprland.genColorsPath =
     /home/${user.username}/.cache/hypr/colors.conf;
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
-  modules.desktop.hyprland.blur.enable = true;
-  modules.desktop.hyprland.opacity = 0.9; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
+  modules.desktop.hyprland.blur.enable = false;
+  modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
+  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
   modules.desktop.hyprland.border.active.color = common.primaryColor;

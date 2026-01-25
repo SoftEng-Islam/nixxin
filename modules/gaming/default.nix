@@ -1,6 +1,16 @@
-{ settings, lib, pkgs, ... }:
+{ settings, inputs, lib, pkgs, ... }:
 let
   inherit (lib) mkIf;
+
+  # System and hardware configuration
+  system = pkgs.stdenv.hostPlatform.system;
+
+  # OpenCL and Mesa configuration
+  nixos-opencl = inputs.nixos-opencl;
+  mesa-drivers = nixos-opencl.packages.${system}.mesa;
+
+
+
   _pkgs = [
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
@@ -11,7 +21,7 @@ let
     pkgs.vulkan-validation-layers # validation layer runtime
     pkgs.pipewire
     pkgs.sqlite
-    # ${lib.getLib vulkan-loader}/lib/libvulkan.so.1
+    mesa-drivers
   ];
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
@@ -86,7 +96,7 @@ in {
     };
 
     services.sunshine = {
-      enable = false;
+      enable = true;
       autoStart = true;
       capSysAdmin = true;
       openFirewall = true;
@@ -100,7 +110,8 @@ in {
       xdg.desktopEntries."0ad" = {
         name = "0 A.D.";
         genericName = "Historical RTS";
-        exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
+        # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
+        exec = "0ad";
         icon = "0ad";
         categories = [ "Game" "StrategyGame" ];
       };

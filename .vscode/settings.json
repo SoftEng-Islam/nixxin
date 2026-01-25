@@ -5,9 +5,7 @@
   ],
   "nixEnvSelector.useFlakes": true,
   "workbench.editor.enablePreview": true,
-  "[nix]": {
-    "editor.defaultFormatter": "jnoortheen.nix-ide"
-  },
+  "[nix]": {},
   "cSpell.words": [
     "anders",
     "antfu",

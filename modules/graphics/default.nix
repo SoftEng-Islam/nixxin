@@ -7,14 +7,9 @@ let
 
   # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = [ nixos-opencl.packages.${system}.mesa ];
+  mesa-drivers = nixos-opencl.packages.${system}.mesa;
   mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
 
-  # Vulkan ICD (Installable Client Driver) configuration
-  # icds = pkgs.lib.strings.concatStringsSep ":" [
-  #   "${mesa_icd_dir}/radeon_icd.x86_64.json"
-  #   "${mesa_icd_dir}/lvp_icd.x86_64.json"
-  # ];
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -117,7 +112,6 @@ let
 
 in {
   config = lib.mkIf (settings.modules.graphics.enable or false) {
-
     # ========== Graphics Stack Configuration ==========
     #
     # This module configures the graphics stack including:
@@ -133,20 +127,9 @@ in {
     # - Development tools and utilities
 
     environment.variables = {
-      # Set Vulkan environment variables
-      Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
-      Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so";
-      VK_LAYER_PATH =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
-      VULKAN_SDK =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
       # ---- nixos-opencl Start ----
-      CLVK_SPIRV_ARCH = "spir64";
-      CLVK_PHYSICAL_ADDRESSING = 1;
-
       # This is the default for Mesa, but we set it explicitly to ensure
+      # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = [
@@ -157,15 +140,22 @@ in {
           # "${nixos-opencl.packages.${system}.spirv2clc}/etc/OpenCL/vendors"
         ];
       }}";
-      # ---- nixos-opencl End ----
 
-      WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
 
-      # Avoid legacy switchable GPU hints (if you only have one GPU)
-      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      # Vulkan ICD (Installable Client Driver) configuration
+      # /run/opengl-driver/share/vulkan/icd.d/
+      VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+
+      # Set Vulkan environment variables
+      Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
+      Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so.1";
+      VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      VULKAN_SDK =
+        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+
 
       # Vulkan ICD files — this should point to the system-wide location from Mesa
-      # VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
+      VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
 
       # Enable present_wait extension (helps with frame timing on Wayland)
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
@@ -180,54 +170,16 @@ in {
       # Tell Mesa to prefer Wayland
       VK_WSI_MODE = "wayland";
 
+      WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
+
       # Fixes screen tearing in games & Hyprland.
-      # vulkaninfo | grep "driverName"
+      # $ vulkaninfo | grep "driverName"
       AMD_VULKAN_ICD = "radv"; # Force RADV instead of AMDVLK
-
-      # Disable Mesa’s experimental device select layer if needed
-      # VK_LOADER_DISABLE_LAYER_MESA = "0";
-
-      # VK_LAYER_PATH = "${vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
-      # vblank_mode = "0"; # ? Reduces latency
 
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
-
-      # VK_DRIVER_FILES = icds;
-
-      # Some apps dont like integrated + discreet and default to integrated so this should fix that
-      __EGL_VENDOR_LIBRARY_FILENAMES =
-        "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
-      # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
-
       RADV_PERFTEST = "gpl,nogttspill,nircache,sam";
-
-      __GL_SYNC_TO_VBLANK = "1";
-      __GL_THREADED_OPTIMIZATIONS = "1";
-      __GL_VRR_ALLOWED = "1";
-      __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
-
-      LIBVA_DRIVER_NAME = "radeonsi";
-      VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
-
-      # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
-      MESA_GLTHREAD = "true";
-
-      # Performance optimization
-      MESA_VK_WSI_PRESENT_MODE = "fifo";
-
-      LIBGL_DRIVERS_PATH =
-        lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
-      # # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" intel-driver;
-      LIBVA_DRIVERS_PATH =
-        lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
-
-      # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
-
-      # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
@@ -235,28 +187,60 @@ in {
       RUSTICL_CL_VERSION = "3.0";
       RUSTICL_DEVICE_TYPE = "gpu";
 
-      # Mesa OpenGL (somewhat useful)
-      # MESA_GL_VERSION_OVERRIDE = "4.6";
-      # MESA_GLSL_VERSION_OVERRIDE = "460";
-      # MESA_NO_ERROR = "1";
-      # MESA_LOADER_DRIVER_OVERRIDE = "radeonsi,zink";
+      VAAPI_COMPAT = "1";
+      VAAPI_MPEG4_ENABLED = "1";
+      LIBVA_DRIVER_NAME = "radeonsi";
+      VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
-      # Shader cache
-      MESA_SHADER_CACHE_MAX_SIZE = "32G";
-      MESA_GLSL_CACHE_ENABLE = "true";
+      __GL_SYNC_TO_VBLANK = "1";
+      __GL_THREADED_OPTIMIZATIONS = "1";
+      __GL_VRR_ALLOWED = "1";
+      __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
 
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
       LP_NUM_THREADS = "8";
-      # MESA_DISK_CACHE_DATABASE = "1";
-      # MESA_DISK_CACHE_SINGLE_FILE = "0";
-      # MESA_GLSL_CACHE_MAX_SIZE = "32G";
-      # MESA_DISK_CACHE_MULTI_FILE = "1";
-      # MESA_VK_WSI_DISPLAY = "wayland";
-      # MESA_VK_WSI_LIST = "wayland";
 
-      # VAAPI_COMPAT = "1";
-      # VAAPI_MPEG4_ENABLED = "1";
+
+      # CLVK_SPIRV_ARCH = "spir64";
+      # CLVK_PHYSICAL_ADDRESSING = 1;
+
+      # Avoid legacy switchable GPU hints (if you only have one GPU)
+      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+
+      # Some apps dont like integrated + discreet and default to integrated so this should fix that
+      # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+      # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
+
+      # LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
+      # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
+      # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
+      # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
+
+
+
+      # Disable Mesa’s experimental device select layer if needed
+      # VK_LOADER_DISABLE_LAYER_MESA = "0";
+
+      vblank_mode = "0"; # ? Reduces latency
+
+      # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
+      MESA_GLTHREAD = "true";
+
+      # Mesa OpenGL (somewhat useful)
+      MESA_NO_ERROR = "1";
+      # MESA_GL_VERSION_OVERRIDE = "4.6";
+      # MESA_GLSL_VERSION_OVERRIDE = "460";
+      # MESA_LOADER_DRIVER_OVERRIDE = "radeonsi,zink";
+      MESA_VK_WSI_PRESENT_MODE = "fifo"; # Performance optimization
+      MESA_DISK_CACHE_DATABASE = "1";
+      MESA_DISK_CACHE_SINGLE_FILE = "0";
+      MESA_GLSL_CACHE_MAX_SIZE = "32G";
+      MESA_SHADER_CACHE_MAX_SIZE = "32G";
+      MESA_GLSL_CACHE_ENABLE = "true";
+      MESA_DISK_CACHE_MULTI_FILE = "1";
+      MESA_VK_WSI_DISPLAY = "wayland";
+      MESA_VK_WSI_LIST = "wayland";
     };
 
     # ========== Hardware Graphics Configuration ==========
@@ -271,6 +255,7 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
+          mesa-drivers
           libva
           libvdpau-va-gl
           nvidia-vaapi-driver

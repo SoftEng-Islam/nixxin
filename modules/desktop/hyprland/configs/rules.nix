@@ -80,13 +80,12 @@
       # --------------------
       # 0 A.D. rules
       # --------------------
-      # windowrule = noborder,class:^(0ad)$
-      # windowrule = nodim,class:^(0ad)$
-      # windowrule = noshadow,class:^(0ad)$
-      # windowrule = noblur,class:^(0ad)$
-      # windowrule = fullscreen,class:^(0ad)$
-      # windowrule = noanim,class:^(0ad)$
-      # windowrule = nofocus,class:^(0ad)$
+      windowrule = noborder, class:^(0ad)$
+      windowrule = nodim, class:^(0ad)$
+      windowrule = noshadow, class:^(0ad)$
+      windowrule = noblur, class:^(0ad)$
+      windowrule = fullscreen, class:^(0ad)$
+      windowrule = noanim, class:^(0ad)$
 
       # ===============================
       # Rofi Visual Enhancements

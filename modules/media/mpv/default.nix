@@ -112,7 +112,7 @@ lib.mkIf (settings.modules.media.mpv) {
         framedrop = "vo";
 
         # Reduce decoder threads for weak CPUs
-        vd-lavc-threads = 2;
+        # vd-lavc-threads = 2;
 
         # Cache settings
         cache = "yes";
