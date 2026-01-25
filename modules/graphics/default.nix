@@ -8,7 +8,7 @@ let
   # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
   mesa-drivers = nixos-opencl.packages.${system}.mesa;
-  mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
+  mesa_icd_dir = "${pkgs.mesa}/share/vulkan/icd.d";
 
 
   # User-configurable graphics applications
@@ -133,7 +133,8 @@ in {
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = [
-          "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
+          "${pkgs.mesa.opencl}/etc/OpenCL/vendors"
+          # "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
           # "${nixos-opencl.packages.${system}.shady}/etc/OpenCL/vendors"
@@ -218,8 +219,8 @@ in {
       # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-      LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [mesa-drivers];
-      LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" [mesa-drivers];
+      LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [pkgs.mesa];
+      LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" [pkgs.mesa];
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
       # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
@@ -255,13 +256,13 @@ in {
       enable32Bit = true;
 
       # Use unstable Mesa for better performance with latest Hyprland
-      package = mesa-drivers;
+      package = pkgs.mesa;
       package32 = pkgs.pkgsi686Linux.mesa;
 
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          mesa-drivers
+          mesa
           libva
           libvdpau-va-gl
           nvidia-vaapi-driver

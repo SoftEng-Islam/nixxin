@@ -10,7 +10,9 @@ let
     pkgs.vulkan-validation-layers # validation layer runtime
     pkgs.pipewire
     pkgs.sqlite
-    mesa-drivers
+    # mesa-drivers
+    pkgs.mesa
+    pkgs.mesa_i686
   ];
   in lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
