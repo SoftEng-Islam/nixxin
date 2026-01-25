@@ -136,6 +136,11 @@ in {
       # Set Vulkan environment variables
       Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
       Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so";
+      VK_LAYER_PATH =
+        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+
+      VULKAN_SDK =
+        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
 
       # ---- nixos-opencl Start ----
       CLVK_SPIRV_ARCH = "spir64";
@@ -265,7 +270,15 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-
+          libva
+          libvdpau-va-gl
+          nvidia-vaapi-driver
+          libva-vdpau-driver
+          vulkan-extension-layer # Add explicit ICD packages
+          vulkan-loader
+          vulkan-tools
+          vulkan-validation-layers
+          vulkan-headers
           # Official Khronos OpenCL ICD Loader
           (lib.hiPrio khronos-ocl-icd-loader)
         ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages;
@@ -275,6 +288,10 @@ in {
     hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
       mesa_i686
       vulkan-loader
+      libva
+      vulkan-validation-layers
+      vulkan-tools
+      vulkan-extension-layer
     ];
 
     system.activationScripts.vulkan-links = ''
@@ -288,7 +305,8 @@ in {
 
     # ========== System Packages ==========
     environment.systemPackages = with pkgs;
-      [ clinfo opencl-headers ] ++ coreGraphicsPackages ++ vulkanPackages
-      ++ openclPackages ++ graphicsTools ++ lib.flatten _graphics;
+      [ clinfo opencl-headers vulkan-tools-lunarg ] ++ coreGraphicsPackages
+      ++ vulkanPackages ++ openclPackages ++ graphicsTools
+      ++ lib.flatten _graphics;
   };
 }
