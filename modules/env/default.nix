@@ -1,11 +1,26 @@
-{ config, lib, settings, pkgs, ... }:
-
-lib.mkIf (settings.modules.env.enable or false) {
+{ config, inputs, lib, settings, pkgs, ... }:
+let
+  # System and hardware configuration
+  system = pkgs.stdenv.hostPlatform.system;
+  nixos-opencl = inputs.nixos-opencl;
+  mesa-drivers = nixos-opencl.packages.${system}.mesa;
+  # Libraries we want available from nixpkgs
+  libPath = pkgs.lib.makeLibraryPath [
+    pkgs.vulkan-loader # libvulkan.so
+    pkgs.vulkan-validation-layers # validation layer runtime
+    pkgs.pipewire
+    pkgs.sqlite
+    mesa-drivers
+  ];
+  in lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
     # localBinInPath = false;
     variables = {
+      # ---- nixos-opencl Start ----
+      LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
+
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";
 

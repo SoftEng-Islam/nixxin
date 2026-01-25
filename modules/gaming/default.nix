@@ -5,24 +5,12 @@ let
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
 
-  # OpenCL and Mesa configuration
-  nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = nixos-opencl.packages.${system}.mesa;
-
-
 
   _pkgs = [
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
   ];
-  # Libraries we want available from nixpkgs
-  libPath = pkgs.lib.makeLibraryPath [
-    pkgs.vulkan-loader # libvulkan.so
-    pkgs.vulkan-validation-layers # validation layer runtime
-    pkgs.pipewire
-    pkgs.sqlite
-    mesa-drivers
-  ];
+
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
@@ -129,18 +117,6 @@ in {
         vulkan-extension-layer
       ];
       extraPackages32 = with pkgs.pkgsi686Linux; [ vulkan-loader vulkan-tools ];
-    };
-
-    # Set up Vulkan environment variables
-    environment.variables = {
-      VK_ICD_FILENAMES =
-        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
-      VK_LOADER_DEBUG = "all";
-      LD_LIBRARY_PATH =
-        lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
-      VK_DRIVER_FILES =
-        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-
     };
 
     environment.systemPackages = with pkgs;
