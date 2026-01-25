@@ -49,13 +49,13 @@
             stdenv.mkDerivation rec {
               pname = "spirv-headers-src";
               version = "1.4.304.1";
-              src = pkgs.fetchFromGitHub {
+              src = builtins.fetchGit {
                 owner = "KhronosGroup";
                 repo = "SPIRV-Headers";
                 rev = "54a521dd130ae1b2f38fef79b09515702d135bdd";
                 hash = "sha256-PScDq8HhQPFUs78N75QyL9oEykmjZmAhdxCAqQ0LJds=";
-                fetchSubmodules = true;
-                deepClone = true;
+                # Add this line to allow fetching from any ref
+                allRefs = true;
               };
 
               dontConfigure = true;
