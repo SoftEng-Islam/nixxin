@@ -7,7 +7,7 @@ let
 
   # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = [nixos-opencl.packages.${system}.mesa];
+  mesa-drivers = nixos-opencl.packages.${system}.mesa;
   mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
 
 
@@ -261,7 +261,7 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          mesa-drivers
+          mesa-drivers.opencl
           libva
           libvdpau-va-gl
           nvidia-vaapi-driver
