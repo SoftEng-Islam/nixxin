@@ -277,6 +277,15 @@ in {
       vulkan-loader
     ];
 
+    system.activationScripts.vulkan-links = ''
+      mkdir -p /usr/lib
+      mkdir -p /usr/lib32
+      ln -sfn /run/opengl-driver/lib/libvulkan.so.1 /usr/lib/libvulkan.so.1
+      ln -sfn /run/opengl-driver/lib/libvulkan.so.1 /usr/lib32/libvulkan.so.1
+      ln -sfn ${pkgs.vulkan-loader}/lib/libvulkan.so.1 /usr/lib/libvulkan.so.1
+      ln -sfn ${pkgs.pkgsi686Linux.vulkan-loader}/lib/libvulkan.so.1 /usr/lib32/libvulkan.so.1
+    '';
+
     # ========== System Packages ==========
     environment.systemPackages = with pkgs;
       [ clinfo opencl-headers ] ++ coreGraphicsPackages ++ vulkanPackages
