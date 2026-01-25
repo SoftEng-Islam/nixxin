@@ -218,8 +218,8 @@ in {
       # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-      LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" mesa-drivers;
-      LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" mesa-drivers;
+      LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [mesa-drivers];
+      LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" [mesa-drivers];
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
       # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
 
@@ -261,7 +261,7 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          # mesa-drivers.opencl
+          mesa-drivers
           libva
           libvdpau-va-gl
           nvidia-vaapi-driver
