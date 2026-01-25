@@ -12,6 +12,7 @@ let
     pkgs.vulkan-validation-layers # validation layer runtime
     pkgs.pipewire
     pkgs.sqlite
+    # ${lib.getLib vulkan-loader}/lib/libvulkan.so.1
   ];
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
@@ -135,7 +136,14 @@ in {
     environment.systemPackages = with pkgs;
       [
         # 0 A.D. with Vulkan support
-        zeroad
+
+        (pkgs.zeroad.overrideAttrs {
+          postFixup = ''
+            wrapProgram $out/bin/haruna \
+              --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so"
+          '';
+        })
+
         zeroad-data
 
         # Vulkan tools and libraries

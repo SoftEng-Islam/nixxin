@@ -133,6 +133,10 @@ in {
     # - Development tools and utilities
 
     environment.variables = {
+      # Set Vulkan environment variables
+      Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
+      Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so";
+
       # ---- nixos-opencl Start ----
       CLVK_SPIRV_ARCH = "spir64";
       CLVK_PHYSICAL_ADDRESSING = 1;
