@@ -261,7 +261,7 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          mesa-drivers.opencl
+          # mesa-drivers.opencl
           libva
           libvdpau-va-gl
           nvidia-vaapi-driver
