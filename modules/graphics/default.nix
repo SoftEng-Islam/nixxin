@@ -102,7 +102,7 @@ let
     opencl-headers
     clinfo
     clpeak
-    (hwloc.override { x11Support = true; })
+    # (hwloc.override { x11Support = true; })
   ];
 
   # Graphics tools and utilities
@@ -114,9 +114,6 @@ let
     # Intel specific
     inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
   ];
-
-  # 32-bit packages
-  packages32 = with pkgs.pkgsi686Linux; [ mesa_i686 vulkan-loader ];
 
 in {
   config = lib.mkIf (settings.modules.graphics.enable or false) {
@@ -271,7 +268,10 @@ in {
     };
 
     # 32-bit graphics packages for compatibility
-    hardware.graphics.extraPackages32 = packages32;
+    hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+      mesa_i686
+      vulkan-loader
+    ];
 
     # ========== System Packages ==========
     environment.systemPackages = with pkgs;
