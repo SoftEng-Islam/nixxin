@@ -119,7 +119,7 @@ in {
       VK_LOADER_DEBUG = "all";
       LD_LIBRARY_PATH = "$LD_LIBRARY_PATH:${pkgs.vulkan-loader}/lib:${
           pkgs.lib.makeLibraryPath (with pkgs; [ sqlite ])
-        }";
+        }:${pkgs.pipewire}/lib:/run/opengl-driver/lib";
       VK_DRIVER_FILES =
         "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
