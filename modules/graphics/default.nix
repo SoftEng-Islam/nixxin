@@ -255,7 +255,7 @@ in {
       enable32Bit = true;
 
       # Use unstable Mesa for better performance with latest Hyprland
-      package = pkgs.mesa-drivers;
+      package = mesa-drivers;
       package32 = pkgs.pkgsi686Linux.mesa;
 
       # Note: amdvlk has been deprecated, RADV is now the default driver
