@@ -5,9 +5,8 @@ let
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
   ];
-  # Libraries we want available from nixpkgs (NO wayland here)
+  # Libraries we want available from nixpkgs
   libPath = pkgs.lib.makeLibraryPath [
-    pkgs.stdenv.cc.cc # libstdc++.so.6
     pkgs.vulkan-loader # libvulkan.so
     pkgs.vulkan-validation-layers # validation layer runtime
     pkgs.pipewire
