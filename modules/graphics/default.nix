@@ -7,7 +7,7 @@ let
 
   # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = nixos-opencl.packages.${system}.mesa;
+  mesa-drivers = [nixos-opencl.packages.${system}.mesa];
   mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
 
 
