@@ -11,10 +11,10 @@ let
   mesa_icd_dir = "${mesa-drivers}/share/vulkan/icd.d";
 
   # Vulkan ICD (Installable Client Driver) configuration
-  icds = pkgs.lib.strings.concatStringsSep ":" [
-    "${mesa_icd_dir}/radeon_icd.x86_64.json"
-    "${mesa_icd_dir}/lvp_icd.x86_64.json"
-  ];
+  # icds = pkgs.lib.strings.concatStringsSep ":" [
+  #   "${mesa_icd_dir}/radeon_icd.x86_64.json"
+  #   "${mesa_icd_dir}/lvp_icd.x86_64.json"
+  # ];
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -102,7 +102,7 @@ let
     opencl-headers
     clinfo
     clpeak
-    # (hwloc.override { x11Support = true; })
+    (hwloc.override { x11Support = true; })
   ];
 
   # Graphics tools and utilities
@@ -186,7 +186,7 @@ in {
 
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
 
-      VK_DRIVER_FILES = icds;
+      # VK_DRIVER_FILES = icds;
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
       __EGL_VENDOR_LIBRARY_FILENAMES =
