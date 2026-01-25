@@ -162,7 +162,7 @@ in {
       WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
-      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
       # Vulkan ICD files — this should point to the system-wide location from Mesa
       # VK_ICD_FILENAMES = "${mesa}/share/vulkan/icd.d/radeon_icd.x86_64.json";
