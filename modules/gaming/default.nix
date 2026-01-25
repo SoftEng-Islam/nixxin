@@ -5,12 +5,14 @@ let
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
   ];
-   # Libraries we want available from nixpkgs (NO wayland here)
-    libPath = pkgs.lib.makeLibraryPath [
-      pkgs.stdenv.cc.cc               # libstdc++.so.6
-      pkgs.vulkan-loader              # libvulkan.so
-      pkgs.vulkan-validation-layers   # validation layer runtime
-    ];
+  # Libraries we want available from nixpkgs (NO wayland here)
+  libPath = pkgs.lib.makeLibraryPath [
+    pkgs.stdenv.cc.cc # libstdc++.so.6
+    pkgs.vulkan-loader # libvulkan.so
+    pkgs.vulkan-validation-layers # validation layer runtime
+    pkgs.pipewire
+    pkgs.sqlite
+  ];
 in {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
@@ -123,10 +125,8 @@ in {
       VK_ICD_FILENAMES =
         "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
       VK_LOADER_DEBUG = "all";
-      LD_LIBRARY_PATH = lib.mkForce
-        "$LD_LIBRARY_PATH:${libPath}:${pkgs.vulkan-loader}/lib:${
-          pkgs.lib.makeLibraryPath (with pkgs; [ sqlite ])
-        }:${pkgs.pipewire}/lib:/run/opengl-driver/lib";
+      LD_LIBRARY_PATH =
+        lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
       VK_DRIVER_FILES =
         "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
 
