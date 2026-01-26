@@ -169,8 +169,7 @@ in {
       VK_PRESENT_MODE = "mailbox";
 
       # Disable problematic/unused Vulkan layers
-      VK_LOADER_LAYERS_DISABLE =
-        "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
+      # VK_LOADER_LAYERS_DISABLE = "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
 
       # Tell Mesa to prefer Wayland
       VK_WSI_MODE = "wayland";
@@ -198,9 +197,9 @@ in {
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
       __GL_SYNC_TO_VBLANK = "1";
-      __GL_THREADED_OPTIMIZATIONS = "1";
-      __GL_VRR_ALLOWED = "1";
-      __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
+      # __GL_THREADED_OPTIMIZATIONS = "1";
+      # __GL_VRR_ALLOWED = "1";
+      # __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
 
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
@@ -219,10 +218,10 @@ in {
       # CLVK_PHYSICAL_ADDRESSING = 1;
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
-      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
-      # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+      __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
       LIBGL_DRIVERS_PATH =
