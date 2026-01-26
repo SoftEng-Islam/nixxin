@@ -4,7 +4,7 @@ in {
   # imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
   config = mkIf (settings.modules.hacking.enable) {
     environment.variables = {
-      ROC_ENABLE_PRE_VEGA = "1";
+      # ROC_ENABLE_PRE_VEGA = "1";
       # iris, llvmpipe, nouveau, panfrost, radeonsi,
       # RUSTICL_ENABLE = "radeonsi";
     };

@@ -132,8 +132,8 @@ in {
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = [
-          "${pkgs.mesa.opencl}/etc/OpenCL/vendors/"
-          # "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
+          # "${pkgs.mesa.opencl}/etc/OpenCL/vendors/"
+          "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/"
           "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
         ];
