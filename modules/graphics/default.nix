@@ -140,25 +140,24 @@ in {
       }}";
 
       # VK_LOADER_DEBUG = "all";
+      # =================================
 
       # Vulkan ICD files — this should point to the system-wide location from Mesa
       # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
-      VK_ICD_FILENAMES =
-        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+      # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
 
       # Vulkan ICD (Installable Client Driver) configuration
       # /run/opengl-driver/share/vulkan/icd.d/
       # VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-      VK_DRIVER_FILES =
-        "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+      # VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
 
       # Set Vulkan environment variables
-      Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
-      Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so.1";
-      VK_LAYER_PATH =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-      VULKAN_SDK =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      # Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
+      # Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so.1";
+      # VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      # VULKAN_SDK = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      # =================================
+
 
       # Enable present_wait extension (helps with frame timing on Wayland)
       # VK_KHR_PRESENT_WAIT_ENABLED = "1";
