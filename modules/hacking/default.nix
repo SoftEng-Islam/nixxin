@@ -23,7 +23,6 @@ in {
       (hashcat.override {
         cudaSupport = false;
         rocmSupport = false;
-        enableOpenCL = true;
         enableAMD = true;
       }) # Fast password cracker
       hashcat-utils # Small utilities that are useful in advanced password cracking
