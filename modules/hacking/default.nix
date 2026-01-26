@@ -23,7 +23,6 @@ in {
       (hashcat.override {
         cudaSupport = false;
         rocmSupport = false;
-        enableNVML = false;
         enableNVRTC = false;
         enableOpenCL = true;
         enableAMD = true;
