@@ -242,10 +242,10 @@ in {
 
       # Mesa OpenGL (somewhat useful)
       MESA_NO_ERROR = "1";
-      MESA_GL_VERSION_OVERRIDE = "4.6";
-      MESA_GLSL_VERSION_OVERRIDE = "460";
-      MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
+      # MESA_GL_VERSION_OVERRIDE = "4.6";
+      # MESA_GLSL_VERSION_OVERRIDE = "460";
       MESA_VK_WSI_PRESENT_MODE = "fifo"; # Performance optimization
+      MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
       MESA_DISK_CACHE_DATABASE = "1";
       MESA_DISK_CACHE_SINGLE_FILE = "0";
       MESA_GLSL_CACHE_MAX_SIZE = "32G";

@@ -9,21 +9,21 @@ in {
       # RUSTICL_ENABLE = "radeonsi";
     };
     environment.systemPackages = with pkgs; [
-      # hashcat.overrideAttrs
-      # (old: {
-      #   preFixup = (old.preFixup or "") + ''
-      #     for f in $(find $out/share/hashcat/OpenCL -name '*.cl'); do
-      #       sed "s|#include \"\(.*\)\"|#include \"$out/share/hashcat/OpenCL/\1\"|g" -i "$f"
-      #     done
-      #   '';
-      # })
-
       # If the issue persists, try running hashcat with:
       # LD_DEBUG=libs hashcat -I
-      (hashcat.override {
+      # env -u LD_LIBRARY_PATH hashcat -I
+      # LD_LIBRARY_PATH= hashcat -I
+
+      (pkgs.writeShellScriptBin "hashcat" ''
+      unset LD_LIBRARY_PATH
+      exec ${(hashcat.override {
         cudaSupport = false;
         rocmSupport = false;
-      }) # Fast password cracker
+      })}/bin/hashcat "$@"
+      '')
+
+
+
       hashcat-utils # Small utilities that are useful in advanced password cracking
 
       # John the Ripper password cracker
