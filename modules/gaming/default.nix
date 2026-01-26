@@ -5,7 +5,6 @@ let
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
 
-
   _pkgs = [
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
@@ -126,7 +125,20 @@ in {
         (pkgs.zeroad.overrideAttrs {
           postFixup = ''
             wrapProgram $out/bin/haruna \
-              --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so"
+            --prefix LD_LIBRARY_PATH : ${
+              lib.makeLibraryPath [
+                vulkan-loader # libvulkan.so
+                vulkan-validation-layers # validation layer runtime
+                pipewire
+                sqlite
+                mesa
+                mesa_i686
+                libGL
+                libGLU
+                libglvnd
+              ]
+            } \
+            --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
           '';
         })
 

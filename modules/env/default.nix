@@ -10,7 +10,6 @@ let
     pkgs.vulkan-validation-layers # validation layer runtime
     pkgs.pipewire
     pkgs.sqlite
-    # mesa-drivers
     pkgs.mesa
     pkgs.mesa_i686
   ];
