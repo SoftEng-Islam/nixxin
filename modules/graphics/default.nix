@@ -10,7 +10,6 @@ let
   mesa-drivers = nixos-opencl.packages.${system}.mesa;
   mesa_icd_dir = "${pkgs.mesa}/share/vulkan/icd.d";
 
-
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
@@ -142,27 +141,26 @@ in {
         ];
       }}";
 
-
       VK_LOADER_DEBUG = "all";
 
       # Vulkan ICD files — this should point to the system-wide location from Mesa
       # VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
-      VK_ICD_FILENAMES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
-
+      VK_ICD_FILENAMES =
+        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
 
       # Vulkan ICD (Installable Client Driver) configuration
       # /run/opengl-driver/share/vulkan/icd.d/
       # VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-      VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+      VK_DRIVER_FILES =
+        "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
 
       # Set Vulkan environment variables
       Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
       Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so.1";
-      VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      VK_LAYER_PATH =
+        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
       VULKAN_SDK =
         "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-
-
 
       # Enable present_wait extension (helps with frame timing on Wayland)
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
@@ -207,7 +205,15 @@ in {
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
       LP_NUM_THREADS = "8";
+      GALLIUM_DRIVER = "llvmpipe";
 
+      HSA_ENABLE_SDMA = "0";
+      HSA_OVERRIDE_GFX_VERSION = "8.0.0"; # Older version for Kaveri
+      HSA_AMDGPU_GFX = "gfx7"; # Kaveri is GCN 1.1 (gfx7)
+
+      # Disable problematic optimizations
+      HSA_NO_FMA = "1";
+      HSA_NO_SDMA = "1";
 
       # CLVK_SPIRV_ARCH = "spir64";
       # CLVK_PHYSICAL_ADDRESSING = 1;
@@ -219,12 +225,12 @@ in {
       # __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-      LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [pkgs.mesa];
-      LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" [pkgs.mesa];
+      LIBGL_DRIVERS_PATH =
+        lib.makeSearchPathOutput "lib" "lib/dri" [ pkgs.mesa ];
+      LIBVA_DRIVERS_PATH =
+        lib.makeSearchPathOutput "out" "lib/dri" [ pkgs.mesa ];
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
       # __EGL_VENDOR_LIBRARY_DIRS = "${mesa}/share/glvnd/egl_vendor.d/";
-
-
 
       # Disable Mesa’s experimental device select layer if needed
       # VK_LOADER_DISABLE_LAYER_MESA = "0";
