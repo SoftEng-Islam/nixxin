@@ -21,7 +21,7 @@ let
     # localBinInPath = false;
     variables = {
       # ---- nixos-opencl Start ----
-      LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
+      # LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";
