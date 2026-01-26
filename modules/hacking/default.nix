@@ -17,7 +17,17 @@ in {
       #     done
       #   '';
       # })
-      hashcat # Fast password cracker
+
+      # If the issue persists, try running hashcat with:
+      # LD_DEBUG=libs hashcat -I
+      (hashcat.override {
+        cudaSupport = false;
+        rocmSupport = false;
+        enableNVML = false;
+        enableNVRTC = false;
+        enableOpenCL = true;
+        enableAMD = true;
+      }) # Fast password cracker
       hashcat-utils # Small utilities that are useful in advanced password cracking
 
       # John the Ripper password cracker
