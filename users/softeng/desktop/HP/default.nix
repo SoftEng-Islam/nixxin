@@ -497,6 +497,10 @@
     "radeon.cik_support=0"
     "amdgpu.cik_support=1"
 
+    "amdgpu.dc=1"
+    "amdgpu.dpm=1"
+    "amdgpu.gpu_recovery=1"
+
     # Disables AMD's IOMMU (Input-Output Memory Management Unit).
     # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
     # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
