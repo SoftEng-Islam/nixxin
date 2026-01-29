@@ -135,7 +135,9 @@ in {
           # "${pkgs.mesa.opencl}/etc/OpenCL/vendors/"
           "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/"
-          "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
+          # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
+          "${pkgs.pocl}/etc/OpenCL/vendors"
+          "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
         ];
       }}";
 
@@ -207,19 +209,19 @@ in {
       LP_NUM_THREADS = "8";
       # GALLIUM_DRIVER = "llvmpipe";
 
-      # HSA_ENABLE_SDMA = "0";
+      HSA_ENABLE_SDMA = "1";
       HSA_OVERRIDE_GFX_VERSION = "8.0.0"; # Older version for Kaveri
       HSA_AMDGPU_GFX = "gfx7"; # Kaveri is GCN 1.1 (gfx7)
 
       # Disable problematic optimizations
-      HSA_NO_FMA = "1";
-      HSA_NO_SDMA = "1";
+      # HSA_NO_FMA = "1";
+      # HSA_NO_SDMA = "1";
 
       CLVK_SPIRV_ARCH = "spir64";
       CLVK_PHYSICAL_ADDRESSING = 1;
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
-      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
       __EGL_VENDOR_LIBRARY_FILENAMES =
@@ -233,7 +235,7 @@ in {
       __EGL_VENDOR_LIBRARY_DIRS = "${pkgs.mesa}/share/glvnd/egl_vendor.d/";
 
       # Disable Mesa’s experimental device select layer if needed
-      VK_LOADER_DISABLE_LAYER_MESA = "0";
+      # VK_LOADER_DISABLE_LAYER_MESA = "0";
 
       vblank_mode = "0"; # ? Reduces latency
 
@@ -279,10 +281,7 @@ in {
           vulkan-loader
           vulkan-tools
           vulkan-validation-layers
-
-          rocmPackages.clr.icd # OpenCL for AMD GPUs
-          pocl # OpenCL for CPU
-
+          # OpenCL for AMD GPUs
           # Official Khronos OpenCL ICD Loader
           (lib.hiPrio khronos-ocl-icd-loader)
         ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages;
