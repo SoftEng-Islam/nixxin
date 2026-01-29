@@ -86,6 +86,9 @@ in {
       mongodb-atlas-cli
       mongosh
 
+      firebase-tools
+      agneyastra
+
       nodejs
       deno
       yarn
