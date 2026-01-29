@@ -241,6 +241,7 @@ in {
 
       # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
       MESA_GLTHREAD = "true";
+      mesa_glthread = "true";
 
       # Mesa OpenGL (somewhat useful)
       MESA_NO_ERROR = "1";
@@ -257,6 +258,11 @@ in {
       MESA_DISK_CACHE_MULTI_FILE = "1";
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
+
+      GPU_MAX_ALLOC_PERCENT = "100";
+      GPU_SINGLE_ALLOC_PERCENT = "100";
+      GPU_MAX_HEAP_SIZE = "100";
+      GPU_USE_SYNC_OBJECTS = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
