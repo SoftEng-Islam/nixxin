@@ -50,7 +50,7 @@ let
     (lib.optional settings.modules.browsers.firefox.enable firefox)
     (lib.optional settings.modules.browsers.firefox-beta.enable firefox-beta)
     (lib.optional settings.modules.browsers.brave.enable brave)
-    (lib.optional settings.modules.browsers.google-chrome.enable __googleChrome)
+    (lib.optional settings.modules.browsers.google-chrome.enable _googleChrome)
     (lib.optional settings.modules.browsers.microsoft-edge.enable
       microsoft-edge)
   ];

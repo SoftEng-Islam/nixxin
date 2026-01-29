@@ -356,7 +356,8 @@
         "nixpkgs": "nixpkgs_3",
         "quickshell": "quickshell",
         "systems": "systems_3",
-        "yt-dlp-src": "yt-dlp-src"
+        "yt-dlp-src": "yt-dlp-src",
+        "zen-browser": "zen-browser"
       }
     },
     "shady-src": {
@@ -468,6 +469,26 @@
       "original": {
         "owner": "yt-dlp",
         "repo": "yt-dlp",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1769315176,
+        "narHash": "sha256-w1aX0LxNLdhAB4nGsD+3U4XBzr1nfKza/LxT3cD4h28=",
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
+        "rev": "0c4d40528c156b00067df5e90e5dca8dfe2e2735",
+        "type": "github"
+      },
+      "original": {
+        "owner": "youwen5",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     },
