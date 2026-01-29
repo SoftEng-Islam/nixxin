@@ -87,7 +87,7 @@ in {
       mongosh
 
       firebase-tools
-      agneyastra
+      # agneyastra
 
       nodejs
       deno
