@@ -6,6 +6,7 @@
 
   # Required by gnome file managers
   programs.gnome-disks.enable = true;
+  # services.tumbler.enable = true; # thumbnailer service for nauitlus
 
   # ---- Tracker3 ---- #
   services.gnome.tinysparql.enable = true; # indexing files

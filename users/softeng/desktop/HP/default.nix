@@ -455,7 +455,7 @@
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm.enable = false; # If your APU/GPU Support it
-  modules.system.videoDrivers = [ "amdgpu" ];
+  modules.system.videoDrivers = [ "amdgpu" "modesetting" ];
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
   modules.system.boot.tmp.useTmpfs = system.useTmpfs;

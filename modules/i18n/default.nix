@@ -49,30 +49,4 @@ in {
     GLFW_IM_MODULE = "ibus"; # fallback for some games
   };
 
-  # Configure Virtual Console
-  console = {
-    enable = true;
-    packages = [ pkgs.terminus_font ];
-    font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
-    # useXkbConfig = false; # If set, configure the virtual console keymap from the xserver keyboard settings.
-    colors = [
-      "1e1e2e" # Black
-      "f38ba8" # Red
-      "a6e3a1" # Green
-      "f9e2af" # Yellow
-      "89b4fa" # Blue
-      "cba6f7" # Magenta
-      "94e2d5" # Cyan
-      "cdd6f4" # White
-      "585b70" # Bright Black
-      "f38ba8" # Bright Red
-      "a6e3a1" # Bright Green
-      "f9e2af" # Bright Yellow
-      "89b4fa" # Bright Blue
-      "cba6f7" # Bright Magenta
-      "94e2d5" # Bright Cyan
-      "a6adc8" # Bright White
-    ];
-  };
-
 }

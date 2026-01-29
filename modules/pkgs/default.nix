@@ -11,11 +11,15 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     # libva # An implementation for VA-API (Video Acceleration API)
     # openal # OpenAL alternative
-    # spirv-cross
-    # spirv-headers
-    # spirv-llvm-translator
-    # spirv-tools
+
+    spirv-cross
+    spirv-headers
+    spirv-llvm-translator
+    spirv-tools
     # libunwind
+
+    # use uutils (rust rewrite) instead of gnu coreutils
+    (lib.hiPrio pkgs.uutils-coreutils-noprefix)
 
     # ---- Disks & Filesystem ---- #
     cifs-utils

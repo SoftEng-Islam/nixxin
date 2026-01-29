@@ -25,6 +25,11 @@
     # devDocs-flake.url = "path:./pkgs/devDocs";
     # devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
 
+    zen-browser = {
+      url = "github:youwen5/zen-browser-flake"; # Latest Zen Browser binary
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     quickshell = {
       # add ?ref=<tag> to track a tag
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";

@@ -269,16 +269,20 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          mesa
           libva
-          libvdpau-va-gl
-          nvidia-vaapi-driver
           libva-vdpau-driver
+          libvdpau-va-gl
+          mesa
+          nvidia-vaapi-driver
           vulkan-extension-layer # Add explicit ICD packages
+          vulkan-headers
           vulkan-loader
           vulkan-tools
           vulkan-validation-layers
-          vulkan-headers
+
+          rocmPackages.clr.icd # OpenCL for AMD GPUs
+          pocl # OpenCL for CPU
+
           # Official Khronos OpenCL ICD Loader
           (lib.hiPrio khronos-ocl-icd-loader)
         ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages;
@@ -288,6 +292,8 @@ in {
     hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
       mesa_i686
       vulkan-loader
+      libva-vdpau-driver
+      libvdpau-va-gl
       libva
       vulkan-validation-layers
       vulkan-tools

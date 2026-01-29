@@ -194,7 +194,6 @@ in {
       libx11
       libxrandr
 
-      vulkan-loader
       libGL
       vkd3d
       libva
@@ -302,10 +301,11 @@ in {
 
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix
+    nixfmt
     nil # Yet another language server for Nix
 
     # Nix Formatters
-    nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
+    # nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
 
     nixdoc # Generate documentation for Nix functions
