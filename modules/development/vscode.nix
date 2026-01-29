@@ -100,6 +100,8 @@ in {
       enable = true;
       package = pkgs.vscode.override {
         isInsiders = false;
+        # Configure VSCode to run without requiring --no-sandbox
+        useVSCodeRipgrep = true;
         commandLineArgs = [
           # "--enable-features=WaylandWindowDecorations"
           "--ozone-platform-hint="
