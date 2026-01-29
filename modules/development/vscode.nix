@@ -99,10 +99,12 @@ in {
     programs.vscode = {
       enable = true;
       package = pkgs.vscode.override {
+        isInsiders = false;
         commandLineArgs = [
           # "--enable-features=WaylandWindowDecorations"
           "--ozone-platform-hint="
           "--ozone-platform=wayland"
+          "--enable-features=WaylandWindowDecorations"
           # make it use GTK_IM_MODULE if it runs with Gtk4, so fcitx5 can work with it.
           # (only supported by chromium/chrome at this time, not electron)
           "--gtk-version=4"
@@ -111,6 +113,9 @@ in {
 
           # enable hardware acceleration - vulkan api
           "--enable-features=Vulkan"
+
+          # 2. THE FIX: Force it to ignore System 1.25x and render at 1:1
+          "--force-device-scale-factor=1"
 
           "--ozone-platform-hint=auto"
           "--ozone-platform=wayland"
