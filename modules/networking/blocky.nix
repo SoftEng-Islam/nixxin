@@ -63,6 +63,8 @@
           '';
         in {
           ads = [
+            "https://stripchat.com"
+            "https://melbetegypt.com"
             "https://blocklistproject.github.io/Lists/ads.txt"
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
             "https://adaway.org/hosts.txt"
@@ -119,7 +121,6 @@
             "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/whitelist.txt"
             "https://raw.githubusercontent.com/anudeepND/whitelist/master/domains/optional-list.txt"
             "https://raw.githubusercontent.com/StevenBlack/hosts/master/hosts"
-            "https://stripchat.com/"
           ];
           misc = [ customWhitelist ];
         };
