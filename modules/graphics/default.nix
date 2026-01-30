@@ -256,8 +256,10 @@ in {
       MESA_DISK_CACHE_SINGLE_FILE = "0";
       MESA_GLSL_CACHE_MAX_SIZE = "32G";
       MESA_SHADER_CACHE_MAX_SIZE = "2G";
+      MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
       MESA_GLSL_CACHE_ENABLE = "true";
       MESA_DISK_CACHE_MULTI_FILE = "1";
+      MESA_GLSL_CACHE_DIR = "~/.cache/mesa_shader_cache";
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
 
