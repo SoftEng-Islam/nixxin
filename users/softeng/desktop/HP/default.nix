@@ -501,7 +501,11 @@
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
     "amdgpu.vm_fragment_size=9"
+    "amdgpu.ppfeaturemask=0xfffd3fff" # Disable GFXOFF power feature
     "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
+    "amdgpu.dcdebugmask=0x10" # Disable PSR
+    "amdgpu.sg_display=0" # Disable scatter-gather display
+    "amdgpu.bapm=1" # Disable bidirectional APM
 
     # Disables AMD's IOMMU (Input-Output Memory Management Unit).
     # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
@@ -521,7 +525,7 @@
     "audit=0"
 
     # If you want full control over power settings, use:
-    "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+    # "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
     # If you have stability issues (freezes, black screens, crashes), try:
     # "amdgpu.ppfeaturemask=0xFFF7FFFF"
     # Check If It’s Applied:

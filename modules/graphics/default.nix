@@ -265,6 +265,8 @@ in {
       GPU_SINGLE_ALLOC_PERCENT = "100";
       GPU_MAX_HEAP_SIZE = "100";
       GPU_USE_SYNC_OBJECTS = "1";
+
+      DRI_PRIME = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
@@ -283,6 +285,7 @@ in {
           libva-vdpau-driver
           libvdpau-va-gl
           mesa
+          libglvnd
           nvidia-vaapi-driver
           vulkan-extension-layer # Add explicit ICD packages
           vulkan-headers
