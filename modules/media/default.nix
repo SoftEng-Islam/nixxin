@@ -43,6 +43,10 @@ in {
         libnice
         glib.dev
         pkg-config
+
+        handbrake # Tool for converting video files and ripping DVDs
+        libmkvtoolnix # Matroska (MKV) media container manipulation tools
+        exiftool
       ];
   };
 }
