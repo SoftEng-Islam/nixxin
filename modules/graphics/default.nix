@@ -192,8 +192,7 @@ in {
       RUSTICL_ENABLE = "radeonsi";
       RUSTICL_CL_VERSION = "3.0";
       RUSTICL_DEVICE_TYPE = "gpu";
-      RUSTICL_FEATURES =
-        "cl_khr_icd,cl_khr_il_program,cl_khr_create_command_queue";
+      # RUSTICL_FEATURES = "";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "1";
