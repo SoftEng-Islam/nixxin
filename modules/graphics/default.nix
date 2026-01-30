@@ -192,6 +192,8 @@ in {
       RUSTICL_ENABLE = "radeonsi";
       RUSTICL_CL_VERSION = "3.0";
       RUSTICL_DEVICE_TYPE = "gpu";
+      RUSTICL_FEATURES =
+        "cl_khr_icd,cl_khr_il_program,cl_khr_create_command_queue";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "1";
@@ -207,10 +209,10 @@ in {
       LIBGL_ALWAYS_SOFTWARE = "0";
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
       LP_NUM_THREADS = "8";
-      # GALLIUM_DRIVER = "llvmpipe";
+      GALLIUM_DRIVER = "radeonsi";
 
       HSA_ENABLE_SDMA = "1";
-      HSA_OVERRIDE_GFX_VERSION = "8.0.0"; # Older version for Kaveri
+      HSA_OVERRIDE_GFX_VERSION = "7.0.1"; # Older version for Kaveri
       HSA_AMDGPU_GFX = "gfx7"; # Kaveri is GCN 1.1 (gfx7)
 
       # Disable problematic optimizations
@@ -253,7 +255,7 @@ in {
       MESA_DISK_CACHE_DATABASE = "1";
       MESA_DISK_CACHE_SINGLE_FILE = "0";
       MESA_GLSL_CACHE_MAX_SIZE = "32G";
-      MESA_SHADER_CACHE_MAX_SIZE = "32G";
+      MESA_SHADER_CACHE_MAX_SIZE = "2G";
       MESA_GLSL_CACHE_ENABLE = "true";
       MESA_DISK_CACHE_MULTI_FILE = "1";
       MESA_VK_WSI_DISPLAY = "wayland";

@@ -500,6 +500,8 @@
     "amdgpu.dc=1"
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
+    "amdgpu.vm_fragment_size=9"
+    "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
 
     # Disables AMD's IOMMU (Input-Output Memory Management Unit).
     # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
