@@ -223,7 +223,7 @@ in {
       CLVK_PHYSICAL_ADDRESSING = 1;
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
-      # DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
       __EGL_VENDOR_LIBRARY_FILENAMES =
