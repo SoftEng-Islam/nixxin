@@ -190,7 +190,7 @@ in {
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
       RUSTICL_ENABLE = "radeonsi";
-      RUSTICL_CL_VERSION = "3.0";
+      RUSTICL_CL_VERSION = "1.2";
       RUSTICL_DEVICE_TYPE = "gpu";
       RUSTICL_FEATURES = "fp64,intel";
       RUSTICL_MAX_WORK_GROUPS = "128";
