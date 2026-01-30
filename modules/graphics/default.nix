@@ -192,7 +192,8 @@ in {
       RUSTICL_ENABLE = "radeonsi";
       RUSTICL_CL_VERSION = "3.0";
       RUSTICL_DEVICE_TYPE = "gpu";
-      # RUSTICL_FEATURES = "";
+      RUSTICL_FEATURES = "fp64,intel";
+      RUSTICL_MAX_WORK_GROUPS = "128";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "1";
