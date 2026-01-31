@@ -1,0 +1,1025 @@
+Jan 31 21:18:09 nixxin kernel: Linux version 6.18.0-zen1 (nixbld@localhost) (gcc (GCC) 14.3.0, GNU ld (GNU Binutils) 2.44) #1-NixOS ZEN SMP PREEMPT_DYNAMIC Tue Jan  1 00:00:00 UTC 1980
+Jan 31 21:18:09 nixxin kernel: Command line: BOOT_IMAGE=(hd0,gpt1)//kernels/wka79msdzqphqr48nlw03fxldfz3s2c9-linux-zen-6.18-bzImage init=/nix/store/h4p8g6w63v3brllmvqv8qv73h92qmlvj-nixos-system-nixxin-26.05.20251208.addf7cf/init radeon.si_support=0 amdgpu.si_support=1 radeon.cik_support=0 amdgpu.cik_support=1 amdgpu.dc=1 amdgpu.dpm=1 amdgpu.gpu_recovery=1 amdgpu.vm_fragment_size=9 amdgpu.ppfeaturemask=0xfffd3fff amdgpu.dcfeaturemask=0x1 amdgpu.dcdebugmask=0x10 amdgpu.sg_display=0 amdgpu.bapm=1 random.trust_cpu=on tsc=reliable clocksource=tsc no_timer_check audit=0 quiet splash loglevel=0 systemd.show_status=false rd.systemd.show_status=false udev.log_level=0 rd.udev.log_level=0 plymouth.ignore-serial-consoles acpi_osi=Linux intremap=off mitigations=off split_lock_mitigate=off retbleed=off preempt=full randomize_kstack_offset=on rtl8xxxu_disable_hw_crypto=1 net.ifnames=0 biosdevname=0 transparent_hugepage=always amdgpu.gpu_recovery=1 psi=1 psi=1 splash loglevel=0 amdgpu.ppfeaturemask=0xffffffff nohibernate lsm=landlock,yama,bpf vt.defaul
+Jan 31 21:18:09 nixxin kernel: BIOS-provided physical RAM map:
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000000000000-0x000000000008efff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000000008f000-0x000000000008ffff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000000090000-0x000000000009ffff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000000100000-0x000000005e719fff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000005e71a000-0x000000005e71afff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000005e71b000-0x000000005e845fff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000005e846000-0x000000005e846fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000005e847000-0x0000000072f94fff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000072f95000-0x0000000072f95fff] ACPI data
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000072f96000-0x00000000751cbfff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000751cc000-0x00000000751cefff] ACPI data
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000751cf000-0x000000007dacefff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000007dacf000-0x000000007e8cefff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000007e8cf000-0x000000007efcefff] ACPI NVS
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000007efcf000-0x000000007effefff] ACPI data
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x000000007efff000-0x000000007effffff] usable
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000e0000000-0x00000000efffffff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000fec00000-0x00000000fec00fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000fec10000-0x00000000fec10fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000fed80000-0x00000000fed80fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000fee00000-0x00000000fee00fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000ff7f1000-0x00000000ff7f1fff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x00000000ff800000-0x00000000ffffffff] reserved
+Jan 31 21:18:09 nixxin kernel: BIOS-e820: [mem 0x0000000100000000-0x00000004bfffffff] usable
+Jan 31 21:18:09 nixxin kernel: NX (Execute Disable) protection: active
+Jan 31 21:18:09 nixxin kernel: APIC: Static calls initialized
+Jan 31 21:18:09 nixxin kernel: efi: EFI v2.4 by HP
+Jan 31 21:18:09 nixxin kernel: efi: ACPI 2.0=0x7effe014 SMBIOS=0x7e1cb000 ESRT=0x7e1b2f98 INITRD=0x72f92d18 
+Jan 31 21:18:09 nixxin kernel: efi: Remove mem35: MMIO range=[0xe0000000-0xefffffff] (256MB) from e820 map
+Jan 31 21:18:09 nixxin kernel: e820: remove [mem 0xe0000000-0xefffffff] reserved
+Jan 31 21:18:09 nixxin kernel: efi: Not removing mem36: MMIO range=[0xfec00000-0xfec00fff] (4KB) from e820 map
+Jan 31 21:18:09 nixxin kernel: efi: Not removing mem37: MMIO range=[0xfec10000-0xfec10fff] (4KB) from e820 map
+Jan 31 21:18:09 nixxin kernel: efi: Not removing mem38: MMIO range=[0xfed80000-0xfed80fff] (4KB) from e820 map
+Jan 31 21:18:09 nixxin kernel: efi: Not removing mem39: MMIO range=[0xfee00000-0xfee00fff] (4KB) from e820 map
+Jan 31 21:18:09 nixxin kernel: efi: Not removing mem40: MMIO range=[0xff7f1000-0xff7f1fff] (4KB) from e820 map
+Jan 31 21:18:09 nixxin kernel: efi: Remove mem41: MMIO range=[0xff800000-0xffffffff] (8MB) from e820 map
+Jan 31 21:18:09 nixxin kernel: e820: remove [mem 0xff800000-0xffffffff] reserved
+Jan 31 21:18:09 nixxin kernel: SMBIOS 2.7 present.
+Jan 31 21:18:09 nixxin kernel: DMI: HP HP EliteDesk 705 G2 SFF/805A, BIOS N06 Ver. 02.52 04/11/2022
+Jan 31 21:18:09 nixxin kernel: DMI: Memory slots populated: 4/4
+Jan 31 21:18:09 nixxin kernel: tsc: Fast TSC calibration using PIT
+Jan 31 21:18:09 nixxin kernel: tsc: Detected 3194.001 MHz processor
+Jan 31 21:18:09 nixxin kernel: e820: update [mem 0x00000000-0x00000fff] usable ==> reserved
+Jan 31 21:18:09 nixxin kernel: e820: remove [mem 0x000a0000-0x000fffff] usable
+Jan 31 21:18:09 nixxin kernel: last_pfn = 0x4c0000 max_arch_pfn = 0x400000000
+Jan 31 21:18:09 nixxin kernel: MTRR map: 6 entries (3 fixed + 3 variable; max 20), built from 9 variable MTRRs
+Jan 31 21:18:09 nixxin kernel: x86/PAT: Configuration [0-7]: WB  WC  UC- UC  WB  WP  UC- WT  
+Jan 31 21:18:09 nixxin kernel: last_pfn = 0x7f000 max_arch_pfn = 0x400000000
+Jan 31 21:18:09 nixxin kernel: esrt: Reserving ESRT space from 0x000000007e1b2f98 to 0x000000007e1b2fd0.
+Jan 31 21:18:09 nixxin kernel: Using GB pages for direct mapping
+Jan 31 21:18:09 nixxin kernel: Secure boot disabled
+Jan 31 21:18:09 nixxin kernel: RAMDISK: [mem 0x6df6d000-0x7158afff]
+Jan 31 21:18:09 nixxin kernel: ACPI: Early table checksum verification disabled
+Jan 31 21:18:09 nixxin kernel: ACPI: RSDP 0x000000007EFFE014 000024 (v02 HPQOEM)
+Jan 31 21:18:09 nixxin kernel: ACPI: XSDT 0x000000007EFFE120 0000BC (v01 HPQOEM SLIC-BPC 00000001      01000013)
+Jan 31 21:18:09 nixxin kernel: ACPI: FACP 0x000000007EFFA000 0000F4 (v04 HPQOEM SLIC-BPC 00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: DSDT 0x000000007EFE5000 00DE31 (v02 HPQOEM 805A     00000000 INTL 20121018)
+Jan 31 21:18:09 nixxin kernel: ACPI: FACS 0x000000007EF77000 000040
+Jan 31 21:18:09 nixxin kernel: ACPI: UEFI 0x000000007EFFD000 000042 (v01                 00000000      00000000)
+Jan 31 21:18:09 nixxin kernel: ACPI: TCPA 0x000000007EFFC000 000032 (v02 HPQOEM EDK2     00000002      01000013)
+Jan 31 21:18:09 nixxin kernel: ACPI: SSDT 0x000000007EFFB000 0003B8 (v02 HPQOEM TcgTable 00001000 INTL 20121018)
+Jan 31 21:18:09 nixxin kernel: ACPI: MSDM 0x000000007EFF9000 000055 (v03 HPQOEM SLIC-BPC 00000000 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: SLIC 0x000000007EFF8000 000176 (v01 HPQOEM SLIC-BPC 00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: WSMT 0x000000007EFF7000 000028 (v01 HPQOEM 805A     00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: ASF! 0x000000007EFF6000 00006E (v32 HPQOEM 805A     00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: HPET 0x000000007EFF5000 000038 (v01 HPQOEM 805A     00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: APIC 0x000000007EFF4000 000090 (v03 HPQOEM 805A     00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: MCFG 0x000000007EFF3000 00003C (v01 HPQOEM 805A     00000001 HP   00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: SSDT 0x000000007EFE4000 000B9C (v01 AMD    BIANCHI  00000001 AMD  00000001)
+Jan 31 21:18:09 nixxin kernel: ACPI: SSDT 0x000000007EFE3000 000346 (v02 AMD    BIANCHI  00000002 MSFT 04000000)
+Jan 31 21:18:09 nixxin kernel: ACPI: IVRS 0x000000007EFE2000 000078 (v02 AMD    BIANCHI  00000001 AMD  00000000)
+Jan 31 21:18:09 nixxin kernel: ACPI: SSDT 0x000000007EFE0000 0019DD (v01 HP     CPMDFIGP 00000001 INTL 20121018)
+Jan 31 21:18:09 nixxin kernel: ACPI: VFCT 0x000000007EFD0000 00F684 (v01 HPQOEM SLIC-BPC 00000001 AMD  31504F47)
+Jan 31 21:18:09 nixxin kernel: ACPI: SSDT 0x00000000751CD000 0015EE (v01 AMD    CPMCMN   00000001 INTL 20121018)
+Jan 31 21:18:09 nixxin kernel: ACPI: FPDT 0x000000007EFCF000 000044 (v01 HPQOEM EDK2     00000002      01000013)
+Jan 31 21:18:09 nixxin kernel: ACPI: BGRT 0x00000000751CC000 000038 (v01 HPQOEM EDK2     00000002      01000013)
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving FACP table memory at [mem 0x7effa000-0x7effa0f3]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving DSDT table memory at [mem 0x7efe5000-0x7eff2e30]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving FACS table memory at [mem 0x7ef77000-0x7ef7703f]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving UEFI table memory at [mem 0x7effd000-0x7effd041]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving TCPA table memory at [mem 0x7effc000-0x7effc031]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SSDT table memory at [mem 0x7effb000-0x7effb3b7]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving MSDM table memory at [mem 0x7eff9000-0x7eff9054]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SLIC table memory at [mem 0x7eff8000-0x7eff8175]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving WSMT table memory at [mem 0x7eff7000-0x7eff7027]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving ASF! table memory at [mem 0x7eff6000-0x7eff606d]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving HPET table memory at [mem 0x7eff5000-0x7eff5037]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving APIC table memory at [mem 0x7eff4000-0x7eff408f]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving MCFG table memory at [mem 0x7eff3000-0x7eff303b]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SSDT table memory at [mem 0x7efe4000-0x7efe4b9b]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SSDT table memory at [mem 0x7efe3000-0x7efe3345]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving IVRS table memory at [mem 0x7efe2000-0x7efe2077]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SSDT table memory at [mem 0x7efe0000-0x7efe19dc]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving VFCT table memory at [mem 0x7efd0000-0x7efdf683]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving SSDT table memory at [mem 0x751cd000-0x751ce5ed]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving FPDT table memory at [mem 0x7efcf000-0x7efcf043]
+Jan 31 21:18:09 nixxin kernel: ACPI: Reserving BGRT table memory at [mem 0x751cc000-0x751cc037]
+Jan 31 21:18:09 nixxin kernel: No NUMA configuration found
+Jan 31 21:18:09 nixxin kernel: Faking a node at [mem 0x0000000000000000-0x00000004bfffffff]
+Jan 31 21:18:09 nixxin kernel: NODE_DATA(0) allocated [mem 0x4bfffa780-0x4bffffcff]
+Jan 31 21:18:09 nixxin kernel: Zone ranges:
+Jan 31 21:18:09 nixxin kernel:   DMA      [mem 0x0000000000001000-0x0000000000ffffff]
+Jan 31 21:18:09 nixxin kernel:   DMA32    [mem 0x0000000001000000-0x00000000ffffffff]
+Jan 31 21:18:09 nixxin kernel:   Normal   [mem 0x0000000100000000-0x00000004bfffffff]
+Jan 31 21:18:09 nixxin kernel:   Device   empty
+Jan 31 21:18:09 nixxin kernel: Movable zone start for each node
+Jan 31 21:18:09 nixxin kernel: Early memory node ranges
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x0000000000001000-0x000000000008efff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x0000000000090000-0x000000000009ffff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x0000000000100000-0x000000005e719fff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x000000005e71b000-0x000000005e845fff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x000000005e847000-0x0000000072f94fff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x0000000072f96000-0x00000000751cbfff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x00000000751cf000-0x000000007dacefff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x000000007efff000-0x000000007effffff]
+Jan 31 21:18:09 nixxin kernel:   node   0: [mem 0x0000000100000000-0x00000004bfffffff]
+Jan 31 21:18:09 nixxin kernel: Initmem setup node 0 [mem 0x0000000000001000-0x00000004bfffffff]
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA: 1 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA: 1 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA: 96 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA32: 1 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA32: 1 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA32: 1 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA32: 3 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone DMA32: 5424 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: On node 0, zone Normal: 4096 pages in unavailable ranges
+Jan 31 21:18:09 nixxin kernel: ACPI: PM-Timer IO Port: 0x408
+Jan 31 21:18:09 nixxin kernel: ACPI: LAPIC_NMI (acpi_id[0x00] high edge lint[0x1])
+Jan 31 21:18:09 nixxin kernel: ACPI: LAPIC_NMI (acpi_id[0x01] high edge lint[0x1])
+Jan 31 21:18:09 nixxin kernel: ACPI: LAPIC_NMI (acpi_id[0x02] high edge lint[0x1])
+Jan 31 21:18:09 nixxin kernel: ACPI: LAPIC_NMI (acpi_id[0x03] high edge lint[0x1])
+Jan 31 21:18:09 nixxin kernel: IOAPIC[0]: apic_id 4, version 33, address 0xfec00000, GSI 0-23
+Jan 31 21:18:09 nixxin kernel: IOAPIC[1]: apic_id 5, version 33, address 0xfec20000, GSI 24-55
+Jan 31 21:18:09 nixxin kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 0 global_irq 2 dfl dfl)
+Jan 31 21:18:09 nixxin kernel: ACPI: INT_SRC_OVR (bus 0 bus_irq 9 global_irq 9 low level)
+Jan 31 21:18:09 nixxin kernel: ACPI: Using ACPI (MADT) for SMP configuration information
+Jan 31 21:18:09 nixxin kernel: ACPI: HPET id: 0x10228210 base: 0xfed00000
+Jan 31 21:18:09 nixxin kernel: e820: update [mem 0x7b119000-0x7b126fff] usable ==> reserved
+Jan 31 21:18:09 nixxin kernel: CPU topo: Max. logical packages:   1
+Jan 31 21:18:09 nixxin kernel: CPU topo: Max. logical dies:       1
+Jan 31 21:18:09 nixxin kernel: CPU topo: Max. dies per package:   1
+Jan 31 21:18:09 nixxin kernel: CPU topo: Max. threads per core:   1
+Jan 31 21:18:09 nixxin kernel: CPU topo: Num. cores per package:     4
+Jan 31 21:18:09 nixxin kernel: CPU topo: Num. threads per package:   4
+Jan 31 21:18:09 nixxin kernel: CPU topo: Allowing 4 present CPUs plus 0 hotplug CPUs
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x00000000-0x00000fff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x0008f000-0x0008ffff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x000a0000-0x000fffff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x5e71a000-0x5e71afff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x5e846000-0x5e846fff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x72f95000-0x72f95fff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x751cc000-0x751cefff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x7b119000-0x7b126fff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x7dacf000-0x7effefff]
+Jan 31 21:18:09 nixxin kernel: PM: hibernation: Registered nosave memory: [mem 0x7f000000-0xffffffff]
+Jan 31 21:18:09 nixxin kernel: [mem 0x7f000000-0xfebfffff] available for PCI devices
+Jan 31 21:18:09 nixxin kernel: Booting paravirtualized kernel on bare hardware
+Jan 31 21:18:09 nixxin kernel: clocksource: refined-jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1910969940391419 ns
+Jan 31 21:18:09 nixxin kernel: setup_percpu: NR_CPUS:384 nr_cpumask_bits:4 nr_cpu_ids:4 nr_node_ids:1
+Jan 31 21:18:09 nixxin kernel: percpu: Embedded 97 pages/cpu s274432 r8192 d114688 u524288
+Jan 31 21:18:09 nixxin kernel: pcpu-alloc: s274432 r8192 d114688 u524288 alloc=1*2097152
+Jan 31 21:18:09 nixxin kernel: pcpu-alloc: [0] 0 1 2 3 
+Jan 31 21:18:09 nixxin kernel: Kernel command line: BOOT_IMAGE=(hd0,gpt1)//kernels/wka79msdzqphqr48nlw03fxldfz3s2c9-linux-zen-6.18-bzImage init=/nix/store/h4p8g6w63v3brllmvqv8qv73h92qmlvj-nixos-system-nixxin-26.05.20251208.addf7cf/init radeon.si_support=0 amdgpu.si_support=1 radeon.cik_support=0 amdgpu.cik_support=1 amdgpu.dc=1 amdgpu.dpm=1 amdgpu.gpu_recovery=1 amdgpu.vm_fragment_size=9 amdgpu.ppfeaturemask=0xfffd3fff amdgpu.dcfeaturemask=0x1 amdgpu.dcdebugmask=0x10 amdgpu.sg_display=0 amdgpu.bapm=1 random.trust_cpu=on tsc=reliable clocksource=tsc no_timer_check audit=0 quiet splash loglevel=0 systemd.show_status=false rd.systemd.show_status=false udev.log_level=0 rd.udev.log_level=0 plymouth.ignore-serial-consoles acpi_osi=Linux intremap=off mitigations=off split_lock_mitigate=off retbleed=off preempt=full randomize_kstack_offset=on rtl8xxxu_disable_hw_crypto=1 net.ifnames=0 biosdevname=0 transparent_hugepage=always amdgpu.gpu_recovery=1 psi=1 psi=1 splash loglevel=0 amdgpu.ppfeaturemask=0xffffffff nohibernate lsm=landlock,yama,bpf vt
+Jan 31 21:18:09 nixxin kernel: audit: disabled (until reboot)
+Jan 31 21:18:09 nixxin kernel: Dynamic Preempt: full
+Jan 31 21:18:09 nixxin kernel: Unknown kernel command line parameters "splash splash split_lock_mitigate=off rtl8xxxu_disable_hw_crypto=1 biosdevname=0", will be passed to user space.
+Jan 31 21:18:09 nixxin kernel: printk: log buffer data + meta data: 262144 + 917504 = 1179648 bytes
+Jan 31 21:18:09 nixxin kernel: Dentry cache hash table entries: 4194304 (order: 13, 33554432 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: Inode-cache hash table entries: 2097152 (order: 12, 16777216 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: software IO TLB: area num 4.
+Jan 31 21:18:09 nixxin kernel: Fallback order for Node 0: 0 
+Jan 31 21:18:09 nixxin kernel: Built 1 zonelists, mobility grouping on.  Total pages: 4446824
+Jan 31 21:18:09 nixxin kernel: Policy zone: Normal
+Jan 31 21:18:09 nixxin kernel: mem auto-init: stack:all(zero), heap alloc:on, heap free:off
+Jan 31 21:18:09 nixxin kernel: SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+Jan 31 21:18:09 nixxin kernel: allocated 35651584 bytes of page_ext
+Jan 31 21:18:09 nixxin kernel: ftrace: allocating 47557 entries in 188 pages
+Jan 31 21:18:09 nixxin kernel: ftrace: allocated 188 pages with 5 groups
+Jan 31 21:18:09 nixxin kernel: rcu: Preemptible hierarchical RCU implementation.
+Jan 31 21:18:09 nixxin kernel: rcu:         RCU event tracing is enabled.
+Jan 31 21:18:09 nixxin kernel: rcu:         RCU restricting CPUs from NR_CPUS=384 to nr_cpu_ids=4.
+Jan 31 21:18:09 nixxin kernel: rcu:         RCU priority boosting: priority 1 delay 500 ms.
+Jan 31 21:18:09 nixxin kernel:         Trampoline variant of Tasks RCU enabled.
+Jan 31 21:18:09 nixxin kernel:         Rude variant of Tasks RCU enabled.
+Jan 31 21:18:09 nixxin kernel:         Tracing variant of Tasks RCU enabled.
+Jan 31 21:18:09 nixxin kernel: rcu: RCU calculated value of scheduler-enlistment delay is 100 jiffies.
+Jan 31 21:18:09 nixxin kernel: rcu: Adjusting geometry for rcu_fanout_leaf=16, nr_cpu_ids=4
+Jan 31 21:18:09 nixxin kernel: RCU Tasks: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+Jan 31 21:18:09 nixxin kernel: RCU Tasks Rude: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+Jan 31 21:18:09 nixxin kernel: RCU Tasks Trace: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+Jan 31 21:18:09 nixxin kernel: NR_IRQS: 24832, nr_irqs: 1000, preallocated irqs: 16
+Jan 31 21:18:09 nixxin kernel: rcu: srcu_init: Setting srcu_struct sizes based on contention.
+Jan 31 21:18:09 nixxin kernel: kfence: initialized - using 2097152 bytes for 255 objects at 0x(____ptrval____)-0x(____ptrval____)
+Jan 31 21:18:09 nixxin kernel: Console: colour dummy device 80x25
+Jan 31 21:18:09 nixxin kernel: printk: legacy console [tty0] enabled
+Jan 31 21:18:09 nixxin kernel: ACPI: Core revision 20250807
+Jan 31 21:18:09 nixxin kernel: clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 133484873504 ns
+Jan 31 21:18:09 nixxin kernel: APIC: Switch to symmetric I/O mode setup
+Jan 31 21:18:09 nixxin kernel: ..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+Jan 31 21:18:09 nixxin kernel: clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2e0a2765c9e, max_idle_ns: 440795366920 ns
+Jan 31 21:18:09 nixxin kernel: Calibrating delay loop (skipped), value calculated using timer frequency.. 6388.00 BogoMIPS (lpj=3194001)
+Jan 31 21:18:09 nixxin kernel: LVT offset 1 assigned for vector 0xf9
+Jan 31 21:18:09 nixxin kernel: Last level iTLB entries: 4KB 512, 2MB 1024, 4MB 512
+Jan 31 21:18:09 nixxin kernel: Last level dTLB entries: 4KB 1024, 2MB 1024, 4MB 512, 1GB 0
+Jan 31 21:18:09 nixxin kernel: mitigations: Enabled attack vectors: SMT mitigations: off
+Jan 31 21:18:09 nixxin kernel: Speculative Store Bypass: Vulnerable
+Jan 31 21:18:09 nixxin kernel: Spectre V2 : Vulnerable
+Jan 31 21:18:09 nixxin kernel: RETBleed: Vulnerable
+Jan 31 21:18:09 nixxin kernel: Spectre V1 : Vulnerable: __user pointer sanitization and usercopy barriers only; no swapgs barriers
+Jan 31 21:18:09 nixxin kernel: x86/fpu: Supporting XSAVE feature 0x001: 'x87 floating point registers'
+Jan 31 21:18:09 nixxin kernel: x86/fpu: Supporting XSAVE feature 0x002: 'SSE registers'
+Jan 31 21:18:09 nixxin kernel: x86/fpu: Supporting XSAVE feature 0x004: 'AVX registers'
+Jan 31 21:18:09 nixxin kernel: x86/fpu: xstate_offset[2]:  576, xstate_sizes[2]:  256
+Jan 31 21:18:09 nixxin kernel: x86/fpu: Enabled xstate features 0x7, context size is 832 bytes, using 'standard' format.
+Jan 31 21:18:09 nixxin kernel: Freeing SMP alternatives memory: 44K
+Jan 31 21:18:09 nixxin kernel: pid_max: default: 32768 minimum: 301
+Jan 31 21:18:09 nixxin kernel: LSM: initializing lsm=capability,landlock,yama,bpf
+Jan 31 21:18:09 nixxin kernel: landlock: Up and running.
+Jan 31 21:18:09 nixxin kernel: Yama: becoming mindful.
+Jan 31 21:18:09 nixxin kernel: LSM support for eBPF active
+Jan 31 21:18:09 nixxin kernel: Mount-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: Mountpoint-cache hash table entries: 65536 (order: 7, 524288 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: smpboot: CPU0: AMD PRO A8-8650B R7, 10 Compute Cores 4C+6G (family: 0x15, model: 0x38, stepping: 0x1)
+Jan 31 21:18:09 nixxin kernel: Performance Events: Fam15h core perfctr, AMD PMU driver.
+Jan 31 21:18:09 nixxin kernel: ... version:                   0
+Jan 31 21:18:09 nixxin kernel: ... bit width:                 48
+Jan 31 21:18:09 nixxin kernel: ... generic counters:          6
+Jan 31 21:18:09 nixxin kernel: ... generic bitmap:            000000000000003f
+Jan 31 21:18:09 nixxin kernel: ... fixed-purpose counters:    0
+Jan 31 21:18:09 nixxin kernel: ... fixed-purpose bitmap:      0000000000000000
+Jan 31 21:18:09 nixxin kernel: ... value mask:                0000ffffffffffff
+Jan 31 21:18:09 nixxin kernel: ... max period:                00007fffffffffff
+Jan 31 21:18:09 nixxin kernel: ... global_ctrl mask:          000000000000003f
+Jan 31 21:18:09 nixxin kernel: signal: max sigframe size: 1776
+Jan 31 21:18:09 nixxin kernel: rcu: Hierarchical SRCU implementation.
+Jan 31 21:18:09 nixxin kernel: rcu:         Max phase no-delay instances is 400.
+Jan 31 21:18:09 nixxin kernel: Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+Jan 31 21:18:09 nixxin kernel: NMI watchdog: Enabled. Permanently consumes one hw-PMU counter.
+Jan 31 21:18:09 nixxin kernel: smp: Bringing up secondary CPUs ...
+Jan 31 21:18:09 nixxin kernel: smpboot: x86: Booting SMP configuration:
+Jan 31 21:18:09 nixxin kernel: .... node  #0, CPUs:      #1 #2 #3
+Jan 31 21:18:09 nixxin kernel: smp: Brought up 1 node, 4 CPUs
+Jan 31 21:18:09 nixxin kernel: smpboot: Total of 4 processors activated (25552.00 BogoMIPS)
+Jan 31 21:18:09 nixxin kernel: Memory: 17241024K/17787296K available (16762K kernel code, 2677K rwdata, 13240K rodata, 3584K init, 2952K bss, 501312K reserved, 0K cma-reserved)
+Jan 31 21:18:09 nixxin kernel: devtmpfs: initialized
+Jan 31 21:18:09 nixxin kernel: x86/mm: Memory block size: 128MB
+Jan 31 21:18:09 nixxin kernel: ACPI: PM: Registering ACPI NVS region [mem 0x7e8cf000-0x7efcefff] (7340032 bytes)
+Jan 31 21:18:09 nixxin kernel: clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+Jan 31 21:18:09 nixxin kernel: posixtimers hash table entries: 2048 (order: 3, 32768 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: futex hash table entries: 1024 (65536 bytes on 1 NUMA nodes, total 64 KiB, linear).
+Jan 31 21:18:09 nixxin kernel: pinctrl core: initialized pinctrl subsystem
+Jan 31 21:18:09 nixxin kernel: PM: RTC time: 19:17:56, date: 2026-01-31
+Jan 31 21:18:09 nixxin kernel: NET: Registered PF_NETLINK/PF_ROUTE protocol family
+Jan 31 21:18:09 nixxin kernel: DMA: preallocated 4096 KiB GFP_KERNEL pool for atomic allocations
+Jan 31 21:18:09 nixxin kernel: DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA pool for atomic allocations
+Jan 31 21:18:09 nixxin kernel: DMA: preallocated 4096 KiB GFP_KERNEL|GFP_DMA32 pool for atomic allocations
+Jan 31 21:18:09 nixxin kernel: thermal_sys: Registered thermal governor 'bang_bang'
+Jan 31 21:18:09 nixxin kernel: thermal_sys: Registered thermal governor 'step_wise'
+Jan 31 21:18:09 nixxin kernel: cpuidle: using governor menu
+Jan 31 21:18:09 nixxin kernel: ACPI FADT declares the system doesn't support PCIe ASPM, so disable it
+Jan 31 21:18:09 nixxin kernel: acpiphp: ACPI Hot Plug PCI Controller Driver version: 0.5
+Jan 31 21:18:09 nixxin kernel: PCI: ECAM [mem 0xe0000000-0xefffffff] (base 0xe0000000) for domain 0000 [bus 00-ff]
+Jan 31 21:18:09 nixxin kernel: PCI: Using configuration type 1 for base access
+Jan 31 21:18:09 nixxin kernel: kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+Jan 31 21:18:09 nixxin kernel: HugeTLB: registered 1.00 GiB page size, pre-allocated 0 pages
+Jan 31 21:18:09 nixxin kernel: HugeTLB: 16380 KiB vmemmap can be freed for a 1.00 GiB page
+Jan 31 21:18:09 nixxin kernel: HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+Jan 31 21:18:09 nixxin kernel: HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+Jan 31 21:18:09 nixxin kernel: ACPI: Added _OSI(Module Device)
+Jan 31 21:18:09 nixxin kernel: ACPI: Added _OSI(Processor Device)
+Jan 31 21:18:09 nixxin kernel: ACPI: Added _OSI(Processor Aggregator Device)
+Jan 31 21:18:09 nixxin kernel: ACPI: Added _OSI(Linux)
+Jan 31 21:18:09 nixxin kernel: ACPI: 6 ACPI AML tables successfully acquired and loaded
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: EC started
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: interrupt blocked
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: EC_CMD/EC_SC=0x66, EC_DATA=0x62
+Jan 31 21:18:09 nixxin kernel: ACPI: \_SB_.PCI0.LPCB.EC0_: Boot DSDT EC used to handle transactions
+Jan 31 21:18:09 nixxin kernel: ACPI: Interpreter enabled
+Jan 31 21:18:09 nixxin kernel: ACPI: PM: (supports S0 S3 S4 S5)
+Jan 31 21:18:09 nixxin kernel: ACPI: Using IOAPIC for interrupt routing
+Jan 31 21:18:09 nixxin kernel: PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+Jan 31 21:18:09 nixxin kernel: PCI: Using E820 reservations for host bridge windows
+Jan 31 21:18:09 nixxin kernel: ACPI: Enabled 10 GPEs in block 00 to 1F
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+Jan 31 21:18:09 nixxin kernel: acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI HPX-Type3]
+Jan 31 21:18:09 nixxin kernel: acpi PNP0A08:00: _OSC: platform does not support [LTR]
+Jan 31 21:18:09 nixxin kernel: acpi PNP0A08:00: _OSC: OS now controls [PCIeHotplug PME PCIeCapability]
+Jan 31 21:18:09 nixxin kernel: acpi PNP0A08:00: FADT indicates ASPM is unsupported, using BIOS configuration
+Jan 31 21:18:09 nixxin kernel: PCI host bridge to bus 0000:00
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0x000c0000-0x000cffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0x000d0000-0x000effff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0xc0000000-0xdfffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0xf0000000-0xfed3ffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [mem 0xfed45000-0xffffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: root bus resource [bus 00-ff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:00.0: [1022:1422] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:00.2: [1022:1423] type 00 class 0x080600 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: [1002:1313] type 00 class 0x030000 PCIe Root Complex Integrated Endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: BAR 0 [mem 0xc0000000-0xcfffffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: BAR 2 [mem 0xd0000000-0xd07fffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: BAR 4 [io  0x2000-0x20ff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: BAR 5 [mem 0xd0900000-0xd093ffff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: ROM [mem 0xfffe0000-0xffffffff pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: enabling Extended Tags
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: PME# supported from D1 D2 D3hot
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: [1002:1308] type 00 class 0x040300 PCIe Root Complex Integrated Endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: BAR 0 [mem 0xd0940000-0xd0943fff 64bit]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: enabling Extended Tags
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:02.0: [1022:1424] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:03.0: [1022:1424] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:04.0: [1022:1424] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.0: [1022:7814] type 00 class 0x0c0330 PCIe Root Complex Integrated Endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.0: BAR 0 [mem 0xd0948000-0xd0949fff 64bit]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.0: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.1: [1022:7814] type 00 class 0x0c0330 PCIe Root Complex Integrated Endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.1: BAR 0 [mem 0xd094a000-0xd094bfff 64bit]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.1: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: [1022:7801] type 00 class 0x010601 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 0 [io  0x2118-0x211f]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 1 [io  0x2124-0x2127]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 2 [io  0x2110-0x2117]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 3 [io  0x2120-0x2123]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 4 [io  0x2100-0x210f]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: BAR 5 [mem 0xd0951000-0xd09517ff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.0: [1022:7807] type 00 class 0x0c0310 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.0: BAR 0 [mem 0xd0950000-0xd0950fff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: [1022:7808] type 00 class 0x0c0320 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: BAR 0 [mem 0xd094f000-0xd094f0ff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: PME# supported from D0 D1 D2 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.0: [1022:7807] type 00 class 0x0c0310 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.0: BAR 0 [mem 0xd094e000-0xd094efff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: [1022:7808] type 00 class 0x0c0320 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: BAR 0 [mem 0xd094d000-0xd094d0ff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: PME# supported from D0 D1 D2 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.0: [1022:780b] type 00 class 0x0c0500 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.2: [1022:780d] type 00 class 0x040300 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.2: BAR 0 [mem 0xd0944000-0xd0947fff 64bit]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.2: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.3: [1022:780e] type 00 class 0x060100 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4: [1022:780f] type 01 class 0x060401 conventional PCI bridge
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4: PCI bridge to [bus 01] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.5: [1022:7809] type 00 class 0x0c0310 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.5: BAR 0 [mem 0xd094c000-0xd094cfff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: [1022:43a0] type 01 class 0x060400 PCIe Root Port
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: PCI bridge to [bus 02]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: enabling Extended Tags
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: [1022:43a2] type 01 class 0x060400 PCIe Root Port
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: PCI bridge to [bus 03]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2:   bridge window [mem 0xd0800000-0xd08fffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: enabling Extended Tags
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: supports D1 D2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.0: [1022:141a] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.1: [1022:141b] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.2: [1022:141c] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.3: [1022:141d] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.4: [1022:141e] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.5: [1022:141f] type 00 class 0x060000 conventional PCI endpoint
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: extended config space not accessible
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4: PCI bridge to [bus 01] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [io  0x0000-0x0cf7 window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [io  0x0d00-0xffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0x000a0000-0x000bffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0x000c0000-0x000cffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0x000d0000-0x000effff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0xc0000000-0xdfffffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0xf0000000-0xfed3ffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4:   bridge window [mem 0xfed45000-0xffffffff window] (subtractive decode)
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: PCI bridge to [bus 02]
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: [14e4:1687] type 00 class 0x020000 PCIe Endpoint
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: BAR 0 [mem 0xd0820000-0xd082ffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: BAR 2 [mem 0xd0810000-0xd081ffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: BAR 4 [mem 0xd0800000-0xd080ffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: PME# supported from D0 D3hot D3cold
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: PCI bridge to [bus 03]
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKA configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKB configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKC configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKD configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKE configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKF configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKG configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI: PCI: Interrupt link LNKH configured for IRQ 0
+Jan 31 21:18:09 nixxin kernel: ACPI Warning: GPE type mismatch (level/edge) (20250807/evxface-791)
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: interrupt unblocked
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: event unblocked
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: EC_CMD/EC_SC=0x66, EC_DATA=0x62
+Jan 31 21:18:09 nixxin kernel: ACPI: EC: GPE=0x8
+Jan 31 21:18:09 nixxin kernel: ACPI: \_SB_.PCI0.LPCB.EC0_: Boot DSDT EC initialization complete
+Jan 31 21:18:09 nixxin kernel: ACPI: \_SB_.PCI0.LPCB.EC0_: EC: Used to handle transactions and events
+Jan 31 21:18:09 nixxin kernel: iommu: Default domain type: Translated
+Jan 31 21:18:09 nixxin kernel: iommu: DMA domain TLB invalidation policy: lazy mode
+Jan 31 21:18:09 nixxin kernel: ACPI: bus type USB registered
+Jan 31 21:18:09 nixxin kernel: usbcore: registered new interface driver usbfs
+Jan 31 21:18:09 nixxin kernel: usbcore: registered new interface driver hub
+Jan 31 21:18:09 nixxin kernel: usbcore: registered new device driver usb
+Jan 31 21:18:09 nixxin kernel: efivars: Registered efivars operations
+Jan 31 21:18:09 nixxin kernel: NetLabel: Initializing
+Jan 31 21:18:09 nixxin kernel: NetLabel:  domain hash size = 128
+Jan 31 21:18:09 nixxin kernel: NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+Jan 31 21:18:09 nixxin kernel: NetLabel:  unlabeled traffic allowed by default
+Jan 31 21:18:09 nixxin kernel: PCI: Using ACPI for IRQ routing
+Jan 31 21:18:09 nixxin kernel: PCI: pci_cache_line_size set to 64 bytes
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x0008f000-0x0008ffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x5e71a000-0x5fffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x5e846000-0x5fffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x72f95000-0x73ffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x751cc000-0x77ffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x7b119000-0x7bffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x7dacf000-0x7fffffff]
+Jan 31 21:18:09 nixxin kernel: e820: reserve RAM buffer [mem 0x7f000000-0x7fffffff]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: vgaarb: setting as boot VGA device
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: vgaarb: bridge control possible
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+Jan 31 21:18:09 nixxin kernel: vgaarb: loaded
+Jan 31 21:18:09 nixxin kernel: hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+Jan 31 21:18:09 nixxin kernel: hpet0: 3 comparators, 32-bit 14.318180 MHz counter
+Jan 31 21:18:09 nixxin kernel: clocksource: Switched to clocksource tsc-early
+Jan 31 21:18:09 nixxin kernel: VFS: Disk quotas dquot_6.6.0
+Jan 31 21:18:09 nixxin kernel: VFS: Dquot-cache hash table entries: 512 (order 0, 4096 bytes)
+Jan 31 21:18:09 nixxin kernel: pnp: PnP ACPI init
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0400-0x04cf] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x04d0-0x04d1] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x04d6] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0680-0x06ff] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x077a] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0c00-0x0c01] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0c14] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0c50-0x0c52] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0c6c] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0c6f] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0cd0-0x0cdb] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:01: [io  0x0840-0x0847] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:02: [mem 0x000e0000-0x000fffff] could not be reserved
+Jan 31 21:18:09 nixxin kernel: system 00:06: [mem 0xfec00000-0xfec00fff] could not be reserved
+Jan 31 21:18:09 nixxin kernel: system 00:06: [mem 0xfee00000-0xfee00fff] has been reserved
+Jan 31 21:18:09 nixxin kernel: system 00:06: [mem 0xfec20000-0xfec20fff] could not be reserved
+Jan 31 21:18:09 nixxin kernel: pnp: PnP ACPI: found 8 devices
+Jan 31 21:18:09 nixxin kernel: clocksource: acpi_pm: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 2085701024 ns
+Jan 31 21:18:09 nixxin kernel: NET: Registered PF_INET protocol family
+Jan 31 21:18:09 nixxin kernel: IP idents hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: tcp_listen_portaddr_hash hash table entries: 16384 (order: 6, 262144 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: Table-perturb hash table entries: 65536 (order: 6, 262144 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: TCP established hash table entries: 262144 (order: 9, 2097152 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: TCP bind hash table entries: 65536 (order: 9, 2097152 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: TCP: Hash tables configured (established 262144 bind 65536)
+Jan 31 21:18:09 nixxin kernel: MPTCP token hash table entries: 32768 (order: 8, 786432 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: UDP hash table entries: 16384 (order: 8, 1048576 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: UDP-Lite hash table entries: 16384 (order: 8, 1048576 bytes, linear)
+Jan 31 21:18:09 nixxin kernel: NET: Registered PF_UNIX/PF_LOCAL protocol family
+Jan 31 21:18:09 nixxin kernel: NET: Registered PF_XDP protocol family
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4: PCI bridge to [bus 01]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: PCI bridge to [bus 02]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: PCI bridge to [bus 03]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2:   bridge window [mem 0xd0800000-0xd08fffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 4 [io  0x0000-0x0cf7 window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 5 [io  0x0d00-0xffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 6 [mem 0x000a0000-0x000bffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 7 [mem 0x000c0000-0x000cffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 8 [mem 0x000d0000-0x000effff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 9 [mem 0xc0000000-0xdfffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 10 [mem 0xf0000000-0xfed3ffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:00: resource 11 [mem 0xfed45000-0xffffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 4 [io  0x0000-0x0cf7 window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 5 [io  0x0d00-0xffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 6 [mem 0x000a0000-0x000bffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 7 [mem 0x000c0000-0x000cffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 8 [mem 0x000d0000-0x000effff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 9 [mem 0xc0000000-0xdfffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 10 [mem 0xf0000000-0xfed3ffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:01: resource 11 [mem 0xfed45000-0xffffffff window]
+Jan 31 21:18:09 nixxin kernel: pci_bus 0000:03: resource 2 [mem 0xd0800000-0xd08fffff 64bit pref]
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: D0 power state depends on 0000:00:01.0
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: PME# does not work under D3, disabling it
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: PME# does not work under D3, disabling it
+Jan 31 21:18:09 nixxin kernel: PCI: CLS 64 bytes, default 64
+Jan 31 21:18:09 nixxin kernel: Trying to unpack rootfs image as initramfs...
+Jan 31 21:18:09 nixxin kernel: AMD-Vi: Using global IVHD EFR:0x0, EFR2:0x0
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:00.2: AMD-Vi: IOMMU performance counters supported
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:00.2: AMD-Vi: Applying ATS write check workaround
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.0: Adding to iommu group 0
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:01.1: Adding to iommu group 0
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:02.0: Adding to iommu group 1
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:03.0: Adding to iommu group 2
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:04.0: Adding to iommu group 3
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.0: Adding to iommu group 4
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:10.1: Adding to iommu group 4
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:11.0: Adding to iommu group 5
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.0: Adding to iommu group 6
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:12.2: Adding to iommu group 6
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.0: Adding to iommu group 7
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:13.2: Adding to iommu group 7
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.0: Adding to iommu group 8
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.2: Adding to iommu group 8
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.3: Adding to iommu group 8
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.4: Adding to iommu group 9
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:14.5: Adding to iommu group 10
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.0: Adding to iommu group 11
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:15.2: Adding to iommu group 11
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.0: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.1: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.2: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.3: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.4: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:00:18.5: Adding to iommu group 12
+Jan 31 21:18:09 nixxin kernel: pci 0000:03:00.0: Adding to iommu group 11
+Jan 31 21:18:09 nixxin kernel: AMD-Vi: Extended features (0x800090a52, 0x0): PPR GT IA PC
+Jan 31 21:18:09 nixxin kernel: PCI-DMA: Using software bounce buffering for IO (SWIOTLB)
+Jan 31 21:18:09 nixxin kernel: software IO TLB: mapped [mem 0x0000000077119000-0x000000007b119000] (64MB)
+Jan 31 21:18:09 nixxin kernel: LVT offset 0 assigned for vector 0x400
+Jan 31 21:18:09 nixxin kernel: perf: AMD IBS detected (0x000001ff)
+Jan 31 21:18:09 nixxin kernel: perf/amd_iommu: Detected AMD IOMMU #0 (2 banks, 4 counters/bank).
+Jan 31 21:18:09 nixxin kernel: Initialise system trusted keyrings
+Jan 31 21:18:09 nixxin kernel: workingset: timestamp_bits=40 max_order=23 bucket_order=0
+Jan 31 21:18:09 nixxin kernel: Key type asymmetric registered
+Jan 31 21:18:09 nixxin kernel: Asymmetric key parser 'x509' registered
+Jan 31 21:18:09 nixxin kernel: Block layer SCSI generic (bsg) driver version 0.4 loaded (major 250)
+Jan 31 21:18:09 nixxin kernel: io scheduler mq-deadline registered
+Jan 31 21:18:09 nixxin kernel: io scheduler kyber registered
+Jan 31 21:18:09 nixxin kernel: io scheduler bfq registered
+Jan 31 21:18:09 nixxin kernel: pcieport 0000:00:15.0: PME: Signaling with IRQ 25
+Jan 31 21:18:09 nixxin kernel: pcieport 0000:00:15.2: PME: Signaling with IRQ 26
+Jan 31 21:18:09 nixxin kernel: Could not retrieve perf counters (-19)
+Jan 31 21:18:09 nixxin kernel: Serial: 8250/16550 driver, 4 ports, IRQ sharing enabled
+Jan 31 21:18:09 nixxin kernel: 00:05: ttyS0 at I/O 0x3f8 (irq = 4, base_baud = 115200) is a 16550A
+Jan 31 21:18:09 nixxin kernel: Linux agpgart interface v0.103
+Jan 31 21:18:09 nixxin kernel: ACPI: bus type drm_connector registered
+Jan 31 21:18:09 nixxin kernel: usbcore: registered new interface driver usbserial_generic
+Jan 31 21:18:09 nixxin kernel: usbserial: USB Serial support registered for generic
+Jan 31 21:18:09 nixxin kernel: amd_pstate: the _CPC object is not present in SBIOS or ACPI disabled
+Jan 31 21:18:09 nixxin kernel: simple-framebuffer simple-framebuffer.0: [drm] Registered 1 planes with drm panic
+Jan 31 21:18:09 nixxin kernel: [drm] Initialized simpledrm 1.0.0 for simple-framebuffer.0 on minor 0
+Jan 31 21:18:09 nixxin kernel: fbcon: Deferring console take-over
+Jan 31 21:18:09 nixxin kernel: simple-framebuffer simple-framebuffer.0: [drm] fb0: simpledrmdrmfb frame buffer device
+Jan 31 21:18:09 nixxin kernel: drop_monitor: Initializing network drop monitor service
+Jan 31 21:18:09 nixxin kernel: NET: Registered PF_INET6 protocol family
+Jan 31 21:18:09 nixxin kernel: Segment Routing with IPv6
+Jan 31 21:18:09 nixxin kernel: In-situ OAM (IOAM) with IPv6
+Jan 31 21:18:09 nixxin kernel: x86/pm: family 0x15 cpu detected, MSR saving is needed during suspending.
+Jan 31 21:18:09 nixxin kernel: microcode: Current revision: 0x06003109
+Jan 31 21:18:09 nixxin kernel: IPI shorthand broadcast: enabled
+Jan 31 21:18:09 nixxin kernel: sched_clock: Marking stable (643001775, 1491166)->(650138986, -5646045)
+Jan 31 21:18:09 nixxin kernel: registered taskstats version 1
+Jan 31 21:18:09 nixxin kernel: Loading compiled-in X.509 certificates
+Jan 31 21:18:09 nixxin kernel: Demotion targets for Node 0: null
+Jan 31 21:18:09 nixxin kernel: Key type .fscrypt registered
+Jan 31 21:18:09 nixxin kernel: Key type fscrypt-provisioning registered
+Jan 31 21:18:09 nixxin kernel: PM:   Magic number: 10:36:295
+Jan 31 21:18:09 nixxin kernel: tty tty28: hash matches
+Jan 31 21:18:09 nixxin kernel: RAS: Correctable Errors collector initialized.
+Jan 31 21:18:09 nixxin kernel: Freeing initrd memory: 55416K
+Jan 31 21:18:09 nixxin kernel: clk: Disabling unused clocks
+Jan 31 21:18:09 nixxin kernel: PM: genpd: Disabling unused power domains
+Jan 31 21:18:09 nixxin kernel: Freeing unused decrypted memory: 2028K
+Jan 31 21:18:09 nixxin kernel: Freeing unused kernel image (initmem) memory: 3584K
+Jan 31 21:18:09 nixxin kernel: Write protecting the kernel read-only data: 32768k
+Jan 31 21:18:09 nixxin kernel: Freeing unused kernel image (text/rodata gap) memory: 1668K
+Jan 31 21:18:09 nixxin kernel: Freeing unused kernel image (rodata/data gap) memory: 1096K
+Jan 31 21:18:09 nixxin kernel: x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Jan 31 21:18:09 nixxin kernel: Run /init as init process
+Jan 31 21:18:09 nixxin kernel:   with arguments:
+Jan 31 21:18:09 nixxin kernel:     /init
+Jan 31 21:18:09 nixxin kernel:     splash
+Jan 31 21:18:09 nixxin kernel:     splash
+Jan 31 21:18:09 nixxin kernel:   with environment:
+Jan 31 21:18:09 nixxin kernel:     HOME=/
+Jan 31 21:18:09 nixxin kernel:     TERM=linux
+Jan 31 21:18:09 nixxin kernel:     split_lock_mitigate=off
+Jan 31 21:18:09 nixxin kernel:     rtl8xxxu_disable_hw_crypto=1
+Jan 31 21:18:09 nixxin kernel:     biosdevname=0
+Jan 31 21:18:09 nixxin kernel: resource: resource sanity check: requesting [mem 0x00000000fed8028a-0x00000000fed81000], which spans more than Reserved [mem 0xfed80000-0xfed80fff]
+Jan 31 21:18:09 nixxin kernel: caller acpi_os_map_iomem+0x244/0x280 mapping multiple BARs
+Jan 31 21:18:09 nixxin kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jan 31 21:18:09 nixxin kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jan 31 21:18:09 nixxin kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jan 31 21:18:09 nixxin kernel: ACPI: video: Video Device [VGA] (multi-head: yes  rom: no  post: no)
+Jan 31 21:18:09 nixxin kernel: ACPI: [Firmware Bug]: BIOS _OSI(Linux) query honored via cmdline
+Jan 31 21:18:09 nixxin kernel: input: Video Bus as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0A08:00/LNXVIDEO:00/input/input0
+Jan 31 21:18:09 nixxin kernel: tsc: Refined TSC clocksource calibration: 3194.029 MHz
+Jan 31 21:18:09 nixxin kernel: clocksource: tsc: mask: 0xffffffffffffffff max_cycles: 0x2e0a41ca3be, max_idle_ns: 440795356728 ns
+Jan 31 21:18:09 nixxin kernel: clocksource: Switched to clocksource tsc
+Jan 31 21:18:09 nixxin kernel: Setting dangerous option gpu_recovery - tainting kernel
+Jan 31 21:18:09 nixxin kernel: Setting dangerous option gpu_recovery - tainting kernel
+Jan 31 21:18:09 nixxin kernel: [drm] amdgpu kernel modesetting enabled.
+Jan 31 21:18:09 nixxin kernel: ACPI BIOS Error (bug): Could not resolve symbol [\_SB.ALIB], AE_NOT_FOUND (20250807/psargs-332)
+Jan 31 21:18:09 nixxin kernel: ACPI Error: Aborting method \_SB.PCI0.VGA.ATC0 due to previous error (AE_NOT_FOUND) (20250807/psparse-529)
+Jan 31 21:18:09 nixxin kernel: ACPI Error: Aborting method \_SB.PCI0.VGA.ATCS due to previous error (AE_NOT_FOUND) (20250807/psparse-529)
+Jan 31 21:18:09 nixxin kernel: amdgpu: Virtual CRAT table created for CPU
+Jan 31 21:18:09 nixxin kernel: amdgpu: Topology: Add CPU node
+Jan 31 21:18:09 nixxin kernel: amdgpu: Overdrive is enabled, please disable it before reporting any bugs unrelated to overdrive.
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: initializing kernel modesetting (KAVERI 0x1002:0x1313 0x103C:0x805A 0xD6).
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: register mmio base: 0xD0900000
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: register mmio size: 262144
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 0 <common_v1_0_0> (cik_common)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 1 <gmc_v7_0_0> (gmc_v7_0)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 2 <ih_v2_0_0> (cik_ih)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 3 <gfx_v7_1_0> (gfx_v7_0)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 4 <sdma_v2_0_0> (cik_sdma)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 5 <smu_v1_0_0> (kv_dpm)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 6 <dce_v1_0_0> (dm)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 7 <uvd_v4_2_0> (uvd_v4_2)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: detected ip block number 8 <vce_v2_0_0> (vce_v2_0)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: Fetched VBIOS from VFCT
+Jan 31 21:18:09 nixxin kernel: amdgpu: ATOM BIOS: BR46218.001
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: vgaarb: deactivate vga console
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: Trusted Memory Zone (TMZ) feature not supported
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: vm size is 64 GB, 2 levels, block size is 10-bit, fragment size is 9-bit
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: VRAM: 1024M 0x000000F400000000 - 0x000000F43FFFFFFF (1024M used)
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: GART: 1024M 0x000000FF00000000 - 0x000000FF3FFFFFFF
+Jan 31 21:18:09 nixxin kernel: [drm] Detected VRAM RAM=1024M, BAR=1024M
+Jan 31 21:18:09 nixxin kernel: [drm] RAM width 128bits UNKNOWN
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: amdgpu: 1024M of VRAM memory ready
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: amdgpu: 8471M of GTT memory ready.
+Jan 31 21:18:09 nixxin kernel: [drm] GART: num cpu pages 262144, num gpu pages 262144
+Jan 31 21:18:09 nixxin kernel: [drm] PCIE GART of 1024M enabled (table at 0x000000F400E00000).
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: [drm] Internal thermal controller without fan control
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: [drm] dpm initialized
+Jan 31 21:18:09 nixxin kernel: [drm] Found UVD firmware Version: 1.64 Family ID: 9
+Jan 31 21:18:09 nixxin kernel: [drm] Found VCE firmware Version: 50.10 Binary ID: 2
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: [drm] Unsupported Connector type:5!
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: [drm] Display Core v3.2.351 initialized on DCE 8.1
+Jan 31 21:18:09 nixxin kernel: [drm] UVD initialized successfully.
+Jan 31 21:18:09 nixxin kernel: [drm] VCE initialized successfully.
+Jan 31 21:18:09 nixxin kernel: kfd kfd: amdgpu: Allocated 3969056 bytes on gart
+Jan 31 21:18:09 nixxin kernel: kfd kfd: amdgpu: Total number of KFD nodes to be created: 1
+Jan 31 21:18:09 nixxin kernel: amdgpu: Virtual CRAT table created for GPU
+Jan 31 21:18:09 nixxin kernel: amdgpu: Topology: Add dGPU node [0x1313:0x1002]
+Jan 31 21:18:09 nixxin kernel: kfd kfd: amdgpu: added device 1002:1313
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: SE 1, SH per SE 1, CU per SH 8, active_cu_number 6
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: overdrive feature is not supported
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: amdgpu: Runtime PM not available
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: [drm] Registered 4 planes with drm panic
+Jan 31 21:18:09 nixxin kernel: [drm] Initialized amdgpu 3.64.0 for 0000:00:01.0 on minor 1
+Jan 31 21:18:09 nixxin kernel: fbcon: amdgpudrmfb (fb0) is primary device
+Jan 31 21:18:09 nixxin kernel: fbcon: Deferring console take-over
+Jan 31 21:18:09 nixxin kernel: amdgpu 0000:00:01.0: [drm] fb0: amdgpudrmfb frame buffer device
+Jan 31 21:18:09 nixxin kernel: device-mapper: ioctl: 4.50.0-ioctl (2025-04-28) initialised: dm-devel@lists.linux.dev
+Jan 31 21:18:09 nixxin kernel: QUIRK: Enable AMD PLL fix
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: EHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: new USB bus registered, assigned bus number 1
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: applying AMD SB700/SB800/Hudson-2/3 EHCI dummy qh workaround
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: debug port 1
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: irq 17, io mem 0xd094f000
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:12.2: USB 2.0 started, EHCI 1.00
+Jan 31 21:18:09 nixxin kernel: usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb1: Product: EHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb1: Manufacturer: Linux 6.18.0-zen1 ehci_hcd
+Jan 31 21:18:09 nixxin kernel: usb usb1: SerialNumber: 0000:00:12.2
+Jan 31 21:18:09 nixxin kernel: hub 1-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 1-0:1.0: 5 ports detected
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: EHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: new USB bus registered, assigned bus number 2
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: applying AMD SB700/SB800/Hudson-2/3 EHCI dummy qh workaround
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: debug port 1
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: irq 17, io mem 0xd094d000
+Jan 31 21:18:09 nixxin kernel: ehci-pci 0000:00:13.2: USB 2.0 started, EHCI 1.00
+Jan 31 21:18:09 nixxin kernel: usb usb2: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb2: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb2: Product: EHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb2: Manufacturer: Linux 6.18.0-zen1 ehci_hcd
+Jan 31 21:18:09 nixxin kernel: usb usb2: SerialNumber: 0000:00:13.2
+Jan 31 21:18:09 nixxin kernel: hub 2-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 2-0:1.0: 5 ports detected
+Jan 31 21:18:09 nixxin kernel: SCSI subsystem initialized
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:12.0: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:12.0: new USB bus registered, assigned bus number 3
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:12.0: irq 18, io mem 0xd0950000
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: new USB bus registered, assigned bus number 4
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: hcc params 0x014040c3 hci version 0x100 quirks 0x0000000000000018
+Jan 31 21:18:09 nixxin kernel: i8042: PNP: PS/2 Controller [PNP0303:PS2K,PNP0f03:PS2M] at 0x60,0x64 irq 1,12
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: new USB bus registered, assigned bus number 5
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.0: Host supports USB 3.0 SuperSpeed
+Jan 31 21:18:09 nixxin kernel: serio: i8042 KBD port at 0x60,0x64 irq 1
+Jan 31 21:18:09 nixxin kernel: serio: i8042 AUX port at 0x60,0x64 irq 12
+Jan 31 21:18:09 nixxin kernel: usb usb4: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb4: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb4: Product: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb4: Manufacturer: Linux 6.18.0-zen1 xhci-hcd
+Jan 31 21:18:09 nixxin kernel: usb usb4: SerialNumber: 0000:00:10.0
+Jan 31 21:18:09 nixxin kernel: hub 4-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 4-0:1.0: 2 ports detected
+Jan 31 21:18:09 nixxin kernel: usb usb5: We don't know the algorithms for LPM for this host, disabling LPM.
+Jan 31 21:18:09 nixxin kernel: usb usb5: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb5: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb5: Product: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb5: Manufacturer: Linux 6.18.0-zen1 xhci-hcd
+Jan 31 21:18:09 nixxin kernel: usb usb5: SerialNumber: 0000:00:10.0
+Jan 31 21:18:09 nixxin kernel: hub 5-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 5-0:1.0: 2 ports detected
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: new USB bus registered, assigned bus number 6
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: hcc params 0x014040c3 hci version 0x100 quirks 0x0000000000000018
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: new USB bus registered, assigned bus number 7
+Jan 31 21:18:09 nixxin kernel: xhci_hcd 0000:00:10.1: Host supports USB 3.0 SuperSpeed
+Jan 31 21:18:09 nixxin kernel: usb usb6: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb6: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb6: Product: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb6: Manufacturer: Linux 6.18.0-zen1 xhci-hcd
+Jan 31 21:18:09 nixxin kernel: usb usb6: SerialNumber: 0000:00:10.1
+Jan 31 21:18:09 nixxin kernel: hub 6-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 6-0:1.0: 2 ports detected
+Jan 31 21:18:09 nixxin kernel: usb usb7: We don't know the algorithms for LPM for this host, disabling LPM.
+Jan 31 21:18:09 nixxin kernel: usb usb7: New USB device found, idVendor=1d6b, idProduct=0003, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb7: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb7: Product: xHCI Host Controller
+Jan 31 21:18:09 nixxin kernel: usb usb7: Manufacturer: Linux 6.18.0-zen1 xhci-hcd
+Jan 31 21:18:09 nixxin kernel: usb usb7: SerialNumber: 0000:00:10.1
+Jan 31 21:18:09 nixxin kernel: hub 7-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 7-0:1.0: 2 ports detected
+Jan 31 21:18:09 nixxin kernel: libata version 3.00 loaded.
+Jan 31 21:18:09 nixxin kernel: ahci 0000:00:11.0: AHCI vers 0001.0300, 32 command slots, 6 Gbps, SATA mode
+Jan 31 21:18:09 nixxin kernel: ahci 0000:00:11.0: 3/3 ports implemented (port mask 0x7)
+Jan 31 21:18:09 nixxin kernel: ahci 0000:00:11.0: flags: 64bit ncq sntf ilck pm led clo pmp pio slum part 
+Jan 31 21:18:09 nixxin kernel: scsi host0: ahci
+Jan 31 21:18:09 nixxin kernel: scsi host1: ahci
+Jan 31 21:18:09 nixxin kernel: scsi host2: ahci
+Jan 31 21:18:09 nixxin kernel: ata1: SATA max UDMA/133 abar m2048@0xd0951000 port 0xd0951100 irq 39 lpm-pol 3
+Jan 31 21:18:09 nixxin kernel: ata2: SATA max UDMA/133 abar m2048@0xd0951000 port 0xd0951180 irq 39 lpm-pol 3
+Jan 31 21:18:09 nixxin kernel: ata3: SATA max UDMA/133 abar m2048@0xd0951000 port 0xd0951200 irq 39 lpm-pol 3
+Jan 31 21:18:09 nixxin kernel: usb usb3: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb3: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb3: Product: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: usb usb3: Manufacturer: Linux 6.18.0-zen1 ohci_hcd
+Jan 31 21:18:09 nixxin kernel: usb usb3: SerialNumber: 0000:00:12.0
+Jan 31 21:18:09 nixxin kernel: hub 3-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 3-0:1.0: 5 ports detected
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:13.0: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:13.0: new USB bus registered, assigned bus number 8
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:13.0: irq 18, io mem 0xd094e000
+Jan 31 21:18:09 nixxin kernel: usb usb8: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb8: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb8: Product: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: usb usb8: Manufacturer: Linux 6.18.0-zen1 ohci_hcd
+Jan 31 21:18:09 nixxin kernel: usb usb8: SerialNumber: 0000:00:13.0
+Jan 31 21:18:09 nixxin kernel: hub 8-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 8-0:1.0: 5 ports detected
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:14.5: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:14.5: new USB bus registered, assigned bus number 9
+Jan 31 21:18:09 nixxin kernel: ohci-pci 0000:00:14.5: irq 18, io mem 0xd094c000
+Jan 31 21:18:09 nixxin kernel: usb usb9: New USB device found, idVendor=1d6b, idProduct=0001, bcdDevice= 6.18
+Jan 31 21:18:09 nixxin kernel: usb usb9: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+Jan 31 21:18:09 nixxin kernel: usb usb9: Product: OHCI PCI host controller
+Jan 31 21:18:09 nixxin kernel: usb usb9: Manufacturer: Linux 6.18.0-zen1 ohci_hcd
+Jan 31 21:18:09 nixxin kernel: usb usb9: SerialNumber: 0000:00:14.5
+Jan 31 21:18:09 nixxin kernel: hub 9-0:1.0: USB hub found
+Jan 31 21:18:09 nixxin kernel: hub 9-0:1.0: 2 ports detected
+Jan 31 21:18:09 nixxin kernel: usb 4-1: new low-speed USB device number 2 using xhci_hcd
+Jan 31 21:18:09 nixxin kernel: ata3: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Jan 31 21:18:09 nixxin kernel: ata2: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Jan 31 21:18:09 nixxin kernel: ata1: SATA link up 6.0 Gbps (SStatus 133 SControl 300)
+Jan 31 21:18:09 nixxin kernel: ata3.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata3.00: ACPI cmd b1/c1:00:00:00:00:e0(DEVICE CONFIGURATION OVERLAY) filtered out
+Jan 31 21:18:09 nixxin kernel: ata3.00: ATA-8: WDC WD2500AAKX-603CA0, 18.01H18, max UDMA/100
+Jan 31 21:18:09 nixxin kernel: ata2.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata2.00: ACPI cmd b1/c1:00:00:00:00:e0(DEVICE CONFIGURATION OVERLAY) filtered out
+Jan 31 21:18:09 nixxin kernel: ata3.00: 488397168 sectors, multi 0: LBA48 NCQ (depth 32), AA
+Jan 31 21:18:09 nixxin kernel: ata2.00: ATA-8: ST500DM002-1BD142, KC48, max UDMA/133
+Jan 31 21:18:09 nixxin kernel: ata2.00: 976773168 sectors, multi 0: LBA48 NCQ (depth 32)
+Jan 31 21:18:09 nixxin kernel: ata3.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata3.00: ACPI cmd b1/c1:00:00:00:00:e0(DEVICE CONFIGURATION OVERLAY) filtered out
+Jan 31 21:18:09 nixxin kernel: ata3.00: configured for UDMA/100
+Jan 31 21:18:09 nixxin kernel: ata2.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata2.00: ACPI cmd b1/c1:00:00:00:00:e0(DEVICE CONFIGURATION OVERLAY) filtered out
+Jan 31 21:18:09 nixxin kernel: ata1.00: Model 'CT500BX500SSD1', rev 'M6CR072', applying quirks: nolpm
+Jan 31 21:18:09 nixxin kernel: ata1.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata1.00: ATA-10: CT500BX500SSD1, M6CR072, max UDMA/133
+Jan 31 21:18:09 nixxin kernel: ata2.00: configured for UDMA/133
+Jan 31 21:18:09 nixxin kernel: ata1.00: 976773168 sectors, multi 1: LBA48 NCQ (depth 32), AA
+Jan 31 21:18:09 nixxin kernel: ata1.00: LPM support broken, forcing max_power
+Jan 31 21:18:09 nixxin kernel: ata1.00: Features: Dev-Sleep DIPM
+Jan 31 21:18:09 nixxin kernel: ata1.00: ACPI cmd f5/00:00:00:00:00:e0(SECURITY FREEZE LOCK) filtered out
+Jan 31 21:18:09 nixxin kernel: ata1.00: configured for UDMA/133
+Jan 31 21:18:09 nixxin kernel: scsi 0:0:0:0: Direct-Access     ATA      CT500BX500SSD1   072  PQ: 0 ANSI: 5
+Jan 31 21:18:09 nixxin kernel: scsi 1:0:0:0: Direct-Access     ATA      ST500DM002-1BD14 KC48 PQ: 0 ANSI: 5
+Jan 31 21:18:09 nixxin kernel: scsi 2:0:0:0: Direct-Access     ATA      WDC WD2500AAKX-6 1H18 PQ: 0 ANSI: 5
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] 976773168 512-byte logical blocks: (500 GB/466 GiB)
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] 4096-byte physical blocks
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] Write Protect is off
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] Mode Sense: 00 3a 00 00
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] Write Protect is off
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] Mode Sense: 00 3a 00 00
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] 488397168 512-byte logical blocks: (250 GB/233 GiB)
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] Write Protect is off
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] Mode Sense: 00 3a 00 00
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] Write cache: enabled, read cache: enabled, doesn't support DPO or FUA
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] Preferred minimum I/O size 512 bytes
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] Preferred minimum I/O size 4096 bytes
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] Preferred minimum I/O size 512 bytes
+Jan 31 21:18:09 nixxin kernel:  sda: sda1 sda2 sda3
+Jan 31 21:18:09 nixxin kernel: sd 0:0:0:0: [sda] Attached SCSI disk
+Jan 31 21:18:09 nixxin kernel: usb 4-1: New USB device found, idVendor=046d, idProduct=c077, bcdDevice=67.00
+Jan 31 21:18:09 nixxin kernel: usb 4-1: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Jan 31 21:18:09 nixxin kernel: usb 4-1: Product: USB Optical Mouse
+Jan 31 21:18:09 nixxin kernel: usb 4-1: Manufacturer: Logitech
+Jan 31 21:18:09 nixxin kernel: hid: raw HID events driver (C) Jiri Kosina
+Jan 31 21:18:09 nixxin kernel:  sdc: sdc1
+Jan 31 21:18:09 nixxin kernel: sd 1:0:0:0: [sdc] Attached SCSI disk
+Jan 31 21:18:09 nixxin kernel:  sdb: sdb1
+Jan 31 21:18:09 nixxin kernel: sd 2:0:0:0: [sdb] Attached SCSI disk
+Jan 31 21:18:09 nixxin kernel: usbcore: registered new interface driver usbhid
+Jan 31 21:18:09 nixxin kernel: usbhid: USB HID core driver
+Jan 31 21:18:09 nixxin kernel: input: Logitech USB Optical Mouse as /devices/pci0000:00/0000:00:10.0/usb4/4-1/4-1:1.0/0003:046D:C077.0001/input/input3
+Jan 31 21:18:09 nixxin kernel: hid-generic 0003:046D:C077.0001: input,hidraw0: USB HID v1.11 Mouse [Logitech USB Optical Mouse] on usb-0000:00:10.0-1/input0
+Jan 31 21:18:09 nixxin kernel: usb 4-2: new low-speed USB device number 3 using xhci_hcd
+Jan 31 21:18:09 nixxin kernel: usb 4-2: New USB device found, idVendor=1a2c, idProduct=4d7e, bcdDevice= 1.10
+Jan 31 21:18:09 nixxin kernel: usb 4-2: New USB device strings: Mfr=1, Product=2, SerialNumber=0
+Jan 31 21:18:09 nixxin kernel: usb 4-2: Product: USB Keyboard
+Jan 31 21:18:09 nixxin kernel: usb 4-2: Manufacturer: SEMICO
+Jan 31 21:18:09 nixxin kernel: input: SEMICO USB Keyboard as /devices/pci0000:00/0000:00:10.0/usb4/4-2/4-2:1.0/0003:1A2C:4D7E.0002/input/input4
+Jan 31 21:18:09 nixxin kernel: hid-generic 0003:1A2C:4D7E.0002: input,hidraw1: USB HID v1.10 Keyboard [SEMICO USB Keyboard] on usb-0000:00:10.0-2/input0
+Jan 31 21:18:09 nixxin kernel: input: SEMICO USB Keyboard Consumer Control as /devices/pci0000:00/0000:00:10.0/usb4/4-2/4-2:1.1/0003:1A2C:4D7E.0003/input/input5
+Jan 31 21:18:09 nixxin kernel: input: SEMICO USB Keyboard System Control as /devices/pci0000:00/0000:00:10.0/usb4/4-2/4-2:1.1/0003:1A2C:4D7E.0003/input/input6
+Jan 31 21:18:09 nixxin kernel: input: SEMICO USB Keyboard as /devices/pci0000:00/0000:00:10.0/usb4/4-2/4-2:1.1/0003:1A2C:4D7E.0003/input/input8
+Jan 31 21:18:09 nixxin kernel: hid-generic 0003:1A2C:4D7E.0003: input,hiddev96,hidraw2: USB HID v1.10 Keyboard [SEMICO USB Keyboard] on usb-0000:00:10.0-2/input1
+Jan 31 21:18:09 nixxin kernel: random: crng init done
+Jan 31 21:18:09 nixxin stage-1-init: [Sat Jan 31 19:18:06 UTC 2026] checking /dev/disk/by-uuid/5fd60cc2-b325-4f36-9a44-5b45299bf0a7...
+Jan 31 21:18:09 nixxin stage-1-init: [Sat Jan 31 19:18:06 UTC 2026] fsck (busybox 1.36.1)
+Jan 31 21:18:09 nixxin stage-1-init: [Sat Jan 31 19:18:06 UTC 2026] [fsck.xfs (1) -- /mnt-root/] fsck.xfs -a /dev/disk/by-uuid/5fd60cc2-b325-4f36-9a44-5b45299bf0a7
+Jan 31 21:18:09 nixxin stage-1-init: [Sat Jan 31 19:18:06 UTC 2026] /nix/store/m6x881jksdk3q66qncbdy4k0a96jblpq-extra-utils/bin/fsck.xfs: XFS file system.
+Jan 31 21:18:09 nixxin kernel: SGI XFS with ACLs, security attributes, realtime, scrub, repair, quota, no debug enabled
+Jan 31 21:18:09 nixxin kernel: XFS (sda2): Mounting V5 Filesystem 5fd60cc2-b325-4f36-9a44-5b45299bf0a7
+Jan 31 21:18:09 nixxin kernel: XFS (sda2): Ending clean mount
+Jan 31 21:18:09 nixxin unknown: booting system configuration /nix/store/h4p8g6w63v3brllmvqv8qv73h92qmlvj-nixos-system-nixxin-26.05.20251208.addf7cf
+Jan 31 21:18:09 nixxin stage-2-init: running activation script...
+Jan 31 21:18:09 nixxin stage-2-init: setting up /etc...
+Jan 31 21:18:09 nixxin systemd[1]: Inserted module 'autofs4'
+Jan 31 21:18:09 nixxin systemd[1]: systemd 258.2 running in system mode (+PAM +AUDIT -SELINUX +APPARMOR +IMA +IPE +SMACK +SECCOMP +GCRYPT -GNUTLS +OPENSSL +ACL +BLKID +CURL +ELFUTILS +FIDO2 +IDN2 -IDN -IPTC +KMOD +LIBCRYPTSETUP +LIBCRYPTSETUP_PLUGINS +LIBFDISK +PCRE2 +PWQUALITY +P11KIT +QRENCODE +TPM2 +BZIP2 +LZ4 +XZ +ZLIB +ZSTD +BPF_FRAMEWORK -BTF -XKBCOMMON +UTMP -SYSVINIT +LIBARCHIVE)
+Jan 31 21:18:09 nixxin systemd[1]: Detected architecture x86-64.
+Jan 31 21:18:09 nixxin systemd[1]: Hostname set to <nixxin>.
+Jan 31 21:18:09 nixxin systemd[1]: bpf-restrict-fs: LSM BPF program attached
+Jan 31 21:18:09 nixxin systemd-gpt-auto-generator[429]: EFI loader partition unknown, not processing /.
+Jan 31 21:18:09 nixxin systemd-gpt-auto-generator[429]: (The boot loader did not set EFI variable LoaderDevicePartUUID.)
+Jan 31 21:18:09 nixxin kernel: zram: Added device: zram0
+Jan 31 21:18:09 nixxin systemd[1]: /etc/systemd/system/cups.socket:5: ListenStream= references a path below legacy directory /var/run/, updating /var/run/cups/cups.sock → /run/cups/cups.sock; please update the unit file accordingly.
+Jan 31 21:18:09 nixxin systemd[1]: Queued start job for default target Graphical Interface.
+Jan 31 21:18:09 nixxin systemd[1]: Created slice Virtual Machine and Container Slice.
+Jan 31 21:18:09 nixxin systemd[1]: Created slice Slice /system/modprobe.
+Jan 31 21:18:09 nixxin systemd[1]: Created slice Slice /system/systemd-fsck.
+Jan 31 21:18:09 nixxin systemd[1]: Created slice Slice /system/systemd-zram-setup.
+Jan 31 21:18:09 nixxin systemd[1]: Created slice User and Session Slice.
+Jan 31 21:18:09 nixxin systemd[1]: Dispatch Password Requests to Console Directory Watch was skipped because of an unmet condition check (ConditionPathExists=!/run/plymouth/pid).
+Jan 31 21:18:09 nixxin systemd[1]: Started Forward Password Requests to Plymouth Directory Watch.
+Jan 31 21:18:09 nixxin systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+Jan 31 21:18:09 nixxin systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/disk/by-uuid/386568e5-b764-4b52-bd15-bca3408a3ce7...
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/disk/by-uuid/C560-51F7...
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf...
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/disk/by-uuid/f532f234-9e5a-4c3e-a788-dada20ea6c56...
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/input/mice...
+Jan 31 21:18:09 nixxin systemd[1]: Expecting device /dev/zram0...
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Local Encrypted Volumes.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Login Prompts.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Virtual Machines and Containers.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Path Units.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Remote File Systems.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Slice Units.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target libvirt guests shutdown target.
+Jan 31 21:18:09 nixxin systemd[1]: Listening on Process Core Dump Socket.
+Jan 31 21:18:09 nixxin systemd[1]: Listening on Credential Encryption/Decryption.
+Jan 31 21:18:09 nixxin systemd[1]: Journal Audit Socket was skipped because of an unmet condition check (ConditionSecurity=audit).
+Jan 31 21:18:09 nixxin systemd[1]: Listening on Journal Socket (/dev/log).
+Jan 31 21:18:09 nixxin systemd[1]: Listening on Journal Sockets.
+Jan 31 21:18:09 nixxin systemd[1]: Make TPM PCR Policy was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+Jan 31 21:18:09 nixxin systemd[1]: Listening on udev Control Socket.
+Jan 31 21:18:09 nixxin systemd[1]: Listening on udev Kernel Socket.
+Jan 31 21:18:09 nixxin systemd[1]: Mounting /dev/binderfs...
+Jan 31 21:18:09 nixxin systemd[1]: Mounting Huge Pages File System...
+Jan 31 21:18:09 nixxin systemd[1]: Mounting POSIX Message Queue File System...
+Jan 31 21:18:09 nixxin systemd[1]: Mounting Kernel Debug File System...
+Jan 31 21:18:09 nixxin systemd[1]: Mounting Kernel Trace File System...
+Jan 31 21:18:09 nixxin systemd[1]: Starting Create List of Static Device Nodes...
+Jan 31 21:18:09 nixxin systemd[1]: Starting Load Kernel Module configfs...
+Jan 31 21:18:09 nixxin systemd[1]: Load Kernel Module drm was skipped because of an unmet condition check (ConditionKernelModuleLoaded=!drm).
+Jan 31 21:18:09 nixxin systemd[1]: Starting Load Kernel Module efi_pstore...
+Jan 31 21:18:09 nixxin systemd[1]: Starting Load Kernel Module fuse...
+Jan 31 21:18:09 nixxin systemd[1]: Started Forward Password Requests to Plymouth.
+Jan 31 21:18:09 nixxin systemd[1]: File System Check on Root Device was skipped because of an unmet condition check (ConditionPathIsReadWrite=!/).
+Jan 31 21:18:09 nixxin systemd[1]: Clear Stale Hibernate Storage Info was skipped because of an unmet condition check (ConditionPathExists=/sys/firmware/efi/efivars/HibernateLocation-8cf2644b-4b0b-428f-9387-6d876050dc67).
+Jan 31 21:18:09 nixxin systemd[1]: Starting Journal Service...
+Jan 31 21:18:09 nixxin systemd[1]: Starting Load Kernel Modules...
+Jan 31 21:18:09 nixxin systemd[1]: Starting Remount Root and Kernel File Systems...
+Jan 31 21:18:09 nixxin systemd[1]: Early TPM SRK Setup was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+Jan 31 21:18:09 nixxin systemd[1]: Starting Coldplug All udev Devices...
+Jan 31 21:18:09 nixxin systemd[1]: Finished Create List of Static Device Nodes.
+Jan 31 21:18:09 nixxin systemd[1]: Starting Create Static Device Nodes in /dev gracefully...
+Jan 31 21:18:09 nixxin systemd[1]: Mounted /dev/binderfs.
+Jan 31 21:18:09 nixxin kernel: pstore: Using crash dump compression: deflate
+Jan 31 21:18:09 nixxin systemd[1]: Mounted Huge Pages File System.
+Jan 31 21:18:09 nixxin systemd[1]: Mounted POSIX Message Queue File System.
+Jan 31 21:18:09 nixxin systemd[1]: Mounted Kernel Debug File System.
+Jan 31 21:18:09 nixxin systemd[1]: Mounted Kernel Trace File System.
+Jan 31 21:18:09 nixxin systemd[1]: modprobe@configfs.service: Deactivated successfully.
+Jan 31 21:18:09 nixxin systemd[1]: Finished Load Kernel Module configfs.
+Jan 31 21:18:09 nixxin kernel: fuse: init (API version 7.45)
+Jan 31 21:18:09 nixxin systemd[1]: Mounting Kernel Configuration File System...
+Jan 31 21:18:09 nixxin systemd[1]: modprobe@fuse.service: Deactivated successfully.
+Jan 31 21:18:09 nixxin systemd[1]: Finished Load Kernel Module fuse.
+Jan 31 21:18:09 nixxin systemd[1]: Finished Remount Root and Kernel File Systems.
+Jan 31 21:18:09 nixxin systemd[1]: Starting Load/Save OS Random Seed...
+Jan 31 21:18:09 nixxin systemd-journald[461]: Collecting audit messages is disabled.
+Jan 31 21:18:09 nixxin systemd[1]: Starting Network Time Synchronization...
+Jan 31 21:18:09 nixxin systemd[1]: TPM SRK Setup was skipped because of an unmet condition check (ConditionSecurity=measured-uki).
+Jan 31 21:18:09 nixxin systemd[1]: Mounted Kernel Configuration File System.
+Jan 31 21:18:09 nixxin systemd[1]: Finished Create Static Device Nodes in /dev gracefully.
+Jan 31 21:18:09 nixxin systemd[1]: Starting Create Static Device Nodes in /dev...
+Jan 31 21:18:09 nixxin kernel: i2c_dev: i2c /dev entries driver
+Jan 31 21:18:09 nixxin kernel: pstore: Registered efi_pstore as persistent store backend
+Jan 31 21:18:09 nixxin systemd[1]: modprobe@efi_pstore.service: Deactivated successfully.
+Jan 31 21:18:09 nixxin systemd[1]: Finished Load Kernel Module efi_pstore.
+Jan 31 21:18:09 nixxin systemd[1]: Platform Persistent Storage Archival was skipped because of an unmet condition check (ConditionDirectoryNotEmpty=/sys/fs/pstore).
+Jan 31 21:18:09 nixxin systemd[1]: Finished Create Static Device Nodes in /dev.
+Jan 31 21:18:09 nixxin systemd[1]: Reached target Preparation for Local File Systems.
+Jan 31 21:18:09 nixxin systemd[1]: Starting Rule-based Manager for Device Events and Files...
+Jan 31 21:18:09 nixxin systemd[1]: Finished Load/Save OS Random Seed.
+Jan 31 21:18:09 nixxin systemd[1]: First Boot Complete was skipped because of an unmet condition check (ConditionFirstBoot=yes).
+Jan 31 21:18:09 nixxin systemd[1]: Started Journal Service.
+Jan 31 21:18:09 nixxin systemd-journald[461]: Received client request to flush runtime journal.
+Jan 31 21:18:09 nixxin kernel: kvm_amd: TSC scaling supported
+Jan 31 21:18:09 nixxin kernel: kvm_amd: Nested Virtualization enabled
+Jan 31 21:18:09 nixxin kernel: kvm_amd: Nested Paging enabled
+Jan 31 21:18:09 nixxin kernel: kvm_amd: LBR virtualization supported
+Jan 31 21:18:09 nixxin kernel: loop: module loaded
+Jan 31 21:18:09 nixxin kernel: tun: Universal TUN/TAP device driver, 1.6
+Jan 31 21:18:10 nixxin kernel: zram0: detected capacity change from 0 to 10409784
+Jan 31 21:18:10 nixxin kernel: input: Power Button as /devices/LNXSYSTM:00/LNXSYBUS:00/PNP0C0C:00/input/input9
+Jan 31 21:18:10 nixxin kernel: ACPI: button: Power Button [PWRB]
+Jan 31 21:18:10 nixxin kernel: input: Power Button as /devices/LNXSYSTM:00/LNXPWRBN:00/input/input10
+Jan 31 21:18:10 nixxin kernel: ACPI: button: Power Button [PWRF]
+Jan 31 21:18:10 nixxin kernel: tpm_tis 00:07: 1.2 TPM (device-id 0x1A, rev-id 16)
+Jan 31 21:18:10 nixxin kernel: Adding 5204888k swap on /dev/zram0.  Priority:100 extents:1 across:5204888k SSDsc
+Jan 31 21:18:10 nixxin kernel: rtc_cmos 00:00: RTC can wake from S4
+Jan 31 21:18:10 nixxin kernel: rtc_cmos 00:00: registered as rtc0
+Jan 31 21:18:10 nixxin kernel: rtc_cmos 00:00: setting system clock to 2026-01-31T19:18:10 UTC (1769887090)
+Jan 31 21:18:10 nixxin kernel: rtc_cmos 00:00: alarms up to one month, 114 bytes nvram
+Jan 31 21:18:10 nixxin kernel: raid6: sse2x4   gen()  9366 MB/s
+Jan 31 21:18:10 nixxin kernel: raid6: sse2x2   gen()  7937 MB/s
+Jan 31 21:18:10 nixxin kernel: raid6: sse2x1   gen()  6832 MB/s
+Jan 31 21:18:10 nixxin kernel: raid6: using algorithm sse2x4 gen() 9366 MB/s
+Jan 31 21:18:10 nixxin kernel: raid6: .... xor() 2228 MB/s, rmw enabled
+Jan 31 21:18:10 nixxin kernel: raid6: using ssse3x2 recovery algorithm
+Jan 31 21:18:10 nixxin kernel: xor: automatically using best checksumming function   avx       
+Jan 31 21:18:10 nixxin kernel: mousedev: PS/2 mouse device common for all mice
+Jan 31 21:18:10 nixxin kernel: ACPI Warning: SystemIO range 0x0000000000000B00-0x0000000000000B08 conflicts with OpRegion 0x0000000000000B00-0x0000000000000B06 (\_SB.PCI0.SMBS.SMBO) (20250807/utaddress-204)
+Jan 31 21:18:10 nixxin kernel: ACPI: OSL: Resource conflict; ACPI support missing from driver?
+Jan 31 21:18:10 nixxin kernel: pps_core: LinuxPPS API ver. 1 registered
+Jan 31 21:18:10 nixxin kernel: pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+Jan 31 21:18:10 nixxin kernel: acpi_cpufreq: overriding BIOS provided _PSD data
+Jan 31 21:18:10 nixxin kernel: snd_hda_intel 0000:00:01.1: Force to non-snoop mode
+Jan 31 21:18:10 nixxin kernel: snd_hda_intel 0000:00:01.1: bound 0000:00:01.0 (ops amdgpu_dm_audio_component_bind_ops [amdgpu])
+Jan 31 21:18:10 nixxin kernel: sp5100_tco: SP5100/SB800 TCO WatchDog Timer Driver
+Jan 31 21:18:10 nixxin kernel: sp5100-tco sp5100-tco: Using 0xfed80b00 for watchdog MMIO address
+Jan 31 21:18:10 nixxin kernel: sp5100-tco sp5100-tco: initialized. heartbeat=60 sec (nowayout=0)
+Jan 31 21:18:10 nixxin kernel: PTP clock support registered
+Jan 31 21:18:10 nixxin kernel: Btrfs loaded, zoned=yes, fsverity=no
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0: ALC221: picked fixup  for PCI SSID 103c:0000
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0: autoconfig for ALC221: line_outs=1 (0x14/0x0/0x0/0x0/0x0) type:line
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:    speaker_outs=0 (0x0/0x0/0x0/0x0/0x0)
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:    hp_outs=1 (0x21/0x0/0x0/0x0/0x0)
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:    mono: mono_out=0x0
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:    inputs:
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:      Mic=0x1a
+Jan 31 21:18:10 nixxin kernel: snd_hda_codec_alc269 hdaudioC1D0:      Line=0x1b
+Jan 31 21:18:10 nixxin kernel: input: HDA ATI HDMI HDMI/DP,pcm=3 as /devices/pci0000:00/0000:00:01.1/sound/card0/input11
+Jan 31 21:18:10 nixxin kernel: input: HDA ATI HDMI HDMI/DP,pcm=7 as /devices/pci0000:00/0000:00:01.1/sound/card0/input12
+Jan 31 21:18:10 nixxin kernel: input: HDA ATI HDMI HDMI/DP,pcm=8 as /devices/pci0000:00/0000:00:01.1/sound/card0/input13
+Jan 31 21:18:10 nixxin kernel: input: HDA ATI HDMI HDMI/DP,pcm=9 as /devices/pci0000:00/0000:00:01.1/sound/card0/input14
+Jan 31 21:18:10 nixxin kernel: EDAC MC: Ver: 3.0.0
+Jan 31 21:18:11 nixxin kernel: MCE: In-kernel MCE decoding enabled.
+Jan 31 21:18:11 nixxin kernel: tg3 0000:03:00.0 eth0: Tigon3 [partno(BCM95762) rev 5762100] (PCI Express) MAC address fc:3f:db:03:22:19
+Jan 31 21:18:11 nixxin kernel: tg3 0000:03:00.0 eth0: attached PHY is 5762C (10/100/1000Base-T Ethernet) (WireSpeed[1], EEE[1])
+Jan 31 21:18:11 nixxin kernel: tg3 0000:03:00.0 eth0: RXcsums[1] LinkChgREG[0] MIirq[0] ASF[0] TSOcap[1]
+Jan 31 21:18:11 nixxin kernel: tg3 0000:03:00.0 eth0: dma_rwctrl[00000001] dma_mask[64-bit]
+Jan 31 21:18:11 nixxin kernel: input: HDA Digital PCBeep as /devices/pci0000:00/0000:00:14.2/sound/card1/input16
+Jan 31 21:18:11 nixxin kernel: input: HD-Audio Generic Mic as /devices/pci0000:00/0000:00:14.2/sound/card1/input17
+Jan 31 21:18:11 nixxin kernel: input: HD-Audio Generic Line as /devices/pci0000:00/0000:00:14.2/sound/card1/input18
+Jan 31 21:18:11 nixxin kernel: input: HD-Audio Generic Line Out as /devices/pci0000:00/0000:00:14.2/sound/card1/input19
+Jan 31 21:18:11 nixxin kernel: input: HD-Audio Generic Front Headphone as /devices/pci0000:00/0000:00:14.2/sound/card1/input20
+Jan 31 21:18:11 nixxin kernel: BTRFS: device label SSDisk devid 1 transid 1593 /dev/sda3 (8:3) scanned by mount (697)
+Jan 31 21:18:11 nixxin kernel: BTRFS: device label Media devid 1 transid 25585 /dev/sdb1 (8:17) scanned by mount (700)
+Jan 31 21:18:11 nixxin kernel: BTRFS: device label Data devid 1 transid 168723 /dev/sdc1 (8:33) scanned by mount (699)
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): first mount of filesystem d7a6af5d-3e8c-4816-b4fd-306107bbd9bf
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sdc1): first mount of filesystem 386568e5-b764-4b52-bd15-bca3408a3ce7
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sdb1): first mount of filesystem f532f234-9e5a-4c3e-a788-dada20ea6c56
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sdb1): using crc32c (crc32c-lib) checksum algorithm
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sdc1): using crc32c (crc32c-lib) checksum algorithm
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): using crc32c (crc32c-lib) checksum algorithm
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): enabling ssd optimizations
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): turning on async discard
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): enabling free space tree
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sda3): use zstd compression, level 3
+Jan 31 21:18:11 nixxin kernel: BTRFS info (device sdc1): bdev /dev/sdc1 errs: wr 0, rd 0, flush 0, corrupt 3, gen 0
+Jan 31 21:18:12 nixxin kernel: sched_ext: BPF scheduler "bpfland_1.0.19_x86_64_unknown_linux_gnu" enabled
+Jan 31 21:18:12 nixxin kernel: BTRFS info (device sdb1): enabling free space tree
+Jan 31 21:18:12 nixxin kernel: BTRFS info (device sdb1): use zstd compression, level 3
+Jan 31 21:18:15 nixxin kernel: BTRFS info (device sdc1): enabling free space tree
+Jan 31 21:18:15 nixxin kernel: BTRFS info (device sdc1): use zstd compression, level 3
+Jan 31 21:18:16 nixxin kernel: bridge: filtering via arp/ip/ip6tables is no longer available by default. Update your scripts to load br_netfilter if you need this.
+Jan 31 21:18:16 nixxin kernel: podman0: port 1(veth0) entered blocking state
+Jan 31 21:18:16 nixxin kernel: podman0: port 1(veth0) entered disabled state
+Jan 31 21:18:16 nixxin kernel: veth0: entered allmulticast mode
+Jan 31 21:18:16 nixxin kernel: veth0: entered promiscuous mode
+Jan 31 21:18:16 nixxin kernel: podman0: port 1(veth0) entered blocking state
+Jan 31 21:18:16 nixxin kernel: podman0: port 1(veth0) entered forwarding state
+Jan 31 21:18:20 nixxin kernel: fbcon: Taking over console
+Jan 31 21:18:20 nixxin kernel: Console: switching to colour frame buffer device 240x67

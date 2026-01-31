@@ -96,6 +96,15 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     options = [ "bind" "create" "rw" ];
   };
 
+  # systemd.tmpfiles.settings."10-waydroid"."/var/lib/waydroid/waydroid_base.prop".f =
+  #   {
+  #     user = "root";
+  #     group = "root";
+  #     mode = "0666";
+  #     argument =
+  #       "	ro.hardware.gralloc=default\n	ro.hardware.egl=swiftshader\n	sys.use_memfd=true\n";
+  #   };
+
   systemd.tmpfiles.rules = [
     "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
     # "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"

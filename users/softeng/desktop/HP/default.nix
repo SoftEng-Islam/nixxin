@@ -360,7 +360,7 @@
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [ "8.8.8.8" ]; # DNS
+  modules.networking.nameservers = [ "9.9.9.9" "149.112.112.112" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     # eno1 = {
@@ -464,7 +464,10 @@
   modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
   modules.system.boot.initrd.kernelModules = [ "amdgpu" ];
-  modules.system.boot.blacklistedKernelModules = [ "hp_wmi" "radeon" ];
+  modules.system.boot.blacklistedKernelModules = [
+    # "hp_wmi"
+    # "radeon"
+  ];
 
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {

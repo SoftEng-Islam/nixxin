@@ -1,0 +1,105 @@
+hashcat -I
+hashcat (7.1.2) starting in backend information mode
+
+OpenCL Info:
+============
+
+OpenCL Platform ID #1
+  Vendor..: clvk
+  Name....: clvk
+  Version.: OpenCL 3.0 clvk
+
+  Backend Device ID #01
+    Type...........: GPU
+    Vendor.ID......: 2147483648
+    Vendor.........: Advanced Micro Devices, Inc. [AMD/ATI]
+    Name...........: AMD Radeon R7 Graphics (RADV KAVERI)
+    Version........: OpenCL 3.0 CLVK on Vulkan v1.3.328 driver 104869889
+    Processor(s)...: 1
+    Preferred.Thrd.: 32
+    Clock..........: 0
+    Memory.Total...: 3165 MB (limited to 1582 MB allocatable in one block)
+    Memory.Free....: 1582 MB
+    Memory.Unified.: 1
+    Local.Memory...: 64 KB
+    OpenCL.Version.: OpenCL C 1.2 CLVK on Vulkan v1.3.328 driver 104869889
+    Driver.Version.: 3.0 CLVK on Vulkan v1.3.328 driver 104869889
+
+  Backend Device ID #02
+    Type...........: CPU
+    Vendor.ID......: 16
+    Vendor.........: Mesa
+    Name...........: llvmpipe (LLVM 21.1.2, 256 bits)
+    Version........: OpenCL 3.0 CLVK on Vulkan v1.4.328 driver 104869889
+    Processor(s)...: 1
+    Preferred.Thrd.: 1
+    Clock..........: 0
+    Memory.Total...: 16943 MB (limited to 1024 MB allocatable in one block)
+    Memory.Free....: 8471 MB
+    Memory.Unified.: 1
+    Local.Memory...: 32 KB
+    OpenCL.Version.: OpenCL C 1.2 CLVK on Vulkan v1.4.328 driver 104869889
+    Driver.Version.: 3.0 CLVK on Vulkan v1.4.328 driver 104869889
+
+OpenCL Platform ID #2
+  Vendor..: Mesa
+  Name....: Clover
+  Version.: OpenCL 1.1 Mesa 25.1.0-devel
+
+  Backend Device ID #03 (Alias: #04)
+    Type...........: GPU
+    Vendor.ID......: 1
+    Vendor.........: AMD
+    Name...........: AMD Radeon R7 Graphics (radeonsi, kaveri, ACO, DRM 3.64, 6.18.0-zen1)
+    Version........: OpenCL 1.1 Mesa 25.1.0-devel
+    Processor(s)...: 6
+    Preferred.Thrd.: 32
+    Clock..........: 757
+    Memory.Total...: 8471 MB (limited to 2117 MB allocatable in one block)
+    Memory.Free....: 8471 MB
+    Memory.Unified.: 0
+    Local.Memory...: 64 KB
+    OpenCL.Version.: OpenCL C 1.1
+    Driver.Version.: 25.1.0-devel
+
+OpenCL Platform ID #3
+  Vendor..: Mesa/X.org
+  Name....: rusticl
+  Version.: OpenCL 3.0
+
+  Backend Device ID #04 (Alias: #03)
+    Type...........: GPU
+    Vendor.ID......: 1
+    Vendor.........: AMD
+    Name...........: AMD Radeon R7 Graphics (radeonsi, kaveri, ACO, DRM 3.64, 6.18.0-zen1)
+    Version........: OpenCL 3.0
+    Processor(s)...: 6
+    Preferred.Thrd.: 32
+    Clock..........: 757
+    Memory.Total...: 1024 MB (limited to 2048 MB allocatable in one block)
+    Memory.Free....: 1024 MB
+    Memory.Unified.: 0
+    Local.Memory...: 64 KB
+    OpenCL.Version.: OpenCL C 1.2
+    Driver.Version.: 25.1.0-devel
+
+OpenCL Platform ID #4
+  Vendor..: The pocl project
+  Name....: Portable Computing Language
+  Version.: OpenCL 3.0 PoCL 7.1  Linux, Release, RELOC, SPIR-V, LLVM 21.1.2, SLEEF, DISTRO, REMOTE, POCL_DEBUG
+
+  Backend Device ID #05
+    Type...........: CPU
+    Vendor.ID......: 1
+    Vendor.........: AuthenticAMD
+    Name...........: cpu-bdver1-AMD PRO A8-8650B R7, 10 Compute Cores 4C+6G
+    Version........: OpenCL 3.0 PoCL HSTR: cpu-x86_64-unknown-linux-gnu-bdver1
+    Processor(s)...: 4
+    Preferred.Thrd.: 1
+    Clock..........: 3200
+    Memory.Total...: 12847 MB (limited to 6423 MB allocatable in one block)
+    Memory.Free....: 6423 MB
+    Memory.Unified.: 1
+    Local.Memory...: 32 KB
+    OpenCL.Version.: OpenCL C 1.2 PoCL
+    Driver.Version.: 7.1

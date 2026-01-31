@@ -1,0 +1,6 @@
+lspci -k | grep -A 3 -i "VGA\|3D"
+
+00:01.0 VGA compatible controller: Advanced Micro Devices, Inc. [AMD/ATI] Kaveri [Radeon R7 Graphics] (rev d6)
+	Subsystem: Hewlett-Packard Company Device 805a
+	Kernel driver in use: amdgpu
+	Kernel modules: radeon, amdgpu

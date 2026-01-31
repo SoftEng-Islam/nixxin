@@ -103,6 +103,7 @@ in {
         # Configure VSCode to run without requiring --no-sandbox
         useVSCodeRipgrep = true;
         commandLineArgs = [
+          "--disable-font-subpixel-positioning=true"
           # "--enable-features=WaylandWindowDecorations"
           "--ozone-platform-hint="
           "--ozone-platform=wayland"

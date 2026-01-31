@@ -8,7 +8,7 @@ let
     # Check if the script is run as root
     if [ "$EUID" -ne 0 ]; then
       echo "Please run as root"
-      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxinIcons/globe.svg "Toggle_Internet.sh" "Please run as root"
+      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxin-icons/globe.svg "Toggle_Internet.sh" "Please run as root"
       exit
     fi
 
@@ -23,7 +23,7 @@ let
         ip link set "$iface" down
       done
       echo "All network interfaces except loopback have been disabled."
-      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxinIcons/globe.svg "Toggle_Internet.sh" "All network interfaces except loopback have been disabled."
+      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxin-icons/globe.svg "Toggle_Internet.sh" "All network interfaces except loopback have been disabled."
 
     }
 
@@ -37,7 +37,7 @@ let
         ip link set "$iface" up
       done
       echo "All network interfaces except loopback have been enabled."
-      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxinIcons/globe.svg "Toggle_Internet.sh" "All network interfaces except loopback have been enabled."
+      ${pkgs.libnotify}/bin/notify-send --icon=~/.nixxin-icons/globe.svg "Toggle_Internet.sh" "All network interfaces except loopback have been enabled."
 
     }
 

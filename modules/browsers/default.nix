@@ -8,6 +8,7 @@ let
     # note the spaces, they are required
     # Vulkan is not stable, likely because of bad drivers
     # Flags enabled by command line have no need to be enabled in chrome://flags
+    # commandLineArgs = "--enable-features=Vulkan,DefaultANGLEVulkan,VulkanFromANGLE,TouchpadOverscrollHistoryNavigation,AcceleratedVideoEncoder,AcceleratedVideoDecodeLinuxGL,AcceleratedVideoDecodeLinuxZeroCopyGL,ParallelDownloading,UseMultiPlaneFormatForHardwareVideo,WaylandLinuxDrmSyncobj,WaylandPerSurfaceScale,WaylandTextInputV3,WaylandUiScale --disable-font-subpixel-positioning=true --enable-zero-copy=true --use-vulkan=true --enable-hardware-overlays=true --enable-unsafe-webgpu";
     commandLineArgs = lib.concatStringsSep " " [
       "--enable-accelerated-video-decode"
       "--enable-accelerated-vpx-decode"
@@ -19,29 +20,38 @@ let
       "--enable-zero-copy"
       "--ignore-gpu-blocklist"
       # "--use-vulkan"
+      #
       "--enable-features=${
         lib.concatStringsSep "," [
-          "ParallelDownloading" # Faster downloads
-          "VaapiVideoEncoder" # Video encoding support
+          "AcceleratedVideoDecodeLinuxGL"
+          "AcceleratedVideoDecodeLinuxZeroCopyGL"
+          "AcceleratedVideoEncoder"
           "CanvasOopRasterization"
-          "UseDMSAAForTiles"
-          "UseGpuSchedulerDfs"
-          "UIEnableSharedImageCacheForGpu" # Shared image cache
-          "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
-          "SkiaGraphite"
+          "ChromeWideEchoCancellation" # noise cancellation for WebRTC
+          "DefaultANGLEVulkan"
+          "DesktopScreenshots"
           "EnableDrDc"
-          "Vulkan"
-          "VulkanFromANGLE"
+          "EnableTabMuting" # Mute tabs from tab context
+          "FluentOverlayScrollbar" # New scrollbar
+          "FluentScrollbar"
+          "GlobalMediaControlsUpdatedUI"
+          "ParallelDownloading" # Faster downloads
           "PostQuantumKyber" # hybrid kyber for enhanced TLS security
           "PulseaudioLoopbackForCast" # Audio support for casting and screen sharing
           "PulseaudioLoopbackForScreenShare"
-          "ChromeWideEchoCancellation" # noise cancellation for WebRTC
-          "DesktopScreenshots"
-          "FluentOverlayScrollbar" # New scrollbar
-          "FluentScrollbar"
-          "EnableTabMuting" # Mute tabs from tab context
-          "GlobalMediaControlsUpdatedUI"
-          # New media controls, with PIP
+          "SkiaGraphite"
+          "UIEnableSharedImageCacheForGpu" # Shared image cache
+          "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
+          "UseDMSAAForTiles"
+          "UseGpuSchedulerDfs"
+          "UseMultiPlaneFormatForHardwareVideo"
+          "VaapiVideoEncoder" # Video encoding support
+          "Vulkan"
+          "VulkanFromANGLE"
+          "WaylandLinuxDrmSyncobj"
+          "WaylandPerSurfaceScale"
+          "WaylandTextInputV3"
+          "WaylandUiScale"
         ]
       }"
     ];

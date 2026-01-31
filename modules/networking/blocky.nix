@@ -55,7 +55,7 @@
           concurrency = 8;
           refreshPeriod = "4h";
         };
-        blackLists = let
+        denylists = let
           customBlacklist = pkgs.writeText "custom.txt" ''
             /fextralife.com/
           '';
@@ -102,7 +102,7 @@
           catchall = [ "https://big.oisd.nl/domainswild" ];
           custom = [ customBlacklist ];
         };
-        whiteLists = let
+        allowlists = let
           customWhitelist = pkgs.writeText "misc.txt" ''
             ax.phobos.apple.com.edgesuite.net
             amp-api-edge.apps.apple.com
