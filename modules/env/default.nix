@@ -12,15 +12,18 @@ let
     pkgs.sqlite
     pkgs.mesa
     pkgs.mesa_i686
+    pkgs.ocl-icd
+    pkgs.opencl-headers
   ];
-  in lib.mkIf (settings.modules.env.enable or false) {
+in lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
     # localBinInPath = false;
     variables = {
       # ---- nixos-opencl Start ----
-      LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
+      LD_LIBRARY_PATH =
+        lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";
