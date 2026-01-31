@@ -186,6 +186,12 @@ in {
       LIBGL_DRI3_ENABLE = "1";
 
       RADV_PERFTEST = "gpl,sam,video_decode,video_encode";
+      # ACO_DEBUG = "nowrap,perfwarn";
+      RADV_DEBUG = "nohiz,nodcc,nofmask,noatocdithering";
+      R600_DEBUG = "info,checkir,nowc";
+      R600_DUMP_SHADERS = "vs,ps,cs";
+
+      RUSTICL_DEBUG = "perf"; # Enable performance warnings
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
@@ -254,6 +260,7 @@ in {
       MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
       MESA_DISK_CACHE_DATABASE = "1";
       MESA_DISK_CACHE_SINGLE_FILE = "0";
+      MESA_SHADER_CACHE_DISABLE = "false";
       MESA_GLSL_CACHE_MAX_SIZE = "32G";
       MESA_SHADER_CACHE_MAX_SIZE = "2G";
       MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
