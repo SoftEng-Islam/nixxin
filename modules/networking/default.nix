@@ -4,8 +4,14 @@ let
   dnsResolver = settings.modules.networking.dnsResolver;
   wifiInterface = "wlan0";
 in {
-  imports =
-    [ ./dnsmasq.nix ./iwd.nix ./RTL8188EUS.nix ./rtw.nix ./waypipe.nix ./blocky.nix];
+  imports = [
+    ./dnsmasq.nix
+    ./iwd.nix
+    ./RTL8188EUS.nix
+    ./rtw.nix
+    ./waypipe.nix
+    # ./blocky.nix
+  ];
 
   # Disable waiting for network.
   boot.initrd.systemd.network.wait-online.enable = false;
