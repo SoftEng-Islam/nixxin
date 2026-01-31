@@ -185,11 +185,11 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      RADV_PERFTEST = "gpl,sam,video_decode,video_encode";
+      RADV_PERFTEST = "gpl,sam";
       # ACO_DEBUG = "nowrap,perfwarn";
-      RADV_DEBUG = "nohiz,nodcc,nofmask,noatocdithering";
-      R600_DEBUG = "info,checkir,nowc";
-      R600_DUMP_SHADERS = "vs,ps,cs";
+      # RADV_DEBUG = "nohiz,nodcc,nofmask,noatocdithering";
+      # R600_DEBUG = "info,checkir,nowc";
+      # R600_DUMP_SHADERS = "vs,ps,cs";
 
       RUSTICL_DEBUG = "perf"; # Enable performance warnings
 
