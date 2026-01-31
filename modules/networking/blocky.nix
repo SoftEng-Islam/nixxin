@@ -19,8 +19,6 @@
     enable = true;
     settings = {
       connectIPVersion = "v4";
-      upstreamTimeout = "5s";
-      startVerifyUpstream = false;
       minTlsServeVersion = "1.2";
       log = {
         level = "debug";

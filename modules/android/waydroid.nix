@@ -47,7 +47,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Force disable waydroid service so that it is not started at boot
   systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
 
-  services.geoclue2.enable = true;
+  services.geoclue2.enable = false;
   boot.kernelParams = [ "psi=1" ];
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
@@ -98,7 +98,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   systemd.tmpfiles.rules = [
     "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
-    "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
+    # "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
     # Set proper permissions for the shared folder
     "d /home/${settings.user.username}/Waydroid 0755 ${settings.user.username} users -"
   ];

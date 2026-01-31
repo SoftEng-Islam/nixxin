@@ -546,7 +546,6 @@
     "usbhid"
     "usbcore"
     "bfq"
-    "coretemp"
     "fuse"
     "kvm-amd" # AMD Virtualization
     "msr"

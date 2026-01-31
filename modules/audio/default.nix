@@ -46,7 +46,7 @@ in {
     hardware.alsa.enable = false;
 
     services = {
-      playerctld.enable = true;
+      playerctld.enable = false;
       pulseaudio.enable = false; # Enable sound with pipewire.
       pulseaudio.support32Bit = false;
       pipewire = {
