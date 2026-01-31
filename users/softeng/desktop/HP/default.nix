@@ -406,7 +406,7 @@
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    # "acpi_cpufreq" # ACPI CPU frequency scaling driver
   ];
 
   # [ Recording ]

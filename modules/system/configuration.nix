@@ -80,7 +80,7 @@ in {
     };
 
     kernelModules = _system.boot.kernelModules ++ [
-      "acpi_cpufreq"
+      # "acpi_cpufreq"
       # "ip_tables"
       # "iptable_filter"
       # "iptable_nat"
