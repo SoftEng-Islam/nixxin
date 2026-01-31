@@ -87,6 +87,7 @@ in {
       mongosh
 
       firebase-tools
+      heroku
       # agneyastra
 
       nodejs
