@@ -290,6 +290,7 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
+          libdrm
           libva
           libva-vdpau-driver
           libvdpau-va-gl
