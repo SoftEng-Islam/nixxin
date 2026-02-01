@@ -19,5 +19,3 @@ generated
 node_modules/
 subprojects/gvc
 venv
-
-./logs

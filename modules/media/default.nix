@@ -55,9 +55,7 @@ in {
         glib.dev
         pkg-config
 
-        (handbrake.override {
-          useFfmpeg = true;
-        }) # Tool for converting video files and ripping DVDs
+        handbrake # Tool for converting video files and ripping DVDs
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
       ];
