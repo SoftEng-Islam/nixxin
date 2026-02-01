@@ -57,7 +57,6 @@ in {
 
         (handbrake.override {
           useFfmpeg = true;
-          ffmpeg = pkgs.ffmpeg-full;
         }) # Tool for converting video files and ripping DVDs
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
