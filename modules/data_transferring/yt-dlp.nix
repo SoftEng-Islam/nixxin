@@ -23,7 +23,7 @@
         --abort-on-unavailable-fragments
         --abort-on-error
         # --ignore-errors
-        --extractor-args "youtube:formats=duplicate;player-client=web" -f "ba[protocol=sabr]+bv[protocol=sabr]"
+        --extractor-args "youtube:formats=duplicate" -f "ba[protocol=sabr]+bv[protocol=sabr]"
         # --extractor-args "youtube:player_client=default"
       '';
     };
