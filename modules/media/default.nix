@@ -58,6 +58,9 @@ in {
         handbrake # Tool for converting video files and ripping DVDs
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
+
+        video2x
+        constrict
       ];
   };
 }
