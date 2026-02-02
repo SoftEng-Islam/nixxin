@@ -114,14 +114,9 @@ in {
           # make it use text-input-v1, which works for kwin 5.27 and weston
           "--enable-wayland-ime"
 
-          # enable hardware acceleration - vulkan api
-          "--enable-features=Vulkan"
-
           # 2. THE FIX: Force it to ignore System 1.25x and render at 1:1
           "--force-device-scale-factor=1"
 
-          "--ozone-platform-hint=auto"
-          "--ozone-platform=wayland"
           # make it use GTK_IM_MODULE if it runs with Gtk4, so fcitx5 can work with it.
           # (only supported by chromium/chrome at this time, not electron)
           "--gtk-version=4"
@@ -131,6 +126,41 @@ in {
           # TODO: fix https://github.com/microsoft/vscode/issues/187436
           # still not works...
           "--password-store=gnome" # use gnome-keyring as password store
+
+          # enable hardware acceleration - vulkan api
+          "--enable-features=${
+            lib.concatStringsSep "," [
+              "AcceleratedVideoDecodeLinuxGL"
+              "AcceleratedVideoDecodeLinuxZeroCopyGL"
+              "AcceleratedVideoEncoder"
+              "CanvasOopRasterization"
+              "ChromeWideEchoCancellation" # noise cancellation for WebRTC
+              "DefaultANGLEVulkan"
+              "DesktopScreenshots"
+              "EnableDrDc"
+              "EnableTabMuting" # Mute tabs from tab context
+              "FluentOverlayScrollbar" # New scrollbar
+              "FluentScrollbar"
+              "GlobalMediaControlsUpdatedUI"
+              "ParallelDownloading" # Faster downloads
+              "PostQuantumKyber" # hybrid kyber for enhanced TLS security
+              "PulseaudioLoopbackForCast" # Audio support for casting and screen sharing
+              "PulseaudioLoopbackForScreenShare"
+              "SkiaGraphite"
+              "UIEnableSharedImageCacheForGpu" # Shared image cache
+              "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
+              "UseDMSAAForTiles"
+              "UseGpuSchedulerDfs"
+              "UseMultiPlaneFormatForHardwareVideo"
+              "VaapiVideoEncoder" # Video encoding support
+              "Vulkan"
+              "VulkanFromANGLE"
+              "WaylandLinuxDrmSyncobj"
+              "WaylandPerSurfaceScale"
+              "WaylandTextInputV3"
+              "WaylandUiScale"
+            ]
+          }"
         ];
       }; # vscode or vscodium or  vscode-fhs
       mutableExtensionsDir = true;

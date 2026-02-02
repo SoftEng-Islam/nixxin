@@ -214,7 +214,7 @@ in {
       # R600_DEBUG = "info,checkir,nowc";
       # R600_DUMP_SHADERS = "vs,ps,cs";
 
-      RUSTICL_DEBUG = "perf"; # Enable performance warnings
+      # RUSTICL_DEBUG = "perf"; # Enable performance warnings
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
@@ -222,13 +222,14 @@ in {
       # RUSTICL_CL_VERSION = "1.2";
       RUSTICL_DEVICE_TYPE = "gpu";
       RUSTICL_FEATURES = "fp64";
-      RUSTICL_MAX_WORK_GROUPS = "128";
+      # RUSTICL_MAX_WORK_GROUPS = "128";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "1";
       LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
+      # vblank_mode = "0"; # ? Reduces latency
       __GL_SYNC_TO_VBLANK = "1";
       __GL_THREADED_OPTIMIZATIONS = "1";
       __GL_VRR_ALLOWED = "1";
@@ -237,7 +238,7 @@ in {
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
       # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
-      LP_NUM_THREADS = "8";
+      # LP_NUM_THREADS = "8";
       GALLIUM_DRIVER = "radeonsi";
 
       HSA_ENABLE_SDMA = "1";
@@ -268,8 +269,6 @@ in {
       # Disable Mesa’s experimental device select layer if needed
       # VK_LOADER_DISABLE_LAYER_MESA = "0";
 
-      vblank_mode = "0"; # ? Reduces latency
-
       # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
       MESA_GLTHREAD = "true";
       mesa_glthread = "true";
@@ -278,18 +277,23 @@ in {
       MESA_NO_ERROR = "1";
       # MESA_GL_VERSION_OVERRIDE = "4.6";
       # MESA_GLSL_VERSION_OVERRIDE = "460";
-      MESA_VK_WSI_PRESENT_MODE =
-        "immediate"; # immediate, mailbox, relaxed, fifo
+
+      # immediate, mailbox, relaxed, fifo
+      MESA_VK_WSI_PRESENT_MODE = "immediate";
       MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
+
       MESA_DISK_CACHE_DATABASE = "1";
-      MESA_DISK_CACHE_SINGLE_FILE = "0";
-      MESA_SHADER_CACHE_DISABLE = "false";
-      MESA_GLSL_CACHE_MAX_SIZE = "32G";
-      MESA_SHADER_CACHE_MAX_SIZE = "2G";
-      MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
-      MESA_GLSL_CACHE_ENABLE = "true";
       MESA_DISK_CACHE_MULTI_FILE = "1";
-      MESA_GLSL_CACHE_DIR = "~/.cache/mesa_shader_cache";
+      MESA_DISK_CACHE_SINGLE_FILE = "0";
+
+      # MESA_GLSL_CACHE_DIR = "~/.cache/mesa_shader_cache";
+      MESA_GLSL_CACHE_ENABLE = "true";
+      MESA_GLSL_CACHE_MAX_SIZE = "32G";
+
+      # MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
+      MESA_SHADER_CACHE_DISABLE = "false";
+      MESA_SHADER_CACHE_MAX_SIZE = "2G";
+
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
 
@@ -297,8 +301,6 @@ in {
       GPU_SINGLE_ALLOC_PERCENT = "100";
       GPU_MAX_HEAP_SIZE = "100";
       GPU_USE_SYNC_OBJECTS = "1";
-
-      DRI_PRIME = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========

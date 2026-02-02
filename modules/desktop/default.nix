@@ -23,6 +23,8 @@
     };
   };
 
+  services.flatpak.enable = true;
+
   home-manager.users.${settings.user.username} = {
     xdg.configFile = {
       # "hypr/hyprshade.toml".text = ''

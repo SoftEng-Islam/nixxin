@@ -1,6 +1,7 @@
 { settings, inputs, lib, pkgs, ... }:
 let
-  inherit (lib) mkIf;
+  inherit (lib) mkIf optional;
+  browsers = settings.modules.browsers;
   _googleChrome = (pkgs.google-chrome.override {
     # enable video encoding and hardware acceleration, along with several
     # suitable for my configuration
@@ -19,8 +20,6 @@ let
       "--enable-raw-draw"
       "--enable-zero-copy"
       "--ignore-gpu-blocklist"
-      # "--use-vulkan"
-      #
       "--enable-features=${
         lib.concatStringsSep "," [
           "AcceleratedVideoDecodeLinuxGL"
@@ -57,16 +56,14 @@ let
     ];
   });
   _browsers = with pkgs; [
-    (lib.optional settings.modules.browsers.firefox.enable firefox)
-    (lib.optional settings.modules.browsers.firefox-beta.enable firefox-beta)
-    (lib.optional settings.modules.browsers.brave.enable brave)
-    (lib.optional settings.modules.browsers.google-chrome.enable _googleChrome)
-    (lib.optional settings.modules.browsers.microsoft-edge.enable
-      microsoft-edge)
+    (optional browsers.firefox-beta.enable firefox-beta)
+    (optional browsers.brave.enable brave)
+    (optional browsers.google-chrome.enable _googleChrome)
+    (optional browsers.microsoft-edge.enable microsoft-edge)
   ];
 in mkIf (settings.modules.browsers.enable) {
   programs.firefox = {
-    enable = true;
+    enable = browsers.firefox.enable;
     package =
       inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
     policies = {
@@ -74,5 +71,15 @@ in mkIf (settings.modules.browsers.enable) {
       HardwareAcceleration = true;
     };
   };
-  environment.systemPackages = lib.flatten _browsers;
+  environment.systemPackages = with pkgs;
+    [
+      # Put Your Browsers Packages Here
+      # chromium
+      # google-chrome
+      # brave
+      # microsoft-edge
+      # firefox
+      # firefox-beta
+      firefox-devedition
+    ] ++ lib.flatten _browsers;
 }
