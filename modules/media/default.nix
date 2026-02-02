@@ -59,8 +59,8 @@ in {
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
 
-        video2x
-        constrict
+        # video2x
+        # constrict
       ];
   };
 }

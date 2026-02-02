@@ -35,6 +35,8 @@ let
     libclc
     glew
     glfw
+    amf
+    amf-headers
 
     # Video acceleration
     libva
