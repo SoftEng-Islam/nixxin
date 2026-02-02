@@ -69,10 +69,7 @@ let
   # Intel packages
   intelPackages = with pkgs; [
     intel-media-driver
-    intel-ocl
     intel-vaapi-driver
-    intel-compute-runtime
-    intel-compute-runtime-legacy1
     intel-graphics-compiler
     vaapi-intel-hybrid
   ];
@@ -107,6 +104,7 @@ let
     vkd3d
     shaderc
     wgpu-utils
+
   ];
 
   # OpenCL and compute
@@ -149,13 +147,17 @@ in {
       # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
-        paths = [
-          # "${pkgs.mesa.opencl}/etc/OpenCL/vendors/"
-          "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/"
-          # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
-          "${pkgs.pocl}/etc/OpenCL/vendors"
-          # "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
+        paths = with pkgs; [
+          # "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
+          # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
+
+          "${mesa.opencl}/etc/OpenCL/vendors"
+          "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
+          "${pocl}/etc/OpenCL/vendors"
+          "${intel-ocl}/etc/OpenCL/vendors"
+          "${intel-compute-runtime}/etc/OpenCL/vendors"
+          "${intel-compute-runtime-legacy1}/etc/OpenCL/vendors"
+          "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
         ];
       }}";
 
@@ -316,6 +318,7 @@ in {
 
     # 32-bit graphics packages for compatibility
     hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+      driversi686Linux.mesa
       mesa_i686
       vulkan-loader
       libva-vdpau-driver

@@ -5,16 +5,18 @@ let
   nixos-opencl = inputs.nixos-opencl;
   mesa-drivers = nixos-opencl.packages.${system}.mesa;
   # Libraries we want available from nixpkgs
-  libPath = pkgs.lib.makeLibraryPath [
-    pkgs.vulkan-loader # libvulkan.so
-    pkgs.vulkan-validation-layers # validation layer runtime
-    pkgs.pipewire
-    pkgs.sqlite
-    pkgs.mesa
-    pkgs.mesa_i686
-    pkgs.ocl-icd
-    pkgs.opencl-headers
-  ];
+  libPath = with pkgs;
+    pkgs.lib.makeLibraryPath [
+      vulkan-loader # libvulkan.so
+      vulkan-validation-layers # validation layer runtime
+      pipewire
+      sqlite
+      mesa
+      mesa_i686
+      ocl-icd
+      opencl-headers
+      llvmPackages.openmp
+    ];
 in lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
   # find /nix/store -name "something"
