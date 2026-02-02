@@ -37,6 +37,7 @@ let
     glfw
     amf
     amf-headers
+    amdenc
 
     # Video acceleration
     libva
