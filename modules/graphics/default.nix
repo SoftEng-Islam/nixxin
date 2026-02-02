@@ -157,7 +157,7 @@ in {
           "${intel-ocl}/etc/OpenCL/vendors"
           "${intel-compute-runtime}/etc/OpenCL/vendors"
           "${intel-compute-runtime-legacy1}/etc/OpenCL/vendors"
-          "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
+          # "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
         ];
       }}";
 
