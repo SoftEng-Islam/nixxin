@@ -391,7 +391,7 @@
   modules.office.translators.enable = true;
 
   # [ overclock ]
-  modules.overclock.corectrl.enable = true;
+  modules.overclock.corectrl.enable = false;
   modules.overclock.lactd.enable = true;
 
   # [ Power ]
@@ -455,7 +455,7 @@
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm.enable = false; # If your APU/GPU Support it
-  modules.system.videoDrivers = [ "amdgpu" "modesetting" ];
+  modules.system.videoDrivers = [ "modesetting" ];
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
   modules.system.boot.tmp.useTmpfs = system.useTmpfs;
@@ -565,7 +565,7 @@
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;
   modules.system.amdgpu.opencl = true;
-  modules.system.amdgpu.legacySupport = false;
+  modules.system.amdgpu.legacySupport = true;
   # [ Docs ]
   modules.system.docs.enable = true;
   modules.system.docs.doc.enable = true;

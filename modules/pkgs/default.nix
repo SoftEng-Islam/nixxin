@@ -44,6 +44,13 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     jmtpfs # FUSE filesystem for MTP devices like Android phones
     go-mtpfs # Simple FUSE filesystem for mounting Android devices as a MTP device
 
+    # bitwarden
+    # (pkgs.writeShellScriptBin "bitwarden" ''
+    # exec ${pkgs.appimage-run}/bin/appimage-run ~/.local/bin/bitwarden
+    # '')
+    # NOTE: I moved the appimage to the .local/bin:
+    # `mv ~/Downloads/Bitwarden-2025.2.1-x86_64.AppImage ~/.local/bin/bitwarden`
+
     # ---- Cryptographic ---- #
     # openssl # A cryptographic library that implements the SSL and TLS protocols
     # nettle # Cryptographic library

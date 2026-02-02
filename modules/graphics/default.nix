@@ -45,9 +45,9 @@ let
     vdpauinfo
 
     # X11 video drivers
-    xorg.libXv
-    xorg.libXvMC
-    xorg.xf86videoamdgpu
+    # xorg.libXv
+    # xorg.libXvMC
+    # xorg.xf86videoamdgpu
 
     # Image processing
     imagemagick
@@ -60,7 +60,25 @@ let
 
     # OpenAL for audio
     openal
+
+    libdrm
+    mesa
+    llvmPackages.clang
   ];
+
+  # Intel packages
+  intelPackages = with pkgs; [
+    intel-media-driver
+    intel-ocl
+    intel-vaapi-driver
+    intel-compute-runtime
+    intel-compute-runtime-legacy1
+    intel-graphics-compiler
+    vaapi-intel-hybrid
+  ];
+
+  # Nvidia packages
+  nvidiaPackages = with pkgs; [ nvidia-vaapi-driver ];
 
   # Vulkan packages
   vulkanPackages = with pkgs; [
@@ -136,7 +154,7 @@ in {
           "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/"
           # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
-          "${pkgs.pocl}/etc/OpenCL/vendors"
+          "${pkgs.pocl.icd}/etc/OpenCL/vendors"
           # "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
         ];
       }}";
@@ -290,18 +308,6 @@ in {
       # Note: amdvlk has been deprecated, RADV is now the default driver
       extraPackages = with pkgs;
         [
-          libdrm
-          libva
-          libva-vdpau-driver
-          libvdpau-va-gl
-          mesa
-          libglvnd
-          nvidia-vaapi-driver
-          vulkan-extension-layer # Add explicit ICD packages
-          vulkan-headers
-          vulkan-loader
-          vulkan-tools
-          vulkan-validation-layers
           # OpenCL for AMD GPUs
           # Official Khronos OpenCL ICD Loader
           (lib.hiPrio khronos-ocl-icd-loader)
@@ -318,6 +324,9 @@ in {
       vulkan-validation-layers
       vulkan-tools
       vulkan-extension-layer
+
+      intel-media-driver
+      intel-vaapi-driver
     ];
 
     system.activationScripts.vulkan-links = ''
@@ -331,8 +340,15 @@ in {
 
     # ========== System Packages ==========
     environment.systemPackages = with pkgs;
-      [ clinfo opencl-headers vulkan-tools-lunarg ] ++ coreGraphicsPackages
-      ++ vulkanPackages ++ openclPackages ++ graphicsTools
-      ++ lib.flatten _graphics;
+      [
+        clinfo
+        opencl-headers
+        vulkan-tools-lunarg
+
+        radeon-profile
+        radeontop
+        radeontools
+      ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages
+      ++ graphicsTools ++ lib.flatten _graphics;
   };
 }

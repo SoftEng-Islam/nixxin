@@ -34,6 +34,15 @@ in {
       builders-use-substitutes = true;
       cores = 0;
 
+      extra-sandbox-paths = [
+        "/dev/kfd"
+        "/sys/devices/virtual/kfd"
+        "/dev/dri"
+        "/dev/dri/renderD128"
+        "/run/opengl-driver"
+        "/run/binfmt"
+      ];
+
       # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
       # http-connections = 128;
 
@@ -303,6 +312,7 @@ in {
     nixd # Feature-rich Nix language server interoperating with C++ nix
     nixfmt
     nil # Yet another language server for Nix
+    niv
 
     # Nix Formatters
     # nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]

@@ -51,6 +51,23 @@ in mkIf (settings.modules.fonts.enable) {
   # Configure Virtual Console
   console = {
     enable = true;
+    # Relevant for both X11 and Wayland:
+    earlySetup = false;
+    # Still useful for:
+    # - Early boot debugging
+    # - Recovery shell keyboard support
+    # - TTY console functionality
+    # NOTE: setting it to flase might give slightly faster boot (micro-optimization)
+
+    # Only affects virtual consoles (TTYs), not Wayland:
+    useXkbConfig = true;
+    # Can safely keep enabled because:
+    # 1. Doesn't interfere with Wayland compositors
+    # 2. Maintains proper keyboard layout in:
+    #    - Emergency TTY sessions
+    #    - Login prompts
+    #    - Systemd services needing console
+
     packages = [ pkgs.terminus_font ];
     font = "${pkgs.terminus_font}/share/consolefonts/ter-i22b.psf.gz";
     # useXkbConfig = false; # If set, configure the virtual console keymap from the xserver keyboard settings.

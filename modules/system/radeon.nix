@@ -4,21 +4,29 @@ let
   inherit (lib) mkIf;
   vaapiSupport = pkgs.libva.override { withVaapi = true; };
 in mkIf (settings.modules.system.radeon or false) {
-  environment.systemPackages = with pkgs; [
+
+  hardware.graphics.extraPackages = with pkgs; [
     mesa
     mesa_glu
-    mesa_i686
     mesa-gl-headers
     libva
     libva-utils
     libva-vdpau-driver
-    vdpauinfo
     vulkan-loader
     vulkan-tools
     vulkan-headers
+    vdpauinfo
+  ];
+  hardware.graphics.extraPackages32 = with pkgs.pkgsi686Linux; [
+    intel-media-driver
+    intel-vaapi-driver
+    mesa_i686
+  ];
+
+  environment.systemPackages = with pkgs; [
     radeon-profile
-    radeontools
     radeontop
+    radeontools
   ];
 
   environment.variables = {
