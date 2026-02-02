@@ -137,7 +137,7 @@
         wallpaper = {
           enabled = true;
           overviewEnabled = false;
-          directory = "/home/${username}/NixOS-Config/assets/";
+          directory = "/home/${settings.user.username}/Pictures/wallpapers/";
           monitorDirectories = [ ];
           enableMultiMonitorDirectories = false;
           recursiveSearch = false;
@@ -146,7 +146,7 @@
           fillColor = "#000000";
           randomEnabled = false;
           wallpaperChangeMode = "none";
-          randomIntervalSec = 300;
+          randomIntervalSec = 1300;
           transitionDuration = 1500;
           transitionType = "random";
           transitionEdgeSmoothness = 5.0e-2;

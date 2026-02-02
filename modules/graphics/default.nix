@@ -168,8 +168,14 @@ in {
       # =================================
 
       # Vulkan ICD files — this should point to the system-wide location from Mesa
-      VK_ICD_FILENAMES =
-        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json:/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json";
+      VK_ICD_FILENAMES = builtins.concatStringsSep ":" [
+        "/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json"
+        "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json"
+        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json"
+        "${pkgs.swiftshader}/share/vulkan/icd.d/vk_swiftshader_icd.json"
+      ];
+
+      VK_INSTANCE_LAYERS = "VK_LAYER_KHRONOS_timeline_semaphore";
 
       # Vulkan ICD (Installable Client Driver) configuration
       # /run/opengl-driver/share/vulkan/icd.d/
