@@ -154,7 +154,7 @@ in {
           "${nixos-opencl.packages.${system}.mesa.opencl}/etc/OpenCL/vendors"
           "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors/"
           # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors/"
-          "${pkgs.pocl.icd}/etc/OpenCL/vendors"
+          "${pkgs.pocl}/etc/OpenCL/vendors"
           # "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
         ];
       }}";
