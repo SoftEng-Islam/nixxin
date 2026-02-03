@@ -141,12 +141,12 @@
                 # characterCount = 2;
                 # colorizeIcons = true;
                 # followFocusedScreen = false;
-                # hideUnoccupied = false;
+                hideUnoccupied = false;
                 # showApplications = false;
                 # showLabelsOnlyWhenOccupied = false;
               }
               {
-                id = "SystemMonitor";
+                # id = "SystemMonitor";
                 compactMode = false;
                 usePrimaryColor = true;
                 # showMemoryUsage = true;
@@ -230,6 +230,32 @@
           lockScreenCountdownDuration = 10000;
           autoStartAuth = false;
           allowPasswordWithFprintd = false;
+        };
+        systemMonitor = {
+          cpuWarningThreshold = 80;
+          cpuCriticalThreshold = 90;
+          tempWarningThreshold = 80;
+          tempCriticalThreshold = 90;
+          gpuWarningThreshold = 80;
+          gpuCriticalThreshold = 90;
+          memWarningThreshold = 80;
+          memCriticalThreshold = 90;
+          swapWarningThreshold = 80;
+          swapCriticalThreshold = 90;
+          diskWarningThreshold = 80;
+          diskCriticalThreshold = 90;
+          cpuPollingInterval = 1000;
+          gpuPollingInterval = 3000;
+          enableDgpuMonitoring = false;
+          memPollingInterval = 1000;
+          diskPollingInterval = 30000;
+          networkPollingInterval = 1000;
+          loadAvgPollingInterval = 3000;
+          useCustomColors = false;
+          warningColor = "";
+          criticalColor = "";
+          externalMonitor =
+            "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor";
         };
         location = {
           name = "Cairo";
@@ -344,16 +370,29 @@
           ];
         };
         dock = {
-          enabled = false;
+          enabled = true;
+          position = "bottom";
           displayMode = "auto_hide";
-          backgroundOpacity = 1.0;
+          backgroundOpacity = 1;
           floatingRatio = 1;
+          size = 1;
           onlySameOutput = true;
           monitors = [ ];
           pinnedApps = [ ];
           colorizeIcons = false;
+          pinnedStatic = false;
+          inactiveIndicators = false;
+          deadOpacity = 0.6;
+          animationSpeed = 1;
         };
-        network = { wifiEnabled = true; };
+        network = {
+          wifiEnabled = true;
+          bluetoothRssiPollingEnabled = false;
+          bluetoothRssiPollIntervalMs = 10000;
+          wifiDetailsViewMode = "grid";
+          bluetoothDetailsViewMode = "grid";
+          bluetoothHideUnnamedDevices = false;
+        };
         notifications = {
           doNotDisturb = false;
           monitors = [ ];
@@ -364,22 +403,43 @@
           lowUrgencyDuration = 3;
           normalUrgencyDuration = 8;
           criticalUrgencyDuration = 15;
+          enabled = true;
+          overlayLayer = true;
+          backgroundOpacity = 1;
+          enableKeyboardLayoutToast = true;
+          saveToHistory = {
+            low = true;
+            normal = true;
+            critical = true;
+          };
+          sounds = {
+            enabled = false;
+            volume = 0.5;
+            separateSounds = false;
+            criticalSoundFile = "";
+            normalSoundFile = "";
+            lowSoundFile = "";
+            excludedApps = "discord,firefox,chrome,chromium,edge";
+          };
+          enableMediaToast = false;
         };
         osd = {
           enabled = true;
           location = "top_right";
-          monitors = [ ];
           autoHideMs = 2000;
-          alwaysOnTop = false;
+          overlayLayer = true;
+          backgroundOpacity = 1;
+          enabledTypes = [ 0 1 2 ];
+          monitors = [ ];
         };
         audio = {
           volumeStep = 5;
           volumeOverdrive = false;
-          cavaFrameRate = 60;
+          cavaFrameRate = 30;
           visualizerType = "linear";
-          visualizerQuality = "low";
           mprisBlacklist = [ ];
           preferredPlayer = "";
+          volumeFeedback = false;
         };
         ui = {
           fontDefault = "Ubuntu Sans";
@@ -397,12 +457,20 @@
           bluetoothHideUnnamedDevices = false;
           boxBorderEnabled = false;
         };
-        brightness = { brightnessStep = 5; };
+        brightness = {
+          brightnessStep = 5;
+          enforceMinimum = true;
+          enableDdcSupport = false;
+        };
         colorSchemes = {
           useWallpaperColors = false;
+          predefinedScheme = "Noctalia (default)";
           darkMode = true;
-          matugenSchemeType = "scheme-fruit-salad";
-          generateTemplatesForPredefined = false;
+          schedulingMode = "off";
+          manualSunrise = "06:30";
+          manualSunset = "18:30";
+          generationMethod = "tonal-spot";
+          monitorForColors = "";
         };
         templates = {
           gtk = false;
@@ -421,6 +489,8 @@
           discord_dorion = false;
           pywalfox = false;
           enableUserTemplates = false;
+          activeTemplates = [ ];
+          enableUserTheming = false;
         };
         nightLight = {
           enabled = false;
@@ -435,6 +505,17 @@
           enabled = false;
           wallpaperChange = "";
           darkModeChange = "";
+          screenLock = "";
+          screenUnlock = "";
+          performanceModeEnabled = "";
+          performanceModeDisabled = "";
+          startup = "";
+          session = "";
+        };
+        desktopWidgets = {
+          enabled = false;
+          gridSnap = false;
+          monitorWidgets = [ ];
         };
         battery = { chargingMode = 0; };
       };
