@@ -290,15 +290,15 @@
         wallpaper = {
           enabled = true;
           overviewEnabled = false;
-          directory = "/home/${settings.user.username}/Pictures/wallpapers/";
+          directory = "~/Pictures/wallpapers/";
           monitorDirectories = [ ];
           enableMultiMonitorDirectories = false;
           recursiveSearch = false;
           setWallpaperOnAllMonitors = true;
           fillMode = "crop";
           fillColor = "#000000";
-          randomEnabled = false;
-          randomIntervalSec = 1300;
+          randomEnabled = true;
+          randomIntervalSec = 20000;
           transitionDuration = 1500;
           transitionType = "random";
           transitionEdgeSmoothness = 5.0e-2;
@@ -319,7 +319,7 @@
           viewMode = "single";
           useSolidColor = false;
           solidColor = "#1a1a2e";
-          automationEnabled = false;
+          automationEnabled = true;
           wallpaperChangeMode = "random";
           sortOrder = "name";
         };
