@@ -10,6 +10,7 @@
   # environment.sessionVariables = { QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3"; };
 
   environment.systemPackages = [ pkgs.gpu-screen-recorder ];
+  services.tuned.enable = true;
 
   home-manager.users.${settings.user.username} = {
     imports = [ inputs.noctalia.homeModules.default ];
@@ -34,27 +35,37 @@
         settingsVersion = 16;
         setupCompleted = true;
         bar = {
+          barType = "framed";
           position = "top";
-          backgroundOpacity = 1.0;
           monitors = [ ];
-          density = "default";
+          density = "comfortable";
+          showOutline = false;
           showCapsule = true;
+          capsuleOpacity = 1;
+          backgroundOpacity = 1.0;
+          useSeparateOpacity = false;
           floating = false;
-          marginVertical = 0.25;
-          marginHorizontal = 0.25;
+          marginVertical = 4;
+          marginHorizontal = 4;
+          frameThickness = 4;
+          frameRadius = 24;
           outerCorners = true;
+          hideOnOverview = false;
+          displayMode = "always_visible";
+          autoHideDelay = 500;
+          autoShowDelay = 150;
 
           widgets = {
             left = [
               {
                 id = "Workspace";
-                labelMode = "none";
-                characterCount = 2;
-                colorizeIcons = true;
-                followFocusedScreen = false;
-                hideUnoccupied = false;
-                showApplications = false;
-                showLabelsOnlyWhenOccupied = false;
+                # labelMode = "none";
+                # characterCount = 2;
+                # colorizeIcons = true;
+                # followFocusedScreen = false;
+                # hideUnoccupied = false;
+                # showApplications = false;
+                # showLabelsOnlyWhenOccupied = false;
               }
               {
                 id = "SystemMonitor";
@@ -93,7 +104,7 @@
               { id = "plugin:privacy-indicator"; }
               {
                 id = "NotificationHistory";
-                hideWhenZero = true;
+                hideWhenZero = false;
                 showUnreadBadge = true;
               }
               { id = "KeepAwake"; }
