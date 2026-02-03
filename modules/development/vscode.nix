@@ -162,7 +162,12 @@ in {
             ]
           }"
         ];
-      }; # vscode or vscodium or  vscode-fhs
+      }.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          wrapProgram $out/bin/code \
+            --run "exec 2>/dev/null"
+        '';
+      }); # vscode or vscodium or  vscode-fhs
       mutableExtensionsDir = true;
       profiles.default = {
         enableExtensionUpdateCheck = true;
