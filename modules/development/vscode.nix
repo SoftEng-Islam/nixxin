@@ -98,7 +98,12 @@ in {
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
-      package = pkgs.vscode.override {
+      package = (pkgs.vscode.overrideAttrs (old: {
+        postInstall = (old.postInstall or "") + ''
+          wrapProgram $out/bin/code \
+            --run "exec 2>/dev/null"
+        '';
+      })).override {
         isInsiders = false;
         # Configure VSCode to run without requiring --no-sandbox
         useVSCodeRipgrep = true;
@@ -162,12 +167,7 @@ in {
             ]
           }"
         ];
-      }.overrideAttrs (old: {
-        postInstall = (old.postInstall or "") + ''
-          wrapProgram $out/bin/code \
-            --run "exec 2>/dev/null"
-        '';
-      }); # vscode or vscodium or  vscode-fhs
+      }; # vscode or vscodium or  vscode-fhs
       mutableExtensionsDir = true;
       profiles.default = {
         enableExtensionUpdateCheck = true;
