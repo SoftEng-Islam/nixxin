@@ -75,7 +75,7 @@ in {
     # QT_PLATFORM_PLUGIN = "wayland";
     QT_QPA_PLATFORM = "wayland";
 
-    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
+    # QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
 
     # fix old GTK3 applications
     # GDK_GL = "always"; # "gles" "disable" "always"
