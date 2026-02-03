@@ -12,6 +12,7 @@
     ./tools.nix
     ./quickShell
     ./rofi.nix
+    ./noctalia.nix
   ];
 
   programs.appimage = {
