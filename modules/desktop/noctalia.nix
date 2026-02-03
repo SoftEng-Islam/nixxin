@@ -10,7 +10,6 @@
   # environment.sessionVariables = { QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3"; };
 
   environment.systemPackages = [ pkgs.gpu-screen-recorder ];
-  services.tuned.enable = true;
 
   home-manager.users.${settings.user.username} = {
     imports = [ inputs.noctalia.homeModules.default ];

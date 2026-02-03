@@ -51,8 +51,10 @@ in {
 
     # This is the service that lets you pick power profiles in the gnome UI.
     #! It conflicts with auto-cpufreq, so enable only one of the two.
-    services.power-profiles-daemon.enable =
-      (_power.auto-cpufreq.enable == false);
+    # services.power-profiles-daemon.enable = (_power.auto-cpufreq.enable == false);
+
+    services.tuned.enable = true;
+
     environment.systemPackages = with pkgs; [
       power-profiles-daemon
       poweralertd
