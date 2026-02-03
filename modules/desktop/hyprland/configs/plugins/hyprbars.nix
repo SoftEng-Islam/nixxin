@@ -28,7 +28,7 @@ in {
         bar_padding = 10
         bar_button_padding = 12
 
-        bar_blur = true
+        bar_blur = false
         bar_text_align = left
         bar_part_of_window = true
         bar_precedence_over_border = true
