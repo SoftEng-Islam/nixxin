@@ -269,9 +269,9 @@
       # bindl=,XF86AudioMicMute, exec, "${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
       # Core binds
-      bind = main, SPACE, exec, $ipc launcher toggle
-      bind = main, S, exec, $ipc controlCenter toggle
-      bind = main, comma, exec, $ipc settings toggle
+      bind = $main, SPACE, exec, $ipc launcher toggle
+      bind = $main, S, exec, $ipc controlCenter toggle
+      bind = $main, comma, exec, $ipc settings toggle
 
       # Media keys
       bindel = , XF86AudioRaiseVolume, exec, $ipc volume increase
