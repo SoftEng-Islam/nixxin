@@ -17,21 +17,29 @@ in {
       enable = true;
       settings = {
         general = {
-          before_sleep_cmd =
-            "${pkgs.stdenv.hostPlatform.system}/bin/loginctl lock-session";
-          after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
-          ignore_dbus_inhibit = true;
-          lock_cmd =
-            "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+          # before_sleep_cmd = "${pkgs.stdenv.hostPlatform.system}/bin/loginctl lock-session";
+          # after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
+          # ignore_dbus_inhibit = true;
+          # lock_cmd = "pidof ${pkgs.hyprlock}/bin/hyprlock || ${pkgs.hyprlock}/bin/hyprlock";
+          lock_cmd = "noctalia-shell ipc call lockScreen lock";
+          before_sleep_cmd = "loginctl lock-session";
+          after_sleep_cmd = "hyprctl dispatch dpms on";
         };
         listener = [
           {
+            # timeout = 300;
+            # on-timeout = "${lockScript.outPath} lock";
             timeout = 300;
-            on-timeout = "${lockScript.outPath} lock";
+            on-timeout =
+              "if ! pactl list sink-inputs | grep -q 'Corked: no'; then hyprctl dispatch dpms off; fi";
+            on-resume = "hyprctl dispatch dpms on";
           }
           {
-            timeout = 1800;
-            on-timeout = "${lockScript.outPath} suspend";
+            # timeout = 1800;
+            # on-timeout = "${lockScript.outPath} suspend";
+            timeout = 320;
+            on-timeout =
+              "if ! pactl list sink-inputs | grep -q 'Corked: no'; then loginctl lock-session; fi";
           }
         ];
       };

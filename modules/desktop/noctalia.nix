@@ -29,9 +29,88 @@
 
     programs.noctalia-shell = {
       enable = true;
+      systemd.enable = true;
+      colors = {
+        primary = {
+          foreground = "#e0def4";
+          background = "#1f1d2e";
+          dim_foreground = "#908caa";
+          bright_foreground = "#e0def4";
+        };
+        cursor = {
+          text = "#e0def4";
+          cursor = "#524f67";
+        };
+        vi_mode_cursor = {
+          text = "#e0def4";
+          cursor = "#524f67";
+        };
+        search = {
+          matches = {
+            foreground = "#908caa";
+            background = "#26233a";
+          };
+          focused_match = {
+            foreground = "#191724";
+            background = "#ebbcba";
+          };
+        };
+        hints = {
+          start = {
+            foreground = "#908caa";
+            background = "#1f1d2e";
+          };
+          end = {
+            foreground = "#6e6a86";
+            background = "#1f1d2e";
+          };
+        };
+        line_indicator = {
+          foreground = "None";
+          background = "None";
+        };
+        footer_bar = {
+          foreground = "#e0def4";
+          background = "#1f1d2e";
+        };
+        selection = {
+          text = "#e0def4";
+          background = "#403d52";
+        };
+        normal = {
+          black = "#26233a";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
+        };
+        bright = {
+          black = "#6e6a86";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
+        };
+        dim = {
+          black = "#6e6a86";
+          red = "#eb6f92";
+          green = "#31748f";
+          yellow = "#f6c177";
+          blue = "#9ccfd8";
+          magenta = "#c4a7e7";
+          cyan = "#ebbcba";
+          white = "#e0def4";
+        };
+      };
 
       settings = {
-        settingsVersion = 16;
+        settingsVersion = 0;
         setupCompleted = true;
         bar = {
           barType = "framed";
@@ -124,24 +203,63 @@
           };
         };
         general = {
-          avatarImage = "~/Pictures/Profile_Pictures/moody.png";
-          dimmerOpacity = 0;
+          avatarImage = "";
           showScreenCorners = true;
           forceBlackScreenCorners = true;
+          dimmerOpacity = 0.2;
           scaleRatio = 1;
-          radiusRatio = 0.5;
-          screenRadiusRatio = 0.5;
-          animationSpeed = 2;
+          radiusRatio = 1;
+          iRadiusRatio = 1;
+          boxRadiusRatio = 1;
+          screenRadiusRatio = 1;
+          animationSpeed = 1;
           animationDisabled = false;
           compactLockScreen = false;
-          shadowDirection = "below";
+          lockOnSuspend = true;
+          showSessionButtonsOnLockScreen = true;
+          showHibernateOnLockScreen = false;
+          enableShadows = true;
+          shadowDirection = "bottom_right";
+          shadowOffsetX = 2;
+          shadowOffsetY = 3;
+          language = "";
+          allowPanelsOnScreenWithoutBar = true;
+          showChangelogOnStartup = true;
+          telemetryEnabled = false;
+          enableLockScreenCountdown = true;
+          lockScreenCountdownDuration = 10000;
+          autoStartAuth = false;
+          allowPasswordWithFprintd = false;
         };
         location = {
-          name = "";
+          name = "Cairo";
           weatherEnabled = false;
-          useFahrenheit = true;
           use12hourFormat = true;
           showWeekNumberInCalendar = false;
+          weatherShowEffects = true;
+          useFahrenheit = false;
+          showCalendarEvents = true;
+          showCalendarWeather = true;
+          analogClockInCalendar = false;
+          firstDayOfWeek = -1;
+          hideWeatherTimezone = false;
+          hideWeatherCityName = false;
+        };
+        calendar = {
+          cards = [
+            {
+              enabled = true;
+              id = "calendar-header-card";
+            }
+            {
+              enabled = true;
+              id = "calendar-month-card";
+            }
+            {
+              enabled = true;
+              id = "weather-card";
+            }
+          ];
         };
         wallpaper = {
           enabled = true;
@@ -260,11 +378,18 @@
         ui = {
           fontDefault = "Ubuntu Sans";
           fontFixed = lib.mkForce "Ubuntu Mono";
-          fontDefaultScale = 1.1;
-          fontFixedScale = 1.0;
           idlfalseibitorEnabled = true;
           tooltipsEnabled = true;
-          panelBackgroundOpacity = 1.0;
+          fontDefaultScale = 1;
+          fontFixedScale = 1;
+          panelBackgroundOpacity = 0.93;
+          panelsAttachedToBar = true;
+          settingsPanelMode = "attached";
+          wifiDetailsViewMode = "grid";
+          bluetoothDetailsViewMode = "grid";
+          networkPanelView = "wifi";
+          bluetoothHideUnnamedDevices = false;
+          boxBorderEnabled = false;
         };
         brightness = { brightnessStep = 5; };
         colorSchemes = {
