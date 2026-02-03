@@ -5,6 +5,7 @@
 # The hotkey toggle will be WIN+F1, but you can change this to whatever you want.
 let
   runGamemode = pkgs.writeShellScriptBin "run-gamemode" ''
+    noctalia-shell kill
     hyprshadeCurrent=$(hyprshade current)
     HYPRGAMEMODE=$(hyprctl getoption animations:enabled | awk 'NR==1{print $2}')
     if [ "$HYPRGAMEMODE" = 1 ] ; then
@@ -24,6 +25,7 @@ let
     if [ "$hyprshadeCurrent" = "blue-light-filter" ] ; then
       ${pkgs.hyprshade}/bin/hyprshade on ~/.config/hypr/shaders/blue-light-filter.glsl
       ${pkgs.libnotify}/bin/notify-send "blue-light-filter started";
+      qs -c noctalia-shell
     fi
   '';
 in { environment.systemPackages = [ runGamemode ]; }
