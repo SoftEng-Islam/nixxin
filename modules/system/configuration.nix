@@ -126,7 +126,7 @@ in {
 
       # Disable Mitigation
       "mitigations=off"
-      "split_lock_mitigate=off" # prevents some games from being slowed
+      # "split_lock_mitigate=off" # prevents some games from being slowed
       "retbleed=off" # Disable Retbleed mitigation
 
       # Limit C-states for better response time
@@ -152,11 +152,11 @@ in {
       # "usbcore.autosuspend=-1" # Prevents USB disconnect issues
 
       # ---- WIFI ---- #
-      "rtl8xxxu_disable_hw_crypto=1"
+      # "rtl8xxxu_disable_hw_crypto=1"
 
       # ---- Networking ---- #
       "net.ifnames=0" # ?
-      "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
+      # "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
 
       # ---- Storage ---- #
       # "libata.force=noncq"
