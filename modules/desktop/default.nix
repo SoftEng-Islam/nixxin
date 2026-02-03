@@ -43,5 +43,10 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ hyprshade ];
+  environment.systemPackages = with pkgs; [
+    bazaar
+    flatpak
+    gnome-software
+    hyprshade
+  ];
 }
