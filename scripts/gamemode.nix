@@ -22,10 +22,10 @@ let
     fi
     hyprctl reload
     sleep 0.5
+    qs -c noctalia-shell
     if [ "$hyprshadeCurrent" = "blue-light-filter" ] ; then
       ${pkgs.hyprshade}/bin/hyprshade on ~/.config/hypr/shaders/blue-light-filter.glsl
       ${pkgs.libnotify}/bin/notify-send "blue-light-filter started";
-      qs -c noctalia-shell
     fi
   '';
 in { environment.systemPackages = [ runGamemode ]; }
