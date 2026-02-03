@@ -6,6 +6,9 @@
       # ---- Main Key ---- #
       "$main" = "SUPER";
 
+      # noctalia-shell bindings
+      "$ipc" = "qs -c noctalia-shell ipc call";
+
       # ---- Bind flags ---- #
       # => bind supports flags in this format:
       # bind[flags] = ...
@@ -245,8 +248,8 @@
       # ---- Full Screenshot ---- #
       bindl= , print, exec, ${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png
 
-      # bind = $mainMod SHIFT, S, exec, grimblast --notify --freeze copysave area
-      # bind = $mainMod, S, exec, grimblast --notify --freeze copysave output
+      # bind = $main SHIFT, S, exec, grimblast --notify --freeze copysave area
+      # bind = $main, S, exec, grimblast --notify --freeze copysave output
       # bind = ,PRINT, exec, grimblast --notify --freeze copysave output
 
       # You can Enable these if you want:
@@ -258,12 +261,24 @@
       bind = Super+Shift, C, exec, hyprpicker -a # Pick color (Hex) >> clipboard
 
       # ---- audio volume bindings ---- #
-      binddel=,XF86AudioRaiseVolume,Raise volume 󰝝 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%+
-      binddel=,XF86AudioLowerVolume,Lower volume 󰝞 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%-
-      binddl=,XF86AudioMute,Toggle mute 󰝟 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SINK@ toggle
+      # binddel=,XF86AudioRaiseVolume,Raise volume 󰝝 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%+
+      # binddel=,XF86AudioLowerVolume,Lower volume 󰝞 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-volume @DEFAULT_AUDIO_SINK@ 5%-
+      # binddl=,XF86AudioMute,Toggle mute 󰝟 ,exec,"${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SINK@ toggle
 
       # ---- audio mic bindings ---- #
-      bindl=,XF86AudioMicMute, exec, "${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+      # bindl=,XF86AudioMicMute, exec, "${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SOURCE@ toggle
+
+      # Core binds
+      bind = main, SPACE, exec, $ipc launcher toggle
+      bind = main, S, exec, $ipc controlCenter toggle
+      bind = main, comma, exec, $ipc settings toggle
+
+      # Media keys
+      bindel = , XF86AudioRaiseVolume, exec, $ipc volume increase
+      bindel = , XF86AudioLowerVolume, exec, $ipc volume decrease
+      bindl = , XF86AudioMute, exec, $ipc volume muteOutput
+      bindel = , XF86MonBrightnessUp, exec, $ipc brightness increase
+      bindel = , XF86MonBrightnessDown, exec, $ipc brightness decrease
     '';
   };
 }

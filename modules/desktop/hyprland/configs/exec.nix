@@ -23,11 +23,12 @@ let
     } & disown
 
     # ---- Set Desktop Wallpaper ---- #
-    changeWallpaper & disown
-    sleep 1
+    # changeWallpaper & disown
+    # sleep 1
 
     # ---- Start Ashell a status bar ---- #
-    ${pkgs.ashell}/bin/ashell & disown
+    # ${pkgs.ashell}/bin/ashell & disown
+    qs -c noctalia-shell & disown
     sleep 1
 
     # ---- Notification daemon ---- #

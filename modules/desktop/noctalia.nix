@@ -7,7 +7,7 @@
   services.upower.enable = true;
 
   # Try to set icon theme
-  environment.sessionVariables = { QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3"; };
+  # environment.sessionVariables = { QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3"; };
 
   environment.systemPackages = [ pkgs.gpu-screen-recorder ];
 
@@ -42,43 +42,46 @@
           floating = false;
           marginVertical = 0.25;
           marginHorizontal = 0.25;
-          outerCorners = false;
+          outerCorners = true;
 
           widgets = {
             left = [
               {
+                id = "Workspace";
+                labelMode = "none";
+                characterCount = 2;
+                colorizeIcons = true;
+                followFocusedScreen = false;
+                hideUnoccupied = false;
+                showApplications = false;
+                showLabelsOnlyWhenOccupied = false;
+              }
+              {
                 id = "SystemMonitor";
                 compactMode = false;
                 usePrimaryColor = true;
-                showMemoryUsage = true;
-                showCpuTemp = true;
-                showCpuUsage = true;
-                showGpuUsage = true;
-                showDiskUsage = true;
-                diskPath = "/";
+                # showMemoryUsage = true;
+                # showCpuTemp = true;
+                # showCpuUsage = true;
+                # showGpuUsage = true;
+                # showDiskUsage = true;
+                # diskPath = "/";
               }
               {
-                displayMode = "alwaysShow";
-                id = "Battery";
-                showNoctaliaPerformance = true;
-                showPowerProfiles = true;
-                warningThreshold = 30;
+                # displayMode = "alwaysShow";
+                # id = "Battery";
+                # showNoctaliaPerformance = true;
+                # showPowerProfiles = true;
+                # warningThreshold = 30;
               }
-
               {
-                id = "ActiveWindow";
-                widgetWidth = 290;
+                # id = "ActiveWindow";
+                # widgetWidth = 290;
               }
             ];
             center = [{
-              id = "Workspace";
-              labelMode = "none";
-              characterCount = 2;
-              colorizeIcons = true;
-              followFocusedScreen = false;
-              hideUnoccupied = true;
-              showApplications = true;
-              showLabelsOnlyWhenOccupied = false;
+              id = "Clock";
+              formatHorizontal = "h:mm AP MMM d";
             }];
             right = [
               { id = "plugin:screen-recorder"; }
@@ -98,10 +101,6 @@
               { id = "WiFi"; }
               { id = "Volume"; }
               { id = "Brightness"; }
-              {
-                id = "Clock";
-                formatHorizontal = "h:mm AP MMM d";
-              }
               {
                 id = "ControlCenter";
                 colorizeDistroLogo = true;
