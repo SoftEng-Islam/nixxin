@@ -272,7 +272,6 @@
           fillMode = "crop";
           fillColor = "#000000";
           randomEnabled = false;
-          wallpaperChangeMode = "none";
           randomIntervalSec = 1300;
           transitionDuration = 1500;
           transitionType = "random";
@@ -290,6 +289,13 @@
           wallhavenResolutionMode = "atleast";
           wallhavenResolutionWidth = "";
           wallhavenResolutionHeight = "";
+          showHiddenFiles = false;
+          viewMode = "single";
+          useSolidColor = false;
+          solidColor = "#1a1a2e";
+          automationEnabled = false;
+          wallpaperChangeMode = "random";
+          sortOrder = "name";
         };
         appLauncher = {
           customLaunchPrefixEnabled = false;
