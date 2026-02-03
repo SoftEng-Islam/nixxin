@@ -28,12 +28,12 @@ let
 
     # ---- Start Ashell a status bar ---- #
     # ${pkgs.ashell}/bin/ashell & disown
-    qs -c noctalia-shell & disown
+    qs -c noctalia-shell -n & disown
     sleep 1
 
     # ---- Notification daemon ---- #
-    swaync & disown
-    sleep 1
+    # swaync & disown
+    # sleep 1
 
     # ---- Apps To Start ---- #
     # Telegram -startintray & disown
