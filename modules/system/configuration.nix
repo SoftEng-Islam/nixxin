@@ -114,8 +114,10 @@ in {
 
       # Makes Linux Pretend to be Windows 10/11 (2020 version) when interacting with ACPI.
       # Some BIOS/UEFI implementations contain Windows-specific ACPI tables, so they behave differently depending on the OS.
-      # ''acpi_osi="Windows 2020"''
-      "acpi_osi=Linux"
+      # Ensure the buggy BIOS "Linux" path is not taken, then add the desired one.
+      "acpi_osi=!Linux"
+      ''acpi_osi="Windows 2020"''
+      # "acpi_osi=Linux"
       # "acpi_enforce_resources=lax"
 
       "intremap=off"
