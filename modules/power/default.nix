@@ -13,80 +13,85 @@ in {
     ./tlp.nix
     ./upower.nix
   ];
-  config = lib.mkIf (settings.modules.power.enable or false) {
+  config = lib.mkIf (settings.modules.power.enable or false) (lib.mkMerge [
+    {
+      assertions = [
+        {
+          assertion = !((_power.auto-cpufreq.enable or false)
+            && (_power.tuned.enable or false));
+          message =
+            "Power config: enable either 'modules.power.auto-cpufreq.enable' or 'modules.power.tuned.enable' (not both).";
+        }
+      ];
 
-    boot.kernelModules = settings.modules.power.boot.kernelModules or [
-      # "acpi_cpufreq" # ACPI CPU frequency scaling driver
-      # "cpufreq_performance" # Performance CPU frequency scaling driver
-      # "cpufreq_powersave" # Powersave CPU frequency scaling driver
-      # "cpufreq_ondemand" # On-demand CPU frequency scaling driver
-      # "cpufreq_conservative" # Conservative CPU frequency scaling driver
-      # "powernow-k8" # AMD PowerNow! driver for CPU frequency scaling
-    ];
+      boot.kernelModules = settings.modules.power.boot.kernelModules or [
+        # "acpi_cpufreq" # ACPI CPU frequency scaling driver
+        # "cpufreq_performance" # Performance CPU frequency scaling driver
+        # "cpufreq_powersave" # Powersave CPU frequency scaling driver
+        # "cpufreq_ondemand" # On-demand CPU frequency scaling driver
+        # "cpufreq_conservative" # Conservative CPU frequency scaling driver
+        # "powernow-k8" # AMD PowerNow! driver for CPU frequency scaling
+      ];
 
-    boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
+      boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
 
-    # Enable auto-epp for amd active pstate.
-    services.auto-epp.enable = false;
+      # Enable auto-epp for amd active pstate.
+      services.auto-epp.enable = false;
 
-    services.thermald.enable = true;
+      services.thermald.enable = true;
 
-    # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
-    powerManagement.enable = _power.powerManagement.enable;
+      # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
+      powerManagement.enable = _power.powerManagement.enable;
 
-    # Enable powertop auto tuning on startup.
-    powerManagement.powertop.enable = _power.powerManagement.powertop;
+      # Enable powertop auto tuning on startup.
+      powerManagement.powertop.enable = _power.powerManagement.powertop;
 
-    # Often used values: "schedutil", "ondemand", "powersave", "performance".
-    # [performance]: Runs at max frequency always :: Best for gaming & real-time workloads
-    # [powersave]: Runs at lowest frequency possible :: Best for battery life
-    # [ondemand]: Increases frequency when needed :: Older, but decent balance
-    # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
-    powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
-    powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
-    powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
-    # To verify/check the current CPU frequency:
-    # cat /sys/devices/system/cpu/cpufreq/scaling_governor
+      # Often used values: "schedutil", "ondemand", "powersave", "performance".
+      # [performance]: Runs at max frequency always :: Best for gaming & real-time workloads
+      # [powersave]: Runs at lowest frequency possible :: Best for battery life
+      # [ondemand]: Increases frequency when needed :: Older, but decent balance
+      # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
+      powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
+      powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
+      powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
+      # To verify/check the current CPU frequency:
+      # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
-    # This is the service that lets you pick power profiles in the gnome UI.
-    #! It conflicts with auto-cpufreq, so enable only one of the two.
-    # services.power-profiles-daemon.enable = (_power.auto-cpufreq.enable == false);
+      # powerprofilesctl provider:
+      # - auto-cpufreq conflicts with power-profiles-daemon (and also tends to
+      #   fight with tuned/cpupower).
+      # - tuned can provide the power-profiles-daemon DBus API via ppdSupport.
+      services.power-profiles-daemon.enable = lib.mkDefault
+        (!(_power.auto-cpufreq.enable or false) && !(_power.tuned.enable or false));
 
-    powerManagement.scsiLinkPolicy = "max_performance";
+      powerManagement.scsiLinkPolicy = "max_performance";
 
-    # sudo tuned --profile accelerator-performance
-    services.tuned.enable = true;
-    services.tuned.settings.dynamic_tuning = true;
-    services.tuned.ppdSupport =
-      true; # translation of power-profiles-daemon API calls to TuneD
-    services.tuned.ppdSettings.main.default =
-      "performance"; # balanced / performance / power-saver
+      environment.systemPackages = with pkgs; [
+        power-profiles-daemon
+        poweralertd
+        cpupower-gui
+        cpufrequtils
+      ];
+    }
+    (lib.mkIf (_power.tuned.enable or false) {
+      # sudo tuned-adm profile accelerator-performance
+      services.tuned.enable = true;
+      services.tuned.settings.dynamic_tuning = true;
+      services.tuned.ppdSupport =
+        true; # translation of power-profiles-daemon API calls to TuneD
+      services.tuned.ppdSettings.main.default =
+        "performance"; # balanced / performance / power-saver
 
-    systemd.services.tuned-set-profile = {
-      description = "Set TuneD profile";
-      after = [ "tuned.service" ];
-      wantedBy = [ "multi-user.target" ];
-      serviceConfig = {
-        Type = "oneshot";
-        ExecStart =
-          "${pkgs.tuned}/bin/tuned-adm profile accelerator-performance";
+      systemd.services.tuned-set-profile = {
+        description = "Set TuneD profile";
+        after = [ "tuned.service" ];
+        wantedBy = [ "multi-user.target" ];
+        serviceConfig = {
+          Type = "oneshot";
+          ExecStart =
+            "${pkgs.tuned}/bin/tuned-adm profile accelerator-performance";
+        };
       };
-    };
-
-    systemd.tmpfiles.rules = [
-      # Tweak the minimum frequencies of the GPU and CPU governors to get a bit more performance
-      "w- /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq - - - - 2500000"
-      "w- /sys/devices/system/cpu/cpufreq/policy1/scaling_min_freq - - - - 2500000"
-      "w- /sys/devices/system/cpu/cpufreq/policy2/scaling_min_freq - - - - 2500000"
-      "w- /sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq - - - - 2500000"
-      # "w- /sys/class/devfreq/ff9a0000.gpu/min_freq - - - - 600000000"
-    ];
-
-    environment.systemPackages = with pkgs; [
-      power-profiles-daemon
-      poweralertd
-      cpupower-gui
-      cpufrequtils
-    ];
-  };
+    })
+  ]);
 }
