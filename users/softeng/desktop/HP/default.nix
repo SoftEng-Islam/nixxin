@@ -251,7 +251,7 @@
   };
 
   # [ desktop ]
-  modules.desktop.ashell.enable = true;
+  modules.desktop.ashell.enable = false;
   modules.desktop.tools = false;
   # $ dconf read /org/gnome/desktop/interface/color-scheme
   modules.desktop.dconf.colorScheme = "prefer-dark";
