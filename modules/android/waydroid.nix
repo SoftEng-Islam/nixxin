@@ -40,7 +40,9 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   # Mount host directories to waydroid
   systemd = {
-    packages = [ pkgs.waydroid-helper ];
+    packages = [
+      # pkgs.waydroid-helper
+    ];
     services.waydroid-mount.wantedBy = [ "multi-user.target" ];
   };
 
@@ -114,12 +116,15 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
-    waydroid-helper
+    # waydroid-helper
 
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
-      runtimeInputs =
-        [ pkgs.waydroid-nftables pkgs.waydroid-helper pkgs.wl-clipboard ];
+      runtimeInputs = [
+        pkgs.waydroid-nftables
+        # pkgs.waydroid-helper
+        pkgs.wl-clipboard
+      ];
       text = ''
         sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
         echo "Paste clipboard in this website below"
