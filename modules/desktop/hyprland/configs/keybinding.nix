@@ -89,7 +89,8 @@
       bind = $main, F1, exec, sudo toggleInternet
       bind = $main, F2, exec, run-gamemode
       bind = $main, F3, exec, run-blue-filter
-      # bind = $main, F4, exec,
+      bind = $main, F4, exec, $ipc sessionMenu toggle
+
       # bind = $main, F5, exec,
       # bind = $main, F6, exec,
 
@@ -272,7 +273,6 @@
       bind = $main, SPACE, exec, $ipc launcher toggle
       bind = $main, S, exec, $ipc controlCenter toggle
       bind = $main, comma, exec, $ipc settings toggle
-      # bind = $main, comma, exec, $ipc sessionMenu toggle
 
       # Media keys
       bindel = , XF86AudioRaiseVolume, exec, $ipc volume increase
