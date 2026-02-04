@@ -7,7 +7,7 @@ in mkIf (settings.modules.virtualization.enable or false) {
   virtualisation = {
     spiceUSBRedirection.enable = false; # for virt-manager usb forwarding
     libvirtd = {
-      enable = true; # for qemu/kvm VMs in virt-manager
+      enable = false; # for qemu/kvm VMs in virt-manager
       allowedBridges = [ "nm-bridge" "virbr0" ];
       qemu.runAsRoot = true;
     };

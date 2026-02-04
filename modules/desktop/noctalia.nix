@@ -111,7 +111,7 @@
 
       settings = {
         settingsVersion = 0;
-        setupCompleted = true;
+        # setupCompleted = true;
         bar = {
           barType = "framed";
           position = "top";

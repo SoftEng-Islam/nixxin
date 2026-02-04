@@ -2,28 +2,21 @@
 let
   HOME = settings.HOME;
   myAliases = {
+    # ----------------------------- #
+    # -------- Set Aliases -------- #
+    # ----------------------------- #
+    # Set personal aliases, overriding those provided by oh-my-zsh libs,
+    # plugins, and themes. Aliases can be placed here, though oh-my-zsh
+    # users are encouraged to define aliases within the ZSH_CUSTOM folder.
+
     # Set-up icons for files/folders in terminal
-    # ls = "eza -a --icons";
-    ls = "eza --icons -l -T -L=1";
     l = "eza -lh --icons=auto"; # Long list with icons
+    la = "eza -la";
+    ls = "eza --icons -l -T -L=1";
     ll = "eza -al --icons";
-    lt = "eza -a --tree --level=1 --icons";
-    tree = "eza --tree";
+    lt = "eza -a --tree --level=1 --icons"; # List folder as tree with icons
     ld = "eza -lhD --icons=auto"; # Long list directories with icons
-    # lt = "eza --icons=auto --tree";  # List folder as tree with icons
-    ":q" = "exit";
-    "q" = "exit";
-
-    "gs" = "git status";
-    "gb" = "git branch";
-    "gch" = "git checkout";
-    "gc" = "git commit";
-    "ga" = "git add";
-    "gr" = "git reset --soft HEAD~1";
-
-    "del" = "gio trash";
-
-    "nix-gc" = "nix-collect-garbage --delete-older-than 7d";
+    tree = "eza --tree";
 
     # Handy change directory shortcuts
     ".." = "cd ..";
@@ -34,32 +27,25 @@ let
 
     mkdir = "mkdir -p"; # Always mkdir a path
     open = "xdg-open";
-    make = "make -j$(nproc)";
-    ninja = "ninja -j$(nproc)";
-    n = "ninja";
     c = "clear"; # Clear terminal
-    tb = "nc termbin.com 9999";
-    # Get the error messages from journalctl
-    jctl = "journalctl -p 3 -xb";
-    # Recent installed packages
-    rip = "expac --timefmt='%Y-%m-%d %T' '%l	%n %v' | sort | tail -200 | nl";
-    g = "git";
+    jctl = "journalctl -p 3"; # Get the error messages from journalctl
     grep = "grep --color";
-    ip = "ip --color";
-    # l = "eza -l";
-    la = "eza -la";
-    md = "mkdir -p";
-    ppc = "powerprofilesctl";
-    pf = "powerprofilesctl launch -p performance";
-
+    ppc = "powerprofilesctl list";
+    pf = "powerprofilesctl set performance";
     us = "systemctl --user"; # mnemonic for user systemctl
     rs = "sudo systemctl"; # mnemonic for root systemctl
     cat = "bat";
+    nano = "micro"; # Use micro as the default editor
+    reboot = "sudo reboot";
+    nixclean = "sudo nix-collect-garbage --delete-older-than 1d";
+
+    # To Translate from Language to Other.
+    trans = "trans -no-bidi";
   };
 
 in {
   # enable zsh autocompletion for system packages (systemd, etc)
-  # environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # Path to your oh-my-zsh installation.
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -72,7 +58,8 @@ in {
   users.defaultUserShell = pkgs.zsh;
 
   programs.zsh.enable = true;
-  programs.zsh.autosuggestions.enable = true;
+  # Prefer to configure plugin load-order in ~/.zshrc for interactive shells.
+  programs.zsh.autosuggestions.enable = false;
   programs.zsh.enableBashCompletion = true;
   programs.zsh.enableCompletion = true;
   programs.zsh.enableGlobalCompInit = true;
@@ -82,9 +69,9 @@ in {
   programs.zsh.interactiveShellInit = "";
   programs.zsh.loginShellInit = "";
   programs.zsh.ohMyZsh.enable = true;
+  programs.zsh.shellAliases = myAliases;
   programs.zsh.ohMyZsh.plugins = [
     "colored-man-pages"
-    "command-not-found"
     "fzf"
     "git"
     "sudo"
@@ -96,19 +83,30 @@ in {
     "safe-paste"
   ];
   programs.zsh.ohMyZsh.cacheDir = "${HOME}/.cache/oh-my-zsh";
-  programs.zsh.ohMyZsh.preLoaded = "";
+  programs.zsh.ohMyZsh.preLoaded = ''
+    # If you see compaudit warnings due to the Nix store / system profile, this
+    # avoids the interactive prompt and speeds startup.
+    ZSH_DISABLE_COMPFIX=true
+
+    # OMZ behavior toggles
+    DISABLE_MAGIC_FUNCTIONS="true"
+    ENABLE_CORRECTION="false"
+    DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+    # Completion behavior
+    CASE_SENSITIVE="false"
+    HYPHEN_INSENSITIVE="true"
+
+    # Never auto-update (Nix store is immutable)
+    zstyle ':omz:update' mode disabled
+  '';
   # programs.zsh.ohMyZsh.theme = ""; # we will use starship
 
   programs.zsh.promptInit = ''
     eval "$(starship init zsh)"
   '';
 
-  programs.zsh.syntaxHighlighting = {
-    enable = true;
-    patterns = { "rm -rf *" = "fg=black,bg=red"; };
-    styles = { "alias" = "fg=magenta"; };
-    highlighters = [ "main" "brackets" "pattern" ];
-  };
+  programs.zsh.syntaxHighlighting.enable = false;
 
   home-manager.users.${settings.user.username} = {
     # programs.zsh = {
@@ -137,10 +135,12 @@ in {
       setopt prompt_subst
 
       # Set the Git prompt info using vcs_info
-      autoload -Uz vcs_info
-      precmd() { vcs_info }
-      zstyle ':vcs_info:git:*' formats '(%b)' # Customize how Git branch info is shown
-      zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
+      # (disabled) Starship already provides git info, and defining precmd()
+      # directly can override OMZ hooks.
+      # autoload -Uz vcs_info
+      # precmd() { vcs_info }
+      # zstyle ':vcs_info:git:*' formats '(%b)' # Customize how Git branch info is shown
+      # zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
       # Define the PROMPT
       # PROMPT=$'(%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b)=> {%F{yellow}%~%f} ''${vcs_info_msg_0_} \n%F{green}$%f '
@@ -178,6 +178,9 @@ in {
       zstyle ':autocomplete:history-incremental-search-*:*' list-lines 8
       zstyle ':autocomplete:*' insert-unambiguous yes
 
+      # Enable zsh-autocomplete
+      source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+
 
       # Optimized history settings
       # HISTFILE=~/.zsh_history
@@ -214,7 +217,10 @@ in {
       source ${pkgs.fzf}/share/fzf/key-bindings.zsh
       # Fuzzy search in history as you type
       function fzf-history-widget {
-        LBUFFER=$(history -n 1 | fzf --height 50% --layout=reverse --border --query="$LBUFFER" --prompt="History > ")
+        local selected
+        selected="$(fc -rl 1 | fzf --height 50% --layout=reverse --border --query="$LBUFFER" --prompt="History > " | sed -E 's/^[[:space:]]*[0-9]+[[:space:]]+//')"
+        [[ -n "$selected" ]] || return 0
+        LBUFFER="$selected"
         zle redisplay
       }
       zle -N fzf-history-widget
@@ -227,21 +233,24 @@ in {
       # ------------------------------------------ #
       # ----------- User configuration ----------- #
       # ------------------------------------------ #
+      # Oh My Zsh options are configured in Nix (programs.zsh.ohMyZsh.preLoaded)
+      # so they are applied before OMZ loads from /etc/zshrc.
+
       # Uncomment the following line if pasting URLs and other text is messed up.
-      DISABLE_MAGIC_FUNCTIONS="true"
+      # DISABLE_MAGIC_FUNCTIONS="true"
       # Uncomment the following line to enable command auto-correction.
-      ENABLE_CORRECTION="false"
+      # ENABLE_CORRECTION="true"
 
       # Uncomment the following line to display red dots whilst waiting for completion.
       # You can also set it to another string to have that shown instead of the default red dots.
       # e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
       # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
-      COMPLETION_WAITING_DOTS="false"
+      # COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
       # Uncomment the following line if you want to disable marking untracked files
       # under VCS as dirty. This makes repository status check for large repositories
       # much, much faster.
-      DISABLE_UNTRACKED_FILES_DIRTY="true"
+      # DISABLE_UNTRACKED_FILES_DIRTY="true"
 
 
       # Make new shells get the history lines from all previous
@@ -249,21 +258,21 @@ in {
       # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
       # The following line to use case-sensitive completion.
-      CASE_SENSITIVE="true"
+      # CASE_SENSITIVE="false"
       # Uncomment the following line to use hyphen-insensitive completion.
       # Case-sensitive completion must be off. _ and - will be interchangeable.
-      HYPHEN_INSENSITIVE="true"
+      # HYPHEN_INSENSITIVE="true"
 
       # Uncomment one of the following lines to change the auto-update behavior
       # zstyle ':omz:update' mode disabled  # disable automatic updates
-      zstyle ':omz:update' mode auto      # update automatically without asking
+      # zstyle ':omz:update' mode auto      # update automatically without asking
       # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
       # Uncomment the following line to disable colors in ls.
-      DISABLE_LS_COLORS="false"
+      # DISABLE_LS_COLORS="false"
 
       # Uncomment the following line to disable auto-setting terminal title.
-      DISABLE_AUTO_TITLE="false"
+      # DISABLE_AUTO_TITLE="false"
 
       # # Uncomment the following line if you want to change the command execution time
       # # stamp shown in the history command output.
@@ -280,54 +289,22 @@ in {
       #   export EDITOR='micro'
       # fi
 
-
-      # ----------------------------- #
-      # -------- Set Aliases -------- #
-      # ----------------------------- #
-      # Set personal aliases, overriding those provided by oh-my-zsh libs,
-      # plugins, and themes. Aliases can be placed here, though oh-my-zsh
-      # users are encouraged to define aliases within the ZSH_CUSTOM folder.
-      # Set-up icons for files/folders in terminal
-      alias l='eza -lh --icons=auto'  # Long list with icons
-      alias ls='eza -a --icons'
-      alias ll='eza -al --icons'
-      alias lt='eza -a --tree --level=1 --icons'
-      alias ld='eza -lhD --icons=auto'  # Long list directories with icons
-      alias lt='eza --icons=auto --tree'  # List folder as tree with icons
-
-      # Handy change directory shortcuts
-      alias ..='cd ..'
-      alias ...='cd ../..'
-      alias .3='cd ../../..'
-      alias .4='cd ../../../..'
-      alias .5='cd ../../../../..'
-
-      alias mkdir='mkdir -p' # Always mkdir a path
-      alias open="xdg-open"
-      alias make="make -j$(nproc)"
-      alias ninja="ninja -j$(nproc)"
-      alias n="ninja"
-      alias c="clear" # Clear terminal
-      alias tb="nc termbin.com 9999"
-      # Get the error messages from journalctl
-      alias jctl="journalctl -p 3 -xb"
-      # Recent installed packages
-      alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-      # To Update The System
-      # update = "sudo nixos-rebuild switch --flake /etc/nixos/#default";
-      alias nano="micro" # Use micro as the default editor
-      alias reboot="sudo reboot"
-      alias nixclean="sudo nix-collect-garbage --delete-older-than 1d"
-      alias trans="trans -no-bidi"
-
       # ------------------------- #
       # -------- Plugins -------- #
       # ------------------------- #
-      # Fish-like syntax highlighting and autosuggestions
-      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       # Use history substring search
       source ${pkgs.zsh-history-substring-search}/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+      bindkey '^[[A' history-substring-search-up
+      bindkey '^[[B' history-substring-search-down
+
+      # Optional: better completion UI
+      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+
+      # Abbreviations (fish-like)
+      source ${pkgs.zsh-abbr}/share/zsh/zsh-abbr/zsh-abbr.plugin.zsh
+
+      # Fish-like autosuggestions
+      source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
       # pkgfile "command not found" handler
       # source /usr/share/doc/pkgfile/command-not-found.zsh
 
@@ -336,6 +313,13 @@ in {
       # --------------------------------- #
       ZSH_AUTOSUGGEST_STRATEGY=(history completion)
       ZSH_AUTOSUGGEST_USE_FZF=true
+      ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=8"
+
+      # Fish-like syntax highlighting (load last)
+      source ${pkgs.zsh-syntax-highlighting}/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+      ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
+      ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=black,bg=red')
+      ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
 
       # Enable Wayland support for different apps
       # if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
@@ -350,8 +334,6 @@ in {
       #   export ECORE_EVAS_ENGINE=wayland_egl
       #   export ELM_ENGINE=wayland_egl
       # fi
-
-      export FZF_BASE=/usr/share/fzf
 
       # ----------------------- #
       # Configuration For NixOS #

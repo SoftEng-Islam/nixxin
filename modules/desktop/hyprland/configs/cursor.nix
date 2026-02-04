@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.cursor = {
-        no_hardware_cursors = false;
+        no_hardware_cursors = true;
         enable_hyprcursor = false;
         warp_on_change_workspace = true;
 

@@ -401,7 +401,7 @@
   modules.power.powerManagement.cpuFreqGovernor = "performance";
   modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
   modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
-  modules.power.auto-cpufreq.enable = false;
+  modules.power.auto-cpufreq.enable = true;
   modules.power.tuned.enable = true;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
@@ -418,7 +418,7 @@
   modules.recording.sound.enable = false;
 
   # [ remote_desktop ]
-  modules.remote_desktop.rdp.enable = true;
+  modules.remote_desktop.rdp.enable = false;
 
   # [resources_monitoring]
   modules.resources_monitoring.resources_app = true;
@@ -427,11 +427,11 @@
     theme = "adapta";
     background = "False";
     rounded = "True";
-    update = 1000; # Update time in milliseconds
+    update = 500; # Update time in milliseconds
     temperature = "celsius"; # "celsius", "fahrenheit", "kelvin", "rankine"
     clock = "%I:%M %p";
     # run to get Network Interface Name: ip addr show
-    net_iface = "wlp0s19f2u5";
+    net_iface = "eth0";
   };
 
   # [screenshot]
@@ -456,7 +456,7 @@
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm.enable = false; # If your APU/GPU Support it
-  modules.system.videoDrivers = [ "modesetting" ];
+  modules.system.videoDrivers = [ "amdgpu" "modesetting" ];
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
   modules.system.boot.tmp.useTmpfs = system.useTmpfs;
@@ -464,7 +464,13 @@
   modules.system.boot.loader.timeout = 3; # seconds
   modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
-  modules.system.boot.initrd.kernelModules = [ "amdgpu" ];
+  modules.system.boot.initrd.kernelModules = [
+    # GPU/Display modules
+    "amdgpu"
+    "drm"
+    "drm_kms_helper"
+    "gpu_sched"
+  ];
   modules.system.boot.blacklistedKernelModules = [
     # "hp_wmi"
     # "radeon"
@@ -505,6 +511,7 @@
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
     "amdgpu.vm_fragment_size=9"
+    "amdgpu.gttsize=40000"
     # "amdgpu.ppfeaturemask=0xfffd3fff" # Disable GFXOFF power feature
     "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
     "amdgpu.dcdebugmask=0x10" # Disable PSR
@@ -538,9 +545,9 @@
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-    # "amdgpu.audio=0"
+    "amdgpu.audio=0"
 
-    # "amd_iommu=off" # some HP laptops throttle with IOMMU on
+    "amd_iommu=off" # some HP laptops throttle with IOMMU on
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

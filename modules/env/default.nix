@@ -27,6 +27,30 @@ in lib.mkIf (settings.modules.env.enable or false) {
       LD_LIBRARY_PATH =
         lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
+      XDG_CURRENT_DESKTOP = "Hyprland";
+      XDG_SESSION_DESKTOP = "Hyprland";
+      XDG_SESSION_TYPE = "wayland";
+
+      # Disable window decoration for Wayland Qt apps
+      QT_WAYLAND_DISABLE_WINDOWDECORATION = 1;
+
+      # Set the backend for GDK (GIMP Drawing Kit) to support Wayland and X11
+      GDK_BACKEND = "wayland,x11";
+
+      # ---- QT ---- #
+      DISABLE_QT5_COMPAT = 0;
+      QT_AUTO_SCREEN_SCALE_FACTOR = 1;
+      QT_QPA_PLATFORM = "wayland;xcb";
+
+      # "WLR_DRM_NO_ATOMIC,1"
+      WLR_BACKEND = "vulkan";
+      WLR_RENDERER = "vulkan";
+
+      AQ_DRM_DEVICES = "/dev/dri/card1"; # CHANGEME: Related to the GPU
+
+      __GL_ALLOW_SOFTWARE = 1;
+      MOZ_DISABLE_RDD_SANDBOX = 1;
+
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";
 
@@ -42,7 +66,6 @@ in lib.mkIf (settings.modules.env.enable or false) {
 
       SDL_VIDEODRIVER = "wayland";
       BEMENU_BACKEND = "wayland";
-      GDK_BACKEND = "wayland";
       CLUTTER_BACKEND = "wayland";
       ELM_ENGINE = "wayland_egl";
       ECORE_EVAS_ENGINE = "wayland_egl";
@@ -65,7 +88,7 @@ in lib.mkIf (settings.modules.env.enable or false) {
       MOZ_DBUS_REMOTE = "1";
 
       # Enables Wayland for Mozilla apps and EGL.
-      MOZ_ENABLE_WAYLAND = "1";
+      MOZ_ENABLE_WAYLAND = 1;
       EGL_PLATFORM = "wayland";
     };
   };

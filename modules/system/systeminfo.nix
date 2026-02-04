@@ -1,12 +1,6 @@
 { settings, config, pkgs, ... }: {
 
   environment.systemPackages = with pkgs; [
-    # A monitor of resources.
-    btop
-
-    # BTOP with CUDA support.
-    #		(btop.override { cudaSupport = true; })
-
     # Free software that gathers information on CPU, motherboard and more.
     cpu-x
 

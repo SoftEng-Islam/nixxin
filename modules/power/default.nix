@@ -34,7 +34,7 @@ in {
     # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
     powerManagement.enable = _power.powerManagement.enable;
 
-    # enable powertop auto tuning on startup.
+    # Enable powertop auto tuning on startup.
     powerManagement.powertop.enable = _power.powerManagement.powertop;
 
     # Often used values: "schedutil", "ondemand", "powersave", "performance".
@@ -43,7 +43,6 @@ in {
     # [ondemand]: Increases frequency when needed :: Older, but decent balance
     # [schedutil]: Dynamically scales based on task scheduling :: Best for modern CPUs (recommended)
     powerManagement.cpuFreqGovernor = _power.powerManagement.cpuFreqGovernor;
-
     powerManagement.cpufreq.min = _power.powerManagement.cpufreq.min;
     powerManagement.cpufreq.max = _power.powerManagement.cpufreq.max;
     # To verify/check the current CPU frequency:
@@ -53,7 +52,35 @@ in {
     #! It conflicts with auto-cpufreq, so enable only one of the two.
     # services.power-profiles-daemon.enable = (_power.auto-cpufreq.enable == false);
 
+    powerManagement.scsiLinkPolicy = "max_performance";
+
+    # sudo tuned --profile accelerator-performance
     services.tuned.enable = true;
+    services.tuned.settings.dynamic_tuning = true;
+    services.tuned.ppdSupport =
+      true; # translation of power-profiles-daemon API calls to TuneD
+    services.tuned.ppdSettings.main.default =
+      "performance"; # balanced / performance / power-saver
+
+    systemd.services.tuned-set-profile = {
+      description = "Set TuneD profile";
+      after = [ "tuned.service" ];
+      wantedBy = [ "multi-user.target" ];
+      serviceConfig = {
+        Type = "oneshot";
+        ExecStart =
+          "${pkgs.tuned}/bin/tuned-adm profile accelerator-performance";
+      };
+    };
+
+    systemd.tmpfiles.rules = [
+      # Tweak the minimum frequencies of the GPU and CPU governors to get a bit more performance
+      "w- /sys/devices/system/cpu/cpufreq/policy0/scaling_min_freq - - - - 2500000"
+      "w- /sys/devices/system/cpu/cpufreq/policy1/scaling_min_freq - - - - 2500000"
+      "w- /sys/devices/system/cpu/cpufreq/policy2/scaling_min_freq - - - - 2500000"
+      "w- /sys/devices/system/cpu/cpufreq/policy4/scaling_min_freq - - - - 2500000"
+      # "w- /sys/class/devfreq/ff9a0000.gpu/min_freq - - - - 600000000"
+    ];
 
     environment.systemPackages = with pkgs; [
       power-profiles-daemon

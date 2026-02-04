@@ -125,19 +125,19 @@ let
     vulkan-caps-viewer
 
     # Intel specific
-    inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
+    # inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
   ];
 
 in {
   config = lib.mkIf (settings.modules.graphics.enable or false) {
     # ========== Graphics Stack Configuration ==========
-    #
+
     # This module configures the graphics stack including:
     # - OpenGL: Cross-platform 2D/3D rendering API
     # - Vulkan: Next-gen low-overhead graphics API
     # - OpenCL: Heterogeneous computing framework
     # - Hardware acceleration (VA-API, VDPAU)
-    #
+
     # Key components configured:
     # - Mesa 3D Graphics Library (OpenGL/Vulkan implementations)
     # - AMD/Intel/NVIDIA driver support
@@ -145,9 +145,17 @@ in {
     # - Development tools and utilities
 
     environment.variables = {
-      # ---- nixos-opencl Start ----
-      # This is the default for Mesa, but we set it explicitly to ensure
-      # OCL_ICD_VENDORS = "${mesa.opencl}/etc/OpenCL/vendors/";
+      # Remove problematic variables that can cause issues with modern Hyprland
+      WLR_RENDERER_ALLOW_SOFTWARE = 0;
+
+      # Optimize rendering and disable hardware cursors for Wayland-based compositors.
+      WLR_NO_HARDWARE_CURSORS = 1; # Only if cursor issues occur
+
+      # This env var forces wgpu to use OpenGL instead of Vulkan
+      WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
+
+      AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
+
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = with pkgs; [

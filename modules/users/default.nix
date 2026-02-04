@@ -31,10 +31,11 @@
         "docker"
         "fuse"
         "gamemode"
+        "flatpak"
         "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
-        # "libvirtd"
+        "libvirtd"
         "lp" # Manage printers.
         "lxd"
         "network"
@@ -47,7 +48,6 @@
         "rtkit" # Required for PipeWire's real-time scheduling
         "storage" # Access to storage devices.
         "systemd-resolve"
-        "transmission"
         "tty"
         "uucp" # Access to serial ports and devices connected via serial ports.
         "vboxusers"

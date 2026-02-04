@@ -294,16 +294,6 @@ in {
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
-    # Optimize rendering and disable hardware cursors for Wayland-based compositors.
 
-    # Remove problematic variables that can cause issues with modern Hyprland
-    # WLR_RENDERER_ALLOW_SOFTWARE = "1";  # Only for debugging
-    # WLR_NO_HARDWARE_CURSORS = "1";     # Only if cursor issues occur
-
-    # This env var forces wgpu to use OpenGL instead of Vulkan
-    WGPU_BACKEND = "vulkan"; # vulkan, metal, dx12, gl
-    # WGPU_POWER_PREF = "high"; # Prefer integrated GPU
-
-    AMD_DEBUG = "nodcc"; # Fixes rendering bugs on some games
   };
 }
