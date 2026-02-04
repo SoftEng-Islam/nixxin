@@ -55,7 +55,7 @@
       # bind = $main, H, exec,
       # bind = $main, J, exec,
       # bind = $main, K, exec,
-      bind = $main, L, exec, ${pkgs.hyprlock}/bin/hyprlock # Lock screen
+      bind = $main, L, exec, $ipc sessionMenu lockAndSuspend # Lock screen
 
       #=> Third Row:
       # bind = $main, Z, exec,
