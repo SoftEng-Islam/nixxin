@@ -71,10 +71,6 @@ in {
     # Set the scale factor for Qt apps
     QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
-    # Force QT to use wayland
-    # QT_PLATFORM_PLUGIN = "wayland";
-    QT_QPA_PLATFORM = "wayland";
-
     QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
 
     # fix old GTK3 applications
