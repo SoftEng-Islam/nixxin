@@ -44,6 +44,8 @@
   };
 
   environment.systemPackages = with pkgs; [
+    # Run this to add the flathub repo
+    # flatpak --user remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
     bazaar
     flatpak
     gnome-software

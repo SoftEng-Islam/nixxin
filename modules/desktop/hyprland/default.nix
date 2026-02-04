@@ -102,8 +102,8 @@ in {
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       settings = {
         debug = {
-          disable_logs = true;
-          enable_stdout_logs = false;
+          disable_logs = false;
+          enable_stdout_logs = true;
         };
         # active color
         "$primary" = settings.common.primaryColor;

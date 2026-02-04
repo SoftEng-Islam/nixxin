@@ -19,7 +19,7 @@ in {
     # mkdir -p ~/.pnpm-store
     # pnpm config set store-dir ~/.pnpm-store --global
     environment.sessionVariables = {
-      PATH = "$PATH:${HOME}/.local/share/pnpm";
+      PATH = "\${PATH}:${HOME}/.local/share/pnpm";
     };
 
     home-manager.users.${settings.user.username} = {

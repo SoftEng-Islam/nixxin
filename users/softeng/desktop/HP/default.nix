@@ -450,7 +450,7 @@
 
   # [ Notifications ]
   modules.notifications.dunst.enable = false;
-  modules.notifications.swaync.enable = true;
+  modules.notifications.swaync.enable = false;
 
   # [ SYSTEM ]
   modules.system.radeon = false;
