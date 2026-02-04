@@ -6,8 +6,8 @@
       # ---- Main Key ---- #
       "$main" = "SUPER";
 
-      # noctalia-shell bindings
-      "$ipc" = "qs -c noctalia-shell ipc call";
+      # bindings
+      "$ipc" = "noctalia-shell ipc call";
 
       # ---- Bind flags ---- #
       # => bind supports flags in this format:
@@ -272,6 +272,7 @@
       bind = $main, SPACE, exec, $ipc launcher toggle
       bind = $main, S, exec, $ipc controlCenter toggle
       bind = $main, comma, exec, $ipc settings toggle
+      # bind = $main, comma, exec, $ipc sessionMenu toggle
 
       # Media keys
       bindel = , XF86AudioRaiseVolume, exec, $ipc volume increase

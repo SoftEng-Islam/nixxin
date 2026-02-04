@@ -1,4 +1,4 @@
-{ settings, pkgs, ... }:
+{ settings, pkgs, lib, ... }:
 # ------------------------------------------------
 # !NOTICE: You Must Read And Customize This File
 # ------------------------------------------------
@@ -6,7 +6,31 @@
 # -- Boot Configuration
 # -- Hardware Configuration
 # ------------------------------------------------
-let _system = settings.modules.system;
+let
+  _system = settings.modules.system;
+
+  # Optional ACPI table override support.
+  #
+  # Drop patched AML tables in `modules/system/acpi_override/` (e.g. `dsdt.aml`,
+  # `ssdt1.aml`) and they will be embedded into initrd at
+  # `/kernel/firmware/acpi/<file>.aml`, which allows Linux to override buggy BIOS
+  # ACPI tables (CONFIG_ACPI_TABLE_UPGRADE=y).
+  acpiOverrideDir = ./acpi_override;
+  acpiOverrideEntries =
+    if builtins.pathExists acpiOverrideDir then builtins.readDir acpiOverrideDir else { };
+  acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs (name: type:
+    type == "regular" && lib.hasSuffix ".aml" name) acpiOverrideEntries);
+  acpiOverrideExtraFiles = builtins.listToAttrs (map (name: {
+    name = "kernel/firmware/acpi/${name}";
+    value = {
+      source = pkgs.runCommand "acpi-override-${name}" {
+        src = acpiOverrideDir + "/${name}";
+        preferLocalBuild = true;
+      } ''
+        cp "$src" "$out"
+      '';
+    };
+  }) acpiOverrideAmlFiles);
 in {
 
   # ------------------------------------------------
@@ -77,6 +101,8 @@ in {
         "usbhid"
       ];
       # kernelModules = [ "amdgpu" ];
+
+      extraFiles = acpiOverrideExtraFiles;
     };
 
     kernelModules = _system.boot.kernelModules ++ [
