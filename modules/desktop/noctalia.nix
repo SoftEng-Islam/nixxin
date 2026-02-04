@@ -147,8 +147,8 @@
               }
               {
                 id = "KeyboardLayout";
-                showFlag = true;
-                showText = true;
+                displayMode = "forceOpen";
+                showIcon = true;
               }
               {
                 # id = "SystemMonitor";
