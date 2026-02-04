@@ -44,7 +44,7 @@
       bind = $main, O, togglesplit
 
       #=> Second Row:
-      bind = $main, A, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons
+      bind = $main, A, exec, $ipc launcher toggle # Launch Launcher
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen,
@@ -270,7 +270,7 @@
       # bindl=,XF86AudioMicMute, exec, "${pkgs.wireplumber}/bin/wpctl}" set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
       # Core binds
-      bind = $main, SPACE, exec, $ipc launcher toggle
+      bind = $main, SPACE, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons
       bind = $main, S, exec, $ipc controlCenter toggle
       bind = $main, comma, exec, $ipc settings toggle
 
