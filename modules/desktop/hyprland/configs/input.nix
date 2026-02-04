@@ -2,7 +2,7 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.input = {
-        kb_layout = "us,eg,fr";
+        kb_layout = "us,eg";
         kb_variant = "";
         kb_model = "";
         kb_rules = "";

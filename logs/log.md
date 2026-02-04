@@ -4,7 +4,7 @@
 
 - **CPU**: AMD PRO A8-8650B R7 (4 cores, 4 threads)
 - **GPU**: AMD Radeon R7 Graphics (KAVERI / GCN-era iGPU)
-- **Memory**: 18 GB DDR3 installed (4 GB + 2 GB + 4 GB + 8 GB), configured at **1333 MT/s** on all sticks (from `logs/dmidecode.txt`)
+- **Memory**: 18 GB DDR3 installed (4 GB + 2 GB + 4 GB + 8 GB), configured at **1333 MT/s** on all sticks
 - **OS / Kernel**: NixOS, Linux `6.18.0-zen1`
 
 ## Identified Issues

@@ -146,6 +146,11 @@
                 # showLabelsOnlyWhenOccupied = false;
               }
               {
+                id = "KeyboardLayout";
+                showFlag = true;
+                showText = true;
+              }
+              {
                 # id = "SystemMonitor";
                 compactMode = false;
                 usePrimaryColor = true;
