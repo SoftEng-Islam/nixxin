@@ -73,7 +73,6 @@ in {
     # HYPRLAND_NO_SD_VARS = 1;
 
     # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
-    QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
