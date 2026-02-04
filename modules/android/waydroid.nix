@@ -39,12 +39,10 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
 
   # Mount host directories to waydroid
-  systemd = {
-    packages = [
-      # pkgs.waydroid-helper
-    ];
-    services.waydroid-mount.wantedBy = [ "multi-user.target" ];
-  };
+  # systemd = {
+  # packages = [ pkgs.waydroid-helper];
+  # services.waydroid-mount.wantedBy = [ "multi-user.target" ];
+  # };
 
   # Force disable waydroid service so that it is not started at boot
   systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
