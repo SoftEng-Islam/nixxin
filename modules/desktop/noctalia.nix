@@ -298,7 +298,7 @@
           fillMode = "crop";
           fillColor = "#000000";
           randomEnabled = true;
-          randomIntervalSec = 20000;
+          randomIntervalSec = 20000; # each 5 hours
           transitionDuration = 1500;
           transitionType = "random";
           transitionEdgeSmoothness = 5.0e-2;
