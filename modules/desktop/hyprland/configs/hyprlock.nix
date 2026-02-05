@@ -1,7 +1,7 @@
-{ settings, config, lib, pkgs, ... }: {
+{ settings, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.hyprlock = {
-      enable = true;
+      enable = settings.modules.desktop.hyprland.lockscreen.enable or false;
       settings = {
         general = {
           hide_cursor = true;
@@ -11,7 +11,7 @@
         };
         background = [{
           monitor = "";
-          path = "~/Pictures/Wallpapers/Fuji-Dark.png";
+          path = "~/Pictures/lockScreen.png";
           color = "rgba(25, 20, 20, 1.0)";
           blur_size = 0;
           blur_passes = 2;

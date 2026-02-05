@@ -112,6 +112,17 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /home/${settings.user.username}/Waydroid 0755 ${settings.user.username} users -"
   ];
 
+  #home-manager.users.${settings.user.username} = {
+    #xdg.desktopEntries."waydroid" = {
+     # name = "waydroid";
+     # genericName = "full Android system on a regular GNU/Linux system";
+     # # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
+    #  exec = "waydroid";
+  #    icon = "waydroid";
+   #   categories = [ "Android" "System" ];
+  #  };
+  #};
+
   environment.systemPackages = with pkgs; [
     wl-clipboard
     # waydroid-helper
