@@ -534,7 +534,7 @@
     "clocksource=tsc"
     "no_timer_check"
 
-    # "acpi=off"
+    "acpi=off"
     # "acpi=ht"
     # "pci=noacpi"
     # "pnpacpi=off"
