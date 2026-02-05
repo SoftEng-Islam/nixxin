@@ -38,7 +38,7 @@ let
     amf
     amf-headers
     amdenc
-
+    vpl-gpu-rt
     # Video acceleration
     libva
     libva-utils
