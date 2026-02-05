@@ -152,6 +152,9 @@ in {
 
       # "acpi_enforce_resources=lax"
 
+      # 4. Fix some AMD-specific ACPI interaction bugs
+      "pci=noaer"
+
       "intremap=off"
 
       # "nomodeset" # Black Screen Issues
@@ -178,7 +181,7 @@ in {
 
       # ---- Power Management ---- #
       # "workqueue.power_efficient=off" # General power responsiveness
-      # "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      "pcie_aspm=off" # Disables PCIe power saving (better performance)
 
       # ---- USB Devices ---- #
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
