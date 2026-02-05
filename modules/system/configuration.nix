@@ -1,4 +1,4 @@
-{ settings, pkgs, lib, ... }:
+{ settings, pkgs, config, lib, ... }:
 # ------------------------------------------------
 # !NOTICE: You Must Read And Customize This File
 # ------------------------------------------------
@@ -109,6 +109,7 @@ in {
     };
 
     kernelModules = _system.boot.kernelModules ++ [
+      "amdgpu-i2c"
       # "acpi_cpufreq"
       # "ip_tables"
       # "iptable_filter"
@@ -121,8 +122,9 @@ in {
     ];
     blacklistedKernelModules = _system.boot.blacklistedKernelModules
       ++ [ "k10temp" ];
-    extraModulePackages = [
+    extraModulePackages = with config.boot.kernelPackages; [
       pkgs.nftables
+      amdgpu-i2c
       # pkgs.iptables-legacy
       # config.hardware.nvidia.package
       # config.boot.kernelPackages.v4l2loopback
