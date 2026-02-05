@@ -41,6 +41,7 @@ let
     vpl-gpu-rt
     # Video acceleration
     libva
+    libva1
     libva-utils
     libva-vdpau-driver
     libvdpau
@@ -239,7 +240,8 @@ in {
       # RUSTICL_MAX_WORK_GROUPS = "128";
 
       VAAPI_COMPAT = "1";
-      VAAPI_MPEG4_ENABLED = "1";
+      VAAPI_MPEG4_ENABLED = "true";
+
       LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
@@ -250,9 +252,9 @@ in {
       __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
 
       GST_VAAPI_ALL_DRIVERS = "1";
-      LIBGL_ALWAYS_SOFTWARE = "0";
-      # LIBGL_ALWAYS_INDIRECT = "1";  # REMOVED: This forced software rendering (llvmpipe)
-      # LP_NUM_THREADS = "8";
+      LIBGL_ALWAYS_SOFTWARE = "1";
+      LIBGL_ALWAYS_INDIRECT = "1";
+      LP_NUM_THREADS = settings.common.cpu.cores;
       GALLIUM_DRIVER = "radeonsi";
 
       HSA_ENABLE_SDMA = "1";

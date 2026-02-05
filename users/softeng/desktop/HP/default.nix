@@ -27,7 +27,7 @@
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   system.kernel = pkgs.linuxPackages_zen;
-  system.useTmpfs = true; # Disable it before install/update Linux Kernel.
+  system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;
   system.upgrade.allowReboot = false;
@@ -127,6 +127,41 @@
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
   common.cursor.package = pkgs.bibata-cursors;
+
+  # CPU Architecture
+  common.cpu.arch = "amd64"; # "amd64" or "aarch64"
+  common.cpu.intel =
+    false; # Set true if you have Intel CPU, and false if you have AMD CPU.
+  common.cpu.amd =
+    true; # Set true if you have AMD CPU, and false if you have Intel CPU.
+  common.cpu.zen =
+    true; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
+  common.cpu.ryzen =
+    true; # Set true if you have AMD Ryzen CPU, and false if you have non-Ryzen AMD CPU
+  common.cpu.ryzenMobile =
+    false; # Set true if you have AMD Ryzen Mobile CPU, and false if you have non-Ryzen Mobile AMD CPU
+  common.cpu.amdGPU =
+    true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
+  common.cpu.nvidiaGPU =
+    false; # Set true if you have NVIDIA GPU, and false if you have non-NVIDIA GPU.
+  common.cpu.intelGPU =
+    false; # Set true if you have Intel GPU, and false if you have non-Intel GPU.
+  # get cpu cores: lscpu | grep "^CPU(s):" | awk '{print $2}'
+  common.cpu.cores =
+    4; # Set the number of CPU cores you have, for better performance in some apps and games.
+  # get cpu threads: scpu | grep -e "Socket(s):" -e "Core(s) per socket:" -e "Thread(s) per core:"
+  common.cpu.threads =
+    4; # Set the number of CPU threads you have, for better performance in some apps and games.
+  common.cpu.tdp =
+    65; # Set the TDP of your CPU in watts, for better performance in some apps and games.
+  common.cpu.overclocking =
+    false; # Set true if you want to overclock your CPU, and false if you don't want to overclock your CPU.
+  common.cpu.undervolting =
+    false; # Set true if you want to undervolt your CPU, and false if you don't want to undervolt your CPU.
+
+  # [ Battery ]
+  common.battery =
+    false; # Set true if you have a laptop with battery, and false if you have a desktop without battery.
 
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
@@ -549,7 +584,7 @@
 
     "intremap=off"
     "iommu=pt"
-    "acpi=off"
+    #    "acpi=off"
 
     # Disables the Linux audit subsystem.
     # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
