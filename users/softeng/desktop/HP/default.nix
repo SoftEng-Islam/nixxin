@@ -515,16 +515,18 @@
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
     "amdgpu.vm_fragment_size=9"
-    "amdgpu.gttsize=40000"
+    # "amdgpu.gttsize=40000"
     "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.sg_display=0" # Disable scatter-gather display
     "amdgpu.bapm=1" # Disable bidirectional APM
-
-    # Disables AMD's IOMMU (Input-Output Memory Management Unit).
-    # May improve compatibility or performance, especially on systems where IOMMU causes issues (like hangs or USB problems).
-    # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
     "amd_iommu=on"
+    # Disables HDMI/DisplayPort audio output on AMD GPUs.
+    # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
+    "amdgpu.audio=0"
+
+    # 4. Fix some AMD-specific ACPI interaction bugs
+    "pci=noaer"
 
     "thermal.off=1"
     "random.trust_cpu=on" # ?
@@ -532,27 +534,20 @@
     "clocksource=tsc"
     "no_timer_check"
 
-    "pci=noacpi"
     # "acpi=off"
-    "acpi=ht"
+    # "acpi=ht"
+    "pci=noacpi"
     "pnpacpi=off"
     "noapic"
     "nolapic"
-
-    # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
-    # "amdgpu.sched_hw_submission=4"
 
     # Disables the Linux audit subsystem.
     # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
     "audit=0"
 
-    # Disables HDMI/DisplayPort audio output on AMD GPUs.
-    # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-    "amdgpu.audio=0"
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
-    "amdgpu" # AMD GPU driver
     "k10temp" # Temperature monitoring
     "i2c_hid" # Input devices
     "usbhid"

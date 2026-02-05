@@ -92,7 +92,7 @@ in {
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
-        "amdgpu"
+        # "amdgpu"
         "ahci"
         "cryptd"
         "sd_mod"
@@ -151,10 +151,6 @@ in {
         acpi_osi="Windows 2015"'' # Tells ACPI to behave as if it was Windows 2015.
 
       "acpi_enforce_resources=lax"
-
-      # 4. Fix some AMD-specific ACPI interaction bugs
-      "pci=noaer"
-
       "intremap=off"
 
       # "nomodeset" # Black Screen Issues
@@ -163,21 +159,18 @@ in {
 
       # Disable Mitigation
       "mitigations=off"
-      # "split_lock_mitigate=off" # prevents some games from being slowed
+      "split_lock_mitigate=off" # prevents some games from being slowed
       "retbleed=off" # Disable Retbleed mitigation
 
-      # Limit C-states for better response time
-      # "processor.max_cstate=0" # prevents deep sleep, ensures max boost
-
-      # "threadirqs" # ?
+      "threadirqs" # ?
 
       # ---- System Performance ---- #
       "preempt=full" # voluntary or full
       "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
-      # "clocksource=tsc"
-      # "tsc=reliable"
-      # "pti=on" # Page Table Isolation for security
-      # "page_poison=1"             # Poison freed memory pages (As it conflicts with init_on_free)
+      "clocksource=tsc"
+      "tsc=reliable"
+      "pti=on" # Page Table Isolation for security
+      "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
 
       # ---- Power Management ---- #
       # "workqueue.power_efficient=off" # General power responsiveness
