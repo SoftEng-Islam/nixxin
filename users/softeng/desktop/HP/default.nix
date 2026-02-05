@@ -533,8 +533,8 @@
     "no_timer_check"
 
     "pci=noacpi"
-    "acpi=off"
-    # "acpi=ht"
+    # "acpi=off"
+    "acpi=ht"
     "pnpacpi=off"
     "noapic"
     "nolapic"
