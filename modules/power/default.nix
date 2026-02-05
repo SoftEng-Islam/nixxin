@@ -73,6 +73,8 @@ in {
         poweralertd
         cpupower-gui
         cpufrequtils
+        acpica-tools
+        acpidump-all
       ];
     }
     (lib.mkIf (_power.tuned.enable or false) {

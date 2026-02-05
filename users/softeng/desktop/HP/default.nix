@@ -526,10 +526,18 @@
     # ⚠️ Not suitable if you use VFIO, PCI passthrough, or some types of sandboxing.
     "amd_iommu=on"
 
+    "thermal.off=1"
     "random.trust_cpu=on" # ?
     "tsc=reliable"
     "clocksource=tsc"
     "no_timer_check"
+
+    "pci=noacpi"
+    "acpi=off"
+    # "acpi=ht"
+    "pnpacpi=off"
+    "noapic"
+    "nolapic"
 
     # Sets the number of hardware job queues (rings) that the AMD GPU scheduler can submit in parallel.
     # "amdgpu.sched_hw_submission=4"

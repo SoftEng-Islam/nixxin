@@ -150,7 +150,7 @@ in {
       ''
         acpi_osi="Windows 2015"'' # Tells ACPI to behave as if it was Windows 2015.
 
-      # "acpi_enforce_resources=lax"
+      "acpi_enforce_resources=lax"
 
       # 4. Fix some AMD-specific ACPI interaction bugs
       "pci=noaer"
