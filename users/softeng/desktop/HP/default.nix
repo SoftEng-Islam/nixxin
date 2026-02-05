@@ -474,9 +474,9 @@
   ];
   modules.system.boot.blacklistedKernelModules = [
     # "hp_wmi"
-    "radeon"
-    "nouveau"
-    "nvidia"
+    # "radeon"
+    # "nouveau"
+    # "nvidia"
   ];
 
   # [ GRUB ]

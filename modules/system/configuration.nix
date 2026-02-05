@@ -92,7 +92,7 @@ in {
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
-        # "amdgpu"
+        "amdgpu"
         "ahci"
         "cryptd"
         "sd_mod"
