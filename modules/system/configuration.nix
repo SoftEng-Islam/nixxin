@@ -141,22 +141,6 @@ in {
       "rd.udev.log_level=0"
       "plymouth.ignore-serial-consoles"
 
-      # Suppresses ACPI errors:
-      # kernel: ACPI Error: Aborting method \_SB.HIDD._DSM due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
-      # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
-      # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
-      # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-      "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
-      ''
-        acpi_osi="Windows 2015"'' # Tells ACPI to behave as if it was Windows 2015.
-
-      "acpi_enforce_resources=lax"
-      "intremap=off"
-
-      # "nomodeset" # Black Screen Issues
-      # "nomodeset" # Black Screen Issues
-      # "idle=nomwait"
-
       # Disable Mitigation
       "mitigations=off"
       "split_lock_mitigate=off" # prevents some games from being slowed
@@ -166,11 +150,11 @@ in {
 
       # ---- System Performance ---- #
       "preempt=full" # voluntary or full
-      "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
-      "clocksource=tsc"
-      "tsc=reliable"
-      "pti=on" # Page Table Isolation for security
-      "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
+      # "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
+      # "clocksource=tsc"
+      # "tsc=reliable"
+      # "pti=on" # Page Table Isolation for security
+      # "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
 
       # ---- Power Management ---- #
       # "workqueue.power_efficient=off" # General power responsiveness

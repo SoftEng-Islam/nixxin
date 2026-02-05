@@ -534,6 +534,17 @@
     "clocksource=tsc"
     "no_timer_check"
 
+    # Suppresses ACPI errors:
+    # kernel: ACPI Error: Aborting method \_SB.HIDD._DSM due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
+    # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
+    # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
+    # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
+    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    ''
+      acpi_osi="Windows 2015"'' # Tells ACPI to behave as if it was Windows 2015.
+
+    "acpi_enforce_resources=lax"
+    "intremap=off"
     "acpi=off"
     # "acpi=ht"
     # "pci=noacpi"
