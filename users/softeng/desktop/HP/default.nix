@@ -536,10 +536,10 @@
 
     # "acpi=off"
     # "acpi=ht"
-    "pci=noacpi"
-    "pnpacpi=off"
-    "noapic"
-    "nolapic"
+    # "pci=noacpi"
+    # "pnpacpi=off"
+    # "noapic"
+    # "nolapic"
 
     # Disables the Linux audit subsystem.
     # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
