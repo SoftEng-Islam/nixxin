@@ -15,14 +15,12 @@ in {
   ];
   config = lib.mkIf (settings.modules.power.enable or false) (lib.mkMerge [
     {
-      assertions = [
-        {
-          assertion = !((_power.auto-cpufreq.enable or false)
-            && (_power.tuned.enable or false));
-          message =
-            "Power config: enable either 'modules.power.auto-cpufreq.enable' or 'modules.power.tuned.enable' (not both).";
-        }
-      ];
+      assertions = [{
+        assertion = !((_power.auto-cpufreq.enable or false)
+          && (_power.tuned.enable or false));
+        message =
+          "Power config: enable either 'modules.power.auto-cpufreq.enable' or 'modules.power.tuned.enable' (not both).";
+      }];
 
       boot.kernelModules = settings.modules.power.boot.kernelModules or [
         # "acpi_cpufreq" # ACPI CPU frequency scaling driver
@@ -39,6 +37,9 @@ in {
       services.auto-epp.enable = false;
 
       services.thermald.enable = true;
+
+      # Enable the ACPI power management daemon.
+      services.acpid.enable = true;
 
       # Whether to enable power management. This includes support for suspend-to-RAM and powersave features on laptops.
       powerManagement.enable = _power.powerManagement.enable;
@@ -62,7 +63,8 @@ in {
       #   fight with tuned/cpupower).
       # - tuned can provide the power-profiles-daemon DBus API via ppdSupport.
       services.power-profiles-daemon.enable = lib.mkDefault
-        (!(_power.auto-cpufreq.enable or false) && !(_power.tuned.enable or false));
+        (!(_power.auto-cpufreq.enable or false)
+          && !(_power.tuned.enable or false));
 
       powerManagement.scsiLinkPolicy = "max_performance";
 
