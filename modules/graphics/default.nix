@@ -374,6 +374,7 @@ in {
         radeon-profile
         radeontop
         radeontools
+        wxedid
       ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages
       ++ graphicsTools ++ lib.flatten _graphics;
   };
