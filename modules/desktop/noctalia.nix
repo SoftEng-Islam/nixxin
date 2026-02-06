@@ -95,7 +95,30 @@
           white = "#e0def4";
         };
       };
-
+      plugins = {
+        sources = [{
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }];
+        states = {
+          screen-recorder = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          privacy-indicator = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+        version = 1;
+      };
+      pluginSettings = {
+        privacy-indicator = {
+          hideInactive = true;
+          removeMargins = true;
+        };
+      };
       settings = {
         settingsVersion = 0;
         # setupCompleted = true;
@@ -290,7 +313,7 @@
           fillMode = "crop";
           fillColor = "#000000";
           randomEnabled = true;
-          randomIntervalSec = 20000; # each 5 hours
+          randomIntervalSec = 10000;
           transitionDuration = 1500;
           transitionType = "random";
           transitionEdgeSmoothness = 5.0e-2;
@@ -327,6 +350,14 @@
           sortByMostUsed = true;
           terminalCommand = "xterm -e";
           viewMode = "list";
+          autoPasteClipboard = false;
+          clipboardWrapText = true;
+          iconMode = "tabler";
+          ignoreMouseInput = false;
+          pinnedApps = [ ];
+          screenshotAnnotationTool = "";
+          showCategories = false;
+          showIconBackground = false;
         };
         controlCenter = {
           position = "top_right";

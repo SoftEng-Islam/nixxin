@@ -232,7 +232,8 @@ in {
     };
   };
 
-  powerManagement.cpuFreqGovernor = "performance";
+  services.thermald.enable = true;
+  services.thermald.ignoreCpuidCheck = true;
 
   # ------------------------------------------------
   # ---- Hardware Configuration
