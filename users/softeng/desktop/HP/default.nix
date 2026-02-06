@@ -508,8 +508,8 @@
     "gpu_sched"
   ];
   modules.system.boot.blacklistedKernelModules = [
-    # "hp_wmi"
-    # "radeon"
+    "hp_wmi"
+    "radeon"
     # "nouveau"
     # "nvidia"
   ];
@@ -546,7 +546,8 @@
     "amdgpu.cik_support=1"
 
     "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
-    "amdgpu.dc=1"
+    "amdgpu.dc=0"
+    "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
     "amdgpu.dpm=1"
     "amdgpu.gpu_recovery=1"
     "amdgpu.vm_fragment_size=9"
@@ -559,10 +560,15 @@
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
+    "amdgpu.gpu_recovery=1" # Enable GPU recovery
+
+    # Allow turbo boost
+    "processor.ignore_ppc=1"
 
     # 4. Fix some AMD-specific ACPI interaction bugs
     "pci=noaer"
 
+    "idle=nomwait" # Forces the CPU/APU to stay in a more active state
     "thermal.off=1"
     "random.trust_cpu=on" # ?
     "tsc=reliable"
@@ -574,14 +580,18 @@
     # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
     # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
     # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
 
     # Tells ACPI to behave as if it was Windows 2015.
-    ''acpi_osi="Windows 2015"''
+    # "acpi_osi=Linux"
+
+    ''acpi_osi="Windows 2009"''
+    # ''acpi_osi="Windows 2012"''
+    # ''acpi_osi="Windows 2013"''
+    # ''acpi_osi="Windows 2015"''
     # ''"acpi_osi=Windows 2022"''
 
-    # fixes some ACPI errors
-    "acpi_enforce_resources=no"
+    "acpi_enforce_resources=lax"
 
     "intremap=off"
     "iommu=pt"
