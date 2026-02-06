@@ -14,7 +14,6 @@ in mkIf (settings.modules.windows.enable) {
     # MESA_GL_VERSION_OVERRIDE=4.5
     # MESA_LOADER_DRIVER_OVERRIDE=osmesa
 
-    __GL_THREADED_OPTIMIZATIONS = "1";
     WINE_GALLIUM_NINE = "1";
 
     # Optimize Wine performance.
