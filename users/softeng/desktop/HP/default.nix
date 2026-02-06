@@ -576,7 +576,7 @@
     "no_timer_check"
 
     # "acpi=off"
-    "acpi_enforce_resources=lax"
+    # "acpi_enforce_resources=lax"
 
     # 4. Fix some AMD-specific ACPI interaction bugs
     # "pci=noaer"
@@ -586,8 +586,8 @@
     # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
     # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
     # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
-
+    # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    ''acpi_osi="Windows 2009"''
     # Tells ACPI to behave as if it was Windows 2015.
     # "acpi_osi=Linux"
 
