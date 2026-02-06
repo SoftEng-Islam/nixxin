@@ -89,7 +89,7 @@ in {
     ZSH_DISABLE_COMPFIX=true
 
     # OMZ behavior toggles
-    DISABLE_MAGIC_FUNCTIONS="true"
+    DISABLE_MAGIC_FUNCTIONS="false"
     ENABLE_CORRECTION="false"
     DISABLE_UNTRACKED_FILES_DIRTY="true"
 
@@ -237,7 +237,7 @@ in {
       # so they are applied before OMZ loads from /etc/zshrc.
 
       # Uncomment the following line if pasting URLs and other text is messed up.
-      # DISABLE_MAGIC_FUNCTIONS="true"
+      DISABLE_MAGIC_FUNCTIONS="false"
       # Uncomment the following line to enable command auto-correction.
       # ENABLE_CORRECTION="true"
 
