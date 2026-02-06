@@ -103,7 +103,7 @@ in {
         "pata_atiixp"
         "usbhid"
       ];
-      kernelModules = [ "amdgpu" ];
+      # kernelModules = [ "amdgpu" ];
 
       extraFiles = acpiOverrideExtraFiles;
     };
