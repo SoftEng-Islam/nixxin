@@ -498,7 +498,7 @@
   modules.system.boot.tmp.useTmpfs = system.useTmpfs;
   modules.system.boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
   modules.system.boot.loader.timeout = 3; # seconds
-  modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
+  modules.system.boot.loader.mode = "BIOS"; # UEFI OR BIOS
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
   modules.system.boot.initrd.kernelModules = [
     # GPU/Display modules
