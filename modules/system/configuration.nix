@@ -111,7 +111,7 @@ in {
 
     kernelModules = _system.boot.kernelModules ++ [
       "amdgpu-i2c"
-      # "acpi_cpufreq"
+      "acpi_cpufreq"
       # "ip_tables"
       # "iptable_filter"
       # "iptable_nat"
