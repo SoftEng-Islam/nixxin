@@ -585,11 +585,11 @@
     # Tells ACPI to behave as if it was Windows 2015.
     # "acpi_osi=Linux"
 
-    # ''"acpi_osi="Windows 2009"''
-    ''"acpi_osi="Windows 2012"''
-    # ''"acpi_osi="Windows 2013"''
-    # ''"acpi_osi="Windows 2015"''
-    # ''"acpi_osi=Windows 2022"''
+    # ''acpi_osi="Windows 2009"''
+    ''acpi_osi="Windows 2012"''
+    # ''acpi_osi="Windows 2013"''
+    # ''acpi_osi="Windows 2015"''
+    # ''acpi_osi=Windows 2022"''
 
     "acpi_enforce_resources=lax"
 
