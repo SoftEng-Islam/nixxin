@@ -577,8 +577,8 @@
     "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
 
     # Tells ACPI to behave as if it was Windows 2015.
-    # ''acpi_osi="!Windows 2015"''
-    ''"acpi_osi=Windows 2022"''
+    ''acpi_osi="Windows 2015"''
+    # ''"acpi_osi=Windows 2022"''
 
     # fixes some ACPI errors
     "acpi_enforce_resources=no"
