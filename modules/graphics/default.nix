@@ -41,7 +41,7 @@ let
     vpl-gpu-rt
     # Video acceleration
     libva
-    libva1
+    # libva1
     libva-utils
     libva-vdpau-driver
     libvdpau
