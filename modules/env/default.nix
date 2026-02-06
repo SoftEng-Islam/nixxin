@@ -43,8 +43,8 @@ in lib.mkIf (settings.modules.env.enable or false) {
       QT_QPA_PLATFORM = "wayland;xcb";
 
       # "WLR_DRM_NO_ATOMIC,1"
-      WLR_BACKEND = "vulkan";
-      WLR_RENDERER = "vulkan";
+      # WLR_BACKEND = "vulkan";
+      # WLR_RENDERER = "vulkan";
 
       AQ_DRM_DEVICES = "/dev/dri/card1"; # CHANGEME: Related to the GPU
 

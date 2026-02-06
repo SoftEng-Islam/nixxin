@@ -248,6 +248,8 @@ in {
 
     cpu.amd.updateMicrocode = true;
 
+    i2c.enable = true;
+
     # What is the cpu.amd.sev.enable?
     # AMD Secure Encrypted Virtualization (SEV) is a technology that allows virtual machines
     # to run with encrypted memory, providing an additional layer of security.

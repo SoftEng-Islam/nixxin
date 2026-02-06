@@ -35,8 +35,8 @@ let
     libclc
     glew
     glfw
-    amf
-    amf-headers
+    # amf
+    # amf-headers
     amdenc
     vpl-gpu-rt
     # Video acceleration
@@ -242,7 +242,7 @@ in {
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "true";
 
-      LIBVA_DRIVER_NAME = "radeonsi";
+      # LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
       # vblank_mode = "0"; # ? Reduces latency
@@ -252,8 +252,8 @@ in {
       __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
 
       GST_VAAPI_ALL_DRIVERS = "1";
-      LIBGL_ALWAYS_SOFTWARE = "1";
-      LIBGL_ALWAYS_INDIRECT = "1";
+      LIBGL_ALWAYS_SOFTWARE = 0; # Disable software rendering fallback
+      LIBGL_ALWAYS_INDIRECT = 0;
       LP_NUM_THREADS = settings.common.cpu.cores;
       GALLIUM_DRIVER = "radeonsi";
 
@@ -276,10 +276,8 @@ in {
         "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
-      LIBGL_DRIVERS_PATH =
-        lib.makeSearchPathOutput "lib" "lib/dri" [ pkgs.mesa ];
-      LIBVA_DRIVERS_PATH =
-        lib.makeSearchPathOutput "out" "lib/dri" [ pkgs.mesa ];
+      # LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [ pkgs.mesa ];
+      # LIBVA_DRIVERS_PATH = lib.makeSearchPathOutput "out" "lib/dri" [ pkgs.mesa ];
       __EGL_VENDOR_LIBRARY_DIRS = "${pkgs.mesa}/share/glvnd/egl_vendor.d/";
 
       # Disable Mesa’s experimental device select layer if needed
