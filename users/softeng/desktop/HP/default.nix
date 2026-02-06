@@ -443,7 +443,7 @@
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    # "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    "acpi_cpufreq" # ACPI CPU frequency scaling driver
   ];
 
   # [ Recording ]
@@ -539,34 +539,34 @@
     # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
     # for Southern Islands (SI i.e. GCN 1) cards
     "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-    "amdgpu.si_support=1"
+    "amdgpu.si_support=0"
 
     # for Sea Islands (CIK i.e. GCN 2) cards
     "radeon.cik_support=0"
     "amdgpu.cik_support=1"
 
-    "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+    "radeon.dpm=0"
+    "amdgpu.dpm=0"
+    "amdgpu.abmlevel=0"
+    "amdgpu.vm_update_mode=3"
+    "amdgpu.ppfeaturemask=0xfffd7fff" # Unlock all gpu controls
     "amdgpu.dc=0"
     "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
-    "amdgpu.dpm=1"
-    "amdgpu.gpu_recovery=1"
     "amdgpu.vm_fragment_size=9"
-    # "amdgpu.gttsize=40000"
     "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.sg_display=0" # Disable scatter-gather display
     "amdgpu.bapm=1" # Disable bidirectional APM
     "amd_iommu=on"
+    # "amdgpu.gttsize=40000"
+
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
-    "amdgpu.gpu_recovery=1" # Enable GPU recovery
 
     # Allow turbo boost
     "processor.ignore_ppc=1"
-
-    # 4. Fix some AMD-specific ACPI interaction bugs
-    "pci=noaer"
+    "processor.max_cstate=0"
 
     "idle=nomwait" # Forces the CPU/APU to stay in a more active state
     "thermal.off=1"
@@ -575,15 +575,21 @@
     "clocksource=tsc"
     "no_timer_check"
 
+    # "acpi=off"
+    "acpi_enforce_resources=lax"
+
+    # 4. Fix some AMD-specific ACPI interaction bugs
+    # "pci=noaer"
+
     # Suppresses ACPI errors:
     # kernel: ACPI Error: Aborting method \_SB.HIDD._DSM due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
     # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
     # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
     # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-    # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
 
     # Tells ACPI to behave as if it was Windows 2015.
-    "acpi_osi=Linux"
+    # "acpi_osi=Linux"
 
     # ''acpi_osi="Windows 2009"''
     # ''acpi_osi="Windows"''
@@ -592,16 +598,24 @@
     # ''acpi_osi="Windows 2015"''
     # ''acpi_osi=Windows 2022"''
 
-    "acpi_enforce_resources=lax"
+    # ---- Power Management ---- #
+    # "workqueue.power_efficient=off" # General power responsiveness
+    "pcie_aspm=off" # Disables PCIe power saving (better performance)
+
+    # ---- System Performance ---- #
+    "preempt=full" # voluntary or full
+    # "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
+    # "clocksource=tsc"
+    # "tsc=reliable"
+    # "pti=on" # Page Table Isolation for security
+    # "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
 
     "intremap=off"
     "iommu=pt"
-    #    "acpi=off"
 
     # Disables the Linux audit subsystem.
     # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
     "audit=0"
-
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

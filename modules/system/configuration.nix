@@ -93,6 +93,7 @@ in {
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         # "amdgpu"
+        "acpi"
         "ahci"
         "cryptd"
         "sd_mod"
@@ -110,7 +111,7 @@ in {
 
     kernelModules = _system.boot.kernelModules ++ [
       "amdgpu-i2c"
-      # "acpi_cpufreq"
+      "acpi_cpufreq"
       # "ip_tables"
       # "iptable_filter"
       # "iptable_nat"
@@ -148,19 +149,7 @@ in {
       "split_lock_mitigate=off" # prevents some games from being slowed
       "retbleed=off" # Disable Retbleed mitigation
 
-      "threadirqs" # ?
-
-      # ---- System Performance ---- #
-      "preempt=full" # voluntary or full
-      # "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
-      # "clocksource=tsc"
-      # "tsc=reliable"
-      # "pti=on" # Page Table Isolation for security
-      # "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
-
-      # ---- Power Management ---- #
-      # "workqueue.power_efficient=off" # General power responsiveness
-      "pcie_aspm=off" # Disables PCIe power saving (better performance)
+      "threadirqs"
 
       # ---- USB Devices ---- #
       # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
@@ -168,11 +157,11 @@ in {
       # "usbcore.autosuspend=-1" # Prevents USB disconnect issues
 
       # ---- WIFI ---- #
-      # "rtl8xxxu_disable_hw_crypto=1"
+      "rtl8xxxu_disable_hw_crypto=1"
 
       # ---- Networking ---- #
-      "net.ifnames=0" # ?
-      # "biosdevname=0" # Use legacy network interface names (eth0, wlan0, etc.)
+      # Use legacy network interface names (eth0, wlan0, etc.)
+      "net.ifnames=0"
 
       # ---- Storage ---- #
       # "libata.force=noncq"

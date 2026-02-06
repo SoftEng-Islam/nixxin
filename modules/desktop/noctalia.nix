@@ -352,11 +352,11 @@
           viewMode = "list";
           autoPasteClipboard = false;
           clipboardWrapText = true;
-          iconMode = "tabler";
+          # iconMode = "tabler";
           ignoreMouseInput = false;
           pinnedApps = [ ];
           screenshotAnnotationTool = "";
-          showCategories = false;
+          showCategories = true;
           showIconBackground = false;
         };
         controlCenter = {

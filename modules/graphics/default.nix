@@ -146,6 +146,12 @@ in {
     # - Development tools and utilities
 
     environment.variables = {
+
+      # The AMDGPU driver supports user queues, which allow job submission directly to the GPU
+      # hardware without going through the kernel driver’s command submission ioctl. Enabling this
+      # can reduce latency and improve efficiency by bypassing some kernel driver overhead.
+      AMD_USERQ = 1;
+
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = 0;
 
@@ -223,7 +229,7 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      RADV_PERFTEST = "gpl,sam";
+      RADV_PERFTEST = "gpl,sam, transfer_queue";
       # ACO_DEBUG = "nowrap,perfwarn";
       # RADV_DEBUG = "nohiz,nodcc,nofmask,noatocdithering";
       # R600_DEBUG = "info,checkir,nowc";
@@ -234,30 +240,28 @@ in {
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
       RUSTICL_ENABLE = "radeonsi";
-      # RUSTICL_CL_VERSION = "1.2";
       RUSTICL_DEVICE_TYPE = "gpu";
       RUSTICL_FEATURES = "fp64";
-      # RUSTICL_MAX_WORK_GROUPS = "128";
 
-      VAAPI_COMPAT = "1";
+      VAAPI_COMPAT = 1;
       VAAPI_MPEG4_ENABLED = "true";
 
       # LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
       # vblank_mode = "0"; # ? Reduces latency
-      __GL_SYNC_TO_VBLANK = "1";
-      __GL_THREADED_OPTIMIZATIONS = "1";
-      __GL_VRR_ALLOWED = "1";
+      __GL_SYNC_TO_VBLANK = 1;
+      __GL_THREADED_OPTIMIZATIONS = 1;
+      __GL_VRR_ALLOWED = 1;
       __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
 
-      GST_VAAPI_ALL_DRIVERS = "1";
+      GST_VAAPI_ALL_DRIVERS = 1;
       LIBGL_ALWAYS_SOFTWARE = 0; # Disable software rendering fallback
       LIBGL_ALWAYS_INDIRECT = 0;
       LP_NUM_THREADS = settings.common.cpu.cores;
       GALLIUM_DRIVER = "radeonsi";
 
-      HSA_ENABLE_SDMA = "1";
+      HSA_ENABLE_SDMA = 1;
       HSA_OVERRIDE_GFX_VERSION = "7.0.1"; # Older version for Kaveri
       HSA_AMDGPU_GFX = "gfx7"; # Kaveri is GCN 1.1 (gfx7)
 
@@ -269,7 +273,7 @@ in {
       CLVK_PHYSICAL_ADDRESSING = 1;
 
       # Avoid legacy switchable GPU hints (if you only have one GPU)
-      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
+      DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = 1;
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
       __EGL_VENDOR_LIBRARY_FILENAMES =
@@ -288,7 +292,7 @@ in {
       mesa_glthread = "true";
 
       # Mesa OpenGL (somewhat useful)
-      MESA_NO_ERROR = "1";
+      MESA_NO_ERROR = 1;
       # MESA_GL_VERSION_OVERRIDE = "4.6";
       # MESA_GLSL_VERSION_OVERRIDE = "460";
 

@@ -70,12 +70,16 @@ in {
       powerManagement.scsiLinkPolicy = "max_performance";
 
       environment.systemPackages = with pkgs; [
+        acpi
+        acpic
+        acpid
+        acpitool
+        acpica-tools
+        acpidump-all
         power-profiles-daemon
         poweralertd
         cpupower-gui
         cpufrequtils
-        acpica-tools
-        acpidump-all
       ];
     }
     (lib.mkIf (_power.tuned.enable or false) {

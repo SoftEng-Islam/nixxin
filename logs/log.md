@@ -98,5 +98,6 @@ clpeak
 
 ## Additional Notes
 
+- ACPI
 - iGPU VRAM is reported as **1024 MB** reserved at boot (see `logs/dmesg.log.txt`), so available system RAM will be reduced accordingly.
 - `lact` is active and applies a GPU configuration at login; if benchmarking, consider temporarily disabling it to eliminate it as a variable.
