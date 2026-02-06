@@ -583,10 +583,10 @@
     # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
 
     # Tells ACPI to behave as if it was Windows 2015.
-    # "acpi_osi=Linux"
+    "acpi_osi=Linux"
 
     # ''acpi_osi="Windows 2009"''
-    ''acpi_osi="Windows"''
+    # ''acpi_osi="Windows"''
     # ''acpi_osi="Windows 2012"''
     # ''acpi_osi="Windows 2013"''
     # ''acpi_osi="Windows 2015"''
