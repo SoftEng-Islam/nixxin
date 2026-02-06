@@ -586,7 +586,8 @@
     # "acpi_osi=Linux"
 
     # ''acpi_osi="Windows 2009"''
-    ''acpi_osi="Windows 2012"''
+    ''acpi_osi="Windows"''
+    # ''acpi_osi="Windows 2012"''
     # ''acpi_osi="Windows 2013"''
     # ''acpi_osi="Windows 2015"''
     # ''acpi_osi=Windows 2022"''
