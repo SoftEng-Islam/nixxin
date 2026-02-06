@@ -92,7 +92,7 @@ in {
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
-        # "amdgpu"
+        "amdgpu"
         "ahci"
         "cryptd"
         "sd_mod"
@@ -103,7 +103,7 @@ in {
         "pata_atiixp"
         "usbhid"
       ];
-      # kernelModules = [ "amdgpu" ];
+      kernelModules = [ "amdgpu" ];
 
       extraFiles = acpiOverrideExtraFiles;
     };
@@ -182,7 +182,6 @@ in {
       # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
       # "default_hugepagesz=2M" # Set default huge page size
       "transparent_hugepage=always" # Enable transparent huge pages
-      "amdgpu.gpu_recovery=1" # Enable GPU recovery
 
       # ---- Swap ---- #
       # "zswap.enabled=1"
