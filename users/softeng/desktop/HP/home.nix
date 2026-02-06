@@ -8,6 +8,7 @@
   };
   home-manager.users.${settings.user.username} = {
     programs.home-manager.enable = true;
+    # xdg.configFile."mimeapps.list".force = true
     home = {
       username = settings.user.username;
       homeDirectory = "/home/${settings.user.username}";
