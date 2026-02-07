@@ -26,7 +26,7 @@
         # --extractor-args "youtube:formats=duplicate;player-client=web" -f "ba[protocol=sabr]+bv[protocol=sabr]"
         # --extractor-args "youtube:player_client=default"
         # --extractor-args "youtube:player_js_variant=tv"
-        --extractor-args "youtube:player-client=tv_embedded"
+        --extractor-args "youtube:player-client=tv,mweb;formats=incomplete"
 
       '';
     };
