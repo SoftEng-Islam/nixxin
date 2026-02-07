@@ -233,7 +233,11 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      RADV_PERFTEST = "gpl,sam,video_encode";
+      RADV_TEX_ANISO = 16;
+      AMD_TEX_ANISO = 16;
+
+      RADV_PERFTEST =
+        "gpl,sam,video_encode"; # Enable AMD GPU performance tests for OpenCL and Vulkan
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
