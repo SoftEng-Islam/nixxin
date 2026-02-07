@@ -218,7 +218,7 @@ in {
   services = {
     accounts-daemon.enable = true;
     udisks2.enable = true;
-    fwupd.enable = false; # Firmware update daemon --- IGNORE ---
+    fwupd.enable = true; # Firmware update daemon --- IGNORE ---
 
     # Tumbler, A D-Bus thumbnailer service.
     # Enabling tumbler helps Thunar, but Nautilus relies on gnome-video-thumbnailer and ffmpegthumbnailer, not Tumbler.
@@ -323,5 +323,7 @@ in {
 
     # Yet another nix cli helper
     nh
+
+    fwupd
   ];
 }
