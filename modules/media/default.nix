@@ -59,11 +59,11 @@ in {
           name = "handbrake";
           #  if you want the gui you can change ${lib.getExe pkgs.handbrake} to ${pkgs.handbrake}/bin/ghb
           text = ''
-            LD_LIBRARY_PATH=${
+            LD_LIBRARY_PATH="${
               builtins.getEnv "LD_LIBRARY_PATH" ""
             }/run/opengl-driver/lib:${
               builtins.getEnv "LD_LIBRARY_PATH"
-            } ${pkgs.handbrake}/bin/ghb "$@"
+            }" ${pkgs.handbrake}/bin/ghb "$@"
           '';
         })
 

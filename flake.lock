@@ -220,6 +220,22 @@
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       }
     },
+    "nix-flatpak": {
+      "locked": {
+        "lastModified": 1767983141,
+        "narHash": "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=",
+        "owner": "gmodena",
+        "repo": "nix-flatpak",
+        "rev": "440818969ac2cbd77bfe025e884d0aa528991374",
+        "type": "github"
+      },
+      "original": {
+        "owner": "gmodena",
+        "ref": "latest",
+        "repo": "nix-flatpak",
+        "type": "github"
+      }
+    },
     "nixGL": {
       "inputs": {
         "flake-utils": [
@@ -371,6 +387,7 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
+        "nix-flatpak": "nix-flatpak",
         "nixGL": "nixGL",
         "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_3",
