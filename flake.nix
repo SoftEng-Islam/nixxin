@@ -42,9 +42,8 @@
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
-    # illogical-impulse.url = "github:xBLACKICEx/end-4-dots-hyprland-nixos";
-    # illogical-impulse.inputs.nixpkgs.follows = "nixpkgs";
-
+    # https://github.com/gmodena/nix-flatpak
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
   };
   outputs = { self, nixpkgs, ... }@inputs:
     let

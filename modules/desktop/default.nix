@@ -1,5 +1,6 @@
 { inputs, settings, lib, pkgs, ... }: {
   imports = lib.optionals (settings.modules.desktop.enable or false) [
+    inputs.nix-flatpak.nixosModules.nix-flatpak
     ./dconf.nix
     ./keyring.nix
     ./polkit.nix
