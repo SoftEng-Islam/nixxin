@@ -546,7 +546,7 @@
     "amdgpu.cik_support=1"
 
     "radeon.dpm=0"
-    "amdgpu.dpm=0"
+    "amdgpu.dpm=1"
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
     "amdgpu.ppfeaturemask=0xfffd7fff" # Unlock all gpu controls
