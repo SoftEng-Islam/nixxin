@@ -55,17 +55,14 @@ in {
         glib.dev
         pkg-config
 
-        (pkgs.writeShellApplication {
-          name = "handbrake";
-          #  if you want the gui you can change ${lib.getExe pkgs.handbrake} to ${pkgs.handbrake}/bin/ghb
-          text = ''
-            LD_LIBRARY_PATH="${
-              builtins.getEnv "LD_LIBRARY_PATH" ""
-            }/run/opengl-driver/lib:${
-              builtins.getEnv "LD_LIBRARY_PATH"
-            }" ${pkgs.handbrake}/bin/ghb "$@"
-          '';
-        })
+        #  if you want the gui you can change ${lib.getExe pkgs.handbrake} to ${pkgs.handbrake}/bin/ghb
+        (pkgs.writeShellApplication "handbrake" ''
+          LD_LIBRARY_PATH="${
+            builtins.getEnv "LD_LIBRARY_PATH" ""
+          }/run/opengl-driver/lib:${
+            builtins.getEnv "LD_LIBRARY_PATH"
+          }" ${pkgs.handbrake}/bin/ghb "$@"
+        '')
 
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
