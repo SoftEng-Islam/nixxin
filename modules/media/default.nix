@@ -59,8 +59,9 @@ in {
         (pkgs.writeShellApplication {
           name = "handbrake";
           text = ''
+            # Only one argument allowed here
             LD_LIBRARY_PATH="${
-              builtins.getEnv "LD_LIBRARY_PATH" ""
+              builtins.getEnv "LD_LIBRARY_PATH"
             }/run/opengl-driver/lib:${
               builtins.getEnv "LD_LIBRARY_PATH"
             }" ${pkgs.handbrake}/bin/ghb "$@"
