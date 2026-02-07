@@ -14,17 +14,17 @@
         # downloader = lib.getExe pkgs.aria2;
         # downloader = "aria2c";
         # downloader-args = "aria2c:'-c -x12 -s12 -j10 -k1024M'";
-        # cookies-from-browser = "chrome";
+        cookies-from-browser = "chrome";
       };
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
         --download-archive downloaded.txt
-        --remote-components ejs:npm
+        # --remote-components ejs:npm
         --abort-on-unavailable-fragments
         --abort-on-error
         # --ignore-errors
         # --extractor-args "youtube:formats=duplicate;player-client=web" -f "ba[protocol=sabr]+bv[protocol=sabr]"
-        # --extractor-args "youtube:player_client=default"
+        --extractor-args "youtube:player_client=default"
         # --extractor-args "youtube:player_js_variant=tv"
 
       '';
