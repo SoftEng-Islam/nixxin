@@ -68,6 +68,10 @@ let
     libdrm
     mesa
     llvmPackages.clang
+
+    vkd3d-proton
+    vkd3d
+    directx-headers
   ];
 
   # Intel packages
@@ -229,13 +233,7 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      RADV_PERFTEST = "gpl,sam";
-      # ACO_DEBUG = "nowrap,perfwarn";
-      # RADV_DEBUG = "nohiz,nodcc,nofmask,noatocdithering";
-      # R600_DEBUG = "info,checkir,nowc";
-      # R600_DUMP_SHADERS = "vs,ps,cs";
-
-      # RUSTICL_DEBUG = "perf"; # Enable performance warnings
+      RADV_PERFTEST = "gpl,sam,video_encode";
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES

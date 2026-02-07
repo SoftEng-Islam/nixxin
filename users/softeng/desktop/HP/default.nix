@@ -539,11 +539,11 @@
     # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
     # for Southern Islands (SI i.e. GCN 1) cards
     "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-    "amdgpu.si_support=0"
+    "amdgpu.si_support=1"
 
     # for Sea Islands (CIK i.e. GCN 2) cards
     "radeon.cik_support=0"
-    "amdgpu.cik_support=1"
+    "amdgpu.cik_support=0"
 
     "radeon.dpm=0"
     "amdgpu.dpm=1"
@@ -558,7 +558,7 @@
     "amdgpu.sg_display=0" # Disable scatter-gather display
     "amdgpu.bapm=1" # Disable bidirectional APM
     "amd_iommu=on"
-    # "amdgpu.gttsize=40000"
+    "amdgpu.gttsize=2048"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
@@ -595,8 +595,8 @@
     # ''acpi_osi="Windows"''
     # ''acpi_osi="Windows 2012"''
     # ''acpi_osi="Windows 2013"''
-    # ''acpi_osi="Windows 2015"''
-    ''acpi_osi="Windows 2022"''
+    ''acpi_osi="Windows 2015"''
+    # ''acpi_osi="Windows 2022"''
 
     # ---- Power Management ---- #
     # "workqueue.power_efficient=off" # General power responsiveness

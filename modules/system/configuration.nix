@@ -296,11 +296,4 @@ in {
     RuntimeMaxUse=50M
     SystemMaxFileSize=50M
   '';
-
-  # ------------------------------------------------
-  # ---- Variables
-  # ------------------------------------------------
-  environment.variables = {
-
-  };
 }
