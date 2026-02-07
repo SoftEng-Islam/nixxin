@@ -19,7 +19,7 @@
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
         --download-archive downloaded.txt
-        # --remote-components ejs:npm
+        --remote-components ejs:npm
         --abort-on-unavailable-fragments
         --abort-on-error
         # --ignore-errors
