@@ -96,6 +96,58 @@
         };
       };
 
+      # https://docs.noctalia.dev/getting-started/nixos/#plugins
+      #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
+      plugins = {
+        sources = [{
+          enabled = true;
+          name = "Official Noctalia Plugins";
+          url = "https://github.com/noctalia-dev/noctalia-plugins";
+        }];
+        states = {
+          catwalk = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          translate = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          kaomoji-provider = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          keybind-cheatsheet = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          pomodoro = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          screen-recorder = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          screenshot = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          timer = {
+            enabled = false;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          unicode-picker = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+        version = 1;
+      };
+
+      #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
+      pluginSettings = { pomodoro = { compactMode = false; }; };
+
       settings = {
         settingsVersion = 0;
         # setupCompleted = true;
@@ -519,58 +571,6 @@
         };
         battery = { chargingMode = 0; };
       };
-
-      # https://docs.noctalia.dev/getting-started/nixos/#plugins
-      #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
-      plugins = {
-        sources = [{
-          enabled = true;
-          name = "Official Noctalia Plugins";
-          url = "https://github.com/noctalia-dev/noctalia-plugins";
-        }];
-        states = {
-          catwalk = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          translate = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          kaomoji-provider = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          keybind-cheatsheet = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          pomodoro = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          screen-recorder = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          screenshot = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          timer = {
-            enabled = false;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-          unicode-picker = {
-            enabled = true;
-            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
-          };
-        };
-        version = 1;
-      };
-
-      #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
-      pluginSettings = { pomodoro = { compactMode = true; }; };
     };
   };
 }
