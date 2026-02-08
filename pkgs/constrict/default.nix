@@ -1,55 +1,55 @@
-{ lib, stdenv, fetchFromGitHub, meson, ninja, check, python3, ffmpeg-full
-, gettext, blueprint-compiler, pkg-config, glib, gtk4, desktop-file-utils
-, glycin-loaders, gobject-introspection, wrapGAppsHook4, libglycin, libadwaita
-, totem, libva-utils, }:
+{ lib, python3Packages, fetchFromGitHub, meson, ninja, pkg-config
+, blueprint-compiler, gobject-introspection, wrapGAppsHook4, desktop-file-utils
+, libadwaita, libglycin, libva-utils, ffmpeg, gst-thumbnailers, glycin-loaders,
+}:
 
-stdenv.mkDerivation {
+python3Packages.buildPythonApplication (finalAttrs: {
   pname = "constrict";
   version = "25.12.1";
+  pyproject = false; # Built with meson
 
   src = fetchFromGitHub {
     owner = "Wartybix";
     repo = "Constrict";
-    rev = "25.12.1";
-    sha256 = "1d5lf7kn9lf38ci774sfsabpjh3szrwqzspxzcrsj5fdx2aq2a35";
+    tag = finalAttrs.version;
+    hash = "sha256-ZSiBlejNFakz+/3qj3n+ekB5l9JOk3MiQ8PRZOdxtLQ=";
   };
-
-  buildInputs = [
-    check
-    totem
-    libva-utils
-    glycin-loaders
-    ffmpeg-full
-    (python3.withPackages (ps: with ps; [ pygobject3 ]))
-    glib
-    gtk4
-    libglycin
-    libadwaita
-  ];
 
   nativeBuildInputs = [
     meson
     ninja
     pkg-config
-    gettext
     blueprint-compiler
-    desktop-file-utils
     gobject-introspection
     wrapGAppsHook4
+    desktop-file-utils
   ];
 
+  buildInputs = [ libadwaita libglycin ];
+
+  dependencies = [ python3Packages.pygobject3 ];
+
+  # Search for use of subprocess
+  runtimeDeps = [ libva-utils ffmpeg gst-thumbnailers ];
+
+  dontWrapGApps = true;
+
   preFixup = ''
-    gappsWrapperArgs+=(
-        --prefix PATH : "${lib.makeBinPath [ ffmpeg-full ]}"
-        --prefix XDG_DATA_DIRS : "${glycin-loaders}/share"
+    makeWrapperArgs+=(
+      ''${gappsWrapperArgs[@]}
+      --prefix XDG_DATA_DIRS : "${glycin-loaders}/share"
+      --prefix PATH : ${lib.makeBinPath finalAttrs.runtimeDeps}
     )
   '';
 
-  enableParallelBuilding = true;
-
   meta = {
     description = "Compresses your videos to your chosen file size";
-    license = lib.licenses.gpl3;
+    homepage = "https://github.com/Wartybix/Constrict";
+    changelog =
+      "https://github.com/Wartybix/Constrict/releases/tag/${finalAttrs.src.tag}";
+    license = lib.licenses.gpl3Plus;
+    mainProgram = "constrict";
+    teams = [ lib.teams.gnome-circle ];
     platforms = lib.platforms.linux;
   };
-}
+})

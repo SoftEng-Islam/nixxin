@@ -60,6 +60,11 @@
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
 
+      # This overlay adds 'constrict' to our pkgs
+      overlay-constrict = final: prev: {
+        constrict = final.callPackage ./pkgs/constrict.nix { };
+      };
+
     in {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
@@ -73,6 +78,7 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
+            { nixpkgs.overlays = [ overlay-constrict ]; }
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
