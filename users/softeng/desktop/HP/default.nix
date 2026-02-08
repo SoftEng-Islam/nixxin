@@ -559,6 +559,7 @@
     "amdgpu.bapm=1" # Disable bidirectional APM
     "amd_iommu=on"
     "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
+    "amdgpu.modeset=1"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
