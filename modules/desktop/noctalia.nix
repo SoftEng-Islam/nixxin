@@ -558,7 +558,7 @@
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           timer = {
-            enabled = true;
+            enabled = false;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           unicode-picker = {
