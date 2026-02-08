@@ -1,0 +1,131 @@
+journalctl | grep -i wmi > wmi.txt
+
+Jul 23 01:17:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 01:17:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 01:17:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 01:17:34 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 01:17:34 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input17
+Jul 23 10:08:09 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 10:08:09 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 10:08:09 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 10:08:10 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 10:08:10 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input22
+Jul 23 11:14:43 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 11:14:43 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 11:14:43 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 11:14:44 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 11:14:44 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input22
+Jul 23 11:21:21 nixos kernel: Modules linked in: ccm af_packet amdgpu rt2800usb rt2x00usb rt2800lib rt2x00lib nls_iso8859_1 edac_mce_amd edac_core nls_cp437 crct10dif_pclmul vfat mac80211 crc32_pclmul fat polyval_clmulni polyval_generic ghash_clmulni_intel amdxcp sha512_ssse3 drm_exec cfg80211 gpu_sched drm_buddy tg3 sha256_ssse3 hp_wmi platform_profile crc16 sp5100_tco sparse_keymap libphy sha1_ssse3 aesni_intel watchdog gf128mul ptp wmi_bmof rfkill crypto_simd snd_hda_codec_realtek snd_hda_codec_generic i2c_piix4 cryptd psmouse serio_raw pps_core fam15h_power libarc4 i2c_smbus k10temp radeon snd_hda_codec_hdmi snd_hda_scodec_component tpm_infineon btrfs xt_conntrack snd_hda_intel drm_suballoc_helper nf_conntrack drm_ttm_helper snd_intel_dspcfg ttm snd_intel_sdw_acpi nf_defrag_ipv6 nf_defrag_ipv4 snd_hda_codec snd_usb_audio rtc_cmos blake2b_generic drm_display_helper xor snd_usbmidi_lib tpm_tis snd_ump snd_rawmidi ip6t_rpfilter cec snd_hda_core snd_seq_device tpm_tis_core snd_hwdep ipt_rpfilter snd_pcm tpm i2c_algo_bit input_leds
+Jul 23 11:21:21 nixos kernel:  libaescfb video raid6_pq led_class ecdh_generic snd_timer tiny_power_button evdev mc ecc joydev snd mousedev wmi xt_pkttype soundcore button mac_hid xt_LOG nf_log_syslog xt_tcpudp nft_compat nf_tables sch_fq_codel loop tun tap macvlan bridge stp llc kvm_amd ccp rng_core kvm fuse irqbypass efi_pstore configfs nfnetlink efivarfs dmi_sysfs ip_tables x_tables autofs4 xfs libcrc32c crc32c_generic hid_generic usbhid hid sd_mod ahci libahci atkbd libps2 vivaldi_fmap libata xhci_pci crc32c_intel scsi_mod xhci_hcd ohci_pci ohci_hcd ehci_pci ehci_hcd scsi_common i8042 serio dm_mod dax
+Jul 23 12:14:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 12:14:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 12:14:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 12:14:16 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 12:14:16 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 13:41:54 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 13:41:54 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 13:41:54 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 13:41:56 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 13:41:56 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 14:14:53 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 14:14:53 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 14:14:53 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 14:14:54 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 14:14:54 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 14:21:11 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 14:21:11 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 14:21:11 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 14:21:13 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 14:21:13 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input12
+Jul 23 14:24:40 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 14:24:40 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 14:24:40 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 14:24:42 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 14:24:42 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 14:35:51 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 14:35:51 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 14:35:51 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 14:35:51 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 14:35:51 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 14:41:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 14:41:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 14:41:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 14:41:40 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 14:41:40 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 15:26:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 15:26:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 15:26:14 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 15:26:15 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 15:26:15 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 23 16:45:15 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 23 16:45:15 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 23 16:45:15 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 23 16:45:16 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 23 16:45:16 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 24 00:50:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 24 00:50:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 24 00:50:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 24 00:50:47 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 24 00:50:47 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 24 00:54:08 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 24 00:54:08 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 24 00:54:08 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 24 00:54:09 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 24 00:54:09 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 24 05:29:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 24 05:29:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 24 05:29:38 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 24 05:29:40 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 24 05:29:40 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input22
+Jul 24 08:05:26 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 24 08:05:26 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 24 08:05:26 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 24 08:05:27 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 24 08:05:28 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 24 08:41:02 nixos kernel: Modules linked in: snd_seq_dummy snd_hrtimer snd_seq ccm af_packet sunrpc rt2800usb rt2x00usb rt2800lib rt2x00lib edac_mce_amd xt_conntrack nf_conntrack mac80211 edac_core crct10dif_pclmul crc32_pclmul nf_defrag_ipv6 polyval_clmulni nls_iso8859_1 nf_defrag_ipv4 nls_cp437 polyval_generic vfat ghash_clmulni_intel fat tg3 sha512_ssse3 sha256_ssse3 ip6t_rpfilter sha1_ssse3 aesni_intel ipt_rpfilter sp5100_tco cfg80211 libphy gf128mul snd_hda_codec_hdmi snd_hda_codec_realtek snd_usb_audio snd_hda_codec_generic snd_hda_scodec_component hp_wmi watchdog platform_profile snd_hda_intel snd_intel_dspcfg sparse_keymap snd_intel_sdw_acpi xt_pkttype snd_usbmidi_lib tpm_infineon i2c_piix4 ptp crypto_simd cryptd psmouse serio_raw libarc4 rfkill wmi_bmof pps_core k10temp fam15h_power xt_LOG radeon i2c_smbus nf_log_syslog snd_hda_codec btrfs xt_tcpudp tpm_tis nft_compat snd_ump mc snd_hda_core mousedev tpm_tis_core blake2b_generic xor tpm libaescfb ecdh_generic raid6_pq tiny_power_button rtc_cmos input_leds led_class ecc
+Jul 24 08:41:02 nixos kernel:  joydev button evdev mac_hid nf_tables sch_fq_codel uinput loop tun tap macvlan bridge stp llc snd_emu10k1 snd_util_mem snd_ac97_codec snd_hwdep snd_rawmidi snd_seq_device ac97_bus snd_pcm snd_timer snd soundcore kvm_amd ccp rng_core kvm irqbypass fuse efi_pstore configfs nfnetlink efivarfs dmi_sysfs ip_tables x_tables autofs4 xfs libcrc32c crc32c_generic hid_generic usbhid hid sd_mod atkbd libps2 vivaldi_fmap ahci libahci crc32c_intel libata ohci_pci ehci_pci xhci_pci ohci_hcd xhci_hcd scsi_mod ehci_hcd scsi_common i8042 serio amdgpu video wmi amdxcp i2c_algo_bit drm_ttm_helper ttm drm_exec gpu_sched drm_suballoc_helper drm_buddy drm_display_helper cec crc16 dm_mod dax
+Jul 24 20:46:55 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 24 20:46:55 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 24 20:46:55 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 24 20:46:57 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 24 20:46:57 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input18
+Jul 25 01:06:59 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 01:06:59 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 01:06:59 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 01:07:00 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 01:07:00 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input13
+Jul 25 01:20:07 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 01:20:07 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 01:20:07 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 01:20:08 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 01:20:09 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input14
+Jul 25 07:30:39 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 07:30:39 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 07:30:39 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 07:30:41 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 07:30:41 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input24
+Jul 25 07:33:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 07:33:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 07:33:46 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 07:33:46 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 07:33:46 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input24
+Jul 25 07:38:28 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 07:38:28 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 07:38:28 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 07:38:29 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 07:38:29 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input20
+Jul 25 07:47:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 07:47:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 07:47:33 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 07:47:34 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 07:47:34 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input24
+Jul 25 07:54:01 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 07:54:01 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 07:54:01 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 07:54:02 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 07:54:02 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input20
+Jul 25 08:07:20 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: DF4E63B6-3BBC-4858-9737-C74F82F821F3 has zero instances
+Jul 25 08:07:20 nixos kernel: wmi_bus wmi_bus-PNP0C14:00: [Firmware Info]: 8F1F6436-9F42-42C8-BADC-0E9424F20C9A has zero instances
+Jul 25 08:07:20 nixos kernel: wmi_bus wmi_bus-PNP0C14:02: [Firmware Bug]: WQZZ data block query control method not found
+Jul 25 08:07:21 nixos kernel: hp_wmi: query 0x4 returned error 0x5
+Jul 25 08:07:21 nixos kernel: input: HP WMI hotkeys as /devices/virtual/input/input17

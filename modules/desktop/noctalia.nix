@@ -118,7 +118,7 @@
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           keybind-cheatsheet = {
-            enabled = true;
+            enabled = false;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           pomodoro = {
@@ -138,7 +138,7 @@
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           unicode-picker = {
-            enabled = true;
+            enabled = false;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
         };
@@ -185,6 +185,11 @@
           widgets = {
             left = [
               {
+                id = "NotificationHistory";
+                hideWhenZero = false;
+                showUnreadBadge = true;
+              }
+              {
                 id = "Workspace";
                 # labelMode = "none";
                 # characterCount = 2;
@@ -199,6 +204,11 @@
                 displayMode = "forceOpen";
                 showIcon = true;
               }
+              { id = "plugin:pomodoro"; }
+              { id = "plugin:catwalk"; }
+              { id = "plugin:screenshot"; }
+              { id = "plugin:kaomoji-provider"; }
+              { id = "plugin:translate"; }
               {
                 # id = "SystemMonitor";
                 compactMode = false;
@@ -211,8 +221,8 @@
                 # diskPath = "/";
               }
               {
-                # displayMode = "alwaysShow";
                 # id = "Battery";
+                # displayMode = "alwaysShow";
                 # showNoctaliaPerformance = true;
                 # showPowerProfiles = true;
                 # warningThreshold = 30;
@@ -227,18 +237,13 @@
               formatHorizontal = "h:mm AP MMM d";
             }];
             right = [
-              { id = "plugin:screen-recorder"; }
               {
                 id = "Tray";
                 drawerEnabled = false;
                 colorizeIcons = false;
               }
+              { id = "plugin:screen-recorder"; }
               { id = "plugin:privacy-indicator"; }
-              {
-                id = "NotificationHistory";
-                hideWhenZero = false;
-                showUnreadBadge = true;
-              }
               { id = "KeepAwake"; }
               { id = "Bluetooth"; }
               { id = "WiFi"; }

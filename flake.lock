@@ -61,11 +61,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1765337252,
-        "narHash": "sha256-HuWQp8fM25fyWflbuunQkQI62Hg0ecJxWD52FAgmxqY=",
+        "lastModified": 1770586272,
+        "narHash": "sha256-Ucci8mu8QfxwzyfER2DQDbvW9t1BnTUJhBmY7ybralo=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "13cc1efd78b943b98c08d74c9060a5b59bf86921",
+        "rev": "b1f916ba052341edc1f80d4b2399f1092a4873ca",
         "type": "github"
       },
       "original": {
@@ -220,22 +220,6 @@
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       }
     },
-    "nix-flatpak": {
-      "locked": {
-        "lastModified": 1767983141,
-        "narHash": "sha256-7ZCulYUD9RmJIDULTRkGLSW1faMpDlPKcbWJLYHoXcs=",
-        "owner": "gmodena",
-        "repo": "nix-flatpak",
-        "rev": "440818969ac2cbd77bfe025e884d0aa528991374",
-        "type": "github"
-      },
-      "original": {
-        "owner": "gmodena",
-        "ref": "latest",
-        "repo": "nix-flatpak",
-        "type": "github"
-      }
-    },
     "nixos-opencl": {
       "inputs": {
         "clvk-src": "clvk-src",
@@ -364,7 +348,6 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
-        "nix-flatpak": "nix-flatpak",
         "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",

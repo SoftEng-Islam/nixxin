@@ -3,8 +3,7 @@
     ./corectrl.nix
     ./lactd.nix
   ];
-  programs.tuxclocker.enable = true;
-  programs.tuxclocker.useUnfree = true;
 
-  environment.systemPackages = with pkgs; [ tuxclocker ];
+  programs.tuxclocker.enable = false;
+  programs.tuxclocker.useUnfree = true;
 }
