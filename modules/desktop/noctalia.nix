@@ -146,7 +146,17 @@
       };
 
       #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
-      pluginSettings = { pomodoro = { compactMode = false; }; };
+      pluginSettings = {
+        pomodoro = {
+          workDuration = 25;
+          shortBreakDuration = 5;
+          longBreakDuration = 15;
+          sessionsBeforeLongBreak = 4;
+          autoStartBreaks = true;
+          autoStartWork = true;
+          compactMode = false;
+        };
+      };
 
       settings = {
         settingsVersion = 0;

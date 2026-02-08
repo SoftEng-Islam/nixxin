@@ -236,29 +236,6 @@
         "type": "github"
       }
     },
-    "nixGL": {
-      "inputs": {
-        "flake-utils": [
-          "flake-utils"
-        ],
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1762090880,
-        "narHash": "sha256-fbRQzIGPkjZa83MowjbD2ALaJf9y6KMDdJBQMKFeY/8=",
-        "owner": "nix-community",
-        "repo": "nixGL",
-        "rev": "b6105297e6f0cd041670c3e8628394d4ee247ed5",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "repo": "nixGL",
-        "type": "github"
-      }
-    },
     "nixos-opencl": {
       "inputs": {
         "clvk-src": "clvk-src",
@@ -388,7 +365,6 @@
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
         "nix-flatpak": "nix-flatpak",
-        "nixGL": "nixGL",
         "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",

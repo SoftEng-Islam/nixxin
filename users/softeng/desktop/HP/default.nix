@@ -558,7 +558,7 @@
     "amdgpu.sg_display=0" # Disable scatter-gather display
     "amdgpu.bapm=1" # Disable bidirectional APM
     "amd_iommu=on"
-    "amdgpu.gttsize=2048"
+    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
@@ -586,7 +586,7 @@
     # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
     # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
     # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
     # ''acpi_osi="Windows 2009"''
     # Tells ACPI to behave as if it was Windows 2015.
     # "acpi_osi=Linux"
@@ -595,7 +595,7 @@
     # ''acpi_osi="Windows"''
     # ''acpi_osi="Windows 2012"''
     # ''acpi_osi="Windows 2013"''
-    # ''acpi_osi="Windows 2015"''
+    ''acpi_osi="!Windows 2015"''
     # ''acpi_osi="Windows 2022"''
 
     # ---- Power Management ---- #
