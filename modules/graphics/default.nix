@@ -131,6 +131,7 @@ let
 
     # Intel specific
     # inputs.nixGL.packages.${stdenv.hostPlatform.system}.nixGLIntel
+    pkgs.nixgl.nixGLIntel
   ];
 
 in {

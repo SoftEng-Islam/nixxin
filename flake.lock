@@ -333,11 +333,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1770075299,
-        "narHash": "sha256-vvofYoOpbsKOQ9NYEYoESer4B5v3XoKL3GefGx3AE3k=",
+        "lastModified": 1770512711,
+        "narHash": "sha256-DUVXjj9llu0AIXa+1lGMaul+LElOg/GKCRr9c/b3BBo=",
         "owner": "noctalia-dev",
         "repo": "noctalia-shell",
-        "rev": "f9dd731ef7d7b246931b6caa0c23d50ed193defc",
+        "rev": "50455b800d08cc8eae7991658e7e429317ccc413",
         "type": "github"
       },
       "original": {
@@ -369,11 +369,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1766725085,
-        "narHash": "sha256-O2aMFdDUYJazFrlwL7aSIHbUSEm3ADVZjmf41uBJfHs=",
+        "lastModified": 1769593411,
+        "narHash": "sha256-WW00FaBiUmQyxvSbefvgxIjwf/WmRrEGBbwMHvW/7uQ=",
         "ref": "refs/heads/master",
-        "rev": "41828c4180fb921df7992a5405f5ff05d2ac2fff",
-        "revCount": 715,
+        "rev": "1e4d804e7f3fa7465811030e8da2bf10d544426a",
+        "revCount": 732,
         "type": "git",
         "url": "https://git.outfoxxed.me/outfoxxed/quickshell"
       },
@@ -497,11 +497,11 @@
     "yt-dlp-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1765307112,
-        "narHash": "sha256-nVGmocwyjKlZDI1hWiZw52ksc2qcg9InDGJMi/5OI5k=",
+        "lastModified": 1770505965,
+        "narHash": "sha256-WT+Lwffp/rYqD0BBK8Vr/1bBxNEB6waEVTLVMhxxuF0=",
         "owner": "yt-dlp",
         "repo": "yt-dlp",
-        "rev": "5f37f67d37b54bf9bd6fe7fa3083492d42f7a20a",
+        "rev": "637ae202aca7a990b3b61bc33d692870dc16c3ad",
         "type": "github"
       },
       "original": {

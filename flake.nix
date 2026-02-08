@@ -78,7 +78,7 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            { nixpkgs.overlays = [ overlay-constrict ]; }
+            { nixpkgs.overlays = [ overlay-constrict inputs.nixGL.overlay ]; }
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
