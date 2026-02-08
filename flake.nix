@@ -8,9 +8,9 @@
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    nixGL.url = "github:nix-community/nixGL";
-    nixGL.inputs.nixpkgs.follows = "nixpkgs";
-    nixGL.inputs.flake-utils.follows = "flake-utils";
+    # nixGL.url = "github:nix-community/nixGL";
+    # nixGL.inputs.nixpkgs.follows = "nixpkgs";
+    # nixGL.inputs.flake-utils.follows = "flake-utils";
 
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
@@ -78,7 +78,12 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
-            { nixpkgs.overlays = [ overlay-constrict inputs.nixGL.overlay ]; }
+            {
+              nixpkgs.overlays = [
+                overlay-constrict
+                # inputs.nixGL.overlay
+              ];
+            }
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
         };
