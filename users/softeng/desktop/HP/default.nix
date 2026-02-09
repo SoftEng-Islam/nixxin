@@ -550,7 +550,6 @@
     "amdgpu.bapm=0" # Disable bidirectional APM
     "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
-    "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
     "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
 
     # --- CPU & SYSTEM RESPONSIVENESS ---
@@ -563,7 +562,6 @@
     "amdgpu.dpm=1"
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
-    "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amd_iommu=on"
     "amdgpu.modeset=1"
@@ -584,6 +582,23 @@
     "clocksource=tsc"
     "no_timer_check"
 
+    # 1. STOP THE ERROR REPAIR (From your documentation)
+    # This stops the kernel from trying to fix the broken ALIB object,
+    # which often lets the driver initialize anyway.
+    "acpica_no_return_repair"
+
+    # 2. IGNORE RESERVED RESOURCES
+    # You had "lax", but "no" is stronger. It prevents the BIOS from
+    # hiding the VGA controller's memory from the kernel.
+    "acpi_enforce_resources=no"
+
+    # 3. OVERRIDE THE GPU POWER TABLE
+    # This is the most important one. Since the BIOS is hiding the power
+    # library (\_SB.ALIB), we tell the driver to use its internal
+    # defaults instead of the BIOS tables.
+    "amdgpu.ppfeaturemask=0xffffffff"
+    "amdgpu.dcfeaturemask=0xffffffff"
+
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     "acpi_osi=!*"
 
@@ -599,9 +614,6 @@
 
     # 4. Use the legacy _OS identification method
     ''acpi_os_name="Microsoft Windows NT"''
-
-    # 5. Access hardware even if BIOS claims it is reserved (addresses AE_NOT_FOUND)
-    "acpi_enforce_resources=lax"
 
     # ---- System Performance ---- #
     "randomize_kstack_offset=off" # Enhanced kernel stack ASLR
