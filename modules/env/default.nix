@@ -46,6 +46,9 @@ in lib.mkIf (settings.modules.env.enable or false) {
       # WLR_BACKEND = "vulkan";
       # WLR_RENDERER = "vulkan";
 
+      # https://wiki.hypr.land/Configuring/Multi-GPU/
+      # Telling Hyprland which GPU to use
+      # If you would like to use another GPU, or the wrong GPU is picked by default, set AQ_DRM_DEVICES to a :-separated list of card paths, e.g.
       AQ_DRM_DEVICES = "/dev/dri/card1"; # CHANGEME: Related to the GPU
 
       __GL_ALLOW_SOFTWARE = 1;

@@ -105,7 +105,6 @@ let
     # Vulkan applications
     vkbasalt
     vkdt
-    vkquake
 
     # Vulkan-related
     dxvk

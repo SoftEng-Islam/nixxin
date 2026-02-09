@@ -543,33 +543,45 @@
 
     # for Sea Islands (CIK i.e. GCN 2) cards
     "radeon.cik_support=0"
-    "amdgpu.cik_support=0"
+    "amdgpu.cik_support=1"
 
+    # --- MEMORY TUNING (Based on your 18GB RAM) ---
+    "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
+    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
+    "amdgpu.vm_fragment_size=9"
+
+    # --- PERFORMANCE & STABILITY ---
+    "amdgpu.bapm=0" # Disable bidirectional APM
+    "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
+    "pcie_aspm=off" # Disables PCIe power saving (better performance)
+    "amdgpu.ppfeaturemask=0xffffffff" # Unlock all gpu controls
+    "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
+
+    # --- CPU & SYSTEM RESPONSIVENESS ---
+    "preempt=full" # voluntary or full
+    "processor.ignore_ppc=1"
+    "idle=nomwait" # Forces the CPU/APU to stay in a more active state
+
+    "amdgpu.benchmark=1" # Enable AMDGPU benchmarking features for better performance in games and graphics applications
     "radeon.dpm=0"
     "amdgpu.dpm=1"
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
-    "amdgpu.ppfeaturemask=0xfffd7fff" # Unlock all gpu controls
-    "amdgpu.dc=0"
-    "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
-    "amdgpu.vm_fragment_size=9"
     "amdgpu.dcfeaturemask=0x1" # Enable Dynamic Power Management
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
-    "amdgpu.sg_display=0" # Disable scatter-gather display
-    "amdgpu.bapm=1" # Disable bidirectional APM
     "amd_iommu=on"
-    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
     "amdgpu.modeset=1"
+    "amdgpu.dc=1"
+
+    # "amdgpu.sg_display=0" # Disable scatter-gather display
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
 
     # Allow turbo boost
-    "processor.ignore_ppc=1"
     "processor.max_cstate=0"
 
-    "idle=nomwait" # Forces the CPU/APU to stay in a more active state
     "thermal.off=1"
     "random.trust_cpu=on" # ?
     "tsc=reliable"
@@ -582,34 +594,14 @@
     # 4. Fix some AMD-specific ACPI interaction bugs
     # "pci=noaer"
 
-    # Suppresses ACPI errors:
-    # kernel: ACPI Error: Aborting method \_SB.HIDD._DSM due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
-    # kernel: ACPI Error: Aborting method \ADBG due to previous error (AE_AML_OPERAND_TYPE) (20240827/psparse-529)
-    # kernel: ACPI Error: AE_AML_OPERAND_TYPE, While resolving operands for [ToHexString] (20240827/dswexec-433)
-    # kernel: ACPI Error: Needed [Integer/String/Buffer], found [Package] 000000006a33ef16 (20240827/exresop-469)
-    # "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
-    # ''acpi_osi="Windows 2009"''
-    # Tells ACPI to behave as if it was Windows 2015.
-    # "acpi_osi=Linux"
-
-    # ''acpi_osi="Windows 2009"''
-    # ''acpi_osi="Windows"''
-    # ''acpi_osi="Windows 2012"''
-    # ''acpi_osi="Windows 2013"''
-    ''acpi_osi="!Windows 2015"''
-    # ''acpi_osi="Windows 2022"''
-
-    # ---- Power Management ---- #
-    # "workqueue.power_efficient=off" # General power responsiveness
-    "pcie_aspm=off" # Disables PCIe power saving (better performance)
+    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
+    ''acpi_osi="Windows 2022"''
+    # "acpi_osi=Linux" # Tells ACPI to behave as if it was Windows 2015.
 
     # ---- System Performance ---- #
-    "preempt=full" # voluntary or full
-    # "randomize_kstack_offset=on" # Enhanced kernel stack ASLR
-    # "clocksource=tsc"
-    # "tsc=reliable"
-    # "pti=on" # Page Table Isolation for security
-    # "page_poison=1" # Poison freed memory pages (As it conflicts with init_on_free)
+    "randomize_kstack_offset=off" # Enhanced kernel stack ASLR
+    "pti=off" # Page Table Isolation for security
+    "page_poison=0" # Poison freed memory pages (As it conflicts with init_on_free)
 
     "intremap=off"
     "iommu=pt"
