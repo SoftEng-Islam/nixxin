@@ -584,15 +584,24 @@
     "clocksource=tsc"
     "no_timer_check"
 
-    # "acpi=off"
-    # "acpi_enforce_resources=lax"
+    # 1. Reset ALL strings (vendor and feature groups) as per your documentation
+    "acpi_osi=!*"
 
-    # 4. Fix some AMD-specific ACPI interaction bugs
-    # "pci=noaer"
+    # 2. Add back only what is necessary to pass the BIOS checks
+    ''acpi_osi="Windows 2015"'' # Identify as Windows 10
+    ''acpi_osi="Module Device"'' # Feature group string
+    ''acpi_osi="Processor Device"'' # Feature group string
+    ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods
 
-    "acpi_osi=!" # Disables OSI strings for the ACPI to pickup a generic configuration.
-    ''acpi_osi="Windows 2022"''
-    # "acpi_osi=Linux" # Tells ACPI to behave as if it was Windows 2015.
+    # 3. Override _REV to return 5 instead of 2
+    # (Your text says this is mandated for modern compliance/performance)
+    "acpi_rev_override"
+
+    # 4. Use the legacy _OS identification method
+    ''acpi_os_name="Microsoft Windows NT"''
+
+    # 5. Access hardware even if BIOS claims it is reserved (addresses AE_NOT_FOUND)
+    "acpi_enforce_resources=lax"
 
     # ---- System Performance ---- #
     "randomize_kstack_offset=off" # Enhanced kernel stack ASLR
