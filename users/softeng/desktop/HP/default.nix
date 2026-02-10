@@ -599,6 +599,11 @@
     "amdgpu.ppfeaturemask=0xffffffff"
     "amdgpu.dcfeaturemask=0xffffffff"
 
+    "acpi=strict"
+    # "noapic"
+    # "nolapic"
+    # "nomodeset"
+
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     "acpi_osi=!*"
 

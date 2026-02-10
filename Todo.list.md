@@ -6,3 +6,10 @@
 4. hashcat command keeping run in the background why
 5. Is there any thing reduce/slowing the PC performance in `./modules/system/memory.nix`
 6.
+
+First: I'm trying to add this application pkgs/constrict to my system the app repo:https://github.com/Wartybix/Constrict.
+I added it like an overlay in ./flake.nix, can you figure out how I add it correctly because what I did not working.
+
+---
+
+Secound: also want to make handbrake in that exist here `modules/media/default.nix` recognize and use `h264_vaapi /dev/dri/renderD128`

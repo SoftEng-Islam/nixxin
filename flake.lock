@@ -456,11 +456,11 @@
     "yt-dlp-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1770505965,
-        "narHash": "sha256-WT+Lwffp/rYqD0BBK8Vr/1bBxNEB6waEVTLVMhxxuF0=",
+        "lastModified": 1770670674,
+        "narHash": "sha256-w66MJ/yXmkW4E6mOwlP55Jd2m3vIxXEThNcWH1sJn50=",
         "owner": "yt-dlp",
         "repo": "yt-dlp",
-        "rev": "637ae202aca7a990b3b61bc33d692870dc16c3ad",
+        "rev": "a13f281012a21c85f76cf3e320fc3b00d480d6c6",
         "type": "github"
       },
       "original": {
