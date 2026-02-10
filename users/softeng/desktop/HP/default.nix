@@ -515,7 +515,7 @@
     "snd_seq_dummy"
     "nouveau"
     "nvidia"
-    "simpledrm"
+    # "simpledrm"
   ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
