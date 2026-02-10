@@ -270,7 +270,7 @@ in {
   # ---- AMD Configuration
   # ------------------------------------------------
   # Video Drivers
-  services.xserver.videoDrivers = _system.videoDrivers;
+  # services.xserver.videoDrivers = _system.videoDrivers;
 
   # ------------------------------------------------
   # ---- Kernel Thread Scheduler Optimization

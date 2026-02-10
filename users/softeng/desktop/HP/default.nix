@@ -492,7 +492,7 @@
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm.enable = false; # If your APU/GPU Support it
-  modules.system.videoDrivers = [ "amdgpu" "modesetting" ];
+  modules.system.videoDrivers = [ "modesetting" ];
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
   modules.system.boot.tmp.useTmpfs = system.useTmpfs;
@@ -507,9 +507,16 @@
     "drm_kms_helper"
     "gpu_sched"
   ];
-  modules.system.boot.blacklistedKernelModules =
-    [ "hp_wmi" "radeon" "psmouse" "sunrpc" "snd_seq_dummy" "nouveau" "nvidia" ];
-
+  modules.system.boot.blacklistedKernelModules = [
+    "hp_wmi"
+    "radeon"
+    "psmouse"
+    "sunrpc"
+    "snd_seq_dummy"
+    "nouveau"
+    "nvidia"
+    "simpledrm"
+  ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
     fontSize = 14;
@@ -608,7 +615,8 @@
     "acpi_osi=!*"
 
     # 2. Add back only what is necessary to pass the BIOS checks
-    ''acpi_osi="Windows 2015"'' # Identify as Windows 10
+    # 2. Spoof Windows 8.1 (The "Magic" string for 2014-2016 HP BIOS)
+    ''acpi_osi="Windows 2013"''
     ''acpi_osi="Module Device"'' # Feature group string
     ''acpi_osi="Processor Device"'' # Feature group string
     ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods

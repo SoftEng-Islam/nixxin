@@ -13,3 +13,5 @@ I added it like an overlay in ./flake.nix, can you figure out how I add it corre
 ---
 
 Secound: also want to make handbrake in that exist here `modules/media/default.nix` recognize and use `h264_vaapi /dev/dri/renderD128`
+
+https://forums.gentoo.org/viewtopic-p-8675013.html?sid=72f8112accb80d47fd6612888b74831e
