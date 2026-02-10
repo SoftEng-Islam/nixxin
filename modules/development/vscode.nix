@@ -107,9 +107,8 @@ in {
         isInsiders = false;
         # Configure VSCode to run without requiring --no-sandbox
         useVSCodeRipgrep = true;
-        commandLineArgs = [
+        commandLineArgs = builtins.concatStringsSep " " [
           "--disable-font-subpixel-positioning=true"
-          # "--enable-features=WaylandWindowDecorations"
           "--ozone-platform-hint="
           "--ozone-platform=wayland"
           "--enable-features=WaylandWindowDecorations"
@@ -135,35 +134,14 @@ in {
           # enable hardware acceleration - vulkan api
           "--enable-features=${
             lib.concatStringsSep "," [
-              # "AcceleratedVideoDecodeLinuxGL"
-              # "AcceleratedVideoDecodeLinuxZeroCopyGL"
-              # "AcceleratedVideoEncoder"
-              # "CanvasOopRasterization"
-              # "ChromeWideEchoCancellation" # noise cancellation for WebRTC
-              # "DefaultANGLEVulkan"
-              # "DesktopScreenshots"
-              # "EnableDrDc"
-              # "EnableTabMuting" # Mute tabs from tab context
-              # "FluentOverlayScrollbar" # New scrollbar
-              # "FluentScrollbar"
-              # "GlobalMediaControlsUpdatedUI"
-              # "ParallelDownloading" # Faster downloads
-              # "PostQuantumKyber" # hybrid kyber for enhanced TLS security
-              # "PulseaudioLoopbackForCast" # Audio support for casting and screen sharing
-              # "PulseaudioLoopbackForScreenShare"
-              # "SkiaGraphite"
-              # "UIEnableSharedImageCacheForGpu" # Shared image cache
-              # "UseClientGmbInterface" # new ClientGmb interface to create GpuMemoryBuffers
-              # "UseDMSAAForTiles"
-              # "UseGpuSchedulerDfs"
-              # "UseMultiPlaneFormatForHardwareVideo"
-              # "VaapiVideoEncoder" # Video encoding support
-              # "Vulkan"
-              # "VulkanFromANGLE"
-              # "WaylandLinuxDrmSyncobj"
-              # "WaylandPerSurfaceScale"
-              # "WaylandTextInputV3"
-              # "WaylandUiScale"
+              "WaylandFractionalScaleV1"
+              "enable-wayland-ime"
+              "AcceleratedVideoDecodeLinuxGL"
+              "VaapiVideoDecoder"
+              "VaapiIgnoreDriverChecks"
+              "Vulkan"
+              "DefaultANGLEVulkan"
+              "VulkanFromANGLE"
             ]
           }"
         ];
