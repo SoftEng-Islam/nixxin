@@ -576,6 +576,12 @@
 
     # "amdgpu.sg_display=0" # Disable scatter-gather display
 
+    # 2. THE HARDWARE HANDOFF (The commands you just found)
+    "video=simplefb:off"
+    "video=vesafb:off"
+    "video=efifb:off"
+    "initcall_blacklist=sysfb_init" # Stops the generic driver before it starts
+
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
