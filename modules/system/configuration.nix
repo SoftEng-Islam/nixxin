@@ -254,6 +254,11 @@ in {
     };
   };
 
+  services.udev.extraRules = ''
+    # When the AMD GPU (card1) is added, force it to high performance mode
+    ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1", ATTR{device/power_dpm_force_performance_level}="high"
+  '';
+
   # ------------------------------------------------
   # ---- Services Configuration
   # ------------------------------------------------
