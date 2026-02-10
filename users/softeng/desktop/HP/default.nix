@@ -645,6 +645,10 @@
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
+    "acpi-cpufreq"
+    "cpufreq_powersave"
+    "cpufreq_performance"
+    "cpufreq_ondemand"
     "k10temp" # Temperature monitoring
     "i2c_hid" # Input devices
     "usbhid"
