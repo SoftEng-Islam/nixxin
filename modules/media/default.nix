@@ -14,6 +14,8 @@ let
     (lib.optional settings.modules.media.kdenlive kdePackages.kdenlive)
     # ---- shotcut ---- #
     (lib.optional settings.modules.media.shotcut shotcut)
+    # ---- constrict ---- #
+    (lib.optional (settings.modules.media.constrict or false) constrict)
   ];
 
 in {
@@ -59,12 +61,16 @@ in {
         (pkgs.writeShellApplication {
           name = "handbrake";
           text = ''
-            # Only one argument allowed here
-            LD_LIBRARY_PATH="${
-              builtins.getEnv "LD_LIBRARY_PATH"
-            }/run/opengl-driver/lib:${
-              builtins.getEnv "LD_LIBRARY_PATH"
-            }" ${pkgs.handbrake}/bin/ghb "$@"
+            # Prefer the VA-API render node (similar to: ffmpeg -hwaccel_device ...)
+            export LIBVA_DRM_DEVICE="''${LIBVA_DRM_DEVICE:-/dev/dri/renderD128}"
+            export LIBVA_DRIVERS_PATH="''${LIBVA_DRIVERS_PATH:-/run/opengl-driver/lib/dri}"
+            ${
+              lib.optionalString (settings.common.cpu.amdGPU or false)
+              ''export LIBVA_DRIVER_NAME="''${LIBVA_DRIVER_NAME:-radeonsi}"''
+            }
+
+            export LD_LIBRARY_PATH="/run/opengl-driver/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+            exec ${pkgs.handbrake}/bin/ghb "$@"
           '';
         })
 

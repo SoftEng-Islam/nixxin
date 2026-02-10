@@ -392,6 +392,7 @@
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = true; # video Editor
   modules.media.shotcut = false; # video Editor
+  modules.media.constrict = true; # video compressor
   modules.media.music = true; # Music Player
 
   # [Networking]
@@ -564,7 +565,8 @@
     "processor.ignore_ppc=1"
     "idle=nomwait" # Forces the CPU/APU to stay in a more active state
 
-    "amdgpu.benchmark=1" # Enable AMDGPU benchmarking features for better performance in games and graphics applications
+    # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
+    # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
     "radeon.dpm=0"
     "amdgpu.dpm=1"
     "amdgpu.abmlevel=0"
@@ -618,8 +620,8 @@
     "acpi_osi=!*"
 
     # 2. Add back only what is necessary to pass the BIOS checks
-    # 2. Spoof Windows 8.1 (The "Magic" string for 2014-2016 HP BIOS)
-    ''acpi_osi="Windows 2013"''
+    # Spoof Windows 7 (often the "magic" OSI string for 2012–2016-era HP firmware)
+    ''acpi_osi="Windows 2009"''
     ''acpi_osi="Module Device"'' # Feature group string
     ''acpi_osi="Processor Device"'' # Feature group string
     ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods

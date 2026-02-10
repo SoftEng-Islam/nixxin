@@ -1,9 +1,9 @@
 { lib, python3Packages, fetchFromGitHub, meson, ninja, pkg-config
 , blueprint-compiler, gobject-introspection, wrapGAppsHook4, desktop-file-utils
-, libadwaita, libglycin, libva-utils, ffmpeg, gst-thumbnailers, glycin-loaders,
+, libadwaita, libglycin, libva-utils, ffmpeg, gst_all_1, glycin-loaders,
 }:
 
-python3Packages.buildPythonApplication (finalAttrs: {
+python3Packages.buildPythonApplication rec {
   pname = "constrict";
   version = "25.12.1";
   pyproject = false; # Built with meson
@@ -11,7 +11,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
   src = fetchFromGitHub {
     owner = "Wartybix";
     repo = "Constrict";
-    tag = finalAttrs.version;
+    tag = version;
     hash = "sha256-ZSiBlejNFakz+/3qj3n+ekB5l9JOk3MiQ8PRZOdxtLQ=";
   };
 
@@ -30,7 +30,12 @@ python3Packages.buildPythonApplication (finalAttrs: {
   dependencies = [ python3Packages.pygobject3 ];
 
   # Search for use of subprocess
-  runtimeDeps = [ libva-utils ffmpeg gst-thumbnailers ];
+  runtimeDeps = [
+    libva-utils
+    ffmpeg
+    gst_all_1.gstreamer
+    gst_all_1.gst-plugins-base
+  ];
 
   dontWrapGApps = true;
 
@@ -38,7 +43,7 @@ python3Packages.buildPythonApplication (finalAttrs: {
     makeWrapperArgs+=(
       ''${gappsWrapperArgs[@]}
       --prefix XDG_DATA_DIRS : "${glycin-loaders}/share"
-      --prefix PATH : ${lib.makeBinPath finalAttrs.runtimeDeps}
+      --prefix PATH : ${lib.makeBinPath runtimeDeps}
     )
   '';
 
@@ -46,10 +51,10 @@ python3Packages.buildPythonApplication (finalAttrs: {
     description = "Compresses your videos to your chosen file size";
     homepage = "https://github.com/Wartybix/Constrict";
     changelog =
-      "https://github.com/Wartybix/Constrict/releases/tag/${finalAttrs.src.tag}";
+      "https://github.com/Wartybix/Constrict/releases/tag/${version}";
     license = lib.licenses.gpl3Plus;
     mainProgram = "constrict";
     teams = [ lib.teams.gnome-circle ];
     platforms = lib.platforms.linux;
   };
-})
+}

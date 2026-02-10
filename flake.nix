@@ -51,7 +51,7 @@
 
       # This overlay adds 'constrict' to our pkgs
       overlay-constrict = final: prev: {
-        constrict = final.callPackage ./pkgs/constrict.nix { };
+        constrict = final.callPackage ./pkgs/constrict { };
       };
 
     in {
