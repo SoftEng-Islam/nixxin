@@ -26,7 +26,8 @@
         --js-runtimes=deno
         --no-check-certificates
         --prefer-insecure
-        --extractor-args "youtube:player-client=tv,mweb;formats=incomplete" -f "ba[protocol=sabr]+bv[protocol=sabr]"
+        # --extractor-args "youtube:player-client=tv,mweb;formats=incomplete" -f "ba[protocol=sabr]+bv[protocol=sabr]"
+        # --extractor-args "youtube:player_client=tv,mweb;formats=incomplete"
 
       '';
     };
