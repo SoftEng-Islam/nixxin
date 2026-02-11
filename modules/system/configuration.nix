@@ -15,7 +15,8 @@ let
   # they will be embedded into initrd at
   # `/kernel/firmware/acpi/<file>.aml`, which allows Linux to override buggy BIOS
   # ACPI tables (CONFIG_ACPI_TABLE_UPGRADE=y).
-  acpiOverrideDir = ./acpi_override;
+  # acpiOverrideDir = ./acpi_override;
+  acpiOverrideDir = "";
   acpiOverrideEntries = if builtins.pathExists acpiOverrideDir then
     builtins.readDir acpiOverrideDir
   else
@@ -25,8 +26,9 @@ let
   acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs (name: type:
     type == "regular" && lib.hasSuffix ".aml" name
     && !(lib.hasSuffix ".asl.aml" name)) acpiOverrideEntries);
-  acpiOverrideAslFiles = builtins.attrNames (lib.filterAttrs (name: type:
-    type == "regular" && lib.hasSuffix ".asl" name) acpiOverrideEntries);
+  acpiOverrideAslFiles = builtins.attrNames (lib.filterAttrs
+    (name: type: type == "regular" && lib.hasSuffix ".asl" name)
+    acpiOverrideEntries);
 
   acpiOverrideExtraFilesAml = builtins.listToAttrs (map (name: {
     name = "kernel/firmware/acpi/${name}";
@@ -57,9 +59,11 @@ let
       };
     }) acpiOverrideAslFiles);
 
-  acpiOverrideExtraFiles = acpiOverrideExtraFilesAml // acpiOverrideExtraFilesAsl;
+  acpiOverrideExtraFiles = acpiOverrideExtraFilesAml
+    // acpiOverrideExtraFilesAsl;
 
-  hasAcpiOverrides = (acpiOverrideAmlFiles != []) || (acpiOverrideAslFiles != []);
+  hasAcpiOverrides = (acpiOverrideAmlFiles != [ ])
+    || (acpiOverrideAslFiles != [ ]);
 in {
 
   # ------------------------------------------------
