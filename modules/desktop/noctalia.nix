@@ -105,6 +105,14 @@
           url = "https://github.com/noctalia-dev/noctalia-plugins";
         }];
         states = {
+          assistant-panel = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          network-indicator = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
           catwalk = {
             enabled = true;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
@@ -209,6 +217,9 @@
               { id = "plugin:screenshot"; }
               { id = "plugin:kaomoji-provider"; }
               { id = "plugin:translate"; }
+              { id = "plugin:assistant-panel"; }
+              { id = "plugin:network-indicator"; }
+
               {
                 # id = "SystemMonitor";
                 compactMode = false;
