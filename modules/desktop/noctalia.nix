@@ -213,10 +213,12 @@
                 showIcon = true;
               }
               { id = "plugin:pomodoro"; }
-              { id = "plugin:catwalk"; }
               { id = "plugin:screenshot"; }
-              { id = "plugin:kaomoji-provider"; }
-              { id = "plugin:translate"; }
+              {
+                id = "plugin:catwalk";
+              }
+              # { id = "plugin:kaomoji-provider"; }
+              # { id = "plugin:translate"; }
               { id = "plugin:assistant-panel"; }
               { id = "plugin:network-indicator"; }
 
