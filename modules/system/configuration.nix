@@ -11,8 +11,8 @@ let
 
   # Optional ACPI table override support.
   #
-  # Drop patched AML tables in `modules/system/acpi_override/` (e.g. `dsdt.aml`,
-  # `ssdt1.aml`) and they will be embedded into initrd at
+  # Drop patched ACPI override tables in `modules/system/acpi_override/` and
+  # they will be embedded into initrd at
   # `/kernel/firmware/acpi/<file>.aml`, which allows Linux to override buggy BIOS
   # ACPI tables (CONFIG_ACPI_TABLE_UPGRADE=y).
   acpiOverrideDir = ./acpi_override;
@@ -20,10 +20,12 @@ let
     builtins.readDir acpiOverrideDir
   else
     { };
-  acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs
-    (name: type: type == "regular" && lib.hasSuffix ".aml" name)
-    acpiOverrideEntries);
-  acpiOverrideExtraFiles = builtins.listToAttrs (map (name: {
+  acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs (name: type:
+    type == "regular" && lib.hasSuffix ".aml" name) acpiOverrideEntries);
+  acpiOverrideAslFiles = builtins.attrNames (lib.filterAttrs (name: type:
+    type == "regular" && lib.hasSuffix ".asl" name) acpiOverrideEntries);
+
+  acpiOverrideExtraFilesAml = builtins.listToAttrs (map (name: {
     name = "kernel/firmware/acpi/${name}";
     value = {
       source = pkgs.runCommand "acpi-override-${name}" {
@@ -34,6 +36,25 @@ let
       '';
     };
   }) acpiOverrideAmlFiles);
+
+  acpiOverrideExtraFilesAsl = builtins.listToAttrs (map (name:
+    let amlName = "${lib.removeSuffix ".asl" name}.aml";
+    in {
+      name = "kernel/firmware/acpi/${amlName}";
+      value = {
+        source = pkgs.runCommand "acpi-override-${amlName}" {
+          src = acpiOverrideDir + "/${name}";
+          nativeBuildInputs = [ pkgs.acpica-tools ];
+          preferLocalBuild = true;
+        } ''
+          cp "$src" override.asl
+          iasl -tc override.asl >/dev/null
+          cp override.aml "$out"
+        '';
+      };
+    }) acpiOverrideAslFiles);
+
+  acpiOverrideExtraFiles = acpiOverrideExtraFilesAml // acpiOverrideExtraFilesAsl;
 in {
 
   # ------------------------------------------------

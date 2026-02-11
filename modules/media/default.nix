@@ -15,6 +15,9 @@ let
     # ---- shotcut ---- #
     (lib.optional settings.modules.media.shotcut shotcut)
     # ---- constrict ---- #
+    # Note: Constrict uses VA-API (ffmpeg *_vaapi). If GPU encoding appears to
+    # fall back to CPU, validate VA-API works first (e.g. `vainfo --display drm`
+    # and an `ffmpeg -vaapi_device ... -c:v h264_vaapi ...` test).
     (lib.optional (settings.modules.media.constrict or false) constrict)
   ];
 
