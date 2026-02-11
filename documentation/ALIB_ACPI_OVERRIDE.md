@@ -59,6 +59,19 @@ These are placed into the initrd at:
 Linux can then override firmware ACPI tables at boot (requires
 `CONFIG_ACPI_TABLE_UPGRADE=y` in the kernel).
 
+### Requirements / gotchas
+
+1. **Initrd must be uncompressed**
+
+   The kernel scans an **uncompressed leading** initrd CPIO archive for
+   `/kernel/firmware/acpi/*.aml`. If initrd is compressed, the override tables
+   will be ignored.
+
+2. **Kernel lockdown / Secure Boot**
+
+   On some systems, if the kernel is in *lockdown* mode (often due to UEFI Secure
+   Boot), it may refuse ACPI table overrides.
+
 ## Apply / test
 
 Rebuild and reboot:
@@ -75,6 +88,22 @@ sudo journalctl -k -b | rg -n "ALIB|ATC0|ATCS"
 ```
 
 Expected outcome: the `AE_NOT_FOUND` errors for `\_SB.ALIB` should disappear.
+
+## Troubleshooting (if errors still appear)
+
+```bash
+# 1) Check kernel config
+zcat /proc/config.gz | rg -n "CONFIG_ACPI_TABLE_UPGRADE"
+
+# 2) Check initrd compression (ACPI override needs uncompressed CPIO)
+file /run/current-system/initrd
+
+# 3) Check kernel lockdown state
+cat /sys/kernel/security/lockdown 2>/dev/null || true
+
+# 4) Look for table-override related kernel log messages
+sudo journalctl -k -b | rg -n "ACPI.*(override|upgrade)|locked down|firmware/acpi"
+```
 
 ## Rollback
 
@@ -93,4 +122,3 @@ reboot
 - If the error changes to an argument-count/type mismatch, adjust the SSDT’s
   `Method (ALIB, ...)` signature/return value to match what the firmware
   expects.
-

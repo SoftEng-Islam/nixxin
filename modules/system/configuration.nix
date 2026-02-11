@@ -20,8 +20,11 @@ let
     builtins.readDir acpiOverrideDir
   else
     { };
+  # Prefer compiling `*.asl` sources and ignore any committed `*.asl.aml` build
+  # artifacts to avoid embedding duplicate override tables into initrd.
   acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs (name: type:
-    type == "regular" && lib.hasSuffix ".aml" name) acpiOverrideEntries);
+    type == "regular" && lib.hasSuffix ".aml" name
+    && !(lib.hasSuffix ".asl.aml" name)) acpiOverrideEntries);
   acpiOverrideAslFiles = builtins.attrNames (lib.filterAttrs (name: type:
     type == "regular" && lib.hasSuffix ".asl" name) acpiOverrideEntries);
 
@@ -55,6 +58,8 @@ let
     }) acpiOverrideAslFiles);
 
   acpiOverrideExtraFiles = acpiOverrideExtraFilesAml // acpiOverrideExtraFilesAsl;
+
+  hasAcpiOverrides = (acpiOverrideAmlFiles != []) || (acpiOverrideAslFiles != []);
 in {
 
   # ------------------------------------------------
@@ -126,6 +131,11 @@ in {
         "usbhid"
       ];
       # kernelModules = [ "amdgpu" ];
+
+      # ACPI table override via initrd requires an uncompressed leading cpio.
+      # If initrd is compressed, the kernel won't see `/kernel/firmware/acpi/*.aml`
+      # early enough and the override tables will be ignored.
+      compressor = lib.mkIf hasAcpiOverrides "none";
 
       extraFiles = acpiOverrideExtraFiles;
     };
