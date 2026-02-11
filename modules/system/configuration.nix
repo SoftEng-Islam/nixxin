@@ -15,8 +15,7 @@ let
   # they will be embedded into initrd at
   # `/kernel/firmware/acpi/<file>.aml`, which allows Linux to override buggy BIOS
   # ACPI tables (CONFIG_ACPI_TABLE_UPGRADE=y).
-  # acpiOverrideDir = ./acpi_override;
-  acpiOverrideDir = "";
+  acpiOverrideDir = ./acpi_override;
   acpiOverrideEntries = if builtins.pathExists acpiOverrideDir then
     builtins.readDir acpiOverrideDir
   else
@@ -139,7 +138,7 @@ in {
       # ACPI table override via initrd requires an uncompressed leading cpio.
       # If initrd is compressed, the kernel won't see `/kernel/firmware/acpi/*.aml`
       # early enough and the override tables will be ignored.
-      compressor = lib.mkIf hasAcpiOverrides "none";
+      # compressor = lib.mkIf hasAcpiOverrides "none";
 
       extraFiles = acpiOverrideExtraFiles;
     };
