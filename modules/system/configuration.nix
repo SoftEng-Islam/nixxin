@@ -141,7 +141,7 @@ in {
       # early enough and the override tables will be ignored.
       # compressor = lib.mkIf hasAcpiOverrides "none";
 
-      extraFiles = acpiOverrideExtraFiles;
+      # extraFiles = acpiOverrideExtraFiles;
     };
 
     kernelModules = _system.boot.kernelModules ++ [
@@ -264,14 +264,12 @@ in {
   hardware = {
     firmware = with pkgs; [ linux-firmware sof-firmware wireless-regdb ];
     # one of "xz", "zstd", "none", "auto"
-    firmwareCompression = "zstd"; # ?
 
+    firmwareCompression = "zstd"; # ?
     uinput.enable = true;
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
-
     cpu.amd.updateMicrocode = true;
-
     i2c.enable = true;
 
     # What is the cpu.amd.sev.enable?
@@ -329,7 +327,7 @@ in {
   # https://wiki.archlinux.org/title/Systemd/Journal#Persistent_journals
   # Optional: Move logs to RAM (careful—logs won't persist reboots)
   services.journald.extraConfig = ''
-    # Store logs in RAM
+    # Store Logs in RAM
     Compress=yes
     Storage=volatile
     SystemMaxUse=100M
