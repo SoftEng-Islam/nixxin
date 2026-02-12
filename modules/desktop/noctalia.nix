@@ -117,7 +117,7 @@
             enabled = true;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
-          translate = {
+          translator = {
             enabled = true;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
@@ -221,13 +221,23 @@
               }
               {
                 id = "Workspace";
-                # labelMode = "none";
-                # characterCount = 2;
-                # colorizeIcons = true;
-                # followFocusedScreen = false;
-                hideUnoccupied = false;
-                # showApplications = false;
-                # showLabelsOnlyWhenOccupied = false;
+                characterCount = 2;
+                colorizeIcons = false;
+                emptyColor = "secondary";
+                enableScrollWheel = false;
+                focusedColor = "primary";
+                followFocusedScreen = false;
+                groupedBorderOpacity = 1;
+                hideUnoccupied = true;
+                iconScale = 0.8;
+                labelMode = "index";
+                occupiedColor = "secondary";
+                pillSize = 0.6;
+                reverseScroll = false;
+                showApplications = false;
+                showBadge = true;
+                showLabelsOnlyWhenOccupied = false;
+                unfocusedIconsOpacity = 1;
               }
               {
                 id = "KeyboardLayout";
@@ -240,7 +250,7 @@
                 id = "plugin:catwalk";
               }
               # { id = "plugin:kaomoji-provider"; }
-              # { id = "plugin:translate"; }
+              { id = "plugin:translator"; }
               { id = "plugin:assistant-panel"; }
               { id = "plugin:network-indicator"; }
 
@@ -277,6 +287,7 @@
                 drawerEnabled = false;
                 colorizeIcons = false;
               }
+              { id = "plugin:unicode-picker"; }
               { id = "plugin:screen-recorder"; }
               { id = "plugin:privacy-indicator"; }
               { id = "KeepAwake"; }

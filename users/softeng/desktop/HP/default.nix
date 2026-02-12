@@ -561,11 +561,11 @@
     "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
     "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
+    "amdgpu_pstate=active"
 
     # --- CPU & SYSTEM RESPONSIVENESS ---
     "preempt=full" # voluntary or full
     "processor.ignore_ppc=1"
-    "idle=nomwait" # Forces the CPU/APU to stay in a more active state
 
     # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
     # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
@@ -599,12 +599,12 @@
     # 1. STOP THE ERROR REPAIR (From your documentation)
     # This stops the kernel from trying to fix the broken ALIB object,
     # which often lets the driver initialize anyway.
-    "acpica_no_return_repair"
+    # "acpica_no_return_repair"
 
     # 2. IGNORE RESERVED RESOURCES
     # You had "lax", but "no" is stronger. It prevents the BIOS from
     # hiding the VGA controller's memory from the kernel.
-    "acpi_enforce_resources=no"
+    # "acpi_enforce_resources=no"
 
     # 3. OVERRIDE THE GPU POWER TABLE
     # This is the most important one. Since the BIOS is hiding the power
@@ -613,27 +613,34 @@
     "amdgpu.ppfeaturemask=0xffffffff"
     "amdgpu.dcfeaturemask=0xffffffff"
 
-    "acpi=strict"
+    "pci=nocrs" # Crucial: This makes the kernel ignore the '0' values we fixed
+    "idle=nomwait" # Fixes AMD A8 processor hangs
+    "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
+
+    # "acpi=strict"
     # "noapic"
     # "nolapic"
     # "nomodeset"
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    "acpi_osi=!*"
-
+    # "acpi_osi=!*" # Linux | Darwin | Windows
+    # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
+    # "acpi_mask_gpe=0x0e"
+    # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
+    # "acpi_mask_gpe=0x69"
     # 2. Add back only what is necessary to pass the BIOS checks
     # Spoof Windows 7 (often the "magic" OSI string for 2012–2016-era HP firmware)
-    ''acpi_osi="Windows 2009"''
-    ''acpi_osi="Module Device"'' # Feature group string
-    ''acpi_osi="Processor Device"'' # Feature group string
-    ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods
+    # ''acpi_osi="Windows 2009"''
+    # ''acpi_osi="Module Device"'' # Feature group string
+    # ''acpi_osi="Processor Device"'' # Feature group string
+    # ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods
 
     # 3. Override _REV to return 5 instead of 2
     # (Your text says this is mandated for modern compliance/performance)
-    "acpi_rev_override"
+    # "acpi_rev_override"
 
     # 4. Use the legacy _OS identification method
-    ''acpi_os_name="Microsoft Windows NT"''
+    #  ''acpi_os_name="Microsoft Windows NT"''
 
     # ---- System Performance ---- #
     "randomize_kstack_offset=off" # Enhanced kernel stack ASLR

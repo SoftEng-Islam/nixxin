@@ -26,5 +26,10 @@
     };
   };
 
-  environment.systemPackages = with pkgs; [ hyprshade ];
+  environment.systemPackages = with pkgs; [
+    hyprshade
+
+    # Noctalia Shell screenshot plugin need this package
+    hyprshot
+  ];
 }
