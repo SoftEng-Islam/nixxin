@@ -306,8 +306,10 @@
     # To Get "Path" of Font Package:
     # nix build nixpkgs#jetbrains-mono --print-out-paths --no-link
     main.name = "CaskaydiaCove Nerd Font"; # Selected Font
-    main.package =
-      pkgs.nerd-fonts.caskaydia-cove; # Typeface made for developers
+
+    # Typeface made for developers
+    main.package = pkgs.nerd-fonts.caskaydia-cove;
+
     main.antialiasing = "grayscale";
     main.hinting = "full"; # (one of "none", "slight", "medium", "full")
     main.rendering = "automatic";
@@ -382,10 +384,10 @@
   modules.image_viewer.loupe = true;
 
   # [ Media ]
-  modules.media.codex = true; # video/sound codecs libs and packags
+  modules.media.codex = true; # Video/Sound codecs libs and packags
   modules.media.cava = false; # Audio Visualizer for Alsa
-  modules.media.mpv = true; # media player
-  modules.media.vlc = true; # media player
+  modules.media.mpv = true; # Media Player
+  modules.media.vlc = true; # Media Player
   modules.media.glide = false; # media player
   modules.media.clapper = false; # media player
   modules.media.celluloid = true; # media player

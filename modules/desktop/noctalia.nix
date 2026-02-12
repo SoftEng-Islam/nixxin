@@ -155,6 +155,28 @@
 
       #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
       pluginSettings = {
+        network-indicator = {
+          # ["arrow", "arrow-bar", "arrow-big", "arrow-narrow", "caret", "chevron", "chevron-compact", "fold"]
+          arrowType = "fold";
+          byteThresholdActive = 1024;
+          fontSizeModifier = 1.1;
+          forceMegabytes = false;
+          iconSizeModifier = 1.1;
+          minWidth = 100;
+          showNumbers = true;
+          spacingInbetween = 1;
+          useCustomColors = {
+            colorSilent = "#E91E63";
+            colorTx = "#7FFF00";
+            colorRx = "#FFC107";
+            colorText = "#DEB887";
+            colorBackground = "";
+          };
+        };
+        catwalk = {
+          # minimumThreshold = 25;
+          # hideBackground = true;
+        };
         pomodoro = {
           workDuration = 25;
           shortBreakDuration = 5;
@@ -170,15 +192,15 @@
         settingsVersion = 0;
         # setupCompleted = true;
         bar = {
-          barType = "framed";
+          barType = "Framed";
           position = "top";
           monitors = [ ];
           density = "comfortable";
           showOutline = false;
-          showCapsule = true;
+          showCapsule = false;
           capsuleOpacity = 1;
           backgroundOpacity = 1.0;
-          useSeparateOpacity = false;
+          useSeparateOpacity = true;
           floating = false;
           marginVertical = 4;
           marginHorizontal = 4;
@@ -455,7 +477,7 @@
           displayMode = "auto_hide";
           backgroundOpacity = 1;
           floatingRatio = 1;
-          size = 1;
+          size = 2;
           onlySameOutput = true;
           monitors = [ ];
           pinnedApps = [ ];
@@ -522,13 +544,13 @@
           volumeFeedback = false;
         };
         ui = {
-          fontDefault = "Ubuntu Sans";
-          fontFixed = lib.mkForce "Ubuntu Mono";
+          fontDefault = settings.common.mainFont.name;
+          fontFixed = lib.mkForce settings.modules.fonts.monospace.name;
           idlfalseibitorEnabled = true;
           tooltipsEnabled = true;
           fontDefaultScale = 1;
           fontFixedScale = 1;
-          panelBackgroundOpacity = 0.93;
+          panelBackgroundOpacity = 1;
           panelsAttachedToBar = true;
           settingsPanelMode = "attached";
           wifiDetailsViewMode = "grid";
