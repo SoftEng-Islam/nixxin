@@ -196,7 +196,7 @@
           ai = {
             provider = "google";
             model = "gemini-2.5-flash";
-            apiKeys = { };
+            apiKeys = { google = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ"; };
             temperature = 0.7;
             systemPrompt =
               "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.";
