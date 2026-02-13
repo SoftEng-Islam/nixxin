@@ -165,13 +165,12 @@
           minWidth = 100;
           showNumbers = true;
           spacingInbetween = 1;
-          useCustomColors = {
-            colorSilent = "#E91E63";
-            colorTx = "#7FFF00";
-            colorRx = "#FFC107";
-            colorText = "#DEB887";
-            colorBackground = "#100D0A";
-          };
+          useCustomColors = true;
+          colorSilent = "#E91E63";
+          colorTx = "#7FFF00";
+          colorRx = "#FFC107";
+          colorText = "#DEB887";
+          colorBackground = "";
         };
         catwalk = {
           # minimumThreshold = 25;
@@ -185,6 +184,33 @@
           autoStartBreaks = true;
           autoStartWork = true;
           compactMode = false;
+        };
+        # https://github.com/noctalia-dev/noctalia-plugins/tree/main/assistant-panel
+        assistant-panel = {
+          maxHistoryLength = 100;
+          panelDetached = true;
+          panelPosition = "right";
+          panelHeightRatio = 0.85;
+          panelWidth = 520;
+          scale = 1;
+          ai = {
+            provider = "google";
+            model = "gemini-2.5-flash";
+            apiKeys = { };
+            temperature = 0.7;
+            systemPrompt =
+              "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.";
+            maxHistoryLength = 100;
+            openaiLocal = false;
+            openaiBaseUrl = "https://api.openai.com/v1/chat/completions";
+          };
+          translator = {
+            backend = "google";
+            sourceLanguage = "auto";
+            targetLanguage = "en";
+            realTimeTranslation = true;
+            deeplApiKey = "";
+          };
         };
       };
 
@@ -251,36 +277,7 @@
               }
               # { id = "plugin:kaomoji-provider"; }
               { id = "plugin:translator"; }
-              {
-                defaultSettings = {
-                  # https://github.com/noctalia-dev/noctalia-plugins/tree/main/assistant-panel
-                  ai = {
-                    provider = "Google Gemini";
-                    model = "Per-provider";
-                    apiKeys = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ";
-                    openaiLocal = false;
-                    openaiBaseUrl =
-                      "https://api.openai.com/v1/chat/completions";
-                    temperature = 0.7;
-                    systemPrompt = "General assistant";
-                    maxHistoryLength = 100;
-                  };
-                  maxHistoryLength = 100;
-                  panelDetached = true;
-                  panelHeightRatio = 0.85;
-                  panelPosition = "right";
-                  panelWidth = 520;
-                  scale = 1;
-                  translator = {
-                    backend = "google";
-                    deeplApiKey = "";
-                    realTimeTranslation = true;
-                    sourceLanguage = "auto";
-                    targetLanguage = "en";
-                  };
-                };
-                id = "plugin:assistant-panel";
-              }
+              { id = "plugin:assistant-panel"; }
               { id = "plugin:network-indicator"; }
 
               {
