@@ -170,7 +170,7 @@
             colorTx = "#7FFF00";
             colorRx = "#FFC107";
             colorText = "#DEB887";
-            colorBackground = "";
+            colorBackground = "#100D0A";
           };
         };
         catwalk = {
