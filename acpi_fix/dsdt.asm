@@ -24,13 +24,13 @@
 ;       18:   *     Compiler ID      "INTL"
 ;       19:   *     Compiler Version 0x20121018 (538054680)
 ;       20:   */
-;       21:  DefinitionBlock ("", "DSDT", 2, "HPQOEM", "805A    ", 0x00000000)
+;       21:  DefinitionBlock ("", "DSDT", 2, "HPQOEM", "805A    ", 0x00000001)
 
 DSDT_805A_____Header \
     db 044h,053h,044h,054h,0DCh,0DDh,000h,000h  ;00000000    "DSDT...."
-    db 002h,063h,048h,050h,051h,04Fh,045h,04Dh  ;00000008    ".cHPQOEM"
+    db 002h,062h,048h,050h,051h,04Fh,045h,04Dh  ;00000008    ".bHPQOEM"
     db 038h,030h,035h,041h,020h,020h,020h,020h  ;00000010    "805A    "
-    db 000h,000h,000h,000h,049h,04Eh,054h,04Ch  ;00000018    "....INTL"
+    db 001h,000h,000h,000h,049h,04Eh,054h,04Ch  ;00000018    "....INTL"
     db 007h,008h,025h,020h                      ;0000001C    "..% "
     db 0A0h,01Ch,000h                           ;0000001F    "..."
 DSDT_805A______SB__APTS  \

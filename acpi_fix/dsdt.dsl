@@ -18,7 +18,7 @@
  *     Compiler ID      "INTL"
  *     Compiler Version 0x20121018 (538054680)
  */
-DefinitionBlock ("", "DSDT", 2, "HPQOEM", "805A    ", 0x00000000)
+DefinitionBlock ("", "DSDT", 2, "HPQOEM", "805A    ", 0x00000001)
 {
     External (_SB_.APTS, MethodObj)    // 1 Arguments
     External (_SB_.AWAK, MethodObj)    // 1 Arguments

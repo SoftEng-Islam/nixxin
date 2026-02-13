@@ -6,63 +6,7 @@
 # -- Boot Configuration
 # -- Hardware Configuration
 # ------------------------------------------------
-let
-  _system = settings.modules.system;
-
-  # Optional ACPI table override support.
-  #
-  # Drop patched ACPI override tables in `modules/system/acpi_override/` and
-  # they will be embedded into initrd at
-  # `/kernel/firmware/acpi/<file>.aml`, which allows Linux to override buggy BIOS
-  # ACPI tables (CONFIG_ACPI_TABLE_UPGRADE=y).
-  acpiOverrideDir = ./acpi_override;
-  acpiOverrideEntries = if builtins.pathExists acpiOverrideDir then
-    builtins.readDir acpiOverrideDir
-  else
-    { };
-  # Prefer compiling `*.asl` sources and ignore any committed `*.asl.aml` build
-  # artifacts to avoid embedding duplicate override tables into initrd.
-  acpiOverrideAmlFiles = builtins.attrNames (lib.filterAttrs (name: type:
-    type == "regular" && lib.hasSuffix ".aml" name
-    && !(lib.hasSuffix ".asl.aml" name)) acpiOverrideEntries);
-  acpiOverrideAslFiles = builtins.attrNames (lib.filterAttrs
-    (name: type: type == "regular" && lib.hasSuffix ".asl" name)
-    acpiOverrideEntries);
-
-  acpiOverrideExtraFilesAml = builtins.listToAttrs (map (name: {
-    name = "kernel/firmware/acpi/${name}";
-    value = {
-      source = pkgs.runCommand "acpi-override-${name}" {
-        src = acpiOverrideDir + "/${name}";
-        preferLocalBuild = true;
-      } ''
-        cp "$src" "$out"
-      '';
-    };
-  }) acpiOverrideAmlFiles);
-
-  acpiOverrideExtraFilesAsl = builtins.listToAttrs (map (name:
-    let amlName = "${lib.removeSuffix ".asl" name}.aml";
-    in {
-      name = "kernel/firmware/acpi/${amlName}";
-      value = {
-        source = pkgs.runCommand "acpi-override-${amlName}" {
-          src = acpiOverrideDir + "/${name}";
-          nativeBuildInputs = [ pkgs.acpica-tools ];
-          preferLocalBuild = true;
-        } ''
-          cp "$src" override.asl
-          iasl -tc override.asl >/dev/null
-          cp override.aml "$out"
-        '';
-      };
-    }) acpiOverrideAslFiles);
-
-  acpiOverrideExtraFiles = acpiOverrideExtraFilesAml
-    // acpiOverrideExtraFilesAsl;
-
-  hasAcpiOverrides = (acpiOverrideAmlFiles != [ ])
-    || (acpiOverrideAslFiles != [ ]);
+let _system = settings.modules.system;
 in {
 
   # ------------------------------------------------
