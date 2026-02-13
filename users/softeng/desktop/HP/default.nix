@@ -635,6 +635,8 @@
     "big_root_window=on"
     "amd_iommu=off"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
+    "cgroup_disable=memory"
+    "cgroup_no_v1=all"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"

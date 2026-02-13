@@ -27,10 +27,6 @@ in {
     "vm.admin_reserve_kbytes" = 65536; # 0.5(2^17)
 
     #! Memory management
-    # Write data to disk more frequently (prevents slowdowns)
-    "vm.dirty_ratio" = 15; # Full writeback at 15%
-
-    "vm.dirty_background_ratio" = 5; # Background writeback at 5%
 
     # Default memory compaction (change to 1 if fragmentation issues arise)
     "vm.compaction_proactiveness" = 0;

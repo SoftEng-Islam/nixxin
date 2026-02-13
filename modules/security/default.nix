@@ -60,6 +60,16 @@
     boot.loader.systemd-boot.editor = false;
 
     boot.kernel.sysctl = {
+
+      # Help the CPU switch between NixOS and Waydroid tasks faster
+      "kernel.sched_latency_ns" = 4000000;
+      "kernel.sched_min_granularity_ns" = 400000;
+      "kernel.sched_wakeup_granularity_ns" = 500000;
+
+      # Ensure the system doesn't "pause" to write logs to the SSD too often
+      "vm.dirty_ratio" = 10;
+      "vm.dirty_background_ratio" = 5;
+
       # The Magic SysRq key is a key combo that allows users connected to the
       # system console of a Linux kernel to perform some low-level commands.
       # Disable it, since we don't need it, and is a potential security concern.
