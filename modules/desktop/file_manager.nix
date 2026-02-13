@@ -7,8 +7,6 @@
   # Required by gnome file managers
   programs.gnome-disks.enable = true;
 
-  # Tumbler, A D-Bus thumbnailer service.
-  # Enabling tumbler helps Thunar, but Nautilus relies on gnome-video-thumbnailer and ffmpegthumbnailer, not Tumbler.
   services.tumbler.enable = true; # thumbnailer service for nauitlus
 
   # ---- Tracker3 ---- #
@@ -66,6 +64,9 @@
 
   environment.systemPackages = with pkgs; [
 
+    nautilus
+    nemo
+
     file # A program that shows the type of files
     lsof # Tool to list open files
     patool # portable archive file manager
@@ -89,8 +90,6 @@
     zip # Compressor/archiver for creating and modifying zipfiles
     xz
 
-    nautilus
-
     # Collection of GSettings schemas for settings shared by various components of a desktop
     gsettings-desktop-schemas
 
@@ -107,7 +106,7 @@
     # Desktop-neutral user information store, search tool and indexer
     tinysparql
 
-    # thumbnails
+    # Thumbnails
     gst_all_1.gst-libav
     ffmpegthumbnailer
   ];

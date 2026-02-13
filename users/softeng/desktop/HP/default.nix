@@ -559,13 +559,8 @@
     # --- PERFORMANCE & STABILITY ---
     "amdgpu.bapm=0" # Disable bidirectional APM
     "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
-    "pcie_aspm=off" # Disables PCIe power saving (better performance)
     "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
     "amdgpu_pstate=active"
-
-    # --- CPU & SYSTEM RESPONSIVENESS ---
-    "preempt=full" # voluntary or full
-    "processor.ignore_ppc=1"
 
     # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
     # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
@@ -574,37 +569,14 @@
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
-    "amd_iommu=on"
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-
+    "amd_pstate=disable"
     # "amdgpu.sg_display=0" # Disable scatter-gather display
-
-    # 2. THE HARDWARE HANDOFF (The commands you just found)
-    "fbcon=map:0"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
-
-    # Allow turbo boost
-    "processor.max_cstate=0"
-
-    "thermal.off=1"
-    "random.trust_cpu=on" # ?
-    "tsc=reliable"
-    "clocksource=tsc"
-    "no_timer_check"
-
-    # 1. STOP THE ERROR REPAIR (From your documentation)
-    # This stops the kernel from trying to fix the broken ALIB object,
-    # which often lets the driver initialize anyway.
-    # "acpica_no_return_repair"
-
-    # 2. IGNORE RESERVED RESOURCES
-    # You had "lax", but "no" is stronger. It prevents the BIOS from
-    # hiding the VGA controller's memory from the kernel.
-    # "acpi_enforce_resources=no"
 
     # 3. OVERRIDE THE GPU POWER TABLE
     # This is the most important one. Since the BIOS is hiding the power
@@ -613,17 +585,18 @@
     "amdgpu.ppfeaturemask=0xffffffff"
     "amdgpu.dcfeaturemask=0xffffffff"
 
-    "pci=nocrs" # Crucial: This makes the kernel ignore the '0' values we fixed
-    "idle=nomwait" # Fixes AMD A8 processor hangs
-    "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
+    "acpi=copy_dsdt"
+    "acpi_apic_instance=1"
+    "acpi_force_32bit_fadt_addr"
+    # "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
 
-    # "acpi=strict"
-    # "noapic"
-    # "nolapic"
-    # "nomodeset"
+    # IGNORE RESERVED RESOURCES
+    # You had "lax", but "no" is stronger. It prevents the BIOS from
+    # hiding the VGA controller's memory from the kernel.
+    "acpi_enforce_resources=lax"
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    # "acpi_osi=!*" # Linux | Darwin | Windows
+    "acpi_osi=Linux" # Linux | Darwin | Windows
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
@@ -642,17 +615,32 @@
     # 4. Use the legacy _OS identification method
     #  ''acpi_os_name="Microsoft Windows NT"''
 
-    # ---- System Performance ---- #
-    "randomize_kstack_offset=off" # Enhanced kernel stack ASLR
-    "pti=off" # Page Table Isolation for security
-    "page_poison=0" # Poison freed memory pages (As it conflicts with init_on_free)
-
-    "intremap=off"
-    "iommu=pt"
-
-    # Disables the Linux audit subsystem.
-    # Reduces kernel log noise and slightly improves performance, especially on systems that don’t need SELinux/AppArmor audit trails.
+    "pti=off" # Disabling this feature removes hardening, but improves performance of system calls and interrupts.
+    "intremap=off" # disable Interrupt Remapping
     "audit=0"
+    "thermal.off=1" # 1: disable ACPI thermal control
+    "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
+    "tsc=reliable" # Disable clocksource stability checks for TSC.
+    "clocksource=tsc" # Override the default clocksource
+    "no_timer_check"
+    "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
+    "idle=poll"
+    "accept_memory=eager"
+    "workqueue.power_efficient=0"
+    "unaligned_scalar_speed=fast"
+    "skew_tick=1"
+    "threadirqs"
+    "tpm.disable_pcr_integrity=1"
+    "preempt=full"
+    "big_root_window=on"
+    "amd_iommu=off"
+    "pcie_aspm=off" # Disables PCIe power saving (better performance)
+
+    # MTRR Optimization for 16GB RAM + iGPU
+    "enable_mtrr_cleanup"
+    "mtrr_spare_reg_nr=2"
+    "mtrr_gran_size=8M" # Sets the alignment resolution
+    "mtrr_chunk_size=128M" # Helps map the 16GB more efficiently
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

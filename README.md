@@ -2,16 +2,11 @@
 
 **Nixos** Enhancement Configurations
 
-
 <img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/26137a3f-8a2d-4e5d-9a53-d71c03f9f2ad" />
-
-
-
 
 > [!WARNING]
 >
 > - Please don't use this Project, still under development.
->
 
 This repository is home to the Nix code that builds my systems.
 Issues, PRs and questions are welcome!
@@ -60,7 +55,6 @@ sudo nixos-generate-config --show-hardware-config > profiles/desktop/hardware-co
 > [!WARNING]
 >
 > - Don't use my hardware configuration, your system won't boot!
->
 
 Now, it's time to configure `settings.nix` (and probably profiles) to your liking.
 Once the variables are set, then switch into the system configuration by running:
@@ -106,11 +100,14 @@ home-manager switch --flake .
 ## Extra
 
 to Update the Input Use the following command to update just one input:
+
 ```bash
     sudo nix flake update <input-name>
 ```
+
 Replace <input-name> with the name of the input you want to update.
 Example:
+
 ```bash
     sudo nix flake update hyprland
 ```
@@ -118,6 +115,7 @@ Example:
 ## Errors
 
 use `journalctl` to find problems:
+
 ```bash
     # home-manager errors
     journalctl -xe | grep home-manager
@@ -167,16 +165,17 @@ use `journalctl` to find problems:
 
 use chmod u+w /to/path if you have permissions errors:
 Error:
+
 ```bash
 PermissionError: [Errno 13] Permission denied: '/home/softeng/.cache/ignis/wallpaper'
 ```
 
 Fix:
+
 ```bash
 chmod u+w /home/softeng/.cache/ignis/wallpaper
 ls -ld /home/softeng/.cache/ignis/wallpaper
 ```
-
 
 ## Credits
 

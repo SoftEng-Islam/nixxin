@@ -125,36 +125,11 @@ in {
 
       # Disable Mitigation
       "mitigations=off"
-      "split_lock_mitigate=off" # prevents some games from being slowed
       "retbleed=off" # Disable Retbleed mitigation
-
-      "threadirqs"
-
-      # ---- USB Devices ---- #
-      # Prevents USB devices (e.g., keyboards, mice, controllers) from disconnecting due to power-saving.
-      # Can fix issues where USB devices randomly stop working.
-      # "usbcore.autosuspend=-1" # Prevents USB disconnect issues
-
-      # ---- WIFI ---- #
-      "rtl8xxxu_disable_hw_crypto=1"
 
       # ---- Networking ---- #
       # Use legacy network interface names (eth0, wlan0, etc.)
       "net.ifnames=0"
-
-      # ---- Storage ---- #
-      # "libata.force=noncq"
-
-      # ---- New memory management parameters ---- #
-      # "hugepagesz=2M" # Enable 2MB huge pages
-      # "hugepages=2048" # Reserve 4GB for huge pages (2048 * 2MB)
-      # "default_hugepagesz=2M" # Set default huge page size
-      "transparent_hugepage=always" # Enable transparent huge pages
-
-      # ---- Swap ---- #
-      # "zswap.enabled=1"
-      # "zswap.compressor=zstd"
-      # "zswap.max_pool_percent=20"
     ];
 
     kernel.sysctl = {

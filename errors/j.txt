@@ -1,0 +1,554 @@
+Feb 13 11:42:20 nixxin kernel: amdgpu: Overdrive is enabled, please disable it before reporting any bugs unrelated to overdrive.
+Feb 13 11:42:43 nixxin greetd[1732]: gkr-pam: unable to locate daemon control file
+Feb 13 11:44:54 nixxin sudo[3830]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
+Feb 13 11:44:54 nixxin sudo[3831]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
+Feb 13 11:45:01 nixxin init: Could not set 'ro.vndk.lite' to 'true' while loading .prop filesRead-only property was already set
+Feb 13 11:45:01 nixxin init: /vendor/etc/init/android.hardware.audio.service.rc: 1: ignored duplicate definition of service 'vendor.audio-hal'
+Feb 13 11:45:01 nixxin init: /vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc: 1: ignored duplicate definition of service 'vendor.hwcomposer-2-1'
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount blkio cgroup: Operation not permitted
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount cgroup v2: Device or resource busy
+Feb 13 11:45:01 nixxin libprocessgroup: lchown() failed for /sys/fs/cgroup/.: Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to create directory for cgroup2 cgroup
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount cgroup2 cgroup: Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount cpu cgroup: Operation not permitted
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount cpuset cgroup: No such device
+Feb 13 11:45:01 nixxin kernel: cgroup: Unknown subsys name 'memory'
+Feb 13 11:45:01 nixxin kernel: cgroup: Unknown subsys name 'schedtune'
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to mount schedtune cgroup: Invalid argument
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 4) failed for service 'exec 1 (/system/bin/bootstrap/linkerconfig --target /linkerconfig/bootstrap)': Read-only file system
+Feb 13 11:45:01 nixxin linkerconfig: Unable to access VNDK APEX at path: /apex/com.android.vndk.v33: No such file or directory
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 5) failed for service 'ueventd': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 6) failed for service 'apexd-bootstrap': Read-only file system
+Feb 13 11:45:01 nixxin apexd: Failed to scan /system_ext/apex : Can't open /system_ext/apex for reading : No such file or directory
+Feb 13 11:45:01 nixxin apexd: Failed to scan /product/apex : Can't open /product/apex for reading : No such file or directory
+Feb 13 11:45:01 nixxin apexd: Failed to scan /vendor/apex : Can't open /vendor/apex for reading : No such file or directory
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1092: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1092, 13) failed for service 'prng_seeder': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 14) failed for service 'boringssl_self_test32_vendor': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 15) failed for service 'boringssl_self_test64_vendor': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 16) failed for service 'exec 2 (/vendor/bin/sh -c [ -c /dev/host_hwbinder ] && setprop ctl.stop vendor.gralloc-2-0)': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1036, 17) failed for service 'logd': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1069: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1069, 18) failed for service 'lmkd': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 19) failed for service 'servicemanager': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 20) failed for service 'hwservicemanager': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 21) failed for service 'vndservicemanager': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 22) failed for service 'boringssl_self_test32': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 29) failed for service 'boringssl_self_test64': Read-only file system
+Feb 13 11:45:01 nixxin logd: SocketListener: Failed to start unbound listener
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 31) failed for service 'vold': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 32) failed for service 'exec 3 (/system/bin/vdc checkpoint markBootAttempt)': Read-only file system
+Feb 13 11:45:01 nixxin vold: Failed to opendir: No such file or directory
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 36) failed for service 'exec 4 (/system/bin/recovery-refresh)': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 37) failed for service 'system_suspend': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1017: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1017, 38) failed for service 'keystore2': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 39) failed for service 'vendor.keymaster-4-0': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(0, 40) failed for service 'exec 5 (/system/bin/fsverity_init --load-verified-keys)': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 41) failed for service 'exec 6 (/system/bin/vdc checkpoint prepareCheckpoint)': Read-only file system
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1058: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1058, 44) failed for service 'tombstoned': Read-only file system
+Feb 13 11:45:01 nixxin init: failed to set task profiles
+Feb 13 11:45:01 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:01 nixxin init: createProcessGroup(1000, 45) failed for service 'exec 7 (/system/bin/vdc keymaster earlyBootEnded)': Read-only file system
+Feb 13 11:45:01 nixxin incfs: IncFs_Features: failed to open features dir, assuming v1/none.: No such file or directory
+Feb 13 11:45:02 nixxin vold: keystore2 Keystore earlyBootEnded returned service specific error: -68
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1036, 53) failed for service 'logd-reinit': Read-only file system
+Feb 13 11:45:02 nixxin init: failed to set task profiles
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 54) failed for service 'apexd': Read-only file system
+Feb 13 11:45:02 nixxin logd: FrameworkListener: read() failed (Connection reset by peer)
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1081: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1081, 55) failed for service 'exec 8 (/bin/rm -rf /data/misc/virtualizationservice)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1023: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1023, 57) failed for service 'exec 9 (/system/bin/chattr +F /data/media)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(9999, 58) failed for service 'derive_sdk': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 59) failed for service 'exec 10 (/system/bin/vdc --wait cryptfs init_user0)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1000, 62) failed for service 'derive_classpath': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 63) failed for service 'odsign': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 64) failed for service 'exec 11 (/system/bin/fsverity_init --lock)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 65) failed for service 'apexd-snapshotde': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1000, 66) failed for service 'exec 12 (/system/bin/tzdatacheck /apex/com.android.tzdata/etc/tz /data/misc/zoneinfo)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(1000, 67) failed for service 'exec 13 (/system/bin/recovery-persist)': Read-only file system
+Feb 13 11:45:02 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:02 nixxin init: createProcessGroup(0, 68) failed for service 'bpfloader': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1066: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1066, 71) failed for service 'statsd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 72) failed for service 'netd': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 73) failed for service 'zygote': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 74) failed for service 'zygote_secondary': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 75) failed for service 'hidl_memory': Read-only file system
+Feb 13 11:45:03 nixxin init: Could not start service 'vendor.audio-hal-2-0' as part of class 'hal': Cannot find '/vendor/bin/hw/android.hardware.audio@2.0-service': No such file or directory
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 76) failed for service 'vendor.audio-hal': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 77) failed for service 'vendor.hwcomposer-2-1': Read-only file system
+Feb 13 11:45:03 nixxin init: Could not start service 'vendor.camera-provider-2-4' as part of class 'hal': Cannot find '/vendor/bin/hw/android.hardware.camera.provider@2.4-service': No such file or directory
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 78) failed for service 'task-hal-1-0': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1047: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1047, 79) failed for service 'vendor.camera-provider-2-7-ext': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1013, 80) failed for service 'vendor.cas-hal-1-2': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 81) failed for service 'vendor.configstore-hal': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 82) failed for service 'vendor.gatekeeper-1-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 83) failed for service 'vendor.graphics.allocator-4-0': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 84) failed for service 'vendor.health-hal-2-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 85) failed for service 'vendor.light-hal-2-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 86) failed for service 'vendor.memtrack-hal-1-0': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 87) failed for service 'vendor.power-hal-1-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 88) failed for service 'vendor.sensors-hal-1-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 89) failed for service 'vendor.vibrator-1-0': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1041: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1041, 90) failed for service 'audioserver': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1076: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1076, 91) failed for service 'credstore': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1072: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1072, 92) failed for service 'gpu': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 93) failed for service 'surfaceflinger': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 94) failed for service 'exec 14 (/system/bin/gsid run-startup-tasks)': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 95) failed for service 'exec 15 (/system/bin/profcollectctl reset)': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 96) failed for service 'boringssl_self_test_apex32': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 106) failed for service 'boringssl_self_test_apex64': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 117) failed for service 'adbd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 118) failed for service 'exec 16 (/system/bin/bootstat --set_system_boot_reason)': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(9999, 119) failed for service 'traced_probes': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(9999, 121) failed for service 'traced': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1047: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1047, 122) failed for service 'cameraserver': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 123) failed for service 'idmap2d': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1067: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1067, 124) failed for service 'incidentd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 125) failed for service 'installd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1040: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1040, 126) failed for service 'mediaextractor': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1013, 127) failed for service 'mediametrics': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1013, 128) failed for service 'media': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 131) failed for service 'storaged': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1010: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1010, 132) failed for service 'wificond': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 133) failed for service 'adb_root': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1046: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1046, 134) failed for service 'vendor.media.omx': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1046: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1046, 136) failed for service 'media.swcodec': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 139) failed for service 'gatekeeperd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(0, 142) failed for service 'usbd': Read-only file system
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1000, 143) failed for service 'exec 17 (/system/bin/flags_health_check BOOT_FAILURE)': Read-only file system
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin init: failed to set task profiles
+Feb 13 11:45:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1020: Read-only file system
+Feb 13 11:45:03 nixxin init: createProcessGroup(1020, 154) failed for service 'mdnsd': Read-only file system
+Feb 13 11:45:04 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1003: Read-only file system
+Feb 13 11:45:04 nixxin init: createProcessGroup(1003, 230) failed for service 'bootanim': Read-only file system
+Feb 13 11:45:04 nixxin init: failed to set task profiles
+Feb 13 11:45:09 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:09 nixxin init: createProcessGroup(0, 451) failed for service 'exec 18 (/system/bin/extra_free_kbytes.sh 24300)': Read-only file system
+Feb 13 11:45:17 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:17 nixxin init: createProcessGroup(1000, 1221) failed for service 'exec 19 (/bin/rm -rf /data/per_boot)': Read-only file system
+Feb 13 11:45:17 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 11:45:17 nixxin init: createProcessGroup(1000, 1238) failed for service 'exec 20 (/system/bin/bootstat --record_boot_complete --record_boot_reason --record_time_since_factory_reset -l)': Read-only file system
+Feb 13 11:45:17 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 11:45:17 nixxin init: createProcessGroup(1036, 1242) failed for service 'logd-auditctl': Read-only file system
+Feb 13 11:45:17 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:45:17 nixxin init: createProcessGroup(0, 1243) failed for service 'exec 21 (/system/bin/lmkd --reinit)': Read-only file system
+Feb 13 11:47:55 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 11:47:55 nixxin init: createProcessGroup(0, 6623) failed for service 'exec 22 (/system/bin/lmkd --reinit)': Read-only file system
+Feb 13 16:16:32 nixxin sudo[121506]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
+Feb 13 16:16:32 nixxin sudo[121507]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
+Feb 13 16:16:36 nixxin init: Could not set 'ro.vndk.lite' to 'true' while loading .prop filesRead-only property was already set
+Feb 13 16:16:36 nixxin init: /vendor/etc/init/android.hardware.audio.service.rc: 1: ignored duplicate definition of service 'vendor.audio-hal'
+Feb 13 16:16:36 nixxin init: /vendor/etc/init/android.hardware.graphics.composer@2.1-service.rc: 1: ignored duplicate definition of service 'vendor.hwcomposer-2-1'
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount blkio cgroup: Operation not permitted
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount cgroup v2: Device or resource busy
+Feb 13 16:16:36 nixxin libprocessgroup: lchown() failed for /sys/fs/cgroup/.: Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to create directory for cgroup2 cgroup
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount cgroup2 cgroup: Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount cpu cgroup: Operation not permitted
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount cpuset cgroup: No such device
+Feb 13 16:16:36 nixxin kernel: cgroup: Unknown subsys name 'memory'
+Feb 13 16:16:36 nixxin kernel: cgroup: Unknown subsys name 'schedtune'
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to mount schedtune cgroup: Invalid argument
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 4) failed for service 'exec 1 (/system/bin/bootstrap/linkerconfig --target /linkerconfig/bootstrap)': Read-only file system
+Feb 13 16:16:36 nixxin linkerconfig: Unable to access VNDK APEX at path: /apex/com.android.vndk.v33: No such file or directory
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 5) failed for service 'ueventd': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 6) failed for service 'apexd-bootstrap': Read-only file system
+Feb 13 16:16:36 nixxin apexd: Failed to scan /system_ext/apex : Can't open /system_ext/apex for reading : No such file or directory
+Feb 13 16:16:36 nixxin apexd: Failed to scan /product/apex : Can't open /product/apex for reading : No such file or directory
+Feb 13 16:16:36 nixxin apexd: Failed to scan /vendor/apex : Can't open /vendor/apex for reading : No such file or directory
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1092: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1092, 13) failed for service 'prng_seeder': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 14) failed for service 'boringssl_self_test32_vendor': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 15) failed for service 'boringssl_self_test64_vendor': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 16) failed for service 'exec 2 (/vendor/bin/sh -c [ -c /dev/host_hwbinder ] && setprop ctl.stop vendor.gralloc-2-0)': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1036, 17) failed for service 'logd': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1069: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1069, 18) failed for service 'lmkd': Read-only file system
+Feb 13 16:16:36 nixxin init: failed to set task profiles
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1000, 19) failed for service 'servicemanager': Read-only file system
+Feb 13 16:16:36 nixxin init: failed to set task profiles
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1000, 20) failed for service 'hwservicemanager': Read-only file system
+Feb 13 16:16:36 nixxin init: failed to set task profiles
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(1000, 21) failed for service 'vndservicemanager': Read-only file system
+Feb 13 16:16:36 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:36 nixxin init: createProcessGroup(0, 22) failed for service 'boringssl_self_test32': Read-only file system
+Feb 13 16:16:36 nixxin init: failed to set task profiles
+Feb 13 16:16:36 nixxin init: failed to set task profiles
+Feb 13 16:16:37 nixxin logd: SocketListener: Failed to start unbound listener
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 30) failed for service 'boringssl_self_test64': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 31) failed for service 'vold': Read-only file system
+Feb 13 16:16:37 nixxin init: failed to set task profiles
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 32) failed for service 'exec 3 (/system/bin/vdc checkpoint markBootAttempt)': Read-only file system
+Feb 13 16:16:37 nixxin vold: Failed to opendir: No such file or directory
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 36) failed for service 'exec 4 (/system/bin/recovery-refresh)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 37) failed for service 'system_suspend': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1017: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1017, 38) failed for service 'keystore2': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 39) failed for service 'vendor.keymaster-4-0': Read-only file system
+Feb 13 16:16:37 nixxin init: failed to set task profiles
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 40) failed for service 'exec 5 (/system/bin/fsverity_init --load-verified-keys)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 43) failed for service 'exec 6 (/system/bin/vdc checkpoint prepareCheckpoint)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1058: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1058, 44) failed for service 'tombstoned': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 45) failed for service 'exec 7 (/system/bin/vdc keymaster earlyBootEnded)': Read-only file system
+Feb 13 16:16:37 nixxin init: failed to set task profiles
+Feb 13 16:16:37 nixxin incfs: IncFs_Features: failed to open features dir, assuming v1/none.: No such file or directory
+Feb 13 16:16:37 nixxin vold: keystore2 Keystore earlyBootEnded returned service specific error: -68
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1036, 53) failed for service 'logd-reinit': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 54) failed for service 'apexd': Read-only file system
+Feb 13 16:16:37 nixxin init: failed to set task profiles
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1081: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1081, 55) failed for service 'exec 8 (/bin/rm -rf /data/misc/virtualizationservice)': Read-only file system
+Feb 13 16:16:37 nixxin logd: FrameworkListener: read() failed (Connection reset by peer)
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1023: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1023, 57) failed for service 'exec 9 (/system/bin/chattr +F /data/media)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(9999, 58) failed for service 'derive_sdk': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 59) failed for service 'exec 10 (/system/bin/vdc --wait cryptfs init_user0)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 62) failed for service 'derive_classpath': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 63) failed for service 'odsign': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 64) failed for service 'exec 11 (/system/bin/fsverity_init --lock)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 65) failed for service 'apexd-snapshotde': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 66) failed for service 'exec 12 (/system/bin/tzdatacheck /apex/com.android.tzdata/etc/tz /data/misc/zoneinfo)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(1000, 67) failed for service 'exec 13 (/system/bin/recovery-persist)': Read-only file system
+Feb 13 16:16:37 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:37 nixxin init: createProcessGroup(0, 68) failed for service 'bpfloader': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1066: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1066, 71) failed for service 'statsd': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 72) failed for service 'netd': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 73) failed for service 'zygote': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 74) failed for service 'zygote_secondary': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 75) failed for service 'hidl_memory': Read-only file system
+Feb 13 16:16:38 nixxin init: Could not start service 'vendor.audio-hal-2-0' as part of class 'hal': Cannot find '/vendor/bin/hw/android.hardware.audio@2.0-service': No such file or directory
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 76) failed for service 'vendor.audio-hal': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 77) failed for service 'vendor.hwcomposer-2-1': Read-only file system
+Feb 13 16:16:38 nixxin init: Could not start service 'vendor.camera-provider-2-4' as part of class 'hal': Cannot find '/vendor/bin/hw/android.hardware.camera.provider@2.4-service': No such file or directory
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 78) failed for service 'task-hal-1-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1047: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1047, 79) failed for service 'vendor.camera-provider-2-7-ext': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1013, 80) failed for service 'vendor.cas-hal-1-2': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 81) failed for service 'vendor.configstore-hal': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 82) failed for service 'vendor.gatekeeper-1-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 83) failed for service 'vendor.graphics.allocator-4-0': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 84) failed for service 'vendor.health-hal-2-0': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 85) failed for service 'vendor.light-hal-2-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 86) failed for service 'vendor.memtrack-hal-1-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 90) failed for service 'vendor.power-hal-1-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 91) failed for service 'vendor.sensors-hal-1-0': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 92) failed for service 'vendor.vibrator-1-0': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1041: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1041, 93) failed for service 'audioserver': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1076: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1076, 94) failed for service 'credstore': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1072: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1072, 95) failed for service 'gpu': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 96) failed for service 'surfaceflinger': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 97) failed for service 'exec 14 (/system/bin/gsid run-startup-tasks)': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 98) failed for service 'exec 15 (/system/bin/profcollectctl reset)': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 99) failed for service 'boringssl_self_test_apex32': Read-only file system
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin init: failed to set task profiles
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 152) failed for service 'boringssl_self_test_apex64': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 157) failed for service 'adbd': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 159) failed for service 'exec 16 (/system/bin/bootstat --set_system_boot_reason)': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(9999, 160) failed for service 'traced_probes': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_9999: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(9999, 161) failed for service 'traced': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1047: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1047, 162) failed for service 'cameraserver': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 163) failed for service 'idmap2d': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1067: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1067, 164) failed for service 'incidentd': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 165) failed for service 'installd': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1040: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1040, 166) failed for service 'mediaextractor': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1013, 167) failed for service 'mediametrics': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1013: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1013, 168) failed for service 'media': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 169) failed for service 'storaged': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1010: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1010, 170) failed for service 'wificond': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 171) failed for service 'adb_root': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1046: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1046, 172) failed for service 'vendor.media.omx': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1046: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1046, 173) failed for service 'media.swcodec': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(1000, 174) failed for service 'gatekeeperd': Read-only file system
+Feb 13 16:16:38 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:38 nixxin init: createProcessGroup(0, 175) failed for service 'usbd': Read-only file system
+Feb 13 16:16:39 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:39 nixxin init: createProcessGroup(1000, 176) failed for service 'exec 17 (/system/bin/flags_health_check BOOT_FAILURE)': Read-only file system
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin init: failed to set task profiles
+Feb 13 16:16:39 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1020: Read-only file system
+Feb 13 16:16:39 nixxin init: createProcessGroup(1020, 203) failed for service 'mdnsd': Read-only file system
+Feb 13 16:16:39 nixxin systemd-coredump[121819]: Process 121758 (composer@2.1-se) of user 1000 dumped core.
+                                                 
+                                                 Module /lib64/egl/libEGL_mesa.so without build-id.
+                                                 Module /lib64/egl/libEGL_mesa.so
+                                                 Module /lib64/egl/libEGL_mesa.so without build-id.
+                                                 Stack trace of thread 120:
+                                                 #0  0x0000714d9bdb568f n/a (/system/apex/com.android.runtime/lib64/bionic/libc.so + 0x5f68f)
+                                                 ELF object binary architecture: AMD x86-64
+Feb 13 16:16:39 nixxin init: Control message: Could not find 'android.hardware.graphics.composer@2.1::IComposer/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:40 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:40 nixxin init: Control message: Could not find 'android.hardware.graphics.composer@2.1::IComposer/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:41 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:41 nixxin init: Control message: Could not find 'android.hardware.graphics.composer@2.1::IComposer/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:42 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:42 nixxin init: Control message: Could not find 'android.hardware.graphics.composer@2.1::IComposer/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:43 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:43 nixxin init: createProcessGroup(1000, 364) failed for service 'vendor.hwcomposer-2-1': Read-only file system
+Feb 13 16:16:43 nixxin init: failed to set task profiles
+Feb 13 16:16:43 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:43 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:43 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:43 nixxin systemd-coredump[122070]: Process 122054 (composer@2.1-se) of user 1000 dumped core.
+                                                 
+                                                 Module /lib64/egl/libEGL_mesa.so without build-id.
+                                                 Module /lib64/egl/libEGL_mesa.so
+                                                 Stack trace of thread 369:
+                                                 #0  0x00007b976e8a968f n/a (/system/apex/com.android.runtime/lib64/bionic/libc.so + 0x5f68f)
+                                                 ELF object binary architecture: AMD x86-64
+Feb 13 16:16:44 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:44 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:45 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:45 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:46 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:46 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:47 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:47 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:48 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:48 nixxin init: createProcessGroup(1000, 389) failed for service 'vendor.hwcomposer-2-1': Read-only file system
+Feb 13 16:16:48 nixxin init: failed to set task profiles
+Feb 13 16:16:48 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:48 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:48 nixxin systemd-coredump[122098]: Process 122086 (composer@2.1-se) of user 1000 dumped core.
+                                                 
+                                                 Module /lib64/egl/libEGL_mesa.so without build-id.
+                                                 Module /lib64/egl/libEGL_mesa.so
+                                                 Stack trace of thread 394:
+                                                 #0  0x00007396f709668f n/a (/system/apex/com.android.runtime/lib64/bionic/libc.so + 0x5f68f)
+                                                 ELF object binary architecture: AMD x86-64
+Feb 13 16:16:49 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:49 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:50 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:50 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:51 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:51 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:52 nixxin init: Control message: Could not find 'vendor.waydroid.display@1.0::IWaydroidDisplay/default' for ctl.interface_start from pid: 20 (/system/bin/hwservicemanager)
+Feb 13 16:16:52 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:53 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:53 nixxin init: createProcessGroup(1000, 409) failed for service 'vendor.hwcomposer-2-1': Read-only file system
+Feb 13 16:16:53 nixxin init: failed to set task profiles
+Feb 13 16:16:53 nixxin init: Control message: Could not find 'aidl/SurfaceFlinger' for ctl.interface_start from pid: 19 (/system/bin/servicemanager)
+Feb 13 16:16:53 nixxin systemd-coredump[122134]: Process 121777 (surfaceflinger) of user 1000 dumped core.
+                                                 
+                                                 Module /lib64/egl/libEGL_mesa.so without build-id.
+                                                 Module /lib64/egl/libEGL_mesa.so
+                                                 Module /lib64/egl/libGLESv2_mesa.so without build-id.
+                                                 Module /lib64/egl/libGLESv2_mesa.so
+                                                 Module /lib64/egl/libGLESv1_CM_mesa.so without build-id.
+                                                 Module /lib64/egl/libGLESv1_CM_mesa.so
+                                                 Stack trace of thread 96:
+                                                 #0  0x00007cf96ea8368f n/a (/system/apex/com.android.runtime/lib64/bionic/libc.so + 0x5f68f)
+                                                 ELF object binary architecture: AMD x86-64
+Feb 13 16:16:53 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:16:53 nixxin init: createProcessGroup(1000, 428) failed for service 'surfaceflinger': Read-only file system
+Feb 13 16:16:53 nixxin init: failed to set task profiles
+Feb 13 16:16:54 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1003: Read-only file system
+Feb 13 16:16:54 nixxin init: createProcessGroup(1003, 458) failed for service 'bootanim': Read-only file system
+Feb 13 16:16:54 nixxin init: failed to set task profiles
+Feb 13 16:16:54 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:16:54 nixxin init: createProcessGroup(0, 522) failed for service 'exec 18 (/system/bin/extra_free_kbytes.sh 24300)': Read-only file system
+Feb 13 16:17:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:17:03 nixxin init: createProcessGroup(1000, 1317) failed for service 'exec 19 (/bin/rm -rf /data/per_boot)': Read-only file system
+Feb 13 16:17:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1000: Read-only file system
+Feb 13 16:17:03 nixxin init: createProcessGroup(1000, 1334) failed for service 'exec 20 (/system/bin/bootstat --record_boot_complete --record_boot_reason --record_time_since_factory_reset -l)': Read-only file system
+Feb 13 16:17:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_1036: Read-only file system
+Feb 13 16:17:03 nixxin init: createProcessGroup(1036, 1338) failed for service 'logd-auditctl': Read-only file system
+Feb 13 16:17:03 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:17:03 nixxin init: createProcessGroup(0, 1341) failed for service 'exec 21 (/system/bin/lmkd --reinit)': Read-only file system
+Feb 13 16:17:22 nixxin libprocessgroup: Failed to make and chown /sys/fs/cgroup/uid_0: Read-only file system
+Feb 13 16:17:22 nixxin init: createProcessGroup(0, 3929) failed for service 'exec 22 (/system/bin/lmkd --reinit)': Read-only file system
+Feb 13 20:35:09 nixxin sudo[251583]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
+Feb 13 20:35:09 nixxin sudo[251584]:  softeng : a password is required ; TTY=tty1 ; PWD=/home/softeng ; USER=root ; COMMAND=/run/current-system/sw/bin/true
