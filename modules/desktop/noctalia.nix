@@ -251,7 +251,36 @@
               }
               # { id = "plugin:kaomoji-provider"; }
               { id = "plugin:translator"; }
-              { id = "plugin:assistant-panel"; }
+              {
+                defaultSettings = {
+                  # https://github.com/noctalia-dev/noctalia-plugins/tree/main/assistant-panel
+                  ai = {
+                    provider = "Google Gemini";
+                    model = "Per-provider";
+                    apiKeys = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ";
+                    openaiLocal = false;
+                    openaiBaseUrl =
+                      "https://api.openai.com/v1/chat/completions";
+                    temperature = 0.7;
+                    systemPrompt = "General assistant";
+                    maxHistoryLength = 100;
+                  };
+                  maxHistoryLength = 100;
+                  panelDetached = true;
+                  panelHeightRatio = 0.85;
+                  panelPosition = "right";
+                  panelWidth = 520;
+                  scale = 1;
+                  translator = {
+                    backend = "google";
+                    deeplApiKey = "";
+                    realTimeTranslation = true;
+                    sourceLanguage = "auto";
+                    targetLanguage = "en";
+                  };
+                };
+                id = "plugin:assistant-panel";
+              }
               { id = "plugin:network-indicator"; }
 
               {

@@ -20,3 +20,4 @@ node_modules/
 subprojects/gvc
 venv
 ~/
+./acpi_fix
