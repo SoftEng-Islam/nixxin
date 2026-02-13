@@ -6,6 +6,9 @@
 
   # Required by gnome file managers
   programs.gnome-disks.enable = true;
+
+  # Tumbler, A D-Bus thumbnailer service.
+  # Enabling tumbler helps Thunar, but Nautilus relies on gnome-video-thumbnailer and ffmpegthumbnailer, not Tumbler.
   services.tumbler.enable = true; # thumbnailer service for nauitlus
 
   # ---- Tracker3 ---- #

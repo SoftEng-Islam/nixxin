@@ -220,10 +220,6 @@ in {
     udisks2.enable = true;
     fwupd.enable = true; # Firmware update daemon --- IGNORE ---
 
-    # Tumbler, A D-Bus thumbnailer service.
-    # Enabling tumbler helps Thunar, but Nautilus relies on gnome-video-thumbnailer and ffmpegthumbnailer, not Tumbler.
-    tumbler.enable = false;
-
     # ACPI daemon
     # 🔌 It listens for power-related events from the system firmware (BIOS/UEFI), such as:
     # Power button press 💡
