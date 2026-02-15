@@ -438,10 +438,10 @@
   modules.power.powerManagement.powertop = false;
   # Often used values: "schedutil", "ondemand", "powersave", "performance"
   modules.power.powerManagement.cpuFreqGovernor = "performance";
-  modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
-  modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
+  # modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
+  # modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
   modules.power.auto-cpufreq.enable = false;
-  modules.power.tuned.enable = true;
+  modules.power.tuned.enable = false;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
@@ -557,10 +557,9 @@
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
-    "amdgpu.bapm=0" # Disable bidirectional APM
+    "amdgpu.bapm=1" # Disable bidirectional APM
     "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
     "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
-    "amdgpu_pstate=active"
 
     # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
     # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
@@ -571,7 +570,8 @@
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-    "amd_pstate=disable"
+    # "amdgpu_pstate=active"
+    # "amd_pstate=disable"
     # "amdgpu.sg_display=0" # Disable scatter-gather display
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.

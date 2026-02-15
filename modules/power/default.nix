@@ -36,7 +36,7 @@ in {
       # Enable auto-epp for amd active pstate.
       services.auto-epp.enable = false;
 
-      services.thermald.enable = true;
+      services.thermald.enable = false;
 
       # Enable the ACPI power management daemon.
       services.acpid.enable = true;

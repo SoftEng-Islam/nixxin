@@ -468,7 +468,7 @@
           viewMode = "list";
           autoPasteClipboard = false;
           clipboardWrapText = true;
-          # iconMode = "tabler";
+          iconMode = "native";
           ignoreMouseInput = false;
           pinnedApps = [ ];
           screenshotAnnotationTool = "";
@@ -509,7 +509,7 @@
           ];
         };
         dock = {
-          enabled = true;
+          enabled = false;
           position = "bottom";
           displayMode = "auto_hide";
           backgroundOpacity = 1;
