@@ -121,7 +121,7 @@ in {
       # If you come from bash you might have to change your $PATH.
       # export PATH=${HOME}/bin:/usr/local/bin:$PATH
       # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
-      # export QT_QPA_PLATFORMTHEME=qt5ct
+
 
       export NIX_BUILD_SHELL=zsh
 

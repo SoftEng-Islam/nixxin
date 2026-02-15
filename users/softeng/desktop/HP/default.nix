@@ -108,9 +108,9 @@
 
   # [ QT ]
   common.qt.style = "Adwaita-dark";
-  common.qt.platformTheme = "qt6ct";
-  common.qt.package = pkgs.adwaita-qt;
-  common.qt.QT_QPA_PLATFORMTHEME = "qt6ct";
+  common.qt.platformTheme = "gtk3";
+  common.qt.package = pkgs.adwaita-qt6;
+  common.qt.QT_QPA_PLATFORMTHEME = "gtk3";
   common.qt.SCALE_FACTOR = 1;
   # [ ICONS ]
 
