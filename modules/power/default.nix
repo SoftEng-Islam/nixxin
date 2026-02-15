@@ -37,6 +37,7 @@ in {
       services.auto-epp.enable = false;
 
       services.thermald.enable = false;
+      services.thermald.ignoreCpuidCheck = false;
 
       # Enable the ACPI power management daemon.
       services.acpid.enable = true;
