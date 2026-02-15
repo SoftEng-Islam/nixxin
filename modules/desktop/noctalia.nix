@@ -162,7 +162,7 @@
           fontSizeModifier = 1.1;
           forceMegabytes = false;
           iconSizeModifier = 1.1;
-          minWidth = 100;
+          # minWidth = 100; # in px
           showNumbers = true;
           spacingInbetween = 1;
           useCustomColors = true;
