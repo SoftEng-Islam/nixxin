@@ -78,7 +78,7 @@ in {
       windsurf
       postman
 
-      mongodb
+      # mongodb
       mongodb-compass
       mongodb-cli
       mongodb-ce
