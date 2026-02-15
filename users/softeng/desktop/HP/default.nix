@@ -638,6 +638,7 @@
     "cgroup_disable=memory"
     "cgroup_no_v1=all"
     "processor.ignore_ppc=1"
+    "msr.allow_writes=on"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"
