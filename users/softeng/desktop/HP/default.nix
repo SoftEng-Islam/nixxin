@@ -625,7 +625,7 @@
     "clocksource=tsc" # Override the default clocksource
     "no_timer_check"
     "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
-    "idle=poll"
+    "idle=nomwait"
     "accept_memory=eager"
     "workqueue.power_efficient=0"
     "unaligned_scalar_speed=fast"
@@ -642,6 +642,8 @@
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
+    "processor.max_cstate=5"
+    "cpufreq.default_governor=performance"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"
