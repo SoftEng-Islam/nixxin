@@ -28,10 +28,36 @@
     };
   };
 
-  programs.tuxclocker.enable = false;
+  # This startup script forces the Boost State to "1" on every boot
+  system.activationScripts.forceTurbo = ''
+    if [ -e /sys/devices/system/cpu/cpufreq/boost ]; then
+      echo 1 > /sys/devices/system/cpu/cpufreq/boost
+    fi
+  '';
+
+  # 5. STARTUP SCRIPT: The final MSR flip
+  systemd.services.force-turbo = {
+    description = "Force AMD Turbo Core and Performance mode";
+    wantedBy = [ "multi-user.target" ];
+    script = ''
+      # Ensure boost is enabled in sysfs
+      if [ -e /sys/devices/system/cpu/cpufreq/boost ]; then
+        echo 1 > /sys/devices/system/cpu/cpufreq/boost
+      fi
+      # Optional: Rewrite MSR to ensure hardware is awake
+      ${pkgs.msr-tools}/bin/wrmsr -a 0xc0010015 0x09001011
+    '';
+    serviceConfig.Type = "oneshot";
+  };
+
+  programs.tuxclocker.enable = true;
   programs.tuxclocker.useUnfree = true;
   environment.systemPackages = with pkgs; [
     msr-tools
     linuxKernel.packages.linux_zen.cpupower
+    linuxKernel.packages.linux_zen.turbostat
+    clinfo
+    stress-ng
+    pciutils
   ];
 }
