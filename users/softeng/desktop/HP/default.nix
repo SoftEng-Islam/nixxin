@@ -596,7 +596,8 @@
     "acpi_enforce_resources=lax"
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    "acpi_osi=Linux" # Linux | Darwin | Windows
+    # "acpi_osi=Linux" # Linux | Darwin | Windows
+    ''acpi_osi="Windows 2015"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
@@ -618,7 +619,7 @@
     "pti=off" # Disabling this feature removes hardening, but improves performance of system calls and interrupts.
     "intremap=off" # disable Interrupt Remapping
     "audit=0"
-    "thermal.off=1" # 1: disable ACPI thermal control
+    # "thermal.off=1" # 1: disable ACPI thermal control
     "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
     "tsc=reliable" # Disable clocksource stability checks for TSC.
     "clocksource=tsc" # Override the default clocksource
@@ -633,7 +634,8 @@
     "tpm.disable_pcr_integrity=1"
     "preempt=full"
     "big_root_window=on"
-    "amd_iommu=off"
+    "amd_iommu=on"
+    "iommu=pt"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
     "cgroup_disable=memory"
     "cgroup_no_v1=all"

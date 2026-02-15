@@ -59,5 +59,7 @@
     clinfo
     stress-ng
     pciutils
+    # stress -c 4
+    stress
   ];
 }
