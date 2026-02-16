@@ -137,7 +137,7 @@
 
     # Daemon, tools and libraries to access and manipulate disks, storage devices and technologies
     udisks
-    udisks2 # Disk mounting support
+    # udisks2 # Disk mounting support
 
     # Desktop-neutral user information store, search tool and indexer
     tinysparql
