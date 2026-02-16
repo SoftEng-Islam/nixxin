@@ -41,11 +41,13 @@ let
 
     # To Translate from Language to Other.
     trans = "trans -no-bidi";
+
+    nix-shell = "nix-shell --run zsh";
   };
 
 in {
   # enable zsh autocompletion for system packages (systemd, etc)
-  environment.pathsToLink = [ "/share/zsh" ];
+  # environment.pathsToLink = [ "/share/zsh" ];
 
   # Path to your oh-my-zsh installation.
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -123,8 +125,6 @@ in {
       # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
 
 
-      export NIX_BUILD_SHELL=zsh
-
       # ------------------------ #
       # ------ User Theme ------ #
       # ------------------------ #
@@ -133,14 +133,6 @@ in {
 
       # Enable prompt substitution
       setopt prompt_subst
-
-      # Set the Git prompt info using vcs_info
-      # (disabled) Starship already provides git info, and defining precmd()
-      # directly can override OMZ hooks.
-      # autoload -Uz vcs_info
-      # precmd() { vcs_info }
-      # zstyle ':vcs_info:git:*' formats '(%b)' # Customize how Git branch info is shown
-      # zstyle ':vcs_info:git:*' actionformats '(%b|%a)'
 
       # Define the PROMPT
       # PROMPT=$'(%B%F{magenta}%n%f%b@%B%F{blue}%m%f%b)=> {%F{yellow}%~%f} ''${vcs_info_msg_0_} \n%F{green}$%f '
@@ -152,26 +144,6 @@ in {
       bindkey '^P' history-beginning-search-backward
       bindkey '^N' history-beginning-search-forward
 
-      # Which plugins would you like to load?
-      # Standard plugins can be found in $ZSH/plugins/
-      # Custom plugins may be added to $ZSH_CUSTOM/plugins/
-      # Example format: plugins=(rails git textmate ruby lighthouse)
-      # Add wisely, as too many plugins slow down shell startup.
-      # plugins=(
-        # git
-        # fzf
-        # extract
-        # zsh-completions
-        # zsh-autocomplete
-        # zsh-autosuggestions
-        # zsh-syntax-highlighting
-        # zsh-history-substring-search
-      # )
-
-      # To get the package path
-      # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
-      # source ${pkgs.oh-my-zsh}/share/oh-my-zsh/oh-my-zsh.sh
-
       # ZSH AUTOCOMPLETE -> https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
       zstyle ':autocomplete:*' list-lines 8
       zstyle ':autocomplete:history-search:*' list-lines 8
@@ -180,13 +152,6 @@ in {
 
       # Enable zsh-autocomplete
       source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
-
-
-      # Optimized history settings
-      # HISTFILE=~/.zsh_history
-      # HISTSIZE=2500
-      # SAVEHIST=2500
-      # setopt appendhistory
 
       # Remove all duplicates in history
       setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries when a new one is added
@@ -247,47 +212,15 @@ in {
       # Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
       # COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
 
-      # Uncomment the following line if you want to disable marking untracked files
-      # under VCS as dirty. This makes repository status check for large repositories
-      # much, much faster.
-      # DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-
       # Make new shells get the history lines from all previous
       # shells instead of the default "last window closed" history.
-      # export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
-      # The following line to use case-sensitive completion.
-      # CASE_SENSITIVE="false"
-      # Uncomment the following line to use hyphen-insensitive completion.
-      # Case-sensitive completion must be off. _ and - will be interchangeable.
-      # HYPHEN_INSENSITIVE="true"
+      export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
       # Uncomment one of the following lines to change the auto-update behavior
-      # zstyle ':omz:update' mode disabled  # disable automatic updates
+      zstyle ':omz:update' mode disabled  # disable automatic updates
       # zstyle ':omz:update' mode auto      # update automatically without asking
       # zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-      # Uncomment the following line to disable colors in ls.
-      # DISABLE_LS_COLORS="false"
-
-      # Uncomment the following line to disable auto-setting terminal title.
-      # DISABLE_AUTO_TITLE="false"
-
-      # # Uncomment the following line if you want to change the command execution time
-      # # stamp shown in the history command output.
-      # # You can set one of the optional three formats:
-      # # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-      # # or set a custom format using the strftime function format specifications,
-      # # see 'man strftime' for details.
-      # # HIST_STAMPS="mm/dd/yyyy"
-
-      # Preferred editor for local and remote sessions
-      # if [[ -n $SSH_CONNECTION ]]; then
-      #   export EDITOR='micro'
-      # else
-      #   export EDITOR='micro'
-      # fi
 
       # ------------------------- #
       # -------- Plugins -------- #
@@ -305,8 +238,7 @@ in {
 
       # Fish-like autosuggestions
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-      # pkgfile "command not found" handler
-      # source /usr/share/doc/pkgfile/command-not-found.zsh
+
 
       # --------------------------------- #
       # Zsh-autosuggestions configuration #
@@ -320,27 +252,6 @@ in {
       ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
       ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=black,bg=red')
       ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
-
-      # Enable Wayland support for different apps
-      # if [ "$XDG_SESSION_TYPE" = "wayland" ]; then
-      #   export WAYLAND=1
-      #   export QT_QPA_PLATFORM='wayland'
-      #   export GDK_BACKEND='wayland'
-      #   export MOZ_DBUS_REMOTE=1
-      #   export MOZ_ENABLE_WAYLAND=1
-      #   export _JAVA_AWT_WM_NONREPARENTING=1
-      #   export BEMENU_BACKEND=wayland
-      #   export CLUTTER_BACKEND=wayland
-      #   export ECORE_EVAS_ENGINE=wayland_egl
-      #   export ELM_ENGINE=wayland_egl
-      # fi
-
-      # ----------------------- #
-      # Configuration For NixOS #
-      # ----------------------- #
-      # if ! grep -q "nix" /etc/os-release; then
-      #   Write Your nixos configs Here
-      # fi
 
       # Created by `pipx` on 2024-11-07 21:19:31
       export PATH="$PATH:${HOME}/.local/bin"

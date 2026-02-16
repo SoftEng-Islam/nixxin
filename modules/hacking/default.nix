@@ -1,5 +1,18 @@
 { settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  # 1. Pull the 22.05 archive (which contains Hashcat 6.2.5)
+  pkgs2205 = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-22.05.tar.gz";
+  }) { };
+
+  # 2. Create a custom package that renames 'hashcat' to 'hashcat-legacy'
+  # This prevents it from fighting with your main hashcat v7
+  hashcatLegacy = pkgs.runCommand "hashcat-legacy" { } ''
+    mkdir -p $out/bin
+    ln -s ${pkgs2205.hashcat}/bin/hashcat $out/bin/hashcat-legacy
+  '';
+
 in {
   # imports = lib.optionals (settings.modules.hacking.enable) [ ./hashcat.nix ];
   config = mkIf (settings.modules.hacking.enable) {
@@ -15,14 +28,14 @@ in {
       # LD_LIBRARY_PATH= hashcat -I
 
       (pkgs.writeShellScriptBin "hashcat" ''
-      unset LD_LIBRARY_PATH
-      exec ${(hashcat.override {
-        cudaSupport = false;
-        rocmSupport = false;
-      })}/bin/hashcat "$@"
+        unset LD_LIBRARY_PATH
+        exec ${
+          (hashcat.override {
+            cudaSupport = false;
+            rocmSupport = false;
+          })
+        }/bin/hashcat "$@"
       '')
-
-
 
       hashcat-utils # Small utilities that are useful in advanced password cracking
 
@@ -85,6 +98,9 @@ in {
 
       # Speedy, parallel, and modular, login brute-forcer
       medusa
+
+      # hashcat-legacy -I
+      hashcatLegacy # This is v6.2.5, accessible by typing 'hashcat-legacy'
     ];
   };
 }

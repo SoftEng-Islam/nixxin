@@ -78,7 +78,7 @@ in {
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
-    adwaita-qt
+    # adwaita-qt
     adwaita-qt6
     gsettings-qt
     libsForQt5.qt5.qtgraphicaleffects
@@ -110,7 +110,7 @@ in {
     # webkitgtk # Web content rendering engine, GTK port
     webkitgtk_6_0
     webp-pixbuf-loader
-    yad
-    ydotool
+    # yad
+    # ydotool
   ];
 }

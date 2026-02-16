@@ -75,7 +75,7 @@ in lib.mkIf (settings.modules.env.enable or false) {
 
       # ---- Electron ---- #
       # Enable Wayland support for Electron apps
-      # ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      ELECTRON_OZONE_PLATFORM_HINT = "auto";
       ELECTRON_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
 

@@ -118,6 +118,8 @@ in {
           # make it use text-input-v1, which works for kwin 5.27 and weston
           "--enable-wayland-ime"
 
+          "--in-process-gpu" # Force GPU acceleration to be in-process, which is more compatible with Wayland and can improve performance and stability.
+
           # 2. THE FIX: Force it to ignore System 1.25x and render at 1:1
           "--force-device-scale-factor=1"
 
@@ -134,7 +136,6 @@ in {
           # enable hardware acceleration - vulkan api
           "--enable-features=${
             lib.concatStringsSep "," [
-              "WaylandFractionalScaleV1"
               "enable-wayland-ime"
               "AcceleratedVideoDecodeLinuxGL"
               "VaapiVideoDecoder"
@@ -142,6 +143,14 @@ in {
               "Vulkan"
               "DefaultANGLEVulkan"
               "VulkanFromANGLE"
+            ]
+          }"
+
+          "--disable-features=${
+            lib.concatStringsSep "," [
+              "WaylandFractionalScaleV1"
+              "UseOzonePlatform"
+              "WaylandWindowDecorations"
             ]
           }"
         ];
