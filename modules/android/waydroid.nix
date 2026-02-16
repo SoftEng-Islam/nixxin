@@ -52,6 +52,8 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
+  environment.sessionVariables.WAYDROID_DISABLE_GBM =
+    "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
   environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
 
@@ -113,13 +115,13 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
 
   #home-manager.users.${settings.user.username} = {
-    #xdg.desktopEntries."waydroid" = {
-     # name = "waydroid";
-     # genericName = "full Android system on a regular GNU/Linux system";
-     # # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
-    #  exec = "waydroid";
+  #xdg.desktopEntries."waydroid" = {
+  # name = "waydroid";
+  # genericName = "full Android system on a regular GNU/Linux system";
+  # # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
+  #  exec = "waydroid";
   #    icon = "waydroid";
-   #   categories = [ "Android" "System" ];
+  #   categories = [ "Android" "System" ];
   #  };
   #};
 

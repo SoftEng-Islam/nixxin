@@ -446,6 +446,8 @@
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    "binder_linux"
+    "ashmem_linux"
   ];
 
   # [ Recording ]
@@ -644,6 +646,7 @@
     "processor.max_cstate=8" # 1, 2, 3, 4, 5, 6, 7, 8 or 9
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
+    "ibt=off"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"
@@ -674,6 +677,7 @@
   modules.system.boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
     options rt2800usb nohwcrypt=1
+    options binder_linux devices=binder,hwbinder,vndbinder
   '';
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;
