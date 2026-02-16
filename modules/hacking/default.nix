@@ -75,7 +75,7 @@ in {
       #netrw
 
       # Set of tools for controlling the network subsystem in Linux
-      nettools
+      # nettools
 
       # Offline dictionary attack against WPA/WPA2 networks
       cowpatty
