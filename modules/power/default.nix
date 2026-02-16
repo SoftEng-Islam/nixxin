@@ -79,7 +79,6 @@ in {
         acpidump-all
         power-profiles-daemon
         poweralertd
-        cpupower-gui
         cpufrequtils
       ];
     }

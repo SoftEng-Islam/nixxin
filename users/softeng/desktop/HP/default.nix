@@ -649,6 +649,7 @@
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
+    "psi=1"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"

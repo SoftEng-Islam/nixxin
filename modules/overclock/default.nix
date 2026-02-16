@@ -13,7 +13,7 @@
   # sudo cpupower frequency-set -g performance --min 2.0GHz --max 4.0GHz
   imports = lib.optionals (settings.modules.overclock.enable or false) [
     ./corectrl.nix
-    ./lactd.nix
+    # ./lactd.nix
   ];
 
   systemd.services.force-gpu-performance = {
@@ -50,8 +50,8 @@
     serviceConfig.Type = "oneshot";
   };
 
-  programs.tuxclocker.enable = true;
-  programs.tuxclocker.useUnfree = true;
+  programs.tuxclocker.enable = false;
+  programs.tuxclocker.useUnfree = false;
   environment.systemPackages = with pkgs; [
     msr-tools
     linuxKernel.packages.linux_zen.cpupower

@@ -374,9 +374,9 @@ in {
         opencl-headers
         vulkan-tools-lunarg
 
-        radeon-profile
-        radeontop
-        radeontools
+        # radeon-profile
+        # radeontop
+        # radeontools
         # wxedid
       ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages
       ++ graphicsTools ++ lib.flatten _graphics;

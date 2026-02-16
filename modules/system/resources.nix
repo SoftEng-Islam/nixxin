@@ -1,3 +1,1 @@
-{ settings, lib, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ htop ];
-}
+{ settings, lib, pkgs, ... }: { environment.systemPackages = with pkgs; [ ]; }

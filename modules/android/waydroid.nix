@@ -48,12 +48,10 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
 
   services.geoclue2.enable = false;
-  boot.kernelParams = [ "psi=1" ];
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
-  environment.sessionVariables.WAYDROID_DISABLE_GBM =
-    "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
+  # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
   environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
 
