@@ -510,6 +510,8 @@
     "drm"
     "drm_kms_helper"
     "gpu_sched"
+    "ashmem_linux"
+    "binder_linux"
   ];
   modules.system.boot.blacklistedKernelModules = [
     "hp_wmi"

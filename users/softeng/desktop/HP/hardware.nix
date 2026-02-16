@@ -3,17 +3,8 @@
 # to /etc/nixos/configuration.nix instead.
 { modulesPath, ... }: {
   imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
-  boot.initrd.availableKernelModules = [
-    "ahci"
-    "ohci_pci"
-    "ehci_pci"
-    "xhci_pci"
-    "usb_storage"
-    "usbhid"
-    "sd_mod"
-    "ashmem_linux"
-    "binder_linux"
-  ];
+  boot.initrd.availableKernelModules =
+    [ "ahci" "ohci_pci" "ehci_pci" "xhci_pci" "usb_storage" "usbhid" "sd_mod" ];
   boot.kernelModules = [ "kvm-amd" ];
 
   # lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT
