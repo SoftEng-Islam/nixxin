@@ -287,7 +287,7 @@ in {
     hickory-dns # A Rust based DNS client, server, and resolver
     mtr # A network diagnostics tool
     ethtool # Utility for controlling network drivers and hardware
-    nettools # A set of tools for controlling the network subsystem in Linux
+    # nettools # A set of tools for controlling the network subsystem in Linux
 
     iftop # network monitoring
   ];
