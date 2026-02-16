@@ -11,10 +11,29 @@
     interval = "weekly";
   };
 
-  # TRIM is a command that tells the SSD which blocks are no longer needed (e.g., after file deletions).
-  # SSDs cannot overwrite data directly like HDDs—they must erase old data before writing new data.
-  # Without TRIM, SSDs can slow down over time due to inefficient block management.
-  services.fstrim.enable = settings.modules.storage.fstrim.enable;
+  # services.lvm.enable = true;
+  # If lvm is enabled, then tell it to issue discard. This is
+  # good for SSDs and has almost no downsides on HDDs, so
+  # it's a good idea to enable it unconditionally.
+  # environment.etc."lvm/lvm.conf".text = ''
+  #   devices {
+  #     issue_discards = 1
+  #   }
+  # '';
+
+  # Discard blocks that are not in use by the filesystem, should be
+  # generally good for SSDs. This service is enabled by default, but
+  # I am yet to test the performance impact on a system with no SSDs.
+  services.fstrim = {
+    # We may enable this unconditionally across all systems because it's performance
+    # impact is negligible on systems without a SSD - which means it's a no-op with
+    # almost no downsides aside from the service firing once per week.
+    enable = settings.modules.storage.fstrim.enable;
+
+    # The timer interval passed to the systemd service. The default is monthly
+    # but we prefer trimming weekly as the system receives a lot of writes.
+    interval = "weekly";
+  };
 
   environment.systemPackages = with pkgs; [
     gparted # Graphical disk partitioning tool

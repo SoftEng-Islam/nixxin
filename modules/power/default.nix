@@ -22,17 +22,6 @@ in {
           "Power config: enable either 'modules.power.auto-cpufreq.enable' or 'modules.power.tuned.enable' (not both).";
       }];
 
-      boot.kernelModules = settings.modules.power.boot.kernelModules or [
-        # "acpi_cpufreq" # ACPI CPU frequency scaling driver
-        # "cpufreq_performance" # Performance CPU frequency scaling driver
-        # "cpufreq_powersave" # Powersave CPU frequency scaling driver
-        # "cpufreq_ondemand" # On-demand CPU frequency scaling driver
-        # "cpufreq_conservative" # Conservative CPU frequency scaling driver
-        # "powernow-k8" # AMD PowerNow! driver for CPU frequency scaling
-      ];
-
-      boot.kernelParams = settings.modules.power.boot.kernelParams or [ ];
-
       # Enable auto-epp for amd active pstate.
       services.auto-epp.enable = false;
 

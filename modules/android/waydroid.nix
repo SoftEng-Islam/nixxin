@@ -1,16 +1,6 @@
 { settings, inputs, lib, pkgs, ... }:
-let
-  waydroidGbinderConf = pkgs.writeText "waydroid.conf" ''
-    [Protocol]
-    /dev/binder = aidl2
-    /dev/vndbinder = aidl2
-    /dev/hwbinder = hidl
 
-    [ServiceManager]
-    /dev/binder = aidl2
-    /dev/vndbinder = aidl2
-    /dev/hwbinder = hidl
-  '';
+let username = settings.user.username;
 
 in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
@@ -18,15 +8,12 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # or https://docs.waydro.id/usage/install-on-desktops
 
   virtualisation = {
-    # lxc.enable = true;
-    # lxc.unprivilegedContainers = true;
-    waydroid = {
-      enable = true;
-      # To Update Run This command:
-      # sudo nix flake update nixpkgs-waydroid
-      # package = inputs.nixpkgs-waydroid.legacyPackages.${pkgs.stdenv.hostPlatform.system}.waydroid-nftables;
-      package = pkgs.waydroid-nftables;
-    };
+    #? Is This Needed?
+    lxc.enable = true;
+    lxc.unprivilegedContainers = true;
+
+    waydroid.enable = true;
+    waydroid.package = pkgs.waydroid-nftables;
   };
 
   fileSystems."/dev/binderfs" = {
@@ -35,14 +22,9 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     options = [ "defaults" ];
   };
 
-  # systemd.nspawn."waydroid".networkConfig.VirtualEthernet = true;
-  # systemd.nspawn."waydroid".networkConfig.Bridge = "waydroid0";
-
   # Mount host directories to waydroid
-  # systemd = {
-  # packages = [ pkgs.waydroid-helper];
-  # services.waydroid-mount.wantedBy = [ "multi-user.target" ];
-  # };
+  systemd.packages = with pkgs; [ waydroid-helper ];
+  systemd.services.waydroid-mount.wantedBy = [ "multi-user.target" ];
 
   # Force disable waydroid service so that it is not started at boot
   systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
@@ -53,27 +35,53 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
   # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
-  environment.etc."gbinder.d/waydroid.conf".source = waydroidGbinderConf;
+  environment.etc."gbinder.d/waydroid.conf".source =
+    pkgs.writeText "waydroid.conf" ''
+      [Protocol]
+      /dev/binder = aidl2
+      /dev/vndbinder = aidl2
+      /dev/hwbinder = hidl
+
+      [ServiceManager]
+      /dev/binder = aidl2
+      /dev/vndbinder = aidl2
+      /dev/hwbinder = hidl
+    '';
 
   # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop
-  # systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
-  #   {
-  #     user = "root";
-  #     group = "root";
-  #     mode = "0644";
-  #     argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
-  #       sys.use_memfd=true
-  #       ro.hardware.egl=mesa
-  #       ro.hardware.vulkan=radeon
-  #       ro.hardware.camera=v4l2
-  #       ro.opengles.version=196610
-  #       waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
-  #       waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
-  #       waydroid.tools_version=1.5.4
-  #       ro.vndk.lite=true
-  #     '');
-  #   };
+  systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
+    {
+      user = "root";
+      group = "root";
+      mode = "0644";
+      argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
+          # --- Performance Core ---
+        sys.use_memfd=true
+        ro.hardware.gralloc=gbm
+        ro.hardware.egl=mesa
+        ro.hardware.vulkan=radeon
+
+        # --- GPU Binding ---
+        # Ensure this matches your GPU (ls -l /dev/dri/by-path/ to check)
+        gralloc.gbm.device=/dev/dri/renderD128
+
+        # --- Video Playback Fixes for R7 Graphics ---
+        # We allow software codecs (ccodec=4) because your GPU
+        # lacks hardware support for HEVC/AV1.
+        debug.stagefright.ccodec=4
+
+        # --- Camera & Compatibility ---
+        ro.hardware.camera=v4l2
+        ro.opengles.version=196610
+        ro.vndk.lite=true
+
+        # --- OTA Updates ---
+        waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
+        waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
+        waydroid.tools_version=1.5.4
+      '');
+    };
 
   # Setting up a shared folder
   # sudo mount --bind <source> ~/.local/share/waydroid/data/media/0/<target>
@@ -89,50 +97,28 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Mount a shared folder from the host to the waydroid container under /Shared
   # Change [user] to your username
   # sudo chown [user]:wheel /home/[user]/Waydroid
-  fileSystems."/home/${settings.user.username}/Waydroid" = {
-    device =
-      "/home/${settings.user.username}/.local/share/waydroid/data/media/0/Shared";
+  fileSystems."/home/${username}/Waydroid" = {
+    device = "/home/${username}/.local/share/waydroid/data/media/0/Shared";
     fsType = "none";
     options = [ "bind" "create" "rw" ];
   };
 
-  # systemd.tmpfiles.settings."10-waydroid"."/var/lib/waydroid/waydroid_base.prop".f =
-  #   {
-  #     user = "root";
-  #     group = "root";
-  #     mode = "0666";
-  #     argument =
-  #       "	ro.hardware.gralloc=default\n	ro.hardware.egl=swiftshader\n	sys.use_memfd=true\n";
-  #   };
-
   systemd.tmpfiles.rules = [
     "d /var/lib/misc 0755 root root -" # for dnsmasq.leases
-    # "a /var/lib/waydroid/waydroid_base.prop - - - - sys.use_memfd=true"
-    # Set proper permissions for the shared folder
-    "d /home/${settings.user.username}/Waydroid 0755 ${settings.user.username} users -"
-  ];
 
-  #home-manager.users.${settings.user.username} = {
-  #xdg.desktopEntries."waydroid" = {
-  # name = "waydroid";
-  # genericName = "full Android system on a regular GNU/Linux system";
-  # # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
-  #  exec = "waydroid";
-  #    icon = "waydroid";
-  #   categories = [ "Android" "System" ];
-  #  };
-  #};
+    # Set proper permissions for the shared folder
+    "d /home/${username}/Waydroid 0755 ${username} users -"
+  ];
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
-    # waydroid-helper
 
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
-      runtimeInputs = [
-        pkgs.waydroid-nftables
-        # pkgs.waydroid-helper
-        pkgs.wl-clipboard
+      runtimeInputs = with pkgs; [
+        waydroid-nftables
+        waydroid-helper
+        wl-clipboard
       ];
       text = ''
         sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
@@ -148,7 +134,29 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
+    # Waydroid UI With WESTON
+    (pkgs.writeShellScriptBin "waydroid-ui" ''
+      export WAYLAND_DISPLAY=wayland-0
+      ${pkgs.weston}/bin/weston -Swayland-1 --width=600 --height=1000 --shell="kiosk-shell.so" &
+      WESTON_PID=$!
+
+      export WAYLAND_DISPLAY=wayland-1
+      ${pkgs.waydroid-nftables}/bin/waydroid show-full-ui &
+
+      wait $WESTON_PID
+      waydroid session stop
+    '')
   ];
+
+  home-manager.users.${settings.user.username} = {
+    xdg.desktopEntries."Waydroid" = {
+      name = "Waydroid";
+      genericName = "Full Android OS on a regular GNU/Linux System.";
+      exec = "waydroid-ui";
+      icon = "Waydroid";
+      categories = [ "Android" "Emulator" ];
+    };
+  };
 
   # ---- Installation & Useful Inforamtion ---- #
   # 1- After you have downloaded both "system" and "vendor" image, extract them.
@@ -242,23 +250,12 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   # https://wiki.nixos.org/wiki/WayDroid
   # https://wiki.archlinux.org/title/Waydroid
-  #!! Configuration is imperative
+
   # Optionally update image
-  #?? sudo waydroid upgrade
+  # sudo waydroid upgrade
 
   # Install image
   #?? sudo waydroid init --system_type <FOSS|GAPPS>
-
-  # Optional helper script
-  # https://github.com/casualsnek/waydroid_script
-  #?? git clone https://github.com/casualsnek/waydroid_script.git
-  #?? cd waydroid_script
-  #?? python -m venv .venv
-  #?? source .venv/bin/activate.fish
-  #?? pip install -r requirements.txt
-  #?? sudo python main.py install microg
-  #?? sudo python main.py install libndk
-  #?? sudo python main.py hack hidestatusbar
 
   # Start session
   #?? waydroid session start &
@@ -280,20 +277,21 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Optionally, run waydroid on the same GPU as the compositor
   # https://wiki.archlinux.org/title/Waydroid#Graphical_Corruption_on_multi-gpu_systems
   # https://github.com/Quackdoc/waydroid-scripts/blob/main/waydroid-choose-gpu.sh
+
   #!! Rerun after each waydroid_script invocation
-  #?? sudo sed -i 's|/dev/dri/card0|/dev/dri/card1|' /var/lib/waydroid/lxc/waydroid/config_nodes
-  #?? sudo sed -i 's|/dev/dri/renderD128|/dev/dri/renderD129|' /var/lib/waydroid/lxc/waydroid/config_nodes
+  #> sudo sed -i 's|/dev/dri/card0|/dev/dri/card1|' /var/lib/waydroid/lxc/waydroid/config_nodes
+  #> sudo sed -i 's|/dev/dri/renderD128|/dev/dri/renderD128|' /var/lib/waydroid/lxc/waydroid/config_nodes
 
   # Some games like Arknights do not use the proper storage mechanism and need insecure permissions
   # https://github.com/casualsnek/waydroid_script?tab=readme-ov-file#granting-full-permission-for-apps-data-hack
-  #?? sudo waydroid shell
-  #?? chmod 777 -R /sdcard/Android
-  #?? chmod 777 -R /data/media/0/Android
-  #?? chmod 777 -R /sdcard/Android/data
-  #?? chmod 777 -R /data/media/0/Android/obb
-  #?? chmod 777 -R /mnt/*/*/*/*/Android/data
-  #?? chmod 777 -R /mnt/*/*/*/*/Android/obb
+  # sudo waydroid shell
+  #> chmod 777 -R /sdcard/Android
+  #> chmod 777 -R /data/media/0/Android
+  #> chmod 777 -R /sdcard/Android/data
+  #> chmod 777 -R /data/media/0/Android/obb
+  #> chmod 777 -R /mnt/*/*/*/*/Android/data
+  #> chmod 777 -R /mnt/*/*/*/*/Android/obb
 
   # Optionally, disable unnecessary desktop files
-  #?? sed -i 's|(\[Desktop Entry\])|$1\nNoDisplay=true|' ~/.local/share/applications/waydroid.*.desktop
+  # sed -i 's|(\[Desktop Entry\])|$1\nNoDisplay=true|' ~/.local/share/applications/waydroid.*.desktop
 }

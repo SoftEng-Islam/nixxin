@@ -1,5 +1,5 @@
 # ---- docs.nix ---- #
-{ settings, lib, pkgs, ... }:
+{ self, settings, lib, pkgs, ... }:
 let
   _docs = settings.modules.system.docs;
   HOME = settings.HOME;
@@ -22,17 +22,107 @@ in {
   nix.gc.options = "--delete-older-than 10d";
   nix = {
     settings = {
-      sandbox = true;
-      keep-outputs = false;
-      max-jobs = "auto";
-      keep-derivations = false;
-      fallback = true; # don't fail if remote builder unavailable
-      warn-dirty = true;
-      min-free = 1073741824; # 1 GiB
-      download-buffer-size = 536870912; # 512MiB
+      # Tell nix to use the xdg spec for base directories
+      # while transitioning, any state must be carried over
+      # manually, as Nix won't do it for us.
       use-xdg-base-directories = true;
+
+      # Allow usage of registry lookups (e.g. flake:*) but
+      # disallow internal flake registry by setting it to
+      # to a minimal JSON file with no flakes and a version
+      # identifier.
+      use-registries = true;
+      flake-registry = pkgs.writeText "flakes-empty.json" (builtins.toJSON {
+        flakes = [ ];
+        version = 2;
+      });
+
+      # Automatically optimise symlinks
+      auto-optimise-store = true;
+
+      # Allow sudo users to mark the following values as trusted
+      allowed-users = [ "root" "@wheel" "nix-builder" ];
+
+      # Only allow sudo users to manage the nix store
+      trusted-users = [ "root" "@wheel" "nix-builder" ];
+
+      # Let the system decide the number of max jobs
+      # based on available system specs. Usually this is
+      # the same as the number of cores your CPU has.
+      max-jobs = "auto";
+
+      # Always build inside sandboxed environments
+      sandbox = true;
+      sandbox-fallback = false;
+
+      # Supported system features
+      system-features = [ "nixos-test" "kvm" "recursive-nix" "big-parallel" ];
+
+      # Continue building derivations even if one fails
+      keep-going = false;
+
+      # Fallback to local builds after remote builders are unavailable.
+      # Setting this too low on a slow network may cause remote builders
+      # to be discarded before a connection can be established.
+      connect-timeout = 30; # seconds
+
+      # If we haven't received data for >= 30s, retry the download
+      stalled-download-timeout = 30;
+
+      # Show more logs when a build fails and decides to display
+      # a bunch of lines. `nix log` would normally provide more
+      # information, but this may save us some time and keystrokes.
+      log-lines = 30;
+
+      # for direnv GC roots
+      keep-outputs = false;
+      keep-derivations = false;
+
+      # Ensures that the result of Nix expressions is fully determined by
+      # explicitly declared inputs, and not influenced by external state.
+      # In other words, fully stateless evaluation by Nix at all times.
+      pure-eval = false;
+
+      # Don't allow nix to use the network when evaluating or building.
+      fallback = true; # don't fail if remote builder unavailable
+
+      # Don't warn me that my git tree is dirty, I know.
+      warn-dirty = false;
+
+      download-buffer-size = 536870912; # 512MiB
+
+      # Use binary cache, this is not Gentoo
+      # external builders can also pick up those substituters
       builders-use-substitutes = true;
+
+      # The special value 0 means that the builder should use all available CPU cores in the system.
       cores = 0;
+
+      # Maximum number of parallel TCP connections
+      # used to fetch imports and binary caches.
+      # 0 means no limit, default is 25.
+      http-connections = 35; # lower values fare better on slow connections
+
+      # Extra features of Nix that are considered unstable
+      # and experimental. By default we should always include
+      # `flakes` and `nix-command`, while others are usually
+      # optional.
+      extra-experimental-features = [
+        "flakes" # flakes
+        "nix-command" # experimental nix commands
+        "recursive-nix" # let nix invoke itself
+        "ca-derivations" # content addressed nix
+        "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
+        # "cgroups" # allow nix to execute builds inside cgroups
+        "repl-flake" # allow passing installables to nix repl
+        "no-url-literals" # disallow deprecated url-literals, i.e., URLs without quotation
+        "dynamic-derivations" # allow "text hashing" derivation outputs, so we can build .drv files.
+
+        # Those don't actually exist on Lix so they have to be disabled
+        # configurable-impure-env" # allow impure environments
+        # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
+        # "verified-fetches" # enable verification of git commit signatures for fetchGit
+      ];
 
       extra-sandbox-paths = [
         "/dev/kfd"
@@ -42,18 +132,6 @@ in {
         "/run/opengl-driver"
         "/run/binfmt"
       ];
-
-      # https://bmcgee.ie/posts/2023/12/til-how-to-optimise-substitutions-in-nix/
-      # http-connections = 128;
-
-      # max-silent-time = 3600; # kills build after 1hr with no logging
-      # max-substitution-jobs = 128;
-
-      # Optimise new store contents - `nix-store optimise` cleans old
-      auto-optimise-store = true;
-
-      trusted-users = [ "@wheel" "root" ];
-      allowed-users = [ "@wheel" "root" ];
 
       # Enable flakes
       experimental-features = [
@@ -66,16 +144,15 @@ in {
 
       trusted-substituters = [ "https://nix-community.cachix.org" ];
       substituters = [
-        "https://cache.nixos.org"
-        # high priority since it's almost always used
-        "https://cache.nixos.org?priority=10"
-        "https://hyprland.cachix.org?priority=10"
-        #"https://cuda-maintainers.cachix.org"
-        "https://devenv.cachix.org"
-        "https://nix-community.cachix.org"
-        #"https://nix-gaming.cachix.org"
-        "https://nixpkgs-python.cachix.org"
-        "https://nixpkgs-wayland.cachix.org"
+        "https://cache.nixos.org" # funny binary cache
+        "https://cache.privatevoid.net" # for nix-super
+        "https://nix-community.cachix.org" # nix-community cache
+        "https://hyprland.cachix.org" # hyprland
+        "https://nixpkgs-unfree.cachix.org" # unfree-package cache
+        "https://devenv.cachix.org" # devenv cache
+        #"https://nix-gaming.cachix.org" # nix-gaming cache, currently disabled due to instability and lack of maintenance
+        "https://nixpkgs-python.cachix.org" # nixpkgs-python
+        "https://nixpkgs-wayland.cachix.org" # nixpkgs-wayland
       ];
 
       # Enable cachix
@@ -91,25 +168,57 @@ in {
       ];
     };
 
-    # ---- extraOptions ---- #
-    # extraOptions = ''
-    #   sandbox = true
-    #   max-jobs = auto
-    #   auto-optimise-store = true
-    #   experimental-features = nix-command flakes recursive-nix
-    # '';
   };
 
   nixpkgs = {
     hostPlatform = lib.mkDefault "${settings.system.architecture}";
     config = {
       rocmSupport = settings.modules.system.rocm.enable;
+
+      # Allow broken packages to be built. Setting this to false means packages
+      # will refuse to evaluate sometimes, but only if they have been marked as
+      # broken for a specific reason. At that point we can either try to solve
+      # the breakage, or get rid of the package entirely.
+      allowBroken = false;
+      allowUnsupportedSystem = false;
+
+      # Really a pain in the ass to deal with when disabled. True means
+      # we are able to build unfree packages without explicitly allowing
+      # each unfree package.
       allowUnfree = true;
+
+      # Default to none, add more as necessary. This is usually where
+      # electron packages go when they reach EOL.
+      permittedInsecurePackages = [ ];
+
+      # Nixpkgs sets internal package aliases to ease migration from other
+      # distributions easier, or for convenience's sake. Even though the manual
+      # and the description for this option recommends this to be true, I prefer
+      # explicit naming conventions, i.e., no aliases.
+      allowAliases = false;
+
+      # Enable parallel building by default. This, in theory, should speed up building
+      # derivations, especially rust ones. However setting this to true causes a mass rebuild
+      # of the *entire* system closure, so it must be handled with proper care.
+      enableParallelBuildingByDefault = false;
+
+      # List of derivation warnings to display while rebuilding.
+      #  See: <https://github.com/NixOS/nixpkgs/blob/master/pkgs/stdenv/generic/check-meta.nix>
+      # NOTE: "maintainerless" can be added to emit warnings
+      # about packages without maintainers but it seems to me
+      # like there are more packages without maintainers than
+      # with maintainers, so it's disabled for the time being.
+      showDerivationWarnings = [ ];
     };
   };
 
   # Upgrade System
   system = {
+    # Automatic/Unattended upgrades in general are one of the dumbest things you can set up
+    # on virtually any Linux distribution. While NixOS would logically mitigate some of its
+    # side effects, you are still risking a system that breaks without you knowing. If the
+    # bootloader also breaks during the upgrade, you may not be able to roll back at all.
+    # tl;dr: upgrade manually, review changelogs.
     autoUpgrade.enable = settings.system.upgrade.enable or false;
     autoUpgrade.upgrade = settings.system.upgrade.enable or false;
     autoUpgrade.dates = "daily";
@@ -118,7 +227,17 @@ in {
     autoUpgrade.operation = "switch";
     autoUpgrade.flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
     stateVersion = settings.system.stateVersion;
+
+    # Globally declare the configurationRevision from shortRev if the git tree is clean,
+    # or from dirtyShortRev if it is dirty. This is useful for tracking the current
+    # configuration revision in the system profile.
+    configurationRevision = self.shortRev or self.dirtyShortRev;
   };
+
+  # Preserve the flake that built the active system revision in /etc
+  # for easier rollbacks with nixos-enter in case we contain changes
+  # that are not yet staged.
+  environment.etc."nixxin".source = self;
 
   # ------------------------------------------------
   # ---- Enable automatic updates
@@ -219,15 +338,6 @@ in {
     accounts-daemon.enable = true;
     udisks2.enable = true;
     fwupd.enable = true; # Firmware update daemon --- IGNORE ---
-
-    # ACPI daemon
-    # 🔌 It listens for power-related events from the system firmware (BIOS/UEFI), such as:
-    # Power button press 💡
-    # Lid close/open (on laptops)
-    # Sleep/wake events 💤
-    # Battery state changes 🔋
-    # AC adapter plugged/unplugged 🔌
-    acpid.enable = true;
 
     # The color management daemon.
     colord.enable = true;

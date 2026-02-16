@@ -526,7 +526,7 @@
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
     fontSize = 14;
-    osProber = true;
+    osProber = false;
     efiSupport = true;
     gfxmodeEfi = "1920x1080";
     devices = [ "nodev" ];
@@ -600,7 +600,7 @@
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     # "acpi_osi=Linux" # Linux | Darwin | Windows
-    ''acpi_osi="Windows 2020"''
+    ''acpi_osi="!Windows 2015"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
@@ -619,7 +619,10 @@
     # 4. Use the legacy _OS identification method
     #  ''acpi_os_name="Microsoft Windows NT"''
 
-    "pti=off" # Disabling this feature removes hardening, but improves performance of system calls and interrupts.
+    # https://en.wikipedia.org/wiki/Kernel_page-table_isolation
+    # auto means kernel will automatically decide the pti state
+    "pti=off" # on | off
+
     "intremap=off" # disable Interrupt Remapping
     "audit=0"
     # "thermal.off=1" # 1: disable ACPI thermal control
@@ -628,7 +631,32 @@
     "clocksource=tsc" # Override the default clocksource
     "no_timer_check"
     "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
-    "idle=nomwait"
+
+    # CPU idle behaviour
+    #  poll: slightly improve performance at cost of a hotter system (not recommended)
+    #  halt: halt is forced to be used for CPU idle
+    #  nomwait: Disable mwait for CPU C-states
+    "idle=poll" # poll | halt | nomwait
+
+    # enable IOMMU for devices used in passthrough
+    # and provide better host performance in virtualization
+    "iommu=pt"
+
+    # disable usb autosuspend
+    "usbcore.autosuspend=-1"
+
+    # disables resume and restores original swap space
+    "noresume"
+
+    # prevent the kernel from blanking plymouth out of the fb
+    "fbcon=nodefer"
+
+    # disable the cursor in vt to get a black screen during intermissions
+    "vt.global_cursor_default=0"
+
+    # disable displaying of the built-in Linux logo
+    "logo.nologo"
+
     "accept_memory=eager"
     "workqueue.power_efficient=0"
     "unaligned_scalar_speed=fast"
@@ -638,7 +666,6 @@
     "preempt=full"
     "big_root_window=on"
     "amd_iommu=on"
-    "iommu=pt"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
     "cgroup_disable=memory"
     "cgroup_no_v1=all"

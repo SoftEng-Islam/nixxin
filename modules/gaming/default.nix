@@ -89,7 +89,7 @@ in {
       openFirewall = true;
     };
 
-    programs.gamescope.enable = true;
+    programs.gamescope.enable = false;
     # Whether to add `cap_sys_nice` capabilities to GameScope, so that it may renice itself.
     programs.gamescope.capSysNice = true;
 

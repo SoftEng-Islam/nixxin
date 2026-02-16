@@ -22,32 +22,41 @@
       shell = pkgs.zsh; # Set zsh as the default shell
 
       extraGroups = [
+        "${settings.user.username}"
         "adbusers"
         "audio" # Access to audio devices.
         "colord"
         "corectrl"
         "dialout"
         "disk"
-        "docker"
+        # "docker" # I don't Use Docker
+        # "flatpak"
         "fuse"
         "gamemode"
-        "flatpak"
+        "git"
         "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
         "libvirtd"
         "lp" # Manage printers.
         "lxd"
+        "mysql"
         "network"
         "networkmanager" # Permissions to manage network connections.
+        "nix"
         "plugdev"
+        "podman"
         "polkitd" # Ensures proper permission handling
+        "power"
         "qemu"
         "realtime" # Allows setting low-latency priority for audio
         "render"
         "rtkit" # Required for PipeWire's real-time scheduling
+        "sambashare"
         "storage" # Access to storage devices.
+        "systemd-journal"
         "systemd-resolve"
+        "tss"
         "tty"
         "uucp" # Access to serial ports and devices connected via serial ports.
         "vboxusers"
@@ -55,8 +64,6 @@
         "waydroid"
         "wheel" # Ability to use sudo for administrative tasks.
         "wireshark"
-        "sambashare"
-        "${settings.user.username}"
       ];
       uid = 1000;
       packages = with pkgs; [ thunderbird ];

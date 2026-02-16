@@ -56,12 +56,20 @@ in {
       # Make Memtest86+, a memory testing program, available from the GRUB boot menu.
       memtest86.enable = false;
       extraConfig = _system.boot.loader.manager.grub.extraConfig;
+
+      enableCryptodisk = lib.mkDefault false;
+      backgroundColor = null;
+      splashImage = null;
     };
 
     initrd = {
       systemd.enable = false;
       systemd.dbus.enable = false;
       verbose = false;
+
+      compressor = "zstd";
+      compressorArgs = [ "-19" "-T0" ];
+
       prepend = [ "${./dsdt.cpio}" ];
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
@@ -114,14 +122,23 @@ in {
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [
       # Reduce Boot Delay
+
+      # tell the kernel to not be verbose
       "quiet"
+
+      # kernel log message level
+      "loglevel=0" # 1: sustem is unusable | 3: error condition | 7: very verbose
+
       "splash"
-      "loglevel=0"
-      "systemd.show_status=false"
       "rd.systemd.show_status=false"
       "udev.log_level=0"
-      "rd.udev.log_level=0"
       "plymouth.ignore-serial-consoles"
+
+      # disable systemd status messages
+      # rd prefix means systemd-udev will be used instead of initrd
+      "systemd.show_status=false"
+      "rd.systemd.show_status=auto"
+      "rd.udev.log_level=0"
 
       # Disable Mitigation
       "mitigations=off"
