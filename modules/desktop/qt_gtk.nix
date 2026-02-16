@@ -71,7 +71,7 @@ in {
     # Set the scale factor for Qt apps
     QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
-    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
+    QT_QPA_PLATFORMTHEME = _qt_gtk.platformTheme;
 
     # fix old GTK3 applications
     # GDK_GL = "always"; # "gles" "disable" "always"

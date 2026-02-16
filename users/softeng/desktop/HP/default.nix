@@ -108,9 +108,8 @@
 
   # [ QT ]
   common.qt.style = "Adwaita-dark";
-  common.qt.platformTheme = "gtk3";
+  common.qt.platformTheme = "gtk4"; # also used by QT_QPA_PLATFORMTHEME
   common.qt.package = pkgs.adwaita-qt6;
-  common.qt.QT_QPA_PLATFORMTHEME = "gtk3";
   common.qt.SCALE_FACTOR = 1;
   # [ ICONS ]
 
@@ -597,7 +596,7 @@
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     # "acpi_osi=Linux" # Linux | Darwin | Windows
-    ''acpi_osi="Windows 2015"''
+    ''acpi_osi="Windows 2020"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
@@ -642,7 +641,7 @@
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
-    "processor.max_cstate=9" # 1, 2, 3, 4, 5, 6, 7, 8 or 9
+    "processor.max_cstate=8" # 1, 2, 3, 4, 5, 6, 7, 8 or 9
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
 

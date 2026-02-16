@@ -6,9 +6,6 @@
   services.noctalia-shell.enable = true;
   services.upower.enable = true;
 
-  # Try to set icon theme
-  # environment.sessionVariables = { QT_QPA_PLATFORMTHEME = lib.mkForce "gtk3"; };
-
   environment.systemPackages = [ pkgs.gpu-screen-recorder ];
 
   home-manager.users.${settings.user.username} = {
@@ -468,7 +465,7 @@
           viewMode = "list";
           autoPasteClipboard = false;
           clipboardWrapText = true;
-          iconMode = "native";
+          iconMode = "tabler";
           ignoreMouseInput = false;
           pinnedApps = [ ];
           screenshotAnnotationTool = "";
