@@ -207,7 +207,7 @@ in
       # Vulkan ICD (Installable Client Driver) configuration
       # /run/opengl-driver/share/vulkan/icd.d/
       # VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-      # VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+      VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
 
       # Set Vulkan environment variables
       Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";

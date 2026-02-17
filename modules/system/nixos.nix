@@ -196,7 +196,7 @@ in
       # broken for a specific reason. At that point we can either try to solve
       # the breakage, or get rid of the package entirely.
       allowBroken = false;
-      allowUnsupportedSystem = false;
+      allowUnsupportedSystem = true;
 
       # Really a pain in the ass to deal with when disabled. True means
       # we are able to build unfree packages without explicitly allowing
@@ -211,7 +211,7 @@ in
       # distributions easier, or for convenience's sake. Even though the manual
       # and the description for this option recommends this to be true, I prefer
       # explicit naming conventions, i.e., no aliases.
-      allowAliases = false;
+      # allowAliases = false;
 
       # Enable parallel building by default. This, in theory, should speed up building
       # derivations, especially rust ones. However setting this to true causes a mass rebuild

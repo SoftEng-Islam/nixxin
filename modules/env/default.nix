@@ -1,11 +1,19 @@
-{ config, inputs, lib, settings, pkgs, ... }:
+{
+  config,
+  inputs,
+  lib,
+  settings,
+  pkgs,
+  ...
+}:
 let
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
   nixos-opencl = inputs.nixos-opencl;
   mesa-drivers = nixos-opencl.packages.${system}.mesa;
   # Libraries we want available from nixpkgs
-  libPath = with pkgs;
+  libPath =
+    with pkgs;
     pkgs.lib.makeLibraryPath [
       vulkan-loader # libvulkan.so
       vulkan-validation-layers # validation layer runtime
@@ -17,15 +25,15 @@ let
       opencl-headers
       llvmPackages.openmp
     ];
-in lib.mkIf (settings.modules.env.enable or false) {
+in
+lib.mkIf (settings.modules.env.enable or false) {
   # Environment Variables
   # find /nix/store -name "something"
   environment = {
     # localBinInPath = false;
     variables = {
       # ---- nixos-opencl Start ----
-      LD_LIBRARY_PATH =
-        lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
+      LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
@@ -75,13 +83,12 @@ in lib.mkIf (settings.modules.env.enable or false) {
 
       # ---- Electron ---- #
       # Enable Wayland support for Electron apps
-      ELECTRON_OZONE_PLATFORM_HINT = "auto";
+      # ELECTRON_OZONE_PLATFORM_HINT = "auto";
       ELECTRON_ENABLE_WAYLAND = "1";
       NIXOS_OZONE_WL = "1"; # Optional, hint electron apps to use wayland
 
       # Configure the cursor theme and size for graphical sessions.
-      XCURSOR_PATH =
-        lib.mkForce "${settings.common.cursor.package}/share/icons";
+      XCURSOR_PATH = lib.mkForce "${settings.common.cursor.package}/share/icons";
       XCURSOR_THEME = settings.common.cursor.name;
       XCURSOR_SIZE = toString settings.common.cursor.size;
 
