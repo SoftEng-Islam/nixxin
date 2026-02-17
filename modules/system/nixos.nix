@@ -1,9 +1,16 @@
 # ---- docs.nix ---- #
-{ self, settings, lib, pkgs, ... }:
+{
+  self,
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 let
   _docs = settings.modules.system.docs;
   HOME = settings.HOME;
-in {
+in
+{
 
   # For Faster Rebuilding Disable These
   documentation = {
@@ -32,19 +39,29 @@ in {
       # to a minimal JSON file with no flakes and a version
       # identifier.
       use-registries = true;
-      flake-registry = pkgs.writeText "flakes-empty.json" (builtins.toJSON {
-        flakes = [ ];
-        version = 2;
-      });
+      flake-registry = pkgs.writeText "flakes-empty.json" (
+        builtins.toJSON {
+          flakes = [ ];
+          version = 2;
+        }
+      );
 
       # Automatically optimise symlinks
       auto-optimise-store = true;
 
       # Allow sudo users to mark the following values as trusted
-      allowed-users = [ "root" "@wheel" "nix-builder" ];
+      allowed-users = [
+        "root"
+        "@wheel"
+        "nix-builder"
+      ];
 
       # Only allow sudo users to manage the nix store
-      trusted-users = [ "root" "@wheel" "nix-builder" ];
+      trusted-users = [
+        "root"
+        "@wheel"
+        "nix-builder"
+      ];
 
       # Let the system decide the number of max jobs
       # based on available system specs. Usually this is
@@ -56,7 +73,7 @@ in {
       sandbox-fallback = false;
 
       # Supported system features
-      system-features = [ "nixos-test" "kvm" "recursive-nix" "big-parallel" ];
+      # system-features = [ "nixos-test" "kvm" "recursive-nix" "big-parallel" ];
 
       # Continue building derivations even if one fails
       keep-going = false;
@@ -107,21 +124,21 @@ in {
       # and experimental. By default we should always include
       # `flakes` and `nix-command`, while others are usually
       # optional.
-      extra-experimental-features = [
-        "flakes" # flakes
-        "nix-command" # experimental nix commands
-        "recursive-nix" # let nix invoke itself
-        "ca-derivations" # content addressed nix
-        "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
-        # "cgroups" # allow nix to execute builds inside cgroups
-        "no-url-literals" # disallow deprecated url-literals, i.e., URLs without quotation
-        "dynamic-derivations" # allow "text hashing" derivation outputs, so we can build .drv files.
+      # extra-experimental-features = [
+      #   "flakes" # flakes
+      #   "nix-command" # experimental nix commands
+      #   "recursive-nix" # let nix invoke itself
+      #   "ca-derivations" # content addressed nix
+      #   "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
+      #   # "cgroups" # allow nix to execute builds inside cgroups
+      #   "no-url-literals" # disallow deprecated url-literals, i.e., URLs without quotation
+      #   "dynamic-derivations" # allow "text hashing" derivation outputs, so we can build .drv files.
 
-        # Those don't actually exist on Lix so they have to be disabled
-        # configurable-impure-env" # allow impure environments
-        # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
-        # "verified-fetches" # enable verification of git commit signatures for fetchGit
-      ];
+      #   # Those don't actually exist on Lix so they have to be disabled
+      #   # configurable-impure-env" # allow impure environments
+      #   # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
+      #   # "verified-fetches" # enable verification of git commit signatures for fetchGit
+      # ];
 
       extra-sandbox-paths = [
         "/dev/kfd"
@@ -224,7 +241,11 @@ in {
     autoUpgrade.allowReboot = settings.system.upgrade.allowReboot or false;
     autoUpgrade.channel = settings.system.upgrade.channel;
     autoUpgrade.operation = "switch";
-    autoUpgrade.flags = [ "--update-input" "nixpkgs" "--commit-lock-file" ];
+    autoUpgrade.flags = [
+      "--update-input"
+      "nixpkgs"
+      "--commit-lock-file"
+    ];
     stateVersion = settings.system.stateVersion;
 
     # Globally declare the configurationRevision from shortRev if the git tree is clean,

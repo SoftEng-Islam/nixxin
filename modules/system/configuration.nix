@@ -1,4 +1,10 @@
-{ settings, pkgs, config, lib, ... }:
+{
+  settings,
+  pkgs,
+  config,
+  lib,
+  ...
+}:
 # ------------------------------------------------
 # !NOTICE: You Must Read And Customize This File
 # ------------------------------------------------
@@ -6,8 +12,10 @@
 # -- Boot Configuration
 # -- Hardware Configuration
 # ------------------------------------------------
-let _system = settings.modules.system;
-in {
+let
+  _system = settings.modules.system;
+in
+{
 
   # ------------------------------------------------
   # ---- Boot Configuration
@@ -37,12 +45,10 @@ in {
     loader.systemd-boot.enable =
       if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
 
-    bootspec.enable =
-      if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
+    bootspec.enable = if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
 
     loader.grub = {
-      enable =
-        if (_system.boot.loader.manager.name == "GRUB") then true else false;
+      enable = if (_system.boot.loader.manager.name == "GRUB") then true else false;
 
       fontSize = _system.boot.loader.manager.grub.fontSize;
       # theme = settings.boot.loader.manager.grub.theme;
@@ -67,8 +73,8 @@ in {
       systemd.dbus.enable = false;
       verbose = false;
 
-      compressor = "zstd";
-      compressorArgs = [ "-19" "-T0" ];
+      # compressor = "zstd";
+      # compressorArgs = [ "-19" "-T0" ];
 
       prepend = [ "${./dsdt.cpio}" ];
       # systemd.dbus.enable = false;
@@ -108,8 +114,7 @@ in {
       # "xt_conntrack"
       # "xt_MASQUERADE"
     ];
-    blacklistedKernelModules = _system.boot.blacklistedKernelModules
-      ++ [ "k10temp" ];
+    blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [ "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages; [
       pkgs.nftables
       amdgpu-i2c
@@ -173,21 +178,24 @@ in {
     # For kernel versions 6.7 or newer,
     # experimental Rust support can be enabled.
     # In a NixOS configuration, set:
-    kernelPatches = [{
-      name = "Rust Support";
-      patch = null;
-      features = { rust = true; };
-    }];
+    kernelPatches = [
+      {
+        name = "Rust Support";
+        patch = null;
+        features = {
+          rust = true;
+        };
+      }
+    ];
 
     plymouth = {
       enable = _system.boot.plymouth.enable;
       theme = "flame";
-      themePackages = with pkgs;
-        [
-          (adi1090x-plymouth-themes.override {
-            selected_themes = [ "flame" ]; # "glow", "flame", "green loader"
-          })
-        ];
+      themePackages = with pkgs; [
+        (adi1090x-plymouth-themes.override {
+          selected_themes = [ "flame" ]; # "glow", "flame", "green loader"
+        })
+      ];
     };
   };
 
@@ -195,7 +203,11 @@ in {
   # ---- Hardware Configuration
   # ------------------------------------------------
   hardware = {
-    firmware = with pkgs; [ linux-firmware sof-firmware wireless-regdb ];
+    firmware = with pkgs; [
+      linux-firmware
+      sof-firmware
+      wireless-regdb
+    ];
     # one of "xz", "zstd", "none", "auto"
 
     firmwareCompression = "zstd"; # ?
