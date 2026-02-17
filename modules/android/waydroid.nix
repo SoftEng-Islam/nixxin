@@ -179,7 +179,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       # 3. Set Android Properties
       waydroid prop set persist.waydroid.width 1280
       waydroid prop set persist.waydroid.height 720
-      waydroid prop set persist.waydroid.dpi 240
+      # 240 or 160
+      waydroid prop set persist.waydroid.dpi 160
 
       # 4. Start Weston
       # We use --backend=wayland-backend.so to force it to connect to your desktop
