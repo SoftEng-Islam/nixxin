@@ -1,4 +1,10 @@
-{ settings, inputs, lib, pkgs, ... }:
+{
+  settings,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) optionals optional;
 
@@ -134,7 +140,8 @@ let
     # pkgs.nixgl.nixGLMesa
   ];
 
-in {
+in
+{
   config = lib.mkIf (settings.modules.graphics.enable or false) {
     # ========== Graphics Stack Configuration ==========
 
@@ -200,16 +207,13 @@ in {
       # Vulkan ICD (Installable Client Driver) configuration
       # /run/opengl-driver/share/vulkan/icd.d/
       # VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-      VK_DRIVER_FILES =
-        "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+      # VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
 
       # Set Vulkan environment variables
       Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
       Vulkan_LIBRARY = "${pkgs.vulkan-loader}/lib/libvulkan.so.1";
-      VK_LAYER_PATH =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
-      VULKAN_SDK =
-        "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      VK_LAYER_PATH = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
+      VULKAN_SDK = "${pkgs.vulkan-validation-layers}/share/vulkan/explicit_layer.d";
       # =================================
 
       # Enable present_wait extension (helps with frame timing on Wayland)
@@ -219,8 +223,7 @@ in {
       VK_PRESENT_MODE = "mailbox";
 
       # Disable problematic/unused Vulkan layers
-      VK_LOADER_LAYERS_DISABLE =
-        "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
+      VK_LOADER_LAYERS_DISABLE = "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
 
       # Tell Mesa to prefer Wayland
       VK_WSI_MODE = "wayland";
@@ -234,11 +237,10 @@ in {
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
 
-      RADV_TEX_ANISO = 16;
-      AMD_TEX_ANISO = 16;
+      # RADV_TEX_ANISO = 16;
+      # AMD_TEX_ANISO = 16;
 
-      RADV_PERFTEST =
-        "gpl,sam,video_encode"; # Enable AMD GPU performance tests for OpenCL and Vulkan
+      RADV_PERFTEST = "gpl,sam,video_encode"; # Enable AMD GPU performance tests for OpenCL and Vulkan
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
@@ -279,8 +281,7 @@ in {
       DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = 1;
 
       # Some apps dont like integrated + discreet and default to integrated so this should fix that
-      __EGL_VENDOR_LIBRARY_FILENAMES =
-        "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
+      __EGL_VENDOR_LIBRARY_FILENAMES = "/run/opengl-driver/share/glvnd/egl_vendor.d/50_mesa.json";
       # __EGL_VENDOR_LIBRARY_FILENAMES = "${pkgs.mesa}/share/glvnd/egl_vendor.d/50_mesa.json";
 
       # LIBGL_DRIVERS_PATH = lib.makeSearchPathOutput "lib" "lib/dri" [ pkgs.mesa ];
@@ -334,12 +335,16 @@ in {
       package32 = pkgs.pkgsi686Linux.mesa;
 
       # Note: amdvlk has been deprecated, RADV is now the default driver
-      extraPackages = with pkgs;
+      extraPackages =
+        with pkgs;
         [
           # OpenCL for AMD GPUs
           # Official Khronos OpenCL ICD Loader
           (lib.hiPrio khronos-ocl-icd-loader)
-        ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages;
+        ]
+        ++ coreGraphicsPackages
+        ++ vulkanPackages
+        ++ openclPackages;
     };
 
     # 32-bit graphics packages for compatibility
@@ -368,7 +373,8 @@ in {
     '';
 
     # ========== System Packages ==========
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         clinfo
         opencl-headers
@@ -378,7 +384,11 @@ in {
         # radeontop
         # radeontools
         # wxedid
-      ] ++ coreGraphicsPackages ++ vulkanPackages ++ openclPackages
-      ++ graphicsTools ++ lib.flatten _graphics;
+      ]
+      ++ coreGraphicsPackages
+      ++ vulkanPackages
+      ++ openclPackages
+      ++ graphicsTools
+      ++ lib.flatten _graphics;
   };
 }

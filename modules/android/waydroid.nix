@@ -134,53 +134,54 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     wl-clipboard
 
     (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Kill any existing Waydroid mess
-      echo "Cleaning up old sessions..."
+      # 1. Clean up and Prep
+      echo "[1/5] Cleaning up old sessions..."
       waydroid session stop || true
-      sudo waydroid container stop || true
       sudo systemctl restart waydroid-container
 
-      # 2. Set the "Fast Mode" properties
+      # 2. Set GPU/Performance properties
+      echo "[2/5] Setting performance profiles..."
       sudo waydroid prop set persist.waydroid.width 1280
       sudo waydroid prop set persist.waydroid.height 720
       sudo waydroid prop set persist.waydroid.dpi 240
 
-      # 3. Start Weston with a unique socket name
-      # We use --shell=kiosk-shell.so to force it to behave like a single-app display
-      export WAYLAND_DISPLAY_PARENT=$WAYLAND_DISPLAY
-      unset WAYLAND_DISPLAY
+      # 3. Start Weston
+      # We keep the current WAYLAND_DISPLAY so Weston knows where to draw its window
+      echo "[3/5] Starting Weston (scaling 720p to Fullscreen)..."
 
+      # We name the internal socket 'wayland-waydroid'
       ${pkgs.weston}/bin/weston -Swayland-waydroid \
         --width=1280 --height=720 \
         --fullscreen \
         --shell="kiosk-shell.so" &
       WESTON_PID=$!
 
-      # Wait for the socket to appear in the filesystem
-      echo "Waiting for Weston socket..."
+      # Wait for the socket to exist
+      echo "Waiting for display socket..."
       while [ ! -S "$XDG_RUNTIME_DIR/wayland-waydroid" ]; do
         sleep 0.5
       done
 
-      # 4. Start the session WITH the correct socket environment
+      # 4. Start Waydroid Session
+      # We tell Waydroid to talk to the Weston we just started
       export WAYLAND_DISPLAY=wayland-waydroid
-      echo "Starting Waydroid session on $WAYLAND_DISPLAY..."
-
-      # This starts the background Android services
+      echo "[4/5] Starting Android session (This takes 10-20 seconds)..."
       waydroid session start &
 
-      # Wait for the Android "Display" service to be ready
-      # We look for the 'ready' signal in the logs
+      # Loop until Android says it is ready
       until waydroid status | grep -q "RUNNING"; do
-        echo "Waiting for Android to boot..."
         sleep 2
+        echo "  ...still booting..."
       done
 
-      # 5. Finally, show the UI
+      # 5. Launch the UI
+      echo "[5/5] Android is ready! Launching UI..."
       waydroid show-full-ui &
 
-      # Keep script alive until Weston is closed
+      # Keep script alive until you close the Weston window
       wait $WESTON_PID
+
+      echo "Closing Waydroid..."
       waydroid session stop
     '')
 
