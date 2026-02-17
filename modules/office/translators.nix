@@ -19,9 +19,15 @@ in
       # 2- $ trans en:ar "word processor"
       translate-shell
 
+      # echo "Learning English on NixOS is a great experience." | piper --model en_US-lessac-medium --output_file output.wav
+      # Then play it with:
+      # mpv output.wav
       # https://github.com/OHF-Voice/piper1-gpl
       # A fast and local neural text-to-speech engine that embeds espeak-ng for phonemization.
       piper-tts
+
+      # Mycroft's TTS engine, based on CMU's Flite (Festival Lite)
+      mycroft
     ];
   };
 }
