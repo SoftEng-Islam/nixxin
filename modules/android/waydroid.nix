@@ -134,48 +134,52 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     wl-clipboard
 
     (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Ensure the container is alive
-      sudo systemctl start waydroid-container
+      # 1. Kill any existing Waydroid mess
+      echo "Cleaning up old sessions..."
+      waydroid session stop || true
+      sudo waydroid container stop || true
+      sudo systemctl restart waydroid-container
 
-      # 2. Set the low-quality / high-speed properties
+      # 2. Set the "Fast Mode" properties
       sudo waydroid prop set persist.waydroid.width 1280
       sudo waydroid prop set persist.waydroid.height 720
       sudo waydroid prop set persist.waydroid.dpi 240
 
-      # 3. Detect the parent Wayland display
-      # If WAYLAND_DISPLAY is not set, we might be in X11 or a TTY
-      if [ -z "$WAYLAND_DISPLAY" ]; then
-          echo "No Wayland session detected. Attempting to start Weston standalone..."
-          # If you are in a TTY, Weston needs the DRM backend
-          # Note: This may require your user to be in the 'video' group
-          WESTON_ARGS="--backend=drm-backend.so"
-      else
-          echo "Parent Wayland session found: $WAYLAND_DISPLAY"
-          WESTON_ARGS=""
-      fi
+      # 3. Start Weston with a unique socket name
+      # We use --shell=kiosk-shell.so to force it to behave like a single-app display
+      export WAYLAND_DISPLAY_PARENT=$WAYLAND_DISPLAY
+      unset WAYLAND_DISPLAY
 
-      # 4. Start Weston
-      # We use a temporary socket 'wayland-waydroid' to avoid conflicts
       ${pkgs.weston}/bin/weston -Swayland-waydroid \
         --width=1280 --height=720 \
         --fullscreen \
-        --shell="kiosk-shell.so" $WESTON_ARGS &
+        --shell="kiosk-shell.so" &
       WESTON_PID=$!
 
-      # Wait for the socket to appear
+      # Wait for the socket to appear in the filesystem
+      echo "Waiting for Weston socket..."
       while [ ! -S "$XDG_RUNTIME_DIR/wayland-waydroid" ]; do
-        sleep 0.1
+        sleep 0.5
       done
 
-      # 5. Tell Waydroid to use our new Weston socket
+      # 4. Start the session WITH the correct socket environment
       export WAYLAND_DISPLAY=wayland-waydroid
-      waydroid session stop || true
+      echo "Starting Waydroid session on $WAYLAND_DISPLAY..."
+
+      # This starts the background Android services
       waydroid session start &
 
-      # Wait for Android to pick up the display
-      sleep 2
+      # Wait for the Android "Display" service to be ready
+      # We look for the 'ready' signal in the logs
+      until waydroid status | grep -q "RUNNING"; do
+        echo "Waiting for Android to boot..."
+        sleep 2
+      done
+
+      # 5. Finally, show the UI
       waydroid show-full-ui &
 
+      # Keep script alive until Weston is closed
       wait $WESTON_PID
       waydroid session stop
     '')
