@@ -133,26 +133,52 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.systemPackages = with pkgs; [
     wl-clipboard
 
-    (pkgs.writeShellApplication {
-      name = "waydroid-aid";
-      runtimeInputs = with pkgs; [
-        waydroid-nftables
-        # waydroid-helper
-        wl-clipboard
-      ];
-      text = ''
-        sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
-        echo "Paste clipboard in this website below"
-        echo "https://www.google.com/android/uncertified"
-        echo "Then run"
-        echo "waydroid session stop"
-        sudo mount --bind ~/Documents ~/.local/share/waydroid/data/media/0/Documents
-        sudo mount --bind ~/Downloads ~/.local/share/waydroid/data/media/0/Download
-        sudo mount --bind ~/Music ~/.local/share/waydroid/data/media/0/Music
-        sudo mount --bind ~/Pictures ~/.local/share/waydroid/data/media/0/Pictures
-        sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
-      '';
-    })
+    (pkgs.writeShellScriptBin "waydroid-ui" ''
+      # 1. Ensure the container is alive
+      sudo systemctl start waydroid-container
+
+      # 2. Set the low-quality / high-speed properties
+      sudo waydroid prop set persist.waydroid.width 1280
+      sudo waydroid prop set persist.waydroid.height 720
+      sudo waydroid prop set persist.waydroid.dpi 240
+
+      # 3. Detect the parent Wayland display
+      # If WAYLAND_DISPLAY is not set, we might be in X11 or a TTY
+      if [ -z "$WAYLAND_DISPLAY" ]; then
+          echo "No Wayland session detected. Attempting to start Weston standalone..."
+          # If you are in a TTY, Weston needs the DRM backend
+          # Note: This may require your user to be in the 'video' group
+          WESTON_ARGS="--backend=drm-backend.so"
+      else
+          echo "Parent Wayland session found: $WAYLAND_DISPLAY"
+          WESTON_ARGS=""
+      fi
+
+      # 4. Start Weston
+      # We use a temporary socket 'wayland-waydroid' to avoid conflicts
+      ${pkgs.weston}/bin/weston -Swayland-waydroid \
+        --width=1280 --height=720 \
+        --fullscreen \
+        --shell="kiosk-shell.so" $WESTON_ARGS &
+      WESTON_PID=$!
+
+      # Wait for the socket to appear
+      while [ ! -S "$XDG_RUNTIME_DIR/wayland-waydroid" ]; do
+        sleep 0.1
+      done
+
+      # 5. Tell Waydroid to use our new Weston socket
+      export WAYLAND_DISPLAY=wayland-waydroid
+      waydroid session stop || true
+      waydroid session start &
+
+      # Wait for Android to pick up the display
+      sleep 2
+      waydroid show-full-ui &
+
+      wait $WESTON_PID
+      waydroid session stop
+    '')
 
     # Waydroid UI With WESTON
     (pkgs.writeShellScriptBin "waydroid-ui" ''
