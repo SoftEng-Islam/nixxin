@@ -591,7 +591,7 @@ rec {
     "acpi_enforce_resources=lax"
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    # "acpi_osi=Linux" # Linux | Darwin | Windows
+    "acpi_osi=Linux" # Linux | Darwin | Windows
     # ''acpi_osi="!Windows 2015"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
