@@ -1,8 +1,16 @@
-{ settings, inputs, lib, pkgs, ... }:
+{
+  settings,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 
-let username = settings.user.username;
+let
+  username = settings.user.username;
 
-in lib.mkIf (settings.modules.android.waydroid.enable or false) {
+in
+lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
   # or https://docs.waydro.id/usage/install-on-desktops
@@ -23,8 +31,8 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   # Mount host directories to waydroid
-  systemd.packages = with pkgs; [ waydroid-helper ];
-  systemd.services.waydroid-mount.wantedBy = [ "multi-user.target" ];
+  # systemd.packages = with pkgs; [ waydroid-helper ];
+  # systemd.services.waydroid-mount.wantedBy = [ "multi-user.target" ];
 
   # Force disable waydroid service so that it is not started at boot
   systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
@@ -35,27 +43,26 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
   # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
-  environment.etc."gbinder.d/waydroid.conf".source =
-    pkgs.writeText "waydroid.conf" ''
-      [Protocol]
-      /dev/binder = aidl2
-      /dev/vndbinder = aidl2
-      /dev/hwbinder = hidl
+  environment.etc."gbinder.d/waydroid.conf".source = pkgs.writeText "waydroid.conf" ''
+    [Protocol]
+    /dev/binder = aidl2
+    /dev/vndbinder = aidl2
+    /dev/hwbinder = hidl
 
-      [ServiceManager]
-      /dev/binder = aidl2
-      /dev/vndbinder = aidl2
-      /dev/hwbinder = hidl
-    '';
+    [ServiceManager]
+    /dev/binder = aidl2
+    /dev/vndbinder = aidl2
+    /dev/hwbinder = hidl
+  '';
 
   # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop
-  systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C =
-    {
-      user = "root";
-      group = "root";
-      mode = "0644";
-      argument = builtins.toString (pkgs.writeText "waydroid_base.prop" ''
+  systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C = {
+    user = "root";
+    group = "root";
+    mode = "0644";
+    argument = builtins.toString (
+      pkgs.writeText "waydroid_base.prop" ''
           # --- Performance Core ---
         sys.use_memfd=true
         ro.hardware.gralloc=gbm
@@ -88,8 +95,9 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
         ro.hwui.disable_scissor_opt=true
 
         persist.waydroid.suspend=false
-      '');
-    };
+      ''
+    );
+  };
 
   # Setting up a shared folder
   # sudo mount --bind <source> ~/.local/share/waydroid/data/media/0/<target>
@@ -108,7 +116,11 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
   fileSystems."/home/${username}/Waydroid" = {
     device = "/home/${username}/.local/share/waydroid/data/media/0/Shared";
     fsType = "none";
-    options = [ "bind" "create" "rw" ];
+    options = [
+      "bind"
+      "create"
+      "rw"
+    ];
   };
 
   systemd.tmpfiles.rules = [
@@ -125,7 +137,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       name = "waydroid-aid";
       runtimeInputs = with pkgs; [
         waydroid-nftables
-        waydroid-helper
+        # waydroid-helper
         wl-clipboard
       ];
       text = ''
@@ -181,7 +193,11 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
       icon = "waydroid"; # Note: usually lowercase is safer for icon names
       # "System" is a main category, "Emulator" is additional,
       # and "X-Android" is your custom tag.
-      categories = [ "System" "Emulator" "X-Android" ];
+      categories = [
+        "System"
+        "Emulator"
+        "X-Android"
+      ];
     };
   };
 
