@@ -133,85 +133,70 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.systemPackages = with pkgs; [
     wl-clipboard
 
-    (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Clean up and Prep
-      echo "[1/5] Cleaning up old sessions..."
-      waydroid session stop || true
-      sudo systemctl restart waydroid-container
+    (pkgs.writeShellApplication {
+      name = "waydroid-aid";
+      runtimeInputs = with pkgs; [
+        waydroid-nftables
+        # waydroid-helper
+        wl-clipboard
+      ];
+      text = ''
+        sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        echo "Paste clipboard in this website below"
+        echo "https://www.google.com/android/uncertified"
+        echo "Then run"
+        echo "waydroid session stop"
+        sudo mount --bind ~/Documents ~/.local/share/waydroid/data/media/0/Documents
+        sudo mount --bind ~/Downloads ~/.local/share/waydroid/data/media/0/Download
+        sudo mount --bind ~/Music ~/.local/share/waydroid/data/media/0/Music
+        sudo mount --bind ~/Pictures ~/.local/share/waydroid/data/media/0/Pictures
+        sudo mount --bind ~/Videos ~/.local/share/waydroid/data/media/0/Movies
+      '';
+    })
 
-      # 2. Set GPU/Performance properties
-      echo "[2/5] Setting performance profiles..."
+    (pkgs.writeShellScriptBin "waydroid-ui" ''
+      # 1. Clean up
+      waydroid session stop || true
+
+      # 2. Local Performance Overrides (Bypasses your heavy global settings)
+      export RADV_TEX_ANISO=0
+      export AMD_TEX_ANISO=0
+      export mesa_glthread=true
+      export vblank_mode=0
+
+      # 3. Set Android Properties
       sudo waydroid prop set persist.waydroid.width 1280
       sudo waydroid prop set persist.waydroid.height 720
       sudo waydroid prop set persist.waydroid.dpi 240
 
-      # 3. Start Weston
-      # We keep the current WAYLAND_DISPLAY so Weston knows where to draw its window
-      echo "[3/5] Starting Weston (scaling 720p to Fullscreen)..."
-
-      # We name the internal socket 'wayland-waydroid'
+      # 4. Start Weston
+      # We use --backend=wayland-backend.so to force it to connect to your desktop
       ${pkgs.weston}/bin/weston -Swayland-waydroid \
+        --backend=wayland-backend.so \
         --width=1280 --height=720 \
         --fullscreen \
         --shell="kiosk-shell.so" &
       WESTON_PID=$!
 
-      # Wait for the socket to exist
-      echo "Waiting for display socket..."
-      while [ ! -S "$XDG_RUNTIME_DIR/wayland-waydroid" ]; do
+      # Wait for socket with a timeout so it doesn't hang forever
+      for i in {1..20}; do
+        [ -S "$XDG_RUNTIME_DIR/wayland-waydroid" ] && break
+        echo "Waiting for Weston... $i"
         sleep 0.5
       done
 
-      # 4. Start Waydroid Session
-      # We tell Waydroid to talk to the Weston we just started
+      # 5. Start Android
       export WAYLAND_DISPLAY=wayland-waydroid
-      echo "[4/5] Starting Android session (This takes 10-20 seconds)..."
       waydroid session start &
 
-      # Loop until Android says it is ready
+      # Wait for Android to be ready
       until waydroid status | grep -q "RUNNING"; do
         sleep 2
-        echo "  ...still booting..."
       done
 
-      # 5. Launch the UI
-      echo "[5/5] Android is ready! Launching UI..."
       waydroid show-full-ui &
 
-      # Keep script alive until you close the Weston window
       wait $WESTON_PID
-
-      echo "Closing Waydroid..."
-      waydroid session stop
-    '')
-
-    # Waydroid UI With WESTON
-    (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Set internal Android resolution to 720p for speed
-      # We do this before starting the UI
-      waydroid prop set persist.waydroid.width 1280
-      waydroid prop set persist.waydroid.height 720
-
-      # 2. Set the DPI persistently (no need for 'wm density' later)
-      # 240 is perfect for 720p on a standard monitor.
-      sudo waydroid prop set persist.waydroid.dpi 240
-
-      # 3. Start the Waydroid container if it's not already running
-      sudo systemctl start waydroid-container
-
-      export WAYLAND_DISPLAY=wayland-0
-      ${pkgs.weston}/bin/weston -Swayland-1 --width=1280 --height=720 --fullscreen --shell="kiosk-shell.so" &
-      WESTON_PID=$!
-
-      # Wait a moment for Weston to initialize its socket
-      sleep 2
-
-      export WAYLAND_DISPLAY=wayland-1
-      ${pkgs.waydroid-nftables}/bin/waydroid show-full-ui &
-
-      wait $WESTON_PID
-
-      # Clean up when you close Weston
       waydroid session stop
     '')
   ];
