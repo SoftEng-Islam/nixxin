@@ -744,7 +744,7 @@ rec {
   modules.users.name = user.name;
 
   # [MS Windows]
-  modules.windows.wine.enable = true;
+  modules.windows.wine.enable = false;
 
   # [XDG]
   modules.desktop.xdg = {
