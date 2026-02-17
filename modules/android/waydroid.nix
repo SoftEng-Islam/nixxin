@@ -130,6 +130,18 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /home/${username}/Waydroid 0755 ${username} users -"
   ];
 
+  security.sudo.extraRules = [
+    {
+      users = [ "${username}" ];
+      commands = [
+        {
+          command = "${pkgs.waydroid-nftables}/bin/waydroid";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
   environment.systemPackages = with pkgs; [
     wl-clipboard
 
