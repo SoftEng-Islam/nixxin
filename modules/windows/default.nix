@@ -1,6 +1,13 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.windows.enable) {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+mkIf (settings.modules.windows.enable) {
   # Enable DXVK in Wine:
   # WINEPREFIX=~/.wine winecfg
   # Go to the Libraries tab, add d3d11 and dxgi, and set them to "native."
@@ -40,7 +47,8 @@ in mkIf (settings.modules.windows.enable) {
     winePackages.fonts # Microsoft replacement fonts by the Wine project
     winePackages.stableFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     winetricks # A script to install DLLs needed to work around problems in Wine
-    wineWowPackages.waylandFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
+
+    # wineWowPackages.waylandFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
     # libGL # GL Vendor-Neutral Dispatch library
     # libGLU # OpenGL utility library
     # vulkan-loader # LunarG Vulkan loader
