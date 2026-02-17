@@ -50,8 +50,6 @@ lib.mkIf (settings.modules.env.enable or false) {
       QT_AUTO_SCREEN_SCALE_FACTOR = 1;
       QT_QPA_PLATFORM = "wayland;xcb";
 
-      # "WLR_DRM_NO_ATOMIC,1"
-      # WLR_BACKEND = "vulkan";
       # WLR_RENDERER = "vulkan";
 
       # https://wiki.hypr.land/Configuring/Multi-GPU/

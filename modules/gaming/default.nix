@@ -1,4 +1,10 @@
-{ settings, inputs, lib, pkgs, ... }:
+{
+  settings,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
 
@@ -10,7 +16,8 @@ let
     (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
   ];
 
-in {
+in
+{
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
   config = mkIf (settings.modules.gaming.enable) {
     nixpkgs.overlays = [
@@ -22,8 +29,7 @@ in {
             sed -i '1s/cmake_minimum_required *(VERSION [0-9.]\+)/cmake_minimum_required(VERSION 3.5)/' CMakeLists.txt
           '';
 
-          cmakeFlags = (old.cmakeFlags or [ ])
-            ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
+          cmakeFlags = (old.cmakeFlags or [ ]) ++ [ "-DCMAKE_POLICY_VERSION_MINIMUM=3.5" ];
         });
       })
     ];
@@ -31,7 +37,7 @@ in {
     programs = {
       gamemode = {
         # https://feralinteractive.github.io/gamemode/
-        enable = true;
+        enable = false;
         enableRenice = true;
         settings = {
           general = {
@@ -100,7 +106,10 @@ in {
         # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
         exec = "0ad";
         icon = "0ad";
-        categories = [ "Game" "StrategyGame" ];
+        categories = [
+          "Game"
+          "StrategyGame"
+        ];
       };
     };
 
@@ -115,10 +124,14 @@ in {
         vulkan-validation-layers
         vulkan-extension-layer
       ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [ vulkan-loader vulkan-tools ];
+      extraPackages32 = with pkgs.pkgsi686Linux; [
+        vulkan-loader
+        vulkan-tools
+      ];
     };
 
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         # 0 A.D. with Vulkan support
 
@@ -158,6 +171,7 @@ in {
         gamemode
 
         # ... (rest of your packages)
-      ] ++ lib.flatten _pkgs;
+      ]
+      ++ lib.flatten _pkgs;
   };
 }

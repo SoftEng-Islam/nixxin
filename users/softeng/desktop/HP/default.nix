@@ -377,11 +377,11 @@ rec {
   modules.media.vlc = true; # Media Player
   modules.media.glide = false; # media player
   modules.media.clapper = false; # media player
-  modules.media.celluloid = true; # media player
+  modules.media.celluloid = false; # media player
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = true; # video Editor
   modules.media.shotcut = false; # video Editor
-  modules.media.constrict = true; # video compressor
+  modules.media.constrict = false; # video compressor
   modules.media.music = true; # Music Player
 
   # [Networking]
@@ -565,9 +565,8 @@ rec {
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-    # "amdgpu_pstate=active"
-    # "amd_pstate=disable"
-    # "amdgpu.sg_display=0" # Disable scatter-gather display
+    "amd_pstate=disable"
+    "amd_prefcore=disable"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
@@ -679,9 +678,7 @@ rec {
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
     "acpi-cpufreq"
-    "cpufreq_powersave"
     "cpufreq_performance"
-    "cpufreq_ondemand"
     "k10temp" # Temperature monitoring
     "i2c_hid" # Input devices
     "usbhid"

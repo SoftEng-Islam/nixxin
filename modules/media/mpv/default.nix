@@ -1,8 +1,16 @@
-{ config, lib, settings, pkgs, ... }:
+{
+  config,
+  lib,
+  settings,
+  pkgs,
+  ...
+}:
 # The [ MPV ] manual
 # https://mpv.io/manual/stable/
 lib.mkIf (settings.modules.media.mpv) {
-  environment.variables = { VIDEO = "mpv"; };
+  environment.variables = {
+    VIDEO = "mpv";
+  };
 
   # https://github.com/mpv-player/mpv/wiki
   home-manager.users.${settings.user.username} = {
@@ -96,8 +104,8 @@ lib.mkIf (settings.modules.media.mpv) {
 
         gpu-context = "auto"; # mpv --gpu-context=help
         hwdec = "auto-safe"; # mpv --hwdec=help
-        profile = "fast"; # mpv --profile=help
-        dither-depth = "no";
+        profile = "gpu-hq"; # fast, high-quality, gpu-hq  mpv --profile=help
+        dither-depth = "auto";
         hdr-compute-peak = "no"; # Fix stuttering playing 4k video
         opengl-pbo = "yes";
         deband = "no";
@@ -150,14 +158,13 @@ lib.mkIf (settings.modules.media.mpv) {
         msg-module = true;
       };
       bindings = {
-        z = "add sub-delay -0.1";
-        x = "add sub-delay 0.1";
+        z = "add sub-delay 0.1";
+        x = "add sub-delay -0.1";
         Z = "add audio-delay -0.1";
         X = "add audio-delay 0.1";
         r = "add sub-pos -1";
         t = "add sub-pos +1";
       };
-      # defaultProfiles = [ "high-quality" ];
     };
   };
 

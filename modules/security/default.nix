@@ -5,8 +5,17 @@
 # It includes settings for kernel protection, sudo configuration,
 # polkit, rtkit, tpm2 support, and system security tweaks.
 # It also sets up systemd-boot, kernel parameters, and user namespaces.
-{ settings, lib, pkgs, ... }: {
-  imports = [ ./vpn ./gpg_agent.nix ];
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  imports = [
+    ./vpn
+    ./gpg_agent.nix
+  ];
   config = lib.mkIf (settings.modules.security.enable or false) {
     security = {
       # System security tweaks
@@ -62,9 +71,9 @@
     boot.kernel.sysctl = {
 
       # Help the CPU switch between NixOS and Waydroid tasks faster
-      "kernel.sched_latency_ns" = 4000000;
-      "kernel.sched_min_granularity_ns" = 400000;
-      "kernel.sched_wakeup_granularity_ns" = 500000;
+      # "kernel.sched_latency_ns" = 4000000;
+      # "kernel.sched_min_granularity_ns" = 400000;
+      # "kernel.sched_wakeup_granularity_ns" = 500000;
 
       # Ensure the system doesn't "pause" to write logs to the SSD too often
       "vm.dirty_ratio" = 10;

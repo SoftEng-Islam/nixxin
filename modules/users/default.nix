@@ -1,4 +1,5 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+{
   users = {
     defaultUserShell = pkgs.zsh;
     groups.uinput.members = [ "${settings.user.username}" ];
@@ -13,8 +14,7 @@
       # isSystemUser = false;
 
       # To generate a hashed password run `mkpasswd`.
-      hashedPassword =
-        "$y$j9T$5HywFRGm/t.0VjspGLm8./$GtocDydBdCVWhVq8XaZnIUWUebqMQsS5rjJp7tSsRW/";
+      hashedPassword = "$y$j9T$5HywFRGm/t.0VjspGLm8./$GtocDydBdCVWhVq8XaZnIUWUebqMQsS5rjJp7tSsRW/";
 
       description = settings.user.name;
       home = "/home/${settings.user.username}";
@@ -32,7 +32,6 @@
         # "docker" # I don't Use Docker
         # "flatpak"
         "fuse"
-        "gamemode"
         "git"
         "i2c"
         "input" # Access to input devices like keyboards and mice.
