@@ -1,7 +1,8 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }: rec {
+{ pkgs, ... }:
+rec {
   # ----------------------------------------------
   # ---- The User Information
   # ----------------------------------------------
@@ -93,10 +94,11 @@
   common.soundPlayer = "";
   common.imageViewer = "";
   # [ IDLE ] For Ex: You can set the idle-delay to 300 seconds (5 minutes) or 0 to Disable:
-  common.idle = { delay = 0; };
+  common.idle = {
+    delay = 0;
+  };
   # [ Dotfiles ] Inforamtions ---- #
-  common.dotfilesDir =
-    "/home/${user.username}/nixxin"; # Absolute path of the repo
+  common.dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
@@ -129,38 +131,24 @@
 
   # CPU Architecture
   common.cpu.arch = "amd64"; # "amd64" or "aarch64"
-  common.cpu.intel =
-    false; # Set true if you have Intel CPU, and false if you have AMD CPU.
-  common.cpu.amd =
-    true; # Set true if you have AMD CPU, and false if you have Intel CPU.
-  common.cpu.zen =
-    true; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
-  common.cpu.ryzen =
-    true; # Set true if you have AMD Ryzen CPU, and false if you have non-Ryzen AMD CPU
-  common.cpu.ryzenMobile =
-    false; # Set true if you have AMD Ryzen Mobile CPU, and false if you have non-Ryzen Mobile AMD CPU
-  common.cpu.amdGPU =
-    true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
-  common.cpu.nvidiaGPU =
-    false; # Set true if you have NVIDIA GPU, and false if you have non-NVIDIA GPU.
-  common.cpu.intelGPU =
-    false; # Set true if you have Intel GPU, and false if you have non-Intel GPU.
+  common.cpu.intel = false; # Set true if you have Intel CPU, and false if you have AMD CPU.
+  common.cpu.amd = true; # Set true if you have AMD CPU, and false if you have Intel CPU.
+  common.cpu.zen = true; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
+  common.cpu.ryzen = true; # Set true if you have AMD Ryzen CPU, and false if you have non-Ryzen AMD CPU
+  common.cpu.ryzenMobile = false; # Set true if you have AMD Ryzen Mobile CPU, and false if you have non-Ryzen Mobile AMD CPU
+  common.cpu.amdGPU = true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
+  common.cpu.nvidiaGPU = false; # Set true if you have NVIDIA GPU, and false if you have non-NVIDIA GPU.
+  common.cpu.intelGPU = false; # Set true if you have Intel GPU, and false if you have non-Intel GPU.
   # get cpu cores: lscpu | grep "^CPU(s):" | awk '{print $2}'
-  common.cpu.cores =
-    4; # Set the number of CPU cores you have, for better performance in some apps and games.
+  common.cpu.cores = 4; # Set the number of CPU cores you have, for better performance in some apps and games.
   # get cpu threads: scpu | grep -e "Socket(s):" -e "Core(s) per socket:" -e "Thread(s) per core:"
-  common.cpu.threads =
-    4; # Set the number of CPU threads you have, for better performance in some apps and games.
-  common.cpu.tdp =
-    65; # Set the TDP of your CPU in watts, for better performance in some apps and games.
-  common.cpu.overclocking =
-    false; # Set true if you want to overclock your CPU, and false if you don't want to overclock your CPU.
-  common.cpu.undervolting =
-    false; # Set true if you want to undervolt your CPU, and false if you don't want to undervolt your CPU.
+  common.cpu.threads = 4; # Set the number of CPU threads you have, for better performance in some apps and games.
+  common.cpu.tdp = 65; # Set the TDP of your CPU in watts, for better performance in some apps and games.
+  common.cpu.overclocking = false; # Set true if you want to overclock your CPU, and false if you don't want to overclock your CPU.
+  common.cpu.undervolting = false; # Set true if you want to undervolt your CPU, and false if you don't want to undervolt your CPU.
 
   # [ Battery ]
-  common.battery =
-    false; # Set true if you have a laptop with battery, and false if you have a desktop without battery.
+  common.battery = false; # Set true if you have a laptop with battery, and false if you have a desktop without battery.
 
   # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
@@ -291,8 +279,7 @@
   modules.desktop.dconf.colorScheme = "prefer-dark";
   modules.desktop.dconf.icons.nameInDark = common.icons.nameInDark;
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
-  modules.desktop.dconf.icons.icon_view_size =
-    "large"; # Set icons size for nautilus.
+  modules.desktop.dconf.icons.icon_view_size = "large"; # Set icons size for nautilus.
 
   # [Emails]
   modules.emails.thunderbird = true;
@@ -344,8 +331,7 @@
   modules.graphics.kolourpaint = false;
 
   # [ Hyprland ]
-  modules.desktop.hyprland.genColorsPath =
-    /home/${user.username}/.cache/hypr/colors.conf;
+  modules.desktop.hyprland.genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = false;
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
@@ -361,8 +347,7 @@
   modules.desktop.hyprland.plugins.hyprexpo = false;
   modules.desktop.hyprland.plugins.hyprtrails = false;
   modules.desktop.hyprland.lockscreen.enable = false;
-  modules.desktop.hyprland.lockscreen.type =
-    "hyprlock"; # "hyprlock" or "noctalia"
+  modules.desktop.hyprland.lockscreen.type = "hyprlock"; # "hyprlock" or "noctalia"
   modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;
@@ -375,7 +360,10 @@
   modules.i18n.timezone = "Africa/Cairo"; # Select timezone
   modules.i18n.defaultLocale = "en_US.UTF-8"; # Select locale
   modules.i18n.mainlanguage = "English"; # Select the main Language.
-  modules.i18n.languages = [ "arabic" "france" ]; # Add Other Languages
+  modules.i18n.languages = [
+    "arabic"
+    "france"
+  ]; # Add Other Languages
 
   # [ image_viewer ]
   modules.image_viewer.eog = true;
@@ -398,7 +386,10 @@
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [ "8.8.8.8" "9.9.9.9" ]; # DNS
+  modules.networking.nameservers = [
+    "8.8.8.8"
+    "9.9.9.9"
+  ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     # eno1 = {
@@ -532,7 +523,8 @@
     devices = [ "nodev" ];
     device = "nodev"; # Let GRUB automatically detect EFI
     # nix path-info -r nixpkgs#sleek-grub-theme
-    theme = with pkgs;
+    theme =
+      with pkgs;
       (sleek-grub-theme.override {
         withStyle = "dark"; # (dark/light/orange/bigsur)
         withBanner = "GRUB Boot Manager";
@@ -600,7 +592,7 @@
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     # "acpi_osi=Linux" # Linux | Darwin | Windows
-    ''acpi_osi="!Windows 2015"''
+    # ''acpi_osi="!Windows 2015"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"

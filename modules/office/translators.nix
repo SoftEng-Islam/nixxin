@@ -24,10 +24,10 @@ in
       # mpv output.wav
       # https://github.com/OHF-Voice/piper1-gpl
       # A fast and local neural text-to-speech engine that embeds espeak-ng for phonemization.
-      piper-tts
+      # piper-tts
 
       # Mycroft's TTS engine, based on CMU's Flite (Festival Lite)
-      mimic
+      # mimic
     ];
   };
 }
