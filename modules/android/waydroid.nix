@@ -18,7 +18,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   virtualisation = {
     #? Is This Needed?
     lxc.enable = true;
-    lxc.unprivilegedContainers = true;
+    # lxc.unprivilegedContainers = true;
 
     waydroid.enable = true;
     waydroid.package = pkgs.waydroid-nftables;
