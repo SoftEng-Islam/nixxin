@@ -80,6 +80,12 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
         waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
         waydroid.tools_version=1.5.4
+
+        # Disables multisample anti-aliasing
+        debug.egl.hw_msaa=0
+
+        # Force the 2D renderer to be as fast as possible
+        ro.hwui.disable_scissor_opt=true
       '');
     };
 
@@ -137,7 +143,7 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     # Waydroid UI With WESTON
     (pkgs.writeShellScriptBin "waydroid-ui" ''
       export WAYLAND_DISPLAY=wayland-0
-      ${pkgs.weston}/bin/weston -Swayland-1 --width=600 --height=1000 --shell="kiosk-shell.so" &
+      ${pkgs.weston}/bin/weston -Swayland-1 --width=1280 --height=720 --fullscreen --shell="kiosk-shell.so" &
       WESTON_PID=$!
 
       export WAYLAND_DISPLAY=wayland-1
@@ -148,13 +154,15 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
     '')
   ];
 
-  home-manager.users.${settings.user.username} = {
+  home-manager.users.${username} = {
     xdg.desktopEntries."Waydroid" = {
       name = "Waydroid";
       genericName = "Full Android OS on a regular GNU/Linux System.";
       exec = "waydroid-ui";
-      icon = "Waydroid";
-      categories = [ "Android" "Emulator" ];
+      icon = "waydroid"; # Note: usually lowercase is safer for icon names
+      # "System" is a main category, "Emulator" is additional,
+      # and "X-Android" is your custom tag.
+      categories = [ "System" "Emulator" "X-Android" ];
     };
   };
 
