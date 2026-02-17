@@ -27,7 +27,7 @@ in
       piper-tts
 
       # Mycroft's TTS engine, based on CMU's Flite (Festival Lite)
-      mycroft
+      mimic
     ];
   };
 }
