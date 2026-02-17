@@ -167,44 +167,52 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     })
 
     (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Clean start
-      # Using 'sudo' here won't ask for a password after you apply the fix above
-      sudo waydroid session stop || true
+      # 1. Clean up
+      waydroid session stop || true
 
-      # 2. Set properties
-      sudo waydroid prop set persist.waydroid.width 1280
-      sudo waydroid prop set persist.waydroid.height 720
-      sudo waydroid prop set persist.waydroid.dpi 240
+      # 2. Local Performance Overrides (Bypasses your heavy global settings)
+      export RADV_TEX_ANISO=0
+      export AMD_TEX_ANISO=0
+      export mesa_glthread=true
+      export vblank_mode=0
 
-      # 3. Start Weston with standard shell for better stability on AMD
-      # We use --scale 1 to prevent the 'finalizing layer' bug
+      # 3. Set Android Properties
+      waydroid prop set persist.waydroid.width 1280
+      waydroid prop set persist.waydroid.height 720
+      waydroid prop set persist.waydroid.dpi 240
+
+      # 4. Start Weston
+      # We use --backend=wayland-backend.so to force it to connect to your desktop
       ${pkgs.weston}/bin/weston -Swayland-waydroid \
         --backend=wayland-backend.so \
         --width=1280 --height=720 \
         --fullscreen \
-        --shell="desktop-shell.so" &
+        --shell="kiosk-shell.so" &
       WESTON_PID=$!
 
-      # Wait for display
-      while [ ! -S "$XDG_RUNTIME_DIR/wayland-waydroid" ]; do
+      # Wait for socket with a timeout so it doesn't hang forever
+      for i in {1..20}; do
+        [ -S "$XDG_RUNTIME_DIR/wayland-waydroid" ] && break
+        echo "Waiting for Weston... $i"
         sleep 0.5
       done
 
-      # 4. Launch Waydroid
+      # 5. Start Android
       export WAYLAND_DISPLAY=wayland-waydroid
       waydroid session start &
 
-      # Wait for Android (Status loop)
+      # Wait for Android to be ready
       until waydroid status | grep -q "RUNNING"; do
         sleep 2
       done
 
       # Small extra sleep to let the GPU drivers 'settle'
       sleep 2
+
       waydroid show-full-ui &
 
       wait $WESTON_PID
-      sudo waydroid session stop
+      waydroid session stop
     '')
   ];
 
