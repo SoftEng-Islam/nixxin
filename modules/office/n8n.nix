@@ -5,7 +5,7 @@
   services.n8n = {
     enable = true;
     environment = {
-      N8N_PORT = "5678";
+      # N8N_PORT = "5678";
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
       # WEBHOOK_URL = "https://n8n.example.com";

@@ -35,9 +35,9 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # systemd.services.waydroid-mount.wantedBy = [ "multi-user.target" ];
 
   # Force disable waydroid service so that it is not started at boot
-  # systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
+  systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
   # Keeping the container running in the background makes Waydroid launch much faster when you click your UI script because the Android "hardware" is already warmed up.
-  systemd.services.waydroid-container.wantedBy = [ "multi-user.target" ];
+  # systemd.services.waydroid-container.wantedBy = [ "multi-user.target" ];
 
   services.geoclue2.enable = false;
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
@@ -132,17 +132,17 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /home/${username}/Waydroid 0755 ${username} users -"
   ];
 
-  security.sudo.extraRules = [
-    {
-      users = [ "${username}" ];
-      commands = [
-        {
-          command = "${pkgs.waydroid-nftables}/bin/waydroid";
-          options = [ "NOPASSWD" ];
-        }
-      ];
-    }
-  ];
+  # security.sudo.extraRules = [
+  #   {
+  #     users = [ "${username}" ];
+  #     commands = [
+  #       {
+  #         command = "${pkgs.waydroid-nftables}/bin/waydroid";
+  #         options = [ "NOPASSWD" ];
+  #       }
+  #     ];
+  #   }
+  # ];
 
   environment.systemPackages = with pkgs; [
     wl-clipboard
