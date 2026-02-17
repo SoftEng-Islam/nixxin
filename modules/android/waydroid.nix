@@ -142,6 +142,15 @@ in lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
     # Waydroid UI With WESTON
     (pkgs.writeShellScriptBin "waydroid-ui" ''
+      # 1. Set internal Android resolution to 720p for speed
+      # We do this before starting the UI
+      waydroid prop set persist.waydroid.width 1280
+      waydroid prop set persist.waydroid.height 720
+
+      # 2. Adjust the density so UI elements don't look tiny
+      # (Try 240 for a balanced look, or 200 for more space)
+      sudo waydroid shell wm density 240
+
       export WAYLAND_DISPLAY=wayland-0
       ${pkgs.weston}/bin/weston -Swayland-1 --width=1280 --height=720 --fullscreen --shell="kiosk-shell.so" &
       WESTON_PID=$!
