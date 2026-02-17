@@ -38,13 +38,13 @@ in
       # disallow internal flake registry by setting it to
       # to a minimal JSON file with no flakes and a version
       # identifier.
-      use-registries = true;
-      flake-registry = pkgs.writeText "flakes-empty.json" (
-        builtins.toJSON {
-          flakes = [ ];
-          version = 2;
-        }
-      );
+      # use-registries = true;
+      # flake-registry = pkgs.writeText "flakes-empty.json" (
+      #   builtins.toJSON {
+      #     flakes = [ ];
+      #     version = 2;
+      #   }
+      # );
 
       # Automatically optimise symlinks
       auto-optimise-store = true;
@@ -76,7 +76,7 @@ in
       # system-features = [ "nixos-test" "kvm" "recursive-nix" "big-parallel" ];
 
       # Continue building derivations even if one fails
-      keep-going = false;
+      # keep-going = false;
 
       # Fallback to local builds after remote builders are unavailable.
       # Setting this too low on a slow network may cause remote builders
@@ -98,10 +98,10 @@ in
       # Ensures that the result of Nix expressions is fully determined by
       # explicitly declared inputs, and not influenced by external state.
       # In other words, fully stateless evaluation by Nix at all times.
-      pure-eval = false;
+      # pure-eval = false;
 
       # Don't allow nix to use the network when evaluating or building.
-      fallback = true; # don't fail if remote builder unavailable
+      # fallback = true; # don't fail if remote builder unavailable
 
       # Don't warn me that my git tree is dirty, I know.
       warn-dirty = false;
