@@ -6,8 +6,16 @@ let
   startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     # ---- DBUS ---- #
-    systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-    dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP PATH
+    systemctl --user import-environment \
+      WAYLAND_DISPLAY DISPLAY \
+      XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
+      XDG_DATA_DIRS XDG_RUNTIME_DIR \
+      PATH
+    dbus-update-activation-environment --systemd \
+      WAYLAND_DISPLAY DISPLAY \
+      XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
+      XDG_DATA_DIRS XDG_RUNTIME_DIR \
+      PATH
     ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl & disown
 
     # Core components (authentication, lock screen, notification daemon)

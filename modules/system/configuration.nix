@@ -73,9 +73,6 @@ in
       systemd.dbus.enable = false;
       verbose = false;
 
-      # compressor = "zstd";
-      # compressorArgs = [ "-19" "-T0" ];
-
       prepend = [ "${./dsdt.cpio}" ];
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization

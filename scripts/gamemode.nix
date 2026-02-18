@@ -14,7 +14,7 @@ let
 
     HYPRSHADE="${pkgs.hyprshade}/bin/hyprshade"
     NOTIFY="${pkgs.libnotify}/bin/notify-send"
-    # GAMEMODED="${pkgs.gamemode}/bin/gamemoded"
+    GAMEMODED="${pkgs.gamemode}/bin/gamemoded"
 
     have() { command -v "$1" >/dev/null 2>&1; }
 
@@ -76,9 +76,9 @@ let
       fi
 
       # Start GameMode daemon if available.
-      # if [[ -x "$GAMEMODED" ]]; then
-      #  "$GAMEMODED" >/dev/null 2>&1 &
-      # fi
+      if [[ -x "$GAMEMODED" ]]; then
+        "$GAMEMODED" >/dev/null 2>&1 &
+      fi
 
       # Try to force AMD GPU to higher performance (best-effort; usually needs sudo NOPASSWD).
       local amd_card

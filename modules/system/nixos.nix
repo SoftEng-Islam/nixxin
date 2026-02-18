@@ -34,18 +34,6 @@ in
       # manually, as Nix won't do it for us.
       use-xdg-base-directories = true;
 
-      # Allow usage of registry lookups (e.g. flake:*) but
-      # disallow internal flake registry by setting it to
-      # to a minimal JSON file with no flakes and a version
-      # identifier.
-      # use-registries = true;
-      # flake-registry = pkgs.writeText "flakes-empty.json" (
-      #   builtins.toJSON {
-      #     flakes = [ ];
-      #     version = 2;
-      #   }
-      # );
-
       # Automatically optimise symlinks
       auto-optimise-store = true;
 
@@ -95,14 +83,6 @@ in
       keep-outputs = false;
       keep-derivations = false;
 
-      # Ensures that the result of Nix expressions is fully determined by
-      # explicitly declared inputs, and not influenced by external state.
-      # In other words, fully stateless evaluation by Nix at all times.
-      # pure-eval = false;
-
-      # Don't allow nix to use the network when evaluating or building.
-      # fallback = true; # don't fail if remote builder unavailable
-
       # Don't warn me that my git tree is dirty, I know.
       warn-dirty = false;
 
@@ -119,26 +99,6 @@ in
       # used to fetch imports and binary caches.
       # 0 means no limit, default is 25.
       http-connections = 35; # lower values fare better on slow connections
-
-      # Extra features of Nix that are considered unstable
-      # and experimental. By default we should always include
-      # `flakes` and `nix-command`, while others are usually
-      # optional.
-      # extra-experimental-features = [
-      #   "flakes" # flakes
-      #   "nix-command" # experimental nix commands
-      #   "recursive-nix" # let nix invoke itself
-      #   "ca-derivations" # content addressed nix
-      #   "auto-allocate-uids" # allow nix to automatically pick UIDs, rather than creating nixbld* user accounts
-      #   # "cgroups" # allow nix to execute builds inside cgroups
-      #   "no-url-literals" # disallow deprecated url-literals, i.e., URLs without quotation
-      #   "dynamic-derivations" # allow "text hashing" derivation outputs, so we can build .drv files.
-
-      #   # Those don't actually exist on Lix so they have to be disabled
-      #   # configurable-impure-env" # allow impure environments
-      #   # "git-hashing" # allow store objects which are hashed via Git's hashing algorithm
-      #   # "verified-fetches" # enable verification of git commit signatures for fetchGit
-      # ];
 
       extra-sandbox-paths = [
         "/dev/kfd"
@@ -166,9 +126,9 @@ in
         "https://hyprland.cachix.org" # hyprland
         "https://nixpkgs-unfree.cachix.org" # unfree-package cache
         "https://devenv.cachix.org" # devenv cache
-        #"https://nix-gaming.cachix.org" # nix-gaming cache, currently disabled due to instability and lack of maintenance
         "https://nixpkgs-python.cachix.org" # nixpkgs-python
         "https://nixpkgs-wayland.cachix.org" # nixpkgs-wayland
+        #"https://nix-gaming.cachix.org" # nix-gaming cache, currently disabled due to instability and lack of maintenance
       ];
 
       # Enable cachix
@@ -176,7 +136,6 @@ in
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
         "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-        # "cuda-maintainers.cachix.org-1:0dq3bujKpuEPMCX6U4WylrUDZ9JyUG0VpVZa7CNfq5E="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
         "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="

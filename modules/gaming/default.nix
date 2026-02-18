@@ -37,7 +37,7 @@ in
     programs = {
       gamemode = {
         # https://feralinteractive.github.io/gamemode/
-        enable = false;
+        enable = true;
         enableRenice = true;
         settings = {
           general = {

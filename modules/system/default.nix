@@ -1,5 +1,6 @@
 # ---- docs.nix ---- #
-{ pkgs, ... }: {
+{ pkgs, ... }:
+{
   imports = [
     ./brightness_control.nix
     ./configuration.nix
@@ -7,13 +8,14 @@
     ./display_manager.nix
     ./btop.nix
     ./nixos.nix
-    # ./radeon.nix # Optional If using Radeon drivers
     ./ROCM.nix
     ./systemd.nix
     ./udev.nix
     ./resources.nix
     ./trace.nix
     ./systeminfo.nix
+    # ./kernelPatches.nix
+    # ./radeon.nix # Optional If using Radeon drivers
   ];
   environment.systemPackages = with pkgs; [
     e2fsprogs

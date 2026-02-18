@@ -3,7 +3,7 @@
 # https://wiki.archlinux.org/title/PulseAudio/Examples
 let inherit (lib) mkIf;
 in {
-  # imports = [ ./rnnoise.nix ];
+  imports = [ ./rnnoise.nix ];
 
   config = mkIf (settings.modules.audio.enable or false) {
     # WirePlumber configuration [https://wiki.archlinux.org/title/WirePlumber]

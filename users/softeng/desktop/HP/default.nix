@@ -208,7 +208,7 @@ rec {
   modules.android.android_studio.enable = false;
 
   # [Audio]
-  modules.audio.rnnoise.enable = false; # Noise Canceling
+  modules.audio.rnnoise.enable = true; # Noise Canceling
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = true;
@@ -547,8 +547,8 @@ rec {
     "amdgpu.cik_support=1"
 
     # --- MEMORY TUNING (Based on your 18GB RAM) ---
-    "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
-    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
+    # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
+    # "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
@@ -658,7 +658,6 @@ rec {
     "big_root_window=on"
     "amd_iommu=on"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
-    "cgroup_disable=memory"
     "cgroup_no_v1=all"
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
@@ -668,6 +667,7 @@ rec {
     "page_alloc.shuffle=1"
     "ibt=off"
     "psi=1"
+    "pci=nocrs"
 
     # MTRR Optimization for 16GB RAM + iGPU
     "enable_mtrr_cleanup"
