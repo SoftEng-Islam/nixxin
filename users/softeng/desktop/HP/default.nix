@@ -658,7 +658,6 @@ rec {
     "big_root_window=on"
     "amd_iommu=on"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
-    "cgroup_no_v1=all"
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
