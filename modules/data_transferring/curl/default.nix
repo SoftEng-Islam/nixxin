@@ -1,4 +1,9 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 
 lib.mkIf (settings.modules.data_transferring.curl.enable or false) {
   home-manager.users.${settings.user.username}.home.file.".curlrc" = {
@@ -18,7 +23,7 @@ lib.mkIf (settings.modules.data_transferring.curl.enable or false) {
       --trace curl_trace.txt
 
       # store the header info in curl_headers.txt file. beware that multiple executions of the curl command will overwrite this file
-      --dump-header curl_headers.txt
+      # --dump-header curl_headers.txt
 
       # change the below referrer URL or comment it out entirely
       -e "https://www.google.com"
@@ -48,12 +53,11 @@ lib.mkIf (settings.modules.data_transferring.curl.enable or false) {
       --insecure
     '';
   };
-  environment.systemPackages = with pkgs;
-    [
-      curl
-      # curlFull
-      # curlHTTP3
-      # curl-impersonate
-      # curl-impersonate-chrome
-    ];
+  environment.systemPackages = with pkgs; [
+    curl
+    # curlFull
+    # curlHTTP3
+    # curl-impersonate
+    # curl-impersonate-chrome
+  ];
 }
