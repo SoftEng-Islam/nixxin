@@ -38,20 +38,20 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # systemd.services.waydroid-container.wantedBy = lib.mkForce [ ];
   # Keeping the container running in the background makes Waydroid launch much faster when you click your UI script because the Android "hardware" is already warmed up.
   systemd.services.waydroid-container.wantedBy = [ "multi-user.target" ];
-  # systemd.services.waydroid-container.preStart = lib.mkBefore ''
-  #   # Waydroid's default LXC config mounts cgroups read-only:
-  #   #   lxc.mount.auto = cgroup:ro sys:ro proc
-  #   # Android init/libprocessgroup then spams errors because it can't create
-  #   # cgroup directories (uid_0, uid_1000, etc.).
-  #   #
-  #   # Switching to `cgroup:rw` lets Android manage its cgroups normally.
-  #   config=/var/lib/waydroid/lxc/waydroid/config
-  #   if [ -f "$config" ]; then
-  #     ${pkgs.gnused}/bin/sed -i \
-  #       's/^lxc\\.mount\\.auto = cgroup:ro/lxc.mount.auto = cgroup:rw/' \
-  #       "$config"
-  #   fi
-  # '';
+  systemd.services.waydroid-container.preStart = lib.mkBefore ''
+    # Waydroid's default LXC config mounts cgroups read-only:
+    #   lxc.mount.auto = cgroup:ro sys:ro proc
+    # Android init/libprocessgroup then spams errors because it can't create
+    # cgroup directories (uid_0, uid_1000, etc.).
+    #
+    # Switching to `cgroup:rw` lets Android manage its cgroups normally.
+    config=/var/lib/waydroid/lxc/waydroid/config
+    if [ -f "$config" ]; then
+      ${pkgs.gnused}/bin/sed -i \
+        's/^lxc\\.mount\\.auto = cgroup:ro/lxc.mount.auto = cgroup:rw/' \
+        "$config"
+    fi
+  '';
 
   services.geoclue2.enable = false;
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
