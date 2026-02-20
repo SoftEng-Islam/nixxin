@@ -22,13 +22,22 @@ DefinitionBlock ("", "DSDT", 2, "HPQOEM", "805A    ", 0x00000001)
 {
     External (_SB_.APTS, MethodObj)    // 1 Arguments
     External (_SB_.AWAK, MethodObj)    // 1 Arguments
+    External (_SB_.PCI0.VGA_.M207, BuffObj)
 
 
     Scope (\_SB)
     {
         Method (ALIB, 2, NotSerialized)
         {
-            Return (Zero)
+            If (CondRefOf (\_SB_.PCI0.VGA_.M207))
+            {
+                Return (\_SB_.PCI0.VGA_.M207)
+            }
+
+            Return (Buffer (0x08)
+            {
+                0x08, 0x00, 0x01, 0x00, 0x0F, 0x00, 0x00, 0x00
+            })
         }
     }
 
