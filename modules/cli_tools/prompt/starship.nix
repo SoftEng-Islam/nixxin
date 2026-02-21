@@ -14,7 +14,7 @@ let
     add_newline = true;
     scan_timeout = 1000;
     command_timeout = 2000;
-    ignore_timeout = true;
+    # ignore_timeout = true;
     format = builtins.concatStringsSep "" [
       "$all"
       "$character"
