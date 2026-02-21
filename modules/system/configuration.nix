@@ -98,17 +98,10 @@ in
       # extraFiles = acpiOverrideExtraFiles;
     };
 
-    kernelModules = _system.boot.kernelModules ++ [
-      # "ip_tables"
-      # "iptable_filter"
-      # "iptable_nat"
-      # "nf_nat"
-      # "nf_conntrack"
-      # "x_tables"
-      # "xt_conntrack"
-      # "xt_MASQUERADE"
+    kernelModules = _system.boot.kernelModules ++ [ ];
+    blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [
+      # "k10temp"
     ];
-    blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [ "k10temp" ];
     extraModulePackages = with config.boot.kernelPackages; [
       pkgs.nftables
       amdgpu-i2c
