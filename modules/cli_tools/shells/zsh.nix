@@ -1,4 +1,9 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 let
   HOME = settings.HOME;
   myAliases = {
@@ -45,7 +50,8 @@ let
     nix-shell = "nix-shell --run zsh";
   };
 
-in {
+in
+{
   # enable zsh autocompletion for system packages (systemd, etc)
   # environment.pathsToLink = [ "/share/zsh" ];
 
@@ -53,7 +59,10 @@ in {
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
   environment.variables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
 
-  environment.systemPackages = with pkgs; [ zsh-abbr zsh-completions ];
+  environment.systemPackages = with pkgs; [
+    zsh-abbr
+    zsh-completions
+  ];
 
   # Set the default shell to Zsh
   environment.shells = [ pkgs.zsh ];
@@ -231,7 +240,7 @@ in {
       bindkey '^[[B' history-substring-search-down
 
       # Optional: better completion UI
-      source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
+      # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
 
       # Abbreviations (fish-like)
       source ${pkgs.zsh-abbr}/share/zsh/zsh-abbr/zsh-abbr.plugin.zsh

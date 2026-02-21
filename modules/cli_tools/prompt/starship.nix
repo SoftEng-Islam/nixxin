@@ -1,4 +1,9 @@
-{ settings, config, pkgs, ... }:
+{
+  settings,
+  config,
+  pkgs,
+  ...
+}:
 let
   lang = icon: color: {
     symbol = icon;
@@ -7,10 +12,14 @@ let
   starship_settings = {
     "$schema" = "https://starship.rs/config-schema.json";
     add_newline = true;
-    # Wait 10 milliseconds for starship to check files under the current directory.
-    scan_timeout = 400;
-    format =
-      builtins.concatStringsSep "" [ "$all" "$character" "\${custom.space}" ];
+    scan_timeout = 1000;
+    command_timeout = 2000;
+    ignore_timeout = true;
+    format = builtins.concatStringsSep "" [
+      "$all"
+      "$character"
+      "\${custom.space}"
+    ];
     username = {
       disabled = false;
       format = "[$user]($style)";
@@ -96,7 +105,9 @@ let
       format = "$symbol";
     };
 
-    line_break = { disabled = false; };
+    line_break = {
+      disabled = false;
+    };
     custom.space = {
       when = "! test $env";
       format = " ";
@@ -115,7 +126,8 @@ let
   };
   tomlFormat = pkgs.formats.toml { };
   starshipCmd = "${pkgs.starship}/bin/starship";
-in {
+in
+{
   programs.starship.enable = true;
   programs.starship.interactiveOnly = false;
   programs.starship.package = pkgs.starship;
