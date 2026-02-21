@@ -132,12 +132,13 @@ in
   programs.starship.interactiveOnly = false;
   programs.starship.package = pkgs.starship;
   programs.starship.presets = [ "nerd-font-symbols" ];
+  programs.starship.settings = starship_settings;
   home-manager.users.${settings.user.username} = {
     # home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
-    xdg.configFile."starship.toml" = {
-      source = tomlFormat.generate "starship-config" starship_settings;
-    };
+    # xdg.configFile."starship.toml" = {
+    #   source = tomlFormat.generate "starship-config" starship_settings;
+    # };
 
     programs.bash.initExtra = ''
       eval "$(${starshipCmd} init bash)"
