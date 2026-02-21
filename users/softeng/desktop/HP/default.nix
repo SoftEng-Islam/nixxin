@@ -437,6 +437,11 @@ rec {
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
+    "powernow-k8"
+    "cpufreq_performance"
+    "cpufreq_powersave"
+    "cpufreq_ondemand"
+    "cpufreq_conservative"
     "binder_linux"
     "ashmem_linux"
   ];

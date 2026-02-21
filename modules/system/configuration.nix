@@ -78,7 +78,6 @@ in
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
         "amdgpu"
-        # "acpi"
         "ahci"
         "cryptd"
         "sd_mod"
