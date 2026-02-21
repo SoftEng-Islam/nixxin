@@ -436,6 +436,7 @@ rec {
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
+    "amdgpu-i2c" # AMDGPU I2C driver for better power management and performance on AMD GPUs
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     "powernow-k8"
     "cpufreq_performance"
