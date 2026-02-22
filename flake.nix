@@ -2,6 +2,8 @@
   description = "NIXXIN Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
+    # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
 
