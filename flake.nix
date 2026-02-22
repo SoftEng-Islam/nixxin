@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    to-update.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -41,7 +41,7 @@
     {
       self,
       nixpkgs,
-      nixpkgs-unstable,
+      to-update,
       ...
     }@inputs:
     let
@@ -82,7 +82,7 @@
                 overlay-constrict
                 # inputs.nixGL.overlay
                 (final: prev: {
-                  unstable = import nixpkgs-unstable {
+                  update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;
                   };

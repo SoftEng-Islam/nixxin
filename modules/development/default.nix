@@ -87,7 +87,7 @@ in
       copilot-cli
       code-cursor
 
-      unstable.antigravity
+      pkgs.update.antigravity
       windsurf
       postman
 
