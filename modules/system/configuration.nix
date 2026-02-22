@@ -105,11 +105,6 @@ in
     extraModulePackages = with config.boot.kernelPackages; [
       pkgs.nftables
       amdgpu-i2c
-      # pkgs.iptables-legacy
-      # config.hardware.nvidia.package
-      # config.boot.kernelPackages.v4l2loopback
-      # pkgs.snd-hda-codec-realtek
-      # pkgs.hp-wmi-fan-control
     ];
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [

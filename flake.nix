@@ -2,6 +2,7 @@
   description = "NIXXIN Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
 
     flake-utils.url = "github:numtide/flake-utils";
@@ -34,7 +35,13 @@
     # devDocs-flake.url = "path:./pkgs/devDocs";
     # devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
-  outputs = { self, nixpkgs, ... }@inputs:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      nixpkgs-unstable,
+      ...
+    }@inputs:
     let
       # _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       # settings = _SETTINGS.profile;
@@ -54,7 +61,8 @@
         constrict = final.callPackage ./pkgs/constrict { };
       };
 
-    in {
+    in
+    {
       # NixOS configuration entrypoint.
       # sudo nixos-rebuild switch --flake .#YourHostname
       nixosConfigurations = {
@@ -71,6 +79,12 @@
               nixpkgs.overlays = [
                 overlay-constrict
                 # inputs.nixGL.overlay
+                (final: prev: {
+                  unstable = import nixpkgs-unstable {
+                    inherit (final) config;
+                    inherit (final.stdenv.hostPlatform) system;
+                  };
+                })
               ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")

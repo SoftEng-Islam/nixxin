@@ -1,6 +1,18 @@
-{ settings, inputs, config, lib, pkgs, ... }:
+{
+  settings,
+  inputs,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
-  inherit (lib) mkIf optionals optional flatten;
+  inherit (lib)
+    mkIf
+    optionals
+    optional
+    flatten
+    ;
   development = settings.modules.development;
 
   _imports = [
@@ -11,7 +23,8 @@ let
     (optional development.helix ./helix.nix)
   ];
   HOME = settings.HOME;
-in {
+in
+{
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
     # PNPM Configuration
@@ -74,7 +87,7 @@ in {
       copilot-cli
       code-cursor
 
-      antigravity
+      unstable.antigravity
       windsurf
       postman
 
