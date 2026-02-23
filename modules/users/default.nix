@@ -8,6 +8,13 @@
     groups.i2c.members = [ "${settings.user.username}" ];
     groups.video.members = [ "${settings.user.username}" ];
 
+    users.guest = {
+      isNormalUser = true;
+      description = "Guest Account";
+      extraGroups = [ ]; # Keep this empty so they don't have sudo/admin rights
+      initialHashedPassword = "";
+    };
+
     users.${settings.user.username} = {
 
       isNormalUser = true;

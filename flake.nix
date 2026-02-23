@@ -4,7 +4,7 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
     # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
-    to-update.url = "github:NixOS/nixpkgs/nixos-unstable";
+    to-update.url = "github:NixOS/nixpkgs/master";
     systems.url = "github:nix-systems/default-linux";
 
     flake-utils.url = "github:numtide/flake-utils";
