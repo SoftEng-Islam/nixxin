@@ -88,7 +88,7 @@ in
       code-cursor
 
       pkgs.update.antigravity
-      windsurf
+      pkgs.update.windsurf
       postman
 
       # mongodb
