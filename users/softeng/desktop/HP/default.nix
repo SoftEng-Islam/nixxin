@@ -667,7 +667,7 @@ rec {
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
-    "processor.max_cstate=8" # 1, 2, 3, 4, 5, 6, 7, 8 or 9
+    "processor.max_cstate=0"
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
