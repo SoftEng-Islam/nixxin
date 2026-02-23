@@ -61,11 +61,12 @@ in
         libmkv # Matroska (MKV) media container manipulation tools
         exiftool
 
-        # video2x
-
         # To Convert/Compress videos
         # handbrake
         # constrict
+
+        # To upscale videos using AI
+        # pkgs.update.video2x
       ];
   };
 }

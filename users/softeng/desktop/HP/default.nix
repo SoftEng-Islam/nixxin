@@ -685,6 +685,7 @@ rec {
     "acpi-cpufreq"
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
+    "amd_energy"
     "i2c_hid" # Input devices
     "usbhid"
     "usbcore"

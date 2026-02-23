@@ -1,7 +1,9 @@
 # Themes & Graphical Interfaces
 { settings, pkgs, ... }:
-let _qt_gtk = settings.common.qt;
-in {
+let
+  _qt_gtk = settings.common.qt;
+in
+{
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     # gtk = {
@@ -73,8 +75,8 @@ in {
 
     QT_QPA_PLATFORMTHEME = _qt_gtk.platformTheme;
 
-    # fix old GTK3 applications
-    # GDK_GL = "always"; # "gles" "disable" "always"
+    # Fix old GTK3 applications
+    GDK_GL = "always"; # "gles" "disable" "always"
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
