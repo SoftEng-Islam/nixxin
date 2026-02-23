@@ -1,4 +1,10 @@
-{ settings, lib, pkgs, ... }: {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+{
 
   # https://nixos.wiki/wiki/Nautilus
   # Nautilus stores “recent files” in:
@@ -19,22 +25,28 @@
 
   nixpkgs.overlays = [
     (self: super: {
-      gnome = super.gnome.overrideScope (gself: gsuper: {
-        nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
-          buildInputs = nsuper.buildInputs ++ (with pkgs; [
-            gst_all_1.gst-plugins-good
-            gst_all_1.gst-plugins-bad
-            gst_all_1.gst-plugins-base
-            gst_all_1.gstreamer
-            gst_all_1.gst-libav
-          ]);
-        });
-      });
+      gnome = super.gnome.overrideScope (
+        gself: gsuper: {
+          nautilus = gsuper.nautilus.overrideAttrs (nsuper: {
+            buildInputs =
+              nsuper.buildInputs
+              ++ (with pkgs; [
+                gst_all_1.gst-plugins-good
+                gst_all_1.gst-plugins-bad
+                gst_all_1.gst-plugins-base
+                gst_all_1.gstreamer
+                gst_all_1.gst-libav
+              ]);
+          });
+        }
+      );
     })
   ];
 
   home-manager.users.${settings.user.username} = {
-    programs.dircolors = { enable = true; };
+    programs.dircolors = {
+      enable = true;
+    };
     dconf.settings = {
       "org/gnome/nautilus/preferences" = {
         always-use-location-entry = true;
@@ -63,13 +75,17 @@
           "starred"
           "detailed_type"
         ];
-        default-visible-columns = [ "name" "size" "type" "owner" ];
+        default-visible-columns = [
+          "name"
+          "size"
+          "type"
+          "owner"
+        ];
       };
 
       # "small" or "small-plus" or "medium" or "large" or "extra-large"
       "org/gnome/nautilus/icon-view" = {
-        default-zoom-level =
-          settings.modules.desktop.dconf.icons.icon_view_size;
+        default-zoom-level = settings.modules.desktop.dconf.icons.icon_view_size;
       };
 
       "org/gtk/gtk4/settings/file-chooser" = {
@@ -99,6 +115,8 @@
   # environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
 
   environment.systemPackages = with pkgs; [
+
+    pkgs.update.xplorer
 
     nautilus
     nemo
