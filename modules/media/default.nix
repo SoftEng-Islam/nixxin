@@ -66,7 +66,7 @@ in
         # constrict
 
         # To upscale videos using AI
-        # pkgs.update.video2x
+        update.video2x
       ];
   };
 }

@@ -104,7 +104,7 @@ lib.mkIf (settings.modules.media.mpv) {
 
         gpu-context = "auto"; # mpv --gpu-context=help
         hwdec = "auto-safe"; # mpv --hwdec=help
-        profile = "gpu-hq"; # fast, high-quality, gpu-hq  mpv --profile=help
+        profile = "high-quality"; # fast, high-quality, gpu-hq  mpv --profile=help
         dither-depth = "auto";
         hdr-compute-peak = "no"; # Fix stuttering playing 4k video
         opengl-pbo = "yes";

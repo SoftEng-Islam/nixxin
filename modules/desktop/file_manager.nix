@@ -115,9 +115,6 @@
   # environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
 
   environment.systemPackages = with pkgs; [
-
-    pkgs.update.xplorer
-
     nautilus
     nemo
 
