@@ -107,7 +107,7 @@ in
     programs.vscode = {
       enable = true;
       package =
-        (pkgs.update.vscode.overrideAttrs (old: {
+        (pkgs.vscode.overrideAttrs (old: {
           postInstall = (old.postInstall or "") + ''
             wrapProgram $out/bin/code \
               --run "exec 2>/dev/null"

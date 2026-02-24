@@ -33,6 +33,10 @@ let
 
   # Core graphics libraries and drivers
   coreGraphicsPackages = with pkgs; [
+
+    # rocm-runtime
+    # rocm-opencl-runtime
+
     # Graphics APIs and libraries
     libGL
     libGLU
@@ -188,6 +192,7 @@ in
           "${intel-compute-runtime}/etc/OpenCL/vendors"
           "${intel-compute-runtime-legacy1}/etc/OpenCL/vendors"
           # "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors"
+
         ];
       }}";
 
