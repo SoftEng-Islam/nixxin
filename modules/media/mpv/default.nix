@@ -22,7 +22,7 @@ lib.mkIf (settings.modules.media.mpv) {
     };
 
     xdg.configFile."mpv/script-opts/uosc.conf".text = lib.concatStrings [
-      "opacity="
+      "opacity=0.5"
       ",timeline=0.1"
       ",position=0.2"
       ",chapters=0.075"
@@ -94,29 +94,31 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "gpu"; # mpv --vo=help
-
-        # Allow only Vulkan (requires a valid/working --spirv-compiler)
+        vo = "gpu-next"; # mpv --vo=help
         gpu-api = "vulkan"; # mpv --gpu-api=help
-        vulkan-async-compute = "yes";
-        vulkan-async-transfer = "yes";
-        vulkan-queue-count = 1;
-
-        gpu-context = "auto"; # mpv --gpu-context=help
+        gpu-context = "waylandvk"; # mpv --gpu-context=help
         hwdec = "auto-safe"; # mpv --hwdec=help
         profile = "high-quality"; # fast, high-quality, gpu-hq  mpv --profile=help
-        dither-depth = "auto";
-        hdr-compute-peak = "no"; # Fix stuttering playing 4k video
-        opengl-pbo = "yes";
-        deband = "no";
 
-        # Aggressive performance: fastest scaling
-        scale = "bilinear";
-        cscale = "bilinear";
-        dscale = "bilinear";
+        vulkan-queue-count = 1;
+
+        hdr-compute-peak = "yes"; # Fix stuttering playing 4k video
+
+        # Performance tweaks for Vulkan
+        vulkan-async-compute = "yes";
+        vulkan-async-transfer = "yes";
+
+        # Quality over speed
+        deband = "yes";
+        dither-depth = "auto";
+
+        # Scaling
+        # scale = "lanczos"; # lanczos or spline36
 
         # Framedrop for smooth playback
-        video-sync = "audio";
+        video-sync = "display-resample";
+        interpolation = "yes";
+        tscale = "oversample";
         framedrop = "vo";
 
         # Reduce decoder threads for weak CPUs
@@ -138,7 +140,7 @@ lib.mkIf (settings.modules.media.mpv) {
         save-position-on-quit = true;
 
         # Audio
-        ao = "alsa,pulse,pipewire,openal"; # mpv --ao=help
+        ao = "pipewire,pulse,alsa"; # mpv --ao=help
         volume = 100;
         volume-max = 150;
         alang = "en,eng";
