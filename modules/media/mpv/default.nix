@@ -97,7 +97,7 @@ lib.mkIf (settings.modules.media.mpv) {
         vo = "gpu-next"; # mpv --vo=help
         gpu-api = "vulkan"; # mpv --gpu-api=help
         gpu-context = "waylandvk"; # mpv --gpu-context=help
-        hwdec = "vaapi-copy"; # mpv --hwdec=help
+        hwdec = "vaapi"; # mpv --hwdec=help
         profile = "high-quality"; # fast, high-quality, gpu-hq  mpv --profile=help
 
         vulkan-queue-count = 1;
