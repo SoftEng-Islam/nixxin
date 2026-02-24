@@ -97,7 +97,7 @@ lib.mkIf (settings.modules.media.mpv) {
         vo = "gpu-next"; # mpv --vo=help
         gpu-api = "vulkan"; # mpv --gpu-api=help
         gpu-context = "waylandvk"; # mpv --gpu-context=help
-        hwdec = "auto-safe"; # mpv --hwdec=help
+        hwdec = "vaapi-copy"; # mpv --hwdec=help
         profile = "high-quality"; # fast, high-quality, gpu-hq  mpv --profile=help
 
         vulkan-queue-count = 1;
@@ -126,7 +126,7 @@ lib.mkIf (settings.modules.media.mpv) {
 
         # Cache settings
         cache = "yes";
-        demuxer-max-bytes = "50M";
+        demuxer-max-bytes = "100M";
         demuxer-readahead-secs = 5;
 
         # Shaders
