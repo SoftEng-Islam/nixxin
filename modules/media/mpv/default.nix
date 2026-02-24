@@ -116,8 +116,8 @@ lib.mkIf (settings.modules.media.mpv) {
         # scale = "lanczos"; # lanczos or spline36
 
         # Framedrop for smooth playback
-        video-sync = "display-resample";
-        interpolation = "yes";
+        video-sync = "audio";
+        interpolation = "no";
         tscale = "oversample";
         framedrop = "vo";
 
