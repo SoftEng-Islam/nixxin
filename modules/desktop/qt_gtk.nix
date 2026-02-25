@@ -5,31 +5,8 @@ let
   _icons = settings.common.icons;
   _gtkIconThemePackage =
     if builtins.match "^Papirus" _icons.nameInDark != null then
-      _icons.package.overrideAttrs (old: {
-        postFixup = (old.postFixup or "") + ''
-          color=${_icons.folder-color}
-
-          shopt -s nullglob
-          for theme in Papirus Papirus-Dark Papirus-Light; do
-            theme_dir="$out/share/icons/$theme"
-            [ -d "$theme_dir" ] || continue
-
-            for places_dir in "$theme_dir"/*/places; do
-              [ -d "$places_dir" ] || continue
-              for file_path in "$places_dir"/folder-"$color"*.svg "$places_dir"/user-"$color"*.svg; do
-                [ -f "$file_path" ] || continue
-                [ -L "$file_path" ] && continue # skip if symlink
-
-                file_name="''${file_path##*/}"
-                symlink_path="''${file_path/-$color/}" # remove color suffix
-                ln -sf "$file_name" "$symlink_path" || {
-                  echo "Failed to create '$symlink_path'"
-                }
-              done
-            done
-          done
-        '';
-      })
+      # Use the final `pkgs` so the Papirus folder-color overlay applies.
+      pkgs.papirus-icon-theme
     else
       _icons.package;
 in
