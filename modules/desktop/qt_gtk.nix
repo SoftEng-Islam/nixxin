@@ -3,8 +3,15 @@
 let
   _qt_gtk = settings.common.qt;
   _icons = settings.common.icons;
+  _isPapirus = builtins.match "^Papirus" _icons.nameInDark != null;
+  _useSystemIconTheme = _isPapirus && (settings.modules.icons.enable or false);
   _gtkIconThemePackage =
-    if builtins.match "^Papirus" _icons.nameInDark != null then
+    if _useSystemIconTheme then
+      # Papirus is installed system-wide (see `modules/icons/default.nix`) and
+      # includes the folder-color override. Don't install a user-profile copy
+      # that could shadow it (and revert folders to blue).
+      null
+    else if _isPapirus then
       # Use the final `pkgs` so the Papirus folder-color overlay applies.
       pkgs.papirus-icon-theme
     else
