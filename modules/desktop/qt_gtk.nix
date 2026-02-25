@@ -6,66 +6,52 @@ in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
-    # gtk = {
-    # enable = true;
-    # iconTheme = {
-    #   name = settings.common.icons.nameInDark;
-    #   package = settings.common.icons.package;
-    # };
-    # gtk2 = {
-    #   enable = true;
-    # gtk2.theme.name = settings.common.gtk.theme;
-    # };
-    # gtk3 = {
-    # enable = true;
-    # theme.name = settings.common.gtk.theme;
-    # extraConfig = {
-    #   gtk-decoration-layout = "menu:";
-    #   gtk-xft-antialias = 1;
-    #   gtk-xft-hinting = 1;
-    #   gtk-xft-hintstyle = "hintfull";
-    #   gtk-xft-rgba = "rgb";
-    #   gtk-recent-files-enabled = false;
-    # };
+    gtk = {
+      enable = true;
 
-    # bookmarks = [
-    # "file:///home/${settings.user.username}/Downloads"
-    # "file:///home/${settings.user.username}/Documents"
-    # "file:///home/${settings.user.username}/Pictures"
-    # "file:///home/${settings.user.username}/Music"
-    # "file:///home/${settings.user.username}/Videos"
-    # "file:///home/${settings.user.username}/Dev"
-    # "file:///home/${settings.user.username}/GitHub"
-    # "file:///home/${settings.user.username}/.config"
-    # "file:///mnt/Windows"
-    # ];
-    # extraConfig = { "gtk-application-prefer-dark-theme" = true; };
-    # colorScheme = "dark";
-    # };
-    #   gtk4 = {
-    #     enable = true;
-    #     theme.name = settings.common.gtk.theme;
-    #     colorScheme = "dark";
-    #     extraConfig = { "gtk-application-prefer-dark-theme" = true; };
-    #   };
-    # };
+      theme = {
+        name = settings.common.gtk.theme;
+        package = settings.common.gtk.package;
+      };
+
+      iconTheme = {
+        name = settings.common.icons.nameInDark;
+        package = settings.common.icons.package;
+      };
+
+      cursorTheme = {
+        name = settings.common.cursor.name;
+        size = settings.common.cursor.size;
+        package = settings.common.cursor.package;
+      };
+
+      gtk3.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+        gtk-decoration-layout = "menu:";
+        gtk-xft-antialias = 1;
+        gtk-xft-hinting = 1;
+        gtk-xft-hintstyle = "hintfull";
+        gtk-xft-rgba = "rgb";
+        gtk-recent-files-enabled = false;
+      };
+
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+        gtk-interface-color-scheme = 2;
+      };
+    };
+
     qt = {
       enable = true;
       platformTheme.name = _qt_gtk.platformTheme;
       style.name = _qt_gtk.style;
-    };
-
-    # nix build nixpkgs#adw-gtk3 --print-out-paths --no-link
-    xdg.configFile = {
-      "gtk-3.0".source = ./gtk/adw-gtk3-dark/gtk-3.0;
-      "gtk-4.0".source = ./gtk/adw-gtk3-dark/gtk-4.0;
     };
   };
 
   environment.variables = {
     GTK_THEME = settings.common.gtk.GTK_THEME;
     # GTK2_RC_FILES = "${HOME}/.config/gtk-2.0/gtkrc";
-    QT_STYLE_OVERRIDE = "Adwaita-dark";
+    QT_STYLE_OVERRIDE = _qt_gtk.style;
 
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;

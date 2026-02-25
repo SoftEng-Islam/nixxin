@@ -110,7 +110,8 @@ rec {
 
   # [ QT ]
   common.qt.style = "Adwaita-dark";
-  common.qt.platformTheme = "gtk4"; # also used by QT_QPA_PLATFORMTHEME
+  # Qt platform theme plugin name; Qt ships a `gtk3` platform theme (not `gtk4`).
+  common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
   common.qt.package = pkgs.adwaita-qt6;
   common.qt.SCALE_FACTOR = 1;
   # [ ICONS ]
