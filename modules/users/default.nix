@@ -12,7 +12,7 @@
       isNormalUser = true;
       description = "Guest Account";
       extraGroups = [ ]; # Keep this empty so they don't have sudo/admin rights
-      initialHashedPassword = "";
+      initialHashedPassword = "1234";
     };
 
     users.${settings.user.username} = {

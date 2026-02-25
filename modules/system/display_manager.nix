@@ -12,7 +12,7 @@
     enable = true;
     theme = "sugar-candy";
     extraPackages = with pkgs; [
-      sddm-sugar-candy
+      sddm-sugar-dark
       qt5.qtgraphicaleffects
       qt5.qtquickcontrols2
       qt5.qtsvg
