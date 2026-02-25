@@ -65,6 +65,14 @@ in
         gtk-recent-files-enabled = false;
       };
 
+      gtk3.bookmarks = [
+        "file:///home/${settings.user.username}/Downloads"
+        "file:///home/${settings.user.username}/Documents"
+        "file:///home/${settings.user.username}/Pictures"
+        "file:///home/${settings.user.username}/Music"
+        "file:///home/${settings.user.username}/Videos"
+      ];
+
       gtk4.extraConfig = {
         gtk-application-prefer-dark-theme = true;
         gtk-interface-color-scheme = 2;
