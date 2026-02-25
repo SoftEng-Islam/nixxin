@@ -2,6 +2,11 @@
 { settings, pkgs, ... }:
 let
   _qt_gtk = settings.common.qt;
+  _icons = settings.common.icons;
+  _gtkIconThemePackage = if builtins.match "^Papirus" _icons.nameInDark != null then
+    pkgs.papirus-icon-theme.override { color = _icons.folder-color; }
+  else
+    _icons.package;
 in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
@@ -16,7 +21,7 @@ in
 
       iconTheme = {
         name = settings.common.icons.nameInDark;
-        package = settings.common.icons.package;
+        package = _gtkIconThemePackage;
       };
 
       cursorTheme = {
