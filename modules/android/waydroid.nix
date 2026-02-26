@@ -53,16 +53,34 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
     fi
   '';
+
+  # systemd.services.waydroid-container.preStart = lib.mkBefore ''
+  #   config=/var/lib/waydroid/lxc/waydroid/config
+  #   if [ -f "$config" ]; then
+  #     ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
+  #   fi
+  # '';
+
   systemd.services.waydroid-container.preStart = lib.mkBefore ''
     config=/var/lib/waydroid/lxc/waydroid/config
+    nodes=/var/lib/waydroid/lxc/waydroid/config_nodes
+
+    # 1. Fix cgroups (Your existing fix)
     if [ -f "$config" ]; then
       ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
+    fi
+
+    # 2. Fix the missing card0 issue!
+    if [ -f "$nodes" ]; then
+      # Replace card0 with card1
+      ${pkgs.gnused}/bin/sed -i 's|/dev/dri/card0|/dev/dri/card1|g' "$nodes"
     fi
   '';
 
   services.geoclue2.enable = false;
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
+  environment.sessionVariables.WLR_DRM_DEVICES = "/dev/dri/card1";
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
   # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
