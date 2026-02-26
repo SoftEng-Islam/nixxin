@@ -60,6 +60,9 @@ in
       '';
 
       gtk3.bookmarks = [
+        "recent:///"
+        "network:///"
+        "computer:///"
         "file:///home/${settings.user.username}/Downloads"
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
