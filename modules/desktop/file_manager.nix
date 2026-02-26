@@ -93,8 +93,8 @@
           <channel name="thunar" version="1.0">
             <property name="default-view" type="string" value="ThunarIconView"/>
             <property name="last-details-view-column-widths" type="string" value="50,50,118,111,50,50,50,50,993,50,50,84,50,151"/>
-            <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_38_PERCENT"/>
-            <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_150_PERCENT"/>
+            <property name="last-details-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_50_PERCENT"/>
+            <property name="last-icon-view-zoom-level" type="string" value="THUNAR_ZOOM_LEVEL_250_PERCENT"/>
             <property name="last-image-preview-visible" type="bool" value="false"/>
             <property name="last-location-bar" type="string" value="ThunarLocationEntry"/>
             <property name="last-menubar-visible" type="bool" value="false"/>
