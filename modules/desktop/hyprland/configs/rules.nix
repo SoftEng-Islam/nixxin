@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
@@ -23,7 +24,7 @@
       windowrulev2 = float,class:^(firefox|thunar|gedit|krita),title:^(Open File|Save As)
       windowrulev2 = float,class:^(file-roller|pavucontrol|blueman-manager)
       windowrulev2 = float,title:^(Open|Save|Preferences)
-      windowrulev2 = float,class:^(xdg-desktop-portal|org.kde.kdialog|nemo)
+      windowrulev2 = float,class:^(xdg-desktop-portal|org.kde.kdialog)
       windowrulev2 = center, class:^(.*), title:^(Open File|Save As)
       windowrulev2 = float,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$
       windowrulev2 = center,title:^(.*Open.*|.*Save.*|.*Select.*|.*Browse.*)$

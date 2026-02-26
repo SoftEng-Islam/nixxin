@@ -110,13 +110,38 @@
   # helps with GIO-based file access
   services.gnome.glib-networking.enable = true;
 
+  services.dbus.packages = with pkgs; [
+    libcryptui
+  ];
+
+  services.desktopManager.gnome.extraGSettingsOverridePackages = with pkgs; [
+    nemo
+    gcr
+    libcryptui
+    nemo-seahorse
+  ];
+
   # environment.pathsToLink = [ "/share/nautilus-python/extensions" ];
   environment.sessionVariables.FILE_MANAGER = "nautilus";
   # environment.sessionVariables.NAUTILUS_4_EXTENSION_DIR = lib.mkDefault "${nautilus-env}/lib/nautilus/extensions-4";
 
   environment.systemPackages = with pkgs; [
     nautilus
+
+    # File browser for Cinnamon
     nemo
+    nemo-emblems
+    nemo-fileroller
+    nemo-preview
+    nemo-python
+    nemo-qml-plugin-dbus
+
+    (nemo-with-extensions.override {
+      extensions = [ nemo-seahorse ];
+    })
+
+    kdePackages.dolphin
+    kdePackages.dolphin-plugins
 
     file # A program that shows the type of files
     lsof # Tool to list open files

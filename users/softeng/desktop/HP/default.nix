@@ -114,14 +114,11 @@ rec {
   common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
   common.qt.package = pkgs.adwaita-qt6;
   common.qt.SCALE_FACTOR = 1;
-  # [ ICONS ]
 
+  # [ ICONS ]
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
-  common.icons.package = pkgs.papirus-icon-theme;
-  # common.icons.package = pkgs.papirus-icon-theme.override { color = "bluegrey"; };
-
-  # Papirus folder color
+  common.icons.package = pkgs.papirus-icon-theme.override { color = "yellow"; };
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
   common.icons.folder-color = "yellow";
 
