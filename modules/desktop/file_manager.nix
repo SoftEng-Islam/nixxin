@@ -48,7 +48,7 @@
     terminal-exec = {
       enable = true;
       settings = {
-        default = [ settings.common.terminal.name ];
+        default = [ settings.modules.terminals.default.terminal.name ];
       };
     };
     # fix mimetype associations
