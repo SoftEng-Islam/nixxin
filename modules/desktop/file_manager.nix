@@ -64,6 +64,16 @@
   };
 
   home-manager.users.${settings.user.username} = {
+    home.file.".local/share/nemo/actions/aunpack.nemo_action".text = ''
+      [Nemo Action]
+      Name=Extract here
+      Comment=Extract the selected archive(s) using aunpack
+      Exec=${pkgs.atool}/bin/aunpack -X %P %F
+      Icon=package-x-generic
+      Selection=Any
+      Extensions=zip;tar;gz;bz2;7z;rar;
+      Quote=double
+    '';
     programs.dircolors = {
       enable = true;
     };
@@ -220,5 +230,7 @@
     # Thumbnails
     gst_all_1.gst-libav
     ffmpegthumbnailer
+
+    atool
   ];
 }

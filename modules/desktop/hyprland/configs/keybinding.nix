@@ -35,7 +35,8 @@
       #=> First Row:
       # bind = $main, Q, killactive,
       bind = $main, W, exec, ${settings.modules.desktop.xdg.defaults.webBrowser}
-      bind = $main, E, exec,  GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=GNOME ${pkgs.nautilus}/bin/nautilus --no-desktop --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
+      # bind = $main, E, exec,  GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=GNOME ${pkgs.nautilus}/bin/nautilus --no-desktop --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
+      bind = $main, E, exac, ${pkgs.thunar}/bin/thunar
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
       bind = $main, T, exec, ${settings.modules.terminals.default.terminal.package}/bin/${settings.modules.terminals.default.terminal.name} # Launch (terminal)
       # bind = $main, Y, exec,

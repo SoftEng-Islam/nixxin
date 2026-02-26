@@ -114,7 +114,7 @@ with lib.gvariant;
       # gsettings set org.gnome.nautilus.preferences thumbnail-limit 104857600
       "org/gnome/desktop/thumbnail-cache" = {
         maximum-age = 200;
-        maximum-size = 2048;
+        maximum-size = 4048;
       };
       "org/gnome/mutter" = {
         check-alive-timeout = 60000;
