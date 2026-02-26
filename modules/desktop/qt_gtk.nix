@@ -49,7 +49,7 @@ in
         gtk-recent-files-enabled = false;
       };
 
-      extraCss = ''
+      gtk3.extraCss = ''
         .nemo-window .sidebar .cell { /* notice the .cell */
           padding: 3px; /* padding space between lines/rows */
         }

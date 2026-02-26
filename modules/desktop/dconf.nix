@@ -1,4 +1,9 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 let
   # you can try this command if you have any problem with gnome settings
   # dconf reset -f /org/gnome/
@@ -7,17 +12,17 @@ let
   # dconf write /org/gnome/mutter/debug/enable-frame-timing false
   # gsettings set org.gnome.mutter check-alive-timeout 0
 
-in with lib.gvariant; {
+in
+with lib.gvariant;
+{
   programs.dconf.enable = true;
-  environment.systemPackages = with pkgs;
-    [
-      dconf
-      # gsettings-desktop-schemas
-    ];
+  environment.systemPackages = with pkgs; [
+    dconf
+    # gsettings-desktop-schemas
+  ];
 
   home-manager.users.${settings.user.username} = {
     dconf.settings = {
-
       "org/gnome/desktop/wm/preferences" = {
         # We don't want buttons because of using ( Hyprland + hyprbars)
         "button-layout" = lib.mkDefault "";
@@ -39,7 +44,9 @@ in with lib.gvariant; {
 
       # To list your enabled GNOME Shell extensions, you can use the gnome-extensions command-line tool, which provides various options for managing extensions.
       # gnome-extensions list --enabled
-      "org/gnome/shell" = { disable-user-extensions = true; };
+      "org/gnome/shell" = {
+        disable-user-extensions = true;
+      };
       # dconf read /org/freedesktop/Tracker3/Miner/Files/enable-monitors
       "org/freedesktop/Tracker3/Miner/Files/enable-monitors" = {
         enable-monitors = false;
@@ -67,14 +74,11 @@ in with lib.gvariant; {
         enable-animations = true;
 
         # ---- Fonts ---- #
-        font-name = lib.mkForce "${settings.modules.fonts.main.name} ${
-            toString settings.modules.fonts.main.size.main
-          }";
+        font-name = lib.mkForce "${settings.modules.fonts.main.name} ${toString settings.modules.fonts.main.size.main}";
         document-font-name = lib.mkForce settings.modules.fonts.main.name;
         font-hinting = lib.mkForce settings.modules.fonts.main.hinting;
         font-rendering = lib.mkForce settings.modules.fonts.main.rendering;
-        font-antialiasing =
-          lib.mkForce settings.modules.fonts.main.antialiasing;
+        font-antialiasing = lib.mkForce settings.modules.fonts.main.antialiasing;
         font-rgba-order = lib.mkForce settings.modules.fonts.main.rgba_order;
 
         # gtk-color-palette
@@ -112,7 +116,9 @@ in with lib.gvariant; {
         maximum-age = 200;
         maximum-size = 2048;
       };
-      "org/gnome/mutter" = { check-alive-timeout = 60000; };
+      "org/gnome/mutter" = {
+        check-alive-timeout = 60000;
+      };
     };
   };
 }
