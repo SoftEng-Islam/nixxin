@@ -51,7 +51,9 @@ mkIf (settings.modules.icons.enable or false) {
       });
     })
   ];
-
+  environment.variables = {
+    XDG_ICON_DIR = "${pkgs.papirus-icon-theme}/share/icons/Papirus";
+  };
   environment.systemPackages = with pkgs; [
     icon-library # Symbolic icons for your apps
     papirus-icon-theme
