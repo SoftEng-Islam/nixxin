@@ -139,7 +139,7 @@
           show_toolbar=true
           preferred_custom_cmd=
           preferred_temp_dir=/tmp
-          preferred_extract_dir=/home/${user}/Downloads
+          preferred_extract_dir=/home/${settings.user.username}/Downloads
           allow_sub_dir=0
           ensure_directory=true
           overwrite=false
@@ -170,8 +170,8 @@
         material-symbols
       ];
       sessionVariables = {
-        XDG_ICON_DIR = "${pkgs.papirus-icon-theme}/share/icons/Papirus";
-        QS_ICON_THEME = "Papirus";
+        XDG_ICON_DIR = "${pkgs.papirus-icon-theme}/share/icons/${settings.common.icons.nameInDark}";
+        QS_ICON_THEME = settings.common.icons.nameInDark;
         QT_STYLE_OVERRIDE = lib.mkForce "Fusion";
       };
     };

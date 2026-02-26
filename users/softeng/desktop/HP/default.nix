@@ -116,6 +116,12 @@ rec {
   common.qt.SCALE_FACTOR = 1;
 
   # [ ICONS ]
+  # Use "Papirus" "Papirus-Dark" "Papirus-Light"
+  conmmon.icons.theme =
+    if (common.desktop.dconf.colorScheme == "prefer-dark") then
+      common.icons.nameInDark
+    else
+      common.icons.nameInLight;
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
   common.icons.package = pkgs.papirus-icon-theme.override { color = "yellow"; };
