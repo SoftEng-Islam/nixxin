@@ -114,9 +114,9 @@
             <property name="misc-open-new-window-as-tab" type="bool" value="false"/>
             <property name="misc-show-delete-action" type="bool" value="false"/>
             <property name="misc-single-click" type="bool" value="false"/>
-            <property name="misc-symbolic-icons-in-sidepane" type="bool" value="true"/>
-            <property name="misc-symbolic-icons-in-toolbar" type="bool" value="true"/>
-            <property name="misc-text-beside-icons" type="bool" value="true"/>
+            <property name="misc-symbolic-icons-in-sidepane" type="bool" value="false"/>
+            <property name="misc-symbolic-icons-in-toolbar" type="bool" value="false"/>
+            <property name="misc-text-beside-icons" type="bool" value="false"/>
             <property name="misc-thumbnail-draw-frames" type="bool" value="false"/>
             <property name="misc-thumbnail-max-file-size" type="uint64" value="1073741824"/>
             <property name="misc-use-csd" type="bool" value="true"/>
