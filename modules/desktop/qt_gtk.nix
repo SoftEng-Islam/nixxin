@@ -46,7 +46,7 @@ in
         gtk-xft-hinting = 1;
         gtk-xft-hintstyle = "hintfull";
         gtk-xft-rgba = "rgb";
-        gtk-recent-files-enabled = false;
+        gtk-recent-files-enabled = true;
       };
 
       gtk3.extraCss = ''
