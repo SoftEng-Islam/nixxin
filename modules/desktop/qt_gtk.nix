@@ -60,7 +60,7 @@ in
       '';
 
       gtk3.bookmarks = [
-        "recent:///"
+        # "recent:///"
         "network:///"
         "computer:///"
         "file:///home/${settings.user.username}/Downloads"
