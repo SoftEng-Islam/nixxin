@@ -43,6 +43,26 @@
     })
   ];
 
+  xdg = {
+    # fix opening terminal for nemo / thunar by using xdg-terminal-exec spec
+    terminal-exec = {
+      enable = true;
+      settings = {
+        default = [ settings.common.terminal.name ];
+      };
+    };
+    # fix mimetype associations
+    mime.defaultApplications = {
+      "inode/directory" = "nemo.desktop";
+      # wtf zathura / pqiv registers themselves to open archives
+      "application/zip" = "org.gnome.FileRoller.desktop";
+      "application/vnd.rar" = "org.gnome.FileRoller.desktop";
+      "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
+      "application/x-bzip2-compressed-tar" = "org.gnome.FileRoller.desktop";
+      "application/x-tar" = "org.gnome.FileRoller.desktop";
+    };
+  };
+
   home-manager.users.${settings.user.username} = {
     programs.dircolors = {
       enable = true;
@@ -88,20 +108,32 @@
         default-zoom-level = settings.modules.desktop.dconf.icons.icon_view_size;
       };
 
+      "org/nemo/preferences" = {
+        click-double-parent-folder = true;
+        click-policy = "single";
+        show-hidden-files = true;
+        size-prefixes = "base-2";
+        thumbnail-limit = "68719476735";
+      };
+
       "org/gtk/gtk4/settings/file-chooser" = {
         sort-directories-first = true;
         show-hidden = false;
       };
+
       "org/gtk/settings/file-chooser" = {
+        sidebar-width = 217;
+        sort-column = "type";
+        sort-directories-first = true;
+        sort-order = "ascending";
+        type-format = "category";
+        window-position = "(104, 104)";
+        window-size = "(1231, 902)";
         date-format = "regular";
         location-mode = "path-bar";
         show-hidden = false;
         show-size-column = true;
         show-type-column = true;
-        sort-column = "name";
-        sort-directories-first = true;
-        sort-order = "ascending";
-        type-format = "category";
         view-type = "list";
       };
     };
@@ -127,6 +159,9 @@
 
   environment.systemPackages = with pkgs; [
     nautilus
+
+    # Thunar
+    xfce.thunar
 
     # File browser for Cinnamon
     nemo

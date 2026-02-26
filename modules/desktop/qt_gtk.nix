@@ -49,6 +49,16 @@ in
         gtk-recent-files-enabled = false;
       };
 
+      extraCss = ''
+        .nemo-window .sidebar .cell { /* notice the .cell */
+          padding: 3px; /* padding space between lines/rows */
+        }
+        .nemo-window .sidebar .view {
+          background-color: @theme_bg_color;
+          color: @theme_fg_color;
+        }
+      '';
+
       gtk3.bookmarks = [
         "file:///home/${settings.user.username}/Downloads"
         "file:///home/${settings.user.username}/Documents"
