@@ -63,6 +63,15 @@
     };
   };
 
+  programs.xfconf.enable = true;
+  programs.thunar = {
+    enable = true;
+    plugins = with pkgs.xfce; [
+      thunar-archive-plugin
+      thunar-volman
+    ];
+  };
+
   home-manager.users.${settings.user.username} = {
     home.file.".local/share/nemo/actions/aunpack.nemo_action".text = ''
       [Nemo Action]
