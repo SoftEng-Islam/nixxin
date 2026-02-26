@@ -126,10 +126,10 @@
             <property name="tree-icon-size" type="string" value="THUNAR_ICON_SIZE_48"/>
 
             <property name="hidden-bookmarks" type="array">
-              # <value type="string" value="computer:///"/>
-              # <value type="string" value="recent:///"/>
+              value type="string" value="computer:///"/>
+              <value type="string" value="recent:///"/>
               <value type="string" value="file:///"/>
-              # <value type="string" value="network:///"/>
+              <value type="string" value="network:///"/>
             </property>
             <property name="hidden-devices" type="array">
               # <value type="string" value=""/>
