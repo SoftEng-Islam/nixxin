@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  fm_settings = settings.modules.desktop.file_manager;
+in
 {
 
   # https://nixos.wiki/wiki/Nautilus
@@ -386,4 +389,5 @@
 
     atool
   ];
+
 }

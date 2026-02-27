@@ -1,5 +1,19 @@
 { settings, pkgs, ... }:
-# let socat = lib.getExe pkgs.socat; in
+let
+  defaultFileManager = settings.modules.desktop.file_manager.default;
+  fileManagerExec =
+    if (defaultFileManager == "nauitlus") then
+      "GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=GNOME ${pkgs.nautilus}/bin/nautilus --no-desktop --new-window > /dev/null 2>&1 &"
+    else if (defaultFileManager == "nemo") then
+      "${pkgs.nemo}/bin/nemo"
+    else if (defaultFileManager == "thunar") then
+      "${pkgs.xfce.thunar}/bin/thunar"
+    else if (defaultFileManager == "dolphin") then
+      "${pkgs.kdePackages.dolphin}/bin/dolphin"
+    else
+      null;
+
+in
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
@@ -35,9 +49,12 @@
       #=> First Row:
       # bind = $main, Q, killactive,
       bind = $main, W, exec, ${settings.modules.desktop.xdg.defaults.webBrowser}
-      # bind = $main, E, exec,  GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=GNOME ${pkgs.nautilus}/bin/nautilus --no-desktop --new-window > /dev/null 2>&1 & # Launch Nautilus (file manager)
-      bind = $main, E, exec, ${pkgs.xfce.thunar}/bin/thunar
+
+      # File Manager
+      bind = $main, E, exec, ${fileManagerExec}
+
       bind = $main, R, exec, ${pkgs.resources}/bin/resources
+
       bind = $main, T, exec, ${settings.modules.terminals.default.terminal.package}/bin/${settings.modules.terminals.default.terminal.name} # Launch (terminal)
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
