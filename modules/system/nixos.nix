@@ -61,7 +61,16 @@ in
       sandbox-fallback = false;
 
       # Supported system features
-      # system-features = [ "nixos-test" "kvm" "recursive-nix" "big-parallel" ];
+      system-features = [
+        "benchmark" # May apply to packages or tests that depend on benchmarking features.
+        # "big-parallel" # Enables tasks designed for builds that heavily leverage parallelism (> 16 cores), but enabling it on a system with a low core count (e.g., 4 logical cores) can lead to inefficiencies and potential issues:
+        "cgroups" # Specifies that the system supports Linux cgroups (Control Groups), which are often used for resource isolation.
+        "kvm" # Indicates that the system can perform builds inside a KVM virtual machine.
+        "nixos" # Indicates that the system is running NixOS. This is automatically set on NixOS.
+        # "nixos-test" # It allows for automated tests of NixOS modules, configurations, and services in virtual machines or containers. Tests typically run within QEMU virtual machines (or other supported backends) that emulate a full NixOS system.
+        "reproducible-paths" # Ensures paths in builds are highly deterministic.
+        "sandbox" # Indicates that builds should be sandboxed. A sandboxed build means that the environment is completely isolated and cannot access the host filesystem or network, ensuring purity in builds.
+      ];
 
       # Continue building derivations even if one fails
       # keep-going = false;
