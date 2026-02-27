@@ -64,7 +64,10 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Waydroid needs these kernel environment settings
   boot.kernelParams = [
     "psi=1"
+
+    # NixOS does not officially support this configuration and might cause your system to be unbootable in future versions. You are on your own.
     "systemd.unified_cgroup_hierarchy=0"
+    "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
   ];
   boot.kernelModules = [
     "uhid"
@@ -76,7 +79,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "kernel.unprivileged_userns_clone" = lib.mkDefault 1;
   };
 
-  systemd.enableUnifiedCgroupHierarchy = lib.mkForce true;
   systemd.services.waydroid-container.preStart = lib.mkBefore ''
     config=/var/lib/waydroid/lxc/waydroid/config
     nodes=/var/lib/waydroid/lxc/waydroid/config_nodes
