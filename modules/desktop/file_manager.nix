@@ -56,7 +56,7 @@ in
     };
     # fix mimetype associations
     mime.defaultApplications = {
-      "inode/directory" = "thunar.desktop";
+      "inode/directory" = "${fm_settings.default}.desktop";
       # wtf zathura / pqiv registers themselves to open archives
       "application/zip" = "org.gnome.FileRoller.desktop";
       "application/vnd.rar" = "org.gnome.FileRoller.desktop";
