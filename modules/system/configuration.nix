@@ -214,6 +214,9 @@ in
     };
   };
 
+  # Speed up boot / shut down
+  systemd.services.systemd-udev-settle.enable = false;
+
   services.udev.extraRules = ''
     # When the AMD GPU (card1) is added, force it to high performance mode
     ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1", ATTR{device/power_dpm_force_performance_level}="high"
@@ -260,5 +263,6 @@ in
     SystemMaxUse=100M
     RuntimeMaxUse=50M
     SystemMaxFileSize=50M
+    MaxRetentionSec=1day
   '';
 }

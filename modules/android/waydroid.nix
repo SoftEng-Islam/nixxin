@@ -61,6 +61,21 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   #   fi
   # '';
 
+  # Waydroid needs these kernel environment settings
+  boot.kernelParams = [
+    "psi=1"
+    "systemd.unified_cgroup_hierarchy=0"
+  ];
+  boot.kernelModules = [
+    "uhid"
+    "binder_linux"
+  ];
+
+  # Fix for Magisk/LXC: Allow nested mounts and unprivileged user namespaces
+  boot.kernel.sysctl = {
+    "kernel.unprivileged_userns_clone" = lib.mkDefault 1;
+  };
+
   systemd.services.waydroid-container.preStart = lib.mkBefore ''
     config=/var/lib/waydroid/lxc/waydroid/config
     nodes=/var/lib/waydroid/lxc/waydroid/config_nodes
