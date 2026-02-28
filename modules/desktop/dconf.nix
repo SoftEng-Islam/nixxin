@@ -29,12 +29,12 @@ with lib.gvariant;
       };
 
       "org/gnome/desktop/peripherals/mouse" = {
-        "speed" = 1;
+        "speed" = settings.common.mouse.sensitivity;
         # (adaptive, flat, none)
-        "accel-profile" = "adaptive";
-        "natural-scroll" = false;
+        "accel-profile" = "${settings.common.mouse.accelProfile}";
+        "natural-scroll" = settings.common.mouse.naturalScroll;
         # (800ms) for double click to open a file
-        "double-click" = 800;
+        "double-click" = settings.common.mouse.doubleClick;
       };
 
       "org/gnome/desktop/peripherals/keyboard" = {

@@ -227,8 +227,8 @@ in
   # ------------------------------------------------
   services.libinput = {
     enable = true;
-    mouse.accelSpeed = "-0.1"; # Slow down mouse
-    mouse.accelProfile = "adaptive"; # flat profile is more predictable for fast mice
+    mouse.accelSpeed = builtins.toString settings.common.mouse.sensitivity; # Slow down mouse
+    mouse.accelProfile = "${settings.common.mouse.accelProfile}"; # flat profile is more predictable for fast mice
   };
 
   # The General Purpose Mouse daemon, which enables mouse support in virtual consoles.

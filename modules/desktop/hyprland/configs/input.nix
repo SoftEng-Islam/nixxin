@@ -11,15 +11,15 @@
 
         # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
         # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
-        sensitivity = -0.1; # previously -0.3 # Adjust pointer sensitivity (speed)
+        sensitivity = settings.common.mouse.sensitivity; # previously -0.3 # Adjust pointer sensitivity (speed)
 
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
         #  Leave empty to use libinput’s default mode for your input device.
-        accel_profile = "adaptive"; # flat prevents speed-up on fast movement, great for fast mice
+        accel_profile = "${settings.common.mouse.accelProfile}"; # flat prevents speed-up on fast movement, great for fast mice
 
         # Scroll Factor global modifier (1.0 is default, lower values reduce scroll speed)
-        scroll_factor = 1;
+        scroll_factor = settings.common.mouse.scrollSpeed;
 
         follow_mouse = 1;
         # numlock_by_default = true;
