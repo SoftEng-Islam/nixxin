@@ -16,7 +16,7 @@
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
         #  Leave empty to use libinput’s default mode for your input device.
-        accel_profile = "flat"; # flat prevents speed-up on fast movement, great for fast mice
+        accel_profile = "adaptive"; # flat prevents speed-up on fast movement, great for fast mice
 
         # Scroll Factor global modifier (1.0 is default, lower values reduce scroll speed)
         scroll_factor = 0.5;
