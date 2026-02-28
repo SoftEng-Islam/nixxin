@@ -159,6 +159,12 @@ in
       zstyle ':autocomplete:history-incremental-search-*:*' list-lines 8
       zstyle ':autocomplete:*' insert-unambiguous yes
 
+      # Disable mouse tracking in Zsh Autocomplete
+      # (This stops the mouse from moving the cursor and taking over terminal scroll)
+      zstyle ':autocomplete:*' min-input 0
+      zstyle ':autocomplete:*' enable-mouse false
+      unset ZSH_AUTOSUGGEST_USE_FZF
+
       # Enable zsh-autocomplete
       source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
