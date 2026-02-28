@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.input = {
@@ -10,12 +11,15 @@
 
         # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
         # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
-        sensitivity = -0.3; # -0.3 # Adjust pointer sensitivity (speed)
+        sensitivity = -0.7; # previously -0.3 # Adjust pointer sensitivity (speed)
 
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
         #  Leave empty to use libinput’s default mode for your input device.
-        accel_profile = "";
+        accel_profile = "flat"; # flat prevents speed-up on fast movement, great for fast mice
+
+        # Scroll Factor global modifier (1.0 is default, lower values reduce scroll speed)
+        scroll_factor = 0.5;
 
         follow_mouse = 1;
         # numlock_by_default = true;
