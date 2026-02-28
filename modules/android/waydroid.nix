@@ -84,15 +84,15 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     nodes=/var/lib/waydroid/lxc/waydroid/config_nodes
 
     # 1. Fix cgroups (Your existing fix)
-    if [ -f "$config" ]; then
-      ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
-    fi
+    # if [ -f "$config" ]; then
+      # ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
+    # fi
 
     # 2. Fix the missing card0 issue!
-    if [ -f "$nodes" ]; then
-      # Replace card0 with card1
-      ${pkgs.gnused}/bin/sed -i 's|/dev/dri/card0|/dev/dri/card1|g' "$nodes"
-    fi
+    # if [ -f "$nodes" ]; then
+    #   # Replace card0 with card1
+    #   ${pkgs.gnused}/bin/sed -i 's|/dev/dri/card0|/dev/dri/card1|g' "$nodes"
+    # fi
   '';
 
   services.geoclue2.enable = false;
