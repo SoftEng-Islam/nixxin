@@ -19,7 +19,7 @@
         accel_profile = "adaptive"; # flat prevents speed-up on fast movement, great for fast mice
 
         # Scroll Factor global modifier (1.0 is default, lower values reduce scroll speed)
-        scroll_factor = 0.5;
+        scroll_factor = 1;
 
         follow_mouse = 1;
         # numlock_by_default = true;

@@ -133,6 +133,12 @@ rec {
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
   common.cursor.package = pkgs.bibata-cursors;
 
+  common.mouse.sensitivity = -0.3;
+  common.mouse.accelProfile = "adaptive";
+  common.mouse.scrollSpeed = 0.8;
+  common.mouse.naturalScroll = false;
+  common.mouse.doubleClick = 800;
+
   # CPU Architecture
   common.cpu.arch = "amd64"; # "amd64" or "aarch64"
   common.cpu.intel = false; # Set true if you have Intel CPU, and false if you have AMD CPU.
