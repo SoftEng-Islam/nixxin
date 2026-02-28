@@ -66,8 +66,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "psi=1"
 
     # NixOS does not officially support this configuration and might cause your system to be unbootable in future versions. You are on your own.
-    "systemd.unified_cgroup_hierarchy=0"
-    "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
+    # "systemd.unified_cgroup_hierarchy=0"
+    # "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
   ];
   boot.kernelModules = [
     "uhid"
