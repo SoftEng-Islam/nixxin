@@ -227,7 +227,7 @@ in
   # ------------------------------------------------
   services.libinput = {
     enable = true;
-    mouse.accelSpeed = "-0.7"; # Slow down mouse
+    mouse.accelSpeed = "-0.1"; # Slow down mouse
     mouse.accelProfile = "flat"; # flat profile is more predictable for fast mice
   };
 

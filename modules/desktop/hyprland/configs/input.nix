@@ -11,7 +11,7 @@
 
         # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
         # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
-        sensitivity = -0.7; # previously -0.3 # Adjust pointer sensitivity (speed)
+        sensitivity = -0.1; # previously -0.3 # Adjust pointer sensitivity (speed)
 
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
