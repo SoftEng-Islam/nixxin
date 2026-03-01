@@ -12,6 +12,7 @@ let
 in
 lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # Additional configurations, notes and post-installation steps
+  # in ./waydroid.readme.md
   # in https://nixos.wiki/wiki/WayDroid or https://wiki.nixos.org/wiki/Waydroid
   # or https://docs.waydro.id/usage/install-on-desktops
 
