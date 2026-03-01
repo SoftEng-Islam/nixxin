@@ -96,7 +96,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     # fi
 
     # Optionally, disable unnecessary desktop files
-    sed -i 's|(\[Desktop Entry\])|$1\nNoDisplay=true|' ~/.local/share/applications/waydroid.*.desktop
+    # sed -i 's|(\[Desktop Entry\])|$1\nNoDisplay=true|' ~/.local/share/applications/waydroid.*.desktop
   '';
 
   services.geoclue2.enable = false;
