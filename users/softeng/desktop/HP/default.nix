@@ -133,7 +133,7 @@ rec {
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
   common.cursor.package = pkgs.bibata-cursors;
 
-  common.mouse.sensitivity = -0.2;
+  common.mouse.sensitivity = -0.5;
   common.mouse.accelProfile = "adaptive"; # flat or adaptive
   common.mouse.scrollSpeed = 1.0;
   common.mouse.naturalScroll = false;
