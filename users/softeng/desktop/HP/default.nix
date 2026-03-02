@@ -586,7 +586,7 @@ rec {
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-    "amd_pstate=disable"
+    # "amd_pstate=disable"
     "amd_prefcore=disable"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
