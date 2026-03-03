@@ -61,13 +61,14 @@ in
 
       gtk3.bookmarks = [
         # "recent:///"
-        "network:///"
-        "computer:///"
         "file:///home/${settings.user.username}/Downloads"
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
         "file:///home/${settings.user.username}/Videos"
+        # "file:///home/${settings.user.username}/Torrents"
+        "network:///"
+        "computer:///"
       ];
 
       gtk4.extraConfig = {

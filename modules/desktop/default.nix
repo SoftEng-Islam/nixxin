@@ -1,6 +1,12 @@
-{ inputs, settings, lib, pkgs, ... }: {
+{
+  inputs,
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = lib.optionals (settings.modules.desktop.enable or false) [
-
     ./dconf.nix
     ./keyring.nix
     ./polkit.nix
@@ -22,7 +28,11 @@
     binfmt = true;
     package = pkgs.appimage-run.override {
       # Extra libraries and packages for Appimage run
-      extraPkgs = pkgs: with pkgs; [ ffmpeg imagemagick ];
+      extraPkgs =
+        pkgs: with pkgs; [
+          ffmpeg
+          imagemagick
+        ];
     };
   };
 

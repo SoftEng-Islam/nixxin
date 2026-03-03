@@ -68,7 +68,7 @@ in
 
   programs.xfconf.enable = true;
   programs.thunar = {
-    enable = true;
+    enable = fm_settings.thunar;
     plugins = with pkgs.xfce; [
       thunar-archive-plugin
       thunar-volman
@@ -173,12 +173,13 @@ in
         '';
       };
       packages = with pkgs; [
-        xfce.thunar
-        xfce.xfconf
-        xfce.tumbler
-        xfce.thunar-archive-plugin
-        xfce.thunar-volman
-        xfce.thunar-media-tags-plugin
+        # xfce.thunar
+        # xfce.thunar-archive-plugin
+        # xfce.thunar-volman
+        # xfce.thunar-media-tags-plugin
+        # xfce.tumbler
+        # xfce.xfconf
+
         p7zip
         xarchiver
         papirus-icon-theme
@@ -327,22 +328,22 @@ in
     nautilus
 
     # Thunar
-    xfce.thunar
+    # xfce.thunar
 
     # File browser for Cinnamon
-    nemo
-    nemo-emblems
-    nemo-fileroller
-    nemo-preview
-    nemo-python
-    nemo-qml-plugin-dbus
+    # nemo
+    # nemo-emblems
+    # nemo-fileroller
+    # nemo-preview
+    # nemo-python
+    # nemo-qml-plugin-dbus
 
-    (nemo-with-extensions.override {
-      extensions = [ nemo-seahorse ];
-    })
+    # (nemo-with-extensions.override {
+    # extensions = [ nemo-seahorse ];
+    # })
 
-    kdePackages.dolphin
-    kdePackages.dolphin-plugins
+    # kdePackages.dolphin
+    # kdePackages.dolphin-plugins
 
     file # A program that shows the type of files
     lsof # Tool to list open files
