@@ -1,0 +1,158 @@
+#!/bin/bash
+
+# ============================================================
+# AV1 Batch Video Encoder
+# Encodes a list of videos to AV1 (libsvtav1) with audio copy
+# ============================================================
+
+# --- Configuration ---
+CODEC="libsvtav1"
+AUDIO_CODEC="copy"
+OUTPUT_EXT="mkv"
+
+# --- Define your video list here ---
+# Add or remove entries as needed. Each entry is the input filename.
+VIDEOS=(
+  "input1.mp4"
+  "input2.mkv"
+)
+
+# --- Helper functions ---
+
+# Print a separator line
+separator() {
+  echo "============================================================"
+}
+
+# Get video duration via ffprobe
+get_duration() {
+  ffprobe -v error -show_entries format=duration -of default=noprint_wrappers=1:nokey=1 "$1" 2>/dev/null
+}
+
+# Format seconds to HH:MM:SS
+format_time() {
+  local total_seconds="${1%.*}" # strip decimals
+  if [[ -z "$total_seconds" || "$total_seconds" == "N/A" ]]; then
+    echo "Unknown"
+    return
+  fi
+  local hours=$((total_seconds / 3600))
+  local minutes=$(( (total_seconds % 3600) / 60 ))
+  local seconds=$((total_seconds % 60))
+  printf "%02d:%02d:%02d" "$hours" "$minutes" "$seconds"
+}
+
+# Print video info (resolution, codec, duration, file size)
+print_video_info() {
+  local file="$1"
+  echo "  File     : $file"
+
+  # Duration
+  local dur
+  dur=$(get_duration "$file")
+  echo "  Duration : $(format_time "$dur")"
+
+  # Video stream info
+  local vinfo
+  vinfo=$(ffprobe -v error -select_streams v:0 \
+    -show_entries stream=codec_name,width,height,bit_rate,r_frame_rate \
+    -of default=noprint_wrappers=1 "$file" 2>/dev/null)
+
+  local vcodec width height fps bitrate
+  vcodec=$(echo "$vinfo" | grep "^codec_name=" | cut -d= -f2)
+  width=$(echo "$vinfo"  | grep "^width="      | cut -d= -f2)
+  height=$(echo "$vinfo" | grep "^height="     | cut -d= -f2)
+  fps=$(echo "$vinfo"    | grep "^r_frame_rate="| cut -d= -f2)
+  bitrate=$(echo "$vinfo"| grep "^bit_rate="   | cut -d= -f2)
+
+  echo "  Video    : ${vcodec:-N/A}, ${width:-?}x${height:-?}, ${fps:-N/A} fps, bitrate ${bitrate:-N/A}"
+
+  # Audio stream info
+  local ainfo
+  ainfo=$(ffprobe -v error -select_streams a:0 \
+    -show_entries stream=codec_name,sample_rate,channels \
+    -of default=noprint_wrappers=1 "$file" 2>/dev/null)
+
+  local acodec sample_rate channels
+  acodec=$(echo "$ainfo"      | grep "^codec_name="  | cut -d= -f2)
+  sample_rate=$(echo "$ainfo" | grep "^sample_rate="  | cut -d= -f2)
+  channels=$(echo "$ainfo"    | grep "^channels="     | cut -d= -f2)
+
+  echo "  Audio    : ${acodec:-N/A}, ${sample_rate:-N/A} Hz, ${channels:-N/A} ch"
+
+  # File size
+  local size
+  size=$(du -h "$file" 2>/dev/null | cut -f1)
+  echo "  Size     : ${size:-N/A}"
+}
+
+# --- Main ---
+
+total=${#VIDEOS[@]}
+
+echo ""
+separator
+echo "  AV1 Batch Encoder — $total video(s) queued"
+separator
+echo ""
+
+success=0
+fail=0
+skipped=0
+
+for i in "${!VIDEOS[@]}"; do
+  input="${VIDEOS[$i]}"
+  num=$((i + 1))
+
+  # Build output filename: strip extension, append OUTPUT_EXT
+  base="${input%.*}"
+  output="${base}.${OUTPUT_EXT}"
+
+  # If input already has the target extension, add a suffix to avoid overwriting
+  if [[ "$input" == "$output" ]]; then
+    output="${base}.av1.${OUTPUT_EXT}"
+  fi
+
+  separator
+  echo "[$num/$total] Encoding: $input"
+  separator
+
+  # Check if input file exists
+  if [[ ! -f "$input" ]]; then
+    echo "[SKIP] File not found: $input"
+    echo ""
+    ((skipped++))
+    continue
+  fi
+
+  # Print info about the source video
+  print_video_info "$input"
+  echo ""
+
+  # Record start time
+  start_time=$(date +%s)
+
+  # Encode
+  ffmpeg -i "$input" -vcodec "$CODEC" -c:a "$AUDIO_CODEC" "$output" -y
+
+  exit_code=$?
+  end_time=$(date +%s)
+  elapsed=$((end_time - start_time))
+
+  if [[ $exit_code -eq 0 ]]; then
+    out_size=$(du -h "$output" 2>/dev/null | cut -f1)
+    echo ""
+    echo "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))"
+    ((success++))
+  else
+    echo ""
+    echo "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))"
+    ((fail++))
+  fi
+  echo ""
+done
+
+separator
+echo "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)"
+separator
+echo ""
