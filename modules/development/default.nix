@@ -112,6 +112,8 @@ in
       corepack
       typescript
       typescript-go
+
+      shellcheck
     ];
   };
 }
