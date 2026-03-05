@@ -103,7 +103,7 @@ in
       # "k10temp"
     ];
     extraModulePackages = with config.boot.kernelPackages; [
-      pkgs.nftables
+      # pkgs.nftables # Removed: nftables is a userspace tool, not a kernel module
       amdgpu-i2c
     ];
     extraModprobeConfig = _system.boot.extraModprobeConfig;
@@ -114,7 +114,7 @@ in
       # kernel log message level
       "loglevel=0" # 1: sustem is unusable | 3: error condition | 7: very verbose
       "splash"
-      "rd.systemd.show_status=false"
+      # rd.systemd.show_status is set to "auto" below, don't duplicate with "false"
       "udev.log_level=0"
       "plymouth.ignore-serial-consoles"
 

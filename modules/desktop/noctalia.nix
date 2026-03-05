@@ -580,7 +580,7 @@
         ui = {
           fontDefault = settings.common.mainFont.name;
           fontFixed = lib.mkForce settings.modules.fonts.monospace.name;
-          idlfalseibitorEnabled = true;
+          idleInhibitorEnabled = true;
           tooltipsEnabled = true;
           fontDefaultScale = 1;
           fontFixedScale = 1;

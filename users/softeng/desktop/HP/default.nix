@@ -361,8 +361,8 @@ rec {
   modules.desktop.hyprland.plugins.bordersPlus = false;
   modules.desktop.hyprland.plugins.hyprexpo = false;
   modules.desktop.hyprland.plugins.hyprtrails = false;
-  modules.desktop.hyprland.lockscreen.enable = false;
-  modules.desktop.hyprland.lockscreen.type = "hyprlock"; # "hyprlock" or "noctalia"
+  modules.desktop.hyprland.lockscreen.enable = true;
+  modules.desktop.hyprland.lockscreen.type = "noctalia"; # "hyprlock" or "noctalia"
   modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;
@@ -453,13 +453,13 @@ rec {
   modules.power.boot.kernelModules = [
     "amdgpu-i2c" # AMDGPU I2C driver for better power management and performance on AMD GPUs
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
-    "powernow-k8"
+    # "powernow-k8" # Removed: only for K8/K10 CPUs, not Excavator (A8-8650B)
     "cpufreq_performance"
     "cpufreq_powersave"
     "cpufreq_ondemand"
     "cpufreq_conservative"
     "binder_linux"
-    "ashmem_linux"
+    # "ashmem_linux" # Removed: deprecated and removed from kernels >= 5.18, use memfd instead
   ];
 
   # [ Recording ]
@@ -522,7 +522,7 @@ rec {
     "drm"
     "drm_kms_helper"
     "gpu_sched"
-    "ashmem_linux"
+    # "ashmem_linux" # Removed: deprecated and removed from kernels >= 5.18
     "binder_linux"
   ];
   modules.system.boot.blacklistedKernelModules = [
@@ -648,7 +648,8 @@ rec {
     #  poll: slightly improve performance at cost of a hotter system (not recommended)
     #  halt: halt is forced to be used for CPU idle
     #  nomwait: Disable mwait for CPU C-states
-    "idle=poll" # poll | halt | nomwait
+    # "idle=poll" # Removed: causes all cores to spin at 100% even when idle, generating
+    # excessive heat without meaningful latency benefit on A8-8650B (no boost clocks)
 
     # enable IOMMU for devices used in passthrough
     # and provide better host performance in virtualization
@@ -682,7 +683,8 @@ rec {
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
-    "processor.max_cstate=0"
+    # "processor.max_cstate=0" # Removed: prevents CPU C-states, wastes power with no
+    # performance benefit on A8-8650B which has no turbo boost to preserve
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
@@ -700,7 +702,7 @@ rec {
     "acpi-cpufreq"
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
-    "amd_energy"
+    # "amd_energy" # Removed: requires Zen+ or later, not supported on Excavator (A8-8650B)
     "i2c_hid" # Input devices
     "usbhid"
     "usbcore"

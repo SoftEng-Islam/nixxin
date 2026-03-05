@@ -1,7 +1,8 @@
 { settings, pkgs, ... }: {
   home-manager.users.${settings.user.username} = {
     programs.hyprlock = {
-      enable = settings.modules.desktop.hyprland.lockscreen.enable or false;
+      enable = (settings.modules.desktop.hyprland.lockscreen.enable or false)
+        && (settings.modules.desktop.hyprland.lockscreen.type or "hyprlock") == "hyprlock";
       settings = {
         general = {
           hide_cursor = true;

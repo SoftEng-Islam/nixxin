@@ -42,7 +42,7 @@ in
         settings = {
           general = {
             ioprio = 0;
-            renice = 20;
+            renice = -10; # Higher priority for game processes (-20 highest, 19 lowest)
             softrealtime = "auto";
             inhibit_screensaver = 1;
             desiredgov = "performance"; # "performance"
