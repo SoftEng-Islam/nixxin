@@ -1,11 +1,18 @@
 { pkgs }:
 
 let
-  python39Packages = pkgs.python39Packages;
+  # Pin a specific version of nixpkgs from late 2021 (when Python 3.9 was standard)
+  legacyPkgs = import (builtins.fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz";
+    sha256 = "162dyvda20ZF69v19747m07qaxq56mcmkgpsbpxid9v2707248y8"; # Verified hash
+  }) { inherit (pkgs) system; };
+
+  # Now we pull Python 3.9 and its packages from that specific legacy set
+  python39Packages = legacyPkgs.python39Packages;
   python = python39Packages.python;
 in
 pkgs.stdenv.mkDerivation rec {
-  pname = "blender293"; # Changed name here
+  pname = "blender293";
   version = "2.93.2";
 
   src = pkgs.fetchurl {
@@ -13,6 +20,7 @@ pkgs.stdenv.mkDerivation rec {
     sha256 = "sha256-nG1Kk6UtiCwsQBDz7VELcMRVEovS49QiO3haIpvSfu4=";
   };
 
+  # Use the legacy python packages here
   nativeBuildInputs = [
     pkgs.cmake
     pkgs.makeWrapper
@@ -62,13 +70,13 @@ pkgs.stdenv.mkDerivation rec {
     openvdb
   ];
 
+  # Use legacy numpy and requests
   pythonPath = with python39Packages; [
     numpy
     requests
   ];
 
   postPatch = ''
-    # Fix OpenCL discovery
     substituteInPlace extern/clew/src/clew.c --replace '"libOpenCL.so"' '"${pkgs.ocl-icd}/lib/libOpenCL.so"'
   '';
 
@@ -82,34 +90,25 @@ pkgs.stdenv.mkDerivation rec {
     "-DWITH_TBB=ON"
     "-DWITH_IMAGE_OPENJPEG=ON"
     "-DWITH_INSTALL_PORTABLE=OFF"
+    # Point CMake to the correct Python 3.9 locations
+    "-DPYTHON_INCLUDE_DIR=${python}/include/python3.9"
+    "-DPYTHON_LIBRARY=${python}/lib/libpython3.9.so"
   ];
 
   postInstall = ''
-    # 1. Rename the binary
     mv $out/bin/blender $out/bin/blender293
 
-    # 2. Wrap the renamed binary
     buildPythonPath "$pythonPath"
     wrapProgram $out/bin/blender293 \
       --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.stdenv.cc ]} \
       --prefix PYTHONPATH : "$program_PYTHONPATH" \
       --add-flags '--python-use-system-env'
 
-    # 3. Fix the Desktop Entry for the App Menu
     if [ -d "$out/share/applications" ]; then
       substituteInPlace $out/share/applications/blender.desktop \
         --replace "Name=Blender" "Name=Blender 2.93 (Legacy)" \
         --replace "Exec=blender" "Exec=blender293"
-
-      # Rename the desktop file itself to avoid conflict with modern Blender
       mv $out/share/applications/blender.desktop $out/share/applications/blender293.desktop
     fi
   '';
-
-  meta = with pkgs.lib; {
-    description = "Blender 2.93 with OpenCL support for legacy AMD GPUs";
-    homepage = "https://www.blender.org";
-    license = licenses.gpl2Plus;
-    platforms = [ "x86_64-linux" ];
-  };
 }
