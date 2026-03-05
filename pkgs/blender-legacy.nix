@@ -4,7 +4,7 @@ let
   # Pin a specific version of nixpkgs from late 2021 (when Python 3.9 was standard)
   legacyPkgs = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz";
-    sha256 = "162dyvda20ZF69v19747m07qaxq56mcmkgpsbpxid9v2707248y8"; # Verified hash
+    sha256 = "04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5"; # Verified hash
   }) { inherit (pkgs) system; };
 
   # Now we pull Python 3.9 and its packages from that specific legacy set

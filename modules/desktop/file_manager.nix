@@ -16,6 +16,8 @@ in
   # Required by gnome file managers
   programs.gnome-disks.enable = true;
 
+  programs.yazi.enable = true;
+
   services.tumbler.enable = true; # thumbnailer service for nauitlus
 
   # ---- Tracker3 ---- #
