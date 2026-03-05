@@ -34,3 +34,8 @@
 - **OS**: NixOS Unstable (as of February 2026)
 - **Kernel**: Linux 6.18-zen1
 - **Display**: 1920x1080 @ 60Hz
+
+## git commands
+
+git fetch origin
+git checkout devin/1772675280-noctalia-lockscreen-hyprland-perf
