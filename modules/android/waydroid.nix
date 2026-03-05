@@ -66,9 +66,13 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   boot.kernelParams = [
     "psi=1"
 
-    # NixOS does not officially support this configuration and might cause your system to be unbootable in future versions. You are on your own.
-    # "systemd.unified_cgroup_hierarchy=0"
-    # "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
+    # Switch to cgroup v1 (legacy) so Android's libprocessgroup can mount
+    # blkio, cpu, cpuset, memory, and schedtune controllers inside the container.
+    # Without this, waydroid spams "Failed to mount/setup <cgroup>" errors.
+    # NOTE: NixOS does not officially support this; if a future NixOS update
+    # breaks boot, remove these two lines and accept cosmetic cgroup errors.
+    "systemd.unified_cgroup_hierarchy=0"
+    "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
   ];
   boot.kernelModules = [
     "uhid"
