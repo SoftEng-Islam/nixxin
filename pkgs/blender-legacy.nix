@@ -58,14 +58,14 @@ pkgs.stdenv.mkDerivation rec {
     potrace
     libharu
     ocl-icd
-    libXi
-    libX11
-    libXext
-    libXrender
+    xorg.libXi
+    xorg.libX11
+    xorg.libXext
+    xorg.libXrender
     libGLU
     libGL
     openal
-    libXxf86vm
+    xorg.libXxf86vm
     openxr-loader
     openvdb
   ];
