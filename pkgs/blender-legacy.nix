@@ -35,7 +35,7 @@ pkgs.stdenv.mkDerivation rec {
     opencolorio
     openexr
     openimagedenoise
-    openimageio2
+    openimageio
     openjpeg
     python
     zlib
