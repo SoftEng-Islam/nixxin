@@ -389,6 +389,8 @@ in
     ffmpegthumbnailer
 
     atool
+
+    yazi
   ];
 
 }
