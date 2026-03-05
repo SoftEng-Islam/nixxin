@@ -3,7 +3,7 @@ let
   fontName = "${settings.modules.fonts.main.name} ${
       toString settings.modules.fonts.main.size.main
     }";
-  startupScript = pkgs.pkgs.writeShellScriptBin "start" ''
+  startupScript = pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     # ---- DBUS ---- #
     systemctl --user import-environment \

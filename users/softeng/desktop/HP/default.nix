@@ -361,8 +361,8 @@ rec {
   modules.desktop.hyprland.plugins.bordersPlus = false;
   modules.desktop.hyprland.plugins.hyprexpo = false;
   modules.desktop.hyprland.plugins.hyprtrails = false;
-  modules.desktop.hyprland.lockscreen.enable = false;
-  modules.desktop.hyprland.lockscreen.type = "hyprlock"; # "hyprlock" or "noctalia"
+  modules.desktop.hyprland.lockscreen.enable = true;
+  modules.desktop.hyprland.lockscreen.type = "noctalia"; # "hyprlock" or "noctalia"
   modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;

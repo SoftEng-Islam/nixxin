@@ -18,18 +18,18 @@ in {
       settings = {
         general = {
           before_sleep_cmd =
-            "${pkgs.stdenv.hostPlatform.system}/bin/loginctl lock-session";
+            "${pkgs.systemd}/bin/loginctl lock-session";
           after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
           ignore_dbus_inhibit = true;
           lock_cmd = "noctalia-shell ipc call lockScreen lock";
         };
         listener = [
           {
-            # timeout = 300;
+            timeout = 600; # 10 minutes
             on-timeout = "${lockScript.outPath} lock";
           }
           {
-            # timeout = 1800;
+            timeout = 1800; # 30 minutes
             on-timeout = "${lockScript.outPath} suspend";
           }
         ];

@@ -46,7 +46,6 @@
       # ---- Layer Rules ---- #
       layerrule = xray 1, .*
       layerrule = noanim, ^(walker|selection|overview|anyrun|indicator.*|osk|hyprpicker)$
-      layerrule = blur, shell:*
       layerrule = ignorealpha 0.6, shell:*
 
       # ---- Blur Settings ---- #
