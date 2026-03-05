@@ -88,6 +88,9 @@
                   };
                 })
               ];
+              environment.systemPackages = [
+                (pkgs.callPackage ./blender-legacy.nix { })
+              ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")
           ];
