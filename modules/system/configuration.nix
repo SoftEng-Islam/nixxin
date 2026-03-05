@@ -64,7 +64,7 @@ in
       extraConfig = _system.boot.loader.manager.grub.extraConfig;
 
       enableCryptodisk = lib.mkDefault false;
-      backgroundColor = null;
+      backgroundColor = "#000000"; # null or string: "#000000"
       splashImage = null;
     };
 
@@ -108,14 +108,11 @@ in
     ];
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [
-      # Reduce Boot Delay
-
+      #---- Reduce Boot Delay ---- #
       # tell the kernel to not be verbose
       "quiet"
-
       # kernel log message level
       "loglevel=0" # 1: sustem is unusable | 3: error condition | 7: very verbose
-
       "splash"
       "rd.systemd.show_status=false"
       "udev.log_level=0"

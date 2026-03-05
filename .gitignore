@@ -21,3 +21,5 @@ subprojects/gvc
 venv
 ~/
 ./acpi_fix
+
+ignore/*
