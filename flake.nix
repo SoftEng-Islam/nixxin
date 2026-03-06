@@ -72,6 +72,9 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             {
+              imports = [
+                ./pkgs/blender/default.nix
+              ];
               nixpkgs.overlays = [
                 (final: prev: {
                   update = import to-update {

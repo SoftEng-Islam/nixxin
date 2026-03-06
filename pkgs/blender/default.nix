@@ -92,8 +92,7 @@ stdenv.mkDerivation rec {
   ];
 
   # Fixes: blender build failure on `#include <io.h>`
-  NIX_CFLAGS_COMPILE =
-    "-isystem ${stdenv.cc.cc}/include/c++/${stdenv.cc.cc.version}/${stdenv.hostPlatform.config}";
+  NIX_CFLAGS_COMPILE = "-isystem ${stdenv.cc.cc}/include/c++/${stdenv.cc.cc.version}/${stdenv.hostPlatform.config}";
 
   postPatch = ''
     substituteInPlace build_files/cmake/Modules/FindOpenEXR.cmake \
