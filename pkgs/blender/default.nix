@@ -1,114 +1,154 @@
 { pkgs }:
 
 let
-  # Pin a specific version of nixpkgs from late 2021 (when Python 3.9 was standard)
+  system = pkgs.stdenv.hostPlatform.system;
+
+  # Pin a specific version of nixpkgs to keep legacy deps/build tooling stable.
   legacyPkgs = import (builtins.fetchTarball {
     url = "https://github.com/NixOS/nixpkgs/archive/nixos-21.11.tar.gz";
     sha256 = "04ffwp2gzq0hhz7siskw6qh9ys8ragp7285vi1zh8xjksxn1msc5"; # Verified hash
-  }) { inherit (pkgs) system; };
+  }) { inherit system; };
 
-  # Now we pull Python 3.9 and its packages from that specific legacy set
-  python39Packages = legacyPkgs.python39Packages;
-  python = python39Packages.python;
+  lib = legacyPkgs.lib;
+  stdenv = legacyPkgs.stdenv;
+
+  # Blender 2.90.x requires Python 3.8.
+  pythonPackages = legacyPkgs.python38Packages;
+  python = pythonPackages.python;
+
+  # Some attrs were renamed across nixpkgs revisions; prefer a best-effort fallback.
+  embree = legacyPkgs.embree3 or legacyPkgs.embree;
+  libopenjpeg = legacyPkgs.libopenjpeg or legacyPkgs.openjpeg;
 in
-pkgs.stdenv.mkDerivation rec {
-  pname = "blender293";
-  version = "2.93.2";
+stdenv.mkDerivation rec {
+  pname = "blender290";
+  version = "2.90.1";
 
-  src = pkgs.fetchurl {
+  src = legacyPkgs.fetchurl {
     url = "https://download.blender.org/source/blender-${version}.tar.xz";
-    sha256 = "sha256-nG1Kk6UtiCwsQBDz7VELcMRVEovS49QiO3haIpvSfu4=";
+    sha256 = "1jqavwq1i45vh9z25jbpz0ckfjyw50qahlkh9zpy1zcmf5fpjwf0";
   };
 
-  # Use the legacy python packages here
   nativeBuildInputs = [
-    pkgs.cmake
-    pkgs.makeWrapper
-    python39Packages.wrapPython
-    pkgs.llvmPackages.llvm.dev
+    legacyPkgs.cmake
+    legacyPkgs.makeWrapper
+    legacyPkgs.pkg-config
+    pythonPackages.wrapPython
+    legacyPkgs.llvmPackages.libclang
+    legacyPkgs.libxkbcommon
   ];
 
-  buildInputs = with pkgs; [
-    boost
-    ffmpeg
-    gettext
-    glew
-    ilmbase
-    freetype
-    libjpeg
-    libpng
-    libsamplerate
-    libsndfile
-    libtiff
-    opencolorio
-    openexr
-    openimagedenoise
-    openimageio
-    openjpeg
-    python
-    zlib
-    fftw
-    jemalloc
-    alembic
-    opensubdiv
-    tbb
-    embree
-    gmp
-    pugixml
-    potrace
-    libharu
-    ocl-icd
-    xorg.libXi
-    xorg.libX11
-    xorg.libXext
-    xorg.libXrender
-    libGLU
-    libGL
-    openal
-    xorg.libXxf86vm
-    openxr-loader
-    openvdb
-  ];
+  buildInputs =
+    (with legacyPkgs; [
+      boost
+      fftw
+      ffmpeg
+      gettext
+      glew
+      eigen
+      freetype
+      jemalloc
+      libGL
+      libGLU
+      libjpeg
+      libopenjpeg
+      libpng
+      libpulseaudio
+      libsamplerate
+      libsndfile
+      libtiff
+      openal
+      openexr
+      ilmbase
+      openimageio
+      tbb
+      blosc
+      openvdb
+      zlib
+      ocl-icd
+      opencl-headers
+      xorg.libX11
+      xorg.libXi
+      xorg.libXxf86vm
+      xorg.libXext
+      xorg.libXrender
+      xorg.libXfixes
+      xorg.libXcursor
+      xorg.libXinerama
+      xorg.libXrandr
+    ])
+    ++ [ embree ];
 
-  # Use legacy numpy and requests
-  pythonPath = with python39Packages; [
+  pythonPath = with pythonPackages; [
     numpy
     requests
   ];
 
+  patches = [
+    (legacyPkgs.fetchurl {
+      url = "https://developer.blender.org/file/download/xw4pbww7o7q3hw2alxz6obc7/blender-2.90.1-ffmpeg-4.3.patch";
+      sha256 = "1l1wkf52vkpd6g6xw21gcmk2pcbb76cq4fnhhdqci6gikngzq40c";
+    })
+  ];
+
+  # Fixes: blender build failure on `#include <io.h>`
+  NIX_CFLAGS_COMPILE =
+    "-isystem ${stdenv.cc.cc}/include/c++/${stdenv.cc.cc.version}/${stdenv.hostPlatform.config}";
+
   postPatch = ''
-    substituteInPlace extern/clew/src/clew.c --replace '"libOpenCL.so"' '"${pkgs.ocl-icd}/lib/libOpenCL.so"'
+    substituteInPlace build_files/cmake/Modules/FindOpenEXR.cmake \
+      --replace "2.2" "${legacyPkgs.openexr.version}"
+
+    substituteInPlace extern/clew/src/clew.c \
+      --replace '"libOpenCL.so"' '"${legacyPkgs.ocl-icd}/lib/libOpenCL.so"'
   '';
 
   cmakeFlags = [
-    "-DWITH_ALEMBIC=ON"
-    "-DWITH_CYCLES_DEVICE_OPENCL=ON"
-    "-DWITH_OPENCOLORIO=ON"
-    "-DPYTHON_VERSION=3.9"
-    "-DWITH_PYTHON_INSTALL=OFF"
-    "-DWITH_OPENVDB=ON"
-    "-DWITH_TBB=ON"
-    "-DWITH_IMAGE_OPENJPEG=ON"
+    "-DWITH_MOD_OCEANSIM=OFF"
+    "-DWITH_CODEC_FFMPEG=ON"
     "-DWITH_INSTALL_PORTABLE=OFF"
-    # Point CMake to the correct Python 3.9 locations
-    "-DPYTHON_INCLUDE_DIR=${python}/include/python3.9"
-    "-DPYTHON_LIBRARY=${python}/lib/libpython3.9.so"
+    "-DWITH_PYTHON_INSTALL=OFF"
+    "-DPYTHON_VERSION=${python.pythonVersion}"
+    "-DPYTHON_INCLUDE_DIR=${python}/include/${python.libPrefix}"
+    "-DPYTHON_LIBRARY=${python}/lib/libpython${python.pythonVersion}.so"
+    "-DWITH_BOOST_ICU=ON"
+    "-DWITH_PYTHON_MODULE=ON"
+    "-DPYTHON_LIBPATH=${python}/lib"
+    "-DWITH_ALEMBIC=ON"
+    "-DWITH_IMAGE_OPENJPEG=ON"
+    "-DWITH_JEMALLOC=ON"
+    "-DWITH_OPENVDB=ON"
+    "-DOPENVDB_ROOT_DIR=${legacyPkgs.openvdb}"
+    "-DBLOSC_ROOT_DIR=${legacyPkgs.blosc}"
+    "-DWITH_TBB=ON"
+    "-DWITH_CYCLES_EMBREE=ON"
+    "-DEMBREE_ROOT_DIR=${embree}"
+    "-DWITH_CYCLES_DEVICE_OPENCL=ON"
+    "-DWITH_GHOST_X11=ON"
   ];
 
   postInstall = ''
-    mv $out/bin/blender $out/bin/blender293
+    mv $out/bin/blender $out/bin/blender290
 
     buildPythonPath "$pythonPath"
-    wrapProgram $out/bin/blender293 \
-      --prefix PATH : ${pkgs.lib.makeBinPath [ pkgs.stdenv.cc ]} \
+    wrapProgram $out/bin/blender290 \
+      --prefix PATH : ${stdenv.cc}/bin \
       --prefix PYTHONPATH : "$program_PYTHONPATH" \
       --add-flags '--python-use-system-env'
 
     if [ -d "$out/share/applications" ]; then
       substituteInPlace $out/share/applications/blender.desktop \
-        --replace "Name=Blender" "Name=Blender 2.93 (Legacy)" \
-        --replace "Exec=blender" "Exec=blender293"
-      mv $out/share/applications/blender.desktop $out/share/applications/blender293.desktop
+        --replace "Name=Blender" "Name=Blender 2.90 (Legacy)" \
+        --replace "Exec=blender" "Exec=blender290"
+      mv $out/share/applications/blender.desktop $out/share/applications/blender290.desktop
     fi
   '';
+
+  meta = with lib; {
+    description = "Blender 2.90.1 (legacy)";
+    homepage = "https://www.blender.org/";
+    license = licenses.gpl2Plus;
+    platforms = platforms.linux;
+    mainProgram = "blender290";
+  };
 }
