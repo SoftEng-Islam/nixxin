@@ -73,7 +73,7 @@
             inputs.home-manager.nixosModules.home-manager
             {
               imports = [
-                ./pkgs/blender/default.nix
+                ./pkgs/default.nix
               ];
               nixpkgs.overlays = [
                 (final: prev: {
