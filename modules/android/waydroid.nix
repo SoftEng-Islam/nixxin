@@ -94,10 +94,10 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     # fi
 
     # 2. Fix the missing card0 issue!
-    # if [ -f "$nodes" ]; then
-    #   # Replace card0 with card1
-    #   ${pkgs.gnused}/bin/sed -i 's|/dev/dri/card0|/dev/dri/card1|g' "$nodes"
-    # fi
+    if [ -f "$nodes" ]; then
+      # Replace card0 with card1
+      ${pkgs.gnused}/bin/sed -i 's|/dev/dri/card0|/dev/dri/card1|g' "$nodes"
+    fi
 
     # Optionally, disable unnecessary desktop files
     # sed -i 's|(\[Desktop Entry\])|$1\nNoDisplay=true|' ~/.local/share/applications/waydroid.*.desktop

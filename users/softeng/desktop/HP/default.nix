@@ -222,10 +222,10 @@ rec {
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = true;
-  modules.browsers.brave.enable = true;
+  modules.browsers.brave.enable = false;
   modules.browsers.firefox.enable = true;
   modules.browsers.firefox-beta.enable = false;
-  modules.browsers.microsoft-edge.enable = true;
+  modules.browsers.microsoft-edge.enable = false;
 
   # [ cli_tools ] Collection of useful CLI apps/terminals/shells
   modules.cli_tools.prompt.enable = true;
@@ -396,15 +396,11 @@ rec {
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = true; # video Editor
   modules.media.shotcut = false; # video Editor
-  modules.media.constrict = false; # video compressor
   modules.media.music = true; # Music Player
 
   # [Networking]
   modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
-  modules.networking.nameservers = [
-    "8.8.8.8"
-    "9.9.9.9"
-  ]; # DNS
+  modules.networking.nameservers = [ "8.8.8.8" ]; # DNS
   modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
   modules.networking.interfaces = {
     # eno1 = {
@@ -435,8 +431,8 @@ rec {
   modules.office.translators.enable = true;
 
   # [ overclock ]
-  modules.overclock.corectrl.enable = true;
-  modules.overclock.lactd.enable = true;
+  modules.overclock.corectrl.enable = false;
+  modules.overclock.lactd.enable = false;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
@@ -453,13 +449,11 @@ rec {
   modules.power.boot.kernelModules = [
     "amdgpu-i2c" # AMDGPU I2C driver for better power management and performance on AMD GPUs
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
-    # "powernow-k8" # Removed: only for K8/K10 CPUs, not Excavator (A8-8650B)
     "cpufreq_performance"
     "cpufreq_powersave"
     "cpufreq_ondemand"
     "cpufreq_conservative"
     "binder_linux"
-    # "ashmem_linux" # Removed: deprecated and removed from kernels >= 5.18, use memfd instead
   ];
 
   # [ Recording ]
@@ -522,7 +516,6 @@ rec {
     "drm"
     "drm_kms_helper"
     "gpu_sched"
-    # "ashmem_linux" # Removed: deprecated and removed from kernels >= 5.18
     "binder_linux"
   ];
   modules.system.boot.blacklistedKernelModules = [
@@ -533,7 +526,6 @@ rec {
     "snd_seq_dummy"
     "nouveau"
     "nvidia"
-    # "simpledrm"
   ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {

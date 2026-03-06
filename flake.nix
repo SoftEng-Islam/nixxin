@@ -57,12 +57,6 @@
       # 3. Import settings again with real pkgs for full usage
       _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
       settings = _SETTINGS.profile;
-
-      # This overlay adds 'constrict' to our pkgs
-      overlay-constrict = final: prev: {
-        constrict = final.callPackage ./pkgs/constrict { };
-      };
-
     in
     {
       # NixOS configuration entrypoint.
@@ -79,17 +73,12 @@
             inputs.home-manager.nixosModules.home-manager
             {
               nixpkgs.overlays = [
-                overlay-constrict
-                # inputs.nixGL.overlay
                 (final: prev: {
                   update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;
                   };
                 })
-              ];
-              environment.systemPackages = [
-                (pkgs.callPackage ./pkgs/blender-legacy.nix { })
               ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")

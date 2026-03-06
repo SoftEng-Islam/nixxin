@@ -53,7 +53,7 @@ let
 in
 {
   # enable zsh autocompletion for system packages (systemd, etc)
-  # environment.pathsToLink = [ "/share/zsh" ];
+  environment.pathsToLink = [ "/share/zsh" ];
 
   # Path to your oh-my-zsh installation.
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link
@@ -126,12 +126,12 @@ in
     #   '';
     # };
     home.file.".zshrc".text = ''
-      # zmodload zsh/zprof
+      zmodload zsh/zprof
 
       # [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       # If you come from bash you might have to change your $PATH.
       # export PATH=${HOME}/bin:/usr/local/bin:$PATH
-      # export PATH="$PATH:/home/softeng/.local/share/gem/ruby/3.3.0/bin"
+      # export PATH="$PATH:${HOME}/.local/share/gem/ruby/3.3.0/bin"
 
 
       # ------------------------ #
@@ -268,10 +268,7 @@ in
       ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=black,bg=red')
       ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
 
-      # Created by `pipx` on 2024-11-07 21:19:31
-      export PATH="$PATH:${HOME}/.local/bin"
-
-      # zprof
+      zprof
     '';
   };
 }
