@@ -126,7 +126,7 @@ in
     #   '';
     # };
     home.file.".zshrc".text = ''
-      zmodload zsh/zprof
+      # zmodload zsh/zprof
 
       # [[ ! $(command -v nix) && -e "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh" ]] && source "/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh"
       # If you come from bash you might have to change your $PATH.
@@ -268,7 +268,7 @@ in
       ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=black,bg=red')
       ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
 
-      zprof
+      # zprof
     '';
   };
 }
