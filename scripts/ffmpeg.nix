@@ -48,7 +48,7 @@ EOF
       extras=()
     fi
 
-    exec ${ffmpeg}/bin/ffmpeg -i "$input" -c:v libsvtav1 -c:a copy "''${extras[@]}" "$output"
+    exec env SVT_LOG="''${SVT_LOG:-0}" ${ffmpeg}/bin/ffmpeg -hide_banner -loglevel warning -stats -i "$input" -c:v libsvtav1 -c:a copy "''${extras[@]}" "$output"
   '';
 in
 {

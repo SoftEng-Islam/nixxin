@@ -17,6 +17,11 @@
 
       windowrulev2 = tile, class:(dev.warp.Warp)
 
+      # ---- Browsers ---- #
+      # Force browsers to be tiled by default. Dialog/PiP rules below still float.
+      windowrulev2 = tile, class:^(zen(-.*)?|firefox(-.*)?|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
+
+
       # ---- Dialogs ---- #
       # Fix: Force Dialogs & Pop-ups to Float
       windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$

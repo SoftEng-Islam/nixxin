@@ -152,7 +152,7 @@ for i in "${!VIDEOS[@]}"; do
   start_time=$(date +%s)
 
   # Encode
-  ffmpeg -i "$input" -vcodec "$CODEC" -c:a "$AUDIO_CODEC" "$output" -y
+  SVT_LOG="${SVT_LOG:-0}" ffmpeg -hide_banner -loglevel warning -stats -y -i "$input" -c:v "$CODEC" -c:a "$AUDIO_CODEC" "$output"
 
   exit_code=$?
   end_time=$(date +%s)

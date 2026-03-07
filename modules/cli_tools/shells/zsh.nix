@@ -48,6 +48,10 @@ let
     trans = "trans -no-bidi";
 
     nix-shell = "nix-shell --run zsh";
+
+    # Quieter ffmpeg output (hide banner + suppress SVT-AV1 encoder info spam).
+    # Use `command ffmpeg ...` if you need the full logs.
+    ffmpeg = "SVT_LOG=0 ffmpeg -hide_banner -loglevel warning -stats";
   };
 
 in
