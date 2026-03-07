@@ -12,7 +12,7 @@
     ./hyprland
     ./image_viewer.nix
     ./keyring.nix
-    ./noctalia/default.nix
+    ./noctalia.nix
     ./polkit.nix
     ./qt_gtk.nix
     ./quickShell
