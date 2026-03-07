@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # ============================================================
 # AV1 Batch Video Encoder
@@ -13,8 +13,14 @@ OUTPUT_EXT="mkv"
 # --- Define your video list here ---
 # Add or remove entries as needed. Each entry is the input filename.
 VIDEOS=(
-  "input1.mp4"
-  "input2.mkv"
+  "Beata - I love outdoor fucking.mp4"
+  #"Alyssia_Kent Alice_Hernandez Maid_To_Massage.mp4"
+  #"Brooklyn_Blue The Fake Doctor.mp4"
+  #"Eva Lovia - Let It Ride - scene 1.mp4"
+  #"Holly Michaels and Jeovanni Francesco.mp4"
+  #"[OyeLoca] 18.04.11 Darcia.mp4"
+  #"Brazzers — Kleio Valentien, Nikki Hearts — Kinky Dungeon (2014).mp4"
+  #"Evelin Stone - [TheRealWorkout.com] - [2017] - Foreign Boy Meets Thirsty Fitness Model.mp4"
 )
 
 # --- Helper functions ---
@@ -22,6 +28,7 @@ VIDEOS=(
 # Print a separator line
 separator() {
   echo "============================================================"
+  echo "============================================================" >> status.txt
 }
 
 # Get video duration via ffprobe
@@ -90,11 +97,11 @@ print_video_info() {
 
 total=${#VIDEOS[@]}
 
-echo ""
+echo "" && echo "" >> status.txt
 separator
-echo "  AV1 Batch Encoder — $total video(s) queued"
+echo "  AV1 Batch Encoder — $total video(s) queued" && echo "  AV1 Batch Encoder — $total video(s) queued" >> status.txt
 separator
-echo ""
+echo "" && echo "" >> status.txt
 
 success=0
 fail=0
@@ -114,20 +121,21 @@ for i in "${!VIDEOS[@]}"; do
   fi
 
   separator
-  echo "[$num/$total] Encoding: $input"
+  echo "[$num/$total] Encoding: $input" && echo "[$num/$total] Encoding: $input" >> status.txt
   separator
 
   # Check if input file exists
   if [[ ! -f "$input" ]]; then
-    echo "[SKIP] File not found: $input"
-    echo ""
+    echo "[SKIP] File not found: $input" && echo "[SKIP] File not found: $input" >> status.txt
+    echo "" && echo "" >> status.txt
     ((skipped++))
     continue
   fi
 
   # Print info about the source video
   print_video_info "$input"
-  echo ""
+  print_video_info "$input" >> status.txt
+  echo "" && echo "" >> status.txt
 
   # Record start time
   start_time=$(date +%s)
@@ -141,18 +149,21 @@ for i in "${!VIDEOS[@]}"; do
 
   if [[ $exit_code -eq 0 ]]; then
     out_size=$(du -h "$output" 2>/dev/null | cut -f1)
-    echo ""
+    echo "" && echo "" >> status.txt
     echo "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))"
+    echo "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))" >> status.txt
     ((success++))
   else
-    echo ""
+    echo "" && echo "" >> status.txt
     echo "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))"
+    echo "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))" >> status.txt
     ((fail++))
   fi
-  echo ""
+  echo "" && echo "" >> status.txt
 done
 
 separator
 echo "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)"
+echo "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)" >> status.txt
 separator
-echo ""
+echo "" && echo "" >> status.txt

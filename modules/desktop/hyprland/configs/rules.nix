@@ -119,9 +119,9 @@
 
       # Extra rules for specific apps
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
-      windowrulev2 = float,class:^(zenity)$
-      windowrulev2 = center,class:^(zenity)$
-      windowrulev2 = size 850 500,class:^(zenity)$
+      # windowrulev2 = float,class:^(zenity)$
+      # windowrulev2 = center,class:^(zenity)$
+      # windowrulev2 = size 850 500,class:^(zenity)$
       windowrulev2 = float,class:^(pavucontrol)$
       windowrulev2 = float,class:^(SoundWireServer)$
       windowrulev2 = float,class:^(.sameboy-wrapped)$

@@ -71,8 +71,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     # Without this, waydroid spams "Failed to mount/setup <cgroup>" errors.
     # NOTE: NixOS does not officially support this; if a future NixOS update
     # breaks boot, remove these two lines and accept cosmetic cgroup errors.
-    "systemd.unified_cgroup_hierarchy=0"
-    "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
+    # "systemd.unified_cgroup_hierarchy=0"
+    # "SYSTEMD_CGROUP_ENABLE_LEGACY_FORCE=1"
   ];
   boot.kernelModules = [
     "uhid"

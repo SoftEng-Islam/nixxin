@@ -10,8 +10,15 @@
     };
   };
 
-  outputs = { self, nixpkgs, flake-utils, yt-dlp-src }:
-    flake-utils.lib.eachDefaultSystem (system:
+  outputs =
+    {
+      self,
+      nixpkgs,
+      flake-utils,
+      yt-dlp-src,
+    }:
+    flake-utils.lib.eachDefaultSystem (
+      system:
       let
         pkgs = nixpkgs.legacyPackages.${system};
 
@@ -34,11 +41,13 @@
 
           docheck = false;
         };
-      in {
+      in
+      {
         packages.default = yt-dlp;
         apps.default = {
           type = "app";
           program = "${yt-dlp}/bin/yt-dlp";
         };
-      });
+      }
+    );
 }

@@ -8,19 +8,17 @@
 {
   imports = lib.optionals (settings.modules.desktop.enable or false) [
     ./dconf.nix
-    ./keyring.nix
-    ./polkit.nix
-    ./ashell
-    ./hyprland
     ./file_manager.nix
+    ./hyprland
     ./image_viewer.nix
+    ./keyring.nix
+    ./noctalia
+    ./polkit.nix
     ./qt_gtk.nix
-    ./screenshot.nix
-    ./tools.nix
     ./quickShell
     ./rofi.nix
-    ./noctalia.nix
-    # ./flatpak.nix
+    ./screenshot.nix
+    ./tools.nix
   ];
 
   programs.appimage = {

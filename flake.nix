@@ -23,19 +23,10 @@
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
-    # ashell.url = "github:MalpenZibo/ashell";
-    # ashell.flake = true;
-
-    # https://github.com/gmodena/nix-flatpak
-    # nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
-
-    # devDocs-flake.url = "path:./pkgs/devDocs";
-    # devDocs-flake.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs =
     {

@@ -1,6 +1,13 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.fonts.enable) {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+mkIf (settings.modules.fonts.enable) {
   #.Sometimes cached data or corrupt configuration files cause issues.
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus && fc-cache -fv
   fonts = {
@@ -13,11 +20,12 @@ in mkIf (settings.modules.fonts.enable) {
       jetbrains-mono
 
       # ---- Extra Fonts ---- #
-      fira-code # Monospace font with programming ligatures
+      # fira-code # Monospace font with programming ligatures
       texlivePackages.fira # Fira fonts with LaTeX support
 
       # ---- Noto Fonts ---- #
-      noto-fonts # Beautiful and free fonts for many languages
+      # noto-fonts # Beautiful and free fonts for many languages
+      #? Are we need this?
       noto-fonts-color-emoji # Color emoji font
 
       # ---- Nerd Fonts ---- #
