@@ -12,6 +12,38 @@ let
   lib = legacyPkgs.lib;
   stdenv = legacyPkgs.stdenv;
 
+  embreeFindPatch = legacyPkgs.writeText "blender-2.90-embree-find.patch" ''
+--- a/build_files/cmake/Modules/FindEmbree.cmake
++++ b/build_files/cmake/Modules/FindEmbree.cmake
+@@ -39,15 +39,7 @@ FIND_PATH(EMBREE_INCLUDE_DIR
+
+
+ SET(_embree_FIND_COMPONENTS
+   embree3
+-  embree_sse42
+-  embree_avx
+-  embree_avx2
+-  lexers
+-  math
+-  simd
+-  sys
+-  tasking
+ )
+
+ SET(_embree_LIBRARIES)
+@@ -70,9 +62,9 @@ ENDFOREACH()
+
+
+ FIND_LIBRARY(EMBREE_LIBRARY
+   NAMES
+-    libembree3
++    embree3
+   HINTS
+     ''${_embree_SEARCH_DIRS}
+   PATH_SUFFIXES
+     lib64 lib
+  '';
+
   # Blender 2.90.x requires Python 3.8.
   pythonPackages = legacyPkgs.python38Packages;
   python = pythonPackages.python;
@@ -20,11 +52,9 @@ let
   embree = legacyPkgs.embree3 or legacyPkgs.embree;
   embreeDev = embree.dev or null;
   libopenjpeg = legacyPkgs.libopenjpeg or legacyPkgs.openjpeg;
-  blosc =
-    legacyPkgs.blosc or legacyPkgs."c-blosc" or legacyPkgs.blosc2 or legacyPkgs."c-blosc2";
+  blosc = legacyPkgs.blosc or legacyPkgs."c-blosc" or legacyPkgs.blosc2 or legacyPkgs."c-blosc2";
   alembic = legacyPkgs.alembic or null;
-  alembicDev =
-    if alembic == null then null else (alembic.dev or null);
+  alembicDev = if alembic == null then null else (alembic.dev or null);
 in
 stdenv.mkDerivation rec {
   pname = "blender290";
@@ -98,7 +128,7 @@ stdenv.mkDerivation rec {
   # Avoid remote "developer.blender.org" patches: the download endpoint can serve
   # non-patch content (HTML) which breaks the build at the patching phase.
   # If you later hit ffmpeg API build errors, we'll add a small local patch here.
-  patches = [ ];
+  patches = [ embreeFindPatch ];
 
   # Fixes: blender build failure on `#include <io.h>`
   NIX_CFLAGS_COMPILE = "-isystem ${stdenv.cc.cc}/include/c++/${stdenv.cc.cc.version}/${stdenv.hostPlatform.config}";
@@ -130,7 +160,7 @@ stdenv.mkDerivation rec {
     "-DBLOSC_ROOT_DIR=${blosc}"
     "-DWITH_TBB=ON"
     "-DWITH_CYCLES_EMBREE=ON"
-    "-DEMBREE_ROOT_DIR=${if embreeDev == null then embree else embreeDev}"
+    "-DEMBREE_ROOT_DIR=${embree}"
     "-DWITH_CYCLES_DEVICE_OPENCL=ON"
     "-DWITH_GHOST_X11=ON"
   ];
