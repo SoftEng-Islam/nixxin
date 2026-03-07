@@ -88,7 +88,7 @@ stdenv.mkDerivation rec {
   patches = [
     (legacyPkgs.fetchurl {
       url = "https://developer.blender.org/file/download/xw4pbww7o7q3hw2alxz6obc7/blender-2.90.1-ffmpeg-4.3.patch";
-      sha256 = "1l1wkf52vkpd6g6xw21gcmk2pcbb76cq4fnhhdqci6gikngzq40c";
+      sha256 = "sha256-TXknol6j8Dfbs3WQEbO/XXk+nMd8gavaDiq5tKNwe/o=";
     })
   ];
 

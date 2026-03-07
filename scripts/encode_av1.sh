@@ -9,6 +9,7 @@
 CODEC="libsvtav1"
 AUDIO_CODEC="copy"
 OUTPUT_EXT="mkv"
+LOG_FILE="status.txt"
 
 # --- Define your video list here ---
 # Add or remove entries as needed. Each entry is the input filename.
