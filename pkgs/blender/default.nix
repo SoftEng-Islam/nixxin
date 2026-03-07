@@ -19,6 +19,8 @@ let
   # Some attrs were renamed across nixpkgs revisions; prefer a best-effort fallback.
   embree = legacyPkgs.embree3 or legacyPkgs.embree;
   libopenjpeg = legacyPkgs.libopenjpeg or legacyPkgs.openjpeg;
+  blosc =
+    legacyPkgs.blosc or legacyPkgs."c-blosc" or legacyPkgs.blosc2 or legacyPkgs."c-blosc2";
 in
 stdenv.mkDerivation rec {
   pname = "blender290";
@@ -62,7 +64,6 @@ stdenv.mkDerivation rec {
       ilmbase
       openimageio
       tbb
-      blosc
       openvdb
       zlib
       ocl-icd
@@ -77,7 +78,7 @@ stdenv.mkDerivation rec {
       xorg.libXinerama
       xorg.libXrandr
     ])
-    ++ [ embree ];
+    ++ [ embree blosc ];
 
   pythonPath = with pythonPackages; [
     numpy
@@ -118,7 +119,7 @@ stdenv.mkDerivation rec {
     "-DWITH_JEMALLOC=ON"
     "-DWITH_OPENVDB=ON"
     "-DOPENVDB_ROOT_DIR=${legacyPkgs.openvdb}"
-    "-DBLOSC_ROOT_DIR=${legacyPkgs.blosc}"
+    "-DBLOSC_ROOT_DIR=${blosc}"
     "-DWITH_TBB=ON"
     "-DWITH_CYCLES_EMBREE=ON"
     "-DEMBREE_ROOT_DIR=${embree}"
