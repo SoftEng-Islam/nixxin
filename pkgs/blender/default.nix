@@ -13,35 +13,35 @@ let
   stdenv = legacyPkgs.stdenv;
 
   embreeFindPatch = legacyPkgs.writeText "blender-2.90-embree-find.patch" ''
---- a/build_files/cmake/Modules/FindEmbree.cmake
-+++ b/build_files/cmake/Modules/FindEmbree.cmake
-@@ -39,15 +39,7 @@ FIND_PATH(EMBREE_INCLUDE_DIR
+    --- a/build_files/cmake/Modules/FindEmbree.cmake
+    +++ b/build_files/cmake/Modules/FindEmbree.cmake
+    @@ -39,15 +39,7 @@ FIND_PATH(EMBREE_INCLUDE_DIR
 
 
- SET(_embree_FIND_COMPONENTS
-   embree3
--  embree_sse42
--  embree_avx
--  embree_avx2
--  lexers
--  math
--  simd
--  sys
--  tasking
- )
+     SET(_embree_FIND_COMPONENTS
+       embree3
+    -  embree_sse42
+    -  embree_avx
+    -  embree_avx2
+    -  lexers
+    -  math
+    -  simd
+    -  sys
+    -  tasking
+     )
 
- SET(_embree_LIBRARIES)
-@@ -70,9 +62,9 @@ ENDFOREACH()
+     SET(_embree_LIBRARIES)
+    @@ -70,9 +62,9 @@ ENDFOREACH()
 
 
- FIND_LIBRARY(EMBREE_LIBRARY
-   NAMES
--    libembree3
-+    embree3
-   HINTS
-     ''${_embree_SEARCH_DIRS}
-   PATH_SUFFIXES
-     lib64 lib
+     FIND_LIBRARY(EMBREE_LIBRARY
+       NAMES
+    -    libembree3
+    +    embree3
+       HINTS
+         ''${_embree_SEARCH_DIRS}
+       PATH_SUFFIXES
+         lib64 lib
   '';
 
   # Blender 2.90.x requires Python 3.8.

@@ -79,6 +79,24 @@ in
   };
 
   home-manager.users.${settings.user.username} = {
+    systemd.user.services = lib.optionalAttrs (fm_settings.default == "nauitlus" || fm_settings.default == "nautilus") {
+      nautilus-keepalive = {
+        Unit = {
+          Description = "Nautilus keep-alive";
+          After = [ "graphical-session.target" ];
+          Wants = [ "graphical-session.target" ];
+          PartOf = [ "graphical-session.target" ];
+        };
+        Service = {
+          ExecStart = "${pkgs.nautilus}/bin/nautilus --gapplication-service";
+          Restart = "on-failure";
+        };
+        Install = {
+          WantedBy = [ "graphical-session.target" ];
+        };
+      };
+    };
+
     home = {
       file = {
         ".local/share/nemo/actions/aunpack.nemo_action".text = ''

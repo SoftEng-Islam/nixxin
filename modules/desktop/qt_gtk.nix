@@ -71,10 +71,9 @@ in
         "computer:///"
       ];
 
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
-        gtk-interface-color-scheme = 2;
-      };
+      # GTK4/libadwaita apps (e.g. Nautilus) don't use `gtk-application-prefer-dark-theme`.
+      # Use `org.gnome.desktop.interface color-scheme` instead (set in `modules/desktop/dconf.nix`).
+      gtk4.extraConfig = { };
     };
 
     qt = {

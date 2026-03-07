@@ -3,9 +3,9 @@ let
   wifiMonitorMode = pkgs.writeShellScriptBin "wifiMonitorMode" ''
     #!/run/current-system/sw/bin/bash
     # function to enable monitor mode on a specified wifi interface
-    # usage: wifiMonitorMode.sh <interface>
-    # example: wifiMonitorMode.sh wlan0
-    # requires: iw, ip, airmon-ng, sudo
+    # usage: wifiMonitorMode <interface>
+    # example: wifiMonitorMode wlan0
+    # requires: iw, ip, sudo (optional: nmcli)
     # author: Islam Ahmed (softeng)
     # date: 2024-10-01
     # license: MIT
@@ -30,15 +30,14 @@ let
     # Disable NetworkManager on the interface to avoid conflicts
     if command -v nmcli > /dev/null 2>&1; then
       echo "Disabling NetworkManager on $INTERFACE..."
-      nmcli device set "$INTERFACE" managed no
-      sudo airmon-ng check kill
+      sudo nmcli device set "$INTERFACE" managed no
     fi
     # Bring the interface down
     echo "Bringing down the interface $INTERFACE..."
     sudo ip link set "$INTERFACE" down
     # Set the interface to monitor mode
     echo "Setting $INTERFACE to monitor mode..."
-    sudo iw "$INTERFACE" set monitor control
+    sudo iw dev "$INTERFACE" set type monitor
     # Bring the interface up
     echo "Bringing up the interface $INTERFACE..."
     sudo ip link set "$INTERFACE" up
