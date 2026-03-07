@@ -18,9 +18,13 @@ let
 
   # Some attrs were renamed across nixpkgs revisions; prefer a best-effort fallback.
   embree = legacyPkgs.embree3 or legacyPkgs.embree;
+  embreeDev = embree.dev or null;
   libopenjpeg = legacyPkgs.libopenjpeg or legacyPkgs.openjpeg;
   blosc =
     legacyPkgs.blosc or legacyPkgs."c-blosc" or legacyPkgs.blosc2 or legacyPkgs."c-blosc2";
+  alembic = legacyPkgs.alembic or null;
+  alembicDev =
+    if alembic == null then null else (alembic.dev or null);
 in
 stdenv.mkDerivation rec {
   pname = "blender290";
@@ -78,7 +82,13 @@ stdenv.mkDerivation rec {
       xorg.libXinerama
       xorg.libXrandr
     ])
-    ++ [ embree blosc ];
+    ++ lib.filter (x: x != null) [
+      embree
+      embreeDev
+      blosc
+      alembic
+      alembicDev
+    ];
 
   pythonPath = with pythonPackages; [
     numpy
@@ -120,7 +130,7 @@ stdenv.mkDerivation rec {
     "-DBLOSC_ROOT_DIR=${blosc}"
     "-DWITH_TBB=ON"
     "-DWITH_CYCLES_EMBREE=ON"
-    "-DEMBREE_ROOT_DIR=${embree}"
+    "-DEMBREE_ROOT_DIR=${if embreeDev == null then embree else embreeDev}"
     "-DWITH_CYCLES_DEVICE_OPENCL=ON"
     "-DWITH_GHOST_X11=ON"
   ];
