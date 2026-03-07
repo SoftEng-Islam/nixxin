@@ -1,0 +1,9 @@
+@nix { "action": "setPhase", "phase": "unpackPhase" }
+unpacking sources
+unpacking source archive /nix/store/haljamwcdi7zwhsa6xca3agwxc61msfj-blender-2.90.1.tar.xz
+source root is blender-2.90.1
+setting SOURCE_DATE_EPOCH to timestamp 1600848331 of file blender-2.90.1/release/scripts/addons/precision_drawing_tools/pdt_command.py
+@nix { "action": "setPhase", "phase": "patchPhase" }
+patching sources
+applying patch /nix/store/hvy4g0dpsrvgbabl06969v7zqw2cs0jj-blender-2.90.1-ffmpeg-4.3.patch
+patch: **** Only garbage was found in the patch input.

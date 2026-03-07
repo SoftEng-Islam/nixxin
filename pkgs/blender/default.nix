@@ -85,12 +85,10 @@ stdenv.mkDerivation rec {
     requests
   ];
 
-  patches = [
-    (legacyPkgs.fetchurl {
-      url = "https://developer.blender.org/file/download/xw4pbww7o7q3hw2alxz6obc7/blender-2.90.1-ffmpeg-4.3.patch";
-      sha256 = "sha256-TXknol6j8Dfbs3WQEbO/XXk+nMd8gavaDiq5tKNwe/o=";
-    })
-  ];
+  # Avoid remote "developer.blender.org" patches: the download endpoint can serve
+  # non-patch content (HTML) which breaks the build at the patching phase.
+  # If you later hit ffmpeg API build errors, we'll add a small local patch here.
+  patches = [ ];
 
   # Fixes: blender build failure on `#include <io.h>`
   NIX_CFLAGS_COMPILE = "-isystem ${stdenv.cc.cc}/include/c++/${stdenv.cc.cc.version}/${stdenv.hostPlatform.config}";
