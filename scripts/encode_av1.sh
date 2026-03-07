@@ -26,10 +26,21 @@ VIDEOS=(
 
 # --- Helper functions ---
 
+# Log to stdout and to the log file
+log() {
+  echo "$*"
+  echo "$*" >> "$LOG_FILE"
+}
+
+# Log a blank line to stdout and to the log file
+log_blank() {
+  echo ""
+  echo "" >> "$LOG_FILE"
+}
+
 # Print a separator line
 separator() {
-  echo "============================================================"
-  echo "============================================================" >> status.txt
+  log "============================================================"
 }
 
 # Get video duration via ffprobe
@@ -53,12 +64,12 @@ format_time() {
 # Print video info (resolution, codec, duration, file size)
 print_video_info() {
   local file="$1"
-  echo "  File     : $file"
+  log "  File     : $file"
 
   # Duration
   local dur
   dur=$(get_duration "$file")
-  echo "  Duration : $(format_time "$dur")"
+  log "  Duration : $(format_time "$dur")"
 
   # Video stream info
   local vinfo
@@ -73,7 +84,7 @@ print_video_info() {
   fps=$(echo "$vinfo"    | grep "^r_frame_rate="| cut -d= -f2)
   bitrate=$(echo "$vinfo"| grep "^bit_rate="   | cut -d= -f2)
 
-  echo "  Video    : ${vcodec:-N/A}, ${width:-?}x${height:-?}, ${fps:-N/A} fps, bitrate ${bitrate:-N/A}"
+  log "  Video    : ${vcodec:-N/A}, ${width:-?}x${height:-?}, ${fps:-N/A} fps, bitrate ${bitrate:-N/A}"
 
   # Audio stream info
   local ainfo
@@ -86,23 +97,23 @@ print_video_info() {
   sample_rate=$(echo "$ainfo" | grep "^sample_rate="  | cut -d= -f2)
   channels=$(echo "$ainfo"    | grep "^channels="     | cut -d= -f2)
 
-  echo "  Audio    : ${acodec:-N/A}, ${sample_rate:-N/A} Hz, ${channels:-N/A} ch"
+  log "  Audio    : ${acodec:-N/A}, ${sample_rate:-N/A} Hz, ${channels:-N/A} ch"
 
   # File size
   local size
   size=$(du -h "$file" 2>/dev/null | cut -f1)
-  echo "  Size     : ${size:-N/A}"
+  log "  Size     : ${size:-N/A}"
 }
 
 # --- Main ---
 
 total=${#VIDEOS[@]}
 
-echo "" && echo "" >> status.txt
+log_blank
 separator
-echo "  AV1 Batch Encoder — $total video(s) queued" && echo "  AV1 Batch Encoder — $total video(s) queued" >> status.txt
+log "  AV1 Batch Encoder — $total video(s) queued"
 separator
-echo "" && echo "" >> status.txt
+log_blank
 
 success=0
 fail=0
@@ -122,21 +133,20 @@ for i in "${!VIDEOS[@]}"; do
   fi
 
   separator
-  echo "[$num/$total] Encoding: $input" && echo "[$num/$total] Encoding: $input" >> status.txt
+  log "[$num/$total] Encoding: $input"
   separator
 
   # Check if input file exists
   if [[ ! -f "$input" ]]; then
-    echo "[SKIP] File not found: $input" && echo "[SKIP] File not found: $input" >> status.txt
-    echo "" && echo "" >> status.txt
+    log "[SKIP] File not found: $input"
+    log_blank
     ((skipped++))
     continue
   fi
 
   # Print info about the source video
   print_video_info "$input"
-  print_video_info "$input" >> status.txt
-  echo "" && echo "" >> status.txt
+  log_blank
 
   # Record start time
   start_time=$(date +%s)
@@ -150,21 +160,18 @@ for i in "${!VIDEOS[@]}"; do
 
   if [[ $exit_code -eq 0 ]]; then
     out_size=$(du -h "$output" 2>/dev/null | cut -f1)
-    echo "" && echo "" >> status.txt
-    echo "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))"
-    echo "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))" >> status.txt
+    log_blank
+    log "[DONE!] $output  (size: ${out_size:-N/A}, took: $(format_time $elapsed))"
     ((success++))
   else
-    echo "" && echo "" >> status.txt
-    echo "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))"
-    echo "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))" >> status.txt
+    log_blank
+    log "[FAILED!] $input  (exit code: $exit_code, after: $(format_time $elapsed))"
     ((fail++))
   fi
-  echo "" && echo "" >> status.txt
+  log_blank
 done
 
 separator
-echo "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)"
-echo "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)" >> status.txt
+log "  Finished: $success succeeded, $fail failed, $skipped skipped (out of $total)"
 separator
-echo "" && echo "" >> status.txt
+log_blank

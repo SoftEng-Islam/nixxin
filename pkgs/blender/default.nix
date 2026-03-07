@@ -28,7 +28,7 @@ stdenv.mkDerivation rec {
 
   src = legacyPkgs.fetchurl {
     url = "https://download.blender.org/source/blender-${version}.tar.xz";
-    sha256 = "1jqavwq1i45vh9z25jbpz0ckfjyw50qahlkh9zpy1zcmf5fpjwf0";
+    sha256 = "sha256-543MlGyCOtG9ibzGk4/Gs3VUDsPv9YZJWGrPH2plPZk=";
   };
 
   nativeBuildInputs = [
