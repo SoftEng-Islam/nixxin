@@ -23,7 +23,7 @@
 
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.
-      windowrulev = tile, class:^(zen(-.*)?|firefox(-.*)?|zen|zen-browser|zen-beta|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
+      windowrulev2 = tile, class:^(zen(-.*)?|firefox(-.*)?|zen|zen-browser|zen-beta|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
 
 
       # ---- Dialogs ---- #
