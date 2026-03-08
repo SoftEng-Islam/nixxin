@@ -1,4 +1,10 @@
-{ settings, config, lib, pkgs, ... }:
+{
+  settings,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) optionals mkIf optional;
   data = settings.modules.data_transferring;
@@ -28,20 +34,23 @@ let
     # Torrent client
     (optional data.transmission.enable transmission_4-gtk)
   ];
-in {
+in
+{
   imports = optionals (data.enable or false) [
     ./curl
-    ./qbittorrent
+    ./qbittorrent.nix
     ./aria.nix
     ./bitmagnet.nix
     ./torrent.nix
     ./yt-dlp.nix
   ];
   config = mkIf (settings.modules.data_transferring.enable or false) {
-    environment.systemPackages = with pkgs;
+    environment.systemPackages =
+      with pkgs;
       [
         # vdhcoapp
-      ] ++ lib.flatten _pkgs;
+      ]
+      ++ lib.flatten _pkgs;
     # Download Managers & CLI Downloads Utility
     environment.variables = {
       QT_LOGGING_RULES = "qt.gui.imageio.warning=false";

@@ -100,17 +100,17 @@ in
     programs.gamescope.capSysNice = true;
 
     home-manager.users.${settings.user.username} = {
-      xdg.desktopEntries."0ad" = {
-        name = "0 A.D.";
-        genericName = "Historical RTS";
-        # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
-        exec = "0ad";
-        icon = "0ad";
-        categories = [
-          "Game"
-          "StrategyGame"
-        ];
-      };
+      # xdg.desktopEntries."0ad" = {
+      # name = "0 A.D.";
+      # genericName = "Historical RTS";
+      # exec = "gamescope -f -w 1920 -h 1080 -r 60 -- 0ad %u";
+      # exec = "0ad";
+      # icon = "0ad";
+      # categories = [
+      # "Game"
+      # "StrategyGame"
+      # ];
+      # };
     };
 
     # Enable Vulkan support with proper library paths

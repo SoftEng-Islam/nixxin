@@ -1,4 +1,9 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf (settings.modules.data_transferring.qbittorrent.enable or false) {
   environment.systemPackages = with pkgs; [
     # Featureful free software BitTorrent client
@@ -11,7 +16,4 @@ lib.mkIf (settings.modules.data_transferring.qbittorrent.enable or false) {
       # exec ${qbittorrent}/bin/.qbittorrent-wrapped "$@"
     '')
   ];
-  home-manager.users.${settings.user.username} = {
-    # home.file."qb/".source = ./qb;
-  };
 }

@@ -1,4 +1,5 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [ wezterm ];
   home-manager.users.${settings.user.username} = {
     programs.wezterm = {
@@ -33,14 +34,11 @@
         config.underline_position = -3.5
         config.underline_thickness = 1
         config.font = wezterm.font("${settings.modules.terminals.wezterm.fontFamily}", {weight="Regular", italic=true})
-        config.font_size = ${
-          toString settings.modules.terminals.wezterm.fontSize
-        }
+        config.font_size = ${toString settings.modules.terminals.wezterm.fontSize}
         config.font = wezterm.font_with_fallback({
+          "CaskaydiaCove Nerd Font"
           "JetBrains Nerd Font",
           "Amiri",
-          "Noto Sans Arabic",
-          "CaskaydiaCove Nerd Font"
         })
         -- disable ligatures
         -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }

@@ -419,5 +419,7 @@ in
     nh
 
     fwupd
+
+    nix-converter
   ];
 }

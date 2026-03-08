@@ -14,14 +14,8 @@ LOG_FILE="status.txt"
 # --- Define your video list here ---
 # Add or remove entries as needed. Each entry is the input filename.
 VIDEOS=(
-  "Beata - I love outdoor fucking.mp4"
-  #"Alyssia_Kent Alice_Hernandez Maid_To_Massage.mp4"
-  #"Brooklyn_Blue The Fake Doctor.mp4"
-  #"Eva Lovia - Let It Ride - scene 1.mp4"
-  #"Holly Michaels and Jeovanni Francesco.mp4"
-  #"[OyeLoca] 18.04.11 Darcia.mp4"
-  #"Brazzers — Kleio Valentien, Nikki Hearts — Kinky Dungeon (2014).mp4"
-  #"Evelin Stone - [TheRealWorkout.com] - [2017] - Foreign Boy Meets Thirsty Fitness Model.mp4"
+  "input1.mp4"
+  "input2.mkv"
 )
 
 # --- Helper functions ---

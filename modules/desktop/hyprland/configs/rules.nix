@@ -9,17 +9,18 @@
       # ---- Popup/Context Menu Fix ---- #
       # Fix for right-click menus that extend beyond the parent window
       # This ensures clicks register on the popup even when outside the parent app
-      windowrulev2 = stayfocused, class:^()$, title:^()$, floating:1
-      windowrulev2 = minsize 1 1, class:^()$, title:^()$, floating:1
+      windowrulev = stayfocused, class:^()$, title:^()$, floating:1
+      windowrulev = minsize 1 1, class:^()$, title:^()$, floating:1
 
       # ---- Waydroid ---- #
       windowrule = fullscreen, class:^(Waydroid)$
 
+      # ?
       windowrulev2 = tile, class:(dev.warp.Warp)
 
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.
-      windowrulev2 = tile, class:^(zen(-.*)?|firefox(-.*)?|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
+      windowrulev = tile, class:^(zen(-.*)?|firefox(-.*)?|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
 
 
       # ---- Dialogs ---- #
@@ -85,12 +86,12 @@
       # --------------------
       # 0 A.D. rules
       # --------------------
-      windowrule = noborder, class:^(0ad)$
-      windowrule = nodim, class:^(0ad)$
-      windowrule = noshadow, class:^(0ad)$
-      windowrule = noblur, class:^(0ad)$
-      windowrule = fullscreen, class:^(0ad)$
-      windowrule = noanim, class:^(0ad)$
+      # windowrule = noborder, class:^(0ad)$
+      # windowrule = nodim, class:^(0ad)$
+      # windowrule = noshadow, class:^(0ad)$
+      # windowrule = noblur, class:^(0ad)$
+      # windowrule = fullscreen, class:^(0ad)$
+      # windowrule = noanim, class:^(0ad)$
 
       # ===============================
       # Rofi Visual Enhancements

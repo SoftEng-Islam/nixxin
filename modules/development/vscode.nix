@@ -308,15 +308,15 @@ in
           "javascript.inlayHints.propertyDeclarationTypes.enabled" = true;
           "javascript.inlayHints.variableTypes.enabled" = true;
           "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName = true;
+          "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
           "typescript.inlayHints.enumMemberValues.enabled" = true;
           "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
           "typescript.inlayHints.parameterNames.enabled" = "none";
           "typescript.inlayHints.variableTypes.enabled" = true;
           "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
           "typescript.inlayHints.parameterTypes.enabled" = true;
-          typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName = true;
-          typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName = true;
+          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
+          "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
 
           # ShellScript
           "[shellscript]" = {
@@ -509,5 +509,4 @@ in
       "inode/directory" = "code.desktop";
     };
   };
-
 }

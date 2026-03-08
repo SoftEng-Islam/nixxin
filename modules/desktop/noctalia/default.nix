@@ -1,4 +1,11 @@
-{ settings, inputs, lib, config, pkgs, ... }:
+{
+  settings,
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 
 {
   imports = [ inputs.noctalia.nixosModules.default ];
@@ -96,11 +103,13 @@
       # https://docs.noctalia.dev/getting-started/nixos/#plugins
       #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
       plugins = {
-        sources = [{
-          enabled = true;
-          name = "Official Noctalia Plugins";
-          url = "https://github.com/noctalia-dev/noctalia-plugins";
-        }];
+        sources = [
+          {
+            enabled = true;
+            name = "Official Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
         states = {
           assistant-panel = {
             enabled = true;
@@ -193,10 +202,11 @@
           ai = {
             provider = "google";
             model = "gemini-2.5-flash";
-            apiKeys = { google = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ"; };
+            apiKeys = {
+              google = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ";
+            };
             temperature = 0.7;
-            systemPrompt =
-              "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.";
+            systemPrompt = "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.";
             maxHistoryLength = 100;
             openaiLocal = false;
             openaiBaseUrl = "https://api.openai.com/v1/chat/completions";
@@ -300,10 +310,12 @@
                 # widgetWidth = 290;
               }
             ];
-            center = [{
-              id = "Clock";
-              formatHorizontal = "h:mm AP MMM d";
-            }];
+            center = [
+              {
+                id = "Clock";
+                formatHorizontal = "h:mm AP MMM d";
+              }
+            ];
             right = [
               {
                 id = "Tray";
@@ -382,8 +394,7 @@
           useCustomColors = false;
           warningColor = "";
           criticalColor = "";
-          externalMonitor =
-            "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor";
+          externalMonitor = "resources || missioncenter || jdsystemmonitor || corestats || system-monitoring-center || gnome-system-monitor || plasma-systemmonitor || mate-system-monitor || ukui-system-monitor || deepin-system-monitor || pantheon-system-monitor";
         };
         location = {
           name = "Cairo";
@@ -565,7 +576,11 @@
           autoHideMs = 2000;
           overlayLayer = true;
           backgroundOpacity = 1;
-          enabledTypes = [ 0 1 2 ];
+          enabledTypes = [
+            0
+            1
+            2
+          ];
           monitors = [ ];
         };
         audio = {
@@ -653,7 +668,10 @@
           gridSnap = false;
           monitorWidgets = [ ];
         };
-        battery = { chargingMode = 0; };
+        battery = {
+          enabled = false;
+          chargingMode = 0;
+        };
       };
     };
   };
