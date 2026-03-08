@@ -57,7 +57,7 @@ let
 in
 {
   # enable zsh autocompletion for system packages (systemd, etc)
-  environment.pathsToLink = [ "/share/zsh" ];
+  # environment.pathsToLink = [ "/share/zsh" ];
 
   # Path to your oh-my-zsh installation.
   # nix build nixpkgs#oh-my-zsh --print-out-paths --no-link

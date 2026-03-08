@@ -36,9 +36,9 @@
         config.font = wezterm.font("${settings.modules.terminals.wezterm.fontFamily}", {weight="Regular", italic=true})
         config.font_size = ${toString settings.modules.terminals.wezterm.fontSize}
         config.font = wezterm.font_with_fallback({
-          "CaskaydiaCove Nerd Font"
+          "CaskaydiaCove Nerd Font",
           "JetBrains Nerd Font",
-          "Amiri",
+          "Amiri"
         })
         -- disable ligatures
         -- config.harfbuzz_features = { 'calt=0', 'clig=0', 'liga=0' }
@@ -57,7 +57,7 @@
         config.audible_bell = 'Disabled'
         config.colors = {
           -- The color of the scrollbar "thumb"; the portion that represents the current viewport
-          scrollbar_thumb = '#31008d',
+          scrollbar_thumb = '#414042ff',
         }
 
 

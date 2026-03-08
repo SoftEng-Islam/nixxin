@@ -292,7 +292,9 @@
         "nixpkgs": [
           "nixpkgs"
         ],
-        "noctalia-qs": "noctalia-qs"
+        "noctalia-qs": [
+          "noctalia-qs"
+        ]
       },
       "locked": {
         "lastModified": 1772841965,
@@ -311,16 +313,15 @@
     "noctalia-qs": {
       "inputs": {
         "nixpkgs": [
-          "noctalia",
           "nixpkgs"
         ]
       },
       "locked": {
-        "lastModified": 1772673824,
-        "narHash": "sha256-TLHXPoELZA6VeuzC1Zpx+MnSsYzrJs+DSieMgfjAOJc=",
+        "lastModified": 1772915558,
+        "narHash": "sha256-7RAZetvmWu9HZv3wOvsDQYLucQAWBH86I6SZMDuGzSg=",
         "owner": "noctalia-dev",
         "repo": "noctalia-qs",
-        "rev": "f8531192cd09b9ea2e78d18e9cfc9d3dba498690",
+        "rev": "22df5696092ed8c6141e1d6846d1a11f386069f6",
         "type": "github"
       },
       "original": {
@@ -373,6 +374,7 @@
         "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_3",
         "noctalia": "noctalia",
+        "noctalia-qs": "noctalia-qs",
         "quickshell": "quickshell",
         "systems": "systems_3",
         "to-update": "to-update",
