@@ -9,14 +9,17 @@
       # ---- Popup/Context Menu Fix ---- #
       # Fix for right-click menus that extend beyond the parent window
       # This ensures clicks register on the popup even when outside the parent app
-      windowrulev = stayfocused, class:^()$, title:^()$, floating:1
-      windowrulev = minsize 1 1, class:^()$, title:^()$, floating:1
+      windowrulev2 = float, class:(.*), title:(.*menu.*)
+      windowrulev2 = stayfocused, class:(.*), title:(.*menu.*)
+
 
       # ---- Waydroid ---- #
       windowrule = fullscreen, class:^(Waydroid)$
 
       # ?
       windowrulev2 = tile, class:(dev.warp.Warp)
+      windowrulev2 = float, class:^(xdg-desktop-portal-gtk)$
+      windowrulev2 = dimaround, class:^(xdg-desktop-portal-gtk)$
 
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.

@@ -58,6 +58,8 @@ in
 
         # To upscale videos using AI
         update.video2x
+
+        # pitivi
       ];
   };
 }
