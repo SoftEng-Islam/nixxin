@@ -33,4 +33,12 @@
     ./ui.nix
     ./wallpaper.nix
   ];
+  environment.systemPackages = with pkgs; [
+    # Noctalia Shell
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+
+    # Noctalia Shell screenshot plugin need this package
+    hyprshot
+
+  ];
 }

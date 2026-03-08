@@ -20,8 +20,16 @@
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     quickshell.inputs.nixpkgs.follows = "nixpkgs";
 
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.noctalia-qs.follows = "noctalia-qs";
+    };
+
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
