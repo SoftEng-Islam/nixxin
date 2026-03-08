@@ -71,14 +71,14 @@ let
   ];
 in
 mkIf (settings.modules.browsers.enable) {
-  # programs.firefox = {
-  #   enable = browsers.firefox.enable;
-  #   package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
-  #   policies = {
-  #     DontCheckDefaultBrowser = true; # disable the annoying popup at startup
-  #     HardwareAcceleration = true;
-  #   };
-  # };
+  programs.firefox = {
+    enable = browsers.firefox.enable;
+    package = inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default;
+    policies = {
+      DontCheckDefaultBrowser = true; # disable the annoying popup at startup
+      HardwareAcceleration = true;
+    };
+  };
   environment.systemPackages =
     with pkgs;
     [
@@ -90,7 +90,7 @@ mkIf (settings.modules.browsers.enable) {
       # firefox
       # firefox-beta
       firefox-devedition
-      inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
+      # inputs.zen-browser.packages.${pkgs.stdenv.hostPlatform.system}.default
     ]
     ++ lib.flatten _browsers;
 }
