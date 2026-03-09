@@ -13,7 +13,7 @@
         fillMode = "crop";
         fillColor = "#000000";
         randomEnabled = true;
-        randomIntervalSec = 10000;
+        randomIntervalSec = 3600;
         transitionDuration = 1500;
         transitionType = "random";
         transitionEdgeSmoothness = 5.0e-2;

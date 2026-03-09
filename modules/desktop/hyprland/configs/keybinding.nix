@@ -73,7 +73,7 @@ in
       # bind = $main, H, exec,
       # bind = $main, J, exec,
       # bind = $main, K, exec,
-      bind = $main, L, exec, $ipc sessionMenu lockAndSuspend # Lock screen
+      bind = $main, L, exec, $ipc lockScreen lock # Lock screen
 
       #=> Third Row:
       # bind = $main, Z, exec,

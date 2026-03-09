@@ -236,7 +236,7 @@ rec {
   modules.cli_tools.utilities.direnv.enable = false;
   modules.cli_tools.utilities.emacs.enable = true;
 
-  # [ Community ]
+  # [ community ]
   modules.community.telegram.enable = true;
   modules.community.ferdium.enable = false;
   modules.community.discord.enable = true;
@@ -283,13 +283,12 @@ rec {
   };
 
   # [ desktop ]
-  modules.desktop.ashell.enable = false;
   modules.desktop.tools = false;
   # $ dconf read /org/gnome/desktop/interface/color-scheme
   modules.desktop.dconf.colorScheme = "prefer-dark";
   modules.desktop.dconf.icons.nameInDark = common.icons.nameInDark;
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
-  modules.desktop.dconf.icons.icon_view_size = "large"; # Set icons size for nautilus.
+  modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
 
   # [Emails]
   modules.emails.thunderbird = true;
