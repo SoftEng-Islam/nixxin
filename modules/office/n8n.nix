@@ -2,6 +2,10 @@
 {
   # Free and source-available fair-code licensed workflow automation tool
 
+  environment.variables = {
+    N8N_BLOCK_FS_WRITE_ACCESS = "false";
+    N8N_BLOCK_FS_READ_ACCESS = "false";
+  };
   services.n8n = {
     enable = true;
     environment = {

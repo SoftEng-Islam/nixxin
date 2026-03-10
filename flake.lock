@@ -38,7 +38,7 @@
     },
     "flake-utils_2": {
       "inputs": {
-        "systems": "systems_4"
+        "systems": "systems_5"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -220,11 +220,30 @@
         "url": "https://gitlab.freedesktop.org/mesa/mesa.git"
       }
     },
+    "nix-yazi-flavors": {
+      "inputs": {
+        "nixpkgs": "nixpkgs_2",
+        "systems": "systems_3"
+      },
+      "locked": {
+        "lastModified": 1758494789,
+        "narHash": "sha256-jNqW/LxFz5jz5sBtxHn//q5TQuiS2t5b8jqU9xm2V78=",
+        "owner": "aguirre-matteo",
+        "repo": "nix-yazi-flavors",
+        "rev": "4a02f027c97f83cfc1036618c1d718017d3d331b",
+        "type": "github"
+      },
+      "original": {
+        "owner": "aguirre-matteo",
+        "repo": "nix-yazi-flavors",
+        "type": "github"
+      }
+    },
     "nixos-opencl": {
       "inputs": {
         "clvk-src": "clvk-src",
         "mesa-src": "mesa-src",
-        "nixpkgs": "nixpkgs_2",
+        "nixpkgs": "nixpkgs_3",
         "pocl-src": "pocl-src",
         "shady-src": "shady-src",
         "zig-src": "zig-src"
@@ -257,6 +276,22 @@
     },
     "nixpkgs_2": {
       "locked": {
+        "lastModified": 1753429684,
+        "narHash": "sha256-9h7+4/53cSfQ/uA3pSvCaBepmZaz/dLlLVJnbQ+SJjk=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "7fd36ee82c0275fb545775cc5e4d30542899511d",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_3": {
+      "locked": {
         "lastModified": 1751274312,
         "narHash": "sha256-/bVBlRpECLVzjV19t5KMdMFWSwKLtb5RyXdjz3LJT+g=",
         "owner": "nixos",
@@ -271,7 +306,7 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
+    "nixpkgs_4": {
       "locked": {
         "lastModified": 1765186076,
         "narHash": "sha256-hM20uyap1a0M9d344I692r+ik4gTMyj60cQWO+hAYP8=",
@@ -371,12 +406,13 @@
         "flake-utils": "flake-utils",
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
+        "nix-yazi-flavors": "nix-yazi-flavors",
         "nixos-opencl": "nixos-opencl",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs_4",
         "noctalia": "noctalia",
         "noctalia-qs": "noctalia-qs",
         "quickshell": "quickshell",
-        "systems": "systems_3",
+        "systems": "systems_4",
         "to-update": "to-update",
         "yt-dlp-src": "yt-dlp-src",
         "zen-browser": "zen-browser"
@@ -432,6 +468,21 @@
     },
     "systems_3": {
       "locked": {
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
+        "owner": "nix-systems",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-systems",
+        "repo": "default",
+        "type": "github"
+      }
+    },
+    "systems_4": {
+      "locked": {
         "lastModified": 1689347949,
         "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
         "owner": "nix-systems",
@@ -445,7 +496,7 @@
         "type": "github"
       }
     },
-    "systems_4": {
+    "systems_5": {
       "locked": {
         "lastModified": 1681028828,
         "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
