@@ -70,15 +70,6 @@ in
           </channel>
         '';
       };
-
-      packages = with pkgs; [
-        # xfce.thunar
-        # xfce.thunar-archive-plugin
-        # xfce.thunar-volman
-        # xfce.thunar-media-tags-plugin
-        # xfce.tumbler
-        # xfce.xfconf
-      ];
     };
 
     xdg.configFile."Thunar/uca.xml".text = ''
@@ -121,8 +112,12 @@ in
     '';
   };
 
-  environment.systemPackages = with pkgs; [
-    # Thunar
-    # xfce.thunar
+  environment.systemPackages = with pkgs.xfce; [
+    thunar
+    thunar-archive-plugin
+    thunar-volman
+    thunar-media-tags-plugin
+    tumbler
+    xfconf
   ];
 }

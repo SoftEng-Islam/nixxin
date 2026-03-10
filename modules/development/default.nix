@@ -103,7 +103,7 @@ in
 
       firebase-tools
       heroku
-      # agneyastra
+      # pkgs.update.agneyastra
 
       nodejs
       deno

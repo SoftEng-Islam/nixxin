@@ -37,15 +37,15 @@
 
   environment.systemPackages = with pkgs; [
     # File browser for Cinnamon
-    # nemo
-    # nemo-emblems
-    # nemo-fileroller
-    # nemo-preview
-    # nemo-python
-    # nemo-qml-plugin-dbus
+    nemo
+    nemo-emblems
+    nemo-fileroller
+    nemo-preview
+    nemo-python
+    nemo-qml-plugin-dbus
 
-    # (nemo-with-extensions.override {
-    # extensions = [ nemo-seahorse ];
-    # })
+    (nemo-with-extensions.override {
+      extensions = [ nemo-seahorse ];
+    })
   ];
 }
