@@ -35,6 +35,9 @@
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
+
+    nix-yazi-flavors.url = "github:aguirre-matteo/nix-yazi-flavors";
+
   };
   outputs =
     {
@@ -81,6 +84,7 @@
                     inherit (final.stdenv.hostPlatform) system;
                   };
                 })
+                inputs.nix-yazi-flavors.overlays.default
               ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")
