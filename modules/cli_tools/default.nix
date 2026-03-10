@@ -1,7 +1,19 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 # lib.mkIf (settings.modules.cli_tools.enable or false)
 {
-  imports = [ ./neofetch ./prompt ./shells ./terminals ./utilities ./editors ];
+  imports = [
+    ./neofetch
+    ./prompt
+    ./shells
+    ./terminals
+    ./utilities
+    ./editors
+  ];
 
   # Enable the nix-index
   programs.nix-index.enable = true;
@@ -43,11 +55,8 @@
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
     zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
 
-    bat # Cat(1) clone with syntax highlighting and Git integration
     eza # A modern, maintained replacement for ls
     fzf # Command-line fuzzy finder written in Go
-
-    bat # Cat(1) clone with syntax highlighting and Git integration
     dust # du + rust = dust. Like du but more intuitive
     duf # Disk Usage/Free Utility
     file # Program that shows the type of files

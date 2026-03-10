@@ -1,15 +1,25 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+{
+  # Bat, a substitute for cat.
+  # https://github.com/sharkdp/bat
+  # https://nix-community.github.io/home-manager/options.xhtml#opt-programs.bat.enable
   home-manager.users.${settings.user.username} = {
     programs.bat = {
-      enable = settings.modules.cli_tools.utilities.bat.enable or false;
-      extraPackages = with pkgs.bat-extras; [ batdiff batman batwatch ];
+      enable = true;
+      extraPackages = with pkgs.bat-extras; [
+        batdiff
+        batman
+        batwatch
+      ];
       config = {
-        map-syntax = [ "*.jenkinsfile:Groovy" "*.props:Java Properties" ];
+        map-syntax = [
+          "*.jenkinsfile:Groovy"
+          "*.props:Java Properties"
+        ];
         pager = "less -FR";
-        theme = "catppuccin-mocha";
+
+        theme = "OneHalfDark";
       };
-      # syntaxes = { };
-      # themes = { };
     };
   };
 }
