@@ -295,8 +295,8 @@ rec {
   modules.emails.thunderbird = true;
 
   # [file_manager]
-  modules.desktop.file_manager.default = "nauitlus";
-  modules.desktop.file_manager.nauitlus = true;
+  modules.desktop.file_manager.default = "nautilus";
+  modules.desktop.file_manager.nautilus = true;
   modules.desktop.file_manager.spacedrive = false;
   modules.desktop.file_manager.thunar = false;
   modules.desktop.file_manager.nemo = false;

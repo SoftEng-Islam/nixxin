@@ -316,9 +316,9 @@ rec {
   modules.desktop.polkit.enable = true; # keep enabled
 
   # [ desktop ] [file_manager]
-  modules.desktop.file_manager.default = "nauitlus"; # [dolphin, nauitlus, nemo, spacedrive, thunar]
+  modules.desktop.file_manager.default = "nautilus"; # [dolphin, nautilus, nemo, spacedrive, thunar]
   modules.desktop.file_manager.dolphin = false;
-  modules.desktop.file_manager.nauitlus = true;
+  modules.desktop.file_manager.nautilus = true;
   modules.desktop.file_manager.nemo = false;
   modules.desktop.file_manager.spacedrive = false;
   modules.desktop.file_manager.thunar = true;

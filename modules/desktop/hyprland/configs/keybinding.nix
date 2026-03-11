@@ -2,7 +2,7 @@
 let
   defaultFileManager = settings.modules.desktop.file_manager.default;
   fileManagerExec =
-    if (defaultFileManager == "nauitlus") then
+    if (defaultFileManager == "nautilus") then
       "GDK_BACKEND=wayland XDG_CURRENT_DESKTOP=GNOME ${pkgs.nautilus}/bin/nautilus --no-desktop --new-window > /dev/null 2>&1 &"
     else if (defaultFileManager == "nemo") then
       "${pkgs.nemo}/bin/nemo"
