@@ -21,7 +21,7 @@ lib.mkIf (settings.modules.office.n8n) {
 
   # Lift the NixOS/Systemd hardening so n8n can actually "see" /home
   systemd.services.n8n.serviceConfig = {
-    ProtectHome = "false"; # Allows access to /home
+    # ProtectHome = "false"; # Allows access to /home
     # ProtectHome = "tmpfs";
     # BindPaths = "/home/user/n8n";
 
