@@ -121,8 +121,8 @@ lib.mkIf (settings.modules.media.mpv) {
         dscale-antiring = 0.7;
 
         # Framedrop and smooth playback (judder-free)
-        video-sync = "display-resample";
-        interpolation = "yes";
+        video-sync = "audio";
+        interpolation = "no";
         tscale = "oversample";
         framedrop = "vo";
 
