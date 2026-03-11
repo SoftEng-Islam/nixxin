@@ -10,10 +10,18 @@ in
   programs.xfconf.enable = true;
   programs.thunar = {
     enable = fm_settings.thunar;
-    plugins = with pkgs.xfce; [
-      thunar-archive-plugin
-      thunar-volman
-      # thunar-dropbox-plugin
+    plugins = with pkgs; [
+      xfce.thunar-archive-plugin
+      xfce.thunar-volman
+      xfce.thunar-media-tags-plugin
+      xfce.tumbler
+      # xfce.thunar-dropbox-plugin
+
+      gst_all_1.gst-plugins-good
+      gst_all_1.gst-plugins-bad
+      gst_all_1.gst-plugins-base
+      gst_all_1.gstreamer
+      gst_all_1.gst-libav
     ];
   };
 
@@ -111,13 +119,7 @@ in
       </actions>
     '';
   };
-
-  environment.systemPackages = with pkgs.xfce; [
-    thunar
-    thunar-archive-plugin
-    thunar-volman
-    thunar-media-tags-plugin
-    tumbler
-    xfconf
+  environment.systemPackages = with pkgs; [
+    xfce.xfconf
   ];
 }

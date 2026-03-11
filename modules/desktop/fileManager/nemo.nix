@@ -1,9 +1,10 @@
 {
   settings,
+  lib,
   pkgs,
   ...
 }:
-{
+lib.mkIf (settings.modules.desktop.file_manager.nemo) {
   home-manager.users.${settings.user.username} = {
     home = {
       file = {

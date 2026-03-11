@@ -290,16 +290,41 @@ rec {
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
   modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
 
+  # [ desktop ] [ Hyprland ]
+  modules.desktop.hyprland.genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+  modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
+  modules.desktop.hyprland.blur.enable = false;
+  modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
+  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
+  modules.desktop.hyprland.rounding = 15; # Rounding Corners
+  modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
+  modules.desktop.hyprland.border.active.color = common.primaryColor;
+  modules.desktop.hyprland.border.size = 4;
+  modules.desktop.hyprland.dim_inactive = true;
+  modules.desktop.hyprland.plugins.hyprbars = true;
+  modules.desktop.hyprland.plugins.hyprspace = false;
+  modules.desktop.hyprland.plugins.bordersPlus = false;
+  modules.desktop.hyprland.plugins.hyprexpo = false;
+  modules.desktop.hyprland.plugins.hyprtrails = false;
+  modules.desktop.hyprland.lockscreen.enable = true;
+  modules.desktop.hyprland.lockscreen.type = "noctalia"; # "hyprlock" or "noctalia"
+  modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
+  modules.desktop.hyprland.lockscreen.font = "";
+  modules.desktop.hyprland.hyprpaper.enable = true;
+  modules.desktop.xwayland.enable = true; # keep enabled
+  modules.desktop.keyring.enable = true; # keep enabled
+  modules.desktop.polkit.enable = true; # keep enabled
+
+  # [ desktop ] [file_manager]
+  modules.desktop.file_manager.default = "nauitlus"; # [dolphin, nauitlus, nemo, spacedrive, thunar]
+  modules.desktop.file_manager.dolphin = false;
+  modules.desktop.file_manager.nauitlus = true;
+  modules.desktop.file_manager.nemo = false;
+  modules.desktop.file_manager.spacedrive = false;
+  modules.desktop.file_manager.thunar = true;
+
   # [Emails]
   modules.emails.thunderbird = true;
-
-  # [file_manager]
-  modules.desktop.file_manager.default = "nauitlus";
-  modules.desktop.file_manager.nauitlus = true;
-  modules.desktop.file_manager.spacedrive = false;
-  modules.desktop.file_manager.thunar = false;
-  modules.desktop.file_manager.nemo = false;
-  modules.desktop.file_manager.dolphin = false;
 
   # [fonts]
   modules.fonts = {
@@ -343,31 +368,6 @@ rec {
   modules.graphics.inkscape = true;
   modules.graphics.lunacy = true;
   modules.graphics.kolourpaint = false;
-
-  # [ Hyprland ]
-  modules.desktop.hyprland.genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
-  modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
-  modules.desktop.hyprland.blur.enable = false;
-  modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
-  modules.desktop.hyprland.rounding = 15; # Rounding Corners
-  modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
-  modules.desktop.hyprland.border.active.color = common.primaryColor;
-  modules.desktop.hyprland.border.size = 4;
-  modules.desktop.hyprland.dim_inactive = true;
-  modules.desktop.hyprland.plugins.hyprbars = true;
-  modules.desktop.hyprland.plugins.hyprspace = false;
-  modules.desktop.hyprland.plugins.bordersPlus = false;
-  modules.desktop.hyprland.plugins.hyprexpo = false;
-  modules.desktop.hyprland.plugins.hyprtrails = false;
-  modules.desktop.hyprland.lockscreen.enable = true;
-  modules.desktop.hyprland.lockscreen.type = "noctalia"; # "hyprlock" or "noctalia"
-  modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
-  modules.desktop.hyprland.lockscreen.font = "";
-  modules.desktop.hyprland.hyprpaper.enable = true;
-  modules.desktop.xwayland.enable = true; # keep enabled
-  modules.desktop.keyring.enable = true; # keep enabled
-  modules.desktop.polkit.enable = true; # keep enabled
 
   # [i18n] Date/Time & Languages
   modules.i18n.timeFormat = 12;
@@ -421,6 +421,7 @@ rec {
   modules.networking.nftables.enable = true;
 
   # [Office]
+  modules.office.n8n = true;
   modules.office.siyuan = true;
   modules.office.evince = true;
   modules.office.papers = true;
@@ -440,7 +441,7 @@ rec {
   modules.power.powerManagement.cpuFreqGovernor = "performance";
   # modules.power.powerManagement.cpufreq.min = 1900000; # 1.9GHz
   # modules.power.powerManagement.cpufreq.max = 3900000; # 3.9GHz
-  modules.power.auto-cpufreq.enable = false;
+  modules.power.auto-cpufreq.enable = true;
   modules.power.tuned.enable = false;
   modules.power.upower.enable = true;
   modules.power.cpupower.enable = true;
