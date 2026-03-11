@@ -112,12 +112,17 @@ lib.mkIf (settings.modules.media.mpv) {
         deband = "yes";
         dither-depth = "auto";
 
-        # Scaling
-        # scale = "lanczos"; # lanczos or spline36
+        # Scaling - High Quality Up/Down-scaling
+        scale = "ewa_lanczossharp";
+        cscale = "ewa_lanczossharp";
+        dscale = "mitchell";
+        scale-antiring = 0.7;
+        cscale-antiring = 0.7;
+        dscale-antiring = 0.7;
 
-        # Framedrop for smooth playback
-        video-sync = "audio";
-        interpolation = "no";
+        # Framedrop and smooth playback (judder-free)
+        video-sync = "display-resample";
+        interpolation = "yes";
         tscale = "oversample";
         framedrop = "vo";
 
