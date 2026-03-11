@@ -113,8 +113,8 @@ lib.mkIf (settings.modules.media.mpv) {
         dither-depth = "auto";
 
         # Scaling - High Quality Up/Down-scaling
-        scale = "ewa_lanczossharp";
-        cscale = "ewa_lanczossharp";
+        scale = "spline36";
+        cscale = "spline36";
         dscale = "mitchell";
         scale-antiring = 0.7;
         cscale-antiring = 0.7;
@@ -163,6 +163,18 @@ lib.mkIf (settings.modules.media.mpv) {
         osd-level = 1; # ?
         msg-color = true;
         msg-module = true;
+      };
+      profiles = {
+        "high-fps" = {
+          profile-cond = "p.container_fps>=59";
+          interpolation = "no";
+          video-sync = "audio";
+        };
+        "high-res" = {
+          profile-cond = "p.height>=1080";
+          scale = "bilinear";
+          cscale = "bilinear";
+        };
       };
       bindings = {
         z = "add sub-delay 0.1";
