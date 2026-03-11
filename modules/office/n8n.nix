@@ -7,6 +7,8 @@
 lib.mkIf (settings.modules.office.n8n) {
   # [n8n] Free and source-available fair-code licensed workflow automation tool
   environment.variables = {
+    # https://docs.n8n.io/hosting/configuration/environment-variables/security/
+
     # 1. Disable n8n's internal file blocks (values must be strings)
     N8N_BLOCK_FS_WRITE_ACCESS = "false";
     N8N_BLOCK_FS_READ_ACCESS = "false";
@@ -14,7 +16,7 @@ lib.mkIf (settings.modules.office.n8n) {
     # 2. Remove the path restriction (n8n v2 default is restricted)
     N8N_RESTRICT_FILE_ACCESS_TO = "";
 
-    # N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS = "true";
+    N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS = "true";
   };
 
   # Lift the NixOS/Systemd hardening so n8n can actually "see" /home
