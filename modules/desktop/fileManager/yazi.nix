@@ -7,22 +7,27 @@
   home-manager.users.${settings.user.username} = {
     programs.yazi = {
       enable = true;
-      plugins = with pkgs.yaziPlugins; {
-        inherit nord yatline;
-      };
-
-      flavors = { inherit (pkgs.yaziPlugins) nord; };
-
-      theme.flavor = {
-        light = "nord";
-        dark = "nord";
-      };
-
-      initLua = /* lua */ ''
+      initLua = ''
+        require("full-border"):setup()
+        require("git"):setup()
         require("yatline"):setup({
-          theme = require("nord"):setup(),
+            theme = require("yatline-catppuccin"):setup("mocha"),
         })
       '';
+
+      plugins = with pkgs.yaziPlugins; {
+        inherit
+          full-border
+          git
+          glow
+          nord
+          smart-paste
+          vcs-files
+          wl-clipboard
+          yatline
+          yatline-catppuccin
+          ;
+      };
       settings = {
         manager = {
           show_hidden = false;
