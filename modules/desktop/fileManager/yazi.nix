@@ -7,16 +7,22 @@
   home-manager.users.${settings.user.username} = {
     programs.yazi = {
       enable = true;
-      flavors = {
-        inherit (pkgs.yaziFlavors)
-          vscode-dark-plus
-          vscode-light-plus
-          ;
+      plugins = with pkgs.yaziPlugins; {
+        inherit nord yatline;
       };
+
+      flavors = { inherit (pkgs.yaziPlugins) nord; };
+
       theme.flavor = {
-        dark = "vscode-dark-plus";
-        light = "vscode-light-plus";
+        light = "nord";
+        dark = "nord";
       };
+
+      initLua = /* lua */ ''
+        require("yatline"):setup({
+          theme = require("nord"):setup(),
+        })
+      '';
       settings = {
         manager = {
           show_hidden = false;
