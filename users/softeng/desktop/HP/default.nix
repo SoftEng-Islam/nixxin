@@ -578,14 +578,14 @@ rec {
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-    # "amd_pstate=disable"
+    "amd_pstate=passive"
     "amd_prefcore=disable"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
 
-    # 3. OVERRIDE THE GPU POWER TABLE
+    # OVERRIDE THE GPU POWER TABLE
     # This is the most important one. Since the BIOS is hiding the power
     # library (\_SB.ALIB), we tell the driver to use its internal
     # defaults instead of the BIOS tables.
@@ -595,16 +595,14 @@ rec {
     "acpi=copy_dsdt"
     "acpi_apic_instance=1"
     "acpi_force_32bit_fadt_addr"
-    # "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
+    "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
 
     # IGNORE RESERVED RESOURCES
-    # You had "lax", but "no" is stronger. It prevents the BIOS from
-    # hiding the VGA controller's memory from the kernel.
-    "acpi_enforce_resources=lax"
+    "acpi_enforce_resources=no" # "lax" or "no"
 
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    "acpi_osi=Linux" # Linux | Darwin | Windows
-    # ''acpi_osi="!Windows 2015"''
+    # "acpi_osi=Linux" # Linux | Darwin | Windows
+    ''acpi_osi="!Windows 2015"''
     # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
     # "acpi_mask_gpe=0x0e"
     # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
@@ -629,7 +627,6 @@ rec {
 
     "intremap=off" # disable Interrupt Remapping
     "audit=0"
-    # "thermal.off=1" # 1: disable ACPI thermal control
     "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
     "tsc=reliable" # Disable clocksource stability checks for TSC.
     "clocksource=tsc" # Override the default clocksource
@@ -640,11 +637,9 @@ rec {
     #  poll: slightly improve performance at cost of a hotter system (not recommended)
     #  halt: halt is forced to be used for CPU idle
     #  nomwait: Disable mwait for CPU C-states
-    # "idle=poll" # Removed: causes all cores to spin at 100% even when idle, generating
-    # excessive heat without meaningful latency benefit on A8-8650B (no boost clocks)
+    # "idle=poll"
 
-    # enable IOMMU for devices used in passthrough
-    # and provide better host performance in virtualization
+    # enable IOMMU for devices used in passthrough and provide better host performance in virtualization
     "iommu=pt"
 
     # disable usb autosuspend
@@ -675,8 +670,8 @@ rec {
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
     "radeon.bapm=1"
-    # "processor.max_cstate=0" # Removed: prevents CPU C-states, wastes power with no
-    # performance benefit on A8-8650B which has no turbo boost to preserve
+
+    # "processor.max_cstate=0"
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
@@ -694,7 +689,6 @@ rec {
     "acpi-cpufreq"
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
-    # "amd_energy" # Removed: requires Zen+ or later, not supported on Excavator (A8-8650B)
     "i2c_hid" # Input devices
     "usbhid"
     "usbcore"
@@ -703,6 +697,7 @@ rec {
     "kvm-amd" # AMD Virtualization
     "msr"
     "uinput"
+
     # Generic DRM helpers (usually auto‑loaded, but explicit for determinism)
     "drm"
     "drm_kms_helper"

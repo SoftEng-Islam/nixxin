@@ -228,7 +228,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       # 2. Local Performance Overrides (Bypasses your heavy global settings)
       export RADV_TEX_ANISO=0
       export AMD_TEX_ANISO=0
-      export mesa_glthread=true
+      # export mesa_glthread=true
       export vblank_mode=0
 
       # 3. Set Android Properties

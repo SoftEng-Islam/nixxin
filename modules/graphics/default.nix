@@ -297,7 +297,7 @@ in
       # VK_LOADER_DISABLE_LAYER_MESA = "0";
 
       # Mesa drivers have mesa_glthread flag which enables multi-threading on their OpenGL driver implementation.
-      mesa_glthread = "true";
+      # mesa_glthread = "true";
 
       # Mesa OpenGL (somewhat useful)
       MESA_NO_ERROR = 1;

@@ -2,6 +2,7 @@
 { pkgs, ... }:
 {
   imports = [
+    ./console.nix
     ./brightness_control.nix
     ./configuration.nix
     ./memory.nix
@@ -14,8 +15,8 @@
     ./resources.nix
     ./trace.nix
     ./systeminfo.nix
-    # ./kernelPatches.nix
-    # ./radeon.nix # Optional If using Radeon drivers
+    ./kernelPatches.nix
+    ./radeon.nix # Optional If using Radeon drivers
   ];
   environment.systemPackages = with pkgs; [
     e2fsprogs

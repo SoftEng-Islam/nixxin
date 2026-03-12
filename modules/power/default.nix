@@ -32,7 +32,7 @@ in
         ];
 
         # Enable auto-epp for amd active pstate.
-        # services.auto-epp.enable = false;
+        services.auto-epp.enable = true;
 
         services.thermald.enable = false;
         services.thermald.ignoreCpuidCheck = false;
