@@ -9,13 +9,26 @@
       enable = true;
       flavors = {
         inherit (pkgs.yaziFlavors)
-          vscode-dark-modern
-          vscode-light-modern
+          vscode-dark-plus
+          vscode-light-plus
           ;
       };
       theme.flavor = {
-        use = "vscode-dark-modern";
+        dark = "vscode-dark-plus";
+        light = "vscode-light-plus";
+      };
+      settings = {
+        manager = {
+          show_hidden = false;
+          sort_by = "mtime";
+          sort_dir_first = true;
+          sort_reverse = true;
+        };
+        preview.wrap = "yes";
       };
     };
   };
+  environment.systemPackages = with pkgs; [
+    yazi
+  ];
 }
