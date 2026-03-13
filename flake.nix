@@ -117,7 +117,6 @@
                     inherit (final.stdenv.hostPlatform) system;
                   };
                 })
-                inputs.nix-yazi-flavors.overlays.default
               ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")
