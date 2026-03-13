@@ -9,8 +9,8 @@
     programs.yazi = {
       enable = true;
       initLua = ''
-        require("full-border"):setup()
-        require("git"):setup()
+        -- require("full-border"):setup()
+        -- require("git"):setup()
 
         -- require("yatline"):setup({
         --   theme = require("yatline-catppuccin"):setup("mocha"),
