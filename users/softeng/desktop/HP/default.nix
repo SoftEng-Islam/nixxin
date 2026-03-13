@@ -670,7 +670,7 @@ rec {
     "msr.allow_writes=on"
     "radeon.bapm=1"
 
-    # "processor.max_cstate=0"
+    "processor.max_cstate=0"
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
@@ -687,9 +687,21 @@ rec {
     "skew_tick=1"
     "threadirqs"
     "smt=on"
+
+    # --- HugePages Configurations ---
+    "transparent_hugepage=always"
+    "default_hugepagesz=1G"
+    "hugepagesz=1G"
+
+    # --- Added Performance Tunings ---
+    "elevator=mq-deadline" # Optimized IO Scheduler
+    "scsi_mod.use_blk_mq=1" # Enable Multiqueue block layer
+    "lockdown=off" # Allow kernel tuning and eBPF tracing
+    "noibpb" # Disable Indirect Branch Prediction Barrier (Slight performance gain at slight security cost)
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
+    "rapl"
     "acpi-cpufreq"
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
