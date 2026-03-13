@@ -44,8 +44,6 @@
 
     fzf-zsh # wrap fzf to use in oh-my-zsh
     oh-my-zsh # A framework for managing your zsh configuration
-    zsh-abbr # Zsh manager for auto-expanding abbreviations, inspired by fish shell
-    zsh-autocomplete # Real-time type-ahead completion for Zsh. Asynchronous find-as-you-type autocompletion
     zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
     zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
     zsh-autosuggestions # Fish shell autosuggestions for Zsh

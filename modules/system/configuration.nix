@@ -2,6 +2,7 @@
   settings,
   pkgs,
   config,
+  inputs,
   lib,
   ...
 }:
@@ -16,6 +17,7 @@ let
   _system = settings.modules.system;
 in
 {
+  imports = [ inputs.chaotic.nixosModules.default ];
 
   # ------------------------------------------------
   # ---- Boot Configuration
@@ -244,11 +246,14 @@ in
   # https://github.com/sched-ext/scx
   # https://wiki.cachyos.org/configuration/sched-ext/
   # Use the newest kernel thread scheduler.
+  # better fps in games
+  # requires linuxPackages_cachyos
+  # docs: https://github.com/sched-ext/scx
+  # docs: https://github.com/chaotic-cx/nyx
   services.scx = {
     enable = true;
-    # scheduler = "scx_rusty"; # "scx_rusty" or "scx_lavd"
-    scheduler = "scx_bpfland";
-    package = pkgs.scx.full;
+    package = pkgs.scx_git.full;
+    scheduler = "scx_rustland";
   };
 
   # Limit Systemd Journal Size

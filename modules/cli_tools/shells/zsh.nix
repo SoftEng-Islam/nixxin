@@ -64,7 +64,6 @@ in
   environment.variables.ZSH = "${pkgs.oh-my-zsh}/share/oh-my-zsh";
 
   environment.systemPackages = with pkgs; [
-    zsh-abbr
     zsh-completions
   ];
 
@@ -157,20 +156,11 @@ in
       bindkey '^P' history-beginning-search-backward
       bindkey '^N' history-beginning-search-forward
 
-      # ZSH AUTOCOMPLETE -> https://github.com/marlonrichert/zsh-autocomplete/blob/main/.zshrc
-      zstyle ':autocomplete:*' list-lines 8
-      zstyle ':autocomplete:history-search:*' list-lines 8
-      zstyle ':autocomplete:history-incremental-search-*:*' list-lines 8
-      zstyle ':autocomplete:*' insert-unambiguous yes
-
       # Disable mouse tracking in Zsh Autocomplete
       # (This stops the mouse from moving the cursor and taking over terminal scroll)
-      zstyle ':autocomplete:*' min-input 0
-      zstyle ':autocomplete:*' enable-mouse false
+      # zstyle ':autocomplete:*' min-input 0
+      # zstyle ':autocomplete:*' enable-mouse false
       unset ZSH_AUTOSUGGEST_USE_FZF
-
-      # Enable zsh-autocomplete
-      source ${pkgs.zsh-autocomplete}/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
 
       # Remove all duplicates in history
       setopt HIST_IGNORE_ALL_DUPS    # Remove older duplicate entries when a new one is added
@@ -251,9 +241,6 @@ in
 
       # Optional: better completion UI
       # source ${pkgs.zsh-fzf-tab}/share/fzf-tab/fzf-tab.plugin.zsh
-
-      # Abbreviations (fish-like)
-      source ${pkgs.zsh-abbr}/share/zsh/zsh-abbr/zsh-abbr.plugin.zsh
 
       # Fish-like autosuggestions
       source ${pkgs.zsh-autosuggestions}/share/zsh-autosuggestions/zsh-autosuggestions.zsh

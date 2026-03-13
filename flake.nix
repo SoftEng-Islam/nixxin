@@ -7,6 +7,11 @@
     to-update.url = "github:NixOS/nixpkgs/master";
     systems.url = "github:nix-systems/default-linux";
 
+    chaotic = {
+      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     flake-utils.url = "github:numtide/flake-utils";
 
     home-manager.url = "github:nix-community/home-manager/master";
