@@ -9,7 +9,7 @@ let
   inherit (lib.attrsets) mapAttrs;
   inherit (lib.modules) mkForce;
 in
-lib.mkIf (settings.modules.system.kernelPatches) {
+lib.mkIf (settings.modules.system.kernelPatches or false) {
   boot.kernelPatches = [
     {
       # recompile with AMD platform specific optimizations

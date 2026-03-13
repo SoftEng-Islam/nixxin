@@ -1,9 +1,16 @@
-{ settings, config, lib, pkgs, ... }:
+{
+  settings,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 let
   inherit (lib) mkIf;
   vaapiSupport = pkgs.libva.override { withVaapi = true; };
-in mkIf (settings.modules.system.radeon or false) {
+in
+mkIf (settings.modules.system.radeon or false) {
 
   hardware.graphics.extraPackages = with pkgs; [
     mesa
@@ -23,12 +30,11 @@ in mkIf (settings.modules.system.radeon or false) {
     mesa_i686
   ];
 
-  environment.systemPackages = with pkgs;
-    [
-      # radeon-profile
-      # radeontop
-      # radeontools
-    ];
+  environment.systemPackages = with pkgs; [
+    # radeon-profile
+    # radeontop
+    # radeontools
+  ];
 
   environment.variables = {
     LIBVA_DRIVER_NAME = "radeonsi"; # or "r600"; # Specific driver for HD 7470
