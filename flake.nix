@@ -36,7 +36,40 @@
 
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
 
-    nix-yazi-flavors.url = "github:aguirre-matteo/nix-yazi-flavors";
+    yazi-plugins = {
+      url = "github:yazi-rs/plugins";
+      flake = false;
+    };
+
+    yazi-compress = {
+      url = "github:v3natio/compress.yazi";
+      flake = false;
+    };
+
+    yazi-hexyl = {
+      url = "github:Reledia/hexyl.yazi";
+      flake = false;
+    };
+
+    yazi-augment-command = {
+      url = "github:hankertrix/augment-command.yazi";
+      flake = false;
+    };
+
+    yazi-what-size = {
+      url = "github:pirafrank/what-size.yazi";
+      flake = false;
+    };
+
+    yazi-flexoki-light = {
+      url = "github:gosxrgxx/flexoki-light.yazi";
+      flake = false;
+    };
+
+    yazi-flexoki-dark = {
+      url = "github:gosxrgxx/flexoki-dark.yazi";
+      flake = false;
+    };
 
   };
   outputs =
