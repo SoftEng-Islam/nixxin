@@ -663,7 +663,6 @@ rec {
     "logo.nologo"
 
     "accept_memory=eager"
-    "workqueue.power_efficient=0"
     "unaligned_scalar_speed=fast"
     "skew_tick=1"
     "threadirqs"

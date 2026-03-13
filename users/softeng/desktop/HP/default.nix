@@ -658,7 +658,6 @@ rec {
     "logo.nologo"
 
     "accept_memory=eager"
-    "workqueue.power_efficient=0"
     "unaligned_scalar_speed=fast"
     "skew_tick=1"
     "threadirqs"
@@ -683,6 +682,11 @@ rec {
     "mtrr_spare_reg_nr=2"
     "mtrr_gran_size=8M" # Sets the alignment resolution
     "mtrr_chunk_size=128M" # Helps map the 16GB more efficiently
+
+    "workqueue.power_efficient=false"
+    "skew_tick=1"
+    "threadirqs"
+    "smt=on"
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
