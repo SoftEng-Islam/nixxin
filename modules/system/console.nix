@@ -17,7 +17,7 @@ in
       earlySetup = true;
       keyMap = "trq";
 
-      font = "ter-powerline-${variant}";
+      font = lib.mkDefault "ter-powerline-${variant}";
       packages = attrValues { inherit (pkgs) terminus_font powerline-fonts; };
     };
 
