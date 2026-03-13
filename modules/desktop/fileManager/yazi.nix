@@ -8,7 +8,7 @@
   home-manager.users.${settings.user.username} = {
     programs.yazi = {
       enable = true;
-      package = pkgs.to-update.yazi;
+      package = pkgs.update.yazi;
       initLua = ''
         -- require("full-border"):setup()
         -- require("git"):setup()
