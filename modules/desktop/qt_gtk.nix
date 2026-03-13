@@ -59,17 +59,17 @@ in
         }
       '';
 
-      gtk3.bookmarks = [
-        # "recent:///"
-        "file:///home/${settings.user.username}/Downloads"
-        "file:///home/${settings.user.username}/Documents"
-        "file:///home/${settings.user.username}/Pictures"
-        "file:///home/${settings.user.username}/Music"
-        "file:///home/${settings.user.username}/Videos"
-        # "file:///home/${settings.user.username}/Torrents"
-        "network:///"
-        "computer:///"
-      ];
+      # gtk3.bookmarks = [
+      #   # "recent:///"
+      #   "file:///home/${settings.user.username}/Downloads"
+      #   "file:///home/${settings.user.username}/Documents"
+      #   "file:///home/${settings.user.username}/Pictures"
+      #   "file:///home/${settings.user.username}/Music"
+      #   "file:///home/${settings.user.username}/Videos"
+      #   # "file:///home/${settings.user.username}/Torrents"
+      #   "network:///"
+      #   "computer:///"
+      # ];
 
       # GTK4/libadwaita apps (e.g. Nautilus) don't use `gtk-application-prefer-dark-theme`.
       # Use `org.gnome.desktop.interface color-scheme` instead (set in `modules/desktop/dconf.nix`).
