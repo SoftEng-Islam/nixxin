@@ -82,6 +82,7 @@
       self,
       nixpkgs,
       to-update,
+      chaotic,
       ...
     }@inputs:
     let
