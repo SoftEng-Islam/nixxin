@@ -698,6 +698,9 @@ rec {
     "scsi_mod.use_blk_mq=1" # Enable Multiqueue block layer
     "lockdown=off" # Allow kernel tuning and eBPF tracing
     "noibpb" # Disable Indirect Branch Prediction Barrier (Slight performance gain at slight security cost)
+
+    # Disable kernel page table isolation (performance vs security tradeoff)
+    "nopti"
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

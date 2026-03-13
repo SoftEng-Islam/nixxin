@@ -259,8 +259,10 @@ in
       # LIBVA_DRIVER_NAME = "radeonsi";
       VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
 
-      # vblank_mode = "0"; # ? Reduces latency
-      __GL_SYNC_TO_VBLANK = 1;
+      # Disable all vsync/frame limiting at driver level
+      vblank_mode = "0"; # ? Reduces latency
+      __GL_SYNC_TO_VBLANK = 0;
+
       __GL_THREADED_OPTIMIZATIONS = 1;
       __GL_VRR_ALLOWED = 1;
       __GLX_VENDOR_LIBRARY_NAME = "mesa"; # mesa or nvidia or intel or amd
@@ -318,7 +320,7 @@ in
 
       # MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
       MESA_SHADER_CACHE_DISABLE = "false";
-      MESA_SHADER_CACHE_MAX_SIZE = "2G";
+      MESA_SHADER_CACHE_MAX_SIZE = "10G";
 
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
@@ -327,6 +329,12 @@ in
       GPU_SINGLE_ALLOC_PERCENT = "100";
       GPU_MAX_HEAP_SIZE = "100";
       GPU_USE_SYNC_OBJECTS = "1";
+
+      # SDL - prefer X11 for CS2 (lower latency than Wayland currently)
+      SDL_VIDEODRIVER = "x11";
+
+      # Disable compositing hints (game runs exclusive)
+      __GL_YIELD = "NOTHING";
     };
 
     # ========== Hardware Graphics Configuration ==========

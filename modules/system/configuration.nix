@@ -127,7 +127,6 @@ in
       # Disable various mitigations
       "mitigations=off"
       "l1tf=off"
-      "kvm-intel.vmentry_l1d_flush=never"
       "retbleed=off" # Disable Retbleed mitigation
 
       # ---- Networking ---- #
