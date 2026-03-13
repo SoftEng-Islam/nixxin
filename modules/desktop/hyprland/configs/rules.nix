@@ -28,8 +28,9 @@
 
       # ---- Dialogs ---- #
       # Fix: Force Dialogs & Pop-ups to Float
-      windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
-      windowrule = float, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File)(.*)$
+      windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = float, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = size 850 500, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
       windowrulev2 = float,class:^(firefox|thunar|gedit|krita),title:^(Open File|Save As)
       windowrulev2 = float,class:^(file-roller|pavucontrol|blueman-manager)
       windowrulev2 = float,class:^(xdg-desktop-portal|org.kde.kdialog)
