@@ -687,6 +687,9 @@ rec {
     "skew_tick=1"
     "threadirqs"
     "smt=on"
+    "nohz_full=all"
+    "nowatchdog"
+    "nosoftlockup"
 
     # --- HugePages Configurations ---
     "transparent_hugepage=always"
