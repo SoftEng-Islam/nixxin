@@ -73,7 +73,7 @@ lib.mkIf (settings.modules.env.enable or false) {
       # https://github.com/NixOS/nixpkgs/issues/314713
       UV_USE_IO_URING = "0";
 
-      SDL_VIDEODRIVER = "wayland";
+      SDL_VIDEODRIVER = "wayland"; # wayland for general use, x11 for CS2
       BEMENU_BACKEND = "wayland";
       CLUTTER_BACKEND = "wayland";
       ELM_ENGINE = "wayland_egl";

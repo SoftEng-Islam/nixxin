@@ -330,9 +330,6 @@ in
       GPU_MAX_HEAP_SIZE = "100";
       GPU_USE_SYNC_OBJECTS = "1";
 
-      # SDL - prefer X11 for CS2 (lower latency than Wayland currently)
-      SDL_VIDEODRIVER = "x11";
-
       # Disable compositing hints (game runs exclusive)
       __GL_YIELD = "NOTHING";
     };
