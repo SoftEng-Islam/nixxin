@@ -252,8 +252,11 @@ in
   # docs: https://github.com/chaotic-cx/nyx
   services.scx = {
     enable = true;
-    package = pkgs.scx_git.full;
-    scheduler = "scx_rustland";
+    package = pkgs.scx.full;
+    extraArgs = [
+      "--performance"
+    ];
+    scheduler = "scx_lavd";
   };
 
   # Limit Systemd Journal Size
