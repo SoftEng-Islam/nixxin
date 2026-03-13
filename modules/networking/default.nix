@@ -1,9 +1,15 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkDefault mkForce;
   dnsResolver = settings.modules.networking.dnsResolver;
   wifiInterface = "wlan0";
-in {
+in
+{
   imports = [
     ./dnsmasq.nix
     ./iwd.nix
@@ -42,7 +48,6 @@ in {
   networking.useDHCP = mkDefault true;
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
-  networking.dhcpcd.enable = true;
   networking.useNetworkd = mkDefault false;
   networking.nameservers = settings.modules.networking.nameservers;
   networking.hostName = settings.system.hostName; # Define your hostname.
@@ -77,24 +82,41 @@ in {
   };
 
   networking.firewall.enable = settings.modules.networking.firewall.enable;
-  networking.firewall.allowedTCPPorts =
-    [ 53 80 443 8080 3389 51820 27018 3000 ];
-  networking.firewall.allowedUDPPorts = [ 53 67 51820 1194 ];
+  networking.firewall.allowedTCPPorts = [
+    53
+    80
+    443
+    8080
+    3389
+    51820
+    27018
+    3000
+  ];
+  networking.firewall.allowedUDPPorts = [
+    53
+    67
+    51820
+    1194
+  ];
   # networking.firewall.extraCommands = ''
   #   # Block everything except wg0
   #   iptables -I OUTPUT ! -o wg0 -m conntrack --ctstate NEW -j DROP
   # '';
 
   # Allow ephemeral ranges for better peer discovery in torrent clients
-  networking.firewall.allowedTCPPortRanges = [{
-    from = 49152;
-    to = 65535;
-  } # Ephemeral range for torrents
-    ];
-  networking.firewall.allowedUDPPortRanges = [{
-    from = 49152;
-    to = 65535;
-  }];
+  networking.firewall.allowedTCPPortRanges = [
+    {
+      from = 49152;
+      to = 65535;
+    }
+    # Ephemeral range for torrents
+  ];
+  networking.firewall.allowedUDPPortRanges = [
+    {
+      from = 49152;
+      to = 65535;
+    }
+  ];
 
   services.miniupnpd = {
     enable = false;
@@ -194,7 +216,9 @@ in {
     # wifi.scanRandMacAddress = false;
 
     # dns = "none"; # "none" or "dnsmasq"
-    ethernet = { macAddress = "preserve"; };
+    ethernet = {
+      macAddress = "preserve";
+    };
   };
 
   # Wifi PowerManagement

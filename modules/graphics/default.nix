@@ -14,7 +14,6 @@ let
   # OpenCL and Mesa configuration
   nixos-opencl = inputs.nixos-opencl;
   mesa-drivers = nixos-opencl.packages.${system}.mesa;
-  mesa_icd_dir = "${pkgs.mesa}/share/vulkan/icd.d";
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -199,20 +198,7 @@ in
       # VK_LOADER_DEBUG = "all";
       # =================================
 
-      # Vulkan ICD files — this should point to the system-wide location from Mesa
-      VK_ICD_FILENAMES = builtins.concatStringsSep ":" [
-        "/run/opengl-driver-32/share/vulkan/icd.d/radeon_icd.i686.json"
-        "/run/opengl-driver/share/vulkan/icd.d/amd_icd64.json"
-        "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json"
-        "${pkgs.swiftshader}/share/vulkan/icd.d/vk_swiftshader_icd.json"
-      ];
-
-      VK_INSTANCE_LAYERS = "VK_LAYER_KHRONOS_timeline_semaphore";
-
-      # Vulkan ICD (Installable Client Driver) configuration
-      # /run/opengl-driver/share/vulkan/icd.d/
-      # VK_DRIVER_FILES = "/run/opengl-driver/share/vulkan/icd.d/radeon_icd.x86_64.json";
-      VK_DRIVER_FILES = "${mesa_icd_dir}/radeon_icd.x86_64.json:${mesa_icd_dir}/lvp_icd.x86_64.json:${mesa_icd_dir}/gfxstream_vk_icd.x86_64.json";
+      # Vulkan ICD configuration is handled automatically by hardware.graphics
 
       # Set Vulkan environment variables
       Vulkan_INCLUDE_DIR = "${pkgs.vulkan-headers}/include";
@@ -316,11 +302,11 @@ in
 
       # MESA_GLSL_CACHE_DIR = "~/.cache/mesa_shader_cache";
       MESA_GLSL_CACHE_ENABLE = "true";
-      MESA_GLSL_CACHE_MAX_SIZE = "32G";
+      MESA_GLSL_CACHE_MAX_SIZE = "2G";
 
       # MESA_SHADER_CACHE_DIR = "~/.cache/mesa_shader_cache_db";
       MESA_SHADER_CACHE_DISABLE = "false";
-      MESA_SHADER_CACHE_MAX_SIZE = "10G";
+      MESA_SHADER_CACHE_MAX_SIZE = "2G";
 
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
@@ -371,15 +357,6 @@ in
       intel-media-driver
       intel-vaapi-driver
     ];
-
-    system.activationScripts.vulkan-links = ''
-      mkdir -p /usr/lib
-      mkdir -p /usr/lib32
-      ln -sfn /run/opengl-driver/lib/libvulkan.so.1 /usr/lib/libvulkan.so.1
-      ln -sfn /run/opengl-driver/lib/libvulkan.so.1 /usr/lib32/libvulkan.so.1
-      ln -sfn ${pkgs.vulkan-loader}/lib/libvulkan.so.1 /usr/lib/libvulkan.so.1
-      ln -sfn ${pkgs.pkgsi686Linux.vulkan-loader}/lib/libvulkan.so.1 /usr/lib32/libvulkan.so.1
-    '';
 
     # ========== System Packages ==========
     environment.systemPackages =
