@@ -1,4 +1,5 @@
 {
+  settings,
   config,
   pkgs,
   lib,
@@ -7,7 +8,7 @@
 let
   inherit (lib) attrValues mkDefault;
 in
-{
+lib.mkIf (settings.modules.system.console or false) {
   console =
     let
       variant = "v18n";
