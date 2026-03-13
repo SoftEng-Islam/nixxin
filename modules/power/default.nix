@@ -31,8 +31,8 @@ in
           }
         ];
 
-        # Enable auto-epp for amd active pstate.
-        services.auto-epp.enable = true;
+        # Disable auto-epp since it's not supported on AMD A8-8650B (needs amd-pstate-epp).
+        services.auto-epp.enable = false;
 
         services.thermald.enable = false;
         services.thermald.ignoreCpuidCheck = false;

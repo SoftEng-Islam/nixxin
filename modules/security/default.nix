@@ -39,6 +39,13 @@
       # Enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
       polkit.enable = true;
 
+      # Create missing polkit directories to suppress journalctl g-file-error-quark errors.
+      # Polkit often attempts to open these even if it doesn't need to read anything from them.
+      systemd.tmpfiles.rules = [
+        "d /run/polkit-1/rules.d 0700 polkituser root -"
+        "d /usr/local/share/polkit-1/rules.d 0700 root root -"
+      ];
+
       # rtkit is recommended for pipewire
       rtkit.enable = true;
 
