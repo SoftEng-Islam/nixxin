@@ -17,7 +17,6 @@ let
   _system = settings.modules.system;
 in
 {
-  imports = [ inputs.chaotic.nixosModules.default ];
 
   # ------------------------------------------------
   # ---- Boot Configuration
@@ -247,9 +246,6 @@ in
   # https://wiki.cachyos.org/configuration/sched-ext/
   # Use the newest kernel thread scheduler.
   # better fps in games
-  # requires linuxPackages_cachyos
-  # docs: https://github.com/sched-ext/scx
-  # docs: https://github.com/chaotic-cx/nyx
   services.scx = {
     enable = true;
     package = pkgs.scx.full;
