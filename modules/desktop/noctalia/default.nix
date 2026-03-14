@@ -6,7 +6,12 @@
   pkgs,
   ...
 }:
-
+let
+  system = pkgs.stdenv.hostPlatform.system;
+  noctaliaShellPkg =
+    inputs.noctalia.packages.${system}.default
+      or inputs.noctalia.packages.${system}."noctalia-shell";
+in
 {
   imports = [
     inputs.noctalia.nixosModules.default
@@ -36,7 +41,7 @@
   ];
   environment.systemPackages = with pkgs; [
     # Noctalia Shell
-    # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
+    noctaliaShellPkg
 
     # Noctalia Shell screenshot plugin need this package
     hyprshot

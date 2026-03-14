@@ -5,8 +5,16 @@
   pkgs,
   ...
 }:
-lib.mkIf (settings.modules.desktop.polkit.enable or false) {
-
+lib.mkIf (settings.modules.desktop.polkit.enable or false) (
+  let
+    system = pkgs.stdenv.hostPlatform.system;
+    hyprpolkitagentPkg =
+      inputs.hyprpolkitagent.packages.${system}.hyprpolkitagent
+        or inputs.hyprpolkitagent.packages.${system}.default
+        or pkgs.update.hyprpolkitagent
+        or pkgs.hyprpolkitagent;
+  in
+  {
   # -----------------------------------
   # hyprpolkitagent
   # -----------------------------------
@@ -16,12 +24,9 @@ lib.mkIf (settings.modules.desktop.polkit.enable or false) {
     # -----------------------------------
     # hyprpolkitagent
     # -----------------------------------
-    # inputs.hyprpolkitagent.packages."${pkgs.stdenv.hostPlatform.system}".hyprpolkitagent
-    # inputs.hyprutils
-    # inputs.hyprland-qt-support
-
-    pkgs.update.hyprpolkitagent # Polkit authentication agent written in QT/QML
+    hyprpolkitagentPkg # Polkit authentication agent written in QT/QML
     polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
   ];
 
-}
+  }
+)

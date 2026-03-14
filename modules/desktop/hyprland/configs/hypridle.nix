@@ -10,7 +10,7 @@ let
     ${pkgs.pipewire}/bin/pw-cli i all | ${pkgs.ripgrep}/bin/rg running
     if [ $? == 1 ]; then
       if [ "$action" == "lock" ]; then
-        noctalia-shell ipc call lockScreen lock
+        noctalia-shell ipc --any-display call lockScreen lock
       elif [ "$action" == "suspend" ]; then
         ${pkgs.systemd}/bin/systemctl suspend
       fi
@@ -26,7 +26,7 @@ in
           before_sleep_cmd = "${pkgs.systemd}/bin/loginctl lock-session";
           after_sleep_cmd = "${pkgs.hyprland}/bin/hyprctl dispatch dpms on";
           ignore_dbus_inhibit = true;
-          lock_cmd = "noctalia-shell ipc call lockScreen lock";
+          lock_cmd = "noctalia-shell ipc --any-display call lockScreen lock";
         };
         listener = [
           {

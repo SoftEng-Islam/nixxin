@@ -3,6 +3,14 @@ let
   fontName = "${settings.modules.fonts.main.name} ${
       toString settings.modules.fonts.main.size.main
     }";
+  system = pkgs.stdenv.hostPlatform.system;
+  hyprpolkitagentPkg =
+    inputs.hyprpolkitagent.packages.${system}.hyprpolkitagent
+      or inputs.hyprpolkitagent.packages.${system}.default
+      or pkgs.update.hyprpolkitagent
+      or pkgs.hyprpolkitagent;
+  hyprpolkitagentExe = "${hyprpolkitagentPkg}/bin/hyprpolkitagent";
+  hyprpolkitagentLibexecExe = "${hyprpolkitagentPkg}/libexec/hyprpolkitagent";
   startupScript = pkgs.writeShellScriptBin "start" ''
     #!/usr/bin/env bash
     # ---- DBUS ---- #
@@ -20,6 +28,11 @@ let
 
     # Core components (authentication, lock screen, notification daemon)
     ${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh & disown
+    if [ -x "${hyprpolkitagentExe}" ]; then
+      ${pkgs.procps}/bin/pgrep -x hyprpolkitagent >/dev/null 2>&1 || QT_QPA_PLATFORM=wayland "${hyprpolkitagentExe}" & disown
+    elif [ -x "${hyprpolkitagentLibexecExe}" ]; then
+      ${pkgs.procps}/bin/pgrep -x hyprpolkitagent >/dev/null 2>&1 || QT_QPA_PLATFORM=wayland "${hyprpolkitagentLibexecExe}" & disown
+    fi
 
     # ---- Clipboard ---- #
     ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store  & disown
@@ -36,7 +49,11 @@ let
 
     # ---- Start Ashell a status bar ---- #
     # ${pkgs.ashell}/bin/ashell & disown
-    qs -c noctalia-shell -n & disown
+    if command -v noctalia-shell >/dev/null 2>&1; then
+      noctalia-shell & disown
+    else
+      qs -c noctalia-shell -n & disown
+    fi
     sleep 1
 
     # ---- Notification daemon ---- #

@@ -28,7 +28,7 @@ rec {
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
   # system.kernel = pkgs.linuxPackages_zen;
-  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
+  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;
@@ -322,7 +322,7 @@ rec {
   modules.desktop.file_manager.nautilus = true;
   modules.desktop.file_manager.nemo = false;
   modules.desktop.file_manager.spacedrive = false;
-  modules.desktop.file_manager.thunar = true;
+  modules.desktop.file_manager.thunar = false;
 
   # [Emails]
   modules.emails.thunderbird = true;
