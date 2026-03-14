@@ -70,10 +70,10 @@
       # 1. Import with empty pkgs just to read static system config
       _bootstrap = import (./. + "/_settings.nix") { pkgs = { }; };
       arch = _bootstrap.profile.system.architecture;
-      # 2. Define pkgs using the extracted architecture
-      pkgs = nixpkgs.legacyPackages.${arch};
+      # 2. Define pkgs using the extracted architecture with overlays
+      pkgs_for_settings = (nixpkgs.legacyPackages.${arch}).extend nix-cachyos-kernel.overlays.default;
       # 3. Import settings again with real pkgs for full usage
-      _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
+      _SETTINGS = import (./. + "/_settings.nix") { pkgs = pkgs_for_settings; };
       settings = _SETTINGS.profile;
     in
     {
