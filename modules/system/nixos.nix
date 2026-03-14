@@ -137,7 +137,8 @@ in
         "https://devenv.cachix.org" # devenv cache
         "https://nixpkgs-python.cachix.org" # nixpkgs-python
         "https://nixpkgs-wayland.cachix.org" # nixpkgs-wayland
-        #"https://nix-gaming.cachix.org" # nix-gaming cache, currently disabled due to instability and lack of maintenance
+        "https://attic.xuyh0120.win/lantian"
+        "https://cache.garnix.io"
       ];
 
       # Enable cachix
@@ -147,8 +148,9 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-        "nix-gaming.cachix.org-1:nbjlureqMbRAxR1gJ/f3hxemL9svXaZF/Ees8vCUUs4="
         "devenv.cachix.org-1:w1cLUi8dv3hnoSPGAuibQv+f9TZLr6cv/Hm9XgU50cw="
+        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+        "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
       ];
     };
 

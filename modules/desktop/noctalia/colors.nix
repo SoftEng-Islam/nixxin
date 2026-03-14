@@ -4,22 +4,22 @@
   home-manager.users.${settings.user.username} = {
     programs.noctalia-shell = {
       colors = {
-        mError = "#dddddd";
-        mOnError = "#111111";
-        mOnPrimary = "#111111";
-        mOnSecondary = "#111111";
-        mOnSurface = "#828282";
-        mOnSurfaceVariant = "#5d5d5d";
-        mOnTertiary = "#111111";
+        mError = "#f7768e";
+        mOnError = "#0f0f14";
+        mOnPrimary = "#0f0f14";
+        mOnSecondary = "#0f0f14";
+        mOnSurface = "#c0caf5";
+        mOnSurfaceVariant = "#9aa5ce";
+        mOnTertiary = "#0f0f14";
         mOnHover = "#ffffff";
-        mOutline = "#3c3c3c";
-        mPrimary = "#aaaaaa";
-        mSecondary = "#a7a7a7";
+        mOutline = "#414868";
+        mPrimary = "#7aa2f7";
+        mSecondary = "#bb9af7";
         mShadow = "#000000";
-        mSurface = "#111111";
-        mHover = "#1f1f1f";
-        mSurfaceVariant = "#191919";
-        mTertiary = "#cccccc";
+        mSurface = "#1a1b26";
+        mHover = "#292e42";
+        mSurfaceVariant = "#24283b";
+        mTertiary = "#7dcfff";
       };
     };
   };
