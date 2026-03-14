@@ -5,7 +5,7 @@
       notifications = {
         doNotDisturb = false;
         monitors = [ ];
-        location = "top_right";
+        location = "top_left";
         alwaysOnTop = false;
         lastSeenTs = 0;
         respectExpireTimeout = false;

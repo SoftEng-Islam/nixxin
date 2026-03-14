@@ -13,10 +13,6 @@
         -- require("full-border"):setup()
         -- require("git"):setup()
 
-        -- require("yatline"):setup({
-        --   theme = require("yatline-catppuccin"):setup("mocha"),
-        -- })
-
         -- Custom configuration for augment-command
         require("augment-command"):setup({
           smart_paste = true,

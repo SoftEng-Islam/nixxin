@@ -33,7 +33,7 @@
         showHiddenFiles = false;
         viewMode = "single";
         useSolidColor = false;
-        solidColor = "#1a1a2e";
+        solidColor = "#1a1a1a";
         automationEnabled = true;
         wallpaperChangeMode = "random";
         sortOrder = "name";

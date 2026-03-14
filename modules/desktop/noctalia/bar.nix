@@ -14,7 +14,7 @@
         useSeparateOpacity = true;
         floating = false;
         marginVertical = 4;
-        marginHorizontal = 4;
+        marginHorizontal = 6;
         frameThickness = 4;
         frameRadius = 24;
         outerCorners = true;
@@ -34,21 +34,21 @@
               id = "Workspace";
               characterCount = 2;
               colorizeIcons = false;
-              emptyColor = "secondary";
               enableScrollWheel = false;
-              focusedColor = "primary";
               followFocusedScreen = false;
               groupedBorderOpacity = 1;
               hideUnoccupied = true;
-              iconScale = 0.8;
               labelMode = "index";
-              occupiedColor = "secondary";
+              iconScale = 0.8;
               pillSize = 0.6;
               reverseScroll = false;
               showApplications = false;
               showBadge = true;
               showLabelsOnlyWhenOccupied = false;
               unfocusedIconsOpacity = 1;
+              emptyColor = "secondary";
+              occupiedColor = "secondary";
+              focusedColor = "primary";
             }
             {
               id = "KeyboardLayout";

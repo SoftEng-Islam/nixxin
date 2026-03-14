@@ -1,9 +1,9 @@
 { settings, ... }:
 {
+  # The Noctalia Shell Colors
   home-manager.users.${settings.user.username} = {
     programs.noctalia-shell = {
       colors = {
-        # you must set ALL of these
         mError = "#dddddd";
         mOnError = "#111111";
         mOnPrimary = "#111111";

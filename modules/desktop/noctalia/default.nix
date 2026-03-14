@@ -10,14 +10,13 @@
 {
   imports = [
     inputs.noctalia.nixosModules.default
-    ./colors.nix
-    ./plugins.nix
     ./appLauncher.nix
     ./audio.nix
     ./bar.nix
     ./battery.nix
     ./brightness.nix
     ./calendar.nix
+    ./colors.nix
     ./colorSchemes.nix
     ./controlCenter.nix
     ./desktopWidgets.nix
@@ -25,9 +24,11 @@
     ./general.nix
     ./hooks.nix
     ./location.nix
+    ./lockScreen.nix
     ./network.nix
     ./notifications.nix
     ./osd.nix
+    ./plugins.nix
     ./systemMonitor.nix
     ./templates.nix
     ./ui.nix

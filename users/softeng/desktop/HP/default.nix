@@ -27,8 +27,8 @@ rec {
   system.stateVersion = "25.05"; # Did you read the comment?
 
   # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
-  system.kernel = pkgs.linuxPackages_zen;
-  # system.kernel = pkgs.linuxPackages_cachyos-lto;
+  # system.kernel = pkgs.linuxPackages_zen;
+  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;

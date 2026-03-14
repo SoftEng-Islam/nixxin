@@ -2,87 +2,68 @@
   description = "NIXXIN Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    systems.url = "github:nix-systems/default-linux";
+    flake-utils.url = "github:numtide/flake-utils";
 
     # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
     to-update.url = "github:NixOS/nixpkgs/master";
-    systems.url = "github:nix-systems/default-linux";
 
-    chaotic = {
-      url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    flake-utils.url = "github:numtide/flake-utils";
-
+    # Nixos Home-Manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
+    # To use cahsyOs Kernel Packages
+    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
+    # chaotic.inputs.nixpkgs.follows = "nixpkgs";
 
-    zen-browser.url = "github:youwen5/zen-browser-flake";
-    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+
+    # Polkit
+    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
     quickshell.inputs.nixpkgs.follows = "nixpkgs";
 
-    noctalia = {
-      url = "github:noctalia-dev/noctalia-shell";
-      inputs.nixpkgs.follows = "nixpkgs";
-      inputs.noctalia-qs.follows = "noctalia-qs";
-    };
-
-    noctalia-qs = {
-      url = "github:noctalia-dev/noctalia-qs";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # Noctalia Shell
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia.inputs.noctalia-qs.follows = "noctalia-qs";
+    noctalia-qs.url = "github:noctalia-dev/noctalia-qs";
+    noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
+    # OpenCL Packages for Nixos
     nixos-opencl.url = "path:./pkgs/nixos-opencl";
 
-    yazi-plugins = {
-      url = "github:yazi-rs/plugins";
-      flake = false;
-    };
+    # Zen Web Browser
+    zen-browser.url = "github:youwen5/zen-browser-flake";
+    zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    yazi-compress = {
-      url = "github:v3natio/compress.yazi";
-      flake = false;
-    };
-
-    yazi-hexyl = {
-      url = "github:Reledia/hexyl.yazi";
-      flake = false;
-    };
-
-    yazi-augment-command = {
-      url = "github:hankertrix/augment-command.yazi";
-      flake = false;
-    };
-
-    yazi-what-size = {
-      url = "github:pirafrank/what-size.yazi";
-      flake = false;
-    };
-
-    yazi-flexoki-light = {
-      url = "github:gosxrgxx/flexoki-light.yazi";
-      flake = false;
-    };
-
-    yazi-flexoki-dark = {
-      url = "github:gosxrgxx/flexoki-dark.yazi";
-      flake = false;
-    };
-
+    # yazi File Manager
+    yazi-plugins.url = "github:yazi-rs/plugins";
+    yazi-plugins.flake = false;
+    yazi-compress.url = "github:v3natio/compress.yazi";
+    yazi-compress.flake = false;
+    yazi-hexyl.url = "github:Reledia/hexyl.yazi";
+    yazi-hexyl.flake = false;
+    yazi-augment-command.url = "github:hankertrix/augment-command.yazi";
+    yazi-augment-command.flake = false;
+    yazi-what-size.url = "github:pirafrank/what-size.yazi";
+    yazi-what-size.flake = false;
+    yazi-flexoki-light.url = "github:gosxrgxx/flexoki-light.yazi";
+    yazi-flexoki-light.flake = false;
+    yazi-flexoki-dark.url = "github:gosxrgxx/flexoki-dark.yazi";
+    yazi-flexoki-dark.flake = false;
   };
   outputs =
     {
       self,
       nixpkgs,
       to-update,
-      chaotic,
+      # chaotic,
+      nix-cachyos-kernel,
       ...
     }@inputs:
     let
@@ -117,12 +98,15 @@
                 ./pkgs/default.nix
               ];
               nixpkgs.overlays = [
+                nix-cachyos-kernel.overlays.default
+
                 (final: prev: {
                   update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;
                   };
                 })
+
               ];
             }
             (./. + _SETTINGS.path + "/configuration.nix")

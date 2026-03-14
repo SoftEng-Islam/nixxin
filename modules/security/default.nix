@@ -36,9 +36,6 @@
 
       allowSimultaneousMultithreading = true; # to allow SMT/hyperthreading
 
-      # Enable polkit. polkit-kde-agent needs to be installed and started at boot seperately (will be done with Hyprland)
-      polkit.enable = true;
-
       # rtkit is recommended for pipewire
       rtkit.enable = true;
 

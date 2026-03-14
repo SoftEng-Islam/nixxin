@@ -1,4 +1,10 @@
-{ settings, inputs, lib, pkgs, ... }:
+{
+  settings,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf (settings.modules.desktop.polkit.enable or false) {
 
   # -----------------------------------
@@ -14,7 +20,7 @@ lib.mkIf (settings.modules.desktop.polkit.enable or false) {
     # inputs.hyprutils
     # inputs.hyprland-qt-support
 
-    hyprpolkitagent # Polkit authentication agent written in QT/QML
+    pkgs.update.hyprpolkitagent # Polkit authentication agent written in QT/QML
     polkit # Toolkit for defining and handling the policy that allows unprivileged processes to speak to privileged processes
   ];
 
