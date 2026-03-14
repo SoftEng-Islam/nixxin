@@ -13,9 +13,6 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # To use cahsyOs Kernel Packages
-    # chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
-    # chaotic.inputs.nixpkgs.follows = "nixpkgs";
-
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
 
     # Polkit
@@ -62,7 +59,6 @@
       self,
       nixpkgs,
       to-update,
-      # chaotic,
       nix-cachyos-kernel,
       ...
     }@inputs:
