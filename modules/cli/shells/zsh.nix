@@ -67,6 +67,40 @@ in
     zsh-completions
   ];
 
+  programs.zsh = {
+    # ohMyZsh
+    programs.zsh.ohMyZsh.enable = true;
+    programs.zsh.ohMyZsh.cacheDir = "${HOME}/.cache/oh-my-zsh";
+    programs.zsh.ohMyZsh.plugins = [
+      "colored-man-pages"
+      "fzf"
+      "git"
+      "sudo"
+      "systemd"
+      "tmux"
+      "extract"
+
+      # Prevent running pasted command
+      "safe-paste"
+    ];
+    programs.zsh.ohMyZsh.preLoaded = ''
+      # If you see compaudit warnings due to the Nix store / system profile, this
+      # avoids the interactive prompt and speeds startup.
+      ZSH_DISABLE_COMPFIX=true
+
+      # OMZ behavior toggles
+      DISABLE_MAGIC_FUNCTIONS="false"
+      ENABLE_CORRECTION="false"
+      DISABLE_UNTRACKED_FILES_DIRTY="true"
+
+      # Completion behavior
+      CASE_SENSITIVE="false"
+      HYPHEN_INSENSITIVE="true"
+
+      # Never auto-update (Nix store is immutable)
+      zstyle ':omz:update' mode disabled
+    '';
+  };
   home-manager.users.${settings.user.username} = {
     programs.zsh = {
       enable = true;
@@ -144,38 +178,5 @@ in
         ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
       '';
     };
-
-    # ohMyZsh
-    programs.zsh.ohMyZsh.enable = true;
-    programs.zsh.ohMyZsh.cacheDir = "${HOME}/.cache/oh-my-zsh";
-    programs.zsh.ohMyZsh.plugins = [
-      "colored-man-pages"
-      "fzf"
-      "git"
-      "sudo"
-      "systemd"
-      "tmux"
-      "extract"
-
-      # Prevent running pasted command
-      "safe-paste"
-    ];
-    programs.zsh.ohMyZsh.preLoaded = ''
-      # If you see compaudit warnings due to the Nix store / system profile, this
-      # avoids the interactive prompt and speeds startup.
-      ZSH_DISABLE_COMPFIX=true
-
-      # OMZ behavior toggles
-      DISABLE_MAGIC_FUNCTIONS="false"
-      ENABLE_CORRECTION="false"
-      DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-      # Completion behavior
-      CASE_SENSITIVE="false"
-      HYPHEN_INSENSITIVE="true"
-
-      # Never auto-update (Nix store is immutable)
-      zstyle ':omz:update' mode disabled
-    '';
   };
 }
