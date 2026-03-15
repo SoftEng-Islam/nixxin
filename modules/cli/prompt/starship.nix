@@ -132,16 +132,17 @@ in
   programs.starship.interactiveOnly = false;
   programs.starship = {
     enable = true;
-    enableTransience = true;
-    enableZshIntegration = true;
-    enableBashIntegration = true;
-    enableFishIntegration = true;
     package = pkgs.starship;
     presets = [ "nerd-font-symbols" ];
     settings = starship_settings;
   };
   home-manager.users.${settings.user.username} = {
-
+    programs.starship = {
+      enableTransience = true;
+      enableZshIntegration = true;
+      enableBashIntegration = true;
+      enableFishIntegration = true;
+    };
     home.sessionVariables.STARSHIP_CACHE = "/home/${settings.user.username}/.cache/starship";
 
     programs.bash.initExtra = ''
