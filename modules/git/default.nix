@@ -108,9 +108,7 @@ in mkIf (settings.modules.git.enable) {
     };
   };
   environment.systemPackages = with pkgs; [
-    delta # Syntax-highlighting pager for git
     gh # GitHub CLI tool
-    git # Distributed version control system
     git-absorb # git commit --fixup, but automatic
     git-crypt # Transparent file encryption in git
     git-ignore # Quickly and easily fetch .gitignore templates from gitignore.io

@@ -25,8 +25,4 @@
       };
     };
   };
-  environment.systemPackages = with pkgs;
-    [
-      lf # Terminal file manager written in Go and heavily inspired by ranger
-    ];
 }

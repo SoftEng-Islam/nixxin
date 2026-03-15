@@ -40,21 +40,14 @@
   environment.systemPackages = with pkgs; [
     bashInteractive
     vim # The most popular clone of the VI editor
-    zsh # The Z shell
 
     fzf-zsh # wrap fzf to use in oh-my-zsh
-    oh-my-zsh # A framework for managing your zsh configuration
     zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
     zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
-    zsh-autosuggestions # Fish shell autosuggestions for Zsh
     zsh-better-npm-completion
-    zsh-completions # Additional completion definitions for zsh
     zsh-f-sy-h
     zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
-    zsh-syntax-highlighting # Fish shell like syntax highlighting for Zsh
 
-    eza # A modern, maintained replacement for ls
-    fzf # Command-line fuzzy finder written in Go
     dust # du + rust = dust. Like du but more intuitive
     duf # Disk Usage/Free Utility
     file # Program that shows the type of files
@@ -94,7 +87,6 @@
     glow # markdown previewer in terminal
 
     ruff
-    ripgrep
     marksman
 
     csvlens

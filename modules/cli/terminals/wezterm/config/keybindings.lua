@@ -8,6 +8,42 @@ M.debug_key_events = true
 M.leader = { mods = "CTRL", key = "b", timeout_milliseconds = 1000 }
 M.keys   = {
   { mods = "CTRL", key = "L", action=act.ShowDebugOverlay },
+  -- CTRL-SHIFT-t open new tab in new dir
+  {
+    key = 't',
+    mods = 'CTRL|SHIFT',
+    action = act.SpawnCommandInNewTab {
+      cwd = wezterm.home_dir,
+    },
+  },
+  -- CTRL-ALT-t open new tab in same dir
+  {
+    key = 't',
+    mods = 'CTRL|ALT',
+    action = act.SpawnTab 'CurrentPaneDomain'
+  },
+  -- Smart Ctrl-c: copy selection, otherwise send Ctrl-c
+  {
+    key = 'c',
+    mods = 'CTRL',
+    action = wezterm.action_callback(function(window, pane)
+      local sel = window:get_selection_text_for_pane(pane)
+      if (not sel or sel == "") then
+        window:perform_action(wezterm.action.SendKey{ key='c', mods='CTRL' }, pane)
+      else
+        window:perform_action(wezterm.action{ CopyTo = 'ClipboardAndPrimarySelection' }, pane)
+      end
+    end),
+  },
+  { key = 'v', mods = 'CTRL', action = act.PasteFrom 'Clipboard' },
+  { key = 'v', mods = 'SHIFT|CTRL', action = wezterm.action_callback(function(window, pane)
+    window:perform_action(wezterm.action.SendKey{ key='v', mods='CTRL' }, pane) end),
+  },
+  { key = 'V', mods = 'SHIFT|CTRL', action = wezterm.action_callback(function(window, pane)
+    window:perform_action(wezterm.action.SendKey{ key='v', mods='CTRL' }, pane) end),
+  },
+  { key = 'c', mods = 'ALT', action = act.CopyTo 'ClipboardAndPrimarySelection' },
+  { key = 'v', mods = 'ALT', action = act.PasteFrom 'Clipboard' },
   { mods = "LEADER|CTRL", key = ";",           action = act.SplitVertical    { domain = "CurrentPaneDomain" } },
   { mods = "LEADER|CTRL", key = "'",           action = act.SplitHorizontal  { domain = "CurrentPaneDomain" } },
   { mods = "LEADER|CTRL", key = "x",           action = act.CloseCurrentPane { confirm = false              } },

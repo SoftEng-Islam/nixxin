@@ -217,8 +217,6 @@ in {
     '';
   };
   environment.systemPackages = with pkgs; [
-    btop
-    # btop-rocm
     resources # Monitor your system resources and processes
   ];
 }

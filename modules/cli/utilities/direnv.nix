@@ -24,7 +24,5 @@ lib.mkIf (settings.modules.cli.utilities.direnv.enable or false) {
     DIRENV_LOG_FORMAT = "";
   };
 
-  environment.systemPackages = with pkgs; [
-    direnv # Shell extension that manages your environment
-  ];
+  # `programs.direnv.enable` already provides the package.
 }

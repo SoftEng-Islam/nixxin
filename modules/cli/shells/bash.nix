@@ -1,5 +1,5 @@
-{ settings, pkgs, ... }: {
-  environment.systemPackages = with pkgs; [ bash ];
+{ settings, pkgs, ... }:
+{
   home-manager.users.${settings.user.username} = {
     programs.bash = { enable = true; };
   };
