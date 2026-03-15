@@ -67,6 +67,8 @@ in
     zsh-completions
   ];
 
+  programs.zsh.enable = true;
+
   programs.zsh.ohMyZsh.enable = true;
   programs.zsh.ohMyZsh.cacheDir = "${HOME}/.cache/oh-my-zsh";
   programs.zsh.ohMyZsh.plugins = [
