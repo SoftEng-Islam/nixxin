@@ -128,7 +128,8 @@ let
   starshipCmd = "${pkgs.starship}/bin/starship";
 in
 {
-
+  # Whether to enable starship only when the shell is interactive. Some plugins require this to be set to false to function correctly.
+  programs.starship.interactiveOnly = false;
   home-manager.users.${settings.user.username} = {
     programs.starship = {
       enable = true;
@@ -136,7 +137,6 @@ in
       enableZshIntegration = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      interactiveOnly = false;
       package = pkgs.starship;
       presets = [ "nerd-font-symbols" ];
       settings = starship_settings;
