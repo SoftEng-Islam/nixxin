@@ -7,6 +7,5 @@
     ./nautilus.nix
     ./nemo.nix
     ./thunar.nix
-    ./yazi.nix
   ];
 }

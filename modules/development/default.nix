@@ -16,7 +16,7 @@ let
   development = settings.modules.development;
 
   _imports = [
-    (optional development.vscode.enable ./vscode.nix)
+    (optional development.vscode ./vscode.nix)
     (optional development.zedEditor ./zed-editor.nix)
     (optional development.emacs ./emacs.nix)
     (optional development.eclipse ./eclipse.nix)

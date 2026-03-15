@@ -1,4 +1,10 @@
-{ settings, lib, pkgs, ... }: {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+{
   imports = [
     ./hardware.nix
     ./home.nix
@@ -12,7 +18,7 @@
     ../../../../modules/bluetooth
     ../../../../modules/browsers
     ../../../../modules/camera
-    ../../../../modules/cli_tools
+    ../../../../modules/cli
     ../../../../modules/community
     ../../../../modules/data_transferring
     ../../../../modules/desktop

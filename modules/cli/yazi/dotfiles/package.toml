@@ -1,0 +1,12 @@
+[plugin]
+deps = [
+  { use = "Reledia/miller",           rev = "40e0265" },
+  { use = "Reledia/glow",             rev = "c2ed51e" },
+  { use = "AnirudhG07/nbpreview",     rev = "1d85745" }
+  ]
+
+[flavor]
+deps = [
+  { use = "tkapias/nightfly",                     rev = "599b8ad" },
+  { use = "yazi-rs/flavors:catppuccin-mocha",     rev = "8458d25" }
+  ]

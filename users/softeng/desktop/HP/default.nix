@@ -173,7 +173,7 @@ rec {
   modules.graphics.enable = true;
   modules.fonts.enable = true;
   modules.development.enable = true;
-  modules.cli_tools.enable = true;
+  modules.cli.enable = true;
   modules.browsers.enable = true;
   modules.storage.enable = true;
   modules.users.enable = true;
@@ -228,14 +228,14 @@ rec {
   modules.browsers.firefox-beta.enable = false;
   modules.browsers.microsoft-edge.enable = false;
 
-  # [ cli_tools ] Collection of useful CLI apps/terminals/shells
-  modules.cli_tools.prompt.enable = true;
-  modules.cli_tools.shells.enable = true;
-  modules.cli_tools.terminals.enable = true;
-  modules.cli_tools.utilities.enable = true;
-  modules.cli_tools.utilities.bat.enable = true;
-  modules.cli_tools.utilities.direnv.enable = false;
-  modules.cli_tools.utilities.emacs.enable = true;
+  # [ cli ] Collection of useful CLI apps/terminals/shells
+  modules.cli.prompt.enable = true;
+  modules.cli.shells.enable = true;
+  modules.cli.terminals.enable = true;
+  modules.cli.utilities.enable = true;
+  modules.cli.utilities.bat.enable = true;
+  modules.cli.utilities.direnv.enable = false;
+  modules.cli.utilities.emacs.enable = true;
 
   # [ community ]
   modules.community.telegram.enable = true;
@@ -275,13 +275,7 @@ rec {
   modules.development.emacs = true;
   modules.development.eclipse = false;
   modules.development.helix = true;
-  modules.development.vscode = {
-    enable = true;
-    extensions_home = false;
-    globalSnippets_home = false;
-    userSettings_home = false;
-    keybindings_home = false;
-  };
+  modules.development.vscode = true;
 
   # [ desktop ]
   modules.desktop.tools = false;
@@ -292,7 +286,7 @@ rec {
   modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
 
   # [ desktop ] [ Hyprland ]
-  modules.desktop.hyprland.genColorsPath = /home/${user.username}/.cache/hypr/colors.conf;
+  modules.desktop.hyprland.genColorsPath = "/home/${user.username}/.cache/hypr/colors.conf";
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = false;
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
