@@ -25,8 +25,8 @@ rec {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  # system.kernel = pkgs.linuxPackages_zen;
-  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  system.kernel = pkgs.linuxPackages_zen;
+  # system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;
