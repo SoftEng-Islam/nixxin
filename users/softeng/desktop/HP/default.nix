@@ -109,7 +109,7 @@ rec {
   common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   common.gtk.package = pkgs.adw-gtk3;
 
-  common.gtk.icon_cache = false;
+  common.gtk.icon_cache = true;
 
   # [ QT ]
   common.qt.style = "Adwaita-dark";

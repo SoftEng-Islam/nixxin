@@ -18,8 +18,7 @@ let
       _icons.package;
 in
 {
-  # gtk.iconCache.enable = settings.common.gtk.icon_cache;
-
+  gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;

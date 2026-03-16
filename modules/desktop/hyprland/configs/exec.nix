@@ -47,15 +47,6 @@ let
     # changeWallpaper & disown
     # sleep 1
 
-    # ---- Start Ashell a status bar ---- #
-    # ${pkgs.ashell}/bin/ashell & disown
-    if command -v noctalia-shell >/dev/null 2>&1; then
-      noctalia-shell & disown
-    else
-      qs -c noctalia-shell -n & disown
-    fi
-    sleep 1
-
     # ---- Notification daemon ---- #
     # swaync & disown
     # sleep 1
