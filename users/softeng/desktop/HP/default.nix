@@ -567,7 +567,7 @@ rec {
 
     # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
     # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
-    "radeon.dpm=0"
+    # radeon.dpm is unnecessary — radeon driver is disabled via si_support=0/cik_support=0
     "amdgpu.dpm=1"
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
@@ -617,10 +617,7 @@ rec {
     # 4. Use the legacy _OS identification method
     #  ''acpi_os_name="Microsoft Windows NT"''
 
-    # https://en.wikipedia.org/wiki/Kernel_page-table_isolation
-    # auto means kernel will automatically decide the pti state
-    "pti=off" # on | off
-
+    # pti=off removed — redundant with mitigations=off (which disables all speculative execution mitigations)
     "intremap=off" # disable Interrupt Remapping
     "audit=0"
     "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
@@ -653,24 +650,20 @@ rec {
     # disable displaying of the built-in Linux logo
     "logo.nologo"
 
-    "accept_memory=eager"
-    "unaligned_scalar_speed=fast"
     "skew_tick=1"
     "threadirqs"
     "tpm.disable_pcr_integrity=1"
     "preempt=full"
-    "big_root_window=on"
     "amd_iommu=on"
     "pcie_aspm=off" # Disables PCIe power saving (better performance)
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
-    "radeon.bapm=1"
 
     "processor.max_cstate=0"
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
-    "psi=1"
+    # psi=1 is set in waydroid.nix
     "pci=nocrs"
 
     # MTRR Optimization for 16GB RAM + iGPU
@@ -680,8 +673,7 @@ rec {
     "mtrr_chunk_size=128M" # Helps map the 16GB more efficiently
 
     "workqueue.power_efficient=false"
-    "skew_tick=1"
-    "threadirqs"
+    # skew_tick=1 and threadirqs already set above
     "smt=on"
     "nohz_full=all"
     "nowatchdog"
@@ -694,12 +686,9 @@ rec {
 
     # --- Added Performance Tunings ---
     "elevator=mq-deadline" # Optimized IO Scheduler
-    "scsi_mod.use_blk_mq=1" # Enable Multiqueue block layer
+    # scsi_mod.use_blk_mq=1 removed — blk-mq is default since Linux 5.0
     "lockdown=off" # Allow kernel tuning and eBPF tracing
-    "noibpb" # Disable Indirect Branch Prediction Barrier (Slight performance gain at slight security cost)
-
-    # Disable kernel page table isolation (performance vs security tradeoff)
-    "nopti"
+    # noibpb and nopti removed — redundant with mitigations=off
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

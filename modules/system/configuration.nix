@@ -122,10 +122,9 @@ in
       "rd.systemd.show_status=auto"
       "rd.udev.log_level=0"
 
-      # Disable various mitigations
+      # Disable various mitigations (l1tf=off, retbleed=off, noibpb, nopti
+      # are all redundant when mitigations=off is set)
       "mitigations=off"
-      "l1tf=off"
-      "retbleed=off" # Disable Retbleed mitigation
 
       # ---- Networking ---- #
       # Use legacy network interface names (eth0, wlan0, etc.)
