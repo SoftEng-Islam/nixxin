@@ -18,7 +18,8 @@ with lib.gvariant;
   programs.dconf.enable = true;
   environment.systemPackages = with pkgs; [
     dconf
-    # gsettings-desktop-schemas
+    glib.bin # provides `gsettings`
+    gsettings-desktop-schemas
   ];
 
   home-manager.users.${settings.user.username} = {
