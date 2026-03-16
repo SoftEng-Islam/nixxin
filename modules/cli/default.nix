@@ -13,6 +13,7 @@
     ./terminals
     ./utilities
     ./editors
+    ./yazi
   ];
 
   # Enable the nix-index
@@ -40,13 +41,6 @@
   environment.systemPackages = with pkgs; [
     bashInteractive
     vim # The most popular clone of the VI editor
-
-    fzf-zsh # wrap fzf to use in oh-my-zsh
-    zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
-    zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
-    zsh-better-npm-completion
-    zsh-f-sy-h
-    zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
 
     dust # du + rust = dust. Like du but more intuitive
     duf # Disk Usage/Free Utility

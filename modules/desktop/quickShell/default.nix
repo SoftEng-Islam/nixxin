@@ -40,7 +40,8 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    quickshell-wrapped
+    quickshell
+    # quickshell-wrapped
     libsForQt5.qt5.qtsvg
     libsForQt5.qt5.qtimageformats
     libsForQt5.qt5.qtmultimedia

@@ -138,18 +138,19 @@ in
   };
   home-manager.users.${settings.user.username} = {
     programs.starship = {
+      enable = true;
       enableTransience = true;
       enableZshIntegration = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
     };
-    home.sessionVariables.STARSHIP_CACHE = "/home/${settings.user.username}/.cache/starship";
+    # home.sessionVariables.STARSHIP_CACHE = "/home/${settings.user.username}/.cache/starship";
 
     programs.bash.initExtra = ''
       eval "$(${starshipCmd} init bash)"
     '';
 
-    programs.zsh.initExtra = ''
+    programs.zsh.initContent = ''
       eval "$(${starshipCmd} init zsh)"
     '';
 

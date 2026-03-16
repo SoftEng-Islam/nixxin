@@ -18,7 +18,8 @@ let
       _icons.package;
 in
 {
-  gtk.iconCache.enable = settings.common.gtk.icon_cache;
+  # gtk.iconCache.enable = settings.common.gtk.icon_cache;
+
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
@@ -48,16 +49,6 @@ in
         gtk-xft-rgba = "rgb";
         gtk-recent-files-enabled = true;
       };
-
-      gtk3.extraCss = ''
-        .nemo-window .sidebar .cell { /* notice the .cell */
-          padding: 3px; /* padding space between lines/rows */
-        }
-        .nemo-window .sidebar .view {
-          background-color: @theme_bg_color;
-          color: @theme_fg_color;
-        }
-      '';
 
       gtk3.bookmarks = [
         # "recent:///"
@@ -106,7 +97,7 @@ in
     gsettings-qt
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5ct # Qt5 Configuration Tool
+    # libsForQt5.qt5ct # Qt5 Configuration Tool
     libsForQt5.qwt
     qt5.qtgraphicaleffects
     qt5.qtimageformats
@@ -121,7 +112,7 @@ in
     libadwaita
 
     gobject-introspection
-    gtk_engines # Theme engines for GTK 2
+    # gtk_engines # Theme engines for GTK 2
 
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces

@@ -11,11 +11,10 @@
         -- local wezterm = require 'wezterm'
 
         -- GPU & Performance
-        local wezterm = require 'wezterm'
         local gpus = wezterm.gui.enumerate_gpus()
 
         -- Multiplexing config
-        local act = wezterm.action
+        -- local act = wezterm.action
 
         -- This table will hold the configuration.
         local config = {}
@@ -27,12 +26,12 @@
         end
 
         -- get configurations from config directory
-        local keybindings = require 'config.keybindings'
+        -- local keybindings = require 'config.keybindings'
 
         -- keybinding configurations
-        config.keys = keybindings.keys
-        config.key_tables = keybindings.key_tables
-        config.leader = keybindings.leader
+        -- config.keys = keybindings.keys
+        -- config.key_tables = keybindings.key_tables
+        -- config.leader = keybindings.leader
 
         -- This is where you actually apply your config choices.
         config.initial_rows = 25
@@ -117,6 +116,12 @@
         -- Finally, return the configuration to wezterm:
         return config
       '';
+    };
+    xdg.configFile = {
+      "wezterm" = {
+        source = ./config;
+        recursive = true;
+      };
     };
   };
 }

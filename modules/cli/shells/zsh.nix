@@ -65,6 +65,12 @@ in
 
   environment.systemPackages = with pkgs; [
     zsh-completions
+    fzf-zsh # wrap fzf to use in oh-my-zsh
+    zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
+    zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
+    zsh-better-npm-completion
+    zsh-f-sy-h
+    zsh-fzf-tab # Replace zsh's default completion selection menu with fzf!
   ];
 
   programs.zsh.enable = true;
@@ -114,7 +120,7 @@ in
         ignoreAllDups = true;
         share = true;
       };
-      initExtra = lib.mkAfter ''
+      initContent = lib.mkAfter ''
         [ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
         bindkey '^P' history-beginning-search-backward
         bindkey '^N' history-beginning-search-forward

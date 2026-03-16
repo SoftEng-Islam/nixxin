@@ -25,10 +25,8 @@ rec {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-
-  # Change kernel to zen kernal use "pkgs.linuxPackages_zen"
-  # system.kernel = pkgs.linuxPackages_zen;
-  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  system.kernel = pkgs.linuxPackages_zen;
+  # system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;
@@ -46,7 +44,11 @@ rec {
   # want to update the value, then make sure to first check the Home Manager
   # release notes.
   home.stateVersion = "25.05"; # ! Please read the comment before changing.
+
+  # ?
   home.backupFileExtension = null;
+
+  # ?
   home.manual.html = false;
   home.manual.json = false;
   home.manual.manpages = false;
@@ -271,7 +273,7 @@ rec {
   modules.hacking.hashcat.enable = true;
 
   # [ Development ]
-  modules.development.zedEditor = false;
+  modules.development.zedEditor = true;
   modules.development.emacs = true;
   modules.development.eclipse = false;
   modules.development.helix = true;
