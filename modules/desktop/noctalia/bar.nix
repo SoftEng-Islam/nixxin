@@ -14,7 +14,7 @@
         useSeparateOpacity = true;
         floating = false;
         marginVertical = 4;
-        marginHorizontal = 6;
+        marginHorizontal = 4;
         frameThickness = 4;
         frameRadius = 24;
         outerCorners = true;
