@@ -23,7 +23,7 @@ in
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = true;
-
+      colorScheme = "dark";
       theme = {
         name = settings.common.gtk.theme;
         package = settings.common.gtk.package;
@@ -64,7 +64,7 @@ in
 
       # GTK4/libadwaita apps (e.g. Nautilus) don't use `gtk-application-prefer-dark-theme`.
       # Use `org.gnome.desktop.interface color-scheme` instead (set in `modules/desktop/dconf.nix`).
-      gtk4.extraConfig = { };
+      # gtk4.extraConfig = { };
     };
 
     qt = {
@@ -92,12 +92,12 @@ in
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
-    # adwaita-qt
+    adwaita-qt
     adwaita-qt6
     gsettings-qt
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    # libsForQt5.qt5ct # Qt5 Configuration Tool
+    libsForQt5.qt5ct # Qt5 Configuration Tool
     libsForQt5.qwt
     qt5.qtgraphicaleffects
     qt5.qtimageformats
