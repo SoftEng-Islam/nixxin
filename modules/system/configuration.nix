@@ -103,10 +103,11 @@ in
     blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [
       # "k10temp"
     ];
-    extraModulePackages = with config.boot.kernelPackages; [
-      # pkgs.nftables # Removed: nftables is a userspace tool, not a kernel module
-      amdgpu-i2c
-    ];
+    extraModulePackages =
+      # Only include amdgpu-i2c if it exists in the current kernel packages
+      # (it may not be available with all kernels, e.g. cachyos)
+      lib.optionals (config.boot.kernelPackages ? amdgpu-i2c)
+        [ config.boot.kernelPackages.amdgpu-i2c ];
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [
       #---- Reduce Boot Delay ---- #
@@ -155,19 +156,10 @@ in
       "kernel.unprivileged_userns_clone" = 1;
     };
 
-    # The Linux kernel does not have Rust language support enabled by default.
-    # For kernel versions 6.7 or newer,
-    # experimental Rust support can be enabled.
-    # In a NixOS configuration, set:
-    kernelPatches = [
-      {
-        name = "Rust Support";
-        patch = null;
-        features = {
-          rust = true;
-        };
-      }
-    ];
+    # Note: Rust kernel support and custom kernel patches are handled
+    # conditionally in kernelPatches.nix to avoid conflicts with
+    # pre-patched kernels like cachyos.
+    # kernelPatches = [];
 
     plymouth = {
       enable = _system.boot.plymouth.enable;

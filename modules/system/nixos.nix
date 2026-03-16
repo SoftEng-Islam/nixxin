@@ -232,13 +232,15 @@ in
   # ------------------------------------------------
   # ---- Enable automatic updates
   # ------------------------------------------------
+  # Only enable the upgrade timer when system.upgrade.enable is true.
+  # Previously this was always enabled, causing unnecessary periodic rebuilds.
   systemd.timers.nixos-upgrade = {
-    enable = true;
+    enable = settings.system.upgrade.enable or false;
     timerConfig.OnCalendar = "weekly";
     wantedBy = [ "timers.target" ];
   };
   systemd.services.nixos-upgrade = {
-    enable = true;
+    enable = settings.system.upgrade.enable or false;
     script = "${pkgs.nixos-rebuild}/bin/nixos-rebuild switch --upgrade";
     serviceConfig.Type = "oneshot";
   };
@@ -274,52 +276,43 @@ in
   # the binary to be built with Nix.
   programs.nix-ld = {
     enable = true;
-    # Include libstdc++ in the nix-ld profile
+    # Minimal set of libraries for nix-ld.
+    # Each library here adds symlinks to the user environment.
+    # Only include what's actually needed for unpatched binaries.
+    # Removed: gcc (duplicate), glibc_multi, stdenv.cc, stdenv.cc.cc (compilers
+    #   belong in environment.systemPackages, not nix-ld), libpng12, systemd,
+    #   util-linux, acl, attr, curl, libssh, libva-utils,
+    #   vulkan-validation-layers, vulkan-extension-layer (dev/debug only)
     libraries = with pkgs; [
-      # Standard compilers & runtime
-      gcc # provides /run/current-system/sw/bin/gcc
-      libgcc # libgcc_s, etc.
-      glibc_multi # if you need multilib support
+      # Core runtime libraries
+      stdenv.cc.cc.lib # libstdc++
+      libgcc # libgcc_s
 
-      stdenv.cc # C compiler environment
-      stdenv.cc.cc # explicit cc
-      stdenv.cc.cc.lib
-
-      # Common native libraries used during build
-      libfontenc
+      # Common shared libraries needed by unpatched binaries
+      zlib
+      zstd
+      xz
+      bzip2
+      openssl
       fontconfig
       freetype
-      libxext
       glib
-      libpng12
-      gcc
+      libxml2
+
+      # X11/Wayland libraries
+      libx11
+      libxext
+      libxrender
+      libxrandr
       libsm
       libice
-      # windows.mcfgthreads
-      zlib # compression
-      zstd # compression
-      xz # compression
-      bzip2 # compression
-      libssh # SSH support (if needed)
-      openssl # TLS, crypto
-      libxml2 # XML parsing (if your tooling needs it)
-      systemd # for ldconfig and related
-      util-linux # mount, etc.
-      acl # access-control lists
-      attr # file attributes
-      curl # downloads
-      libxrender
-      libx11
-      libxrandr
+      libfontenc
 
+      # GPU/Graphics libraries
       libGL
-      vkd3d
-      libva
-      libva-utils
       libdrm
+      libva
       vulkan-loader
-      vulkan-validation-layers
-      vulkan-extension-layer
     ];
   };
 

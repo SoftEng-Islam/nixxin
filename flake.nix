@@ -13,7 +13,8 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # To use cahsyOs Kernel Packages
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel";
+    # Use the release branch for guaranteed binary cache availability
+    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
@@ -71,7 +72,7 @@
       _bootstrap = import (./. + "/_settings.nix") { pkgs = { }; };
       arch = _bootstrap.profile.system.architecture;
       # 2. Define pkgs using the extracted architecture with overlays
-      pkgs_for_settings = (nixpkgs.legacyPackages.${arch}).extend nix-cachyos-kernel.overlays.default;
+      pkgs_for_settings = (nixpkgs.legacyPackages.${arch}).extend nix-cachyos-kernel.overlays.pinned;
       # 3. Import settings again with real pkgs for full usage
       _SETTINGS = import (./. + "/_settings.nix") { pkgs = pkgs_for_settings; };
       settings = _SETTINGS.profile;
@@ -94,9 +95,10 @@
                 ./pkgs/default.nix
               ];
               nixpkgs.overlays = [
-                nix-cachyos-kernel.overlays.default
+                    # Use pinned overlay for binary cache hits (avoids local kernel compilation)
+                nix-cachyos-kernel.overlays.pinned
 
-                (final: prev: {
+                    (final: prev: {
                   update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;

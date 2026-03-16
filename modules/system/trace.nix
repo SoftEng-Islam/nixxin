@@ -13,12 +13,8 @@
     trace-cmd
 
     # Requirements PC Diagnose
-    lshw # Provide detailed information on the hardware configuration of the machine
+    # lshw, lm_sensors, smartmontools, pciutils are already in systeminfo.nix / default.nix / env/packages.nix
     lshw-gui
-    lm_sensors
-    smartmontools
     dmidecode
-    pciutils
-    coreutils
   ];
 }

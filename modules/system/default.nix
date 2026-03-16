@@ -20,7 +20,7 @@
   ];
   environment.systemPackages = with pkgs; [
     e2fsprogs
-    smartmontools
+    # smartmontools is already in systeminfo.nix
     util-linux
     uutils-coreutils-noprefix
   ];
