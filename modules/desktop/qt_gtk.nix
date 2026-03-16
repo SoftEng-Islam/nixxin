@@ -61,6 +61,16 @@ in
         # "computer:///"
       ];
 
+      gtk3.extraCss = ''
+        .nemo-window .sidebar .cell { /* notice the .cell */
+          padding: 3px; /* padding space between lines/rows */
+        }
+        .nemo-window .sidebar .view {
+          background-color: @theme_bg_color;
+          color: @theme_fg_color;
+        }
+      '';
+
       # GTK4/libadwaita apps (e.g. Nautilus) don't use `gtk-application-prefer-dark-theme`.
       # Use `org.gnome.desktop.interface color-scheme` instead (set in `modules/desktop/dconf.nix`).
       # gtk4.extraConfig = { };
