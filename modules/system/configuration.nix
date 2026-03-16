@@ -103,11 +103,7 @@ in
     blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [
       # "k10temp"
     ];
-    extraModulePackages =
-      # Only include amdgpu-i2c if it exists in the current kernel packages
-      # (it may not be available with all kernels, e.g. cachyos)
-      lib.optionals (config.boot.kernelPackages ? amdgpu-i2c)
-        [ config.boot.kernelPackages.amdgpu-i2c ];
+    
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams = _system.boot.kernelParams ++ [
       #---- Reduce Boot Delay ---- #
@@ -188,7 +184,7 @@ in
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;
-    i2c.enable = true;
+    
 
     # What is the cpu.amd.sev.enable?
     # AMD Secure Encrypted Virtualization (SEV) is a technology that allows virtual machines

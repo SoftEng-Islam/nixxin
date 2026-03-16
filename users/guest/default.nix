@@ -447,7 +447,6 @@ rec {
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    "amdgpu-i2c" # AMDGPU I2C driver for better power management and performance on AMD GPUs
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     "cpufreq_performance"
     "cpufreq_powersave"
@@ -694,7 +693,7 @@ rec {
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
     # "amd_energy" # Removed: requires Zen+ or later, not supported on Excavator (A8-8650B)
-    "i2c_hid" # Input devices
+
     "usbhid"
     "usbcore"
     "bfq"

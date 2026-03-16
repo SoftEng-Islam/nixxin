@@ -25,8 +25,8 @@ rec {
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
-  system.kernel = pkgs.linuxPackages_zen;
-  # system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
+  # system.kernel = pkgs.linuxPackages_zen;
+  system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v3;
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
   system.upgrade.enable = false;
@@ -444,7 +444,6 @@ rec {
   modules.power.cpupower.enable = true;
   modules.power.tlp.enable = false; # TLP is not recommended for desktops
   modules.power.boot.kernelModules = [
-    "amdgpu-i2c" # AMDGPU I2C driver for better power management and performance on AMD GPUs
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     "cpufreq_performance"
     "cpufreq_powersave"
@@ -708,7 +707,6 @@ rec {
     "acpi-cpufreq"
     "cpufreq_performance"
     "k10temp" # Temperature monitoring
-    "i2c_hid" # Input devices
     "usbhid"
     "usbcore"
     "bfq"

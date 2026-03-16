@@ -13,8 +13,8 @@
   # Otherwise, only hardware buttons will work.
 
   boot.kernelModules = [
-    "i2c-dev"
-    "i2c-i801"
+    # "i2c-dev"
+    # "i2c-i801"
   ]; # i2c-i801 for Intel chipsets; use your actual hardware module
   hardware.i2c.enable = true; # Enables support for i2c tools
 

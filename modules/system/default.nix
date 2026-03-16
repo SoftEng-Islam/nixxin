@@ -3,7 +3,7 @@
 {
   imports = [
     ./console.nix
-    ./brightness_control.nix
+    # ./brightness_control.nix
     ./configuration.nix
     ./memory.nix
     ./display_manager.nix

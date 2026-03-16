@@ -4,8 +4,7 @@
     defaultUserShell = pkgs.zsh;
     groups.uinput.members = [ "${settings.user.username}" ];
     groups.input.members = [ "${settings.user.username}" ];
-    # Ensure user is in the i2c and video groups for ddcutil
-    groups.i2c.members = [ "${settings.user.username}" ];
+   
     groups.video.members = [ "${settings.user.username}" ];
 
     users.guest = {
@@ -40,7 +39,6 @@
         # "flatpak"
         "fuse"
         "git"
-        "i2c"
         "input" # Access to input devices like keyboards and mice.
         "kvm"
         "libvirtd"
