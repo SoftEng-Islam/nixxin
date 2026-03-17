@@ -80,23 +80,22 @@ in
 
     # Some GTK apps (especially GTK4/libadwaita) only pick up theme overrides
     # when a user CSS exists under ~/.config/gtk-{3,4}.0.
-    xdg.configFile = {
-      "gtk-3.0/gtk.css".text = ''
-        @import url("${_gtkThemeDir}/gtk-3.0/gtk.css");
-      '';
-      "gtk-3.0/gtk-dark.css".text = ''
-        @import url("${_gtkThemeDir}/gtk-3.0/gtk-dark.css");
-      '';
-      "gtk-4.0/gtk-dark.css".text = ''
-        @import url("${_gtkThemeDir}/gtk-4.0/gtk-dark.css");
-      '';
-
-      # Provide theme assets/imports in ~/.config so relative paths work.
-      "gtk-3.0/assets".source = "${_gtkThemeDir}/gtk-3.0/assets";
-      "gtk-4.0/assets".source = "${_gtkThemeDir}/gtk-4.0/assets";
-      "gtk-4.0/libadwaita.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita.css";
-      "gtk-4.0/libadwaita-tweaks.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita-tweaks.css";
-    };
+    # xdg.configFile = {
+    # "gtk-3.0/gtk.css".text = ''
+    # @import url("${_gtkThemeDir}/gtk-3.0/gtk.css");
+    # '';
+    # "gtk-3.0/gtk-dark.css".text = ''
+    # @import url("${_gtkThemeDir}/gtk-3.0/gtk-dark.css");
+    # '';
+    # "gtk-4.0/gtk-dark.css".text = ''
+    # @import url("${_gtkThemeDir}/gtk-4.0/gtk-dark.css");
+    # '';
+    # # Provide theme assets/imports in ~/.config so relative paths work.
+    # "gtk-3.0/assets".source = "${_gtkThemeDir}/gtk-3.0/assets";
+    # "gtk-4.0/assets".source = "${_gtkThemeDir}/gtk-4.0/assets";
+    # "gtk-4.0/libadwaita.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita.css";
+    # "gtk-4.0/libadwaita-tweaks.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita-tweaks.css";
+    # };
   };
 
   environment.variables = {
@@ -117,12 +116,12 @@ in
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
-    # adwaita-qt
+
     adwaita-qt6
     gsettings-qt
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    # libsForQt5.qt5ct # Qt5 Configuration Tool
+
     libsForQt5.qwt
     qt5.qtgraphicaleffects
     qt5.qtimageformats
