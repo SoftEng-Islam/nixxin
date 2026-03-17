@@ -54,6 +54,12 @@
     yazi-flexoki-light.flake = false;
     yazi-flexoki-dark.url = "github:gosxrgxx/flexoki-dark.yazi";
     yazi-flexoki-dark.flake = false;
+  
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
   outputs =
     {
