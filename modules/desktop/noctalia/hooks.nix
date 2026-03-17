@@ -3,15 +3,16 @@
   home-manager.users.${settings.user.username} = {
     programs.noctalia-shell.settings = {
       hooks = {
-        enabled = false;
-        wallpaperChange = "";
-        darkModeChange = "";
-        screenLock = "";
-        screenUnlock = "";
-        performanceModeEnabled = "";
-        performanceModeDisabled = "";
-        startup = "";
-        session = "";
+        enabled = true;
+        startup = "noctalia-shell ipc call lockScreen lock";
+
+        # wallpaperChange = "";
+        # darkModeChange = "";
+        # screenLock = "";
+        # screenUnlock = "";
+        # performanceModeEnabled = "";
+        # performanceModeDisabled = "";
+        # session = "";
       };
     };
   };

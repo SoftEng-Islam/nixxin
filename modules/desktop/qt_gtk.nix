@@ -57,11 +57,12 @@ in
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
+        "file:////SSDisk/Videos"
+
+        "file:///home/${settings.user.username}/torrents"
         "file:///home/${settings.user.username}/.config"
         "file:///home/${settings.user.username}/.cache"
         "file:///home/${settings.user.username}/.local"
-        # "file:///home/${settings.user.username}/Torrents"
-        "file:////SSDisk/Videos"
 
         "network:///"
         "computer:///"

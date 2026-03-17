@@ -15,6 +15,7 @@
 # ------------------------------------------------
 let
   _system = settings.modules.system;
+  quietBoot = _system.boot.quietBoot or true;
 in
 {
 
@@ -28,10 +29,12 @@ in
       "btrfs"
       "ext4"
       "fat32"
+      "vfat"
+      "xfs"
       # "nfs"
       "ntfs"
     ];
-    consoleLogLevel = 0;
+    consoleLogLevel = if quietBoot then 0 else 7;
 
     # Boot Time out in seconds
     loader.timeout = _system.boot.loader.timeout;
@@ -72,7 +75,7 @@ in
     initrd = {
       systemd.enable = false;
       systemd.dbus.enable = false;
-      verbose = false;
+      verbose = !quietBoot;
 
       prepend = [ "${./dsdt.cpio}" ];
       # systemd.dbus.enable = false;
@@ -105,31 +108,34 @@ in
     ];
     
     extraModprobeConfig = _system.boot.extraModprobeConfig;
-    kernelParams = _system.boot.kernelParams ++ [
-      #---- Reduce Boot Delay ---- #
-      # tell the kernel to not be verbose
-      "quiet"
-      # kernel log message level
-      "loglevel=0" # 1: sustem is unusable | 3: error condition | 7: very verbose
-      "splash"
-      # rd.systemd.show_status is set to "auto" below, don't duplicate with "false"
-      "udev.log_level=0"
-      "plymouth.ignore-serial-consoles"
+    kernelParams =
+      _system.boot.kernelParams
+      ++ [
+        # Disable various mitigations (l1tf=off, retbleed=off, noibpb, nopti
+        # are all redundant when mitigations=off is set)
+        "mitigations=off"
 
-      # disable systemd status messages
-      # rd prefix means systemd-udev will be used instead of initrd
-      "systemd.show_status=false"
-      "rd.systemd.show_status=auto"
-      "rd.udev.log_level=0"
+        # ---- Networking ---- #
+        # Use legacy network interface names (eth0, wlan0, etc.)
+        "net.ifnames=0"
+      ]
+      ++ lib.optionals quietBoot [
+        #---- Reduce Boot Delay ---- #
+        # tell the kernel to not be verbose
+        "quiet"
+        # kernel log message level
+        "loglevel=0" # 1: sustem is unusable | 3: error condition | 7: very verbose
+        "splash"
+        # rd.systemd.show_status is set to "auto" below, don't duplicate with "false"
+        "udev.log_level=0"
+        "plymouth.ignore-serial-consoles"
 
-      # Disable various mitigations (l1tf=off, retbleed=off, noibpb, nopti
-      # are all redundant when mitigations=off is set)
-      "mitigations=off"
-
-      # ---- Networking ---- #
-      # Use legacy network interface names (eth0, wlan0, etc.)
-      "net.ifnames=0"
-    ];
+        # disable systemd status messages
+        # rd prefix means systemd-udev will be used instead of initrd
+        "systemd.show_status=false"
+        "rd.systemd.show_status=auto"
+        "rd.udev.log_level=0"
+      ];
 
     kernel.sysctl = {
       # Runtime parameters of the Linux Kernel to enhance gaming performance and to help future-proof.

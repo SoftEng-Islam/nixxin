@@ -109,8 +109,8 @@ rec {
   # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
   # common.gtk.package = pkgs.adw-gtk3;
 
-  common.gtk.GTK_THEME = "Colloid-Grey-Dark-Gruvbox"; # Env Variable
-  common.gtk.theme = "Colloid-Grey-Dark-Gruvbox";
+  common.gtk.GTK_THEME = "Colloid-Grey-Dark-Dracula"; # Env Variable
+  common.gtk.theme = "Colloid-Grey-Dark-Dracula";
   common.gtk.package = pkgs.colloid-gtk-theme.override {
     colorVariants = [
       # "standard"
@@ -136,8 +136,8 @@ rec {
 
     tweaks = [
       # "nord"
-      # "dracula"
-      "gruvbox"
+      "dracula"
+      # "gruvbox"
       # "everforest"
       # "catppuccin"
       "all"
