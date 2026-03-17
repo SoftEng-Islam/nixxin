@@ -3,6 +3,7 @@
 let
   _qt_gtk = settings.common.qt;
   _icons = settings.common.icons;
+  _gtkThemeDir = "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}";
   _isPapirus = builtins.match "^Papirus" _icons.nameInDark != null;
   _useSystemIconTheme = _isPapirus && (settings.modules.icons.enable or false);
   _gtkIconThemePackage =
@@ -56,7 +57,7 @@ in
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
-        "file:///home/${settings.user.username}/Torrents"
+        # "file:///home/${settings.user.username}/Torrents"
         "file:////SSDisk/Videos"
 
         "network:///"
@@ -70,6 +71,26 @@ in
       enable = true;
       platformTheme.name = _qt_gtk.platformTheme;
       style.name = _qt_gtk.style;
+    };
+
+    # Some GTK apps (especially GTK4/libadwaita) only pick up theme overrides
+    # when a user CSS exists under ~/.config/gtk-{3,4}.0.
+    xdg.configFile = {
+      "gtk-3.0/gtk.css".text = ''
+        @import url("${_gtkThemeDir}/gtk-3.0/gtk.css");
+      '';
+      "gtk-3.0/gtk-dark.css".text = ''
+        @import url("${_gtkThemeDir}/gtk-3.0/gtk-dark.css");
+      '';
+      "gtk-4.0/gtk-dark.css".text = ''
+        @import url("${_gtkThemeDir}/gtk-4.0/gtk-dark.css");
+      '';
+
+      # Provide theme assets/imports in ~/.config so relative paths work.
+      "gtk-3.0/assets".source = "${_gtkThemeDir}/gtk-3.0/assets";
+      "gtk-4.0/assets".source = "${_gtkThemeDir}/gtk-4.0/assets";
+      "gtk-4.0/libadwaita.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita.css";
+      "gtk-4.0/libadwaita-tweaks.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita-tweaks.css";
     };
   };
 
