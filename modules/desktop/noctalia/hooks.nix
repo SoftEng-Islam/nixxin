@@ -4,12 +4,12 @@
     programs.noctalia-shell.settings = {
       hooks = {
         enabled = true;
-        startup = "noctalia-shell ipc call lockScreen lock";
+        #startup = "noctalia-shell ipc call lockScreen lock";
 
         # wallpaperChange = "";
         # darkModeChange = "";
-        # screenLock = "";
-        # screenUnlock = "";
+        screenLock = "noctalia-shell ipc call lockScreen lock";
+        screenUnlock = "noctalia-shell ipc call lockScreen unlock";
         # performanceModeEnabled = "";
         # performanceModeDisabled = "";
         # session = "";
