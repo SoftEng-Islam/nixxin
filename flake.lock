@@ -309,6 +309,26 @@
         "type": "github"
       }
     },
+    "nix-vscode-extensions": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1773715492,
+        "narHash": "sha256-hFmQxA4JDWDGdr3GwcwYcIZgNw+yPVhn2ucutTfaEGQ=",
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "rev": "6be632a6181baaec1c5ed52a6d00eee18f076d6c",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nix-vscode-extensions",
+        "type": "github"
+      }
+    },
     "nixos-opencl": {
       "inputs": {
         "clvk-src": "clvk-src",
@@ -492,6 +512,7 @@
         "home-manager": "home-manager",
         "hyprpolkitagent": "hyprpolkitagent",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
+        "nix-vscode-extensions": "nix-vscode-extensions",
         "nixos-opencl": "nixos-opencl",
         "nixpkgs": "nixpkgs_4",
         "noctalia": "noctalia",
