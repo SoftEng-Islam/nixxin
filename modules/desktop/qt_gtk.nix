@@ -3,7 +3,7 @@
 let
   _qt_gtk = settings.common.qt;
   _icons = settings.common.icons;
-  _gtkThemeDir = "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}";
+  # _gtkThemeDir = "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}";
   _isPapirus = builtins.match "^Papirus" _icons.nameInDark != null;
   _useSystemIconTheme = _isPapirus && (settings.modules.icons.enable or false);
   _gtkIconThemePackage =
