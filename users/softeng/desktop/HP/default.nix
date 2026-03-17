@@ -332,7 +332,7 @@ rec {
     # Typeface made for developers
     main.package = pkgs.nerd-fonts.caskaydia-cove;
 
-    main.antialiasing = "grayscale";
+    main.antialiasing = "standard";
     main.hinting = "full"; # (one of "none", "slight", "medium", "full")
     main.rendering = "automatic";
     main.rgba_order = "rgb";

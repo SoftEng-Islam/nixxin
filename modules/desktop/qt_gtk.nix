@@ -51,21 +51,19 @@ in
 
       gtk3.bookmarks = [
         # "recent:///"
+
         "file:///home/${settings.user.username}/Downloads"
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
-        "file:///home/${settings.user.username}/Videos"
-        # "file:///home/${settings.user.username}/Torrents"
-        # "network:///"
-        # "computer:///"
+        "file:///home/${settings.user.username}/Torrents"
+        "file:////SSDisk/Videos"
+
+        "network:///"
+        "computer:///"
       ];
 
       # gtk3.extraCss = '''';
-
-      # GTK4/libadwaita apps (e.g. Nautilus) don't use `gtk-application-prefer-dark-theme`.
-      # Use `org.gnome.desktop.interface color-scheme` instead (set in `modules/desktop/dconf.nix`).
-      # gtk4.extraConfig = { };
     };
 
     qt = {
@@ -93,12 +91,12 @@ in
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
-    adwaita-qt
+    # adwaita-qt
     adwaita-qt6
     gsettings-qt
     libsForQt5.qt5.qtgraphicaleffects
     libsForQt5.qt5.qtquickcontrols2
-    libsForQt5.qt5ct # Qt5 Configuration Tool
+    # libsForQt5.qt5ct # Qt5 Configuration Tool
     libsForQt5.qwt
     qt5.qtgraphicaleffects
     qt5.qtimageformats
@@ -110,7 +108,6 @@ in
 
     # GTK
     adw-gtk3
-    libadwaita
 
     gobject-introspection
     gtk_engines # Theme engines for GTK 2

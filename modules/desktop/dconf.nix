@@ -59,14 +59,14 @@ with lib.gvariant;
       # gsettings get org.gnome.desktop.interface font-antialiasing
       # 'grayscale'
       "org/gnome/desktop/interface" = {
-        # accent-color
-        # avatar-directories
+        accent-color = lib.mkDefault "red";
         can-change-accels = false;
         clock-format = "12h";
         clock-show-date = true;
         clock-show-seconds = false;
         clock-show-weekday = true;
-        color-scheme = settings.modules.desktop.dconf.colorScheme;
+        color-scheme = lib.mkForce settings.modules.desktop.dconf.colorScheme;
+
         cursor-blink = true;
         cursor-blink-time = 500;
         cursor-blink-timeout = 10;

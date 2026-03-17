@@ -19,6 +19,7 @@
     ./rofi.nix
     ./screenshot.nix
     ./tools.nix
+    ./xdg.nix
   ];
 
   programs.appimage = {
@@ -33,8 +34,4 @@
         ];
     };
   };
-
-  environment.systemPackages = with pkgs; [
-    hyprshade
-  ];
 }

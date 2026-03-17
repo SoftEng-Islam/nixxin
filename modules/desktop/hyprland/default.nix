@@ -1,6 +1,14 @@
-{ settings, inputs, lib, pkgs, ... }:
-let xwaylandEnabled = settings.modules.desktop.xwayland.enable or false;
-in {
+{
+  settings,
+  inputs,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  xwaylandEnabled = settings.modules.desktop.xwayland.enable or false;
+in
+{
   imports = [
     ./configs/animations.nix
     ./configs/binds.nix
@@ -33,17 +41,8 @@ in {
   # Allows Hyprland to run without root privileges
   services.seatd.enable = lib.mkForce false;
 
+  # 'false' why?
   services.gnome.core-shell.enable = false;
-
-  programs.uwsm = {
-    enable = false;
-    waylandCompositors.hyprland = {
-      prettyName = "Hyprland";
-      comment = "Hyprland compositor managed by UWSM";
-      # binPath = lib.getExe pkgs.hyprland;
-      binPath = "/run/current-system/sw/bin/Hyprland";
-    };
-  };
 
   programs = {
     hyprlock.enable = true;
@@ -76,15 +75,14 @@ in {
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  # systemd.sleep.extraConfig = ''
-  #   AllowSuspend=no
-  #   AllowHibernation=no
-  #   AllowSuspendThenHibernate=no
-  #   AllowHybridSleep=no
-  # '';
+  systemd.sleep.extraConfig = ''
+    AllowSuspend=no
+    AllowHibernation=no
+    AllowSuspendThenHibernate=no
+    AllowHybridSleep=no
+  '';
 
   home-manager.users.${settings.user.username} = {
-
     home.pointerCursor = {
       gtk.enable = true;
       # x11.enable = true;
@@ -110,21 +108,21 @@ in {
         # inactive color
         "$surface" = settings.common.surfaceColor;
       };
-      # extraConfig = ''
-      # '';
+      # extraConfig = '' '';
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;
     home.file.".config/hypr/shaders".source = ./shaders;
   };
-  environment.systemPackages = with pkgs;
-    [
-      # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
-      (hyprland.override { # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
-        enableXWayland = xwaylandEnabled; # whether to enable XWayland
-        # whether to use the legacy renderer (for old GPUs)
-        legacyRenderer = false;
-        withSystemd = true; # whether to build with systemd support
-      })
-    ];
+  environment.systemPackages = with pkgs; [
+    # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
+    (hyprland.override {
+      # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
+      enableXWayland = xwaylandEnabled; # whether to enable XWayland
+      # whether to use the legacy renderer (for old GPUs)
+      legacyRenderer = false;
+      withSystemd = true; # whether to build with systemd support
+    })
+    hyprshade
+  ];
 }
