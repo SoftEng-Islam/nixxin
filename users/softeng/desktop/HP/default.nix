@@ -105,9 +105,48 @@ rec {
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
-  common.gtk.theme = "adw-gtk3-dark";
-  common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
-  common.gtk.package = pkgs.adw-gtk3;
+  # common.gtk.theme = "adw-gtk3-dark";
+  # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
+  # common.gtk.package = pkgs.adw-gtk3;
+
+  common.gtk.GTK_THEME = "Colloid-Grey-Dark-Gruvbox"; # Env Variable
+  common.gtk.theme = "Colloid-Grey-Dark-Gruvbox";
+  common.gtk.package = pkgs.colloid-gtk-theme.override {
+    colorVariants = [
+      # "standard"
+      # "light"
+      "dark"
+    ];
+    themeVariants = [
+      # "default"
+      # "purple"
+      # "pink"
+      # "red"
+      # "orange"
+      # "yellow"
+      # "green"
+      # "teal"
+      "grey"
+      # "all"
+    ];
+    sizeVariants = [
+      "standard"
+      # "compact"
+    ];
+
+    tweaks = [
+      # "nord"
+      # "dracula"
+      "gruvbox"
+      # "everforest"
+      # "catppuccin"
+      "all"
+      "black"
+      "rimless"
+      # "normal"
+      "float"
+    ];
+  };
 
   common.gtk.icon_cache = true;
 

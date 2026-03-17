@@ -57,6 +57,9 @@ in
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
+        "file:///home/${settings.user.username}/.config"
+        "file:///home/${settings.user.username}/.cache"
+        "file:///home/${settings.user.username}/.local"
         # "file:///home/${settings.user.username}/Torrents"
         "file:////SSDisk/Videos"
 
@@ -64,7 +67,9 @@ in
         "computer:///"
       ];
 
-      # gtk3.extraCss = '''';
+      gtk4.extraConfig = {
+        gtk-application-prefer-dark-theme = true;
+      };
     };
 
     qt = {
