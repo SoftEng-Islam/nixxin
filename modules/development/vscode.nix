@@ -8,7 +8,7 @@
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
-      package = pkgs.update.vscodium;
+      package = pkgs.update.vscode;
     };
   };
 }
