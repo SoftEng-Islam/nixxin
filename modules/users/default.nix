@@ -4,15 +4,15 @@
     defaultUserShell = pkgs.zsh;
     groups.uinput.members = [ "${settings.user.username}" ];
     groups.input.members = [ "${settings.user.username}" ];
-   
+
     groups.video.members = [ "${settings.user.username}" ];
 
-    users.guest = {
-      isNormalUser = true;
-      description = "Guest Account";
-      extraGroups = [ ]; # Keep this empty so they don't have sudo/admin rights
-      initialHashedPassword = "1234";
-    };
+    # users.guest = {
+    #   isNormalUser = true;
+    #   description = "Guest Account";
+    #   extraGroups = [ ]; # Keep this empty so they don't have sudo/admin rights
+    #   initialHashedPassword = "1234";
+    # };
 
     users.${settings.user.username} = {
 
