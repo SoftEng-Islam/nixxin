@@ -16,6 +16,23 @@
 let
   _system = settings.modules.system;
   quietBoot = _system.boot.quietBoot or true;
+  # 1. Override the base kernel derivation (notice it's NOT 'linuxPackages-...')
+  # We start with your desired LTO/v2 base and just change the scheduler.
+  customKernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v2.override {
+    cpusched = "bore"; # Excellent for desktop snappiness
+    hzTicks = "1000"; # 1000Hz (default) is best for low-latency desktop feel
+    performanceGovernor = true; # Forces the CPU to stay at its higher clock speeds
+    bbr3 = true; # Improved network congestion control (better web/gaming)
+    hugepage = "always"; # Can speed up memory-heavy apps (like browsers/compiling)
+    preemptType = "full"; # "full" is the most responsive for desktop usage
+    tickrate = "full"; # Maintains high responsiveness even under load
+  };
+
+  # 2. Load the helper functions from the nix-cachyos-kernel flake
+  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
+
+  # 3. Generate the kernel package set and apply the LTO compiler fixes
+  customKernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor customKernel);
 in
 {
 
@@ -23,7 +40,7 @@ in
   # ---- Boot Configuration
   # ------------------------------------------------
   boot = {
-    kernelPackages = settings.system.kernel;
+    kernelPackages = customKernelPackages;
     # tmp.cleanOnBoot = true;
     supportedFilesystems = [
       "btrfs"
@@ -106,7 +123,7 @@ in
     blacklistedKernelModules = _system.boot.blacklistedKernelModules ++ [
       # "k10temp"
     ];
-    
+
     extraModprobeConfig = _system.boot.extraModprobeConfig;
     kernelParams =
       _system.boot.kernelParams
@@ -189,7 +206,6 @@ in
     enableAllFirmware = true;
     enableRedistributableFirmware = true;
     cpu.amd.updateMicrocode = true;
-    
 
     # What is the cpu.amd.sev.enable?
     # AMD Secure Encrypted Virtualization (SEV) is a technology that allows virtual machines

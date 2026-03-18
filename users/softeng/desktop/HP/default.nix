@@ -1,7 +1,7 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 rec {
   # ----------------------------------------------
   # ---- The User Information
@@ -26,26 +26,8 @@ rec {
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "25.05"; # Did you read the comment?
 
-  # 1. Override the base kernel derivation (notice it's NOT 'linuxPackages-...')
-  # We start with your desired LTO/v2 base and just change the scheduler.
-  customKernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v2.override {
-    cpusched = "bore"; # Excellent for desktop snappiness
-    hzTicks = "1000"; # 1000Hz (default) is best for low-latency desktop feel
-    performanceGovernor = true; # Forces the CPU to stay at its higher clock speeds
-    bbr3 = true; # Improved network congestion control (better web/gaming)
-    hugepage = "always"; # Can speed up memory-heavy apps (like browsers/compiling)
-    preemptType = "full"; # "full" is the most responsive for desktop usage
-    tickrate = "full"; # Maintains high responsiveness even under load
-  };
-
-  # 2. Load the helper functions from the nix-cachyos-kernel flake
-  helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
-
-  # 3. Generate the kernel package set and apply the LTO compiler fixes
-  customKernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor customKernel);
-  #system.kernel = pkgs.linuxPackages_zen;
+  # system.kernel = pkgs.linuxPackages_zen;
   # system.kernel = pkgs.cachyosKernels.linuxPackages-cachyos-latest-lto-x86_64-v2;
-  system.kernel = customKernelPackages;
 
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
