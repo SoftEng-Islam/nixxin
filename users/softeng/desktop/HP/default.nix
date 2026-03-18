@@ -168,6 +168,7 @@ rec {
   common.icons.nameInDark = "Papirus-Dark";
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
   common.icons.package = pkgs.papirus-icon-theme.override { color = "grey"; };
+  common.icons.folder-color = "grey";
 
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
