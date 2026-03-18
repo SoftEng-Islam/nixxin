@@ -54,12 +54,6 @@
     yazi-flexoki-light.flake = false;
     yazi-flexoki-dark.url = "github:gosxrgxx/flexoki-dark.yazi";
     yazi-flexoki-dark.flake = false;
-  
-    nix-vscode-extensions = {
-      url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
   };
   outputs =
     {
@@ -101,10 +95,10 @@
                 ./pkgs/default.nix
               ];
               nixpkgs.overlays = [
-                    # Use pinned overlay for binary cache hits (avoids local kernel compilation)
+                # Use pinned overlay for binary cache hits (avoids local kernel compilation)
                 nix-cachyos-kernel.overlays.pinned
 
-                    (final: prev: {
+                (final: prev: {
                   update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;

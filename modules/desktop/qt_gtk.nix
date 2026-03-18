@@ -2,21 +2,6 @@
 { settings, pkgs, ... }:
 let
   _qt_gtk = settings.common.qt;
-  _icons = settings.common.icons;
-  # _gtkThemeDir = "${settings.common.gtk.package}/share/themes/${settings.common.gtk.theme}";
-  _isPapirus = builtins.match "^Papirus" _icons.nameInDark != null;
-  _useSystemIconTheme = _isPapirus && (settings.modules.icons.enable or false);
-  _gtkIconThemePackage =
-    if _useSystemIconTheme then
-      # Papirus is installed system-wide (see `modules/icons/default.nix`) and
-      # includes the folder-color override. Don't install a user-profile copy
-      # that could shadow it (and revert folders to blue).
-      null
-    else if _isPapirus then
-      # Use the final `pkgs` so the Papirus folder-color overlay applies.
-      pkgs.papirus-icon-theme
-    else
-      _icons.package;
 in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
@@ -31,7 +16,7 @@ in
 
       iconTheme = {
         name = settings.common.icons.nameInDark;
-        package = _gtkIconThemePackage;
+        package = settings.common.icons.package;
       };
 
       cursorTheme = {
@@ -78,25 +63,6 @@ in
       platformTheme.name = _qt_gtk.platformTheme;
       style.name = _qt_gtk.style;
     };
-
-    # Some GTK apps (especially GTK4/libadwaita) only pick up theme overrides
-    # when a user CSS exists under ~/.config/gtk-{3,4}.0.
-    # xdg.configFile = {
-    # "gtk-3.0/gtk.css".text = ''
-    # @import url("${_gtkThemeDir}/gtk-3.0/gtk.css");
-    # '';
-    # "gtk-3.0/gtk-dark.css".text = ''
-    # @import url("${_gtkThemeDir}/gtk-3.0/gtk-dark.css");
-    # '';
-    # "gtk-4.0/gtk-dark.css".text = ''
-    # @import url("${_gtkThemeDir}/gtk-4.0/gtk-dark.css");
-    # '';
-    # # Provide theme assets/imports in ~/.config so relative paths work.
-    # "gtk-3.0/assets".source = "${_gtkThemeDir}/gtk-3.0/assets";
-    # "gtk-4.0/assets".source = "${_gtkThemeDir}/gtk-4.0/assets";
-    # "gtk-4.0/libadwaita.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita.css";
-    # "gtk-4.0/libadwaita-tweaks.css".source = "${_gtkThemeDir}/gtk-4.0/libadwaita-tweaks.css";
-    # };
   };
 
   environment.variables = {

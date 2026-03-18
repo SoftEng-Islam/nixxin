@@ -166,9 +166,8 @@ rec {
       common.icons.nameInLight;
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
-  common.icons.package = pkgs.papirus-icon-theme.override { color = "yellow"; };
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
-  common.icons.folder-color = "yellow";
+  common.icons.package = pkgs.papirus-icon-theme.override { color = "grey"; };
 
   # [ CURSOR ]
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
@@ -596,7 +595,7 @@ rec {
 
     # --- MEMORY TUNING (Based on your 18GB RAM) ---
     # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
-    # "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
+    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
@@ -613,7 +612,6 @@ rec {
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
-    # "amd_pstate=active"
     "amd_prefcore=disable"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
@@ -638,25 +636,7 @@ rec {
     # 1. Reset ALL strings (vendor and feature groups) as per your documentation
     # "acpi_osi=Linux" # Linux | Darwin | Windows
     ''acpi_osi="!Windows 2015"''
-    # https://gitlab.freedesktop.org/drm/amd/-/issues/2539
-    # "acpi_mask_gpe=0x0e"
-    # "gpiolib_acpi.ignore_interrupt=AMDI0030:00@18"
-    # "acpi_mask_gpe=0x69"
-    # 2. Add back only what is necessary to pass the BIOS checks
-    # Spoof Windows 7 (often the "magic" OSI string for 2012–2016-era HP firmware)
-    # ''acpi_osi="Windows 2009"''
-    # ''acpi_osi="Module Device"'' # Feature group string
-    # ''acpi_osi="Processor Device"'' # Feature group string
-    # ''acpi_osi="3.0 Thermal Model"'' # Unlocks the ATC0/ALIB thermal methods
 
-    # 3. Override _REV to return 5 instead of 2
-    # (Your text says this is mandated for modern compliance/performance)
-    # "acpi_rev_override"
-
-    # 4. Use the legacy _OS identification method
-    #  ''acpi_os_name="Microsoft Windows NT"''
-
-    # pti=off removed — redundant with mitigations=off (which disables all speculative execution mitigations)
     "intremap=off" # disable Interrupt Remapping
     "audit=0"
     "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
@@ -712,7 +692,6 @@ rec {
     "mtrr_chunk_size=128M" # Helps map the 16GB more efficiently
 
     "workqueue.power_efficient=false"
-    # skew_tick=1 and threadirqs already set above
     "smt=on"
     "nohz_full=all"
     "nowatchdog"
@@ -724,10 +703,7 @@ rec {
     "hugepagesz=1G"
 
     # --- Added Performance Tunings ---
-    "elevator=mq-deadline" # Optimized IO Scheduler
-    # scsi_mod.use_blk_mq=1 removed — blk-mq is default since Linux 5.0
     "lockdown=off" # Allow kernel tuning and eBPF tracing
-    # noibpb and nopti removed — redundant with mitigations=off
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [

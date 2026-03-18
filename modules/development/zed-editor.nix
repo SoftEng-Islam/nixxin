@@ -1,4 +1,5 @@
-{ settings, pkgs, ... }: {
+{ settings, pkgs, ... }:
+{
   environment.systemPackages = with pkgs; [
     nil
     nixd
@@ -9,16 +10,23 @@
     programs.zed-editor = {
       enable = true;
       package = pkgs.zed-editor;
-      extensions =
-        [ "git-firefly" "html" "nix" "one-dark-pro" "sql" "toml" "twig" ];
+      extensions = [
+        "git-firefly"
+        "html"
+        "nix"
+        "one-dark-pro"
+        "sql"
+        "toml"
+        "twig"
+      ];
       userSettings = {
         auto_update = false;
         autosave = "off";
         buffer_font_family = "CaskaydiaCove Nerd Font";
         buffer_font_size = 14;
-        chat_panel.button = false;
+        chat_panel.button = true;
         collaboration_panel.button = false;
-        features.inline_completion_provider = "none";
+        # features.inline_completion_provider = "none";
 
         indent_guides = {
           enabled = true;
@@ -42,10 +50,14 @@
         ui_font_size = 16;
       };
       extraPackages = [ pkgs.nixd ];
-      userKeymaps = [{
-        context = "Workspace";
-        bindings = { ctrl-shift-t = "workspace::NewTerminal"; };
-      }];
+      userKeymaps = [
+        {
+          context = "Workspace";
+          bindings = {
+            ctrl-shift-t = "workspace::NewTerminal";
+          };
+        }
+      ];
     };
   };
 }
