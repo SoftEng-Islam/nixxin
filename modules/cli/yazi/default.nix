@@ -15,7 +15,10 @@
       settings = import ./yazi_settings.nix;
       keymap = import ./keymap.nix;
       theme = import ./theme.nix;
-      flavors = import ./flavors.nix { inherit pkgs; };
+      flavors = {
+        flexoki-light = inputs.yazi-flexoki-light;
+        flexoki-dark = inputs.yazi-flexoki-dark;
+      };
       plugins = {
         augment-command = "${inputs.yazi-augment-command}";
         chmod = "${inputs.yazi-plugins}/chmod.yazi";
