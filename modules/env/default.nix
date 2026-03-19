@@ -22,7 +22,7 @@ let
       llvmPackages.openmp
     ];
 in
-lib.mkIf (settings.modules.env.enable or false) {
+{
   imports = [
     ./misc.nix
     ./packages.nix
@@ -35,7 +35,6 @@ lib.mkIf (settings.modules.env.enable or false) {
   environment = {
     # localBinInPath = false;
     variables = {
-      # ---- nixos-opencl Start ----
       LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
       XDG_CURRENT_DESKTOP = "Hyprland";
