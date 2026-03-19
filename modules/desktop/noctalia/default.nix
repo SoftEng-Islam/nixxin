@@ -9,8 +9,7 @@
 let
   system = pkgs.stdenv.hostPlatform.system;
   noctaliaShellPkg =
-    inputs.noctalia.packages.${system}.default
-      or inputs.noctalia.packages.${system}."noctalia-shell";
+    inputs.noctalia.packages.${system}.default or inputs.noctalia.packages.${system}."noctalia-shell";
 in
 {
   imports = [
@@ -38,6 +37,7 @@ in
     ./templates.nix
     ./ui.nix
     ./wallpaper.nix
+    ./idle.nix
   ];
   environment.systemPackages = with pkgs; [
     # Noctalia Shell

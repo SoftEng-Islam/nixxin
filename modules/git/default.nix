@@ -1,4 +1,10 @@
-{ settings, config, lib, pkgs, ... }:
+{
+  settings,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 # ---- Use gh to login ---- #
 # gh auth login
@@ -7,8 +13,10 @@
 # git config --global url."https://github.com/".insteadOf "git@github.com:"
 # git config --global http.postBuffer 1048576000
 # git config --global http.lowSpeedTime 60
-let inherit (lib) mkIf;
-in mkIf (settings.modules.git.enable) {
+let
+  inherit (lib) mkIf;
+in
+mkIf (settings.modules.git.enable) {
   environment.variables = {
     # GIT_CURL_VERBOSE = 1;
 
@@ -33,7 +41,11 @@ in mkIf (settings.modules.git.enable) {
         # Disables Git's warning about ignored files being added.
         advice.addIgnoredFile = false;
 
-        url = { "https://github.com/" = { insteadOf = "git@github.com:"; }; };
+        url = {
+          "https://github.com/" = {
+            insteadOf = "git@github.com:";
+          };
+        };
 
         # Enables rebase instead of merge when pulling changes.
         pull.rebase = true;
@@ -51,7 +63,7 @@ in mkIf (settings.modules.git.enable) {
         github.user = settings.user.username; # Sets the GitHub username.
 
         core = {
-          editor = "micro"; # Sets Neovim as the default Git editor.
+          editor = "micro"; # Sets micro as the default Git editor.
           autocrlf = false; # Disables automatic line ending conversion.
 
           # Optimizes Git performance for large repos.

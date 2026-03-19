@@ -78,7 +78,7 @@ stdenv.mkDerivation rec {
     (with legacyPkgs; [
       boost
       fftw
-      ffmpeg
+      ffmpeg-full
       gettext
       glew
       eigen

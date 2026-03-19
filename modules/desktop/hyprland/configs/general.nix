@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings = {
@@ -32,11 +33,12 @@
           resize_on_border = true;
           hover_icon_on_border = true;
           extend_border_grab_area = 10;
-          "col.inactive_border" =
-            settings.modules.desktop.hyprland.border.inactive.color;
+          "col.inactive_border" = settings.modules.desktop.hyprland.border.inactive.color;
           "col.active_border" = "$primary";
 
-          snap = { enabled = true; };
+          snap = {
+            enabled = true;
+          };
         };
         "ecosystem:no_update_news" = true;
         "ecosystem:no_donation_nag" = true;

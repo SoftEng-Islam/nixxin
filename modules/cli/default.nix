@@ -7,13 +7,17 @@
 # lib.mkIf (settings.modules.cli.enable or false)
 {
   imports = [
+    ./direnv.nix
+    ./editors
     ./neofetch
     ./prompt
     ./shells
     ./terminals
     ./utilities
-    ./editors
     ./yazi
+    ./ripgrep.nix
+    ./eza.nix
+    ./glow.nix
   ];
 
   # Enable the nix-index

@@ -1,4 +1,10 @@
-{ config, pkgs, ... }: {
+{
+  settings,
+  config,
+  pkgs,
+  ...
+}:
+{
   environment = {
     systemPackages = with pkgs; [
       # A simple clipboard manager for Wayland.
@@ -29,9 +35,6 @@
       # hunspellDicts.en_US
       # hunspellDicts.fr-any
     ];
-
-    # Set Micro as the default text editor.
-    variables = { EDITOR = "micro"; };
   };
 
   # Whether to enable the GNU NANO text editor that is enabled by default.

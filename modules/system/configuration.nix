@@ -26,6 +26,7 @@ let
     hugepage = "always"; # Can speed up memory-heavy apps (like browsers/compiling)
     preemptType = "full"; # "full" is the most responsive for desktop usage
     tickrate = "full"; # Maintains high responsiveness even under load
+    # acpiCall = true;
   };
 
   # 2. Load the helper functions from the nix-cachyos-kernel flake
@@ -94,7 +95,8 @@ in
       systemd.dbus.enable = false;
       verbose = !quietBoot;
 
-      prepend = [ "${./dsdt.cpio}" ];
+      # prepend = [ "${./dsdt.cpio}" ];
+
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
@@ -110,13 +112,6 @@ in
         "usbhid"
       ];
       # kernelModules = [ "amdgpu" ];
-
-      # ACPI table override via initrd requires an uncompressed leading cpio.
-      # If initrd is compressed, the kernel won't see `/kernel/firmware/acpi/*.aml`
-      # early enough and the override tables will be ignored.
-      # compressor = lib.mkIf hasAcpiOverrides "none";
-
-      # extraFiles = acpiOverrideExtraFiles;
     };
 
     kernelModules = _system.boot.kernelModules ++ [ ];

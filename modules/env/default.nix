@@ -7,10 +7,6 @@
   ...
 }:
 let
-  # System and hardware configuration
-  system = pkgs.stdenv.hostPlatform.system;
-  nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = nixos-opencl.packages.${system}.mesa;
   # Libraries we want available from nixpkgs
   libPath =
     with pkgs;
@@ -27,6 +23,13 @@ let
     ];
 in
 lib.mkIf (settings.modules.env.enable or false) {
+  imports = [
+    ./misc.nix
+    ./packages.nix
+    ./paths.nix
+    ./variables.nix
+  ];
+
   # Environment Variables
   # find /nix/store -name "something"
   environment = {

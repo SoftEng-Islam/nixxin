@@ -37,7 +37,7 @@
               enableScrollWheel = false;
               followFocusedScreen = false;
               groupedBorderOpacity = 1;
-              hideUnoccupied = true;
+              hideUnoccupied = false;
               labelMode = "index";
               iconScale = 0.8;
               pillSize = 0.6;
@@ -46,7 +46,7 @@
               showBadge = true;
               showLabelsOnlyWhenOccupied = false;
               unfocusedIconsOpacity = 1;
-              emptyColor = "secondary";
+              emptyColor = "mTertiary";
               occupiedColor = "secondary";
               focusedColor = "primary";
             }

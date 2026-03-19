@@ -9,15 +9,15 @@ let
 
     usage() {
       cat <<'EOF'
-fmpeg [-i] <input> [ffmpeg args...] <output>
+      fmpeg [-i] <input> [ffmpeg args...] <output>
 
-Runs:
-  ffmpeg -i <input> -c:v libsvtav1 -c:a copy <output>
+      Runs:
+        ffmpeg -i <input> -c:v libsvtav1 -c:a copy <output>
 
-Examples:
-  fmpeg input.mp4 output.mkv
-  fmpeg -i input.mp4 -vf scale=1920:-2 output.mkv
-EOF
+      Examples:
+        fmpeg input.mp4 output.mkv
+        fmpeg -i input.mp4 -vf scale=1920:-2 output.mkv
+      EOF
     }
 
     if [[ $# -eq 0 ]] || [[ "''${1:-}" == "-h" ]] || [[ "''${1:-}" == "--help" ]] || [[ "''${1:-}" == "help" ]]; then

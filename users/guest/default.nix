@@ -57,8 +57,10 @@ rec {
   # For Ex: You have BROWSER var, and xdg webBrowser
   # You must set the same Browser the you want as default everywhere.
   # ----------------------------------------------
-  common.EDITOR = "micro"; # ? EDITOR Var: used for
-  common.VISUAL = "micro"; # ? VISUAL Var: used for
+  # ?
+  common.EDITOR = "code"; # ? EDITOR Var: used for
+  # ?
+  common.VISUAL = "code"; # ? VISUAL Var: used for
   common.TERM = "xterm-256color"; # ? TERM Var: used for
   common.webBrowser = "google-chrome-stable";
   common.mainFont.name = "CaskaydiaCove Nerd Font";

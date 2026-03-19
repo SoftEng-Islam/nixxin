@@ -3,6 +3,7 @@
   home-manager.users.${settings.user.username} = {
     programs.noctalia-shell.settings = {
       colorSchemes = {
+        enabled = true;
         useWallpaperColors = false;
         predefinedScheme = "Noctalia (default)";
         darkMode = true;

@@ -7,13 +7,13 @@
         mError = "#f7768e";
         mOnError = "#0f0f14";
         mOnPrimary = "#0f0f14";
-        mOnSecondary = "#0f0f14";
+        mOnSecondary = "#ffffff";
         mOnSurface = "#c0caf5";
         mOnSurfaceVariant = "#9aa5ce";
         mOnTertiary = "#0f0f14";
         mOnHover = "#ffffff";
         mOutline = "#414868";
-        mPrimary = "#7aa2f7";
+        mPrimary = "#5f3fff";
         mSecondary = "#bb9af7";
         mShadow = "#000000";
         mSurface = "#1a1b26";
