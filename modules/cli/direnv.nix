@@ -16,7 +16,7 @@
       global = {
         load_dotenv = true;
         hide_env_diff = true;
-        log_format = "$(tput setaf 1)%e$(tput sgr0)";
+        # log_format = "$(tput setaf 1)%e$(tput sgr0)";
       };
     };
   };
