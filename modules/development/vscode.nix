@@ -24,59 +24,6 @@ in
         enableExtensionUpdateCheck = false;
         enableUpdateCheck = false;
 
-        extensions =
-          let
-            t =
-              inputs.nix-vscode-extensions.extensions.${system}.forVSCodeVersion
-                config.programs.vscode.package.version;
-            p = t.vscode-marketplace;
-            pr = t.vscode-marketplace-release;
-          in
-          [
-            # general
-            p.bierner.emojisense
-            p.bierner.markdown-checkbox
-            p.bierner.markdown-emoji
-            p.davidlday.languagetool-linter
-            p.dracula-theme.theme-dracula
-            pr.eamodio.gitlens # non-release versions "expire" quite quickly
-            p.gruntfuggly.todo-tree
-            p.mkhl.direnv
-            p.robole.marky-stats
-            p.stkb.rewrap
-            p.tomoki1207.pdf
-            p.tyriar.sort-lines
-            p.pomdtr.markdown-kroki
-            p.editorconfig.editorconfig
-
-            # haskell
-            p.haskell.haskell # language server
-            p.justusadam.language-haskell # syntax highlighting
-            p.s0kil.vscode-hsx # HSX is HTML templating for IHP
-
-            # python
-            p.ms-python.python
-            p.charliermarsh.ruff
-            p.matangover.mypy
-
-            # other languages
-            p.banacorn.agda-mode
-            p.qbane.als-wasm-loader
-            p.denoland.vscode-deno
-            p.jnoortheen.nix-ide
-            p.kokakiwi.vscode-just
-            p.mark-hansen.hledger-vscode
-            p.samuelcolvin.jinjahtml
-            p.scala-lang.scala
-            p.scalameta.metals
-            p.tamasfe.even-better-toml
-            p.mechatroner.rainbow-csv
-            p.thenuprojectcontributors.vscode-nushell-lang
-            p.antyos.openscad
-            p.jetbrains.resharper-code
-            p.vue.volar
-          ];
-
         keybindings = [
           {
             key = "ctrl+shift+t";
