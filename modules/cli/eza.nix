@@ -1,5 +1,6 @@
+{ settings, ... }:
 {
-  programs.eza = {
+  home-manager.users.${settings.user.username}.programs.eza = {
     enable = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
