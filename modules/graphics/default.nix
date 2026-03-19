@@ -235,7 +235,7 @@ in
 
       # Rusticl OpenCL
       # https://docs.mesa3d.org/envvars.html#envvar-RUSTICL_FEATURES
-      RUSTICL_ENABLE = "radeonsi";
+      RUSTICL_ENABLE = "amdgpu,radv,radeon,radeonsi";
       RUSTICL_DEVICE_TYPE = "gpu";
       RUSTICL_FEATURES = "fp64";
 
