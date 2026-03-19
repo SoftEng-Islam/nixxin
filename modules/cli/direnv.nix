@@ -1,10 +1,11 @@
 {
+  settings,
   pkgs,
   config,
   ...
 }:
 {
-  programs.direnv = {
+  home-manager.users.${settings.user.username}.programs.direnv = {
     enable = true;
     silent = true;
     nix-direnv = {
