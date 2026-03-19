@@ -95,7 +95,7 @@ in
       systemd.dbus.enable = false;
       verbose = !quietBoot;
 
-      # prepend = [ "${./dsdt.cpio}" ];
+      prepend = [ "${./dsdt.cpio}" ];
 
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization

@@ -13,7 +13,7 @@
         mOnTertiary = "#0f0f14";
         mOnHover = "#ffffff";
         mOutline = "#414868";
-        mPrimary = "#5f3fff";
+        mPrimary = "#5dff90";
         mSecondary = "#bb9af7";
         mShadow = "#000000";
         mSurface = "#1a1b26";
