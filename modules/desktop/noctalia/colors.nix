@@ -14,7 +14,7 @@
         mOnHover = "#ffffff";
         mOutline = "#414868";
         mPrimary = "#5dff90";
-        mSecondary = "#bb9af7";
+        mSecondary = "#eff79a";
         mShadow = "#000000";
         mSurface = "#1a1b26";
         mHover = "#292e42";

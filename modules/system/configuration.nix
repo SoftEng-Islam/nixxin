@@ -91,7 +91,8 @@ in
     };
 
     extraModulePackages = with config.boot.kernelPackages; [
-      amdgpu-pro
+      # error: amdgpu-pro was removed due to lack of maintenance
+      # amdgpu-pro
     ];
 
     initrd = {
