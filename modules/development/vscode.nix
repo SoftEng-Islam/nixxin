@@ -299,7 +299,7 @@ in
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
           "nix.serverSettings".nixd = {
-            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostname}.pkgs";
+            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostName}.pkgs";
             formatting.command = [ "nixfmt" ];
             options = {
               nixos.expr = myOptions;
