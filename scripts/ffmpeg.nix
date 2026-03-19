@@ -3,7 +3,7 @@
   ...
 }:
 let
-  ffmpeg = pkgs.ffmpeg-full;
+  ffmpeg = pkgs.ffmpeg;
   fmpeg = pkgs.writeShellScriptBin "fmpeg" ''
     set -euo pipefail
 

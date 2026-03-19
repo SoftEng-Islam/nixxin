@@ -29,7 +29,7 @@
       # Extra libraries and packages for Appimage run
       extraPkgs =
         pkgs: with pkgs; [
-          ffmpeg-full
+          ffmpeg
           imagemagick
         ];
     };
