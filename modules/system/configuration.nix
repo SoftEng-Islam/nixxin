@@ -90,6 +90,10 @@ in
       splashImage = null;
     };
 
+    extraModulePackages = with config.boot.kernelPackages; [
+      amdgpu-pro
+    ];
+
     initrd = {
       systemd.enable = false;
       systemd.dbus.enable = false;
