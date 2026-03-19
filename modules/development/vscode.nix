@@ -299,12 +299,12 @@ in
           "nix.enableLanguageServer" = true;
           "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
           "nix.serverSettings".nixd = {
-            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.user.hostname}.pkgs";
+            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostname}.pkgs";
             formatting.command = [ "nixfmt" ];
             options = {
-              nixos.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.user.hostname}.options";
-              home-manager.expr = "(builtins.getFlake \"${inputs.self}\").homeConfigurations.base-${system}.options";
-              flake-parts.expr = "(builtins.getFlake \"${inputs.self}\").debug.options";
+              nixos.expr = myOptions;
+              home-manager.expr = myOptions + ".home-manager.users.type.getSubOptions []";
+              flake-parts.expr = myOptions + ".flake-parts.type.getSubOptions []";
             };
           };
 
