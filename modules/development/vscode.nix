@@ -1,18 +1,20 @@
 {
   settings,
   pkgs,
-  inputs,
   system,
   osConfig,
   config,
-  self,
   ...
 }:
 let
-  myOptions = "(builtins.getFlake \"${self}\").nixosConfigurations.${settings.system.hostName}.options";
+  # Using the live flake path for nixd makes autocomplete work immediately as you edit your files.
+  flakePath = "/home/softeng/nixxin";
+  myOptions = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options";
 
-  # extract package pname for each package in the list of all installed packages, then put them in a list
-  packagesList = map (x: x.pname) (config.home.packages ++ osConfig.environment.systemPackages);
+  # Safely check for installed packages (fallback to empty string if pname/name are missing)
+  allPkgs = config.home.packages ++ osConfig.environment.systemPackages;
+  hasNixd = builtins.any (p: (p.pname or p.name or "") == "nixd") allPkgs;
+  hasNil = builtins.any (p: (p.pname or p.name or "") == "nil") allPkgs;
 
 in
 {
@@ -430,16 +432,16 @@ in
             "result.*/"
           ];
           "rewrap.wrappingColumn" = 100;
-          # Check if nixd or nil is installed and set the server accordingly
+          # Check if nixd or nil is installed and set the server path to the absolute package path
           "nix.serverPath" =
-            if (builtins.elem "nixd" packagesList) then
-              "nixd"
-            else if (builtins.elem "nil" packagesList) then
-              "nil"
+            if hasNixd then
+              "${pkgs.nixd}/bin/nixd"
+            else if hasNil then
+              "${pkgs.nil}/bin/nil"
             else
               null;
           "nix.serverSettings".nixd = {
-            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostName}.pkgs";
+            nixpkgs.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.pkgs";
             formatting.command = [ "nixfmt" ];
             options = {
               nixos.expr = myOptions;
