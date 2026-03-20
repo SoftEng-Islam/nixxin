@@ -54,6 +54,21 @@
     yazi-flexoki-light.flake = false;
     yazi-flexoki-dark.url = "github:gosxrgxx/flexoki-dark.yazi";
     yazi-flexoki-dark.flake = false;
+
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions"; # Grab latest VScode extensions as a package;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nur = {
+      url = "github:nix-community/NUR"; # Nix User Repository, for community packages
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.flake-parts.follows = "flake-parts";
+    };
+    ### UTILS ###
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
   };
   outputs =
     {
@@ -98,12 +113,16 @@
                 # Use pinned overlay for binary cache hits (avoids local kernel compilation)
                 nix-cachyos-kernel.overlays.pinned
 
+
+
                 (final: prev: {
                   update = import to-update {
                     inherit (final) config;
                     inherit (final.stdenv.hostPlatform) system;
                   };
                 })
+
+                inputs.nix-vscode-extensions.overlays.default
 
               ];
             }

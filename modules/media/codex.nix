@@ -40,7 +40,7 @@ lib.mkIf (settings.modules.media.codex) {
     libaom # Alliance for Open Media AV1 codec library
     rav1e # The fastest and safest AV1 encoder
     svt-av1 # AV1-compliant encoder/decoder library core
-    v4l-utils
+    # v4l-utils
     x264 # Library for encoding H264/AVC video streams
     x265 # Library for encoding H.265/HEVC video streams
     xvidcore # MPEG-4 video codec for PC

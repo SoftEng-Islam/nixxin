@@ -35,7 +35,6 @@
         "corectrl"
         "dialout"
         "disk"
-        # "docker" # I don't Use Docker
         # "flatpak"
         "fuse"
         "git"

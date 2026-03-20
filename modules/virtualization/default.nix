@@ -11,7 +11,7 @@ in mkIf (settings.modules.virtualization.enable or false) {
       allowedBridges = [ "nm-bridge" "virbr0" ];
       qemu.runAsRoot = true;
     };
-    podman.enable = true;
+    podman.enable = false;
   };
 
   programs.virt-manager.enable = false;

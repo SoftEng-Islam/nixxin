@@ -48,5 +48,6 @@ in
     kdePackages.qt5compat
     qt6.qt5compat
     qt6.qtdeclarative
+    libsForQt5.qt5.qtgraphicaleffects
   ];
 }
