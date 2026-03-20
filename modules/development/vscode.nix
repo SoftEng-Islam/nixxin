@@ -113,25 +113,14 @@ in
           ]);
 
         userSettings = {
-          "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
-
-          /*
-            Set up nixd as Nix language server.
-
-            Note: I tried to get the home-manager options directly from the home config inside the NixOS
-            config, but I didn't find an exposed `options` there anywhere. So that's why I've added the
-            plain home-manager configs to the flake.
-          */
-          "nix.enableLanguageServer" = true;
-          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-          "nix.serverSettings".nixd = {
-            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostName}.pkgs";
-            formatting.command = [ "nixfmt" ];
-            options = {
-              nixos.expr = myOptions;
-              home-manager.expr = myOptions + ".home-manager.users.type.getSubOptions []";
-              flake-parts.expr = myOptions + ".flake-parts.type.getSubOptions []";
-            };
+          "[css]" = {
+            "editor.defaultFormatter" = "vscode.css-language-features";
+          };
+          "[json]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
+          };
+          "[jsonc]" = {
+            "editor.defaultFormatter" = "vscode.json-language-features";
           };
 
           "[markdown]" = {
@@ -140,126 +129,16 @@ in
             "editor.wordWrap" = "bounded";
             "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
           };
-
-          "[python]" = {
-            "editor.insertSpaces" = true;
-          };
-
-          "diffEditor.diffAlgorithm" = "advanced";
-          "diffEditor.experimental.showMoves" = true;
-          "diffEditor.ignoreTrimWhitespace" = false;
-          "editor.acceptSuggestionOnCommitCharacter" = false;
-          "editor.acceptSuggestionOnEnter" = "on";
-          "editor.copyWithSyntaxHighlighting" = false;
-          "editor.detectIndentation" = true;
-          "editor.fontSize" = 16;
-          "editor.guides.bracketPairs" = true;
-          "editor.inlineSuggest.enabled" = false;
-          "editor.insertSpaces" = false;
-          "editor.language.brackets" = [
-            [
-              "["
-              "]"
-            ]
-            [
-              "{"
-              "}"
-            ]
-            [
-              "("
-              ")"
-            ]
-            [
-              "⟨"
-              "⟩"
-            ]
-          ];
-          "editor.quickSuggestions" = {
-            "comments" = false;
-            "other" = false;
-            "strings" = false;
-          };
-          "editor.rulers" = [
-            100
-          ];
-          "editor.scrollbar.vertical" = "visible";
-          "editor.suggest.preview" = true;
-          "editor.suggestSelection" = "recentlyUsed";
-          "editor.tabSize" = 4;
-          "editor.unicodeHighlight.allowedCharacters" = {
-            "×" = true;
-            "α" = true;
-            "γ" = true;
-            "ι" = true;
-            "ρ" = true;
-            "σ" = true;
-            "ℓ" = true;
-            "ℕ" = true;
-            "ℚ" = true;
-            "ℝ" = true;
-            "ℤ" = true;
-            "∨" = true;
-          };
-          "editor.wordWrap" = "on";
-          "editor.wordWrapColumn" = 100;
-          "explorer.confirmDragAndDrop" = false;
-          "extensions.autoCheckUpdates" = false;
-          "files.enableTrash" = false;
-          "files.watcherExclude" = {
-            "**/.ammonite" = true;
-            "**/.bloop" = true;
-            "**/.metals" = true;
-          };
-          "git.allowForcePush" = true;
-          "git.autofetch" = "all";
-          "git.autofetchPeriod" = 120;
-          "git.closeDiffOnOperation" = true;
-          "git.confirmForcePush" = false;
-          "git.confirmSync" = false;
-          "git.enableSmartCommit" = true;
-          "gitlens.ai.enabled" = false;
-          "gitlens.codeLens.enabled" = false;
-          "gitlens.defaultDateFormat" = "YYYY-MM-DD HH=mm";
-          "gitlens.defaultDateLocale" = null;
-          "gitlens.defaultDateShortFormat" = "YYYY-MM-DD";
-          "gitlens.defaultDateStyle" = "absolute";
-          "gitlens.defaultTimeFormat" = "HH=mm";
-          "gitlens.launchpad.indicator.enabled" = false;
-          "gitlens.plusFeatures.enabled" = false;
-          "gitlens.showWelcomeOnInstall" = false;
-          "gitlens.showWhatsNewAfterUpgrades" = false;
-          "haskell.manageHLS" = "PATH";
-          "keyboard.dispatch" = "keyCode";
-          "markdown-kroki.url" = "https://diagrams.eisfunke.com";
-          "markyMarkdown.statsItemSeparator" = " / ";
-          "markyMarkdown.statsShowCharacters" = true;
-          "markyMarkdown.statsShowReadingTime" = false;
-          "markyMarkdown.statsShowWords" = true;
-          "mypy.enabled" = false;
-          "mypy.extraArguments" = [
-            "--exclude"
-            "result.*/"
-          ];
-          "rewrap.wrappingColumn" = 100;
-          "security.workspace.trust.enabled" = false;
-          "terminal.integrated.commandsToSkipShell" = [
-            "workbench.action.toggleSidebarVisibility"
-          ];
-          "terminal.integrated.minimumContrastRatio" = 1;
-          "terminal.integrated.scrollback" = 5000;
-          "terminal.integrated.tabs.enabled" = false;
-          "todo-tree.general.showActivityBarBadge" = true;
-          "todo-tree.general.tags" = [
-            "TODO"
-            "FIXME"
-          ];
-          "todo-tree.regex.regex" = "(^|\\s|//|#|<!--|;|/\\*)($TAGS)(:|\\s|$)";
           "[nix]" = {
             "editor.defaultFormatter" = "jnoortheen.nix-ide";
             "editor.formatOnSave" = true;
             "editor.inlayHints.enabled" = "on";
             "editor.insertSpaces" = true;
             "editor.tabSize" = 2;
+          };
+
+          "[python]" = {
+            "editor.insertSpaces" = true;
           };
           "[shellscript]" = {
             "editor.defaultFormatter" = "mads-hartmann.bash-ide-vscode";
@@ -270,9 +149,12 @@ in
           "[typescriptreact]" = {
             "editor.defaultFormatter" = "esbenp.prettier-vscode";
           };
+          "[vue]" = {
+            "editor.defaultFormatter" = "Vue.volar";
+          };
           "application.shellEnvironmentResolutionTimeout" = 60;
-          "better-comments.multilineComments" = true;
           "better-comments.highlightPlainText" = true;
+          "better-comments.multilineComments" = true;
           "better-comments.tags" = [
             {
               "tag" = "!";
@@ -355,38 +237,127 @@ in
           "breadcrumbs.showStructs" = false;
           "breadcrumbs.showTypeParameters" = false;
           "breadcrumbs.showVariables" = false;
+          "chat.agent.thinking.collapsedTools" = "all";
+          "chat.edits2.enabled" = true;
+          "chat.emptyState.history.enabled" = true;
+          "css.lint.boxModel" = "warning";
+          "dart.checkForSdkUpdates" = false;
+          "dart.updateDevTools" = false;
           "debug.allowBreakpointsEverywhere" = true;
+
+          "diffEditor.diffAlgorithm" = "advanced";
+          "diffEditor.experimental.showMoves" = true;
+          "diffEditor.ignoreTrimWhitespace" = false;
+          "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
+          "editor.acceptSuggestionOnCommitCharacter" = false;
+          "editor.acceptSuggestionOnEnter" = "on";
           "editor.bracketPairColorization.enabled" = true;
           "editor.bracketPairColorization.independentColorPoolPerBracketType" = true;
+          "editor.copyWithSyntaxHighlighting" = false;
           "editor.cursorBlinking" = "expand";
           "editor.cursorSmoothCaretAnimation" = "explicit";
           "editor.cursorWidth" = 3;
+          "editor.defaultFormatter" = "esbenp.prettier-vscode";
+          "editor.detectIndentation" = true;
+          # Primary programming fonts with nerd font glyphs support
           "editor.fontFamily" = "'CaskaydiaCove Nerd Font','JetBrainsMono Nerd Font'";
           "editor.fontLigatures" = true;
+          "editor.fontSize" = 16;
           "editor.fontWeight" = "normal";
           "editor.formatOnPaste" = true;
+          # Automatically format the file when saving
           "editor.formatOnSave" = true;
+          "editor.guides.bracketPairs" = true;
+          "editor.inlineSuggest.enabled" = false;
           "editor.inlineSuggest.syntaxHighlightingEnabled" = true;
+          "editor.insertSpaces" = false;
+          "editor.language.brackets" = [
+            [
+              "["
+              "]"
+            ]
+            [
+              "{"
+              "}"
+            ]
+            [
+              "("
+              ")"
+            ]
+            [
+              "⟨"
+              "⟩"
+            ]
+          ];
+          "editor.quickSuggestions" = {
+            "comments" = false;
+            "other" = false;
+            "strings" = false;
+          };
           "editor.lineHeight" = 25;
           "editor.minimap.enabled" = false;
           "editor.mouseWheelZoom" = true;
           "editor.occurrencesHighlight" = "off";
           "editor.renderWhitespace" = "all";
+          "editor.rulers" = [
+            100
+          ];
+          "editor.scrollbar.vertical" = "visible";
+          "editor.scrollbar.verticalScrollbarSize" = 18;
           "editor.smoothScrolling" = true;
+          "editor.stickyScroll.enabled" = false;
           "editor.suggest.localityBonus" = true;
+          "editor.suggest.preview" = true;
+          "editor.suggestSelection" = "recentlyUsed";
+          "editor.tabSize" = 4;
+          "editor.unicodeHighlight.allowedCharacters" = {
+            "×" = true;
+            "α" = true;
+            "γ" = true;
+            "ι" = true;
+            "ρ" = true;
+            "σ" = true;
+            "ℓ" = true;
+            "ℕ" = true;
+            "ℚ" = true;
+            "ℝ" = true;
+            "ℤ" = true;
+            "∨" = true;
+          };
+          # Wrap lines if they exceed the editor window width
+          "editor.wordWrap" = "on";
+          "editor.wordWrapColumn" = 100;
+          "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = true;
+          "extensions.autoCheckUpdates" = false;
+          "extensions.autoUpdate" = false;
           "files.associations" = {
             "*.css" = "css";
             "appsettings*.json" = "jsonc";
           };
           "files.autoSave" = "off";
+          "files.enableTrash" = false;
           "files.insertFinalNewline" = true;
           "files.trimFinalNewlines" = true;
           "files.trimTrailingWhitespace" = true;
+          "files.watcherExclude" = {
+            "**/.ammonite" = true;
+            "**/.bloop" = true;
+            "**/.metals" = true;
+          };
           "git" = {
             "autofetch" = true;
             "confirmSync" = false;
           };
+          "git.allowForcePush" = true;
+          # Automatically run git fetch periodically
+          "git.autofetch" = "all";
+          "git.autofetchPeriod" = 120;
+          "git.closeDiffOnOperation" = true;
+          "git.confirmForcePush" = false;
+          "git.confirmSync" = false;
+          "git.enableSmartCommit" = true;
+          "github.copilot.nextEditSuggestions.enabled" = true;
           "gitlens" = {
             "codeLens" = {
               "enabled" = false;
@@ -407,6 +378,18 @@ in
               };
             };
           };
+          "gitlens.ai.enabled" = false;
+          "gitlens.codeLens.enabled" = false;
+          "gitlens.defaultDateFormat" = "YYYY-MM-DD HH=mm";
+          "gitlens.defaultDateLocale" = null;
+          "gitlens.defaultDateShortFormat" = "YYYY-MM-DD";
+          "gitlens.defaultDateStyle" = "absolute";
+          "gitlens.defaultTimeFormat" = "HH=mm";
+          "gitlens.launchpad.indicator.enabled" = false;
+          "gitlens.plusFeatures.enabled" = false;
+          "gitlens.showWelcomeOnInstall" = false;
+          "gitlens.showWhatsNewAfterUpgrades" = false;
+          "haskell.manageHLS" = "PATH";
           "html.format.wrapLineLength" = 0;
           "indentRainbow.colors" = [
             "hsl(271, 60%, 50%)"
@@ -416,13 +399,13 @@ in
             "hsl(330, 60%, 50%)"
           ];
           "indentRainbow.indicatorStyle" = "light";
-          "indentRainbow.lightIndicatorStyleLineWidth" = 3;
           # The indent color if the number of spaces is not a multiple of "tabSize".
           "indentRainbow.errorColor" = "rgba(128,32,32,0.6)";
           # The indent color when there is a mix between spaces and tabs.
           # To be disabled this coloring set this to an empty string.
+          "indentRainbow.lightIndicatorStyleLineWidth" = 3;
           "indentRainbow.tabmixColor" = "rgba(128,32,96,0.6)";
-          "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
+          "ipynb.experimental.serialization" = false;
           "javascript.format.semicolons" = "insert";
           "javascript.inlayHints.enumMemberValues.enabled" = true;
           "javascript.inlayHints.functionLikeReturnTypes.enabled" = true;
@@ -431,14 +414,54 @@ in
           "javascript.inlayHints.parameterTypes.enabled" = true;
           "javascript.inlayHints.propertyDeclarationTypes.enabled" = true;
           "javascript.inlayHints.variableTypes.enabled" = true;
+          "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
           "javascript.updateImportsOnFileMove.enabled" = "always";
+          "keyboard.dispatch" = "keyCode";
+          "less.lint.boxModel" = "warning";
           "less.lint.unknownAtRules" = "ignore";
+          "markdown-kroki.url" = "https://diagrams.eisfunke.com";
+          "markyMarkdown.statsItemSeparator" = " / ";
+          "markyMarkdown.statsShowCharacters" = true;
+          "markyMarkdown.statsShowReadingTime" = false;
+          "markyMarkdown.statsShowWords" = true;
+          "mypy.enabled" = false;
+          "mypy.extraArguments" = [
+            "--exclude"
+            "result.*/"
+          ];
+          "rewrap.wrappingColumn" = 100;
+          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+          "nix.serverSettings".nixd = {
+            nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostName}.pkgs";
+            formatting.command = [ "nixfmt" ];
+            options = {
+              nixos.expr = myOptions;
+              home-manager.expr = myOptions + ".home-manager.users.type.getSubOptions []";
+              flake-parts.expr = myOptions + ".flake-parts.type.getSubOptions []";
+            };
+          };
+          "nixEnvSelector.useFlakes" = true;
+          "notebook.defaultFormatter" = "esbenp.prettier-vscode";
           "rust-analyzer.rustfmt.overrideCommand" = null;
+          "scss.lint.boxModel" = "warning";
           "scss.lint.unknownAtRules" = "ignore";
           "search.seedWithNearestWord" = true;
           "security.workspace.trust.banner" = "never";
+          "security.workspace.trust.enabled" = false;
           "security.workspace.trust.untrustedFiles" = "open";
+          /*
+            Set up nixd as Nix language server.
+
+            Note: I tried to get the home-manager options directly from the home config inside the NixOS
+            config, but I didn't find an exposed `options` there anywhere. So that's why I've added the
+            plain home-manager configs to the flake.
+          */
+          "nix.enableLanguageServer" = true;
           "terminal.explorerKind" = "external";
+          "terminal.integrated.commandsToSkipShell" = [
+            "workbench.action.toggleSidebarVisibility"
+          ];
+          "terminal.integrated.minimumContrastRatio" = 1;
           "terminal.integrated.cursorBlinking" = true;
           "terminal.integrated.cursorStyle" = "line";
           "terminal.integrated.cursorStyleInactive" = "line";
@@ -452,68 +475,49 @@ in
           "terminal.integrated.fontSize" = 14;
           "terminal.integrated.fontWeight" = "bold";
           "terminal.integrated.gpuAcceleration" = "on";
+          "terminal.integrated.scrollback" = 5000;
           "terminal.integrated.smoothScrolling" = true;
-          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
+          "terminal.integrated.tabs.enabled" = false;
+          "todo-tree.general.showActivityBarBadge" = true;
+          "todo-tree.general.tags" = [
+            "TODO"
+            "FIXME"
+          ];
+          "todo-tree.regex.regex" = "(^|\\s|//|#|<!--|;|/\\*)($TAGS)(:|\\s|$)";
           "typescript.format.semicolons" = "insert";
           "typescript.inlayHints.enumMemberValues.enabled" = true;
           "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
           "typescript.inlayHints.parameterNames.enabled" = "none";
+          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
           "typescript.inlayHints.parameterTypes.enabled" = true;
           "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
           "typescript.inlayHints.variableTypes.enabled" = true;
+          "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
+          "typescript.updateImportsOnFileMove.enabled" = "always";
+          "update.mode" = "manual";
           "update.showReleaseNotes" = false;
           "vite.autoStart" = false;
           "vite.https" = false;
           "window.autoDetectColorScheme" = true;
+          "window.commandCenter" = false;
+          "window.customTitleBarVisibility" = "never";
           "window.menuBarVisibility" = "toggle";
+          "window.titleBarStyle" = "native";
+          # Preferred color theme for the editor interface
+          "workbench.colorTheme" = "Monokai Pro";
           "workbench.editor.enablePreview" = true;
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.iconTheme" = "material-icon-theme";
+          "workbench.layoutControl.enabled" = false;
           "workbench.list.smoothScrolling" = true;
+          "workbench.preferredDarkColorTheme" = "Material Night Eighties";
           "workbench.preferredLightColorTheme" = "Default Dark Modern";
+          "workbench.secondarySideBar.defaultVisibility" = "hidden";
           "workbench.settings.openDefaultKeybindings" = true;
           "workbench.sideBar.location" = "right";
           "workbench.startupEditor" = "none";
           "workbench.tips.enabled" = true;
-          "window.commandCenter" = false;
-          "workbench.layoutControl.enabled" = false;
-          "window.customTitleBarVisibility" = "never";
-          "window.titleBarStyle" = "native";
           "zenMode.fullScreen" = false;
-          "editor.stickyScroll.enabled" = false;
-          "[jsonc]" = {
-            "editor.defaultFormatter" = "vscode.json-language-features";
-          };
-          "nixEnvSelector.useFlakes" = true;
-          "[vue]" = {
-            "editor.defaultFormatter" = "Vue.volar";
-          };
-          "extensions.autoUpdate" = false;
-          "update.mode" = "manual";
-          "dart.checkForSdkUpdates" = false;
-          "dart.updateDevTools" = false;
-          "github.copilot.nextEditSuggestions.enabled" = true;
-          "[css]" = {
-            "editor.defaultFormatter" = "vscode.css-language-features";
-          };
-          "typescript.updateImportsOnFileMove.enabled" = "always";
-          "workbench.secondarySideBar.defaultVisibility" = "hidden";
-          "workbench.colorTheme" = "Monokai Pro";
-          "chat.agent.thinking.collapsedTools" = "all";
-          "chat.edits2.enabled" = true;
-          "[json]" = {
-            "editor.defaultFormatter" = "vscode.json-language-features";
-          };
-          "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "notebook.defaultFormatter" = "esbenp.prettier-vscode";
-          "chat.emptyState.history.enabled" = true;
-          "editor.scrollbar.verticalScrollbarSize" = 18;
-          "css.lint.boxModel" = "warning";
-          "less.lint.boxModel" = "warning";
-          "scss.lint.boxModel" = "warning";
-          "workbench.preferredDarkColorTheme" = "Material Night Eighties";
-          "ipynb.experimental.serialization" = false;
         };
       };
     };
