@@ -116,6 +116,8 @@ in
       typescript-go
 
       shellcheck
+
+      jetbrains.webstorm
     ];
   };
 }
