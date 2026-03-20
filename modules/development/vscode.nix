@@ -87,9 +87,6 @@ in
         donjayamanne.githistory # Git History
         # eamodio.gitlens # GitLens
 
-        ## MISCELLANEOUS ##
-        ms-vscode-remote.remote-ssh # Remote SSH
-
         rolandgreim.sharecode # Pastebin/Gist support
         # ritwickdey.liveserver # launch local html web server
         mkhl.direnv # direnv support
