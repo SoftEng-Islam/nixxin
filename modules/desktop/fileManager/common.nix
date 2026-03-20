@@ -88,13 +88,8 @@ in
       packages = with pkgs; [
         p7zip
         xarchiver
-        papirus-icon-theme
-        material-icons
-        material-design-icons
-        material-symbols
       ];
       sessionVariables = {
-        XDG_ICON_DIR = "${pkgs.papirus-icon-theme}/share/icons/${settings.common.icons.nameInDark}";
         QS_ICON_THEME = settings.common.icons.nameInDark;
         QT_STYLE_OVERRIDE = lib.mkForce "Fusion";
       };

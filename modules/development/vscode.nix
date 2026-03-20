@@ -430,7 +430,14 @@ in
             "result.*/"
           ];
           "rewrap.wrappingColumn" = 100;
-          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
+          # Check if nixd or nil is installed and set the server accordingly
+          "nix.serverPath" =
+            if (builtins.elem "nixd" packagesList) then
+              "nixd"
+            else if (builtins.elem "nil" packagesList) then
+              "nil"
+            else
+              null;
           "nix.serverSettings".nixd = {
             nixpkgs.expr = "(builtins.getFlake \"${inputs.self}\").nixosConfigurations.${settings.system.hostName}.pkgs";
             formatting.command = [ "nixfmt" ];
