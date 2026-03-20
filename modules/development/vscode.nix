@@ -2,7 +2,6 @@
   settings,
   pkgs,
   system,
-  osConfig,
   config,
   ...
 }:
@@ -10,11 +9,6 @@ let
   # Using the live flake path for nixd makes autocomplete work immediately as you edit your files.
   flakePath = "/home/softeng/nixxin";
   myOptions = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options";
-
-  # Safely check for installed packages (fallback to empty string if pname/name are missing)
-  allPkgs = config.home.packages ++ osConfig.environment.systemPackages;
-  hasNixd = builtins.any (p: (p.pname or p.name or "") == "nixd") allPkgs;
-  hasNil = builtins.any (p: (p.pname or p.name or "") == "nil") allPkgs;
 
 in
 {
@@ -432,14 +426,8 @@ in
             "result.*/"
           ];
           "rewrap.wrappingColumn" = 100;
-          # Check if nixd or nil is installed and set the server path to the absolute package path
-          "nix.serverPath" =
-            if hasNixd then
-              "${pkgs.nixd}/bin/nixd"
-            else if hasNil then
-              "${pkgs.nil}/bin/nil"
-            else
-              null;
+          # Explicitly set the absolute path to the nixd language server
+          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
           "nix.serverSettings".nixd = {
             nixpkgs.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.pkgs";
             formatting.command = [ "nixfmt" ];
