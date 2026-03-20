@@ -434,7 +434,6 @@ in
             options = {
               nixos.expr = myOptions;
               home-manager.expr = myOptions + ".home-manager.users.type.getSubOptions []";
-              flake-parts.expr = myOptions + ".flake-parts.type.getSubOptions []";
             };
           };
           "nixEnvSelector.useFlakes" = true;
