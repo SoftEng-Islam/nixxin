@@ -6,6 +6,7 @@
   ...
 }:
 let
+  username = settings.user.username;
   # Using the live flake path for nixd makes autocomplete work immediately as you edit your files.
   flakePath = "/home/softeng/nixxin";
   myOptions = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options";
@@ -66,15 +67,60 @@ in
           (with (pkgs.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace; [
             ## Language support ##
             jnoortheen.nix-ide # Nix language support
-            # ms-python.python # Python language support
+            ms-python.python # Python language support
+            ms-python.debugpy
+            ms-python.vscode-python-envs
+            meta.pyrefly
+
             # ms-vscode.cpptools-extension-pack # C/C++ extension pack
             tamasfe.even-better-toml # TOML language support
             # bmewburn.vscode-intelephense-client # PHP language support
             bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
+            ms-vscode.vscode-typescript-next
+            ms-vscode.js-debug-nightly
+            yzhang.markdown-all-in-one
+            davidanson.vscode-markdownlint
+            csstools.postcss
+            esbenp.prettier-vscode
+            mohsen1.prettify-json
+            chrmarti.regex
+            syler.sass-indented
+            foxundermoon.shell-format
+            timonwong.shellcheck
+            rangav.vscode-thunder-client
+            antfu.vite
+            vue.volar
+            karunamurti.haml
+            streetsidesoftware.code-spell-checker
+            kingleo.deepseek-web
+            ms-python.isort
+            orta.vscode-jest
+            ionutvmi.path-autocomplete
+            christian-kohler.path-intellisense
+            mukundan.python-docs
+            swellaby.rust-pack
+            tauri-apps.tauri-vscode
+            be5invis.toml
+            vitest.explorer
+            stuart.unique-window-colors
+            redhat.vscode-yaml
+
+            # APIs
+            apollographql.vscode-apollo
+
+            rogalmic.bash-debug
+            mads-hartmann.bash-ide-vscode
+            aaron-bond.better-comments
+            naumovs.color-highlight
+            editorconfig.editorconfig
+            graphql.vscode-graphql-execution
+            graphql.vscode-graphql
+            graphql.vscode-graphql-syntax
 
             ## Linters ##
             esbenp.prettier-vscode # Prettier code formatter
             davidanson.vscode-markdownlint # Markdown Linting
+            dbaeumer.vscode-eslint
 
             ## GIT Tools ##
             github.copilot # GitHub Copilot
@@ -84,15 +130,14 @@ in
             # eamodio.gitlens # GitLens
 
             rolandgreim.sharecode # Pastebin/Gist support
-            # ritwickdey.liveserver # launch local html web server
-            mkhl.direnv # direnv support
             oderwat.indent-rainbow # colorful indentation
+            mkhl.direnv # direnv support
+            # ritwickdey.liveserver # launch local html web server
             # arrterian.nix-env-selector # not needed at the moment
 
             ## THEMING ##
             # dracula-theme.theme-dracula # Dracula theme
             # enkia.tokyo-night # Tokyo Night theme
-            robbowen.synthwave-vscode # SynthWave '84 theme
             pkief.material-icon-theme # Material Icon Theme
             pkief.material-product-icons # Material Product Icons
           ])
@@ -233,7 +278,7 @@ in
           "breadcrumbs.showStructs" = false;
           "breadcrumbs.showTypeParameters" = false;
           "breadcrumbs.showVariables" = false;
-          "chat.agent.thinking.collapsedTools" = "all";
+          "chat.agent.thinking.collapsedTools" = "withThinking";
           "chat.edits2.enabled" = true;
           "chat.emptyState.history.enabled" = true;
           "css.lint.boxModel" = "warning";
@@ -402,16 +447,16 @@ in
           "indentRainbow.lightIndicatorStyleLineWidth" = 3;
           "indentRainbow.tabmixColor" = "rgba(128,32,96,0.6)";
           "ipynb.experimental.serialization" = false;
-          "javascript.format.semicolons" = "insert";
-          "javascript.inlayHints.enumMemberValues.enabled" = true;
-          "javascript.inlayHints.functionLikeReturnTypes.enabled" = true;
-          "javascript.inlayHints.parameterNames.enabled" = "none";
-          "javascript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          "javascript.inlayHints.parameterTypes.enabled" = true;
-          "javascript.inlayHints.propertyDeclarationTypes.enabled" = true;
-          "javascript.inlayHints.variableTypes.enabled" = true;
-          "javascript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
-          "javascript.updateImportsOnFileMove.enabled" = "always";
+          "js/ts.format.semicolons" = "insert";
+          "js/ts.inlayHints.enumMemberValues.enabled" = true;
+          "js/ts.inlayHints.functionLikeReturnTypes.enabled" = true;
+          "js/ts.inlayHints.parameterNames.enabled" = "none";
+          "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
+          "js/ts.inlayHints.parameterTypes.enabled" = true;
+          "js/ts.inlayHints.propertyDeclarationTypes.enabled" = true;
+          "js/ts.inlayHints.variableTypes.enabled" = true;
+          "js/ts.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
+          "js/ts.updateImportsOnFileMove.enabled" = "always";
           "keyboard.dispatch" = "keyCode";
           "less.lint.boxModel" = "warning";
           "less.lint.unknownAtRules" = "ignore";
@@ -480,16 +525,6 @@ in
             "FIXME"
           ];
           "todo-tree.regex.regex" = "(^|\\s|//|#|<!--|;|/\\*)($TAGS)(:|\\s|$)";
-          "typescript.format.semicolons" = "insert";
-          "typescript.inlayHints.enumMemberValues.enabled" = true;
-          "typescript.inlayHints.functionLikeReturnTypes.enabled" = true;
-          "typescript.inlayHints.parameterNames.enabled" = "none";
-          "typescript.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          "typescript.inlayHints.parameterTypes.enabled" = true;
-          "typescript.inlayHints.propertyDeclarationTypes.enabled" = true;
-          "typescript.inlayHints.variableTypes.enabled" = true;
-          "typescript.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
-          "typescript.updateImportsOnFileMove.enabled" = "always";
           "update.mode" = "manual";
           "update.showReleaseNotes" = false;
           "vite.autoStart" = false;
@@ -504,10 +539,11 @@ in
           "workbench.editor.enablePreview" = true;
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.iconTheme" = "material-icon-theme";
+          "workbench.productIconTheme" = "material-product-icons";
           "workbench.layoutControl.enabled" = false;
           "workbench.list.smoothScrolling" = true;
-          "workbench.preferredDarkColorTheme" = "Material Night Eighties";
-          "workbench.preferredLightColorTheme" = "Default Dark Modern";
+          "workbench.preferredDarkColorTheme" = "Default Dark Modern";
+          "workbench.preferredLightColorTheme" = "Default Light Modern";
           "workbench.secondarySideBar.defaultVisibility" = "hidden";
           "workbench.settings.openDefaultKeybindings" = true;
           "workbench.sideBar.location" = "right";
