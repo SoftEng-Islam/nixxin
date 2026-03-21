@@ -117,6 +117,10 @@
           { key = 'UpArrow',    mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveUp' } },
           { key = 'DownArrow',  mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveDown' } },
           { mods = "CTRL", key = "L", action=act.ShowDebugOverlay },
+
+          -- Your existing keybindings...
+          { key = 'X', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },
+
           -- CTRL-SHIFT-t open new tab in new dir
           {
             key = 't',
