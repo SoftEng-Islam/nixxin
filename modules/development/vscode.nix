@@ -65,92 +65,90 @@ in
 
         extensions =
           (with (pkgs.forVSCodeVersion config.programs.vscode.package.version).vscode-marketplace; [
-            ## Language support ##
-            jnoortheen.nix-ide # Nix language support
-            ms-python.python # Python language support
-            ms-python.debugpy
-            ms-python.vscode-python-envs
-            meta.pyrefly
-
-            # ms-vscode.cpptools-extension-pack # C/C++ extension pack
-            tamasfe.even-better-toml # TOML language support
+            ## Language Support ##
             # bmewburn.vscode-intelephense-client # PHP language support
-            bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
-            ms-vscode.vscode-typescript-next
-            ms-vscode.js-debug-nightly
-            yzhang.markdown-all-in-one
-            davidanson.vscode-markdownlint
-            csstools.postcss
-            esbenp.prettier-vscode
-            mohsen1.prettify-json
-            chrmarti.regex
-            syler.sass-indented
-            foxundermoon.shell-format
-            timonwong.shellcheck
-            rangav.vscode-thunder-client
-            antfu.vite
-            vue.volar
-            karunamurti.haml
-            streetsidesoftware.code-spell-checker
-            kingleo.deepseek-web
-            ms-python.isort
-            orta.vscode-jest
-            ionutvmi.path-autocomplete
-            christian-kohler.path-intellisense
-            mukundan.python-docs
-            swellaby.rust-pack
-            tauri-apps.tauri-vscode
+            # ms-vscode.cpptools-extension-pack # C/C++ extension pack
             be5invis.toml
-            vitest.explorer
-            stuart.unique-window-colors
-            redhat.vscode-yaml
-
-            # APIs
-            apollographql.vscode-apollo
-
-            rogalmic.bash-debug
-            mads-hartmann.bash-ide-vscode
-            aaron-bond.better-comments
-            naumovs.color-highlight
-            editorconfig.editorconfig
-            graphql.vscode-graphql-execution
-            graphql.vscode-graphql
+            bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
+            csstools.postcss
             graphql.vscode-graphql-syntax
+            jnoortheen.nix-ide # Nix language support
+            karunamurti.haml
+            mads-hartmann.bash-ide-vscode
+            meta.pyrefly
+            ms-python.python # Python language support
+            ms-vscode.vscode-typescript-next
+            redhat.vscode-yaml
+            swellaby.rust-pack
+            syler.sass-indented
+            tamasfe.even-better-toml # TOML language support
+            vue.volar
 
-            ## Linters ##
-            esbenp.prettier-vscode # Prettier code formatter
+            ## APIs & Data ##
+            apollographql.vscode-apollo
+            graphql.vscode-graphql
+            graphql.vscode-graphql-execution
+            rangav.vscode-thunder-client
+
+            ## Linters & Formatters ##
             davidanson.vscode-markdownlint # Markdown Linting
             dbaeumer.vscode-eslint
+            esbenp.prettier-vscode # Prettier code formatter
+            foxundermoon.shell-format
+            ms-python.isort
+            timonwong.shellcheck
 
-            ## GIT Tools ##
-            github.copilot # GitHub Copilot
-            github.codespaces # GitHub Codespaces
-            github.vscode-github-actions # GitHub Actions
-            donjayamanne.githistory # Git History
+            ## Testing & Debugging ##
+            ms-python.debugpy
+            ms-vscode.js-debug-nightly
+            orta.vscode-jest
+            rogalmic.bash-debug
+            vitest.explorer
+
+            ## GIT & AI Tools ##
             # eamodio.gitlens # GitLens
+            donjayamanne.githistory # Git History
+            github.codespaces # GitHub Codespaces
+            github.copilot # GitHub Copilot
+            github.vscode-github-actions # GitHub Actions
+            kingleo.deepseek-web
 
-            rolandgreim.sharecode # Pastebin/Gist support
-            oderwat.indent-rainbow # colorful indentation
-            mkhl.direnv # direnv support
-            # ritwickdey.liveserver # launch local html web server
+            ## Utilities & Editor Enhancements ##
             # arrterian.nix-env-selector # not needed at the moment
+            # ritwickdey.liveserver # launch local html web server
+            aaron-bond.better-comments
+            antfu.vite
+            christian-kohler.path-intellisense
+            chrmarti.regex
+            editorconfig.editorconfig
+            ionutvmi.path-autocomplete
+            mkhl.direnv # direnv support
+            mohsen1.prettify-json
+            mukundan.python-docs
+            naumovs.color-highlight
+            oderwat.indent-rainbow # colorful indentation
+            rolandgreim.sharecode # Pastebin/Gist support
+            streetsidesoftware.code-spell-checker
+            tauri-apps.tauri-vscode
+            yzhang.markdown-all-in-one
 
-            ## THEMING ##
+            ## Theming & UI ##
             # dracula-theme.theme-dracula # Dracula theme
             # enkia.tokyo-night # Tokyo Night theme
             pkief.material-icon-theme # Material Icon Theme
             pkief.material-product-icons # Material Product Icons
+            stuart.unique-window-colors
           ])
           ++ (with pkgs.vscode-marketplace-release; [
             github.copilot-chat # GitHub Copilot Chat, need the release version
           ])
           ++ (with pkgs.vscode-marketplace; [
-            ms-vscode-remote.remote-containers # Dev Containers
-
             github.vscode-pull-request-github # GitHub Pull Requests
+            ms-vscode-remote.remote-containers # Dev Containers
           ])
           ++ (with pkgs.vscode-extensions; [
             # ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
+            ms-python.vscode-python-envs
           ]);
 
         userSettings = {
