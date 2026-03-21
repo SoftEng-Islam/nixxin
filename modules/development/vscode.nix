@@ -7,10 +7,6 @@
 }:
 let
   username = settings.user.username;
-  # Using the live flake path for nixd makes autocomplete work immediately as you edit your files.
-  flakePath = "/home/softeng/nixxin";
-  myOptions = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options";
-
 in
 {
   programs.vscode.defaultEditor = true;
@@ -146,6 +142,7 @@ in
             github.vscode-pull-request-github # GitHub Pull Requests
             ms-vscode-remote.remote-containers # Dev Containers
             ms-python.vscode-python-envs # commented out as it is currently missing
+            ms-python.isort
           ])
           ++ (with pkgs.vscode-extensions; [
             # ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
@@ -469,15 +466,10 @@ in
             "result.*/"
           ];
           "rewrap.wrappingColumn" = 100;
-          # Explicitly set the absolute path to the nixd language server
-          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
-          "nix.serverSettings".nixd = {
-            nixpkgs.expr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.pkgs";
+          # Explicitly set the absolute path to the nil language server
+          "nix.serverPath" = "${pkgs.nil}/bin/nil";
+          "nix.serverSettings".nil = {
             formatting.command = [ "nixfmt" ];
-            options = {
-              nixos.expr = myOptions;
-              home-manager.expr = myOptions + ".home-manager.users.type.getSubOptions []";
-            };
           };
           "nixEnvSelector.useFlakes" = true;
           "notebook.defaultFormatter" = "esbenp.prettier-vscode";
@@ -488,13 +480,7 @@ in
           "security.workspace.trust.banner" = "never";
           "security.workspace.trust.enabled" = false;
           "security.workspace.trust.untrustedFiles" = "open";
-          /*
-            Set up nixd as Nix language server.
-
-            Note: I tried to get the home-manager options directly from the home config inside the NixOS
-            config, but I didn't find an exposed `options` there anywhere. So that's why I've added the
-            plain home-manager configs to the flake.
-          */
+          # Set up nil as Nix language server.
           "nix.enableLanguageServer" = true;
           "terminal.explorerKind" = "external";
           "terminal.integrated.commandsToSkipShell" = [
@@ -544,7 +530,7 @@ in
           "workbench.preferredLightColorTheme" = "Default Light Modern";
           "workbench.secondarySideBar.defaultVisibility" = "hidden";
           "workbench.settings.openDefaultKeybindings" = true;
-          "workbench.sideBar.location" = "right";
+          "workbench.sideBar.location" = "left";
           "workbench.startupEditor" = "none";
           "workbench.tips.enabled" = true;
           "zenMode.fullScreen" = false;
