@@ -111,6 +111,26 @@
         config.debug_key_events = true
         config.leader = { mods = "CTRL", key = "b", timeout_milliseconds = 1000 }
         config.keys = {
+          {
+            key = 'LeftArrow',
+            mods = 'SHIFT',
+            action = act.Multiple {
+              act.CopyMode 'ClearSelectionMode',
+              act.ActivateCopyMode,
+              act.CopyMode { SetSelectionMode = 'Cell' },
+              act.CopyMode 'MoveLeft',
+            },
+          },
+          {
+            key = 'RightArrow',
+            mods = 'SHIFT',
+            action = act.Multiple {
+              act.CopyMode 'ClearSelectionMode',
+              act.ActivateCopyMode,
+              act.CopyMode { SetSelectionMode = 'Cell' },
+              act.CopyMode 'MoveRight',
+            },
+          },
           { mods = "CTRL", key = "L", action=act.ShowDebugOverlay },
           -- CTRL-SHIFT-t open new tab in new dir
           {
