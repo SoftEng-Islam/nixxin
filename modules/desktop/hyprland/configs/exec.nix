@@ -1,14 +1,16 @@
-{ settings, inputs, pkgs, ... }:
+{
+  settings,
+  inputs,
+  pkgs,
+  ...
+}:
 let
-  fontName = "${settings.modules.fonts.main.name} ${
-      toString settings.modules.fonts.main.size.main
-    }";
+  fontName = "${settings.modules.fonts.main.name} ${toString settings.modules.fonts.main.size.main}";
   system = pkgs.stdenv.hostPlatform.system;
   hyprpolkitagentPkg =
     inputs.hyprpolkitagent.packages.${system}.hyprpolkitagent
-      or inputs.hyprpolkitagent.packages.${system}.default
-      or pkgs.update.hyprpolkitagent
-      or pkgs.hyprpolkitagent;
+      or inputs.hyprpolkitagent.packages.${system}.default or pkgs.update.hyprpolkitagent
+        or pkgs.hyprpolkitagent;
   hyprpolkitagentExe = "${hyprpolkitagentPkg}/bin/hyprpolkitagent";
   hyprpolkitagentLibexecExe = "${hyprpolkitagentPkg}/libexec/hyprpolkitagent";
   startupScript = pkgs.writeShellScriptBin "start" ''
@@ -35,13 +37,11 @@ let
     fi
 
     # ---- Clipboard ---- #
-    ${pkgs.wl-clipboard}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store  & disown
-    ${pkgs.wl-clipboard}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store & disown
+    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store  & disown
+    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store & disown
 
     # ---- Set Cursor ---- #
-    hyprctl setcursor ${settings.common.cursor.name} ${
-      toString settings.common.cursor.size
-    } & disown
+    hyprctl setcursor ${settings.common.cursor.name} ${toString settings.common.cursor.size} & disown
 
     # ---- Set Desktop Wallpaper ---- #
     # changeWallpaper & disown
@@ -57,7 +57,8 @@ let
     # Auto-start the overview of QuickShell
     qs -c overview & disown
   '';
-in {
+in
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
       exec-once = "${startupScript}/bin/start";

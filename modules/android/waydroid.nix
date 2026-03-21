@@ -198,14 +198,12 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
 
   environment.systemPackages = with pkgs; [
-    wl-clipboard
-
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
       runtimeInputs = with pkgs; [
         waydroid-nftables
         # waydroid-helper
-        wl-clipboard
+        wl-clipboard-rs
       ];
       text = ''
         sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy

@@ -7,6 +7,8 @@
 
 # --- Configuration ---
 CODEC="libsvtav1"
+PRESET="8"          # 0-13 (lower = better compression/slower. 8-10 is a good balance for speed)
+CRF="30"            # Constant Rate Factor (lower = better quality. 24-30 is typical for AV1)
 AUDIO_CODEC="copy"
 OUTPUT_EXT="mkv"
 LOG_FILE="status.txt"
@@ -15,7 +17,7 @@ LOG_FILE="status.txt"
 # Add or remove entries as needed. Each entry is the input filename.
 VIDEOS=(
   "input1.mp4"
-  "input2.mkv"
+  # "input2.mkv"
 )
 
 # --- Helper functions ---
@@ -146,7 +148,9 @@ for i in "${!VIDEOS[@]}"; do
   start_time=$(date +%s)
 
   # Encode
-  SVT_LOG="${SVT_LOG:-0}" ffmpeg -hide_banner -loglevel warning -stats -y -i "$input" -c:v "$CODEC" -c:a "$AUDIO_CODEC" "$output"
+  # -hwaccel auto: Offloads input video decoding to GPU (e.g., Radeon via VAAPI)
+  # -preset $PRESET & -crf $CRF: Defines SVT-AV1 performance and quality metrics
+  SVT_LOG="${SVT_LOG:-0}" ffmpeg -hide_banner -loglevel warning -stats -hwaccel auto -y -i "$input" -c:v "$CODEC" -preset "$PRESET" -crf "$CRF" -c:a "$AUDIO_CODEC" "$output"
 
   exit_code=$?
   end_time=$(date +%s)

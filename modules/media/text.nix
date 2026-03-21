@@ -11,7 +11,7 @@
       clipman
 
       # Command-line copy/paste utilities for Wayland.
-      wl-clipboard
+      wl-clipboard-rs
 
       # An emoji picker for linux, with custom tags support and localization.
       smile
