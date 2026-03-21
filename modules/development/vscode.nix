@@ -145,10 +145,10 @@ in
           ++ (with pkgs.vscode-marketplace; [
             github.vscode-pull-request-github # GitHub Pull Requests
             ms-vscode-remote.remote-containers # Dev Containers
+            ms-python.vscode-python-envs # commented out as it is currently missing
           ])
           ++ (with pkgs.vscode-extensions; [
             # ms-vscode.cpptools # C/C++ language support, only available via nixpkgs
-            ms-python.vscode-python-envs
           ]);
 
         userSettings = {
