@@ -468,8 +468,23 @@ in
           "rewrap.wrappingColumn" = 100;
           # Explicitly set the absolute path to the nil language server
           "nix.serverPath" = "${pkgs.nil}/bin/nil";
-          "nix.serverSettings".nil = {
-            formatting.command = [ "nixfmt" ];
+          "nix.formatterPath" = "nixfmt";
+          "nix.showNixOSOptions" = true;
+          "nix.serverSettings" = {
+            "nil" = {
+              "diagnostics" = {
+                "ignored" = [
+                  "unused_binding"
+                  "unused_with"
+                  "dead_code"
+                ];
+              };
+              "formatting" = {
+                "command" = [
+                  "nixfmt"
+                ];
+              };
+            };
           };
           "nixEnvSelector.useFlakes" = true;
           "notebook.defaultFormatter" = "esbenp.prettier-vscode";

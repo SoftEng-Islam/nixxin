@@ -139,12 +139,12 @@ in
   home-manager.users.${settings.user.username} = {
     programs.starship = {
       enable = true;
-      enableTransience = true;
+      enableTransience = false;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      enableFishIntegration = true;
+      enableFishIntegration = false;
     };
-    # home.sessionVariables.STARSHIP_CACHE = "/home/${settings.user.username}/.cache/starship";
+    home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
 
     programs.bash.initExtra = ''
       eval "$(${starshipCmd} init bash)"

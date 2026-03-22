@@ -18,6 +18,7 @@
     ./ripgrep.nix
     ./eza.nix
     ./glow.nix
+    ./postgre.nix
   ];
 
   # Enable the nix-index
