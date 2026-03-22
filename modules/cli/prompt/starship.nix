@@ -136,25 +136,27 @@ in
     presets = [ "nerd-font-symbols" ];
     settings = starship_settings;
   };
-  home-manager.users.${settings.user.username} = {
-    programs.starship = {
-      enable = true;
-      enableTransience = false;
-      enableZshIntegration = true;
-      enableBashIntegration = true;
-      enableFishIntegration = false;
+  home-manager.users.${settings.user.username} =
+    { config, ... }:
+    {
+      programs.starship = {
+        enable = true;
+        enableTransience = false;
+        enableZshIntegration = true;
+        enableBashIntegration = true;
+        enableFishIntegration = false;
+      };
+      home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
+
+      programs.bash.initExtra = ''
+        eval "$(${starshipCmd} init bash)"
+      '';
+
+      programs.zsh.initContent = ''
+        eval "$(${starshipCmd} init zsh)"
+      '';
+
     };
-    home.sessionVariables.STARSHIP_CACHE = "${config.xdg.cacheHome}/starship";
-
-    programs.bash.initExtra = ''
-      eval "$(${starshipCmd} init bash)"
-    '';
-
-    programs.zsh.initContent = ''
-      eval "$(${starshipCmd} init zsh)"
-    '';
-
-  };
 
   # tmux is intended to be a modern, BSD-licensed alternative to programs such as GNU screen. Major features include:
   programs.tmux.enable = true;
