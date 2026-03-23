@@ -36,7 +36,7 @@ in
       host all all ::1/128 trust
     '';
     settings = {
-      # listen_addresses = "127.0.0.1,::1";
+      listen_addresses = lib.mkForce "127.0.0.1,::1";
     };
   };
 }
