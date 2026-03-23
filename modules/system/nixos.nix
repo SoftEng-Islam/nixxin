@@ -399,14 +399,13 @@ in
 
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix
-    nixfmt
+    nixfmt-rfc-style
     nil # Yet another language server for Nix
     niv
 
     # Nix Formatters
     # nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
     nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
-
     nixdoc # Generate documentation for Nix functions
     node2nix # Generate Nix expressions to build NPM packages
 

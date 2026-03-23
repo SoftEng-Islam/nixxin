@@ -1,14 +1,15 @@
 { pkgs, ... }:
 {
-  services.postgresql = {
-    enable = true;
-    authentication = "";
-  };
 
   # services.pgadmin.enable = true;
-  # services.pgadmin.initialEmail =
+  # services.pgadmin.initialEmail = "" ;
   environment.systemPackages = with pkgs; [
     postgresql
     # pgadmin4
   ];
+
+  services.postgresql = {
+    enable = true;
+    authentication = "";
+  };
 }

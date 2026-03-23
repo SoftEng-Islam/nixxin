@@ -7,6 +7,7 @@
 }:
 let
   username = settings.user.username;
+  nixFormatter = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
 in
 {
   programs.vscode.defaultEditor = true;
@@ -468,7 +469,8 @@ in
           "rewrap.wrappingColumn" = 100;
           # Explicitly set the absolute path to the nil language server
           "nix.serverPath" = "${pkgs.nil}/bin/nil";
-          "nix.formatterPath" = "nixfmt";
+          # GUI apps do not always inherit the same PATH as the shell.
+          "nix.formatterPath" = nixFormatter;
           "nix.showNixOSOptions" = true;
           "nix.serverSettings" = {
             "nil" = {
@@ -480,9 +482,7 @@ in
                 ];
               };
               "formatting" = {
-                "command" = [
-                  "nixfmt"
-                ];
+                "command" = [ nixFormatter ];
               };
             };
           };
