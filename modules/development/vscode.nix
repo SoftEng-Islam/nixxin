@@ -7,7 +7,8 @@
 }:
 let
   username = settings.user.username;
-  nixFormatter = "${pkgs.nixfmt-rfc-style}/bin/nixfmt";
+  nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
+  nixFormatter = "${nixfmtPackage}/bin/nixfmt";
 in
 {
   programs.vscode.defaultEditor = true;
@@ -67,6 +68,7 @@ in
             # ms-vscode.cpptools-extension-pack # C/C++ extension pack
             be5invis.toml
             bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
+            brettm12345.nixfmt-vscode
             csstools.postcss
             graphql.vscode-graphql-syntax
             jnoortheen.nix-ide # Nix language support
@@ -167,7 +169,7 @@ in
             "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
           };
           "[nix]" = {
-            "editor.defaultFormatter" = "jnoortheen.nix-ide";
+            "editor.defaultFormatter" = "brettm12345.nixfmt-vscode";
             "editor.formatOnSave" = true;
             "editor.inlayHints.enabled" = "on";
             "editor.insertSpaces" = true;

@@ -9,6 +9,7 @@
 let
   _docs = settings.modules.system.docs;
   HOME = settings.HOME;
+  nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
 in
 {
 
@@ -388,7 +389,6 @@ in
     nix-prefetch-git # Script used to obtain source hashes for fetchgit
     nix-prefetch-github # Prefetch sources from github
     nix-tree # Interactively browse a Nix store paths dependencies
-    # nixfmt-classic # An opinionated formatter for Nix
     nixos-install-tools # The essential commands from the NixOS installer as a package
     nixos-shell # Spawns lightweight nixos vms in a shell
     nixpkgs-lint # A utility for Nixpkgs contributors to check Nixpkgs for common errors
@@ -399,13 +399,11 @@ in
 
     # Nix language server
     nixd # Feature-rich Nix language server interoperating with C++ nix
-    nixfmt-rfc-style
+    nixfmtPackage
     nil # Yet another language server for Nix
     niv
 
     # Nix Formatters
-    # nixfmt-rfc-style # Official formatter for Nix code [nixfmt file.nix]
-    nixpkgs-fmt # Nix code formatter for nixpkgs [nixpkgs-fmt file.nix]
     nixdoc # Generate documentation for Nix functions
     node2nix # Generate Nix expressions to build NPM packages
 

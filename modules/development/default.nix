@@ -21,6 +21,7 @@ let
     (optional development.emacs ./emacs.nix)
     (optional development.eclipse ./eclipse.nix)
     (optional development.helix ./helix.nix)
+    ./postgresql.nix
   ];
   HOME = settings.HOME;
 in

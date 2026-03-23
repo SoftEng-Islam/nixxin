@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
+in
 # lib.mkIf (settings.modules.cli.enable or false)
 {
   imports = [
@@ -18,7 +21,6 @@
     ./ripgrep.nix
     ./eza.nix
     ./glow.nix
-    ./postgre.nix
   ];
 
   # Enable the nix-index
@@ -91,7 +93,7 @@
     csvlens
 
     nixd # Nix LSP
-    nixfmt-rfc-style
+    nixfmtPackage
     nvd # Differ
     nix-diff # Differ, more detailed
     nix-output-monitor
