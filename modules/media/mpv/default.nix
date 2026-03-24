@@ -94,7 +94,7 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "libmpv"; # mpv --vo=help
+        vo = "gpu"; # mpv --vo=help
         gpu-api = "auto"; # mpv --gpu-api=help
         gpu-context = "auto"; # mpv --gpu-context=help
         hwdec = "auto"; # mpv --hwdec=help
