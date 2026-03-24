@@ -102,7 +102,7 @@ lib.mkIf (settings.modules.media.mpv) {
 
         vulkan-queue-count = 1;
 
-        hdr-compute-peak = "yes"; # Fix stuttering playing 4k video
+        hdr-compute-peak = "no"; # Fix stuttering playing 4k video
 
         # Performance tweaks for Vulkan
         vulkan-async-compute = "yes";
