@@ -94,7 +94,7 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "gpu-next"; # mpv --vo=help
+        vo = "drm"; # mpv --vo=help
         gpu-api = "auto"; # mpv --gpu-api=help
         gpu-context = "auto"; # mpv --gpu-context=help
         hwdec = "auto"; # mpv --hwdec=help
