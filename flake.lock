@@ -803,11 +803,11 @@
     "yt-dlp-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1772555818,
-        "narHash": "sha256-BPZzMT1IrZvgva/m5tYMaDYoUaP3VmpmcYeOUOwuoUY=",
+        "lastModified": 1774122745,
+        "narHash": "sha256-HEa+cZsOqVwgaaFtGqkLLA75wAm1mrHbPgo/SodpntA=",
         "owner": "yt-dlp",
         "repo": "yt-dlp",
-        "rev": "b8058cdf378cbbf60669b665dea146fb7dc90117",
+        "rev": "f01e1a1ced581c13f28c7da45eb6396cb9fff6e4",
         "type": "github"
       },
       "original": {
