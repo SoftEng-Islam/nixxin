@@ -2,7 +2,7 @@
 
 **Nixos** Enhancement Configurations
 
-<img width="1920" height="1080" alt="image" src="https://github.com/user-attachments/assets/26137a3f-8a2d-4e5d-9a53-d71c03f9f2ad" />
+![alt text](image.png)
 
 > [!WARNING]
 >
