@@ -32,11 +32,6 @@ lib.mkIf (settings.modules.office.n8n or false) {
       ProtectHome = lib.mkForce false;
       ProtectSystem = lib.mkForce "full";
       PrivateTmp = lib.mkForce false;
-      EnvironmentFile = [
-        config.age.secrets."n8n-anthropic-api-key".path
-        config.age.secrets."n8n-ntfy-url".path
-        config.age.secrets."n8n-user-bio".path
-      ];
     };
   };
 
