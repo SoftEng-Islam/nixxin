@@ -90,3 +90,7 @@ This project is open source and available under the [MIT License](./LICENSE).
 ---
 
 **Note:** This configuration is designed to be a starting point. You may need to adjust hardware-specific settings based on your system.
+
+## 📸 Screenshot
+
+![Screenshot](./ScreenShot.png)
