@@ -16,7 +16,7 @@ in
     ./RTL8188EUS.nix
     ./rtw.nix
     ./waypipe.nix
-    # ./blocky.nix
+    ./blocky.nix
   ];
 
   # Disable waiting for network.
@@ -35,7 +35,7 @@ in
     enable = mkDefault (dnsResolver == "resolved");
     dnssec = "allow-downgrade";
     domains = [ "~." ];
-    fallbackDns = settings.modules.networking.nameservers;
+    fallbackDns = [ "127.0.0.1:53" ];
     extraConfig = ''
       DNSOverTLS=yes
     '';
@@ -49,7 +49,7 @@ in
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
   networking.useNetworkd = mkDefault false;
-  networking.nameservers = settings.modules.networking.nameservers;
+  networking.nameservers = [ "127.0.0.1" ];
   networking.hostName = settings.system.hostName; # Define your hostname.
   networking.interfaces = settings.modules.networking.interfaces;
 
@@ -198,7 +198,7 @@ in
       # [main]
       main."plugins" = "keyfile";
       main."dhcp" = "internal";
-      main."dns" = "systemd-resolved";
+      main."dns" = "none";
       main."rc-manager" = "unmanaged";
 
       # [keyfile]

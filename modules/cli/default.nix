@@ -46,6 +46,9 @@ in
 
   };
   environment.systemPackages = with pkgs; [
+    pkgs.update.copilot-cli
+    pkgs.update.claude-code
+
     bashInteractive
     vim # The most popular clone of the VI editor
 

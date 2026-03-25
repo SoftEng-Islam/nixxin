@@ -56,4 +56,5 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # WEBHOOK_URL = "https://n8n.example.com";
     };
   };
+
 }
