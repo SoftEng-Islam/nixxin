@@ -40,12 +40,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
     environment = {
       # Port (default 5678)
       N8N_PORT = "5678"; # Coerced to string to avoid env var issues
-      # Public URL for webhooks and OAuth callbacks
+      # Public URL for webhooks and OAuth callbacks (will be set by tunnel)
       N8N_PROTOCOL = "https";
-      # Bypass n8n's built-in auth - Cloudflare Access handles authentication
-      N8N_AUTH_EXCLUDE_ENDPOINTS = "*";
-      # Trust proxy headers from Cloudflare
-      N8N_TRUST_PROXY = "true";
       # Enable executeCommand node (disabled by default in v2 for security)
       NODES_EXCLUDE = "[]";
       # Allow workflows to access env vars (for API keys via EnvironmentFile)
@@ -54,9 +50,9 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      N8N_HOST = "n8n.softeng.com";
-      # Webhook URL (same as host since we're behind CF tunnel)
-      WEBHOOK_URL = "https://n8n.softeng.com";
+      # Enable n8n's built-in tunneling
+      N8N_TUNNEL_SUBDOMAIN = "n8n-$(hostname)"; # Use hostname for uniqueness
+      # Alternative: N8N_TUNNEL_DOMAIN = "your-custom-domain.com"
     };
   };
 

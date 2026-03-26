@@ -33,12 +33,12 @@ in
   # Systemd DNS Resolver Daemon, systemd-resolved.
   services.resolved = {
     enable = mkDefault (dnsResolver == "resolved");
-    # dnssec = "allow-downgrade";
-    # domains = [ "~." ];
-    # fallbackDns = [ "127.0.0.1:53" ];
-    # extraConfig = ''
-    #   DNSOverTLS=yes
-    # '';
+    dnssec = "allow-downgrade";
+    domains = [ "~." ];
+    fallbackDns = [ "127.0.0.1:53" ];
+    extraConfig = ''
+      DNSOverTLS=yes
+    '';
   };
 
   networking.firewall.allowPing = mkDefault false;
