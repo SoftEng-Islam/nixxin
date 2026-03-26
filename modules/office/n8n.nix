@@ -53,7 +53,10 @@ lib.mkIf (settings.modules.office.n8n or false) {
 
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
-      # WEBHOOK_URL = "https://n8n.example.com";
+
+      N8N_HOST = "n8n.softeng.com";
+      # Webhook URL (same as host since we're behind CF tunnel)
+      WEBHOOK_URL = "https://n8n.softeng.com";
     };
   };
 
