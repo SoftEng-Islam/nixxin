@@ -51,7 +51,7 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
       # Enable n8n's built-in tunneling
-      N8N_TUNNEL_SUBDOMAIN = "n8n-$(hostname)"; # Use hostname for uniqueness
+      N8N_TUNNEL_SUBDOMAIN = "n8n-${settings.system.hostName}"; # Use static hostname for tunnel
       # Alternative: N8N_TUNNEL_DOMAIN = "your-custom-domain.com"
     };
   };
