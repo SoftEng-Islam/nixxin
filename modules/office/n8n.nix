@@ -55,26 +55,23 @@ lib.mkIf (settings.modules.office.n8n or false) {
     };
   };
 
-  # Ngrok service for tunneling n8n
-  systemd.services.ngrok-n8n = {
-    description = "Ngrok tunnel for n8n";
+  # Localtunnel service for tunneling n8n
+  systemd.services.localtunnel-n8n = {
+    description = "Localtunnel for n8n";
     after = [
       "network.target"
       "n8n.service"
     ];
     wants = [ "n8n.service" ];
     serviceConfig = {
-      ExecStart = "${pkgs.ngrok}/bin/ngrok http 5678";
+      ExecStart = "${pkgs.nodePackages.localtunnel}/bin/lt --port 5678 --subdomain n8n-nixxin";
       Restart = "on-failure";
       RestartSec = 5;
     };
   };
 
-  # Enable ngrok service
-  systemd.services.ngrok-n8n.enable = true;
-
   environment.systemPackages = with pkgs; [
     n8n
-    ngrok
+    nodePackages.localtunnel
   ];
 }
