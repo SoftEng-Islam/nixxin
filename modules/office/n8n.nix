@@ -50,13 +50,28 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      # Enable n8n's built-in tunneling
-      N8N_TUNNEL_SUBDOMAIN = "n8n-nixxin"; # Use static hostname for tunnel
-      # Set host to work with tunnel
-      N8N_HOST = "localhost";
-      # Alternative: N8N_TUNNEL_DOMAIN = "your-custom-domain.com"
+      # Use ngrok for tunneling instead of n8n's built-in tunnel
+      # The tunnel will be created by a separate ngrok service
     };
   };
 
-  environment.systemPackages = with pkgs; [ n8n ];
+  # Ngrok service for tunneling n8n
+  systemd.services.ngrok-n8n = {
+    description = "Ngrok tunnel for n8n";
+    after = [
+      "network.target"
+      "n8n.service"
+    ];
+    wants = [ "n8n.service" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.ngrok}/bin/ngrok http 5678";
+      Restart = "on-failure";
+      RestartSec = 5;
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    n8n
+    ngrok
+  ];
 }
