@@ -42,6 +42,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
       N8N_PORT = "5678"; # Coerced to string to avoid env var issues
       # Public URL for webhooks and OAuth callbacks (will be set by tunnel)
       N8N_PROTOCOL = "https";
+      # Disable n8n authentication for tunnel access
+      N8N_AUTH_EXCLUDE_ENDPOINTS = "*";
       # Enable executeCommand node (disabled by default in v2 for security)
       NODES_EXCLUDE = "[]";
       # Allow workflows to access env vars (for API keys via EnvironmentFile)
