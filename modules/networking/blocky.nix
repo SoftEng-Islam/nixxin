@@ -1,5 +1,8 @@
 { pkgs, ... }:
 {
+  # Disable systemd-resolved to avoid port 53 conflict
+  systemd.services.systemd-resolved.enable = false;
+
   networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [
     53
@@ -33,7 +36,7 @@
   };
 
   services.blocky = {
-    enable = true;
+    enable = false;
     settings = {
       connectIPVersion = "v4";
       minTlsServeVersion = "1.2";
