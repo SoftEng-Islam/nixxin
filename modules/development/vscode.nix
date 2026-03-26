@@ -29,6 +29,16 @@ in
 
         keybindings = [
           {
+            key = "ctrl+shift+s";
+            command = "editor.action.sortLinesAscending";
+          }
+          {
+            key = "ctrl+alt+;";
+            command = "editor.action.insertCursorAtEndOfEachLineSelected";
+            when = "editorTextFocus";
+          }
+
+          {
             key = "ctrl+alt+/";
             command = "editor.action.commentLine";
             when = "editorTextFocus && !editorReadonly";

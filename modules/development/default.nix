@@ -20,15 +20,16 @@ let
     (optional development.emacs ./emacs.nix)
     (optional development.eclipse ./eclipse.nix)
     (optional development.helix ./helix.nix)
-    ./postgresql.nix
-    ./nodejs.nix
-    ./database.nix
-    ./api-tools.nix
-    ./development-env.nix
-    ./ai-tools.nix
-    ./editors.nix
-    ./shell-tools.nix
-    ./cloud-tools.nix
+    (optional development.postgresql ./postgresql.nix)
+    (optional development.nodejs ./nodejs.nix)
+    (optional development.database ./database.nix)
+    (optional development.claude-code ./claude-code.nix)
+    (optional development.api-tools ./api-tools.nix)
+    (optional development.development-env ./development-env.nix)
+    (optional development.ai-tools ./ai-tools.nix)
+    (optional development.editors ./editors.nix)
+    (optional development.shell-tools ./shell-tools.nix)
+    (optional development.cloud-tools ./cloud-tools.nix)
   ];
 in
 {
