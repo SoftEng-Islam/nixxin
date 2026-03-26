@@ -16,7 +16,7 @@ in
     ./RTL8188EUS.nix
     ./rtw.nix
     ./waypipe.nix
-    ./blocky.nix
+    # ./blocky.nix
   ];
 
   # Disable waiting for network.

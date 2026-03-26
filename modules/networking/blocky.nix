@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
   # Disable systemd-resolved to avoid port 53 conflict
-  systemd.services.systemd-resolved.enable = false;
+  # systemd.services.systemd-resolved.enable = false;
 
   networking.firewall.allowedUDPPorts = [ 53 ];
   networking.firewall.allowedTCPPorts = [
