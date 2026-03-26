@@ -198,7 +198,7 @@ in
       # [main]
       main."plugins" = "keyfile";
       main."dhcp" = "internal";
-      main."dns" = "none";
+      main."dns" = "systemd-resolved";
       main."rc-manager" = "unmanaged";
 
       # [keyfile]
