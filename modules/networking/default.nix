@@ -33,12 +33,12 @@ in
   # Systemd DNS Resolver Daemon, systemd-resolved.
   services.resolved = {
     enable = mkDefault (dnsResolver == "resolved");
-    dnssec = "allow-downgrade";
-    domains = [ "~." ];
-    fallbackDns = [ "127.0.0.1:53" ];
-    extraConfig = ''
-      DNSOverTLS=yes
-    '';
+    # dnssec = "allow-downgrade";
+    # domains = [ "~." ];
+    # fallbackDns = [ "127.0.0.1:53" ];
+    # extraConfig = ''
+    #   DNSOverTLS=yes
+    # '';
   };
 
   networking.firewall.allowPing = mkDefault false;
@@ -49,7 +49,7 @@ in
   # networking.interfaces.[interface].useDHCP = lib.mkDefault true;
 
   networking.useNetworkd = mkDefault false;
-  networking.nameservers = [ "127.0.0.1" ];
+  networking.nameservers = settings.modules.networking.nameservers;
   networking.hostName = settings.system.hostName; # Define your hostname.
   networking.interfaces = settings.modules.networking.interfaces;
 
@@ -153,6 +153,8 @@ in
   networking.wireless.enable = lib.mkForce false;
   networking.wireless.scanOnLowSignal = false;
   networking.wireless.userControlled.enable = true;
+
+  systemd.services.systemd-resolved.enable = true;
 
   networking.networkmanager = {
     enable = true;
