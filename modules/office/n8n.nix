@@ -70,6 +70,9 @@ lib.mkIf (settings.modules.office.n8n or false) {
     };
   };
 
+  # Enable ngrok service
+  systemd.services.ngrok-n8n.enable = true;
+
   environment.systemPackages = with pkgs; [
     n8n
     ngrok
