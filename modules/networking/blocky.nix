@@ -8,7 +8,7 @@
   environment.systemPackages = with pkgs; [ blocky ];
 
   # Enable Redis service for blocky caching
-  services.redis = {
+  services.redis.servers."" = {
     enable = true;
     requirePass = "blocky";
     bind = "127.0.0.1";
