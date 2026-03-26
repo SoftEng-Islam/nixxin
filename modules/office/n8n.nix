@@ -60,4 +60,5 @@ lib.mkIf (settings.modules.office.n8n or false) {
     };
   };
 
+  environment.systemPackages = with pkgs; [ n8n ];
 }
