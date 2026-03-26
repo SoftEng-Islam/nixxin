@@ -55,9 +55,26 @@ curl -sSL https://raw.githubusercontent.com/SoftEng-Islam/nixxin/main/demo.sh | 
 
 ## 📚 Documentation
 
-- [**Setup Guide**](./SETUP.md) - Complete installation and configuration instructions
-- [**Module Overview**](./documentation/) - Detailed documentation for each module
-- [**Troubleshooting**](./SETUP.md#troubleshooting) - Common issues and solutions
+### 📖 **Comprehensive Documentation Site**
+
+[**📚 Browse Full Documentation**](./documentation/) - Complete documentation with MkDocs
+
+### 🚀 **Quick Links**
+
+- [**Installation Guide**](./documentation/docs/getting-started/installation.md) - Step-by-step setup instructions
+- [**Module Overview**](./documentation/docs/modules/overview.md) - All available modules and features
+- [**Hardware Support**](./documentation/docs/configuration/hardware.md) - CPU, GPU, and peripheral configuration
+- [**Troubleshooting**](./documentation/docs/advanced/troubleshooting.md) - Common issues and solutions
+- [**Examples**](./documentation/docs/examples/basic-setup.md) - Ready-to-use configurations
+
+### 📋 **Documentation Sections**
+
+- **Getting Started** - Installation, quick start, basic configuration
+- **Modules** - Desktop, development, gaming, media, security, AI tools
+- **Configuration** - Hardware support, user management, networking, themes
+- **Advanced** - Custom modules, flake management, performance optimization
+- **Examples** - Basic setup, development machine, gaming rig, server config
+- **Contributing** - Guidelines, module development, documentation
 
 ## ✨ Features
 

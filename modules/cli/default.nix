@@ -49,6 +49,8 @@ in
     pkgs.update.copilot-cli
     pkgs.update.claude-code
 
+    mkdocs
+
     bashInteractive
     vim # The most popular clone of the VI editor
 
