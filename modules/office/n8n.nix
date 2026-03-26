@@ -50,8 +50,10 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      # Use ngrok for tunneling instead of n8n's built-in tunnel
-      # The tunnel will be created by a separate ngrok service
+      # Use localtunnel for tunneling instead of n8n's built-in tunnel
+      # The tunnel will be created by a separate localtunnel service
+      # Set webhook URL to match the tunnel
+      WEBHOOK_URL = "https://n8n-nixxin.loca.lt";
     };
   };
 
