@@ -81,13 +81,13 @@ lib.mkIf (settings.modules.office.n8n or false) {
       "n8n.service"
     ];
     wants = [ "network-online.target" ];
+    environment = {
+      TUNNEL_TOKEN_FILE = config.sops.secrets."cloudflared_token".path;
+    };
     serviceConfig = {
       Type = "simple";
       User = "cloudflared";
       Group = "cloudflared";
-      Environment = {
-        TUNNEL_TOKEN_FILE = config.sops.secrets."cloudflared_token".path;
-      };
       ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel run";
       Restart = "on-failure";
       RestartSec = "5s";
