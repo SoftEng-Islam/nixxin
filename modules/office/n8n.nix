@@ -67,6 +67,11 @@ lib.mkIf (settings.modules.office.n8n or false) {
     owner = "cloudflared";
   };
 
+  # services.cloudflared = {
+  #   enable = true;
+  #   tunnels = {};
+  # };
+
   # Cloudflare Tunnel service for n8n
   systemd.services.cloudflared-n8n = {
     description = "Cloudflare Tunnel for n8n";
