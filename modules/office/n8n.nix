@@ -52,30 +52,52 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      # Use localtunnel for tunneling instead of n8n's built-in tunnel
-      # The tunnel will be created by a separate localtunnel service
-      # Set webhook URL to match the tunnel
-      WEBHOOK_URL = "https://n8n-nixxin.loca.lt";
+      # Use Cloudflare Tunnel for tunneling instead of n8n's built-in tunnel to allow Twitter API OAuth
+      # The tunnel will be created by a separate cloudflared service below.
+      # Set WEBHOOK_URL to match the Cloudflare domain where n8n is exposed.
+      # Replace 'yourdomain.com' with your actual Cloudflare domain.
+      WEBHOOK_URL = "https://n8n.yourdomain.com";
     };
   };
 
-  # Localtunnel service for tunneling n8n
-  systemd.services.localtunnel-n8n = {
-    description = "Localtunnel for n8n";
+  # Cloudflare Tunnel service for n8n
+  systemd.services.cloudflared-n8n = {
+    description = "Cloudflare Tunnel for n8n";
+    wantedBy = [ "multi-user.target" ];
     after = [
-      "network.target"
+      "network-online.target"
       "n8n.service"
     ];
-    wants = [ "n8n.service" ];
+    wants = [ "network-online.target" ];
     serviceConfig = {
-      ExecStart = "${pkgs.nodePackages.localtunnel}/bin/lt --port 5678 --subdomain n8n-nixxin";
+      Type = "simple";
+      User = "cloudflared";
+      Group = "cloudflared";
+      # The service expects an environment file with CLOUDFLARED_TOKEN="..."
+      # Create this file securely (e.g., using sudo) and restrict permissions.
+      EnvironmentFile = "/var/lib/cloudflared/n8n-token.env";
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel run";
       Restart = "on-failure";
-      RestartSec = 5;
+      RestartSec = "5s";
+      NoNewPrivileges = true;
+      PrivateTmp = true;
+      ProtectSystem = "strict";
+      ProtectHome = true;
+      ReadWritePaths = [ "/var/lib/cloudflared" ];
     };
   };
+
+  # Create the cloudflared user
+  users.users.cloudflared = {
+    isSystemUser = true;
+    group = "cloudflared";
+    home = "/var/lib/cloudflared";
+    createHome = true;
+  };
+  users.groups.cloudflared = {};
 
   environment.systemPackages = with pkgs; [
     n8n
-    nodePackages.localtunnel
+    cloudflared
   ];
 }

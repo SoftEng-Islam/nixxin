@@ -314,21 +314,21 @@ rec {
   modules.hacking.hashcat.enable = true;
 
   # [ Development ]
-  modules.development.zedEditor = true;
-  modules.development.emacs = true;
-  modules.development.eclipse = false;
-  modules.development.helix = true;
-  modules.development.vscode = true;
-  modules.development.postgresql = true;
-  modules.development.nodejs = true;
-  modules.development.database = true;
-  modules.development.claude-code = true;
-  modules.development.api-tools = true;
-  modules.development.development-env = true;
   modules.development.ai-tools = true;
-  modules.development.editors = true;
-  modules.development.shell-tools = true;
+  modules.development.api-tools = true;
+  modules.development.claude-code = true;
   modules.development.cloud-tools = true;
+  modules.development.database = true;
+  modules.development.development-env = true;
+  modules.development.eclipse = false;
+  modules.development.editors = true;
+  modules.development.emacs = true;
+  modules.development.helix = true;
+  modules.development.nodejs = true;
+  modules.development.postgresql = true;
+  modules.development.shell-tools = true;
+  modules.development.vscode = true;
+  modules.development.zedEditor = true;
 
   # [ desktop ]
   modules.desktop.tools = false;
