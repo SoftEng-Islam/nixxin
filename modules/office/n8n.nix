@@ -52,64 +52,48 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      # Use Cloudflare Tunnel for tunneling instead of n8n's built-in tunnel to allow Twitter API OAuth
-      # The tunnel will be created by a separate cloudflared service below.
-      # Set WEBHOOK_URL to match the Cloudflare domain where n8n is exposed.
-      # Replace 'yourdomain.com' with your actual Cloudflare domain.
-      WEBHOOK_URL = "https://n8n.nixxin.com";
+      # Use Ngrok for tunneling to allow Twitter API OAuth
+      # Set WEBHOOK_URL to match your Ngrok static domain.
+      # Replace 'your-domain.ngrok-free.app' with your actual ngrok domain.
+      WEBHOOK_URL = "https://your-domain.ngrok-free.app";
     };
   };
 
-  # Configure sops-nix to decrypt the Cloudflare token
+  # Configure sops-nix to decrypt the Ngrok token
   sops.age.keyFile = "/home/softeng/.config/sops/age/keys.txt";
-  sops.secrets."cloudflared_token" = {
+  sops.secrets."ngrok_token" = {
     sopsFile = ../../secrets/n8n.yaml;
-    owner = "cloudflared";
   };
 
-  # services.cloudflared = {
-  #   enable = true;
-  #   tunnels = {};
-  # };
-
-  # Cloudflare Tunnel service for n8n
-  systemd.services.cloudflared-n8n = {
-    description = "Cloudflare Tunnel for n8n";
+  # Ngrok Tunnel service for n8n
+  systemd.services.ngrok-n8n = {
+    description = "Ngrok Tunnel for n8n";
     wantedBy = [ "multi-user.target" ];
     after = [
       "network-online.target"
       "n8n.service"
     ];
     wants = [ "network-online.target" ];
-    environment = {
-      TUNNEL_TOKEN_FILE = config.sops.secrets."cloudflared_token".path;
-    };
     serviceConfig = {
       Type = "simple";
-      User = "cloudflared";
-      Group = "cloudflared";
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel run";
+      User = "n8n";
+      Group = "n8n";
+      ExecStart = pkgs.writeShellScript "ngrok-tunnel" ''
+        export NGROK_AUTHTOKEN=$(cat ${config.sops.secrets.ngrok_token.path})
+        # Replace 'your-domain.ngrok-free.app' below to match your actual ngrok domain!
+        exec ${pkgs.ngrok}/bin/ngrok http --domain=your-domain.ngrok-free.app 5678
+      '';
       Restart = "on-failure";
       RestartSec = "5s";
       NoNewPrivileges = true;
       PrivateTmp = true;
       ProtectSystem = "strict";
       ProtectHome = true;
-      ReadWritePaths = [ "/var/lib/cloudflared" ];
     };
   };
 
-  # Create the cloudflared user
-  users.users.cloudflared = {
-    isSystemUser = true;
-    group = "cloudflared";
-    home = "/var/lib/cloudflared";
-    createHome = true;
-  };
-  users.groups.cloudflared = {};
-
   environment.systemPackages = with pkgs; [
     n8n
-    cloudflared
+    ngrok
   ];
 }
