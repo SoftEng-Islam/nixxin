@@ -16,6 +16,9 @@
     # Use the release branch for guaranteed binary cache availability
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
@@ -76,6 +79,7 @@
       nixpkgs,
       to-update,
       nix-cachyos-kernel,
+      sops-nix,
       ...
     }@inputs:
     let
@@ -105,6 +109,8 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
+            sops-nix.nixosModules.sops
+
             {
               imports = [
                 ./pkgs/default.nix
@@ -112,8 +118,6 @@
               nixpkgs.overlays = [
                 # Use pinned overlay for binary cache hits (avoids local kernel compilation)
                 nix-cachyos-kernel.overlays.pinned
-
-
 
                 (final: prev: {
                   update = import to-update {

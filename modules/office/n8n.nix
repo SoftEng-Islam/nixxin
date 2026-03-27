@@ -56,8 +56,15 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # The tunnel will be created by a separate cloudflared service below.
       # Set WEBHOOK_URL to match the Cloudflare domain where n8n is exposed.
       # Replace 'yourdomain.com' with your actual Cloudflare domain.
-      WEBHOOK_URL = "https://n8n.yourdomain.com";
+      WEBHOOK_URL = "https://n8n.nixxin.com";
     };
+  };
+
+  # Configure sops-nix to decrypt the Cloudflare token
+  sops.age.keyFile = "/home/softeng/.config/sops/age/keys.txt";
+  sops.secrets."cloudflared_token" = {
+    sopsFile = ../../secrets/n8n.yaml;
+    owner = "cloudflared";
   };
 
   # Cloudflare Tunnel service for n8n
@@ -73,10 +80,10 @@ lib.mkIf (settings.modules.office.n8n or false) {
       Type = "simple";
       User = "cloudflared";
       Group = "cloudflared";
-      # The service expects an environment file with CLOUDFLARED_TOKEN="..."
-      # Create this file securely (e.g., using sudo) and restrict permissions.
-      EnvironmentFile = "/var/lib/cloudflared/n8n-token.env";
-      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel run";
+      ExecStart = pkgs.writeShellScript "cloudflared-tunnel" ''
+        TOKEN=$(cat ${config.sops.secrets.cloudflared_token.path})
+        exec ${pkgs.cloudflared}/bin/cloudflared tunnel run --token "$TOKEN"
+      '';
       Restart = "on-failure";
       RestartSec = "5s";
       NoNewPrivileges = true;
