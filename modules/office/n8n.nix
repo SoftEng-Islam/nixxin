@@ -52,48 +52,10 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
-      # Use Ngrok for tunneling to allow Twitter API OAuth
-      # Set WEBHOOK_URL to match your Ngrok static domain.
-      # Replace 'your-domain.ngrok-free.app' with your actual ngrok domain.
-      WEBHOOK_URL = "https://your-domain.ngrok-free.app";
-    };
-  };
-
-  # Configure sops-nix to decrypt the Ngrok token
-  sops.age.keyFile = "/home/softeng/.config/sops/age/keys.txt";
-  sops.secrets."ngrok_token" = {
-    sopsFile = ../../secrets/n8n.yaml;
-  };
-
-  # Ngrok Tunnel service for n8n
-  systemd.services.ngrok-n8n = {
-    description = "Ngrok Tunnel for n8n";
-    wantedBy = [ "multi-user.target" ];
-    after = [
-      "network-online.target"
-      "n8n.service"
-    ];
-    wants = [ "network-online.target" ];
-    serviceConfig = {
-      Type = "simple";
-      User = "n8n";
-      Group = "n8n";
-      ExecStart = pkgs.writeShellScript "ngrok-tunnel" ''
-        export NGROK_AUTHTOKEN=$(cat ${config.sops.secrets.ngrok_token.path})
-        # Replace 'your-domain.ngrok-free.app' below to match your actual ngrok domain!
-        exec ${pkgs.ngrok}/bin/ngrok http --domain=your-domain.ngrok-free.app 5678
-      '';
-      Restart = "on-failure";
-      RestartSec = "5s";
-      NoNewPrivileges = true;
-      PrivateTmp = true;
-      ProtectSystem = "strict";
-      ProtectHome = true;
     };
   };
 
   environment.systemPackages = with pkgs; [
     n8n
-    ngrok
   ];
 }
