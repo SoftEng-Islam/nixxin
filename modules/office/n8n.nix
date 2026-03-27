@@ -80,10 +80,10 @@ lib.mkIf (settings.modules.office.n8n or false) {
       Type = "simple";
       User = "cloudflared";
       Group = "cloudflared";
-      ExecStart = pkgs.writeShellScript "cloudflared-tunnel" ''
-        TOKEN=$(cat ${config.sops.secrets.cloudflared_token.path})
-        exec ${pkgs.cloudflared}/bin/cloudflared tunnel run --token "$TOKEN"
-      '';
+      Environment = {
+        TUNNEL_TOKEN_FILE = config.sops.secrets."cloudflared_token".path;
+      };
+      ExecStart = "${pkgs.cloudflared}/bin/cloudflared tunnel run";
       Restart = "on-failure";
       RestartSec = "5s";
       NoNewPrivileges = true;
