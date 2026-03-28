@@ -2,8 +2,9 @@
   pkgs,
   config,
   ...
-}: {
+}:
+{
   imports = [
-    ./taskwarrior.nix
+    # ./taskwarrior.nix
   ];
 }
