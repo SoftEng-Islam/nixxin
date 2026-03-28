@@ -111,16 +111,6 @@
         config.debug_key_events = true
         config.leader = { mods = "CTRL", key = "b", timeout_milliseconds = 1000 }
         config.keys = {
-          -- Trigger Selection with Shift + Arrows from Normal Mode
-          { key = 'LeftArrow',  mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveLeft' } },
-          { key = 'RightArrow', mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveRight' } },
-          { key = 'UpArrow',    mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveUp' } },
-          { key = 'DownArrow',  mods = 'SHIFT', action = act.Multiple { act.ActivateCopyMode, act.CopyMode { SetSelectionMode = 'Cell' }, act.CopyMode 'MoveDown' } },
-          { mods = "CTRL", key = "L", action=act.ShowDebugOverlay },
-
-          -- Your existing keybindings...
-          { key = 'X', mods = 'CTRL|SHIFT', action = act.ActivateCopyMode },
-
           -- CTRL-SHIFT-t open new tab in new dir
           {
             key = 't',

@@ -15,6 +15,7 @@
     ../../../../modules/ai
     ../../../../modules/android
     ../../../../modules/audio
+    ../../../../modules/automation
     ../../../../modules/bluetooth
     ../../../../modules/browsers
     ../../../../modules/camera
@@ -40,6 +41,7 @@
     ../../../../modules/pkgs
     ../../../../modules/power
     ../../../../modules/printing
+    ../../../../modules/productivity
     ../../../../modules/recording
     ../../../../modules/remote_desktop
     ../../../../modules/security

@@ -49,6 +49,8 @@ in
     pkgs.update.copilot-cli
     pkgs.update.claude-code
 
+    busybox
+
     mkdocs
 
     bashInteractive

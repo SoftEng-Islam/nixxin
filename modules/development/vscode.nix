@@ -298,8 +298,6 @@ in
           "diffEditor.experimental.showMoves" = true;
           "diffEditor.ignoreTrimWhitespace" = false;
           "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
-          "editor.acceptSuggestionOnCommitCharacter" = false;
-          "editor.acceptSuggestionOnEnter" = "on";
           "editor.bracketPairColorization.enabled" = true;
           "editor.bracketPairColorization.independentColorPoolPerBracketType" = true;
           "editor.copyWithSyntaxHighlighting" = false;
@@ -339,10 +337,37 @@ in
             ]
           ];
           "editor.quickSuggestions" = {
-            "comments" = false;
-            "other" = false;
-            "strings" = false;
+            "comments" = true;
+            "other" = true;
+            "strings" = true;
           };
+          # Controls whether suggestions should be accepted on commit characters. For example, in JavaScript, the semi-colon (`;`) can be a commit character that accepts a suggestion and types that character.
+          "editor.acceptSuggestionOnCommitCharacter" = true;
+
+          # Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
+          "editor.acceptSuggestionOnEnter" = "on";
+
+          # Controls the delay in ms after which quick suggestions will show up.
+          "editor.quickSuggestionsDelay" = 10;
+
+          # Controls if suggestions should automatically show up when typing trigger characters
+          "editor.suggestOnTriggerCharacters" = true;
+
+          # Controls if pressing tab inserts the best suggestion and if tab cycles through other suggestions
+          "editor.tabCompletion" = "off";
+
+          # Controls whether sorting favours words that appear close to the cursor
+          "editor.suggest.localityBonus" = true;
+
+          # Controls how suggestions are pre-selected when showing the suggest list
+          "editor.suggestSelection" = "first";
+
+          # Enable word based suggestions
+          "editor.wordBasedSuggestions" = "matchingDocuments";
+
+          # Enable parameter hints
+          "editor.parameterHints.enabled" = true;
+
           "editor.lineHeight" = 25;
           "editor.minimap.enabled" = false;
           "editor.mouseWheelZoom" = true;
@@ -355,9 +380,7 @@ in
           "editor.scrollbar.verticalScrollbarSize" = 18;
           "editor.smoothScrolling" = true;
           "editor.stickyScroll.enabled" = false;
-          "editor.suggest.localityBonus" = true;
           "editor.suggest.preview" = true;
-          "editor.suggestSelection" = "recentlyUsed";
           "editor.tabSize" = 4;
           "editor.unicodeHighlight.allowedCharacters" = {
             "×" = true;
@@ -441,11 +464,12 @@ in
           "haskell.manageHLS" = "PATH";
           "html.format.wrapLineLength" = 0;
           "indentRainbow.colors" = [
-            "hsl(271, 60%, 50%)"
-            "hsl(142, 60%, 50%)"
-            "hsl(217, 60%, 50%)"
-            "hsl(45, 60%, 50%)"
+            "hsl(50, 60%, 50%)"
+            "hsl(190, 60%, 50%)"
             "hsl(330, 60%, 50%)"
+            "hsl(145, 60%, 50%)"
+            "hsl(271, 60%, 50%)"
+            "hsl(360, 60%, 50%)"
           ];
           "indentRainbow.indicatorStyle" = "light";
           # The indent color if the number of spaces is not a multiple of "tabSize".
