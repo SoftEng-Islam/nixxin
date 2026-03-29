@@ -94,10 +94,10 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "gpu"; # mpv --vo=help
+        vo = "sdl"; # mpv --vo=help
         gpu-api = "auto"; # mpv --gpu-api=help
         gpu-context = "auto"; # mpv --gpu-context=help
-        hwdec = "auto"; # mpv --hwdec=help
+        hwdec = "vaapi-copy"; # mpv --hwdec=help
         profile = "default"; # fast, high-quality, gpu-hq  mpv --profile=help
 
         vulkan-queue-count = 1;
