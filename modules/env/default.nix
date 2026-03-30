@@ -60,7 +60,7 @@ in
       AQ_DRM_DEVICES = "/dev/dri/card1"; # CHANGEME: Related to the GPU
 
       __GL_ALLOW_SOFTWARE = 1;
-      MOZ_DISABLE_RDD_SANDBOX = 1;
+      # MOZ_DISABLE_RDD_SANDBOX = 1;
 
       DEVENVD_DISABLE_VERSION_CHECK = "1";
       DEVENVD_NO_ANALYTICS = "1";

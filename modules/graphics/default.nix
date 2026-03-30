@@ -215,9 +215,9 @@ in
       VK_LOADER_LAYERS_DISABLE = "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
 
       # Tell Mesa to prefer Wayland
-      VK_WSI_MODE = "wayland";
+      # VK_WSI_MODE = "wayland";
 
-      WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
+      # WLR_RENDERER = "vulkan"; # enable software rendering for wlroots
 
       # Fixes screen tearing in games & Hyprland.
       # $ vulkaninfo | grep "driverName"
@@ -293,7 +293,7 @@ in
       # MESA_GLSL_VERSION_OVERRIDE = "460";
 
       # immediate, mailbox, relaxed, fifo
-      MESA_VK_WSI_PRESENT_MODE = "immediate";
+      # MESA_VK_WSI_PRESENT_MODE = "immediate";
       MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
 
       MESA_DISK_CACHE_DATABASE = "1";
