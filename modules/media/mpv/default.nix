@@ -100,7 +100,8 @@ lib.mkIf (settings.modules.media.mpv) {
 
         # SDL is not mpv's GPU renderer, so gpu-api/gpu-context are intentionally
         # left unset. Those options only apply to gpu/gpu-next/libmpv render paths.
-        hwdec = "auto-copy"; # SDL needs copy-back decode paths; typically resolves to vaapi-copy here
+        # Force the native VA-API copy-back path instead of letting mpv guess.
+        hwdec = "vaapi-copy";
         profile = "fast"; # Lower-overhead defaults fit this 4-core Kaveri better than forcing "default"
 
         vulkan-queue-count = 1;
@@ -206,7 +207,6 @@ lib.mkIf (settings.modules.media.mpv) {
     libGL
     nasm
     trash-cli
-    libva-vdpau-driver
     vulkan-headers
     vulkan-loader
     vulkan-tools # Includes `vulkaninfo`

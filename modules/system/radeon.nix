@@ -18,7 +18,6 @@ mkIf (settings.modules.system.radeon or false) {
     mesa-gl-headers
     libva
     libva-utils
-    libva-vdpau-driver
     vulkan-loader
     vulkan-tools
     vulkan-headers
@@ -37,8 +36,7 @@ mkIf (settings.modules.system.radeon or false) {
   ];
 
   environment.variables = {
-    LIBVA_DRIVER_NAME = "radeonsi"; # or "r600"; # Specific driver for HD 7470
-    VDPAU_DRIVER = "radeonsi"; # or "va_gl"; # Use VA-API backend for VDPAU
+    LIBVA_DRIVER_NAME = "radeonsi"; # Kaveri/GCN should use Mesa's native VA-API backend
   };
 
   # Optional: Force software acceleration for unsupported codecs

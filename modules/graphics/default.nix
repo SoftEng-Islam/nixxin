@@ -52,9 +52,7 @@ let
     libva
     # libva1
     libva-utils
-    libva-vdpau-driver
     libvdpau
-    libvdpau-va-gl # VDPAU backend for video acceleration
     vdpauinfo
 
     # X11 video drivers
@@ -242,8 +240,10 @@ in
       VAAPI_COMPAT = 1;
       VAAPI_MPEG4_ENABLED = "true";
 
-      # LIBVA_DRIVER_NAME = "radeonsi";
-      VDPAU_DRIVER = "radeonsi"; # or "va_gl" for libvdpau-va-gl
+      # Kaveri/CIK should use Mesa's native radeonsi VA-API backend. When this
+      # is left implicit, some apps can end up on a compatibility bridge and
+      # decode into green surfaces.
+      LIBVA_DRIVER_NAME = "radeonsi";
 
       # Disable all vsync/frame limiting at driver level
       vblank_mode = "0"; # ? Reduces latency
@@ -347,8 +347,6 @@ in
       driversi686Linux.mesa
       mesa_i686
       vulkan-loader
-      libva-vdpau-driver
-      libvdpau-va-gl
       libva
       vulkan-validation-layers
       vulkan-tools

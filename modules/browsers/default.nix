@@ -24,11 +24,9 @@ let
         "--enable-accelerated-mjpeg-decode"
         "--enable-gpu-compositing"
         "--enable-gpu-rasterization"
-        "--enable-zero-copy"
         "--enable-features=${
           lib.concatStringsSep "," [
             "AcceleratedVideoDecodeLinuxGL"
-            "AcceleratedVideoDecodeLinuxZeroCopyGL"
             "AcceleratedVideoEncoder"
             "CanvasOopRasterization"
             "ChromeWideEchoCancellation" # noise cancellation for WebRTC
@@ -42,7 +40,6 @@ let
             "PulseaudioLoopbackForScreenShare"
             "UIEnableSharedImageCacheForGpu" # Shared image cache
             "UseDMSAAForTiles"
-            "UseMultiPlaneFormatForHardwareVideo"
             "VaapiVideoEncoder" # Video encoding support
             "WaylandLinuxDrmSyncobj"
             "WaylandPerSurfaceScale"

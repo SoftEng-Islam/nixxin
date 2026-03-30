@@ -37,11 +37,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
 
   services.n8n = {
     enable = true;
+    # openFirewall = false; # We'll use nginx instead
     environment = {
-      # Port (default 5678)
-      N8N_PORT = "5678"; # Coerced to string to avoid env var issues
-      # Public URL for webhooks and OAuth callbacks (will be set by tunnel)
-      N8N_PROTOCOL = "https";
       # Disable n8n authentication for tunnel access
       N8N_AUTH_EXCLUDE_ENDPOINTS = "*";
       # Enable executeCommand node (disabled by default in v2 for security)
@@ -52,6 +49,22 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # N8N_ENCRYPTION_KEY_FILE = "/run/n8n/encryption_key";
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
+      # Database configuration
+      DB_TYPE = "mongodb";
+
+      # Network configuration
+      N8N_HOST = "127.0.0.1";
+      N8N_PORT = "5678";
+      N8N_PROTOCOL = "https";
+
+      # Webhook configuration - using localhost for OAuth compatibility
+      WEBHOOK_URL = "https://localhost";
+
+      # Security - disable metrics endpoint
+      N8N_METRICS = "false";
+
+      # Disable the task runner process
+      N8N_RUNNERS_ENABLED = "false";
     };
   };
 
