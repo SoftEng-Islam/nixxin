@@ -94,7 +94,7 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        vo = "gpu"; # mpv --vo=help
+        vo = "sdl"; # mpv --vo=help
         gpu-context = "wayland";
         hwdec = "vaapi-copy";
         profile = "fast";
