@@ -94,11 +94,14 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
+        # This host is an older AMD Kaveri APU (Radeon R7 iGPU on amdgpu).
+        # Keep SDL only because this config is explicitly tuned for the SDL VO.
         vo = "sdl"; # mpv --vo=help
-        gpu-api = "auto"; # mpv --gpu-api=help
-        gpu-context = "auto"; # mpv --gpu-context=help
-        hwdec = "vaapi-copy"; # mpv --hwdec=help
-        profile = "default"; # fast, high-quality, gpu-hq  mpv --profile=help
+
+        # SDL is not mpv's GPU renderer, so gpu-api/gpu-context are intentionally
+        # left unset. Those options only apply to gpu/gpu-next/libmpv render paths.
+        hwdec = "auto-copy"; # SDL needs copy-back decode paths; typically resolves to vaapi-copy here
+        profile = "fast"; # Lower-overhead defaults fit this 4-core Kaveri better than forcing "default"
 
         vulkan-queue-count = 1;
 
