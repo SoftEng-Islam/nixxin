@@ -2,6 +2,7 @@
 
 {
   services.mongodb.enable = true;
+  systemd.services.mongodb.serviceConfig.LimitNOFILE = 64000;
 
   environment.systemPackages = with pkgs; [
     # Modern and easy to use SQL client for MySQL, Postgres, SQLite, SQL Server, and more. Linux, MacOS, and Windows

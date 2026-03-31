@@ -100,6 +100,15 @@ in
     programs.gamescope.capSysNice = true;
 
     home-manager.users.${settings.user.username} = {
+      systemd.user.services.gamemoded = {
+        Unit.Description = "GameMode daemon";
+        Service = {
+          ExecStart = "/run/wrappers/bin/gamemoded";
+          Restart = "on-failure";
+        };
+        Install.WantedBy = [ "default.target" ];
+      };
+
       # xdg.desktopEntries."0ad" = {
       # name = "0 A.D.";
       # genericName = "Historical RTS";

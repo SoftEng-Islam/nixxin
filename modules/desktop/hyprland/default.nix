@@ -19,7 +19,7 @@ in
     ./configs/general.nix
     ./configs/gestures.nix
 
-    #./configs/hypridle.nix
+    ./configs/hypridle.nix
     #./configs/hyprlock.nix
 
     # ./configs/hyprpaper.nix

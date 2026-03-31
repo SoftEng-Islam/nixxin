@@ -454,7 +454,6 @@ rec {
     "cpufreq_powersave"
     "cpufreq_ondemand"
     "cpufreq_conservative"
-    "binder_linux"
   ];
 
   # [ Recording ]
@@ -517,7 +516,6 @@ rec {
     "drm"
     "drm_kms_helper"
     "gpu_sched"
-    "binder_linux"
   ];
   modules.system.boot.blacklistedKernelModules = [
     "hp_wmi"
@@ -711,7 +709,6 @@ rec {
   modules.system.boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
     options rt2800usb nohwcrypt=1
-    options binder_linux devices=binder,hwbinder,vndbinder
   '';
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;

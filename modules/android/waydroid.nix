@@ -76,7 +76,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
   boot.kernelModules = [
     "uhid"
-    "binder_linux"
   ];
 
   # Fix for Magisk/LXC: Allow nested mounts and unprivileged user namespaces

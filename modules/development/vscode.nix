@@ -1,12 +1,15 @@
 {
   settings,
   pkgs,
-  system,
   config,
   ...
 }:
 let
-  username = settings.user.username;
+  flakePath = settings.common.dotfilesDir or "${settings.HOME}/nixxin";
+  hostSystem = pkgs.stdenv.hostPlatform.system;
+  nixosOptionsExpr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options";
+  homeManagerOptionsExpr = "(builtins.getFlake \"${flakePath}\").nixosConfigurations.${settings.system.hostName}.options.home-manager.users.type.getSubOptions []";
+  nixpkgsExpr = "let flake = builtins.getFlake \"${flakePath}\"; in import flake.inputs.nixpkgs.outPath { system = \"${hostSystem}\"; }";
   nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
   nixFormatter = "${nixfmtPackage}/bin/nixfmt";
 in
@@ -503,8 +506,8 @@ in
             "result.*/"
           ];
           "rewrap.wrappingColumn" = 100;
-          # Explicitly set the absolute path to the nil language server
-          "nix.serverPath" = "${pkgs.nil}/bin/nil";
+          # Use nixd so NixOS/Home Manager option completion matches this flake.
+          "nix.serverPath" = "${pkgs.nixd}/bin/nixd";
           # GUI apps do not always inherit the same PATH as the shell.
           "nix.formatterPath" = nixFormatter;
           "nix.showNixOSOptions" = true;
@@ -521,6 +524,22 @@ in
                 "command" = [ nixFormatter ];
               };
             };
+            "nixd" = {
+              "formatting" = {
+                "command" = [ nixFormatter ];
+              };
+              "nixpkgs" = {
+                "expr" = nixpkgsExpr;
+              };
+              "options" = {
+                "nixos" = {
+                  "expr" = nixosOptionsExpr;
+                };
+                "home-manager" = {
+                  "expr" = homeManagerOptionsExpr;
+                };
+              };
+            };
           };
           "nixEnvSelector.useFlakes" = true;
           "notebook.defaultFormatter" = "esbenp.prettier-vscode";
@@ -531,7 +550,7 @@ in
           "security.workspace.trust.banner" = "never";
           "security.workspace.trust.enabled" = false;
           "security.workspace.trust.untrustedFiles" = "open";
-          # Set up nil as Nix language server.
+          # Enable the Nix language server integration in the extension.
           "nix.enableLanguageServer" = true;
           "terminal.explorerKind" = "external";
           "terminal.integrated.commandsToSkipShell" = [
