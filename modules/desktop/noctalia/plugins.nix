@@ -14,7 +14,7 @@
         ];
         states = {
           assistant-panel = {
-            enabled = true;
+            enabled = false;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
           network-indicator = {
@@ -105,7 +105,7 @@
             provider = "google";
             model = "gemini-2.5-flash";
             apiKeys = {
-              google = "AIzaSyCMuS242LDKz5FJbBHM-xW2cxYnqYKTOnQ";
+              google = "";
             };
             temperature = 0.7;
             systemPrompt = "You are a helpful assistant integrated into a Linux desktop shell. Be concise and helpful.";

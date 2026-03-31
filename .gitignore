@@ -1,26 +1,14 @@
-# configs/styles/wallpapers/
-__pycache__
-!.vscode/settings.json
 .idea/*
-Wallpapers
-Wallpapers/*
 .venv
 *.backup
 *.log
 build
 dist
 docs/_build
-modules/widgets/ashell/vendor
 docs/tmp
 fishd.tmp*
 generated
-# /__commit__.py
-# /__lib_dir__.py
 node_modules/
-subprojects/gvc
-venv
-~/
-./acpi_fix
-
 ignore/*
 Nixxin_Plain.md
+assets/wallpapers/*

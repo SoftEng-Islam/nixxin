@@ -10,12 +10,6 @@ let
 
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
-
-  _pkgs = [
-    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad)
-    (lib.optional settings.modules.gaming.zeroad.enable pkgs.zeroad-data)
-  ];
-
 in
 {
   imports = lib.optionals (settings.modules.gaming.enable) [ ./chess.nix ];
@@ -139,47 +133,41 @@ in
       ];
     };
 
-    environment.systemPackages =
-      with pkgs;
-      [
-        # 0 A.D. with Vulkan support
+    environment.systemPackages = with pkgs; [
+      # 0 A.D. with Vulkan support
+      (pkgs.update.zeroad.overrideAttrs {
+        postFixup = ''
+          wrapProgram $out/bin/haruna \
+          --prefix LD_LIBRARY_PATH : ${
+            lib.makeLibraryPath [
+              vulkan-loader # libvulkan.so
+              vulkan-validation-layers # validation layer runtime
+              pipewire
+              sqlite
+              mesa
+              mesa_i686
+              libGL
+              libGLU
+              libglvnd
+            ]
+          } \
+          --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
+        '';
+      })
+      pkgs.update.zeroad-data
 
-        # (pkgs.zeroad.overrideAttrs {
-        #   postFixup = ''
-        #     wrapProgram $out/bin/haruna \
-        #     --prefix LD_LIBRARY_PATH : ${
-        #       lib.makeLibraryPath [
-        #         vulkan-loader # libvulkan.so
-        #         vulkan-validation-layers # validation layer runtime
-        #         pipewire
-        #         sqlite
-        #         mesa
-        #         mesa_i686
-        #         libGL
-        #         libGLU
-        #         libglvnd
-        #       ]
-        #     } \
-        #     --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
-        #   '';
-        # })
-        # zeroad-data
+      # Vulkan tools and libraries
+      vulkan-tools
+      vulkan-headers
+      vulkan-validation-layers
+      vulkan-extension-layer
 
-        # Vulkan tools and libraries
-        vulkan-tools
-        vulkan-headers
-        vulkan-validation-layers
-        vulkan-extension-layer
+      # Graphics utilities
+      vdpauinfo
+      clinfo
 
-        # Graphics utilities
-        vdpauinfo
-        clinfo
-
-        # Game optimization
-        gamemode
-
-        # ... (rest of your packages)
-      ]
-      ++ lib.flatten _pkgs;
+      # Game optimization
+      gamemode
+    ];
   };
 }
