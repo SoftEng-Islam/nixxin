@@ -1,8 +1,11 @@
-{ settings, pkgs, ... }: {
+{ settings, ... }:
+{
   # ----------------------------------- #
   # Helix: Post-modern modal text editor
   # ----------------------------------- #
   home-manager.users.${settings.user.username} = {
-    programs.helix = { enable = true; };
+    programs.helix = {
+      enable = true;
+    };
   };
 }

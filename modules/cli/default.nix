@@ -10,7 +10,6 @@ in
 # lib.mkIf (settings.modules.cli.enable or false)
 {
   imports = [
-    ./direnv.nix
     ./editors
     ./neofetch
     ./prompt

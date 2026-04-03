@@ -23,7 +23,6 @@ let
     (optional development.development-env ./development-env.nix)
     (optional development.eclipse ./eclipse.nix)
     (optional development.editors ./editors.nix)
-    (optional development.emacs ./emacs.nix)
     (optional development.helix ./helix.nix)
     (optional development.nodejs ./nodejs.nix)
     (optional development.postgresql ./postgresql.nix)

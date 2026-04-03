@@ -33,6 +33,7 @@ in
         gtk-xft-hintstyle = "hintfull";
         gtk-xft-rgba = "rgb";
         gtk-recent-files-enabled = true;
+        gtk-cursor-theme-name = settings.common.cursor.name;
       };
 
       gtk3.bookmarks = [

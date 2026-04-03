@@ -278,7 +278,6 @@ rec {
   modules.cli.utilities.enable = true;
   modules.cli.utilities.bat.enable = true;
   modules.cli.utilities.direnv.enable = false;
-  modules.cli.utilities.emacs.enable = true;
 
   # [ community ]
   modules.community.telegram.enable = true;
@@ -322,7 +321,6 @@ rec {
   modules.development.development-env = true;
   modules.development.eclipse = false;
   modules.development.editors = true;
-  modules.development.emacs = true;
   modules.development.helix = true;
   modules.development.nodejs = true;
   modules.development.postgresql = true;

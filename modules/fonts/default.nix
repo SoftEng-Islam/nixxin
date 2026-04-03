@@ -10,6 +10,15 @@ in
 mkIf (settings.modules.fonts.enable) {
   #.Sometimes cached data or corrupt configuration files cause issues.
   # rm -rf ~/.cache/fontconfig && rm -rf ~/.config/ibus && fc-cache -fv
+
+  # Allow installation of unfree corefonts package
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (lib.getName pkg) [
+      "corefonts"
+      "vista-fonts"
+    ];
+
   fonts = {
     enableDefaultPackages = false;
     fontDir.enable = true;
@@ -33,6 +42,9 @@ mkIf (settings.modules.fonts.enable) {
 
       # Arabic Fonts
       amiri
+
+      corefonts
+      vista-fonts
     ];
     fontconfig = {
       enable = true;
