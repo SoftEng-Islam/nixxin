@@ -15,15 +15,15 @@ in
   ];
 
   # What this does?
-  environment.persistence."/persist" = {
-    users.${settings.user.username} = {
-      directories = [
-        ".gemini"
-        ".claude"
-      ];
-      files = [
-        ".claude.json"
-      ];
-    };
-  };
+  # environment.persistence."/persist" = {
+  #   users.${settings.user.username} = {
+  #     directories = [
+  #       ".gemini"
+  #       ".claude"
+  #     ];
+  #     files = [
+  #       ".claude.json"
+  #     ];
+  #   };
+  # };
 }

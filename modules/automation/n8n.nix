@@ -155,16 +155,16 @@ lib.mkIf (settings.modules.office.n8n or false) {
   networking.firewall.allowedTCPPorts = [ 443 ];
 
   # Persistence for n8n data
-  environment.persistence."/persist" = {
-    directories = [
-      {
-        directory = "/var/lib/n8n";
-        user = "n8n";
-        group = "n8n";
-        mode = "0700";
-      }
-    ];
-  };
+  # environment.persistence."/persist" = {
+  #   directories = [
+  #     {
+  #       directory = "/var/lib/n8n";
+  #       user = "n8n";
+  #       group = "n8n";
+  #       mode = "0700";
+  #     }
+  #   ];
+  # };
 
   # Script to generate self-signed certificate if it doesn't exist
   systemd.services.n8n-ssl-setup = {
