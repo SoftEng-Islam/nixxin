@@ -15,7 +15,6 @@ let
 in
 {
   programs.vscode.defaultEditor = true;
-
   home-manager.users.${settings.user.username} = {
     programs.vscode = {
       enable = true;
@@ -153,6 +152,9 @@ in
           ])
           ++ (with pkgs.vscode-marketplace-release; [
             github.copilot-chat # GitHub Copilot Chat, need the release version
+            jnoortheen.nix-ide
+            bbenoist.nix
+
           ])
           ++ (with pkgs.vscode-marketplace; [
             github.vscode-pull-request-github # GitHub Pull Requests
