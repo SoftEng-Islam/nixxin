@@ -11,6 +11,7 @@ GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No Color
+REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 # Helper functions
 print_header() {
@@ -29,6 +30,14 @@ print_warning() {
 
 print_error() {
     echo -e "${RED}✗ $1${NC}"
+}
+
+to_nix_bool() {
+    if [[ "$1" =~ ^[Yy]$ ]]; then
+        echo true
+    else
+        echo false
+    fi
 }
 
 # Get user input with default value
@@ -95,8 +104,20 @@ main() {
     echo
     print_header "Creating Your Configuration"
     
+    INTEL_CPU_BOOL="$(to_nix_bool "$INTEL_CPU")"
+    AMD_CPU_BOOL="$(to_nix_bool "$AMD_CPU")"
+    NVIDIA_GPU_BOOL="$(to_nix_bool "$NVIDIA_GPU")"
+    AMD_GPU_BOOL="$(to_nix_bool "$AMD_GPU")"
+    INTEL_GPU_BOOL="$(to_nix_bool "$INTEL_GPU")"
+    IS_LAPTOP_BOOL="$(to_nix_bool "$IS_LAPTOP")"
+    CPU_ARCH="amd64"
+
+    if [[ "$ARCHITECTURE" == aarch64-* ]]; then
+        CPU_ARCH="aarch64"
+    fi
+
     # Create user directory structure
-    USER_DIR="/home/$USERNAME/nixxin/users/$USERNAME/desktop/$HOSTNAME"
+    USER_DIR="$REPO_DIR/users/$USERNAME"
     
     if [[ -d "$USER_DIR" ]]; then
         print_warning "Configuration directory already exists: $USER_DIR"
@@ -113,55 +134,93 @@ main() {
     mkdir -p "$USER_DIR"
     print_success "Created directory: $USER_DIR"
     
-    # Copy template configuration
-    cp "/home/$USERNAME/nixxin/users/template/desktop/template/default.nix" "$USER_DIR/default.nix"
-    print_success "Copied template configuration"
-    
-    # Update configuration with user data
-    sed -i "s/Your Name/$USER_NAME/g" "$USER_DIR/default.nix"
-    sed -i "s/yourusername/$USERNAME/g" "$USER_DIR/default.nix"
-    sed -i "s/your@email.com/$EMAIL/g" "$USER_DIR/default.nix"
-    sed -i "s/nixos/$HOSTNAME/g" "$USER_DIR/default.nix"
-    sed -i "s/x86_64-linux/$ARCHITECTURE/g" "$USER_DIR/default.nix"
-    
-    # Update CPU settings
-    if [[ "$INTEL_CPU" =~ ^[Yy]$ ]]; then
-        sed -i 's/common\.cpu\.intel = false;/common.cpu.intel = true;/g' "$USER_DIR/default.nix"
-    fi
-    if [[ "$AMD_CPU" =~ ^[Yy]$ ]]; then
-        sed -i 's/common\.cpu\.amd = true;/common.cpu.amd = true;/g' "$USER_DIR/default.nix"
+    cat > "$USER_DIR/default.nix" <<EOF
+{
+  ...
+}:
+self:
+{
+  user.name = "$USER_NAME";
+  user.username = "$USERNAME";
+  user.email = "$EMAIL";
+
+  system.hostName = "$HOSTNAME";
+  system.architecture = "$ARCHITECTURE";
+
+  common.cpu.arch = "$CPU_ARCH";
+  common.cpu.intel = $INTEL_CPU_BOOL;
+  common.cpu.amd = $AMD_CPU_BOOL;
+  common.cpu.zen = $AMD_CPU_BOOL;
+  common.cpu.ryzen = $AMD_CPU_BOOL;
+  common.cpu.ryzenMobile = false;
+  common.cpu.nvidiaGPU = $NVIDIA_GPU_BOOL;
+  common.cpu.amdGPU = $AMD_GPU_BOOL;
+  common.cpu.intelGPU = $INTEL_GPU_BOOL;
+  common.battery = $IS_LAPTOP_BOOL;
+}
+EOF
+    print_success "Created users/$USERNAME/default.nix"
+
+    if [[ -f /etc/nixos/hardware-configuration.nix ]]; then
+        cp /etc/nixos/hardware-configuration.nix "$USER_DIR/hardware.nix"
+        print_success "Copied /etc/nixos/hardware-configuration.nix"
     else
-        sed -i 's/common\.cpu\.amd = true;/common.cpu.amd = false;/g' "$USER_DIR/default.nix"
+        cat > "$USER_DIR/hardware.nix" <<'EOF'
+{ ... }:
+{
+  # Replace this file with your generated hardware-configuration.nix.
+}
+EOF
+        print_warning "Created a placeholder hardware.nix because /etc/nixos/hardware-configuration.nix was not found"
     fi
-    
-    # Update GPU settings
-    if [[ "$NVIDIA_GPU" =~ ^[Yy]$ ]]; then
-        sed -i 's/common\.cpu\.nvidiaGPU = false;/common.cpu.nvidiaGPU = true;/g' "$USER_DIR/default.nix"
-        sed -i 's/common\.cpu\.amdGPU = true;/common.cpu.amdGPU = false;/g' "$USER_DIR/default.nix"
-        sed -i 's/amdgpu/nvidia/g' "$USER_DIR/default.nix"
-    elif [[ "$INTEL_GPU" =~ ^[Yy]$ ]]; then
-        sed -i 's/common\.cpu\.intelGPU = false;/common.cpu.intelGPU = true;/g' "$USER_DIR/default.nix"
-        sed -i 's/common\.cpu\.amdGPU = true;/common.cpu.amdGPU = false;/g' "$USER_DIR/default.nix"
-        sed -i 's/amdgpu/intel/g' "$USER_DIR/default.nix"
-    fi
-    
-    # Update battery setting
-    if [[ "$IS_LAPTOP" =~ ^[Yy]$ ]]; then
-        sed -i 's/common\.battery = false;/common.battery = true;/g' "$USER_DIR/default.nix"
-    fi
-    
-    print_success "Updated configuration with your settings"
     
     # Update _settings.nix
-    SETTINGS_FILE="/home/$USERNAME/nixxin/_settings.nix"
+    SETTINGS_FILE="$REPO_DIR/_settings.nix"
     if [[ -f "$SETTINGS_FILE" ]]; then
         cp "$SETTINGS_FILE" "$SETTINGS_FILE.backup"
         print_warning "Backed up existing _settings.nix"
     fi
-    
-    cp "/home/$USERNAME/nixxin/_settings.template.nix" "$SETTINGS_FILE"
-    sed -i "s|/users/template/desktop/template|/users/$USERNAME/desktop/$HOSTNAME|g" "$SETTINGS_FILE"
-    print_success "Updated _settings.nix"
+
+    if grep -q 'activeUser = "' "$SETTINGS_FILE" 2>/dev/null; then
+        sed -i -E "s/activeUser = \".*\";/activeUser = \"$USERNAME\";/" "$SETTINGS_FILE"
+    else
+        cat > "$SETTINGS_FILE" <<EOF
+{
+  lib,
+  pkgs ? null,
+  ...
+}:
+let
+  activeUser = "$USERNAME";
+  userDir = ./. + "/users/\${activeUser}";
+  userModule = userDir + "/default.nix";
+  hardwareModule = userDir + "/hardware.nix";
+  userOverrides = import userModule { inherit pkgs; };
+  bootstrapProfile = lib.fix (self: userOverrides self);
+in
+{
+  inherit activeUser;
+  architecture = bootstrapProfile.system.architecture or "x86_64-linux";
+
+  selectedUser = {
+    name = activeUser;
+    path = "/users/\${activeUser}";
+    dir = userDir;
+    inherit userModule hardwareModule;
+  };
+
+  profile =
+    if pkgs == null then
+      null
+    else
+      let
+        schema = import ./users/schema/default.nix { inherit pkgs; };
+      in
+      lib.fix (self: lib.recursiveUpdate (schema self) (userOverrides self));
+}
+EOF
+    fi
+    print_success "Selected $USERNAME as the active user in _settings.nix"
     
     echo
     print_header "Setup Complete!"
@@ -173,7 +232,7 @@ main() {
     echo "   ${BLUE}nano $USER_DIR/default.nix${NC}"
     echo
     echo "2. Apply the configuration:"
-    echo "   ${BLUE}cd /home/$USERNAME/nixxin${NC}"
+    echo "   ${BLUE}cd $REPO_DIR${NC}"
     echo "   ${BLUE}sudo nixos-rebuild switch --flake .#$HOSTNAME${NC}"
     echo
     echo "3. For troubleshooting, see:"

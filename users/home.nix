@@ -1,4 +1,5 @@
-{ settings, lib, pkgs, ... }: {
+{ settings, lib, pkgs, ... }:
+{
   home-manager = {
     # extraSpecialArgs = { inherit inputs; };
     verbose = true;

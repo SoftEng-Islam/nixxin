@@ -1,75 +1,30 @@
-{ settings, pkgs, ... }:
+{
+  lib,
+  settings,
+  pkgs,
+  ...
+}:
+let
+  userCfg = settings.modules.users;
+  username = settings.user.username;
+  defaultShell = userCfg.defaultShell or pkgs.zsh;
+in
 {
   users = {
-    defaultUserShell = pkgs.zsh;
-    groups.uinput.members = [ "${settings.user.username}" ];
-    groups.input.members = [ "${settings.user.username}" ];
+    defaultUserShell = defaultShell;
+    groups = lib.genAttrs (userCfg.managedGroups or [ ]) (_: {
+      members = [ username ];
+    });
 
-    groups.video.members = [ "${settings.user.username}" ];
-
-    # users.guest = {
-    #   isNormalUser = true;
-    #   description = "Guest Account";
-    #   extraGroups = [ ]; # Keep this empty so they don't have sudo/admin rights
-    #   initialHashedPassword = "1234";
-    # };
-
-    users.${settings.user.username} = {
-
+    users.${username} = {
       isNormalUser = true;
-      # isSystemUser = false;
-
-      # To generate a hashed password run `mkpasswd`.
-      hashedPassword = "$y$j9T$5HywFRGm/t.0VjspGLm8./$GtocDydBdCVWhVq8XaZnIUWUebqMQsS5rjJp7tSsRW/";
-
-      description = settings.user.name;
-      home = "/home/${settings.user.username}";
-
-      shell = pkgs.zsh; # Set zsh as the default shell
-
-      extraGroups = [
-        "${settings.user.username}"
-        "adbusers"
-        "audio" # Access to audio devices.
-        "colord"
-        "corectrl"
-        "dialout"
-        "disk"
-        # "flatpak"
-        "fuse"
-        "git"
-        "input" # Access to input devices like keyboards and mice.
-        "kvm"
-        "libvirtd"
-        "lp" # Manage printers.
-        "lxd"
-        "mysql"
-        "network"
-        "networkmanager" # Permissions to manage network connections.
-        "nix"
-        "plugdev"
-        "podman"
-        "polkitd" # Ensures proper permission handling
-        "power"
-        "qemu"
-        "realtime" # Allows setting low-latency priority for audio
-        "render"
-        "rtkit" # Required for PipeWire's real-time scheduling
-        "sambashare"
-        "storage" # Access to storage devices.
-        "systemd-journal"
-        "systemd-resolve"
-        "tss"
-        "tty"
-        "uucp" # Access to serial ports and devices connected via serial ports.
-        "vboxusers"
-        "video" # Access to video devices
-        "waydroid"
-        "wheel" # Ability to use sudo for administrative tasks.
-        "wireshark"
-      ];
-      uid = 1000;
-      packages = with pkgs; [ thunderbird ];
+      hashedPassword = userCfg.hashedPassword;
+      description = userCfg.name or settings.user.name;
+      home = "/home/${username}";
+      shell = defaultShell;
+      extraGroups = userCfg.extraGroups or [ ];
+      uid = userCfg.uid or 1000;
+      packages = userCfg.packages or [ ];
     };
   };
 }

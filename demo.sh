@@ -122,7 +122,7 @@ main() {
     show_command_demo "sudo nixos-rebuild switch --flake .#hostname" \
         "Apply your configuration changes"
     
-    show_command_demo "cp -r users/template users/yourname" \
+    show_command_demo "mkdir -p users/yourname && \$EDITOR users/yourname/default.nix" \
         "Create your personal configuration"
     
     sleep 3

@@ -1,21 +1,24 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-{ pkgs, ... }:
-rec {
+# Shared user profile schema.
+# Override values per-user in ./users/<name>/default.nix.
+{
+  pkgs,
+  ...
+}:
+self:
+{
   # ----------------------------------------------
   # ---- The User Information
   # ----------------------------------------------
   # - You must Change all Values here
-  user.name = "Islam Ahmed"; # Name/Identifier
-  user.username = "softeng"; # Username
-  user.email = "softeng.islam@gmail.com"; # Email
-  HOME = "/home/${user.username}"; # Home Directory
+  user.name = "User Name"; # Name/Identifier
+  user.username = "user"; # Username
+  user.email = "user@example.com"; # Email
+  HOME = "/home/${self.user.username}"; # Home Directory
   # ----------------------------------------------
   # ---- System Information And Configuration
   # ----------------------------------------------
   system.name = "nixos";
-  system.hostName = "nixxin"; # Hostname
+  system.hostName = "nixos"; # Hostname
   system.architecture = "x86_64-linux"; # Replace with your system architecture
 
   # This value determines the NixOS release from which the default
@@ -103,7 +106,7 @@ rec {
     delay = 0;
   };
   # [ Dotfiles ] Inforamtions ---- #
-  common.dotfilesDir = "/home/${user.username}/nixxin"; # Absolute path of the repo
+  common.dotfilesDir = "/home/${self.user.username}/nixxin"; # Absolute path of the repo
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
@@ -161,11 +164,11 @@ rec {
 
   # [ ICONS ]
   # Use "Papirus" "Papirus-Dark" "Papirus-Light"
-  conmmon.icons.theme =
-    if (common.desktop.dconf.colorScheme == "prefer-dark") then
-      common.icons.nameInDark
+  common.icons.theme =
+    if (self.modules.desktop.dconf.colorScheme == "prefer-dark") then
+      self.common.icons.nameInDark
     else
-      common.icons.nameInLight;
+      self.common.icons.nameInLight;
   common.icons.nameInLight = "Papirus";
   common.icons.nameInDark = "Papirus-Dark";
   # black, blue, brown, cyan, green, grey, indigo, magenta, orange, pink, purple, red, teal, white, yellow
@@ -332,19 +335,19 @@ rec {
   modules.desktop.tools = false;
   # $ dconf read /org/gnome/desktop/interface/color-scheme
   modules.desktop.dconf.colorScheme = "prefer-dark";
-  modules.desktop.dconf.icons.nameInDark = common.icons.nameInDark;
+  modules.desktop.dconf.icons.nameInDark = self.common.icons.nameInDark;
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
   modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
 
   # [ desktop ] [ Hyprland ]
-  modules.desktop.hyprland.genColorsPath = "/home/${user.username}/.cache/hypr/colors.conf";
+  modules.desktop.hyprland.genColorsPath = "/home/${self.user.username}/.cache/hypr/colors.conf";
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
   modules.desktop.hyprland.blur.enable = false;
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
   modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
-  modules.desktop.hyprland.border.active.color = common.primaryColor;
+  modules.desktop.hyprland.border.active.color = self.common.primaryColor;
   modules.desktop.hyprland.border.size = 4;
   modules.desktop.hyprland.dim_inactive = true;
   modules.desktop.hyprland.plugins.hyprbars = true;
@@ -449,7 +452,7 @@ rec {
     "1.1.1.1"
     "1.0.0.1"
   ]; # DNS
-  modules.networking.dnsmasq.settings.server = modules.networks.nameservers;
+  modules.networking.dnsmasq.settings.server = self.modules.networking.nameservers;
   modules.networking.interfaces = {
     # eno1 = {
     # useDHCP = false; # Disable DHCP (so no default route or DNS is set)
@@ -462,7 +465,7 @@ rec {
     # };
   };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
-  modules.networking.iwd = (modules.networking.wifiBackend == "iwd");
+  modules.networking.iwd = (self.modules.networking.wifiBackend == "iwd");
   modules.networking.rtl8188eus-aircrack = false;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
@@ -552,7 +555,7 @@ rec {
   modules.system.videoDrivers = [ "modesetting" ];
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
-  modules.system.boot.tmp.useTmpfs = system.useTmpfs;
+  modules.system.boot.tmp.useTmpfs = self.system.useTmpfs;
   modules.system.boot.tmp.tmpfsSize = "50%"; # Size of tmpfs
   modules.system.boot.loader.timeout = 3; # seconds
   modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
@@ -771,15 +774,64 @@ rec {
       };
     };
     wezterm = {
-      shell = modules.terminals.default.shell;
-      fontFamily = modules.terminals.default.font.family;
-      fontSize = modules.terminals.default.font.size;
+      shell = self.modules.terminals.default.shell;
+      fontFamily = self.modules.terminals.default.font.family;
+      fontSize = self.modules.terminals.default.font.size;
       colorScheme = "Abernathy";
     };
   };
 
   # [users]
-  modules.users.name = user.name;
+  modules.users.name = self.user.name;
+  modules.users.defaultShell = pkgs.zsh;
+  modules.users.uid = 1000;
+  modules.users.hashedPassword = "$y$j9T$5HywFRGm/t.0VjspGLm8./$GtocDydBdCVWhVq8XaZnIUWUebqMQsS5rjJp7tSsRW/";
+  modules.users.managedGroups = [
+    "uinput"
+    "input"
+    "video"
+  ];
+  modules.users.extraGroups = [
+    "${self.user.username}"
+    "adbusers"
+    "audio"
+    "colord"
+    "corectrl"
+    "dialout"
+    "disk"
+    "fuse"
+    "git"
+    "input"
+    "kvm"
+    "libvirtd"
+    "lp"
+    "lxd"
+    "mysql"
+    "network"
+    "networkmanager"
+    "nix"
+    "plugdev"
+    "podman"
+    "polkitd"
+    "power"
+    "qemu"
+    "realtime"
+    "render"
+    "rtkit"
+    "sambashare"
+    "storage"
+    "systemd-journal"
+    "systemd-resolve"
+    "tss"
+    "tty"
+    "uucp"
+    "vboxusers"
+    "video"
+    "waydroid"
+    "wheel"
+    "wireshark"
+  ];
+  modules.users.packages = with pkgs; [ thunderbird ];
 
   # [MS Windows]
   modules.windows.wine.enable = false;

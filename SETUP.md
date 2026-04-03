@@ -17,22 +17,23 @@
 
 2. **Create your user profile:**
    ```bash
-   # Copy the template to your username
-   cp -r users/template users/YOUR_USERNAME
-   
-   # Edit the configuration
-   nano users/YOUR_USERNAME/desktop/YOUR_HOSTNAME/default.nix
+   mkdir -p users/YOUR_USERNAME
+   nano users/YOUR_USERNAME/default.nix
    ```
 
-3. **Update settings path:**
+3. **Add your hardware config:**
    ```bash
-   # Edit _settings.nix to point to your profile
-   nano _settings.nix
-   # Change: path = "/users/template/desktop/template";
-   # To: path = "/users/YOUR_USERNAME/desktop/YOUR_HOSTNAME";
+   sudo nixos-generate-config --show-hardware-config > users/YOUR_USERNAME/hardware.nix
    ```
 
-4. **Apply configuration:**
+4. **Activate the user profile:**
+   ```bash
+   nano _settings.nix
+   # Change: activeUser = "softeng";
+   # To:     activeUser = "YOUR_USERNAME";
+   ```
+
+5. **Apply configuration:**
    ```bash
    sudo nixos-rebuild switch --flake .#YOUR_HOSTNAME
    ```
@@ -41,7 +42,10 @@
 
 ### Required Changes in Your Profile
 
-Edit `users/YOUR_USERNAME/desktop/YOUR_HOSTNAME/default.nix`:
+Every profile inherits the shared schema in `users/schema/default.nix`.
+Your overrides live in `users/YOUR_USERNAME/default.nix`.
+
+Edit `users/YOUR_USERNAME/default.nix`:
 
 1. **User Information:**
    ```nix
@@ -58,9 +62,9 @@ Edit `users/YOUR_USERNAME/desktop/YOUR_HOSTNAME/default.nix`:
 
 3. **Hardware Configuration:**
    ```nix
-   # CPU settings - adjust based on your hardware
+   # Override hardware-specific defaults when needed
    common.cpu.intel = true;          # Set true if Intel CPU
-   common.cpu.amd = false;            # Set true if AMD CPU
+   common.cpu.amd = false;           # Set true if AMD CPU
    common.cpu.nvidiaGPU = false;     # Set true if NVIDIA GPU
    common.cpu.intelGPU = false;      # Set true if Intel GPU
    common.cpu.amdGPU = true;         # Set true if AMD GPU
@@ -96,13 +100,13 @@ Add NVIDIA drivers and remove AMD/Intel GPU configurations.
 
 ### Common Issues
 
-1. **Build fails with user-specific paths:**
-   - Ensure `_settings.nix` points to your user profile
-   - Check that all paths exist in your configuration
+1. **Build fails while loading a profile:**
+   - Ensure `_settings.nix` has the correct `activeUser`
+   - Check that `users/YOUR_USERNAME/default.nix` and `users/YOUR_USERNAME/hardware.nix` both exist
 
 2. **Hardware issues:**
-   - Review kernel parameters for your hardware
-   - Check GPU driver configurations
+   - Review `users/schema/default.nix` and override hardware-specific values in your profile
+   - Check GPU driver configurations and kernel parameters for your machine
 
 3. **Module conflicts:**
    - Disable conflicting modules
