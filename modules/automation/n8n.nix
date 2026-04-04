@@ -35,7 +35,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # DB_POSTGRESDB_PASSWORD_FILE = "/run/n8n/db_postgresdb_password";
 
       # Database configuration
-      DB_TYPE = "mongodb";
+      DB_TYPE = "sqlite";
+      DB_SQLITE_POOL_SIZE = "5";
 
       # Network configuration
       N8N_HOST = "127.0.0.1";
@@ -48,29 +49,24 @@ lib.mkIf (settings.modules.office.n8n or false) {
       # Security - disable metrics endpoint
       N8N_METRICS = "false";
 
-      # Disable the task runner process
-      N8N_RUNNERS_ENABLED = "false";
+      # Enable the task runner process (deprecated to keep it false)
+      N8N_RUNNERS_ENABLED = "true";
+      N8N_VERSION_NOTIFICATIONS_ENABLED = "false";
+      N8N_DIAGNOSTICS_ENABLED = "false";
     };
   };
 
   # Configure n8n service to use our static user instead of DynamicUser
   systemd.services.n8n = {
-    requires = [
-      "n8n-db-setup.service"
-      "mongodb.service"
-    ];
-    after = [
-      "n8n-db-setup.service"
-      "mongodb.service"
-    ];
+    wantedBy = lib.mkForce [ ]; # Removes it from the default startup list
 
     # Add nodejs to PATH for task runner child processes (Code nodes)
     path = [ pkgs.nodejs ];
     serviceConfig = {
       User = "n8n";
       Group = "n8n";
-      EnvironmentFile = pkgs.lib.mkForce "/run/n8n/db-env";
       DynamicUser = lib.mkForce false;
+      ReadWritePaths = [ "/var/lib/n8n" ];
       # Allow n8n to read/write the obsidian vault via executeCommand nodes
       ProtectHome = lib.mkForce false;
       ProtectSystem = lib.mkForce "full";
@@ -78,25 +74,7 @@ lib.mkIf (settings.modules.office.n8n or false) {
     };
   };
 
-  # Service to generate MongoDB connection string before n8n starts
-  systemd.services.n8n-db-setup = {
-    description = "Generate n8n database connection file";
-    wantedBy = [ "multi-user.target" ];
-    before = [ "n8n.service" ];
-
-    serviceConfig = {
-      Type = "oneshot";
-      RemainAfterExit = true;
-    };
-
-    script = ''
-      # Generate environment file with MongoDB password at runtime
-      PASSWORD=$(cat /persist/n8n_mongodb_password | tr -d '\n')
-      mkdir -p /run/n8n
-      echo "DB_MONGODB_CONNECTION_URL=mongodb://n8n:$PASSWORD@localhost:27017/n8n?authSource=n8n" > /run/n8n/db-env
-      chmod 644 /run/n8n/db-env
-    '';
-  };
+  # MongoDB is no longer supported and n8n-db-setup has been removed.
 
   # Create n8n user for the service
   users.users.n8n = {
@@ -169,8 +147,7 @@ lib.mkIf (settings.modules.office.n8n or false) {
   # Script to generate self-signed certificate if it doesn't exist
   systemd.services.n8n-ssl-setup = {
     description = "Generate self-signed SSL certificates for n8n";
-    wantedBy = lib.mkForce [ ]; # Removes it from the default startup list
-    # wantedBy = [ "multi-user.target" ];
+    wantedBy = [ "multi-user.target" ];
     before = [ "nginx.service" ];
 
     serviceConfig = {
