@@ -207,5 +207,28 @@ lib.mkIf (settings.modules.office.n8n or false) {
   };
   environment.systemPackages = with pkgs; [
     n8n
+    (writeShellScriptBin "n8n-info" ''
+      echo -e "\n\033[1;36m===================================================\033[0m"
+      echo -e "\033[1;35m               N 8 N   I N F O R M A T I O N               \033[0m"
+      echo -e "\033[1;36m===================================================\033[0m\n"
+
+      echo -e "\033[1;34m[+] Service Status:\033[0m"
+      systemctl is-active --quiet n8n && echo -e "    \033[1;32m● n8n is running\033[0m" || echo -e "    \033[1;31m○ n8n is stopped\033[0m"
+      systemctl is-active --quiet nginx && echo -e "    \033[1;32m● nginx (proxy) is running\033[0m" || echo -e "    \033[1;31m○ nginx is stopped\033[0m"
+
+      echo -e "\n\033[1;34m[+] Access URLs:\033[0m"
+      echo -e "    Local Interface: \033[1;32mhttp://127.0.0.1:5678\033[0m"
+      echo -e "    Proxy URL:       \033[1;32mhttps://localhost\033[0m"
+
+      echo -e "\n\033[1;34m[+] Data Directories:\033[0m"
+      echo -e "    Workflows/DB:    \033[1;33m/var/lib/n8n/.n8n\033[0m"
+
+      echo -e "\n\033[1;34m[+] Useful Commands:\033[0m"
+      echo -e "    Start n8n:       \033[1;33msudo systemctl start n8n\033[0m"
+      echo -e "    Stop n8n:        \033[1;33msudo systemctl stop n8n\033[0m"
+      echo -e "    Live Logs:       \033[1;33msudo journalctl -u n8n.service -f\033[0m"
+      echo -e "    Fix Permissions: \033[1;33msudo chown -R n8n:n8n /var/lib/n8n\033[0m"
+      echo -e "\n\033[1;36m===================================================\033[0m\n"
+    '')
   ];
 }
