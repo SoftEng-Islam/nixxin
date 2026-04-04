@@ -169,7 +169,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
   # Script to generate self-signed certificate if it doesn't exist
   systemd.services.n8n-ssl-setup = {
     description = "Generate self-signed SSL certificates for n8n";
-    wantedBy = [ "multi-user.target" ];
+    wantedBy = lib.mkForce [ ]; # Removes it from the default startup list
+    # wantedBy = [ "multi-user.target" ];
     before = [ "nginx.service" ];
 
     serviceConfig = {
