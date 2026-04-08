@@ -38,6 +38,8 @@ in
     fallbackDns = [ "127.0.0.1:53" ];
     extraConfig = ''
       DNSOverTLS=yes
+      LLMNR=no
+      MulticastDNS=no
     '';
   };
 
@@ -82,41 +84,17 @@ in
   };
 
   networking.firewall.enable = settings.modules.networking.firewall.enable;
-  networking.firewall.allowedTCPPorts = [
-    53
-    80
-    443
-    8080
-    3389
-    51820
-    27018
-    3000
-  ];
-  networking.firewall.allowedUDPPorts = [
-    53
-    67
-    51820
-    1194
-  ];
+  # Keep the base profile closed. Service modules should open only the ports
+  # they actually need.
+  networking.firewall.allowedTCPPorts = [ ];
+  networking.firewall.allowedUDPPorts = [ ];
   # networking.firewall.extraCommands = ''
   #   # Block everything except wg0
   #   iptables -I OUTPUT ! -o wg0 -m conntrack --ctstate NEW -j DROP
   # '';
 
-  # Allow ephemeral ranges for better peer discovery in torrent clients
-  networking.firewall.allowedTCPPortRanges = [
-    {
-      from = 49152;
-      to = 65535;
-    }
-    # Ephemeral range for torrents
-  ];
-  networking.firewall.allowedUDPPortRanges = [
-    {
-      from = 49152;
-      to = 65535;
-    }
-  ];
+  networking.firewall.allowedTCPPortRanges = [ ];
+  networking.firewall.allowedUDPPortRanges = [ ];
 
   services.miniupnpd = {
     enable = false;

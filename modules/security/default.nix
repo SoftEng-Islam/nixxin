@@ -101,6 +101,10 @@
       "net.ipv4.conf.default.secure_redirects" = 0;
       "net.ipv6.conf.all.accept_redirects" = 0;
       "net.ipv6.conf.default.accept_redirects" = 0;
+      # Prefer temporary IPv6 addresses for outbound connections so the host
+      # exposes a less stable identifier on IPv6 networks.
+      "net.ipv6.conf.all.use_tempaddr" = 2;
+      "net.ipv6.conf.default.use_tempaddr" = 2;
       # Protects against SYN flood attacks
       "net.ipv4.tcp_syncookies" = 1;
       # Incomplete protection again TIME-WAIT assassination

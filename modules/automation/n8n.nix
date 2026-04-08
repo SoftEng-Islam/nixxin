@@ -129,8 +129,8 @@ lib.mkIf (settings.modules.office.n8n or false) {
     };
   };
 
-  # Open HTTPS port
-  networking.firewall.allowedTCPPorts = [ 443 ];
+  # Keep nginx local-only from the firewall perspective. Access via localhost
+  # does not require opening inbound ports on the LAN/WAN.
 
   # Persistence for n8n data
   # environment.persistence."/persist" = {

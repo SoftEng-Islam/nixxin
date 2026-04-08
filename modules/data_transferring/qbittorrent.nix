@@ -4,7 +4,15 @@
   pkgs,
   ...
 }:
+let
+  # Keep this in sync with qBittorrent's Session\\Port in
+  # ~/.config/qBittorrent/qBittorrent.conf.
+  torrentPort = 21750;
+in
 lib.mkIf (settings.modules.data_transferring.qbittorrent.enable or false) {
+  networking.firewall.allowedTCPPorts = [ torrentPort ];
+  networking.firewall.allowedUDPPorts = [ torrentPort ];
+
   environment.systemPackages = with pkgs; [
     # Featureful free software BitTorrent client
     # nix build nixpkgs#qbittorrent --print-out-paths --no-link
