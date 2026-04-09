@@ -7,13 +7,19 @@
     let
       pkgs =
         nixpkgs.legacyPackages.x86_64-linux; # Define `pkgs` for convenience
+      # Bundle MkDocs with its theme/plugins in one Python closure so plugin discovery works.
+      mkdocsEnv = pkgs.python3.withPackages (
+        ps: with ps; [
+          mkdocs
+          mkdocs-material
+          mkdocs-minify-plugin
+          pymdown-extensions
+        ]
+      );
     in {
       devShells.x86_64-linux.default = pkgs.mkShell {
-        buildInputs = [
-          pkgs.python3
-          pkgs.python3Packages.pip
-          pkgs.python3Packages.mkdocs
-          pkgs.python3Packages.mkdocs-material
+        packages = [
+          mkdocsEnv
         ];
       };
     };

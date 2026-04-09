@@ -43,7 +43,7 @@ nav:
       - Documentation: contributing/documentation.md
 
 theme:
-  name: mkdocs
+  name: material
   palette:
     - scheme: default
       primary: blue

@@ -6,6 +6,21 @@
 }:
 let
   nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
+  # MkDocs only discovers themes and plugins reliably when they share one Python closure.
+  mkdocsEnv = pkgs.python3.withPackages (
+    ps: with ps; [
+      mkdocs
+      mkdocs-material
+      mkdocs-minify-plugin
+      pymdown-extensions
+    ]
+  );
+  mkdocsPackage = pkgs.writeShellApplication {
+    name = "mkdocs";
+    text = ''
+      exec ${mkdocsEnv}/bin/mkdocs "$@"
+    '';
+  };
 in
 # lib.mkIf (settings.modules.cli.enable or false)
 {
@@ -50,7 +65,7 @@ in
 
     busybox
 
-    mkdocs
+    mkdocsPackage
 
     bashInteractive
     vim # The most popular clone of the VI editor
