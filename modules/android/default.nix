@@ -1,10 +1,17 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+{
   imports = lib.optionals (settings.modules.android.enable or false) [
     ./android-studio.nix
     ./scrcpy.nix
-    ./waydroid.nix
+    # ./waydroid.nix
   ];
 
   config = mkIf (settings.modules.android.enable or false) {
