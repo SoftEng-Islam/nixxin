@@ -40,11 +40,6 @@ let
         ip -brief address show
         echo ""
 
-        echo -e "''${YELLOW}--- Public PC IP Address ---''${RESET}"
-        PUBLIC_IP=$(curl -s ifconfig.me || wget -qO- ifconfig.me || echo "Unknown/Offline")
-        echo -e "Public IP: ''${GREEN}''${PUBLIC_IP}''${RESET}"
-        echo ""
-
         echo -e "''${YELLOW}--- DNS Servers ---''${RESET}"
         nmcli dev show | grep IP4.DNS | awk '{print $2}'
         pause
