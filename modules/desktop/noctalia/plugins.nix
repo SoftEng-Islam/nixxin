@@ -57,6 +57,10 @@
             enabled = false;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
+          todo = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
         };
         version = 1;
       };

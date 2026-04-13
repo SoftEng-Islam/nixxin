@@ -100,6 +100,7 @@
               drawerEnabled = false;
               colorizeIcons = false;
             }
+            { id = "plugin:todo"; }
             { id = "plugin:unicode-picker"; }
             { id = "plugin:screen-recorder"; }
             { id = "plugin:privacy-indicator"; }
