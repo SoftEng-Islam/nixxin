@@ -14,6 +14,7 @@
     "sd_mod"
   ];
   boot.kernelModules = [ "kvm-amd" ];
+  swapDevices = [ ];
 
   # lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT
   fileSystems."/" = {
@@ -29,27 +30,6 @@
       "dmask=0077"
     ];
   };
-
-  swapDevices = [ ];
-
-  # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g),x-gvfs-show
-  # fileSystems."/windows" = {
-  #   device = "//192.168.1.3/windows_shared";
-  #   fsType = "cifs";
-  #   options = [
-  #     "username=win"
-  #     "password=1122"
-  #     "uid=1000"
-  #     "gid=100"
-  #     "iocharset=utf8"
-  #     "file_mode=0775"
-  #     "dir_mode=0775"
-  #     "rw"
-  #     "nofail"
-  #     "nounix"
-  #     # "user"
-  #   ];
-  # };
 
   fileSystems."/data" = {
     device = "/dev/disk/by-uuid/386568e5-b764-4b52-bd15-bca3408a3ce7";
@@ -75,6 +55,7 @@
       "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
     ];
   };
+
   fileSystems."/SSDisk" = {
     device = "/dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf";
     # fsType = "ntfs-3g"; # if NTFS
@@ -84,6 +65,8 @@
       # This only for BTRFS
       "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
       "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
+      "ssd" # Btrfs only – optimized for SSD seek behavior.
+      "discard=async" # Btrfs only – background TRIM to keep SSD performance high.
       "nodev" # Don’t allow device files on this mount (security measure).
 
       # For Both File System
@@ -118,6 +101,25 @@
       "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
     ];
   };
+
+  # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g),x-gvfs-show
+  # fileSystems."/windows" = {
+  #   device = "//192.168.1.3/windows_shared";
+  #   fsType = "cifs";
+  #   options = [
+  #     "username=win"
+  #     "password=1122"
+  #     "uid=1000"
+  #     "gid=100"
+  #     "iocharset=utf8"
+  #     "file_mode=0775"
+  #     "dir_mode=0775"
+  #     "rw"
+  #     "nofail"
+  #     "nounix"
+  #     # "user"
+  #   ];
+  # };
 
   # Don't Forget To Change The Owner of The Partition If Needed.
   # sudo chown -R softeng:wheel /data2
