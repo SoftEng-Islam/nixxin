@@ -43,6 +43,7 @@ let
     nano = "micro"; # Use micro as the default editor
     reboot = "sudo reboot";
     nixclean = "sudo nix-collect-garbage --delete-older-than 1d";
+    logclean = "sudo journalctl --vacuum-time=1d && sudo dmesg - C";
 
     # To Translate from Language to Other.
     trans = "trans -no-bidi";
