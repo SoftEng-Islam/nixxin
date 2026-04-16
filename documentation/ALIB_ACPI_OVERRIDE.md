@@ -17,7 +17,7 @@ up in a degraded state.
 ## What we did
 
 1. Added a helper to dump and disassemble ACPI tables on the target machine:
-   - `scripts/acpi_dump_alib.sh`
+   - `scripts/system/acpi_dump_alib.sh`
 
 2. Extended the initrd ACPI override support to accept `*.asl` files and compile
    them to AML during the Nix build (so we don’t need to commit binaries):
@@ -93,4 +93,3 @@ reboot
 - If the error changes to an argument-count/type mismatch, adjust the SSDT’s
   `Method (ALIB, ...)` signature/return value to match what the firmware
   expects.
-

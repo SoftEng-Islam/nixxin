@@ -61,6 +61,12 @@
             enabled = true;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
           };
+          # To use this plugin, you must disable or uninstall your existing polkit authentication..
+          # agent (e.g., polkit-gnome, polkit-kde-agent, lxpolkit, etc).
+          polkit-agent = {
+            enabled = false;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
         };
         version = 1;
       };

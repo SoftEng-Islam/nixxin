@@ -12,13 +12,8 @@ CRF="30"            # Constant Rate Factor (lower = better quality. 24-30 is typ
 AUDIO_CODEC="copy"
 OUTPUT_EXT="mkv"
 LOG_FILE="status.txt"
-
-# --- Define your video list here ---
-# Add or remove entries as needed. Each entry is the input filename.
-VIDEOS=(
-  "input1.mp4"
-  # "input2.mkv"
-)
+LIST_FILE_NAME="${ENCODE_AV1_LIST_NAME:-encode_av1.txt}"
+VIDEOS=()
 
 # --- Helper functions ---
 
@@ -37,6 +32,53 @@ log_blank() {
 # Print a separator line
 separator() {
   log "============================================================"
+}
+
+usage() {
+  cat <<EOF
+Usage: $(basename "$0") [list-file]
+
+Reads video paths from a text file and encodes each entry to AV1.
+
+Default list file:
+  ./${LIST_FILE_NAME}
+
+List format:
+  One video path per line
+  Blank lines are ignored
+  Lines starting with # are ignored
+EOF
+}
+
+trim() {
+  local value="$1"
+  value="${value#"${value%%[![:space:]]*}"}"
+  value="${value%"${value##*[![:space:]]}"}"
+  printf '%s' "$value"
+}
+
+load_video_list() {
+  local list_file="$1"
+  local list_dir
+  local raw_line
+  local line
+
+  list_dir=$(cd "$(dirname "$list_file")" && pwd)
+  VIDEOS=()
+
+  while IFS= read -r raw_line || [[ -n "$raw_line" ]]; do
+    line=$(trim "${raw_line%$'\r'}")
+
+    if [[ -z "$line" || "$line" == \#* ]]; then
+      continue
+    fi
+
+    if [[ "$line" = /* ]]; then
+      VIDEOS+=("$line")
+    else
+      VIDEOS+=("$list_dir/$line")
+    fi
+  done < "$list_file"
 }
 
 # Get video duration via ffprobe
@@ -103,11 +145,39 @@ print_video_info() {
 
 # --- Main ---
 
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  usage
+  exit 0
+fi
+
+if [[ -n "${1:-}" ]]; then
+  LIST_FILE="$1"
+elif [[ -f "$PWD/$LIST_FILE_NAME" ]]; then
+  LIST_FILE="$PWD/$LIST_FILE_NAME"
+else
+  echo "List file not found."
+  echo "Expected ./$LIST_FILE_NAME in $(pwd)"
+  echo "Create that file with one video path per line, or pass a list file path as the first argument."
+  exit 1
+fi
+
+if [[ ! -f "$LIST_FILE" ]]; then
+  echo "List file not found: $LIST_FILE"
+  exit 1
+fi
+
+load_video_list "$LIST_FILE"
 total=${#VIDEOS[@]}
+
+if (( total == 0 )); then
+  echo "No video entries found in $LIST_FILE"
+  exit 1
+fi
 
 log_blank
 separator
 log "  AV1 Batch Encoder — $total video(s) queued"
+log "  List file         : $LIST_FILE"
 separator
 log_blank
 

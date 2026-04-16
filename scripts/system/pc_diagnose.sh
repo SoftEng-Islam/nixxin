@@ -7,9 +7,9 @@
 # optional tools are missing. By default it avoids sudo prompts and large logs.
 #
 # Examples:
-#   ./pc_diagnose.sh
-#   ./pc_diagnose.sh --sudo --full -o /tmp/pc_report.txt
-#   ./pc_diagnose.sh --redact -o /tmp/pc_report_redacted.txt
+#   pc_diagnose.sh
+#   pc_diagnose.sh --sudo --full -o /tmp/pc_report.txt
+#   pc_diagnose.sh --redact -o /tmp/pc_report_redacted.txt
 
 set -u
 set -o pipefail
@@ -23,7 +23,7 @@ SUDO_MODE="auto" # auto|ask|never
 
 usage() {
   cat <<'EOF'
-Usage: ./pc_diagnose.sh [options]
+Usage: pc_diagnose.sh [options]
 
 Options:
   -o, --output FILE   Write report to FILE (also prints to stdout).
@@ -468,7 +468,7 @@ main() {
   fi
 
   section "Done"
-  note "Tip: ./pc_diagnose.sh --sudo --full -o /tmp/pc_report.txt"
+  note "Tip: pc_diagnose.sh --sudo --full -o /tmp/pc_report.txt"
 }
 
 main "$@"
