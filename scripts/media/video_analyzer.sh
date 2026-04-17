@@ -49,6 +49,16 @@ TABLE_COLS=120
 TABLE_ROWS=24
 TERMINAL_TOO_SMALL=0
 NEED_RESIZE=1
+FORCE_FULL_REDRAW=1
+FORCE_CURRENT_ROW_REDRAW=0
+LAST_CURSOR_POS=-1
+LAST_SCROLL_OFFSET=-1
+LAST_SELECTED_TOTAL=-1
+LAST_TERMINAL_TOO_SMALL=-1
+LAST_STATUS_MESSAGE=""
+LAST_STATUS_COLOR=""
+STATUS_MESSAGE="Output: selected videos are printed as quoted filenames."
+STATUS_COLOR="$C_WHITE"
 
 SORT_TMP=$(mktemp)
 
@@ -89,6 +99,7 @@ Interactive controls:
   Up/Down              Move between videos
   Left/Right           Change the sorted column
   Space                Toggle the current video
+  n                    Rename the current video
   1-7                  Sort by table column
   r                    Reverse the current sort
   Enter or q           Finish and print selected videos
@@ -266,6 +277,11 @@ selected_count() {
     printf '%d' "$count"
 }
 
+set_status_message() {
+    STATUS_MESSAGE="$1"
+    STATUS_COLOR="${2:-$C_WHITE}"
+}
+
 draw_border() {
     local left="$1"
     local mid="$2"
@@ -295,7 +311,7 @@ print_table_cell() {
 
 check_dependencies() {
     local cmd
-    for cmd in ffprobe jq find sort awk stty; do
+    for cmd in ffprobe jq find sort awk stty mv; do
         command -v "$cmd" >/dev/null 2>&1 || die "$cmd is required but not installed."
     done
 }
@@ -369,6 +385,14 @@ build_layout() {
     if (( VISIBLE_ROWS < 4 )); then
         VISIBLE_ROWS=4
     fi
+}
+
+enable_raw_mode() {
+    stty -echo -icanon min 1 time 0 <&4
+}
+
+ui_move_to() {
+    printf '\033[%d;%dH' "$1" "${2:-1}" >&3
 }
 
 scan_videos() {
@@ -569,6 +593,7 @@ apply_sort() {
     sort_records
     CURSOR_POS=$(find_order_position "$current_item")
     ensure_cursor_visible
+    FORCE_FULL_REDRAW=1
 }
 
 set_sort_field() {
@@ -601,21 +626,102 @@ change_sort_column() {
     done
 }
 
+set_cursor_position() {
+    local new_pos="$1"
+    local previous_scroll="$SCROLL_OFFSET"
+
+    CURSOR_POS="$new_pos"
+    ensure_cursor_visible
+
+    if (( SCROLL_OFFSET != previous_scroll )); then
+        FORCE_FULL_REDRAW=1
+    fi
+}
+
 move_cursor() {
     local delta="$1"
-    CURSOR_POS=$((CURSOR_POS + delta))
-    ensure_cursor_visible
+    set_cursor_position $((CURSOR_POS + delta))
 }
 
 toggle_current_selection() {
     local index="${ORDER[CURSOR_POS]}"
     local current="${SELECTED[$index]:-0}"
     SELECTED["$index"]=$((1 - current))
+    FORCE_CURRENT_ROW_REDRAW=1
+}
+
+prompt_text() {
+    local prompt="$1"
+    local prompt_row=$((DATA_ROW_START + VISIBLE_ROWS + 2))
+    local input=""
+
+    ui_move_to "$prompt_row"
+    printf ' %b%s%b\033[K' "${C_BOLD}${C_YELLOW}" "$prompt" "$C_RESET" >&3
+    printf '\033[?25h' >&3
+
+    stty "$TTY_STATE" <&4
+    IFS= read -r -u 4 input || true
+    enable_raw_mode
+
+    printf '\033[?25l' >&3
+    printf '%s' "$input"
+}
+
+rename_current_video() {
+    local idx="${ORDER[CURSOR_POS]:-}"
+    local old_path
+    local old_name
+    local new_name
+    local new_path
+
+    [[ -n "$idx" ]] || return 0
+
+    old_path="${FILES_PATH[idx]}"
+    old_name="${FILES_NAME[idx]}"
+    new_name=$(prompt_text "Rename ${old_name} to: ")
+    FORCE_FULL_REDRAW=1
+
+    new_name="${new_name%$'\r'}"
+
+    if [[ -z "$new_name" ]]; then
+        set_status_message "Rename canceled." "$C_GRAY"
+        return 0
+    fi
+
+    if [[ "$new_name" == "$old_name" ]]; then
+        set_status_message "Name unchanged." "$C_GRAY"
+        return 0
+    fi
+
+    if [[ "$new_name" == */* ]]; then
+        set_status_message "Invalid name. Use a filename, not a path." "$C_RED"
+        return 0
+    fi
+
+    if [[ "$old_path" == */* ]]; then
+        new_path="${old_path%/*}/$new_name"
+    else
+        new_path="$new_name"
+    fi
+
+    if [[ -e "$new_path" ]]; then
+        set_status_message "Target already exists: $new_name" "$C_RED"
+        return 0
+    fi
+
+    if mv -- "$old_path" "$new_path"; then
+        FILES_PATH[idx]="$new_path"
+        FILES_NAME[idx]="$new_name"
+        set_status_message "Renamed to $new_name" "$C_GREEN"
+        apply_sort
+    else
+        set_status_message "Rename failed for $old_name" "$C_RED"
+    fi
 }
 
 setup_ui() {
     TTY_STATE=$(stty -g <&4)
-    stty -echo -icanon min 1 time 0 <&4
+    enable_raw_mode
     printf '\033[?1049h\033[?25l\033[?1000h\033[?1006h' >&3
     UI_ACTIVE=1
 }
@@ -637,6 +743,9 @@ read_input() {
             ;;
         ' ')
             printf 'space'
+            ;;
+        n|N)
+            printf 'rename'
             ;;
         q|Q)
             printf 'finish'
@@ -763,54 +872,50 @@ handle_mouse_event() {
     if (( row >= DATA_ROW_START && row < DATA_ROW_START + VISIBLE_ROWS )); then
         target_row=$((SCROLL_OFFSET + row - DATA_ROW_START))
         if (( target_row >= 0 && target_row < ${#ORDER[@]} )); then
-            CURSOR_POS=$target_row
-            ensure_cursor_visible
+            set_cursor_position "$target_row"
         fi
     fi
 }
 
-render_ui() {
-    if (( NEED_RESIZE )); then
-        build_layout
-        ensure_cursor_visible
-        NEED_RESIZE=0
-    fi
+draw_title_line() {
+    ui_move_to 1
+    printf ' %bVIDEO ANALYZER%b\033[K' "${C_BOLD}${C_CYAN}" "$C_RESET" >&3
+}
 
-    printf '\033[2J\033[H'
-
-    if (( TERMINAL_TOO_SMALL )); then
-        printf ' %bVIDEO ANALYZER%b\n' "$C_BOLD$C_CYAN" "$C_RESET"
-        printf ' %bTerminal too small.%b Need at least 88x14, have %dx%d.\n' "$C_YELLOW" "$C_RESET" "$TABLE_COLS" "$TABLE_ROWS"
-        printf ' Resize the window, then keep using the same session.\n'
-        printf ' %bEnter/q%b finish  %bEsc%b cancel\033[K\n' "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET"
-        return 0
-    fi
-
-    local selected_total
-    selected_total=$(selected_count)
-
+draw_info_line() {
+    local selected_total="$1"
     local dir_width=$((TABLE_COLS - 46))
+
     if (( dir_width < 10 )); then
         dir_width=10
     fi
 
-    printf ' %bVIDEO ANALYZER%b\033[K\n' "$C_BOLD$C_CYAN" "$C_RESET"
-    printf ' %bDir:%b %s  %bFiles:%b %d  %bSelected:%b %s  %bSort:%b %s%s\033[K\n' \
+    ui_move_to 2
+    printf ' %bDir:%b %s  %bFiles:%b %d  %bSelected:%b %s  %bSort:%b %s%s\033[K' \
         "$C_BOLD" "$C_RESET" "$(fit_text "$SEARCH_DIR" "$dir_width")" \
         "$C_BOLD" "$C_RESET" "${#ORDER[@]}" \
         "$C_BOLD" "$C_RESET" "$selected_total" \
-        "$C_BOLD" "$C_RESET" "$(sort_label "$SORT_BY")" "$(sort_arrow)"
-    printf ' %bArrows%b move  %bSpace%b select  %b1-7%b sort  %br%b reverse  %bEnter/q%b finish  %bEsc%b cancel\033[K\n' \
+        "$C_BOLD" "$C_RESET" "$(sort_label "$SORT_BY")" "$(sort_arrow)" >&3
+}
+
+draw_controls_line() {
+    ui_move_to 3
+    printf ' %bArrows%b move  %bSpace%b select  %bn%b rename  %b1-7%b sort  %br%b reverse  %bEnter/q%b finish  %bEsc%b cancel\033[K' \
         "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" \
-        "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET"
+        "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" >&3
+}
 
-    draw_border "$B_TL" "$B_TD" "$B_TR" "${HEADER_WIDTHS[@]}"
-
+draw_header_line() {
     local i
     local field
     local label
     local color
-    printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET"
+
+    ui_move_to 4
+    draw_border "$B_TL" "$B_TD" "$B_TR" "${HEADER_WIDTHS[@]}" >&3
+
+    ui_move_to "$HEADER_ROW"
+    printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET" >&3
     for i in "${!HEADER_FIELDS[@]}"; do
         field="${HEADER_FIELDS[i]}"
         case "$field" in
@@ -831,14 +936,18 @@ render_ui() {
             color="${C_BOLD}${C_WHITE}"
         fi
 
-        print_table_cell "$label" "${HEADER_WIDTHS[i]}" "$color"
+        print_table_cell "$label" "${HEADER_WIDTHS[i]}" "$color" >&3
     done
-    printf '\n'
+    printf '\033[K' >&3
 
-    draw_border "$B_TRG" "$B_X" "$B_TLF" "${HEADER_WIDTHS[@]}"
+    ui_move_to 6
+    draw_border "$B_TRG" "$B_X" "$B_TLF" "${HEADER_WIDTHS[@]}" >&3
+}
 
-    local row
-    local order_pos
+draw_data_row() {
+    local row="$1"
+    local screen_row=$((DATA_ROW_START + row))
+    local order_pos=$((SCROLL_OFFSET + row))
     local idx
     local marker
     local marker_color
@@ -847,76 +956,183 @@ render_ui() {
     local rec_color
     local dim_color
     local bit_color
+    local i
 
-    for ((row = 0; row < VISIBLE_ROWS; row++)); do
-        order_pos=$((SCROLL_OFFSET + row))
-        printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET"
+    ui_move_to "$screen_row"
+    printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET" >&3
 
-        if (( order_pos < ${#ORDER[@]} )); then
-            idx=${ORDER[order_pos]}
-            marker=' '
-            if (( order_pos == CURSOR_POS )) && [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
-                marker='>*'
-            elif (( order_pos == CURSOR_POS )); then
-                marker='>'
-            elif [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
-                marker='*'
-            fi
-
-            if (( order_pos == CURSOR_POS )); then
-                marker_color="${C_BOLD}${C_YELLOW}"
-                name_color="${C_BOLD}${C_CYAN}"
-            else
-                marker_color="${C_GRAY}"
-                name_color="${C_CYAN}"
-            fi
-
-            case "${FILE_CODECS[idx]}" in
-                h264) codec_color="${C_YELLOW}" ;;
-                hevc) codec_color="${C_BLUE}" ;;
-                av1) codec_color="${C_MAGENTA}" ;;
-                *) codec_color="${C_WHITE}" ;;
-            esac
-
-            if [[ "${FILE_RECOMMS[idx]}" == 'Yes' ]]; then
-                rec_color="${C_BOLD}${C_RED}"
-            else
-                rec_color="${C_DIM}${C_GRAY}"
-            fi
-
-            dim_color="${C_MAGENTA}"
-            bit_color="${C_GREEN}"
-
-            print_table_cell "$marker" "${HEADER_WIDTHS[0]}" "$marker_color"
-            print_table_cell "${FILES_NAME[idx]}" "${HEADER_WIDTHS[1]}" "$name_color"
-            print_table_cell "${FILE_SIZE_LABELS[idx]}" "${HEADER_WIDTHS[2]}" "$C_GREEN"
-            print_table_cell "${FILE_DURATION_LABELS[idx]}" "${HEADER_WIDTHS[3]}" "$C_WHITE"
-            print_table_cell "${FILE_CODECS[idx]}" "${HEADER_WIDTHS[4]}" "$codec_color"
-            print_table_cell "${FILE_RECOMMS[idx]}" "${HEADER_WIDTHS[5]}" "$rec_color"
-            print_table_cell "${FILE_DIMENSION_LABELS[idx]}" "${HEADER_WIDTHS[6]}" "$dim_color"
-            print_table_cell "${FILE_BITRATE_LABELS[idx]}" "${HEADER_WIDTHS[7]}" "$bit_color"
-        else
-            for i in "${!HEADER_WIDTHS[@]}"; do
-                print_table_cell '' "${HEADER_WIDTHS[i]}" "$C_WHITE"
-            done
+    if (( order_pos < ${#ORDER[@]} )); then
+        idx=${ORDER[order_pos]}
+        marker=' '
+        if (( order_pos == CURSOR_POS )) && [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
+            marker='>*'
+        elif (( order_pos == CURSOR_POS )); then
+            marker='>'
+        elif [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
+            marker='*'
         fi
-        printf '\n'
-    done
 
-    draw_border "$B_BL" "$B_TU" "$B_BR" "${HEADER_WIDTHS[@]}"
+        if (( order_pos == CURSOR_POS )); then
+            marker_color="${C_BOLD}${C_YELLOW}"
+            name_color="${C_BOLD}${C_CYAN}"
+        else
+            marker_color="${C_GRAY}"
+            name_color="${C_CYAN}"
+        fi
 
+        case "${FILE_CODECS[idx]}" in
+            h264) codec_color="${C_YELLOW}" ;;
+            hevc) codec_color="${C_BLUE}" ;;
+            av1) codec_color="${C_MAGENTA}" ;;
+            *) codec_color="${C_WHITE}" ;;
+        esac
+
+        if [[ "${FILE_RECOMMS[idx]}" == 'Yes' ]]; then
+            rec_color="${C_BOLD}${C_RED}"
+        else
+            rec_color="${C_DIM}${C_GRAY}"
+        fi
+
+        dim_color="${C_MAGENTA}"
+        bit_color="${C_GREEN}"
+
+        print_table_cell "$marker" "${HEADER_WIDTHS[0]}" "$marker_color" >&3
+        print_table_cell "${FILES_NAME[idx]}" "${HEADER_WIDTHS[1]}" "$name_color" >&3
+        print_table_cell "${FILE_SIZE_LABELS[idx]}" "${HEADER_WIDTHS[2]}" "$C_GREEN" >&3
+        print_table_cell "${FILE_DURATION_LABELS[idx]}" "${HEADER_WIDTHS[3]}" "$C_WHITE" >&3
+        print_table_cell "${FILE_CODECS[idx]}" "${HEADER_WIDTHS[4]}" "$codec_color" >&3
+        print_table_cell "${FILE_RECOMMS[idx]}" "${HEADER_WIDTHS[5]}" "$rec_color" >&3
+        print_table_cell "${FILE_DIMENSION_LABELS[idx]}" "${HEADER_WIDTHS[6]}" "$dim_color" >&3
+        print_table_cell "${FILE_BITRATE_LABELS[idx]}" "${HEADER_WIDTHS[7]}" "$bit_color" >&3
+    else
+        for i in "${!HEADER_WIDTHS[@]}"; do
+            print_table_cell '' "${HEADER_WIDTHS[i]}" "$C_WHITE" >&3
+        done
+    fi
+
+    printf '\033[K' >&3
+}
+
+draw_footer_line() {
+    local footer_row=$((DATA_ROW_START + VISIBLE_ROWS + 1))
     local total_pages=$(( (${#ORDER[@]} + VISIBLE_ROWS - 1) / VISIBLE_ROWS ))
     local current_page=$(( CURSOR_POS / VISIBLE_ROWS + 1 ))
+
     if (( total_pages == 0 )); then
         total_pages=1
         current_page=1
     fi
 
-    printf ' %bPage:%b %d/%d  %bCurrent:%b %d/%d  %bMouse:%b click headers to sort\033[K\n' \
+    ui_move_to "$footer_row"
+    printf ' %bPage:%b %d/%d  %bCurrent:%b %d/%d  %bMouse:%b click headers to sort\033[K' \
         "$C_BOLD" "$C_RESET" "$current_page" "$total_pages" \
         "$C_BOLD" "$C_RESET" "$((CURSOR_POS + 1))" "${#ORDER[@]}" \
-        "$C_BOLD" "$C_RESET"
-    printf ' %bOutput:%b selected videos are printed as quoted filenames.\033[K\n' "$C_BOLD" "$C_RESET"
+        "$C_BOLD" "$C_RESET" >&3
+}
+
+draw_status_line() {
+    local status_row=$((DATA_ROW_START + VISIBLE_ROWS + 2))
+    local message_width=$((TABLE_COLS - 10))
+
+    if (( message_width < 10 )); then
+        message_width=10
+    fi
+
+    ui_move_to "$status_row"
+    printf ' %bStatus:%b %b%s%b\033[K' \
+        "$C_BOLD" "$C_RESET" "$STATUS_COLOR" "$(fit_text "$STATUS_MESSAGE" "$message_width")" "$C_RESET" >&3
+}
+
+draw_bottom_border() {
+    ui_move_to "$((DATA_ROW_START + VISIBLE_ROWS))"
+    draw_border "$B_BL" "$B_TU" "$B_BR" "${HEADER_WIDTHS[@]}" >&3
+}
+
+render_ui() {
+    local selected_total
+    local row
+
+    if (( NEED_RESIZE )); then
+        build_layout
+        ensure_cursor_visible
+        NEED_RESIZE=0
+        FORCE_FULL_REDRAW=1
+    fi
+
+    selected_total=$(selected_count)
+
+    if (( TERMINAL_TOO_SMALL )); then
+        if (( FORCE_FULL_REDRAW || LAST_TERMINAL_TOO_SMALL != TERMINAL_TOO_SMALL )); then
+            printf '\033[2J' >&3
+            ui_move_to 1
+            printf ' %bVIDEO ANALYZER%b\033[K' "${C_BOLD}${C_CYAN}" "$C_RESET" >&3
+            ui_move_to 2
+            printf ' %bTerminal too small.%b Need at least 88x14, have %dx%d.\033[K' "$C_YELLOW" "$C_RESET" "$TABLE_COLS" "$TABLE_ROWS" >&3
+            ui_move_to 3
+            printf ' Resize the window, then keep using the same session.\033[K' >&3
+            ui_move_to 4
+            printf ' %bEnter/q%b finish  %bEsc%b cancel\033[K' "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" >&3
+        fi
+
+        LAST_TERMINAL_TOO_SMALL=$TERMINAL_TOO_SMALL
+        LAST_SELECTED_TOTAL=$selected_total
+        LAST_CURSOR_POS=$CURSOR_POS
+        LAST_SCROLL_OFFSET=$SCROLL_OFFSET
+        LAST_STATUS_MESSAGE="$STATUS_MESSAGE"
+        LAST_STATUS_COLOR="$STATUS_COLOR"
+        FORCE_FULL_REDRAW=0
+        FORCE_CURRENT_ROW_REDRAW=0
+        return 0
+    fi
+
+    if (( LAST_SCROLL_OFFSET != SCROLL_OFFSET )); then
+        FORCE_FULL_REDRAW=1
+    fi
+
+    if (( FORCE_FULL_REDRAW || LAST_TERMINAL_TOO_SMALL != TERMINAL_TOO_SMALL )); then
+        printf '\033[2J' >&3
+        draw_title_line
+        draw_info_line "$selected_total"
+        draw_controls_line
+        draw_header_line
+        for ((row = 0; row < VISIBLE_ROWS; row++)); do
+            draw_data_row "$row"
+        done
+        draw_bottom_border
+        draw_footer_line
+        draw_status_line
+    else
+        if (( LAST_SELECTED_TOTAL != selected_total )); then
+            draw_info_line "$selected_total"
+        fi
+
+        if (( LAST_CURSOR_POS != CURSOR_POS )); then
+            if (( LAST_CURSOR_POS >= SCROLL_OFFSET && LAST_CURSOR_POS < SCROLL_OFFSET + VISIBLE_ROWS )); then
+                draw_data_row "$((LAST_CURSOR_POS - SCROLL_OFFSET))"
+            fi
+            if (( CURSOR_POS >= SCROLL_OFFSET && CURSOR_POS < SCROLL_OFFSET + VISIBLE_ROWS )); then
+                draw_data_row "$((CURSOR_POS - SCROLL_OFFSET))"
+            fi
+            draw_footer_line
+        elif (( FORCE_CURRENT_ROW_REDRAW )); then
+            if (( CURSOR_POS >= SCROLL_OFFSET && CURSOR_POS < SCROLL_OFFSET + VISIBLE_ROWS )); then
+                draw_data_row "$((CURSOR_POS - SCROLL_OFFSET))"
+            fi
+        fi
+
+        if [[ "$STATUS_MESSAGE" != "$LAST_STATUS_MESSAGE" || "$STATUS_COLOR" != "$LAST_STATUS_COLOR" ]]; then
+            draw_status_line
+        fi
+    fi
+
+    LAST_TERMINAL_TOO_SMALL=$TERMINAL_TOO_SMALL
+    LAST_SELECTED_TOTAL=$selected_total
+    LAST_CURSOR_POS=$CURSOR_POS
+    LAST_SCROLL_OFFSET=$SCROLL_OFFSET
+    LAST_STATUS_MESSAGE="$STATUS_MESSAGE"
+    LAST_STATUS_COLOR="$STATUS_COLOR"
+    FORCE_FULL_REDRAW=0
+    FORCE_CURRENT_ROW_REDRAW=0
 }
 
 render_plain_table() {
@@ -1008,7 +1224,7 @@ if (( HAS_TTY )); then
 
     local_action=''
     while true; do
-        render_ui >&3
+        render_ui
         local_action=$(read_input)
         case "$local_action" in
             up)
@@ -1024,12 +1240,10 @@ if (( HAS_TTY )); then
                 move_cursor "$VISIBLE_ROWS"
                 ;;
             home)
-                CURSOR_POS=0
-                ensure_cursor_visible
+                set_cursor_position 0
                 ;;
             end)
-                CURSOR_POS=$(( ${#ORDER[@]} - 1 ))
-                ensure_cursor_visible
+                set_cursor_position $(( ${#ORDER[@]} - 1 ))
                 ;;
             left)
                 change_sort_column -1
@@ -1039,6 +1253,9 @@ if (( HAS_TTY )); then
                 ;;
             space)
                 toggle_current_selection
+                ;;
+            rename)
+                rename_current_video
                 ;;
             reverse)
                 reverse_sort
