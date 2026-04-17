@@ -1,10 +1,8 @@
 #!/usr/bin/env bash
-# Video Analyzer Script
-# A beautiful, btop-inspired script to analyze and sort video files using ffprobe.
+# Interactive video analyzer with keyboard and mouse sorting.
 
 set -euo pipefail
 
-# --- Configuration & Colors ---
 readonly C_RESET='\033[0m'
 readonly C_BOLD='\033[1m'
 readonly C_DIM='\033[2m'
@@ -15,11 +13,9 @@ readonly C_BLUE='\033[38;5;39m'
 readonly C_MAGENTA='\033[38;5;201m'
 readonly C_CYAN='\033[38;5;51m'
 readonly C_WHITE='\033[38;5;231m'
-readonly C_GRAY='\033[38;5;242m'
-readonly C_DARK_GRAY='\033[38;5;236m'
-readonly BG_TITLE='\033[48;5;238m'
+readonly C_GRAY='\033[38;5;245m'
+readonly C_DARK_GRAY='\033[38;5;240m'
 
-# Box drawing
 readonly B_TL="╭"
 readonly B_TR="╮"
 readonly B_BL="╰"
@@ -32,35 +28,954 @@ readonly B_TRG="├"
 readonly B_TLF="┤"
 readonly B_X="┼"
 
-# Defaults
+readonly MIN_FILE_NAME_WIDTH=14
+readonly HEADER_ROW=5
+readonly DATA_ROW_START=7
+readonly SORTABLE_FIELDS=(name size duration codec rec dimensions bitrate)
+
 SEARCH_DIR="."
-SORT_BY="none"
+SORT_BY="dimensions"
+SORT_DESC=1
 OUTPUT_FILE=""
 
+HAS_TTY=0
+UI_ACTIVE=0
+QUIT_WITHOUT_OUTPUT=0
+TTY_STATE=""
+CURSOR_POS=0
+SCROLL_OFFSET=0
+VISIBLE_ROWS=10
+TABLE_COLS=120
+TABLE_ROWS=24
+TERMINAL_TOO_SMALL=0
+NEED_RESIZE=1
+
+SORT_TMP=$(mktemp)
+
+declare -a FILES_PATH=()
+declare -a FILES_NAME=()
+declare -a FILE_SIZES=()
+declare -a FILE_SIZE_LABELS=()
+declare -a FILE_DURATIONS=()
+declare -a FILE_DURATION_LABELS=()
+declare -a FILE_CODECS=()
+declare -a FILE_RECOMMS=()
+declare -a FILE_WIDTHS=()
+declare -a FILE_HEIGHTS=()
+declare -a FILE_AREA_VALUES=()
+declare -a FILE_DIMENSION_LABELS=()
+declare -a FILE_BITRATES=()
+declare -a FILE_BITRATE_LABELS=()
+declare -a ORDER=()
+declare -a HEADER_FIELDS=()
+declare -a HEADER_WIDTHS=()
+declare -a HEADER_STARTS=()
+declare -a HEADER_ENDS=()
+declare -A SELECTED=()
+
 show_help() {
-    echo -e "${C_BOLD}${C_CYAN}Video Analyzer - Smart Media Info CLI${C_RESET}"
-    echo -e "Usage: $0 [options]"
-    echo ""
-    echo -e "Options:"
-    echo -e "  -d, --dir <path>     Directory to search for video files (default: current dir)"
-    echo -e "  -s, --sort <field>   Sort by: ${C_YELLOW}size${C_RESET}, ${C_YELLOW}length${C_RESET}, ${C_YELLOW}type${C_RESET}"
-    echo -e "  -o, --output <file>  Save beautiful output to a text file"
-    echo -e "  -h, --help           Show this help message"
-    echo ""
+    cat <<EOF
+Video Analyzer - interactive video picker
+
+Usage: $0 [options]
+
+Options:
+  -d, --dir <path>     Directory to search (default: current dir)
+  -s, --sort <field>   Initial sort: name, size, duration, codec, rec, dimensions, bitrate
+  -o, --output <file>  Write the final selected filenames to a file
+  -h, --help           Show this help message
+
+Interactive controls:
+  Up/Down              Move between videos
+  Left/Right           Change the sorted column
+  Space                Toggle the current video
+  1-7                  Sort by table column
+  r                    Reverse the current sort
+  Enter or q           Finish and print selected videos
+  Esc                  Cancel without output
+
+Mouse:
+  Click a header to change sort
+  Click a row to move the cursor
+EOF
 }
 
-# --- Argument Parsing ---
+die() {
+    printf '%bError:%b %s\n' "$C_RED" "$C_RESET" "$1" >&2
+    exit 1
+}
+
+normalize_sort_field() {
+    local field="${1,,}"
+    case "$field" in
+        ""|none|name|file|filename)
+            printf 'name'
+            ;;
+        size)
+            printf 'size'
+            ;;
+        duration|length|time)
+            printf 'duration'
+            ;;
+        codec|type)
+            printf 'codec'
+            ;;
+        rec|recommend|recommendation)
+            printf 'rec'
+            ;;
+        dimensions|dimension|resolution|res)
+            printf 'dimensions'
+            ;;
+        bitrate|bit-rate|rate)
+            printf 'bitrate'
+            ;;
+        *)
+            return 1
+            ;;
+    esac
+}
+
+default_sort_desc() {
+    case "$1" in
+        name|codec)
+            printf '0'
+            ;;
+        *)
+            printf '1'
+            ;;
+    esac
+}
+
+sort_label() {
+    case "$1" in
+        name) printf 'File Name' ;;
+        size) printf 'Size' ;;
+        duration) printf 'Duration' ;;
+        codec) printf 'Codec' ;;
+        rec) printf 'Rec.' ;;
+        dimensions) printf 'Dimensions' ;;
+        bitrate) printf 'Bitrate' ;;
+        *) printf '%s' "$1" ;;
+    esac
+}
+
+sort_arrow() {
+    if (( SORT_DESC )); then
+        printf ' v'
+    else
+        printf ' ^'
+    fi
+}
+
+format_bytes() {
+    local bytes="${1:-0}"
+    if (( bytes < 1024 )); then
+        printf '%d B' "$bytes"
+    elif (( bytes < 1048576 )); then
+        awk -v value="$bytes" 'BEGIN { printf "%.1f KB", value/1024 }'
+    elif (( bytes < 1073741824 )); then
+        awk -v value="$bytes" 'BEGIN { printf "%.1f MB", value/1048576 }'
+    else
+        awk -v value="$bytes" 'BEGIN { printf "%.2f GB", value/1073741824 }'
+    fi
+}
+
+format_duration() {
+    local seconds="${1:-0}"
+    if (( seconds < 0 )); then
+        seconds=0
+    fi
+
+    local hours=$((seconds / 3600))
+    local minutes=$(((seconds % 3600) / 60))
+    local remaining=$((seconds % 60))
+    printf '%02d:%02d:%02d' "$hours" "$minutes" "$remaining"
+}
+
+format_dimensions() {
+    local width="${1:-0}"
+    local height="${2:-0}"
+    if (( width > 0 && height > 0 )); then
+        printf '%dx%d' "$width" "$height"
+    else
+        printf 'N/A'
+    fi
+}
+
+format_bitrate() {
+    local bits="${1:-0}"
+    if (( bits <= 0 )); then
+        printf 'N/A'
+    elif (( bits < 1000000 )); then
+        awk -v value="$bits" 'BEGIN { printf "%.0f kb/s", value/1000 }'
+    else
+        awk -v value="$bits" 'BEGIN { printf "%.2f Mb/s", value/1000000 }'
+    fi
+}
+
+fit_text() {
+    local text="$1"
+    local width="$2"
+
+    if (( width <= 0 )); then
+        return 0
+    fi
+
+    if (( ${#text} <= width )); then
+        printf '%-*s' "$width" "$text"
+        return 0
+    fi
+
+    if (( width <= 3 )); then
+        printf '%s' "${text:0:width}"
+    else
+        printf '%-*s' "$width" "${text:0:width-3}..."
+    fi
+}
+
+repeat_char() {
+    local char="$1"
+    local count="$2"
+    local out=""
+    local i
+
+    for ((i = 0; i < count; i++)); do
+        out+="$char"
+    done
+
+    printf '%s' "$out"
+}
+
+quote_output() {
+    local value="$1"
+    value=${value//\\/\\\\}
+    value=${value//\"/\\\"}
+    value=${value//$'\t'/\\t}
+    value=${value//$'\n'/\\n}
+    printf '"%s"' "$value"
+}
+
+selected_count() {
+    local count=0
+    local idx
+    for idx in "${!SELECTED[@]}"; do
+        if (( SELECTED[$idx] )); then
+            ((count += 1))
+        fi
+    done
+    printf '%d' "$count"
+}
+
+draw_border() {
+    local left="$1"
+    local mid="$2"
+    local right="$3"
+    shift 3
+
+    local widths=("$@")
+    local i
+
+    printf '%b%s' "$C_DARK_GRAY" "$left"
+    for i in "${!widths[@]}"; do
+        repeat_char "$B_H" $((widths[i] + 2))
+        if (( i < ${#widths[@]} - 1 )); then
+            printf '%s' "$mid"
+        else
+            printf '%s%b\n' "$right" "$C_RESET"
+        fi
+    done
+}
+
+print_table_cell() {
+    local text="$1"
+    local width="$2"
+    local color="$3"
+    printf ' %b%s%b %b%s%b' "$color" "$(fit_text "$text" "$width")" "$C_RESET" "$C_DARK_GRAY" "$B_V" "$C_RESET"
+}
+
+check_dependencies() {
+    local cmd
+    for cmd in ffprobe jq find sort awk stty; do
+        command -v "$cmd" >/dev/null 2>&1 || die "$cmd is required but not installed."
+    done
+}
+
+cleanup_ui() {
+    if (( UI_ACTIVE == 0 )); then
+        return 0
+    fi
+
+    printf '\033[?1000l\033[?1006l\033[?25h\033[?1049l' >&3 2>/dev/null || true
+    if [[ -n "$TTY_STATE" ]]; then
+        stty "$TTY_STATE" <&4 2>/dev/null || true
+    fi
+    UI_ACTIVE=0
+}
+
+cleanup() {
+    local exit_code=$?
+
+    cleanup_ui
+    [[ -f "$SORT_TMP" ]] && rm -f "$SORT_TMP"
+
+    if (( HAS_TTY )); then
+        exec 3>&- 4<&- 2>/dev/null || true
+    fi
+
+    trap - EXIT
+    exit "$exit_code"
+}
+
+trap cleanup EXIT
+trap 'exit 130' INT TERM
+trap 'NEED_RESIZE=1' WINCH
+
+build_layout() {
+    local dimensions_width=10
+    local term_size
+    local fixed_width=50
+    local name_width
+
+    term_size=$(stty size <&4 2>/dev/null || printf '24 120')
+    TABLE_ROWS=${term_size%% *}
+    TABLE_COLS=${term_size##* }
+
+    if (( TABLE_ROWS < 14 || TABLE_COLS < 88 )); then
+        TERMINAL_TOO_SMALL=1
+    else
+        TERMINAL_TOO_SMALL=0
+    fi
+
+    name_width=$((TABLE_COLS - 25 - fixed_width))
+    if (( name_width < MIN_FILE_NAME_WIDTH )); then
+        name_width=$MIN_FILE_NAME_WIDTH
+    fi
+
+    HEADER_FIELDS=(mark name size duration codec rec dimensions bitrate)
+    HEADER_WIDTHS=(2 "$name_width" 9 8 8 4 "$dimensions_width" 9)
+
+    HEADER_STARTS=()
+    HEADER_ENDS=()
+
+    local x=1
+    local i
+    for i in "${!HEADER_FIELDS[@]}"; do
+        HEADER_STARTS[i]=$((x + 2))
+        HEADER_ENDS[i]=$((HEADER_STARTS[i] + HEADER_WIDTHS[i] - 1))
+        x=$((x + HEADER_WIDTHS[i] + 3))
+    done
+
+    VISIBLE_ROWS=$((TABLE_ROWS - 9))
+    if (( VISIBLE_ROWS < 4 )); then
+        VISIBLE_ROWS=4
+    fi
+}
+
+scan_videos() {
+    local -a candidates=()
+    local file
+
+    while IFS= read -r -d '' file; do
+        candidates+=("$file")
+    done < <(
+        find "$SEARCH_DIR" -maxdepth 1 -type f \
+            \( -iname '*.mp4' -o -iname '*.mkv' -o -iname '*.avi' -o -iname '*.mov' -o -iname '*.webm' \) \
+            -print0 | sort -z
+    )
+
+    if (( ${#candidates[@]} == 0 )); then
+        printf '%bNo video files found in%b %s\n' "$C_YELLOW" "$C_RESET" "$SEARCH_DIR"
+        exit 0
+    fi
+
+    local total=${#candidates[@]}
+    local index=0
+    local ff_out
+    local codec
+    local duration
+    local size
+    local width
+    local height
+    local bitrate
+    local area
+    local recomm
+
+    for file in "${candidates[@]}"; do
+        ((index += 1))
+        if (( HAS_TTY )); then
+            printf '\r%bScanning%b %d/%d: %s\033[K' "$C_GRAY" "$C_RESET" "$index" "$total" "${file##*/}" >&3
+        fi
+
+        ff_out=$(ffprobe -v error \
+            -show_entries format=size,duration,bit_rate:stream=codec_type,codec_name,width,height,bit_rate \
+            -of json "$file" 2>/dev/null || printf '{}')
+
+        IFS=$'\t' read -r codec duration size width height bitrate < <(
+            jq -r '
+                ([.streams[]? | select(.codec_type == "video")][0]) as $video
+                | [
+                    ($video.codec_name // "unknown"),
+                    ((.format.duration // 0) | tonumber? // 0 | floor),
+                    ((.format.size // 0) | tonumber? // 0 | floor),
+                    (($video.width // 0) | tonumber? // 0),
+                    (($video.height // 0) | tonumber? // 0),
+                    (($video.bit_rate // .format.bit_rate // 0) | tonumber? // 0 | floor)
+                  ]
+                | @tsv
+            ' <<<"$ff_out"
+        )
+
+        codec=${codec:-unknown}
+        duration=${duration:-0}
+        size=${size:-0}
+        width=${width:-0}
+        height=${height:-0}
+        bitrate=${bitrate:-0}
+        area=$((width * height))
+
+        recomm="No"
+        if [[ "$codec" != "av1" && "$codec" != "unknown" && "$size" -gt 52428800 ]]; then
+            recomm="Yes"
+        fi
+
+        FILES_PATH+=("$file")
+        FILES_NAME+=("${file##*/}")
+        FILE_SIZES+=("$size")
+        FILE_SIZE_LABELS+=("$(format_bytes "$size")")
+        FILE_DURATIONS+=("$duration")
+        FILE_DURATION_LABELS+=("$(format_duration "$duration")")
+        FILE_CODECS+=("$codec")
+        FILE_RECOMMS+=("$recomm")
+        FILE_WIDTHS+=("$width")
+        FILE_HEIGHTS+=("$height")
+        FILE_AREA_VALUES+=("$area")
+        FILE_DIMENSION_LABELS+=("$(format_dimensions "$width" "$height")")
+        FILE_BITRATES+=("$bitrate")
+        FILE_BITRATE_LABELS+=("$(format_bitrate "$bitrate")")
+    done
+
+    if (( HAS_TTY )); then
+        printf '\r\033[K' >&3
+    fi
+}
+
+sort_records() {
+    : > "$SORT_TMP"
+
+    local i
+    local rec_rank
+    local -a sort_cmd=(sort -t $'\t' -s)
+
+    case "$SORT_BY" in
+        name)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%s\t%s\t%d\n' "${FILES_NAME[i],,}" "${FILES_NAME[i]}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2)
+            ;;
+        size)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%020d\t%s\t%d\n' "${FILE_SIZES[i]}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2)
+            ;;
+        duration)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%020d\t%s\t%d\n' "${FILE_DURATIONS[i]}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2)
+            ;;
+        codec)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%s\t%s\t%d\n' "${FILE_CODECS[i],,}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2)
+            ;;
+        rec)
+            for i in "${!FILES_NAME[@]}"; do
+                if [[ "${FILE_RECOMMS[i]}" == 'Yes' ]]; then
+                    rec_rank=1
+                else
+                    rec_rank=0
+                fi
+                printf '%01d\t%020d\t%s\t%d\n' "$rec_rank" "${FILE_SIZES[i]}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2 -k3,3)
+            ;;
+        dimensions)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%020d\t%06d\t%06d\t%s\t%d\n' \
+                    "${FILE_AREA_VALUES[i]}" "${FILE_WIDTHS[i]}" "${FILE_HEIGHTS[i]}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2 -k3,3 -k4,4)
+            ;;
+        bitrate)
+            for i in "${!FILES_NAME[@]}"; do
+                printf '%020d\t%s\t%d\n' "${FILE_BITRATES[i]}" "${FILES_NAME[i],,}" "$i" >> "$SORT_TMP"
+            done
+            sort_cmd+=(-k1,1 -k2,2)
+            ;;
+        *)
+            die "Unsupported sort field: $SORT_BY"
+            ;;
+    esac
+
+    if (( SORT_DESC )); then
+        sort_cmd+=(-r)
+    fi
+
+    mapfile -t ORDER < <("${sort_cmd[@]}" "$SORT_TMP" | awk -F '\t' '{print $NF}')
+}
+
+find_order_position() {
+    local target="$1"
+    local pos
+    for pos in "${!ORDER[@]}"; do
+        if [[ "${ORDER[pos]}" == "$target" ]]; then
+            printf '%d' "$pos"
+            return 0
+        fi
+    done
+    printf '0'
+}
+
+ensure_cursor_visible() {
+    local max_index=$(( ${#ORDER[@]} - 1 ))
+    if (( max_index < 0 )); then
+        CURSOR_POS=0
+        SCROLL_OFFSET=0
+        return 0
+    fi
+
+    if (( CURSOR_POS < 0 )); then
+        CURSOR_POS=0
+    elif (( CURSOR_POS > max_index )); then
+        CURSOR_POS=$max_index
+    fi
+
+    if (( CURSOR_POS < SCROLL_OFFSET )); then
+        SCROLL_OFFSET=$CURSOR_POS
+    elif (( CURSOR_POS >= SCROLL_OFFSET + VISIBLE_ROWS )); then
+        SCROLL_OFFSET=$((CURSOR_POS - VISIBLE_ROWS + 1))
+    fi
+
+    if (( SCROLL_OFFSET < 0 )); then
+        SCROLL_OFFSET=0
+    fi
+}
+
+apply_sort() {
+    local current_item="${ORDER[CURSOR_POS]:-0}"
+    sort_records
+    CURSOR_POS=$(find_order_position "$current_item")
+    ensure_cursor_visible
+}
+
+set_sort_field() {
+    local field="$1"
+    if [[ "$field" == "$SORT_BY" ]]; then
+        SORT_DESC=$((1 - SORT_DESC))
+    else
+        SORT_BY="$field"
+        SORT_DESC=$(default_sort_desc "$field")
+    fi
+    apply_sort
+}
+
+reverse_sort() {
+    SORT_DESC=$((1 - SORT_DESC))
+    apply_sort
+}
+
+change_sort_column() {
+    local offset="$1"
+    local i
+    for i in "${!SORTABLE_FIELDS[@]}"; do
+        if [[ "${SORTABLE_FIELDS[i]}" == "$SORT_BY" ]]; then
+            local next=$(((i + offset + ${#SORTABLE_FIELDS[@]}) % ${#SORTABLE_FIELDS[@]}))
+            SORT_BY="${SORTABLE_FIELDS[next]}"
+            SORT_DESC=$(default_sort_desc "$SORT_BY")
+            apply_sort
+            return 0
+        fi
+    done
+}
+
+move_cursor() {
+    local delta="$1"
+    CURSOR_POS=$((CURSOR_POS + delta))
+    ensure_cursor_visible
+}
+
+toggle_current_selection() {
+    local index="${ORDER[CURSOR_POS]}"
+    local current="${SELECTED[$index]:-0}"
+    SELECTED["$index"]=$((1 - current))
+}
+
+setup_ui() {
+    TTY_STATE=$(stty -g <&4)
+    stty -echo -icanon min 1 time 0 <&4
+    printf '\033[?1049h\033[?25l\033[?1000h\033[?1006h' >&3
+    UI_ACTIVE=1
+}
+
+read_input() {
+    local key=""
+    local extra=""
+    local tail=""
+    local ch=""
+
+    IFS= read -rsn1 -u 4 key || return 1
+
+    case "$key" in
+        '')
+            printf 'enter'
+            ;;
+        $'\n'|$'\r')
+            printf 'enter'
+            ;;
+        ' ')
+            printf 'space'
+            ;;
+        q|Q)
+            printf 'finish'
+            ;;
+        r|R)
+            printf 'reverse'
+            ;;
+        1)
+            printf 'sort:name'
+            ;;
+        2)
+            printf 'sort:size'
+            ;;
+        3)
+            printf 'sort:duration'
+            ;;
+        4)
+            printf 'sort:codec'
+            ;;
+        5)
+            printf 'sort:rec'
+            ;;
+        6)
+            printf 'sort:dimensions'
+            ;;
+        7)
+            printf 'sort:bitrate'
+            ;;
+        $'\e')
+            if IFS= read -rsn1 -t 0.01 -u 4 extra; then
+                if [[ "$extra" == '[' ]]; then
+                    if IFS= read -rsn1 -t 0.01 -u 4 extra; then
+                        case "$extra" in
+                            A) printf 'up' ;;
+                            B) printf 'down' ;;
+                            C) printf 'right' ;;
+                            D) printf 'left' ;;
+                            H) printf 'home' ;;
+                            F) printf 'end' ;;
+                            5)
+                                IFS= read -rsn1 -t 0.01 -u 4 ch || true
+                                printf 'pageup'
+                                ;;
+                            6)
+                                IFS= read -rsn1 -t 0.01 -u 4 ch || true
+                                printf 'pagedown'
+                                ;;
+                            '<')
+                                while IFS= read -rsn1 -t 0.01 -u 4 ch; do
+                                    tail+="$ch"
+                                    if [[ "$ch" == 'M' || "$ch" == 'm' ]]; then
+                                        break
+                                    fi
+                                done
+                                printf 'mouse:%s' "$tail"
+                                ;;
+                            *)
+                                printf 'escape'
+                                ;;
+                        esac
+                    else
+                        printf 'escape'
+                    fi
+                else
+                    printf 'escape'
+                fi
+            else
+                printf 'escape'
+            fi
+            ;;
+        *)
+            printf '%s' "$key"
+            ;;
+    esac
+}
+
+handle_header_click() {
+    local column="$1"
+    local i
+    for i in "${!HEADER_FIELDS[@]}"; do
+        if (( column >= HEADER_STARTS[i] && column <= HEADER_ENDS[i] )); then
+            if [[ "${HEADER_FIELDS[i]}" != 'mark' ]]; then
+                set_sort_field "${HEADER_FIELDS[i]}"
+            fi
+            return 0
+        fi
+    done
+}
+
+handle_mouse_event() {
+    local payload="$1"
+    local kind="${payload: -1}"
+    local body="${payload%?}"
+    local button
+    local column
+    local row
+    local target_row
+
+    IFS=';' read -r button column row <<< "$body"
+
+    if [[ "$kind" != 'M' ]]; then
+        return 0
+    fi
+
+    if (( button == 64 )); then
+        move_cursor -3
+        return 0
+    fi
+
+    if (( button == 65 )); then
+        move_cursor 3
+        return 0
+    fi
+
+    if (( (button & 3) != 0 )); then
+        return 0
+    fi
+
+    if (( row == HEADER_ROW )); then
+        handle_header_click "$column"
+        return 0
+    fi
+
+    if (( row >= DATA_ROW_START && row < DATA_ROW_START + VISIBLE_ROWS )); then
+        target_row=$((SCROLL_OFFSET + row - DATA_ROW_START))
+        if (( target_row >= 0 && target_row < ${#ORDER[@]} )); then
+            CURSOR_POS=$target_row
+            ensure_cursor_visible
+        fi
+    fi
+}
+
+render_ui() {
+    if (( NEED_RESIZE )); then
+        build_layout
+        ensure_cursor_visible
+        NEED_RESIZE=0
+    fi
+
+    printf '\033[2J\033[H'
+
+    if (( TERMINAL_TOO_SMALL )); then
+        printf ' %bVIDEO ANALYZER%b\n' "$C_BOLD$C_CYAN" "$C_RESET"
+        printf ' %bTerminal too small.%b Need at least 88x14, have %dx%d.\n' "$C_YELLOW" "$C_RESET" "$TABLE_COLS" "$TABLE_ROWS"
+        printf ' Resize the window, then keep using the same session.\n'
+        printf ' %bEnter/q%b finish  %bEsc%b cancel\033[K\n' "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET"
+        return 0
+    fi
+
+    local selected_total
+    selected_total=$(selected_count)
+
+    local dir_width=$((TABLE_COLS - 46))
+    if (( dir_width < 10 )); then
+        dir_width=10
+    fi
+
+    printf ' %bVIDEO ANALYZER%b\033[K\n' "$C_BOLD$C_CYAN" "$C_RESET"
+    printf ' %bDir:%b %s  %bFiles:%b %d  %bSelected:%b %s  %bSort:%b %s%s\033[K\n' \
+        "$C_BOLD" "$C_RESET" "$(fit_text "$SEARCH_DIR" "$dir_width")" \
+        "$C_BOLD" "$C_RESET" "${#ORDER[@]}" \
+        "$C_BOLD" "$C_RESET" "$selected_total" \
+        "$C_BOLD" "$C_RESET" "$(sort_label "$SORT_BY")" "$(sort_arrow)"
+    printf ' %bArrows%b move  %bSpace%b select  %b1-7%b sort  %br%b reverse  %bEnter/q%b finish  %bEsc%b cancel\033[K\n' \
+        "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" \
+        "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET" "$C_BOLD" "$C_RESET"
+
+    draw_border "$B_TL" "$B_TD" "$B_TR" "${HEADER_WIDTHS[@]}"
+
+    local i
+    local field
+    local label
+    local color
+    printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET"
+    for i in "${!HEADER_FIELDS[@]}"; do
+        field="${HEADER_FIELDS[i]}"
+        case "$field" in
+            mark) label='Mk' ;;
+            name) label='File Name' ;;
+            size) label='Size' ;;
+            duration) label='Duration' ;;
+            codec) label='Codec' ;;
+            rec) label='Rec.' ;;
+            dimensions) label='Dimensions' ;;
+            bitrate) label='Bitrate' ;;
+        esac
+
+        if [[ "$field" == "$SORT_BY" ]]; then
+            color="${C_BOLD}${C_YELLOW}"
+            label+=$(sort_arrow)
+        else
+            color="${C_BOLD}${C_WHITE}"
+        fi
+
+        print_table_cell "$label" "${HEADER_WIDTHS[i]}" "$color"
+    done
+    printf '\n'
+
+    draw_border "$B_TRG" "$B_X" "$B_TLF" "${HEADER_WIDTHS[@]}"
+
+    local row
+    local order_pos
+    local idx
+    local marker
+    local marker_color
+    local name_color
+    local codec_color
+    local rec_color
+    local dim_color
+    local bit_color
+
+    for ((row = 0; row < VISIBLE_ROWS; row++)); do
+        order_pos=$((SCROLL_OFFSET + row))
+        printf '%b%s%b' "$C_DARK_GRAY" "$B_V" "$C_RESET"
+
+        if (( order_pos < ${#ORDER[@]} )); then
+            idx=${ORDER[order_pos]}
+            marker=' '
+            if (( order_pos == CURSOR_POS )) && [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
+                marker='>*'
+            elif (( order_pos == CURSOR_POS )); then
+                marker='>'
+            elif [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
+                marker='*'
+            fi
+
+            if (( order_pos == CURSOR_POS )); then
+                marker_color="${C_BOLD}${C_YELLOW}"
+                name_color="${C_BOLD}${C_CYAN}"
+            else
+                marker_color="${C_GRAY}"
+                name_color="${C_CYAN}"
+            fi
+
+            case "${FILE_CODECS[idx]}" in
+                h264) codec_color="${C_YELLOW}" ;;
+                hevc) codec_color="${C_BLUE}" ;;
+                av1) codec_color="${C_MAGENTA}" ;;
+                *) codec_color="${C_WHITE}" ;;
+            esac
+
+            if [[ "${FILE_RECOMMS[idx]}" == 'Yes' ]]; then
+                rec_color="${C_BOLD}${C_RED}"
+            else
+                rec_color="${C_DIM}${C_GRAY}"
+            fi
+
+            dim_color="${C_MAGENTA}"
+            bit_color="${C_GREEN}"
+
+            print_table_cell "$marker" "${HEADER_WIDTHS[0]}" "$marker_color"
+            print_table_cell "${FILES_NAME[idx]}" "${HEADER_WIDTHS[1]}" "$name_color"
+            print_table_cell "${FILE_SIZE_LABELS[idx]}" "${HEADER_WIDTHS[2]}" "$C_GREEN"
+            print_table_cell "${FILE_DURATION_LABELS[idx]}" "${HEADER_WIDTHS[3]}" "$C_WHITE"
+            print_table_cell "${FILE_CODECS[idx]}" "${HEADER_WIDTHS[4]}" "$codec_color"
+            print_table_cell "${FILE_RECOMMS[idx]}" "${HEADER_WIDTHS[5]}" "$rec_color"
+            print_table_cell "${FILE_DIMENSION_LABELS[idx]}" "${HEADER_WIDTHS[6]}" "$dim_color"
+            print_table_cell "${FILE_BITRATE_LABELS[idx]}" "${HEADER_WIDTHS[7]}" "$bit_color"
+        else
+            for i in "${!HEADER_WIDTHS[@]}"; do
+                print_table_cell '' "${HEADER_WIDTHS[i]}" "$C_WHITE"
+            done
+        fi
+        printf '\n'
+    done
+
+    draw_border "$B_BL" "$B_TU" "$B_BR" "${HEADER_WIDTHS[@]}"
+
+    local total_pages=$(( (${#ORDER[@]} + VISIBLE_ROWS - 1) / VISIBLE_ROWS ))
+    local current_page=$(( CURSOR_POS / VISIBLE_ROWS + 1 ))
+    if (( total_pages == 0 )); then
+        total_pages=1
+        current_page=1
+    fi
+
+    printf ' %bPage:%b %d/%d  %bCurrent:%b %d/%d  %bMouse:%b click headers to sort\033[K\n' \
+        "$C_BOLD" "$C_RESET" "$current_page" "$total_pages" \
+        "$C_BOLD" "$C_RESET" "$((CURSOR_POS + 1))" "${#ORDER[@]}" \
+        "$C_BOLD" "$C_RESET"
+    printf ' %bOutput:%b selected videos are printed as quoted filenames.\033[K\n' "$C_BOLD" "$C_RESET"
+}
+
+render_plain_table() {
+    local idx
+    printf '%-34s %-9s %-8s %-8s %-4s %-10s %-9s\n' 'File Name' 'Size' 'Duration' 'Codec' 'Rec.' 'Dimensions' 'Bitrate'
+    for idx in "${ORDER[@]}"; do
+        printf '%-34s %-9s %-8s %-8s %-4s %-10s %-9s\n' \
+            "$(fit_text "${FILES_NAME[idx]}" 34)" \
+            "${FILE_SIZE_LABELS[idx]}" \
+            "${FILE_DURATION_LABELS[idx]}" \
+            "${FILE_CODECS[idx]}" \
+            "${FILE_RECOMMS[idx]}" \
+            "${FILE_DIMENSION_LABELS[idx]}" \
+            "${FILE_BITRATE_LABELS[idx]}"
+    done
+}
+
+write_sorted_output_file() {
+    local idx
+    : > "$OUTPUT_FILE"
+    for idx in "${ORDER[@]}"; do
+        quote_output "${FILES_NAME[idx]}" >> "$OUTPUT_FILE"
+        printf '\n' >> "$OUTPUT_FILE"
+    done
+}
+
+write_selected_output() {
+    local idx
+    local line
+
+    if [[ -n "$OUTPUT_FILE" ]]; then
+        : > "$OUTPUT_FILE"
+    fi
+
+    for idx in "${ORDER[@]}"; do
+        if [[ "${SELECTED[$idx]:-0}" == '1' ]]; then
+            line=$(quote_output "${FILES_NAME[idx]}")
+            printf '%s\n' "$line"
+            if [[ -n "$OUTPUT_FILE" ]]; then
+                printf '%s\n' "$line" >> "$OUTPUT_FILE"
+            fi
+        fi
+    done
+}
+
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -d|--dir)
+            [[ $# -ge 2 ]] || die "Missing value for $1"
             SEARCH_DIR="$2"
             shift 2
             ;;
         -s|--sort)
+            [[ $# -ge 2 ]] || die "Missing value for $1"
             SORT_BY="$2"
             shift 2
             ;;
         -o|--output)
+            [[ $# -ge 2 ]] || die "Missing value for $1"
             OUTPUT_FILE="$2"
             shift 2
             ;;
@@ -69,181 +984,89 @@ while [[ $# -gt 0 ]]; do
             exit 0
             ;;
         *)
-            echo -e "${C_RED}Unknown option: $1${C_RESET}"
-            show_help
-            exit 1
+            die "Unknown option: $1"
             ;;
     esac
 done
 
-if ! command -v ffprobe &> /dev/null; then
-    echo -e "${C_RED}Error: ffprobe (ffmpeg) is required but not installed.${C_RESET}"
-    exit 1
+[[ -d "$SEARCH_DIR" ]] || die "Directory not found: $SEARCH_DIR"
+
+check_dependencies
+
+SORT_BY=$(normalize_sort_field "$SORT_BY") || die "Unsupported sort field: $SORT_BY"
+SORT_DESC=$(default_sort_desc "$SORT_BY")
+
+if exec 3>/dev/tty 4</dev/tty; then
+    HAS_TTY=1
 fi
 
-# --- Helper Functions ---
-format_bytes() {
-    local -i bytes=$1
-    if [[ $bytes -lt 1024 ]]; then
-        echo "${bytes} B"
-    elif [[ $bytes -lt 1048576 ]]; then
-        awk "BEGIN { printf \"%.1f KB\", $bytes/1024 }"
-    elif [[ $bytes -lt 1073741824 ]]; then
-        awk "BEGIN { printf \"%.1f MB\", $bytes/1048576 }"
-    else
-        awk "BEGIN { printf \"%.2f GB\", $bytes/1073741824 }"
+scan_videos
+sort_records
+
+if (( HAS_TTY )); then
+    setup_ui
+
+    local_action=''
+    while true; do
+        render_ui >&3
+        local_action=$(read_input)
+        case "$local_action" in
+            up)
+                move_cursor -1
+                ;;
+            down)
+                move_cursor 1
+                ;;
+            pageup)
+                move_cursor "-$VISIBLE_ROWS"
+                ;;
+            pagedown)
+                move_cursor "$VISIBLE_ROWS"
+                ;;
+            home)
+                CURSOR_POS=0
+                ensure_cursor_visible
+                ;;
+            end)
+                CURSOR_POS=$(( ${#ORDER[@]} - 1 ))
+                ensure_cursor_visible
+                ;;
+            left)
+                change_sort_column -1
+                ;;
+            right)
+                change_sort_column 1
+                ;;
+            space)
+                toggle_current_selection
+                ;;
+            reverse)
+                reverse_sort
+                ;;
+            sort:*)
+                set_sort_field "${local_action#sort:}"
+                ;;
+            mouse:*)
+                handle_mouse_event "${local_action#mouse:}"
+                ;;
+            enter|finish)
+                break
+                ;;
+            escape)
+                QUIT_WITHOUT_OUTPUT=1
+                break
+                ;;
+        esac
+    done
+
+    cleanup_ui
+
+    if (( QUIT_WITHOUT_OUTPUT == 0 )); then
+        write_selected_output
     fi
-}
-
-format_duration() {
-    local seconds=$(printf "%.0f" "$1" 2>/dev/null || echo 0)
-    local h=$((seconds / 3660))
-    local m=$(( (seconds % 3600) / 60 ))
-    local s=$((seconds % 60))
-    printf "%02d:%02d:%02d" $h $m $s
-}
-
-strip_ansi() {
-    sed 's/\x1b\[[0-9;]*m//g'
-}
-
-# Arrays to store data
-declare -a FILES
-declare -a SIZES
-declare -a DURATIONS
-declare -a CODECS
-declare -a RECOMMS
-
-echo -e "${C_GRAY}Scanning for videos in ${C_BOLD}${SEARCH_DIR}${C_RESET}..."
-
-# Create a temporary file to store intermediate lines before sorting
-TMP_DATA=$(mktemp)
-trap 'rm -f "$TMP_DATA"' EXIT
-
-# Find common video files
-find "$SEARCH_DIR" -maxdepth 1 -type f \
-    \( -iname "*.mp4" -o -iname "*.mkv" -o -iname "*.avi" -o -iname "*.mov" -o -iname "*.webm" \) | while read -r file; do
-    
-    # Run ffprobe
-    # Extract duration, size, format name, video codec.
-    ff_out=$(ffprobe -v error -select_streams v:0 \
-        -show_entries format=size,duration:stream=codec_name \
-        -of json "$file" 2>/dev/null || echo "{}")
-    
-    if [[ -n "$ff_out" && "$ff_out" != "{}" ]]; then
-        codec=$(echo "$ff_out" | jq -r '.streams[0].codec_name // "unknown"' | head -n1)
-        duration=$(echo "$ff_out" | jq -r '.format.duration // "0"' | head -n1)
-        size=$(echo "$ff_out" | jq -r '.format.size // "0"' | head -n1)
-        
-        # Clean up non-numeric characters to prevent bash syntax errors
-        size="${size//[^0-9]/}"
-        duration="${duration//[^0-9.]/}"
-        
-        # Fallbacks
-        [[ -z "$duration" || "$duration" == "null" || "$duration" == "N/A" ]] && duration="0"
-        [[ -z "$size" || "$size" == "null" || "$size" == "N/A" ]] && size="0"
-        [[ -z "$codec" || "$codec" == "null" ]] && codec="unknown"
-
-        # Logic for AV1 recommendation
-        # If it's av1, vp9, or hevc, maybe it's already good.
-        # But let's recommend AV1 for everything except AV1 itselt to save maximum space if the size is large enough.
-        # E.g. if size > 50MB and codec != av1
-        recomm="No"
-        if [[ "$codec" != "av1" && "$codec" != "unknown" ]]; then
-            if [[ "$size" -gt 52428800 ]]; then # > 50MB
-                recomm="Yes"
-            fi
-        fi
-
-        basename=$(basename "$file")
-        printf "%s\t%s\t%s\t%s\t%s\n" "$basename" "$size" "$duration" "$codec" "$recomm" >> "$TMP_DATA"
+else
+    render_plain_table
+    if [[ -n "$OUTPUT_FILE" ]]; then
+        write_sorted_output_file
     fi
-done
-
-total_files=$(wc -l < "$TMP_DATA")
-if [[ $total_files -eq 0 ]]; then
-    echo -e "${C_YELLOW}No video files found.${C_RESET}"
-    exit 0
-fi
-
-# --- Sorting ---
-# Data columns: 1=Name, 2=Size, 3=Duration, 4=Codec, 5=Recomm
-SORTED_DATA=$(mktemp)
-trap 'rm -f "$TMP_DATA" "$SORTED_DATA"' EXIT
-
-case "$SORT_BY" in
-    size)   sort -t$'\t' -k2,2nr "$TMP_DATA" > "$SORTED_DATA" ;;
-    length) sort -t$'\t' -k3,3nr "$TMP_DATA" > "$SORTED_DATA" ;;
-    type)   sort -t$'\t' -k4,4   "$TMP_DATA" > "$SORTED_DATA" ;;
-    *)      cp "$TMP_DATA" "$SORTED_DATA" ;;
-esac
-
-# --- Rendering the UI ---
-UI_OUT=$(mktemp)
-trap 'rm -f "$TMP_DATA" "$SORTED_DATA" "$UI_OUT"' EXIT
-
-draw_horizontal_line() {
-    local left=$1
-    local mid=$2
-    local right=$3
-    printf "${C_DARK_GRAY}%s" "$left"
-    for _ in {1..35}; do printf "%s" "$B_H"; done; printf "%s" "$mid" # Filename
-    for _ in {1..12}; do printf "%s" "$B_H"; done; printf "%s" "$mid" # Size
-    for _ in {1..12}; do printf "%s" "$B_H"; done; printf "%s" "$mid" # Duration
-    for _ in {1..10}; do printf "%s" "$B_H"; done; printf "%s" "$mid" # Codec
-    for _ in {1..12}; do printf "%s" "$B_H"; done; printf "%s${C_RESET}\n" "$right" # Recomm
-}
-
-{
-    echo -e ""
-    echo -e " ${C_BOLD}${C_BLUE}❖ VIDEO ANALYZER ❖${C_RESET}   ${C_DIM}Tot. Files: ${total_files}${C_RESET}   ${C_DIM}Sort: ${SORT_BY}${C_RESET}"
-    echo -e ""
-    draw_horizontal_line "$B_TL" "$B_TD" "$B_TR"
-    
-    # Header
-    printf "${C_DARK_GRAY}${B_V} ${C_BOLD}${C_WHITE}%-34s ${C_DARK_GRAY}${B_V} ${C_BOLD}${C_WHITE}%-11s ${C_DARK_GRAY}${B_V} ${C_BOLD}${C_WHITE}%-11s ${C_DARK_GRAY}${B_V} ${C_BOLD}${C_WHITE}%-9s ${C_DARK_GRAY}${B_V} ${C_BOLD}${C_WHITE}%-11s ${C_DARK_GRAY}${B_V}${C_RESET}\n" \
-        "Filename" "Size" "Duration" "Codec" "Rec. AV1?"
-    
-    draw_horizontal_line "$B_TRG" "$B_X" "$B_TLF"
-
-    while IFS=$'\t' read -r name size dur codec rec; do
-        # Truncate name
-        if [[ ${#name} -gt 33 ]]; then
-            display_name="${name:0:30}..."
-        else
-            display_name="$name"
-        fi
-
-        # Formats
-        disp_size=$(format_bytes "$size")
-        disp_dur=$(format_duration "$dur")
-        
-        # Coloring
-        c_name="${C_CYAN}"
-        c_size="${C_GREEN}"
-        
-        if [[ "$codec" == "h264" ]]; then c_cod="${C_YELLOW}"
-        elif [[ "$codec" == "hevc" ]]; then c_cod="${C_BLUE}"
-        elif [[ "$codec" == "av1" ]]; then c_cod="${C_MAGENTA}"
-        else c_cod="${C_WHITE}"; fi
-
-        if [[ "$rec" == "Yes" ]]; then c_rec="${C_BOLD}${C_RED}"
-        else c_rec="${C_DIM}${C_GRAY}"; fi
-
-        printf "${C_DARK_GRAY}${B_V} ${c_name}%-34s ${C_DARK_GRAY}${B_V} ${c_size}%-11s ${C_DARK_GRAY}${B_V} ${C_WHITE}%-11s ${C_DARK_GRAY}${B_V} ${c_cod}%-9s ${C_DARK_GRAY}${B_V} ${c_rec}%-11s ${C_DARK_GRAY}${B_V}${C_RESET}\n" \
-            "$display_name" "$disp_size" "$disp_dur" "$codec" "$rec"
-
-    done < "$SORTED_DATA"
-
-    draw_horizontal_line "$B_BL" "$B_TU" "$B_BR"
-    echo ""
-} > "$UI_OUT"
-
-# Output display
-cat "$UI_OUT"
-
-if [[ -n "$OUTPUT_FILE" ]]; then
-    # Strip ansi codes and export
-    strip_ansi < "$UI_OUT" > "$OUTPUT_FILE"
-    echo -e "${C_GREEN}✔ Output successfully saved to ${C_BOLD}$OUTPUT_FILE${C_RESET}"
 fi
