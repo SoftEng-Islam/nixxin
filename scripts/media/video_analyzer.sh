@@ -1057,6 +1057,7 @@ render_ui() {
         ensure_cursor_visible
         NEED_RESIZE=0
         FORCE_FULL_REDRAW=1
+        printf '\033[2J' >&3
     fi
 
     selected_total=$(selected_count)
@@ -1090,7 +1091,9 @@ render_ui() {
     fi
 
     if (( FORCE_FULL_REDRAW || LAST_TERMINAL_TOO_SMALL != TERMINAL_TOO_SMALL )); then
-        printf '\033[2J' >&3
+        if (( LAST_TERMINAL_TOO_SMALL != TERMINAL_TOO_SMALL )); then
+            printf '\033[2J' >&3
+        fi
         draw_title_line
         draw_info_line "$selected_total"
         draw_controls_line
