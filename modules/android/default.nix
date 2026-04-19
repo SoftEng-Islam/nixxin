@@ -33,9 +33,6 @@ in
 
       # Android's repo management tool
       git-repo
-
-      # Fast and easy Android emulation
-      # genymotion
     ];
   };
   # Adds the current user to the ADB users group.
