@@ -1,0 +1,351 @@
+<!DOCTYPE html><html lang=en data-bs-theme=light> <head><meta charset=utf-8><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=viewport content="width=device-width, initial-scale=1.0"><meta name=author content=SoftEng-Islam><link href=https://softeng-islam.github.io/nixxin/configuration/hardware/ rel=canonical><link rel="shortcut icon" href=../../img/favicon.ico><title>Hardware Support - Nixxin Documentation</title><link href=../../css/bootstrap.min.css rel=stylesheet><link href=../../css/fontawesome.min.css rel=stylesheet><link href=../../css/brands.min.css rel=stylesheet><link href=../../css/solid.min.css rel=stylesheet><link href=../../css/v4-font-face.min.css rel=stylesheet><link href=../../css/base.css rel=stylesheet><link id=hljs-light rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css><link id=hljs-dark rel=stylesheet href=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github-dark.min.css disabled><link href=../../stylesheets/extra.css rel=stylesheet><script src=https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js></script><script>hljs.highlightAll();</script></head> <body> <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary"> <div class=container> <a class=navbar-brand href=../..>Nixxin Documentation</a> <!-- Expander button --> <button type=button class=navbar-toggler data-bs-toggle=collapse data-bs-target=#navbar-collapse aria-controls=navbar-collapse aria-expanded=false aria-label="Toggle navigation"> <span class=navbar-toggler-icon></span> </button> <!-- Expanded navigation --> <div id=navbar-collapse class="navbar-collapse collapse"> <!-- Main navigation --> <ul class="nav navbar-nav"> <li class=nav-item> <a href=../.. class=nav-link>Home</a> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle" role=button data-bs-toggle=dropdown aria-expanded=false>Getting Started</a> <ul class=dropdown-menu> <li> <a href=../../getting-started/installation/ class=dropdown-item>Installation</a> </li> <li> <a href=../../getting-started/quick-start.md class=dropdown-item>Quick Start</a> </li> <li> <a href=../../getting-started/configuration.md class=dropdown-item>Configuration</a> </li> </ul> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle" role=button data-bs-toggle=dropdown aria-expanded=false>Modules</a> <ul class=dropdown-menu> <li> <a href=../../modules/overview/ class=dropdown-item>Overview</a> </li> <li> <a href=../../modules/desktop.md class=dropdown-item>Desktop Environment</a> </li> <li> <a href=../../modules/development.md class=dropdown-item>Development</a> </li> <li> <a href=../../modules/gaming.md class=dropdown-item>Gaming</a> </li> <li> <a href=../../modules/media.md class=dropdown-item>Media & Audio</a> </li> <li> <a href=../../modules/system.md class=dropdown-item>System Tools</a> </li> <li> <a href=../../modules/security.md class=dropdown-item>Security</a> </li> <li> <a href=../../modules/ai.md class=dropdown-item>AI Tools</a> </li> <li> <a href=../../modules/mobile.md class=dropdown-item>Mobile Development</a> </li> </ul> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle active" aria-current=page role=button data-bs-toggle=dropdown aria-expanded=false>Configuration</a> <ul class=dropdown-menu> <li> <a href=./ class="dropdown-item active" aria-current=page>Hardware Support</a> </li> <li> <a href=../users.md class=dropdown-item>User Management</a> </li> <li> <a href=../networking.md class=dropdown-item>Networking</a> </li> <li> <a href=../themes.md class=dropdown-item>Themes & Appearance</a> </li> </ul> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle" role=button data-bs-toggle=dropdown aria-expanded=false>Advanced</a> <ul class=dropdown-menu> <li> <a href=../../advanced/custom-modules.md class=dropdown-item>Custom Modules</a> </li> <li> <a href=../../advanced/flakes.md class=dropdown-item>Flake Management</a> </li> <li> <a href=../../advanced/troubleshooting/ class=dropdown-item>Troubleshooting</a> </li> <li> <a href=../../advanced/performance.md class=dropdown-item>Performance Optimization</a> </li> </ul> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle" role=button data-bs-toggle=dropdown aria-expanded=false>Examples</a> <ul class=dropdown-menu> <li> <a href=../../examples/basic-setup/ class=dropdown-item>Basic Setup</a> </li> <li> <a href=../../examples/development-machine.md class=dropdown-item>Development Machine</a> </li> <li> <a href=../../examples/gaming-rig.md class=dropdown-item>Gaming Rig</a> </li> <li> <a href=../../examples/server.md class=dropdown-item>Server Configuration</a> </li> </ul> </li> <li class="nav-item dropdown"> <a href=# class="nav-link dropdown-toggle" role=button data-bs-toggle=dropdown aria-expanded=false>Contributing</a> <ul class=dropdown-menu> <li> <a href=../../contributing/guidelines.md class=dropdown-item>Guidelines</a> </li> <li> <a href=../../contributing/module-development.md class=dropdown-item>Module Development</a> </li> <li> <a href=../../contributing/documentation.md class=dropdown-item>Documentation</a> </li> </ul> </li> </ul> <ul class="nav navbar-nav ms-md-auto"> <li class=nav-item> <a href=# class=nav-link data-bs-toggle=modal data-bs-target=#mkdocs_search_modal> <i class="fa fa-search"></i> Search </a> </li> <li class=nav-item> <a rel=prev href=../../modules/overview/ class=nav-link> <i class="fa fa-arrow-left"></i> Previous </a> </li> <li class=nav-item> <a rel=next href=../../advanced/troubleshooting/ class=nav-link> Next <i class="fa fa-arrow-right"></i> </a> </li> <li class=nav-item> <a href=https://github.com/SoftEng-Islam/nixxin/edit/master/docs/configuration/hardware.md class=nav-link>Edit on SoftEng-Islam/nixxin </a> </li> </ul> </div> </div> </div> <div class=container> <div class=row> <div class=col-md-3><div class="navbar-expand-md bs-sidebar hidden-print affix" role=complementary> <div class=navbar-header> <button type=button class="navbar-toggler collapsed" data-bs-toggle=collapse data-bs-target=#toc-collapse title="Table of Contents"> <span class="fa fa-angle-down"></span> </button> </div> <div id=toc-collapse class="navbar-collapse collapse card bg-body-tertiary"> <ul class="nav flex-column"> <li class=nav-item data-bs-level=1><a href=#hardware-support class=nav-link>💻 Hardware Support</a> <ul class="nav flex-column"> <li class=nav-item data-bs-level=2><a href=#cpu-configuration class=nav-link>🖥️ CPU Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#gpu-configuration class=nav-link>🎮 GPU Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#input-devices class=nav-link>🖱️ Input Devices</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#audio-configuration class=nav-link>🔊 Audio Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#network-configuration class=nav-link>🌐 Network Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#storage-configuration class=nav-link>💾 Storage Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#display-configuration class=nav-link>🖥️ Display Configuration</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#power-management class=nav-link>🔧 Power Management</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#hardware-detection class=nav-link>🎯 Hardware Detection</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#troubleshooting-hardware class=nav-link>🔍 Troubleshooting Hardware</a> <ul class="nav flex-column"> </ul> </li> <li class=nav-item data-bs-level=2><a href=#additional-resources class=nav-link>📚 Additional Resources</a> <ul class="nav flex-column"> </ul> </li> </ul> </li> </ul> </div> </div></div> <div class=col-md-9 role=main> <h1 id=hardware-support>💻 Hardware Support<a class=headerlink href=#hardware-support title="Permanent link">&para;</a></h1> <p>This guide covers hardware configuration and driver support in Nixxin.</p> <h2 id=cpu-configuration>🖥️ CPU Configuration<a class=headerlink href=#cpu-configuration title="Permanent link">&para;</a></h2> <h3 id=intel-cpus>Intel CPUs<a class=headerlink href=#intel-cpus title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable Intel microcode updates</span>
+  hardware<span class=o>.</span>cpu<span class=o>.</span>intel<span class=o>.</span><span class=ss>updateMicrocode</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Enable Intel graphics</span>
+  hardware<span class=o>.</span>intelgpu<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Power management</span>
+  powerManagement<span class=o>.</span><span class=ss>cpuFreqGovernor</span> <span class=o>=</span> <span class=s2>&quot;performance&quot;</span><span class=p>;</span>  <span class=c1># or &quot;powersave&quot;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=amd-cpus>AMD CPUs<a class=headerlink href=#amd-cpus title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable AMD microcode updates</span>
+  hardware<span class=o>.</span>cpu<span class=o>.</span>amd<span class=o>.</span><span class=ss>updateMicrocode</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Enable AMD graphics</span>
+  hardware<span class=o>.</span>amdgpu<span class=o>.</span>driver<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Power management</span>
+  powerManagement<span class=o>.</span><span class=ss>cpuFreqGovernor</span> <span class=o>=</span> <span class=s2>&quot;ondemand&quot;</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=gpu-configuration>🎮 GPU Configuration<a class=headerlink href=#gpu-configuration title="Permanent link">&para;</a></h2> <h3 id=nvidia-graphics>NVIDIA Graphics<a class=headerlink href=#nvidia-graphics title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable NVIDIA proprietary driver</span>
+  services<span class=o>.</span>xserver<span class=o>.</span><span class=ss>videoDrivers</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&quot;nvidia&quot;</span><span class=p>];</span>
+
+  hardware<span class=o>.</span><span class=ss>nvidia</span> <span class=o>=</span> <span class=p>{</span>
+    modesetting<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    powerManagement<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>false</span><span class=p>;</span>
+    <span class=ss>open</span> <span class=o>=</span> <span class=no>false</span><span class=p>;</span>  <span class=c1># Set to true for open source driver</span>
+
+    <span class=c1># Package selection</span>
+    <span class=ss>package</span> <span class=o>=</span> config<span class=o>.</span>boot<span class=o>.</span>kernelPackages<span class=o>.</span>nvidiaPackages<span class=o>.</span>stable<span class=p>;</span>
+
+    <span class=c1># Prime support (laptops with hybrid graphics)</span>
+    <span class=ss>prime</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=ss>intelBusId</span> <span class=o>=</span> <span class=s2>&quot;PCI:0:2:0&quot;</span><span class=p>;</span>
+      <span class=ss>nvidiaBusId</span> <span class=o>=</span> <span class=s2>&quot;PCI:1:0:0&quot;</span><span class=p>;</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+
+  <span class=c1># Enable OpenGL</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport32Bit</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=amd-graphics>AMD Graphics<a class=headerlink href=#amd-graphics title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable AMD driver</span>
+  hardware<span class=o>.</span>amdgpu<span class=o>.</span>driver<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Enable OpenGL</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport32Bit</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Vulkan support</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>extraPackages</span> <span class=o>=</span> <span class=k>with</span> pkgs<span class=p>;</span> <span class=p>[</span>
+    amdvlk
+  <span class=p>];</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=intel-graphics>Intel Graphics<a class=headerlink href=#intel-graphics title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable Intel driver</span>
+  hardware<span class=o>.</span>intelgpu<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Enable OpenGL</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>driSupport32Bit</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># VA-API for video acceleration</span>
+  hardware<span class=o>.</span>opengl<span class=o>.</span><span class=ss>extraPackages</span> <span class=o>=</span> <span class=k>with</span> pkgs<span class=p>;</span> <span class=p>[</span>
+    intel-media-driver
+    vaapiIntel
+    vaapiVdpau
+    libvdpau-va-gl32
+  <span class=p>];</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=input-devices>🖱️ Input Devices<a class=headerlink href=#input-devices title="Permanent link">&para;</a></h2> <h3 id=trackpad-configuration-laptops>Trackpad Configuration (Laptops)<a class=headerlink href=#trackpad-configuration-laptops title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable libinput for touchpad support</span>
+  services<span class=o>.</span>libinput<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Touchpad configuration</span>
+  services<span class=o>.</span>xserver<span class=o>.</span><span class=ss>libinput</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>touchpad</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=ss>tapping</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+      <span class=ss>naturalScrolling</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+      <span class=ss>accelProfile</span> <span class=o>=</span> <span class=s2>&quot;adaptive&quot;</span><span class=p>;</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=gaming-peripherals>Gaming Peripherals<a class=headerlink href=#gaming-peripherals title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable support for gaming mice and keyboards</span>
+  hardware<span class=o>.</span>openrazer<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  hardware<span class=o>.</span>openrazer<span class=o>.</span><span class=ss>users</span> <span class=o>=</span> <span class=p>[</span><span class=s2>&quot;your-username&quot;</span><span class=p>];</span>
+
+  <span class=c1># Steam controller support</span>
+  hardware<span class=o>.</span>steam-hardware<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=audio-configuration>🔊 Audio Configuration<a class=headerlink href=#audio-configuration title="Permanent link">&para;</a></h2> <h3 id=pulseaudio-configuration>PulseAudio Configuration<a class=headerlink href=#pulseaudio-configuration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable PulseAudio</span>
+  services<span class=o>.</span><span class=ss>pulseaudio</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>support32Bit</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>package</span> <span class=o>=</span> pkgs<span class=o>.</span>pulseaudioFull<span class=p>;</span>
+
+    <span class=c1># Additional modules</span>
+    <span class=ss>extraModules</span> <span class=o>=</span> <span class=p>[</span>pkgs<span class=o>.</span>pulseaudio-modules-bt<span class=p>];</span>
+  <span class=p>};</span>
+
+  <span class=c1># ALSA support</span>
+  hardware<span class=o>.</span>alsa<span class=o>.</span><span class=ss>enablePersistence</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=pipewire-configuration-recommended>PipeWire Configuration (Recommended)<a class=headerlink href=#pipewire-configuration-recommended title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable PipeWire</span>
+  services<span class=o>.</span><span class=ss>pipewire</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    alsa<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    alsa<span class=o>.</span><span class=ss>support32Bit</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    pulse<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+    <span class=c1># JACK support</span>
+    jack<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+    <span class=c1># Low latency configuration</span>
+    extraConfig<span class=o>.</span><span class=ss>pipewire</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=s2>&quot;context.properties&quot;</span> <span class=o>=</span> <span class=p>{</span>
+        <span class=s2>&quot;default.clock.rate&quot;</span> <span class=o>=</span> <span class=mi>48000</span><span class=p>;</span>
+        <span class=s2>&quot;default.clock.quantum&quot;</span> <span class=o>=</span> <span class=mi>1024</span><span class=p>;</span>
+        <span class=s2>&quot;default.clock.min-quantum&quot;</span> <span class=o>=</span> <span class=mi>32</span><span class=p>;</span>
+      <span class=p>};</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+
+  <span class=c1># Enable real-time scheduling</span>
+  security<span class=o>.</span>rtkit<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=network-configuration>🌐 Network Configuration<a class=headerlink href=#network-configuration title="Permanent link">&para;</a></h2> <h3 id=wifi-support>WiFi Support<a class=headerlink href=#wifi-support title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable NetworkManager</span>
+  networking<span class=o>.</span>networkmanager<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># WiFi regulatory domain</span>
+  networking<span class=o>.</span>wireless<span class=o>.</span><span class=ss>regulatoryDomain</span> <span class=o>=</span> <span class=s2>&quot;US&quot;</span><span class=p>;</span>
+
+  <span class=c1># Enable WiFi firmware</span>
+  hardware<span class=o>.</span><span class=ss>enableRedistributableFirmware</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=bluetooth-support>Bluetooth Support<a class=headerlink href=#bluetooth-support title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable Bluetooth</span>
+  hardware<span class=o>.</span><span class=ss>bluetooth</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>powerOnBoot</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>settings</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=ss>General</span> <span class=o>=</span> <span class=p>{</span>
+        <span class=ss>Enable</span> <span class=o>=</span> <span class=s2>&quot;Source,Sink,Media,Control&quot;</span><span class=p>;</span>
+      <span class=p>};</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+
+  <span class=c1># Bluetooth GUI tools</span>
+  services<span class=o>.</span>blueman<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=storage-configuration>💾 Storage Configuration<a class=headerlink href=#storage-configuration title="Permanent link">&para;</a></h2> <h3 id=ssd-optimization>SSD Optimization<a class=headerlink href=#ssd-optimization title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable fstrim for SSDs</span>
+  services<span class=o>.</span>fstrim<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  services<span class=o>.</span>fstrim<span class=o>.</span><span class=ss>interval</span> <span class=o>=</span> <span class=s2>&quot;weekly&quot;</span><span class=p>;</span>
+
+  <span class=c1># Enable swap on zram</span>
+  zramSwap<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  zramSwap<span class=o>.</span><span class=ss>memoryPercent</span> <span class=o>=</span> <span class=mi>50</span><span class=p>;</span>
+
+  <span class=c1># Enable tmpfs for /tmp</span>
+  boot<span class=o>.</span>tmp<span class=o>.</span><span class=ss>useTmpfs</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  boot<span class=o>.</span>tmp<span class=o>.</span><span class=ss>tmpfsSize</span> <span class=o>=</span> <span class=s2>&quot;50%&quot;</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=raid-configuration>RAID Configuration<a class=headerlink href=#raid-configuration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable mdadm for RAID</span>
+  environment<span class=o>.</span><span class=ss>systemPackages</span> <span class=o>=</span> <span class=p>[</span>pkgs<span class=o>.</span>mdadm<span class=p>];</span>
+
+  <span class=c1># RAID arrays</span>
+  boot<span class=o>.</span>initrd<span class=o>.</span>services<span class=o>.</span>swraid<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  boot<span class=o>.</span>initrd<span class=o>.</span>services<span class=o>.</span>swraid<span class=o>.</span><span class=ss>enableAutodetection</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=encryption>Encryption<a class=headerlink href=#encryption title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable LUKS encryption</span>
+  boot<span class=o>.</span>initrd<span class=o>.</span>luks<span class=o>.</span><span class=ss>devices</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>luks-root</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=ss>device</span> <span class=o>=</span> <span class=s2>&quot;/dev/disk/by-uuid/your-uuid&quot;</span><span class=p>;</span>
+      <span class=ss>preLVM</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+      <span class=ss>allowDiscards</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+
+  <span class=c1># Enable cryptsetup</span>
+  environment<span class=o>.</span><span class=ss>systemPackages</span> <span class=o>=</span> <span class=p>[</span>pkgs<span class=o>.</span>cryptsetup<span class=p>];</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=display-configuration>🖥️ Display Configuration<a class=headerlink href=#display-configuration title="Permanent link">&para;</a></h2> <h3 id=multiple-monitors>Multiple Monitors<a class=headerlink href=#multiple-monitors title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Configure multiple monitors</span>
+  services<span class=o>.</span><span class=ss>xserver</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>screenSection</span> <span class=o>=</span> <span class="s s-Multiline">&#39;&#39;</span>
+<span class="s s-Multiline">      Monitor &quot;DVI-I-1&quot;</span>
+<span class="s s-Multiline">        Option &quot;PreferredMode&quot; &quot;1920x1080&quot;</span>
+<span class="s s-Multiline">      Monitor &quot;HDMI-1&quot;</span>
+<span class="s s-Multiline">        Option &quot;PreferredMode&quot; &quot;1920x1080&quot;</span>
+<span class="s s-Multiline">    &#39;&#39;</span><span class=p>;</span>
+
+    <span class=ss>deviceSection</span> <span class=o>=</span> <span class="s s-Multiline">&#39;&#39;</span>
+<span class="s s-Multiline">      Option &quot;Monitor-DVI-I-1&quot; &quot;DVI-I-1&quot;</span>
+<span class="s s-Multiline">      Option &quot;Monitor-HDMI-1&quot; &quot;HDMI-1&quot;</span>
+<span class="s s-Multiline">    &#39;&#39;</span><span class=p>;</span>
+  <span class=p>};</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=high-dpi-displays>High DPI Displays<a class=headerlink href=#high-dpi-displays title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable HiDPI support</span>
+  services<span class=o>.</span>xserver<span class=o>.</span><span class=ss>dpi</span> <span class=o>=</span> <span class=mi>192</span><span class=p>;</span>
+  environment<span class=o>.</span><span class=ss>variables</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>GDK_SCALE</span> <span class=o>=</span> <span class=s2>&quot;2&quot;</span><span class=p>;</span>
+    <span class=ss>QT_SCALE_FACTOR</span> <span class=o>=</span> <span class=s2>&quot;2&quot;</span><span class=p>;</span>
+    <span class=ss>_JAVA_OPTIONS</span> <span class=o>=</span> <span class=s2>&quot;-Dsun.java2d.uiScale=2&quot;</span><span class=p>;</span>
+  <span class=p>};</span>
+
+  <span class=c1># Font scaling</span>
+  fonts<span class=o>.</span>fontconfig<span class=o>.</span><span class=ss>defaultSizes</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>desktop</span> <span class=o>=</span> <span class=mi>16</span><span class=p>;</span>
+    <span class=ss>applications</span> <span class=o>=</span> <span class=mi>14</span><span class=p>;</span>
+    <span class=ss>terminal</span> <span class=o>=</span> <span class=mi>18</span><span class=p>;</span>
+  <span class=p>};</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=power-management>🔧 Power Management<a class=headerlink href=#power-management title="Permanent link">&para;</a></h2> <h3 id=laptop-power-management>Laptop Power Management<a class=headerlink href=#laptop-power-management title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable TLP for power management</span>
+  services<span class=o>.</span><span class=ss>tlp</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+    <span class=ss>settings</span> <span class=o>=</span> <span class=p>{</span>
+      <span class=ss>CPU_SCALING_GOVERNOR_ON_AC</span> <span class=o>=</span> <span class=s2>&quot;performance&quot;</span><span class=p>;</span>
+      <span class=ss>CPU_SCALING_GOVERNOR_ON_BAT</span> <span class=o>=</span> <span class=s2>&quot;powersave&quot;</span><span class=p>;</span>
+
+      <span class=c1># Enable USB autosuspend</span>
+      <span class=ss>USB_AUTOSUSPEND</span> <span class=o>=</span> <span class=mi>1</span><span class=p>;</span>
+
+      <span class=c1># Enable WiFi power saving</span>
+      <span class=ss>WIFI_PWR_ON_BAT</span> <span class=o>=</span> <span class=s2>&quot;on&quot;</span><span class=p>;</span>
+    <span class=p>};</span>
+  <span class=p>};</span>
+
+  <span class=c1># Enable auto-cpufreq</span>
+  services<span class=o>.</span>auto-cpufreq<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Enable thermald</span>
+  services<span class=o>.</span>thermald<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h3 id=suspendhibernate-configuration>Suspend/Hibernate Configuration<a class=headerlink href=#suspendhibernate-configuration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Enable suspend and hibernate</span>
+  powerManagement<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+  <span class=c1># Configure resume device</span>
+  boot<span class=o>.</span><span class=ss>resumeDevice</span> <span class=o>=</span> <span class=s2>&quot;/dev/disk/by-uuid/your-swap-uuid&quot;</span><span class=p>;</span>
+
+  <span class=c1># Hibernate support</span>
+  systemd<span class=o>.</span>sleep<span class=o>.</span><span class=ss>extraConfig</span> <span class=o>=</span> <span class="s s-Multiline">&#39;&#39;</span>
+<span class="s s-Multiline">    HibernateDelaySec=2h</span>
+<span class="s s-Multiline">    SuspendState=mem disk</span>
+<span class="s s-Multiline">  &#39;&#39;</span><span class=p>;</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=hardware-detection>🎯 Hardware Detection<a class=headerlink href=#hardware-detection title="Permanent link">&para;</a></h2> <h3 id=automatic-detection-script>Automatic Detection Script<a class=headerlink href=#automatic-detection-script title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=ch>#!/bin/bash</span>
+<span class=c1># hardware-detect.sh</span>
+
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;=== Hardware Detection ===&quot;</span>
+<span class=nb>echo</span>
+
+<span class=c1># CPU</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;CPU Information:&quot;</span>
+lscpu<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span><span class=s2>&quot;Model name\|Architecture\|CPU(s)&quot;</span>
+<span class=nb>echo</span>
+
+<span class=c1># GPU</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;GPU Information:&quot;</span>
+lspci<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span>-i<span class=w> </span>vga
+<span class=nb>echo</span>
+
+<span class=c1># Memory</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;Memory Information:&quot;</span>
+free<span class=w> </span>-h
+<span class=nb>echo</span>
+
+<span class=c1># Storage</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;Storage Devices:&quot;</span>
+lsblk<span class=w> </span>-d<span class=w> </span>-o<span class=w> </span>name,size,model
+<span class=nb>echo</span>
+
+<span class=c1># Network</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;Network Devices:&quot;</span>
+lspci<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span>-i<span class=w> </span>network
+<span class=nb>echo</span>
+
+<span class=c1># USB Devices</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;USB Devices:&quot;</span>
+lsusb<span class=w> </span><span class=p>|</span><span class=w> </span>head<span class=w> </span>-10
+<span class=nb>echo</span>
+
+<span class=c1># Audio</span>
+<span class=nb>echo</span><span class=w> </span><span class=s2>&quot;Audio Devices:&quot;</span>
+aplay<span class=w> </span>-l
+<span class=nb>echo</span>
+</code></pre></div> <h3 id=nixos-hardware-configuration>NixOS Hardware Configuration<a class=headerlink href=#nixos-hardware-configuration title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=p>{</span>
+  <span class=c1># Auto-generate hardware configuration</span>
+  <span class=c1># Run: sudo nixos-generate-config</span>
+
+  <span class=ss>imports</span> <span class=o>=</span> <span class=p>[</span>
+    <span class=l>./hardware-configuration.nix</span>
+  <span class=p>];</span>
+
+  <span class=c1># Enable common hardware support</span>
+  <span class=ss>hardware</span> <span class=o>=</span> <span class=p>{</span>
+    <span class=c1># Enable Bluetooth</span>
+    bluetooth<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+    <span class=c1># Enable OpenGL</span>
+    opengl<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+    <span class=c1># Enable pulse audio</span>
+    pulseaudio<span class=o>.</span><span class=ss>enable</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+
+    <span class=c1># Enable firmware loading</span>
+    <span class=ss>enableRedistributableFirmware</span> <span class=o>=</span> <span class=no>true</span><span class=p>;</span>
+  <span class=p>};</span>
+<span class=p>}</span>
+</code></pre></div> <h2 id=troubleshooting-hardware>🔍 Troubleshooting Hardware<a class=headerlink href=#troubleshooting-hardware title="Permanent link">&para;</a></h2> <h3 id=common-issues>Common Issues<a class=headerlink href=#common-issues title="Permanent link">&para;</a></h3> <h4 id=gpu-not-detected>GPU Not Detected<a class=headerlink href=#gpu-not-detected title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check GPU detection</span>
+lspci<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span>-i<span class=w> </span>vga
+nvidia-smi<span class=w>  </span><span class=c1># NVIDIA</span>
+radeontop<span class=w>    </span><span class=c1># AMD</span>
+intel_gpu_top<span class=w> </span><span class=c1># Intel</span>
+</code></pre></div> <h4 id=audio-not-working>Audio Not Working<a class=headerlink href=#audio-not-working title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check audio devices</span>
+aplay<span class=w> </span>-l
+arecord<span class=w> </span>-l
+
+<span class=c1># Restart audio services</span>
+systemctl<span class=w> </span>--user<span class=w> </span>restart<span class=w> </span>pipewire
+systemctl<span class=w> </span>--user<span class=w> </span>restart<span class=w> </span>pipewire-pulse
+</code></pre></div> <h4 id=wifi-not-working>WiFi Not Working<a class=headerlink href=#wifi-not-working title="Permanent link">&para;</a></h4> <div class=highlight><pre><span></span><code><span class=c1># Check WiFi adapter</span>
+lspci<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span>-i<span class=w> </span>network
+lsusb<span class=w> </span><span class=p>|</span><span class=w> </span>grep<span class=w> </span>-i<span class=w> </span>wireless
+
+<span class=c1># Restart NetworkManager</span>
+sudo<span class=w> </span>systemctl<span class=w> </span>restart<span class=w> </span>NetworkManager
+</code></pre></div> <h3 id=hardware-compatibility-check>Hardware Compatibility Check<a class=headerlink href=#hardware-compatibility-check title="Permanent link">&para;</a></h3> <div class=highlight><pre><span></span><code><span class=c1># Check hardware compatibility with NixOS</span>
+nix-hardware-scan
+
+<span class=c1># Generate hardware report</span>
+nixos-generate-config<span class=w> </span>--show-hardware-config
+</code></pre></div> <h2 id=additional-resources>📚 Additional Resources<a class=headerlink href=#additional-resources title="Permanent link">&para;</a></h2> <ul> <li><a href=https://wiki.nixos.org/wiki/Hardware>NixOS Hardware Wiki</a></li> <li><a href=https://wiki.nixos.org/wiki/Nvidia>NixOS GPU Support</a></li> <li><a href=https://wiki.nixos.org/wiki/PulseAudio>NixOS Audio Configuration</a></li> </ul> <hr> <p><strong>📖 Next:</strong> Check <a href=users.md>User Management</a> for user configuration.</p></div> </div> </div> <footer class=col-md-12> <hr> <p>Documentation built with <a href=https://www.mkdocs.org/ >MkDocs</a>.</p> </footer> <script src=../../js/bootstrap.bundle.min.js></script> <script>
+            var base_url = "../..",
+                shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
+        </script> <script src=../../js/base.js></script> <script src=../../search/main.js></script> <div class=modal id=mkdocs_search_modal tabindex=-1 role=dialog aria-labelledby=searchModalLabel aria-hidden=true> <div class="modal-dialog modal-lg"> <div class=modal-content> <div class=modal-header> <h4 class=modal-title id=searchModalLabel>Search</h4> <button type=button class=btn-close data-bs-dismiss=modal aria-label=Close></button> </div> <div class=modal-body> <p>From here you can search these documents. Enter your search terms below.</p> <form> <div class=form-group> <input type=search class=form-control placeholder=Search... id=mkdocs-search-query title="Type search term here"> </div> </form> <div id=mkdocs-search-results data-no-results-text="No results found"></div> </div> <div class=modal-footer> </div> </div> </div> </div><div class=modal id=mkdocs_keyboard_modal tabindex=-1 role=dialog aria-labelledby=keyboardModalLabel aria-hidden=true> <div class=modal-dialog> <div class=modal-content> <div class=modal-header> <h4 class=modal-title id=keyboardModalLabel>Keyboard Shortcuts</h4> <button type=button class=btn-close data-bs-dismiss=modal aria-label=Close></button> </div> <div class=modal-body> <table class=table> <thead> <tr> <th style="width: 20%;">Keys</th> <th>Action</th> </tr> </thead> <tbody> <tr> <td class="help shortcut"><kbd>?</kbd></td> <td>Open this help</td> </tr> <tr> <td class="next shortcut"><kbd>n</kbd></td> <td>Next page</td> </tr> <tr> <td class="prev shortcut"><kbd>p</kbd></td> <td>Previous page</td> </tr> <tr> <td class="search shortcut"><kbd>s</kbd></td> <td>Search</td> </tr> </tbody> </table> </div> <div class=modal-footer> </div> </div> </div> </div> </body> </html> 

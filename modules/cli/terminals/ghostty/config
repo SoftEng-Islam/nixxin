@@ -1,0 +1,84 @@
+# ===== macos =====
+macos-option-as-alt = true
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = "visible-menu"
+macos-auto-secure-input = true
+macos-secure-input-indication = true
+
+alpha-blending = linear
+auto-update-channel = tip
+
+background-blur = true
+background-opacity = 0.9
+theme = nightfox
+
+clipboard-paste-protection = false
+clipboard-read = "allow"
+confirm-close-surface = true
+
+# cursor
+cursor-style = block_hollow
+cursor-style-blink = false
+cursor-color = "#C4A7E7"
+
+font-codepoint-map = U+e0b0-U+e0b3,U+e0b4-U+e0c8,U+e0cc-U+e0d4,U+e0ca=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+e5fa-U+e6b1=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+ea60-U+ebeb=JetBrainsMono Nerd Font Mono
+font-codepoint-map = U+f000-U+f2e0,U+e200-U+e2a9=JetBrainsMono Nerd Font Mono
+font-family = BerkeleyMono Nerd Font
+font-feature = calt
+font-feature = liga
+font-feature = zero
+font-size = 15
+
+mouse-hide-while-typing = true
+
+palette = "0=#1b1b1b"
+
+shell-integration = zsh
+shell-integration-features = no-cursor,sudo,no-title
+
+window-decoration = auto
+window-height = 9999
+window-padding-balance = true
+window-save-state = always
+window-theme = "dark"
+window-width = 9999
+window-colorspace = display-p3
+
+copy-on-select = clipboard
+
+# ===== Keybindings =====
+## basic keybindings
+keybind = clear
+keybind = cmd+g>r=reload_config
+keybind = ctrl+b>x=close_surface
+keybind = cmd+q=quit
+keybind = cmd+n=new_window
+keybind = cmd+w=close_window
+keybind = cmd+v=paste_from_clipboard
+keybind = cmd+c=copy_to_clipboard
+
+
+# tabs
+keybind = alt+t>n=new_tab
+keybind = alt+t>o=next_tab
+keybind = alt+t>p=previous_tab
+
+# split
+keybind = ctrl+b>;=new_split:right
+keybind = ctrl+b>'=new_split:down
+keybind = ctrl+b>j=goto_split:bottom
+keybind = ctrl+b>k=goto_split:top
+keybind = ctrl+b>h=goto_split:left
+keybind = ctrl+b>l=goto_split:right
+keybind = ctrl+b>z=toggle_split_zoom
+keybind = ctrl+b>e=equalize_splits
+
+# quick terminal
+keybind = global:ctrl+;=toggle_quick_terminal
+quick-terminal-position=bottom
+quick-terminal-screen=mouse
+quick-terminal-animation-duration=0.2
+quick-terminal-autohide=true
+quick-terminal-space-behavior=move

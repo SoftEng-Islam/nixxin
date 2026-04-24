@@ -1,0 +1,39 @@
+diff --git a/src/shady/generator/CMakeLists.txt b/src/shady/generator/CMakeLists.txt
+index d5f3f77c..8b5d5030 100644
+--- a/src/shady/generator/CMakeLists.txt
++++ b/src/shady/generator/CMakeLists.txt
+@@ -6,6 +6,7 @@ target_include_directories(generator_common PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+ 
+ add_executable(import_spv_defs import_spv_defs.c)
+ target_link_libraries(import_spv_defs PUBLIC common generator_common)
++set_target_properties(import_spv_defs PROPERTIES INSTALL_RPATH $<TARGET_FILE_DIR:common>)
+ 
+ # This hacky job is required for being able to run built targets in-place when generating the code
+ # This is also required for the various drivers but since they're built in the same directory it will work for now
+@@ -28,6 +29,7 @@ function(add_generated_file)
+     set(GENERATOR_NAME generator_${F_FILE_NAME})
+     add_executable(${GENERATOR_NAME} ${F_SOURCES} ${PROJECT_SOURCE_DIR}/src/shady/generator/generator_main.c)
+     target_link_libraries(${GENERATOR_NAME} generator_common)
++    set_target_properties(${GENERATOR_NAME} PROPERTIES INSTALL_RPATH $<TARGET_FILE_DIR:common>)
+ 
+     get_target_property(SPIRV_HEADERS_INCLUDE_DIRS SPIRV-Headers::SPIRV-Headers INTERFACE_INCLUDE_DIRECTORIES)
+ 
+diff --git a/vcc/CMakeLists.txt b/vcc/CMakeLists.txt
+index 6973e080..7ccce6c3 100644
+--- a/vcc/CMakeLists.txt
++++ b/vcc/CMakeLists.txt
+@@ -11,6 +11,7 @@ if (SHADY_ENABLE_VCC)
+     target_link_libraries(vcc_lib PUBLIC driver api)
+ 
+     add_executable(vcc vcc.c)
++    set_target_properties(vcc PROPERTIES INSTALL_RPATH $<TARGET_FILE_DIR:driver>)
+     target_compile_definitions(vcc_lib PRIVATE "VCC_CLANG_EXECUTABLE_NAME=${VCC_CLANG_EXECUTABLE_NAME}")
+     target_link_libraries(vcc PRIVATE api vcc_lib)
+     install(TARGETS vcc_lib vcc EXPORT shady_export_set)
+@@ -22,4 +23,4 @@ if (SHADY_ENABLE_VCC)
+         )
+     endif ()
+     #message("Vcc will be built together with shady")
+-endif ()
+\ No newline at end of file
++endif ()

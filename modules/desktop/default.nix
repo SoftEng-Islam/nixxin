@@ -1,0 +1,23 @@
+{
+  settings,
+  lib,
+  ...
+}:
+{
+  imports = lib.optionals (settings.modules.desktop.enable or false) [
+    ./appimage.nix
+    ./dconf.nix
+    ./fileManager
+    ./hyprland
+    ./image_viewer.nix
+    ./keyring.nix
+    ./noctalia
+    ./polkit.nix
+    ./qt_gtk.nix
+    ./quickShell
+    ./rofi.nix
+    ./screenshot.nix
+    ./tools.nix
+    ./xdg.nix
+  ];
+}

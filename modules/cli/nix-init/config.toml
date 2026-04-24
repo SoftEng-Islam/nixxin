@@ -1,0 +1,5 @@
+maintainers = ["mulatta"]
+nixpkgs = "<nixpkgs>"
+commit = true
+[access-tokens]
+"github.com" = ""

@@ -1,0 +1,15 @@
+.idea/*
+.venv
+*.backup
+*.log
+build
+dist
+docs/_build
+docs/tmp
+fishd.tmp*
+generated
+node_modules/
+ignore/*
+assets/wallpapers/*
+.vscode
+scripts/**/status.txt
