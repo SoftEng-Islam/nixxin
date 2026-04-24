@@ -1,9 +1,16 @@
-{ settings, inputs, lib, config, pkgs, ... }: {
+{
+  settings,
+  inputs,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
+{
   home-manager.users.${settings.user.username} = {
     programs.yt-dlp = {
       enable = settings.modules.data_transferring.yt-dlp.enable or false;
-      package =
-        inputs.yt-dlp-src.packages.${pkgs.stdenv.hostPlatform.system}.default;
+      package = inputs.yt-dlp-src.packages.${pkgs.stdenv.hostPlatform.system}.default;
       # package = pkgs.yt-dlp;
 
       settings = {
@@ -14,7 +21,7 @@
         # downloader = lib.getExe pkgs.aria2;
         # downloader = "aria2c";
         # downloader-args = "aria2c:'-c -x12 -s12 -j10 -k1024M'";
-        cookies-from-browser = "chrome";
+        cookies-from-browser = "firefox:${settings.HOME}/.zen";
       };
       extraConfig = ''
         -f "bestvideo[height<=1080]+bestaudio/best"
