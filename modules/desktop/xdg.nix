@@ -8,7 +8,6 @@ let
   browserDesktopEntry = "${settings.modules.desktop.xdg.defaults.webBrowser}.desktop";
 in
 {
-  xdg.enable = true;
   xdg.portal = {
     #   # Enable XDG portals, which allow sandboxed applications
     #   # (e.g., Flatpak or Snap) to interact with the system securely.
