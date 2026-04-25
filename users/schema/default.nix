@@ -4,8 +4,7 @@
   pkgs,
   ...
 }:
-self:
-{
+self: {
   # ----------------------------------------------
   # ---- The User Information
   # ----------------------------------------------
@@ -365,7 +364,9 @@ self:
   modules.desktop.polkit.enable = true; # keep enabled
 
   # [ desktop ] [file_manager]
+
   modules.desktop.file_manager.default = "nautilus"; # [dolphin, nautilus, nemo, spacedrive, thunar]
+  modules.desktop.file_manager.mime = "org.gnome.Nautilus";
   modules.desktop.file_manager.dolphin = false;
   modules.desktop.file_manager.nautilus = true;
   modules.desktop.file_manager.nemo = false;
@@ -476,8 +477,7 @@ self:
   modules.office.n8n = true;
   modules.office.siyuan = true;
   modules.office.evince = true;
-  modules.office.papers = true;
-  modules.office.zathura = true;
+  modules.office.papers = false;
   modules.office.obsidian = true;
   modules.office.libreoffice = true;
   modules.office.translators.enable = true;

@@ -8,6 +8,7 @@ let
   browserDesktopEntry = "${settings.modules.desktop.xdg.defaults.webBrowser}.desktop";
 in
 {
+  xdg.enable = true;
   xdg.portal = {
     #   # Enable XDG portals, which allow sandboxed applications
     #   # (e.g., Flatpak or Snap) to interact with the system securely.
@@ -36,10 +37,16 @@ in
     };
   };
   home-manager.users.${settings.user.username} = {
+    xdg.enable = true;
+    xdg.configFile."mimeapps.list".force = true;
+
     xdg.systemDirs.data = [
       "${pkgs.gtk3}/share/gsettings-schemas/${pkgs.gtk3.name}"
       "${pkgs.gsettings-desktop-schemas}/share/gsettings-schemas/${pkgs.gsettings-desktop-schemas.name}"
     ];
+    # Desktop entries are located in /run/current-system/sw/share/applications/
+    # For programs installed using home manager /etc/profiles/per-user/{user}/share/applications/
+    # Chrome PWAs are located in ~/.local/share/applications/
     xdg.mimeApps = {
       enable = true;
       defaultApplications = {
@@ -49,6 +56,47 @@ in
         "x-scheme-handler/http" = browserDesktopEntry;
         "x-scheme-handler/https" = browserDesktopEntry;
         "x-scheme-handler/unknown" = browserDesktopEntry;
+        "x-scheme-handler/ftp" = browserDesktopEntry; # open `ftp:` url with `browser`
+        "application/rdf+xml" = browserDesktopEntry;
+        "application/rss+xml" = browserDesktopEntry;
+        "application/x-extension-htm" = browserDesktopEntry;
+        "application/x-extension-html" = browserDesktopEntry;
+        "application/x-extension-shtml" = browserDesktopEntry;
+        "application/x-extension-xht" = browserDesktopEntry;
+        "application/x-extension-xhtml" = browserDesktopEntry;
+        "application/xhtml_xml" = browserDesktopEntry;
+
+        "x-scheme-handler/vscode" = "code-url-handler.desktop;";
+
+        # Text files
+        "text/plain" = "dev.zed.Zed.desktop;";
+        "text/x-python" = "dev.zed.Zed.desktop;";
+        "application/x-shellscript" = "dev.zed.Zed.desktop;";
+        "application/json" = "dev.zed.Zed.desktop;";
+        "application/xml" = "code.desktop;";
+        "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
+
+        # PDF
+        "application/pdf" = "org.gnome.Evince.desktop";
+
+        # Images
+        "image/png" = "org.gnome.Loupe.desktop;";
+        "image/jpeg" = "org.gnome.Loupe.desktop;";
+        "image/gif" = "org.gnome.Loupe.desktop;";
+        "image/webp" = "org.gnome.Loupe.desktop;";
+
+        # Telegram
+        "x-scheme-handler/tg" = "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
+        "x-xdg-protocol-tg" = "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
+        "x-scheme-handler/tonsite" =
+          "org.telegram.desktop.desktop;io.github.kukuruzka165.materialgram.desktop;";
+
+        # Media
+        "audio/*" = "mpv.desktop;";
+        "video/*" = "mpv.desktop;";
+      };
+      associations.added = {
+
       };
     };
   };

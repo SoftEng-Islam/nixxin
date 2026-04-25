@@ -306,7 +306,7 @@ in
           "editor.cursorSmoothCaretAnimation" = "explicit";
           "editor.cursorWidth" = 3;
           "editor.defaultFormatter" = "esbenp.prettier-vscode";
-          "editor.detectIndentation" = true;
+          # "editor.detectIndentation" = true;
           # Primary programming fonts with nerd font glyphs support
           "editor.fontFamily" = "'CaskaydiaCove Nerd Font','JetBrainsMono Nerd Font'";
           "editor.fontLigatures" = true;
@@ -346,7 +346,7 @@ in
           "editor.acceptSuggestionOnCommitCharacter" = true;
 
           # Controls if suggestions should be accepted on 'Enter' - in addition to 'Tab'. Helps to avoid ambiguity between inserting new lines or accepting suggestions. The value 'smart' means only accept a suggestion with Enter when it makes a textual change
-          "editor.acceptSuggestionOnEnter" = "on";
+          # "editor.acceptSuggestionOnEnter" = "on";
 
           # Controls the delay in ms after which quick suggestions will show up.
           "editor.quickSuggestionsDelay" = 10;
@@ -410,8 +410,8 @@ in
           };
           "files.autoSave" = "off";
           "files.enableTrash" = false;
-          "files.insertFinalNewline" = true;
-          "files.trimFinalNewlines" = true;
+          # "files.insertFinalNewline" = true;
+          # "files.trimFinalNewlines" = true;
           "files.trimTrailingWhitespace" = true;
           "files.watcherExclude" = {
             "**/.ammonite" = true;

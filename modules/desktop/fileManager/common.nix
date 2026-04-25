@@ -5,7 +5,7 @@
   ...
 }:
 let
-  fm_settings = settings.modules.desktop.file_manager;
+  fm_settings = settings.modules.desktop.file_manager.mime;
 in
 {
   # Required by gnome file managers
@@ -41,7 +41,6 @@ in
     # fix mimetype associations
     mime.defaultApplications = {
       "inode/directory" = "${fm_settings.default}.desktop";
-      # wtf zathura / pqiv registers themselves to open archives
       "application/zip" = "org.gnome.FileRoller.desktop";
       "application/vnd.rar" = "org.gnome.FileRoller.desktop";
       "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
