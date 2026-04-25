@@ -73,7 +73,7 @@ in
         "application/x-shellscript" = "dev.zed.Zed.desktop;";
         "application/json" = "dev.zed.Zed.desktop;";
         "application/xml" = "code.desktop;";
-        "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
+        # "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
 
         # PDF
         "application/pdf" = "org.gnome.Evince.desktop";

@@ -40,7 +40,7 @@ in
     };
     # fix mimetype associations
     mime.defaultApplications = {
-      "inode/directory" = "${fm_settings.default}.desktop";
+      "inode/directory" = "${fm_settings.default}.desktop;";
       "application/zip" = "org.gnome.FileRoller.desktop";
       "application/vnd.rar" = "org.gnome.FileRoller.desktop";
       "application/x-7z-compressed" = "org.gnome.FileRoller.desktop";
