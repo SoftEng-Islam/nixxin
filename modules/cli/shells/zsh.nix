@@ -111,6 +111,7 @@ in
   home-manager.users.${settings.user.username} = {
     programs.zsh = {
       enable = true;
+      dotDir = config.home.homeDirectory; # lock in legacy default; remove when upgrading to stateVersion >= 26.05
       enableCompletion = true;
       shellAliases = myAliases;
       history = {
