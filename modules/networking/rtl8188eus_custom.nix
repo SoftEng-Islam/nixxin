@@ -1,4 +1,10 @@
-{ lib, stdenv, fetchFromGitHub, kernel, bc, }:
+{
+  lib,
+  stdenv,
+  fetchFromGitHub,
+  kernel,
+  bc,
+}:
 
 stdenv.mkDerivation {
   pname = "rtl8188eus-aircrack";
@@ -29,12 +35,10 @@ stdenv.mkDerivation {
   '';
 
   meta = with lib; {
-    description =
-      "RealTek RTL8188eus WiFi driver with monitor mode & frame injection support";
-    homepage = "https://github.com/aircrack-ng/rtl8188eus";
+    description = "RealTek RTL8188eus WiFi driver with monitor mode & frame injection support";
+    homepage = "https://github.com/SimplyCEO/rtl8188eus";
     license = licenses.gpl2Only;
     maintainers = with maintainers; [ moni ];
-    broken = (lib.versions.majorMinor kernel.version) == "5.4"
-      && kernel.isHardened;
+    broken = (lib.versions.majorMinor kernel.version) == "5.4" && kernel.isHardened;
   };
 }

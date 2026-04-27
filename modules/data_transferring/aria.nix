@@ -1,5 +1,7 @@
 { settings, lib, config, pkgs, ... }:
-let inherit (lib) mkIf;
+let
+  inherit (lib) mkIf;
+  aria2ConfigPath = "/home/${settings.user.username}/.config/aria2/aria2.conf";
 in mkIf (settings.modules.data_transferring.aria.enable or false) {
   # ----- The manual of aria2 -----
   # https://aria2.github.io/manual/en/html/aria2c.html
@@ -55,7 +57,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or false) {
 
       ### RPC ###
       # Enable JSON-RPC/XML-RPC server. Default: false
-      enable-rpc=false
+      enable-rpc=true
       # Pause download after added. This option is effective only when --enable-rpc=true is given. Default: false
       # pause=false
       # Save the uploaded torrent or metalink meta data in the directory specified by --dir option. If false is given to this option, the downloads added will not be saved by --save-session option. Default: true
@@ -92,8 +94,21 @@ in mkIf (settings.modules.data_transferring.aria.enable or false) {
       retry-wait=6
       timeout=120
     '';
+
+    systemd.user.services.aria2 = {
+      Unit = {
+        Description = "aria2 RPC daemon";
+        PartOf = [ "graphical-session.target" ];
+        After = [ "graphical-session.target" ];
+      };
+      Service = {
+        ExecStart = "${pkgs.aria2}/bin/aria2c --enable-rpc --conf-path=${aria2ConfigPath}";
+        Restart = "on-failure";
+        RestartSec = 5;
+      };
+      Install.WantedBy = [ "graphical-session.target" ];
+    };
   };
 
-  # aria2c --enable-rpc
   environment.systemPackages = with pkgs; [ aria2 ];
 }

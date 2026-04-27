@@ -1,4 +1,10 @@
-{ settings, lib, pkgs, ... }: {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+{
   # It depends on your monitor and GPU driver support.
   # Details:
   # External LCD Monitor over VGA/DVI/HDMI/DisplayPort:
@@ -25,5 +31,7 @@
   users.users.${settings.user.username} = {
     extraGroups = [ "i2c" ]; # Add "i2c" group
   };
-
+  environment.systemPackages = with pkgs; [
+    i2c-tools
+  ];
 }

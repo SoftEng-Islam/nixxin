@@ -1,6 +1,13 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.bluetooth.enable) {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+mkIf (settings.modules.bluetooth.enable) {
 
   hardware = {
     bluetooth = {
@@ -8,11 +15,13 @@ in mkIf (settings.modules.bluetooth.enable) {
       settings.General = {
         Experimental = true;
         KernelExperimental = true;
+        FastConnectable = "true";
+        JustWorksRepairing = "always";
+        Cache = false;
       };
     };
   };
-  environment.systemPackages = with pkgs;
-    [
-      blueberry # Bluetooth configuration tool
-    ];
+  environment.systemPackages = with pkgs; [
+    blueberry # Bluetooth configuration tool
+  ];
 }
