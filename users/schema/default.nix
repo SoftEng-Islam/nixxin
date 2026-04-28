@@ -279,7 +279,7 @@ self: {
   modules.cli.terminals.enable = true;
   modules.cli.utilities.enable = true;
   modules.cli.utilities.bat.enable = true;
-  modules.cli.utilities.direnv.enable = false;
+  modules.cli.utilities.direnv.enable = true;
 
   # [ community ]
   modules.community.telegram.enable = true;
