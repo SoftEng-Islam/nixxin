@@ -184,6 +184,14 @@ in
         ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern)
         ZSH_HIGHLIGHT_PATTERNS+=('rm -rf *' 'fg=black,bg=red')
         ZSH_HIGHLIGHT_STYLES[alias]='fg=magenta'
+
+        function y() {
+          local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+          command yazi "$@" --cwd-file="$tmp"
+          IFS= read -r -d ''' cwd < "$tmp"
+          [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+          rm -f -- "$tmp"
+        }
       '';
     };
   };
