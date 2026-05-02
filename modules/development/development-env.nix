@@ -8,60 +8,53 @@
     bundler
     bundix
 
-    rustc
-    rust-analyzer
-    git
+    at-spi2-atk.dev
+    atkmm.dev
+    cairo.dev
     cargo
-    cargo-watch
     cargo-audit
     cargo-nextest
     cargo-outdated
     cargo-tauri
-    curl
-    git
-    jq
-    just
-    rustup
-    sccache
-    vulkan-loader
-    wayland
-    libglvnd
-    wlroots
-    pkg-config
-    gobject-introspection
-    cargo
-    cargo-tauri
-    nodejs
-
+    cargo-watch
     cmake
-
-    # Optional but helpful for broader GUI app compatibility
-    libxkbcommon
-    mesa # OpenGL support
-
-    # Provide X11 *libs only* as fallback for apps that probe both
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXi
-
-    at-spi2-atk.dev
-    atkmm.dev
-    cairo.dev
+    curl
     dbus.dev
+    fontconfig
     gdk-pixbuf.dev
+    glib
     glib.dev
+    gnumake
     gobject-introspection.dev
     gtk3.dev
     gtk4.dev
     harfbuzz.dev
+    jq
+    just
+    libappindicator-gtk3
+    libglvnd
     librsvg.dev
     libsoup_3.dev
+    libxkbcommon
+    mesa # OpenGL support
+    nodejs
     nodejs_latest
     openssl.dev
     pango.dev
     pkg-config
+    rust-analyzer
+    rustc
+    rustup
+    sccache
+    strace
+    vulkan-loader
+    wayland
     webkitgtk_4_1.dev
+    wlroots
+    xorg.libX11
+    xorg.libXcursor
+    xorg.libXi
+    xorg.libXrandr
 
     # https://devenv.sh/
     devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
