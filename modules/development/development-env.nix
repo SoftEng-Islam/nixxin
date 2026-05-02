@@ -8,6 +8,10 @@
     bundler
     bundix
 
+    rustc
+    rust-analyzer
+    cargo
+
     # https://devenv.sh/
     devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
   ];

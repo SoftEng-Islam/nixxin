@@ -10,6 +10,6 @@ self: {
   system.architecture = "x86_64-linux";
 
   # Enable this driver so I can use the monitor mode
-  modules.networking.rtl8188eus-aircrack = true;
+  modules.networking.rtl8188eus-aircrack = false;
 
 }
