@@ -43,23 +43,23 @@
     xorg.libXrandr
     xorg.libXi
 
-    at-spi2-atk
-    atkmm
-    cairo
-    dbus
-    gdk-pixbuf
-    glib
-    gobject-introspection
-    # gtk3
-    gtk4
-    harfbuzz
-    librsvg
-    libsoup_3
+    at-spi2-atk.dev
+    atkmm.dev
+    cairo.dev
+    dbus.dev
+    gdk-pixbuf.dev
+    glib.dev
+    gobject-introspection.dev
+    gtk3.dev
+    gtk4.dev
+    harfbuzz.dev
+    librsvg.dev
+    libsoup_3.dev
     nodejs_latest
-    openssl
-    pango
+    openssl.dev
+    pango.dev
     pkg-config
-    webkitgtk_4_1
+    webkitgtk_4_1.dev
 
     # https://devenv.sh/
     devenv # Fast, Declarative, Reproducible, and Composable Developer Environments

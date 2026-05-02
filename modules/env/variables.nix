@@ -13,6 +13,7 @@ in
   # Variables that I want to set globally on all systems
   environment.variables = {
     SSH_AUTH_SOCK = "/run/user/\${UID}/keyring/ssh";
+    PKG_CONFIG_PATH = "/run/current-system/sw/lib/pkgconfig:/run/current-system/sw/share/pkgconfig";
 
     # editors
     EDITOR = settings.common.EDITOR;
