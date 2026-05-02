@@ -33,6 +33,8 @@
     cargo-tauri
     nodejs
 
+    cmake
+
     # Optional but helpful for broader GUI app compatibility
     libxkbcommon
     mesa # OpenGL support
