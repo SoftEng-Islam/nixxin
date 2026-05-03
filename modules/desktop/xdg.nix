@@ -73,7 +73,6 @@ in
         "application/x-shellscript" = "dev.zed.Zed.desktop;";
         "application/json" = "dev.zed.Zed.desktop;";
         "application/xml" = "code.desktop;";
-        # "application/x-executable" = "kitty-open.desktop;Alacritty.desktop;";
 
         # PDF
         "application/pdf" = "org.gnome.Evince.desktop";
@@ -94,8 +93,147 @@ in
         "audio/*" = "mpv.desktop;";
         "video/*" = "mpv.desktop;";
       };
+      # ── associations.added ────────────────────────────────────────────
+      # This section populates the [Added Associations] block of
+      # ~/.config/mimeapps.list.  It does NOT change the *default* handler
+      # (that is controlled by `defaultApplications` above).  Instead it
+      # registers additional applications as *capable* of opening a MIME
+      # type, so they appear in the "Open With…" context-menu alongside
+      # the default.
+      #
+      # Typical use-cases:
+      #   · You want mpv as the default video player but also want vlc
+      #     available in the right-click menu without being the default.
+      #   · You want Zed as the default text editor but also want VSCode
+      #     as a quick alternative from the file manager.
+      #   · You want Loupe as the default image viewer but also want
+      #     GIMP reachable without hunting through app launchers.
       associations.added = {
+        # Web / HTML — browser alternatives
+        "text/html" = [
+          browserDesktopEntry
+          "dev.zed.Zed.desktop"
+        ];
+        "application/xhtml+xml" = [ browserDesktopEntry ];
+        "x-scheme-handler/http" = [ browserDesktopEntry ];
+        "x-scheme-handler/https" = [ browserDesktopEntry ];
 
+        # Plain text / code — editor alternatives
+        "text/plain" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "text/x-python" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "application/x-shellscript" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "application/json" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "application/xml" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "text/x-makefile" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+        "text/markdown" = [
+          "dev.zed.Zed.desktop"
+          "code.desktop"
+        ];
+
+        # PDF — alternative viewers
+        "application/pdf" = [
+          "org.gnome.Evince.desktop"
+          "org.mozilla.firefox.desktop"
+        ];
+
+        # Images — GIMP as an alternative for editing
+        "image/png" = [
+          "org.gnome.Loupe.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+        "image/jpeg" = [
+          "org.gnome.Loupe.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+        "image/gif" = [
+          "org.gnome.Loupe.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+        "image/webp" = [
+          "org.gnome.Loupe.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+        "image/svg+xml" = [
+          "org.gnome.Loupe.desktop"
+          "org.inkscape.Inkscape.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+        "image/tiff" = [
+          "org.gnome.Loupe.desktop"
+          "org.gimp.GIMP.desktop"
+        ];
+
+        # Video — VLC as alternative to mpv
+        "video/mp4" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "video/mkv" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "video/x-matroska" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "video/webm" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "video/avi" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "video/*" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+
+        # Audio — VLC as alternative to mpv
+        "audio/mpeg" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "audio/ogg" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "audio/flac" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "audio/wav" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+        "audio/*" = [
+          "mpv.desktop"
+          "vlc.desktop"
+        ];
+
+        # Archives — file manager as fallback
+        "application/zip" = [ "org.gnome.Nautilus.desktop" ];
+        "application/x-tar" = [ "org.gnome.Nautilus.desktop" ];
+        "application/x-compressed-tar" = [ "org.gnome.Nautilus.desktop" ];
+        "application/x-7z-compressed" = [ "org.gnome.Nautilus.desktop" ];
       };
     };
   };

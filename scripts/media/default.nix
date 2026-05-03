@@ -1,7 +1,7 @@
 { ... }:
 {
   imports = [
-    ./encode_av1.nix
-    ./video_analyzer.nix
+    ./encode_av1
+    ./video_analyzer
   ];
 }

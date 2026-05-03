@@ -29,6 +29,7 @@ let
     (optional development.shell-tools ./shell-tools.nix)
     (optional development.vscode ./vscode.nix)
     (optional development.zedEditor ./zed-editor.nix)
+    (optional development.rust ./rust.nix)
   ];
 in
 {

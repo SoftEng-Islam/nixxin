@@ -77,7 +77,7 @@ in
 
       #=> Third Row:
       # bind = $main, Z, exec,
-      bind = $main, X, exec, ${pkgs.gnome-text-editor}/bin/gnome-text-editor --new-window # Launch GNOME Text Editor
+      bind = $main, X, exec, ${pkgs.zed-editor}/bin/zeditor # Launch Zed Text Editor
       bind = $main, C, exec, code # Launch VSCode (editor)
       # bind = $main, V, exec,
       # bind = $main, B, exec,
@@ -90,7 +90,6 @@ in
       bind = $main Ctrl, K, exec, hyprctl kill # Pick and kill an Active Window
       bind = $main Ctrl, L, exec, hyprctl dispatch exit # Logout
       bind = $main Ctrl, P, exec, ${pkgs.pavucontrol}/bin/pavucontrol # Launch pavucontrol (volume mixer)
-      bind = $main Ctrl, T, exec, ${pkgs.kitty}/bin/kitty --class floating
       bind = $main Ctrl, R, exec, hyprctl reload && rm -rf ~/.cache/thumbnails/* && nautilus -q
 
       # --------------------- #

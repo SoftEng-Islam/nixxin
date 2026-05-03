@@ -42,7 +42,7 @@
 
 ### Required Changes in Your Profile
 
-Every profile inherits the shared schema in `users/schema/default.nix`.
+Every profile inherits the shared schema in `schema/default.nix`.
 Your overrides live in `users/YOUR_USERNAME/default.nix`.
 
 Edit `users/YOUR_USERNAME/default.nix`:
@@ -105,7 +105,7 @@ Add NVIDIA drivers and remove AMD/Intel GPU configurations.
    - Check that `users/YOUR_USERNAME/default.nix` and `users/YOUR_USERNAME/hardware.nix` both exist
 
 2. **Hardware issues:**
-   - Review `users/schema/default.nix` and override hardware-specific values in your profile
+   - Review `schema/default.nix` and override hardware-specific values in your profile
    - Check GPU driver configurations and kernel parameters for your machine
 
 3. **Module conflicts:**

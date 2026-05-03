@@ -119,17 +119,23 @@ curl -sSL https://raw.githubusercontent.com/SoftEng-Islam/nixxin/main/demo.sh | 
 ## 🏗️ Module Structure
 
 ```
-modules/
-├── development/     # Development tools and environments
-├── desktop/         # Desktop environment and window managers
-├── browsers/       # Web browsers
-├── media/          # Audio/video applications
-├── gaming/         # Gaming platforms and tools
-├── office/         # Office applications
-├── system/         # System-level configuration
-├── networking/     # Network configuration
-├── security/       # Security settings
-└── ...             # And many more!
+nixxin/
+├── schema/          # Shared configuration schema & defaults
+├── modules/
+│   ├── development/     # Development tools and environments
+│   ├── desktop/         # Desktop environment and window managers
+│   ├── browsers/        # Web browsers
+│   ├── media/           # Audio/video applications
+│   ├── gaming/          # Gaming platforms and tools
+│   ├── office/          # Office applications
+│   ├── system/          # System-level configuration
+│   ├── networking/      # Network configuration
+│   ├── security/        # Security settings
+│   └── ...              # And many more!
+├── users/
+│   ├── YOUR_USERNAME/   # Your personal overrides & hardware config
+│   └── ...
+└── _settings.nix    # Active user selection & profile loading
 ```
 
 ## 🤝 Contributing

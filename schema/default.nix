@@ -293,23 +293,23 @@ self: {
   modules.community.zoom.enable = false;
 
   # [ data_transferring ] Command-Line/Apps Download Utilities
-  modules.data_transferring.curl.enable = true;
-  modules.data_transferring.wget2.enable = true;
-  modules.data_transferring.aria2.enable = true;
-  modules.data_transferring.yt-dlp.enable = true;
-  modules.data_transferring.qbittorrent.enable = true;
-  modules.data_transferring.axel.enable = false;
-  modules.data_transferring.lux.enable = false;
-  modules.data_transferring.motrix.enable = false;
-  modules.data_transferring.libtorrent-rasterbar.enable = false;
+  modules.data_transferring.aria.enable = true;
   modules.data_transferring.ariang.enable = true;
-  modules.data_transferring.media-downloader.enable = false;
-  modules.data_transferring.persepolis.enable = false;
-  modules.data_transferring.varia.enable = false;
-  modules.data_transferring.deluge.enable = false;
-  modules.data_transferring.webtorrent_desktop.enable = false;
+  modules.data_transferring.axel.enable = false;
   modules.data_transferring.bitmagnet.enable = false;
+  modules.data_transferring.curl.enable = true;
+  modules.data_transferring.deluge.enable = false;
+  modules.data_transferring.libtorrent-rasterbar.enable = false;
+  modules.data_transferring.lux.enable = false;
+  modules.data_transferring.media-downloader.enable = false;
+  modules.data_transferring.motrix.enable = false;
+  modules.data_transferring.persepolis.enable = false;
+  modules.data_transferring.qbittorrent.enable = true;
   modules.data_transferring.transmission.enable = false;
+  modules.data_transferring.varia.enable = false;
+  modules.data_transferring.webtorrent_desktop.enable = false;
+  modules.data_transferring.wget2.enable = true;
+  modules.data_transferring.yt-dlp.enable = true;
 
   # [ Hacking ]
   modules.hacking.hashcat.enable = true;
@@ -329,6 +329,7 @@ self: {
   modules.development.shell-tools = true;
   modules.development.vscode = true;
   modules.development.zedEditor = true;
+  modules.development.rust = true;
 
   # [ desktop ]
   modules.desktop.tools = false;

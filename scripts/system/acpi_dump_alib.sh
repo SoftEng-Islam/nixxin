@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/run/current-system/sw/bin/bash
+
 set -euo pipefail
 
 out_dir="${1:-/tmp/acpi-dump-$(date +%Y%m%d-%H%M%S)}"

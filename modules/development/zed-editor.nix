@@ -47,7 +47,7 @@
           font_family = "CaskaydiaCove Nerd Font";
           font_size = 14;
         };
-        ui_font_size = 16;
+        ui_font_size = 18;
       };
       extraPackages = [ pkgs.nixd ];
       userKeymaps = [

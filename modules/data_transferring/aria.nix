@@ -1,8 +1,15 @@
-{ settings, lib, config, pkgs, ... }:
+{
+  settings,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) mkIf;
   aria2ConfigPath = "/home/${settings.user.username}/.config/aria2/aria2.conf";
-in mkIf (settings.modules.data_transferring.aria.enable or false) {
+in
+mkIf (settings.modules.data_transferring.aria.enable or false) {
   # ----- The manual of aria2 -----
   # https://aria2.github.io/manual/en/html/aria2c.html
 
@@ -18,7 +25,7 @@ in mkIf (settings.modules.data_transferring.aria.enable or false) {
       # Save error/unfinished downloads to FILE on exit.
       # save-session=/home/${settings.user.username}/.aria2/aria2.session
       # Save error/unfinished downloads to a file specified by --save-session option every SEC seconds. If 0 is given, file will be saved only when aria2 exits. Default: 0
-      save-session-interval=60
+      save-session-interval=10
       # Set the maximum number of parallel downloads for every queue item. See also the --split option. Default: 5
       max-concurrent-downloads=2
       # Set max overall download speed in bytes/sec. 0 means unrestricted. Default: 0

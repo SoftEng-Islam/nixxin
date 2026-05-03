@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
-    ./toggle_services.nix
+    ./pc_diagnose
+    ./toggle_services
+    ./datetime
   ];
 }

@@ -28,7 +28,7 @@ in
       null
     else
       let
-        schema = import ./users/schema/default.nix { inherit pkgs; };
+        schema = import ./schema/default.nix { inherit pkgs; };
       in
       lib.fix (self: lib.recursiveUpdate (schema self) (userOverrides self));
 }

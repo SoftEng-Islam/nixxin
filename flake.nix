@@ -8,6 +8,12 @@
     # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
     to-update.url = "github:NixOS/nixpkgs/master";
 
+    # Google Antigravity — auto-updating, FHS-wrapped, version-pinned
+    antigravity-nix = {
+      url = "github:jacopone/antigravity-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Nixos Home-Manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -80,6 +86,7 @@
       to-update,
       nix-cachyos-kernel,
       sops-nix,
+      antigravity-nix,
       ...
     }@inputs:
     let
@@ -130,6 +137,9 @@
                 })
 
                 inputs.nix-vscode-extensions.overlays.default
+
+                # Provides pkgs.google-antigravity and pkgs.google-antigravity-no-fhs
+                antigravity-nix.overlays.default
 
               ];
             }

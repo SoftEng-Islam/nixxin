@@ -12,4 +12,6 @@ self: {
   # Enable this driver so I can use the monitor mode
   modules.networking.rtl8188eus-aircrack = false;
 
+  modules.browsers.google-chrome.enable = true;
+
 }

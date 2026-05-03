@@ -1,4 +1,10 @@
-{ settings, lib, config, pkgs, ... }:
+{
+  settings,
+  lib,
+  config,
+  pkgs,
+  ...
+}:
 #! ===============================================
 #! [IMPORTANT] NetworkManager configuration
 #! ===============================================
@@ -21,13 +27,13 @@
 # =============================
 
 lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
-  # https://github.com/aircrack-ng/rtl8188eus
+  # https://github.com/SimplyCEO/rtl8188eus
   # Supports
   # Android 12/13
   # MESH Support
   # Monitor mode
   # Frame injection
-  # Up to kernel v6.5+ ... And a bunch of various wifi chipsets
+  # Up to kernel 6.17+ ... And a bunch of various wifi chipsets
   # Blacklist conflicting drivers
   boot.blacklistedKernelModules = [
     # "rtl8xxxu" # My Default Wifi Driver
@@ -35,8 +41,9 @@ lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
   ];
 
   # Install the patched rtl8188eus driver (supports monitor mode)
-  boot.extraModulePackages = with config.boot.kernelPackages;
-    [ (callPackage ./rtl8188eus_custom.nix { }) ];
+  boot.extraModulePackages = with config.boot.kernelPackages; [
+    (callPackage ./rtl8188eus_custom.nix { })
+  ];
 
   boot.kernelModules = [ "8188eu" ];
 
