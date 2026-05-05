@@ -47,7 +47,6 @@ let
 
     # To Translate from Language to Other.
     trans = "trans -no-bidi";
-
     nix-shell = "nix-shell --run zsh";
 
     # Quieter ffmpeg output (hide banner + suppress SVT-AV1 encoder info spam).
