@@ -79,6 +79,7 @@
         lsp.nil = {
           binary.path = "nil";
           binary.arguments = [ ];
+          autoArchive = true;
         };
 
         features = {
@@ -176,12 +177,12 @@
         show_wrap_guides = true;
         use_autoclose = true;
         use_auto_surround = true;
-        vim_mode = true;
+        vim_mode = false;
         wrap_guides = [ ];
 
         # --- Features And Telemetry ---
         features = {
-          copilot = false;
+          copilot = true;
         };
 
         telemetry = {
