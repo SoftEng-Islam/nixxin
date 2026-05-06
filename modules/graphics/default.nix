@@ -12,8 +12,8 @@ let
   system = pkgs.stdenv.hostPlatform.system;
 
   # OpenCL and Mesa configuration
-  nixos-opencl = inputs.nixos-opencl;
-  mesa-drivers = nixos-opencl.packages.${system}.mesa;
+  # nixos-opencl = inputs.nixos-opencl;
+  # mesa-drivers = nixos-opencl.packages.${system}.mesa;
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -183,7 +183,7 @@ in
           # "${nixos-opencl.packages.${system}.pocl}/etc/OpenCL/vendors"
 
           "${mesa.opencl}/etc/OpenCL/vendors"
-          "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
+          # "${nixos-opencl.packages.${system}.clvk}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
           "${intel-ocl}/etc/OpenCL/vendors"
           "${intel-compute-runtime}/etc/OpenCL/vendors"

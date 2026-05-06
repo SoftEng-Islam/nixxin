@@ -56,6 +56,7 @@
         "vue"
         "prisma"
         "ini"
+
       ];
       userSettings = {
         languages = {

@@ -42,7 +42,7 @@
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
 
     # OpenCL Packages for Nixos
-    nixos-opencl.url = "path:./pkgs/nixos-opencl";
+    # nixos-opencl.url = "path:./pkgs/nixos-opencl";
 
     # Zen Web Browser
     zen-browser.url = "github:youwen5/zen-browser-flake";
