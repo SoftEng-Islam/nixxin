@@ -15,6 +15,8 @@
     programs.zed-editor = {
       enable = true;
       package = pkgs.zed-editor;
+      extraPackages = [ pkgs.nixd pkgs.nil ];
+
       extensions = [
         "opencode"
         "env"
@@ -72,7 +74,7 @@
 
           Nix = {
             # Ensure you are using the LSP you prefer
-            language_servers = [ "nixd" "nil" ];
+            language_servers = [ "nil" "nixd" ];
             formatter.external = {
               command = "nixpkgs-fmt";
               arguments = [ ];
@@ -80,27 +82,36 @@
             format_on_save = "on";
           };
         };
-
+        features = {
+          edit_prediction_provider = "copilot";
+        };
+        theme = {
+          mode = "dark";
+          light = "macOS Classic Light";
+          dark = "macOS Classic Dark";
+        };
+        icon_theme = {
+          mode = "dark";
+          light = "Material Icon Theme";
+          dark = "Material Icon Theme";
+        };
+        node = {
+          path = lib.getExe pkgs.nodejs;
+          npm_path = lib.getExe' pkgs.nodejs "npm";
+        };
         lsp.nil = {
           binary.path = "nil";
           binary.arguments = [ ];
         };
         lsp.nixd = {
-            initialization_options = {
-              nix = {
-                flake = {
-                  # This suppresses the error by allowing nixd to fetch inputs automatically
-                  autoArchive = true;
-                };
+          initialization_options = {
+            nix = {
+              flake = {
+                # This suppresses the error by allowing nixd to fetch inputs automatically
+                autoArchive = true;
               };
             };
           };
-        features = {
-          edit_prediction_provider = "copilot";
-        };
-        node = {
-          path = lib.getExe pkgs.nodejs;
-          npm_path = lib.getExe' pkgs.nodejs "npm";
         };
         lsp = {
           rust-analyzer = {
@@ -252,7 +263,6 @@
           selections_menu = true;
         };
       };
-      extraPackages = [ pkgs.nixd ];
       userKeymaps = [
         {
           context = "Workspace";
