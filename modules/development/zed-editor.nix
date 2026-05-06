@@ -107,6 +107,28 @@
             };
           };
         };
+        file_scan_exclusions = [
+          "**/.ruff_cache"
+          "**/__pycache__"
+          "**/*.egg-info"
+          "**/dist"
+          "**/.pre-commit-config.yaml"
+          "**/.devenv.flake.nix"
+          "**/.devenv"
+          "**/.direnv"
+          "**/.helix"
+          "**/*.lock"
+          "**/.envrc"
+          # default values below
+          "**/.git"
+          "**/.svn"
+          "**/.hg"
+          "**/CVS"
+          "**/.DS_Store"
+          "**/Thumbs.db"
+          "**/.classpath"
+          "**/.settings"
+        ];
         auto_update = false;
         autosave = "off";
         chat_panel.button = true;
