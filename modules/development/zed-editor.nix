@@ -34,7 +34,6 @@
         "html"
         "toml"
         "dockerfile"
-        "catpuccin icons"
         "git firefly"
         "sql"
         "latex"
@@ -50,7 +49,6 @@
         "rainbow-csv"
         "env"
         "tokyo-night"
-        "phosphor-icons-theme"
         "kanso"
         "macos-classic"
         "material-icon-theme"
@@ -73,7 +71,8 @@
           };
 
           Nix = {
-            language_servers = [ "nil" ];
+            # Ensure you are using the LSP you prefer
+            language_servers = [ "nixd" "nil" ];
             formatter.external = {
               command = "nixpkgs-fmt";
               arguments = [ ];
@@ -85,9 +84,17 @@
         lsp.nil = {
           binary.path = "nil";
           binary.arguments = [ ];
-          autoArchive = true;
         };
-
+        lsp.nixd = {
+            initialization_options = {
+              nix = {
+                flake = {
+                  # This suppresses the error by allowing nixd to fetch inputs automatically
+                  autoArchive = true;
+                };
+              };
+            };
+          };
         features = {
           edit_prediction_provider = "copilot";
         };
@@ -138,7 +145,6 @@
         ];
         auto_update = false;
         autosave = "off";
-        chat_panel.button = true;
         collaboration_panel.button = false;
         # features.inline_completion_provider = "none";
 
@@ -158,21 +164,23 @@
         };
         # --- Appearance ---
         buffer_font_family = "CaskaydiaCove Nerd Font";
-        # buffer_font_family = "JetBrainsMono Nerd Font";
 
         buffer_font_size = 15;
         buffer_font_weight = 300;
         buffer_line_height = "comfortable";
         current_line_highlight = "all";
         selection_highlight = true;
-        ui_font_family = "Work Sans";
+        ui_font_family = "CaskaydiaCove Nerd Font";
         ui_font_size = 18;
         ui_font_weight = 400;
+        buffer_font_fallbacks = [
+          "CaskaydiaCove Nerd Font"
+        ];
 
         # --- Behavior ---
         auto_indent_on_paste = true;
         auto_signature_help = true;
-        cursor_blink = false;
+        cursor_blink = true;
         hide_mouse = "on_typing_and_movement";
         hover_popover_delay = 350;
         hover_popover_enabled = true;
@@ -187,9 +195,6 @@
         wrap_guides = [ ];
 
         # --- Features And Telemetry ---
-        features = {
-          copilot = true;
-        };
 
         telemetry = {
           diagnostics = false;
