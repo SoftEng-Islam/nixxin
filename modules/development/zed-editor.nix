@@ -15,7 +15,7 @@
     programs.zed-editor = {
       enable = true;
       package = pkgs.zed-editor;
-      extraPackages = [ pkgs.nixd pkgs.nil ];
+      extraPackages = [ pkgs.nixd ];
 
       extensions = [
         "opencode"
@@ -40,7 +40,6 @@
         "latex"
         "make"
         "scss"
-        "biome"
         "csv"
         "ruff"
         "python-lsp"
@@ -68,7 +67,7 @@
 
           Nix = {
             # Ensure you are using the LSP you prefer
-            language_servers = [ "nil" "nixd" ];
+            language_servers = [ "nixd" ];
             formatter.external = {
               command = "nixpkgs-fmt";
               arguments = [ ];
@@ -92,10 +91,6 @@
         node = {
           path = lib.getExe pkgs.nodejs;
           npm_path = lib.getExe' pkgs.nodejs "npm";
-        };
-        lsp.nil = {
-          binary.path = "nil";
-          binary.arguments = [ ];
         };
         lsp.nixd = {
           initialization_options = {
