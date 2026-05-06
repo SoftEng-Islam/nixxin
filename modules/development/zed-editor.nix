@@ -16,6 +16,7 @@
       enable = true;
       package = pkgs.zed-editor;
       extensions = [
+        "opencode"
         "env"
         "git-firefly"
         "gleam"
@@ -56,7 +57,6 @@
         "vue"
         "prisma"
         "ini"
-
       ];
       userSettings = {
         languages = {
