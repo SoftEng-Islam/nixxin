@@ -312,7 +312,7 @@ in
           "editor.fontLigatures" = true;
           "editor.fontSize" = 16;
           "editor.fontWeight" = "normal";
-          "editor.formatOnPaste" = true;
+          "editor.formatOnPaste" = false;
           # Automatically format the file when saving
           "editor.formatOnSave" = true;
           "editor.guides.bracketPairs" = true;

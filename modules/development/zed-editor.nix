@@ -51,6 +51,11 @@
         "tokyo-night"
         "phosphor-icons-theme"
         "kanso"
+        "macos-classic"
+        "material-icon-theme"
+        "vue"
+        "prisma"
+        "ini"
       ];
       userSettings = {
         languages = {
