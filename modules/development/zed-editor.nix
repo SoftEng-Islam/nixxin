@@ -27,7 +27,6 @@
         "html"
         "just"
         "nix"
-        "one-dark-pro"
         "rust"
         "sql"
         "toml"
@@ -69,7 +68,7 @@
             # Ensure you are using the LSP you prefer
             language_servers = [ "nixd" ];
             formatter.external = {
-              command = "nixpkgs-fmt";
+              command = "${pkgs.nixfmt}/bin/nixfmt";
               arguments = [ ];
             };
             format_on_save = "on";
