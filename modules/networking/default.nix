@@ -13,7 +13,7 @@ in
   imports = [
     ./dnsmasq.nix
     ./iwd.nix
-    ./default
+    ./RTL8188EUS
     ./rtw.nix
     ./waypipe.nix
     # ./blocky.nix
