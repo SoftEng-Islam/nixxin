@@ -1,5 +1,19 @@
 { lib, stdenv, fetchFromGitHub, kernel, bc }:
 
+let
+  kernelBuildDir = "${kernel.dev}/lib/modules/${kernel.modDirVersion}/build";
+
+  # kernel.makeFlags is meant for building the kernel itself. The CachyOS LTO
+  # package set adds flags with spaces that stdenv passes incorrectly to make
+  # for this external module, so keep only the reusable toolchain flags.
+  moduleMakeFlags = lib.filter (
+    flag:
+    !(lib.elem flag [
+      "O=$(buildRoot)"
+      "--eval=undefine modules"
+    ])
+  ) kernel.makeFlags;
+in
 stdenv.mkDerivation {
   pname = "rtl8188eus";
   version = "${kernel.version}-unstable";
@@ -17,9 +31,9 @@ stdenv.mkDerivation {
   nativeBuildInputs = [ bc ] ++ kernel.moduleBuildDependencies;
 
   # Pass the kernel build directories natively to the Makefile
-  makeFlags = kernel.makeFlags ++ [
-    "KSRC=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-    "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+  makeFlags = moduleMakeFlags ++ [
+    "KSRC=${kernelBuildDir}"
+    "KDIR=${kernelBuildDir}"
   ];
 
   # Skip 'make install' entirely. It's much safer to just copy the compiled .ko file manually.
