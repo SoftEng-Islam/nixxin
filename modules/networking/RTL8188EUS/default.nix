@@ -47,8 +47,10 @@ lib.mkIf (settings.modules.networking.rtl8188eus or false) {
 
   boot.kernelModules = [ "8188eu" ];
 
-  # Optional: Disable power saving for better WiFi stability
-  boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
+  # Optional: Disable idle power saving for better WiFi stability
+  boot.extraModprobeConfig = ''
+    options 8188eu rtw_ips_mode=0
+  '';
 
   # The Required Packages
   environment.systemPackages = with pkgs; [
