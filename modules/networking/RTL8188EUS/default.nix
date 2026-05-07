@@ -26,7 +26,7 @@
 # unmanaged-devices=mac:A7:A7:A7:A7:A7
 # =============================
 
-lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
+lib.mkIf (settings.modules.networking.rtl8188eus or false) {
   # https://github.com/SimplyCEO/rtl8188eus
   # Supports
   # Android 12/13
@@ -51,7 +51,7 @@ lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
   boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
 
   # The Required Packages
-  environment.systemPackages = with pkgs;[
+  environment.systemPackages = with pkgs; [
     gcc
   ];
 }
