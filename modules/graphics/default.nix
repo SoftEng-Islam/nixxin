@@ -246,7 +246,7 @@ in
       LIBVA_DRIVER_NAME = "radeonsi";
 
       # Disable all vsync/frame limiting at driver level
-      vblank_mode = "0"; # ? Reduces latency
+      # vblank_mode = "0"; # ? Reduces latency
       __GL_SYNC_TO_VBLANK = 0;
 
       __GL_THREADED_OPTIMIZATIONS = 1;

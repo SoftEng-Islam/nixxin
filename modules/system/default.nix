@@ -19,6 +19,8 @@
     ./radeon.nix # Optional If using Radeon drivers
   ];
   environment.systemPackages = with pkgs; [
+    # Don't remove the gcc, required by many tools and packages.
+    gcc
     e2fsprogs
     # smartmontools is already in systeminfo.nix
     util-linux

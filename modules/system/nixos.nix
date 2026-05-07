@@ -1,6 +1,5 @@
 # ---- docs.nix ---- #
 {
-  self,
   settings,
   lib,
   pkgs,
@@ -220,17 +219,7 @@ in
       "--commit-lock-file"
     ];
     stateVersion = settings.system.stateVersion;
-
-    # Globally declare the configurationRevision from shortRev if the git tree is clean,
-    # or from dirtyShortRev if it is dirty. This is useful for tracking the current
-    # configuration revision in the system profile.
-    # configurationRevision = self.shortRev or self.dirtyShortRev;
   };
-
-  # Preserve the flake that built the active system revision in /etc
-  # for easier rollbacks with nixos-enter in case we contain changes
-  # that are not yet staged.
-  # environment.etc."nixxin".source = self;
 
   # ------------------------------------------------
   # ---- Enable automatic updates

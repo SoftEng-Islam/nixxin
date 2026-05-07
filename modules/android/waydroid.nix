@@ -225,7 +225,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       export RADV_TEX_ANISO=0
       export AMD_TEX_ANISO=0
       # export mesa_glthread=true
-      export vblank_mode=0
+      # export vblank_mode=0
 
       # 3. Set Android Properties
       waydroid prop set persist.waydroid.width 1280

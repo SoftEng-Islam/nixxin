@@ -5,15 +5,15 @@
   ...
 }:
 let
-  inherit (lib) mkDefault mkForce;
+  inherit (lib) mkDefault;
   dnsResolver = settings.modules.networking.dnsResolver;
-  wifiInterface = "wlan0";
+  # wifiInterface = "wlan0";
 in
 {
   imports = [
     ./dnsmasq.nix
     ./iwd.nix
-    ./RTL8188EUS.nix
+    ./default
     ./rtw.nix
     ./waypipe.nix
     # ./blocky.nix

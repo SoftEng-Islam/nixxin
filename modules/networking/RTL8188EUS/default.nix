@@ -36,13 +36,13 @@ lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
   # Up to kernel 6.17+ ... And a bunch of various wifi chipsets
   # Blacklist conflicting drivers
   boot.blacklistedKernelModules = [
-    # "rtl8xxxu" # My Default Wifi Driver
-    # "r8188eu"
+    "rtl8xxxu" # My Default Wifi Driver
+    "r8188eu"
   ];
 
   # Install the patched rtl8188eus driver (supports monitor mode)
   boot.extraModulePackages = with config.boot.kernelPackages; [
-    (callPackage ./rtl8188eus_custom.nix { })
+    (callPackage ./package.nix { })
   ];
 
   boot.kernelModules = [ "8188eu" ];
@@ -50,4 +50,8 @@ lib.mkIf (settings.modules.networking.rtl8188eus-aircrack or false) {
   # Optional: Disable power saving for better WiFi stability
   boot.kernelParams = [ "rtl8188eus.ips_mode=0" ];
 
+  # The Required Packages
+  environment.systemPackages = with pkgs;[
+    gcc
+  ];
 }
