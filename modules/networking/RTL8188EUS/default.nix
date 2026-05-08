@@ -49,7 +49,7 @@ lib.mkIf (settings.modules.networking.rtl8188eus or false) {
 
   # Optional: Disable idle power saving for better WiFi stability
   boot.extraModprobeConfig = ''
-    options 8188eu rtw_ips_mode=0
+    options 8188eu rtw_ips_mode=0 rtw_power_mgnt=0 rtw_enusbss=0
   '';
 
   # The Required Packages

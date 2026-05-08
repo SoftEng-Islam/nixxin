@@ -142,7 +142,7 @@ in
     settings = {
       # [device]
       # "yes" is already the default for scanning
-      device."wifi.scan-rand-mac-address" = "yes";
+      device."wifi.scan-rand-mac-address" = "no";
 
       # Wireless configuration
       # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
@@ -172,7 +172,7 @@ in
         #wifi.cloned-mac-address=random
 
         # Generate a random MAC for each WiFi and associate the two permanently
-        "wifi.cloned-mac-address" = "stable";
+        "wifi.cloned-mac-address" = "preserve";
       };
 
       # [main]
