@@ -14,13 +14,11 @@ let
     # plugins, and themes. Aliases can be placed here, though oh-my-zsh
     # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 
-    # Set-up icons for files/folders in terminal
-    l = "eza -lh --icons=auto"; # Long list with icons
-    la = "eza -la";
-    ls = "eza --icons -l -T -L=1";
-    ll = "eza -al --icons";
-    lt = "eza -a --tree --level=1 --icons"; # List folder as tree with icons
-    ld = "eza -lhD --icons=auto"; # Long list directories with icons
+    # Set-up icons for files/folders in terminal.
+    la = "eza -la --icons=auto"; # Long list with icons.
+    lt = "eza -a --tree --level=1 --icons"; # List folder as tree with icons.
+    li = "eza -f --icons never"; # only files not directories.
+    ld = "eza -lhD --icons=auto"; # Long list directories with icons.
     tree = "eza --tree";
 
     # Handy change directory shortcuts

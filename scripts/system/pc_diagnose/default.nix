@@ -26,6 +26,10 @@ let
   };
 in
 {
+  imports = [
+    ./journal_live.nix
+  ];
+
   environment.systemPackages = [
     pcDiagnose
   ];
