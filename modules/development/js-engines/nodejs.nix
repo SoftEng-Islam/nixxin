@@ -1,5 +1,4 @@
 { pkgs, settings, ... }:
-
 {
   home-manager.users.${settings.user.username} = {
     home.sessionVariables = {

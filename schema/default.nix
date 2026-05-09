@@ -280,6 +280,20 @@ self: {
   modules.cli.utilities.enable = true;
   modules.cli.utilities.bat.enable = true;
   modules.cli.utilities.direnv.enable = true;
+  # Tools
+  modules.cli.tools.enable = true;
+  modules.cli.tools.charm = true;
+  modules.cli.tools.claude-code = true;
+  modules.cli.tools.eza = true;
+  modules.cli.tools.fzf = true;
+  modules.cli.tools.glow = true;
+  modules.cli.tools.gnused = true;
+  modules.cli.tools.grep = true;
+  modules.cli.tools.jujutsu = true;
+  modules.cli.tools.nh = true;
+  modules.cli.tools.nurl = true;
+  modules.cli.tools.ripgrep = true;
+  modules.cli.tools.zoxide = true;
 
   # [ community ]
   modules.community.telegram.enable = true;
@@ -317,19 +331,25 @@ self: {
   # [ Development ]
   modules.development.ai-tools = true;
   modules.development.api-tools = true;
-  modules.development.claude-code = true;
   modules.development.cloud-tools = true;
   modules.development.database = true;
   modules.development.development-env = true;
-  modules.development.eclipse = false;
-  modules.development.editors = true;
-  modules.development.helix = true;
   modules.development.nodejs = true;
   modules.development.postgresql = true;
-  modules.development.shell-tools = true;
-  modules.development.vscode = true;
-  modules.development.zedEditor = true;
-  modules.development.rust = true;
+  # Languages
+  modules.development.languages.rust = true;
+  modules.development.languages.python = true;
+  modules.development.languages.ruby = true;
+  # js-engines
+  modules.development.js-engines.enable = true;
+  modules.development.js-engines.nodejs.enable = true;
+  modules.development.js-engines.denojs.enable = true;
+  # Editors
+  modules.development.editors.enable = true;
+  modules.development.editors.vscode.enable = true;
+  modules.development.editors.zedEditor.enable = true;
+  modules.development.editors.helix.enable = false;
+  modules.development.editors.webstorm.enable = false;
 
   # [ desktop ]
   modules.desktop.tools = false;

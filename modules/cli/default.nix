@@ -1,6 +1,4 @@
 {
-  settings,
-  lib,
   pkgs,
   ...
 }:
@@ -22,7 +20,6 @@ let
     '';
   };
 in
-# lib.mkIf (settings.modules.cli.enable or false)
 {
   imports = [
     ./editors
@@ -32,9 +29,7 @@ in
     ./terminals
     ./utilities
     ./yazi
-    ./ripgrep.nix
-    ./eza.nix
-    ./glow.nix
+    ./tools
   ];
 
   # Enable the nix-index

@@ -1,6 +1,7 @@
+{ settings, ... }:
 {
   programs.fish = {
-    enable = true;
+    enable = settings.modules.cli.shells.fish.enable or false;
     shellAliases = {
       g = "git";
       "..." = "cd ../..";

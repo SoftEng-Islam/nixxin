@@ -1,7 +1,9 @@
-{ pkgs, ... }:
-
+{
+  pkgs,
+  ...
+}:
 {
   environment.systemPackages = with pkgs; [
-    shellcheck
+    claude-code
   ];
 }

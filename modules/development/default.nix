@@ -19,15 +19,8 @@ let
     (optional development.cloud-tools ./cloud-tools.nix)
     (optional development.database ./database.nix)
     (optional development.development-env ./development-env.nix)
-    (optional development.eclipse ./eclipse.nix)
-    (optional development.editors ./editors.nix)
-    (optional development.helix ./helix.nix)
-    (optional development.nodejs ./nodejs.nix)
     (optional development.postgresql ./postgresql.nix)
-    (optional development.shell-tools ./shell-tools.nix)
-    (optional development.vscode ./vscode.nix)
-    (optional development.zedEditor ./zed-editor.nix)
-    (optional development.rust ./rust.nix)
+    (optional development.languages.enable ./langauges)
   ];
 in
 {

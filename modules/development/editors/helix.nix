@@ -5,7 +5,7 @@
   # ----------------------------------- #
   home-manager.users.${settings.user.username} = {
     programs.helix = {
-      enable = true;
+      enable = settings.modules.development.editors.helix.enable or false;
     };
   };
 }

@@ -1,8 +1,8 @@
 {
   config,
-  lib,
   ...
-}: {
+}:
+{
   programs.jujutsu = {
     enable = true;
     settings = {
@@ -14,16 +14,15 @@
         pager = "less -FRX";
         show-cryptographic-signatures = true;
       };
-      signing = let
-        gitSignCfg = config.programs.git.signing;
-      in {
-        backend = "gpg";
-        behaviour =
-          if gitSignCfg.signByDefault
-          then "own"
-          else "never";
-        key = gitSignCfg.key;
-      };
+      signing =
+        let
+          gitSignCfg = config.programs.git.signing;
+        in
+        {
+          backend = "gpg";
+          behaviour = if gitSignCfg.signByDefault then "own" else "never";
+          key = gitSignCfg.key;
+        };
       template-aliases = {
         "gerrit_change_id(change_id)" = ''
           "Id0000000" ++ change_id.normal_hex()

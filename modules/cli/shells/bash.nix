@@ -1,6 +1,8 @@
-{ settings, pkgs, ... }:
+{ settings, ... }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.bash = { enable = true; };
+    programs.bash = {
+      enable = true;
+    };
   };
 }
