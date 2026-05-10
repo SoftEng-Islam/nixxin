@@ -334,21 +334,27 @@ self: {
   modules.hacking.hashcat.enable = true;
 
   # [ Development ]
-  modules.development.ai-tools = true;
-  modules.development.api-tools = true;
-  modules.development.cloud-tools = true;
-  modules.development.database = true;
-  modules.development.development-env = true;
-  modules.development.nodejs = true;
-  modules.development.postgresql = true;
+  modules.development.api-tools.enable = true;
+  modules.development.cloud-tools.enable = true;
+
+  # Databases
+  modules.development.databases.enable = true;
+  modules.development.databases.postgresql.enable = true;
+  modules.development.databases.mariadb.enable = true;
+  modules.development.databases.redis.enable = true;
+
   # Languages
-  modules.development.languages.rust = true;
-  modules.development.languages.python = true;
-  modules.development.languages.ruby = true;
+  modules.development.languages.enable = true;
+  modules.development.languages.rust.enable = true;
+  modules.development.languages.python.enable = true;
+  modules.development.languages.ruby.enable = true;
+  modules.development.languages.go.enable = true;
+
   # js-engines
   modules.development.js-engines.enable = true;
   modules.development.js-engines.nodejs.enable = true;
   modules.development.js-engines.denojs.enable = true;
+
   # Editors
   modules.development.editors.enable = true;
   modules.development.editors.vscode.enable = true;
