@@ -295,7 +295,7 @@ self: {
   modules.cli.utilities.nh = true;
   modules.cli.utilities.nurl = true;
   modules.cli.utilities.ripgrep = true;
-  modules.cli.utilities.ssh = true;
+  modules.cli.utilities.ssh = false;
   modules.cli.utilities.zoxide = true;
   modules.cli.utilities.fd = true;
   modules.cli.utilities.lf = true;
