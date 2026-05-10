@@ -10,6 +10,7 @@ let
     (optional editors.antigravity.enable ./antigravity.nix)
     (optional editors.cursor.enable ./cursor.nix)
     (optional editors.helix.enable ./helix.nix)
+    (optional editors.kiro.enable ./kiro.nix)
     (optional editors.vscode.enable ./vscode.nix)
     (optional editors.webstorm.enable ./webstorm.nix)
     (optional editors.windsurf.enable ./windsurf.nix)

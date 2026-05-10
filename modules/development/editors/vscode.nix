@@ -122,6 +122,7 @@ in
             github.vscode-github-actions # GitHub Actions
             kingleo.deepseek-web
             anthropic.claude-code
+            saoudrizwan.claude-dev
 
 
             ## Utilities & Editor Enhancements ##

@@ -351,6 +351,7 @@ self: {
   modules.development.editors.vscode.enable = true;
   modules.development.editors.zedEditor.enable = true;
   modules.development.editors.helix.enable = false;
+  modules.development.editors.kiro.enable = true;
   modules.development.editors.webstorm.enable = false;
 
   # [ desktop ]
