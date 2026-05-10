@@ -342,13 +342,15 @@ self: {
   modules.development.databases.postgresql.enable = true;
   modules.development.databases.mariadb.enable = true;
   modules.development.databases.redis.enable = true;
+  modules.development.databases.mongodb.enable = false;
+  modules.development.databases.tools.enable = true;
 
   # Languages
   modules.development.languages.enable = true;
   modules.development.languages.rust.enable = true;
   modules.development.languages.python.enable = true;
-  modules.development.languages.ruby.enable = true;
-  modules.development.languages.go.enable = true;
+  modules.development.languages.ruby.enable = false;
+  modules.development.languages.go.enable = false;
 
   # js-engines
   modules.development.js-engines.enable = true;
