@@ -121,6 +121,8 @@ in
             github.copilot # GitHub Copilot
             github.vscode-github-actions # GitHub Actions
             kingleo.deepseek-web
+            anthropic.claude-code
+
 
             ## Utilities & Editor Enhancements ##
             # arrterian.nix-env-selector # not needed at the moment
