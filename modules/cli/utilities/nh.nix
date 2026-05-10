@@ -1,13 +1,9 @@
+{ settings, pkgs, ... }:
 {
-  pkgs,
-  config,
-  ...
-}:
-{
-  programs.nh = {
+  home-manager.users.${settings.user.username}.programs.nh = {
     enable = true;
     package = pkgs.nh;
-    flake = "${config.home.homeDirectory}/nix-config";
+    flake = settings.common.dotfilesDir;
     clean = {
       enable = true;
       dates = "weekly";

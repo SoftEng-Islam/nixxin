@@ -1,6 +1,6 @@
-{ ... }:
+{ settings, ... }:
 {
-  programs.zoxide = {
+  home-manager.users.${settings.user.username}.programs.zoxide = {
     enable = true;
     enableZshIntegration = true;
     enableFishIntegration = true;
