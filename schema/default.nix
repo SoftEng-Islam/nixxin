@@ -297,6 +297,8 @@ self: {
   modules.cli.utilities.ripgrep = true;
   modules.cli.utilities.ssh = true;
   modules.cli.utilities.zoxide = true;
+  modules.cli.utilities.fd = true;
+  modules.cli.utilities.lf = true;
 
   # [ community ]
   modules.community.telegram.enable = true;
