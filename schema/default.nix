@@ -280,6 +280,7 @@ self: {
   # utilities
   modules.cli.utilities.enable = true;
   modules.cli.utilities.bat.enable = true;
+  modules.cli.utilities.aider-chat = true;
   modules.cli.utilities.direnv.enable = true;
   modules.cli.utilities.atuin = true;
   modules.cli.utilities.charm = true;
