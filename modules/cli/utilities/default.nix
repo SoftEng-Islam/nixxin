@@ -13,6 +13,7 @@ let
     ;
   utilities = settings.modules.cli.utilities;
   _imports = [
+    (optional utilities.aider-chat ./aider-chat.nix)
     (optional utilities.atuin ./atuin.nix)
     (optional utilities.charm ./charm.nix)
     (optional utilities.claude-code ./claude-code.nix)
