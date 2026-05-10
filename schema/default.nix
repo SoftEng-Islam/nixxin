@@ -298,7 +298,7 @@ self: {
   modules.cli.utilities.ssh = false;
   modules.cli.utilities.zoxide = true;
   modules.cli.utilities.fd = true;
-  modules.cli.utilities.lf = true;
+  modules.cli.utilities.lf = false;
 
   # [ community ]
   modules.community.telegram.enable = true;
