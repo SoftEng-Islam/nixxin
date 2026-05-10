@@ -17,10 +17,10 @@ let
     (optional development.databases.enable ./databases)
     (optional development.editors.enable ./editors)
     (optional development.js-engines.enable ./js-engines)
-    (optional development.languages.enable ./langauges)
+    (optional development.languages.enable ./languages)
 
-    (optional development.api-tools ./api-tools.nix)
-    (optional development.cloud-tools ./cloud-tools.nix)
+    (optional development.api-tools.enable ./api-tools.nix)
+    (optional development.cloud-tools.enable ./cloud-tools.nix)
   ];
 in
 {

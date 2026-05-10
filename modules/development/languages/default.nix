@@ -4,11 +4,12 @@ let
     optional
     flatten
     ;
-  development = settings.modules.development;
+  languages = settings.modules.development.languages;
   _imports = [
-    (optional development.rust ./python.nix)
-    (optional development.rust ./ruby.nix)
-    (optional development.rust ./rust.nix)
+    (optional languages.python.enable ./python.nix)
+    (optional languages.ruby.enable ./ruby.nix)
+    (optional languages.rust.enable ./rust.nix)
+    (optional languages.go.enable ./go.nix)
   ];
 in
 {

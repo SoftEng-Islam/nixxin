@@ -13,6 +13,8 @@ let
 
   _imports = [
     (optional databases.postgresql.enable ./postgresql.nix)
+    (optional databases.mariadb.enable ./mariadb.nix)
+    (optional databases.redis.enable ./redis.nix)
     (optional databases.mongodb.enable ./mongodb.nix)
     (optional databases.tools.enable ./tools.nix)
   ];
