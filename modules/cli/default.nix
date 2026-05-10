@@ -29,7 +29,6 @@ in
     ./terminals
     ./utilities
     ./yazi
-    ./tools
   ];
 
   # Enable the nix-index
