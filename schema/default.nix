@@ -279,9 +279,9 @@ self: {
   modules.cli.terminals.enable = true;
   # utilities
   modules.cli.utilities.enable = true;
-  modules.cli.utilities.bat.enable = true;
+  modules.cli.utilities.bat = true;
   modules.cli.utilities.aider-chat = true;
-  modules.cli.utilities.direnv.enable = true;
+  modules.cli.utilities.direnv = true;
   modules.cli.utilities.atuin = true;
   modules.cli.utilities.charm = true;
   modules.cli.utilities.claude-code = true;
