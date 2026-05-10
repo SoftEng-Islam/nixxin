@@ -277,23 +277,25 @@ self: {
   modules.cli.prompt.enable = true;
   modules.cli.shells.enable = true;
   modules.cli.terminals.enable = true;
+  # utilities
   modules.cli.utilities.enable = true;
   modules.cli.utilities.bat.enable = true;
   modules.cli.utilities.direnv.enable = true;
-  # Tools
-  modules.cli.tools.enable = true;
-  modules.cli.tools.charm = true;
-  modules.cli.tools.claude-code = true;
-  modules.cli.tools.eza = true;
-  modules.cli.tools.fzf = true;
-  modules.cli.tools.glow = true;
-  modules.cli.tools.gnused = true;
-  modules.cli.tools.grep = true;
-  modules.cli.tools.jujutsu = true;
-  modules.cli.tools.nh = true;
-  modules.cli.tools.nurl = true;
-  modules.cli.tools.ripgrep = true;
-  modules.cli.tools.zoxide = true;
+  modules.cli.utilities.atuin = true;
+  modules.cli.utilities.charm = true;
+  modules.cli.utilities.claude-code = true;
+  modules.cli.utilities.eza = true;
+  modules.cli.utilities.fzf = true;
+  modules.cli.utilities.glow = true;
+  modules.cli.utilities.gnused = true;
+  modules.cli.utilities.gpg = true;
+  modules.cli.utilities.grep = true;
+  modules.cli.utilities.jujutsu = true;
+  modules.cli.utilities.nh = true;
+  modules.cli.utilities.nurl = true;
+  modules.cli.utilities.ripgrep = true;
+  modules.cli.utilities.ssh = true;
+  modules.cli.utilities.zoxide = true;
 
   # [ community ]
   modules.community.telegram.enable = true;

@@ -1,10 +1,9 @@
 {
   settings,
-  lib,
   pkgs,
   ...
 }:
-lib.mkIf (settings.modules.cli.utilities.direnv.enable or false) {
+{
   #
   #  Direnv
   #  https://direnv.net/

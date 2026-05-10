@@ -1,3 +1,4 @@
+{ ... }:
 {
   programs.zoxide = {
     enable = true;

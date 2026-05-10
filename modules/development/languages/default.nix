@@ -1,8 +1,6 @@
 { settings, lib, ... }:
 let
   inherit (lib)
-    mkIf
-    optionals
     optional
     flatten
     ;

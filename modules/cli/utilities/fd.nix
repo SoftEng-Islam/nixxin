@@ -1,5 +1,8 @@
-{ settings, pkgs, ... }: {
+{ settings, ... }:
+{
   home-manager.users.${settings.user.username} = {
-    programs.fd = { enable = true; };
+    programs.fd = {
+      enable = true;
+    };
   };
 }

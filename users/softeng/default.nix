@@ -13,5 +13,4 @@ self: {
   modules.networking.rtl8188eus = true;
 
   modules.browsers.google-chrome.enable = true;
-
 }

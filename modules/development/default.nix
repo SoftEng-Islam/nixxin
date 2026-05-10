@@ -1,6 +1,7 @@
 {
   settings,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -13,19 +14,28 @@ let
   development = settings.modules.development;
 
   _imports = [
-    (optional development.ai-tools ./ai-tools.nix)
-    (optional development.api-tools ./api-tools.nix)
-    (optional development.claude-code ./claude-code.nix)
-    (optional development.cloud-tools ./cloud-tools.nix)
-    (optional development.database ./database.nix)
-    (optional development.development-env ./development-env.nix)
-    (optional development.postgresql ./postgresql.nix)
+    (optional development.databases.enable ./databases)
+    (optional development.editors.enable ./editors)
+    (optional development.js-engines.enable ./js-engines)
     (optional development.languages.enable ./langauges)
+
+    (optional development.api-tools ./api-tools.nix)
+    (optional development.cloud-tools ./cloud-tools.nix)
   ];
 in
 {
   imports = optionals (development.enable or false) flatten _imports;
   config = mkIf (development.enable or false) {
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
+    environment.systemPackages = with pkgs; [
+      python3
+
+      ruby_3_4
+      bundler
+      bundix
+
+      # https://devenv.sh/
+      devenv # Fast, Declarative, Reproducible, and Composable Developer Environments
+    ];
   };
 }
