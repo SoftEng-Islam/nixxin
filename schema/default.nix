@@ -341,8 +341,8 @@ self: {
   modules.development.databases.enable = true;
   modules.development.databases.postgresql.enable = true;
   modules.development.databases.mariadb.enable = true;
-  modules.development.databases.redis.enable = true;
-  modules.development.databases.mongodb.enable = false;
+  modules.development.databases.false.enable = true;
+  modules.development.databases.mongodb.enable = true;
   modules.development.databases.tools.enable = true;
 
   # Languages
@@ -555,7 +555,6 @@ self: {
   modules.remote_desktop.rdp.enable = false;
 
   # [resources_monitoring]
-  modules.resources_monitoring.resources_app = true;
   modules.resources_monitoring.btop = {
     enable = true;
     theme = "adapta";
@@ -871,8 +870,8 @@ self: {
   ];
   modules.users.packages = with pkgs; [ thunderbird ];
 
-  # [MS Windows]
-  modules.windows.wine.enable = false;
+  # [MS Windows Support]
+  # modules.windows.
 
   # [XDG]
   modules.desktop.xdg = {

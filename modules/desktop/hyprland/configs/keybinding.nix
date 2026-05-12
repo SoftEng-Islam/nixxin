@@ -53,7 +53,8 @@ in
       # File Manager
       bind = $main, E, exec, ${fileManagerExec}
 
-      bind = $main, R, exec, ${pkgs.resources}/bin/resources
+      # PC Resources monitor.
+      bind = $main, R, exec, ${pkgs.mission-center}/bin/missioncenter
 
       bind = $main, T, exec, ${settings.modules.terminals.default.terminal.package}/bin/${settings.modules.terminals.default.terminal.name} # Launch (terminal)
       # bind = $main, Y, exec,
