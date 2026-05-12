@@ -341,7 +341,7 @@ self: {
   modules.development.databases.enable = true;
   modules.development.databases.postgresql.enable = true;
   modules.development.databases.mariadb.enable = true;
-  modules.development.databases.false.enable = true;
+  modules.development.databases.redis.enable = true;
   modules.development.databases.mongodb.enable = true;
   modules.development.databases.tools.enable = true;
 
@@ -872,7 +872,6 @@ self: {
 
   # [MS Windows Support]
   # modules.windows.
-
   # [XDG]
   modules.desktop.xdg = {
     # Select Your Default Apps:
