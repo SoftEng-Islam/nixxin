@@ -78,6 +78,8 @@
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+
+    kiro-flake.url = "github:connerohnesorge/kiro-flake";
   };
   outputs =
     {
@@ -87,6 +89,7 @@
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
+      kiro-flake,
       ...
     }@inputs:
     let

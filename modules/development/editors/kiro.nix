@@ -2,7 +2,6 @@
 {
   environment.systemPackages = with pkgs; [
     # https://github.com/Kiro-Editor/Kiro
-    # kiro
-    kiro-fhs
+    kiro-flake.packages.x86_64-linux.kiro-desktop
   ];
 }
