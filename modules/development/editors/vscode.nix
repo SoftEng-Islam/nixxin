@@ -122,7 +122,7 @@ in
             github.vscode-github-actions # GitHub Actions
             kingleo.deepseek-web
             # anthropic.claude-code
-            # saoudrizwan.claude-dev
+            saoudrizwan.claude-dev
 
             ## Utilities & Editor Enhancements ##
             # arrterian.nix-env-selector # not needed at the moment
