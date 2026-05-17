@@ -35,15 +35,26 @@
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    quickshell.url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-    quickshell.inputs.nixpkgs.follows = "nixpkgs";
+    # -----------------------------
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Noctalia Shell
-    noctalia.url = "github:noctalia-dev/noctalia-shell";
-    noctalia.inputs.nixpkgs.follows = "nixpkgs";
-    noctalia.inputs.noctalia-qs.follows = "noctalia-qs";
-    noctalia-qs.url = "github:noctalia-dev/noctalia-qs";
-    noctalia-qs.inputs.nixpkgs.follows = "nixpkgs";
+    noctalia = {
+      url = "github:noctalia-dev/noctalia-shell/v5";
+      # https://docs.noctalia.dev/v5/getting-started/nixos/
+      # To use the binary cache, you have to omit inputs.nixpkgs.follows from the Noctalia input.
+      # inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    # -----------------------------
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
     yt-dlp-src.inputs.nixpkgs.follows = "nixpkgs";
