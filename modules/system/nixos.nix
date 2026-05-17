@@ -140,6 +140,7 @@ in
         "https://attic.xuyh0120.win/lantian"
         "https://cache.garnix.io"
         "https://yazi.cachix.org"
+        "https://noctalia.cachix.org"
       ];
 
       # Enable cachix
@@ -153,6 +154,7 @@ in
         "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "cache.garnix.io:CTFPyKSLcx5RMJKfLo5EEPUObbA78b0YQ2DTCJXqr9g="
         "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
+        "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
     };
 
