@@ -4,6 +4,10 @@
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     flake-utils.url = "github:numtide/flake-utils";
+    flake-parts = {
+      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
+      inputs.nixpkgs-lib.follows = "nixpkgs";
+    };
 
     # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
     to-update.url = "github:NixOS/nixpkgs/master";
@@ -51,7 +55,7 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    # yazi File Manager
+    # Yazi File Manager
     yazi-plugins.url = "github:yazi-rs/plugins";
     yazi-plugins.flake = false;
     yazi-compress.url = "github:v3natio/compress.yazi";
@@ -75,11 +79,6 @@
       url = "github:nix-community/NUR"; # Nix User Repository, for community packages
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
-    };
-    ### UTILS ###
-    flake-parts = {
-      url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
-      inputs.nixpkgs-lib.follows = "nixpkgs";
     };
   };
   outputs =
