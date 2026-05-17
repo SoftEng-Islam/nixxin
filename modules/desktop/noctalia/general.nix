@@ -5,14 +5,15 @@
   ...
 }:
 {
-  services.noctalia-shell.enable = true;
   services.upower.enable = true;
 
   # Screen recorder plugin needs this.
   environment.systemPackages = [ pkgs.gpu-screen-recorder ];
 
   home-manager.users.${settings.user.username} = {
-    imports = [ inputs.noctalia.homeModules.default ];
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
 
     programs.noctalia-shell = {
       enable = true;
