@@ -1,7 +1,7 @@
 { settings, ... }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.noctalia-shell = {
+    programs.noctalia = {
       # https://docs.noctalia.dev/getting-started/nixos/#plugins
       #$ cat ~/.config/noctalia/plugins/<name>/settings.json | nix-converter
       plugins = {

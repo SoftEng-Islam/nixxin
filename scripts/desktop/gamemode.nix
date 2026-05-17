@@ -89,8 +89,8 @@ let
           fi
 
           # Stop distractions.
-          if have noctalia-shell; then
-            noctalia-shell kill >/dev/null 2>&1 || true
+          if have noctalia; then
+            noctalia kill >/dev/null 2>&1 || true
           fi
 
           # Apply Hyprland "game mode" tweaks.
@@ -122,8 +122,8 @@ let
             notify "Blue Filter" "Restored"
           fi
 
-          if have noctalia-shell; then
-            noctalia-shell -n >/dev/null 2>&1 &
+          if have noctalia; then
+            noctalia -n >/dev/null 2>&1 &
           fi
 
           # Restore previous power profile if we captured it.

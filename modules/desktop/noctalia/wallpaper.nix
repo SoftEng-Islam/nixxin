@@ -1,7 +1,7 @@
 { settings, ... }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.noctalia-shell.settings = {
+    programs.noctalia.settings = {
       wallpaper = {
         enabled = true;
         overviewEnabled = false;

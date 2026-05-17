@@ -1,7 +1,7 @@
 { settings, lib, ... }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.noctalia-shell.settings = {
+    programs.noctalia.settings = {
       ui = {
         fontDefault = settings.common.mainFont.name;
         fontFixed = lib.mkForce settings.modules.fonts.monospace.name;

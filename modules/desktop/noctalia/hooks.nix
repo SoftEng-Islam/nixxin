@@ -1,10 +1,10 @@
 { settings, ... }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.noctalia-shell.settings = {
+    programs.noctalia.settings = {
       hooks = {
         enabled = true;
-        # startup = "noctalia-shell ipc call lockScreen lock";
+        # startup = "noctalia ipc call lockScreen lock";
         # wallpaperChange = "";
         # darkModeChange = "";
         # screenLock = "";
