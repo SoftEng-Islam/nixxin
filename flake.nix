@@ -14,6 +14,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    kiro-flake.url = "github:connerohnesorge/kiro-flake";
+    kiro-flake.inputs.nixpkgs.follows = "nixpkgs";
+
     # Nixos Home-Manager
     home-manager.url = "github:nix-community/home-manager/master";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
@@ -78,8 +81,6 @@
       url = "github:hercules-ci/flake-parts"; # Flake parts for easy flake management
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
-
-    kiro-flake.url = "github:connerohnesorge/kiro-flake";
   };
   outputs =
     {
