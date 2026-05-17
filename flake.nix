@@ -37,7 +37,8 @@
 
     # -----------------------------
     quickshell = {
-      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      # Updated the URL to match the new repository location
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -47,13 +48,14 @@
       # https://docs.noctalia.dev/v5/getting-started/nixos/
       # To use the binary cache, you have to omit inputs.nixpkgs.follows from the Noctalia input.
       # inputs.nixpkgs.follows = "nixpkgs";
+
+      # Removed the invalid inputs.noctalia-qs.follows line
     };
 
     noctalia-qs = {
       url = "github:noctalia-dev/noctalia-qs";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
     # -----------------------------
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
