@@ -81,7 +81,6 @@ in
             brettm12345.nixfmt-vscode
             csstools.postcss
             graphql.vscode-graphql-syntax
-            jnoortheen.nix-ide # Nix language support
             karunamurti.haml
             mads-hartmann.bash-ide-vscode
             meta.pyrefly
@@ -159,6 +158,7 @@ in
             github.vscode-pull-request-github # GitHub Pull Requests
             # ms-vscode-remote.remote-containers # Dev Containers
             ms-python.vscode-python-envs # commented out as it is currently missing
+            jnoortheen.nix-ide # Nix language support
 
           ])
           ++ (with pkgs.vscode-extensions; [
