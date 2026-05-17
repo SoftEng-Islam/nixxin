@@ -33,6 +33,11 @@
     ./wallpaper.nix
     ./idle.nix
   ];
+
+  home-manager.users.${settings.user.username} = {
+    home.file.".config/noctalia/config.toml".source = ./config.toml;
+  };
+
   environment.systemPackages = with pkgs; [
     # Noctalia Shell
     # inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default

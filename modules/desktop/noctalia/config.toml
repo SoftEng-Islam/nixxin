@@ -1,0 +1,86 @@
+[audio]
+enable_sounds = true
+
+[bar.default]
+auto_hide = true
+background_opacity = 0.81000000238418579
+center = [ "workspaces" ]
+enabled = false
+end = [ "tray", "notifications" ]
+margin_edge = 0
+margin_ends = 500
+margin_h = 10
+position = "right"
+radius_bottom_left = 16
+radius_bottom_right = 0
+radius_top_left = 16
+radius_top_right = 0
+reserve_space = false
+scale = 1.25
+start = [ "clock" ]
+thickness = 38
+
+[config]
+
+[[control_center.shortcuts]]
+type = "notification"
+
+[[control_center.shortcuts]]
+type = "power_profile"
+
+[[control_center.shortcuts]]
+type = "clipboard"
+
+[[control_center.shortcuts]]
+type = "sysmon"
+
+[[control_center.shortcuts]]
+type = "nightlight"
+
+[[control_center.shortcuts]]
+type = "media"
+
+[desktop_widgets]
+enabled = false
+
+[dock]
+position = "bottom"
+
+[notification]
+background_opacity = 0.81000000000000005
+
+[shell]
+avatar_path = "/home/grey/nixconf/assets/user.jpg"
+password_style = "random"
+polkit_agent = false
+settings_show_advanced = true
+show_location = false
+
+    [shell.panel]
+    attach_control_center = false
+
+[templates]
+
+[theme]
+builtin = "Catppuccin"
+
+[wallpaper]
+directory = "/home/grey/nixconf/assets/wallpapers"
+
+    [wallpaper.default]
+    path = "/home/grey/nixconf/assets/wallpapers/wheat.jpg"
+
+    [wallpaper.monitors.DP-3]
+    path = "/home/grey/nixconf/assets/wallpapers/wheat.jpg"
+
+[weather]
+auto_locate = true
+
+[widget.clock]
+format = "{:%I:%M}"
+
+[widget.notifications]
+hide_when_no_unread = true
+
+[widget.workspaces]
+display = "none"
