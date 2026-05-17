@@ -54,7 +54,6 @@ in
 
   };
   environment.systemPackages = with pkgs; [
-    pkgs.update.copilot-cli
     pkgs.update.claude-code
 
     busybox
