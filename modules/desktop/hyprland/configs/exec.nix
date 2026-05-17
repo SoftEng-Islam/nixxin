@@ -36,9 +36,6 @@ let
 
     # ---- Apps To Start ---- #
     # Telegram -startintray & disown
-
-    # Auto-start the overview of QuickShell
-    qs -c overview & disown
   '';
 in
 {
