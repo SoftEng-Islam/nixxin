@@ -18,6 +18,8 @@ let
       XDG_DATA_DIRS XDG_RUNTIME_DIR \
       PATH
 
+    noctalia --daemon
+
     # ---- Blue Color Filter ---- #
     ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl & disown
 
