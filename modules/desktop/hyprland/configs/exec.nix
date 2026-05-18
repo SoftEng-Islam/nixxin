@@ -17,6 +17,8 @@ let
       XDG_CURRENT_DESKTOP XDG_SESSION_DESKTOP XDG_SESSION_TYPE \
       XDG_DATA_DIRS XDG_RUNTIME_DIR \
       PATH
+
+    # ---- Blue Color Filter ---- #
     ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl & disown
 
     # ---- Clipboard ---- #
@@ -25,6 +27,9 @@ let
 
     # ---- Set Cursor ---- #
     hyprctl setcursor ${settings.common.cursor.name} ${toString settings.common.cursor.size} & disown
+
+    # ---- Start Noctalia V5 Shell ---- #
+
 
     # ---- Set Desktop Wallpaper ---- #
     # changeWallpaper & disown

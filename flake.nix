@@ -1,5 +1,5 @@
 {
-  description = "NIXXIN Configuration.";
+  description = "Nixxin Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
@@ -36,16 +36,17 @@
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     # -----------------------------
-    # quickshell = {
-    #   # Updated the URL to match the new repository location
-    #   url = "git+https://git.outfoxxed.me/quickshell/quickshell";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # needed by "https://github.com/Shanu-Kumawat/quickshell-overview"
+    quickshell = {
+      # Updated the URL to match the new repository location
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # noctalia-qs = {
-    #   url = "github:noctalia-dev/noctalia-qs";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    noctalia-qs = {
+      url = "github:noctalia-dev/noctalia-qs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Noctalia Shell
     noctalia = {

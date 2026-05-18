@@ -14,7 +14,7 @@
     ./noctalia
     ./polkit.nix
     ./qt_gtk.nix
-    # ./quickShell
+    ./quickShell
     ./rofi.nix
     ./screenshot.nix
     ./tools.nix

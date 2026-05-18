@@ -19,7 +19,7 @@
         # v4: audio.volumeStep=5, volumeOverdrive=false, volumeFeedback=false
         audio = {
           enable_overdrive = false; # v4: volumeOverdrive = false
-          enable_sounds = false;    # v4: notifications.sounds.enabled = false
+          enable_sounds = false; # v4: notifications.sounds.enabled = false
         };
 
         # ─── Backdrop ─────────────────────────────────────────────────────────
@@ -37,37 +37,37 @@
         #       assistant-panel, network-indicator) are NOT available in v5 — skipped.
         # NOTE: v4 left/center/right → v5 start/center/end
         bar.default = {
-          background_opacity = 1.0;   # v4: backgroundOpacity = 1.0
-          capsule = false;             # v4: showCapsule = false
-          margin_edge = 4;             # v4: marginVertical = 4
-          margin_ends = 4;             # v4: marginHorizontal = 4
+          background_opacity = 1.0; # v4: backgroundOpacity = 1.0
+          capsule = false; # v4: showCapsule = false
+          margin_edge = 4; # v4: marginVertical = 4
+          margin_ends = 4; # v4: marginHorizontal = 4
           padding = 4;
-          position = "top";            # v4: position = "top"
-          radius = 24;                 # v4: frameRadius = 24
+          position = "top"; # v4: position = "top"
+          radius = 24; # v4: frameRadius = 24
           shadow = false;
 
           # v4 left: NotificationHistory, Workspace, KeyboardLayout + plugins
           # v4 center: Clock
           # Combined into start:
           start = [
-            "launcher"      # moved up for easy access
-            "clock"         # v4 center: Clock
-            "workspaces"    # v4 left: Workspace
-            "media"         # v4 right: MediaMini
+            "launcher" # moved up for easy access
+            "clock" # v4 center: Clock
+            "workspaces" # v4 left: Workspace
+            "media" # v4 right: MediaMini
           ];
 
           center = [ ];
 
           # v4 right: Tray, KeepAwake, Bluetooth, WiFi, Volume, Brightness, ControlCenter
           end = [
-            "tray"            # v4: Tray
-            "power_profiles"  # v4: KeepAwake (closest v5 equivalent)
-            "notifications"   # v4: NotificationHistory (moved to end in v5 convention)
-            "network"         # v4: WiFi + Bluetooth
-            "volume"          # v4: Volume
-            "brightness"      # v4: Brightness
-            "battery"         # v4: Battery (was disabled in v4 but kept in bar)
-            "control-center"  # v4: ControlCenter
+            "tray" # v4: Tray
+            "power_profiles" # v4: KeepAwake (closest v5 equivalent)
+            "notifications" # v4: NotificationHistory (moved to end in v5 convention)
+            "network" # v4: WiFi + Bluetooth
+            "volume" # v4: Volume
+            "brightness" # v4: Brightness
+            "battery" # v4: Battery (was disabled in v4 but kept in bar)
+            "control-center" # v4: ControlCenter
           ];
 
           widget_spacing = 8;
@@ -90,10 +90,10 @@
           # v4: shortcuts.left = [ScreenRecorder, KeepAwake, NightLight]
           # v5 uses flat list of {type} objects
           shortcuts = [
-            { type = "nightlight"; }    # v4: NightLight
+            { type = "nightlight"; } # v4: NightLight
             { type = "power_profile"; } # v4: KeepAwake
-            { type = "sysmon"; }        # v4: media-sysmon-card → system monitor
-            { type = "media"; }         # v4: media-sysmon-card → media
+            { type = "sysmon"; } # v4: media-sysmon-card → system monitor
+            { type = "media"; } # v4: media-sysmon-card → media
           ];
         };
 
@@ -107,10 +107,10 @@
         # v4: enabled=false, position="bottom", displayMode="auto_hide",
         #     backgroundOpacity=1, colorizeIcons=false
         dock = {
-          auto_hide = true;          # v4: displayMode = "auto_hide"
-          background_opacity = 1.0;  # v4: backgroundOpacity = 1
-          enabled = false;           # v4: enabled = false
-          position = "bottom";       # v4: position = "bottom"
+          auto_hide = true; # v4: displayMode = "auto_hide"
+          background_opacity = 1.0; # v4: backgroundOpacity = 1
+          enabled = false; # v4: enabled = false
+          position = "bottom"; # v4: position = "bottom"
         };
 
         # ─── Idle ─────────────────────────────────────────────────────────────
@@ -152,8 +152,8 @@
         #     lowUrgencyDuration=3, normalUrgencyDuration=8, criticalUrgencyDuration=15
         notification = {
           background_opacity = 1.0; # v4: backgroundOpacity = 1
-          layer = "overlay";         # v4: overlayLayer = true
-          position = "top_left";     # v4: location = "top_left"
+          layer = "overlay"; # v4: overlayLayer = true
+          position = "top_left"; # v4: location = "top_left"
         };
 
         # ─── OSD ──────────────────────────────────────────────────────────────
@@ -182,10 +182,10 @@
           };
 
           panel = {
-            attach_clipboard = true;         # v4: panelsAttachedToBar = true
+            attach_clipboard = true; # v4: panelsAttachedToBar = true
             attach_launcher = true;
             attach_session = true;
-            transparency_mode = "solid";     # v4: panelBackgroundOpacity=1 → solid (no transparency)
+            transparency_mode = "solid"; # v4: panelBackgroundOpacity=1 → solid (no transparency)
           };
 
           screen_corners = {
@@ -199,7 +199,7 @@
         #   darkMode=true, generationMethod="tonal-spot"
         # v4 templates: gtk=false, qt=false, kcolorscheme=false (all off)
         theme = {
-          source = "wallpaper";              # v4: color source driving theme
+          source = "wallpaper"; # v4: color source driving theme
           wallpaper_scheme = "m3-tonal-spot"; # v4: generationMethod = "tonal-spot"
 
           templates = {
@@ -220,10 +220,10 @@
         #     randomIntervalSec=3600, transitionDuration=1500,
         #     transitionType="random", fillMode="crop"
         wallpaper = {
-          directory = "~/Pictures/Wallpapers"; # v4: directory = "~/Pictures/wallpapers/"
+          directory = "~/Pictures/wallpapers";
 
           default = {
-            path = "/home/${settings.user.username}/Pictures/Wallpapers/24.jpg";
+            path = "/home/${settings.user.username}/Pictures/wallpapers/24.jpg";
           };
         };
 
@@ -271,7 +271,7 @@
           # v4 Workspace: labelMode="index", hideUnoccupied=false,
           #   emptyColor="mTertiary", occupiedColor="secondary", focusedColor="primary"
           workspaces = {
-            display = "none";         # minimal label display like v4 index mode
+            display = "none"; # minimal label display like v4 index mode
             empty_color = "on_primary";
             occupied_color = "primary";
           };
