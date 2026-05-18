@@ -12,6 +12,12 @@
   # The v4 files are kept in ./v4/ for reference only.
 
   home-manager.users.${settings.user.username} = {
+    imports = [
+      inputs.noctalia.homeModules.default
+    ];
+    programs.noctalia = {
+      enable = true;
+    };
     home.file.".config/noctalia/settings.toml" = {
       source = (pkgs.formats.toml { }).generate "noctalia-shell-5-settings.toml" {
 
