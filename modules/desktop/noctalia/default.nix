@@ -57,12 +57,13 @@
           # Combined into start:
           start = [
             "launcher" # moved up for easy access
-            "clock" # v4 center: Clock
             "workspaces" # v4 left: Workspace
-            "media" # v4 right: MediaMini
+            # "media" # v4 right: MediaMini
           ];
 
-          center = [ ];
+          center = [
+            "clock" # v4 center: Clock
+          ];
 
           # v4 right: Tray, KeepAwake, Bluetooth, WiFi, Volume, Brightness, ControlCenter
           end = [
