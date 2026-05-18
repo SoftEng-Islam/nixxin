@@ -48,9 +48,9 @@
           margin_edge = 4; # v4: marginVertical = 4
           margin_ends = 4; # v4: marginHorizontal = 4
           padding = 4;
-          position = "top"; # v4: position = "top"
+          position = "center"; # v4: position = "top"
           radius = 24; # v4: frameRadius = 24
-          shadow = false;
+          shadow = true;
 
           # v4 left: NotificationHistory, Workspace, KeyboardLayout + plugins
           # v4 center: Clock
