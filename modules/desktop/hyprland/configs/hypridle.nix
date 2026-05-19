@@ -4,7 +4,7 @@
   ...
 }:
 let
-  lockCmd = "noctalia-shell ipc call lockScreen lock";
+  lockCmd = "noctalia msg screen-lock";
   dpmsOnCmd = "hyprctl dispatch dpms on";
   dpmsOffCmd = "hyprctl dispatch dpms off";
   lockTimeout = settings.modules.desktop.hyprland.lockscreen.timeOut or 900;

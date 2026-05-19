@@ -21,7 +21,7 @@ in
       "$main" = "SUPER";
 
       # bindings
-      "$ipc" = "noctalia-shell ipc call";
+      "$ipc" = "noctalia msg";
 
       # ---- Bind flags ---- #
       # => bind supports flags in this format:
@@ -63,7 +63,7 @@ in
       bind = $main, O, togglesplit
 
       #=> Second Row:
-      bind = $main, A, exec, $ipc launcher toggle # Launch Launcher
+      bind = $main, A, exec, $ipc panel-toggle launcher # Launch Launcher
       # bind = $main, S, exec,
       # bind = $main, D, exec,
       bind = $main, F, fullscreen,
@@ -74,7 +74,7 @@ in
       # bind = $main, H, exec,
       # bind = $main, J, exec,
       # bind = $main, K, exec,
-      bind = $main, L, exec, $ipc lockScreen lock # Lock screen
+      bind = $main, L, exec, $ipc screen-lock # Lock screen
 
       #=> Third Row:
       # bind = $main, Z, exec,
@@ -107,7 +107,7 @@ in
       bind = $main, F1, exec, sudo toggleInternet
       bind = $main, F2, exec, run-gamemode
       bind = $main, F3, exec, run-blue-filter
-      bind = $main, F4, exec, $ipc sessionMenu toggle
+      bind = $main, F4, exec, $ipc panel-toggle session
 
       # bind = $main, F5, exec,
       # bind = $main, F6, exec,
@@ -289,15 +289,17 @@ in
 
       # Core binds
       bind = $main, SPACE, exec, pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons
-      bind = $main, S, exec, $ipc controlCenter toggle
-      bind = $main, comma, exec, $ipc settings toggle
+      bind = $main, S, exec, $ipc panel-toggle control-center
+      # bind = $main, comma, exec, $ipc settings-toggle
 
       # Media keys
-      bindel = , XF86AudioRaiseVolume, exec, $ipc volume increase
-      bindel = , XF86AudioLowerVolume, exec, $ipc volume decrease
-      bindl = , XF86AudioMute, exec, $ipc volume muteOutput
-      bindel = , XF86MonBrightnessUp, exec, $ipc brightness increase
-      bindel = , XF86MonBrightnessDown, exec, $ipc brightness decrease
+      bindel = , XF86AudioRaiseVolume, exec, $ipc volume-up
+      bindel = , XF86AudioLowerVolume, exec, $ipc volume-down
+      bindl = , XF86AudioMute, exec, $ipc volume-mute
+
+      # brightness
+      bindel = , XF86MonBrightnessUp, exec, $ipc brightness-up
+      bindel = , XF86MonBrightnessDown, exec, $ipc brightness-down
     '';
   };
 }

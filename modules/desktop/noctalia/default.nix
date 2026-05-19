@@ -278,9 +278,11 @@
           # v4 Workspace: labelMode="index", hideUnoccupied=false,
           #   emptyColor="mTertiary", occupiedColor="secondary", focusedColor="primary"
           workspaces = {
-            display = "none"; # minimal label display like v4 index mode
+            display = "id"; # none | id | name
+            focused_color = "primary";
             empty_color = "on_primary";
-            occupied_color = "primary";
+            occupied_color = "secondary";
+            hide_when_empty = false;
           };
         };
       };
