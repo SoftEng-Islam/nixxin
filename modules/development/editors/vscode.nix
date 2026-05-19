@@ -587,6 +587,8 @@ in
           "files.exclude" = {
             "**/.git" = false;
           };
+
+          "geminicodeassist.inlineSuggestions.enableAuto" = true;
         };
       };
     };
