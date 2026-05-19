@@ -206,6 +206,7 @@
         #   darkMode=true, generationMethod="tonal-spot"
         # v4 templates: gtk=false, qt=false, kcolorscheme=false (all off)
         theme = {
+          mode = "dark";
           source = "wallpaper"; # v4: color source driving theme
           wallpaper_scheme = "m3-tonal-spot"; # v4: generationMethod = "tonal-spot"
 
@@ -227,6 +228,7 @@
         #     randomIntervalSec=3600, transitionDuration=1500,
         #     transitionType="random", fillMode="crop"
         wallpaper = {
+          enabled = true;
           directory = "~/Pictures/wallpapers";
 
           default = {
