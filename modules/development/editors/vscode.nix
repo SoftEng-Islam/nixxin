@@ -117,7 +117,7 @@ in
             # eamodio.gitlens # GitLens
             donjayamanne.githistory # Git History
             github.codespaces # GitHub Codespaces
-            github.copilot # GitHub Copilot
+            # github.copilot # GitHub Copilot
             github.vscode-github-actions # GitHub Actions
             kingleo.deepseek-web
             # anthropic.claude-code
@@ -319,7 +319,7 @@ in
           # Automatically format the file when saving
           "editor.formatOnSave" = true;
           "editor.guides.bracketPairs" = true;
-          "editor.inlineSuggest.enabled" = false;
+          "editor.inlineSuggest.enabled" = true;
           "editor.inlineSuggest.syntaxHighlightingEnabled" = true;
           "editor.insertSpaces" = false;
           "editor.language.brackets" = [
@@ -575,8 +575,8 @@ in
           "workbench.productIconTheme" = "material-product-icons";
           "workbench.layoutControl.enabled" = false;
           "workbench.list.smoothScrolling" = true;
-          "workbench.preferredDarkColorTheme" = "Default Dark Modern";
-          "workbench.preferredLightColorTheme" = "Default Light Modern";
+          "workbench.preferredDarkColorTheme" = "Dark Modern";
+          "workbench.preferredLightColorTheme" = "Light Modern";
           "workbench.secondarySideBar.defaultVisibility" = "hidden";
           "workbench.settings.openDefaultKeybindings" = true;
           "workbench.sideBar.location" = "left";
