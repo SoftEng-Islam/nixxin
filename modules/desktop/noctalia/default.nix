@@ -41,8 +41,8 @@
           capsule = true; # v4: showCapsule = false
           capsule_fill = "on_secondary";
           capsule_opacity = 0.8;
-          # margin_edge = 16;
-          # margin_ends = 16;
+          margin_edge = 0;
+          margin_ends = 0;
           # margin_h = 180;
           # margin_v = 10;
           # padding = 6;
@@ -54,7 +54,7 @@
           shadow = false;
           widget_spacing = 8;
           thickness = 48;
-          reserve_space = false;
+          # reserve_space = false;
           attach_panels = true;
           scale = 1.2;
 
