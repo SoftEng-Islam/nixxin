@@ -6,7 +6,6 @@
       package = pkgs.wezterm;
       enableZshIntegration = true;
       enableBashIntegration = true;
-      defaultTerminalEmulator = true;
 
       extraConfig = ''
         -- Pull in the wezterm API
