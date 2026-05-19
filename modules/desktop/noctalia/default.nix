@@ -229,10 +229,10 @@
         #     transitionType="random", fillMode="crop"
         wallpaper = {
           enabled = true;
-          directory = "~/Pictures/wallpapers";
+          directory = "~/Pictures/Wallpapers";
 
           default = {
-            path = "/home/${settings.user.username}/Pictures/wallpapers/24.jpg";
+            path = "/home/${settings.user.username}/Pictures/Wallpapers/24.jpg";
           };
         };
 
