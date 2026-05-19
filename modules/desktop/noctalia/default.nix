@@ -41,14 +41,14 @@
           capsule = true; # v4: showCapsule = false
           capsule_fill = "on_secondary";
           capsule_opacity = 0.8;
-          margin_edge = 16;
-          margin_ends = 16;
-          margin_h = 180;
-          margin_v = 10;
+          # margin_edge = 16;
+          # margin_ends = 16;
+          # margin_h = 180;
+          # margin_v = 10;
           padding = 6;
           # radius = 0;
-          radius_bottom_left = 16;
-          radius_bottom_right = 16;
+          radius_bottom_left = 0;
+          radius_bottom_right = 0;
           radius_top_left = 0;
           radius_top_right = 0;
           shadow = true;
