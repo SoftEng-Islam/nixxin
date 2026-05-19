@@ -11,6 +11,6 @@ self: {
 
   # Enable this driver so I can use the monitor mode
   modules.networking.rtl8188eus = true;
-
+  modules.terminals.wezterm.colorScheme = "Noctalia";
   modules.browsers.google-chrome.enable = true;
 }

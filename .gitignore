@@ -13,3 +13,4 @@ ignore/*
 assets/wallpapers/*
 .vscode
 scripts/**/status.txt
+./note.md
