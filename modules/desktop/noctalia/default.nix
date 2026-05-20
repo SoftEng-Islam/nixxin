@@ -5,10 +5,6 @@
   ...
 }:
 {
-  # NOTE: The old v4 sub-module imports (bar.nix, notifications.nix, etc.) are
-  # no longer needed — v5 uses a single flat settings.toml file.
-  # The v4 files are kept in ./v4/ for reference only.
-
   home-manager.users.${settings.user.username} = {
     imports = [
       inputs.noctalia.homeModules.default
@@ -21,14 +17,14 @@
 
         # ─── Audio ────────────────────────────────────────────────────────────
         audio = {
-          enable_overdrive = true; # v4: volumeOverdrive = false
-          enable_sounds = false; # v4: notifications.sounds.enabled = false
+          enable_sounds = true;
+          enable_overdrive = true;
         };
 
         # ─── Backdrop ─────────────────────────────────────────────────────────
         backdrop = {
-          blur_intensity = 0.05;
           enabled = true;
+          blur_intensity = 0.05;
           tint_intensity = 0.0;
         };
 
@@ -37,8 +33,8 @@
           enabled = true;
           auto_hide = false;
           position = "top"; # "top" pr "center" or "left"
-          background_opacity = 0.8; # v4: backgroundOpacity = 1.0
-          capsule = true; # v4: showCapsule = false
+          background_opacity = 1.0;
+          capsule = false;
           capsule_fill = "on_secondary";
           capsule_opacity = 0.8;
           margin_edge = 0;
@@ -57,23 +53,16 @@
           # reserve_space = false;
           attach_panels = true;
           scale = 1.2;
-
-          # v4 left: NotificationHistory, Workspace, KeyboardLayout + plugins
-          # v4 center: Clock
-          # Combined into start:
           start = [
-            "launcher" # moved up for easy access
-            "notifications" # v4: NotificationHistory (moved to end in v5 convention)
-            "workspaces" # v4 left: Workspace
-            # "media" # v4 right: MediaMini
+            "launcher"
+            "notifications"
+            "workspaces"
+            # "media"
             # "taskbar"
           ];
-
           center = [
-            "clock" # v4 center: Clock
+            "clock"
           ];
-
-          # v4 right: Tray, KeepAwake, Bluetooth, WiFi, Volume, Brightness, ControlCenter
           end = [
             "tray"
             "clipboard"
@@ -82,8 +71,8 @@
             "volume"
             "brightness"
             "battery"
-            "control-center"
             "session"
+            "control-center"
           ];
         };
 
@@ -154,15 +143,14 @@
 
         # ─── Notification ─────────────────────────────────────────────────────
         notification = {
-          background_opacity = 0.8; # v4: backgroundOpacity = 1
+          background_opacity = 1.0;
           layer = "overlay"; # "top" or "overlay"
-          position = "bottom_left"; # v4: location = "top_left"
+          position = "bottom_left"; # "top_left"
         };
 
         # ─── OSD ──────────────────────────────────────────────────────────────
-        # v4: location="top_right", autoHideMs=2000, overlayLayer=true
         osd = {
-          position = "bottom_right"; # v4: location = "top_right"
+          position = "bottom_right"; # "top_right"
         };
 
         # ─── Shell (general + ui + nightLight) ────────────────────────────────
@@ -177,11 +165,11 @@
           telemetry_enabled = false;
 
           animation = {
-            speed = 1.0; # v4: animationSpeed = 1
+            speed = 1.0;
           };
 
           panel = {
-            attach_clipboard = true; # v4: panelsAttachedToBar = true
+            attach_clipboard = true;
             attach_launcher = true;
             attach_session = true;
             open_near_click_clipboard = true;
@@ -191,7 +179,7 @@
           };
 
           screen_corners = {
-            enabled = true; # v4: showScreenCorners = true
+            enabled = true;
             size = 25;
           };
         };
@@ -249,28 +237,24 @@
         system.monitor.enabled = true;
 
         # ─── Widgets ──────────────────────────────────────────────────────────
-        # Fine-grained widget settings translated from v4 bar widget config
         widget = {
-          # v4 Clock: formatHorizontal="h:mm AP MMM d"
           # v5 uses Rust's chrono format strings
           clock = {
-            format = " {:%A, %B %-e} • {:%I:%M %p} "; # equivalent to v4 "h:mm AP MMM d"
+            format = " {:%A, %B %-e} • {:%I:%M %p} ";
           };
 
           control-center = {
-            glyph = "snowflake"; # kept from previous v5 config
+            glyph = "snowflake";
           };
 
           launcher = {
             glyph = "grid-dots";
           };
 
-          # v4: network-indicator plugin had showNumbers=true; v5 built-in network widget
           network = {
             show_label = false;
           };
 
-          # v4: NotificationHistory with showUnreadBadge=true, hideWhenZero=false
           notifications = {
             hide_when_no_unread = false;
           };
@@ -282,6 +266,7 @@
           brightness = {
             show_label = false;
           };
+
           taskbar = {
             anchor = true;
             capsule_fill = "on_primary";
