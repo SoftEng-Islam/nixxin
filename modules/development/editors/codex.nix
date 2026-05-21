@@ -34,16 +34,19 @@
       Always read relevant files completely before editing.
     '';
 
-    home.file.".codex/config.toml".source = (pkgs.formats.toml { }).generate "config.toml" {
-      model = "gpt-5-codex";
-      personality = "pragmatic";
-
-      plugins = {
-        "github@openai-curated" = {
-          enabled = true;
-        };
-      };
-    };
+    # home.file.".codex/config.toml".source = (pkgs.formats.toml { }).generate "config.toml" {
+    #   personality = "pragmatic";
+    #   projects = {
+    #     "/data/github" = {
+    #       trust_level = "trusted";
+    #     };
+    #   };
+    #   plugins = {
+    #     "github@openai-curated" = {
+    #       enabled = true;
+    #     };
+    #   };
+    # };
 
   };
 }
