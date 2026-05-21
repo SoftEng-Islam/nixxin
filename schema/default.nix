@@ -367,6 +367,7 @@ self: {
   modules.development.editors.antigravity.enable = true;
   modules.development.editors.cursor.enable = true;
   modules.development.editors.windsurf.enable = true;
+  modules.development.editors.codex.enable = true;
 
   # [ desktop ]
   modules.desktop.tools = false;

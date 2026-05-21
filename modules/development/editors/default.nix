@@ -15,6 +15,7 @@ let
     (optional editors.webstorm.enable ./webstorm.nix)
     (optional editors.windsurf.enable ./windsurf.nix)
     (optional editors.zed-editor.enable ./zed-editor.nix)
+    (optional editors.codex.enable ./codex.nix)
   ];
 in
 {
