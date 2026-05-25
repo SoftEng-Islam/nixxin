@@ -8,6 +8,10 @@
     # cross-platform API client for GraphQL, REST, WebSockets, SSE and gRPC. With Cloud, Local and Git storage.
     insomnia
 
+    # API Development Environment
     postman
+
+    # Cross-platform API testing client for humans. Painlessly test REST, GraphQL, and HTTP APIs
+    httpie-desktop
   ];
 }
