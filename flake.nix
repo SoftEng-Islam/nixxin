@@ -22,7 +22,9 @@
     kiro-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     # Nixos Home-Manager
-    home-manager.url = "github:nix-community/home-manager/master";
+    # Using release-24.11 instead of master due to a bug in master
+    # where services-modular references non-existent lib/services/lib.nix
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     # To use cahsyOs Kernel Packages
