@@ -76,6 +76,8 @@ mkIf (settings.modules.browsers.enable) {
       # microsoft-edge
       # firefox
       # firefox-beta
+
+      webtorrent_desktop
     ]
     ++ lib.flatten _browsers;
 }

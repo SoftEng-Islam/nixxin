@@ -56,7 +56,7 @@
     ];
   };
 
-  fileSystems."/SSDisk" = {
+  fileSystems."/SSD" = {
     device = "/dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf";
     # fsType = "ntfs-3g"; # if NTFS
     fsType = "btrfs";
