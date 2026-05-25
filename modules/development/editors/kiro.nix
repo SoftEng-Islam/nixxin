@@ -5,15 +5,11 @@
   ...
 }:
 {
-  home-manager.users.${settings.user.username} = {
-    packages = with pkgs; [
-      #
-      # kiro
-      update.kiro
-    ];
-  };
+  # home-manager.users.${settings.user.username} = {
+  # };
   environment.systemPackages = with pkgs; [
     # https://github.com/Kiro-Editor/Kiro
     # kiro
+    # update.kiro
   ];
 }
