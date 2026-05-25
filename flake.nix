@@ -99,7 +99,6 @@
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
-      kiro-flake,
       ...
     }@inputs:
     let

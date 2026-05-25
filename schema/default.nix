@@ -362,7 +362,7 @@ self: {
   modules.development.editors.vscode.enable = true;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
-  modules.development.editors.kiro.enable = true;
+  modules.development.editors.kiro.enable = false;
   modules.development.editors.webstorm.enable = false;
   modules.development.editors.antigravity.enable = true;
   modules.development.editors.cursor.enable = true;
