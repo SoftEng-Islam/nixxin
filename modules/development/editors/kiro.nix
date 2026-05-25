@@ -8,7 +8,7 @@
   home-manager.users.${settings.user.username} = {
     programs.kiro = {
       enable = true;
-      package = pkgs.to-update.kiro;
+      package = pkgs.update.kiro;
     };
   };
   environment.systemPackages = with pkgs; [
