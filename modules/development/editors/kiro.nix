@@ -6,10 +6,11 @@
 }:
 {
   home-manager.users.${settings.user.username} = {
-    programs.kiro = {
-      enable = true;
-      package = pkgs.update.kiro;
-    };
+    packages = with pkgs; [
+      #
+      # kiro
+      update.kiro
+    ];
   };
   environment.systemPackages = with pkgs; [
     # https://github.com/Kiro-Editor/Kiro
