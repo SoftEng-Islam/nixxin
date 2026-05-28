@@ -458,8 +458,13 @@ scan_videos() {
         area=$((width * height))
 
         recomm="No"
-        if [[ "$codec" != "av1" && "$codec" != "unknown" && "$size" -gt 52428800 ]]; then
-            recomm="Yes"
+        # Only recommend compression if it's NOT already AV1
+        if [[ "$codec" != "av1" && "$codec" != "unknown" ]]; then
+            # Recommend YES if Bitrate is over 2.5 Mbps (2500000 bits)
+            # OR if the file size is just massive (e.g., over 100MB)
+            if (( bitrate > 2500000 || size > 104857600 )); then
+                recomm="Yes"
+            fi
         fi
 
         FILES_PATH+=("$file")
