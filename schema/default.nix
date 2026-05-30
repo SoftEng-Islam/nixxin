@@ -212,45 +212,46 @@ self: {
   # Modules: To Enable/Disable.
   # NOTE: The Options doesn't have effect if the module is disabled.
   # Set true to Enable, and false to Disable.
-  modules.pkgs.enable = true;
-  modules.system.enable = true;
-  modules.security.enable = true;
-  modules.graphics.enable = true;
-  modules.fonts.enable = true;
-  modules.development.enable = true;
-  modules.cli.enable = true;
-  modules.browsers.enable = true;
-  modules.storage.enable = true;
-  modules.users.enable = true;
-  modules.data_transferring.enable = true;
-  modules.hacking.enable = true;
-  modules.env.enable = true;
-  modules.desktop.enable = true;
-  modules.media.enable = true;
-  modules.git.enable = true;
-  modules.i18n.enable = true;
-  modules.networking.enable = true;
-  modules.power.enable = true;
-  modules.overclock.enable = true;
-  modules.office.enable = true;
-  modules.icons.enable = true;
-  modules.virtualization.enable = true;
-  modules.zram.enable = true;
-  modules.ssh.enable = false;
   modules.ai.enable = false;
-  modules.emails.enable = true;
-  modules.notifications.enable = true;
-  modules.printing.enable = true;
   modules.android.enable = true;
-  modules.camera.enable = false;
-  modules.recording.enable = true;
-  modules.sound_editor.enable = false;
-  modules.windows.enable = true;
   modules.audio.enable = true;
-  modules.gaming.enable = true;
-  modules.remote_desktop.enable = false;
+  modules.automation.enable = true;
   modules.bluetooth.enable = false;
-  modules.community.enable = true;
+  modules.browsers.enable = true;
+  modules.camera.enable = false;
+  modules.cli.enable = true;
+  modules.community.enable = false;
+  modules.data_transferring.enable = true;
+  modules.desktop.enable = true;
+  modules.development.enable = true;
+  modules.emails.enable = true;
+  modules.env.enable = true;
+  modules.fonts.enable = true;
+  modules.gaming.enable = false;
+  modules.git.enable = true;
+  modules.graphics.enable = true;
+  modules.hacking.enable = true;
+  modules.i18n.enable = true;
+  modules.icons.enable = true;
+  modules.media.enable = true;
+  modules.networking.enable = true;
+  modules.notifications.enable = true;
+  modules.office.enable = true;
+  modules.overclock.enable = true;
+  modules.pkgs.enable = true;
+  modules.power.enable = true;
+  modules.printing.enable = true;
+  modules.recording.enable = true;
+  modules.remote_desktop.enable = false;
+  modules.security.enable = true;
+  modules.sound_editor.enable = false;
+  modules.ssh.enable = false;
+  modules.storage.enable = true;
+  modules.system.enable = true;
+  modules.users.enable = true;
+  modules.virtualization.enable = true;
+  modules.windows.enable = true;
+  modules.zram.enable = true;
 
   # ----------------------------------------------
   # ---- Modules Configuration (Options)
@@ -265,6 +266,10 @@ self: {
 
   # [Audio]
   modules.audio.rnnoise.enable = true; # Noise Canceling
+
+  # [Automation]
+  modules.automation.browser-use.enable = true;
+  modules.automation.n8n.enable = true;
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = false;
@@ -340,7 +345,7 @@ self: {
   # Databases
   modules.development.databases.enable = true;
   modules.development.databases.postgresql.enable = true;
-  modules.development.databases.mariadb.enable = true;
+  modules.development.databases.mariadb.enable = false;
   modules.development.databases.redis.enable = false;
   modules.development.databases.mongodb.enable = true;
   modules.development.databases.tools.enable = true;
@@ -362,11 +367,11 @@ self: {
   modules.development.editors.vscode.enable = true;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
-  modules.development.editors.kiro.enable = true;
+  modules.development.editors.kiro.enable = false;
   modules.development.editors.webstorm.enable = false;
   modules.development.editors.antigravity.enable = true;
-  modules.development.editors.cursor.enable = true;
-  modules.development.editors.windsurf.enable = true;
+  modules.development.editors.cursor.enable = false;
+  modules.development.editors.windsurf.enable = false;
   modules.development.editors.codex.enable = true;
 
   # [ desktop ]
@@ -412,6 +417,12 @@ self: {
   modules.desktop.file_manager.spacedrive = false;
   modules.desktop.file_manager.thunar = false;
 
+  # [ image_viewer ]
+  modules.desktop.image_viewer.enable = true;
+  modules.desktop.image_viewer.eog.enable = false;
+  modules.desktop.image_viewer.feh.enable = false;
+  modules.desktop.image_viewer.loupe.enable = true;
+
   # [Emails]
   modules.emails.thunderbird = true;
 
@@ -449,12 +460,12 @@ self: {
 
   # [ Graphics ]
   modules.graphics.blender = true;
-  modules.graphics.darktable = true;
+  modules.graphics.darktable = false;
   modules.graphics.davinci = false;
-  modules.graphics.drawio = true;
-  modules.graphics.figmaLinux = true;
+  modules.graphics.drawio = false;
+  modules.graphics.figmaLinux = false;
   modules.graphics.gimp = true;
-  modules.graphics.inkscape = true;
+  modules.graphics.inkscape = false;
   modules.graphics.lunacy = true;
   modules.graphics.kolourpaint = false;
 
@@ -468,11 +479,6 @@ self: {
     "france"
   ]; # Add Other Languages
 
-  # [ image_viewer ]
-  modules.image_viewer.eog = true;
-  modules.image_viewer.feh = true;
-  modules.image_viewer.loupe = true;
-
   # [ Media ]
   modules.media.codex = true; # Video/Sound codecs libs and packags
   modules.media.cava = false; # Audio Visualizer for Alsa
@@ -482,7 +488,7 @@ self: {
   modules.media.clapper = false; # media player
   modules.media.celluloid = false; # media player
   modules.media.jellyfin = false; # media player
-  modules.media.kdenlive = true; # video Editor
+  modules.media.kdenlive = false; # video Editor
   modules.media.shotcut = false; # video Editor
   modules.media.music = true; # Music Player
 
@@ -513,7 +519,6 @@ self: {
   modules.networking.nftables.enable = true;
 
   # [Office]
-  modules.office.n8n = true;
   modules.office.siyuan = true;
   modules.office.evince = true;
   modules.office.papers = false;

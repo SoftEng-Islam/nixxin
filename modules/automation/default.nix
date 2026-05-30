@@ -1,12 +1,12 @@
-{ settings, pkgs, ... }:
+{ settings, lib, ... }:
+let
+  inherit (lib) optionals optional flatten;
+  automations = settings.modules.automation;
+  _imports = [
+    (optional automations.browser-use.enable ./browser-use.nix)
+    (optional automations.n8n.enable ./n8n.nix)
+  ];
+in
 {
-  imports = [
-    ./n8n.nix
-  ];
-  environment.systemPackages = with pkgs; [
-    uv
-    (pkgs.writeShellScriptBin "browser-use" ''
-      exec ${pkgs.uv}/bin/uvx browser-use[cli] "$@"
-    '')
-  ];
+  imports = optionals (automations.enable or false) flatten _imports;
 }
