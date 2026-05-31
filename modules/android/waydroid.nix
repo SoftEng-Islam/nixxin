@@ -261,6 +261,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       waydroid prop set persist.waydroid.width 1280
       waydroid prop set persist.waydroid.height 720
       waydroid prop set persist.waydroid.dpi 160
+      waydroid prop set persist.waydroid.fps 30
 
       # 4. Halve animation durations so the UI feels snappier
       adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 0.5 2>/dev/null || true
