@@ -256,11 +256,10 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       export MESA_NO_ERROR=1         # skip expensive GL error checking
 
       # 3. Android display props
-      #    1280x720 @ 160dpi is the sweet spot for Kaveri R7 iGPU.
-      #    At 1920x1080 the GPU can't keep up (100% janky frames observed).
-      waydroid prop set persist.waydroid.width 1280
-      waydroid prop set persist.waydroid.height 720
-      waydroid prop set persist.waydroid.dpi 160
+      #    Restoring Full HD resolution as requested
+      waydroid prop set persist.waydroid.width 1920
+      waydroid prop set persist.waydroid.height 1080
+      waydroid prop set persist.waydroid.dpi 240
       waydroid prop set persist.waydroid.fps 30
 
       # 4. Halve animation durations so the UI feels snappier
@@ -268,10 +267,10 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 0.5 2>/dev/null || true
       adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 0.5 2>/dev/null || true
 
-      # 5. Start Weston at the reduced resolution
-      ${pkgs.weston}/bin/weston -Swayland-waydroid \
+      # 5. Start Weston at Full HD resolution, capped at 30fps using libstrangle
+      ${pkgs.libstrangle}/bin/strangle 30 ${pkgs.weston}/bin/weston -Swayland-waydroid \
         --backend=wayland-backend.so \
-        --width=1280 --height=720 \
+        --width=1920 --height=1080 \
         --fullscreen \
         --shell="kiosk-shell.so" &
       WESTON_PID=$!
