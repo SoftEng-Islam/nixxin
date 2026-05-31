@@ -114,7 +114,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
   # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
-  environment.etc."gbinder.d/waydroid.conf".source = pkgs.writeText "waydroid.conf" ''
+  environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (pkgs.writeText "waydroid.conf" ''
     [Protocol]
     /dev/binder = aidl3
     /dev/vndbinder = aidl3
@@ -124,7 +124,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     /dev/binder = aidl3
     /dev/vndbinder = aidl3
     /dev/hwbinder = hidl
-  '';
+  '');
 
   # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop
