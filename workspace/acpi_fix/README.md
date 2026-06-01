@@ -98,6 +98,17 @@ sudo cpupower monitor
 
 If `nixos-rebuild` fails with a "File not found" error regarding `dsdt.cpio`:
 
-1.  **Git Check**: If your config is in a Git repo, you must run `git add dsdt.cpio`. Nix ignores untracked files in flakes.
-2.  **Pathing**: Ensure `dsdt.cpio` is in the same directory as the `.nix` file that references it, or update the path accordingly.
-3.  **Permissions**: Ensure the file is readable by your user.
+1. **Git Check**: If your config is in a Git repo, you must run `git add dsdt.cpio`. Nix ignores untracked files in flakes.
+2. **Pathing**: Ensure `dsdt.cpio` is in the same directory as the `.nix` file that references it, or update the path accordingly.
+3. **Permissions**: Ensure the file is readable by your user.
+
+## 5. Check BIOS / UEFI Updates for ACPI Fixes
+
+Sometimes ACPI bugs are fixed by vendor firmware updates. Before applying complex DSDT overrides, check for BIOS/UEFI updates:
+
+- Visit your vendor support page (e.g., HP Support) and search for BIOS/UEFI updates for your model.
+- Review the changelog for mentions of "ACPI", "DSDT", "power management", "thermal", or "firmware" fixes.
+- If an update is available, follow the vendor's instructions to flash the firmware.
+- As an alternative, `fwupdmgr get-updates` can list vendor-supplied firmware updates if your system is supported by LVFS (requires working network/DNS).
+
+After updating the firmware, reboot and re-check the kernel log for ACPI-related warnings (e.g., `journalctl -b | grep -i acpi`).

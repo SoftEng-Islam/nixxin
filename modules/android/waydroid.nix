@@ -47,12 +47,13 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # We patch the generated config in two places:
   # - activation: fixes existing configs after `nixos-rebuild switch`
   # - preStart: ensures config is corrected right before the container starts
-  # system.activationScripts.waydroid-lxc-cgroup-rw = ''
-  # config=/var/lib/waydroid/lxc/waydroid/config
-  # if [ -f "$config" ]; then
-  # ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
-  # fi
-  # '';
+  # system.activationScripts.waydroid-lxc-cgroup-rw fixes generated LXC config
+  system.activationScripts.waydroid-lxc-cgroup-rw = ''
+    config=/var/lib/waydroid/lxc/waydroid/config
+    if [ -f "$config" ]; then
+      ${pkgs.gnused}/bin/sed -i -E '/^lxc\.mount\.auto = / s/cgroup:ro/cgroup:rw/' "$config"
+    fi
+  '';
 
   # systemd.services.waydroid-container.preStart = lib.mkBefore ''
   #   config=/var/lib/waydroid/lxc/waydroid/config
@@ -114,17 +115,19 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
   # environment.sessionVariables.WAYDROID_DISABLE_GBM = "1"; # For NVIDIA and AMD RX 6800 series, disable GBM and mesa-drivers
 
-  environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (pkgs.writeText "waydroid.conf" ''
-    [Protocol]
-    /dev/binder = aidl3
-    /dev/vndbinder = aidl3
-    /dev/hwbinder = hidl
+  environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (
+    pkgs.writeText "waydroid.conf" ''
+      [Protocol]
+      /dev/binder = aidl3
+      /dev/vndbinder = aidl3
+      /dev/hwbinder = hidl
 
-    [ServiceManager]
-    /dev/binder = aidl3
-    /dev/vndbinder = aidl3
-    /dev/hwbinder = hidl
-  '');
+      [ServiceManager]
+      /dev/binder = aidl3
+      /dev/vndbinder = aidl3
+      /dev/hwbinder = hidl
+    ''
+  );
 
   # Tell waydroid to use memfd and not ashmem
   # cat /var/lib/waydroid/waydroid_base.prop

@@ -653,7 +653,10 @@ self: {
 
     # --- MEMORY TUNING (Based on your 18GB RAM) ---
     # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
-    "amdgpu.gttsize=8192" # Set GTT size to 8GB for better performance with integrated graphics
+    # NOTE: `amdgpu.gttsize` is deprecated on newer kernels and may be ignored
+    # or cause driver warnings. Prefer tuning TTM directly if required.
+    # Configure TTM pages limit: adjust the limit (pages) to control TTM memory usage.
+    "ttm.pages_limit=2097152" # Configure TTM pages limit instead of amdgpu.gttsize
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
