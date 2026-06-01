@@ -112,3 +112,90 @@ Sometimes ACPI bugs are fixed by vendor firmware updates. Before applying comple
 - As an alternative, `fwupdmgr get-updates` can list vendor-supplied firmware updates if your system is supported by LVFS (requires working network/DNS).
 
 After updating the firmware, reboot and re-check the kernel log for ACPI-related warnings (e.g., `journalctl -b | grep -i acpi`).
+
+## 6. Gather ACPI tables and GPE logs (for debugging)
+
+When you see warnings like "ACPI Warning: GPE type mismatch", collect the ACPI tables and surrounding kernel logs so you can inspect the DSDT and identify the offending device/GPE handler.
+
+Commands to collect useful artifacts:
+
+```bash
+# Save kernel messages that contain the GPE warning and nearby context
+journalctl -b -k | grep -i -n -C3 "GPE type mismatch" > workspace/logs/acpi-gpe-mismatch.log
+
+# Dump ACPI tables (requires acpidump/iasl tools installed). Save DSDT binary
+sudo cat /sys/firmware/acpi/tables/DSDT > DSDT.dat
+
+# Decompile the DSDT to human-readable ASL
+iasl -d DSDT.dat
+# This produces DSDT.dsl which you can inspect or edit.
+
+# If acpidump is available, you can also capture all tables:
+sudo acpidump -o acpi_tables.dat
+iasl -d acpi_tables.dat
+```
+
+Attach `DSDT.dsl` and `workspace/logs/acpi-gpe-mismatch.log` when asking for help — they allow targeted fixes.
+
+## 7. Kernel boot-time workarounds to try
+
+If a BIOS update isn't available or doesn't fix the problem, try conservative kernel boot parameters (add to `boot.kernelParams` for NixOS) one at a time and reboot between tests.
+
+- `acpi_osi=!Windows 2015` — restricts the strings the DSDT will see and can silence problematic code paths.
+- `acpi_enforce_resources=lax` — relaxes resource enforcement when BIOS reports conflicting resources.
+- `pci=nocrs` — ignore BIOS created resource windows (already suggested earlier in this guide).
+
+Notes:
+
+- These are workarounds, not fixes. Prefer firmware updates or DSDT overrides where possible.
+- Keep a copy of your original `boot.kernelParams` so you can revert quickly.
+
+## 8. Analysis of Current DSDT (modules/system/dsdt.cpio)
+
+**Status**: DSDT override is **active** and loaded via `boot.initrd.prepend` in `modules/system/configuration.nix` (line 103).
+
+**Decompiled Details**:
+
+- OEM: HPQOEM, Model: 805A (revision 0x00000001 = patched)
+- Size: 56870 bytes (0xDE26)
+- Compiled with: iasl 20250807
+- Location: `kernel/firmware/acpi/dsdt.aml` inside the CPIO archive
+- Decompiled copy: `workspace/logs/dsdt-decompiled.dsl` for inspection
+
+**GPE Configuration**:
+
+- The DSDT defines **11 Level-triggered GPE handlers** (_L08,_L05, _L06, etc.) at lines 13900+.
+- **GPE 0x8** is the Embedded Controller (EC) interrupt, defined as level-triggered (`_L08` handler).
+- **Current Warning**: `ACPI Warning: GPE type mismatch (level/edge)` occurs during EC initialization.
+  - The BIOS likely expects edge-triggering for GPE 0x8, but the DSDT handler is level-triggered.
+  - Or: a driver is registering GPE 0x8 with the opposite trigger type than the DSDT handler expects.
+  - **Impact**: Minor warning; system continues and EC initialization completes successfully (`ACPI: EC: Boot DSDT EC initialization complete`).
+
+**Recommendations**:
+
+1. **Safe to ignore for now**: The EC is working despite the warning. The mismatch is typically a BIOS quirk and doesn't prevent system operation.
+2. **To silence the warning** (advanced): Edit the DSDT to flip GPE 0x8 from level-triggered (_L08) to edge-triggered (_E08) and recompile.
+   - Trade-off: might cause EC events to be missed if the hardware is actually level-triggered.
+3. **Best long-term fix**: Check HP firmware updates for this model (805A) to see if ACPI/EC bugs are addressed.
+
+**How to modify the DSDT** (if you want to fix the warning):
+
+```bash
+# Edit workspace/logs/dsdt-decompiled.dsl
+# Find the line with: Method (_L08, 0, NotSerialized)  // _Lxx: Level-Triggered GPE
+# Change _L08 to _E08 to make it edge-triggered
+# Then recompile:
+iasl -f -sa dsdt-decompiled.dsl
+mkdir -p kernel/firmware/acpi
+cp dsdt.aml kernel/firmware/acpi/
+find kernel | cpio -H newc --create > modules/system/dsdt.cpio
+# Rebuild NixOS: sudo nixos-rebuild switch --flake .#nixxin
+```
+
+## 9. Next steps I can take for you
+
+- Apply the GPE 0x8 fix (rename _L08 to_E08 in the DSDT, recompile, and update the CPIO) if you want to silence the warning.
+- Search HP firmware updates for this model to see if BIOS changes address the GPE mismatch.
+- Add safe kernel parameters to your NixOS `schema/default.nix` (e.g., `acpi_osi=!Windows 2015`) for testing if you suspect other ACPI issues.
+
+**Which option would you like me to pursue?**

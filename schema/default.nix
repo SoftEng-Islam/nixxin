@@ -596,6 +596,7 @@ self: {
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm.enable = false; # If your APU/GPU Support it
   modules.system.videoDrivers = [ "modesetting" ];
+  modules.system.acpi.enableDSDTOverride = false;
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
   modules.system.boot.tmp.useTmpfs = self.system.useTmpfs;
