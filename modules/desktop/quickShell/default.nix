@@ -7,8 +7,7 @@
 }:
 {
   # git clone https://github.com/Shanu-Kumawat/quickshell-overview ~/.config/quickshell/overview
-  # qs -c overview &
-  # exec-once = qs -c overview
+  # Add this line "qs -c overview & disown" to hyprland exec-once.
   # bind = Super, TAB, exec, qs ipc -c overview call overview toggle
 
   home-manager.users.${settings.user.username} = {

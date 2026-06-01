@@ -18,20 +18,19 @@ let
       XDG_DATA_DIRS XDG_RUNTIME_DIR \
       PATH
 
+    # ---- Start Noctalia V5 Shell ---- #
     noctalia --daemon
+    qs -c overview & disown
 
     # ---- Blue Color Filter ---- #
     ${pkgs.hyprshade}/bin/hyprshade toggle ~/.config/hypr/shaders/blue-light-filter.glsl & disown
 
     # ---- Clipboard ---- #
-    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store  & disown
+    ${pkgs.wl-clipboard-rs}/bin/wl-paste --type text --watch ${pkgs.cliphist}/bin/cliphist store & disown
     ${pkgs.wl-clipboard-rs}/bin/wl-paste --type image --watch ${pkgs.cliphist}/bin/cliphist store & disown
 
     # ---- Set Cursor ---- #
     hyprctl setcursor ${settings.common.cursor.name} ${toString settings.common.cursor.size} & disown
-
-    # ---- Start Noctalia V5 Shell ---- #
-
 
     # ---- Set Desktop Wallpaper ---- #
     # changeWallpaper & disown
