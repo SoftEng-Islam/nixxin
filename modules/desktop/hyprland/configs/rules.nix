@@ -21,6 +21,10 @@
       windowrulev2 = float, class:^(xdg-desktop-portal-gtk)$
       windowrulev2 = dimaround, class:^(xdg-desktop-portal-gtk)$
 
+      # ---- LFM ---- #
+      # windowrulev2 = hyprbars:no_bar, class:^(lfm)$
+      # windowrulev2 = noborder, class:^(lfm)$
+
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.
       windowrulev2 = tile, class:^(zen(-.*)?|firefox(-.*)?|zen|zen-browser|zen-beta|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$

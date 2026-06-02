@@ -100,7 +100,7 @@ in
       systemd.dbus.enable = false;
       verbose = !quietBoot;
 
-      prepend = [ "${./dsdt.cpio}" ];
+      prepend = lib.optionals (_system.acpi.enableDSDTOverride or false) [ "${./dsdt.cpio}" ];
 
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
