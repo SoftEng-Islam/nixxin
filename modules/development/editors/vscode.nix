@@ -24,8 +24,8 @@ in
       };
 
       profiles.default = {
-        enableExtensionUpdateCheck = false;
-        enableUpdateCheck = false;
+        enableExtensionUpdateCheck = true;
+        enableUpdateCheck = true;
 
         keybindings = [
           {
@@ -405,8 +405,8 @@ in
           "editor.wordWrapColumn" = 100;
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = true;
-          "extensions.autoCheckUpdates" = false;
-          "extensions.autoUpdate" = false;
+          "extensions.autoCheckUpdates" = true;
+          "extensions.autoUpdate" = true;
           "files.associations" = {
             "*.css" = "css";
             "appsettings*.json" = "jsonc";
