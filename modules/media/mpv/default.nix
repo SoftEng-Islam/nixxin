@@ -1,7 +1,6 @@
 {
-  config,
-  lib,
   settings,
+  lib,
   pkgs,
   ...
 }:
@@ -187,6 +186,7 @@ lib.mkIf (settings.modules.media.mpv) {
   };
 
   environment.systemPackages = with pkgs; [
+    mpv-handler
     gnutls
     harfbuzz
     iconv

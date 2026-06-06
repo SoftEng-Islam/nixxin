@@ -158,8 +158,6 @@ in
       # bind = $mod SHIFT, 0, exec, hyprctl -q keyword cursor:zoom_factor 1
 
 
-
-
       # -------------------- #
       # ---- Workspaces ---- #
       # -------------------- #

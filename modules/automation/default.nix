@@ -1,4 +1,9 @@
-{ settings, lib, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 let
   inherit (lib) optionals optional flatten;
   automations = settings.modules.automation;
@@ -9,4 +14,7 @@ let
 in
 {
   imports = optionals (automations.enable or false) flatten _imports;
+  environment.systemPackages = with pkgs; [
+    playwright
+  ];
 }
