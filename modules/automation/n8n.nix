@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-lib.mkIf (settings.modules.office.n8n or false) {
+lib.mkIf (settings.modules.automation.n8n.enable or false) {
   # [n8n] Free and source-available fair-code licensed workflow automation tool
   environment.variables = {
     # https://docs.n8n.io/hosting/configuration/environment-variables/security/
