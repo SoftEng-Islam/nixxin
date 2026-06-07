@@ -15,6 +15,7 @@ in
 {
   imports = optionals (automations.enable or false) flatten _imports;
   environment.systemPackages = with pkgs; [
-    playwright
+    # playwright
+    playwright-test
   ];
 }
