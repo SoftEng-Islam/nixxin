@@ -148,8 +148,11 @@
   # ---------------------------------------------------------
 
   # Apply power management and spin-down rules only to mechanical HDDs
+  # services.udev.extraRules = ''
+  #   ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 -S 120 /dev/%k"
+  # '';
   services.udev.extraRules = ''
-    ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 -S 120 /dev/%k"
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 -S 36 /dev/%"
   '';
 
   # To enable aggressive power management and spin-down for mechanical HDDs, you can use the following udev rule. This rule applies only to devices that are identified as rotational (i.e., mechanical hard drives) and sets the APM level to 127 (aggressive power management) and the standby timeout to 120 seconds (2 minutes). Adjust the values as needed for your specific use case.
