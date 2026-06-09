@@ -10,7 +10,7 @@ in
 {
   # ---- Tracker3 ---- #
   services.gnome.tinysparql.enable = true; # indexing files
-  services.gnome.localsearch.enable = true;
+  services.gnome.localsearch.enable = false;
 
   nixpkgs.overlays = [
     (self: super: {
