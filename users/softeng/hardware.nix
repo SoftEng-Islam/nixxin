@@ -107,6 +107,7 @@
       # "umask=022" # NTFS/ntfs-3g only – sets default permission mask (directories = 755, files = 644).
 
       # For Both File System
+      "noauto"
       "rw" # Mount the filesystem as read-write.
       "nofail" # Don’t fail boot if this mount fails (useful for external or optional drives).
       "exec" # Allow executing binaries from this mount.

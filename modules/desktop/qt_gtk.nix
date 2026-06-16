@@ -43,7 +43,7 @@ in
         "file:///home/${settings.user.username}/Documents"
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
-        "file:///SSD/Videos"
+        "file:///home/${settings.user.username}/Videos"
 
         # "file:///home/${settings.user.username}/Torrents"
         # "file:///home/${settings.user.username}/.config"
