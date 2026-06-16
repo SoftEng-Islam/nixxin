@@ -14,14 +14,18 @@
     "sd_mod"
   ];
   boot.kernelModules = [ "kvm-amd" ];
+
+  #
   swapDevices = [ ];
 
+  # [CT500BX500SSD1] The Linux System Partition
   # lsblk -o NAME,UUID,FSTYPE,SIZE,MOUNTPOINT
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/5fd60cc2-b325-4f36-9a44-5b45299bf0a7";
     fsType = "xfs";
   };
 
+  # [CT500BX500SSD1] The Boot Partition
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/C560-51F7";
     fsType = "vfat";
@@ -31,7 +35,31 @@
     ];
   };
 
-  fileSystems."/data" = {
+  # [CT500BX500SSD1] Data Partition
+  fileSystems."/ssd100" = {
+    enable = true;
+    device = "/dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf";
+    # fsType = "ntfs-3g"; # if NTFS
+    fsType = "btrfs";
+    options = [
+      # With Option-by-Option Explanation
+      # This only for BTRFS
+      "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
+      "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
+      "ssd" # Btrfs only – optimized for SSD seek behavior.
+      "discard=async" # Btrfs only – background TRIM to keep SSD performance high.
+      "nodev" # Don’t allow device files on this mount (security measure).
+
+      # For Both File System
+      "rw" # Mount the filesystem as read-write.
+      "nofail" # Don’t fail boot if this mount fails (useful for external or optional drives).
+      "exec" # Allow executing binaries from this mount.
+      "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
+    ];
+  };
+
+  # My 500GB HDD Disk
+  fileSystems."/hdd500" = {
     enable = false;
     device = "/dev/disk/by-uuid/386568e5-b764-4b52-bd15-bca3408a3ce7";
     # fsType = "ntfs-3g"; # if NTFS
@@ -57,28 +85,11 @@
     ];
   };
 
-  fileSystems."/SSD" = {
-    device = "/dev/disk/by-uuid/d7a6af5d-3e8c-4816-b4fd-306107bbd9bf";
-    # fsType = "ntfs-3g"; # if NTFS
-    fsType = "btrfs";
-    options = [
-      # With Option-by-Option Explanation
-      # This only for BTRFS
-      "defaults" # Enables default options: rw, suid, dev, exec, auto, nouser, and async.
-      "compress=zstd" # Btrfs only – enables compression using zstd algorithm (saves space and may improve performance).
-      "ssd" # Btrfs only – optimized for SSD seek behavior.
-      "discard=async" # Btrfs only – background TRIM to keep SSD performance high.
-      "nodev" # Don’t allow device files on this mount (security measure).
-
-      # For Both File System
-      "rw" # Mount the filesystem as read-write.
-      "nofail" # Don’t fail boot if this mount fails (useful for external or optional drives).
-      "exec" # Allow executing binaries from this mount.
-      "x-gvfs-show" # Makes the mount point visible in GNOME/Nautilus (GVFS). Optional aesthetic.
-    ];
-  };
-
-  fileSystems."/data2" = {
+  # Don't Forget To Change The Owner of The Partition If Needed.
+  # sudo chown -R softeng:wheel /data2
+  # My 250GB HDD Disk
+  fileSystems."/hdd250" = {
+    enable = true;
     device = "/dev/disk/by-uuid/f532f234-9e5a-4c3e-a788-dada20ea6c56";
     # fsType = "ntfs-3g"; # if NTFS
     fsType = "btrfs";
@@ -104,46 +115,24 @@
   };
 
   # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g),x-gvfs-show
-  # fileSystems."/windows" = {
-  #   device = "//192.168.1.3/windows_shared";
-  #   fsType = "cifs";
-  #   options = [
-  #     "username=win"
-  #     "password=1122"
-  #     "uid=1000"
-  #     "gid=100"
-  #     "iocharset=utf8"
-  #     "file_mode=0775"
-  #     "dir_mode=0775"
-  #     "rw"
-  #     "nofail"
-  #     "nounix"
-  #     # "user"
-  #   ];
-  # };
-
-  # Don't Forget To Change The Owner of The Partition If Needed.
-  # sudo chown -R softeng:wheel /data2
-  #  fileSystems."/data2" = {
-  #    device = "/dev/disk/by-uuid/4f2e4b65-d0c5-413b-9558-c210008c5657";
-  #    fsType = "xfs";
-  #    options = [
-  #      "rw"
-  #      "nofail"
-  #      "nodev"
-  #      "uid=1000"
-  #      "gid=1000"
-  #      "utf8"
-  #      "umask=022"
-  #      "exec"
-  #      "x-gvfs-show"
-  #    ];
-  #  };
-
-  # swapDevices = [{
-  #  device = "/dev/disk/by-uuid/d06b1b0e-01c1-4874-98af-9f8e2cc53b4e";
-  #  size = 4 * 1024; # Size in MB for a 4GB swap file
-  # }];
+  fileSystems."/windows" = {
+    enable = false;
+    device = "//192.168.1.3/windows_shared";
+    fsType = "cifs";
+    options = [
+      "username=win"
+      "password=1122"
+      "uid=1000"
+      "gid=100"
+      "iocharset=utf8"
+      "file_mode=0775"
+      "dir_mode=0775"
+      "rw"
+      "nofail"
+      "nounix"
+      # "user"
+    ];
+  };
 
   # ---------------------------------------------------------
 
