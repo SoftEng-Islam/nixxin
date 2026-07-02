@@ -10,10 +10,10 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable Intel microcode updates
   hardware.cpu.intel.updateMicrocode = true;
-  
+
   # Enable Intel graphics
   hardware.intelgpu.enable = true;
-  
+
   # Power management
   powerManagement.cpuFreqGovernor = "performance";  # or "powersave"
 }
@@ -25,10 +25,10 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable AMD microcode updates
   hardware.cpu.amd.updateMicrocode = true;
-  
+
   # Enable AMD graphics
   hardware.amdgpu.driver.enable = true;
-  
+
   # Power management
   powerManagement.cpuFreqGovernor = "ondemand";
 }
@@ -42,22 +42,22 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable NVIDIA proprietary driver
   services.xserver.videoDrivers = ["nvidia"];
-  
+
   hardware.nvidia = {
     modesetting.enable = true;
     powerManagement.enable = false;
     open = false;  # Set to true for open source driver
-    
+
     # Package selection
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-    
+
     # Prime support (laptops with hybrid graphics)
     prime = {
       intelBusId = "PCI:0:2:0";
       nvidiaBusId = "PCI:1:0:0";
     };
   };
-  
+
   # Enable OpenGL
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
@@ -71,12 +71,12 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable AMD driver
   hardware.amdgpu.driver.enable = true;
-  
+
   # Enable OpenGL
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  
+
   # Vulkan support
   hardware.opengl.extraPackages = with pkgs; [
     amdvlk
@@ -90,12 +90,12 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable Intel driver
   hardware.intelgpu.enable = true;
-  
+
   # Enable OpenGL
   hardware.opengl.enable = true;
   hardware.opengl.driSupport = true;
   hardware.opengl.driSupport32Bit = true;
-  
+
   # VA-API for video acceleration
   hardware.opengl.extraPackages = with pkgs; [
     intel-media-driver
@@ -114,7 +114,7 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable libinput for touchpad support
   services.libinput.enable = true;
-  
+
   # Touchpad configuration
   services.xserver.libinput = {
     enable = true;
@@ -134,7 +134,7 @@ This guide covers hardware configuration and driver support in Nixxin.
   # Enable support for gaming mice and keyboards
   hardware.openrazer.enable = true;
   hardware.openrazer.users = ["your-username"];
-  
+
   # Steam controller support
   hardware.steam-hardware.enable = true;
 }
@@ -151,11 +151,11 @@ This guide covers hardware configuration and driver support in Nixxin.
     enable = true;
     support32Bit = true;
     package = pkgs.pulseaudioFull;
-    
+
     # Additional modules
     extraModules = [pkgs.pulseaudio-modules-bt];
   };
-  
+
   # ALSA support
   hardware.alsa.enablePersistence = true;
 }
@@ -171,10 +171,10 @@ This guide covers hardware configuration and driver support in Nixxin.
     alsa.enable = true;
     alsa.support32Bit = true;
     pulse.enable = true;
-    
+
     # JACK support
     jack.enable = true;
-    
+
     # Low latency configuration
     extraConfig.pipewire = {
       "context.properties" = {
@@ -184,7 +184,7 @@ This guide covers hardware configuration and driver support in Nixxin.
       };
     };
   };
-  
+
   # Enable real-time scheduling
   security.rtkit.enable = true;
 }
@@ -198,10 +198,10 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable NetworkManager
   networking.networkmanager.enable = true;
-  
+
   # WiFi regulatory domain
   networking.wireless.regulatoryDomain = "US";
-  
+
   # Enable WiFi firmware
   hardware.enableRedistributableFirmware = true;
 }
@@ -221,7 +221,7 @@ This guide covers hardware configuration and driver support in Nixxin.
       };
     };
   };
-  
+
   # Bluetooth GUI tools
   services.blueman.enable = true;
 }
@@ -236,11 +236,11 @@ This guide covers hardware configuration and driver support in Nixxin.
   # Enable fstrim for SSDs
   services.fstrim.enable = true;
   services.fstrim.interval = "weekly";
-  
+
   # Enable swap on zram
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
-  
+
   # Enable tmpfs for /tmp
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "50%";
@@ -253,7 +253,7 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable mdadm for RAID
   environment.systemPackages = [pkgs.mdadm];
-  
+
   # RAID arrays
   boot.initrd.services.swraid.enable = true;
   boot.initrd.services.swraid.enableAutodetection = true;
@@ -272,7 +272,7 @@ This guide covers hardware configuration and driver support in Nixxin.
       allowDiscards = true;
     };
   };
-  
+
   # Enable cryptsetup
   environment.systemPackages = [pkgs.cryptsetup];
 }
@@ -292,7 +292,7 @@ This guide covers hardware configuration and driver support in Nixxin.
       Monitor "HDMI-1"
         Option "PreferredMode" "1920x1080"
     '';
-    
+
     deviceSection = ''
       Option "Monitor-DVI-I-1" "DVI-I-1"
       Option "Monitor-HDMI-1" "HDMI-1"
@@ -312,7 +312,7 @@ This guide covers hardware configuration and driver support in Nixxin.
     QT_SCALE_FACTOR = "2";
     _JAVA_OPTIONS = "-Dsun.java2d.uiScale=2";
   };
-  
+
   # Font scaling
   fonts.fontconfig.defaultSizes = {
     desktop = 16;
@@ -334,18 +334,18 @@ This guide covers hardware configuration and driver support in Nixxin.
     settings = {
       CPU_SCALING_GOVERNOR_ON_AC = "performance";
       CPU_SCALING_GOVERNOR_ON_BAT = "powersave";
-      
+
       # Enable USB autosuspend
       USB_AUTOSUSPEND = 1;
-      
+
       # Enable WiFi power saving
       WIFI_PWR_ON_BAT = "on";
     };
   };
-  
+
   # Enable auto-cpufreq
-  services.auto-cpufreq.enable = true;
-  
+  services.auto-cpufreq.enable = false;
+
   # Enable thermald
   services.thermald.enable = true;
 }
@@ -357,10 +357,10 @@ This guide covers hardware configuration and driver support in Nixxin.
 {
   # Enable suspend and hibernate
   powerManagement.enable = true;
-  
+
   # Configure resume device
   boot.resumeDevice = "/dev/disk/by-uuid/your-swap-uuid";
-  
+
   # Hibernate support
   systemd.sleep.extraConfig = ''
     HibernateDelaySec=2h
@@ -422,22 +422,22 @@ echo
 {
   # Auto-generate hardware configuration
   # Run: sudo nixos-generate-config
-  
+
   imports = [
     ./hardware-configuration.nix
   ];
-  
+
   # Enable common hardware support
   hardware = {
     # Enable Bluetooth
     bluetooth.enable = true;
-    
+
     # Enable OpenGL
     opengl.enable = true;
-    
+
     # Enable pulse audio
     pulseaudio.enable = true;
-    
+
     # Enable firmware loading
     enableRedistributableFirmware = true;
   };
@@ -449,6 +449,7 @@ echo
 ### Common Issues
 
 #### GPU Not Detected
+
 ```bash
 # Check GPU detection
 lspci | grep -i vga
@@ -458,6 +459,7 @@ intel_gpu_top # Intel
 ```
 
 #### Audio Not Working
+
 ```bash
 # Check audio devices
 aplay -l
@@ -469,6 +471,7 @@ systemctl --user restart pipewire-pulse
 ```
 
 #### WiFi Not Working
+
 ```bash
 # Check WiFi adapter
 lspci | grep -i network
