@@ -26,6 +26,7 @@ mkIf (settings.modules.git.enable) {
   home-manager.users.${settings.user.username} = {
     programs.git = {
       enable = true;
+      lfs.enable = true;
       settings = {
         user.email = settings.user.email;
         user.name = settings.user.name;
