@@ -32,4 +32,6 @@ self: {
   # Not perfectly working
   modules.media.kdenlive = false; # video Editor
 
+  modules.media.shotcut = true; # video Editor
+
 }
