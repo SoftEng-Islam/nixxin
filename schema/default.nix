@@ -669,6 +669,8 @@ self: {
     # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
     # radeon.dpm is unnecessary — radeon driver is disabled via si_support=0/cik_support=0
     "amdgpu.dpm=0"
+    "amdgpu.cg_mask=0" # disable ALL clock gating
+    "amdgpu.pg_mask=0" # disable ALL power gating
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
     "amdgpu.dcdebugmask=0x10" # AMD GPU support
