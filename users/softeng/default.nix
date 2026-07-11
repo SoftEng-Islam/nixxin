@@ -33,5 +33,7 @@ self: {
   modules.media.kdenlive = false; # video Editor
 
   modules.media.shotcut = true; # video Editor
-
+  modules.system.boot.kernelModules = [
+    pkgs.msr
+  ];
 }
