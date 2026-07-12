@@ -24,6 +24,7 @@
 
   programs.tuxclocker.enable = false;
   programs.tuxclocker.useUnfree = false;
+
   environment.systemPackages = with pkgs; [
     msr-tools
     linuxKernel.packages.linux_zen.cpupower
@@ -31,6 +32,7 @@
     clinfo
     stress-ng
     pciutils
+
     # stress -c 4
     stress
   ];

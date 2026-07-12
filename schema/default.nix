@@ -493,10 +493,10 @@ self: {
   modules.media.music = true; # Music Player
 
   # [Networking]
-  modules.networking.dnsResolver = "resolved"; # "dnsmasq" or "resolved"
+  modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [
     "1.1.1.1"
-    "1.0.0.1"
+    "8.8.8.8"
   ]; # DNS
   modules.networking.dnsmasq.settings.server = self.modules.networking.nameservers;
   modules.networking.interfaces = {
@@ -545,9 +545,9 @@ self: {
   modules.power.boot.kernelModules = [
     "acpi_cpufreq" # ACPI CPU frequency scaling driver
     "cpufreq_performance"
-    "cpufreq_powersave"
-    "cpufreq_ondemand"
-    "cpufreq_conservative"
+    # "cpufreq_powersave"
+    # "cpufreq_ondemand"
+    # "cpufreq_conservative"
   ];
 
   # [ Recording ]

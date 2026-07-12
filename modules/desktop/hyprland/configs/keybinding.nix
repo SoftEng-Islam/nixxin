@@ -108,8 +108,7 @@ in
       bind = $main, F2, exec, run-gamemode
       bind = $main, F3, exec, run-blue-filter
       bind = $main, F4, exec, $ipc panel-toggle session
-
-      # bind = $main, F5, exec,
+      bind = $main, F5, exec, waydroid session stop && notify-send "Waydroid Is Closed."
       # bind = $main, F6, exec,
 
       # --------------------- #
@@ -134,12 +133,9 @@ in
       # bind = $main, TAB, focusmonitor, +1 # Move monitor focus.
       bind = $main, TAB, exec, qs ipc -c overview call overview toggle
 
-
       # In hyprland.conf
       bind = ALT, Tab, cyclenext, currentworkspace
       bind = ALT, SHIFT+Tab, cyclenext, prev, currentworkspace
-
-
 
       # Zoom
       # To zoom using Hyprland's built-in zoom utility
