@@ -30,6 +30,7 @@
         hexyl = "${inputs.yazi-hexyl}";
         mount = "${inputs.yazi-plugins}/mount.yazi";
         toggle-pane = "${inputs.yazi-plugins}/toggle-pane.yazi";
+        smart-enter = "${inputs.yazi-plugins}/smart-enter.yazi";
         what-size = "${inputs.yazi-what-size}";
       };
       shellWrapperName = "y";
