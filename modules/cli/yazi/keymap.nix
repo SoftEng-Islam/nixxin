@@ -49,5 +49,10 @@
       run = ''shell -- ripdrag -xna "$1"'';
       desc = "ripdrag";
     }
+    {
+      on = "<Enter>";
+      run = "plugin smart-enter";
+      desc = "Enter directory or open file";
+    }
   ];
 }

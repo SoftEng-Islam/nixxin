@@ -4,8 +4,16 @@
   inputs,
   ...
 }:
+let
+  paste = pkgs.writers.writeNuBin "paste" (builtins.readFile ./paste.nu);
+in
 {
+
   home-manager.users.${settings.user.username} = {
+    home.packages = [
+      paste
+      pkgs.ouch
+    ];
     programs.yazi = {
       enable = true;
       enableZshIntegration = true;
