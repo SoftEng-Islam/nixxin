@@ -38,7 +38,7 @@ self: {
   #   pkgs.msr
   # ];
   modules.remote_desktop.enable = true;
-  settings.modules.remote_desktop.teamviewer.enable = true;
-  settings.modules.remote_desktop.rdp.enable = false;
+  modules.remote_desktop.teamviewer.enable = true;
+  modules.remote_desktop.rdp.enable = false;
 
 }

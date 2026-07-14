@@ -559,6 +559,7 @@ self: {
 
   # [ remote_desktop ]
   modules.remote_desktop.rdp.enable = false;
+  modules.remote_desktop.teamviewer.enable = false;
 
   # [resources_monitoring]
   modules.resources_monitoring.btop = {
