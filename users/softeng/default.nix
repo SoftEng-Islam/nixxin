@@ -37,4 +37,8 @@ self: {
   # modules.system.boot.kernelModules = [
   #   pkgs.msr
   # ];
+  modules.remote_desktop.enable = true;
+  settings.modules.remote_desktop.teamviewer.enable = true;
+  settings.modules.remote_desktop.rdp.enable = false;
+
 }

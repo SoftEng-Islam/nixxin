@@ -19,7 +19,13 @@ let
     # ---- kdenlive ---- #
     (lib.optional settings.modules.media.kdenlive kdePackages.kdenlive)
     # ---- shotcut ---- #
-    (lib.optional settings.modules.media.shotcut shotcut)
+    (lib.optional settings.modules.media.shotcut (
+      shotcut.overrideAttrs (oldAttrs: {
+        qtWrapperArgs = (oldAttrs.qtWrapperArgs or [ ]) ++ [
+          "--prefix XDG_DATA_DIRS : ${gtk3}/share/gsettings-schemas/${gtk3.name}"
+        ];
+      })
+    ))
   ];
 
 in

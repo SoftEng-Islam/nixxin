@@ -822,11 +822,11 @@
     "yt-dlp-src_2": {
       "flake": false,
       "locked": {
-        "lastModified": 1783638660,
-        "narHash": "sha256-ZGk0ufcQqS4lu8d4vgplt8VNOFrdMDR1bqajI3DEKa4=",
+        "lastModified": 1783885191,
+        "narHash": "sha256-fJVsq9PUjJquprNrBfexbjPgk8yl+GCxMhBHf6365OU=",
         "owner": "yt-dlp",
         "repo": "yt-dlp",
-        "rev": "59d9ae606a24a80523da35de9fb75b71eb35b501",
+        "rev": "d9813a3da6959662841dfb34cad0ee6c07a65d1e",
         "type": "github"
       },
       "original": {
