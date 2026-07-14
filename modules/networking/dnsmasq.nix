@@ -17,8 +17,12 @@ in {
       # port = 9751;
       # Set Google DNS for IPv4 and IPv6
       server = _networking.nameservers;
-      # interface = "waydroid0";
-      # bind-interfaces = true;
+
+      # Bind only to specific interfaces — prevents dnsmasq from occupying
+      # port 53 on waydroid0, which has its own dnsmasq for DHCP/DNS.
+      bind-interfaces = true;
+      except-interface = "waydroid0";
+
       # Provide DHCP settings (if applicable)
       # dhcp-range = "10.42.0.10,10.42.0.100,12h"; # Adjust to your network
     };
