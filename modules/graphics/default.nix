@@ -288,13 +288,15 @@ in
       # mesa_glthread = "true";
 
       # Mesa OpenGL (somewhat useful)
-      MESA_NO_ERROR = 1;
+      # MESA_NO_ERROR = 1; # Disabled — suppresses Mesa's internal GL error checking for a tiny perf gain,
+      #                      # but caused segfaults in Shotcut (libgallium-25.3.1) when the timeline dock
+      #                      # triggered an unvalidated render path. Keep off unless you accept crash risk.
       # MESA_GL_VERSION_OVERRIDE = "4.6";
       # MESA_GLSL_VERSION_OVERRIDE = "460";
 
       # immediate, mailbox, relaxed, fifo
       # MESA_VK_WSI_PRESENT_MODE = "immediate";
-      MESA_LOADER_DRIVER_OVERRIDE = "radeonsi";
+      # MESA_LOADER_DRIVER_OVERRIDE = "radeonsi"; # Redundant — already set via GALLIUM_DRIVER
 
       MESA_DISK_CACHE_DATABASE = "1";
       MESA_DISK_CACHE_MULTI_FILE = "1";

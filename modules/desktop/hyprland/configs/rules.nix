@@ -33,8 +33,9 @@
       # ---- Dialogs ---- #
       # Fix: Force Dialogs & Pop-ups to Float
       windowrule = center, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
-      windowrule = float, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = float,  title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
       windowrule = size 850 500, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+
       windowrulev2 = float,class:^(firefox|thunar|gedit|krita),title:^(Open File|Save As)
       windowrulev2 = float,class:^(file-roller|pavucontrol|blueman-manager)
       windowrulev2 = float,class:^(xdg-desktop-portal|org.kde.kdialog)
@@ -80,13 +81,10 @@
       # ----------------------
       # Wezterm specific rules
       # ----------------------
-      # windowrule = opacity 0.6 0.5, class:^(wezterm)$
-      # windowrulev2 = blur,class:(Wezterm)
       windowrulev2 = noborder,class:(Wezterm)
       windowrulev2 = nodim,class:(Wezterm)
       windowrulev2 = noshadow,class:(Wezterm)
       windowrulev2 = rounding 0,class:(Wezterm)
-      # windowrule = opacity 0.90 override 0.85 override,class:(Wezterm)
 
       # --------------------
       # 0 A.D. rules
@@ -130,9 +128,6 @@
 
       # Extra rules for specific apps
       windowrulev2 = idleinhibit fullscreen, class:^(firefox)$
-      # windowrulev2 = float,class:^(zenity)$
-      # windowrulev2 = center,class:^(zenity)$
-      # windowrulev2 = size 850 500,class:^(zenity)$
       windowrulev2 = float,class:^(pavucontrol)$
       windowrulev2 = float,class:^(SoundWireServer)$
       windowrulev2 = float,class:^(.sameboy-wrapped)$
