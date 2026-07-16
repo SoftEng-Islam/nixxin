@@ -27,7 +27,7 @@
 
           no_focus_fallback = true;
           gaps_in = 15;
-          gaps_out = 15;
+          gaps_out = 30;
           gaps_workspaces = 15;
           border_size = settings.modules.desktop.hyprland.border.size;
           resize_on_border = true;
