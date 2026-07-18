@@ -32,7 +32,7 @@
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    inputs.claude-cowork-nix.url = "github:Reginleif88/claude-cowork-nix";
+    claude-cowork-nix.url = "github:Reginleif88/claude-cowork-nix";
 
     # -----------------------------
     # needed by "https://github.com/Shanu-Kumawat/quickshell-overview"
