@@ -32,7 +32,7 @@
           border_size = settings.modules.desktop.hyprland.border.size;
           resize_on_border = true;
           hover_icon_on_border = true;
-          extend_border_grab_area = 10;
+          extend_border_grab_area = 0;
           "col.inactive_border" = settings.modules.desktop.hyprland.border.inactive.color;
           "col.active_border" = "$primary";
 

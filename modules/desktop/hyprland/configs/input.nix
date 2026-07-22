@@ -22,6 +22,7 @@
         scroll_factor = settings.common.mouse.scrollSpeed;
 
         follow_mouse = 1;
+        mouse_refocus = false;
         # numlock_by_default = true;
 
         repeat_rate = 30;
