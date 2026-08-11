@@ -93,42 +93,48 @@ lib.mkIf (settings.modules.media.mpv) {
         ];
       };
       config = {
-        # --- VIDEO OUTPUT & HARDWARE DECODING ---
-        vo = "gpu-next"; # Highest quality renderer, natively uses libplacebo
-        gpu-api = "vulkan"; # Best API for AMD graphics
+        vo = "sdl"; # mpv --vo=help
         gpu-context = "wayland";
-        hwdec = "auto-safe"; # Efficient hardware decoding without copying back to RAM
-        profile = "high-quality"; # Enables advanced scaling and rendering features
+        hwdec = "vaapi-copy";
+        profile = "fast";
+
+        vulkan-queue-count = 1;
+
+        hdr-compute-peak = "no"; # Fix stuttering playing 4k video
 
         # Performance tweaks for Vulkan
         vulkan-async-compute = "yes";
         vulkan-async-transfer = "yes";
-        vulkan-queue-count = 1;
 
-        # --- SCALING & RENDERING (Max Quality) ---
-        scale = "ewa_lanczossharp"; # High-quality luma upscaling
-        cscale = "ewa_lanczossharp"; # High-quality chroma upscaling
+        # Quality over speed
+        deband = "yes";
+        dither-depth = "auto";
+
+        # Scaling - High Quality Up/Down-scaling
+        scale = "spline36";
+        cscale = "spline36";
         dscale = "mitchell";
         scale-antiring = 0.7;
         cscale-antiring = 0.7;
         dscale-antiring = 0.7;
 
-        deband = "yes";
-        dither-depth = "auto";
-        hdr-compute-peak = "no";
-
-        # --- SMOOTH PLAYBACK ---
-        video-sync = "display-resample"; # Eliminates judder by syncing to monitor refresh rate
-        interpolation = "yes";
+        # Framedrop and smooth playback (judder-free)
+        video-sync = "audio";
+        interpolation = "no";
         tscale = "oversample";
         framedrop = "vo";
+
+        # Reduce decoder threads for weak CPUs
+        # vd-lavc-threads = 2;
 
         # Cache settings
         cache = "yes";
         demuxer-max-bytes = "100M";
         demuxer-readahead-secs = 5;
 
-        # Window Behavior
+        # Shaders
+        # glsl-shaders = [ "~~/shaders/AMD/FSR.glsl" "~~/shaders/AMD/CAS-scaled.glsl" ];
+
         fullscreen = false;
         keep-open = "yes";
         force-window = "immediate";
@@ -136,35 +142,36 @@ lib.mkIf (settings.modules.media.mpv) {
         window-maximized = "yes";
         save-position-on-quit = true;
 
-        # --- AUDIO ---
-        ao = "pipewire,pulse,alsa";
+        # Audio
+        ao = "pipewire,pulse,alsa"; # mpv --ao=help
         volume = 100;
         volume-max = 150;
         alang = "en,eng";
         slang = "en,eng,ar";
 
-        # --- SUBTITLES ---
+        # Subtitle
         sub-auto = "fuzzy";
         sub-font-size = 32;
         sub-outline-size = 2.5;
         sub-color = "#fffae1ff";
         sub-outline-color = "#414141ff";
         sub-use-margins = "yes";
+        # sub-ass-override = "force";
 
-        osd-level = 1;
+        osd-level = 1; # ?
         msg-color = true;
         msg-module = true;
       };
-
-      # Adjusted profiles for new settings
       profiles = {
         "high-fps" = {
           profile-cond = "p.container_fps>=59";
           interpolation = "no";
+          video-sync = "audio";
         };
         "high-res" = {
-          # Removed bilinear downgrading. Your AMD hardware can handle 1080p+ easily.
           profile-cond = "p.height>=1080";
+          scale = "bilinear";
+          cscale = "bilinear";
         };
       };
       bindings = {
@@ -186,9 +193,9 @@ lib.mkIf (settings.modules.media.mpv) {
     libass
     libavc1394
     libavif
-    libplacebo
+    libplacebo # Reusable library for GPU-accelerated video/image rendering primitives
     libva
-    libva-utils
+    libva-utils # For testing VAAPI support
     lua
     mesa
     mpv-shim-default-shaders
@@ -197,6 +204,6 @@ lib.mkIf (settings.modules.media.mpv) {
     trash-cli
     vulkan-headers
     vulkan-loader
-    vulkan-tools
+    vulkan-tools # Includes `vulkaninfo`
   ];
 }
