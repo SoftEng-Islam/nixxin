@@ -9,7 +9,7 @@ self: {
 
   system.hostName = "nixxin";
   system.architecture = "x86_64-linux";
-  modules.system.acpi.enableDSDTOverride = true;
+  modules.system.acpi.enableDSDTOverride = false;
 
   modules.community.enable = true;
   modules.community.telegram.enable = true;

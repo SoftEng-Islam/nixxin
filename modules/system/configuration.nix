@@ -100,8 +100,6 @@ in
       systemd.dbus.enable = false;
       verbose = !quietBoot;
 
-      prepend = lib.optionals (_system.acpi.enableDSDTOverride or false) [ "${./dsdt.cpio}" ];
-
       # systemd.dbus.enable = false;
       # Additional kernel modules needed for virtualization
       availableKernelModules = [
@@ -225,10 +223,10 @@ in
   # Speed up boot / shut down
   systemd.services.systemd-udev-settle.enable = false;
 
-  services.udev.extraRules = ''
-    # When the AMD GPU (card1) is added, force it to high performance mode
-    ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1", ATTR{device/power_dpm_force_performance_level}="high"
-  '';
+  # services.udev.extraRules = ''
+  ## When the AMD GPU (card1) is added, force it to high performance mode
+  #  ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1", ATTR{device/power_dpm_force_performance_level}="high"
+  # '';
 
   # ------------------------------------------------
   # ---- Services Configuration

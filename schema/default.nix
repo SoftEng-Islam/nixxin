@@ -527,8 +527,8 @@ self: {
   modules.office.translators.enable = true;
 
   # [ overclock ]
-  modules.overclock.corectrl.enable = false;
-  modules.overclock.lactd.enable = false;
+  modules.overclock.corectrl.enable = true;
+  modules.overclock.lactd.enable = true;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
@@ -644,14 +644,6 @@ self: {
   # [ kernelParams ]
   modules.system.boot.kernelParams = [
     # AMD GPU optimizations
-    # The oldest architectures that AMDGPU supports are Southern Islands (SI, i.e. GCN 1) and Sea Islands (CIK, i.e. GCN 2), but support for them is disabled by default. To use AMDGPU instead of the radeon driver, you can set the kernel parameters:
-    # for Southern Islands (SI i.e. GCN 1) cards
-    "radeon.si_support=0" # Ensures Radeon drivers don’t interfere
-    "amdgpu.si_support=1"
-
-    # for Sea Islands (CIK i.e. GCN 2) cards
-    "radeon.cik_support=0"
-    "amdgpu.cik_support=1"
 
     # --- MEMORY TUNING (Based on your 18GB RAM) ---
     # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
@@ -662,19 +654,10 @@ self: {
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
-    "amdgpu.bapm=1" # Disable bidirectional APM
     "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
-    "amdgpu.runpm=0" # Disable Power Management (Keep it always on)
 
-    # NOTE: `amdgpu.benchmark` is not a valid amdgpu module parameter on our kernel
-    # (it shows up as "unknown parameter 'benchmark' ignored" in dmesg), so keep it disabled.
-    # radeon.dpm is unnecessary — radeon driver is disabled via si_support=0/cik_support=0
-    "amdgpu.dpm=0"
-    "amdgpu.cg_mask=0" # disable ALL clock gating
-    "amdgpu.pg_mask=0" # disable ALL power gating
     "amdgpu.abmlevel=0"
     "amdgpu.vm_update_mode=3"
-    "amdgpu.dcdebugmask=0x10" # AMD GPU support
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
     "amd_prefcore=disable"
@@ -683,38 +666,12 @@ self: {
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
     "amdgpu.audio=0"
 
-    # OVERRIDE THE GPU POWER TABLE
-    # This is the most important one. Since the BIOS is hiding the power
-    # library (\_SB.ALIB), we tell the driver to use its internal
-    # defaults instead of the BIOS tables.
-    "amdgpu.ppfeaturemask=0xffffffff"
-    "amdgpu.dcfeaturemask=0xffffffff"
-
-    "acpi=copy_dsdt"
-    "acpi_apic_instance=1"
-    "acpi_force_32bit_fadt_addr"
-    "acpi_mask_gpe=0x16" # Prevents interrupt storms if they persist
-
-    # IGNORE RESERVED RESOURCES
-    "acpi_enforce_resources=no" # "lax" or "no"
-
-    # 1. Reset ALL strings (vendor and feature groups) as per your documentation
-    # "acpi_osi=Linux" # Linux | Darwin | Windows
-    ''acpi_osi="!Windows 2015"''
-
-    "intremap=off" # disable Interrupt Remapping
     "audit=0"
     "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
     "tsc=reliable" # Disable clocksource stability checks for TSC.
     "clocksource=tsc" # Override the default clocksource
     "no_timer_check"
     "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
-
-    # CPU idle behaviour
-    #  poll: slightly improve performance at cost of a hotter system (not recommended)
-    #  halt: halt is forced to be used for CPU idle
-    #  nomwait: Disable mwait for CPU C-states
-    # "idle=poll"
 
     # enable IOMMU for devices used in passthrough and provide better host performance in virtualization
     "iommu=pt"
@@ -743,29 +700,14 @@ self: {
     "processor.ignore_ppc=1"
     "msr.allow_writes=on"
 
-    "processor.max_cstate=0"
     "cpufreq.default_governor=performance"
     "page_alloc.shuffle=1"
     "ibt=off"
-    # psi=1 is set in waydroid.nix
-    "pci=nocrs"
-
-    # MTRR Optimization for 16GB RAM + iGPU
-    "enable_mtrr_cleanup"
-    "mtrr_spare_reg_nr=2"
-    "mtrr_gran_size=8M" # Sets the alignment resolution
-    "mtrr_chunk_size=128M" # Helps map the 16GB more efficiently
 
     "workqueue.power_efficient=false"
     "smt=on"
-    "nohz_full=all"
     "nowatchdog"
     "nosoftlockup"
-
-    # --- HugePages Configurations ---
-    "transparent_hugepage=always"
-    "default_hugepagesz=1G"
-    "hugepagesz=1G"
 
     # --- Added Performance Tunings ---
     "lockdown=off" # Allow kernel tuning and eBPF tracing
@@ -795,7 +737,7 @@ self: {
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;
   modules.system.amdgpu.opencl = true;
-  modules.system.amdgpu.legacySupport = true;
+  modules.system.amdgpu.legacySupport = false;
   # [ Docs ]
   modules.system.docs.enable = true;
   modules.system.docs.doc.enable = true;

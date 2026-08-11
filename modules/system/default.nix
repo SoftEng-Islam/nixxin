@@ -15,7 +15,6 @@
     ./resources.nix
     ./trace.nix
     ./systeminfo.nix
-    ./kernelPatches.nix
     ./radeon.nix # Optional If using Radeon drivers
   ];
   environment.systemPackages = with pkgs; [

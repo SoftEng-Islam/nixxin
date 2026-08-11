@@ -32,7 +32,7 @@
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    claude-cowork-nix.url = "github:Reginleif88/claude-cowork-nix";
+    # claude-cowork-nix.url = "github:Reginleif88/claude-cowork-nix";
 
     # -----------------------------
     # needed by "https://github.com/Shanu-Kumawat/quickshell-overview"
@@ -101,7 +101,6 @@
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
-      claude-cowork-nix,
       ...
     }@inputs:
     let
@@ -135,22 +134,7 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
-
-            claude-cowork-nix.nixosModules.default
-            (
-              { pkgs, ... }:
-              {
-                programs.claude-desktop = {
-                  enable = true;
-                  fhs = true; # Use FHS wrapper (default: true)
-
-                  # OPTIONAL — enables Code section's LOCAL sub-mode. Wires
-                  # CLAUDE_CODE_LOCAL_BINARY so CCD uses this binary instead of
-                  # trying to download one (which throws on Linux).
-                  # claudeCodePackage = pkgs.claude-code;
-                };
-              }
-            )
+      
 
             {
               imports = [
