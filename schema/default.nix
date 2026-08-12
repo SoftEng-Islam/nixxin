@@ -195,10 +195,6 @@ self: {
   common.cpu.amdGPU = true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
   common.cpu.nvidiaGPU = false; # Set true if you have NVIDIA GPU, and false if you have non-NVIDIA GPU.
   common.cpu.intelGPU = false; # Set true if you have Intel GPU, and false if you have non-Intel GPU.
-  # get cpu cores: lscpu | grep "^CPU(s):" | awk '{print $2}'
-  common.cpu.cores = 4; # Set the number of CPU cores you have, for better performance in some apps and games.
-  # get cpu threads: scpu | grep -e "Socket(s):" -e "Core(s) per socket:" -e "Thread(s) per core:"
-  common.cpu.threads = 4; # Set the number of CPU threads you have, for better performance in some apps and games.
   common.cpu.tdp = 65; # Set the TDP of your CPU in watts, for better performance in some apps and games.
   common.cpu.overclocking = false; # Set true if you want to overclock your CPU, and false if you don't want to overclock your CPU.
   common.cpu.undervolting = false; # Set true if you want to undervolt your CPU, and false if you don't want to undervolt your CPU.
