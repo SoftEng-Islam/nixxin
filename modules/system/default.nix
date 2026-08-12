@@ -26,6 +26,9 @@
     uutils-coreutils-noprefix
   ];
 
+  # Irqbalance - Spread interrupts across cores to reduce thermal hotspots
+  services.irqbalance.enable = true;
+
   # Runtime filesystem expectations (some legacy apps)
   systemd.tmpfiles.rules = [
     "d /tmp/.X11-unix 1777 root root 10d"
