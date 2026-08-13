@@ -154,7 +154,6 @@ in
       extraPackages = with pkgs; [
         mesa.opencl
         rocmPackages.clr.icd
-        # khronos-ocl-icd-loader
         libvdpau-va-gl
       ];
 
