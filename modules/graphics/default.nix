@@ -105,9 +105,9 @@ in
       RADV_PERFTEST = "gpl,sam,video_encode";
 
       # Rusticl OpenCL
-      RUSTICL_ENABLE = "radeonsi,amdgpu,radv,radeon";
+      RUSTICL_ENABLE = "radeonsi";
       RUSTICL_DEVICE_TYPE = "gpu";
-      RUSTICL_FEATURES = "fp64";
+      # RUSTICL_FEATURES = "fp64";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "true";
@@ -139,10 +139,10 @@ in
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
 
-      GPU_MAX_ALLOC_PERCENT = "100";
-      GPU_SINGLE_ALLOC_PERCENT = "100";
-      GPU_MAX_HEAP_SIZE = "100";
-      GPU_USE_SYNC_OBJECTS = "1";
+      # GPU_MAX_ALLOC_PERCENT = "100";
+      # GPU_SINGLE_ALLOC_PERCENT = "100";
+      # GPU_MAX_HEAP_SIZE = "100";
+      # GPU_USE_SYNC_OBJECTS = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
