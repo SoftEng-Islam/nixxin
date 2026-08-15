@@ -153,7 +153,6 @@ in
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
         mesa.opencl
-        rocmPackages.clr.icd
         libvdpau-va-gl
       ];
 
