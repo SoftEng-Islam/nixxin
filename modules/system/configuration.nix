@@ -223,10 +223,9 @@ in
   # Speed up boot / shut down
   systemd.services.systemd-udev-settle.enable = false;
 
-  # services.udev.extraRules = ''
-  ## When the AMD GPU (card1) is added, force it to high performance mode
-  #  ACTION=="add", SUBSYSTEM=="drm", KERNEL=="card1", ATTR{device/power_dpm_force_performance_level}="high"
-  # '';
+  # GPU DPM/performance-level udev rule lives in modules/power/performance.nix
+  # (gated behind settings.modules.power.performance.enable) — was duplicated
+  # here as a second dead copy, removed.
 
   # ------------------------------------------------
   # ---- Services Configuration

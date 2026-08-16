@@ -31,7 +31,9 @@ in
           }
         ];
 
-        # Disable auto-epp since it's not supported on AMD A8-8650B (needs amd-pstate-epp).
+        # Disable auto-epp: needs amd-pstate-epp/CPPC support, which this host's CPU
+        # may lack (older Zen/Zen+ AMD APUs generally don't expose CPPC). Verify with
+        # `cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_driver` before re-enabling.
         services.auto-epp.enable = false;
 
         services.thermald.enable = false;
@@ -59,12 +61,13 @@ in
         # cat /sys/devices/system/cpu/cpufreq/scaling_governor
 
         # powerprofilesctl provider:
-        # - auto-cpufreq conflicts with power-profiles-daemon (and also tends to
-        #   fight with tuned/cpupower).
-        # - tuned can provide the power-profiles-daemon DBus API via ppdSupport.
-        services.power-profiles-daemon.enable = lib.mkDefault (
-          !(_power.auto-cpufreq.enable or false) && !(_power.tuned.enable or false)
-        );
+        # - tuned can provide the power-profiles-daemon DBus API via ppdSupport,
+        #   so power-profiles-daemon should stay off when tuned is active.
+        # - auto-cpufreq.nix always forces the real services.auto-cpufreq.enable
+        #   to false regardless of this settings toggle (see that file), so the
+        #   toggle alone is not a signal that a competing daemon is running —
+        #   don't gate on it here, or you can end up with neither daemon enabled.
+        services.power-profiles-daemon.enable = lib.mkDefault (!(_power.tuned.enable or false));
 
         powerManagement.scsiLinkPolicy = "max_performance";
 

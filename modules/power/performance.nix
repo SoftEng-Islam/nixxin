@@ -22,8 +22,11 @@ lib.mkIf (settings.modules.power.performance.enable or false) {
   #?? ls -l /dev/dri/by-path/*
   #?? sudo udevadm trigger /dev/dri/by-path/*
   #?? grep '*' /sys/class/drm/card*/device/pp_power_profile_mode
-  # KERNEL=="renderD128", SUBSYSTEM=="drm", DRIVERS=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="4"
-  # services.udev.extraRules = ''
-  # KERNEL=="card1", SUBSYSTEM=="drm", DRIVER=="amdgpu", ATTR{power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="5"
-  # '';
+  # Persist power_dpm_force_performance_level=manual + COMPUTE profile (5) across
+  # reboots, so it doesn't fall back to `auto` DPM ramp-up behavior on every boot.
+  # Confirmed card1 == the Vega 11 iGPU on this host via
+  # /sys/class/drm/card1/device/pp_dpm_sclk.
+  services.udev.extraRules = ''
+    KERNEL=="card1", SUBSYSTEM=="drm", DRIVER=="amdgpu", ATTR{device/power_dpm_force_performance_level}="manual", ATTR{device/pp_power_profile_mode}="5"
+  '';
 }

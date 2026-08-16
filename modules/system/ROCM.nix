@@ -21,13 +21,11 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
 
   # ---- Rocm Combined ---- #
   # - Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
-  systemd.tmpfiles.rules = let
-    rocmEnv = pkgs.symlinkJoin {
-      name = "rocm-combined";
-      paths = with pkgs.rocmPackages; [ rocblas hipblas clr ];
-    };
-  in [
-    "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
+  # (rocblas/hipblas symlinkJoin was previously left active despite this
+  # comment claiming otherwise, which would break the build if this module is
+  # ever enabled — now actually removed. Re-add once rocblas/hipblas build
+  # cleanly again for whichever host enables this module.)
+  systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
   ];

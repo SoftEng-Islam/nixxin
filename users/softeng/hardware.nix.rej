@@ -1,0 +1,25 @@
+diff a/users/softeng/hardware.nix b/users/softeng/hardware.nix	(rejected hunks)
+@@ -115,14 +115,20 @@
+     ];
+   };
+ 
+-  # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g),x-gvfs-show
++  # Credentials live outside the repo in a root-only file, NOT in git.
++  # Create it once on the target machine (not committed):
++  #   sudo install -m 600 /dev/null /etc/nixos/secrets/windows-share.cred
++  #   sudo tee /etc/nixos/secrets/windows-share.cred <<'EOF'
++  #   username=win
++  #   password=REPLACE_ME
++  #   EOF
++  # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o credentials=/etc/nixos/secrets/windows-share.cred,uid=$(id -u),gid=$(id -g),x-gvfs-show
+   fileSystems."/windows" = {
+     enable = false;
+     device = "//192.168.1.3/windows_shared";
+     fsType = "cifs";
+     options = [
+-      "username=win"
+-      "password=1122"
++      "credentials=/etc/nixos/secrets/windows-share.cred"
+       "uid=1000"
+       "gid=100"
+       "iocharset=utf8"
