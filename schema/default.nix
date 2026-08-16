@@ -657,6 +657,7 @@ self: {
     "amdgpu.modeset=1"
     "amdgpu.dc=1"
     "amd_prefcore=disable"
+    "amdgpu.ppfeaturemask=0xffffffff"
 
     # Disables HDMI/DisplayPort audio output on AMD GPUs.
     # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
