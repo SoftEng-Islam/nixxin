@@ -19,7 +19,7 @@
   # sudo cpupower frequency-set -g performance --min 2.0GHz --max 4.0GHz
   imports = lib.optionals (settings.modules.overclock.enable or false) [
     ./corectrl.nix
-    # ./lactd.nix
+    ./lactd.nix
   ];
 
   programs.tuxclocker.enable = false;
