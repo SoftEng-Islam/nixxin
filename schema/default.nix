@@ -233,7 +233,7 @@ self: {
   modules.networking.enable = true;
   modules.notifications.enable = true;
   modules.office.enable = true;
-  modules.overclock.enable = true;
+  modules.overclock.enable = false;
   modules.pkgs.enable = true;
   modules.power.enable = true;
   modules.printing.enable = true;

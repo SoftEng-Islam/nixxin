@@ -115,6 +115,7 @@
     ];
   };
 
+  # Its was just test for some stuff
   # $ sudo mount.cifs //192.168.1.3/windows_shared ~/windows -o user=win,password=1122,uid=$(id -u),gid=$(id -g),x-gvfs-show
   fileSystems."/windows" = {
     enable = false;
