@@ -122,7 +122,6 @@ in
       experimental-features = [
         "nix-command"
         "flakes"
-        "no-url-literals"
         "pipe-operators"
         "recursive-nix"
       ];

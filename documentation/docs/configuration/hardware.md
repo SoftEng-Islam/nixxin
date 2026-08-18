@@ -362,7 +362,7 @@ This guide covers hardware configuration and driver support in Nixxin.
   boot.resumeDevice = "/dev/disk/by-uuid/your-swap-uuid";
 
   # Hibernate support
-  systemd.sleep.extraConfig = ''
+  systemd.sleep.settings.Sleep = ''
     HibernateDelaySec=2h
     SuspendState=mem disk
   '';

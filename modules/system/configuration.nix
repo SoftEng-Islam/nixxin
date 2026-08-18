@@ -67,8 +67,6 @@ in
     loader.systemd-boot.enable =
       if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
 
-    bootspec.enable = if (_system.boot.loader.manager.name == "SYSTEMD") then true else false;
-
     loader.grub = {
       enable = if (_system.boot.loader.manager.name == "GRUB") then true else false;
 

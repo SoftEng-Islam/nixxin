@@ -45,7 +45,7 @@ in
     # A regional pool (e.g. "africa.pool.ntp.org") is listed
     # first so that Cairo gets the closest stratum-1 servers;
     # the global NixOS pool entries act as fallbacks.
-    extraConfig = ''
+    settings.Time = ''
       NTP=africa.pool.ntp.org 0.nixos.pool.ntp.org 1.nixos.pool.ntp.org 2.nixos.pool.ntp.org 3.nixos.pool.ntp.org
       FallbackNTP=time.cloudflare.com time.google.com
       # Poll aggressively on first sync, then back off to save power.

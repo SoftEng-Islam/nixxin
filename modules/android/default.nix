@@ -15,7 +15,6 @@ in
   ];
 
   config = mkIf (settings.modules.android.enable or false) {
-    programs.adb.enable = true;
     environment.systemPackages = with pkgs; [
       libusb1
 

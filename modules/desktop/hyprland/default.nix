@@ -98,6 +98,7 @@ in
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
+      configType = "lua";
       settings = {
         debug = {
           disable_logs = true;

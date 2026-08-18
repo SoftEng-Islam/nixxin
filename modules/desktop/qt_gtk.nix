@@ -54,8 +54,11 @@ in
         # "computer:///"
       ];
 
-      gtk4.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
+      gtk4 = {
+        theme = settings.common.gtk.theme;
+        extraConfig = {
+          gtk-application-prefer-dark-theme = true;
+        };
       };
     };
 

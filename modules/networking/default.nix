@@ -36,11 +36,6 @@ in
     dnssec = "allow-downgrade";
     domains = [ "~." ];
     fallbackDns = [ "127.0.0.1:53" ];
-    extraConfig = ''
-      DNSOverTLS=yes
-      LLMNR=no
-      MulticastDNS=no
-    '';
   };
 
   networking.firewall.allowPing = mkDefault false;
