@@ -68,8 +68,6 @@
     # Yazi File Manager
     yazi-plugins.url = "github:yazi-rs/plugins";
     yazi-plugins.flake = false;
-    yazi-compress.url = "github:v3natio/compress.yazi";
-    yazi-compress.flake = false;
     yazi-hexyl.url = "github:Reledia/hexyl.yazi";
     yazi-hexyl.flake = false;
     yazi-augment-command.url = "github:hankertrix/augment-command.yazi";

@@ -32,7 +32,6 @@ in
       plugins = {
         augment-command = "${inputs.yazi-augment-command}";
         chmod = "${inputs.yazi-plugins}/chmod.yazi";
-        compress = "${inputs.yazi-compress}";
         full-border = "${inputs.yazi-plugins}/full-border.yazi";
         git = "${inputs.yazi-plugins}/git.yazi";
         hexyl = "${inputs.yazi-hexyl}";
