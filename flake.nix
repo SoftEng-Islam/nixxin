@@ -49,10 +49,8 @@
 
     # Noctalia Shell
     noctalia = {
-      url = "github:noctalia-dev/noctalia-shell/v5";
-      # https://docs.noctalia.dev/v5/getting-started/nixos/
-      # To use the binary cache, you have to omit inputs.nixpkgs.follows from the Noctalia input.
-      # inputs.nixpkgs.follows = "nixpkgs";
+      url = "github:noctalia-dev/noctalia";
+      inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
     # -----------------------------
@@ -134,7 +132,6 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
-      
 
             {
               imports = [
