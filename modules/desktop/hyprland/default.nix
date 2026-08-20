@@ -113,8 +113,6 @@ in
     (hyprland.override {
       # or inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland
       enableXWayland = xwaylandEnabled; # whether to enable XWayland
-      # whether to use the legacy renderer (for old GPUs)
-      legacyRenderer = false;
       withSystemd = true; # whether to build with systemd support
     })
     hyprshade
