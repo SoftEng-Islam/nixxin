@@ -94,7 +94,7 @@ in
     ];
 
     initrd = {
-      systemd.enable = false;
+      systemd.enable = true;
       systemd.dbus.enable = false;
       verbose = !quietBoot;
 

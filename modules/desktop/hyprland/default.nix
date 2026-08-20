@@ -77,6 +77,7 @@ in
 
   home-manager.users.${settings.user.username} = {
     home.pointerCursor = {
+      enable = true; # <-- add this
       gtk.enable = true;
       # x11.enable = true;
       package = settings.common.cursor.package;
