@@ -81,10 +81,10 @@
     file
 
     # ── X11 libs (fallback for apps that probe both Wayland and X11) ─────
-    xorg.libX11
-    xorg.libXcursor
-    xorg.libXrandr
-    xorg.libXi
+    libX11
+    libXcursor
+    libXrandr
+    libXi
 
   ];
 

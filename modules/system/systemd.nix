@@ -13,12 +13,12 @@ in
     # ----
     # ------------------------------------------------
 
-    sleep.settings.Sleep = ''
-      AllowSuspend=no
-      AllowHibernation=no
-      AllowSuspendThenHibernate=no
-      AllowHybridSleep=no
-    '';
+    sleep.settings.Sleep = {
+      AllowSuspend = false;
+      AllowHibernation = false;
+      AllowSuspendThenHibernate = false;
+      AllowHybridSleep = false;
+    };
 
     # ------------------------------------------------
     # ----

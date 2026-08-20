@@ -120,6 +120,6 @@ in
     '';
   };
   environment.systemPackages = with pkgs; [
-    xfce.xfconf
+    xfconf
   ];
 }
