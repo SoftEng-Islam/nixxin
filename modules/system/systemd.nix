@@ -1,11 +1,19 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+{
   systemd = {
     # ------------------------------------------------
     # ----
     # ------------------------------------------------
-    sleep.extraConfig = ''
+
+    sleep.settings.Sleep = ''
       AllowSuspend=no
       AllowHibernation=no
       AllowSuspendThenHibernate=no
@@ -51,7 +59,11 @@ in {
     # ------------------------------------------------
     # ---- Tweaks improve boot times
     # ------------------------------------------------
-    services."*" = { serviceConfig = { TimeoutStartSec = "30s"; }; };
+    services."*" = {
+      serviceConfig = {
+        TimeoutStartSec = "30s";
+      };
+    };
   };
 
   home-manager.users.${settings.user.username} = {
