@@ -1,7 +1,8 @@
 {
   description = "Nixxin Configuration.";
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     flake-utils.url = "github:numtide/flake-utils";
     flake-parts = {
