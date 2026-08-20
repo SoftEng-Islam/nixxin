@@ -40,18 +40,23 @@ in
   services.timesyncd = {
     enable = true;
 
-    # NTP servers queried in order. The NixOS pool servers are
-    # geographically load-balanced and served over anycast.
-    # A regional pool (e.g. "africa.pool.ntp.org") is listed
-    # first so that Cairo gets the closest stratum-1 servers;
-    # the global NixOS pool entries act as fallbacks.
-    settings.Time = ''
-      NTP=africa.pool.ntp.org 0.nixos.pool.ntp.org 1.nixos.pool.ntp.org 2.nixos.pool.ntp.org 3.nixos.pool.ntp.org
-      FallbackNTP=time.cloudflare.com time.google.com
+    settings.Time = {
+      NTP = [
+        "africa.pool.ntp.org"
+        "0.nixos.pool.ntp.org"
+        "1.nixos.pool.ntp.org"
+        "2.nixos.pool.ntp.org"
+        "3.nixos.pool.ntp.org"
+      ];
+      FallbackNTP = [
+        "time.cloudflare.com"
+        "time.google.com"
+      ];
+
       # Poll aggressively on first sync, then back off to save power.
-      PollIntervalMinSec=32
-      PollIntervalMaxSec=2048
-    '';
+      PollIntervalMinSec = 32;
+      PollIntervalMaxSec = 2048;
+    };
   };
 
   # Disable the other NTP daemons so they don't conflict with
