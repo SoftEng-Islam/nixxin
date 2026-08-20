@@ -26,13 +26,11 @@ in
     #     gst-plugins-ugly
     #     gst-plugins-rs
     #     gst-libav
-    #     gst-vaapi
     #   ]); # Fix from https://github.com/NixOS/nixpkgs/issues/195936#issuecomment-1366902737
 
     GST_PLUGIN_SYSTEM_PATH_1_0 = with pkgs.gst_all_1; [
       "${gstreamer}/lib/gstreamer-1.0"
       "${gst-libav}/lib/gstreamer-1.0"
-      "${gst-vaapi}/lib/gstreamer-1.0"
       "${gst-plugins-base}/lib/gstreamer-1.0"
       "${gst-plugins-good}/lib/gstreamer-1.0"
       "${gst-plugins-bad}/lib/gstreamer-1.0"
@@ -46,7 +44,6 @@ in
     GST_PLUGIN_PATH = with pkgs.gst_all_1; [
       "${gstreamer}/lib/gstreamer-1.0"
       "${gst-libav}/lib/gstreamer-1.0"
-      "${gst-vaapi}/lib/gstreamer-1.0"
       "${gst-plugins-base}/lib/gstreamer-1.0"
       "${gst-plugins-good}/lib/gstreamer-1.0"
       "${gst-plugins-bad}/lib/gstreamer-1.0"
@@ -97,9 +94,6 @@ in
       gst-plugins-ugly
 
       gst-plugins-rs
-
-      # Support the Video Audio (Hardware) Acceleration API
-      gst-vaapi
 
       # Video/Audio data composition framework tools like "gst-inspect", "gst-launch" ...
       gstreamer
