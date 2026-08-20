@@ -75,13 +75,6 @@ in
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
-  systemd.sleep.extraConfig = ''
-    AllowSuspend=no
-    AllowHibernation=no
-    AllowSuspendThenHibernate=no
-    AllowHybridSleep=no
-  '';
-
   home-manager.users.${settings.user.username} = {
     home.pointerCursor = {
       gtk.enable = true;
