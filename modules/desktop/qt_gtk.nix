@@ -90,8 +90,6 @@ in
 
     adwaita-qt6
     gsettings-qt
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtquickcontrols2
 
     libsForQt5.qwt
     qt5.qtgraphicaleffects

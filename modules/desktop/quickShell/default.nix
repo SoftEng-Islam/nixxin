@@ -26,10 +26,6 @@
 
     # Qt6 related kits for slove Qt5Compat problem）
     kdePackages.qt5compat
-    libsForQt5.qt5.qtgraphicaleffects
-    libsForQt5.qt5.qtimageformats
-    libsForQt5.qt5.qtmultimedia
-    libsForQt5.qt5.qtsvg
     qt6.qt5compat
     qt6.qtbase
     qt6.qtdeclarative
@@ -38,8 +34,6 @@
     qt6.qtwayland
 
     # alternate options
-    # libsForQt5.qt5compat
     kdePackages.qt5compat
-    libsForQt5.qt5.qtgraphicaleffects
   ];
 }
