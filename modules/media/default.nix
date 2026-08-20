@@ -58,8 +58,7 @@ in
         libnice
         glib.dev
         pkg-config
-
-        libmkv # Matroska (MKV) media container manipulation tools
+        # Matroska (MKV) media container manipulation tools
         exiftool
 
         # To upscale videos using AI
