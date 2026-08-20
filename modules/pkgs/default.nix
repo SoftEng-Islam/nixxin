@@ -45,7 +45,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     ntfs3g # FUSE-based NTFS driver with full write support
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool
-    jmtpfs # FUSE filesystem for MTP devices like Android phones
     go-mtpfs # Simple FUSE filesystem for mounting Android devices as a MTP device
 
     # bitwarden

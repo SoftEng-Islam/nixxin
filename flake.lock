@@ -588,7 +588,6 @@
         "quickshell": "quickshell",
         "sops-nix": "sops-nix",
         "systems": "systems_5",
-        "to-update": "to-update",
         "yazi-augment-command": "yazi-augment-command",
         "yazi-flexoki-dark": "yazi-flexoki-dark",
         "yazi-flexoki-light": "yazi-flexoki-light",
@@ -706,22 +705,6 @@
       "original": {
         "owner": "nix-systems",
         "repo": "default",
-        "type": "github"
-      }
-    },
-    "to-update": {
-      "locked": {
-        "lastModified": 1787014973,
-        "narHash": "sha256-JliQWd+r4k5+vPjjd2+yk+UaZgU/HGbLIAvznZt3NHk=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "dab930edcfdf4ea9cb1eae64b60577599dae79ea",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "master",
-        "repo": "nixpkgs",
         "type": "github"
       }
     },
