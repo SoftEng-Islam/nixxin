@@ -397,7 +397,6 @@ in
 
     # Nix Formatters
     nixdoc # Generate documentation for Nix functions
-    node2nix # Generate Nix expressions to build NPM packages
 
     # Yet another nix cli helper
     nh
