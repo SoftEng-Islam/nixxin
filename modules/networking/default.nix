@@ -33,9 +33,11 @@ in
   # Systemd DNS Resolver Daemon, systemd-resolved.
   services.resolved = {
     enable = mkDefault (dnsResolver == "resolved");
-    dnssec = "allow-downgrade";
-    domains = [ "~." ];
-    fallbackDns = [ "127.0.0.1:53" ];
+    settings.Resolve = {
+      DNSSEC = "allow-downgrade";
+      Domains = [ "~." ];
+      FallbackDNS = [ "127.0.0.1:53" ];
+    };
   };
 
   networking.firewall.allowPing = mkDefault false;

@@ -17,7 +17,7 @@ in
     enable = _docs.enable;
     doc.enable = _docs.doc.enable;
     man.enable = _docs.man.enable;
-    man.generateCaches = _docs.man.generateCaches;
+    man.cache.enable = _docs.man.generateCaches;
     dev.enable = _docs.dev.enable;
     info.enable = _docs.info.enable;
     nixos.enable = _docs.nixos.enable;

@@ -1,10 +1,17 @@
-{ settings, config, lib, pkgs, ... }:
-let inherit (lib) makeSearchPathOutput;
-in {
+{
+  settings,
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) makeSearchPathOutput;
+in
+{
   environment.extraInit = ''
     export GST_PLUGIN_PATH_1_0=/run/current-system/sw/lib/gstreamer-1.0
-    export GST_PLUGIN_SYSTEM_PATH_1_0=${pkgs.gst_all_1.gstreamer}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-rs}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-vaapi}/lib/gstreamer-1.0
-  '';
+    export GST_PLUGIN_SYSTEM_PATH_1_0=${pkgs.gst_all_1.gstreamer}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-libav}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-base}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-good}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-bad}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-ugly}/lib/gstreamer-1.0:${pkgs.gst_all_1.gst-plugins-rs}/lib/gstreamer-1.0'';
 
   environment.variables = {
     # Allow apps to detect gstreamer plugins
@@ -49,7 +56,8 @@ in {
       "${pkgs.pulseeffects-legacy}/lib/gstreamer-1.0"
     ];
 
-    GI_TYPELIB_PATH = "${pkgs.glib}/lib/girepository-1.0:"
+    GI_TYPELIB_PATH =
+      "${pkgs.glib}/lib/girepository-1.0:"
       + "${pkgs.gobject-introspection}/lib/girepository-1.0:"
       + "${pkgs.networkmanager}/lib/girepository-1.0:"
       + "${pkgs.gobject-introspection-unwrapped}/lib/girepository-1.0:"
@@ -61,7 +69,8 @@ in {
     GRL_PLUGIN_PATH = "${pkgs.grilo-plugins}/lib/grilo-0.2";
   };
 
-  environment.systemPackages = with pkgs;
+  environment.systemPackages =
+    with pkgs;
     [
       gst123
       grilo
@@ -72,7 +81,8 @@ in {
       # clutter-gst
 
       shared-mime-info
-    ] ++ (with gst_all_1; [
+    ]
+    ++ (with gst_all_1; [
       gst-editing-services
 
       # Plugins to reuse ffmpeg to play almost every video format
