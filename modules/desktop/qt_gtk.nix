@@ -104,7 +104,6 @@ in
     adw-gtk3
 
     gobject-introspection
-    gtk_engines # Theme engines for GTK 2
 
     gtk3 # A multi-platform toolkit for creating graphical user interfaces
     gtk4 # A multi-platform toolkit for creating graphical user interfaces

@@ -26,6 +26,7 @@
 
     # Qt6 related kits for slove Qt5Compat problem）
     kdePackages.qt5compat
+
     qt6.qt5compat
     qt6.qtbase
     qt6.qtdeclarative
