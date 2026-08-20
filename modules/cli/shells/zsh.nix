@@ -63,7 +63,6 @@ in
 
   environment.systemPackages = with pkgs; [
     zsh-completions
-    fzf-zsh # wrap fzf to use in oh-my-zsh
     zsh-autoenv # Automatically sources whitelisted .autoenv.zsh files
     zsh-autopair # Plugin that auto-closes, deletes and skips over matching delimiters in zsh intelligently
     zsh-better-npm-completion
