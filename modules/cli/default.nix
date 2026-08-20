@@ -23,7 +23,6 @@ in
 {
   imports = [
     ./editors
-    ./neofetch
     ./prompt
     ./shells
     ./terminals
