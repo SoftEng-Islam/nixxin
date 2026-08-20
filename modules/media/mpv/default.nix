@@ -59,7 +59,6 @@ lib.mkIf (settings.modules.media.mpv) {
           cddaSupport = false;
           archiveSupport = false;
           bluraySupport = true;
-          bs2bSupport = false;
           cacaSupport = false;
           cmsSupport = false;
           dvdnavSupport = false;
