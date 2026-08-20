@@ -9,9 +9,6 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
-    # I will use this input to update some packages that are not yet updated in nixos-unstable, such as nodejs 20 and pnpm 8
-    to-update.url = "github:NixOS/nixpkgs/master";
-
     # Google Antigravity — auto-updating, FHS-wrapped, version-pinned
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
@@ -93,7 +90,6 @@
     {
       self,
       nixpkgs,
-      to-update,
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
@@ -138,13 +134,6 @@
               nixpkgs.overlays = [
                 # Use pinned overlay for binary cache hits (avoids local kernel compilation)
                 nix-cachyos-kernel.overlays.pinned
-
-                (final: prev: {
-                  update = import to-update {
-                    inherit (final) config;
-                    inherit (final.stdenv.hostPlatform) system;
-                  };
-                })
 
                 inputs.nix-vscode-extensions.overlays.default
 

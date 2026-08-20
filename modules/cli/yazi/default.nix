@@ -19,7 +19,7 @@ in
       enableZshIntegration = true;
       enableBashIntegration = true;
       enableFishIntegration = true;
-      package = pkgs.update.yazi.override {
+      package = pkgs.yazi.override {
         _7zz = pkgs._7zz; # Support for RAR extraction
       };
       settings = import ./yazi_settings.nix;

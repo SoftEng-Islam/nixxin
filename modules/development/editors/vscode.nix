@@ -18,7 +18,7 @@ in
       enable = true;
 
       # use unstable VS Codium because of quick releases and tight version reqs by extensions
-      package = pkgs.update.vscode.override {
+      package = pkgs.vscode.override {
         # if keyring does not work, try either "libsecret" or "gnome"
         commandLineArgs = ''--password-store=gnome-libsecret'';
       };

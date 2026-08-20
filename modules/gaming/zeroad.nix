@@ -7,7 +7,7 @@
 lib.mkIf (settings.modules.gaming.zeroad.enable or false) {
   environment.systemPackages = with pkgs; [
     # 0 A.D. with Vulkan support
-    (pkgs.update.zeroad.overrideAttrs {
+    (zeroad.overrideAttrs {
       postFixup = ''
         wrapProgram $out/bin/haruna \
         --prefix LD_LIBRARY_PATH : ${
@@ -26,6 +26,6 @@ lib.mkIf (settings.modules.gaming.zeroad.enable or false) {
         --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
       '';
     })
-    pkgs.update.zeroad-data
+    pkgs.zeroad-data
   ];
 }

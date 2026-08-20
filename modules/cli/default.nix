@@ -53,7 +53,7 @@ in
 
   };
   environment.systemPackages = with pkgs; [
-    pkgs.update.claude-code
+    claude-code
 
     busybox
 

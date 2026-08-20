@@ -10,7 +10,7 @@ lib.mkIf (settings.modules.desktop.polkit.enable or false) (
     system = pkgs.stdenv.hostPlatform.system;
     hyprpolkitagentPkg =
       inputs.hyprpolkitagent.packages.${system}.hyprpolkitagent
-        or inputs.hyprpolkitagent.packages.${system}.default or pkgs.update.hyprpolkitagent
+        or inputs.hyprpolkitagent.packages.${system}.default or pkgs.hyprpolkitagent
           or pkgs.hyprpolkitagent;
   in
   {
