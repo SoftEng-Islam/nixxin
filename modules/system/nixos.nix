@@ -34,6 +34,8 @@ in
       # manually, as Nix won't do it for us.
       use-xdg-base-directories = true;
 
+      lint-url-literals = "fatal";
+
       # Automatically optimise symlinks
       auto-optimise-store = true;
 
