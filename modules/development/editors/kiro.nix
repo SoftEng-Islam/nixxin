@@ -10,6 +10,6 @@
   environment.systemPackages = with pkgs; [
     # https://github.com/Kiro-Editor/Kiro
     # kiro
-    # update.kiro
+    kiro
   ];
 }
