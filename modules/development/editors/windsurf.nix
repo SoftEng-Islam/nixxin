@@ -1,7 +1,7 @@
 { pkgs, ... }:
 
 {
-  environment.systemPackages = [
-    pkgs.devin-desktop
+  environment.systemPackages = with pkgs; [
+    unstable.devin-desktop
   ];
 }
