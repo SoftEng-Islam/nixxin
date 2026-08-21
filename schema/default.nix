@@ -246,7 +246,7 @@ self: {
   modules.system.enable = true;
   modules.users.enable = true;
   modules.virtualization.enable = true;
-  modules.windows.enable = true;
+  modules.windows.enable = false;
   modules.zram.enable = true;
 
   # ----------------------------------------------
@@ -348,7 +348,7 @@ self: {
 
   # Languages
   modules.development.languages.enable = true;
-  modules.development.languages.rust.enable = true;
+  modules.development.languages.rust.enable = false;
   modules.development.languages.python.enable = true;
   modules.development.languages.ruby.enable = false;
   modules.development.languages.go.enable = false;
@@ -736,7 +736,7 @@ self: {
   modules.system.amdgpu.opencl = true;
   modules.system.amdgpu.legacySupport = false;
   # [ Docs ]
-  modules.system.docs.enable = true;
+  modules.system.docs.enable = false;
   modules.system.docs.doc.enable = true;
   modules.system.docs.dev.enable = true;
   modules.system.docs.info.enable = true;
