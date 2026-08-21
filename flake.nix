@@ -137,6 +137,13 @@
                 # Use pinned overlay for binary cache hits (avoids local kernel compilation)
                 nix-cachyos-kernel.overlays.pinned
 
+                (final: prev: {
+                  unstable = import unstable {
+                    inherit (final) config;
+                    inherit (final.stdenv.hostPlatform) system;
+                  };
+                })
+
                 inputs.nix-vscode-extensions.overlays.default
 
                 # Provides pkgs.google-antigravity and pkgs.google-antigravity-no-fhs
