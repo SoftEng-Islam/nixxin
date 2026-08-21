@@ -91,6 +91,7 @@
     {
       self,
       nixpkgs,
+      unstable,
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
@@ -140,6 +141,12 @@
 
                 # Provides pkgs.google-antigravity and pkgs.google-antigravity-no-fhs
                 antigravity-nix.overlays.default
+
+                # nixos-26.05 ships fzf 0.72.0 but home-manager's fzf module now
+                # requires ≥ 0.73.0 for nushell integration. Pull fzf from unstable.
+                (_final: _prev: {
+                  fzf = unstable.legacyPackages.${arch}.fzf;
+                })
 
               ];
             }
