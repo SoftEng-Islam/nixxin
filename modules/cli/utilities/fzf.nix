@@ -12,11 +12,10 @@
       "--border"
     ];
 
-    fileWidget.command = "fd --hidden --strip-cwd-prefix --exclude .git";
-    fileWidget.options = [
+    fileWidgetCommand = "fd --hidden --strip-cwd-prefix --exclude .git";
+    fileWidgetOptions = [
       "--preview 'if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi'"
     ];
-    historyWidget.command = ""; # <-- add this, hands Ctrl-R to atuin
     changeDirWidgetCommand = "fd --type=d --hidden --strip-cwd-prefix --exclude .git";
     changeDirWidgetOptions = [
       "--preview 'eza --tree --color=always {} | head -200'"
