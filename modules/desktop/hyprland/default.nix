@@ -18,11 +18,7 @@ in
     ./configs/exec.nix
     ./configs/general.nix
     ./configs/gestures.nix
-
     ./configs/hypridle.nix
-    #./configs/hyprlock.nix
-
-    # ./configs/hyprpaper.nix
     ./configs/input.nix
     ./configs/keybinding.nix
     ./configs/misc.nix
@@ -30,8 +26,6 @@ in
     ./configs/plugins
     ./configs/render.nix
     ./configs/rules.nix
-
-    # ./configs/scripts.nix
     ./configs/source.nix
   ];
 
