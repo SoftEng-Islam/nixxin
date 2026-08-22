@@ -5,7 +5,7 @@
   ...
 }:
 let
-  inherit (lib) optionals optional flatten;
+  inherit (lib) optional flatten;
   automations = settings.modules.automation;
   _imports = [
     (optional automations.browser-use.enable ./browser-use.nix)
@@ -13,7 +13,7 @@ let
   ];
 in
 {
-  imports = optionals (automations.enable or false) flatten _imports;
+  imports = flatten _imports;
   environment.systemPackages = with pkgs; [
     # playwright
     playwright-test
