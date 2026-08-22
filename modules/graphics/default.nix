@@ -44,34 +44,30 @@ let
     libwebp
     meshoptimizer
 
-    # OpenAL for audio
-    openal
-    llvmPackages.clang
-    directx-headers
-
-    # Vulkan tools and utilities
+    # Vulkan runtime tools (small, useful for debugging)
     vulkan-tools
     vulkan-tools-lunarg
     vulkan-helper
-    vulkan-memory-allocator
-    vulkan-volk
-    vulkan-cts
     vkbasalt
-    vkdt
-    dxvk
-    vkd3d
-    vkd3d-proton
     shaderc
     wgpu-utils
 
     # OpenCL Tools
     clinfo
-    clpeak
-    (hwloc.override { x11Support = true; })
+    # clpeak      # benchmark, not needed at runtime
+    # (hwloc.override { x11Support = true; }) # optional
 
     # GPU information and monitoring
     gpu-viewer
     vulkan-caps-viewer
+
+    # Removed (too large / dev-only — add to a devShell if needed):
+    # llvmPackages.clang   (~1 GB)
+    # vulkan-cts           (conformance test suite, huge)
+    # dxvk / vkd3d / vkd3d-proton  (Wine-specific, belongs in windows module)
+    # vkdt                 (darktable fork, use darktable instead)
+    # directx-headers      (dev-only)
+    # openal               (audio, not graphics)
   ];
 
 in
@@ -124,9 +120,6 @@ in
       # Removed Kaveri GFX overrides completely. Vega 11 will auto-detect correctly.
       HSA_ENABLE_SDMA = "1";
 
-      CLVK_SPIRV_ARCH = "spir64";
-      CLVK_PHYSICAL_ADDRESSING = "1";
-
       DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
 
       MESA_DISK_CACHE_DATABASE = "1";
@@ -148,7 +141,7 @@ in
     # ========== Hardware Graphics Configuration ==========
     hardware.graphics = {
       enable = true;
-      enable32Bit = true;
+      enable32Bit = false;
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [

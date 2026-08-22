@@ -5,100 +5,39 @@
   ...
 }:
 {
+  # ── System-level Rust toolchain (lean) ────────────────────────────────────
+  # Only the essentials that need to be globally available.
+  # The heavy Tauri / GTK / WebKit build-dep stack lives in a project devShell
+  # (see: nix develop) — it does NOT belong in the system closure.
   environment.systemPackages = with pkgs; [
-    # ── Rust toolchain ────────────────────────────────────────────────────
-    cargo
-    cargo-audit
-    cargo-nextest
-    cargo-outdated
-    cargo-tauri
-    cargo-watch
-    rust-analyzer
-    rustc
+    # Toolchain manager — installs/switches stable/nightly/targets via `rustup`
     rustup
+
+    # Static analysis (IDE integration)
+    rust-analyzer
+
+    # Compiler cache — drastically speeds up repeated Rust builds
     sccache
 
-    # ── Build tools ───────────────────────────────────────────────────────
+    # Common build tools needed for most Rust crates
+    pkg-config
     cmake
     gnumake
     just
-    pkg-config
-    gobject-introspection
-
-    # ── General utilities ─────────────────────────────────────────────────
-    curl
-    jq
-    nodejs
-    nodejs_latest
-    strace
-
-    # ── GTK / GLib stack ─────────────────────────────────────────────────
-    # Runtime .so libraries (out output)
-    at-spi2-atk
-    atkmm
-    cairo
-    dbus
-    fontconfig
-    gdk-pixbuf
-    glib
-    gtk3
-    gtk4
-    harfbuzz
-    libappindicator-gtk3
-    libglvnd
-    librsvg
-    libsoup_3
-    libxkbcommon
-    openssl
-    pango
-    wayland
-    webkitgtk_4_1
-    wlroots
-
-    # Dev outputs — contain the .pc files that pkg-config / cargo build
-    # scripts search for via PKG_CONFIG_PATH.  On NixOS, environment.systemPackages
-    # only links the default "out" output; .pc files live in "dev" and must be
-    # added explicitly so they are symlinked into
-    # /run/current-system/sw/lib/pkgconfig/.
-    at-spi2-atk.dev # atk.pc  atk-bridge-2.0.pc  atspi-2.pc
-    cairo.dev # cairo.pc  cairo-gobject.pc  cairo-ft.pc  …
-    dbus.dev # dbus-1.pc
-    fontconfig.dev # fontconfig.pc
-    gdk-pixbuf.dev # gdk-pixbuf-2.0.pc
-    glib.dev # glib-2.0.pc  gobject-2.0.pc  gio-2.0.pc  …
-    gtk3.dev # gdk-3.0.pc  gtk+-3.0.pc  gdk-wayland-3.0.pc  …
-    harfbuzz.dev # harfbuzz.pc  harfbuzz-gobject.pc
-    libappindicator-gtk3.dev # appindicator3-0.1.pc
-    libglvnd.dev # gl.pc  egl.pc  glesv2.pc  …
-    librsvg.dev # librsvg-2.0.pc
-    libsoup_3.dev # libsoup-3.0.pc
-    libxkbcommon.dev # xkbcommon.pc  xkbcommon-x11.pc
-    openssl.dev # openssl.pc  libssl.pc  libcrypto.pc
-    pango.dev # pango.pc  pangocairo.pc  pangoft2.pc  …
-    wayland.dev # wayland-client.pc  wayland-server.pc  wayland-egl.pc  …
-    webkitgtk_4_1.dev # webkit2gtk-4.1.pc  javascriptcoregtk-4.1.pc  …
-    freetype
-    file
-
-    # ── X11 libs (fallback for apps that probe both Wayland and X11) ─────
-    libX11
-    libXcursor
-    libXrandr
-    libXi
-
   ];
 
   environment.variables = {
     RUSTC_WRAPPER = "${pkgs.sccache}/bin/sccache";
-    WEBKIT_DISABLE_COMPOSITING_MODE = "0";
-
-    # CMake 4.0 removed backwards compatibility with cmake_minimum_required()
-    # values below 3.5. Vendored CMakeLists.txt files inside older crates
-    # (e.g. freetype-sys, expat-sys used by wry/tauri) still declare ancient
-    # minimum versions and cause a hard build failure under CMake 4.x.
-    # This env var (supported since CMake 3.27) silently raises any declared
-    # minimum below 3.5 up to 3.5, unblocking those builds without touching
-    # the upstream crates or downgrading cmake.
     CMAKE_POLICY_VERSION_MINIMUM = "3.5";
   };
+
+  # ── Tauri dev environment ─────────────────────────────────────────────────
+  # Run `nix develop .#tauri` (or add a devShell to your flake) to get:
+  #   cargo, cargo-tauri, cargo-watch, cargo-audit, cargo-nextest,
+  #   cargo-outdated, gobject-introspection, webkitgtk_4_1, gtk3, gtk4,
+  #   libsoup_3, wlroots, libxkbcommon, openssl, pango, harfbuzz, cairo,
+  #   glib, gdk-pixbuf, dbus, at-spi2-atk, libappindicator-gtk3, librsvg,
+  #   libglvnd, wayland, freetype, libX11/Xcursor/Xrandr/Xi — and all .dev
+  #   outputs for PKG_CONFIG_PATH.
+  # This keeps all of WebKit (~1.5 GB) out of the system closure.
 }

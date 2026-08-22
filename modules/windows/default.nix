@@ -36,23 +36,14 @@ mkIf (settings.modules.windows.enable or false) {
   };
 
   environment.systemPackages = with pkgs; [
-    # Modern and transparent way to use Windows VST2 and VST3 plugins on Linux
-    yabridge
-    yabridgectl
-    cifs-utils
-    # directx-headers # Official D3D12 headers from Microsoft
-    wine # An Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-    wine64 # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-    wineasio # ASIO to JACK driver for WINE
-    winePackages.fonts # Microsoft replacement fonts by the Wine project
-    winePackages.stableFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-    winetricks # A script to install DLLs needed to work around problems in Wine
+    wine        # 32+64-bit Windows app compatibility
+    winetricks  # Install DLLs and components
+    winePackages.fonts  # Microsoft-compatible fonts
+    cifs-utils  # SMB/Windows share mounting
 
-    # wineWowPackages.waylandFull # Open Source implementation of the Windows API on top of X, OpenGL, and Unix
-    # libGL # GL Vendor-Neutral Dispatch library
-    # libGLU # OpenGL utility library
-    # vulkan-loader # LunarG Vulkan loader
-    # vkd3d-proton # A fork of VKD3D, which aims to implement the full Direct3D 12 API on top of Vulkan
-    # vkd3d # Direct3D to Vulkan translation library
+    # Removed (install manually if needed):
+    # wine64           — included in wine's wineWow64 build
+    # winePackages.stableFull — huge 32-bit Wine stack, only needed for legacy apps
+    # wineasio / yabridge / yabridgectl — VST audio bridge (niche, very large)
   ];
 }

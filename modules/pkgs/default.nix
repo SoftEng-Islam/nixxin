@@ -17,12 +17,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     # libva # An implementation for VA-API (Video Acceleration API)
     # openal # OpenAL alternative
 
-    spirv-cross
-    spirv-headers
-    spirv-llvm-translator
-    spirv-tools
-    # libunwind
-
     # use uutils (rust rewrite) instead of gnu coreutils
     (lib.hiPrio pkgs.uutils-coreutils-noprefix)
 
@@ -46,40 +40,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     hdparm # Tool to get/set ATA/SATA drive parameters under Linux
     fio # Flexible IO Tester - an IO benchmark tool
     go-mtpfs # Simple FUSE filesystem for mounting Android devices as a MTP device
-
-    # bitwarden
-    # (pkgs.writeShellScriptBin "bitwarden" ''
-    # exec ${pkgs.appimage-run}/bin/appimage-run ~/.local/bin/bitwarden
-    # '')
-    # NOTE: I moved the appimage to the .local/bin:
-    # `mv ~/Downloads/Bitwarden-2025.2.1-x86_64.AppImage ~/.local/bin/bitwarden`
-
-    # ---- Cryptographic ---- #
-    # openssl # A cryptographic library that implements the SSL and TLS protocols
-    # nettle # Cryptographic library
-    # libgcrypt # General-purpose cryptographic library
-    # cacert
-
-    # ---- Utilities ---- #
-    # autoconf # Part of the GNU Build System
-    # autoconf-archive # Archive of autoconf m4 macros
-    # automake # GNU standard-compliant makefile generator
-    # autobuild # Continuous integration tool
-    # libtool # GNU Libtool, a generic library support script
-    # bc # GNU software calculator
-    # coreutils # The GNU Core Utilities
-    # cups # A standards-based printing system for UNIX
-    # gdb # The GNU Project debugger
-    # gnumake # A tool to control the generation of non-source files from sources
-    # gcc
-    # bpftune # BPF-based auto-tuning of Linux system parameters
-    # tesseract # OCR engine
-    # webp-pixbuf-loader # WebP GDK Pixbuf Loader library
-    # libgcc
-    # libpulseaudio
-    # meson
-    # mlocate
-    # pkg-config # A tool that allows packages to find out information about other packages (wrapper script)
 
     # ---- misc ---- #
     cowsay
@@ -115,9 +75,6 @@ lib.mkIf (settings.modules.pkgs.enable or false) {
     wev # Wayland event viewer
     gsettings-desktop-schemas # Crucial for many GTK/GNOME apps and portals
 
-    # ---- Productivity ---- #
-    # hugo # static site generator
-    # graphviz # Graph visualization tools
   ];
   nixpkgs.config.permittedInsecurePackages = [ "libsoup-2.74.3" ];
 }
