@@ -211,7 +211,7 @@ self: {
   modules.ai.enable = false;
   modules.android.enable = true;
   modules.audio.enable = true;
-  modules.automation.enable = true;
+  modules.automation.enable = false;
   modules.bluetooth.enable = false;
   modules.browsers.enable = true;
   modules.camera.enable = false;
@@ -220,24 +220,24 @@ self: {
   modules.data_transferring.enable = true;
   modules.desktop.enable = true;
   modules.development.enable = true;
-  modules.emails.enable = true;
+  modules.emails.enable = false;
   modules.env.enable = true;
   modules.fonts.enable = true;
   modules.gaming.enable = false;
   modules.git.enable = true;
   modules.graphics.enable = true;
-  modules.hacking.enable = true;
+  modules.hacking.enable = false;
   modules.i18n.enable = true;
   modules.icons.enable = true;
   modules.media.enable = true;
   modules.networking.enable = true;
   modules.notifications.enable = true;
   modules.office.enable = true;
-  modules.overclock.enable = true;
+  modules.overclock.enable = false;
   modules.pkgs.enable = true;
   modules.power.enable = true;
-  modules.printing.enable = true;
-  modules.recording.enable = true;
+  modules.printing.enable = false;
+  modules.recording.enable = false;
   modules.remote_desktop.enable = false;
   modules.security.enable = true;
   modules.sound_editor.enable = false;
@@ -285,7 +285,7 @@ self: {
   modules.cli.utilities.direnv = true;
   modules.cli.utilities.atuin = true;
   modules.cli.utilities.charm = true;
-  modules.cli.utilities.claude-code = true;
+  modules.cli.utilities.claude-code = false;
   modules.cli.utilities.eza = true;
   modules.cli.utilities.fzf = true;
   modules.cli.utilities.glow = true;
@@ -302,9 +302,9 @@ self: {
   modules.cli.utilities.lf = false;
 
   # [ community ]
-  modules.community.telegram.enable = true;
+  modules.community.telegram.enable = false;
   modules.community.ferdium.enable = false;
-  modules.community.discord.enable = true;
+  modules.community.discord.enable = false;
   modules.community.mumble.enable = false;
   modules.community.revolt.enable = false;
   modules.community.signal.enable = false;
@@ -332,43 +332,43 @@ self: {
   modules.data_transferring.yt-dlp.enable = true;
 
   # [ Hacking ]
-  modules.hacking.hashcat.enable = true;
+  modules.hacking.hashcat.enable = false;
 
   # [ Development ]
-  modules.development.api-tools.enable = true;
-  modules.development.cloud-tools.enable = true;
+  modules.development.api-tools.enable = false;
+  modules.development.cloud-tools.enable = false;
 
   # Databases
-  modules.development.databases.enable = true;
-  modules.development.databases.postgresql.enable = true;
+  modules.development.databases.enable = false;
+  modules.development.databases.postgresql.enable = false;
   modules.development.databases.mariadb.enable = false;
   modules.development.databases.redis.enable = false;
-  modules.development.databases.mongodb.enable = true;
-  modules.development.databases.tools.enable = true;
+  modules.development.databases.mongodb.enable = false;
+  modules.development.databases.tools.enable = false;
 
   # Languages
-  modules.development.languages.enable = true;
+  modules.development.languages.enable = false;
   modules.development.languages.rust.enable = false;
-  modules.development.languages.python.enable = true;
+  modules.development.languages.python.enable = false;
   modules.development.languages.ruby.enable = false;
   modules.development.languages.go.enable = false;
 
   # js-engines
-  modules.development.js-engines.enable = true;
-  modules.development.js-engines.nodejs.enable = true;
-  modules.development.js-engines.denojs.enable = true;
+  modules.development.js-engines.enable = false;
+  modules.development.js-engines.nodejs.enable = false;
+  modules.development.js-engines.denojs.enable = false;
 
   # Editors
   modules.development.editors.enable = true;
-  modules.development.editors.vscode.enable = true;
+  modules.development.editors.vscode.enable = false;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
   modules.development.editors.kiro.enable = false;
   modules.development.editors.webstorm.enable = false;
-  modules.development.editors.antigravity.enable = true;
+  modules.development.editors.antigravity.enable = false;
   modules.development.editors.cursor.enable = false;
   modules.development.editors.windsurf.enable = false;
-  modules.development.editors.codex.enable = true;
+  modules.development.editors.codex.enable = false;
 
   # [ desktop ]
   modules.desktop.tools = false;
@@ -381,9 +381,9 @@ self: {
   # [ desktop ] [ Hyprland ]
   modules.desktop.hyprland.genColorsPath = "/home/${self.user.username}/.cache/hypr/colors.conf";
   modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
-  modules.desktop.hyprland.blur.enable = false;
+  modules.desktop.hyprland.blur.enable = true;
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = false; # enable shadow for Hyprland
+  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
   modules.desktop.hyprland.rounding = 15; # Rounding Corners
   modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
   modules.desktop.hyprland.border.active.color = self.common.primaryColor;
@@ -394,9 +394,7 @@ self: {
   modules.desktop.hyprland.plugins.bordersPlus = false;
   modules.desktop.hyprland.plugins.hyprexpo = false;
   modules.desktop.hyprland.plugins.hyprtrails = false;
-  modules.desktop.hyprland.lockscreen.enable = true;
-  modules.desktop.hyprland.lockscreen.type = "noctalia"; # "hyprlock" or "noctalia"
-  modules.desktop.hyprland.lockscreen.timeOut = 600; # 10min
+  modules.desktop.hyprland.lockscreen.timeOut = 300; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;
   modules.desktop.xwayland.enable = true; # keep enabled
@@ -452,7 +450,7 @@ self: {
   # [gaming]
   modules.gaming.steam.enable = false;
   modules.gaming.zeroad.enable = false; # Free game of ancient warfare
-  modules.gaming.chess.enable = true;
+  modules.gaming.chess.enable = false;
 
   # [ Graphics ]
   modules.graphics.blender = true;
@@ -460,9 +458,9 @@ self: {
   modules.graphics.davinci = false;
   modules.graphics.drawio = false;
   modules.graphics.figmaLinux = false;
-  modules.graphics.gimp = true;
+  modules.graphics.gimp = false;
   modules.graphics.inkscape = false;
-  modules.graphics.lunacy = true;
+  modules.graphics.lunacy = false;
   modules.graphics.kolourpaint = false;
 
   # [i18n] Date/Time & Languages
@@ -491,8 +489,8 @@ self: {
   # [Networking]
   modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [
-    "1.1.1.1"
     "8.8.8.8"
+    "8.8.4.4"
   ]; # DNS
   modules.networking.dnsmasq.settings.server = self.modules.networking.nameservers;
   modules.networking.interfaces = {
@@ -519,12 +517,12 @@ self: {
   modules.office.evince = true;
   modules.office.papers = false;
   modules.office.obsidian = true;
-  modules.office.libreoffice = true;
-  modules.office.translators.enable = true;
+  modules.office.libreoffice = false;
+  modules.office.translators.enable = false;
 
   # [ overclock ]
   modules.overclock.corectrl.enable = false;
-  modules.overclock.lactd.enable = true;
+  modules.overclock.lactd.enable = false;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;

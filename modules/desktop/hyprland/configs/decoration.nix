@@ -1,4 +1,5 @@
-{ settings, ... }: {
+{ settings, ... }:
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.decoration = {
@@ -22,7 +23,7 @@
 
         # ---- Shadow ---- #
         shadow = {
-          enabled = false;
+          enabled = settings.modules.desktop.hyprland.shadow.enable;
           range = 15;
           offset = "0 2";
           render_power = 2;

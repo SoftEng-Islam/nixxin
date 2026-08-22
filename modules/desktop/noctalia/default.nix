@@ -33,7 +33,7 @@
           enabled = true;
           auto_hide = false;
           position = "top"; # "top" pr "center" or "left"
-          background_opacity = 1.0;
+          background_opacity = 0.8;
           capsule = false;
           capsule_fill = "on_secondary";
           capsule_opacity = 0.8;
