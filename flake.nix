@@ -153,6 +153,9 @@
                 # requires ≥ 0.73.0 for nushell integration. Pull fzf from unstable.
                 (_final: _prev: {
                   fzf = unstable.legacyPackages.${arch}.fzf;
+                  libplacebo = _prev.libplacebo.override {
+                    python3Packages = _prev.python312Packages;
+                  };
                 })
 
               ];
