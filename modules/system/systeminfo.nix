@@ -1,4 +1,10 @@
-{ settings, config, pkgs, ... }: {
+{
+  settings,
+  config,
+  pkgs,
+  ...
+}:
+{
 
   environment.systemPackages = with pkgs; [
     # Free software that gathers information on CPU, motherboard and more.
@@ -14,7 +20,7 @@
     mission-center
 
     # Mersenne prime search / System stability tester (torture).
-    mprime
+    # mprime
 
     # Vulkan tools and utilties.
     vulkan-tools
@@ -33,8 +39,7 @@
 
     # Configuration written to $XDG_CONFIG_HOME/fastfetch/config.jsonc.
     settings = {
-      "$schema" =
-        "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
+      "$schema" = "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json";
       logo = "none";
       modules = [
         "break"
