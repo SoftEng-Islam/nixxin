@@ -10,7 +10,7 @@
         # controls the VRR (Adaptive Sync) of your monitors.
         # 0 - off, 1 - on, 2 - fullscreen only
         # Disabled: the display is 60Hz fixed-rate, VRR has no benefit.
-        vrr = 0;
+        vrr = 2;
 
         # If true, the config will not reload automatically on save, and..
         # instead needs to be reloaded with hyprctl reload.

@@ -264,8 +264,8 @@ self: {
   modules.audio.rnnoise.enable = true; # Noise Canceling
 
   # [Automation]
-  modules.automation.browser-use.enable = true;
-  modules.automation.n8n.enable = true;
+  modules.automation.browser-use.enable = false;
+  modules.automation.n8n.enable = false;
 
   # [ Browsers ]
   modules.browsers.google-chrome.enable = false;
@@ -418,7 +418,7 @@ self: {
   modules.desktop.image_viewer.loupe.enable = true;
 
   # [Emails]
-  modules.emails.thunderbird = true;
+  modules.emails.thunderbird = false;
 
   # [fonts]
   modules.fonts = {
@@ -453,7 +453,7 @@ self: {
   modules.gaming.chess.enable = false;
 
   # [ Graphics ]
-  modules.graphics.blender = true;
+  modules.graphics.blender = false;
   modules.graphics.darktable = false;
   modules.graphics.davinci = false;
   modules.graphics.drawio = false;
@@ -477,14 +477,14 @@ self: {
   modules.media.codex = true; # Video/Sound codecs libs and packags
   modules.media.cava = false; # Audio Visualizer for Alsa
   modules.media.mpv = true; # Media Player
-  modules.media.vlc = true; # Media Player
+  modules.media.vlc = false; # Media Player
   modules.media.glide = false; # media player
   modules.media.clapper = false; # media player
   modules.media.celluloid = false; # media player
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = false; # video Editor
   modules.media.shotcut = false; # video Editor
-  modules.media.music = true; # Music Player
+  modules.media.music = false; # Music Player
 
   # [Networking]
   modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"
@@ -545,7 +545,6 @@ self: {
   ];
 
   # [ Recording ]
-  modules.recording.screen.enable = true;
   modules.recording.screen.gpu_recorder = false;
   modules.recording.screen.obs = false;
   modules.recording.screen.wf_recorder = false;
