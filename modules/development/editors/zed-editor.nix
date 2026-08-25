@@ -27,22 +27,15 @@
         "html"
         "just"
         "nix"
-        "rust"
         "sql"
         "toml"
         "twig"
-        "nix"
-        "html"
-        "toml"
-        "git firefly"
-        "sql"
         "latex"
         "make"
         "scss"
         "csv"
         "ruff"
         "python-lsp"
-        "env"
         "kanso"
         "macos-classic"
         "material-icon-theme"
@@ -101,6 +94,10 @@
             };
           };
         };
+        # Vue language server: point it at the project's TypeScript SDK so it
+        # initializes correctly (fixes cascading "( expected" ts-plugin errors
+        # in .vue files under pnpm projects).
+        lsp.vue.initialization_options.typescript.tsdk = "./node_modules/typescript/lib";
         lsp = {
           rust-analyzer = {
             initialization_options = {
