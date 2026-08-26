@@ -30,6 +30,9 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   '';
 
   boot.kernelParams = [
+    "cgroup_enable=cpuset"
+    "cgroup_enable=memory"
+    "cgroup_memory=1"
     "psi=1"
   ];
 
