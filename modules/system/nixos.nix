@@ -1,4 +1,3 @@
-# ---- docs.nix ---- #
 {
   settings,
   lib,
@@ -26,7 +25,11 @@ in
   nix.package = pkgs.nixVersions.latest;
   nix.gc.automatic = false;
   nix.gc.dates = "03:15";
-  nix.gc.options = "--delete-older-than 10d";
+  # Keep generations around longer before GC. On a slow link, GC'ing a
+  # generation you might roll back to means re-downloading everything
+  # in it later. 10d -> 30d costs disk, not bandwidth, so it's a good
+  # trade when bandwidth is the scarce resource.
+  nix.gc.options = "--delete-older-than 30d";
   nix = {
     settings = {
       # Tell nix to use the xdg spec for base directories
@@ -77,22 +80,53 @@ in
       # Continue building derivations even if one fails
       # keep-going = false;
 
-      # Fallback to local builds after remote builders are unavailable.
-      # Setting this too low on a slow network may cause remote builders
-      # to be discarded before a connection can be established.
-      connect-timeout = 30; # seconds
+      # ---- Slow-connection tuning (500Kib/s - 1Mib/s) ----
+      #
+      # Fall back to building from source locally when a substitute can't
+      # be fetched (times out / cache miss / connection drop). On a fast
+      # link this rarely matters; on a slow one it's the difference between
+      # a build that finishes and one that hangs retrying a stalled download.
+      fallback = true;
 
-      # If we haven't received data for >= 30s, retry the download
-      stalled-download-timeout = 30;
+      # Give the connection much longer before Nix decides the download
+      # has truly stalled. 30s is too aggressive on a slow/flaky link -
+      # a big NAR can legitimately go quiet for a while between chunks.
+      # 300s (5 min) avoids false-positive retries that waste the bytes
+      # you already downloaded.
+      stalled-download-timeout = 300;
 
-      # Show more logs when a build fails and decides to display
-      # a bunch of lines. `nix log` would normally provide more
-      # information, but this may save us some time and keystrokes.
-      log-lines = 30;
+      # Give TCP/TLS handshakes more room before giving up, since slow
+      # links often mean slow/variable latency too, not just low throughput.
+      connect-timeout = 60;
+
+      # How many derivations can be substituted (downloaded) at once.
+      # Nix's default (16) will happily try to pull that many NARs in
+      # parallel, which just slices your 500Kib/s-1Mib/s pipe into tiny
+      # shares and makes everything time out. Keep this low so each
+      # download actually gets meaningful throughput.
+      max-substitution-jobs = 3;
+
+      # How long negative narinfo lookups ("this substituter doesn't have
+      # this path") are cached. Longer means fewer repeat round-trips to
+      # substituters that are never going to have the package anyway.
+      narinfo-cache-negative-ttl = 86400; # 1 day
+
+      # How long flake input tarballs are considered fresh before Nix
+      # re-checks upstream for updates. Longer means `nix flake` / rebuild
+      # commands don't re-fetch/re-check inputs on every invocation.
+      tarball-ttl = 604800; # 1 week
+
+      # If we haven't received data for >= 300s, retry the download
+      # (see stalled-download-timeout above - this comment now matches
+      # the tuned value rather than the old 30s default).
 
       # for direnv GC roots
-      keep-outputs = false;
-      keep-derivations = false;
+      # Keep build-time-only dependencies around instead of letting the
+      # GC roots expire them. On a slow link, re-fetching a compiler or
+      # header package you already pulled down for a previous rebuild is
+      # far more expensive than the extra disk space costs you.
+      keep-outputs = true;
+      keep-derivations = true;
 
       # Don't warn me that my git tree is dirty, I know.
       warn-dirty = false;
@@ -106,10 +140,12 @@ in
       # The special value 0 means that the builder should use all available CPU cores in the system.
       cores = 0;
 
-      # Maximum number of parallel TCP connections
-      # used to fetch imports and binary caches.
-      # 0 means no limit, default is 25.
-      http-connections = 35; # lower values fare better on slow connections
+      # Maximum number of parallel TCP connections used to fetch narinfo
+      # metadata and imports. Lowered from 35 -> 8: on a 500Kib/s-1Mib/s
+      # link, dozens of simultaneous connections just cause contention and
+      # timeouts rather than more throughput. Actual NAR download
+      # concurrency is separately capped by max-substitution-jobs above.
+      http-connections = 8;
 
       extra-sandbox-paths = [
         "/dev/kfd"
@@ -129,6 +165,15 @@ in
       ];
 
       trusted-substituters = [ "https://nix-community.cachix.org" ];
+      # NOTE (bandwidth): every one of these is queried for narinfo on
+      # every derivation Nix evaluates, even ones you never actually pull
+      # from that cache. That's small metadata traffic per-substituter,
+      # but it adds up to a lot of round trips on a slow link across a
+      # full rebuild. If you notice long "querying info about..." pauses,
+      # consider trimming this down to just the caches you actually use
+      # day-to-day (cache.nixos.org + nix-community cover the vast
+      # majority of nixpkgs + community packages) and re-adding the rest
+      # only when a specific input needs them.
       substituters = [
         "https://cache.nixos.org" # funny binary cache
         "https://cache.privatevoid.net" # for nix-super
@@ -208,6 +253,11 @@ in
     # side effects, you are still risking a system that breaks without you knowing. If the
     # bootloader also breaks during the upgrade, you may not be able to roll back at all.
     # tl;dr: upgrade manually, review changelogs.
+    # On a slow/metered link, autoUpgrade is even less appealing: a "daily"
+    # timer means a full flake-input re-fetch + rebuild every single day
+    # whether you're around to babysit it or not. Left as settings-gated
+    # below; just flagging it as the biggest bandwidth sink in this file
+    # if it's ever flipped on.
     autoUpgrade.enable = settings.system.upgrade.enable or false;
     autoUpgrade.upgrade = settings.system.upgrade.enable or false;
     autoUpgrade.dates = "daily";
@@ -253,7 +303,10 @@ in
   programs.nh = {
     enable = true;
     clean.enable = true;
-    clean.extraArgs = "--keep-since 4d --keep 3";
+    # Keep more generations before nh prunes them, for the same reason as
+    # nix.gc.options above - pruning a generation you still want back
+    # means re-downloading its closure on a slow link.
+    clean.extraArgs = "--keep-since 14d --keep 5";
     flake = "${HOME}/nixxin";
   };
 
