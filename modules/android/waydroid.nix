@@ -171,7 +171,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         jq
         hyprland
         weston
-        adb
+        adb-sync
       ];
       text = ''
         # 1. Clean up any stale session
