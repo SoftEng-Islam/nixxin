@@ -162,56 +162,81 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
-    (pkgs.writeShellScriptBin "waydroid-ui" ''
-      # 1. Clean up any stale session
-      waydroid session stop 2>/dev/null || true
+    # Changed from writeShellScriptBin -> writeShellApplication so `jq` and
+    # `hyprctl` are guaranteed on PATH via runtimeInputs, since we now shell
+    # out to them to detect the active monitor's real resolution.
+    (pkgs.writeShellApplication {
+      name = "waydroid-ui";
+      runtimeInputs = with pkgs; [
+        jq
+        hyprland
+        weston
+        adb
+      ];
+      text = ''
+        # 1. Clean up any stale session
+        waydroid session stop 2>/dev/null || true
 
-      # 2. Modern Mesa thread optimizations
-      export mesa_glthread=true
-      export vblank_mode=0
+        # 2. Modern Mesa thread optimizations
+        export mesa_glthread=true
+        export vblank_mode=0
 
-      # 3. Android display props (Unlocked for smooth 60 FPS)
-      waydroid prop set persist.waydroid.width 1920
-      waydroid prop set persist.waydroid.height 1080
-      waydroid prop set persist.waydroid.dpi 240
-      waydroid prop set persist.waydroid.fps 60
+        # 2b. Detect the focused monitor's native resolution so Weston
+        # actually fills the screen instead of being pinned to a
+        # hardcoded 1920x1080 buffer. Falls back to 1080p if detection
+        # fails for any reason (e.g. hyprctl/jq unavailable, no monitors
+        # reported).
+        MON_W=""
+        MON_H=""
+        if read -r MON_W MON_H < <(hyprctl monitors -j | jq -r '.[] | select(.focused==true) | "\(.width) \(.height)"' 2>/dev/null); then
+          :
+        fi
+        MON_W=''${MON_W:-1920}
+        MON_H=''${MON_H:-1080}
 
-      # Restore standard Android animation speeds
-      adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
-      adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
-      adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
+        # 3. Android display props (Unlocked for smooth 60 FPS)
+        waydroid prop set persist.waydroid.width "$MON_W"
+        waydroid prop set persist.waydroid.height "$MON_H"
+        waydroid prop set persist.waydroid.dpi 240
+        waydroid prop set persist.waydroid.fps 60
 
-      # 4. Start Weston at Full HD natively
-      ${pkgs.weston}/bin/weston -Swayland-waydroid \
-        --backend=wayland-backend.so \
-        --width=1920 --height=1080 \
-        --fullscreen \
-        --shell="kiosk-shell.so" &
-      WESTON_PID=$!
+        # Restore standard Android animation speeds
+        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
+        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
+        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
 
-      # Wait for Weston socket with a timeout
-      for i in {1..20}; do
-        [ -S "$XDG_RUNTIME_DIR/wayland-waydroid" ] && break
-        echo "Waiting for Weston... $i"
-        sleep 0.5
-      done
+        # 4. Start Weston at the detected native resolution
+        weston -Swayland-waydroid \
+          --backend=wayland-backend.so \
+          --width="$MON_W" --height="$MON_H" \
+          --fullscreen \
+          --shell="kiosk-shell.so" &
+        WESTON_PID=$!
 
-      # 5. Start Android session
-      export WAYLAND_DISPLAY=wayland-waydroid
-      waydroid session start &
+        # Wait for Weston socket with a timeout
+        for i in {1..20}; do
+          [ -S "$XDG_RUNTIME_DIR/wayland-waydroid" ] && break
+          echo "Waiting for Weston... $i"
+          sleep 0.5
+        done
 
-      # Wait for Android to be fully ready
-      until waydroid status | grep -q "RUNNING"; do
+        # 5. Start Android session
+        export WAYLAND_DISPLAY=wayland-waydroid
+        waydroid session start &
+
+        # Wait for Android to be fully ready
+        until waydroid status | grep -q "RUNNING"; do
+          sleep 2
+        done
+
         sleep 2
-      done
 
-      sleep 2
+        waydroid show-full-ui &
 
-      waydroid show-full-ui &
-
-      wait $WESTON_PID
-      waydroid session stop
-    '')
+        wait "$WESTON_PID"
+        waydroid session stop
+      '';
+    })
   ];
 
   home-manager.users.${username} = {
