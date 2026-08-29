@@ -23,7 +23,7 @@
 
       # ---- LFM ---- #
       windowrule = border_size 0, match:class ^(lfm)$
-      windowrule = plugin:hyprbars:nobar 1, match:class ^(lfm)$
+      windowrule = hyprbars:no_bar 1, match:class ^(lfm)$
 
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.
