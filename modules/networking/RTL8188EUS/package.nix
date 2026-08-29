@@ -28,6 +28,12 @@ stdenv.mkDerivation {
   # Kernel modules often require format string hardening disabled
   hardeningDisable = [ "pic" "format" ];
 
+  postPatch = ''
+    # Linux 7.x removed 'struct elapaarp' from headers (AppleTalk legacy).
+    # Define it locally in the file that needs it to prevent build failure.
+    sed -i '1i struct elapaarp { unsigned short hw_type; unsigned short pa_type; unsigned char hw_len; unsigned char pa_len; unsigned short op; unsigned char hw_src[6]; unsigned char pa_src_net[2]; unsigned char pa_src_node; unsigned char hw_dst[6]; unsigned char pa_dst_net[2]; unsigned char pa_dst_node; } __attribute__((packed));' core/rtw_br_ext.c
+  '';
+
   nativeBuildInputs = [ bc ] ++ kernel.moduleBuildDependencies;
 
   # Pass the kernel build directories natively to the Makefile
