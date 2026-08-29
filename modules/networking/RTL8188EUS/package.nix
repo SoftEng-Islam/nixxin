@@ -29,9 +29,13 @@ stdenv.mkDerivation {
   hardeningDisable = [ "pic" "format" ];
 
   postPatch = ''
-    # Linux 7.x removed 'struct elapaarp' from headers (AppleTalk legacy).
-    # Define it locally in the file that needs it to prevent build failure.
+    # Linux 7.x removed 'struct elapaarp' and 'struct ddpehdr' from headers (AppleTalk legacy).
+    # Also 'tag_data' was hidden in 'struct pppoe_tag'.
+    # We define the missing structs and fix the pointer math locally to prevent build failures.
     sed -i '1i struct elapaarp { unsigned short hw_type; unsigned short pa_type; unsigned char hw_len; unsigned char pa_len; unsigned short op; unsigned char hw_src[6]; unsigned char pa_src_net[2]; unsigned char pa_src_node; unsigned char hw_dst[6]; unsigned char pa_dst_net[2]; unsigned char pa_dst_node; } __attribute__((packed));' core/rtw_br_ext.c
+    sed -i '1i struct ddpehdr { unsigned short deh_len_hops; unsigned short deh_sum; unsigned short deh_dnet; unsigned short deh_snet; unsigned char deh_dnode; unsigned char deh_snode; unsigned char deh_dport; unsigned char deh_sport; };' core/rtw_br_ext.c
+    sed -i 's/tag->tag_data/(((char *)tag) + sizeof(struct pppoe_tag))/g' core/rtw_br_ext.c
+    sed -i 's/pOldTag->tag_data/(((char *)pOldTag) + sizeof(struct pppoe_tag))/g' core/rtw_br_ext.c
   '';
 
   nativeBuildInputs = [ bc ] ++ kernel.moduleBuildDependencies;
