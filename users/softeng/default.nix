@@ -28,6 +28,7 @@ self: {
 
   modules.development.editors.kiro.enable = false;
   modules.development.editors.windsurf.enable = true;
+  modules.development.editors.antigravity.enable = true;
   modules.development.languages.rust.enable = false;
 
   # Not perfectly working
