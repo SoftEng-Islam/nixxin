@@ -3,154 +3,154 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.extraConfig = ''
       # ---- General Window Rules ---- #
-      # windowrule = noblur 1,.*
-      # windowrule = opacity 1.0 override 0.80 override, .* # Applies transparency to EVERY WINDOW
+      # windowrule = no_blur 1, match:class .*
+      # windowrule = opacity 1.0 override 0.80 override, match:class .* # Applies transparency to EVERY WINDOW
 
       # ---- Popup/Context Menu Fix ---- #
       # Fix for right-click menus that extend beyond the parent window
       # This ensures clicks register on the popup even when outside the parent app
-      windowrule = float 1, class:(.*), title:(.*menu.*)
-      windowrule = stayfocused 1, class:(.*), title:(.*menu.*)
+      windowrule = float 1, match:class (.*), match:title (.*menu.*)
+      windowrule = stay_focused 1, match:class (.*), match:title (.*menu.*)
 
 
       # ---- Waydroid ---- #
-      windowrule = fullscreen 1, class:^(Waydroid)$
+      windowrule = fullscreen 1, match:class ^(Waydroid)$
 
       # ?
-      windowrule = tile 1, class:(dev.warp.Warp)
-      windowrule = float 1, class:^(xdg-desktop-portal-gtk)$
-      windowrule = dimaround 1, class:^(xdg-desktop-portal-gtk)$
+      windowrule = tile 1, match:class (dev.warp.Warp)
+      windowrule = float 1, match:class ^(xdg-desktop-portal-gtk)$
+      windowrule = dim_around 1, match:class ^(xdg-desktop-portal-gtk)$
 
       # ---- LFM ---- #
-      windowrule = noborder 1, class:^(lfm)$
-      windowrule = plugin:hyprbars:nobar 1, class:^(lfm)$
+      windowrule = border_size 0, match:class ^(lfm)$
+      windowrule = plugin:hyprbars:nobar 1, match:class ^(lfm)$
 
       # ---- Browsers ---- #
       # Force browsers to be tiled by default. Dialog/PiP rules below still float.
-      windowrule = tile 1, class:^(zen(-.*)?|firefox(-.*)?|zen|zen-browser|zen-beta|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
+      windowrule = tile 1, match:class ^(zen(-.*)?|firefox(-.*)?|zen|zen-browser|zen-beta|firefoxdeveloperedition|firefox-beta|thunderbird|chromium|vivaldi(-.*)?|brave-browser(-.*)?|google-chrome(-.*)?|microsoft-edge(-.*)?|qutebrowser|librewolf|waterfox|floorp|falkon|org\\.gnome\\.Epiphany)$
 
 
       # ---- Dialogs ---- #
       # Fix: Force Dialogs & Pop-ups to Float
-      windowrule = center 1, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
-      windowrule = float 1, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
-      windowrule = size 850 500, title:^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = center 1, match:title ^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = float 1, match:title ^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
+      windowrule = size 850 500, match:title ^(Choose wallpaper|File Upload|Library|Open File|Open Folder|Pick a File|Save As|Select a File|Rename [Ff]ile)(.*)$
 
-      windowrule = float 1, class:^(firefox|thunar|gedit|krita), title:^(Open File|Save As)
-      windowrule = float 1, class:^(file-roller|pavucontrol|blueman-manager)
-      windowrule = float 1, class:^(xdg-desktop-portal|org.kde.kdialog)
-      windowrule = center 1, class:^(.*), title:^(Open File|Save As)
+      windowrule = float 1, match:class ^(firefox|thunar|gedit|krita), match:title ^(Open File|Save As)
+      windowrule = float 1, match:class ^(file-roller|pavucontrol|blueman-manager)
+      windowrule = float 1, match:class ^(xdg-desktop-portal|org.kde.kdialog)
+      windowrule = center 1, match:class ^(.*), match:title ^(Open File|Save As)
 
       # ---- Picture-in-Picture ---- #
-      windowrule = keepaspectratio 1, title:^(Picture(-| )in(-| )[Pp]icture)$
-      windowrule = move 73% 72%, title:^(Picture(-| )in(-| )[Pp]icture)$
-      windowrule = size 25%, title:^(Picture(-| )in(-| )[Pp]icture)$
-      windowrule = float 1, title:^(Picture(-| )in(-| )[Pp]icture)$
-      windowrule = pin 1, title:^(Picture(-| )in(-| )[Pp]icture)$
-      windowrule = opacity 1.0 override 1.0 override, title:^(Picture-in-Picture)$
+      windowrule = keep_aspect_ratio 1, match:title ^(Picture(-| )in(-| )[Pp]icture)$
+      windowrule = move 73% 72%, match:title ^(Picture(-| )in(-| )[Pp]icture)$
+      windowrule = size 25% 25%, match:title ^(Picture(-| )in(-| )[Pp]icture)$
+      windowrule = float 1, match:title ^(Picture(-| )in(-| )[Pp]icture)$
+      windowrule = pin 1, match:title ^(Picture(-| )in(-| )[Pp]icture)$
+      windowrule = opacity 1.0 override 1.0 override, match:title ^(Picture-in-Picture)$
 
       # ---- Tearing Fix ---- #
-      windowrule = immediate 1, class:(steam_app)
+      windowrule = immediate 1, match:class (steam_app)
 
       # ---- No shadow for tiled windows ---- #
-      windowrule = noshadow 1, floating:0
+      windowrule = no_shadow 1, match:float 0
 
       # ---- Layer Rules ---- #
-      layerrule = xray 1, .*
-      layerrule = noanim 1, ^(walker|selection|overview|anyrun|indicator.*|osk|hyprpicker)$
-      layerrule = ignorealpha 0.6, shell:*
+      layerrule = xray 1, match:namespace .*
+      layerrule = no_anim 1, match:namespace ^(walker|selection|overview|anyrun|indicator.*|osk|hyprpicker)$
+      layerrule = ignore_alpha 0.6, match:namespace shell:*
 
       # ---- Blur Settings ---- #
-      layerrule = blur 1, swaync-control-center  # Apply blur to swaync control center
-      layerrule = blur 1, gtk-layer-shell        # Apply blur to GTK layer shell
-      layerrule = blur 1, shell:*                # Apply blur to all shell elements
-      layerrule = blur 1, launcher               # Apply blur to launcher
-      layerrule = blur 1, notifications          # Apply blur to notifications
+      layerrule = blur 1, match:namespace swaync-control-center  # Apply blur to swaync control center
+      layerrule = blur 1, match:namespace gtk-layer-shell        # Apply blur to GTK layer shell
+      layerrule = blur 1, match:namespace shell:*                # Apply blur to all shell elements
+      layerrule = blur 1, match:namespace launcher               # Apply blur to launcher
+      layerrule = blur 1, match:namespace notifications          # Apply blur to notifications
 
       # idle inhibit while watching videos
-      windowrule = idleinhibit focus, class:^(mpv|.+exe|celluloid)$
-      windowrule = idleinhibit focus, class:^(zen)$, title:^(.*YouTube.*)$
-      windowrule = idleinhibit fullscreen, class:^(zen)$
+      windowrule = idle_inhibit focus, match:class ^(mpv|.+exe|celluloid)$
+      windowrule = idle_inhibit focus, match:class ^(zen)$, match:title ^(.*YouTube.*)$
+      windowrule = idle_inhibit fullscreen, match:class ^(zen)$
 
       # Ignore maximize requests from apps. You'll probably like this.
-      windowrule = suppressevent maximize, class:.*
+      windowrule = suppress_event maximize, match:class .*
 
       # Fix some dragging issues with XWayland
-      windowrule = nofocus 1, class:^$, title:^$, xwayland:1, floating:1, fullscreen:0, pinned:0
+      windowrule = no_focus 1, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0
 
       # ----------------------
       # Wezterm specific rules
       # ----------------------
-      windowrule = noborder 1, class:(Wezterm)
-      windowrule = nodim 1, class:(Wezterm)
-      windowrule = noshadow 1, class:(Wezterm)
-      windowrule = rounding 0, class:(Wezterm)
+      windowrule = border_size 0, match:class (Wezterm)
+      windowrule = no_dim 1, match:class (Wezterm)
+      windowrule = no_shadow 1, match:class (Wezterm)
+      windowrule = rounding 0, match:class (Wezterm)
 
       # --------------------
       # 0 A.D. rules
       # --------------------
-      # windowrule = noborder 1, class:^(0ad)$
-      # windowrule = nodim 1, class:^(0ad)$
-      # windowrule = noshadow 1, class:^(0ad)$
-      # windowrule = noblur 1, class:^(0ad)$
-      # windowrule = fullscreen 1, class:^(0ad)$
-      # windowrule = noanim 1, class:^(0ad)$
+      # windowrule = border_size 0, match:class ^(0ad)$
+      # windowrule = no_dim 1, match:class ^(0ad)$
+      # windowrule = no_shadow 1, match:class ^(0ad)$
+      # windowrule = no_blur 1, match:class ^(0ad)$
+      # windowrule = fullscreen 1, match:class ^(0ad)$
+      # windowrule = no_anim 1, match:class ^(0ad)$
 
       # ===============================
       # Rofi Visual Enhancements
       # ===============================
       # Always float and center
-      windowrule = float 1, class:^(Rofi)$
-      windowrule = center 1, class:^(Rofi)$
+      windowrule = float 1, match:class ^(Rofi)$
+      windowrule = center 1, match:class ^(Rofi)$
 
       # # Remove borders & shadows
-      # windowrule = noborder 1, class:^(Rofi)$
+      # windowrule = border_size 0, match:class ^(Rofi)$
 
       # # Keep it above everything
-      windowrule = stayfocused 1, class:^(Rofi)$
-      # windowrule = pin 1, class:^(Rofi)$
-      # layerrule = blur 1, rofi
-      # layerrule = ignorealpha 0.5, rofi
+      windowrule = stay_focused 1, match:class ^(Rofi)$
+      # windowrule = pin 1, match:class ^(Rofi)$
+      # layerrule = blur 1, match:namespace rofi
+      # layerrule = ignore_alpha 0.5, match:namespace rofi
 
       # ----------------------
       # Nautilus specific rules
       # ----------------------
-      # windowrule = opacity 0.85, class:^(org.gnome.Nautilus)$
+      # windowrule = opacity 0.85, match:class ^(org.gnome.Nautilus)$
 
       # ----------------------
       # MPV/IMV specific rules
       # ----------------------
-      windowrule = opacity 1.0 override 1.0 override, title:^(.*mpv.*)$
-      windowrule = nodim 1, class:^(mpv)$
-      windowrule = opacity 1.0 override 1.0 override, title:^(.*imv.*)$
-      windowrule = idleinhibit focus, class:^(mpv)$
-      windowrule = noblur 1, class:^(mpv)$
+      windowrule = opacity 1.0 override 1.0 override, match:title ^(.*mpv.*)$
+      windowrule = no_dim 1, match:class ^(mpv)$
+      windowrule = opacity 1.0 override 1.0 override, match:title ^(.*imv.*)$
+      windowrule = idle_inhibit focus, match:class ^(mpv)$
+      windowrule = no_blur 1, match:class ^(mpv)$
 
       # Extra rules for specific apps
-      windowrule = idleinhibit fullscreen, class:^(firefox)$
-      windowrule = float 1, class:^(pavucontrol)$
-      windowrule = float 1, class:^(SoundWireServer)$
-      windowrule = float 1, class:^(.sameboy-wrapped)$
-      windowrule = float 1, class:^(file_progress)$
-      windowrule = float 1, class:^(confirm)$
-      windowrule = float 1, class:^(dialog)$
-      windowrule = float 1, class:^(download)$
-      windowrule = float 1, class:^(notification)$
-      windowrule = float 1, class:^(error)$
-      windowrule = float 1, class:^(confirmreset)$
-      windowrule = float 1, title:^(Open File)$
-      windowrule = float 1, title:^(branchdialog)$
-      windowrule = float 1, title:^(Confirm to replace files)$
-      windowrule = float 1, title:^(File Operation Progress)$
+      windowrule = idle_inhibit fullscreen, match:class ^(firefox)$
+      windowrule = float 1, match:class ^(pavucontrol)$
+      windowrule = float 1, match:class ^(SoundWireServer)$
+      windowrule = float 1, match:class ^(.sameboy-wrapped)$
+      windowrule = float 1, match:class ^(file_progress)$
+      windowrule = float 1, match:class ^(confirm)$
+      windowrule = float 1, match:class ^(dialog)$
+      windowrule = float 1, match:class ^(download)$
+      windowrule = float 1, match:class ^(notification)$
+      windowrule = float 1, match:class ^(error)$
+      windowrule = float 1, match:class ^(confirmreset)$
+      windowrule = float 1, match:title ^(Open File)$
+      windowrule = float 1, match:title ^(branchdialog)$
+      windowrule = float 1, match:title ^(Confirm to replace files)$
+      windowrule = float 1, match:title ^(File Operation Progress)$
 
       # -------------------------
       # xwaylandvideobridge rules
       # -------------------------
-      windowrule = opacity 0.0 override, class:^(xwaylandvideobridge)$
-      windowrule = noanim 1, class:^(xwaylandvideobridge)$
-      windowrule = noinitialfocus 1, class:^(xwaylandvideobridge)$
-      windowrule = maxsize 1 1, class:^(xwaylandvideobridge)$
-      windowrule = noblur 1, class:^(xwaylandvideobridge)$
+      windowrule = opacity 0.0 override, match:class ^(xwaylandvideobridge)$
+      windowrule = no_anim 1, match:class ^(xwaylandvideobridge)$
+      windowrule = no_initial_focus 1, match:class ^(xwaylandvideobridge)$
+      windowrule = max_size 1 1, match:class ^(xwaylandvideobridge)$
+      windowrule = no_blur 1, match:class ^(xwaylandvideobridge)$
     '';
   };
 }
