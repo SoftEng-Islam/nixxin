@@ -89,8 +89,9 @@ in
       configType = "hyprlang"; # "lua" or "hyprlang"
       settings = {
         debug = {
-          disable_logs = true;
+          disable_logs = false;
           enable_stdout_logs = false;
+          gl_debugging = true;
         };
         # active color
         "$primary" = settings.common.primaryColor;
