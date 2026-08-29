@@ -86,7 +86,7 @@ in
       systemd.variables = [ "--all" ];
       systemd.enableXdgAutostart = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
-      configType = "lua";
+      configType = "hyprlang"; # "lua" or "hyprlang"
       settings = {
         debug = {
           disable_logs = true;
