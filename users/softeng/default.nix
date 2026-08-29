@@ -22,7 +22,7 @@ self: {
   modules.community.zoom.enable = false;
 
   # Enable this driver so I can use the monitor mode
-  modules.networking.rtl8188eus = true;
+  modules.networking.rtl8188eus = false;
   modules.terminals.wezterm.colorScheme = "Noctalia";
   modules.browsers.google-chrome.enable = true;
 
