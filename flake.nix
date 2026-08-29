@@ -153,11 +153,6 @@
                 # requires ≥ 0.73.0 for nushell integration. Pull fzf from unstable.
                 (_final: _prev: {
                   fzf = unstable.legacyPackages.${arch}.fzf;
-                  libplacebo = _prev.libplacebo.overrideAttrs (old: {
-                    postPatch = (old.postPatch or "") + ''
-                      sed -i 's/ET.parse(xmlfile)/ET.parse(xmlfile).getroot()/g' src/vulkan/utils_gen.py || true
-                    '';
-                  });
                 })
 
               ];
