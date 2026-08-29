@@ -1,0 +1,75 @@
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 76: config option <decoration:shadow:ignore_window> does not exist.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 90: config option <dwindle:pseudotile> does not exist.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 176: config option <misc:new_window_takes_over_fullscreen> does not exist.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 179: config option <misc:vfr> does not exist.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 210: Invalid dispatcher, requested "togglesplit" does not exist
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 452: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 453: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 457: invalid field fullscreen: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 460: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 461: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 462: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 465: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 466: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 470: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 475: invalid field center: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 476: invalid field float: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 477: invalid field type title:^(Choose
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 479: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 480: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 481: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 482: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 485: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 486: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 487: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 488: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 489: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 490: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 493: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 496: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 499: invalid field .*: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 500: invalid field noanim: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 501: invalid field type ignorealpha
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 504: invalid field blur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 505: invalid field blur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 506: invalid field blur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 507: invalid field blur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 508: invalid field blur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 511: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 512: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 513: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 516: invalid field type suppressevent
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 519: invalid field nofocus: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 524: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 525: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 526: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 527: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 543: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 544: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 550: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 563: invalid field title:^(.*mpv.*)$: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 564: invalid field nodim: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 565: invalid field title:^(.*imv.*)$: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 566: invalid field type idleinhibit
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 567: invalid field noblur: missing a value
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 570: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 571: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 572: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 573: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 574: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 575: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 576: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 577: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 578: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 579: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 580: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 581: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 582: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 583: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 584: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 589: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 590: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 591: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 592: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+Config error in file /nix/store/59py06cbacq6gdvqzkjr7q4dqgimkhyh-hm_hyprhyprland.conf at line 593: windowrulev2 is deprecated. Correct syntax can be found on the wiki.
+

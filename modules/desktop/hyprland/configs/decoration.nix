@@ -27,7 +27,6 @@
           range = 15;
           offset = "0 2";
           render_power = 2;
-          ignore_window = true;
           color = "rgba(00000070)";
           # col.shadow = rgba(00000070)
           # col.shadow_inactive = rgba(00000020)

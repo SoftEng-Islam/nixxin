@@ -3,10 +3,6 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.misc = {
-        # controls the VFR status of Hyprland.
-        # Heavily recommended to leave enabled to conserve resources.
-        vfr = true;
-
         # controls the VRR (Adaptive Sync) of your monitors.
         # 0 - off, 1 - on, 2 - fullscreen only
         # Disabled: the display is 60Hz fixed-rate, VRR has no benefit.
@@ -77,14 +73,6 @@
         # If DPMS is set to off, wake up the monitors if a key is pressed.
         key_press_enables_dpms = true;
 
-        # if there is a fullscreen or maximized window,
-        # decide whether a new tiled window opened should replace it,
-        # stay behind or disable the fullscreen/maximized state.
-        # 0 - behind
-        # 1 - takes over
-        # 2 - unfullscreen/unmaxize
-        new_window_takes_over_fullscreen = 1;
-        exit_window_retains_fullscreen = true;
 
         # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
         # render_ahead_of_time = false;

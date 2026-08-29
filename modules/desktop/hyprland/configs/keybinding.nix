@@ -60,7 +60,7 @@ in
       # bind = $main, Y, exec,
       # bind = $main, U, exec,
       # bind = $main, I, exec,
-      bind = $main, O, togglesplit
+      bind = $main, O, layoutmsg, togglesplit
 
       #=> Second Row:
       bind = $main, A, exec, $ipc panel-toggle launcher # Launch Launcher
