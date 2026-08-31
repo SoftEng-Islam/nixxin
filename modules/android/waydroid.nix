@@ -56,7 +56,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   services.geoclue2.enable = false;
   networking.firewall.trustedInterfaces = [ "waydroid0" ];
 
-  environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
+  # environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
 
   environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (
     pkgs.writeText "waydroid.conf" ''
