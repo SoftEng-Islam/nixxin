@@ -262,24 +262,22 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         echo "Paste clipboard in this website below:"
         echo "https://www.google.com/android/uncertified"
 
-        /*
-        ❌ COMMENTED OUT: Redundant Mount Logic ❌
-        Reason: Having this inside your manual script conflicts with the new,
-        robust `waydroid-mounts` systemd service running in the background.
-
-        echo "Waiting for Android to fully boot before mounting shared directories..."
-        until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-          sleep 2
-        done
-        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
-        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
-        grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
-        echo "Shared directories mounted successfully!"
-        */
+        # ❌ COMMENTED OUT: Redundant Mount Logic ❌
+        # Reason: Having this inside your manual script conflicts with the new,
+        # robust waydroid-mounts systemd service running in the background.
+        #
+        # echo "Waiting for Android to fully boot before mounting shared directories..."
+        # until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+        #   sleep 2
+        # done
+        # sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
+        # MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        # grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        # grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        # grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        # grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        # grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        # echo "Shared directories mounted successfully!"
       '';
     })
   ];
