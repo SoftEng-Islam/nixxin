@@ -167,26 +167,23 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         MON_W=''${MON_W:-1920}
         MON_H=''${MON_H:-1080}
 
-        # 3. Apply properties with sudo (required to modify /var/lib/waydroid/waydroid.cfg)
+        # 3. Write target resolution properties
         sudo waydroid prop set persist.waydroid.width "''$MON_W"
         sudo waydroid prop set persist.waydroid.height "''$MON_H"
         sudo waydroid prop set persist.waydroid.dpi 240
         sudo waydroid prop set persist.waydroid.fps 60
 
-        # 4. Start container session
+        # 4. Start session in background
         waydroid session start &
 
-        until waydroid status | grep -q "RUNNING"; do
+        # 5. Wait for Android internal system services to fully initialize
+        echo "Waiting for Android container to finish booting..."
+        until [ "''$(sudo waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
           sleep 1
         done
 
-        # 5. Force Android WindowManager to resize the frame buffer live
+        # 6. Adjust WindowManager frame buffer to active screen
         sudo waydroid shell wm size "''${MON_W}x''${MON_H}"
-
-        # 6. Reset animation speeds via ADB
-        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
 
         # 7. Launch UI surface
         waydroid show-full-ui
