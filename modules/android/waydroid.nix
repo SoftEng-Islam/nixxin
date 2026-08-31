@@ -177,37 +177,21 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         # 1. Clean up any stale session
         waydroid session stop 2>/dev/null || true
 
-        # 2. Detect the target monitor's native resolution. This still
-        # matters even without Weston: persist.waydroid.width/height
-        # controls the resolution of Android's internal virtual display,
-        # which the native Wayland surface then presents at. If this is
-        # wrong, the windowrule will still fullscreen the *window*, but
-        # the Android content rendered inside it will be the wrong size.
-        #
-        # We prefer a hardcoded target monitor name (your Odyssey G5,
-        # normally HDMI-A-1) over Hyprland's "focused" state, since
-        # "focused" reflects wherever your cursor/keyboard happened to be
-        # when this script launched, not necessarily the screen you want
-        # Waydroid on. Falls back to "focused" if the name isn't found
-        # (e.g. cable moved to a different port), then to 1080p if
-        # hyprctl/jq are unavailable entirely.
-        #
-        # Verify the correct name any time with:
-        #   hyprctl monitors -j | jq -r '.[] | {name, width, height, focused}'
-        TARGET_MONITOR="HDMI-A-1"
-
-        MONITORS_JSON=$(hyprctl monitors -j 2>/dev/null || echo '[]')
+        # 2. Detect the target monitor's native resolution.
+        MONITORS_JSON=$(hyprctl monitors -j)
 
         read -r MON_W MON_H < <(
-          echo "$MONITORS_JSON" | jq -r --arg mon "$TARGET_MONITOR" '
-            (map(select(.name == $mon)) + map(select(.focused == true)))
-            | .[0]
-            | if . then "\(.width) \(.height)" else empty end
-          ' 2>/dev/null
+          echo "$MONITORS_JSON" | jq -r '
+            .[]
+            | select(.focused == true)
+            | "\(.width) \(.height)"
+          '
         )
 
         MON_W=''${MON_W:-1920}
         MON_H=''${MON_H:-1080}
+
+        echo "Waydroid target resolution: ''${MON_W}x''${MON_H}"
 
         # 3. Android display props (Unlocked for smooth 60 FPS)
         waydroid prop set persist.waydroid.width "$MON_W"
@@ -215,15 +199,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid prop set persist.waydroid.dpi 240
         waydroid prop set persist.waydroid.fps 60
 
-        # 4. Start the Android container session
-        waydroid session start &
-
-        # Wait for Android to be fully ready
-        until waydroid status | grep -q "RUNNING"; do
-          sleep 2
-        done
-
-        sleep 2
 
         # Restore standard Android animation speeds
         adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
