@@ -134,57 +134,14 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   # ==========================================
-  # 6. Shared Folders (Native LXC & Group Mapping)
+  # 6. Shared Folders (Native Group Mapping)
   # ==========================================
 
-  # 1. Map Android's internal media group (media_rw, GID 1023) to your host user
+  # Map Android's internal media group (media_rw, GID 1023) to your host user
   users.groups.waydroid_media = {
     gid = 1023;
   };
   users.users.${username}.extraGroups = [ "waydroid_media" ];
-
-  # 2. Enforce native Linux permissions and inject standard LXC mounts
-  systemd.services.waydroid-folder-setup = {
-    description = "Setup Waydroid shared folder permissions and LXC mounts";
-    wantedBy = [ "waydroid-container.service" ];
-    before = [ "waydroid-container.service" ];
-
-    script = ''
-      CONFIG="/var/lib/waydroid/lxc/waydroid/config_nodes"
-      mkdir -p /var/lib/waydroid/lxc/waydroid
-      touch "$CONFIG"
-
-      # Clear old mount injections to prevent duplicates
-      sed -i '/data\/media\/0/d' "$CONFIG"
-
-      setup_mount() {
-        HOST_PATH="/home/${username}/$1"
-        ANDROID_DIR="$2"
-
-        # Ensure host directory exists
-        mkdir -p "$HOST_PATH"
-
-        # Apply native Linux group permissions (GID 1023) so Android can read/write
-        # The 'g+s' bit ensures new files created here automatically inherit the group
-        chgrp -R 1023 "$HOST_PATH" || true
-        chmod -R g+rwX "$HOST_PATH" || true
-        find "$HOST_PATH" -type d -exec chmod g+s {} + || true
-
-        # Inject a standard (non-FUSE) LXC bind mount
-        echo "lxc.mount.entry = $HOST_PATH data/media/0/$ANDROID_DIR none bind,create=dir 0 0" >> "$CONFIG"
-      }
-
-      # Map host folders -> Android folders
-      setup_mount "Documents" "Documents"
-      setup_mount "Downloads" "Download"
-      setup_mount "Music" "Music"
-      setup_mount "Pictures" "Pictures"
-      setup_mount "Videos" "Movies"
-    '';
-    serviceConfig = {
-      Type = "oneshot";
-    };
-  };
 
   # ==========================================
   # 7. Packages & Utilities
@@ -192,8 +149,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.systemPackages = with pkgs; [
     wl-clipboard # Required for Waydroid clipboard sync
     waydroid-nftables
-    # Ensure bindfs is installed for the translations
-    bindfs
 
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
@@ -209,24 +164,36 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
         echo "Paste clipboard in this website below:"
         echo "https://www.google.com/android/uncertified"
+        echo ""
 
-        # ❌ COMMENTED OUT: Redundant Mount Logic ❌
-        # Reason: Having this inside your manual script conflicts with the new,
-        # robust waydroid-mounts systemd service running in the background.
-        #
-        # echo "Waiting for Android to fully boot before mounting shared directories..."
-        # until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-        #   sleep 2
-        # done
-        # sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
-        # MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
-        # grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        # grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        # grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        # grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        # grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
-        # echo "Shared directories mounted successfully!"
+        echo "Waiting for Android to fully boot before mounting shared directories..."
+        until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+          sleep 2
+        done
+
+        echo "Applying native Android group permissions (GID 1023) to host folders..."
+        # 1. Apply native group ownership so Android's internal scanner can read/write them seamlessly
+        sudo chgrp -R 1023 "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" || true
+        sudo chmod -R g+rwX "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" || true
+
+        # 2. Apply 'setgid' so any new files you create on your host automatically inherit the group
+        find "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" -type d -exec sudo chmod g+s {} + || true
+
+        echo "Mounting folders into Waydroid..."
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
+
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+
+        # 3. Mount natively!
+        grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+
+        echo "Shared directories successfully mounted with native performance!"
       '';
     })
   ];
+
 }
