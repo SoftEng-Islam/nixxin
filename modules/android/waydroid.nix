@@ -60,6 +60,26 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     }
   ];
 
+  # Declaratively enforce Waydroid properties before the daemon starts
+  systemd.services.waydroid-container.preStart = ''
+    PROP_FILE=/var/lib/waydroid/waydroid_base.prop
+
+    # Only execute if 'sudo waydroid init' has already run
+    if [ -f "$PROP_FILE" ]; then
+      # Strip out existing keys to prevent duplicates
+      ${pkgs.gnused}/bin/sed -i '/ro.hardware.gralloc/d' "$PROP_FILE"
+      ${pkgs.gnused}/bin/sed -i '/persist.waydroid.width/d' "$PROP_FILE"
+      ${pkgs.gnused}/bin/sed -i '/persist.waydroid.height/d' "$PROP_FILE"
+      ${pkgs.gnused}/bin/sed -i '/ro.sf.lcd_density/d' "$PROP_FILE"
+
+      # Inject the AMD graphics allocator and 2K resolution fixes
+      echo "ro.hardware.gralloc=gbm" >> "$PROP_FILE"
+      echo "persist.waydroid.width=2560" >> "$PROP_FILE"
+      echo "persist.waydroid.height=1440" >> "$PROP_FILE"
+      echo "ro.sf.lcd_density=320" >> "$PROP_FILE"
+    fi
+  '';
+
   # Waydroid base properties
   systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C = {
     user = "root";
