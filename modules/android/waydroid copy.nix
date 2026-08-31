@@ -121,6 +121,79 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
 
   environment.systemPackages = with pkgs; [
-    waydroid-nftables
+    (pkgs.writeShellApplication {
+      name = "waydroid-aid";
+      runtimeInputs = with pkgs; [
+        waydroid
+        wl-clipboard-rs
+        sqlite
+        util-linux
+      ];
+      text = ''
+        sudo ${pkgs.waydroid}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        echo "Paste clipboard in this website below:"
+        echo "https://www.google.com/android/uncertified"
+        echo "Then run: waydroid session stop"
+
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+      '';
+    })
+
+    (pkgs.writeShellApplication {
+      name = "waydroid-ui";
+      runtimeInputs = with pkgs; [
+        jq
+        hyprland
+        android-tools
+        waydroid
+      ];
+      text = ''
+        # waydroid session stop 2>/dev/null || true
+
+        MONITORS_JSON=''$(hyprctl monitors -j 2>/dev/null || echo '[]')
+        MON_W=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].width // 2560' 2>/dev/null)
+        MON_H=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].height // 1440' 2>/dev/null)
+
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.width "''$MON_W"
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.height "''$MON_H"
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.dpi 240
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.fps 60
+        sudo ${pkgs.waydroid}/bin/waydroid prop set ro.sf.lcd_density 320
+
+        waydroid session start &
+
+        # echo "Waiting for Android container to finish booting..."
+        # until [ "''$(sudo ${pkgs.waydroid}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+          # sleep 1
+        # done
+
+        # sudo ${pkgs.waydroid}/bin/waydroid shell wm size "''${MON_W}x''${MON_H}"
+        # waydroid show-full-ui
+
+        # sudo ${pkgs.waydroid}/bin/waydroid shell wm size reset 2>/dev/null || true
+        # waydroid session stop
+      '';
+    })
   ];
+
+  home-manager.users.${username} = {
+    xdg.desktopEntries."Waydroid" = {
+      name = "Waydroid";
+      genericName = "Full Android OS on a regular GNU/Linux System.";
+      exec = "waydroid-ui";
+      icon = "waydroid";
+      categories = [
+        "System"
+        "Emulator"
+        "X-Android"
+      ];
+    };
+  };
 }
