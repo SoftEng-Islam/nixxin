@@ -131,67 +131,66 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     })
 
     (pkgs.writeShellApplication {
-      name = "waydroid-ui";
-      runtimeInputs = with pkgs; [
-        jq
-        hyprland
-        android-tools
-        waydroid
-      ];
-      text = ''
-        # 1. Clean up any stale session
-        waydroid session stop 2>/dev/null || true
+          name = "waydroid-ui";
+          runtimeInputs = with pkgs; [
+            jq
+            hyprland
+            android-tools
+            waydroid
+          ];
+          text = ''
+            # 1. Clean up any stale session
+            waydroid session stop 2>/dev/null || true
 
-        # 2. Detect the currently focused monitor's resolution
-        # This reads the resolution of the screen your cursor/workspace is currently active on.
-        MONITORS_JSON=''$(hyprctl monitors -j 2>/dev/null || echo '[]')
+            # 2. Detect the currently focused monitor's resolution
+            MONITORS_JSON=''$(hyprctl monitors -j 2>/dev/null || echo '[]')
 
-        read -r MON_W MON_H < <(
-          echo "''$MONITORS_JSON" | jq -r '
-            map(select(.focused == true))
-            | .[0]
-            | if . then "\(.width) \(.height)" else empty end
-          ' 2>/dev/null
-        )
+            read -r MON_W MON_H < <(
+              echo "''$MONITORS_JSON" | jq -r '
+                map(select(.focused == true))[0]
+                | if . then "\(.width) \(.height)" else empty end
+              ' 2>/dev/null
+            )
 
-        # Fallback to 1080p if detection fails
-        MON_W=''${MON_W:-1920}
-        MON_H=''${MON_H:-1080}
+            MON_W=''${MON_W:-1920}
+            MON_H=''${MON_H:-1080}
 
-        # 3. Apply Android display properties to match the active screen
-        waydroid prop set persist.waydroid.width "''$MON_W"
-        waydroid prop set persist.waydroid.height "''$MON_H"
-        waydroid prop set persist.waydroid.dpi 240
-        waydroid prop set persist.waydroid.fps 60
+            # 3. Apply properties with sudo (required to modify /var/lib/waydroid/waydroid.cfg)
+            sudo waydroid prop set persist.waydroid.width "''$MON_W"
+            sudo waydroid prop set persist.waydroid.height "''$MON_H"
+            sudo waydroid prop set persist.waydroid.dpi 240
+            sudo waydroid prop set persist.waydroid.fps 60
 
-        # 4. Start session and wait until active
-        waydroid session start &
+            # 4. Start container session
+            waydroid session start &
 
-        until waydroid status | grep -q "RUNNING"; do
-          sleep 2
-        done
+            until waydroid status | grep -q "RUNNING"; do
+              sleep 1
+            done
 
-        sleep 2
+            # 5. Force Android WindowManager to resize the frame buffer live
+            sudo waydroid shell wm size "''$MON_W''x''$MON_H"
 
-        # 5. Reset animation speeds via ADB
-        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
+            # 6. Reset animation speeds via ADB
+            adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
+            adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
+            adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
 
-        # 6. Launch native Wayland UI
-        waydroid show-full-ui
+            # 7. Launch UI surface
+            waydroid show-full-ui
 
-        # 7. Clean up on exit
-        waydroid session stop
-      '';
-    })
+            # 8. Reset wm size and stop session on exit
+            sudo waydroid shell wm size reset 2>/dev/null || true
+            waydroid session stop
+          '';
+        })
   ];
 
   home-manager.users.${username} = {
     xdg.desktopEntries."Waydroid" = {
       name = "Waydroid";
       genericName = "Full Android OS on a regular GNU/Linux System.";
-      exec = "waydroid";
+      exec = "waydroid-ui";
       icon = "waydroid";
       categories = [
         "System"
