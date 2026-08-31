@@ -164,14 +164,12 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
           ' 2>/dev/null
         )
 
-        MON_W=''${MON_W:-1920}
-        MON_H=''${MON_H:-1080}
-
         # 3. Write target resolution properties
-        sudo waydroid prop set persist.waydroid.width "''$MON_W"
-        sudo waydroid prop set persist.waydroid.height "''$MON_H"
+        sudo waydroid prop set persist.waydroid.width 2560
+        sudo waydroid prop set persist.waydroid.height 1440
         sudo waydroid prop set persist.waydroid.dpi 240
         sudo waydroid prop set persist.waydroid.fps 60
+        sudo waydroid prop set ro.sf.lcd_density 320
 
         # 4. Start session in background
         waydroid session start &
