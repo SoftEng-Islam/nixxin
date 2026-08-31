@@ -504,6 +504,7 @@
       # bluetooth_enabled  = []
       # bluetooth_disabled = []
       # battery_state_changed   = "notify-send 'Power' \"Battery: $NOCTALIA_BATTERY_STATE\""
+      # battery_under_threshold = "notify-send 'Power' \"Battery at ''${NOCTALIA_BATTERY_PERCENT}%\""
       # power_profile_changed   = "notify-send 'Power' \"Profile: $NOCTALIA_POWER_PROFILE\""
       # [widget.launcher]
       # custom_image = "/path/to/image.png"
