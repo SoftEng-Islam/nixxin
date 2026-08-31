@@ -182,16 +182,23 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
         echo "Paste clipboard in this website below:"
         echo "https://www.google.com/android/uncertified"
-        echo "Then run: waydroid session stop"
+
+        echo "Waiting for Android to fully boot before mounting shared directories..."
+        until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+          sleep 2
+        done
 
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
         mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
 
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        # Use 'mountpoint -q' to prevent double-mounting if you run the script twice
+        mountpoint -q "$MEDIA_DIR/Documents" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        mountpoint -q "$MEDIA_DIR/Download" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        mountpoint -q "$MEDIA_DIR/Music" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        mountpoint -q "$MEDIA_DIR/Pictures" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        mountpoint -q "$MEDIA_DIR/Movies" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+
+        echo "Shared directories mounted successfully!"
       '';
     })
   ];
