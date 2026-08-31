@@ -58,6 +58,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   ];
 
   environment.systemPackages = with pkgs; [
+    waydroid-nftables
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
       runtimeInputs = with pkgs; [
