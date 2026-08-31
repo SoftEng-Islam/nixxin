@@ -121,6 +121,52 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     "d /home/${username}/Waydroid 0755 ${username} users -"
   ];
 
+  # Declarative bind mounts for Waydroid shared folders
+  fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Documents" = {
+    device = "/home/${username}/Documents";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.after=waydroid-container.service"
+    ];
+  };
+
+  fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Download" = {
+    device = "/home/${username}/Downloads";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.after=waydroid-container.service"
+    ];
+  };
+
+  fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Music" = {
+    device = "/home/${username}/Music";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.after=waydroid-container.service"
+    ];
+  };
+
+  fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Pictures" = {
+    device = "/home/${username}/Pictures";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.after=waydroid-container.service"
+    ];
+  };
+
+  fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Movies" = {
+    device = "/home/${username}/Videos";
+    fsType = "none";
+    options = [
+      "bind"
+      "x-systemd.after=waydroid-container.service"
+    ];
+  };
+
   environment.systemPackages = with pkgs; [
     waydroid-nftables
     (pkgs.writeShellApplication {
