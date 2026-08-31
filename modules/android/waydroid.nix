@@ -155,7 +155,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid
       ];
       text = ''
-        waydroid session stop 2>/dev/null || true
+        # waydroid session stop 2>/dev/null || true
 
         MONITORS_JSON=''$(hyprctl monitors -j 2>/dev/null || echo '[]')
         MON_W=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].width // 2560' 2>/dev/null)
@@ -169,16 +169,16 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         waydroid session start &
 
-        echo "Waiting for Android container to finish booting..."
-        until [ "''$(sudo ${pkgs.waydroid}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-          sleep 1
-        done
+        # echo "Waiting for Android container to finish booting..."
+        # until [ "''$(sudo ${pkgs.waydroid}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+          # sleep 1
+        # done
 
-        sudo ${pkgs.waydroid}/bin/waydroid shell wm size "''${MON_W}x''${MON_H}"
-        waydroid show-full-ui
+        # sudo ${pkgs.waydroid}/bin/waydroid shell wm size "''${MON_W}x''${MON_H}"
+        # waydroid show-full-ui
 
-        sudo ${pkgs.waydroid}/bin/waydroid shell wm size reset 2>/dev/null || true
-        waydroid session stop
+        # sudo ${pkgs.waydroid}/bin/waydroid shell wm size reset 2>/dev/null || true
+        # waydroid session stop
       '';
     })
   ];
