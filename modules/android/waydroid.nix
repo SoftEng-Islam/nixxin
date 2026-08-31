@@ -134,95 +134,52 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   # ==========================================
-  # 6. Shared Folders (Native LXC & Bindfs)
+  # 6. Shared Folders (Native LXC & Group Mapping)
   # ==========================================
 
-  # Allow FUSE filesystems to be accessed by other users (crucial for LXC and Android FUSE)
-  programs.fuse.userAllowOther = true;
+  # 1. Map Android's internal media group (media_rw, GID 1023) to your host user
+  users.groups.waydroid_media = {
+    gid = 1023;
+  };
+  users.users.${username}.extraGroups = [ "waydroid_media" ];
 
-  # 1. Create staging directories on the host
-  systemd.tmpfiles.rules = [
-    "d /var/lib/misc 0755 root root -"
-    "d /home/${username}/.waydroid_shared 0755 ${username} users -"
-    "d /home/${username}/.waydroid_shared/Documents 0755 ${username} users -"
-    "d /home/${username}/.waydroid_shared/Downloads 0755 ${username} users -"
-    "d /home/${username}/.waydroid_shared/Music 0755 ${username} users -"
-    "d /home/${username}/.waydroid_shared/Pictures 0755 ${username} users -"
-    "d /home/${username}/.waydroid_shared/Videos 0755 ${username} users -"
-  ];
-
-  # 2. Declaratively translate host permissions to Android's media_rw (UID/GID 1023)
-  fileSystems."/home/${username}/.waydroid_shared/Documents" = {
-    device = "/home/${username}/Documents";
-    fsType = "fuse.bindfs";
-    options = [
-      "force-user=1023"
-      "force-group=1023"
-      "allow_other"
-      "nofail"
-    ];
-  };
-  fileSystems."/home/${username}/.waydroid_shared/Downloads" = {
-    device = "/home/${username}/Downloads";
-    fsType = "fuse.bindfs";
-    options = [
-      "force-user=1023"
-      "force-group=1023"
-      "allow_other"
-      "nofail"
-    ];
-  };
-  fileSystems."/home/${username}/.waydroid_shared/Music" = {
-    device = "/home/${username}/Music";
-    fsType = "fuse.bindfs";
-    options = [
-      "force-user=1023"
-      "force-group=1023"
-      "allow_other"
-      "nofail"
-    ];
-  };
-  fileSystems."/home/${username}/.waydroid_shared/Pictures" = {
-    device = "/home/${username}/Pictures";
-    fsType = "fuse.bindfs";
-    options = [
-      "force-user=1023"
-      "force-group=1023"
-      "allow_other"
-      "nofail"
-    ];
-  };
-  fileSystems."/home/${username}/.waydroid_shared/Videos" = {
-    device = "/home/${username}/Videos";
-    fsType = "fuse.bindfs";
-    options = [
-      "force-user=1023"
-      "force-group=1023"
-      "allow_other"
-      "nofail"
-    ];
-  };
-
-  # 3. Inject these translated mounts directly into Waydroid's LXC boot configuration
-  systemd.services.waydroid-inject-mounts = {
-    description = "Inject Waydroid shared folder LXC mounts";
+  # 2. Enforce native Linux permissions and inject standard LXC mounts
+  systemd.services.waydroid-folder-setup = {
+    description = "Setup Waydroid shared folder permissions and LXC mounts";
     wantedBy = [ "waydroid-container.service" ];
     before = [ "waydroid-container.service" ];
 
     script = ''
-      mkdir -p /var/lib/waydroid/lxc/waydroid
       CONFIG="/var/lib/waydroid/lxc/waydroid/config_nodes"
+      mkdir -p /var/lib/waydroid/lxc/waydroid
       touch "$CONFIG"
 
-      # Clean up any previous injected lines to avoid duplicates
-      sed -i '/waydroid_shared/d' "$CONFIG"
+      # Clear old mount injections to prevent duplicates
+      sed -i '/data\/media\/0/d' "$CONFIG"
 
-      # Append native LXC mount directives
-      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Documents data/media/0/Documents none bind,create=dir 0 0" >> "$CONFIG"
-      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Downloads data/media/0/Download none bind,create=dir 0 0" >> "$CONFIG"
-      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Music data/media/0/Music none bind,create=dir 0 0" >> "$CONFIG"
-      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Pictures data/media/0/Pictures none bind,create=dir 0 0" >> "$CONFIG"
-      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Videos data/media/0/Movies none bind,create=dir 0 0" >> "$CONFIG"
+      setup_mount() {
+        HOST_PATH="/home/${username}/$1"
+        ANDROID_DIR="$2"
+
+        # Ensure host directory exists
+        mkdir -p "$HOST_PATH"
+
+        # Apply native Linux group permissions (GID 1023) so Android can read/write
+        # The 'g+s' bit ensures new files created here automatically inherit the group
+        chgrp -R 1023 "$HOST_PATH" || true
+        chmod -R g+rwX "$HOST_PATH" || true
+        find "$HOST_PATH" -type d -exec chmod g+s {} + || true
+
+        # Inject a standard (non-FUSE) LXC bind mount
+        echo "lxc.mount.entry = $HOST_PATH data/media/0/$ANDROID_DIR none bind,create=dir 0 0" >> "$CONFIG"
+      }
+
+      # Map host folders -> Android folders
+      setup_mount "Documents" "Documents"
+      setup_mount "Downloads" "Download"
+      setup_mount "Music" "Music"
+      setup_mount "Pictures" "Pictures"
+      setup_mount "Videos" "Movies"
     '';
     serviceConfig = {
       Type = "oneshot";
