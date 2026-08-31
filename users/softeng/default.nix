@@ -26,7 +26,7 @@ self: {
   modules.terminals.wezterm.colorScheme = "Noctalia";
   modules.browsers.google-chrome.enable = true;
 
-  # modules.development.editors.vscode.enable = true;
+  modules.development.editors.vscode.enable = true;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
   # modules.development.editors.kiro.enable = true;
