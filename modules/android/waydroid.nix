@@ -48,6 +48,18 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     ''
   );
 
+  security.sudo.extraRules = [
+    {
+      users = [ username ];
+      commands = [
+        {
+          command = "/run/current-system/sw/bin/waydroid";
+          options = [ "NOPASSWD" ];
+        }
+      ];
+    }
+  ];
+
   # Waydroid base properties
   systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C = {
     user = "root";
@@ -180,8 +192,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid show-full-ui
 
         # 8. Reset wm size and stop session on exit
-        # sudo waydroid shell wm size reset 2>/dev/null || true
-        # waydroid session stop
+        sudo waydroid shell wm size reset 2>/dev/null || true
+        waydroid session stop
       '';
     })
 
