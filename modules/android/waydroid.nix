@@ -42,23 +42,22 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     ''
   );
 
-  # Allow passwordless sudo for waydroid container commands and user mounts
+  # Allow passwordless sudo using exact Nix store paths
   security.sudo.extraRules = [
     {
       users = [ username ];
       commands = [
         {
-          command = "/run/current-system/sw/bin/waydroid";
+          command = "${pkgs.waydroid}/bin/waydroid";
           options = [ "NOPASSWD" ];
         }
         {
-          command = "/run/current-system/sw/bin/mount";
+          command = "${pkgs.util-linux}/bin/mount";
           options = [ "NOPASSWD" ];
         }
       ];
     }
   ];
-
   # Single source of truth for base Waydroid properties
   systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C = {
     user = "root";
@@ -131,20 +130,19 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         util-linux
       ];
       text = ''
-        sudo waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        sudo ${pkgs.waydroid}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
         echo "Paste clipboard in this website below:"
         echo "https://www.google.com/android/uncertified"
         echo "Then run: waydroid session stop"
 
-        # Ensure target media directories exist prior to mounting
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
         mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
 
-        sudo mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        sudo mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        sudo mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        sudo mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        sudo mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
       '';
     })
 
@@ -157,39 +155,29 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid
       ];
       text = ''
-        # 1. Clean up any stale session
         waydroid session stop 2>/dev/null || true
 
-        # 2. Detect active monitor resolution with fallbacks
         MONITORS_JSON=''$(hyprctl monitors -j 2>/dev/null || echo '[]')
-
         MON_W=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].width // 2560' 2>/dev/null)
         MON_H=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].height // 1440' 2>/dev/null)
 
-        # 3. Apply target resolution properties
-        waydroid prop set persist.waydroid.width "''$MON_W"
-        waydroid prop set persist.waydroid.height "''$MON_H"
-        waydroid prop set persist.waydroid.dpi 240
-        waydroid prop set persist.waydroid.fps 60
-        waydroid prop set ro.sf.lcd_density 320
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.width "''$MON_W"
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.height "''$MON_H"
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.dpi 240
+        sudo ${pkgs.waydroid}/bin/waydroid prop set persist.waydroid.fps 60
+        sudo ${pkgs.waydroid}/bin/waydroid prop set ro.sf.lcd_density 320
 
-        # 4. Start session in background
         waydroid session start &
 
-        # 5. Wait for Android container boot completion
         echo "Waiting for Android container to finish booting..."
-        until [ "''$(sudo waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
+        until [ "''$(sudo ${pkgs.waydroid}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
           sleep 1
         done
 
-        # 6. Adjust WindowManager frame buffer
-        waydroid shell wm size "''${MON_W}x''${MON_H}"
-
-        # 7. Launch UI surface
+        sudo ${pkgs.waydroid}/bin/waydroid shell wm size "''${MON_W}x''${MON_H}"
         waydroid show-full-ui
 
-        # 8. Reset frame buffer and stop session on exit
-        waydroid shell wm size reset 2>/dev/null || true
+        sudo ${pkgs.waydroid}/bin/waydroid shell wm size reset 2>/dev/null || true
         waydroid session stop
       '';
     })

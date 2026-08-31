@@ -365,10 +365,10 @@ self: {
   modules.development.editors.helix.enable = false;
   modules.development.editors.kiro.enable = false;
   modules.development.editors.webstorm.enable = false;
-  modules.development.editors.antigravity.enable = false;
+  modules.development.editors.antigravity.enable = true;
   modules.development.editors.cursor.enable = false;
   modules.development.editors.windsurf.enable = false;
-  modules.development.editors.codex.enable = false;
+  modules.development.editors.codex.enable = true;
 
   # [ desktop ]
   modules.desktop.tools = false;
