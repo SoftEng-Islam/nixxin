@@ -169,6 +169,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   environment.systemPackages = with pkgs; [
     waydroid-nftables
+
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
       runtimeInputs = with pkgs; [
@@ -189,7 +190,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         done
 
         # 1. Create directories natively inside the Android container to bypass host permissions
-        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
+        # The '--' prevents the Waydroid CLI from parsing the '-p' flag
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
 
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
 
