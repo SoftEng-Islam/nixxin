@@ -13,6 +13,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   virtualisation = {
     lxc.enable = true;
     waydroid.enable = true;
+    waydroid.package = pkgs.waydroid-nftables;
   };
 
   boot.kernelParams = [ "psi=1" ];
@@ -48,7 +49,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       users = [ username ];
       commands = [
         {
-          command = "${pkgs.waydroid}/bin/waydroid";
+          command = "${pkgs.waydroid-nftables}/bin/waydroid";
           options = [ "NOPASSWD" ];
         }
         {
@@ -132,7 +133,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         adb-sync
       ];
       text = ''
-        sudo ${pkgs.waydroid}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
         echo "Paste clipboard in this website below:"
         echo "https://www.google.com/android/uncertified"
         echo "Then run: waydroid session stop"
