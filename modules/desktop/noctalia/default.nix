@@ -12,8 +12,7 @@
     programs.noctalia = {
       enable = true;
     };
-    home.file.".config/noctalia/settings.toml" = {
-      source = (pkgs.formats.toml { }).generate "noctalia-shell-5-settings.toml" {
+    home.file.".config/noctalia/settings.toml".text = ''
         # Noctalia configuration — all settings at their defaults.
         # Copy to ~/.config/noctalia/config.toml and edit what you need.
         # Most changes are hot-reloaded via inotify; startup-only settings are noted inline.
@@ -562,9 +561,7 @@
         # font_scale = 1.0                    # multiplies text size for this widget only
         # font_weight = 700
         # interactive = false                 # pass clicks/scrolls through to the bar and disable hover/tooltips
-
-      };
-  };
+  '';
   nix.settings = {
     extra-substituters = [ "https://noctalia.cachix.org" ];
     extra-trusted-public-keys = [
