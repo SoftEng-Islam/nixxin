@@ -133,110 +133,99 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     );
   };
 
+  # ==========================================
+  # 6. Shared Folders (Native LXC & Bindfs)
+  # ==========================================
+
+  # Allow FUSE filesystems to be accessed by other users (crucial for LXC and Android FUSE)
+  programs.fuse.userAllowOther = true;
+
+  # 1. Create staging directories on the host
   systemd.tmpfiles.rules = [
     "d /var/lib/misc 0755 root root -"
-    "d /home/${username}/Waydroid 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared/Documents 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared/Downloads 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared/Music 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared/Pictures 0755 ${username} users -"
+    "d /home/${username}/.waydroid_shared/Videos 0755 ${username} users -"
   ];
 
-  # ==========================================
-  # 6. Shared Folders (Automount Service)
-  # ==========================================
-
-  /*
-    ❌ COMMENTED OUT: Declarative fileSystems mounts ❌
-    Reason: These execute at system boot BEFORE Waydroid starts. When Android
-    boots, its own internal FUSE filesystem mounts over /data/media/0, which
-    hides or deletes these host mounts. We now handle this dynamically below.
-
-    fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Documents" = {
-      device = "/home/${username}/Documents";
-      fsType = "none";
-      options = [ "bind" "x-systemd.after=waydroid-container.service" ];
-    };
-    fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Download" = {
-      device = "/home/${username}/Downloads";
-      fsType = "none";
-      options = [ "bind" "x-systemd.after=waydroid-container.service" ];
-    };
-    fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Music" = {
-      device = "/home/${username}/Music";
-      fsType = "none";
-      options = [ "bind" "x-systemd.after=waydroid-container.service" ];
-    };
-    fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Pictures" = {
-      device = "/home/${username}/Pictures";
-      fsType = "none";
-      options = [ "bind" "x-systemd.after=waydroid-container.service" ];
-    };
-    fileSystems."/home/${username}/.local/share/waydroid/data/media/0/Movies" = {
-      device = "/home/${username}/Videos";
-      fsType = "none";
-      options = [ "bind" "x-systemd.after=waydroid-container.service" ];
-    };
-  */
-
-  systemd.services.waydroid-mounts = {
-    description = "Automount host directories into Waydroid with UID translation";
-    wantedBy = [ "waydroid-container.service" ];
-    after = [ "waydroid-container.service" ];
-    bindsTo = [ "waydroid-container.service" ];
-
-    path = with pkgs; [
-      waydroid-nftables
-      util-linux
-      gnugrep
-      coreutils
-      bindfs # <-- Added bindfs to translate permissions for Android
+  # 2. Declaratively translate host permissions to Android's media_rw (UID/GID 1023)
+  fileSystems."/home/${username}/.waydroid_shared/Documents" = {
+    device = "/home/${username}/Documents";
+    fsType = "fuse.bindfs";
+    options = [
+      "force-user=1023"
+      "force-group=1023"
+      "allow_other"
+      "nofail"
     ];
+  };
+  fileSystems."/home/${username}/.waydroid_shared/Downloads" = {
+    device = "/home/${username}/Downloads";
+    fsType = "fuse.bindfs";
+    options = [
+      "force-user=1023"
+      "force-group=1023"
+      "allow_other"
+      "nofail"
+    ];
+  };
+  fileSystems."/home/${username}/.waydroid_shared/Music" = {
+    device = "/home/${username}/Music";
+    fsType = "fuse.bindfs";
+    options = [
+      "force-user=1023"
+      "force-group=1023"
+      "allow_other"
+      "nofail"
+    ];
+  };
+  fileSystems."/home/${username}/.waydroid_shared/Pictures" = {
+    device = "/home/${username}/Pictures";
+    fsType = "fuse.bindfs";
+    options = [
+      "force-user=1023"
+      "force-group=1023"
+      "allow_other"
+      "nofail"
+    ];
+  };
+  fileSystems."/home/${username}/.waydroid_shared/Videos" = {
+    device = "/home/${username}/Videos";
+    fsType = "fuse.bindfs";
+    options = [
+      "force-user=1023"
+      "force-group=1023"
+      "allow_other"
+      "nofail"
+    ];
+  };
+
+  # 3. Inject these translated mounts directly into Waydroid's LXC boot configuration
+  systemd.services.waydroid-inject-mounts = {
+    description = "Inject Waydroid shared folder LXC mounts";
+    wantedBy = [ "waydroid-container.service" ];
+    before = [ "waydroid-container.service" ];
 
     script = ''
-      echo "Waiting for Waydroid to fully boot..."
-      until [ "$(${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-        sleep 2
-      done
+      mkdir -p /var/lib/waydroid/lxc/waydroid
+      CONFIG="/var/lib/waydroid/lxc/waydroid/config_nodes"
+      touch "$CONFIG"
 
-      # Give Android's FUSE wrapper a moment to fully initialize
-      sleep 2
+      # Clean up any previous injected lines to avoid duplicates
+      sed -i '/waydroid_shared/d' "$CONFIG"
 
-      echo "Waydroid is booted. Applying mounts..."
-      MEDIA_DIR="/home/${username}/.local/share/waydroid/data/media/0"
-
-      # 1. Create directories natively inside Android
-      ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
-
-      # 2. Assign ownership to Android's native media_rw group (UID 1023)
-      ${pkgs.waydroid-nftables}/bin/waydroid shell -- chown 1023:1023 /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
-
-      # 3. Get Host User IDs (Usually 1000 and 100)
-      HOST_UID=$(id -u ${username})
-      HOST_GID=$(id -g ${username})
-
-      # 4. Use bindfs for intelligent permission mapping (Host User <-> Android media_rw)
-      mount_shared() {
-        HOST_PATH=$1
-        ANDROID_PATH=$2
-        grep -q "$ANDROID_PATH" /proc/mounts || bindfs --force-user=1023 --force-group=1023 --create-for-user=$HOST_UID --create-for-group=$HOST_GID "$HOST_PATH" "$ANDROID_PATH"
-      }
-
-      mount_shared "/home/${username}/Documents" "$MEDIA_DIR/Documents"
-      mount_shared "/home/${username}/Downloads" "$MEDIA_DIR/Download"
-      mount_shared "/home/${username}/Music" "$MEDIA_DIR/Music"
-      mount_shared "/home/${username}/Pictures" "$MEDIA_DIR/Pictures"
-      mount_shared "/home/${username}/Videos" "$MEDIA_DIR/Movies"
+      # Append native LXC mount directives
+      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Documents data/media/0/Documents none bind,create=dir 0 0" >> "$CONFIG"
+      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Downloads data/media/0/Download none bind,create=dir 0 0" >> "$CONFIG"
+      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Music data/media/0/Music none bind,create=dir 0 0" >> "$CONFIG"
+      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Pictures data/media/0/Pictures none bind,create=dir 0 0" >> "$CONFIG"
+      echo "lxc.mount.entry = /home/${username}/.waydroid_shared/Videos data/media/0/Movies none bind,create=dir 0 0" >> "$CONFIG"
     '';
-
-    preStop = ''
-      MEDIA_DIR="/home/${username}/.local/share/waydroid/data/media/0"
-      umount "$MEDIA_DIR/Documents" || true
-      umount "$MEDIA_DIR/Download" || true
-      umount "$MEDIA_DIR/Music" || true
-      umount "$MEDIA_DIR/Pictures" || true
-      umount "$MEDIA_DIR/Movies" || true
-    '';
-
     serviceConfig = {
-      Type = "simple";
-      RemainAfterExit = true;
+      Type = "oneshot";
     };
   };
 
@@ -246,6 +235,8 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   environment.systemPackages = with pkgs; [
     wl-clipboard # Required for Waydroid clipboard sync
     waydroid-nftables
+    # Ensure bindfs is installed for the translations
+    bindfs
 
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
