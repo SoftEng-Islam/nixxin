@@ -191,7 +191,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     xdg.desktopEntries."Waydroid" = {
       name = "Waydroid";
       genericName = "Full Android OS on a regular GNU/Linux System.";
-      exec = "waydroid-ui";
+      exec = "waydroid";
       icon = "waydroid";
       categories = [
         "System"
