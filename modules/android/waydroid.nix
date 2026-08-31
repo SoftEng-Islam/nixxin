@@ -23,6 +23,55 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     if [ ! -e /var/lib/waydroid/lxc/waydroid/config_nodes ]; then
       ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
     fi
+
+    HOME_DIR="/home/${username}"
+    MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
+
+    ${pkgs.coreutils}/bin/mkdir -p \
+      "$HOME_DIR/Documents" \
+      "$HOME_DIR/Downloads" \
+      "$HOME_DIR/Music" \
+      "$HOME_DIR/Pictures" \
+      "$HOME_DIR/Videos" \
+      "$MEDIA_DIR/Documents" \
+      "$MEDIA_DIR/Download" \
+      "$MEDIA_DIR/Music" \
+      "$MEDIA_DIR/Pictures" \
+      "$MEDIA_DIR/Movies"
+
+    ${pkgs.coreutils}/bin/chgrp -R 1023 \
+      "$HOME_DIR/Documents" \
+      "$HOME_DIR/Downloads" \
+      "$HOME_DIR/Music" \
+      "$HOME_DIR/Pictures" \
+      "$HOME_DIR/Videos" || true
+
+    ${pkgs.coreutils}/bin/chmod -R g+rwX \
+      "$HOME_DIR/Documents" \
+      "$HOME_DIR/Downloads" \
+      "$HOME_DIR/Music" \
+      "$HOME_DIR/Pictures" \
+      "$HOME_DIR/Videos" || true
+
+    ${pkgs.findutils}/bin/find \
+      "$HOME_DIR/Documents" \
+      "$HOME_DIR/Downloads" \
+      "$HOME_DIR/Music" \
+      "$HOME_DIR/Pictures" \
+      "$HOME_DIR/Videos" \
+      -type d -exec ${pkgs.coreutils}/bin/chmod g+s {} + || true
+
+    mount_shared() {
+      source="$1"
+      target="$2"
+      ${pkgs.util-linux}/bin/mountpoint -q "$target" || ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
+    }
+
+    mount_shared "$HOME_DIR/Documents" "$MEDIA_DIR/Documents"
+    mount_shared "$HOME_DIR/Downloads" "$MEDIA_DIR/Download"
+    mount_shared "$HOME_DIR/Music" "$MEDIA_DIR/Music"
+    mount_shared "$HOME_DIR/Pictures" "$MEDIA_DIR/Pictures"
+    mount_shared "$HOME_DIR/Videos" "$MEDIA_DIR/Movies"
   '';
 
   boot.kernelParams = [ "psi=1" ];
