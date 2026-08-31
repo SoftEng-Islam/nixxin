@@ -122,5 +122,30 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   environment.systemPackages = with pkgs; [
     waydroid-nftables
+    (pkgs.writeShellApplication {
+      name = "waydroid-aid";
+      runtimeInputs = with pkgs; [
+        waydroid-nftables
+        wl-clipboard-rs
+        sqlite
+        util-linux
+        adb-sync
+      ];
+      text = ''
+        sudo ${pkgs.waydroid}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
+        echo "Paste clipboard in this website below:"
+        echo "https://www.google.com/android/uncertified"
+        echo "Then run: waydroid session stop"
+
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+      '';
+    })
   ];
 }
