@@ -179,17 +179,23 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         # 2. Apply 'setgid' so any new files you create on your host automatically inherit the group
         find "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" -type d -exec sudo chmod g+s {} + || true
 
-        echo "Mounting folders into Waydroid..."
-        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
-
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
 
-        # 3. Mount natively!
-        grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        echo "Mounting folders into Waydroid..."
+
+        # 3. Mount natively, checking the actual mount point rather than parsing /proc/mounts.
+        mount_shared() {
+          source="$1"
+          target="$2"
+          mountpoint -q "$target" || sudo ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
+        }
+
+        mount_shared "$HOME/Documents" "$MEDIA_DIR/Documents"
+        mount_shared "$HOME/Downloads" "$MEDIA_DIR/Download"
+        mount_shared "$HOME/Music" "$MEDIA_DIR/Music"
+        mount_shared "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        mount_shared "$HOME/Videos" "$MEDIA_DIR/Movies"
 
         echo "Shared directories successfully mounted with native performance!"
       '';
