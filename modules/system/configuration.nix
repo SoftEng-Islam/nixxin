@@ -74,6 +74,7 @@ in
       # theme = settings.boot.loader.manager.grub.theme;
       efiSupport = _system.boot.loader.manager.grub.efiSupport;
       gfxmodeEfi = _system.boot.loader.manager.grub.gfxmodeEfi;
+      gfxpayloadEfi = "keep";
       devices = _system.boot.loader.manager.grub.devices;
 
       device = _system.boot.loader.manager.grub.device;
