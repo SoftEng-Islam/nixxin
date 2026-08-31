@@ -162,35 +162,50 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
-    # Changed from writeShellScriptBin -> writeShellApplication so `jq` and
-    # `hyprctl` are guaranteed on PATH via runtimeInputs, since we now shell
-    # out to them to detect the active monitor's real resolution.
+    # writeShellApplication so `jq`/`hyprctl`/`adb` are guaranteed on PATH
+    # via runtimeInputs. No Weston/kiosk-shell anymore: waydroid show-full-ui
+    # is a native Wayland client, so Hyprland's own fullscreen windowrule
+    # (match:class ^(Waydroid)$) handles placement/sizing directly.
     (pkgs.writeShellApplication {
       name = "waydroid-ui";
       runtimeInputs = with pkgs; [
         jq
         hyprland
-        weston
-        adb-sync
+        android-tools
       ];
       text = ''
         # 1. Clean up any stale session
         waydroid session stop 2>/dev/null || true
 
-        # 2. Modern Mesa thread optimizations
-        export mesa_glthread=true
-        export vblank_mode=0
+        # 2. Detect the target monitor's native resolution. This still
+        # matters even without Weston: persist.waydroid.width/height
+        # controls the resolution of Android's internal virtual display,
+        # which the native Wayland surface then presents at. If this is
+        # wrong, the windowrule will still fullscreen the *window*, but
+        # the Android content rendered inside it will be the wrong size.
+        #
+        # We prefer a hardcoded target monitor name (your Odyssey G5,
+        # normally HDMI-A-1) over Hyprland's "focused" state, since
+        # "focused" reflects wherever your cursor/keyboard happened to be
+        # when this script launched, not necessarily the screen you want
+        # Waydroid on. Falls back to "focused" if the name isn't found
+        # (e.g. cable moved to a different port), then to 1080p if
+        # hyprctl/jq are unavailable entirely.
+        #
+        # Verify the correct name any time with:
+        #   hyprctl monitors -j | jq -r '.[] | {name, width, height, focused}'
+        TARGET_MONITOR="HDMI-A-1"
 
-        # 2b. Detect the focused monitor's native resolution so Weston
-        # actually fills the screen instead of being pinned to a
-        # hardcoded 1920x1080 buffer. Falls back to 1080p if detection
-        # fails for any reason (e.g. hyprctl/jq unavailable, no monitors
-        # reported).
-        MON_W=""
-        MON_H=""
-        if read -r MON_W MON_H < <(hyprctl monitors -j | jq -r '.[] | select(.focused==true) | "\(.width) \(.height)"' 2>/dev/null); then
-          :
-        fi
+        MONITORS_JSON=$(hyprctl monitors -j 2>/dev/null || echo '[]')
+
+        read -r MON_W MON_H < <(
+          echo "$MONITORS_JSON" | jq -r --arg mon "$TARGET_MONITOR" '
+            (map(select(.name == $mon)) + map(select(.focused == true)))
+            | .[0]
+            | if . then "\(.width) \(.height)" else empty end
+          ' 2>/dev/null
+        )
+
         MON_W=''${MON_W:-1920}
         MON_H=''${MON_H:-1080}
 
@@ -200,28 +215,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         waydroid prop set persist.waydroid.dpi 240
         waydroid prop set persist.waydroid.fps 60
 
-        # Restore standard Android animation speeds
-        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
-
-        # 4. Start Weston at the detected native resolution
-        weston -Swayland-waydroid \
-          --backend=wayland-backend.so \
-          --width="$MON_W" --height="$MON_H" \
-          --fullscreen \
-          --shell="kiosk-shell.so" &
-        WESTON_PID=$!
-
-        # Wait for Weston socket with a timeout
-        for i in {1..20}; do
-          [ -S "$XDG_RUNTIME_DIR/wayland-waydroid" ] && break
-          echo "Waiting for Weston... $i"
-          sleep 0.5
-        done
-
-        # 5. Start Android session
-        export WAYLAND_DISPLAY=wayland-waydroid
+        # 4. Start the Android container session
         waydroid session start &
 
         # Wait for Android to be fully ready
@@ -231,9 +225,15 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         sleep 2
 
-        waydroid show-full-ui &
+        # Restore standard Android animation speeds
+        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
+        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
+        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
 
-        wait "$WESTON_PID"
+        # 5. Launch the native Wayland UI directly. This blocks until the
+        # user closes the window, at which point we tear the session down.
+        waydroid show-full-ui
+
         waydroid session stop
       '';
     })
