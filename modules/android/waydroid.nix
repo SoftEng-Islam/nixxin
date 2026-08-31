@@ -19,6 +19,12 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     waydroid.package = pkgs.waydroid-nftables;
   };
 
+  systemd.services.waydroid-container.preStart = ''
+    if [ ! -e /var/lib/waydroid/lxc/waydroid/config_nodes ]; then
+      ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
+    fi
+  '';
+
   boot.kernelParams = [ "psi=1" ];
   boot.kernelModules = [ "uhid" ];
 
