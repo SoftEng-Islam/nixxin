@@ -619,7 +619,7 @@ self: {
     fontSize = 14;
     osProber = false;
     efiSupport = true;
-    gfxmodeEfi = "1920x1080";
+    gfxmodeEfi = "2560x1440,1920x1080,auto";
     devices = [ "nodev" ];
     device = "nodev"; # Let GRUB automatically detect EFI
     # nix path-info -r nixpkgs#sleek-grub-theme
