@@ -167,11 +167,11 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         MON_H=''$(echo "''$MONITORS_JSON" | jq -r 'map(select(.focused == true))[0].height // 1440' 2>/dev/null)
 
         # 3. Apply target resolution properties
-        sudo waydroid prop set persist.waydroid.width "''$MON_W"
-        sudo waydroid prop set persist.waydroid.height "''$MON_H"
-        sudo waydroid prop set persist.waydroid.dpi 240
-        sudo waydroid prop set persist.waydroid.fps 60
-        sudo waydroid prop set ro.sf.lcd_density 320
+        waydroid prop set persist.waydroid.width "''$MON_W"
+        waydroid prop set persist.waydroid.height "''$MON_H"
+        waydroid prop set persist.waydroid.dpi 240
+        waydroid prop set persist.waydroid.fps 60
+        waydroid prop set ro.sf.lcd_density 320
 
         # 4. Start session in background
         waydroid session start &
@@ -183,13 +183,13 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         done
 
         # 6. Adjust WindowManager frame buffer
-        sudo waydroid shell wm size "''${MON_W}x''${MON_H}"
+        waydroid shell wm size "''${MON_W}x''${MON_H}"
 
         # 7. Launch UI surface
         waydroid show-full-ui
 
         # 8. Reset frame buffer and stop session on exit
-        sudo waydroid shell wm size reset 2>/dev/null || true
+        waydroid shell wm size reset 2>/dev/null || true
         waydroid session stop
       '';
     })
