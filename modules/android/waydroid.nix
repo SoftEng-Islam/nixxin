@@ -188,15 +188,17 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
           sleep 2
         done
 
-        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
-        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+        # 1. Create directories natively inside the Android container to bypass host permissions
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
 
-        # Use 'mountpoint -q' to prevent double-mounting if you run the script twice
-        mountpoint -q "$MEDIA_DIR/Documents" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        mountpoint -q "$MEDIA_DIR/Download" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        mountpoint -q "$MEDIA_DIR/Music" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        mountpoint -q "$MEDIA_DIR/Pictures" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        mountpoint -q "$MEDIA_DIR/Movies" || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+
+        # 2. Parse /proc/mounts to avoid double-mounting and bypass host permission blocks
+        grep -q "$MEDIA_DIR/Documents" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        grep -q "$MEDIA_DIR/Download" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        grep -q "$MEDIA_DIR/Music" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        grep -q "$MEDIA_DIR/Pictures" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        grep -q "$MEDIA_DIR/Movies" /proc/mounts || sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
 
         echo "Shared directories mounted successfully!"
       '';
