@@ -58,19 +58,19 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
   # environment.sessionVariables.WAYDROID_BRIDGE_IP = "192.168.241.1";
 
-  environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (
-    pkgs.writeText "waydroid.conf" ''
-      [Protocol]
-      /dev/binder = aidl3
-      /dev/vndbinder = aidl3
-      /dev/hwbinder = hidl
+  # environment.etc."gbinder.d/waydroid.conf".source = lib.mkForce (
+  #   pkgs.writeText "waydroid.conf" ''
+  #     [Protocol]
+  #     /dev/binder = aidl3
+  #     /dev/vndbinder = aidl3
+  #     /dev/hwbinder = hidl
 
-      [ServiceManager]
-      /dev/binder = aidl3
-      /dev/vndbinder = aidl3
-      /dev/hwbinder = hidl
-    ''
-  );
+  #     [ServiceManager]
+  #     /dev/binder = aidl3
+  #     /dev/vndbinder = aidl3
+  #     /dev/hwbinder = hidl
+  #   ''
+  # );
 
   systemd.tmpfiles.settings."99-waydroid-settings"."/var/lib/waydroid/waydroid_base.prop".C = {
     user = "root";
@@ -168,16 +168,14 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     # (match:class ^(Waydroid)$) handles placement/sizing directly.
     (pkgs.writeShellApplication {
       name = "waydroid-ui";
+
       runtimeInputs = with pkgs; [
         jq
         hyprland
-        android-tools
       ];
-      text = ''
-        # 1. Clean up any stale session
-        waydroid session stop 2>/dev/null || true
 
-        # 2. Detect the target monitor's native resolution.
+      text = ''
+        # 1. Determine the currently focused monitor.
         MONITORS_JSON=$(hyprctl monitors -j)
 
         read -r MON_W MON_H < <(
@@ -193,23 +191,31 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         echo "Waydroid target resolution: ''${MON_W}x''${MON_H}"
 
-        # 3. Android display props (Unlocked for smooth 60 FPS)
+        # 2. Stop any existing session.
+        waydroid session stop 2>/dev/null || true
+
+        # 3. Configure Android's virtual display.
         waydroid prop set persist.waydroid.width "$MON_W"
         waydroid prop set persist.waydroid.height "$MON_H"
         waydroid prop set persist.waydroid.dpi 240
         waydroid prop set persist.waydroid.fps 60
 
+        # 4. Start Waydroid.
+        waydroid session start >/dev/null 2>&1 &
 
-        # Restore standard Android animation speeds
-        adb -s 192.168.240.112:5555 shell settings put global window_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global transition_animation_scale 1.0 2>/dev/null || true
-        adb -s 192.168.240.112:5555 shell settings put global animator_duration_scale 1.0 2>/dev/null || true
+        # 5. Wait until the Waydroid session is running.
+        until waydroid status | grep -q 'Session:[[:space:]]*RUNNING'; do
+          sleep 1
+        done
 
-        # 5. Launch the native Wayland UI directly. This blocks until the
-        # user closes the window, at which point we tear the session down.
+        # Give Android a moment to initialize.
+        sleep 2
+
+        # 6. Launch Waydroid.
         waydroid show-full-ui
 
-        waydroid session stop
+        # 7. Clean up when the window closes.
+        waydroid session stop 2>/dev/null || true
       '';
     })
   ];
