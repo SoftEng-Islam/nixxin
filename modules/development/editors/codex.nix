@@ -48,4 +48,6 @@
     #   };
     # };
   };
+
+  programs.chatgpt-desktop-app.enable = settings.modules.development.editors.codex.enable or false;
 }

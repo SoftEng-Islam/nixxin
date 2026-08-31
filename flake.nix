@@ -30,7 +30,8 @@
     # Polkit
     hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
-    # claude-cowork-nix.url = "github:Reginleif88/claude-cowork-nix";
+    # Codez Desktop
+    chatgpt-desktop-app.url = "github:poeck/chatgpt-desktop-app-nix-flake";
 
     # -----------------------------
     # needed by "https://github.com/Shanu-Kumawat/quickshell-overview"
@@ -95,6 +96,7 @@
       nix-cachyos-kernel,
       sops-nix,
       antigravity-nix,
+      chatgpt-desktop-app,
       ...
     }@inputs:
     let
@@ -128,6 +130,7 @@
           modules = [
             inputs.home-manager.nixosModules.home-manager
             sops-nix.nixosModules.sops
+            chatgpt-desktop-app.nixosModules.default
 
             {
               imports = [
@@ -164,6 +167,7 @@
                 })
 
               ];
+
             }
             ./users/configuration.nix
           ];
