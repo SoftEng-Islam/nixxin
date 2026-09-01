@@ -4,6 +4,9 @@
   pkgs,
   ...
 }:
+let
+  HOME_DIR = "/home/${settings.user.username}";
+in
 {
   home-manager.users.${settings.user.username} = {
     imports = [
@@ -129,7 +132,7 @@
       transition_duration = 1500          # milliseconds
       edge_smoothness     = 0.3
       transition_on_startup = false       # animate the first wallpaper at shell startup (v4-style)
-      directory           = ""              # empty = XDG Pictures directory
+      directory           = "~/Pictures/Wallpapers"              # empty = XDG Pictures directory
       directory_light     = ""            # optional day-mode directory
       directory_dark      = ""            # optional night-mode directory
 
@@ -137,7 +140,7 @@
       path = ""                            # optional initial/default wallpaper path
 
       [wallpaper.automation]
-      enabled                    = false
+      enabled                    = true
       interval_seconds           = 1800    # seconds between changes
       order                      = "random" # random | alphabetical
       recursive                  = true    # include subdirectories when picking random wallpapers
@@ -146,7 +149,7 @@
 
       [theme]
       mode   = "dark"                     # dark | light | auto
-      source = "builtin"                  # builtin | wallpaper | community
+      source = "wallpaper"                  # builtin | wallpaper | community
       builtin = "Noctalia"                # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                           # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
       # community_palette = "Noctalia"    # fetched from api.noctalia.dev, cached locally
@@ -171,7 +174,7 @@
       # ── Backdrop ──────────────────────────────────────────────────────────────────
 
       [backdrop]
-      enabled                = false
+      enabled                = true
       blur_intensity         = 0.5        # 0.0 = no blur, 1.0 = maximum
       tint_intensity         = 0.3        # 0.0 = no tint, 1.0 = opaque
 
@@ -230,7 +233,7 @@
 
       [lockscreen]
       enabled                 = true
-      blurred_desktop         = false       # use a desktop snapshot as the lock screen background (requires wlr-screencopy)
+      blurred_desktop         = true       # use a desktop snapshot as the lock screen background (requires wlr-screencopy)
       blur_intensity          = 0.5         # lock screen background blur (0.0 = none, 1.0 = maximum)
       tint_intensity          = 0.3         # surface-color tint over the lock screen background
       # wallpaper             = ""          # optional image path for the lock screen; empty uses the desktop wallpaper
@@ -353,9 +356,9 @@
       position           = "top"          # top | bottom | left | right
       thickness          = 34
       background_opacity = 1.0
-      radius             = 12
-      margin_ends        = 180
-      margin_edge        = 10
+      radius             = 0
+      margin_ends        = 0
+      margin_edge        = 0
       padding            = 14
       widget_spacing     = 6
       scale              = 1.0
@@ -371,9 +374,9 @@
       # capsule_opacity  = 1.0
       # capsule_border   = "outline"      # uncomment for a border on all widgets
 
-      start  = ["launcher", "wallpaper", "workspaces"]
+      start  = ["launcher", "notifications", "workspaces"]
       center = ["clock"]
-      end    = ["media", "tray", "notifications", "clipboard", "network", "bluetooth", "volume", "brightness", "battery", "control-center", "session"]
+      end    = ["tray", "clipboard", "network", "volume", "wallpaper","control-center", "session"]
 
       # Commands for the bar margin outside widget sections (dead zone):
       # [bar.main.dead_zone.actions]
@@ -575,5 +578,6 @@
 
     # Noctalia screenshot plugin needs this package
     hyprshot
+
   ];
 }
