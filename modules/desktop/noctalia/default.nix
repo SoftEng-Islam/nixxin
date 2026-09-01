@@ -254,7 +254,7 @@ in
       # ── Calendar ──────────────────────────────────────────────────────────────────
 
       [calendar]
-      enabled                     = false
+      enabled                     = true
       refresh_minutes             = 15
 
       # Calendar tab of the control center.
@@ -268,7 +268,7 @@ in
       # ── Weather ───────────────────────────────────────────────────────────────────
 
       [weather]
-      enabled         = false
+      enabled         = true
       refresh_minutes = 30
       unit            = "celsius"         # celsius | fahrenheit
       effects         = true              # visual weather effects
@@ -277,7 +277,7 @@ in
       # ── Audio ─────────────────────────────────────────────────────────────────────
 
       [audio]
-      enable_overdrive = false            # allow volume above 100% (up to 150%)
+      enable_overdrive = true            # allow volume above 100% (up to 150%)
       enable_sounds = true                # master toggle for UI feedback sounds
       sound_volume = 0.4                  # 0.0 - 1.0
       volume_change_sound = ""            # empty = bundled sounds/volume-change.wav
@@ -311,7 +311,7 @@ in
       # Single source of "where am I"; feeds Weather, Night Light, and Theme auto mode.
 
       [location]
-      auto_locate      = false             # resolve coordinates from IP when true
+      auto_locate      = true             # resolve coordinates from IP when true
       address          = ""                # e.g. "Toronto, ON"; geocoded when auto_locate = false
       # latitude       = 52.5200           # manual coordinates, used when auto_locate and address are off
       # longitude      = 13.4050
@@ -557,7 +557,7 @@ in
       # scroll_down_command = ""
       #
       [widget.clock]
-      format = "{:%I:%M %p}\n{:%m/%d/%Y}"
+      format = " {:%A, %B %-e} • {:%I:%M %p} "
       vertical_format = "{:%I\n%M\n%p}"
       tooltip_format = "{:%A, %B %d, %Y}"
       scale = 1.0                         # multiplies the bar scale for this widget only
