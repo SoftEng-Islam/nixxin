@@ -84,7 +84,10 @@ in
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = with pkgs; [
-          "${mesa.opencl}/etc/OpenCL/vendors"
+          # Pulled from unstable: nixos-26.05's mesa.opencl still lacks the
+          # patched mesa-libclc fork (karolherbst/mesa-libclc), which only
+          # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
+          "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
         ];
       }}";
@@ -145,7 +148,7 @@ in
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
-        mesa.opencl
+        unstable.mesa.opencl
         # Mesa includes RADV Vulkan driver for AMD (enabled by default)
         mesa
         # Video acceleration
