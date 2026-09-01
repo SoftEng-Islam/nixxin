@@ -27,9 +27,9 @@ in
       high_contrast         = false
 
       [shell]
-      corner_radius_scale   = 1.0          # 0 = square, 1 = default, 2 = extra rounded
+      corner_radius_scale   = 2.0          # 0 = square, 1 = default, 2 = extra rounded
       font_family           = "sans-serif"
-      time_format           = "{:%H:%M}"  # default shell UI time format
+      time_format           = " {:%A, %B %-e} • {:%I:%M %p} "  # default shell UI time format
       date_format           = "%A, %x"    # default shell UI date format
       offline_mode          = false        # block all outgoing HTTP when true
       # panel_anchor_bar   = "main"        # bar panels attach to without a source bar; omit = first enabled bar
@@ -361,8 +361,8 @@ in
       margin_edge        = 0
       padding            = 14
       widget_spacing     = 6
-      scale              = 1.0
-      font_scale         = 1.0            # text-only scale multiplier across widgets
+      scale              = 1.5
+      font_scale         = 1.5            # text-only scale multiplier across widgets
       shadow             = true
       auto_hide          = false
       # smart_auto_hide    = false       # show when the active workspace is empty; hide when it has windows
