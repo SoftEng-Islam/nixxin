@@ -556,14 +556,14 @@ in
       # scroll_up_command   = ""
       # scroll_down_command = ""
       #
-      # [widget.clock]
-      # format = "{:%H:%M}\n{:%d/%m}"
-      # vertical_format = "{:%H\n%M}"
-      # tooltip_format = "{:%A, %B %d, %Y}"
-      # scale = 1.0                         # multiplies the bar scale for this widget only
-      # font_scale = 1.0                    # multiplies text size for this widget only
-      # font_weight = 700
-      # interactive = false                 # pass clicks/scrolls through to the bar and disable hover/tooltips
+      [widget.clock]
+      format = "{:%I:%M %p}\n{:%m/%d/%Y}"
+      vertical_format = "{:%I\n%M\n%p}"
+      tooltip_format = "{:%A, %B %d, %Y}"
+      scale = 1.0                         # multiplies the bar scale for this widget only
+      font_scale = 1.0                    # multiplies text size for this widget only
+      font_weight = 700
+      interactive = false                 # pass clicks/scrolls through to the bar and disable hover/tooltips
     '';
   };
   nix.settings = {
