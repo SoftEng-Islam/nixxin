@@ -104,36 +104,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       done
     '';
 
-    # Fire a MediaStore rescan after Android fully boots so gallery/files
-    # apps immediately see the shared host directories without manual steps.
-    postStart = ''
-      sleep 5
-      LEASE_FILE="/var/lib/misc/dnsmasq.waydroid0.leases"
-      DEVICE_IP=""
-      for _ in $(seq 1 30); do
-        DEVICE_IP=$(${pkgs.gnugrep}/bin/grep -oP '(\d{1,3}\.){3}\d{1,3}(?=\s)' "$LEASE_FILE" 2>/dev/null | head -1)
-        [ -n "$DEVICE_IP" ] && break
-        sleep 2
-      done
-      [ -z "$DEVICE_IP" ] && { echo "postStart: no device IP, skipping rescan"; exit 0; }
-
-      export HOME="/home/${username}"
-      ${pkgs.android-tools}/bin/adb connect "$DEVICE_IP" || true
-
-      BOOTED=""
-      for _ in $(seq 1 60); do
-        BOOTED=$(${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n')
-        [ "$BOOTED" = "1" ] && break
-        sleep 3
-      done
-      [ "$BOOTED" != "1" ] && { echo "postStart: Android boot timeout, skipping rescan"; exit 0; }
-
-      ${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell \
-        am broadcast -a android.intent.action.MEDIA_MOUNTED \
-        -d file:///sdcard --receiver-include-background || true
-      echo "postStart: MediaStore rescan triggered"
-    '';
-
     # Propagate the bind mounts into the LXC container namespace.
     serviceConfig = {
       BindPaths = [
@@ -143,6 +113,64 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         "/home/${username}/Pictures:/home/${username}/Pictures"
         "/home/${username}/Videos:/home/${username}/Videos"
       ];
+    };
+  };
+
+  # Separate oneshot service that fires the MediaStore rescan after Android
+  # boots. Decoupled from waydroid-container so its long boot-wait loop can
+  # never time out and kill the container service itself.
+  systemd.services.waydroid-media-rescan = {
+    description = "Trigger Waydroid MediaStore rescan after boot";
+    after = [ "waydroid-container.service" ];
+    requires = [ "waydroid-container.service" ];
+    wantedBy = [ "multi-user.target" ];
+
+    serviceConfig = {
+      Type = "oneshot";
+      RemainAfterExit = false;
+      User = username;
+      # Give Android up to 5 minutes to fully boot before giving up
+      TimeoutStartSec = "5min";
+      ExecStart = let
+        script = pkgs.writeShellScript "waydroid-media-rescan" ''
+          set -euo pipefail
+          LEASE_FILE="/var/lib/misc/dnsmasq.waydroid0.leases"
+
+          # Wait for DHCP lease to appear (container just started)
+          DEVICE_IP=""
+          for _ in $(seq 1 30); do
+            DEVICE_IP=$(${pkgs.gnugrep}/bin/grep -oP '(\d{1,3}\.){3}\d{1,3}(?=\s)' "$LEASE_FILE" 2>/dev/null | head -1 || true)
+            [ -n "$DEVICE_IP" ] && break
+            sleep 2
+          done
+          if [ -z "$DEVICE_IP" ]; then
+            echo "waydroid-media-rescan: no device IP found, giving up"
+            exit 0
+          fi
+
+          # Connect adb
+          ${pkgs.android-tools}/bin/adb connect "$DEVICE_IP" || true
+
+          # Wait for Android to fully boot
+          BOOTED=""
+          for _ in $(seq 1 60); do
+            BOOTED=$(${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell \
+              getprop sys.boot_completed 2>/dev/null | tr -d '\r\n' || true)
+            [ "$BOOTED" = "1" ] && break
+            sleep 5
+          done
+          if [ "$BOOTED" != "1" ]; then
+            echo "waydroid-media-rescan: Android did not boot in time, giving up"
+            exit 0
+          fi
+
+          # Trigger MediaStore rescan — makes shared dirs visible in gallery/files
+          ${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell \
+            am broadcast -a android.intent.action.MEDIA_MOUNTED \
+            -d file:///sdcard --receiver-include-background || true
+          echo "waydroid-media-rescan: MediaStore rescan triggered on $DEVICE_IP"
+        '';
+      in "${script}";
     };
   };
 
