@@ -446,89 +446,103 @@ self: {
     # AMD GPU optimizations
 
     # --- MEMORY TUNING (Based on your 18GB RAM) ---
-    # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
-    # NOTE: `amdgpu.gttsize` is deprecated on newer kernels and may be ignored
-    # or cause driver warnings. Prefer tuning TTM directly if required.
     # Configure TTM pages limit: adjust the limit (pages) to control TTM memory usage.
-    "ttm.pages_limit=2097152" # Configure TTM pages limit instead of amdgpu.gttsize
-    "amdgpu.vm_fragment_size=9"
+    # 2097152 pages * 4KB = ~8GB for GPU memory management
+    "ttm.pages_limit=2097152"
+    "amdgpu.vm_fragment_size=9" # Optimize VM fragment handling for APU
 
     # --- PERFORMANCE & STABILITY ---
-    "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
+    # PCIe ASPM (Active State Power Management) can cause instability with some GPUs
+    "amdgpu.aspm=0" # Disable ASPM for AMD GPU specifically
+    "pcie_aspm=off" # Disable ASPM globally for all PCIe devices
 
-    "amdgpu.abmlevel=0"
-    "amdgpu.vm_update_mode=3"
-    "amdgpu.modeset=1"
-    "amdgpu.dc=1"
-    "amd_prefcore=disable"
-    "amdgpu.ppfeaturemask=0xffffffff"
+    # AMD GPU display and features
+    "amdgpu.abmlevel=0" # Disable Adaptive Backlight Management
+    "amdgpu.vm_update_mode=3" # Use CPU for page table updates (best for APUs)
+    "amdgpu.modeset=1" # Enable kernel mode setting (required)
+    "amdgpu.dc=1" # Enable Display Core driver (required for modern features)
+    "amdgpu.ppfeaturemask=0xffffffff" # Enable all PowerPlay features
+    "amdgpu.audio=0" # Disable HDMI/DP audio if not using it
 
-    # Disables HDMI/DisplayPort audio output on AMD GPUs.
-    # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-    "amdgpu.audio=0"
+    # --- CPU PERFORMANCE (Ryzen 5 3400G - Zen+) ---
+    # REMOVED: amd_prefcore=disable - Let the CPU use its preferred cores for better performance!
+    # Preferred core selection improves single-threaded performance on Zen+
 
-    "audit=0"
-    "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
-    "tsc=reliable" # Disable clocksource stability checks for TSC.
-    "clocksource=tsc" # Override the default clocksource
-    "no_timer_check"
-    "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
+    # --- SYSTEM OPTIMIZATION ---
+    "audit=0" # Disable audit system for performance
+    "random.trust_cpu=on" # Trust CPU's RNG for faster boot
+    "tsc=reliable" # Use TSC as reliable clocksource
+    "clocksource=tsc" # Force TSC clocksource
+    "no_timer_check" # Skip timer check for faster boot
+    "align_va_addr=on" # AMD F15h optimization (up to 3% performance gain)
 
-    # enable IOMMU for devices used in passthrough and provide better host performance in virtualization
-    "iommu=pt"
+    # --- VIRTUALIZATION ---
+    "iommu=pt" # Passthrough mode for IOMMU (better VM performance)
+    "amd_iommu=on" # Enable AMD IOMMU
 
-    # disable usb autosuspend
-    "usbcore.autosuspend=-1"
+    # --- USB & POWER ---
+    "usbcore.autosuspend=-1" # Disable USB autosuspend
 
-    # disables resume and restores original swap space
-    "noresume"
+    # --- BOOT OPTIMIZATION ---
+    "noresume" # Disable hibernate resume (faster boot)
+    "fbcon=nodefer" # Prevent blanking during boot
+    "vt.global_cursor_default=0" # Hide cursor for cleaner boot
+    "logo.nologo" # Disable kernel logo
 
-    # prevent the kernel from blanking plymouth out of the fb
-    "fbcon=nodefer"
+    # --- SCHEDULER & THREADING ---
+    "skew_tick=1" # Reduce timer interrupt clustering
+    "threadirqs" # Thread IRQs for better real-time performance
+    "preempt=full" # Full preemption (lower latency)
+    "smt=on" # Enable simultaneous multithreading (8 threads)
 
-    # disable the cursor in vt to get a black screen during intermissions
-    "vt.global_cursor_default=0"
+    # --- CPU FREQUENCY ---
+    "cpufreq.default_governor=performance" # Performance governor for desktops
+    "processor.ignore_ppc=1" # Ignore processor performance control limits
 
-    # disable displaying of the built-in Linux logo
-    "logo.nologo"
+    # --- SECURITY & MONITORING ---
+    "tpm.disable_pcr_integrity=1" # Disable TPM PCR integrity checking
+    "msr.allow_writes=on" # Allow MSR writes for overclocking tools
+    "nowatchdog" # Disable hardware watchdog
+    "nosoftlockup" # Disable soft lockup detection
 
-    "skew_tick=1"
-    "threadirqs"
-    "tpm.disable_pcr_integrity=1"
-    "preempt=full"
-    "amd_iommu=on"
-    "pcie_aspm=off" # Disables PCIe power saving (better performance)
-    "processor.ignore_ppc=1"
-    "msr.allow_writes=on"
+    # --- MEMORY & WORKQUEUE ---
+    "page_alloc.shuffle=1" # Randomize page allocator freelists (security + performance)
+    "workqueue.power_efficient=false" # Disable power-efficient workqueues for performance
 
-    "cpufreq.default_governor=performance"
-    "page_alloc.shuffle=1"
-    "ibt=off"
-
-    "workqueue.power_efficient=false"
-    "smt=on"
-    "nowatchdog"
-    "nosoftlockup"
-
-    # --- Added Performance Tunings ---
+    # --- OTHER ---
+    "ibt=off" # Disable Indirect Branch Tracking (slight performance gain)
     "lockdown=off" # Allow kernel tuning and eBPF tracing
   ];
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
-    "acpi-cpufreq"
-    "cpufreq_performance"
-    "k10temp" # Temperature monitoring
-    "usbhid"
-    "usbcore"
-    "bfq"
-    "fuse"
-    "kvm-amd" # AMD Virtualization
-    "msr"
-    "uinput"
+    # CPU Frequency Scaling
+    "acpi-cpufreq" # ACPI-based CPU frequency driver for AMD
+    "cpufreq_performance" # Performance governor module
 
-    # Generic DRM helpers (usually auto‑loaded, but explicit for determinism)
-    "drm"
-    "drm_kms_helper"
+    # CPU Monitoring
+    "k10temp" # AMD Family 10h+ temperature sensor (works for Zen+)
+
+    # USB Support
+    "usbhid" # USB Human Interface Device support
+    "usbcore" # USB core support
+
+    # I/O Scheduler
+    "bfq" # Budget Fair Queueing scheduler
+
+    # Filesystem
+    "fuse" # Filesystem in Userspace
+
+    # Virtualization
+    "kvm-amd" # AMD KVM virtualization support
+
+    # System Control
+    "msr" # Model-Specific Register support (for CPU tuning)
+    "uinput" # User-level input driver support
+
+    # Graphics (DRM - Direct Rendering Manager)
+    "drm" # Core DRM support
+    "drm_kms_helper" # Kernel Mode Setting helpers
+    # Note: amdgpu module is loaded automatically via initrd
   ];
   # [ extraModprobeConfig ]
   modules.system.boot.extraModprobeConfig = ''
