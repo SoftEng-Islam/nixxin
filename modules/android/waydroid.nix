@@ -110,7 +110,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       sleep 5
       LEASE_FILE="/var/lib/misc/dnsmasq.waydroid0.leases"
       DEVICE_IP=""
-      for i in $(seq 1 30); do
+      for _ in $(seq 1 30); do
         DEVICE_IP=$(${pkgs.gnugrep}/bin/grep -oP '(\d{1,3}\.){3}\d{1,3}(?=\s)' "$LEASE_FILE" 2>/dev/null | head -1)
         [ -n "$DEVICE_IP" ] && break
         sleep 2
@@ -121,7 +121,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       ${pkgs.android-tools}/bin/adb connect "$DEVICE_IP" || true
 
       BOOTED=""
-      for i in $(seq 1 60); do
+      for _ in $(seq 1 60); do
         BOOTED=$(${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n')
         [ "$BOOTED" = "1" ] && break
         sleep 3
@@ -303,7 +303,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         # ── Wait for Android to fully boot ────────────────────────────────────
         echo "Waiting for Android to fully boot..."
-        for i in $(seq 1 60); do
+        for _ in $(seq 1 60); do
           BOOTED=$(adb -s "$DEVICE_IP" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n')
           [ "$BOOTED" = "1" ] && break
           sleep 3
