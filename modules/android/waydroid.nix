@@ -104,9 +104,37 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       done
     '';
 
+    # Fire a MediaStore rescan after Android fully boots so gallery/files
+    # apps immediately see the shared host directories without manual steps.
+    postStart = ''
+      sleep 5
+      LEASE_FILE="/var/lib/misc/dnsmasq.waydroid0.leases"
+      DEVICE_IP=""
+      for i in $(seq 1 30); do
+        DEVICE_IP=$(${pkgs.gnugrep}/bin/grep -oP '(\d{1,3}\.){3}\d{1,3}(?=\s)' "$LEASE_FILE" 2>/dev/null | head -1)
+        [ -n "$DEVICE_IP" ] && break
+        sleep 2
+      done
+      [ -z "$DEVICE_IP" ] && { echo "postStart: no device IP, skipping rescan"; exit 0; }
+
+      export HOME="/home/${username}"
+      ${pkgs.android-tools}/bin/adb connect "$DEVICE_IP" || true
+
+      BOOTED=""
+      for i in $(seq 1 60); do
+        BOOTED=$(${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n')
+        [ "$BOOTED" = "1" ] && break
+        sleep 3
+      done
+      [ "$BOOTED" != "1" ] && { echo "postStart: Android boot timeout, skipping rescan"; exit 0; }
+
+      ${pkgs.android-tools}/bin/adb -s "$DEVICE_IP" shell \
+        am broadcast -a android.intent.action.MEDIA_MOUNTED \
+        -d file:///sdcard --receiver-include-background || true
+      echo "postStart: MediaStore rescan triggered"
+    '';
+
     # Propagate the bind mounts into the LXC container namespace.
-    # Format: "hostPath:containerPath" — here they are identical because
-    # the container sees the same absolute paths under /home/<user>.
     serviceConfig = {
       BindPaths = [
         "/home/${username}/Documents:/home/${username}/Documents"
@@ -246,8 +274,9 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # 7. Packages & Utilities
   # ==========================================
   environment.systemPackages = with pkgs; [
-    wl-clipboard # Required for Waydroid clipboard sync
+    wl-clipboard      # Required for Waydroid clipboard sync
     waydroid-nftables
+    android-tools     # adb — used by postStart rescan and waydroid-aid
 
     (pkgs.writeShellApplication {
       name = "waydroid-aid";
@@ -256,51 +285,72 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         wl-clipboard-rs
         sqlite
         util-linux
-        adb-sync
+        android-tools  # adb - no root needed, unlike waydroid shell
       ];
       text = ''
-        # ── Google Device Registration ─────────────────────────────────────────
-        echo "Fetching Google Services Framework Android ID..."
-        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c \
-          "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" \
-          | awk -F '|' '{print $2}' | wl-copy
-        echo "Paste clipboard at: https://www.google.com/android/uncertified"
-        echo ""
+        # ── Resolve device IP from DHCP lease ─────────────────────────────────
+        LEASE_FILE="/var/lib/misc/dnsmasq.waydroid0.leases"
+        DEVICE_IP=$(grep -oP '(\d{1,3}\.){3}\d{1,3}(?=\s)' "$LEASE_FILE" 2>/dev/null | head -1)
+        if [ -z "$DEVICE_IP" ]; then
+          echo "ERROR: Waydroid does not appear to be running (no DHCP lease found)."
+          exit 1
+        fi
+        echo "Waydroid device IP: $DEVICE_IP"
+
+        # ── Connect ADB ────────────────────────────────────────────────────────
+        adb connect "$DEVICE_IP"
+        sleep 1
 
         # ── Wait for Android to fully boot ────────────────────────────────────
         echo "Waiting for Android to fully boot..."
-        until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
-          sleep 2
+        for i in $(seq 1 60); do
+          BOOTED=$(adb -s "$DEVICE_IP" shell getprop sys.boot_completed 2>/dev/null | tr -d '\r\n')
+          [ "$BOOTED" = "1" ] && break
+          sleep 3
         done
+        if [ "$BOOTED" != "1" ]; then
+          echo "ERROR: Android did not finish booting. Is 'waydroid show-full-ui' running?"
+          exit 1
+        fi
         echo "Android is ready."
 
-        # ── Verify mounts are live (set up by waydroid-container.service) ─────
+        # ── Verify bind mounts are live ────────────────────────────────────────
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
         all_ok=true
         for pair in "Documents:Documents" "Downloads:Download" "Music:Music" "Pictures:Pictures" "Videos:Movies"; do
-          host_dir="$HOME/''${pair%%:*}"
           android_dir="$MEDIA_DIR/''${pair##*:}"
           if mountpoint -q "$android_dir"; then
-            echo "  ✓ $host_dir → $android_dir"
+            echo "  ✓ $HOME/''${pair%%:*}  →  $android_dir"
           else
-            echo "  ✗ NOT mounted: $android_dir  (waydroid-container.service may have failed)"
+            echo "  ✗ NOT mounted: $android_dir"
             all_ok=false
           fi
         done
 
-        if $all_ok; then
+        if ! $all_ok; then
           echo ""
-          echo "All shared directories are mounted. Triggering Android MediaStore rescan..."
-          # Tell Android's MediaStore to rescan shared storage so files appear in gallery/files apps
-          sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- \
-            am broadcast -a android.intent.action.MEDIA_MOUNTED \
-            -d file:///sdcard --receiver-include-background || true
-          echo "Done. Your Downloads, Pictures, etc. should now be visible inside Waydroid."
-        else
-          echo ""
-          echo "Some mounts are missing. Try restarting the service:"
-          echo "  sudo systemctl restart waydroid-container"
+          echo "Some mounts missing — restarting waydroid-container..."
+          sudo systemctl restart waydroid-container
+          sleep 10
         fi
+
+        # ── Trigger MediaStore rescan via adb ──────────────────────────────────
+        echo ""
+        echo "Triggering Android MediaStore rescan..."
+        adb -s "$DEVICE_IP" shell \
+          am broadcast -a android.intent.action.MEDIA_MOUNTED \
+          -d file:///sdcard --receiver-include-background
+        echo "Done. Your Downloads, Pictures, Music etc. should now appear in Waydroid."
+
+        # ── Google Device Registration (bonus) ────────────────────────────────
+        echo ""
+        echo "Fetching Google Services Framework Android ID..."
+        adb -s "$DEVICE_IP" shell \
+          "sqlite3 /data/data/com.google.android.gsf/databases/gservices.db \
+          'select value from main where name = \"android_id\";'" \
+          | wl-copy 2>/dev/null \
+          && echo "Android ID copied to clipboard. Register at: https://www.google.com/android/uncertified" \
+          || echo "(Could not fetch Android ID — GSF may not be installed)"
       '';
     })
   ];
