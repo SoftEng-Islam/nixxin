@@ -19,60 +19,104 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     waydroid.package = pkgs.waydroid-nftables;
   };
 
-  systemd.services.waydroid-container.preStart = ''
-    if [ ! -e /var/lib/waydroid/lxc/waydroid/config_nodes ]; then
-      ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
-    fi
+  systemd.services.waydroid-container = {
+    preStart = ''
+      if [ ! -e /var/lib/waydroid/lxc/waydroid/config_nodes ]; then
+        ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
+      fi
 
-    HOME_DIR="/home/${username}"
-    MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
+      HOME_DIR="/home/${username}"
+      MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
 
-    ${pkgs.coreutils}/bin/mkdir -p \
-      "$HOME_DIR/Documents" \
-      "$HOME_DIR/Downloads" \
-      "$HOME_DIR/Music" \
-      "$HOME_DIR/Pictures" \
-      "$HOME_DIR/Videos" \
-      "$MEDIA_DIR/Documents" \
-      "$MEDIA_DIR/Download" \
-      "$MEDIA_DIR/Music" \
-      "$MEDIA_DIR/Pictures" \
-      "$MEDIA_DIR/Movies"
+      # Ensure host source directories exist with correct ownership
+      ${pkgs.coreutils}/bin/mkdir -p \
+        "$HOME_DIR/Documents" \
+        "$HOME_DIR/Downloads" \
+        "$HOME_DIR/Music" \
+        "$HOME_DIR/Pictures" \
+        "$HOME_DIR/Videos"
 
-    ${pkgs.coreutils}/bin/chgrp -R 1023 \
-      "$HOME_DIR/Documents" \
-      "$HOME_DIR/Downloads" \
-      "$HOME_DIR/Music" \
-      "$HOME_DIR/Pictures" \
-      "$HOME_DIR/Videos" || true
+      # Ensure Android-side mount target directories exist and are owned by
+      # media_rw (uid=1023, gid=1023) so the Android MediaStore can scan them.
+      ${pkgs.coreutils}/bin/mkdir -p \
+        "$MEDIA_DIR/Documents" \
+        "$MEDIA_DIR/Download" \
+        "$MEDIA_DIR/Music" \
+        "$MEDIA_DIR/Pictures" \
+        "$MEDIA_DIR/Movies"
 
-    ${pkgs.coreutils}/bin/chmod -R g+rwX \
-      "$HOME_DIR/Documents" \
-      "$HOME_DIR/Downloads" \
-      "$HOME_DIR/Music" \
-      "$HOME_DIR/Pictures" \
-      "$HOME_DIR/Videos" || true
+      ${pkgs.coreutils}/bin/chown -R 1023:1023 \
+        "$MEDIA_DIR/Documents" \
+        "$MEDIA_DIR/Download" \
+        "$MEDIA_DIR/Music" \
+        "$MEDIA_DIR/Pictures" \
+        "$MEDIA_DIR/Movies"
 
-    ${pkgs.findutils}/bin/find \
-      "$HOME_DIR/Documents" \
-      "$HOME_DIR/Downloads" \
-      "$HOME_DIR/Music" \
-      "$HOME_DIR/Pictures" \
-      "$HOME_DIR/Videos" \
-      -type d -exec ${pkgs.coreutils}/bin/chmod g+s {} + || true
+      # Apply GID 1023 (media_rw) and setgid to host dirs so Android can
+      # read/write files created on the host side without permission errors.
+      ${pkgs.coreutils}/bin/chgrp -R 1023 \
+        "$HOME_DIR/Documents" \
+        "$HOME_DIR/Downloads" \
+        "$HOME_DIR/Music" \
+        "$HOME_DIR/Pictures" \
+        "$HOME_DIR/Videos" || true
 
-    mount_shared() {
-      source="$1"
-      target="$2"
-      ${pkgs.util-linux}/bin/mountpoint -q "$target" || ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
-    }
+      ${pkgs.coreutils}/bin/chmod -R g+rwX \
+        "$HOME_DIR/Documents" \
+        "$HOME_DIR/Downloads" \
+        "$HOME_DIR/Music" \
+        "$HOME_DIR/Pictures" \
+        "$HOME_DIR/Videos" || true
 
-    mount_shared "$HOME_DIR/Documents" "$MEDIA_DIR/Documents"
-    mount_shared "$HOME_DIR/Downloads" "$MEDIA_DIR/Download"
-    mount_shared "$HOME_DIR/Music" "$MEDIA_DIR/Music"
-    mount_shared "$HOME_DIR/Pictures" "$MEDIA_DIR/Pictures"
-    mount_shared "$HOME_DIR/Videos" "$MEDIA_DIR/Movies"
-  '';
+      # setgid on directories: new files inherit the group automatically
+      ${pkgs.findutils}/bin/find \
+        "$HOME_DIR/Documents" \
+        "$HOME_DIR/Downloads" \
+        "$HOME_DIR/Music" \
+        "$HOME_DIR/Pictures" \
+        "$HOME_DIR/Videos" \
+        -type d -exec ${pkgs.coreutils}/bin/chmod g+s {} + || true
+
+      # Bind-mount host dirs onto the MEDIA_DIR targets.
+      # These mounts happen in the *host* mount namespace before the LXC
+      # container starts, so LXC inherits them via BindPaths propagation.
+      mount_shared() {
+        local source="$1" target="$2"
+        ${pkgs.util-linux}/bin/mountpoint -q "$target" || \
+          ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
+      }
+
+      mount_shared "$HOME_DIR/Documents" "$MEDIA_DIR/Documents"
+      mount_shared "$HOME_DIR/Downloads" "$MEDIA_DIR/Download"
+      mount_shared "$HOME_DIR/Music"     "$MEDIA_DIR/Music"
+      mount_shared "$HOME_DIR/Pictures"  "$MEDIA_DIR/Pictures"
+      mount_shared "$HOME_DIR/Videos"    "$MEDIA_DIR/Movies"
+    '';
+
+    # Clean up bind mounts when the container stops so they don't pile up
+    postStop = ''
+      HOME_DIR="/home/${username}"
+      MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
+
+      for dir in Documents Download Music Pictures Movies; do
+        ${pkgs.util-linux}/bin/mountpoint -q "$MEDIA_DIR/$dir" && \
+          ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/$dir" || true
+      done
+    '';
+
+    # Propagate the bind mounts into the LXC container namespace.
+    # Format: "hostPath:containerPath" — here they are identical because
+    # the container sees the same absolute paths under /home/<user>.
+    serviceConfig = {
+      BindPaths = [
+        "/home/${username}/Documents:/home/${username}/Documents"
+        "/home/${username}/Downloads:/home/${username}/Downloads"
+        "/home/${username}/Music:/home/${username}/Music"
+        "/home/${username}/Pictures:/home/${username}/Pictures"
+        "/home/${username}/Videos:/home/${username}/Videos"
+      ];
+    };
+  };
 
   boot.kernelParams = [ "psi=1" ];
   boot.kernelModules = [ "uhid" ];
@@ -215,44 +259,48 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         adb-sync
       ];
       text = ''
+        # ── Google Device Registration ─────────────────────────────────────────
         echo "Fetching Google Services Framework Android ID..."
-        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" | awk -F '|' '{print $2}' | wl-copy
-        echo "Paste clipboard in this website below:"
-        echo "https://www.google.com/android/uncertified"
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- sh -c \
+          "sqlite3 /data/data/*/*/gservices.db 'select * from main where name = \"android_id\";'" \
+          | awk -F '|' '{print $2}' | wl-copy
+        echo "Paste clipboard at: https://www.google.com/android/uncertified"
         echo ""
 
-        echo "Waiting for Android to fully boot before mounting shared directories..."
+        # ── Wait for Android to fully boot ────────────────────────────────────
+        echo "Waiting for Android to fully boot..."
         until [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; do
           sleep 2
         done
+        echo "Android is ready."
 
-        echo "Applying native Android group permissions (GID 1023) to host folders..."
-        # 1. Apply native group ownership so Android's internal scanner can read/write them seamlessly
-        sudo chgrp -R 1023 "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" || true
-        sudo chmod -R g+rwX "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" || true
-
-        # 2. Apply 'setgid' so any new files you create on your host automatically inherit the group
-        find "$HOME/Documents" "$HOME/Downloads" "$HOME/Music" "$HOME/Pictures" "$HOME/Videos" -type d -exec sudo chmod g+s {} + || true
-
+        # ── Verify mounts are live (set up by waydroid-container.service) ─────
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
-        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+        all_ok=true
+        for pair in "Documents:Documents" "Downloads:Download" "Music:Music" "Pictures:Pictures" "Videos:Movies"; do
+          host_dir="$HOME/''${pair%%:*}"
+          android_dir="$MEDIA_DIR/''${pair##*:}"
+          if mountpoint -q "$android_dir"; then
+            echo "  ✓ $host_dir → $android_dir"
+          else
+            echo "  ✗ NOT mounted: $android_dir  (waydroid-container.service may have failed)"
+            all_ok=false
+          fi
+        done
 
-        echo "Mounting folders into Waydroid..."
-
-        # 3. Mount natively, checking the actual mount point rather than parsing /proc/mounts.
-        mount_shared() {
-          source="$1"
-          target="$2"
-          mountpoint -q "$target" || sudo ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
-        }
-
-        mount_shared "$HOME/Documents" "$MEDIA_DIR/Documents"
-        mount_shared "$HOME/Downloads" "$MEDIA_DIR/Download"
-        mount_shared "$HOME/Music" "$MEDIA_DIR/Music"
-        mount_shared "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        mount_shared "$HOME/Videos" "$MEDIA_DIR/Movies"
-
-        echo "Shared directories successfully mounted with native performance!"
+        if $all_ok; then
+          echo ""
+          echo "All shared directories are mounted. Triggering Android MediaStore rescan..."
+          # Tell Android's MediaStore to rescan shared storage so files appear in gallery/files apps
+          sudo ${pkgs.waydroid-nftables}/bin/waydroid shell -- \
+            am broadcast -a android.intent.action.MEDIA_MOUNTED \
+            -d file:///sdcard --receiver-include-background || true
+          echo "Done. Your Downloads, Pictures, etc. should now be visible inside Waydroid."
+        else
+          echo ""
+          echo "Some mounts are missing. Try restarting the service:"
+          echo "  sudo systemctl restart waydroid-container"
+        fi
       '';
     })
   ];
