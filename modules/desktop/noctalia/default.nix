@@ -6,6 +6,7 @@
 }:
 let
   HOME_DIR = "/home/${settings.user.username}";
+
 in
 {
   home-manager.users.${settings.user.username} = {
@@ -27,8 +28,8 @@ in
       high_contrast         = false
 
       [shell]
-      corner_radius_scale   = 2.5          # 0 = square, 1 = default, 2 = extra rounded
-      font_family           = "Inter"
+      corner_radius_scale   = 2          # 0 = square, 1 = default, 2 = extra rounded
+      font_family           = settings.common.mainFont.name
       time_format           = " {:%A, %B %-e} • {:%I:%M %p} "  # default shell UI time format
       date_format           = "%A, %x"    # default shell UI date format
       offline_mode          = false        # block all outgoing HTTP when true
@@ -396,7 +397,7 @@ in
       # ── Dock ──────────────────────────────────────────────────────────────────────
 
       [dock]
-      enabled             = true          # set true to activate
+      enabled             = false          # set true to activate
       position            = "bottom"      # top | bottom | left | right
       icon_size           = 52
       main_axis_padding   = 20
@@ -467,9 +468,9 @@ in
       # scale    = 1.5
       # rotation = 0.0
 
-      # [lockscreen_widgets.widget.clock_main.settings]
-      # format = "  {:%A, %B %-e} • {:%I:%M %p}  "
-      # background_opacity = 0.8
+      [lockscreen_widgets.widget.clock_main.settings]
+      format = "  {:%A, %B %-e} • {:%I:%M %p}  "
+      background_opacity = 0.8
 
       # ── Control Center ────────────────────────────────────────────────────────────
 
@@ -517,16 +518,15 @@ in
       # custom_image = "/path/to/image.png"
       # custom_image_colorize = false
 
-      # [widget.notifications]
-      # hide_when_no_unread = true
+      [widget.notifications]
+      hide_when_no_unread = false
 
-      # [widget.network_rx]
-      # network_speed_unit = "mb"          # auto | kb | mb
-      # network_speed_compact = true       # show "1.2M" instead of "1.2 MB/s"
-      #
-      # [widget.network_tx]
-      # network_speed_unit = "mb"          # auto | kb | mb
-      # network_speed_compact = true       # show "1.2M" instead of "1.2 MB/s"
+      [widget.network_rx]
+      network_speed_unit = "auto"          # auto | kb | mb
+      network_speed_compact = false       # show "1.2M" instead of "1.2 MB/s"
+      [widget.network_tx]
+      network_speed_unit = "auto"          # auto | kb | mb
+      network_speed_compact = false       # show "1.2M" instead of "1.2 MB/s"
 
       # [widget.network]
       # vpn_status     = "replace"         # replace | both | hidden
@@ -536,15 +536,15 @@ in
       # [widget.volume.effects_profile_glyphs]
       # eq_desktop = "device-speaker"
 
-      # [widget.keyboard_layout]
-      # display                 = "short"    # "short" (e.g. "DE") or "full" (full layout name)
-      # show_icon               = true
-      # show_label              = true
+      [widget.keyboard_layout]
+      display                 = "full"    # "short" (e.g. "DE") or "full" (full layout name)
+      show_icon               = true
+      show_label              = true
       # hide_when_single_layout = false      # hide the widget when only one layout is configured
       # cycle_command           = ""         # custom command to cycle layouts (empty = compositor backend)
-      # [widget.keyboard_layout.custom_labels]  # override display labels by exact layout name
-      # "German (Neo 2)"        = "Neo2"
-      # "English (US)"          = "EN"
+      [widget.keyboard_layout.custom_labels]  # override display labels by exact layout name
+      "English (US)"          = "EN"
+      "Arabic (EG)"          = "AR"
 
       # [widget.lock_button]
       # type                = "custom_button"
