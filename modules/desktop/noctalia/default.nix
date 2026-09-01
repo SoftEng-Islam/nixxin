@@ -29,7 +29,7 @@ in
 
       [shell]
       corner_radius_scale   = 2          # 0 = square, 1 = default, 2 = extra rounded
-      font_family           = settings.common.mainFont.name
+      font_family           = "${settings.common.mainFont.name}"
       time_format           = " {:%A, %B %-e} • {:%I:%M %p} "  # default shell UI time format
       date_format           = "%A, %x"    # default shell UI date format
       offline_mode          = false        # block all outgoing HTTP when true
