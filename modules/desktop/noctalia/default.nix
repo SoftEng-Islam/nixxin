@@ -354,15 +354,15 @@ in
 
       [bar.main]
       position           = "top"          # top | bottom | left | right
-      thickness          = 44
-      background_opacity = 0.5
+      thickness          = 40
+      background_opacity = 0.8
       radius             = 0
       margin_ends        = 0
       margin_edge        = 0
       padding            = 14
       widget_spacing     = 6
-      scale              = 1.5
-      font_scale         = 1.5            # text-only scale multiplier across widgets
+      scale              = 1.4
+      font_scale         = 1.4            # text-only scale multiplier across widgets
       shadow             = true
       auto_hide          = false
       # smart_auto_hide    = false       # show when the active workspace is empty; hide when it has windows
