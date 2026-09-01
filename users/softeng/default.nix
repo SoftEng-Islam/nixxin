@@ -223,11 +223,11 @@ self: {
   # ║  Keep only essential plugins enabled for best APU performance         ║
   # ╚═══════════════════════════════════════════════════════════════════════╝
 
-  modules.desktop.hyprland.plugins.hyprbars = true;        # Title bars - lightweight ✓
-  modules.desktop.hyprland.plugins.hyprspace = false;      # Workspace overview - disabled for perf
-  modules.desktop.hyprland.plugins.bordersPlus = false;    # Extra borders - disabled for perf
-  modules.desktop.hyprland.plugins.hyprexpo = false;       # Expo view - disabled for perf
-  modules.desktop.hyprland.plugins.hyprtrails = false;     # Cursor trails - disabled for perf
+  modules.desktop.hyprland.plugins.hyprbars = true; # Title bars - lightweight ✓
+  modules.desktop.hyprland.plugins.hyprspace = false; # Workspace overview - disabled for perf
+  modules.desktop.hyprland.plugins.bordersPlus = false; # Extra borders - disabled for perf
+  modules.desktop.hyprland.plugins.hyprexpo = false; # Expo view - disabled for perf
+  modules.desktop.hyprland.plugins.hyprtrails = false; # Cursor trails - disabled for perf
 
   modules.desktop.hyprland.lockscreen.timeOut = 300; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
@@ -340,7 +340,7 @@ self: {
   };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = (self.modules.networking.wifiBackend == "iwd");
-  modules.networking.rtl8188eus = false;
+  modules.networking.rtl8188eus = true;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
