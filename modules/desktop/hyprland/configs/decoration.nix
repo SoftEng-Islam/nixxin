@@ -5,32 +5,58 @@
       settings.decoration = {
         rounding = settings.modules.desktop.hyprland.rounding;
 
-        # ---- Blur ---- #
+        # ╔════════════════════════════════════════╗
+        # ║            Blur Settings               ║
+        # ║  Optimized for AMD APU Performance     ║
+        # ╚════════════════════════════════════════╝
         blur = {
           enabled = settings.modules.desktop.hyprland.blur.enable;
+
+          # Xray mode: only blur transparent parts of windows
           xray = true;
+
+          # Blur windows with opacity set (improves performance)
           ignore_opacity = true;
+
+          # Blur special workspaces
           special = true;
-          new_optimizations = true;
+
+          # REMOVED: new_optimizations is deprecated/removed in recent Hyprland
+          # Modern blur optimizations are now always enabled
+
+          # Blur popups (e.g., context menus)
           popups = true;
           popups_ignorealpha = 0.6;
-          size = 3;
-          passes = 1;
+
+          # Blur settings: Lower values = better performance on APU
+          # For Ryzen 3400G APU, keep size low and passes at 1 for best performance
+          size = 3;        # Blur radius - keep low for APU
+          passes = 1;      # Single pass recommended for APU
+
+          # Visual adjustments
           brightness = 0.5;
           noise = 0.0;
           contrast = 0.5;
         };
 
-        # ---- Shadow ---- #
+        # ╔════════════════════════════════════════╗
+        # ║           Shadow Settings              ║
+        # ║  Optimized for APU Performance         ║
+        # ╚════════════════════════════════════════╝
         shadow = {
           enabled = settings.modules.desktop.hyprland.shadow.enable;
-          range = 15;
+
+          # Reduced range for better performance (default: 20)
+          range = 12;
+
+          # Subtle offset for natural look
           offset = "0 2";
+
+          # Lower render power = better performance (default: 3)
           render_power = 2;
+
+          # Shadow color with transparency
           color = "rgba(00000070)";
-          # col.shadow = rgba(00000070)
-          # col.shadow_inactive = rgba(00000020)
-          # "col.shadow" = "rgba(${config.lib.stylix.colors.base00}ff)";
         };
 
         # ---- Dim ---- #

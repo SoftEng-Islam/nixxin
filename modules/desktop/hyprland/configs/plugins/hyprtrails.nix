@@ -11,8 +11,16 @@ in {
       hyprtrails
     ];
     wayland.windowManager.hyprland.extraConfig = ''
-      plugin:hyprtrails {
-        color = rgba(ffaa00ff)
+      # ╔═══════════════════════════════════════╗
+      # ║         Hyprtrails Plugin             ║
+      # ║      Smooth Cursor Trail Effect       ║
+      # ╚═══════════════════════════════════════╝
+
+      plugin {
+        hyprtrails {
+          # Trail color (RGBA format)
+          color = rgba(ffaa00ff)
+        }
       }
     '';
   };

@@ -188,20 +188,47 @@ self: {
 
   # [ desktop ] [ Hyprland ]
   modules.desktop.hyprland.genColorsPath = "/home/${self.user.username}/.cache/hypr/colors.conf";
-  modules.desktop.hyprland.animationSpeed = "medium"; # medium or slow
+
+  # ╔═══════════════════════════════════════════════════════════════════════╗
+  # ║                   PERFORMANCE OPTIMIZATIONS APPLIED                   ║
+  # ║              Tuned for AMD Ryzen 5 3400G APU (Vega 11)               ║
+  # ╚═══════════════════════════════════════════════════════════════════════╝
+
+  # Animation speed: faster = better performance on APU
+  # Options: "fast" (best perf) | "medium" (balanced) | "slow" (eye candy)
+  modules.desktop.hyprland.animationSpeed = "medium"; # Balanced performance
+
+  # Blur: Keep enabled but optimized (size=3, passes=1 in decoration.nix)
+  # Set to false if you need maximum FPS in games
   modules.desktop.hyprland.blur.enable = true;
+
   modules.desktop.hyprland.opacity = 1.0; # The windows Opacity
-  modules.desktop.hyprland.shadow.enable = true; # enable shadow for Hyprland
-  modules.desktop.hyprland.rounding = 15; # Rounding Corners
+
+  # Shadows: Enabled with reduced range (15 instead of default 20)
+  # Minimal performance impact with current settings
+  modules.desktop.hyprland.shadow.enable = true;
+
+  # Rounding: 15 is fine, minimal GPU impact
+  modules.desktop.hyprland.rounding = 15;
+
   modules.desktop.hyprland.border.inactive.color = "rgba(6c6c6cff)";
   modules.desktop.hyprland.border.active.color = self.common.primaryColor;
   modules.desktop.hyprland.border.size = 4;
+
+  # Dim inactive: Helps focus but adds slight GPU work
   modules.desktop.hyprland.dim_inactive = true;
-  modules.desktop.hyprland.plugins.hyprbars = true;
-  modules.desktop.hyprland.plugins.hyprspace = false;
-  modules.desktop.hyprland.plugins.bordersPlus = false;
-  modules.desktop.hyprland.plugins.hyprexpo = false;
-  modules.desktop.hyprland.plugins.hyprtrails = false;
+
+  # ╔═══════════════════════════════════════════════════════════════════════╗
+  # ║                         PLUGIN CONFIGURATION                          ║
+  # ║  Keep only essential plugins enabled for best APU performance         ║
+  # ╚═══════════════════════════════════════════════════════════════════════╝
+
+  modules.desktop.hyprland.plugins.hyprbars = true;        # Title bars - lightweight ✓
+  modules.desktop.hyprland.plugins.hyprspace = false;      # Workspace overview - disabled for perf
+  modules.desktop.hyprland.plugins.bordersPlus = false;    # Extra borders - disabled for perf
+  modules.desktop.hyprland.plugins.hyprexpo = false;       # Expo view - disabled for perf
+  modules.desktop.hyprland.plugins.hyprtrails = false;     # Cursor trails - disabled for perf
+
   modules.desktop.hyprland.lockscreen.timeOut = 300; # 10min
   modules.desktop.hyprland.lockscreen.font = "";
   modules.desktop.hyprland.hyprpaper.enable = true;

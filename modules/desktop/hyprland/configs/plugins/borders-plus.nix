@@ -16,17 +16,25 @@ in {
       borders-plus-plus
     ];
     wayland.windowManager.hyprland.extraConfig = ''
-      plugin:borders-plus-plus {
-        add_borders = 1 # 0 - 9
+      # ╔═══════════════════════════════════════╗
+      # ║       Borders Plus Plus Plugin        ║
+      # ║      Additional Border Layers         ║
+      # ╚═══════════════════════════════════════╝
 
-        # You can add up to 9 borders
-        col.border_1 = rgba(00000060)
+      plugin {
+        borders-plus-plus {
+          # Number of additional borders (0-9)
+          add_borders = 1
 
-        # -1 means "default" as in the one defined in general:border_size
-        border_size_1 = 4
+          # Border 1: Subtle shadow effect
+          col.border_1 = rgba(00000060)
 
-        # makes outer edges match rounding of the parent. turn on/off to better understand. default = on.
-        natural_rounding = yes
+          # Border size (-1 = use default from general:border_size)
+          border_size_1 = 4
+
+          # Natural rounding: outer edges match parent window rounding
+          natural_rounding = yes
+        }
       }
     '';
   };

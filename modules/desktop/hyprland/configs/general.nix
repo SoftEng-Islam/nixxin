@@ -25,9 +25,18 @@
           allow_tearing = true;
 
           no_focus_fallback = true;
-          gaps_in = 15;
-          gaps_out = 30;
-          gaps_workspaces = 15;
+
+          # ╔═══════════════════════════════════════════════════════════════╗
+          # ║                    Gap Configuration                          ║
+          # ║  Slightly reduced for better visual space on APU              ║
+          # ╚═══════════════════════════════════════════════════════════════╝
+          gaps_in = 12;              # Reduced from 15 (inner gaps)
+          gaps_out = 24;             # Reduced from 30 (outer gaps)
+          gaps_workspaces = 12;      # Reduced from 15 (workspace gaps)
+
+          # ╔═══════════════════════════════════════════════════════════════╗
+          # ║                    Border Configuration                       ║
+          # ╚═══════════════════════════════════════════════════════════════╝
           border_size = settings.modules.desktop.hyprland.border.size;
           resize_on_border = true;
           hover_icon_on_border = true;

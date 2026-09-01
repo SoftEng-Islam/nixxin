@@ -19,20 +19,27 @@ in {
     ];
 
     wayland.windowManager.hyprland.extraConfig = ''
-      # ------------------ #
-      # ---- hyprexpo ---- #
-      # ------------------ #
-      plugin:hyprexpo {
-        columns = 3
-        gap_size = 5
-        bg_col = rgb(111111)
-        # [center/first] [workspace] e.g. first 1 or center m+1
-        workspace_method = center current
+      # ╔═══════════════════════════════════════╗
+      # ║           Hyprexpo Plugin             ║
+      # ║       Workspace Overview/Expo         ║
+      # ╚═══════════════════════════════════════╝
 
-        enable_gesture = true # laptop touchpad
-        gesture_fingers = 3 # 3 or 4
-        gesture_distance = 300 # how far is the "max"
-        gesture_positive = true # positive = swipe down. Negative = swipe up.
+      plugin {
+        hyprexpo {
+          columns = 3
+          gap_size = 5
+          bg_col = rgb(111111)
+
+          # Workspace method: [center/first] [workspace]
+          # Examples: "first 1" or "center m+1"
+          workspace_method = center current
+
+          # Touchpad gestures
+          enable_gesture = true
+          gesture_fingers = 3       # 3 or 4 finger swipe
+          gesture_distance = 300    # Distance for "max" gesture
+          gesture_positive = true   # true = swipe down, false = swipe up
+        }
       }
     '';
   };

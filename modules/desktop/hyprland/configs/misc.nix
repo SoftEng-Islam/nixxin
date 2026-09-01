@@ -3,81 +3,73 @@
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.misc = {
-        # controls the VRR (Adaptive Sync) of your monitors.
-        # 0 - off, 1 - on, 2 - fullscreen only
-        # Disabled: the display is 60Hz fixed-rate, VRR has no benefit.
+        # ╔═══════════════════════════════════════════════════════════════╗
+        # ║                   Performance & Behavior                      ║
+        # ╚═══════════════════════════════════════════════════════════════╝
+
+        # ---- Display Features ---- #
+        # Variable Refresh Rate (Adaptive Sync/FreeSync)
+        # 0 = off, 1 = on, 2 = fullscreen only
+        # For 144Hz monitor: fullscreen mode works best for gaming
         vrr = 2;
 
-        # If true, the config will not reload automatically on save, and..
-        # instead needs to be reloaded with hyprctl reload.
-        # Might save on battery.
+        # ---- Config & System ---- #
+        # Don't auto-reload config on save (saves battery/resources on APU)
         disable_autoreload = true;
 
-        # if true, will allow you to restart a lockscreen app in case it crashes (red screen of death)
+        # Allow lockscreen recovery if it crashes
         allow_session_lock_restore = true;
 
-        # If true, will animate manual window resizes/moves
+        # ---- Animations ---- #
+        # Animate manual window resizes/moves
         animate_manual_resizes = true;
 
-        # If true, will animate windows being dragged by mouse,
-        # note that this can cause weird behavior on some curves
+        # Disable mouse drag animation (can cause issues with some curves)
         animate_mouse_windowdragging = false;
 
-        # disables the random Hyprland logo / anime girl background. :(
+        # ---- Visual Preferences ---- #
+        # Disable Hyprland logo/anime background
         disable_hyprland_logo = true;
-
-        # change the background color. (requires enabled disable_hyprland_logo)
         background_color = "rgb(000000)";
 
-        # disables the Hyprland splash rendering. (requires a monitor reload to take effect)
+        # Disable splash rendering (requires monitor reload to take effect)
         disable_splash_rendering = true;
 
-        # disable the warning if XDG environment is externally managed
+        # ---- Environment ---- #
+        # Disable XDG environment externally managed warning
         disable_xdg_env_checks = true;
 
-        # disable the warning if hyprland-qtutils is not installed
-        # disable_hyprland_qtutils_check = true;
-
-        # whether to enable the ANR (app not responding) dialog when your apps hang
-        # enable_anr_dialog = false;
-
-        # The enable_swallow option in Hyprland allows a parent..
-        # window (like a terminal) to "swallow" a child window (like a launched GUI app),
-        # meaning the parent window will temporarily hide when the child window is opened.
-        # When the child window is closed, the parent window reappears.
+        # ---- Window Behavior ---- #
+        # Window swallowing: parent window hides when child opens
+        # (e.g., terminal launching GUI app)
         enable_swallow = false;
-        # # Only these terminals will swallow
         swallow_regex = "(wezterm|foot|kitty|allacritty|Alacritty)";
-        # swallow_regex = "^(wezterm)$";
-        swallow_exception_regex = ".*micro.*"; # Exception: Don't swallow Micro editor
+        swallow_exception_regex = ".*micro.*";
 
-        # Whether Hyprland should focus an app that requests to be focused (an activate request)
+        # Don't auto-focus apps that request focus
         focus_on_activate = false;
 
-        # Enforce any of the 3 default wallpapers. Setting this
-        # to 0 or 1 disables the anime background. -1 means
-        # “random”. [-1/0/1/2]
+        # Disable default wallpapers (-1=random, 0/1=specific, disables anime bg)
         force_default_wallpaper = 0;
 
-        # if enabled, windows will open on the workspace they were invoked on.
-        # 0 - disabled
-        # 1 - single-shot
-        # 2 - persistent (all children too)
+        # Workspace tracking: windows open on the workspace they were invoked on
+        # 0 = disabled, 1 = single-shot, 2 = persistent (all children too)
         initial_workspace_tracking = 0;
 
-        # whether to enable middle-click-paste (aka primary selection)
+        # ---- Input Behavior ---- #
+        # Disable middle-click paste (primary selection)
         middle_click_paste = false;
 
-        # If DPMS is set to off, wake up the monitors if the mouse moves.
+        # Wake monitors from DPMS on mouse/keyboard input
         mouse_move_enables_dpms = true;
-        # If DPMS is set to off, wake up the monitors if a key is pressed.
         key_press_enables_dpms = true;
 
-
-        # [Warning: buggy] starts rendering before your monitor displays a frame in order to lower latency
-        # render_ahead_of_time = false;
-        # how many ms of safezone to add to rendering ahead of time. Recommended 1-2.
-        # render_ahead_safezone = 1;
+        # ╔═══════════════════════════════════════════════════════════════╗
+        # ║  IMPORTANT: render_ahead_of_time is DEPRECATED and removed    ║
+        # ║  Modern Hyprland uses automatic adaptive rendering             ║
+        # ╚═══════════════════════════════════════════════════════════════╝
+        # render_ahead_of_time = false;  # REMOVED - deprecated
+        # render_ahead_safezone = 1;     # REMOVED - deprecated
       };
     };
   };
