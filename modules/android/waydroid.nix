@@ -184,7 +184,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         sys.use_memfd=true
         ro.hardware.gralloc=gbm
         ro.hardware.egl=mesa
-        ro.hardware.vulkan=radv
+        ro.hardware.vulkan=radeon
 
         # --- GPU & Display ---
         gralloc.gbm.device=/dev/dri/renderD128
