@@ -354,8 +354,8 @@ in
 
       [bar.main]
       position           = "top"          # top | bottom | left | right
-      thickness          = 34
-      background_opacity = 1.0
+      thickness          = 44
+      background_opacity = 0.5
       radius             = 0
       margin_ends        = 0
       margin_edge        = 0
