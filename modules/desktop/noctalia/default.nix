@@ -468,7 +468,7 @@ in
       # rotation = 0.0
 
       # [lockscreen_widgets.widget.clock_main.settings]
-      # format = "{:%H:%M}"
+      # format = "  {:%A, %B %-e} • {:%I:%M %p}  "
       # background_opacity = 0.8
 
       # ── Control Center ────────────────────────────────────────────────────────────
