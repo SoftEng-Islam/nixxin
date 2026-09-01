@@ -23,12 +23,12 @@ in
       # ── Shell ─────────────────────────────────────────────────────────────────────
 
       [accessibility]
-      ui_scale              = 1.0
+      ui_scale              = 1.1
       high_contrast         = false
 
       [shell]
-      corner_radius_scale   = 2.0          # 0 = square, 1 = default, 2 = extra rounded
-      font_family           = "sans-serif"
+      corner_radius_scale   = 2.5          # 0 = square, 1 = default, 2 = extra rounded
+      font_family           = "Inter"
       time_format           = " {:%A, %B %-e} • {:%I:%M %p} "  # default shell UI time format
       date_format           = "%A, %x"    # default shell UI date format
       offline_mode          = false        # block all outgoing HTTP when true
@@ -65,21 +65,21 @@ in
 
       [shell.animation]
       enabled = true
-      speed   = 1.0                       # 0.5 = 2× slower, 2.0 = 2× faster
+      speed   = 1.2                       # 0.5 = 2× slower, 2.0 = 2× faster
 
       [shell.shadow]
       direction = "down"                  # center, up, down, left, right, up_left, up_right, down_left, down_right
-      alpha     = 0.55                    # multiplied by each component's background opacity
+      alpha     = 0.65                    # multiplied by each component's background opacity
 
       [shell.panel]
-      transparency_mode     = "solid"     # solid | soft | glass; controls floating-panel opacity and card translucency
-      borders               = true        # panel shell outline and in-panel section cards
+      transparency_mode     = "glass"     # solid | soft | glass; controls floating-panel opacity and card translucency
+      borders               = false       # panel shell outline and in-panel section cards
       shadow                = true        # cast the global [shell.shadow] from panel surfaces
       launcher_placement       = "floating" # attached | floating
       clipboard_placement      = "floating" # attached | floating
-      control_center_placement = "attached" # attached | floating
-      wallpaper_placement      = "attached" # attached | floating
-      session_placement        = "attached" # attached | floating
+      control_center_placement = "floating" # attached | floating
+      wallpaper_placement      = "floating" # attached | floating
+      session_placement        = "floating" # attached | floating
       launcher_position        = "center"   # auto | center | top_left | … (floating only)
       clipboard_position       = "center"   # auto | center | top_left | … (floating only)
       open_near_click_control_center = false # for attached/floating placement, follow the bar click instead of bar-center
@@ -175,8 +175,8 @@ in
 
       [backdrop]
       enabled                = true
-      blur_intensity         = 0.5        # 0.0 = no blur, 1.0 = maximum
-      tint_intensity         = 0.3        # 0.0 = no tint, 1.0 = opaque
+      blur_intensity         = 0.75       # 0.0 = no blur, 1.0 = maximum
+      tint_intensity         = 0.4        # 0.0 = no tint, 1.0 = opaque
 
       # ── Notifications ─────────────────────────────────────────────────────────────
 
@@ -184,11 +184,11 @@ in
       enable_daemon      = true
       show_app_name      = true
       show_actions       = true           # show action buttons; when false, clicking a toast triggers its default action
-      layer              = "top"          # top | overlay
+      layer              = "overlay"      # top | overlay
       scale              = 1.0            # notification size multiplier applied on top of accessibility.ui_scale
-      background_opacity = 0.97
-      offset_x           = 20             # absolute horizontal margin from the screen edge
-      offset_y           = 8              # absolute vertical margin from the screen edge
+      background_opacity = 0.92
+      offset_x           = 24             # absolute horizontal margin from the screen edge
+      offset_y           = 12             # absolute vertical margin from the screen edge
       # [notification.filter.rhythmbox]
       # enabled         = true
       # match           = "rhythmbox"
@@ -205,13 +205,13 @@ in
       # ── OSD ───────────────────────────────────────────────────────────────────────
 
       [osd]
-      position = "top_right"              # top_right | top_left | top_center | bottom_right | bottom_left | bottom_center | center_right | center_left
-      position_vertical = "top_center"    # same options; used when orientation = "vertical"
+      position = "center"                 # top_right | top_left | top_center | bottom_right | bottom_left | bottom_center | center_right | center_left
+      position_vertical = "center"        # same options; used when orientation = "vertical"
       orientation = "horizontal"          # horizontal | vertical (volume/brightness sliders only; text popups stay horizontal)
-      scale = 1.0                         # OSD size multiplier applied on top of accessibility.ui_scale
-      background_opacity = 0.97           # background opacity of OSD popups
-      offset_x = 20                       # absolute horizontal margin from the screen edge
-      offset_y = 8                        # absolute vertical margin from the screen edge
+      scale = 1.15                        # OSD size multiplier applied on top of accessibility.ui_scale
+      background_opacity = 0.92           # background opacity of OSD popups
+      offset_x = 0                        # absolute horizontal margin from the screen edge
+      offset_y = 0                        # absolute vertical margin from the screen edge
       # monitors = ["DP-1"]               # connector names; omit or leave empty for all monitors
 
       [osd.kinds]
@@ -234,8 +234,8 @@ in
       [lockscreen]
       enabled                 = true
       blurred_desktop         = true       # use a desktop snapshot as the lock screen background (requires wlr-screencopy)
-      blur_intensity          = 0.5         # lock screen background blur (0.0 = none, 1.0 = maximum)
-      tint_intensity          = 0.3         # surface-color tint over the lock screen background
+      blur_intensity          = 0.8        # lock screen background blur (0.0 = none, 1.0 = maximum)
+      tint_intensity          = 0.45       # surface-color tint over the lock screen background
       # wallpaper             = ""          # optional image path for the lock screen; empty uses the desktop wallpaper
       # monitors              = ["DP-1"]    # connectors that show the lock screen; empty shows all monitors, others stay black
 
@@ -278,8 +278,8 @@ in
 
       [audio]
       enable_overdrive = false            # allow volume above 100% (up to 150%)
-      enable_sounds = false               # master toggle for UI feedback sounds
-      sound_volume = 0.5                  # 0.0 - 1.0
+      enable_sounds = true                # master toggle for UI feedback sounds
+      sound_volume = 0.4                  # 0.0 - 1.0
       volume_change_sound = ""            # empty = bundled sounds/volume-change.wav
       notification_sound = ""             # empty = bundled sounds/notification.wav
 
@@ -354,29 +354,29 @@ in
 
       [bar.main]
       position           = "top"          # top | bottom | left | right
-      thickness          = 40
-      background_opacity = 0.8
-      radius             = 0
-      margin_ends        = 0
-      margin_edge        = 0
-      padding            = 14
-      widget_spacing     = 6
-      scale              = 1.4
-      font_scale         = 1.4            # text-only scale multiplier across widgets
+      thickness          = 48
+      background_opacity = 0.85
+      radius             = 16
+      margin_ends        = 12
+      margin_edge        = 8
+      padding            = 16
+      widget_spacing     = 12
+      scale              = 1.2
+      font_scale         = 1.15           # text-only scale multiplier across widgets
       shadow             = true
       auto_hide          = false
       # smart_auto_hide    = false       # show when the active workspace is empty; hide when it has windows
       # show_on_workspace_switch = true   # with auto_hide: briefly reveal when the active workspace changes
       reserve_space      = true
-      capsule            = false
-      # capsule_fill     = "surface_variant"
-      # capsule_radius   = 8.0            # omit/blank in Settings for automatic pill radius; 0.0 = square
-      # capsule_opacity  = 1.0
+      capsule            = true
+      capsule_fill     = "surface_variant"
+      capsule_radius   = 12.0            # omit/blank in Settings for automatic pill radius; 0.0 = square
+      capsule_opacity  = 0.95
       # capsule_border   = "outline"      # uncomment for a border on all widgets
 
-      start  = ["launcher", "notifications", "workspaces"]
+      start  = ["launcher", "workspaces", "notifications"]
       center = ["clock"]
-      end    = ["tray", "clipboard", "network", "volume", "wallpaper","control-center", "session"]
+      end    = ["tray", "clipboard", "network", "volume", "wallpaper", "control-center", "session"]
 
       # Commands for the bar margin outside widget sections (dead zone):
       # [bar.main.dead_zone.actions]
@@ -396,38 +396,38 @@ in
       # ── Dock ──────────────────────────────────────────────────────────────────────
 
       [dock]
-      enabled             = false         # set true to activate
+      enabled             = true          # set true to activate
       position            = "bottom"      # top | bottom | left | right
-      icon_size           = 48
-      main_axis_padding   = 16
-      cross_axis_padding  = 8
-      item_spacing        = 6
-      background_opacity  = 0.88
-      radius              = 16
-      radius_top_left     = 16
-      radius_top_right    = 16
-      radius_bottom_left  = 16
-      radius_bottom_right = 16
-      margin_ends         = 0
-      margin_edge         = 8
+      icon_size           = 52
+      main_axis_padding   = 20
+      cross_axis_padding  = 12
+      item_spacing        = 10
+      background_opacity  = 0.8
+      radius              = 24
+      radius_top_left     = 24
+      radius_top_right    = 24
+      radius_bottom_left  = 24
+      radius_bottom_right = 24
+      margin_ends         = 12
+      margin_edge         = 12
       shadow              = true
       show_running        = true
       auto_hide           = false
       # smart_auto_hide   = false       # show when the active workspace is empty; hide when it has windows
       reserve_space       = true
       layer               = "top"         # top | overlay
-      active_scale        = 1.0
-      inactive_scale      = 0.85
+      active_scale        = 1.05
+      inactive_scale      = 0.9
       magnification       = true
-      magnification_scale = 1.45
+      magnification_scale = 1.55
       active_opacity      = 1.0
-      inactive_opacity    = 0.85
-      show_dots           = false
+      inactive_opacity    = 0.75
+      show_dots           = true
       show_instance_count = true
-      launcher_position   = "none"       # none | start | end
-      launcher_icon       = "grid-dots"  # Tabler glyph name
+      launcher_position   = "start"      # none | start | end
+      launcher_icon       = "apps"       # Tabler glyph name
       active_monitor_only = false
-      pinned              = []            # e.g. ["firefox", "code", "kitty"]
+      pinned              = ["firefox", "kitty", "code", "nautilus"]            # e.g. ["firefox", "code", "kitty"]
 
       # ── Desktop Widgets ───────────────────────────────────────────────────────────
 
