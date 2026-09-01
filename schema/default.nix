@@ -33,8 +33,8 @@ self: {
 
   system.useTmpfs = true;
   system.enableLogs = false; # To enable logs
-  system.upgrade.enable = false;
-  system.upgrade.allowReboot = false;
+  system.upgrade.enable = true;
+  system.upgrade.allowReboot = true;
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
 
   # ----------------------------------------------
@@ -763,7 +763,7 @@ self: {
       shell = self.modules.terminals.default.shell;
       fontFamily = self.modules.terminals.default.font.family;
       fontSize = self.modules.terminals.default.font.size;
-      colorScheme = "Abernathy";
+      colorScheme = "Noctalia";
     };
   };
 

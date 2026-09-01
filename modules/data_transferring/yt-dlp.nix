@@ -28,16 +28,22 @@
         --download-archive downloaded.txt
         --remote-components ejs:github
         --abort-on-unavailable-fragments
-        --abort-on-error
-        # --ignore-errors
-        --js-runtimes=deno
+        # --abort-on-error
+        --ignore-errors
         --no-check-certificates
-        --prefer-insecure
+        # Use iOS or Android client as fallback if web client fails
+        --extractor-args "youtube:player_client=ios,android"
         # --extractor-args "youtube:player-client=tv,mweb;formats=incomplete" -f "ba[protocol=sabr]+bv[protocol=sabr]"
         # --extractor-args "youtube:player_client=tv,mweb;formats=incomplete"
 
       '';
     };
   };
-  environment.systemPackages = with pkgs; [ aria2 ];
+
+  # Install required JavaScript runtime for YouTube challenge solving
+  # Deno is required for yt-dlp to solve YouTube's n-parameter and signature challenges
+  environment.systemPackages = with pkgs; [
+    aria2
+    deno  # JavaScript runtime for yt-dlp challenge solving
+  ];
 }
