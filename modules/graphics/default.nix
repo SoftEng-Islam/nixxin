@@ -146,12 +146,11 @@ in
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
         mesa.opencl
-        # Mesa RADV Vulkan driver for AMD (mesa includes drivers)
+        # Mesa includes RADV Vulkan driver for AMD (enabled by default)
         mesa
         # Video acceleration
         libvdpau-va-gl
         libva-vdpau-driver
-        amdvlk
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
