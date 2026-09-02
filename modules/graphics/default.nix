@@ -11,22 +11,11 @@ let
   rocmMode = settings.modules.system.rocm;
   rocmEnabled = rocmMode != "none";
   useOldRocm = rocmMode == "old";
-  rocm =
-    if useOldRocm then
-      pkgs-older.rocmPackages
-    else
-      pkgs.rocmPackages;
+  rocm = if useOldRocm then pkgs-older.rocmPackages else pkgs.rocmPackages;
 
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender (
-      if rocmMode == "old" then
-        pkgs-older.blender.override { hipSupport = true; }
-      else if rocmMode == "new" then
-        blender.override { hipSupport = true; }
-      else
-        blender
-    ))
+    (optional _graphics_pkgs.blender (blender.override { hipSupport = true; }))
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)

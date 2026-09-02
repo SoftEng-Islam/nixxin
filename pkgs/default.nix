@@ -6,7 +6,4 @@
   ...
 }:
 {
-  environment.systemPackages = [
-    # (pkgs.callPackage ./blender/default.nix { })
-  ];
 }
