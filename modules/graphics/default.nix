@@ -30,9 +30,6 @@ let
     [
       "${unstable.mesa.opencl}/etc/OpenCL/vendors"
       "${pocl}/etc/OpenCL/vendors"
-    ]
-    ++ lib.optionals rocmEnabled [
-      "/etc/OpenCL/vendors"
     ];
 
   # ========== Package Collections ==========
@@ -73,7 +70,7 @@ in
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = openclVendorPaths;
-      }}";
+      }}:/etc/OpenCL/vendors";
 
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
       VK_PRESENT_MODE = "mailbox";
