@@ -6,3 +6,4 @@
 - [] Make an option in the schema to choose weather to enable polkit_agent by Noctalia or the hyprpolkitagent in "modules/desktop/polkit.nix"
 
 - [] I want to show The workspaces capsule when the workspaces are empty. so check on the hyprland configs. hyprland configs in `modules/desktop/hyprland`.
+- [] Add multi monitor support to the hyprland configs. hyprland configs in `modules/desktop/hyprland`.

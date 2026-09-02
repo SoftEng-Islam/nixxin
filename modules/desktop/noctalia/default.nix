@@ -30,7 +30,7 @@ in
       [shell]
       corner_radius_scale   = 2          # 0 = square, 1 = default, 2 = extra rounded
       font_family           = "${settings.common.mainFont.name}"
-      time_format           = " {:%A, %B %-e} • {:%I:%M %p} "  # default shell UI time format
+      time_format = " {:%A %e, %B %m, %Y • %I:%M %p} "  # default shell UI time format
       date_format           = "%A, %x"    # default shell UI date format
       offline_mode          = false        # block all outgoing HTTP when true
       # panel_anchor_bar   = "main"        # bar panels attach to without a source bar; omit = first enabled bar
@@ -377,7 +377,7 @@ in
 
       start  = ["launcher", "workspaces", "notifications"]
       center = ["clock"]
-      end    = ["tray", "clipboard", "network", "volume", "wallpaper", "control-center", "session"]
+      end = ["tray", "clipboard", "network", "network_rx", "network_tx", "volume", "wallpaper", "control-center", "session"]
 
       # Commands for the bar margin outside widget sections (dead zone):
       # [bar.main.dead_zone.actions]
@@ -453,23 +453,37 @@ in
       # rotation = 0.0
 
       # [desktop_widgets.widget.clock_main.settings]
-      # format = "{:%H:%M}"
+      # format = " {:%A %e, %B %m, %Y • %I:%M %p} "
       # background_opacity = 0.8
 
-      # [lockscreen_widgets]
-      # enabled = false
-      # widget_order = ["clock_main"]
+      [lockscreen_widgets]
+      enabled = true
+      widget_order = ["clock_main", "clock_second"]
 
-      # [lockscreen_widgets.widget.clock_main]
-      # type     = "clock"
-      # output   = "DP-1"
-      # cx       = 1600.0
-      # cy       = 120.0
-      # scale    = 1.5
-      # rotation = 0.0
+      # ── Main Display (2560x1440) ──
+      [lockscreen_widgets.widget.clock_main]
+      type     = "clock"
+      output   = "HDMI-A-1"
+      cx       = 1280.0
+      cy       = 140.0
+      scale    = 1.5
+      rotation = 0.0
 
       [lockscreen_widgets.widget.clock_main.settings]
-      format = "  {:%A, %B %-e} • {:%I:%M %p}  "
+      format = "  {:%A %e, %B %m, %Y • %I:%M %p}  "
+      background_opacity = 0.8
+
+      # ── Secondary Display (1920x1080) ──
+      [lockscreen_widgets.widget.clock_second]
+      type     = "clock"
+      output   = "DP-1"
+      cx       = 960.0
+      cy       = 120.0
+      scale    = 1.3
+      rotation = 0.0
+
+      [lockscreen_widgets.widget.clock_second.settings]
+      format = "  {:%A %e, %B %m, %Y • %I:%M %p}  "
       background_opacity = 0.8
 
       # ── Control Center ────────────────────────────────────────────────────────────
@@ -557,7 +571,7 @@ in
       # scroll_down_command = ""
       #
       [widget.clock]
-      format = " {:%A, %B %-e} • {:%I:%M %p} "
+      format = " {:%A %e, %B %m, %Y • %I:%M %p} "
       vertical_format = "{:%I\n%M\n%p}"
       tooltip_format = "{:%A, %B %d, %Y}"
       scale = 1.0                         # multiplies the bar scale for this widget only
