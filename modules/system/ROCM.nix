@@ -69,10 +69,10 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
     rocmPackages.hip-common
     rocmPackages.hipblas
     rocmPackages.hipcc
-    rocmPackages.hipcub
-    rocmPackages.hipfft
-    rocmPackages.hipify
-    rocmPackages.hiprand
+    # rocmPackages.hipcub
+    # rocmPackages.hipfft
+    # rocmPackages.hipify
+    # rocmPackages.hiprand
     rocmPackages.rocm-runtime
     rocmPackages.rocminfo
     rocmPackages.rpp
@@ -85,12 +85,6 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
 
     # Platform runtime for ROCm
     rocmPackages.rocm-runtime
-
-    # CMake modules for common build tasks for the ROCm stack
-    rocmPackages.rocm-cmake
-
-    # Radeon open compute thunk interface
-    rocmPackages.rocm-thunk
 
     # You should also install the clinfo package to verify that OpenCL is correctly setup (or check in the program you use to see if it is now available, such as in Darktable).
     clinfo
