@@ -154,6 +154,7 @@ in
         # Video acceleration
         libvdpau-va-gl
         libva-vdpau-driver
+        rocmPackages.clr.icd
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
