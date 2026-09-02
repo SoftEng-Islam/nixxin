@@ -72,26 +72,23 @@ in
         remotePlay.openFirewall = true;
         dedicatedServer.openFirewall = true;
         package = pkgs.steam.override {
-          extraPkgs = [
-            pkgs.keyutils
-            pkgs.libgdiplus
-            pkgs.libkrb5
-            pkgs.libpng
-            pkgs.libpulseaudio
-            pkgs.libvorbis
-            pkgs.stdenv.cc.cc.lib
-            pkgs.xorg.libXcursor
-            pkgs.xorg.libXi
-            pkgs.xorg.libXinerama
-            pkgs.xorg.libXScrnSaver
-          ];
+          # Fix: Change to a function taking 'p'
+          extraPkgs =
+            p: with p; [
+              keyutils
+              libgdiplus
+              libkrb5
+              libpng
+              libpulseaudio
+              libvorbis
+              stdenv.cc.cc.lib
+              xorg.libXcursor
+              xorg.libXi
+              xorg.libXinerama
+              xorg.libXScrnSaver
+            ];
         };
       };
     };
-
-    # System-wide utilities
-    environment.systemPackages = with pkgs; [
-      protonup-qt # GUI to easily install GE-Proton for Steam
-    ];
   };
 }
