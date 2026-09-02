@@ -14,17 +14,7 @@ let
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender (
-      pkgs.symlinkJoin {
-        name = "blender-hip";
-        paths = [ pkgs.blender-hip ];
-        buildInputs = [ pkgs.makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/blender \
-            --set HSA_OVERRIDE_GFX_VERSION "9.0.0"
-        '';
-      }
-    ))
+    (optional _graphics_pkgs.blender pkgsRocm.blender)
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
