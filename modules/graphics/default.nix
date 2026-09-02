@@ -32,7 +32,7 @@ let
       "${pocl}/etc/OpenCL/vendors"
     ]
     ++ lib.optionals rocmEnabled [
-      "${rocm.clr}/etc/OpenCL/vendors"
+      "/etc/OpenCL/vendors"
     ];
 
   # ========== Package Collections ==========
