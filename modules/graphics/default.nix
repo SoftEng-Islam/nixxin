@@ -168,6 +168,7 @@ in
         libvdpau-va-gl
         libva-vdpau-driver
         rocmPackages.clr.icd
+        rocmPackages.clr # <-- Add this line to provide the HIP SDK
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
