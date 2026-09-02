@@ -168,14 +168,14 @@ self: {
 
   # Editors
   modules.development.editors.enable = true;
-  modules.development.editors.vscode.enable = false;
+  modules.development.editors.vscode.enable = true;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
-  modules.development.editors.kiro.enable = false;
+  modules.development.editors.kiro.enable = true;
   modules.development.editors.webstorm.enable = false;
   modules.development.editors.antigravity.enable = true;
-  modules.development.editors.cursor.enable = false;
-  modules.development.editors.windsurf.enable = false;
+  modules.development.editors.cursor.enable = true;
+  modules.development.editors.windsurf.enable = true;
   modules.development.editors.codex.enable = true;
 
   # [ desktop ]

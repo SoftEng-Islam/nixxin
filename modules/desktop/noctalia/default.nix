@@ -16,7 +16,7 @@ in
     programs.noctalia = {
       enable = true;
     };
-    home.file.".config/noctalia/settings.toml".text = ''
+    home.file.".config/noctalia/settings.toml".text = /* toml */ ''
       # Noctalia configuration — all settings at their defaults.
       # Copy to ~/.config/noctalia/config.toml and edit what you need.
       # Most changes are hot-reloaded via inotify; startup-only settings are noted inline.
