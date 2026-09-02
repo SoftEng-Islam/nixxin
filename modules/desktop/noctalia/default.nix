@@ -41,7 +41,7 @@ in
       settings_show_advanced = true        # show advanced settings by default in Settings
       # settings_window_translucent = false  # translucent settings window background
       show_location         = true         # hide weather location text in shell UI when false
-      # app_icon_colorize   = false        # recolor application icons across the shell
+      app_icon_colorize   = true        # recolor application icons across the shell
       # app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
       clipboard_enabled     = true         # false disables clipboard panel, history, and compositor clipboard hooks
       clipboard_history_max_entries = 100 # unpinned history cap (10–10000); pinned entries are extra
@@ -524,6 +524,7 @@ in
       # battery_state_changed   = "notify-send 'Power' \"Battery: $NOCTALIA_BATTERY_STATE\""
       # battery_under_threshold = "notify-send 'Power' \"Battery at ''${NOCTALIA_BATTERY_PERCENT}%\""
       # power_profile_changed   = "notify-send 'Power' \"Profile: $NOCTALIA_POWER_PROFILE\""
+
       # [widget.launcher]
       # custom_image = "${HOME_DIR}/Pictures/launcher_icon.svg"
       # custom_image_colorize = true
