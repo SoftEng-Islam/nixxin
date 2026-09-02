@@ -61,15 +61,14 @@ in
       WGPU_BACKEND = "vulkan";
 
       # Cleaned OpenCL Vendors (AMD Only)
-      OCL_ICD_VENDORS =
-        "${pkgs.symlinkJoin {
-          name = "opencl-vendors";
-          paths = with pkgs; [
-            "${mesa.opencl}/etc/OpenCL/vendors"
-            "${pocl}/etc/OpenCL/vendors"
-          ];
-        }}"
-        + lib.optionalString rocmEnabled ":/etc/OpenCL/vendors";
+      OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
+        name = "opencl-vendors";
+        paths = with pkgs; [
+          "${mesa.opencl}/etc/OpenCL/vendors"
+          "${pocl}/etc/OpenCL/vendors"
+          "${pkgs-older.rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
+        ];
+      }}";
 
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
       VK_PRESENT_MODE = "mailbox";
