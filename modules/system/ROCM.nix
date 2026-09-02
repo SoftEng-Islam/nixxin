@@ -33,6 +33,21 @@ let
 
       hardware.graphics.extraPackages = [
         rocm.clr
+        rocm.rocm-runtime
+        rocm.hip-common
+      ];
+
+      environment.systemPackages = with rocm; [
+        clr
+        hip-common
+        hipblas
+        hipcc
+        rocm-runtime
+        rocminfo
+        rocm-smi
+        rpp
+      ] ++ [
+        pkgs.clinfo
       ];
 
       systemd.tmpfiles.rules = [
@@ -52,19 +67,6 @@ let
       // lib.optionalAttrs preVega {
         ROC_ENABLE_PRE_VEGA = "1";
       };
-
-      environment.systemPackages = with rocm; [
-        clr
-        hip-common
-        hipblas
-        hipcc
-        rocm-runtime
-        rocminfo
-        rocm-smi
-        rpp
-      ] ++ [
-        pkgs.clinfo
-      ];
     };
 in
 lib.mkIf rocmEnabled (
