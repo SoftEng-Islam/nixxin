@@ -155,7 +155,7 @@ in
     # ========== Hardware Graphics Configuration ==========
     hardware.graphics = {
       enable = true;
-      enable32Bit = false;
+      enable32Bit = true;
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
