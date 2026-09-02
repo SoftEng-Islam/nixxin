@@ -486,7 +486,6 @@ self: {
     "pcie_aspm=off" # Disable ASPM globally for all PCIe devices
 
     # AMD GPU display and features
-    "amdgpu.abmlevel=0" # Disable Adaptive Backlight Management
     "amdgpu.vm_update_mode=3" # Use CPU for page table updates (best for APUs)
     "amdgpu.modeset=1" # Enable kernel mode setting (required)
     "amdgpu.dc=1" # Enable Display Core driver (required for modern features)
@@ -503,7 +502,6 @@ self: {
     "tsc=reliable" # Use TSC as reliable clocksource
     "clocksource=tsc" # Force TSC clocksource
     "no_timer_check" # Skip timer check for faster boot
-    "align_va_addr=on" # AMD F15h optimization (up to 3% performance gain)
 
     # --- VIRTUALIZATION ---
     "iommu=pt" # Passthrough mode for IOMMU (better VM performance)
@@ -539,7 +537,6 @@ self: {
     "workqueue.power_efficient=false" # Disable power-efficient workqueues for performance
 
     # --- OTHER ---
-    "ibt=off" # Disable Indirect Branch Tracking (slight performance gain)
     "lockdown=off" # Allow kernel tuning and eBPF tracing
   ];
   # [ kernelModules ]
