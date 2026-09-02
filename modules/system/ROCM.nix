@@ -32,7 +32,6 @@ let
       ] ++ extraKernelParams;
 
       hardware.graphics.extraPackages = [
-        rocm.clr.icd
         rocm.clr
       ];
 

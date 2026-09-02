@@ -15,7 +15,7 @@ let
 
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender (blender.override { hipSupport = true; }))
+    (optional _graphics_pkgs.blender blender)
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
@@ -32,7 +32,7 @@ let
       "${pocl}/etc/OpenCL/vendors"
     ]
     ++ lib.optionals rocmEnabled [
-      "${rocm.clr.icd}/etc/OpenCL/vendors"
+      "${rocm.clr}/etc/OpenCL/vendors"
     ];
 
   # ========== Package Collections ==========
