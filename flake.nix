@@ -3,7 +3,8 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
-    # 1. Add the older nixpkgs input for ROCm 5.6
+    # Older nixpkgs pin for ROCm 5.7 (HIP/OpenCL on Picasso/Raven APUs, gfx902).
+    # Current nixpkgs ships ROCm 7.x, which dropped these integrated GPUs.
     nixpkgs-older.url = "github:nixos/nixpkgs/nixos-23.11";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";

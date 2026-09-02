@@ -1,21 +1,23 @@
 {
   settings,
-  inputs,
   lib,
   pkgs,
   pkgs-older,
   ...
 }:
 let
-  inherit (lib) optionals optional;
+  inherit (lib) optional;
 
-  # System and hardware configuration
-  system = pkgs.stdenv.hostPlatform.system;
-
-  # User-configurable graphics applications
+  rocmEnabled = settings.modules.system.rocm.enable or false;
+  rocm = pkgs-older.rocmPackages;
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender pkgsRocm.blender)
+    (optional _graphics_pkgs.blender (
+      if rocmEnabled then
+        pkgs-older.blender.override { hipSupport = true; }
+      else
+        blender
+    ))
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
@@ -23,6 +25,16 @@ let
     (optional _graphics_pkgs.inkscape inkscape)
     (optional _graphics_pkgs.lunacy lunacy)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
+  ];
+
+  openclVendorPaths =
+  with pkgs;
+  [
+    "${unstable.mesa.opencl}/etc/OpenCL/vendors"
+    "${pocl}/etc/OpenCL/vendors"
+  ]
+  ++ lib.optionals rocmEnabled [
+    "${rocm.clr.icd}/etc/OpenCL/vendors"
   ];
 
   # ========== Package Collections ==========
@@ -76,8 +88,6 @@ in
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     environment.variables = {
-      HSA_OVERRIDE_GFX_VERSION = "9.0.0";
-
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -86,14 +96,7 @@ in
       # Cleaned OpenCL Vendors (AMD Only)
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
-        paths = with pkgs; [
-          # Pulled from unstable: nixos-26.05's mesa.opencl still lacks the
-          # patched mesa-libclc fork (karolherbst/mesa-libclc), which only
-          # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
-          "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
-          "${pocl}/etc/OpenCL/vendors"
-          "${pkgs-older.rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
-        ];
+        paths = openclVendorPaths;
       }}";
 
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
@@ -124,7 +127,6 @@ in
       LIBGL_ALWAYS_INDIRECT = "0";
       GALLIUM_DRIVER = "radeonsi";
 
-      # Removed Kaveri GFX overrides completely. Vega 11 will auto-detect correctly.
       HSA_ENABLE_SDMA = "1";
 
       DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
@@ -150,7 +152,8 @@ in
       enable = true;
       enable32Bit = true;
 
-      # Drivers and hardware extensions ONLY
+      # Drivers and hardware extensions ONLY.
+      # ROCm/HIP ICDs live in modules/system/ROCM.nix to avoid version clashes.
       extraPackages = with pkgs; [
         unstable.mesa.opencl
         # Mesa includes RADV Vulkan driver for AMD (enabled by default)
@@ -158,8 +161,6 @@ in
         # Video acceleration
         libvdpau-va-gl
         libva-vdpau-driver
-        rocmPackages.clr.icd
-        rocmPackages.clr # <-- Add this line to provide the HIP SDK
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [

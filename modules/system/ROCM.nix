@@ -1,4 +1,6 @@
 # https://nixos.wiki/wiki/AMD_GPU
+# Picasso/Raven Ridge APUs (e.g. Ryzen 3400G, gfx902) need ROCm 5.x; current
+# nixpkgs ships ROCm 7.x which dropped these targets. Pin HIP/OpenCL to nixos-23.11.
 {
   settings,
   lib,
@@ -6,92 +8,42 @@
   pkgs-older,
   ...
 }:
+let
+  rocm = pkgs-older.rocmPackages;
+in
 lib.mkIf (settings.modules.system.rocm.enable or false) {
-  boot.kernelModules = [
-    "amdgpu.sg_display=0" # Fixes display-related ROCm issues
+  boot.kernelParams = [
+    "amdgpu.sg_display=0" # Avoid display glitches with ROCm on APUs
   ];
-  hardware.graphics = {
-    extraPackages = with pkgs; [
-      pkgs-older.rocmPackages.clr.icd
-      # ---- Unlocks OpenCL GPU Acceleration ---- #
-      # rocmPackages.rocm-runtime
-      # rocmPackages.rocm-smi
-      # rocmPackages.rocminfo
 
-      # # OpenCL ICD definition for AMD GPUs using the ROCm stack
-      # rocmPackages.clr.icd
+  hardware.graphics.extraPackages = [
+    rocm.clr.icd
+  ];
 
-      # # OpenCL runtime for AMD GPUs, part of the ROCm stack
-      # rocmPackages.clr
-    ];
-  };
-
-  # ---- Rocm Combined ---- #
-  # - Fix for AMDGPU - Disabled cause it fails to build as of 30/01/2025
-  # (rocblas/hipblas symlinkJoin was previously left active despite this
-  # comment claiming otherwise, which would break the build if this module is
-  # ever enabled — now actually removed. Re-add once rocblas/hipblas build
-  # cleanly again for whichever host enables this module.)
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
-    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs-older.rocmPackages.clr}"
+    "L+ /opt/rocm/hip - - - - ${rocm.clr}"
   ];
 
-  # ------------------------------------------------
-  # ---- etc
-  # ------------------------------------------------
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs.rocmPackages.clr.icd;
-  environment.etc."OpenCL/vendors/amdocl64.icd".text =
-    "${pkgs.rocmPackages.clr.icd}/lib/libamdocl64.so ";
+  environment.etc."OpenCL/vendors/amdocl64.icd".text = "${rocm.clr.icd}/lib/libamdocl64.so";
 
-  # ------------------------------------------------
-  # ---- Variables
-  # ------------------------------------------------
   environment.variables = {
-    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
-
-    # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
-    # ROCM_TARGET = "gfx700";
-    # ROC_ENABLE_PRE_VEGA = "1";
-
-    ROC_ENABLE_PRE_VEGA = "1";
-
-    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
-    # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
-
-    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+    ROCM_PATH = "${rocm.rocm-runtime}";
+    HIP_PATH = "${rocm.hip-common}/libexec/hip";
+    # Picasso (Ryzen 3400G) reports gfx902; older ROCm builds need this override.
+    HSA_OVERRIDE_GFX_VERSION = "9.0.6";
   };
 
-  environment.systemPackages = with pkgs; [
-    # (pkgs-older.blender.override { hipSupport = true; })
-
-    # ------------------------------------------------
-    # ---- ROCM Packages
-    # ------------------------------------------------
-    rocmPackages.clr
-    rocmPackages.hip-common
-    rocmPackages.hipblas
-    rocmPackages.hipcc
-    # rocmPackages.hipcub
-    # rocmPackages.hipfft
-    # rocmPackages.hipify
-    # rocmPackages.hiprand
-    rocmPackages.rocm-runtime
-    rocmPackages.rocminfo
-    rocmPackages.rpp
-
-    # ROCm Application for Reporting System Info
-    rocmPackages.rocminfo
-
-    # System management interface for AMD GPUs supported by ROCm
-    rocmPackages.rocm-smi
-
-    # Platform runtime for ROCm
-    rocmPackages.rocm-runtime
-
-    # You should also install the clinfo package to verify that OpenCL is correctly setup (or check in the program you use to see if it is now available, such as in Darktable).
-    clinfo
+  environment.systemPackages = with rocm; [
+    clr
+    hip-common
+    hipblas
+    hipcc
+    rocm-runtime
+    rocminfo
+    rocm-smi
+    rpp
+  ] ++ [
+    pkgs.clinfo
   ];
 }

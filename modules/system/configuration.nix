@@ -214,7 +214,9 @@ in
 
     amdgpu = {
       initrd.enable = _system.amdgpu.initrd;
-      opencl.enable = _system.amdgpu.opencl;
+      # ROCm OpenCL is provided by modules/system/ROCM.nix (pkgs-older).
+      # Leaving this on would also inject ROCm 7.x and conflict on gfx902 APUs.
+      opencl.enable = _system.amdgpu.opencl && !(_system.rocm.enable or false);
       legacySupport.enable = _system.amdgpu.legacySupport;
     };
   };
