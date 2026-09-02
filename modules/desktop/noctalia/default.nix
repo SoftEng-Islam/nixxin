@@ -41,8 +41,8 @@ in
       settings_show_advanced = true        # show advanced settings by default in Settings
       # settings_window_translucent = false  # translucent settings window background
       show_location         = true         # hide weather location text in shell UI when false
-      app_icon_colorize   = true        # recolor application icons across the shell
-      # app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
+      app_icon_colorize   = false        # recolor application icons across the shell
+      app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
       clipboard_enabled     = true         # false disables clipboard panel, history, and compositor clipboard hooks
       clipboard_history_max_entries = 100 # unpinned history cap (10–10000); pinned entries are extra
       # A Wayland selection is served by the app that owns it, so it dies when that app exits.
