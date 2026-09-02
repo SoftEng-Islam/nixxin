@@ -18,6 +18,8 @@ let
       XDG_DATA_DIRS XDG_RUNTIME_DIR \
       PATH
 
+    waycorner
+
     # ---- Start Noctalia V5 Shell ---- #
     noctalia --daemon
     qs -c overview & disown
@@ -49,5 +51,12 @@ in
     wayland.windowManager.hyprland.settings = {
       exec-once = "${startupScript}/bin/start";
     };
+    home.file.".config/waycorner/config.toml".text = /* toml */ ''
+      [monitors.default]
+      corner_radius = 20
+    ''
   };
+  environment.systemPackages = with pkgs; [
+    waycorner
+  ];
 }

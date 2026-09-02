@@ -592,6 +592,5 @@ in
 
     # Noctalia screenshot plugin needs this package
     hyprshot
-
   ];
 }
