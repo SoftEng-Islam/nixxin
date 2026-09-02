@@ -524,9 +524,10 @@ in
       # battery_state_changed   = "notify-send 'Power' \"Battery: $NOCTALIA_BATTERY_STATE\""
       # battery_under_threshold = "notify-send 'Power' \"Battery at ''${NOCTALIA_BATTERY_PERCENT}%\""
       # power_profile_changed   = "notify-send 'Power' \"Profile: $NOCTALIA_POWER_PROFILE\""
-      # [widget.launcher]
-      # custom_image = "/path/to/image.png"
-      # custom_image_colorize = false
+      # curl -L -o ~/Pictures/nix-logo.svg https://raw.githubusercontent.com/NixOS/nixos-artwork/master/logo/nix-snowflake.svg
+      [widget.launcher]
+      custom_image = "${HOME_DIR}/Pictures/nix-logo.svg"
+      custom_image_colorize = true
 
       # [widget.control-center]
       # custom_image = "/path/to/image.png"
