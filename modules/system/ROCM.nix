@@ -14,15 +14,15 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
     extraPackages = with pkgs; [
       pkgs-older.rocmPackages.clr.icd
       # ---- Unlocks OpenCL GPU Acceleration ---- #
-      rocmPackages.rocm-runtime
-      rocmPackages.rocm-smi
-      rocmPackages.rocminfo
+      # rocmPackages.rocm-runtime
+      # rocmPackages.rocm-smi
+      # rocmPackages.rocminfo
 
-      # OpenCL ICD definition for AMD GPUs using the ROCm stack
-      rocmPackages.clr.icd
+      # # OpenCL ICD definition for AMD GPUs using the ROCm stack
+      # rocmPackages.clr.icd
 
-      # OpenCL runtime for AMD GPUs, part of the ROCm stack
-      rocmPackages.clr
+      # # OpenCL runtime for AMD GPUs, part of the ROCm stack
+      # rocmPackages.clr
     ];
   };
 
@@ -34,7 +34,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   # cleanly again for whichever host enables this module.)
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    # "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs-older.rocmPackages.clr}"
   ];
 
@@ -65,7 +65,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   };
 
   environment.systemPackages = with pkgs; [
-    (pkgs-older.blender.override { hipSupport = true; })
+    # (pkgs-older.blender.override { hipSupport = true; })
 
     # ------------------------------------------------
     # ---- ROCM Packages
