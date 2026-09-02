@@ -54,7 +54,7 @@ in
     home.file.".config/waycorner/config.toml".text = /* toml */ ''
       [monitors.default]
       corner_radius = 20
-    ''
+    '';
   };
   environment.systemPackages = with pkgs; [
     waycorner
