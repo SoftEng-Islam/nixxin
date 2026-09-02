@@ -379,14 +379,14 @@ self: {
   ];
 
   # [ Recording ]
-  modules.recording.screen.gpu_recorder = false;
-  modules.recording.screen.obs = false;
-  modules.recording.screen.wf_recorder = false;
-  modules.recording.sound.enable = false;
+  modules.recording.screen.gpu_recorder = true;
+  modules.recording.screen.obs = true;
+  modules.recording.screen.wf_recorder = true;
+  modules.recording.sound.enable = true;
 
   # [ remote_desktop ]
   modules.remote_desktop.rdp.enable = false;
-  modules.remote_desktop.teamviewer.enable = false;
+  modules.remote_desktop.teamviewer.enable = true;
 
   # [resources_monitoring]
   modules.resources_monitoring.btop = {
@@ -409,7 +409,7 @@ self: {
   modules.security.tpm2 = false;
 
   # [sound_editor]
-  modules.sound_editor.audacity = false;
+  modules.sound_editor.audacity = true;
 
   # [ storage ]
   modules.storage.fstrim.enable = true;
@@ -472,11 +472,13 @@ self: {
   modules.system.boot.kernelParams = [
     # AMD GPU optimizations
 
-    # --- MEMORY TUNING (Based on your 18GB RAM) ---
-    # Configure TTM pages limit: adjust the limit (pages) to control TTM memory usage.
-    # 2097152 pages * 4KB = ~8GB for GPU memory management
-    "ttm.pages_limit=2097152"
-    "amdgpu.vm_fragment_size=9" # Optimize VM fragment handling for APU
+    # --- MEMORY TUNING ---
+    # --- MEMORY TUNING (Based on 16GB Total RAM / 4GB Dedicated VRAM) ---
+    # Configure TTM pages limit: 4GB dynamic memory for the GPU
+    "ttm.pages_limit=1048576"
+
+    # Optimize VM fragment handling for APU (Remains perfectly correct!)
+    "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
     # PCIe ASPM (Active State Power Management) can cause instability with some GPUs
