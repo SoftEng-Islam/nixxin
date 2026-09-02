@@ -17,7 +17,7 @@ let
     (optional _graphics_pkgs.blender (
       pkgs.symlinkJoin {
         name = "blender-hip";
-        paths = [ pkgs.blender ];
+        paths = [ pkgs.blender-hip ];
         buildInputs = [ pkgs.makeWrapper ];
         postBuild = ''
           wrapProgram $out/bin/blender \

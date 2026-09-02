@@ -1,5 +1,10 @@
 # https://nixos.wiki/wiki/AMD_GPU
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 lib.mkIf (settings.modules.system.rocm.enable or false) {
   boot.kernelModules = [
     "amdgpu.sg_display=0" # Fixes display-related ROCm issues
@@ -70,7 +75,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
     rocmPackages.hiprand
     rocmPackages.rocm-runtime
     rocmPackages.rocminfo
-    rocmPackages.rpp-opencl
+    rocmPackages.rpp
 
     # ROCm Application for Reporting System Info
     rocmPackages.rocminfo
