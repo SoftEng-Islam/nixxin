@@ -75,6 +75,9 @@ in
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     environment.variables = {
+
+      HSA_OVERRIDE_GFX_VERSION = "9.0.0";
+
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
       WLR_NO_HARDWARE_CURSORS = "1";
