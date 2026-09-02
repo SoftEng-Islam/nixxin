@@ -35,6 +35,7 @@ let
         rocm.clr
         rocm.rocm-runtime
         rocm.hip-common
+        pkgs-older.ocl-icd
       ];
 
       environment.systemPackages = with rocm; [

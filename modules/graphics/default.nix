@@ -25,13 +25,6 @@ let
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 
-  openclVendorPaths =
-    with pkgs;
-    [
-      "${unstable.mesa.opencl}/etc/OpenCL/vendors"
-      "${pocl}/etc/OpenCL/vendors"
-    ];
-
   # ========== Package Collections ==========
 
   graphicsTools = with pkgs; [
@@ -67,10 +60,16 @@ in
       WLR_NO_HARDWARE_CURSORS = "1";
       WGPU_BACKEND = "vulkan";
 
-      OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
-        name = "opencl-vendors";
-        paths = openclVendorPaths;
-      }}:/etc/OpenCL/vendors";
+      # Cleaned OpenCL Vendors (AMD Only)
+      OCL_ICD_VENDORS =
+        "${pkgs.symlinkJoin {
+          name = "opencl-vendors";
+          paths = with pkgs; [
+            "${mesa.opencl}/etc/OpenCL/vendors"
+            "${pocl}/etc/OpenCL/vendors"
+          ];
+        }}"
+        + lib.optionalString rocmEnabled ":/etc/OpenCL/vendors";
 
       VK_KHR_PRESENT_WAIT_ENABLED = "1";
       VK_PRESENT_MODE = "mailbox";
