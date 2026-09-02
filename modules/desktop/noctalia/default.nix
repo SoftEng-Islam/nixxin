@@ -41,8 +41,8 @@ in
       settings_show_advanced = true        # show advanced settings by default in Settings
       # settings_window_translucent = false  # translucent settings window background
       show_location         = true         # hide weather location text in shell UI when false
-      app_icon_colorize   = false        # recolor application icons across the shell
-      app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
+      #app_icon_colorize   = false        # recolor application icons across the shell
+      #app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
       clipboard_enabled     = true         # false disables clipboard panel, history, and compositor clipboard hooks
       clipboard_history_max_entries = 100 # unpinned history cap (10–10000); pinned entries are extra
       # A Wayland selection is served by the app that owns it, so it dies when that app exits.
@@ -375,7 +375,7 @@ in
       capsule_opacity  = 0.95
       # capsule_border   = "outline"      # uncomment for a border on all widgets
 
-      start  = ["launcher", "workspaces", "notifications" , "network_rx", "network_tx"]
+      start  = ["launcher", "keyboard_layout", "workspaces", "notifications" , "network_rx", "network_tx"]
       center = ["clock"]
       end = ["tray", "clipboard", "network", "volume", "wallpaper", "control-center", "session"]
 
@@ -527,11 +527,11 @@ in
 
       # [widget.launcher]
       # custom_image = "${HOME_DIR}/Pictures/launcher_icon.svg"
-      # custom_image_colorize = true
+      # custom_image_colorize = false
 
       [widget.control-center]
       custom_image = "${HOME_DIR}/Pictures/snowflake.svg"
-      custom_image_colorize = true
+      custom_image_colorize = false
 
       [widget.notifications]
       hide_when_no_unread = false
@@ -555,7 +555,7 @@ in
       display                 = "full"    # "short" (e.g. "DE") or "full" (full layout name)
       show_icon               = true
       show_label              = true
-      # hide_when_single_layout = false      # hide the widget when only one layout is configured
+      hide_when_single_layout = false      # hide the widget when only one layout is configured
       # cycle_command           = ""         # custom command to cycle layouts (empty = compositor backend)
       [widget.keyboard_layout.custom_labels]  # override display labels by exact layout name
       "English (US)"          = "EN"
