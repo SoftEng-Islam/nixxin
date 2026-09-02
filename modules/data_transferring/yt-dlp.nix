@@ -21,10 +21,9 @@
         # downloader = lib.getExe pkgs.aria2;
         # downloader = "aria2c";
         # downloader-args = "aria2c:'-c -x12 -s12 -j10 -k1024M'";
-        cookies-from-browser = "firefox:${settings.HOME}/.zen";
+        #cookies-from-browser = "firefox:${settings.HOME}/.zen";
       };
       extraConfig = ''
-        -f "bestvideo[height<=1080]+bestaudio/best"
         --download-archive downloaded.txt
         --remote-components ejs:github
         --abort-on-unavailable-fragments
@@ -32,7 +31,7 @@
         --ignore-errors
         --no-check-certificates
         # Use iOS or Android client as fallback if web client fails
-        --extractor-args "youtube:player_client=ios,android"
+        # --extractor-args "youtube:player_client=ios,android"
         # --extractor-args "youtube:player-client=tv,mweb;formats=incomplete" -f "ba[protocol=sabr]+bv[protocol=sabr]"
         # --extractor-args "youtube:player_client=tv,mweb;formats=incomplete"
 
@@ -44,6 +43,6 @@
   # Deno is required for yt-dlp to solve YouTube's n-parameter and signature challenges
   environment.systemPackages = with pkgs; [
     aria2
-    deno  # JavaScript runtime for yt-dlp challenge solving
+    deno # JavaScript runtime for yt-dlp challenge solving
   ];
 }
