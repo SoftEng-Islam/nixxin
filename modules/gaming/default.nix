@@ -89,26 +89,9 @@ in
       };
     };
 
-    # Graphics drivers & Vulkan 32-bit/64-bit translation layer
-    hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
-      extraPackages = with pkgs; [
-        vulkan-tools
-        vulkan-validation-layers
-        vulkan-extension-layer
-      ];
-      extraPackages32 = with pkgs.pkgsi686Linux; [
-        vulkan-tools
-      ];
-    };
-
     # System-wide utilities
     environment.systemPackages = with pkgs; [
-      clinfo
       protonup-qt # GUI to easily install GE-Proton for Steam
-      vdpauinfo
-      vulkan-tools
     ];
   };
 }
