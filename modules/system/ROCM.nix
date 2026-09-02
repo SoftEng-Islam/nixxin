@@ -41,7 +41,7 @@ let
         "L+ /opt/rocm/hip - - - - ${rocm.clr}"
       ];
 
-      environment.etc."OpenCL/vendors/amdocl64.icd".text = "${rocm.clr.icd}/lib/libamdocl64.so";
+      environment.etc."OpenCL/vendors/amdocl64.icd".text = "${rocm.clr}/lib/libamdocl64.so";
 
       environment.variables = {
         ROCM_PATH = "${rocm.rocm-runtime}";
