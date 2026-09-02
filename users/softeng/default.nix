@@ -287,14 +287,14 @@ self: {
   modules.gaming.chess.enable = false;
 
   # [ Graphics ]
-  modules.graphics.blender = false;
+  modules.graphics.blender = true;
   modules.graphics.darktable = false;
   modules.graphics.davinci = false;
   modules.graphics.drawio = false;
   modules.graphics.figmaLinux = false;
   modules.graphics.gimp = false;
   modules.graphics.inkscape = false;
-  modules.graphics.lunacy = false;
+  modules.graphics.lunacy = true;
   modules.graphics.kolourpaint = false;
 
   # [i18n] Date/Time & Languages
