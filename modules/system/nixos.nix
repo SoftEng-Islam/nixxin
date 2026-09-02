@@ -207,9 +207,8 @@ in
   nixpkgs = {
     hostPlatform = lib.mkDefault "${settings.system.architecture}";
     config = {
-      # ROCm is pinned to pkgs-older (nixos-23.11) in modules/system/ROCM.nix.
-      # Enabling nixpkgs rocmSupport would also pull ROCm 7.x and break gfx902 APUs.
-      rocmSupport = false;
+      # "new" uses current nixpkgs ROCm; "old" is pinned in modules/system/ROCM.nix.
+      rocmSupport = settings.modules.system.rocm == "new";
 
       # Allow broken packages to be built. Setting this to false means packages
       # will refuse to evaluate sometimes, but only if they have been marked as

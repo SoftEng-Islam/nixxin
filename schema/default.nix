@@ -588,7 +588,7 @@ self: {
   # [ SYSTEM ]
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
-  modules.system.rocm.enable = false; # If your APU/GPU Support it
+  modules.system.rocm = "none"; # none, new, old
   modules.system.videoDrivers = [ "modesetting" ];
 
   # [ BOOT ]

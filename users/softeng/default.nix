@@ -422,7 +422,7 @@ self: {
   # [ SYSTEM ]
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
-  modules.system.rocm.enable = true; # If your APU/GPU Support it
+  modules.system.rocm = "old"; # none, new, old — Picasso APU (gfx902)
   modules.system.videoDrivers = [ "modesetting" ];
 
   # [ BOOT ]
