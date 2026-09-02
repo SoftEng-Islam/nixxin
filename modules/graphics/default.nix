@@ -14,7 +14,17 @@ let
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender blender)
+    (optional _graphics_pkgs.blender (
+      pkgs.symlinkJoin {
+        name = "blender-hip";
+        paths = [ pkgs.blender ];
+        buildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/blender \
+            --set HSA_OVERRIDE_GFX_VERSION "9.0.0"
+        '';
+      }
+    ))
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
@@ -76,8 +86,6 @@ in
 
     environment.variables = {
 
-      HSA_OVERRIDE_GFX_VERSION = "9.0.0";
-
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
       WLR_NO_HARDWARE_CURSORS = "1";
@@ -138,9 +146,9 @@ in
       MESA_VK_WSI_DISPLAY = "wayland";
       MESA_VK_WSI_LIST = "wayland";
 
-      # GPU_MAX_ALLOC_PERCENT = "100";
-      # GPU_SINGLE_ALLOC_PERCENT = "100";
-      # GPU_MAX_HEAP_SIZE = "100";
+      GPU_MAX_ALLOC_PERCENT = "100";
+      GPU_SINGLE_ALLOC_PERCENT = "100";
+      GPU_MAX_HEAP_SIZE = "100";
       # GPU_USE_SYNC_OBJECTS = "1";
     };
 
