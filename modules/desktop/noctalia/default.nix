@@ -375,9 +375,9 @@ in
       capsule_opacity  = 0.95
       # capsule_border   = "outline"      # uncomment for a border on all widgets
 
-      start  = ["launcher", "workspaces", "notifications"]
+      start  = ["launcher", "workspaces", "notifications" , "network_rx", "network_tx"]
       center = ["clock"]
-      end = ["tray", "clipboard", "network", "network_rx", "network_tx", "volume", "wallpaper", "control-center", "session"]
+      end = ["tray", "clipboard", "network", "volume", "wallpaper", "control-center", "session"]
 
       # Commands for the bar margin outside widget sections (dead zone):
       # [bar.main.dead_zone.actions]
