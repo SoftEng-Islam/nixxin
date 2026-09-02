@@ -85,6 +85,7 @@ in
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     environment.variables = {
+      HSA_OVERRIDE_GFX_VERSION = "9.0.0";
 
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
@@ -100,6 +101,7 @@ in
           # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
           "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
+          "${rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
         ];
       }}";
 
