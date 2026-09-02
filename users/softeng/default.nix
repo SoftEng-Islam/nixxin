@@ -24,14 +24,14 @@ self: {
   modules.browsers.enable = true;
   modules.camera.enable = true;
   modules.cli.enable = true;
-  modules.community.enable = false;
+  modules.community.enable = true;
   modules.data_transferring.enable = true;
   modules.desktop.enable = true;
   modules.development.enable = true;
   modules.emails.enable = true;
   modules.env.enable = true;
   modules.fonts.enable = true;
-  modules.gaming.enable = false;
+  modules.gaming.enable = true;
   modules.git.enable = true;
   modules.graphics.enable = true;
   modules.hacking.enable = true;
@@ -110,7 +110,7 @@ self: {
   modules.cli.utilities.lf = false;
 
   # [ community ]
-  modules.community.telegram.enable = false;
+  modules.community.telegram.enable = true;
   modules.community.ferdium.enable = false;
   modules.community.discord.enable = false;
   modules.community.mumble.enable = false;
@@ -168,14 +168,14 @@ self: {
 
   # Editors
   modules.development.editors.enable = true;
-  modules.development.editors.vscode.enable = false;
+  modules.development.editors.vscode.enable = true;
   modules.development.editors.zed-editor.enable = true;
   modules.development.editors.helix.enable = false;
-  modules.development.editors.kiro.enable = false;
+  modules.development.editors.kiro.enable = true;
   modules.development.editors.webstorm.enable = false;
-  modules.development.editors.antigravity.enable = false;
-  modules.development.editors.cursor.enable = false;
-  modules.development.editors.windsurf.enable = false;
+  modules.development.editors.antigravity.enable = true;
+  modules.development.editors.cursor.enable = true;
+  modules.development.editors.windsurf.enable = true;
   modules.development.editors.codex.enable = true;
 
   # [ desktop ]
@@ -282,9 +282,9 @@ self: {
   };
 
   # [gaming]
-  modules.gaming.steam.enable = false;
+  modules.gaming.steam.enable = true;
   modules.gaming.zeroad.enable = false; # Free game of ancient warfare
-  modules.gaming.chess.enable = false;
+  modules.gaming.chess.enable = true;
 
   # [ Graphics ]
   modules.graphics.blender = true;
