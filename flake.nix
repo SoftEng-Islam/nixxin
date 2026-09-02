@@ -2,6 +2,10 @@
   description = "Nixxin Configuration.";
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
+
+    # 1. Add the older nixpkgs input for ROCm 5.6
+    nixpkgs-older.url = "github:nixos/nixpkgs/nixos-23.11";
+
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     flake-utils.url = "github:numtide/flake-utils";
@@ -92,6 +96,7 @@
     {
       self,
       nixpkgs,
+      nixpkgs-older,
       unstable,
       nix-cachyos-kernel,
       sops-nix,
@@ -100,10 +105,6 @@
       ...
     }@inputs:
     let
-      # _SETTINGS = import (./. + "/_settings.nix") { inherit pkgs; };
-      # settings = _SETTINGS.profile;
-      # pkgs = nixpkgs.legacyPackages.${settings.system.architecture};
-
       # 1. Read the selected user profile to discover the target architecture.
       _bootstrap = import (./. + "/_settings.nix") { lib = nixpkgs.lib; };
       arch = _bootstrap.architecture;
@@ -115,6 +116,12 @@
         pkgs = pkgs_for_settings;
       };
       settings = _SETTINGS.profile;
+      pkgs-older = import nixpkgs-older {
+        system = arch; # Map your 'arch' variable to the 'system' key
+        config = {
+          allowUnfree = true;
+        };
+      };
     in
     {
       # NixOS configuration entrypoint.
@@ -122,10 +129,13 @@
       nixosConfigurations = {
         "${settings.system.hostName}" = nixpkgs.lib.nixosSystem {
           specialArgs = {
-            inherit self;
-            inherit inputs;
-            inherit _SETTINGS;
-            inherit settings;
+            inherit
+              self
+              inputs
+              _SETTINGS
+              settings
+              pkgs-older
+              ;
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager

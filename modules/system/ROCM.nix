@@ -3,6 +3,7 @@
   settings,
   lib,
   pkgs,
+  pkgs-older,
   ...
 }:
 lib.mkIf (settings.modules.system.rocm.enable or false) {
@@ -11,6 +12,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   ];
   hardware.graphics = {
     extraPackages = with pkgs; [
+      pkgs-older.rocmPackages.clr.icd
       # ---- Unlocks OpenCL GPU Acceleration ---- #
       rocmPackages.rocm-runtime
       rocmPackages.rocm-smi
@@ -33,6 +35,7 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
     "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs-older.rocmPackages.clr}"
   ];
 
   # ------------------------------------------------
@@ -62,6 +65,8 @@ lib.mkIf (settings.modules.system.rocm.enable or false) {
   };
 
   environment.systemPackages = with pkgs; [
+    (pkgs-older.blender.override { hipSupport = true; })
+
     # ------------------------------------------------
     # ---- ROCM Packages
     # ------------------------------------------------
