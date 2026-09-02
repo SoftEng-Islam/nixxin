@@ -32,9 +32,6 @@ in
     };
 
     programs = {
-      # Performance overlay
-      mangohud.enable = true;
-
       # GameScope compositor
       gamescope = {
         enable = true;
