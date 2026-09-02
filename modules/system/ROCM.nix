@@ -1,8 +1,8 @@
 # https://nixos.wiki/wiki/AMD_GPU
 # modules.system.rocm: "none" | "new" | "old"
-# - none: no ROCm/HIP stack (Mesa Rusticl OpenCL only)
+# - none: no ROCm/HIP stack (Mesa Rusticl OpenCL only) - RECOMMENDED for APUs
 # - new:  ROCm from current nixpkgs (ROCm 7.x, discrete GPUs)
-# - old:  ROCm 5.7 from nixos-23.11 (Picasso/Raven APUs, gfx902)
+# - old:  ROCm 5.7 from nixos-23.11 (Picasso/Raven APUs, gfx902) - UNSTABLE
 {
   settings,
   lib,
@@ -29,6 +29,8 @@ let
     {
       boot.kernelParams = [
         "amdgpu.sg_display=0"
+        "amdgpu.noretry=0"
+        "amdgpu.exp_hw_support=1"
       ] ++ extraKernelParams;
 
       hardware.graphics.extraPackages = [
@@ -60,6 +62,10 @@ let
       environment.variables = {
         ROCM_PATH = "${rocm.rocm-runtime}";
         HIP_PATH = "${rocm.hip-common}/libexec/hip";
+        HSA_SDMA_ENABLE = "1";
+        HSA_ENABLE_SDMA = "1";
+        AMD_SERIALIZE_COPY = "0";
+        AMD_SERIALIZE_KERNEL = "0";
       }
       // lib.optionalAttrs (hsaOverride != null) {
         HSA_OVERRIDE_GFX_VERSION = hsaOverride;
