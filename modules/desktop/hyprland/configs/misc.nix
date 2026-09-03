@@ -11,7 +11,7 @@
         # Variable Refresh Rate (Adaptive Sync/FreeSync)
         # 0 = off, 1 = on, 2 = fullscreen only
         # For 144Hz monitor: fullscreen mode works best for gaming
-        vrr = 2;
+        vrr = 1;
 
         # ---- Config & System ---- #
         # Don't auto-reload config on save (saves battery/resources on APU)
