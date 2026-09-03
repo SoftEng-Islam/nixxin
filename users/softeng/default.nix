@@ -440,13 +440,6 @@ self: {
     "gpu_sched"
   ];
   modules.system.boot.blacklistedKernelModules = [
-    "hp_wmi"
-    "radeon"
-    "psmouse"
-    "sunrpc"
-    "snd_seq_dummy"
-    "nouveau"
-    "nvidia"
   ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {

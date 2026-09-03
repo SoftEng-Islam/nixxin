@@ -48,16 +48,31 @@ let
     # comment claiming otherwise, which would break the build if this module is
     # ever enabled — now actually removed. Re-add once rocblas/hipblas build
     # cleanly again for whichever host enables this module.)
-    systemd.tmpfiles.rules = [
-      "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
-      "L+    /opt/rocm/hip   -    -    -     -    ${rp.rocmPackages.clr}"
-    ];
+    # Map /opt/rocm for applications with hardcoded paths
+    systemd.tmpfiles.rules =
+      let
+        rocmEnv = pkgs.symlinkJoin {
+          name = "rocm-combined";
+          paths = with pkgs.rocmPackages; [
+            clr
+            clr.icd
+            rocblas
+            hipblas
+          ];
+        };
+      in
+      [
+        "L+ /opt/rocm - - - - ${rocmEnv}"
+        "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
+        "L+ /opt/rocm/hip - - - - ${rp.rocmPackages.clr}"
+      ];
 
     # ------------------------------------------------
     # ---- Variables
     # ------------------------------------------------
     environment.variables = {
-      ROCM_PATH = "${rp.rocmPackages.rocm-runtime}";
+      ROCM_PATH = "${pkgs.rocmPackages.clr}";
+
       # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
       # ROCM_TARGET = "gfx700";

@@ -599,20 +599,9 @@ self: {
   modules.system.boot.loader.mode = "UEFI"; # UEFI OR BIOS
   modules.system.boot.loader.manager.name = "GRUB"; # "GRUB" or "SYSTEMD
   modules.system.boot.initrd.kernelModules = [
-    # GPU/Display modules
-    "amdgpu"
-    "drm"
-    "drm_kms_helper"
-    "gpu_sched"
+
   ];
   modules.system.boot.blacklistedKernelModules = [
-    "hp_wmi"
-    "radeon"
-    "psmouse"
-    "sunrpc"
-    "snd_seq_dummy"
-    "nouveau"
-    "nvidia"
   ];
   # [ GRUB ]
   modules.system.boot.loader.manager.grub = {
@@ -635,94 +624,9 @@ self: {
     '';
   };
   # [ kernelParams ]
-  modules.system.boot.kernelParams = [
-    # AMD GPU optimizations
-
-    # --- MEMORY TUNING (Based on your 18GB RAM) ---
-    # "amdgpu.gartsize=2048" # Set GART size to 2GB for better performance with integrated graphics
-    # NOTE: `amdgpu.gttsize` is deprecated on newer kernels and may be ignored
-    # or cause driver warnings. Prefer tuning TTM directly if required.
-    # Configure TTM pages limit: adjust the limit (pages) to control TTM memory usage.
-    "ttm.pages_limit=2097152" # Configure TTM pages limit instead of amdgpu.gttsize
-    "amdgpu.vm_fragment_size=9"
-
-    # --- PERFORMANCE & STABILITY ---
-    "amdgpu.aspm=0" # Disable PCIe Active State Power Management for better performance
-
-    "amdgpu.abmlevel=0"
-    "amdgpu.vm_update_mode=3"
-    "amdgpu.modeset=1"
-    "amdgpu.dc=1"
-    "amd_prefcore=disable"
-    "amdgpu.ppfeaturemask=0xffffffff"
-
-    # Disables HDMI/DisplayPort audio output on AMD GPUs.
-    # Useful if you're not using HDMI/DP audio and want to prevent driver conflicts.
-    "amdgpu.audio=0"
-
-    "audit=0"
-    "random.trust_cpu=on" # Disable trusting the use of the CPU's random number generator (if available) to initialize the kernel's RNG.
-    "tsc=reliable" # Disable clocksource stability checks for TSC.
-    "clocksource=tsc" # Override the default clocksource
-    "no_timer_check"
-    "align_va_addr=on" # This option gives you up to 3% performance improvement on AMD F15h machines
-
-    # enable IOMMU for devices used in passthrough and provide better host performance in virtualization
-    "iommu=pt"
-
-    # disable usb autosuspend
-    "usbcore.autosuspend=-1"
-
-    # disables resume and restores original swap space
-    "noresume"
-
-    # prevent the kernel from blanking plymouth out of the fb
-    "fbcon=nodefer"
-
-    # disable the cursor in vt to get a black screen during intermissions
-    "vt.global_cursor_default=0"
-
-    # disable displaying of the built-in Linux logo
-    "logo.nologo"
-
-    "skew_tick=1"
-    "threadirqs"
-    "tpm.disable_pcr_integrity=1"
-    "preempt=full"
-    "amd_iommu=on"
-    "pcie_aspm=off" # Disables PCIe power saving (better performance)
-    "processor.ignore_ppc=1"
-    "msr.allow_writes=on"
-
-    "cpufreq.default_governor=performance"
-    "page_alloc.shuffle=1"
-    "ibt=off"
-
-    "workqueue.power_efficient=false"
-    "smt=on"
-    "nowatchdog"
-    "nosoftlockup"
-
-    # --- Added Performance Tunings ---
-    "lockdown=off" # Allow kernel tuning and eBPF tracing
-  ];
+  modules.system.boot.kernelParams = [ ];
   # [ kernelModules ]
-  modules.system.boot.kernelModules = [
-    "acpi-cpufreq"
-    "cpufreq_performance"
-    "k10temp" # Temperature monitoring
-    "usbhid"
-    "usbcore"
-    "bfq"
-    "fuse"
-    "kvm-amd" # AMD Virtualization
-    "msr"
-    "uinput"
-
-    # Generic DRM helpers (usually auto‑loaded, but explicit for determinism)
-    "drm"
-    "drm_kms_helper"
-  ];
+  modules.system.boot.kernelModules = [ ];
   # [ extraModprobeConfig ]
   modules.system.boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
