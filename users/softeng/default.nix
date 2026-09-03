@@ -491,6 +491,7 @@ self: {
     "amdgpu.dc=1" # Enable Display Core driver (required for modern features)
     "amdgpu.ppfeaturemask=0xffffffff" # Enable all PowerPlay features
     "amdgpu.audio=0" # Disable HDMI/DP audio if not using it
+    "amdgpu.exp_hw_support=1"
 
     # --- CPU PERFORMANCE (Ryzen 5 3400G - Zen+) ---
     # REMOVED: amd_prefcore=disable - Let the CPU use its preferred cores for better performance!
