@@ -72,7 +72,7 @@ let
     # ------------------------------------------------
     environment.variables = {
       ROCM_PATH = "${pkgs.rocmPackages.clr}";
-
+      HSA_OVERRIDE_GFX_VERSION = "9.0.0";
       # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
       # ROCM_TARGET = "gfx700";

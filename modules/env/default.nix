@@ -20,6 +20,7 @@ let
       ocl-icd
       opencl-headers
       llvmPackages.openmp
+      rocmPackages.clr
     ];
 in
 {
