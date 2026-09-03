@@ -3,7 +3,6 @@
   inputs,
   lib,
   pkgs,
-  pkgs-older,
   ...
 }:
 let
@@ -90,9 +89,9 @@ in
           # Pulled from unstable: nixos-26.05's mesa.opencl still lacks the
           # patched mesa-libclc fork (karolherbst/mesa-libclc), which only
           # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
+          "${rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
           "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
-          "${pkgs-older.rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
         ];
       }}";
 
