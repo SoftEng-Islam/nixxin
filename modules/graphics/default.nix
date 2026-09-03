@@ -92,7 +92,7 @@ in
           # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
           "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
-          "${pkgs-older.rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
+          "${rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
         ];
       }}";
 
