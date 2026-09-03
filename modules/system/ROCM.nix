@@ -2,7 +2,7 @@
 {
   settings,
   lib,
-  pkgs,
+  pkgs-older,
   ...
 }:
 {
@@ -10,7 +10,7 @@
     "amdgpu.sg_display=0" # Fixes display-related ROCm issues
   ];
   hardware.graphics = {
-    extraPackages = with pkgs; [
+    extraPackages = with pkgs-older; [
       # ---- Unlocks OpenCL GPU Acceleration ---- #
       rocmPackages.rocm-runtime
       rocmPackages.rocm-smi
@@ -32,29 +32,29 @@
   # cleanly again for whichever host enables this module.)
   systemd.tmpfiles.rules = [
     "f /dev/shm/looking-glass 0660 ${settings.user.username} kvm -"
-    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs.rocmPackages.clr}"
+    "L+    /opt/rocm/hip   -    -    -     -    ${pkgs-older.rocmPackages.clr}"
   ];
 
   # ------------------------------------------------
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
-    ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
+    ROCM_PATH = "${pkgs-older.rocmPackages.rocm-runtime}";
     # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
-    # ROCM_PATH = "${pkgs.rocmPackages.rocm-runtime}";
+    # ROCM_PATH = "${pkgs-older.rocmPackages.rocm-runtime}";
     # ROCM_TARGET = "gfx700";
     # ROC_ENABLE_PRE_VEGA = "1";
 
     ROC_ENABLE_PRE_VEGA = "1";
 
-    # HIP_PATH = "${pkgs.rocmPackages.hip-common}/libexec/hip";
+    # HIP_PATH = "${pkgs-older.rocmPackages.hip-common}/libexec/hip";
     # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
-    # OCL_ICD_VENDORS = "${pkgs.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
+    # OCL_ICD_VENDORS = "${pkgs-older.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
   };
 
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs-older; [
     # ------------------------------------------------
     # ---- ROCM Packages
     # ------------------------------------------------
