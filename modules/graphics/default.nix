@@ -102,20 +102,21 @@ in
 
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
-      RADV_PERFTEST = "gpl,sam,video_encode";
+      RADV_PERFTEST = "gpl,sam,local_bos,video_decode,video_encode";
 
       # Rusticl OpenCL
       RUSTICL_ENABLE = "radeonsi";
-      RUSTICL_DEVICE_TYPE = "gpu";
       # RUSTICL_FEATURES = "fp64";
+      RUSTICL_DEVICE_TYPE = "gpu";
 
       VAAPI_COMPAT = "1";
       VAAPI_MPEG4_ENABLED = "true";
       LIBVA_DRIVER_NAME = "radeonsi";
 
-      __GL_THREADED_OPTIMIZATIONS = "1";
-      __GL_VRR_ALLOWED = "1";
-      __GLX_VENDOR_LIBRARY_NAME = "mesa";
+      # __GL_THREADED_OPTIMIZATIONS = "1";
+      # __GL_VRR_ALLOWED = "1";
+      # __GLX_VENDOR_LIBRARY_NAME = "mesa";
+
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
       LIBGL_ALWAYS_INDIRECT = "0";
@@ -141,8 +142,10 @@ in
       GPU_MAX_HEAP_SIZE = "100";
       # GPU_USE_SYNC_OBJECTS = "1";
 
-      AMD_DEBUG = "aco";
+      AMD_DEBUG = "sam";
       mesa_glthread = "true";
+
+      RADV_FORCE_VARYING_COMPRESSION = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
@@ -153,11 +156,10 @@ in
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
         unstable.mesa.opencl
-        # Mesa includes RADV Vulkan driver for AMD (enabled by default)
-        mesa
+
         # Video acceleration
-        libvdpau-va-gl
-        libva-vdpau-driver
+        # libvdpau-va-gl
+        # libva-vdpau-driver
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [

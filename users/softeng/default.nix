@@ -485,6 +485,7 @@ self: {
     "amdgpu.ppfeaturemask=0xffffffff" # Enable all PowerPlay features
     "amdgpu.audio=0" # Disable HDMI/DP audio if not using it
     "amdgpu.exp_hw_support=1"
+    "amdgpu.gttsize=8192"
 
     # --- CPU PERFORMANCE (Ryzen 5 3400G - Zen+) ---
     # REMOVED: amd_prefcore=disable - Let the CPU use its preferred cores for better performance!
