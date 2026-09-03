@@ -422,7 +422,7 @@ self: {
   # [ SYSTEM ]
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
-  modules.system.rocm = true;
+  modules.system.rocm = "latest"; # "latest" or "rocm5.6" or false
   modules.system.videoDrivers = [ "modesetting" ];
 
   # [ BOOT ]

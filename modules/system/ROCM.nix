@@ -5,7 +5,7 @@
   pkgs,
   ...
 }:
-lib.mkIf (settings.modules.system.rocm or false) {
+lib.mkIf (settings.modules.system.rocm == "latest") {
   boot.kernelModules = [
     "amdgpu.sg_display=0" # Fixes display-related ROCm issues
   ];
