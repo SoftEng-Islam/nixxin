@@ -82,7 +82,7 @@ in
       WLR_NO_HARDWARE_CURSORS = "1";
       WGPU_BACKEND = "vulkan";
 
-      # Cleaned OpenCL Vendors (AMD Only)
+      # OpenCL Vendors
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {
         name = "opencl-vendors";
         paths = with pkgs; [
