@@ -36,13 +36,6 @@
   ];
 
   # ------------------------------------------------
-  # ---- etc
-  # ------------------------------------------------
-  # environment.etc."OpenCL/vendors/amdocl64.icd".source = pkgs-older.rocmPackages.clr.icd;
-  environment.etc."OpenCL/vendors/amdocl64.icd".text =
-    "${pkgs-older.rocmPackages.clr.icd}/lib/libamdocl64.so ";
-
-  # ------------------------------------------------
   # ---- Variables
   # ------------------------------------------------
   environment.variables = {
