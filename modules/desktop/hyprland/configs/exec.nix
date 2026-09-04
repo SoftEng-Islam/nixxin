@@ -51,9 +51,12 @@ in
     wayland.windowManager.hyprland.settings = {
       exec-once = "${startupScript}/bin/start";
     };
-    home.file.".config/waycorner/config.toml".text = /* toml */ ''
-      [monitors.default]
-      corner_radius = 20
+    xdg.configFile."waycorner/config.toml".text = ''
+      [[corner]]
+      locations = ["top-left"]
+      size = 10
+      timeout_ms = 250
+      enter_command = ["hyprctl", "dispatch", "togglespecialworkspace"]
     '';
   };
   environment.systemPackages = with pkgs; [
