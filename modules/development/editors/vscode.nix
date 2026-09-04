@@ -20,7 +20,7 @@ in
       # use unstable VS Codium because of quick releases and tight version reqs by extensions
       package = pkgs.vscode.override {
         # if keyring does not work, try either "libsecret" or "gnome"
-        commandLineArgs = ''--password-store=gnome-libsecret'';
+        commandLineArgs = "--password-store=gnome-libsecret";
       };
 
       profiles.default = {
@@ -76,6 +76,7 @@ in
             ## Language Support ##
             # bmewburn.vscode-intelephense-client # PHP language support
             # ms-vscode.cpptools-extension-pack # C/C++ extension pack
+            llvm-vs-code-extensions.vscode-clangd # C/C++ language server (clangd)
             be5invis.toml
             bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
             brettm12345.nixfmt-vscode
@@ -560,6 +561,11 @@ in
           "todo-tree.regex.regex" = "(^|\\s|//|#|<!--|;|/\\*)($TAGS)(:|\\s|$)";
           "update.mode" = "manual";
           "update.showReleaseNotes" = false;
+          # Skip folders that have a vitest/vite config but no vitest dependency installed,
+          # to stop the "Vitest not found" warning. Remove an entry once that folder
+          # actually gets `pnpm add -D vitest`.
+          "vitest.configSearchPatternExclude" =
+            "{**/node_modules/**,**/vendor/**,**/.*/**,**/*.d.ts,**/autocomplete/**,**/kiro-shared/**}";
           "vite.autoStart" = false;
           "vite.https" = false;
           "window.autoDetectColorScheme" = true;
