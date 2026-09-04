@@ -29,6 +29,8 @@ in
 
       # Android's repo management tool
       git-repo
+
+      heimdall
     ];
   };
   # Adds the current user to the ADB users group.
