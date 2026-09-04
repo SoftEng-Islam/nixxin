@@ -18,7 +18,8 @@ let
       XDG_DATA_DIRS XDG_RUNTIME_DIR \
       PATH
 
-    waycorner
+    # ---- Hot Corners ---- #
+    ${pkgs.waycorner}/bin/waycorner & disown
 
     # ---- Start Noctalia V5 Shell ---- #
     noctalia --daemon
@@ -51,7 +52,7 @@ in
     wayland.windowManager.hyprland.settings = {
       exec-once = "${startupScript}/bin/start";
     };
-    xdg.configFile."waycorner/config.toml".text = ''
+    home.file.".config/waycorner/config.toml".text = ''
       [[corner]]
       locations = ["top-left"]
       size = 10
