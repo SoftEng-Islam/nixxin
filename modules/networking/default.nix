@@ -27,6 +27,7 @@ in
   systemd.network.wait-online.anyInterface = false;
   systemd.services.NetworkManager-wait-online.enable = false;
 
+  services.cloudflare-warp.enable = true;
   services.hostapd.enable = false;
   services.networkd-dispatcher.enable = false;
 
