@@ -27,7 +27,6 @@
 
   environment.systemPackages = with pkgs; [
     nodejs
-    deno
     yarn
     pnpm
     corepack

@@ -8,10 +8,12 @@
         # ╚═══════════════════════════════════════════════════════════════╝
 
         # ---- Display Features ---- #
-        # Variable Refresh Rate (Adaptive Sync/FreeSync)
-        # 0 = off, 1 = on, 2 = fullscreen only
-        # For 144Hz monitor: fullscreen mode works best for gaming
-        vrr = 1;
+        # controls the VRR (Adaptive Sync) of your monitors.
+        #  0 - off
+        #  1 - on
+        #  2 - fullscreen only
+        #  3 - fullscreen with video or game content
+        vrr = 3; # type [0/1/2/3]
 
         # ---- Config & System ---- #
         # Don't auto-reload config on save (saves battery/resources on APU)
