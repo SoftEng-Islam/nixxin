@@ -26,7 +26,8 @@ with lib.gvariant;
     dconf.settings = {
       "org/gnome/desktop/wm/preferences" = {
         # We don't want buttons because of using ( Hyprland + hyprbars)
-        "button-layout" = lib.mkDefault "";
+        # GNOME/GTK requires a colon separator (<left>:<right>); "" crashes gnome-disks / libhandy
+        "button-layout" = lib.mkDefault ":";
       };
 
       "org/gnome/desktop/peripherals/mouse" = {
