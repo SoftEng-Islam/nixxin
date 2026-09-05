@@ -13,7 +13,7 @@
         #  1 - on
         #  2 - fullscreen only
         #  3 - fullscreen with video or game content
-        vrr = 3; # type [0/1/2/3]
+        vrr = 1; # type [0/1/2/3]
 
         # ---- Config & System ---- #
         # Don't auto-reload config on save (saves battery/resources on APU)
