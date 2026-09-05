@@ -9,7 +9,7 @@ let
   hostSystem = pkgs.stdenv.hostPlatform.system;
   nixpkgsExpr = "let flake = builtins.getFlake \"${flakePath}\"; in import flake.inputs.nixpkgs.outPath { system = \"${hostSystem}\"; }";
   nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
-  nixFormatter = "${nixfmtPackage}/bin/nixfmt";
+  nixFormatter = "nixfmt";
 in
 {
   programs.vscode.defaultEditor = true;
@@ -574,7 +574,6 @@ in
           "window.menuBarVisibility" = "toggle";
           "window.titleBarStyle" = "native";
           # Preferred color theme for the editor interface
-          "workbench.colorTheme" = "Monokai Pro";
           "workbench.editor.enablePreview" = true;
           "workbench.editor.highlightModifiedTabs" = true;
           "workbench.iconTheme" = "material-icon-theme";
