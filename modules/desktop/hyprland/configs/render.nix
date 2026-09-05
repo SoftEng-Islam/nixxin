@@ -10,7 +10,7 @@
 
         # Direct scan-out improves performance and reduces latency by skipping
         # the compositor. Works well with AMD GPUs.
-        direct_scanout = true;
+        direct_scanout = false;
       };
     };
   };
