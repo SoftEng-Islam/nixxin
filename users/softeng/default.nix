@@ -323,8 +323,8 @@ self: {
   # [Networking]
   modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"
   modules.networking.nameservers = [
-    "8.8.8.8"
-    "8.8.4.4"
+    "1.1.1.1"
+    "1.0.0.1"
   ]; # DNS
   modules.networking.dnsmasq.settings.server = self.modules.networking.nameservers;
   modules.networking.interfaces = {
