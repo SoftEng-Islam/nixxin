@@ -44,7 +44,7 @@ in
       #app_icon_colorize   = false        # recolor application icons across the shell
       #app_icon_color      = "on_surface" # ColorSpec role or #hex when colorize is enabled
       clipboard_enabled     = true         # false disables clipboard panel, history, and compositor clipboard hooks
-      clipboard_history_max_entries = 100 # unpinned history cap (10–10000); pinned entries are extra
+      clipboard_history_max_entries = 100 # unpinned history cap (10-10000); pinned entries are extra
       # A Wayland selection is served by the app that owns it, so it dies when that app exits.
       # With this on, the shell claims it back so the item stays pasteable. Caveat: a password
       # manager that clears the clipboard by exiting looks identical to any other app closing,

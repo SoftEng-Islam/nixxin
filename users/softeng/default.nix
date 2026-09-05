@@ -162,8 +162,8 @@ self: {
   modules.development.languages.go.enable = false;
 
   # js-engines
-  modules.development.js-engines.enable = false;
-  modules.development.js-engines.nodejs.enable = false;
+  modules.development.js-engines.enable = true;
+  modules.development.js-engines.nodejs.enable = true;
   modules.development.js-engines.denojs.enable = false;
 
   # Editors
