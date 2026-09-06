@@ -11,6 +11,109 @@ self: {
   system.architecture = "x86_64-linux";
 
   # ----------------------------------------------
+  # ---- System / Home / Common (added to match schema/default.nix)
+  # ----------------------------------------------
+  HOME = "/home/${self.user.username}"; # Home Directory
+  system.name = "nixos";
+  system.stateVersion = "25.05"; # Did you read the comment?
+  system.useTmpfs = true;
+  system.enableLogs = false; # To enable logs
+  system.upgrade.enable = true;
+  system.upgrade.allowReboot = true;
+  system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
+  home.stateVersion = "25.05"; # ! Please read the comment before changing.
+  home.backupFileExtension = null;
+  home.manual.html = false;
+  home.manual.json = false;
+  home.manual.manpages = false;
+  common.EDITOR = "micro"; # ? EDITOR Var: used for
+  common.VISUAL = "micro"; # ? VISUAL Var: used for
+  common.TERM = "xterm-256color"; # ? TERM Var: used for
+  common.webBrowser = "zen";
+  common.mainFont.name = "CaskaydiaCove Nerd Font";
+  common.mainFont.package = pkgs.nerd-fonts.caskaydia-cove;
+  common.primaryColor = "rgba(d9263bff)"; # the Color code without '#' tag
+  common.surfaceColor = "rgba(1e1e1eff)";
+  common.videoPlayer = "";
+  common.soundPlayer = "";
+  common.imageViewer = "";
+  common.idle.delay = 0; # seconds; 0 to disable
+  common.dotfilesDir = "/home/${self.user.username}/nixxin"; # Absolute path of the repo
+  common.gtk.GTK_THEME = "Colloid-Grey-Dark-Dracula"; # Env Variable
+  common.gtk.theme = "Colloid-Grey-Dark-Dracula";
+  common.gtk.package = pkgs.colloid-gtk-theme.override {
+    colorVariants = [
+      # "standard"
+      # "light"
+      "dark"
+    ];
+    themeVariants = [
+      # "default"
+      # "purple"
+      # "pink"
+      # "red"
+      # "orange"
+      # "yellow"
+      # "green"
+      # "teal"
+      "grey"
+      # "all"
+    ];
+    sizeVariants = [
+      "standard"
+      # "compact"
+    ];
+
+    tweaks = [
+      # "nord"
+      "dracula"
+      # "gruvbox"
+      # "everforest"
+      # "catppuccin"
+      "all"
+      "black"
+      "rimless"
+      # "normal"
+      "float"
+    ];
+  };
+  common.gtk.icon_cache = true;
+  common.qt.style = "Adwaita-dark";
+  common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
+  common.qt.package = pkgs.adwaita-qt6;
+  common.qt.SCALE_FACTOR = 1;
+  common.icons.theme =
+    if (self.modules.desktop.dconf.colorScheme == "prefer-dark") then
+      self.common.icons.nameInDark
+    else
+      self.common.icons.nameInLight;
+  common.icons.nameInLight = "Papirus";
+  common.icons.nameInDark = "Papirus-Dark";
+  common.icons.package = pkgs.papirus-icon-theme.override { color = "paleorange"; };
+  common.icons.folder-color = "paleorange";
+  common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
+  common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
+  common.cursor.package = pkgs.bibata-cursors;
+  common.mouse.sensitivity = -0.5;
+  common.mouse.accelProfile = "flat"; # flat or adaptive
+  common.mouse.scrollSpeed = 1.0;
+  common.mouse.naturalScroll = false;
+  common.mouse.doubleClick = 800;
+  common.cpu.arch = "amd64"; # "amd64" or "aarch64"
+  common.cpu.intel = false; # Set true if you have Intel CPU, and false if you have AMD CPU.
+  common.cpu.amd = true; # Set true if you have AMD CPU, and false if you have Intel CPU.
+  common.cpu.zen = true; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
+  common.cpu.ryzen = true; # Set true if you have AMD Ryzen CPU, and false if you have non-Ryzen AMD CPU
+  common.cpu.ryzenMobile = false; # Set true if you have AMD Ryzen Mobile CPU, and false if you have non-Ryzen Mobile AMD CPU
+  common.cpu.amdGPU = true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
+  common.cpu.nvidiaGPU = false; # Set true if you have NVIDIA GPU, and false if you have non-NVIDIA GPU.
+  common.cpu.intelGPU = false; # Set true if you have Intel GPU, and false if you have non-Intel GPU.
+  common.cpu.tdp = 65; # Set the TDP of your CPU in watts, for better performance in some apps and games.
+  common.cpu.overclocking = false; # Set true if you want to overclock your CPU, and false if you don't want to overclock your CPU.
+  common.cpu.undervolting = false; # Set true if you want to undervolt your CPU, and false if you don't want to undervolt your CPU.
+  common.battery = false; # Set true if you have a laptop with battery, and false if you have a desktop without battery.
+
+  # ----------------------------------------------
   # ---- Modules To [ Enable/Disable ]
   # ----------------------------------------------
   # Modules: To Enable/Disable.
@@ -345,6 +448,7 @@ self: {
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
   modules.networking.nftables.enable = true;
+  modules.networking.cloudflare-warp.enable = true;
 
   # [Office]
   modules.office.siyuan = true;
