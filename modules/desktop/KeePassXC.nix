@@ -5,6 +5,7 @@
 }:
 {
   home-manager.users."${settings.user.username}" = {
+    xdg.autostart.enable = true;
     programs.keepassxc = {
       enable = true;
       autostart = true;
