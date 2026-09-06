@@ -9,7 +9,7 @@
     xdg.configFile."keepassxc/keepassxc.ini".text = lib.generators.toINI { } {
       General = {
         ConfigVersion = 2;
-        LastActiveDatabase = "/home/${settings.user.username}/Documents/DB/database.kdbx";
+        LastActiveDatabase = "/home/${settings.user.username}/Documents/Passwords.kdbx";
       };
       Security = {
         LockDatabaseIdle = true;
