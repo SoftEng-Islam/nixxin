@@ -62,7 +62,7 @@ in
       $WARP_CLI connect || true
     '';
   };
-  security.polkit.extraRules = ''
+  security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (action.id == "org.freedesktop.systemd1.manage-units" &&
           action.lookup("unit") == "cloudflare-warp.service" &&
