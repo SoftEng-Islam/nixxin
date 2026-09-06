@@ -511,6 +511,7 @@ self: {
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
   modules.networking.nftables.enable = true;
+  modules.networking.cloudflare-warp.enable = true;
 
   # [Office]
   modules.office.siyuan = true;
