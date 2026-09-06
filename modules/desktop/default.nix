@@ -10,6 +10,7 @@
     ./fileManager
     ./hyprland
     ./image_viewer.nix
+    ./KeePassXC.nix
     ./keyring.nix
     ./noctalia
     ./polkit.nix
