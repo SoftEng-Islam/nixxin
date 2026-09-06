@@ -184,5 +184,10 @@
           ];
         };
       };
+
+      checks.${arch}.schema-conformance = builtins.seq settings (
+        pkgs_for_settings.writeText "schema-conformance-ok" "ok"
+      );
+
     };
 }

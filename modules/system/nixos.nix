@@ -458,5 +458,8 @@ in
     fwupd
 
     nix-converter
+
+    watchexec
+    entr
   ];
 }
