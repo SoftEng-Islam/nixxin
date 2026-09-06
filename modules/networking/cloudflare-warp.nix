@@ -7,11 +7,11 @@ let
   warpScript = pkgs.writeShellScriptBin "warp" ''
     WARP_CLI="${pkgs.cloudflare-warp}/bin/warp-cli"
 
-    if systemctl is-active --quiet warp-svc; then
+    if systemctl is-active --quiet cloudflare-warp.service; then
         $WARP_CLI disconnect || true
-        systemctl stop warp-svc.service
+        systemctl stop cloudflare-warp.service
     else
-        systemctl start warp-svc.service
+        systemctl start cloudflare-warp.service
         sleep 1
         $WARP_CLI connect
     fi
@@ -26,11 +26,11 @@ in
   systemd.services.router-cloudflare-warp-setup = {
     description = "Configure Cloudflare WARP connection";
     after = [
-      "warp-svc.service"
+      "cloudflare-warp.service"
       "network-online.target"
     ];
     wants = [
-      "warp-svc.service"
+      "cloudflare-warp.service"
       "network-online.target"
     ];
     wantedBy = [ "multi-user.target" ];
@@ -42,7 +42,7 @@ in
       set -euo pipefail
       WARP_CLI="${pkgs.cloudflare-warp}/bin/warp-cli"
 
-      # 1. Wait up to 15 seconds for warp-svc daemon socket to open
+      # 1. Wait up to 15 seconds for daemon socket to open
       for i in {1..15}; do
         if $WARP_CLI status >/dev/null 2>&1; then
           break
