@@ -62,7 +62,15 @@ in
       $WARP_CLI connect || true
     '';
   };
-
+  security.polkit.extraRules = ''
+    polkit.addRule(function(action, subject) {
+      if (action.id == "org.freedesktop.systemd1.manage-units" &&
+          action.lookup("unit") == "cloudflare-warp.service" &&
+          subject.isInGroup("wheel")) {
+        return polkit.Result.YES;
+      }
+    });
+  '';
   environment.systemPackages = with pkgs; [
     cloudflare-warp
     warpScript
