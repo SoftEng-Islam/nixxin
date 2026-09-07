@@ -247,7 +247,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
-    # --- Start script: mounts dynamically and triggers media scan ---
+    # --- Start script: mounts to the TRUE source directory ---
     (pkgs.writeShellApplication {
       name = "waydroid-start-shared";
       runtimeInputs = with pkgs; [
@@ -258,26 +258,27 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         echo "Starting Waydroid session..."
         waydroid session start &
 
-        echo "Waiting for Waydroid data partition to mount..."
-        while ! mountpoint -q "$HOME/.local/share/waydroid/data"; do
+        echo "Waiting for Android container to initialize..."
+        # Check if the real data directory is available via the container shell
+        while ! sudo ${pkgs.waydroid-nftables}/bin/waydroid shell test -d /data/media/0 2>/dev/null; do
           sleep 0.5
         done
 
-        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        # Use Waydroid's shell to create the directories inside Android.
+        # This avoids needing to add `mkdir` to your sudo extraRules.
+        sudo ${pkgs.waydroid-nftables}/bin/waydroid shell mkdir -p /data/media/0/Documents /data/media/0/Download /data/media/0/Music /data/media/0/Pictures /data/media/0/Movies
 
-        # Ensure target directories exist
-        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+        # Target the REAL source directory, not the ~/.local/share mirror!
+        REAL_MEDIA_DIR="/var/lib/waydroid/data/media/0"
 
-        echo "Applying bind mounts..."
-        # Using exact paths to match your security.sudo.extraRules
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        echo "Applying bind mounts to the core data image..."
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$REAL_MEDIA_DIR/Documents"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$REAL_MEDIA_DIR/Download"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$REAL_MEDIA_DIR/Music"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$REAL_MEDIA_DIR/Pictures"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$REAL_MEDIA_DIR/Movies"
 
         echo "Waiting for Android system to finish booting..."
-        # Wait until sys.boot_completed equals 1
         while [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" != "1" ]; do
           sleep 1
         done
@@ -290,7 +291,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
-    # --- Stop script: unmounts to prevent hanging before stopping ---
+    # --- Stop script: unmounts from the TRUE source directory ---
     (pkgs.writeShellApplication {
       name = "waydroid-stop-shared";
       runtimeInputs = with pkgs; [
@@ -298,14 +299,14 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         util-linux
       ];
       text = ''
-        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+        REAL_MEDIA_DIR="/var/lib/waydroid/data/media/0"
 
-        echo "Unmounting shared directories..."
-        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Documents" 2>/dev/null || true
-        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Download" 2>/dev/null || true
-        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Music" 2>/dev/null || true
-        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Pictures" 2>/dev/null || true
-        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Movies" 2>/dev/null || true
+        echo "Unmounting shared directories from the core data image..."
+        sudo ${pkgs.util-linux}/bin/umount "$REAL_MEDIA_DIR/Documents" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$REAL_MEDIA_DIR/Download" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$REAL_MEDIA_DIR/Music" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$REAL_MEDIA_DIR/Pictures" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$REAL_MEDIA_DIR/Movies" 2>/dev/null || true
 
         echo "Stopping Waydroid session..."
         waydroid session stop
