@@ -71,8 +71,8 @@ let
     # ---- Variables
     # ------------------------------------------------
     environment.variables = {
-      ROCM_PATH = "/opt/rocm";
-      HIP_PATH = "/opt/rocm";
+      ROCM_PATH = "${pkgs.rocmPackages.clr}";
+      HIP_PATH = "${pkgs.rocmPackages.hip-common}";
       HSA_OVERRIDE_GFX_VERSION = "9.0.0";
       # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
