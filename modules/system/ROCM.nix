@@ -80,7 +80,7 @@ let
 
       ROC_ENABLE_PRE_VEGA = "1";
 
-      # HIP_PATH = "${rp.rocmPackages.hip-common}/libexec/hip";
+      HIP_PATH = "/opt/rocm";
       # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
       # OCL_ICD_VENDORS = "${rp.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
