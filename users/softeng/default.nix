@@ -395,8 +395,8 @@ self: {
   modules.graphics.davinci = false;
   modules.graphics.drawio = false;
   modules.graphics.figmaLinux = false;
-  modules.graphics.gimp = false;
-  modules.graphics.inkscape = false;
+  modules.graphics.gimp = true;
+  modules.graphics.inkscape = true;
   modules.graphics.lunacy = true;
   modules.graphics.kolourpaint = false;
 

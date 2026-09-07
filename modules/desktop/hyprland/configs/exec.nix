@@ -32,16 +32,8 @@ let
     # ---- Set Cursor ---- #
     hyprctl setcursor ${settings.common.cursor.name} ${toString settings.common.cursor.size} & disown
 
-    # ---- Set Desktop Wallpaper ---- #
-    # changeWallpaper & disown
-    # sleep 1
-
-    # ---- Notification daemon ---- #
-    # swaync & disown
-    # sleep 1
-
     # ---- Apps To Start ---- #
-    # Telegram -startintray & disown
+    Telegram -startintray & disown
   '';
 in
 {
