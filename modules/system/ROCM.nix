@@ -94,6 +94,7 @@ let
       # ------------------------------------------------
       rocmPackages.clr
       rocmPackages.hip-common
+      rocmPackages.rocm-device-libs
       rocmPackages.hipblas
       rocmPackages.hipcc
       # rocmPackages.hipcub
