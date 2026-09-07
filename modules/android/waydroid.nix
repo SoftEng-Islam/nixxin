@@ -117,7 +117,11 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   boot.kernelParams = [ "psi=1" ];
-  boot.kernelModules = [ "uhid" ];
+  boot.kernelModules = [
+    "uhid"
+    "binder_linux"
+    "ashmem_linux"
+  ];
 
   boot.kernel.sysctl = {
     "kernel.unprivileged_userns_clone" = lib.mkDefault 1;
@@ -244,7 +248,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   # 7. Packages & Utilities
   # ==========================================
   environment.systemPackages = with pkgs; [
-    wl-clipboard      # Required for Waydroid clipboard sync
+    wl-clipboard # Required for Waydroid clipboard sync
     waydroid-nftables
 
     (pkgs.writeShellApplication {
