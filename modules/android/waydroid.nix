@@ -7,6 +7,8 @@
 
 let
   username = settings.user.username;
+  homeDir = "/home/${username}";
+  mediaDir = "${homeDir}/.local/share/waydroid/data/media/0";
 in
 lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
@@ -19,109 +21,94 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     waydroid.package = pkgs.waydroid-nftables;
   };
 
+  # ==========================================
+  # 1b. Shared Folders (declarative bind mounts)
+  # ==========================================
+  # Real systemd .mount units, mounted at boot before waydroid-container
+  # ever starts. LXC's own bind-mount of ~/.local/share/waydroid/data into
+  # the container picks these up via normal mount propagation, so nothing
+  # extra is needed to get them into the container namespace.
+  fileSystems = {
+    "${mediaDir}/Documents" = {
+      device = "${homeDir}/Documents";
+      fsType = "none";
+      options = [
+        "bind"
+        "create"
+        "rw"
+      ];
+    };
+    "${mediaDir}/Download" = {
+      device = "${homeDir}/Downloads";
+      fsType = "none";
+      options = [
+        "bind"
+        "create"
+        "rw"
+      ];
+    };
+    "${mediaDir}/Music" = {
+      device = "${homeDir}/Music";
+      fsType = "none";
+      options = [
+        "bind"
+        "create"
+        "rw"
+      ];
+    };
+    "${mediaDir}/Pictures" = {
+      device = "${homeDir}/Pictures";
+      fsType = "none";
+      options = [
+        "bind"
+        "create"
+        "rw"
+      ];
+    };
+    "${mediaDir}/Movies" = {
+      device = "${homeDir}/Videos";
+      fsType = "none";
+      options = [
+        "bind"
+        "create"
+        "rw"
+      ];
+    };
+  };
+
+  # Ensure host source directories exist, owned by the user, group-writable
+  # and setgid to waydroid_media (gid 1023 / media_rw, see section 6) so
+  # Android's MediaStore can read/write through the bind mount without
+  # permission errors. A bind mount shows the *source* directory's
+  # permissions, so this is what actually governs what Android sees.
+  systemd.tmpfiles.rules = [
+    "d ${homeDir}/Documents 2775 ${username} waydroid_media -"
+    "d ${homeDir}/Downloads 2775 ${username} waydroid_media -"
+    "d ${homeDir}/Music 2775 ${username} waydroid_media -"
+    "d ${homeDir}/Pictures 2775 ${username} waydroid_media -"
+    "d ${homeDir}/Videos 2775 ${username} waydroid_media -"
+  ];
+
   systemd.services.waydroid-container = {
     preStart = ''
       if [ ! -e /var/lib/waydroid/lxc/waydroid/config_nodes ]; then
         ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
       fi
-
-      HOME_DIR="/home/${username}"
-      MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
-
-      # Ensure host source directories exist with correct ownership
-      ${pkgs.coreutils}/bin/mkdir -p \
-        "$HOME_DIR/Documents" \
-        "$HOME_DIR/Downloads" \
-        "$HOME_DIR/Music" \
-        "$HOME_DIR/Pictures" \
-        "$HOME_DIR/Videos"
-
-      # Ensure Android-side mount target directories exist and are owned by
-      # media_rw (uid=1023, gid=1023) so the Android MediaStore can scan them.
-      ${pkgs.coreutils}/bin/mkdir -p \
-        "$MEDIA_DIR/Documents" \
-        "$MEDIA_DIR/Download" \
-        "$MEDIA_DIR/Music" \
-        "$MEDIA_DIR/Pictures" \
-        "$MEDIA_DIR/Movies"
-
-      ${pkgs.coreutils}/bin/chown -R 1023:1023 \
-        "$MEDIA_DIR/Documents" \
-        "$MEDIA_DIR/Download" \
-        "$MEDIA_DIR/Music" \
-        "$MEDIA_DIR/Pictures" \
-        "$MEDIA_DIR/Movies"
-
-      # Apply GID 1023 (media_rw) and setgid to host dirs so Android can
-      # read/write files created on the host side without permission errors.
-      ${pkgs.coreutils}/bin/chgrp -R 1023 \
-        "$HOME_DIR/Documents" \
-        "$HOME_DIR/Downloads" \
-        "$HOME_DIR/Music" \
-        "$HOME_DIR/Pictures" \
-        "$HOME_DIR/Videos" || true
-
-      ${pkgs.coreutils}/bin/chmod -R g+rwX \
-        "$HOME_DIR/Documents" \
-        "$HOME_DIR/Downloads" \
-        "$HOME_DIR/Music" \
-        "$HOME_DIR/Pictures" \
-        "$HOME_DIR/Videos" || true
-
-      # setgid on directories: new files inherit the group automatically
-      ${pkgs.findutils}/bin/find \
-        "$HOME_DIR/Documents" \
-        "$HOME_DIR/Downloads" \
-        "$HOME_DIR/Music" \
-        "$HOME_DIR/Pictures" \
-        "$HOME_DIR/Videos" \
-        -type d -exec ${pkgs.coreutils}/bin/chmod g+s {} + || true
-
-      # Bind-mount host dirs onto the MEDIA_DIR targets.
-      # These mounts happen in the *host* mount namespace before the LXC
-      # container starts, so LXC inherits them via BindPaths propagation.
-      mount_shared() {
-        local source="$1" target="$2"
-        ${pkgs.util-linux}/bin/mountpoint -q "$target" || \
-          ${pkgs.util-linux}/bin/mount --bind "$source" "$target"
-      }
-
-      mount_shared "$HOME_DIR/Documents" "$MEDIA_DIR/Documents"
-      mount_shared "$HOME_DIR/Downloads" "$MEDIA_DIR/Download"
-      mount_shared "$HOME_DIR/Music"     "$MEDIA_DIR/Music"
-      mount_shared "$HOME_DIR/Pictures"  "$MEDIA_DIR/Pictures"
-      mount_shared "$HOME_DIR/Videos"    "$MEDIA_DIR/Movies"
     '';
 
-    # Clean up bind mounts when the container stops so they don't pile up
-    postStop = ''
-      HOME_DIR="/home/${username}"
-      MEDIA_DIR="$HOME_DIR/.local/share/waydroid/data/media/0"
-
-      for dir in Documents Download Music Pictures Movies; do
-        ${pkgs.util-linux}/bin/mountpoint -q "$MEDIA_DIR/$dir" && \
-          ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/$dir" || true
-      done
-    '';
-
-    # Propagate the bind mounts into the LXC container namespace.
-    serviceConfig = {
-      BindPaths = [
-        "/home/${username}/Documents:/home/${username}/Documents"
-        "/home/${username}/Downloads:/home/${username}/Downloads"
-        "/home/${username}/Music:/home/${username}/Music"
-        "/home/${username}/Pictures:/home/${username}/Pictures"
-        "/home/${username}/Videos:/home/${username}/Videos"
-      ];
-    };
+    # Don't let the container (and Android's media scanner) start until the
+    # shared folders are actually mounted.
+    unitConfig.RequiresMountsFor = [
+      "${mediaDir}/Documents"
+      "${mediaDir}/Download"
+      "${mediaDir}/Music"
+      "${mediaDir}/Pictures"
+      "${mediaDir}/Movies"
+    ];
   };
 
   boot.kernelParams = [ "psi=1" ];
-  boot.kernelModules = [
-    "uhid"
-    "binder_linux"
-    "ashmem_linux"
-  ];
+  boot.kernelModules = [ "uhid" ];
 
   boot.kernel.sysctl = {
     "kernel.unprivileged_userns_clone" = lib.mkDefault 1;
@@ -279,9 +266,10 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         if ! $all_ok; then
           echo ""
-          echo "⚠ Some mounts are missing. Restarting waydroid-container..."
-          sudo systemctl restart waydroid-container
-          echo "Wait a moment, then launch Waydroid UI again."
+          echo "⚠ Some mounts are missing. They are now managed as system fileSystems"
+          echo "  entries — try: sudo systemctl restart <mount-unit> or"
+          echo "  sudo mount -a, then restart waydroid-container:"
+          echo "  sudo systemctl restart waydroid-container"
           exit 0
         fi
 

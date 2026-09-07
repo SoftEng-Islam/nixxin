@@ -8,7 +8,7 @@
     xdg.autostart.enable = true;
     programs.keepassxc = {
       enable = true;
-      autostart = true;
+      autostart = false;
       settings = {
         General = {
           ConfigVersion = 2;
