@@ -108,7 +108,11 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   };
 
   boot.kernelParams = [ "psi=1" ];
-  boot.kernelModules = [ "uhid" ];
+  boot.kernelModules = [
+    "uhid"
+    "binder_linux"
+    "ashmem_linux"
+  ];
 
   boot.kernel.sysctl = {
     "kernel.unprivileged_userns_clone" = lib.mkDefault 1;
