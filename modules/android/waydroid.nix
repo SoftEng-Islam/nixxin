@@ -247,7 +247,7 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
       '';
     })
 
-    # --- NEW: Start script to mount after data.img is mounted ---
+    # --- Start script: mounts dynamically and triggers media scan ---
     (pkgs.writeShellApplication {
       name = "waydroid-start-shared";
       runtimeInputs = with pkgs; [
@@ -265,22 +265,32 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
 
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
 
-        # Ensure directories exist inside the Android data image first
+        # Ensure target directories exist
         mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
 
         echo "Applying bind mounts..."
-        sudo mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
-        sudo mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
-        sudo mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
-        sudo mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
-        sudo mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+        # Using exact paths to match your security.sudo.extraRules
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        sudo ${pkgs.util-linux}/bin/mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
 
-        echo "Shared directories mounted successfully! Launching UI..."
+        echo "Waiting for Android system to finish booting..."
+        # Wait until sys.boot_completed equals 1
+        while [ "$(sudo ${pkgs.waydroid-nftables}/bin/waydroid shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" != "1" ]; do
+          sleep 1
+        done
+
+        echo "Triggering MediaStore scan..."
+        echo "content call --uri content://media/ --method scan_volume --arg external_primary" | sudo ${pkgs.waydroid-nftables}/bin/waydroid shell > /dev/null 2>&1
+
+        echo "Shared directories mounted and scanned! Launching UI..."
         waydroid show-full-ui
       '';
     })
 
-    # --- NEW: Stop script to unmount before stopping the session ---
+    # --- Stop script: unmounts to prevent hanging before stopping ---
     (pkgs.writeShellApplication {
       name = "waydroid-stop-shared";
       runtimeInputs = with pkgs; [
@@ -291,18 +301,16 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
 
         echo "Unmounting shared directories..."
-        # Use || true so it doesn't fail if already unmounted
-        sudo umount "$MEDIA_DIR/Documents" 2>/dev/null || true
-        sudo umount "$MEDIA_DIR/Download" 2>/dev/null || true
-        sudo umount "$MEDIA_DIR/Music" 2>/dev/null || true
-        sudo umount "$MEDIA_DIR/Pictures" 2>/dev/null || true
-        sudo umount "$MEDIA_DIR/Movies" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Documents" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Download" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Music" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Pictures" 2>/dev/null || true
+        sudo ${pkgs.util-linux}/bin/umount "$MEDIA_DIR/Movies" 2>/dev/null || true
 
         echo "Stopping Waydroid session..."
         waydroid session stop
       '';
     })
-
   ];
 
 }
