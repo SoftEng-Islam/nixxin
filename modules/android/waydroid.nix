@@ -21,61 +21,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
     waydroid.package = pkgs.waydroid-nftables;
   };
 
-  # ==========================================
-  # 1b. Shared Folders (declarative bind mounts)
-  # ==========================================
-  # Real systemd .mount units, mounted at boot before waydroid-container
-  # ever starts. LXC's own bind-mount of ~/.local/share/waydroid/data into
-  # the container picks these up via normal mount propagation, so nothing
-  # extra is needed to get them into the container namespace.
-  fileSystems = {
-    "${mediaDir}/Documents" = {
-      device = "${homeDir}/Documents";
-      fsType = "none";
-      options = [
-        "bind"
-        "create"
-        "rw"
-      ];
-    };
-    "${mediaDir}/Download" = {
-      device = "${homeDir}/Downloads";
-      fsType = "none";
-      options = [
-        "bind"
-        "create"
-        "rw"
-      ];
-    };
-    "${mediaDir}/Music" = {
-      device = "${homeDir}/Music";
-      fsType = "none";
-      options = [
-        "bind"
-        "create"
-        "rw"
-      ];
-    };
-    "${mediaDir}/Pictures" = {
-      device = "${homeDir}/Pictures";
-      fsType = "none";
-      options = [
-        "bind"
-        "create"
-        "rw"
-      ];
-    };
-    "${mediaDir}/Movies" = {
-      device = "${homeDir}/Videos";
-      fsType = "none";
-      options = [
-        "bind"
-        "create"
-        "rw"
-      ];
-    };
-  };
-
   # Ensure host source directories exist, owned by the user, group-writable
   # and setgid to waydroid_media (gid 1023 / media_rw, see section 6) so
   # Android's MediaStore can read/write through the bind mount without
@@ -95,16 +40,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         ${pkgs.waydroid-nftables}/bin/waydroid upgrade -o
       fi
     '';
-
-    # Don't let the container (and Android's media scanner) start until the
-    # shared folders are actually mounted.
-    unitConfig.RequiresMountsFor = [
-      "${mediaDir}/Documents"
-      "${mediaDir}/Download"
-      "${mediaDir}/Music"
-      "${mediaDir}/Pictures"
-      "${mediaDir}/Movies"
-    ];
   };
 
   boot.kernelParams = [ "psi=1" ];
@@ -311,6 +246,63 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         fi
       '';
     })
+
+    # --- NEW: Start script to mount after data.img is mounted ---
+    (pkgs.writeShellApplication {
+      name = "waydroid-start-shared";
+      runtimeInputs = with pkgs; [
+        waydroid-nftables
+        util-linux
+      ];
+      text = ''
+        echo "Starting Waydroid session..."
+        waydroid session start &
+
+        echo "Waiting for Waydroid data partition to mount..."
+        while ! mountpoint -q "$HOME/.local/share/waydroid/data"; do
+          sleep 0.5
+        done
+
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+
+        # Ensure directories exist inside the Android data image first
+        mkdir -p "$MEDIA_DIR/Documents" "$MEDIA_DIR/Download" "$MEDIA_DIR/Music" "$MEDIA_DIR/Pictures" "$MEDIA_DIR/Movies"
+
+        echo "Applying bind mounts..."
+        sudo mount --bind "$HOME/Documents" "$MEDIA_DIR/Documents"
+        sudo mount --bind "$HOME/Downloads" "$MEDIA_DIR/Download"
+        sudo mount --bind "$HOME/Music" "$MEDIA_DIR/Music"
+        sudo mount --bind "$HOME/Pictures" "$MEDIA_DIR/Pictures"
+        sudo mount --bind "$HOME/Videos" "$MEDIA_DIR/Movies"
+
+        echo "Shared directories mounted successfully! Launching UI..."
+        waydroid show-full-ui
+      '';
+    })
+
+    # --- NEW: Stop script to unmount before stopping the session ---
+    (pkgs.writeShellApplication {
+      name = "waydroid-stop-shared";
+      runtimeInputs = with pkgs; [
+        waydroid-nftables
+        util-linux
+      ];
+      text = ''
+        MEDIA_DIR="$HOME/.local/share/waydroid/data/media/0"
+
+        echo "Unmounting shared directories..."
+        # Use || true so it doesn't fail if already unmounted
+        sudo umount "$MEDIA_DIR/Documents" 2>/dev/null || true
+        sudo umount "$MEDIA_DIR/Download" 2>/dev/null || true
+        sudo umount "$MEDIA_DIR/Music" 2>/dev/null || true
+        sudo umount "$MEDIA_DIR/Pictures" 2>/dev/null || true
+        sudo umount "$MEDIA_DIR/Movies" 2>/dev/null || true
+
+        echo "Stopping Waydroid session..."
+        waydroid session stop
+      '';
+    })
+
   ];
 
 }
