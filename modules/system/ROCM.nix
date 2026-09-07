@@ -71,7 +71,8 @@ let
     # ---- Variables
     # ------------------------------------------------
     environment.variables = {
-      ROCM_PATH = "${pkgs.rocmPackages.clr}";
+      ROCM_PATH = "/opt/rocm";
+      HIP_PATH = "/opt/rocm";
       HSA_OVERRIDE_GFX_VERSION = "9.0.0";
       # OCL_ICD_VENDORS = "/etc/OpenCL/vendors/";
 
@@ -80,7 +81,6 @@ let
 
       ROC_ENABLE_PRE_VEGA = "1";
 
-      HIP_PATH = "/opt/rocm";
       # HSA_OVERRIDE_GFX_VERSION = "9.0.0"; # 10.3.0 or 9.0.0
 
       # OCL_ICD_VENDORS = "${rp.rocmPackages.clr.icd}/etc/OpenCL/vendors/";
