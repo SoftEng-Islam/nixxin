@@ -15,13 +15,18 @@ let
     ];
   });
 
-  # 2. Wrapped Blender to bypass UI locks and inject ROCm
-  blender-rocm = pkgs.writeShellScriptBin "blender" ''
-    export HSA_OVERRIDE_GFX_VERSION=9.0.0
-    export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib:$LD_LIBRARY_PATH"
-    export CYCLES_HIP_FORCE_ENABLE=1
-    exec ${blender-vega}/bin/blender "$@"
-  '';
+  # 2. Wrapped Blender to preserve GUI icons (.desktop files) and inject ROCm
+  blender-rocm = pkgs.symlinkJoin {
+    name = "blender-rocm";
+    paths = [ blender-vega ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/blender \
+        --set HSA_OVERRIDE_GFX_VERSION 9.0.0 \
+        --set CYCLES_HIP_FORCE_ENABLE 1 \
+        --prefix LD_LIBRARY_PATH : "${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib"
+    '';
+  };
 
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
