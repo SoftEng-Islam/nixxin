@@ -45,6 +45,12 @@ let
     # error shows up as one clean message instead of several files'
     # output interleaved together in the log.
     enableParallelBuilding = false;
+    # The driver's own headers (drv_types.h etc.) live in ./include —
+    # whatever this fork's Makefile does to add that to the search path
+    # isn't working under the LLVM build, so add it directly.
+    preBuild = (old.preBuild or "") + ''
+      export NIX_CFLAGS_COMPILE="$NIX_CFLAGS_COMPILE -I$PWD/include"
+    '';
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
     '';
