@@ -7,19 +7,15 @@
 }:
 let
   inherit (lib) optionals optional;
-  # 2. Custom Blender compiled with Vega (gfx900) HIP kernels
-  blender-vega =
-    (pkgs.pkgsRocm.blender.override {
-      hipSupport = true;
-    }).overrideAttrs
-      (old: {
-        # Force CMake to compile the gfx900 kernels alongside RDNA ones
-        cmakeFlags = (old.cmakeFlags or [ ]) ++ [
-          "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
-        ];
-      });
+  # 1. Custom Blender compiled with Vega (gfx900) HIP kernels
+  blender-vega = pkgs.pkgsRocm.blender.overrideAttrs (old: {
+    # Force CMake to compile the gfx900 kernels alongside RDNA ones
+    cmakeFlags = (old.cmakeFlags or [ ]) ++ [
+      "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
+    ];
+  });
 
-  # 3. Wrapped Blender to bypass UI locks and inject ROCm
+  # 2. Wrapped Blender to bypass UI locks and inject ROCm
   blender-rocm = pkgs.writeShellScriptBin "blender" ''
     export HSA_OVERRIDE_GFX_VERSION=9.0.0
     export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib:$LD_LIBRARY_PATH"
