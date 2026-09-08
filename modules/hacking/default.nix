@@ -16,6 +16,7 @@ in
 {
   config = mkIf (settings.modules.hacking.enable) {
     environment.systemPackages = with pkgs; [
+      hashcat
       rhashcat
       hashcat-utils
       john
