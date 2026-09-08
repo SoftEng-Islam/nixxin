@@ -36,12 +36,10 @@ let
     };
     # This kernel is a Clang/LTO build (see -fsplit-lto-unit,
     # -mretpoline-external-thunk in the kernel's baked-in CFLAGS) — an
-    # out-of-tree module has to be built with the same toolchain, GCC
-    # simply can't parse those flags.
-    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
-      pkgs.llvmPackages.clang
-      pkgs.llvmPackages.bintools
-    ];
+    # out-of-tree module has to be built with the same toolchain.
+    # kernel.moduleBuildDependencies (already in nativeBuildInputs via the
+    # base package) should already carry the matching clang; LLVM=1 just
+    # tells kbuild to reach for it instead of defaulting to "gcc".
     makeFlags = (old.makeFlags or [ ]) ++ [ "LLVM=1" ];
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
