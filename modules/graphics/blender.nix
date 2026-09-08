@@ -30,6 +30,6 @@ let
     '';
   };
 in
-lib.mkIf (settings.modules.graphics.blender.enable or false) {
+lib.mkIf (settings.modules.graphics.blender or false) {
   environment.systemPackages = [ blender-42-lts ];
 }
