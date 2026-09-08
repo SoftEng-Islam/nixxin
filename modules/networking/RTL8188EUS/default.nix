@@ -25,9 +25,14 @@
 # [keyfile]
 # unmanaged-devices=mac:A7:A7:A7:A7:A7
 # =============================
-
+let
+  rtl8188eus-fixed = config.boot.kernelPackages.rtl8188eus-aircrack.overrideAttrs (old: {
+    postPatch = (old.postPatch or "") + ''
+      sed -i 's/-Wno-sometimes-uninitialized//' Makefile
+    '';
+  });
+in
 lib.mkIf (settings.modules.networking.rtl8188eus or false) {
-  # https://github.com/SimplyCEO/rtl8188eus
   # Supports
   # Android 12/13
   # MESH Support
@@ -40,10 +45,12 @@ lib.mkIf (settings.modules.networking.rtl8188eus or false) {
     "r8188eu"
   ];
 
+  boot.extraModulePackages = [ rtl8188eus-fixed ];
+
   # Install the patched rtl8188eus driver (supports monitor mode)
-  boot.extraModulePackages = with config.boot.kernelPackages; [
-    (callPackage ./package.nix { })
-  ];
+  # boot.extraModulePackages = with config.boot.kernelPackages; [
+  #   (callPackage ./package.nix { })
+  # ];
 
   boot.kernelModules = [ "8188eu" ];
 
