@@ -7,6 +7,25 @@
 }:
 let
   inherit (lib) optionals optional;
+  # 2. Custom Blender compiled with Vega (gfx900) HIP kernels
+  blender-vega =
+    (pkgs.pkgsRocm.blender.override {
+      hipSupport = true;
+    }).overrideAttrs
+      (old: {
+        # Force CMake to compile the gfx900 kernels alongside RDNA ones
+        cmakeFlags = (old.cmakeFlags or [ ]) ++ [
+          "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
+        ];
+      });
+
+  # 3. Wrapped Blender to bypass UI locks and inject ROCm
+  blender-rocm = pkgs.writeShellScriptBin "blender" ''
+    export HSA_OVERRIDE_GFX_VERSION=9.0.0
+    export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib:$LD_LIBRARY_PATH"
+    export CYCLES_HIP_FORCE_ENABLE=1
+    exec ${blender-vega}/bin/blender "$@"
+  '';
 
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
@@ -14,7 +33,7 @@ let
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender pkgsRocm.blender)
+    (optional _graphics_pkgs.blender blender-rocm)
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
