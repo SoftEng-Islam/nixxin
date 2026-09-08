@@ -10,12 +10,16 @@
 let
   pkgs-2405 = inputs.nixpkgs-2405.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
-  # 1. Compile Blender 4.2 LTS with explicit gfx900 HIP binary target
-  blender-42-vega = pkgs-2405.pkgsRocm.blender.overrideAttrs (old: {
-    cmakeFlags = (old.cmakeFlags or [ ]) ++ [
-      "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
-    ];
-  });
+  # 1. Compile Blender 4.2 LTS from 24.05 with explicit gfx900 HIP binary target
+  blender-42-vega =
+    (pkgs-2405.blender.override {
+      hipSupport = true;
+    }).overrideAttrs
+      (old: {
+        cmakeFlags = (old.cmakeFlags or [ ]) ++ [
+          "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
+        ];
+      });
 
   # 2. Preserve desktop menu launcher icons and inject ROCm flags
   blender-42-lts = pkgs.symlinkJoin {
