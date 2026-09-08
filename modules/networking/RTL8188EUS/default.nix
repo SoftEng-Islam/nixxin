@@ -34,11 +34,15 @@ let
     meta = old.meta // {
       broken = false;
     };
-    # The kernel is built with Clang, but this driver's Makefile calls
-    # `gcc` directly instead of respecting the kernel's $(CC)/LLVM setting.
-    # gcc in environment.systemPackages doesn't reach this sandboxed
-    # build, so it has to go in nativeBuildInputs instead.
-    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.gcc ];
+    # This kernel is a Clang/LTO build (see -fsplit-lto-unit,
+    # -mretpoline-external-thunk in the kernel's baked-in CFLAGS) — an
+    # out-of-tree module has to be built with the same toolchain, GCC
+    # simply can't parse those flags.
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [
+      pkgs.llvmPackages.clang
+      pkgs.llvmPackages.bintools
+    ];
+    makeFlags = (old.makeFlags or [ ]) ++ [ "LLVM=1" ];
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
     '';
