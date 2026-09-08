@@ -8,32 +8,31 @@
 let
   inherit (lib) optionals optional;
   # 1. Custom Blender compiled with Vega (gfx900) HIP kernels
-  blender-vega = pkgs.pkgsRocm.blender.overrideAttrs (old: {
-    # Force CMake to compile the gfx900 kernels alongside RDNA ones
-    cmakeFlags = (old.cmakeFlags or [ ]) ++ [
-      "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
-    ];
-  });
+  # blender-vega = pkgs.pkgsRocm.blender.overrideAttrs (old: {
+  #   # Force CMake to compile the gfx900 kernels alongside RDNA ones
+  #   cmakeFlags = (old.cmakeFlags or [ ]) ++ [
+  #     "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
+  #   ];
+  # });
 
   # 2. Wrapped Blender to preserve GUI icons (.desktop files) and inject ROCm
-  blender-rocm = pkgs.symlinkJoin {
-    name = "blender-rocm";
-    paths = [ pkgs.pkgsRocm.blender ];
-    buildInputs = [ pkgs.makeWrapper ];
-    postBuild = ''
-      wrapProgram $out/bin/blender \
-        --set HSA_OVERRIDE_GFX_VERSION 9.0.0 \
-        --set CYCLES_HIP_FORCE_ENABLE 1 \
-        --prefix LD_LIBRARY_PATH : "${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib"
-    '';
-  };
+  # blender-rocm = pkgs.symlinkJoin {
+  #   name = "blender-rocm";
+  #   paths = [ pkgs.pkgsRocm.blender ];
+  #   buildInputs = [ pkgs.makeWrapper ];
+  #   postBuild = ''
+  #     wrapProgram $out/bin/blender \
+  #       --set HSA_OVERRIDE_GFX_VERSION 9.0.0 \
+  #       --set CYCLES_HIP_FORCE_ENABLE 1 \
+  #       --prefix LD_LIBRARY_PATH : "${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib"
+  #   '';
+  # };
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
-    (optional _graphics_pkgs.blender blender-rocm)
     (optional _graphics_pkgs.darktable darktable)
     (optional _graphics_pkgs.drawio drawio)
     (optional _graphics_pkgs.figmaLinux figma-linux)
@@ -91,6 +90,9 @@ let
 
 in
 {
+  imports = [
+    ./blender.nix
+  ];
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     environment.variables = {
@@ -98,6 +100,8 @@ in
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
       WLR_NO_HARDWARE_CURSORS = "1";
       WGPU_BACKEND = "vulkan";
+
+      CYCLES_HIP_FORCE_ENABLE = "1";
 
       # OpenCL Vendors
       OCL_ICD_VENDORS = "${pkgs.symlinkJoin {

@@ -6,6 +6,7 @@
     # Older nixpkgs pin for ROCm 5.7 (HIP/OpenCL on Picasso/Raven APUs, gfx902).
     # Current nixpkgs ships ROCm 7.x, which dropped these integrated GPUs.
     nixpkgs-older.url = "github:nixos/nixpkgs/nixos-23.11";
+    nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
 
     unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
@@ -103,6 +104,7 @@
       sops-nix,
       antigravity-nix,
       chatgpt-desktop-app,
+      nixpkgs-2405,
       ...
     }@inputs:
     let

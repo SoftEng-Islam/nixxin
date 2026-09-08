@@ -458,6 +458,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-2405": {
+      "locked": {
+        "lastModified": 1735563628,
+        "narHash": "sha256-OnSAY7XDSx7CtDoqNh8jwVwh4xNL/2HaJxGjryLWzX8=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "b134951a4c9f3c995fd7be05f3243f8ecd65d798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-24.05",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1785031560,
@@ -633,6 +649,7 @@
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
+        "nixpkgs-2405": "nixpkgs-2405",
         "nixpkgs-older": "nixpkgs-older",
         "noctalia": "noctalia",
         "noctalia-qs": "noctalia-qs",
