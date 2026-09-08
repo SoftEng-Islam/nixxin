@@ -8,7 +8,7 @@
 let
   pkgs-2405 = inputs.nixpkgs-2405.legacyPackages.${pkgs.stdenv.hostPlatform.system};
 
-  # 1. Custom compiled Blender 4.2 LTS (already built and cached in /nix/store)
+  # 1. Custom compiled Blender 4.2 LTS (already cached in /nix/store)
   blender-42-vega =
     (pkgs-2405.blender.override {
       hipSupport = true;
@@ -19,38 +19,22 @@ let
         ];
       });
 
-  # 2. FHS container to expose host Mesa/DRI OpenGL & ROCm drivers
-  blender-fhs = pkgs.buildFHSEnv {
-    name = "blender";
-    targetPkgs = pkgs: [
-      blender-42-vega
-      pkgs.rocmPackages.clr
-      pkgs.mesa
-      pkgs.libGL
-      pkgs.libglvnd
-      pkgs.libepoxy
-      pkgs.xorg.libX11
-      pkgs.xorg.libXext
-      pkgs.xorg.libXi
-      pkgs.xorg.libXrender
-      pkgs.xorg.libXrandr
-      pkgs.xorg.libXfixes
-      pkgs.xorg.libXcursor
-      pkgs.xorg.libXinerama
-      pkgs.xorg.libXxf86vm
-    ];
-    profile = ''
-      export HSA_OVERRIDE_GFX_VERSION=9.0.0
-      export CYCLES_HIP_FORCE_ENABLE=1
-      export LD_LIBRARY_PATH=/run/opengl-driver/lib:$LD_LIBRARY_PATH
-    '';
-    runScript = "blender";
-    extraInstallCommands = ''
-      mkdir -p $out/share
-      cp -r ${blender-42-vega}/share/* $out/share/ 2>/dev/null || true
+  # 2. Native wrapper bridging 24.05 binary to your 26.05 Wayland/Mesa drivers
+  blender-42-lts = pkgs.symlinkJoin {
+    name = "blender-42-lts";
+    paths = [ blender-42-vega ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/blender \
+        --set HSA_OVERRIDE_GFX_VERSION 9.0.0 \
+        --set CYCLES_HIP_FORCE_ENABLE 1 \
+        --set __EGL_VENDOR_LIBRARY_DIRS "/run/opengl-driver/share/glvnd/egl_vendor.d" \
+        --set LIBGL_DRIVERS_PATH "/run/opengl-driver/lib/dri" \
+        --prefix LD_LIBRARY_PATH : "/run/opengl-driver/lib:${pkgs.rocmPackages.clr}/lib"
     '';
   };
 in
 {
-  environment.systemPackages = [ blender-fhs ];
+  # Add the wrapped package to your system
+  environment.systemPackages = [ blender-42-lts ];
 }
