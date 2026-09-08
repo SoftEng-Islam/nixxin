@@ -41,6 +41,10 @@ let
     # base package) should already carry the matching clang; LLVM=1 just
     # tells kbuild to reach for it instead of defaulting to "gcc".
     makeFlags = (old.makeFlags or [ ]) ++ [ "LLVM=1" ];
+    # Serialize the build (base package sets this true) so a compile
+    # error shows up as one clean message instead of several files'
+    # output interleaved together in the log.
+    enableParallelBuilding = false;
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
     '';
