@@ -27,6 +27,9 @@
 # =============================
 let
   rtl8188eus-fixed = config.boot.kernelPackages.rtl8188eus-aircrack.overrideAttrs (old: {
+    meta = old.meta // {
+      broken = false;
+    };
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
     '';
