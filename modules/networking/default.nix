@@ -13,7 +13,7 @@ in
   imports = [
     ./dnsmasq.nix
     ./iwd.nix
-    ./RTL8188EUS
+    ./rtl8xxxu.nix
     ./rtw.nix
     ./waypipe.nix
     ./cloudflare-warp.nix

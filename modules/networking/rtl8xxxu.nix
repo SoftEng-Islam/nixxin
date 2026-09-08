@@ -25,7 +25,7 @@
 # [keyfile]
 # unmanaged-devices=mac:A7:A7:A7:A7:A7
 # =============================
-lib.mkIf (settings.modules.networking.rtl8188eus or false) {
+lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
   # TP-Link TL-WN722N v2/v3 [Realtek RTL8188EUS], ID 2357:010c
   #
   # No out-of-tree driver needed. The in-tree rtl8xxxu driver has

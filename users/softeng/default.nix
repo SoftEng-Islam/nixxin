@@ -443,7 +443,7 @@ self: {
   };
   modules.networking.wifiBackend = "wpa_supplicant"; # "wpa_supplicant" OR "iwd"
   modules.networking.iwd = (self.modules.networking.wifiBackend == "iwd");
-  modules.networking.rtl8188eus = true;
+  modules.networking.rtl8xxxu = true;
   modules.networking.waypipe = false;
   modules.networking.rtw = false;
   modules.networking.firewall.enable = true;
