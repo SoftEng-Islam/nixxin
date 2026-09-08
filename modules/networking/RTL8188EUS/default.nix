@@ -27,6 +27,10 @@
 # =============================
 let
   rtl8188eus-fixed = config.boot.kernelPackages.rtl8188eus-aircrack.overrideAttrs (old: {
+    # nixpkgs has this marked broken at the rev this flake is pinned to;
+    # the sed below is what actually fixes the build (GCC 14 doesn't know
+    # the clang-only -Wno-sometimes-uninitialized flag the driver's
+    # Makefile passes it), so it's safe to just clear the flag here.
     meta = old.meta // {
       broken = false;
     };
