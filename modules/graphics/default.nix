@@ -18,7 +18,7 @@ let
   # 2. Wrapped Blender to preserve GUI icons (.desktop files) and inject ROCm
   blender-rocm = pkgs.symlinkJoin {
     name = "blender-rocm";
-    paths = [ blender-vega ];
+    paths = [ pkgs.pkgsRocm.blender ];
     buildInputs = [ pkgs.makeWrapper ];
     postBuild = ''
       wrapProgram $out/bin/blender \
@@ -27,7 +27,6 @@ let
         --prefix LD_LIBRARY_PATH : "${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib"
     '';
   };
-
   # System and hardware configuration
   system = pkgs.stdenv.hostPlatform.system;
 
