@@ -34,6 +34,11 @@ let
     meta = old.meta // {
       broken = false;
     };
+    # The kernel is built with Clang, but this driver's Makefile calls
+    # `gcc` directly instead of respecting the kernel's $(CC)/LLVM setting.
+    # gcc in environment.systemPackages doesn't reach this sandboxed
+    # build, so it has to go in nativeBuildInputs instead.
+    nativeBuildInputs = (old.nativeBuildInputs or [ ]) ++ [ pkgs.gcc ];
     postPatch = (old.postPatch or "") + ''
       sed -i 's/-Wno-sometimes-uninitialized//' Makefile
     '';
