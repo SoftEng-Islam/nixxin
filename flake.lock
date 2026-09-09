@@ -638,6 +638,22 @@
         "url": "https://git.outfoxxed.me/quickshell/quickshell"
       }
     },
+    "quickshell-overview": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786726681,
+        "narHash": "sha256-s1HyEuMQQHVIZeDTwJetOdT467M/mzZl4ymTlENgDuE=",
+        "owner": "Shanu-Kumawat",
+        "repo": "quickshell-overview",
+        "rev": "47f0d402822b26805ed0ecea4a770c38c537b728",
+        "type": "github"
+      },
+      "original": {
+        "owner": "Shanu-Kumawat",
+        "repo": "quickshell-overview",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "antigravity-nix": "antigravity-nix",
@@ -655,6 +671,7 @@
         "noctalia-qs": "noctalia-qs",
         "nur": "nur",
         "quickshell": "quickshell",
+        "quickshell-overview": "quickshell-overview",
         "sops-nix": "sops-nix",
         "systems": "systems_5",
         "unstable": "unstable",
