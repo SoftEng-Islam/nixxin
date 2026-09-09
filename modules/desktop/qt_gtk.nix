@@ -25,11 +25,7 @@ in
     # ----------------  ----------------
     gtk = {
       enable = settings.common.gtk.enable;
-      colorScheme = if preferDark then "dark" else "light";
-      theme = {
-        # name = gtkThemeName;
-        # package = settings.common.gtk.package;
-      };
+      # colorScheme = if preferDark then "dark" else "light";
 
       iconTheme = {
         name = if preferDark then settings.common.icons.nameInDark else settings.common.icons.nameInLight;
@@ -40,17 +36,6 @@ in
         name = settings.common.cursor.name;
         size = settings.common.cursor.size;
         package = settings.common.cursor.package;
-      };
-
-      gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = preferDark;
-        gtk-decoration-layout = "menu:";
-        gtk-xft-antialias = 1;
-        gtk-xft-hinting = 1;
-        gtk-xft-hintstyle = "hintfull";
-        gtk-xft-rgba = "rgb";
-        gtk-recent-files-enabled = true;
-        gtk-cursor-theme-name = settings.common.cursor.name;
       };
 
       gtk3.bookmarks = [
@@ -74,9 +59,6 @@ in
       gtk4 = {
         # Leave null so libadwaita reads gtk.css (Noctalia noctalia.css import).
         theme = null;
-        extraConfig = {
-          gtk-application-prefer-dark-theme = preferDark;
-        };
       };
     };
 
