@@ -26,6 +26,10 @@ in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
+
+    # ----------------  ----------------
+    #                 GTK
+    # ----------------  ----------------
     gtk = {
       enable = settings.common.gtk.enable;
       colorScheme = if preferDark then "dark" else "light";
@@ -83,11 +87,23 @@ in
       };
     };
 
+    # ----------------  ----------------
+    #                 Qt
+    # ----------------  ----------------
     qt = {
       enable = true;
       platformTheme.name = _qt_gtk.platformTheme;
       # style.name = _qt_gtk.style;
     };
+
+    # Select the palette Noctalia generates for the "qt" template.
+    xdg.configFile."qt6ct/qt6ct.conf".text = ''
+      [Appearance]
+      style=Fusion
+      custom_palette=true
+      color_scheme_path=~/.config/qt6ct/colors/noctalia.conf
+      standard_dialogs=default
+    '';
   };
 
   environment.variables = {
