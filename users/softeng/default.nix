@@ -44,11 +44,10 @@ self: {
   common.gtk.GTK_THEME = ""; # empty so Noctalia can drive adw-gtk3 via gsettings + gtk.css
   common.gtk.theme = "adw-gtk3-dark";
   common.gtk.package = pkgs.adw-gtk3;
-
   common.gtk.icon_cache = true;
-  common.qt.style = "Adwaita-dark";
-  common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
-  common.qt.package = pkgs.adwaita-qt6;
+
+  common.qt.platformTheme = "qtct";
+  common.qt.QT_QPA_PLATFORMTHEME = "qt6ct";
   common.qt.SCALE_FACTOR = 1;
   common.icons.theme =
     if (self.modules.desktop.dconf.colorScheme == "prefer-dark") then

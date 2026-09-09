@@ -122,10 +122,8 @@ self: {
   common.gtk.icon_cache = true;
 
   # [ QT ]
-  common.qt.style = "Adwaita-dark";
-  # Qt platform theme plugin name; Qt ships a `gtk3` platform theme (not `gtk4`).
-  common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
-  common.qt.package = pkgs.adwaita-qt6;
+  common.qt.platformTheme = "qtct";
+  common.qt.QT_QPA_PLATFORMTHEME = "qt6ct";
   common.qt.SCALE_FACTOR = 1;
 
   # [ ICONS ]

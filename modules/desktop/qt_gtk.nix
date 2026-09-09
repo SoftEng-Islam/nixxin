@@ -5,7 +5,12 @@
 # gtk.css, and switches gsettings between adw-gtk3 / adw-gtk3-dark.
 # Do not set GTK_THEME — that env var overrides gsettings and blocks those CSS
 # color roles from applying.
-{ settings, pkgs, lib, ... }:
+{
+  settings,
+  pkgs,
+  lib,
+  ...
+}:
 let
   _qt_gtk = settings.common.qt;
   preferDark = settings.modules.desktop.dconf.colorScheme == "prefer-dark";
@@ -30,11 +35,7 @@ in
       };
 
       iconTheme = {
-        name =
-          if preferDark then
-            settings.common.icons.nameInDark
-          else
-            settings.common.icons.nameInLight;
+        name = if preferDark then settings.common.icons.nameInDark else settings.common.icons.nameInLight;
         package = settings.common.icons.package;
       };
 
@@ -85,7 +86,7 @@ in
     qt = {
       enable = true;
       platformTheme.name = _qt_gtk.platformTheme;
-      style.name = _qt_gtk.style;
+      # style.name = _qt_gtk.style;
     };
   };
 
@@ -100,14 +101,16 @@ in
     # Set the scale factor for Qt apps
     QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
-    QT_QPA_PLATFORMTHEME = _qt_gtk.platformTheme;
+    QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
 
     # Fix old GTK3 applications
     GDK_GL = "always"; # "gles" "disable" "always"
   }
-  // lib.optionalAttrs (settings.common.gtk.GTK_THEME != null && settings.common.gtk.GTK_THEME != "") {
-    GTK_THEME = settings.common.gtk.GTK_THEME;
-  };
+  //
+    lib.optionalAttrs (settings.common.gtk.GTK_THEME != null && settings.common.gtk.GTK_THEME != "")
+      {
+        GTK_THEME = settings.common.gtk.GTK_THEME;
+      };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
 

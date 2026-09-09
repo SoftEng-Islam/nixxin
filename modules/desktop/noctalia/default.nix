@@ -154,7 +154,7 @@ in
       builtin = "Noctalia"                # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                           # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
       community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
-      wallpaper_scheme  = "faithful"      # m3-tonal-spot | m3-content | m3-fruit-salad |
+      wallpaper_scheme  = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
                                           # m3-rainbow | m3-monochrome | vibrant | faithful |
                                           # dysfunctional | muted
       pure_black_dark = false             # anchor dark surfaces to true black (OLED); applies to
