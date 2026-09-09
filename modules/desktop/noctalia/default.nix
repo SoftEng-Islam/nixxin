@@ -163,8 +163,8 @@ in
       [theme.templates]
       enable_builtin_templates   = true
       enable_community_templates = true
-      builtin_ids                = [ "gtk3" "gtk4" "qt"] # opt-in; list ids with: noctalia theme --list-templates
-      community_ids              = []     # fetched from api.noctalia.dev/templates, cached locally
+      builtin_ids                = [ "gtk3" "gtk4" "qt" "hyprland" "wezterm"] # opt-in; list ids with: noctalia theme --list-templates
+      community_ids              = ["zed" "yazi" "papirus-icons"]     # fetched from api.noctalia.dev/templates, cached locally
 
       # User-defined templates are declared directly in config.
       # [theme.templates.user.my_app]
@@ -282,7 +282,7 @@ in
       enable_sounds = true                # master toggle for UI feedback sounds
       sound_volume = 0.4                  # 0.0 - 1.0
       volume_change_sound = ""            # empty = bundled sounds/volume-change.wav
-      notification_sound = ${messageSound}             # empty = bundled sounds/notification.wav
+      notification_sound = "${messageSound}"             # empty = bundled sounds/notification.wav
 
       # ── Brightness ────────────────────────────────────────────────────────────────
 
