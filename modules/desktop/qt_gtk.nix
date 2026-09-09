@@ -7,7 +7,7 @@ in
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     gtk = {
-      enable = true;
+      enable = settings.common.gtk.enable;
       colorScheme = "dark";
       theme = {
         name = settings.common.gtk.theme;

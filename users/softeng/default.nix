@@ -39,6 +39,8 @@ self: {
   common.imageViewer = "";
   common.idle.delay = 0; # seconds; 0 to disable
   common.dotfilesDir = "/home/${self.user.username}/nixxin"; # Absolute path of the repo
+
+  common.gtk.enable = false; # Set true to enable GTK, and false to disable GTK.
   common.gtk.GTK_THEME = "Colloid-Grey-Dark-Dracula"; # Env Variable
   common.gtk.theme = "Colloid-Grey-Dark-Dracula";
   common.gtk.package = pkgs.colloid-gtk-theme.override {
@@ -421,7 +423,7 @@ self: {
   modules.media.jellyfin = false; # media player
   modules.media.kdenlive = false; # video Editor
   modules.media.shotcut = false; # video Editor
-  modules.media.music = false; # Music Player
+  modules.media.music = true; # Music Player
 
   # [Networking]
   modules.networking.dnsResolver = "dnsmasq"; # "dnsmasq" or "resolved"

@@ -1,12 +1,8 @@
 {
   settings,
-  lib,
   pkgs,
   ...
 }:
-let
-  fm_settings = settings.modules.desktop.file_manager;
-in
 {
   # ---- Tracker3 ---- #
   services.gnome.tinysparql.enable = true; # indexing files
