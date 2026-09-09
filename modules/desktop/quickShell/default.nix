@@ -21,7 +21,7 @@
           columns = 5;
           scale = 0.16;
           enable = true;
-          hideEmptyRows = true;
+          hideEmptyRows = false;
           closeOnFocusLoss = true;
           useWorkspaceMap = false;
           workspaceMap = [
@@ -34,7 +34,7 @@
           previewMode = "live";
           includeInactiveMonitorPreviews = true;
           previewRecaptureDelayMs = 60;
-          showSpecialWorkspaces = true;
+          showSpecialWorkspaces = false;
           specialWorkspaces = [ ];
           specialWorkspaceColumns = 5;
           emptyWorkspaceWallpaper = "";
@@ -46,8 +46,8 @@
             workspaceOpacity = 0.86;
             emptyWorkspaceWallpaperOverlayOpacity = 0.18;
             windowOverlayOpacity = 0.22;
-            enableBlur = false;
-            glassMode = false;
+            enableBlur = true;
+            glassMode = true;
             glassTintStrength = 0.35;
             glassBorderOpacity = 0.72;
             glassShineOpacity = 0.14;
