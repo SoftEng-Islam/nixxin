@@ -85,19 +85,11 @@ in
   };
 
   environment.variables = {
-
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
-
     # Set the scale factor for Qt apps
     QT_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
-
     QT_QPA_PLATFORMTHEME = _qt_gtk.QT_QPA_PLATFORMTHEME;
-
-    # Fix old GTK3 applications
-    GDK_GL = "always"; # "gles" "disable" "always"
-
-    GTK_THEME = settings.common.gtk.GTK_THEME;
   };
 
   environment.systemPackages = with pkgs; [
