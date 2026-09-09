@@ -107,6 +107,7 @@ in
   };
 
   environment.variables = {
+
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
@@ -117,40 +118,38 @@ in
 
     # Fix old GTK3 applications
     GDK_GL = "always"; # "gles" "disable" "always"
-  }
-  //
-    lib.optionalAttrs (settings.common.gtk.GTK_THEME != null && settings.common.gtk.GTK_THEME != "")
-      {
-        GTK_THEME = settings.common.gtk.GTK_THEME;
-      };
+
+    GTK_THEME = settings.common.gtk.GTK_THEME;
+  };
+
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff
 
-    adwaita-qt6
-    gsettings-qt
+    # adwaita-qt6
+    # gsettings-qt
 
-    libsForQt5.qwt
-    qt5.qtgraphicaleffects
-    qt5.qtimageformats
-    qt5.qtquickcontrols2
-    qt6.qtbase
-    qt6.qtdeclarative
-    qt6.qtsvg
-    qt6.qtwayland
+    # libsForQt5.qwt
+    # qt5.qtgraphicaleffects
+    # qt5.qtimageformats
+    # qt5.qtquickcontrols2
+    # qt6.qtbase
+    # qt6.qtdeclarative
+    # qt6.qtsvg
+    # qt6.qtwayland
 
-    # GTK
-    adw-gtk3
+    # # GTK
+    # adw-gtk3
 
-    gobject-introspection
+    # gobject-introspection
 
-    gtk3 # A multi-platform toolkit for creating graphical user interfaces
-    gtk4 # A multi-platform toolkit for creating graphical user interfaces
-    gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
-    gtkmm4 # C++ interface to the GTK graphical user interface library
-    gtksourceview
-    libappindicator-gtk3
-    tk
-    webkitgtk_6_0
-    webp-pixbuf-loader
+    # gtk3 # A multi-platform toolkit for creating graphical user interfaces
+    # gtk4 # A multi-platform toolkit for creating graphical user interfaces
+    # gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
+    # gtkmm4 # C++ interface to the GTK graphical user interface library
+    # gtksourceview
+    # libappindicator-gtk3
+    # tk
+    # webkitgtk_6_0
+    # webp-pixbuf-loader
   ];
 }
