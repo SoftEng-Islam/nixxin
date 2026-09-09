@@ -138,10 +138,6 @@ in
     dhcp = "dhcpcd"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
-      # [device]
-      # "yes" is already the default for scanning
-      device."wifi.scan-rand-mac-address" = "no";
-
       # Wireless configuration
       # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
       # - WPA2, WPA3, and Enterprise authentication.
@@ -150,12 +146,7 @@ in
       # "wpa_supplicant" or "iwd"
       device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
 
-      # [ifupdown]
-      ifupdown."managed" = "true";
-
-      # [connection]
       connection = {
-        "wifi.powersave" = "0";
         # "connection.llmnr" = 2; # Disable LLMNR
         # "connection.mdns" = 2; # Disable mDNS
         # "ipv6.ipv6-privacy" = "2";
@@ -178,11 +169,6 @@ in
       main."dhcp" = "internal";
       main."dns" = "systemd-resolved";
       main."rc-manager" = "unmanaged";
-
-      # [keyfile]
-      # To get The MAC Address run this Command:
-      # nmcli device show [wifiInterface] | grep HWADDR
-      # keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
 
       # [logging]
       # logging."audit" = "false"; # < default
