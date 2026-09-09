@@ -14,8 +14,9 @@ lib.mkIf (settings.modules.networking.wifi or false) {
   # NetworkManager configuration
   # ===============================================
   networking.networkmanager = {
+
     # Make NetworkManager ignore your specific TP-Link adapter
-    unmanaged = [ "mac:a8:42:a1:1c:e6:27" ];
+    unmanaged = [ "mac:a8:42:a1:1c:e6:27" ]; # (The Real Hardware Address)
 
     # Disable WiFi power saving globally
 
@@ -28,14 +29,14 @@ lib.mkIf (settings.modules.networking.wifi or false) {
     wifi = {
       powersave = false;
       scanRandMacAddress = false;
-      macAddress = "CE:CD:2A:8C:8D:B3";
+      macAddress = "CE:CD:2A:8C:8D:B3"; # (The Spoofed Privacy Address)
       backend = "${settings.modules.networking.wifiBackend}";
     };
     settings = {
       # [keyfile]
       # To get The MAC Address run this Command:
       # nmcli device show [wifiInterface] | grep HWADDR
-      keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
+      # keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
     };
   };
 }
