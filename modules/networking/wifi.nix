@@ -41,5 +41,6 @@ lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
       # To get The MAC Address run this Command:
       # nmcli device show [wifiInterface] | grep HWADDR
       keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
+    };
   };
 }
