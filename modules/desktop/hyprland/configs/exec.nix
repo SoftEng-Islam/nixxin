@@ -24,7 +24,7 @@
               hl.exec_cmd("${pkgs.hyprland}/bin/hyprctl setcursor ${settings.common.cursor.name} ${toString settings.common.cursor.size} & disown")
 
               # ---- Apps To Start ---- #
-              hl.exec_cmd("${pkgs.telegram}/bin/telegram -startintray & disown")
+              hl.exec_cmd("${pkgs.telegram-desktop}/bin/telegram-desktop -startintray & disown")
             end
           '')
         ];
