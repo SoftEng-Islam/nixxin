@@ -14,11 +14,6 @@ lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
   # NetworkManager configuration
   # ===============================================
   networking.networkmanager = {
-    # [keyfile]
-    # To get The MAC Address run this Command:
-    # nmcli device show [wifiInterface] | grep HWADDR
-    keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
-
     # Make NetworkManager ignore your specific TP-Link adapter
     unmanaged = [ "mac:a8:42:a1:1c:e6:27" ];
 
