@@ -107,10 +107,6 @@ in
   };
 
   environment.variables = {
-    # Intentionally omit GTK_THEME so Noctalia can drive adw-gtk3(-dark) via
-    # gsettings + gtk.css. Set common.gtk.GTK_THEME only if you need a static override.
-    QT_STYLE_OVERRIDE = _qt_gtk.style;
-
     # Enable automatic screen scaling for Qt apps
     QT_AUTO_SCREEN_SCALE_FACTOR = _qt_gtk.SCALE_FACTOR;
 
