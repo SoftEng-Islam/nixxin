@@ -35,7 +35,7 @@ lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
       scanRandMacAddress = false;
       macAddress = "CE:CD:2A:8C:8D:B3";
       backend = "${settings.modules.networking.wifiBackend}";
-    }
+    };
     settings = {
       # [keyfile]
       # To get The MAC Address run this Command:
