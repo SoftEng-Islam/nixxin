@@ -153,8 +153,8 @@ in
       source = "wallpaper"                # builtin | wallpaper | community
       builtin = "Noctalia"                # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                           # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
-      # community_palette = "Noctalia"    # fetched from api.noctalia.dev, cached locally
-      # wallpaper_scheme  = "faithful"  # m3-tonal-spot | m3-content | m3-fruit-salad |
+      community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
+      wallpaper_scheme  = "faithful"      # m3-tonal-spot | m3-content | m3-fruit-salad |
                                           # m3-rainbow | m3-monochrome | vibrant | faithful |
                                           # dysfunctional | muted
       pure_black_dark = false             # anchor dark surfaces to true black (OLED); applies to
@@ -163,8 +163,8 @@ in
       [theme.templates]
       enable_builtin_templates   = true
       enable_community_templates = true
-      builtin_ids                = [ "gtk3" "gtk4" "qt" "hyprland" "wezterm"] # opt-in; list ids with: noctalia theme --list-templates
-      community_ids              = ["zed" "yazi" "papirus-icons"]     # fetched from api.noctalia.dev/templates, cached locally
+      builtin_ids                = [ "gtk3" "gtk4" "qt" "hyprland" "wezterm" ] # opt-in; list ids with: noctalia theme --list-templates
+      community_ids              = [ "zed" "yazi" "papirus-icons" ]     # fetched from api.noctalia.dev/templates, cached locally
 
       # User-defined templates are declared directly in config.
       # [theme.templates.user.my_app]
