@@ -49,6 +49,7 @@ in
         "file:///home/${settings.user.username}/Pictures"
         "file:///home/${settings.user.username}/Music"
         "file:///home/${settings.user.username}/Videos"
+        "file:///home/${settings.user.username}/.local/share/waydroid/data/media/0 Waydroid"
 
         # "file:///home/${settings.user.username}/Torrents"
         # "file:///home/${settings.user.username}/.config"
