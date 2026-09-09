@@ -26,7 +26,10 @@ in
     gtk = {
       enable = settings.common.gtk.enable;
       # colorScheme = if preferDark then "dark" else "light";
-
+      theme = {
+        package = pkgs.adw-gtk3;
+        name = "adw-gtk3";
+      };
       iconTheme = {
         name = if preferDark then settings.common.icons.nameInDark else settings.common.icons.nameInLight;
         package = settings.common.icons.package;
