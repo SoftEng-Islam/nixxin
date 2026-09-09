@@ -15,13 +15,6 @@ let
   _qt_gtk = settings.common.qt;
   preferDark = settings.modules.desktop.dconf.colorScheme == "prefer-dark";
   # Fallback for settings.ini only; Noctalia's apply.sh may switch this at runtime.
-  gtkThemeName =
-    if settings.common.gtk.theme != null && settings.common.gtk.theme != "" then
-      settings.common.gtk.theme
-    else if preferDark then
-      "adw-gtk3-dark"
-    else
-      "adw-gtk3";
 in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
@@ -34,8 +27,8 @@ in
       enable = settings.common.gtk.enable;
       colorScheme = if preferDark then "dark" else "light";
       theme = {
-        name = gtkThemeName;
-        package = settings.common.gtk.package;
+        # name = gtkThemeName;
+        # package = settings.common.gtk.package;
       };
 
       iconTheme = {

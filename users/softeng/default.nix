@@ -41,7 +41,7 @@ self: {
   common.dotfilesDir = "/home/${self.user.username}/nixxin"; # Absolute path of the repo
 
   common.gtk.enable = true; # Set true to enable GTK, and false to disable GTK.
-  common.gtk.GTK_THEME = ""; # empty so Noctalia can drive adw-gtk3 via gsettings + gtk.css
+  common.gtk.GTK_THEME = null; # empty so Noctalia can drive adw-gtk3 via gsettings + gtk.css
   common.gtk.theme = "adw-gtk3-dark";
   common.gtk.package = pkgs.adw-gtk3;
   common.gtk.icon_cache = true;
