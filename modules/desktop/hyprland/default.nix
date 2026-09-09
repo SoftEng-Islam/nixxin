@@ -62,7 +62,6 @@ in
   };
 
   home-manager.users.${settings.user.username} = {
-    xdg.configFile."hypr/hyprland.conf".enable = lib.mkForce false;
     home.pointerCursor = {
       enable = true; # <-- add this
       gtk.enable = true;
@@ -81,11 +80,6 @@ in
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       configType = "lua"; # "lua" or "hyprlang"
       settings = {
-        # debug = {
-        #   disable_logs = true;
-        #   enable_stdout_logs = false;
-        #   gl_debugging = false;
-        # };
 
         config = {
           xwayland = {
