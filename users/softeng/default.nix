@@ -40,45 +40,11 @@ self: {
   common.idle.delay = 0; # seconds; 0 to disable
   common.dotfilesDir = "/home/${self.user.username}/nixxin"; # Absolute path of the repo
 
-  common.gtk.enable = false; # Set true to enable GTK, and false to disable GTK.
-  common.gtk.GTK_THEME = "Colloid-Grey-Dark-Dracula"; # Env Variable
-  common.gtk.theme = "Colloid-Grey-Dark-Dracula";
-  common.gtk.package = pkgs.colloid-gtk-theme.override {
-    colorVariants = [
-      # "standard"
-      # "light"
-      "dark"
-    ];
-    themeVariants = [
-      # "default"
-      # "purple"
-      # "pink"
-      # "red"
-      # "orange"
-      # "yellow"
-      # "green"
-      # "teal"
-      "grey"
-      # "all"
-    ];
-    sizeVariants = [
-      "standard"
-      # "compact"
-    ];
+  common.gtk.enable = true; # Set true to enable GTK, and false to disable GTK.
+  common.gtk.GTK_THEME = "adw-gtk3"; # Env Variable
+  common.gtk.theme = "adw-gtk3";
+  common.gtk.package = pkgs.adw-gtk3;
 
-    tweaks = [
-      # "nord"
-      "dracula"
-      # "gruvbox"
-      # "everforest"
-      # "catppuccin"
-      "all"
-      "black"
-      "rimless"
-      # "normal"
-      "float"
-    ];
-  };
   common.gtk.icon_cache = true;
   common.qt.style = "Adwaita-dark";
   common.qt.platformTheme = "gtk3"; # also used by QT_QPA_PLATFORMTHEME
