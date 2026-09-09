@@ -102,11 +102,10 @@ lib.mkIf (settings.modules.media.mpv) {
         # Performance tweaks for Vulkan
         vulkan-async-compute = "yes";
         vulkan-async-transfer = "yes";
-        vulkan-queue-count = 1;
 
         # --- SCALING & RENDERING (Max Quality) ---
-        scale = "ewa_lanczossharp"; # High-quality luma upscaling
-        cscale = "ewa_lanczossharp"; # High-quality chroma upscaling
+        scale = "spline36"; # High-quality luma upscaling
+        cscale = "spline36"; # High-quality chroma upscaling
         dscale = "mitchell";
         scale-antiring = 0.7;
         cscale-antiring = 0.7;
@@ -164,6 +163,11 @@ lib.mkIf (settings.modules.media.mpv) {
         "high-res" = {
           # Removed bilinear downgrading. Your AMD hardware can handle 1080p+ easily.
           profile-cond = "p.height>=1080";
+        };
+        # Loops files endlessly if there is no video track
+        "loop-audio" = {
+          profile-cond = "not vid";
+          loop-file = "inf"; # Use "inf" or "yes" to repeat indefinitely
         };
       };
       bindings = {
