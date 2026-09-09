@@ -6,7 +6,7 @@
   ...
 }:
 
-lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
+lib.mkIf (settings.modules.networking.wifi or false) {
   # Prevent the old staging driver from conflicting with rtl8xxxu
   boot.blacklistedKernelModules = [ "r8188eu" ];
 
