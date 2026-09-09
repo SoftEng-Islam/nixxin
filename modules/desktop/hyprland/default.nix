@@ -80,16 +80,11 @@ in
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       configType = "lua"; # "lua" or "hyprlang"
       settings = {
-        debug = {
-          disable_logs = true;
-          enable_stdout_logs = false;
-          gl_debugging = false;
-        };
-
-        # active color
-        "$primary" = settings.common.primaryColor;
-        # inactive color
-        "$surface" = settings.common.surfaceColor;
+        # debug = {
+        #   disable_logs = true;
+        #   enable_stdout_logs = false;
+        #   gl_debugging = false;
+        # };
 
         config = {
           xwayland = {
