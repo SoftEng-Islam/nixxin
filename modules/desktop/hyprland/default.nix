@@ -13,7 +13,6 @@ in
     ./configs/cursor.nix
     ./configs/decoration.nix
     ./configs/exec.nix
-    ./configs/general.nix
     ./configs/input.nix
     ./configs/keybinding.nix
     ./configs/misc.nix
