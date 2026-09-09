@@ -109,13 +109,15 @@ self: {
   # common.wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
 
   # [ GTK ]
+  # Prefer adw-gtk3 so Noctalia wallpaper templates can recolor GTK apps.
+  # Leave GTK_THEME empty — setting it overrides gsettings and blocks Noctalia CSS.
   # common.gtk.theme = "adw-gtk3-dark";
-  # common.gtk.GTK_THEME = "adw-gtk3-dark"; # Env Variable
+  # common.gtk.GTK_THEME = "adw-gtk3-dark"; # static override only; empty = let Noctalia manage
   # common.gtk.package = pkgs.adw-gtk3;
 
   common.gtk.enable = true; # Set true to enable GTK, and false to disable GTK.
-  common.gtk.GTK_THEME = "adw-gtk3"; # Env Variable
-  common.gtk.theme = "adw-gtk3";
+  common.gtk.GTK_THEME = ""; # empty = do not export GTK_THEME (required for Noctalia)
+  common.gtk.theme = "adw-gtk3-dark"; # settings.ini fallback; Noctalia may switch at runtime
   common.gtk.package = pkgs.adw-gtk3;
   common.gtk.icon_cache = true;
 

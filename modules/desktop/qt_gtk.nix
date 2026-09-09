@@ -1,21 +1,40 @@
 # Themes & Graphical Interfaces
-{ settings, pkgs, ... }:
+#
+# Noctalia owns the live GTK palette when theme templates `gtk3`/`gtk4` are
+# enabled: it writes ~/.config/gtk-{3,4}.0/noctalia.css, imports them into
+# gtk.css, and switches gsettings between adw-gtk3 / adw-gtk3-dark.
+# Do not set GTK_THEME — that env var overrides gsettings and blocks those CSS
+# color roles from applying.
+{ settings, pkgs, lib, ... }:
 let
   _qt_gtk = settings.common.qt;
+  preferDark = settings.modules.desktop.dconf.colorScheme == "prefer-dark";
+  # Fallback for settings.ini only; Noctalia's apply.sh may switch this at runtime.
+  gtkThemeName =
+    if settings.common.gtk.theme != null && settings.common.gtk.theme != "" then
+      settings.common.gtk.theme
+    else if preferDark then
+      "adw-gtk3-dark"
+    else
+      "adw-gtk3";
 in
 {
   gtk.iconCache.enable = settings.common.gtk.icon_cache;
   home-manager.users.${settings.user.username} = {
     gtk = {
       enable = settings.common.gtk.enable;
-      colorScheme = "dark";
+      colorScheme = if preferDark then "dark" else "light";
       theme = {
-        name = settings.common.gtk.theme;
+        name = gtkThemeName;
         package = settings.common.gtk.package;
       };
 
       iconTheme = {
-        name = settings.common.icons.nameInDark;
+        name =
+          if preferDark then
+            settings.common.icons.nameInDark
+          else
+            settings.common.icons.nameInLight;
         package = settings.common.icons.package;
       };
 
@@ -26,7 +45,7 @@ in
       };
 
       gtk3.extraConfig = {
-        gtk-application-prefer-dark-theme = true;
+        gtk-application-prefer-dark-theme = preferDark;
         gtk-decoration-layout = "menu:";
         gtk-xft-antialias = 1;
         gtk-xft-hinting = 1;
@@ -55,9 +74,10 @@ in
       ];
 
       gtk4 = {
+        # Leave null so libadwaita reads gtk.css (Noctalia noctalia.css import).
         theme = null;
         extraConfig = {
-          gtk-application-prefer-dark-theme = true;
+          gtk-application-prefer-dark-theme = preferDark;
         };
       };
     };
@@ -70,8 +90,8 @@ in
   };
 
   environment.variables = {
-    GTK_THEME = settings.common.gtk.GTK_THEME;
-    # GTK2_RC_FILES = "${HOME}/.config/gtk-2.0/gtkrc";
+    # Intentionally omit GTK_THEME so Noctalia can drive adw-gtk3(-dark) via
+    # gsettings + gtk.css. Set common.gtk.GTK_THEME only if you need a static override.
     QT_STYLE_OVERRIDE = _qt_gtk.style;
 
     # Enable automatic screen scaling for Qt apps
@@ -84,6 +104,9 @@ in
 
     # Fix old GTK3 applications
     GDK_GL = "always"; # "gles" "disable" "always"
+  }
+  // lib.optionalAttrs (settings.common.gtk.GTK_THEME != null && settings.common.gtk.GTK_THEME != "") {
+    GTK_THEME = settings.common.gtk.GTK_THEME;
   };
   environment.systemPackages = with pkgs; [
     # QT & KDE Stuff

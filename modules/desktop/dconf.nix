@@ -66,7 +66,9 @@ with lib.gvariant;
         clock-show-date = true;
         clock-show-seconds = false;
         clock-show-weekday = true;
-        color-scheme = lib.mkForce settings.modules.desktop.dconf.colorScheme;
+        # mkDefault so Noctalia's gtk apply.sh can switch prefer-dark/prefer-light
+        # (and adw-gtk3 ↔ adw-gtk3-dark) when the wallpaper/theme mode changes.
+        color-scheme = lib.mkDefault settings.modules.desktop.dconf.colorScheme;
 
         cursor-blink = true;
         cursor-blink-time = 500;
@@ -94,7 +96,13 @@ with lib.gvariant;
         # gtk-im-preedit-style
         # gtk-im-status-style
         # gtk-key-theme
-        gtk-theme = lib.mkForce "${settings.common.gtk.theme}";
+        # Do not force gtk-theme: Noctalia templates set adw-gtk3 / adw-gtk3-dark.
+        gtk-theme = lib.mkDefault (
+          if settings.modules.desktop.dconf.colorScheme == "prefer-dark" then
+            "adw-gtk3-dark"
+          else
+            "adw-gtk3"
+        );
         # gtk-timeout-initial
         # gtk-timeout-repeat
         icon-theme = "${settings.modules.desktop.dconf.icons.nameInDark}";
