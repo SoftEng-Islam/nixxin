@@ -10,10 +10,8 @@ in
 {
   imports = [
     ./configs/animations.nix
-    ./configs/binds.nix
     ./configs/cursor.nix
     ./configs/decoration.nix
-    # ./configs/env.nix
     ./configs/exec.nix
     ./configs/general.nix
     ./configs/gestures.nix
@@ -23,9 +21,6 @@ in
     ./configs/misc.nix
     ./configs/monitor.nix
     ./configs/plugins
-    ./configs/render.nix
-    ./configs/rules.nix
-    ./configs/source.nix
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
@@ -97,10 +92,6 @@ in
         "$primary" = settings.common.primaryColor;
         # inactive color
         "$surface" = settings.common.surfaceColor;
-
-        mod = {
-          _var = "SUPER";
-        };
 
         config = {
           xwayland = {

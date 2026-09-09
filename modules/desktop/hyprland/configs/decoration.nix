@@ -2,67 +2,58 @@
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      settings.decoration = {
-        rounding = settings.modules.desktop.hyprland.rounding;
+      settings = {
+        config = {
+          cursor = {
+            enable_hyprcursor = true;
+            no_hardware_cursors = 0;
+          };
 
-        # ╔════════════════════════════════════════╗
-        # ║            Blur Settings               ║
-        # ║  Optimized for AMD APU Performance     ║
-        # ╚════════════════════════════════════════╝
-        blur = {
-          enabled = settings.modules.desktop.hyprland.blur.enable;
+          general = {
+            gaps_in = 2;
+            gaps_out = 0;
+            border_size = 3;
+            layout = "dwindle";
+            allow_tearing = true;
+            col.active_border = {
+              colors = [
+                "rgb(8aadf4)"
+                "rgb(24273a)"
+                "rgb(24273a)"
+                "rgb(8aadf4)"
+              ];
+              angle = 45;
+            };
+            col.inactive_border = {
+              colors = [ "rgb(24273a)" ];
+              angle = 0;
+            };
+          };
 
-          # Xray mode: only blur transparent parts of windows
-          xray = true;
+          scrolling = {
+            column_width = 1.0;
+          };
 
-          # Blur windows with opacity set (improves performance)
-          ignore_opacity = true;
-
-          # Blur special workspaces
-          special = true;
-
-          # REMOVED: new_optimizations is deprecated/removed in recent Hyprland
-          # Modern blur optimizations are now always enabled
-
-          # Blur popups (e.g., context menus)
-          popups = true;
-          popups_ignorealpha = 0.6;
-
-          # Blur settings: Lower values = better performance on APU
-          # For Ryzen 3400G APU, keep size low and passes at 1 for best performance
-          size = 3;        # Blur radius - keep low for APU
-          passes = 1;      # Single pass recommended for APU
-
-          # Visual adjustments
-          brightness = 0.5;
-          noise = 0.0;
-          contrast = 0.5;
+          decoration = {
+            rounding = 0;
+            shadow = {
+              enabled = false;
+              range = 20;
+              render_power = 1;
+            };
+            blur = {
+              enabled = false;
+              size = 4;
+              passes = 2;
+              new_optimizations = true;
+              ignore_opacity = true;
+              noise = 0.0117;
+              contrast = 1.3;
+              brightness = 1;
+              xray = true;
+            };
+          };
         };
-
-        # ╔════════════════════════════════════════╗
-        # ║           Shadow Settings              ║
-        # ║  Optimized for APU Performance         ║
-        # ╚════════════════════════════════════════╝
-        shadow = {
-          enabled = settings.modules.desktop.hyprland.shadow.enable;
-
-          # Reduced range for better performance (default: 20)
-          range = 12;
-
-          # Subtle offset for natural look
-          offset = "0 2";
-
-          # Lower render power = better performance (default: 3)
-          render_power = 2;
-
-          # Shadow color with transparency
-          color = "rgba(00000070)";
-        };
-
-        # ---- Dim ---- #
-        dim_inactive = settings.modules.desktop.hyprland.dim_inactive;
-        dim_strength = 0.2;
-        dim_special = 0;
       };
     };
   };

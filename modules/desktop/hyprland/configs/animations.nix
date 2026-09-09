@@ -3,47 +3,255 @@
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      settings.animations = {
-        enabled = true;
-
-        # ╔═══════════════════════════════════════════════════════════════╗
-        # ║                    Bezier Curves (Easing)                     ║
-        # ╚═══════════════════════════════════════════════════════════════╝
-        bezier = [
-          "default,0.12,0.92,0.08,1.0"
-          "wind,0.12,0.92,0.08,1.0"
-          "overshot,0.18,0.95,0.22,1.03"
-          "liner,1,1,1,1"
-          "almostLinear,0.5,0.5,0.75,1.0"
-          "easeOutQuint,0.23,1,0.32,1"
-          "easeOutBack,0.25,1.5,0.5,1"
-          "quick,0.15,0,0.1,1"
-          "slidePop,0.25,1.2,0.35,1.05"
+      settings = {
+        # hl.curve("nome", { type = "bezier", points = { {x1,y1}, {x2,y2} } })
+        curve = [
+          {
+            _args = [
+              "easeOutQuint"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.23
+                    1
+                  ]
+                  [
+                    0.32
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "easeInOutCubic"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.65
+                    0.05
+                  ]
+                  [
+                    0.36
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "linear"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0
+                    0
+                  ]
+                  [
+                    1
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "almostLinear"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.5
+                    0.5
+                  ]
+                  [
+                    0.75
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "quick"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.15
+                    0
+                  ]
+                  [
+                    0.1
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
+          {
+            _args = [
+              "default"
+              {
+                type = "bezier";
+                points = [
+                  [
+                    0.25
+                    0.1
+                  ]
+                  [
+                    0.25
+                    1
+                  ]
+                ];
+              }
+            ];
+          }
         ];
 
-        # ╔═══════════════════════════════════════════════════════════════╗
-        # ║              Animation Configuration - OPTIMIZED              ║
-        # ║  Shorter durations for better APU performance                 ║
-        # ╚═══════════════════════════════════════════════════════════════╝
+        # hl.animation({ leaf = ..., enabled = ..., speed = ..., bezier = ..., style = ... })
         animation = [
-          "global, 1, 10, default"
-          "border, 1, 5.0, easeOutQuint"
-          "windows, 1, 4, wind, popin 60%"
-          "windowsIn, 1, 5, overshot, popin 60%"
-          "windowsOut, 1, 3, overshot, popin 60%"
-          "windowsMove, 1, 3.5, overshot, slide"
-          "fadeIn, 1, 1.2, slidePop"
-          "fadeOut, 1, 1.0, slidePop"
-          "fade, 1, 3.0, quick"
-          "layers, 1, 3.5, easeOutQuint"
-          "layersIn, 1, 3.8, easeOutQuint"
-          "layersOut, 1, 1.5, easeOutQuint"
-          "fadeLayersIn, 1, 1.8, almostLinear"
-          "fadeLayersOut, 1, 1.4, almostLinear"
-          "workspaces, 1, 2.0, easeOutQuint"
-          "workspacesIn, 1, 1.3, easeOutQuint"
-          "workspacesOut, 1, 2.0, easeOutQuint"
+          {
+            leaf = "borderangle";
+            enabled = true;
+            speed = 100;
+            bezier = "linear";
+            style = "loop";
+          }
+          {
+            leaf = "global";
+            enabled = true;
+            speed = 10;
+            bezier = "default";
+          }
+          {
+            leaf = "border";
+            enabled = true;
+            speed = 5.39;
+            bezier = "easeOutQuint";
+          }
+          {
+            leaf = "windows";
+            enabled = true;
+            speed = 4.79;
+            bezier = "easeOutQuint";
+            style = "popin 87%";
+          }
+          {
+            leaf = "windowsIn";
+            enabled = true;
+            speed = 4.1;
+            bezier = "easeOutQuint";
+            style = "popin 87%";
+          }
+          {
+            leaf = "windowsOut";
+            enabled = true;
+            speed = 1.49;
+            bezier = "linear";
+            style = "popin 87%";
+          }
+          {
+            leaf = "fadeIn";
+            enabled = true;
+            speed = 1.73;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fadeOut";
+            enabled = true;
+            speed = 1.46;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fade";
+            enabled = true;
+            speed = 3.03;
+            bezier = "quick";
+          }
+          {
+            leaf = "layers";
+            enabled = true;
+            speed = 3.81;
+            bezier = "easeOutQuint";
+          }
+          {
+            leaf = "layersIn";
+            enabled = true;
+            speed = 4;
+            bezier = "easeOutQuint";
+            style = "fade";
+          }
+          {
+            leaf = "layersOut";
+            enabled = true;
+            speed = 1.5;
+            bezier = "linear";
+            style = "fade";
+          }
+          {
+            leaf = "fadeLayersIn";
+            enabled = true;
+            speed = 1.79;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "fadeLayersOut";
+            enabled = true;
+            speed = 1.39;
+            bezier = "almostLinear";
+          }
+          {
+            leaf = "workspaces";
+            enabled = true;
+            speed = 1.94;
+            bezier = "almostLinear";
+            style = "fade";
+          }
+          {
+            leaf = "workspacesIn";
+            enabled = true;
+            speed = 1.21;
+            bezier = "almostLinear";
+            style = "fade";
+          }
+          {
+            leaf = "workspacesOut";
+            enabled = true;
+            speed = 1.94;
+            bezier = "almostLinear";
+            style = "fade";
+          }
         ];
+
+        config = {
+          animations = {
+            enabled = true;
+          };
+
+          dwindle = {
+            force_split = 0;
+            preserve_split = true;
+            default_split_ratio = 1.0;
+            special_scale_factor = 0.8;
+            split_width_multiplier = 1.0;
+            use_active_for_splits = true;
+          };
+
+          master = {
+            mfact = 0.5;
+            orientation = "right";
+            special_scale_factor = 0.8;
+            new_status = "slave";
+          };
+        };
       };
     };
   };
