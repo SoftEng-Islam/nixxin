@@ -62,6 +62,7 @@ in
   };
 
   home-manager.users.${settings.user.username} = {
+    xdg.configFile."hypr/hyprland.conf".enable = lib.mkForce false;
     home.pointerCursor = {
       enable = true; # <-- add this
       gtk.enable = true;
