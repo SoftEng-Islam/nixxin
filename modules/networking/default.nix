@@ -13,7 +13,7 @@ in
   imports = [
     ./dnsmasq.nix
     ./iwd.nix
-    ./rtl8xxxu.nix
+    ./wifi.nix
     ./rtw.nix
     ./waypipe.nix
     ./cloudflare-warp.nix
@@ -138,30 +138,13 @@ in
     dhcp = "dhcpcd"; # one of "dhcpcd", "internal"
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
-      # Wireless configuration
-      # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
-      # - WPA2, WPA3, and Enterprise authentication.
-      # - Improved performance and resource usage.
-      # - Integration with NetworkManager/systemd-networkd.
-      # "wpa_supplicant" or "iwd"
-      device."wifi.backend" = "${settings.modules.networking.wifiBackend}";
+      # [ifupdown]
+      ifupdown."managed" = "true";
 
+      # [connection]
       connection = {
-        # "connection.llmnr" = 2; # Disable LLMNR
-        # "connection.mdns" = 2; # Disable mDNS
-        # "ipv6.ipv6-privacy" = "2";
-
-        # Randomize MAC for every ethernet connection
-        # ethernet.cloned-mac-address=random
-
         # Generate a random MAC ethernet connection
         "ethernet.cloned-mac-address" = "stable";
-
-        # Generate a randomized value upon each connection
-        #wifi.cloned-mac-address=random
-
-        # Generate a random MAC for each WiFi and associate the two permanently
-        "wifi.cloned-mac-address" = "preserve";
       };
 
       # [main]

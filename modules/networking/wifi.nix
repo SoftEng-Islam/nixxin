@@ -23,16 +23,23 @@ lib.mkIf (settings.modules.networking.rtl8xxxu or false) {
     unmanaged = [ "mac:a8:42:a1:1c:e6:27" ];
 
     # Disable WiFi power saving globally
-    wifi.powersave = false;
 
-    # Inject the remaining settings using the new structured format
+    # Wireless configuration
+    # Using IWD (iNet Wireless Daemon) instead of WPA Supplicant for:
+    # - WPA2, WPA3, and Enterprise authentication.
+    # - Improved performance and resource usage.
+    # - Integration with NetworkManager/systemd-networkd.
+    # "wpa_supplicant" or "iwd"
+    wifi = {
+      powersave = false;
+      scanRandMacAddress = false;
+      macAddress = "CE:CD:2A:8C:8D:B3";
+      backend = "${settings.modules.networking.wifiBackend}";
+    }
     settings = {
-      device = {
-        "wifi.scan-rand-mac-address" = "no";
-      };
-      ifupdown = {
-        managed = "false";
-      };
-    };
+      # [keyfile]
+      # To get The MAC Address run this Command:
+      # nmcli device show [wifiInterface] | grep HWADDR
+      keyfile."unmanaged-devices" = "mac:A8:42:A1:1C:E6:27";
   };
 }
