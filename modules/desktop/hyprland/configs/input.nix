@@ -28,7 +28,6 @@
           repeat_rate = 30;
           numlock_by_default = true;
           float_switch_override_focus = 0;
-
         };
       };
     };

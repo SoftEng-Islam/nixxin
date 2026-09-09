@@ -2,7 +2,7 @@
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      settings.misc = {
+      settings.config = {
         # ╔═══════════════════════════════════════════════════════════════╗
         # ║                   Performance & Behavior                      ║
         # ╚═══════════════════════════════════════════════════════════════╝
