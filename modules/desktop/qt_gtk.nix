@@ -24,8 +24,8 @@ in
     #                 GTK
     # ----------------  ----------------
     gtk = {
-      enable = settings.common.gtk.enable;
-      # colorScheme = if preferDark then "dark" else "light";
+      enable = true;
+      colorScheme = if preferDark then "dark" else "light";
       theme = {
         package = pkgs.adw-gtk3;
         name = "adw-gtk3";
