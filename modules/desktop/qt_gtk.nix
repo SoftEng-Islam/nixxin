@@ -108,18 +108,9 @@ in
     # qt6.qtwayland
 
     # # GTK
-    # adw-gtk3
-
-    # gobject-introspection
+    adw-gtk3
 
     # gtk3 # A multi-platform toolkit for creating graphical user interfaces
     # gtk4 # A multi-platform toolkit for creating graphical user interfaces
-    # gtk4-layer-shell # A library to create panels and other desktop components for Wayland using the Layer Shell protocol and GTK4
-    # gtkmm4 # C++ interface to the GTK graphical user interface library
-    # gtksourceview
-    # libappindicator-gtk3
-    # tk
-    # webkitgtk_6_0
-    # webp-pixbuf-loader
   ];
 }
