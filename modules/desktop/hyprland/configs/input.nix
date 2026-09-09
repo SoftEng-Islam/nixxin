@@ -2,7 +2,8 @@
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
-      settings.input = {
+      settings.config = {
+        input = {
         kb_layout = "us,eg";
         kb_variant = "";
         kb_model = "";
@@ -11,7 +12,7 @@
 
         # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
         # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
-        sensitivity = settings.common.mouse.sensitivity; # previously -0.3 # Adjust pointer sensitivity (speed)
+        sensitivity = settings.common.mouse.sensitivity;
 
         # Sets the cursor acceleration profile.
         #  Can be one of adaptive, flat.
@@ -23,34 +24,10 @@
 
         follow_mouse = 1;
         mouse_refocus = false;
-        # numlock_by_default = true;
-
+        repeat_delay = 140;
         repeat_rate = 30;
-        repeat_delay = 250;
-
-        # special_fallthrough = true;
+        numlock_by_default = true;
         float_switch_override_focus = 0;
-
-        left_handed = false;
-
-        touchpad = {
-          clickfinger_behavior = true;
-          disable_while_typing = true;
-          drag_lock = false;
-          middle_button_emulation = true;
-          natural_scroll = "yes";
-          scroll_factor = 0.5;
-          tap-to-click = true;
-        };
-        # below for devices with touchdevice ie. touchscreen
-        touchdevice = {
-          # enabled = true
-        };
-        # below is for table see link above for proper variables
-        tablet = {
-          # transform = 0
-          # left_handed = 0
-        };
       };
     };
   };

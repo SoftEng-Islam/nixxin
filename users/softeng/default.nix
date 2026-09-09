@@ -61,8 +61,8 @@ self: {
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
   common.cursor.package = pkgs.bibata-cursors;
-  common.mouse.sensitivity = -0.5;
-  common.mouse.accelProfile = "flat"; # flat or adaptive
+  common.mouse.sensitivity = -0.4;
+  common.mouse.accelProfile = "adaptive"; # flat or adaptive
   common.mouse.scrollSpeed = 1.0;
   common.mouse.naturalScroll = false;
   common.mouse.doubleClick = 800;

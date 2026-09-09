@@ -92,15 +92,22 @@ in
           enable_stdout_logs = false;
           gl_debugging = false;
         };
-        mod = {
-          _var = "SUPER";
-        };
+
         # active color
         "$primary" = settings.common.primaryColor;
         # inactive color
         "$surface" = settings.common.surfaceColor;
+
+        mod = {
+          _var = "SUPER";
+        };
+
+        config = {
+          xwayland = {
+            force_zero_scaling = true;
+          };
+        };
       };
-      # extraConfig = '' '';
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;
