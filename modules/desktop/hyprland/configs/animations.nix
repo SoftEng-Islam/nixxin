@@ -1,29 +1,6 @@
+#  This module configures animation settings for Hyprland, optimized for AMD Ryzen 5 3400G APU performance.
 { settings, ... }:
-
-let
-  animationSpeed = settings.modules.desktop.hyprland.animationSpeed;
-
-  # ╔═══════════════════════════════════════════════════════════════════════╗
-  # ║                  ANIMATION DURATION OPTIMIZATION                      ║
-  # ║            Tuned for AMD Ryzen 5 3400G APU Performance                ║
-  # ╚═══════════════════════════════════════════════════════════════════════╝
-
-  # Reduced durations for better APU performance while maintaining smoothness
-  animationDuration = if animationSpeed == "slow" then
-    "2.5"  # Reduced from 3
-  else if animationSpeed == "medium" then
-    "1.8"  # Reduced from 2.0
-  else
-    "1.0"; # Fast mode unchanged
-
-  borderDuration = if animationSpeed == "slow" then
-    "6"    # Reduced from 8
-  else if animationSpeed == "medium" then
-    "4"    # Reduced from 5
-  else
-    "2";   # Fast mode unchanged
-
-in {
+{
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland = {
       settings.animations = {
@@ -49,23 +26,23 @@ in {
         # ║  Shorter durations for better APU performance                 ║
         # ╚═══════════════════════════════════════════════════════════════╝
         animation = [
-          "global, 1, 10, default"                                    # Reduced from 12
-          "border, 1, 5.0, easeOutQuint"                             # Reduced from 6.0
-          "windows, 1, 4, wind, popin 60%"                           # Reduced from 5
-          "windowsIn, 1, 5, overshot, popin 60%"                     # Reduced from 6
-          "windowsOut, 1, 3, overshot, popin 60%"                    # Reduced from 4
-          "windowsMove, 1, 3.5, overshot, slide"                     # Reduced from 4
-          "fadeIn, 1, 1.2, slidePop"                                 # Reduced from 1.5
-          "fadeOut, 1, 1.0, slidePop"                                # Reduced from 1.2
-          "fade, 1, 3.0, quick"                                      # Reduced from 3.5
-          "layers, 1, 3.5, easeOutQuint"                             # Reduced from 4.0
-          "layersIn, 1, 3.8, easeOutQuint"                           # Reduced from 4.2
-          "layersOut, 1, 1.5, easeOutQuint"                          # Reduced from 1.8
-          "fadeLayersIn, 1, 1.8, almostLinear"                       # Reduced from 2.0
-          "fadeLayersOut, 1, 1.4, almostLinear"                      # Reduced from 1.6
-          "workspaces, 1, 2.0, easeOutQuint"                         # Reduced from 2.2
-          "workspacesIn, 1, 1.3, easeOutQuint"                       # Reduced from 1.5
-          "workspacesOut, 1, 2.0, easeOutQuint"                      # Reduced from 2.2
+          "global, 1, 10, default"
+          "border, 1, 5.0, easeOutQuint"
+          "windows, 1, 4, wind, popin 60%"
+          "windowsIn, 1, 5, overshot, popin 60%"
+          "windowsOut, 1, 3, overshot, popin 60%"
+          "windowsMove, 1, 3.5, overshot, slide"
+          "fadeIn, 1, 1.2, slidePop"
+          "fadeOut, 1, 1.0, slidePop"
+          "fade, 1, 3.0, quick"
+          "layers, 1, 3.5, easeOutQuint"
+          "layersIn, 1, 3.8, easeOutQuint"
+          "layersOut, 1, 1.5, easeOutQuint"
+          "fadeLayersIn, 1, 1.8, almostLinear"
+          "fadeLayersOut, 1, 1.4, almostLinear"
+          "workspaces, 1, 2.0, easeOutQuint"
+          "workspacesIn, 1, 1.3, easeOutQuint"
+          "workspacesOut, 1, 2.0, easeOutQuint"
         ];
       };
     };

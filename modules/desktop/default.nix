@@ -12,10 +12,10 @@
     ./image_viewer.nix
     ./KeePassXC.nix
     ./keyring.nix
-    ./noctalia
+    ./noctalia.nix
     ./polkit.nix
     ./qt_gtk.nix
-    ./quickShell
+    ./quickShell.nix
     ./rofi.nix
     ./screenshot.nix
     ./tools.nix
