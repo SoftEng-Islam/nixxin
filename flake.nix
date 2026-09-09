@@ -46,6 +46,11 @@
       url = "git+https://git.outfoxxed.me/quickshell/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    quickshell-overview = {
+      # Updated the URL to match the new repository location
+      url = "github:Shanu-Kumawat/quickshell-overview";
+      flake = false;
+    };
 
     noctalia-qs = {
       url = "github:noctalia-dev/noctalia-qs";

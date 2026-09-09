@@ -93,24 +93,7 @@ in
   };
 
   environment.systemPackages = with pkgs; [
-    # QT & KDE Stuff
-
-    # adwaita-qt6
-    # gsettings-qt
-
-    # libsForQt5.qwt
-    # qt5.qtgraphicaleffects
-    # qt5.qtimageformats
-    # qt5.qtquickcontrols2
-    # qt6.qtbase
-    # qt6.qtdeclarative
-    # qt6.qtsvg
-    # qt6.qtwayland
-
     # # GTK
     adw-gtk3
-
-    # gtk3 # A multi-platform toolkit for creating graphical user interfaces
-    # gtk4 # A multi-platform toolkit for creating graphical user interfaces
   ];
 }
