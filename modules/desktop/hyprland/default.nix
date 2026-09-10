@@ -9,6 +9,9 @@ let
 in
 {
   imports = [
+    # hyprland Plugins
+    ./configs/plugins
+
     ./configs/animations.nix
     ./configs/cursor.nix
     ./configs/debug.nix
@@ -21,7 +24,7 @@ in
     ./configs/monitor.nix
     ./configs/quirks.nix
     ./configs/render.nix
-    ./configs/plugins
+    ./configs/rules.nix
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
