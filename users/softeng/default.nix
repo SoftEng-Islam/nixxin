@@ -729,6 +729,7 @@ self: {
     "waydroid"
     "wheel"
     "wireshark"
+    "i2c"
   ];
   modules.users.packages = with pkgs; [ thunderbird ];
 
