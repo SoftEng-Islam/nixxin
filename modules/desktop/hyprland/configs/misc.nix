@@ -5,7 +5,6 @@
       settings.config = {
         render = {
           direct_scanout = 1;
-          async_commit = true;
           cm_auto_hdr = 1;
           cm_enabled = true;
           cm_sdr_eotf = "gamma22";
