@@ -10,8 +10,8 @@
           };
 
           general = {
-            gaps_in = 5;
-            gaps_out = 5;
+            gaps_in = 10;
+            gaps_out = 10;
             border_size = 3;
             layout = "dwindle";
             allow_tearing = true;
@@ -35,7 +35,7 @@
           };
 
           decoration = {
-            rounding = 20;
+            rounding = 25;
             shadow = {
               enabled = false;
               range = 20;
