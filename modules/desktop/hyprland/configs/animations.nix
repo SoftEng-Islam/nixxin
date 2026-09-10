@@ -1,4 +1,4 @@
-#  This module configures animation settings for Hyprland, optimized for AMD Ryzen 5 3400G APU performance.
+# This module configures animation settings for Hyprland, optimized for AMD Ryzen 5 3400G APU performance.
 { settings, ... }:
 {
   home-manager.users.${settings.user.username} = {
@@ -8,17 +8,17 @@
         curve = [
           {
             _args = [
-              "easeOutQuint"
+              "macOS"
               {
                 type = "bezier";
                 points = [
                   [
-                    0.23
-                    1
+                    0.05
+                    0.9
                   ]
                   [
-                    0.32
-                    1
+                    0.1
+                    1.05
                   ]
                 ];
               }
@@ -26,17 +26,17 @@
           }
           {
             _args = [
-              "easeInOutCubic"
+              "macOSFade"
               {
                 type = "bezier";
                 points = [
                   [
-                    0.65
-                    0.05
+                    0.4
+                    0.0
                   ]
                   [
-                    0.36
-                    1
+                    0.2
+                    1.0
                   ]
                 ];
               }
@@ -49,66 +49,12 @@
                 type = "bezier";
                 points = [
                   [
-                    0
-                    0
+                    0.0
+                    0.0
                   ]
                   [
-                    1
-                    1
-                  ]
-                ];
-              }
-            ];
-          }
-          {
-            _args = [
-              "almostLinear"
-              {
-                type = "bezier";
-                points = [
-                  [
-                    0.5
-                    0.5
-                  ]
-                  [
-                    0.75
-                    1
-                  ]
-                ];
-              }
-            ];
-          }
-          {
-            _args = [
-              "quick"
-              {
-                type = "bezier";
-                points = [
-                  [
-                    0.15
-                    0
-                  ]
-                  [
-                    0.1
-                    1
-                  ]
-                ];
-              }
-            ];
-          }
-          {
-            _args = [
-              "default"
-              {
-                type = "bezier";
-                points = [
-                  [
-                    0.25
-                    0.1
-                  ]
-                  [
-                    0.25
-                    1
+                    1.0
+                    1.0
                   ]
                 ];
               }
@@ -129,105 +75,106 @@
             leaf = "global";
             enabled = true;
             speed = 10;
-            bezier = "default";
+            bezier = "macOS";
           }
           {
             leaf = "border";
             enabled = true;
-            speed = 5.39;
-            bezier = "easeOutQuint";
+            speed = 5;
+            bezier = "macOSFade";
           }
           {
             leaf = "windows";
             enabled = true;
-            speed = 4.79;
-            bezier = "easeOutQuint";
-            style = "popin 87%";
+            speed = 5;
+            bezier = "macOS";
+            style = "popin 80%";
           }
           {
             leaf = "windowsIn";
             enabled = true;
-            speed = 4.1;
-            bezier = "easeOutQuint";
-            style = "popin 87%";
+            speed = 5;
+            bezier = "macOS";
+            style = "popin 80%";
           }
           {
             leaf = "windowsOut";
             enabled = true;
-            speed = 1.49;
-            bezier = "linear";
-            style = "popin 87%";
+            speed = 4;
+            bezier = "macOSFade";
+            style = "popin 80%";
           }
           {
             leaf = "fadeIn";
             enabled = true;
-            speed = 1.73;
-            bezier = "almostLinear";
+            speed = 3;
+            bezier = "macOSFade";
           }
           {
             leaf = "fadeOut";
             enabled = true;
-            speed = 1.46;
-            bezier = "almostLinear";
+            speed = 3;
+            bezier = "macOSFade";
           }
           {
             leaf = "fade";
             enabled = true;
-            speed = 3.03;
-            bezier = "quick";
+            speed = 3;
+            bezier = "macOSFade";
           }
           {
             leaf = "layers";
             enabled = true;
-            speed = 3.81;
-            bezier = "easeOutQuint";
+            speed = 4;
+            bezier = "macOS";
+            style = "popin 80%";
           }
           {
             leaf = "layersIn";
             enabled = true;
             speed = 4;
-            bezier = "easeOutQuint";
-            style = "fade";
+            bezier = "macOS";
+            style = "popin 80%";
           }
           {
             leaf = "layersOut";
             enabled = true;
-            speed = 1.5;
-            bezier = "linear";
-            style = "fade";
+            speed = 3;
+            bezier = "macOSFade";
+            style = "popin 80%";
           }
           {
             leaf = "fadeLayersIn";
             enabled = true;
-            speed = 1.79;
-            bezier = "almostLinear";
+            speed = 3;
+            bezier = "macOSFade";
           }
           {
             leaf = "fadeLayersOut";
             enabled = true;
-            speed = 1.39;
-            bezier = "almostLinear";
+            speed = 3;
+            bezier = "macOSFade";
           }
           {
             leaf = "workspaces";
             enabled = true;
-            speed = 1.94;
-            bezier = "almostLinear";
-            style = "fade";
+            speed = 6;
+            bezier = "macOS";
+            style = "slide";
           }
           {
             leaf = "workspacesIn";
             enabled = true;
-            speed = 1.21;
-            bezier = "almostLinear";
-            style = "fade";
+            speed = 6;
+            bezier = "macOS";
+            style = "slide";
           }
           {
             leaf = "workspacesOut";
             enabled = true;
-            speed = 1.94;
-            bezier = "almostLinear";
-            style = "fade";
+            speed = 6;
+            bezier = "macOS";
+            style = "slide";
           }
         ];
 
