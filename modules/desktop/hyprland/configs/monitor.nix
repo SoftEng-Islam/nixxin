@@ -26,7 +26,7 @@
           mode = "1920x1080@60";
           position = "2560x0";
           scale = "auto";
-          vrr = -1;
+          vrr = 0;
           bitdepth = 8; # 8 or 10
           cm = "auto";
           supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]

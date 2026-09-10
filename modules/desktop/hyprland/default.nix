@@ -10,14 +10,14 @@ in
 {
   imports = [
     ./configs/animations.nix
-    ./configs/cursor.nix
+    #    ./configs/cursor.nix
     ./configs/decoration.nix
     ./configs/exec.nix
     ./configs/input.nix
-    ./configs/keybinding.nix
+    #    ./configs/keybinding.nix
     ./configs/misc.nix
     ./configs/monitor.nix
-    ./configs/plugins
+    # ./configs/plugins
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
@@ -98,5 +98,6 @@ in
       withSystemd = true; # whether to build with systemd support
     })
     hyprshade
+    kitty
   ];
 }
