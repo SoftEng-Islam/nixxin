@@ -34,7 +34,7 @@
           previewMode = "live";
           includeInactiveMonitorPreviews = true;
           previewRecaptureDelayMs = 60;
-          showSpecialWorkspaces = false;
+          showSpecialWorkspaces = true;
           specialWorkspaces = [ ];
           specialWorkspaceColumns = 5;
           emptyWorkspaceWallpaper = "";
