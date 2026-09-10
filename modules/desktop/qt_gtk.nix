@@ -95,5 +95,7 @@ in
   environment.systemPackages = with pkgs; [
     # # GTK
     adw-gtk3
+    qt5.qtwayland
+    qt6.qtwayland
   ];
 }

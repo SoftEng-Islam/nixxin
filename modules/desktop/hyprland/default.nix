@@ -10,7 +10,6 @@ in
 {
   imports = [
     ./configs/animations.nix
-    #    ./configs/cursor.nix
     ./configs/decoration.nix
     ./configs/exec.nix
     ./configs/input.nix
