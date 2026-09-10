@@ -32,6 +32,7 @@ in
       # spelling is a lua error. They pass real lua expressions, single-quoted
       # so the shell keeps the inner double quotes.
       extraConfig = ''
+        local noctalia = require("noctalia")
         if hl.plugin.hyprbars then
           -- macOS-like title bars. Plugin values register as
           -- "plugin:hyprbars:<name>", which lua addresses as
@@ -39,13 +40,13 @@ in
           hl.config({
             plugin = {
               hyprbars = {
-                bar_height                 = 26,
-                bar_color                  = "rgb(2d2d2d)",
-                col                        = { text = "rgb(e8e8e8)" },
-                bar_text_size              = 10,
-                bar_text_font              = "Rubik",
+                bar_height                 = 33,
+                bar_color                  = noctalia.colors.surface,
+                col                        = { text = noctalia.colors.on_surface },
+                bar_text_size              = 13,
+                bar_text_font              = "JetBrainsMono Nerd Font",
                 bar_text_align             = "center",
-                bar_buttons_alignment      = "left",
+                bar_buttons_alignment      = "right",
                 bar_part_of_window         = true,
                 bar_precedence_over_border = true,
                 bar_padding                = 8,
