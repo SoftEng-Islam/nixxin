@@ -14,7 +14,7 @@
           position = "0x0";
           scale = "auto";
           vrr = 1;
-          bitdepth = 8; # 8 or 10
+          bitdepth = 10; # 8 or 10
           cm = "hdr";
           sdr_eotf = "default"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
           supports_wide_color = 0; # Force wide color gamut (-1 = off, 0 = auto, 1 = on)
