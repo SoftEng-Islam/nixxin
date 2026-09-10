@@ -16,8 +16,8 @@
           vrr = 1;
           bitdepth = 8; # 8 or 10
           cm = "hdr";
-          sdr_eotf = "srgb"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
-          supports_wide_color = 0; # Force wide color gamut (-1 = off, 0 = auto, 1 = on)
+          sdr_eotf = "gamma22"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
+          supports_wide_color = -1; # Force wide color gamut (-1 = off, 0 = auto, 1 = on)
           supports_hdr = 1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
         }
         {
@@ -30,6 +30,8 @@
           bitdepth = 8; # 8 or 10
           cm = "auto";
           supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
+          sdr_eotf = "gamma22"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
+
         }
       ];
       workspace_rule = [
