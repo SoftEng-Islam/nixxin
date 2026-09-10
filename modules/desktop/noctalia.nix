@@ -287,7 +287,7 @@ in
       # ── Brightness ────────────────────────────────────────────────────────────────
 
       [brightness]
-      enable_ddcutil = false
+      enable_ddcutil = true
       # ignore_mmids = []                 # skip these monitors from ddcutil; run: ddcutil --verbose detect
       # minimum_brightness = 0.0          # never let brightness drop below this floor (0.0 to 1.0)
 
@@ -299,6 +299,16 @@ in
       # backend = "ddcutil"
       # [brightness.monitor.DP-2]
       # ddc_bus = 6                       # pin the I2C bus when monitors share an EDID
+
+      # Samsung Odyssey G5
+      [brightness.monitor.HDMI-A-1]
+      backend = "ddcutil"
+      ddc_bus = 0
+
+      # Samsung S22C450
+      [brightness.monitor.DP-1]
+      backend = "ddcutil"
+      ddc_bus = 2
 
       # ── Night Light ───────────────────────────────────────────────────────────────
 

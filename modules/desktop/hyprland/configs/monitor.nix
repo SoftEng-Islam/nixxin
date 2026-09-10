@@ -2,50 +2,42 @@
 {
   home-manager.users.${settings.user.username} = {
     wayland.windowManager.hyprland.settings = {
-      # ╔═══════════════════════════════════════════════════════════════╗
-      # ║                    Monitor Configuration                      ║
-      # ║  Format: name, resolution@refresh, position, scale            ║
-      # ╚═══════════════════════════════════════════════════════════════╝
+
+      # Monitor Configuration
       monitor = [
         {
-          # Primary: 1440p @ 144Hz - Great for AMD APU gaming, VRR on for fullscreen only
+          # Primary: Samsung Odyssey G5 (1440p @ 144Hz)
           output = "HDMI-A-1";
           mode = "2560x1440@144";
           position = "0x0";
           scale = 1;
           vrr = 1;
-          bitdepth = 8; # 8 or 10
-          cm = "hdr";
-          sdr_eotf = "gamma22"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
-          supports_wide_color = -1; # Force wide color gamut (-1 = off, 0 = auto, 1 = on)
-          supports_hdr = 1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
+          bitdepth = 8;
+          cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
+          sdr_eotf = "gamma22";
+          supports_wide_color = 0; # 0 = auto (allows DCI-P3 wide color in HDR)
+          supports_hdr = 1; # 1 = force HDR capability enabled
         }
         {
-          # Secondary: 1080p @ 60Hz - Great for AMD APU gaming, VRR on for fullscreen only
+          # Secondary: Samsung S22C450 (1080p @ 60Hz)
           output = "DP-1";
           mode = "1920x1080@60";
           position = "2560x0";
           scale = 1;
           vrr = 0;
-          bitdepth = 8; # 8 or 10
+          bitdepth = 8;
           cm = "auto";
-          supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
-          sdr_eotf = "gamma22"; # SDR transfer function Options: "default"/"gamma22"/"srgb"
+          sdr_eotf = "gamma22";
+          supports_hdr = -1; # Disable HDR processing for secondary SDR display
+        }
+      ];
 
-        }
+      # Workspace-to-Monitor Bindings
+      workspace = [
+        "1, monitor:HDMI-A-1, default:true"
+        "2, monitor:DP-1, default:true"
       ];
-      workspace_rule = [
-        {
-          # Workspace 1: 1440p @ 144Hz - Great for AMD APU gaming, VRR on for fullscreen only
-          workspace = 1;
-          monitor = "HDMI-A-1";
-        }
-        {
-          # Workspace 2: 1080p @ 60Hz - Great for AMD APU gaming, VRR on for fullscreen only
-          workspace = 2;
-          monitor = "DP-1";
-        }
-      ];
+
     };
   };
 }
