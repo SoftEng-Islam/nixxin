@@ -88,31 +88,26 @@ in
         };
       };
       extraConfig = ''
+        -- Load Noctalia theme module
         local noctalia = require("noctalia")
+
+        -- Apply primary, surface, and group border colors globally
         noctalia.apply_theme()
 
-        -- Custom gradient using Noctalia color table
-        hl.config({
-          general = {
-            col = {
-              active_border = {
-                colors = {
-                  noctalia.colors.primary,
-                  noctalia.colors.surface,
-                  noctalia.colors.surface,
-                  noctalia.colors.primary,
-                },
-                angle = 45,
-              },
-              inactive_border = {
-                colors = {
-                  noctalia.colors.surface,
-                },
-                angle = 0,
-              },
-            },
-          },
-        })
+        -- Expose Noctalia colors as local variables for plugins (e.g., hyprbars)
+        local colors = noctalia.colors
+
+        -- Configure hyprbars using Noctalia palette
+        if hl.plugin and hl.plugin.hyprbars then
+          hl.config({
+            plugin = {
+              hyprbars = {
+                bar_color = colors.surface,
+                ["col.text"] = colors.on_surface,
+              }
+            }
+          })
+        end
       '';
     };
     # Scripts for Hyprland

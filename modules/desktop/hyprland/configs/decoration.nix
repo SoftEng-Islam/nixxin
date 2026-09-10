@@ -15,19 +15,8 @@
             border_size = 3;
             layout = "dwindle";
             allow_tearing = true;
-            col.active_border = {
-              colors = [
-                "primary"
-                "surface"
-                "surface"
-                "primary"
-              ];
-              angle = 45;
-            };
-            col.inactive_border = {
-              colors = [ "surface" ];
-              angle = 0;
-            };
+            # Removed static col.active_border and col.inactive_border
+            # to let Noctalia populate them cleanly below.
           };
 
           scrolling = {
@@ -55,6 +44,34 @@
           };
         };
       };
+
+      extraConfig = ''
+        local noctalia = require("noctalia")
+        noctalia.apply_theme()
+
+        -- Custom gradient using Noctalia color table
+        hl.config({
+          general = {
+            col = {
+              active_border = {
+                colors = {
+                  noctalia.colors.primary,
+                  noctalia.colors.surface,
+                  noctalia.colors.surface,
+                  noctalia.colors.primary,
+                },
+                angle = 45,
+              },
+              inactive_border = {
+                colors = {
+                  noctalia.colors.surface,
+                },
+                angle = 0,
+              },
+            },
+          },
+        })
+      '';
     };
   };
 }
