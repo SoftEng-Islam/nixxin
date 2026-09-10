@@ -10,13 +10,17 @@ in
 {
   imports = [
     ./configs/animations.nix
+    ./configs/cursor.nix
+    ./configs/debug.nix
     ./configs/decoration.nix
+    ./configs/ecosystem.nix
     ./configs/exec.nix
     ./configs/input.nix
     ./configs/keybinding.nix
     ./configs/misc.nix
     ./configs/monitor.nix
     ./configs/quirks.nix
+    ./configs/render.nix
     ./configs/plugins
   ];
 
