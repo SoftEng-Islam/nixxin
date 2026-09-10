@@ -55,7 +55,8 @@
         -- ----------------------------
         config.color_scheme = "${settings.modules.terminals.wezterm.colorScheme}"
         config.window_padding = { left = 20, right = 20, top = 20, bottom = 50 }
-        config.window_background_opacity = 1.0
+        config.window_background_opacity = 0.5
+        config.wayland_window_background_blur = true
         config.enable_tab_bar = true
         config.animation_fps = 1
         config.warn_about_missing_glyphs = false
