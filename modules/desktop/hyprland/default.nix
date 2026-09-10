@@ -16,7 +16,7 @@ in
     ./configs/keybinding.nix
     ./configs/misc.nix
     ./configs/monitor.nix
-    # ./configs/plugins
+    ./configs/plugins
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
