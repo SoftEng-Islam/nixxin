@@ -67,7 +67,7 @@
           })
           hl.plugin.hyprbars.add_button({
             bg_color = "rgb(febc2e)", fg_color = "rgb(90591d)", size = 15, icon = "▬",
-            action = "hyprctl dispatch 'hl.dsp.window.float({action = "set})'",
+            action = "hyprctl dispatch 'hl.dsp.window.float({ action = \"set\" })'",
           })
 
           -- no title bars on games and shell popups
