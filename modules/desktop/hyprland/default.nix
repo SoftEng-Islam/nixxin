@@ -79,6 +79,9 @@ in
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       configType = "lua"; # "lua" or "hyprlang"
       settings = {
+        mod = {
+          _var = "SUPER";
+        };
         config = {
           xwayland = {
             force_zero_scaling = true;
