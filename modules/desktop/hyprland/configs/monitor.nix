@@ -13,9 +13,9 @@
           scale = 1;
           vrr = 1;
           bitdepth = 8;
-          cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
+          # cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
           sdr_eotf = "gamma22";
-          supports_wide_color = 0; # 0 = auto (allows DCI-P3 wide color in HDR)
+          # supports_wide_color = 0; # 0 = auto (allows DCI-P3 wide color in HDR)
           supports_hdr = 1; # 1 = force HDR capability enabled
         }
         {
@@ -26,9 +26,9 @@
           scale = 1;
           vrr = 0;
           bitdepth = 8;
-          cm = "auto";
+          # cm = "auto";
           sdr_eotf = "gamma22";
-          supports_hdr = -1; # Disable HDR processing for secondary SDR display
+          # supports_hdr = -1; # Disable HDR processing for secondary SDR display
         }
       ];
 
