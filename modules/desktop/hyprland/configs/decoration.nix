@@ -17,15 +17,15 @@
             allow_tearing = true;
             col.active_border = {
               colors = [
-                "rgb(8aadf4)"
-                "rgb(24273a)"
-                "rgb(24273a)"
-                "rgb(8aadf4)"
+                "primary"
+                "surface"
+                "surface"
+                "primary"
               ];
               angle = 45;
             };
             col.inactive_border = {
-              colors = [ "rgb(24273a)" ];
+              colors = [ "surface" ];
               angle = 0;
             };
           };

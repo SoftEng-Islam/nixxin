@@ -73,8 +73,8 @@ in
       alpha     = 0.65                    # multiplied by each component's background opacity
 
       [shell.panel]
-      transparency_mode     = "glass"     # solid | soft | glass; controls floating-panel opacity and card translucency
-      borders               = false       # panel shell outline and in-panel section cards
+      transparency_mode     = "soft"     # solid | soft | glass; controls floating-panel opacity and card translucency
+      borders               = true       # panel shell outline and in-panel section cards
       shadow                = true        # cast the global [shell.shadow] from panel surfaces
       launcher_placement       = "floating" # attached | floating
       clipboard_placement      = "floating" # attached | floating

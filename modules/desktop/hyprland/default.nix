@@ -87,6 +87,33 @@ in
           };
         };
       };
+      extraConfig = ''
+        local noctalia = require("noctalia")
+        noctalia.apply_theme()
+
+        -- Custom gradient using Noctalia color table
+        hl.config({
+          general = {
+            col = {
+              active_border = {
+                colors = {
+                  noctalia.colors.primary,
+                  noctalia.colors.surface,
+                  noctalia.colors.surface,
+                  noctalia.colors.primary,
+                },
+                angle = 45,
+              },
+              inactive_border = {
+                colors = {
+                  noctalia.colors.surface,
+                },
+                angle = 0,
+              },
+            },
+          },
+        })
+      '';
     };
     # Scripts for Hyprland
     home.file.".config/hypr/scripts".source = ./configs/scripts;
