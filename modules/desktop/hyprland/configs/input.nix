@@ -7,9 +7,10 @@
           input = {
             kb_layout = "us,eg";
             kb_variant = "";
+            kb_options = "grp:alt_shift_toggle";
+
             kb_model = "";
             kb_rules = "";
-            kb_options = "grp:alt_shift_toggle";
 
             # Sets the mouse input sensitivity. Value is clamped to the range -1.0 to 1.0.
             # https://wayland.freedesktop.org/libinput/doc/latest/pointer-acceleration.html#pointer-acceleration
