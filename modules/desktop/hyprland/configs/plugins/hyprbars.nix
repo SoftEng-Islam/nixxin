@@ -44,7 +44,7 @@
                 bar_padding                = 25,
                 bar_button_padding         = 15,
                 -- like macOS: plain circles, glyphs only appear on hover
-                icon_on_hover              = true,
+                icon_on_hover              = false,
                 inactive_button_color      = "rgb(4d4d4d)",
                 on_double_click            = "hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\" })'",
               },
@@ -60,19 +60,28 @@
 
           -- Close Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(ff5f57)", fg_color = "rgb(7d0f10)", size = 20, icon = "✖",
+            bg_color = "rgb(ff5f57)",
+            fg_color = "rgb(ffffff)",
+            size = 20,
+            icon = "✖",
             action = "hyprctl dispatch 'hl.dsp.window.close()'",
           })
 
           -- Full Screen Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(28c840)", fg_color = "rgb(0e650e)", size = 20, icon = "✚",
+            bg_color = "rgb(28c840)",
+            fg_color = "rgb(ffffff)",
+            size = 20,
+            icon = "✚",
             action = "hyprctl dispatch 'hl.dsp.window.fullscreen()'",
           })
 
           -- float/tile Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(febc2e)", fg_color = "rgb(90591d)", size = 20, icon = "▬",
+            bg_color = "rgb(febc2e)",
+            fg_color = "rgb(ffffff)",
+            size = 20,
+            icon = "▬",
             action = "hyprctl dispatch 'hl.dsp.window.float({ action = \"toggle\" })'",
           })
 
