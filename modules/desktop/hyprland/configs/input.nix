@@ -26,8 +26,8 @@
 
             follow_mouse = 1;
             mouse_refocus = false;
-            repeat_delay = 140;
-            repeat_rate = 30;
+            repeat_delay = 200;
+            repeat_rate = 40;
             numlock_by_default = true;
             float_switch_override_focus = 0;
           };

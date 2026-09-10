@@ -10,8 +10,8 @@
           };
 
           general = {
-            gaps_in = 2;
-            gaps_out = 0;
+            gaps_in = 5;
+            gaps_out = 5;
             border_size = 3;
             layout = "dwindle";
             allow_tearing = true;
@@ -35,14 +35,14 @@
           };
 
           decoration = {
-            rounding = 0;
+            rounding = 20;
             shadow = {
               enabled = false;
               range = 20;
               render_power = 1;
             };
             blur = {
-              enabled = false;
+              enabled = true;
               size = 4;
               passes = 2;
               new_optimizations = true;

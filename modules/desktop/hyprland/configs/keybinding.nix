@@ -59,7 +59,7 @@ in
 
         # Second Row
         (m "A" "hl.dsp.exec_cmd(\"noctalia msg panel-toggle launcher\")")
-        (m "F" "hl.dsp.window.fullscreen()") # Assuming hl.dsp.window.fullscreen() exists; otherwise use exec_cmd("hyprctl dispatch fullscreen")
+        (m "F" "hl.dsp.window.fullscreen()")
         (m "L" "hl.dsp.exec_cmd(\"noctalia msg screen-lock\")")
 
         # Third Row
@@ -87,11 +87,11 @@ in
         # ---- Positioning Mode --- #
         # ------------------------ #
         (m "ALT + F" "hl.dsp.window.float()")
-        (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")") # Assuming "C" in your old config meant "Ctrl"
+        (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        (k "\"ALT + Tab\"" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext currentworkspace\")")
-        (k "\"ALT + SHIFT + Tab\"" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext prev currentworkspace\")")
+        (k "ALT + Tab" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext currentworkspace\")")
+        (k "ALT + SHIFT + Tab" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext prev currentworkspace\")")
 
         # -------------------- #
         # ---- Workspaces ---- #
@@ -156,10 +156,6 @@ in
         (m "ALT + up" "hl.dsp.window.swap({ direction = \"up\" })")
         (m "ALT + down" "hl.dsp.window.swap({ direction = \"down\" })")
 
-        # Brightness (Duplicate 1)
-        (k "\"XF86MonBrightnessUp\"" "hl.dsp.exec_cmd(\"brightnessctl s +5%\")")
-        (k "\"XF86MonBrightnessDown\"" "hl.dsp.exec_cmd(\"brightnessctl s 5%-\")")
-
         # ------------------------- #
         # ---- Mouse Shortcuts ---- #
         # ------------------------- #
@@ -172,9 +168,9 @@ in
         # ------------------------- #
         # ---- Screen Snip -------- #
         # ------------------------- #
-        (k "\"CTRL + Print\"" "hl.dsp.exec_cmd(\"grim -g \\\"$(slurp)\\\" - | swappy -f -\")")
+        (k "CTRL + Print" "hl.dsp.exec_cmd(\"grim -g \\\"$(slurp)\\\" - | swappy -f -\")")
         (m "SHIFT + S" "hl.dsp.exec_cmd(\"mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_\\\"$(date '+%Y-%m-%d_%H.%M.%S')\\\".png\")")
-        (k "\"print\"" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
+        (k "print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
 
         # Color Picker
         (m "SHIFT + C" "hl.dsp.exec_cmd(\"hyprpicker -a\")")
@@ -186,13 +182,13 @@ in
         (m "S" "hl.dsp.exec_cmd(\"noctalia msg panel-toggle control-center\")")
 
         # Media keys
-        (k "\"XF86AudioRaiseVolume\"" "hl.dsp.exec_cmd(\"noctalia msg volume-up\")")
-        (k "\"XF86AudioLowerVolume\"" "hl.dsp.exec_cmd(\"noctalia msg volume-down\")")
-        (k "\"XF86AudioMute\"" "hl.dsp.exec_cmd(\"noctalia msg volume-mute\")")
+        (k "XF86AudioRaiseVolume" "hl.dsp.exec_cmd(\"noctalia msg volume-up\")")
+        (k "XF86AudioLowerVolume" "hl.dsp.exec_cmd(\"noctalia msg volume-down\")")
+        (k "XF86AudioMute" "hl.dsp.exec_cmd(\"noctalia msg volume-mute\")")
 
-        # Brightness (Duplicate 2)
-        (k "\"XF86MonBrightnessUp\"" "hl.dsp.exec_cmd(\"noctalia msg brightness-up\")")
-        (k "\"XF86MonBrightnessDown\"" "hl.dsp.exec_cmd(\"noctalia msg brightness-down\")")
+        # Brightness
+        (k "XF86MonBrightnessUp" "hl.dsp.exec_cmd(\"noctalia msg brightness-up\")")
+        (k "XF86MonBrightnessDown" "hl.dsp.exec_cmd(\"noctalia msg brightness-down\")")
       ];
     };
   };
