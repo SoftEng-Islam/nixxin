@@ -5,9 +5,9 @@
       settings = {
         config = {
           general = {
-            gaps_in = 10;
-            gaps_out = 10;
-            border_size = 3;
+            gaps_in = 11;
+            gaps_out = 11;
+            border_size = 4;
             layout = "dwindle";
             allow_tearing = true;
             # Removed static col.active_border and col.inactive_border

@@ -37,14 +37,14 @@
                 col                        = { text = noctalia.colors.on_surface },
                 bar_text_size              = 13,
                 bar_text_font              = "JetBrainsMono Nerd Font",
-                bar_text_align             = "center",
+                bar_text_align             = "left",
                 bar_buttons_alignment      = "right",
                 bar_part_of_window         = true,
                 bar_precedence_over_border = true,
-                bar_padding                = 10,
-                bar_button_padding         = 10,
+                bar_padding                = 25,
+                bar_button_padding         = 15,
                 -- like macOS: plain circles, glyphs only appear on hover
-                icon_on_hover              = false,
+                icon_on_hover              = true,
                 inactive_button_color      = "rgb(4d4d4d)",
                 on_double_click            = "hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\" })'",
               },
@@ -57,17 +57,23 @@
           -- alt-tab confirm, or any activation of the window)
           -- icon font+scale are hardcoded in hyprbars (sans @ 62% of button
           -- size), so clarity comes from heavy glyphs and larger buttons
+
+          -- Close Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(ff5f57)", fg_color = "rgb(7d0f10)", size = 15, icon = "✖",
+            bg_color = "rgb(ff5f57)", fg_color = "rgb(7d0f10)", size = 20, icon = "✖",
             action = "hyprctl dispatch 'hl.dsp.window.close()'",
           })
+
+          -- Full Screen Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(28c840)", fg_color = "rgb(0e650e)", size = 15, icon = "✚",
-            action = "hyprctl dispatch 'hl.dsp.window.fullscreen({ mode = \"maximized\" })'",
+            bg_color = "rgb(28c840)", fg_color = "rgb(0e650e)", size = 20, icon = "✚",
+            action = "hyprctl dispatch 'hl.dsp.window.fullscreen()'",
           })
+
+          -- float/tile Btn
           hl.plugin.hyprbars.add_button({
-            bg_color = "rgb(febc2e)", fg_color = "rgb(90591d)", size = 15, icon = "▬",
-            action = "hyprctl dispatch 'hl.dsp.window.float({ action = \"set\" })'",
+            bg_color = "rgb(febc2e)", fg_color = "rgb(90591d)", size = 20, icon = "▬",
+            action = "hyprctl dispatch 'hl.dsp.window.float({ action = \"toggle\" })'",
           })
 
           -- no title bars on games and shell popups

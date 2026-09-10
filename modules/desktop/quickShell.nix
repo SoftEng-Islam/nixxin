@@ -40,17 +40,17 @@
           emptyWorkspaceWallpaper = "";
           specialEmptyWorkspaceWallpaper = "";
           effects = {
-            enableBackdrop = false;
-            backdropOpacity = 0.28;
-            panelOpacity = 0.92;
-            workspaceOpacity = 0.86;
-            emptyWorkspaceWallpaperOverlayOpacity = 0.18;
-            windowOverlayOpacity = 0.22;
+            enableBackdrop = true;
+            backdropOpacity = 0.4;
+            panelOpacity = 0.9;
+            workspaceOpacity = 0.8;
+            emptyWorkspaceWallpaperOverlayOpacity = 0.6;
+            windowOverlayOpacity = 0.3;
             enableBlur = true;
             glassMode = true;
-            glassTintStrength = 0.35;
-            glassBorderOpacity = 0.72;
-            glassShineOpacity = 0.14;
+            glassTintStrength = 0.3;
+            glassBorderOpacity = 0.7;
+            glassShineOpacity = 0.3;
           };
           workspaceSpacing = 5;
           backgroundPadding = 10;
