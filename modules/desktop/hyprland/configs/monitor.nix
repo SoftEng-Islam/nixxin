@@ -12,7 +12,7 @@
           output = "HDMI-A-1";
           mode = "2560x1440@144";
           position = "0x0";
-          scale = "auto";
+          scale = 1;
           vrr = 1;
           bitdepth = 8; # 8 or 10
           cm = "hdr";
@@ -25,7 +25,7 @@
           output = "DP-1";
           mode = "1920x1080@60";
           position = "2560x0";
-          scale = "auto";
+          scale = 1;
           vrr = 0;
           bitdepth = 8; # 8 or 10
           cm = "auto";

@@ -154,7 +154,7 @@ in
       builtin = "Noctalia"                # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
                                           # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
       community_palette = "Noctalia"      # fetched from api.noctalia.dev, cached locally
-      wallpaper_scheme  = "m3-content"    # m3-tonal-spot | m3-content | m3-fruit-salad |
+      wallpaper_scheme  = "soft"    # m3-tonal-spot | m3-content | m3-fruit-salad |
                                           # m3-rainbow | m3-monochrome | vibrant | faithful |
                                           # dysfunctional | muted
       pure_black_dark = false             # anchor dark surfaces to true black (OLED); applies to
@@ -210,7 +210,7 @@ in
       position_vertical = "center"        # same options; used when orientation = "vertical"
       orientation = "horizontal"          # horizontal | vertical (volume/brightness sliders only; text popups stay horizontal)
       scale = 1.15                        # OSD size multiplier applied on top of accessibility.ui_scale
-      background_opacity = 0.92           # background opacity of OSD popups
+      background_opacity = 1           # background opacity of OSD popups
       offset_x = 0                        # absolute horizontal margin from the screen edge
       offset_y = 0                        # absolute vertical margin from the screen edge
       # monitors = ["DP-1"]               # connector names; omit or leave empty for all monitors
