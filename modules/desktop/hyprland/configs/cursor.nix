@@ -14,7 +14,7 @@
         inactive_timeout = 2;
 
         # minimum refresh rate for cursor movement when no_break_fs_vrr is active. Set to minimum supported refresh rate or higher
-        # min_refresh_rate = 35;
+        min_refresh_rate = 30;
 
         # Hides the cursor when you press any key until the mouse is moved.
         # hide_on_key_press = true;

@@ -16,6 +16,7 @@ in
     ./configs/keybinding.nix
     ./configs/misc.nix
     ./configs/monitor.nix
+    ./configs/quirks.nix
     ./configs/plugins
   ];
 
