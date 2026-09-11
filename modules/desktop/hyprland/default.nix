@@ -68,6 +68,8 @@ in
   };
 
   home-manager.users.${settings.user.username} = {
+    home.file.".config/hypr/shaders".source = ./shaders;
+
     home.pointerCursor = {
       enable = true; # <-- add this
       gtk.enable = true;
@@ -118,9 +120,6 @@ in
         end
       '';
     };
-    # Scripts for Hyprland
-    home.file.".config/hypr/scripts".source = ./configs/scripts;
-    home.file.".config/hypr/shaders".source = ./shaders;
   };
   environment.systemPackages = with pkgs; [
     # Dynamic tiling Wayland compositor that doesn't sacrifice on its looks
