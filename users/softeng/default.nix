@@ -146,7 +146,7 @@ self: {
   modules.automation.n8n.enable = true;
 
   # [ Browsers ]
-  modules.browsers.google-chrome.enable = false;
+  modules.browsers.google-chrome.enable = true;
   modules.browsers.brave.enable = false;
   modules.browsers.firefox.enable = true;
   modules.browsers.firefox-beta.enable = false;

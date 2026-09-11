@@ -50,8 +50,8 @@
         freetype_load_target = "Normal";
         line_height = 1.0;
         front_end = "OpenGL";
-        window_background_opacity = lib.mkForce 0.5;
-        wayland_window_background_blur = true;
+        window_background_opacity = lib.mkForce 0.7;
+        # wayland_window_background_blur = true;
         warn_about_missing_glyphs = false;
       };
     };
