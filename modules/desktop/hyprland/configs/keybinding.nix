@@ -84,14 +84,15 @@ in
         (m "F5" "hl.dsp.exec_cmd(\"waydroid session stop && notify-send \\\"Waydroid Is Closed.\\\"\")")
 
         # ------------------------ #
-        # ---- Positioning Mode --- #
+        # ---- Positioning Mode ---- #
         # ------------------------ #
         (m "ALT + F" "hl.dsp.window.float()")
         (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        (k "ALT + Tab" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext currentworkspace\")")
-        (k "ALT + SHIFT + Tab" "hl.dsp.exec_cmd(\"hyprctl dispatch cyclenext prev currentworkspace\")")
+        # Fixed Alt+Tab cycling (calling hl.dispatch directly)
+        (k "ALT + TAB" "hl.dispatch(\"cyclenext\", \"currentworkspace\")")
+        (k "ALT + SHIFT + TAB" "hl.dispatch(\"cyclenext\", \"prev currentworkspace\")")
 
         # -------------------- #
         # ---- Workspaces ---- #
