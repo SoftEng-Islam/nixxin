@@ -90,15 +90,15 @@ in
         (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        # Per-layout cycling (Forward) - Retains Fullscreen
+        # Per-layout cycling (Forward) - Fixed Fullscreen Check
         (k "ALT + TAB" ''
           function()
             local w = hl.get_active_window()
             local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
             if not ws or not w then return end
 
-            -- 1. Save the fullscreen state before switching
-            local was_fs = w.fullscreen
+            -- Fix: Explicitly check for true or > 0 (Lua treats 0 as true)
+            local was_fs = (w.fullscreen == true) or (type(w.fullscreen) == "number" and w.fullscreen > 0)
 
             local binds = {
               dwindle = hl.dsp.window.cycle_next(),
@@ -107,25 +107,25 @@ in
             }
 
             if binds[ws.tiled_layout] then
-              -- 2. Switch focus to the next window
               hl.dispatch(binds[ws.tiled_layout])
 
-              -- 3. If the old window was fullscreen, force the new one to be fullscreen too
-              if was_fs then
+              local w_new = hl.get_active_window()
+              -- Fix: Only apply fullscreen if we successfully switched to a different window
+              if was_fs and w_new and (w.address ~= w_new.address) then
                 hl.dispatch(hl.dsp.window.fullscreen({ action = "set" }))
               end
             end
           end
         '')
 
-        # Per-layout cycling (Reverse) - Retains Fullscreen
+        # Per-layout cycling (Reverse) - Fixed Fullscreen Check
         (k "ALT + SHIFT + TAB" ''
           function()
             local w = hl.get_active_window()
             local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
             if not ws or not w then return end
 
-            local was_fs = w.fullscreen
+            local was_fs = (w.fullscreen == true) or (type(w.fullscreen) == "number" and w.fullscreen > 0)
 
             local binds = {
               dwindle = hl.dsp.window.cycle_next({ prev = true }),
@@ -136,7 +136,8 @@ in
             if binds[ws.tiled_layout] then
               hl.dispatch(binds[ws.tiled_layout])
 
-              if was_fs then
+              local w_new = hl.get_active_window()
+              if was_fs and w_new and (w.address ~= w_new.address) then
                 hl.dispatch(hl.dsp.window.fullscreen({ action = "set" }))
               end
             end
@@ -218,9 +219,14 @@ in
         # ------------------------- #
         # ---- Screen Snip -------- #
         # ------------------------- #
+        # Take screenshot and edit it
         (k "CTRL + Print" "hl.dsp.exec_cmd(\"grim -g \\\"$(slurp)\\\" - | swappy -f -\")")
+        # Take Screenshot for a spacific area
         (m "SHIFT + S" "hl.dsp.exec_cmd(\"mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_\\\"$(date '+%Y-%m-%d_%H.%M.%S')\\\".png\")")
+        # Take Screenshot for all monitors
         (k "print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
+        # Take Screenshot for the active monitor
+        (k "print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave output ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
 
         # Color Picker
         (m "SHIFT + C" "hl.dsp.exec_cmd(\"hyprpicker -a\")")
