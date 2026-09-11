@@ -84,15 +84,47 @@ in
         (m "F5" "hl.dsp.exec_cmd(\"waydroid session stop && notify-send \\\"Waydroid Is Closed.\\\"\")")
 
         # ------------------------ #
-        # ---- Positioning Mode ---- #
+        # ---- Positioning Mode --- #
         # ------------------------ #
         (m "ALT + F" "hl.dsp.window.float()")
         (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        # Fixed Alt+Tab cycling (wrapped in an anonymous Lua function)
-        (k "ALT + TAB" "function() hl.dispatch(\"cyclenext\", \"currentworkspace\") end")
-        (k "ALT + SHIFT + TAB" "function() hl.dispatch(\"cyclenext\", \"prev currentworkspace\") end")
+        # Per-layout cycling (Forward)
+        (k "ALT + TAB" ''
+          function()
+            local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+            if not ws then return end
+
+            local binds = {
+              dwindle = hl.dsp.window.cycle_next(),
+              master = hl.dsp.layout("cyclenext"),
+              monocle = hl.dsp.layout("cyclenext")
+            }
+
+            if binds[ws.tiled_layout] then
+              hl.dispatch(binds[ws.tiled_layout])
+            end
+          end
+        '')
+
+        # Per-layout cycling (Reverse)
+        (k "ALT + SHIFT + TAB" ''
+          function()
+            local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
+            if not ws then return end
+
+            local binds = {
+              dwindle = hl.dsp.window.cycle_next({ prev = true }),
+              master = hl.dsp.layout("cycleprev"),
+              monocle = hl.dsp.layout("cycleprev")
+            }
+
+            if binds[ws.tiled_layout] then
+              hl.dispatch(binds[ws.tiled_layout])
+            end
+          end
+        '')
 
         # -------------------- #
         # ---- Workspaces ---- #
