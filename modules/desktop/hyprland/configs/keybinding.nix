@@ -90,9 +90,9 @@ in
         (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        # Fixed Alt+Tab cycling (calling hl.dispatch directly)
-        (k "ALT + TAB" "hl.dispatch(\"cyclenext\", \"currentworkspace\")")
-        (k "ALT + SHIFT + TAB" "hl.dispatch(\"cyclenext\", \"prev currentworkspace\")")
+        # Fixed Alt+Tab cycling (wrapped in an anonymous Lua function)
+        (k "ALT + TAB" "function() hl.dispatch(\"cyclenext\", \"currentworkspace\") end")
+        (k "ALT + SHIFT + TAB" "function() hl.dispatch(\"cyclenext\", \"prev currentworkspace\") end")
 
         # -------------------- #
         # ---- Workspaces ---- #
