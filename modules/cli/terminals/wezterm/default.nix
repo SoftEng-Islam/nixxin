@@ -3,7 +3,7 @@
   home-manager.users.${settings.user.username} = {
     programs.wezterm = {
       enable = true;
-      package = pkgs.wezterm;
+      package = pkgs.unstable.wezterm;
       enableZshIntegration = true;
       enableBashIntegration = true;
 
