@@ -1,9 +1,15 @@
-{ settings, pkgs, ... }:
+{
+  settings,
+  pkgs,
+  inputs,
+  ...
+}:
+
 {
   home-manager.users.${settings.user.username} = {
     programs.wezterm = {
       enable = true;
-      package = pkgs.unstable.wezterm;
+      package = inputs.wezterm.packages.${pkgs.stdenv.hostPlatform.system}.default;
       enableZshIntegration = true;
       enableBashIntegration = true;
 
@@ -194,5 +200,10 @@
       '';
     };
     # keybindings are now inlined above, no need to copy config directory
+    nix.settings = {
+
+      substituters = [ "https://wezterm.cachix.org" ];
+      trusted-public-keys = [ "wezterm.cachix.org-1:kAbhjYUC9qvblTE+s7S+kl5XM1zVa4skO+E/1IDWdH0=" ];
+    };
   };
 }

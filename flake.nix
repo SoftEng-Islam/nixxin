@@ -1,6 +1,8 @@
 {
   description = "Nixxin Configuration.";
   inputs = {
+
+    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     nixpkgs.url = "github:nixos/nixpkgs/nixos-26.05";
 
     # Older nixpkgs pin for ROCm 5.7 (HIP/OpenCL on Picasso/Raven APUs, gfx902).
@@ -8,7 +10,6 @@
     nixpkgs-older.url = "github:nixos/nixpkgs/nixos-23.11";
     nixpkgs-2405.url = "github:nixos/nixpkgs/nixos-24.05";
 
-    unstable.url = "github:nixos/nixpkgs/nixos-unstable";
     systems.url = "github:nix-systems/default-linux";
     flake-utils.url = "github:numtide/flake-utils";
     flake-parts = {
@@ -98,6 +99,8 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.flake-parts.follows = "flake-parts";
     };
+
+    wezterm.url = "github:wezterm/wezterm?dir=nix";
   };
   outputs =
     {
