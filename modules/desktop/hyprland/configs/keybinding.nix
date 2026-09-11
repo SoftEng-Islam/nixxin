@@ -90,11 +90,15 @@ in
         (m "CTRL + W" "hl.dsp.exec_cmd(\"hyprctl dispatch centerwindow 1\")")
         (m "TAB" "hl.dsp.exec_cmd(\"qs ipc -c overview call overview toggle\")")
 
-        # Per-layout cycling (Forward)
+        # Per-layout cycling (Forward) - Retains Fullscreen
         (k "ALT + TAB" ''
           function()
+            local w = hl.get_active_window()
             local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
-            if not ws then return end
+            if not ws or not w then return end
+
+            -- 1. Save the fullscreen state before switching
+            local was_fs = w.fullscreen
 
             local binds = {
               dwindle = hl.dsp.window.cycle_next(),
@@ -103,16 +107,25 @@ in
             }
 
             if binds[ws.tiled_layout] then
+              -- 2. Switch focus to the next window
               hl.dispatch(binds[ws.tiled_layout])
+
+              -- 3. If the old window was fullscreen, force the new one to be fullscreen too
+              if was_fs then
+                hl.dispatch(hl.dsp.window.fullscreen({ action = "set" }))
+              end
             end
           end
         '')
 
-        # Per-layout cycling (Reverse)
+        # Per-layout cycling (Reverse) - Retains Fullscreen
         (k "ALT + SHIFT + TAB" ''
           function()
+            local w = hl.get_active_window()
             local ws = hl.get_active_special_workspace() or hl.get_active_workspace()
-            if not ws then return end
+            if not ws or not w then return end
+
+            local was_fs = w.fullscreen
 
             local binds = {
               dwindle = hl.dsp.window.cycle_next({ prev = true }),
@@ -122,6 +135,10 @@ in
 
             if binds[ws.tiled_layout] then
               hl.dispatch(binds[ws.tiled_layout])
+
+              if was_fs then
+                hl.dispatch(hl.dsp.window.fullscreen({ action = "set" }))
+              end
             end
           end
         '')
