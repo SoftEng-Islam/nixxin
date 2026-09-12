@@ -589,6 +589,9 @@ in
       font_scale = 1.0                    # multiplies text size for this widget only
       font_weight = 700
       interactive = false                 # pass clicks/scrolls through to the bar and disable hover/tooltips
+
+      [widget.udiskie]
+      type = "aristides/udiskie:status"
     '';
   };
   nix.settings = {

@@ -54,12 +54,43 @@
           on_hover = "#0e0e43";
         };
       };
-      output.name = "HDMI-A-1";
-      keyboard.layout = "us";
+      keyboard = {
+        layout = "us";
+        variant = ",qwertz";
+        options = "grp:alt_shift_toggle";
+        # Start with Num Lock locked (default true if omitted).
+        numlock = true;
+      };
+      auth = {
+        # Allow empty password submit (fprintd / smartcard PAM). Default false.
+        allow_empty_password = false;
+        # Seconds to wait for each greetd reply (0-3600). 0 disables the watchdog.
+        request_timeout = 60;
+      };
+      # Seconds with no input before blanking outputs; 0 disables (range 0-86400).
+      idle.timeout = 300;
       cursor = {
         theme = settings.common.cursor.name;
         size = settings.common.cursor.size;
         path = "${settings.common.cursor.package}/share/icons";
+      };
+      output = {
+        # Pin the greeter to one connector; omit to mirror on every monitor.
+        # List names with: noctalia-greeter outputs
+        name = "HDMI-A-1";
+        # Multi-monitor positions (logical pixels). Overrides Sync layout in sync.toml when set.
+        layout = "HDMI-A-1:0,0; DP-1:2560,0";
+        # Preferred DRM mode size in pixels (both required if set).
+        # width = 5120;
+        # height = 2160;
+        # Per-connector DRM transform. Overrides Sync transforms in sync.toml when set.
+        # Tokens: normal/0/none, 90, 180, 270, flipped, flipped-90, flipped-180, flipped-270
+        # transforms = "DP-1:normal; DP-2:normal";
+        # Per-connector scale matching the session (logical layout coords). Overrides Sync scales when set.
+        # Distinct from global `scale` below, which forces one scale on every output.
+        # scales = "DP-1:1; DP-2:1";
+        # Manual UI scale for all outputs; omit or invalid -> per-output scales, else auto from display geometry.
+        # scale = 1.5;
       };
     };
   };
