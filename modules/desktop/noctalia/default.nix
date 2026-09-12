@@ -6,7 +6,7 @@
   zenith,
   ...
 }:
-with zenith.lib';
+with zenith.lib;
 {
   imports = [
     ./greeter.nix
