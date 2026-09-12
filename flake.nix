@@ -121,7 +121,7 @@
     }@inputs:
     let
       lib = nixpkgs.lib;
-      utils = import ./utils { inherit inputs lib; };
+      forge = import ./forge { inherit inputs lib; };
 
       # 1. Read the selected user profile to discover the target architecture.
       _bootstrap = import (./. + "/_settings.nix") { lib = nixpkgs.lib; };
@@ -153,7 +153,7 @@
               _SETTINGS
               settings
               pkgs-older
-              utils
+              forge
               ;
           };
           modules = [

@@ -3,10 +3,10 @@
   pkgs,
   inputs,
   lib,
-  utils,
+  forge,
   ...
 }:
-with utils.lib;
+with forge.lib;
 {
   imports = [
     ./greeter.nix
