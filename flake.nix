@@ -64,6 +64,10 @@
       inputs.nixpkgs.follows = "nixpkgs"; # this line is optional, prevents downloading two versions of nixpkgs but disables cache
     };
 
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # -----------------------------
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";
@@ -150,6 +154,7 @@
           };
           modules = [
             inputs.home-manager.nixosModules.home-manager
+            inputs.noctalia-greeter.nixosModules.default
             sops-nix.nixosModules.sops
             chatgpt-desktop-app.nixosModules.default
 

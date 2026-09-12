@@ -110,7 +110,7 @@
           },
         }
 
-        config.enable_scroll_bar = true
+        config.enable_scroll_bar = false
 
         -- ----------------------------
         -- Keybindings (converted from config/keybindings.lua)
