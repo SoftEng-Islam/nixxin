@@ -114,7 +114,7 @@ curl -sSL https://raw.githubusercontent.com/SoftEng-Islam/nixxin/main/demo.sh | 
 
 ## 🏗️ Module Structure
 
-```
+```tree
 nixxin/
 ├── schema/          # Shared configuration schema & defaults
 ├── modules/
