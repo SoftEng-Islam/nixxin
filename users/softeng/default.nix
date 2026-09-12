@@ -58,9 +58,12 @@ self: {
   common.icons.nameInDark = "Papirus-Dark";
   common.icons.package = pkgs.papirus-icon-theme.override { color = "paleorange"; };
   common.icons.folder-color = "paleorange";
+
+  # -- Cursor Configs -- #
   common.cursor.size = 24; # 16, 32, 48 or 64 Cursor Size
   common.cursor.name = "Bibata-Modern-Classic"; # or "Bibata-Modern-Ice"
-  common.cursor.package = pkgs.bibata-cursors;
+  common.cursor.package = pkgs.unstable.bibata-cursors;
+
   common.mouse.sensitivity = -0.4;
   common.mouse.accelProfile = "adaptive"; # flat or adaptive
   common.mouse.scrollSpeed = 1.0;

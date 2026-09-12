@@ -7,6 +7,7 @@
   imports = lib.optionals (settings.modules.desktop.enable or false) [
     ./appimage.nix
     ./dconf.nix
+    ./greeter.nix
     ./fileManager
     ./hyprland
     ./image_viewer.nix

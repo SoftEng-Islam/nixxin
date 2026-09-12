@@ -1,6 +1,5 @@
 {
   settings,
-  lib,
   pkgs,
   ...
 }:

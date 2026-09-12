@@ -67,10 +67,14 @@ in
   # Desktop Manager & Display Manager
   services.displayManager.enable = true;
 
+  # SDDM kept installed/available but NOT the active display manager —
+  # noctalia-greeter owns that role now. Flip this to true (and disable
+  # noctalia-greeter) if you ever want to switch back.
+  services.displayManager.sddm.enable = false;
+
   environment.systemPackages = [ sddmAstronautBlackHole ] ++ sddmAstronautDeps;
 
   services.displayManager.sddm = {
-    enable = true;
     theme = "sddm-astronaut-theme";
     extraPackages = [ sddmAstronautBlackHole ] ++ sddmAstronautDeps;
     settings = {
@@ -80,11 +84,4 @@ in
       };
     };
   };
-
-  # ---- Set Default Session ---- #
-  services.displayManager.defaultSession = "hyprland";
-
-  # ---- XSERVER ---- #
-  services.xserver.enable = true;
-  services.xserver.autorun = true;
 }
