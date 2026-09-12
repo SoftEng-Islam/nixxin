@@ -534,6 +534,13 @@ self: {
   };
   # [ kernelParams ]
   modules.system.boot.kernelParams = [
+    # ----------------------------------------------
+    # To figure out the connector names, execute the following command while your monitors are connected:
+    # head /sys/class/drm/*/status
+    "video=HDMI-A-1:2560x1440@144"
+    "video=DP-1:1920x1080@60"
+    # ----------------------------------------------
+
     # AMD GPU optimizations
 
     # --- MEMORY TUNING ---
