@@ -224,7 +224,7 @@ in
         # Take Screenshot for a spacific area
         (m "SHIFT + S" "hl.dsp.exec_cmd(\"mkdir -p ~/Pictures/Area && ${pkgs.grimblast}/bin/grimblast --notify --freeze copysave area ~/Pictures/Area/AreaShot_\\\"$(date '+%Y-%m-%d_%H.%M.%S')\\\".png\")")
         # Take Screenshot for all monitors
-        (k "print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
+        (k "CTRL + ALT + Print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave screen ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
         # Take Screenshot for the active monitor
         (k "print" "hl.dsp.exec_cmd(\"${pkgs.grimblast}/bin/grimblast --notify --freeze --wait 1 copysave output ~/Pictures/Screenshots/$(date +%Y-%m-%dT%H%M%S).png\")")
 

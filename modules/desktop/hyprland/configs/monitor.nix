@@ -11,12 +11,12 @@
           mode = "2560x1440@144";
           position = "0x0";
           scale = 1;
-          # vrr = 1;
+          vrr = 1;
           bitdepth = 8;
-          # cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
+          cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
           sdr_eotf = "gamma22";
           # supports_wide_color = 0; # 0 = auto (allows DCI-P3 wide color in HDR)
-          # supports_hdr = 1; # 1 = force HDR capability enabled
+          supports_hdr = 1; # 1 = force HDR capability enabled
         }
         {
           # Secondary: Samsung S22C450 (1080p @ 60Hz)

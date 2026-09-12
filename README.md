@@ -1,7 +1,5 @@
 # 🚀 Nixxin
 
-<div align="center">
-
 **NixOS** Enhancement Configurations
 
 [![Stars](https://img.shields.io/github/stars/SoftEng-Islam/nixxin?style=social)](https://github.com/SoftEng-Islam/nixxin/stargazers)
@@ -17,8 +15,6 @@
 A modular, feature-rich NixOS configuration that's easy to customize for different users and hardware setups. Perfect for both beginners and advanced users!
 
 [**🚀 Quick Start**](#-quick-start) • [**📚 Documentation**](#-documentation) • [**✨ Features**](#-features) • [**🏗️ Module Structure**](#️-module-structure) • [**🤝 Contributing**](#-contributing)
-
-</div>
 
 ## 🚀 Quick Start
 
@@ -92,7 +88,7 @@ curl -sSL https://raw.githubusercontent.com/SoftEng-Islam/nixxin/main/demo.sh | 
 ### 🎮 **What's Included?**
 
 | Category | Modules | Description |
-|----------|---------|-------------|
+| ---------- | --------- | ------------- |
 | **🖥️ Desktop** | Hyprland, GNOME tools | Modern desktop environments |
 | **🌐 Browsers** | Firefox, Chrome, Brave | All major web browsers |
 | **💻 Development** | VSCode, Helix, Emacs | Complete development setup |
@@ -107,7 +103,7 @@ curl -sSL https://raw.githubusercontent.com/SoftEng-Islam/nixxin/main/demo.sh | 
 ### 🏆 **Why Nixxin Stands Out**
 
 | Feature | Traditional Setup | Nixxin |
-|---------|------------------|--------|
+| --------- | ------------------ | -------- |
 | **Setup Time** | Hours of manual config | 5 minutes with script |
 | **Hardware Support** | Manual driver configuration | Automatic detection |
 | **Module Management** | Complex package management | Simple boolean flags |
