@@ -68,10 +68,10 @@
         config.hide_tab_bar_if_only_one_tab = false
         config.window_close_confirmation = 'NeverPrompt'
         config.audible_bell = 'Disabled'
-        config.colors = {
+        -- config.colors = {
           -- The color of the scrollbar "thumb"; the portion that represents the current viewport
-          scrollbar_thumb = '#414042',
-        }
+          -- scrollbar_thumb = '#414042',
+        -- }
 
 
         -- Acceptable values are SteadyBlock, BlinkingBlock, SteadyUnderline, BlinkingUnderline, SteadyBar, and BlinkingBar.

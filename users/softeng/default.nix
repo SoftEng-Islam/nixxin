@@ -494,7 +494,10 @@ self: {
   modules.system.radeon = false;
   modules.system.oom = false; # user-space Out-Of-Memory (OOM) killer.
   modules.system.rocm = true; # true | false
-  modules.system.videoDrivers = [ "modesetting" ];
+  modules.system.videoDrivers = [
+    "amdgpu"
+    "modesetting"
+  ];
 
   # [ BOOT ]
   modules.system.boot.plymouth.enable = true;
