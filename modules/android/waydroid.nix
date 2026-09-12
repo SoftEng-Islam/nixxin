@@ -45,8 +45,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
   boot.kernelParams = [ "psi=1" ];
   boot.kernelModules = [
     "uhid"
-    "binder_linux"
-    "ashmem_linux"
   ];
 
   boot.kernel.sysctl = {

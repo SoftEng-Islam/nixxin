@@ -46,6 +46,12 @@ lib.mkIf (settings.modules.system.rocm or false) {
       "L+ /opt/rocm/hip - - - - ${pkgs.rocmPackages.clr}"
     ];
 
+  fileSystems."/opt" = {
+    device = "tmpfs";
+    fsType = "tmpfs";
+    options = [ "mode=0755" ];
+  };
+
   # ------------------------------------------------
   # ---- Variables
   # ------------------------------------------------
