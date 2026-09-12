@@ -3,10 +3,10 @@
   pkgs,
   inputs,
   lib,
-  zenith,
+  utils,
   ...
 }:
-with zenith.lib;
+with utils.lib;
 {
   imports = [
     ./greeter.nix
