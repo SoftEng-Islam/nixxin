@@ -194,4 +194,12 @@ This project is open source and available under the [MIT License](./LICENSE).
 
 ## 📸 Screenshot
 
-![Screenshot](./ScreenShot.png)
+![Screenshot](./screens/2026-09-12T020655.png)
+![Screenshot](./screens/2026-09-12T020727.png)
+![Screenshot](./screens/2026-09-12T020743.png)
+![Screenshot](./screens/2026-09-12T020813.png)
+![Screenshot](./screens/2026-09-12T020823.png)
+![Screenshot](./screens/2026-09-12T020845.png)
+![Screenshot](./screens/2026-09-12T021044.png)
+![Screenshot](./screens/2026-09-12T021111.png)
+![Screenshot](./screens/2026-09-12T021238.png)
