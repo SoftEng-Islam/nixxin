@@ -18,7 +18,7 @@ with forge.lib;
     ];
     programs.noctalia = {
       enable = true;
-      settings = (importDir ./settings { inherit pkgs lib; });
+      settings = (importDir ./settings { inherit pkgs lib settings; });
     };
   };
 

@@ -68,8 +68,6 @@ in
   };
 
   home-manager.users.${settings.user.username} = {
-    home.file.".config/hypr/shaders".source = ./shaders;
-
     home.pointerCursor = {
       enable = true; # <-- add this
       gtk.enable = true;

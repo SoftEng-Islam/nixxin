@@ -79,7 +79,7 @@ in
         # ----------------------- #
         (m "F1" "hl.dsp.exec_cmd(\"sudo toggleInternet\")")
         (m "F2" "hl.dsp.exec_cmd(\"run-gamemode\")")
-        (m "F3" "hl.dsp.exec_cmd(\"run-blue-filter\")")
+        # (m "F3" "hl.dsp.exec_cmd()")
         (m "F4" "hl.dsp.exec_cmd(\"noctalia msg panel-toggle session\")")
         (m "F5" "hl.dsp.exec_cmd(\"waydroid session stop && notify-send \\\"Waydroid Is Closed.\\\"\")")
 
