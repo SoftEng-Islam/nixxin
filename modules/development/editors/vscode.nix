@@ -8,7 +8,6 @@ let
   flakePath = settings.common.dotfilesDir or "${settings.HOME}/nixxin";
   hostSystem = pkgs.stdenv.hostPlatform.system;
   nixpkgsExpr = "let flake = builtins.getFlake \"${flakePath}\"; in import flake.inputs.nixpkgs.outPath { system = \"${hostSystem}\"; }";
-  nixfmtPackage = if pkgs ? nixfmt then pkgs.nixfmt else pkgs.nixfmt-rfc-style;
   nixFormatter = "nixfmt";
 in
 {

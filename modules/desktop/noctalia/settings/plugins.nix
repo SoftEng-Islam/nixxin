@@ -3,13 +3,21 @@
     enabled = [
       "alexander/screen-toolkit"
       "aristides/udiskie"
+      "avivbintangaringga/nix-monitor"
       "icefish/phone-connect"
       "jechton/home-assistant"
       "jechton/kimai"
       "jechton/phone-media"
       "jechton/tenpo-ko"
-      "yuuto/calculator"
+      "nightwatch75/todo"
+      "noctalia/bongocat"
+      "noctalia/kaomoji"
       "noctalia/notes"
+      "noctalia/screen_recorder"
+      "noctalia/translator"
+      "noctalia/wallhaven"
+      "yocraft/web-launcher"
+      "yuuto/calculator"
     ];
 
     # Every source is pinned by Nix (flake inputs or this repo), so noctalia
@@ -20,20 +28,7 @@
       {
         name = "official";
         kind = "path";
-        location = "${pkgs.linkFarm "noctalia-official-plugins" [
-          {
-            name = "screen_recorder";
-            path = "${inputs.noctalia-official-plugins}/screen_recorder";
-          }
-          {
-            name = "timer";
-            path = "${inputs.noctalia-official-plugins}/timer";
-          }
-          {
-            name = "notes";
-            path = "${inputs.noctalia-official-plugins}/notes";
-          }
-        ]}";
+        location = toString inputs.noctalia-official-plugins;
       }
       {
         name = "community";
@@ -54,6 +49,21 @@
     "yuuto/calculator" = {
       panel_placement = "floating";
       panel_position = "center";
+    };
+    "noctalia/screen_recorder" = {
+      directory = "~/noctalia/records";
+      video_source = "focused";
+      replay_enabled = true;
+      replay_duration = 60;
+    };
+    "noctalia/notes" = {
+      notes_dir = "~/noctalia/notes";
+      panel_open_near_click = true;
+    };
+  };
+  widget = {
+    udiskie = {
+      type = "aristides/udiskie:status";
     };
   };
 }

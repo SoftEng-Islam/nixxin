@@ -29,10 +29,15 @@
         "notifications"
         "network_rx"
         "network_tx"
+        "recorder"
+        "todo"
+        "cat"
       ];
-      center = [ "clock" ];
-      end = [
+      center = [
+        "clock"
         "notes"
+      ];
+      end = [
         "udiskie"
         "kimai"
         "screen-toolkit"

@@ -16,6 +16,17 @@ with forge.lib;
     imports = [
       inputs.noctalia.homeModules.default
     ];
+    home.file = {
+      "noctalia/captures/.keep".text = "";
+      "noctalia/records/.keep".text = "";
+      "noctalia/covers/anime/.keep".text = "";
+      "noctalia/covers/manga/.keep".text = "";
+      "noctalia/videos/.keep".text = "";
+      "noctalia/notes/.keep".text = "";
+      # Install Noctalia plugins from inputs
+      "noctalia/plugins/notes".source = "${inputs.noctalia-official-plugins}/notes";
+      "noctalia/plugins/bongocat".source = "${inputs.noctalia-official-plugins}/bongocat";
+    };
     programs.noctalia = {
       enable = true;
       settings = (

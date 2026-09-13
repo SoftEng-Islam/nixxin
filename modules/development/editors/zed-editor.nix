@@ -263,6 +263,12 @@
             ctrl-v = "terminal::Paste";
           };
         }
+        {
+          context = "Editor";
+          bindings = {
+            ctrl-shift-s = "editor::SortLinesCaseSensitive";
+          };
+        }
       ];
     };
   };

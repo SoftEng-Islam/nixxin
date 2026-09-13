@@ -40,7 +40,7 @@ in
 
     keyboard_layout = {
       display = "short"; # "short" (e.g. "DE") or "full" (full layout name)
-      show_icon = true;
+      show_glyph = true;
       show_label = true;
       hide_when_single_layout = false; # hide the widget when only one layout is configured
       # cycle_command           = ""         # custom command to cycle layouts (empty = compositor backend)
@@ -71,8 +71,5 @@ in
       interactive = false; # pass clicks/scrolls through to the bar and disable hover/tooltips
     };
 
-    udiskie = {
-      type = "aristides/udiskie:status";
-    };
   };
 }

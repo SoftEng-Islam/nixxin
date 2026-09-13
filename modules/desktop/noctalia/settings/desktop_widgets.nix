@@ -1,6 +1,6 @@
 {
   desktop_widgets = {
-    enabled = false;
+    enabled = true;
     # When set, widget_order is the active widget list and stacking order.
     # widget_order = ["clock_main"];
 
