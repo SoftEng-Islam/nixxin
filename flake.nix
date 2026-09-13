@@ -68,6 +68,24 @@
       url = "github:noctalia-dev/noctalia-greeter";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    noctalia-community-plugins = {
+      url = "github:noctalia-dev/community-plugins";
+      flake = false;
+    };
+    noctalia-official-plugins = {
+      url = "github:noctalia-dev/official-plugins";
+      flake = false;
+    };
+    noctalia-plugins = {
+      url = "github:jechton/noctalia-plugins";
+      inputs = {
+        noctalia.follows = "noctalia";
+        noctalia-official-plugins.follows = "noctalia-official-plugins";
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks.follows = "pre-commit-hooks";
+        treefmt-nix.follows = "treefmt-nix";
+      };
+    };
     # -----------------------------
 
     yt-dlp-src.url = "path:./pkgs/yt-dlp";

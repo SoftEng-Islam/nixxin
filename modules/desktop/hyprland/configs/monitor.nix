@@ -12,11 +12,12 @@
           position = "0x0";
           scale = 1;
           vrr = 1;
-          bitdepth = 8;
+          bitdepth = 8; # This MUST be 10 for HDR to work properly
           cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
           sdr_eotf = "gamma22";
-          # supports_wide_color = 0; # 0 = auto (allows DCI-P3 wide color in HDR)
-          supports_hdr = 1; # 1 = force HDR capability enabled
+          supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
+          sdrbrightness = 1.0;
+          sdrsaturation = 1.2;
         }
         {
           # Secondary: Samsung S22C450 (1080p @ 60Hz)
@@ -26,9 +27,11 @@
           scale = 1;
           # vrr = 0;
           bitdepth = 8;
-          # cm = "auto";
+          cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
           sdr_eotf = "gamma22";
-          # supports_hdr = -1; # Disable HDR processing for secondary SDR display
+          supports_hdr = -1; # Disable HDR processing for secondary SDR display
+          sdrbrightness = 1.2;
+          sdrsaturation = 1.2;
         }
       ];
 
