@@ -24,7 +24,7 @@ with forge.lib;
             pkgs
             lib
             settings
-            osConfig
+            inputs
             ;
         }
       );
@@ -43,5 +43,6 @@ with forge.lib;
 
     # Noctalia screenshot plugin needs this package
     hyprshot
+    udiskie
   ];
 }

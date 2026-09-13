@@ -1,4 +1,4 @@
-{ osConfig, inputs, ... }: {
+{ inputs, ... }: {
   plugins = {
     enabled = [
       "alexander/screen-toolkit"
@@ -9,17 +9,31 @@
       "jechton/phone-media"
       "jechton/tenpo-ko"
       "yuuto/calculator"
+      "noctalia/notes"
     ];
 
     # Every source is pinned by Nix (flake inputs or this repo), so noctalia
     # must never try to update them itself.
-    auto_update = "none";
+    auto_update = false;
 
     source = [
       {
         name = "official";
         kind = "path";
-        location = toString inputs.noctalia-official-plugins;
+        location = "${pkgs.linkFarm "noctalia-official-plugins" [
+          {
+            name = "screen_recorder";
+            path = "${inputs.noctalia-official-plugins}/screen_recorder";
+          }
+          {
+            name = "timer";
+            path = "${inputs.noctalia-official-plugins}/timer";
+          }
+          {
+            name = "notes";
+            path = "${inputs.noctalia-official-plugins}/notes";
+          }
+        ]}";
       }
       {
         name = "community";
@@ -36,16 +50,6 @@
   plugin_settings = {
     "icefish/phone-connect" = {
       battery_display = "hidden";
-    };
-    "jechton/home-assistant" = {
-      # Secret file: line 1 the HA URL, line 2 a long-lived access token.
-      credentials_file = osConfig.age.secrets.home-assistant-credentials.path;
-    };
-    "jechton/kimai" = {
-      # Secret file: line 1 the Kimai URL, line 2 an API token.
-      credentials_file = osConfig.age.secrets.kimai-credentials.path;
-      # Panel setting: prefix each project in the picker with its customer name.
-      show_client = false;
     };
     "yuuto/calculator" = {
       panel_placement = "floating";

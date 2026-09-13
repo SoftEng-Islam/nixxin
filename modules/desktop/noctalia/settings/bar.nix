@@ -32,6 +32,10 @@
       ];
       center = [ "clock" ];
       end = [
+        "notes"
+        "udiskie"
+        "kimai"
+        "screen-toolkit"
         "tray"
         "clipboard"
         "network"

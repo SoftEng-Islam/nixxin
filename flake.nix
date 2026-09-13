@@ -17,6 +17,16 @@
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
 
+    import-tree.url = "github:denful/import-tree";
+    pre-commit-hooks = {
+      url = "github:cachix/git-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Google Antigravity — auto-updating, FHS-wrapped, version-pinned
     antigravity-nix = {
       url = "github:jacopone/antigravity-nix";
