@@ -99,5 +99,13 @@
     mpris = {
       blacklist = [ ]; # ignore MPRIS players by bus/identity/desktop entry token
     };
+    keyboard_layout = {
+      custom_labels = {
+        # override display labels by exact layout name
+        "English (US)" = "EN";
+        "Arabic (EG)" = "AR";
+      };
+    };
+
   };
 }

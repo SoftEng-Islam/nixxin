@@ -21,7 +21,6 @@
         output = "HDMI-A-1";
         cx = 1280.0;
         cy = 140.0;
-        scale = 1.5;
         rotation = 0.0;
         settings = {
           format = " {:%A %e, %B %m, %Y • %I:%M %p} ";
@@ -34,7 +33,6 @@
         output = "DP-1";
         cx = 960.0;
         cy = 120.0;
-        scale = 1.3;
         rotation = 0.0;
         settings = {
           format = " {:%A %e, %B %m, %Y • %I:%M %p} ";

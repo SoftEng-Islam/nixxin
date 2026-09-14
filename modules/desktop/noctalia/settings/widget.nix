@@ -38,19 +38,6 @@ in
     # [widget.volume.effects_profile_glyphs]
     # eq_desktop = "device-speaker"
 
-    keyboard_layout = {
-      display = "short"; # "short" (e.g. "DE") or "full" (full layout name)
-      show_glyph = true;
-      show_label = true;
-      hide_when_single_layout = false; # hide the widget when only one layout is configured
-      # cycle_command           = ""         # custom command to cycle layouts (empty = compositor backend)
-      custom_labels = {
-        # override display labels by exact layout name
-        "English (US)" = "EN";
-        "Arabic (EG)" = "AR";
-      };
-    };
-
     # [widget.lock_button]
     # type                = "custom_button"
     # glyph               = "lock"
@@ -70,6 +57,12 @@ in
       font_weight = 700;
       interactive = false; # pass clicks/scrolls through to the bar and disable hover/tooltips
     };
-
+    keyboard_layout = {
+      display = "short"; # "short" (e.g. "DE") or "full" (full layout name)
+      show_glyph = true;
+      show_label = true;
+      hide_when_single_layout = false; # hide the widget when only one layout is configured
+      # cycle_command           = ""         # custom command to cycle layouts (empty = compositor backend)
+    };
   };
 }
