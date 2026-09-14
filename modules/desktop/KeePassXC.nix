@@ -1,6 +1,5 @@
 {
   settings,
-  lib,
   ...
 }:
 {
@@ -16,7 +15,7 @@
         };
         Security = {
           LockDatabaseIdle = true;
-          LockDatabaseIdleSeconds = 60;
+          LockDatabaseIdleSeconds = 260;
         };
         Browser = {
           Enabled = true;

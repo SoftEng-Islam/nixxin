@@ -356,7 +356,7 @@ self: {
 
   # [gaming]
   modules.gaming.steam.enable = true;
-  modules.gaming.zeroad.enable = false; # Free game of ancient warfare
+  modules.gaming.zeroad.enable = true; # Free game of ancient warfare
   modules.gaming.chess.enable = true;
 
   # [ Graphics ]
