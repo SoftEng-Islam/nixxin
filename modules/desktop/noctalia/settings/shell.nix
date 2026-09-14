@@ -11,7 +11,7 @@
     polkit_agent = false;
     password_style = "default"; # default | random
     settings_show_advanced = true; # show advanced settings by default in Settings
-    # settings_window_translucent = false;  # translucent settings window background
+    settings_window_translucent = true; # translucent settings window background
     show_location = true; # hide weather location text in shell UI when false
     #app_icon_colorize   = false;        # recolor application icons across the shell
     #app_icon_color      = "on_surface"; # ColorSpec role or #hex when colorize is enabled
@@ -106,6 +106,9 @@
         "Arabic (EG)" = "AR";
       };
     };
-
+    screen_corners = {
+      enabled = true;
+      size = 30;
+    };
   };
 }
