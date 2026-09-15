@@ -687,7 +687,7 @@ self: {
     "wheel"
     "wireshark"
   ];
-  modules.users.packages = with pkgs; [ thunderbird ];
+  modules.users.packages = with pkgs; [ ];
 
   # [MS Windows Support]
   # modules.windows.

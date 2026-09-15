@@ -744,7 +744,7 @@ self: {
     "wireshark"
     "i2c"
   ];
-  modules.users.packages = with pkgs; [ thunderbird ];
+  modules.users.packages = with pkgs; [ ];
 
   # [MS Windows Support]
   # modules.windows.
