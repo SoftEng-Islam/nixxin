@@ -17,7 +17,6 @@
       "noctalia/wallhaven"
       "yocraft/web-launcher"
       "yuuto/calculator"
-      "noctalia/bongocat"
       "dotnetrob/cat"
       "thepunkoff/pomodoro"
       "nikolaj-zwergius/iio_lock"
