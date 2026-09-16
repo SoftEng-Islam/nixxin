@@ -16,23 +16,27 @@
 let
   _system = settings.modules.system;
   quietBoot = _system.boot.quietBoot or true;
-  # 1. Override the base kernel derivation (notice it's NOT 'linuxPackages-...')
-  # We start with your desired LTO/v2 base and just change the scheduler.
-  customKernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v2.override {
+
+  # Base: bore-lto-x86_64-v3 (matches the AMD Ryzen 5 3400G's AVX2/FMA/BMI2
+  # feature set — no AVX-512, so v4/zen4 are off the table).
+  # Overridden below for performanceGovernor + bbr3, neither of which is
+  # in the prebuilt package, so this always compiles locally regardless
+  # of variant/cache — that's the cost of these two knobs specifically.
+  customKernel = settings.kernel.override {
     cpusched = "bore"; # Excellent for desktop snappiness
-    hzTicks = "1000"; # 1000Hz (default) is best for low-latency desktop feel
+    hzTicks = "1000"; # default; kept explicit for clarity
     performanceGovernor = true; # Forces the CPU to stay at its higher clock speeds
     bbr3 = true; # Improved network congestion control (better web/gaming)
-    hugepage = "always"; # Can speed up memory-heavy apps (like browsers/compiling)
-    preemptType = "full"; # "full" is the most responsive for desktop usage
-    tickrate = "full"; # Maintains high responsiveness even under load
+    hugepage = "always"; # default; kept explicit for clarity
+    preemptType = "full"; # default; kept explicit for clarity
+    tickrate = "full"; # default; kept explicit for clarity
     # acpiCall = true;
   };
 
-  # 2. Load the helper functions from the nix-cachyos-kernel flake
+  # Load the helper functions from the nix-cachyos-kernel flake.
   helpers = pkgs.callPackage "${inputs.nix-cachyos-kernel.outPath}/helpers.nix" { };
 
-  # 3. Generate the kernel package set and apply the LTO compiler fixes
+  # Generate the kernel package set and apply the LTO out-of-tree-module fix.
   customKernelPackages = helpers.kernelModuleLLVMOverride (pkgs.linuxKernel.packagesFor customKernel);
 in
 {

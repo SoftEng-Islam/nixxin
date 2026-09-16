@@ -9,6 +9,7 @@ self: {
 
   system.hostName = "nixxin";
   system.architecture = "x86_64-linux";
+  system.kernel = pkgs.cachyosKernels.linux-cachyos-latest-lto-x86_64-v3;
 
   # ----------------------------------------------
   # ---- System / Home / Common (added to match schema/default.nix)
