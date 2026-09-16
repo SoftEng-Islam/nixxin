@@ -22,7 +22,7 @@ let
   # Overridden below for performanceGovernor + bbr3, neither of which is
   # in the prebuilt package, so this always compiles locally regardless
   # of variant/cache — that's the cost of these two knobs specifically.
-  customKernel = settings.kernel.override {
+  customKernel = settings.system.kernel.override {
     cpusched = "bore"; # Excellent for desktop snappiness
     hzTicks = "1000"; # default; kept explicit for clarity
     performanceGovernor = true; # Forces the CPU to stay at its higher clock speeds
