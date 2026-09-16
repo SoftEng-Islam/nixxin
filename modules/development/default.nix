@@ -28,11 +28,11 @@ in
   config = mkIf (development.enable or false) {
     # nixpkgs.config.permittedInsecurePackages = [ "beekeeper-studio-5.3.4" ];
     environment.systemPackages = with pkgs; [
-      python3
+      # python3
 
-      ruby_3_4
-      bundler
-      bundix
+      # ruby_3_4
+      # bundler
+      # bundix
 
       # https://devenv.sh/
       devenv # Fast, Declarative, Reproducible, and Composable Developer Environments

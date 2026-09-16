@@ -228,9 +228,9 @@ self: {
   modules.development.databases.tools.enable = false;
 
   # Languages
-  modules.development.languages.enable = false;
+  modules.development.languages.enable = true;
   modules.development.languages.rust.enable = false;
-  modules.development.languages.python.enable = false;
+  modules.development.languages.python.enable = true;
   modules.development.languages.ruby.enable = false;
   modules.development.languages.go.enable = false;
 

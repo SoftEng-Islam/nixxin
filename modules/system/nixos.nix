@@ -186,6 +186,8 @@ in
         "https://attic.xuyh0120.win/lantian"
         "https://yazi.cachix.org"
         "https://noctalia.cachix.org"
+        "https://cache.nixos.org"
+        "https://devenv.cachix.org"
       ];
 
       # Enable cachix
