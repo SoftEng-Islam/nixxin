@@ -10,10 +10,13 @@ let
     if systemctl is-active --quiet cloudflare-warp.service; then
         $WARP_CLI disconnect || true
         systemctl stop cloudflare-warp.service
+        echo "Cloudflare disconnect"
     else
         systemctl start cloudflare-warp.service
         sleep 1
         $WARP_CLI connect
+        echo "Cloudflare connect"
+
     fi
   '';
 in
