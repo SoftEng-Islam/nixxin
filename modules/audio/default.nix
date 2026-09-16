@@ -1,9 +1,19 @@
-{ settings, lib, pkgs, ... }:
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
 # https://wiki.archlinux.org/title/WirePlumber
 # https://wiki.archlinux.org/title/PulseAudio/Examples
-let inherit (lib) mkIf;
-in {
-  imports = [ ./rnnoise.nix ];
+let
+  inherit (lib) mkIf;
+in
+{
+  imports = [
+    ./rnnoise.nix
+    ./music_analysis.nix
+  ];
 
   config = mkIf (settings.modules.audio.enable or false) {
     # WirePlumber configuration [https://wiki.archlinux.org/title/WirePlumber]
@@ -78,21 +88,20 @@ in {
     #  computer fans, trains and the likes.
     programs.noisetorch.enable = false;
 
-    environment.systemPackages = with pkgs;
-      [
-        # alsa-tools
-        # alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
+    environment.systemPackages = with pkgs; [
+      # alsa-tools
+      # alsa-utils # ALSA, the Advanced Linux Sound Architecture utils
 
-        # pamixer # CLI volume control
+      # pamixer # CLI volume control
 
-        # A lightweight and versatile audio player.
-        # audacious
+      # A lightweight and versatile audio player.
+      # audacious
 
-        # View and edit tags for various audio files.
-        # easytag
+      # View and edit tags for various audio files.
+      # easytag
 
-        # Sound editor with graphical UI. Audio editor (like Audacity)
-        # tenacity
-      ];
+      # Sound editor with graphical UI. Audio editor (like Audacity)
+      # tenacity
+    ];
   };
 }
