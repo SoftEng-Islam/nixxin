@@ -21,11 +21,14 @@ in
     # wpctl status
     # Then use the inspect command to view the object's detail and list all properties in that object:
     # wpctl inspect {object_id}
+    #
+    # Note: the default sink is set here via WirePlumber priority, NOT via
+    # /etc/pulse/default.pa — that file's `set-default-sink` syntax is only
+    # ever executed by the real `pulseaudio` daemon's script parser, which
+    # doesn't run here (services.pulseaudio.enable = false) and isn't
+    # replicated by pipewire-pulse. Priority-based selection below is the
+    # PipeWire-native equivalent and is what actually takes effect.
     environment.etc = {
-      "pulse/default.pa".text = ''
-        set-default-sink alsa_output.pci-0000_00_14.2.analog-stereo
-      '';
-
       "wireplumber/wireplumber.conf.d/set-priorities.conf".text = ''
         monitor.alsa.rules = [
           {
@@ -41,6 +44,20 @@ in
               }
             }
           }
+          # When a discrete GPU is added, its HDMI/DP audio device can be
+          # kept from stealing default-sink status with a lower-priority
+          # (or omitted) entry here, e.g.:
+          # {
+          #   matches = [
+          #     { node.name = "alsa_output.pci-0000_XX_00.1.hdmi-stereo" }
+          #   ]
+          #   actions = {
+          #     update-props = {
+          #       priority.driver = 50
+          #       priority.session = 50
+          #     }
+          #   }
+          # }
         ]
       '';
     };
@@ -58,7 +75,6 @@ in
     services = {
       playerctld.enable = false;
       pulseaudio.enable = false; # Enable sound with pipewire.
-      pulseaudio.support32Bit = false;
       pipewire = {
         enable = true;
         audio.enable = true;
