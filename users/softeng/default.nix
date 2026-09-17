@@ -555,12 +555,13 @@ self: {
     # Configure TTM pages limit: 4GB dynamic memory for the GPU
     "ttm.pages_limit=1048576"
 
-    # Optimize VM fragment handling for APU (Remains perfectly correct!)
+    # Optimize VM fragment handling for APU
     "amdgpu.vm_fragment_size=9"
 
     # --- PERFORMANCE & STABILITY ---
     # PCIe ASPM (Active State Power Management) can cause instability with some GPUs
-    "amdgpu.aspm=0" # Disable ASPM for AMD GPU specifically
+    # Global "pcie_aspm=off" below already covers the GPU's PCIe link, so the
+    # GPU-specific "amdgpu.aspm=0" was redundant and has been removed.
     "pcie_aspm=off" # Disable ASPM globally for all PCIe devices
 
     # AMD GPU display and features
@@ -573,8 +574,9 @@ self: {
     "amdgpu.gttsize=8192"
 
     # --- CPU PERFORMANCE (Ryzen 5 3400G - Zen+) ---
-    # REMOVED: amd_prefcore=disable - Let the CPU use its preferred cores for better performance!
-    # Preferred core selection improves single-threaded performance on Zen+
+    # amd_pstate cannot load on this CPU: family 17h models 0x10-0x2F (this
+    # chip is 0x18) lack CPPC support per the kernel's own amd_cppc_supported()
+    # check. acpi-cpufreq (below, in kernelModules) is the only valid driver.
 
     # --- SYSTEM OPTIMIZATION ---
     "audit=0" # Disable audit system for performance
@@ -599,10 +601,18 @@ self: {
     # --- SCHEDULER & THREADING ---
     "skew_tick=1" # Reduce timer interrupt clustering
     "threadirqs" # Thread IRQs for better real-time performance
+    # PENDING CHECK: only effective if this kernel was built with
+    # CONFIG_PREEMPT_DYNAMIC. customKernel sets preemptType = "full", which
+    # usually bakes a *static* full-preempt kernel — if so, this param is
+    # inert. Run `zcat /proc/config.gz | grep PREEMPT` and drop this line
+    # if PREEMPT_DYNAMIC isn't set.
     "preempt=full" # Full preemption (lower latency)
     "smt=on" # Enable simultaneous multithreading (8 threads)
 
     # --- CPU FREQUENCY ---
+    # One of three places setting the same governor (also: performanceGovernor
+    # in the kernel build override, and the cpufreq_performance module below).
+    # Harmless stacked, kept as-is.
     "cpufreq.default_governor=performance" # Performance governor for desktops
     "processor.ignore_ppc=1" # Ignore processor performance control limits
 
@@ -622,7 +632,10 @@ self: {
   # [ kernelModules ]
   modules.system.boot.kernelModules = [
     # CPU Frequency Scaling
-    "acpi-cpufreq" # ACPI-based CPU frequency driver for AMD
+    "acpi-cpufreq" # ACPI-based CPU frequency driver — the only valid one for this CPU (amd_pstate unsupported)
+    # PENDING CHECK: run `lsmod | grep cpufreq_performance` after boot. If
+    # it's not listed, the governor is compiled into this kernel rather than
+    # modular, and this line is a silent no-op — safe to remove then.
     "cpufreq_performance" # Performance governor module
 
     # CPU Monitoring
@@ -633,6 +646,9 @@ self: {
     "usbcore" # USB core support
 
     # I/O Scheduler
+    # Loading this module does not make it active — nothing currently pins a
+    # scheduler to your disk(s). See the udev rule block below once you
+    # confirm your boot drive type (NVMe vs SATA/HDD).
     "bfq" # Budget Fair Queueing scheduler
 
     # Filesystem
@@ -646,15 +662,15 @@ self: {
     "uinput" # User-level input driver support
 
     # Graphics (DRM - Direct Rendering Manager)
-    "drm" # Core DRM support
-    "drm_kms_helper" # Kernel Mode Setting helpers
+    # "drm" / "drm_kms_helper" removed here — already loaded via
+    # boot.initrd.kernelModules above and stay loaded into the real system.
     # Note: amdgpu module is loaded automatically via initrd
   ];
   # [ extraModprobeConfig ]
   modules.system.boot.extraModprobeConfig = ''
     options usbcore autosuspend=-1
-    options rt2800usb nohwcrypt=1
   '';
+
   # [ AMDGPU ]
   modules.system.amdgpu.initrd = true;
   modules.system.amdgpu.opencl = true;

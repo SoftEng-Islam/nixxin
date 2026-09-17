@@ -144,8 +144,15 @@
 
   # ---------------------------------------------------------
 
-  # Apply power management and spin-down rules only to mechanical HDDs
+  # [ I/O scheduler — pick ONE once you confirm disk type, then uncomment ]
+  # NVMe SSD (bfq usually hurts throughput here — prefer none/kyber):
+  # services.udev.extraRules = ''
+  #   ACTION=="add|change", KERNEL=="nvme[0-9]n[0-9]", ATTR{queue/scheduler}="none"
+  # '';
+
+  #SATA SSD or HDD (bfq is a legitimate pick for smoother multitasking):
   services.udev.extraRules = ''
+    ACTION=="add|change", KERNEL=="sd[a-z]", ATTR{queue/scheduler}="bfq"
     ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", RUN+="${pkgs.hdparm}/bin/hdparm -B 127 -S 120 /dev/%k"
   '';
 
