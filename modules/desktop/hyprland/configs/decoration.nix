@@ -10,6 +10,7 @@
             border_size = 4;
             layout = "dwindle";
             allow_tearing = true;
+            resize_on_border = true;
             # Removed static col.active_border and col.inactive_border
             # to let Noctalia populate them cleanly below.
           };
