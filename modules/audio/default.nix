@@ -28,13 +28,18 @@ in
     # doesn't run here (services.pulseaudio.enable = false) and isn't
     # replicated by pipewire-pulse. Priority-based selection below is the
     # PipeWire-native equivalent and is what actually takes effect.
+    #
+    # Confirmed via `wpctl status` on the 3400G/A520M box: the analog codec
+    # (ALC897) is exposed as pci-0000_04_00.6, a function of the APU's own
+    # PCI device on bus 04 — NOT the FCH southbridge at 00:14.2. Re-check
+    # this address if you ever move to different hardware/BIOS.
     environment.etc = {
       "wireplumber/wireplumber.conf.d/set-priorities.conf".text = ''
         monitor.alsa.rules = [
           {
             matches = [
               {
-                node.name = "alsa_output.pci-0000_00_14.2.analog-stereo"
+                node.name = "alsa_output.pci-0000_04_00.6.analog-stereo"
               }
             ]
             actions = {
@@ -44,12 +49,14 @@ in
               }
             }
           }
-          # When a discrete GPU is added, its HDMI/DP audio device can be
-          # kept from stealing default-sink status with a lower-priority
-          # (or omitted) entry here, e.g.:
+          # The GPU's HDMI/DP audio ("Raven/Raven2/Fenghuang HDMI/DP Audio
+          # Controller", sink id 66 in wpctl status) is a separate device
+          # on the same bus. Run `wpctl inspect 66` to get its exact
+          # node.name, then uncomment and adjust to keep it from ever
+          # outranking the analog output:
           # {
           #   matches = [
-          #     { node.name = "alsa_output.pci-0000_XX_00.1.hdmi-stereo" }
+          #     { node.name = "alsa_output.pci-0000_04_00.1.hdmi-stereo" }
           #   ]
           #   actions = {
           #     update-props = {
