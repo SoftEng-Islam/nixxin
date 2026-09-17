@@ -584,6 +584,7 @@ self: {
     "tsc=reliable" # Use TSC as reliable clocksource
     "clocksource=tsc" # Force TSC clocksource
     "no_timer_check" # Skip timer check for faster boot
+    "mitigations=off"
 
     # --- VIRTUALIZATION ---
     "iommu=pt" # Passthrough mode for IOMMU (better VM performance)
