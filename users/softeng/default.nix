@@ -115,7 +115,7 @@ self: {
   modules.networking.enable = true;
   modules.notifications.enable = true;
   modules.office.enable = true;
-  modules.overclock.enable = false;
+  modules.overclock.enable = true;
   modules.pkgs.enable = true;
   modules.power.enable = true;
   modules.printing.enable = true;
@@ -431,7 +431,7 @@ self: {
 
   # [ overclock ]
   modules.overclock.corectrl.enable = false;
-  modules.overclock.lactd.enable = false;
+  modules.overclock.lactd.enable = true;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
