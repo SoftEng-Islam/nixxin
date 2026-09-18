@@ -55,15 +55,15 @@ in
   # ----------------------------------------
   home-manager.users.${settings.user.username} = {
 
-    home.programs.hyprland-qt-support = {
-      enable = true;
-      package = pkgs.hyprland-qt-support;
-      settings = {
-        roundness = 1;
-        border_width = 1;
-        reduce_motion = false;
-      };
-    };
+    # programs.hyprland-qt-support = {
+    #   enable = true;
+    #   package = pkgs.hyprland-qt-support;
+    #   settings = {
+    #     roundness = 1;
+    #     border_width = 1;
+    #     reduce_motion = false;
+    #   };
+    # };
 
     # Pointer Cursor
     home.pointerCursor = {

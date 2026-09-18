@@ -17,6 +17,6 @@ with lib;
         let
           imported = import (dir + "/${f}");
         in
-        acc // (if builtins.isFunction imported then imported ({ inherit lib; } // extraArgs) else imported)
+        lib.recursiveUpdate acc (if builtins.isFunction imported then imported ({ inherit lib; } // extraArgs) else imported)
     ) { } (builtins.attrNames (builtins.readDir dir));
 }
