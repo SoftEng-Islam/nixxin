@@ -11,7 +11,6 @@
     no_warps = false;
     persistent_warps = false;
     warp_on_change_workspace = 0;
-    zoom_factor = 1.2;
     hide_on_key_press = true;
   };
 }
