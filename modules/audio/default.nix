@@ -46,6 +46,7 @@ in
               update-props = {
                 priority.driver = 100
                 priority.session = 100
+                api.alsa.headroom = 512
               }
             }
           }

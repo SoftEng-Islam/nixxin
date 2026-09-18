@@ -125,7 +125,8 @@ in
 
       # Adjust rendering settings for OpenGL and graphics drivers.
       LIBGL_DRI3_ENABLE = "1";
-      RADV_PERFTEST = "gpl,sam,local_bos,video_decode,video_encode";
+      RADV_PERFTEST = "gpl,sam,local_bos";
+      RADV_EXPERIMENTAL = "video_decode,video_encode";
 
       # Rusticl OpenCL
       RUSTICL_ENABLE = "radeonsi";
