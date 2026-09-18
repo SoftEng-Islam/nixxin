@@ -13,6 +13,9 @@
       disable_splash_rendering = true;
 
       mouse_move_focuses_monitor = true;
+      
+      # Fix apps opening on the wrong workspace (e.g. single-instance browsers or daemon-spawned apps)
+      initial_workspace_tracking = 0;
     };
 
     debug = {
