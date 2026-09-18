@@ -2,9 +2,12 @@
   settings,
   lib,
   pkgs,
+  forge,
   ...
 }:
+with forge.lib;
 let
+
   xwaylandEnabled = settings.modules.desktop.xwayland.enable or false;
 in
 {
@@ -57,26 +60,37 @@ in
     HYPRCURSOR_THEME = settings.common.cursor.name;
     HYPRCURSOR_SIZE = toString settings.common.cursor.size;
 
-    # HYPRLAND_NO_RT = 1; # Disables realtime priority setting by Hyprland.
-    # HYPRLAND_NO_SD_NOTIFY = 1; # If systemd, disables the sd_notify calls.
-
-    # Disables management of variables in systemd and dbus activation environments.
-    # HYPRLAND_NO_SD_VARS = 1;
-
     # HYPRLAND_CONFIG = ""; # Specifies where you want your Hyprland configuration.
     _JAVA_AWT_WM_NONREPARENTING = "1";
   };
 
+  # ----------------------------------------
+  # ---------- HOME MANAGER ----------------
+  # ----------------------------------------
   home-manager.users.${settings.user.username} = {
+
+    programs.hyprland-qt-support = {
+      enable = true;
+      package = pkgs.hyprland-qt-support;
+      settings = {
+        roundness = 1;
+        border_width = 1;
+        reduce_motion = false;
+      };
+    };
+
+    # Pointer Cursor
     home.pointerCursor = {
       enable = true; # <-- add this
       gtk.enable = true;
-      # x11.enable = true;
       package = settings.common.cursor.package;
       name = settings.common.cursor.name;
       size = settings.common.cursor.size;
     };
 
+    # ----------------------------------------
+    # HYPRLAND
+    # ----------------------------------------
     wayland.windowManager.hyprland = {
       enable = true;
       package = pkgs.hyprland;
@@ -85,16 +99,16 @@ in
       systemd.enableXdgAutostart = true;
       portalPackage = pkgs.xdg-desktop-portal-hyprland;
       configType = "lua"; # "lua" or "hyprlang"
-      settings = {
-        mod = {
-          _var = "SUPER";
-        };
-        config = {
-          xwayland = {
-            force_zero_scaling = true;
-          };
-        };
-      };
+      settings = (
+        importDir ./configs {
+          inherit
+            pkgs
+            lib
+            settings
+            inputs
+            ;
+        }
+      );
       extraConfig = ''
         -- Load Noctalia theme module
         local noctalia = require("noctalia")
@@ -116,6 +130,29 @@ in
             }
           })
         end
+
+        -- Custom gradient using Noctalia color table
+        hl.config({
+          general = {
+            col = {
+              active_border = {
+                colors = {
+                  noctalia.colors.primary,
+                  noctalia.colors.surface,
+                  noctalia.colors.surface,
+                  noctalia.colors.primary,
+                },
+                angle = 45,
+              },
+              inactive_border = {
+                colors = {
+                  noctalia.colors.surface,
+                },
+                angle = 0,
+              },
+            },
+          },
+        })
       '';
     };
   };

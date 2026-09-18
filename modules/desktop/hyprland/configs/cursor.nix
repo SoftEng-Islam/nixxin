@@ -1,24 +1,17 @@
-{ settings, ... }:
 {
-  home-manager.users.${settings.user.username} = {
-    wayland.windowManager.hyprland = {
-      settings.config.cursor = {
-        no_hardware_cursors = false;
-        enable_hyprcursor = false;
-        warp_on_change_workspace = true;
-
-        # if true, will not warp the cursor in many cases (focusing, keybinds, etc)
-        no_warps = true;
-
-        # in seconds, after how many seconds of cursor’s inactivity to hide it. Set to 0 for never.
-        inactive_timeout = 2;
-
-        # minimum refresh rate for cursor movement when no_break_fs_vrr is active. Set to minimum supported refresh rate or higher
-        min_refresh_rate = 30;
-
-        # Hides the cursor when you press any key until the mouse is moved.
-        # hide_on_key_press = true;
-      };
-    };
+  # https://wiki.hypr.land/Configuring/Basics/Variables/#cursor
+  config.cursor = {
+    enable_hyprcursor = true;
+    invisible = false;
+    sync_gsettings_theme = true;
+    no_hardware_cursors = 2;
+    no_break_fs_vrr = 2;
+    min_refresh_rate = 24;
+    inactive_timeout = 2;
+    no_warps = false;
+    persistent_warps = false;
+    warp_on_change_workspace = 0;
+    zoom_factor = 1.2;
+    hide_on_key_press = true;
   };
 }
