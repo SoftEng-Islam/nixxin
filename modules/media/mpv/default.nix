@@ -143,10 +143,14 @@ lib.mkIf (settings.modules.media.mpv) {
 
         # --- SUBTITLES ---
         sub-auto = "fuzzy";
-        sub-font-size = 32;
-        sub-outline-size = 2.5;
-        sub-color = "#fffae1ff";
-        sub-outline-color = "#414141ff";
+        sub-font = "sans-serif";
+        sub-font-size = 42;
+        sub-color = "#FFFFFFFF";
+        sub-border-color = "#000000";
+        sub-border-size = 3.0;
+        sub-shadow-offset = 2.5;
+        sub-shadow-color = "#99000000";
+        sub-spacing = 0.5;
         sub-use-margins = "yes";
 
         osd-level = 1;
