@@ -13,21 +13,7 @@ in
 {
   imports = [
     # hyprland Plugins
-    ./configs/plugins
-
-    ./configs/animations.nix
-    ./configs/cursor.nix
-    ./configs/debug.nix
-    ./configs/decoration.nix
-    ./configs/ecosystem.nix
-    ./configs/exec.nix
-    ./configs/input.nix
-    ./configs/keybinding.nix
-    ./configs/misc.nix
-    ./configs/monitor.nix
-    ./configs/quirks.nix
-    ./configs/render.nix
-    ./configs/rules.nix
+    ./plugins
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
