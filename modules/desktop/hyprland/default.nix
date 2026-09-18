@@ -55,7 +55,7 @@ in
   # ----------------------------------------
   home-manager.users.${settings.user.username} = {
 
-    programs.hyprland-qt-support = {
+    home.programs.hyprland-qt-support = {
       enable = true;
       package = pkgs.hyprland-qt-support;
       settings = {
