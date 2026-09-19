@@ -2,7 +2,7 @@
   # https://wiki.hypr.land/Configuring/Basics/Variables/#render
   config = {
     render = {
-      direct_scanout = 0;
+      direct_scanout = 2;
       # cm_auto_hdr = 0;
       # cm_enabled = true;
       # cm_sdr_eotf = "gamma22";
