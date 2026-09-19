@@ -74,6 +74,12 @@ in
       }
     });
   '';
+  environment.persistence."/persist" = {
+    directories = [
+      "/var/lib/cloudflare-warp"
+      # ...other paths
+    ];
+  };
   environment.systemPackages = with pkgs; [
     cloudflare-warp
     warpScript
