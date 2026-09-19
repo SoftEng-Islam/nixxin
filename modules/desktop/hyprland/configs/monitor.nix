@@ -8,11 +8,11 @@
       mode = "2560x1440@144";
       position = "0x0";
       scale = 1;
-      vrr = 2;
+      # vrr = 2;
       bitdepth = 8; # This MUST be 10 for HDR to work properly
-      cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
-      sdr_eotf = "gamma22";
-      supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
+      # cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
+      # sdr_eotf = "gamma22";
+      # supports_hdr = -1; # Force HDR support. -1 = off, 0 = auto, 1 = on. Options: [-1 - 1]
       sdrbrightness = 1.0;
       sdrsaturation = 1.2;
     }
@@ -24,9 +24,9 @@
       scale = 1;
       # vrr = 0;
       bitdepth = 8;
-      cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
-      sdr_eotf = "gamma22";
-      supports_hdr = -1; # Disable HDR processing for secondary SDR display
+      # cm = "srgb"; # Desktop stays in sRGB; cm_auto_hdr handles HDR games
+      # sdr_eotf = "gamma22";
+      # supports_hdr = -1; # Disable HDR processing for secondary SDR display
       sdrbrightness = 1.0;
       sdrsaturation = 1.2;
     }
