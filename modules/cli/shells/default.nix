@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
   environment = {
-    binsh = "${pkgs.dash}/bin/dash";
     shells = with pkgs; [ zsh ];
   };
   environment.systemPackages = with pkgs; [ dash ];
