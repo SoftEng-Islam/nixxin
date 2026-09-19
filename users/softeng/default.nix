@@ -308,7 +308,7 @@ self: {
   modules.desktop.hyprland.hyprpaper.enable = true;
   modules.desktop.xwayland.enable = true; # keep enabled
   modules.desktop.keyring.enable = true; # keep enabled
-  modules.desktop.polkit.enable = true; # keep enabled
+  # modules.desktop.polkit.enable = true; # keep enabled
 
   # [ desktop ] [file_manager]
   modules.desktop.file_manager.default = "nautilus"; # [dolphin, nautilus, nemo, spacedrive, thunar]

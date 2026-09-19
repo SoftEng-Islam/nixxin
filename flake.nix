@@ -69,11 +69,8 @@
     impermanence.url = "github:nix-community/impermanence";
 
     # ---------------------------------------------------------------------
-    # Desktop: polkit, Quickshell, Noctalia shell
+    # Desktop: Quickshell, Noctalia shell
     # ---------------------------------------------------------------------
-
-    # Polkit authentication agent for Hyprland.
-    hyprpolkitagent.url = "github:hyprwm/hyprpolkitagent";
 
     # Quickshell — QtQuick-based shell toolkit.
     # Upstream lives on outfoxxed's Forgejo instance, not GitHub.

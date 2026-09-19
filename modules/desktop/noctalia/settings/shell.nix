@@ -8,7 +8,7 @@
     # panel_anchor_bar   = "main";        # bar panels attach to without a source bar; omit = first enabled bar
     telemetry_enabled = false; # send an anonymous startup ping
     niri_overview_type_to_launch_enabled = false; # opt in to type-to-launch from niri overview
-    polkit_agent = false;
+    polkit_agent = true;
     password_style = "default"; # default | random
     settings_show_advanced = true; # show advanced settings by default in Settings
     settings_window_translucent = true; # translucent settings window background
