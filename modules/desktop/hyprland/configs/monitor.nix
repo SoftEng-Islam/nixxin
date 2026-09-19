@@ -28,7 +28,7 @@
       # sdr_eotf = "gamma22";
       # supports_hdr = -1; # Disable HDR processing for secondary SDR display
       sdrbrightness = 1.0;
-      sdrsaturation = 1.2;
+      sdrsaturation = 1.5;
     }
   ];
 

@@ -9,6 +9,7 @@
     ./display_manager.nix
     ./btop.nix
     ./nixos.nix
+    ./persistence.nix
     ./ROCM.nix
     ./systemd.nix
     ./udev.nix

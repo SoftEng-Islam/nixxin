@@ -1,5 +1,4 @@
 {
-  lib,
   pkgs,
   ...
 }:
@@ -77,8 +76,6 @@ in
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/cloudflare-warp"
-      "/var/lib/nixos"
-      # ...other paths
     ];
   };
   environment.systemPackages = with pkgs; [
