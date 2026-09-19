@@ -24,46 +24,63 @@ in
     enable = true;
     openFirewall = true;
   };
+  systemd.packages = [ pkgs.cloudflare-warp ];
+  systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
 
-  systemd.services.router-cloudflare-warp-setup = {
-    description = "Configure Cloudflare WARP connection";
-    after = [
-      "cloudflare-warp.service"
-      "network-online.target"
-    ];
-    wants = [
-      "cloudflare-warp.service"
-      "network-online.target"
-    ];
+  systemd.services.warp-svc = {
+    description = "Cloudflare WARP daemon";
     wantedBy = [ "multi-user.target" ];
+    after = [ "network-online.target" ];
+    wants = [ "network-online.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.cloudflare-warp}/bin/warp-svc";
+      Restart = "always";
+      RestartSec = "5";
+      StateDirectory = "cloudflare-warp";
+      AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
+      CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
+      ProtectHome = true;
+    };
+  };
+
+  # Register (once), put WARP in SOCKS proxy mode, and connect. The post-check
+  # fails closed if WARP ever tries to hijack the server's default route.
+  systemd.services.warp-connect = {
+    description = "Connect Cloudflare WARP";
+    wantedBy = [ "multi-user.target" ];
+    wants = [ "network-online.target" ];
+    after = [
+      "warp-svc.service"
+      "network-online.target"
+    ];
+    requires = [ "warp-svc.service" ];
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-    };
-    script = ''
-      set -euo pipefail
-      WARP_CLI="${pkgs.cloudflare-warp}/bin/warp-cli"
-
-      # 1. Wait up to 15 seconds for daemon socket to open
-      for i in {1..15}; do
-        if $WARP_CLI status >/dev/null 2>&1; then
-          break
+      ExecStart = pkgs.writeScript "warp-connect" ''
+        #!/bin/sh
+        set -e
+        WC="${pkgs.cloudflare-warp}/bin/warp-cli"
+        for _ in $(${pkgs.coreutils}/bin/seq 1 30); do
+          $WC --accept-tos status >/dev/null 2>&1 && break
+          ${pkgs.coreutils}/bin/sleep 1
+        done
+        $WC --accept-tos registration new >/dev/null 2>&1 || true
+        $WC --accept-tos mode proxy
+        $WC --accept-tos proxy port 40000
+        $WC --accept-tos connect
+        ${pkgs.coreutils}/bin/sleep 3
+        ${pkgs.iproute2}/bin/ip route del default dev CloudflareWARP 2>/dev/null || true
+        ${pkgs.iproute2}/bin/ip -6 route del default dev CloudflareWARP 2>/dev/null || true
+        if ! ${pkgs.iproute2}/bin/ip -4 route get 1.1.1.1 2>/dev/null | ${pkgs.gnugrep}/bin/grep -q ' dev enp1s0 '; then
+          $WC --accept-tos disconnect || true
+          ${pkgs.iproute2}/bin/ip route del default dev CloudflareWARP 2>/dev/null || true
+          exit 1
         fi
-        sleep 1
-      done
-
-      # 2. Register if no existing registration is found
-      if ! $WARP_CLI status | grep -i "Registration" >/dev/null 2>&1; then
-        $WARP_CLI registration new || true
-      fi
-
-      # 3. Set connection mode
-      $WARP_CLI mode warp || true
-
-      # 4. Establish connection
-      $WARP_CLI connect || true
-    '';
+      '';
+    };
   };
+
   security.polkit.extraConfig = ''
     polkit.addRule(function(action, subject) {
       if (action.id == "org.freedesktop.systemd1.manage-units" &&
