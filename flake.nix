@@ -66,6 +66,8 @@
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
 
+    impermanence.url = "github:nix-community/impermanence";
+
     # ---------------------------------------------------------------------
     # Desktop: polkit, Quickshell, Noctalia shell
     # ---------------------------------------------------------------------
@@ -266,6 +268,7 @@
             # External NixOS modules.
             inputs.home-manager.nixosModules.home-manager
             inputs.noctalia-greeter.nixosModules.default
+            inputs.impermanence.nixosModules.impermanence
             sops-nix.nixosModules.sops
             chatgpt-desktop-app.nixosModules.default
 

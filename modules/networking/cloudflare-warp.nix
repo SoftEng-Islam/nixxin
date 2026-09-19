@@ -77,6 +77,7 @@ in
   environment.persistence."/persist" = {
     directories = [
       "/var/lib/cloudflare-warp"
+      "/var/lib/nixos"
       # ...other paths
     ];
   };
