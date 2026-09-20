@@ -27,7 +27,7 @@ lib.mkIf (settings.modules.gaming.zeroad.enable or false) {
           --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
       '';
     }))
-    pkgs.zeroad-data
+    # pkgs.zeroadPackages.zeroad-data
   ];
   home-manager.users.${settings.user.username} = {
     xdg.desktopEntries.zeroad = {
