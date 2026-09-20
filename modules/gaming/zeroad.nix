@@ -22,12 +22,12 @@ lib.mkIf (settings.modules.gaming.zeroad.enable or false) {
               libGL
               libGLU
               libglvnd
+              zeroad-data
             ]
           } \
           --set LD_PRELOAD "${pkgs.vulkan-loader}/lib/libvulkan.so.1"
       '';
     }))
-    pkgs.zeroadPackages.zeroad-data
   ];
   home-manager.users.${settings.user.username} = {
     xdg.desktopEntries.zeroad = {
