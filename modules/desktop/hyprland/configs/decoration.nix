@@ -32,6 +32,7 @@
         contrast = 1.3;
         brightness = 1;
         xray = true;
+        popups = false;
       };
     };
   };
