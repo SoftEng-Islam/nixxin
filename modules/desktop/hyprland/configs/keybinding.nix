@@ -232,7 +232,7 @@ in
     # ------------------------- #
     # ---- Core Binds --------- #
     # ------------------------- #
-    (m "SPACE" "hl.dsp.exec_cmd(\"pkill rofi || ${pkgs.rofi}/bin/rofi -show drun -show-icons\")")
+    (m "SPACE" "hl.dsp.exec_cmd(\"noctalia msg panel-toggle launcher\")")
     (m "S" "hl.dsp.exec_cmd(\"noctalia msg panel-toggle control-center\")")
 
     # Media keys

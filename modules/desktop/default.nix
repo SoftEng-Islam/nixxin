@@ -18,7 +18,6 @@
     ./polkit.nix
     ./qt_gtk.nix
     ./quickShell.nix
-    ./rofi.nix
     ./screenshot.nix
     ./tools.nix
     ./xdg.nix
