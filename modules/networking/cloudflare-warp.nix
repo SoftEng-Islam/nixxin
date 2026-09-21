@@ -40,6 +40,8 @@ in
       AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
       CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
       ProtectHome = true;
+      LogNamespace = "warp";
+      LogFilterPatterns = [ "~DEBUG" ];
     };
   };
 
