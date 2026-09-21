@@ -3,7 +3,7 @@
     position = "center"; # top_right | top_left | top_center | bottom_right | bottom_left | bottom_center | center_right | center_left
     position_vertical = "center"; # same options; used when orientation = "vertical"
     orientation = "horizontal"; # horizontal | vertical (volume/brightness sliders only; text popups stay horizontal)
-    scale = 1.15; # OSD size multiplier applied on top of accessibility.ui_scale
+    scale = 1.0; # OSD size multiplier applied on top of accessibility.ui_scale
     background_opacity = 1; # background opacity of OSD popups
     offset_x = 0; # absolute horizontal margin from the screen edge
     offset_y = 0; # absolute vertical margin from the screen edge

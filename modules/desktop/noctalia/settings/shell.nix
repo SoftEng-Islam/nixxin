@@ -46,7 +46,7 @@
     };
 
     panel = {
-      transparency_mode = "soft"; # solid | soft | glass; controls floating-panel opacity and card translucency
+      transparency_mode = "solid"; # solid | soft | glass; controls floating-panel opacity and card translucency
       borders = true; # panel shell outline and in-panel section cards
       shadow = true; # cast the global [shell.shadow] from panel surfaces
       launcher_placement = "floating"; # attached | floating
@@ -102,8 +102,8 @@
     keyboard_layout = {
       custom_labels = {
         # override display labels by exact layout name
-        "English (US)" = "EN";
         "Arabic (EG)" = "AR";
+        "English (US)" = "EN";
       };
     };
     screen_corners = {

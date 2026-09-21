@@ -2,30 +2,29 @@
   theme = {
     mode = "dark"; # dark | light | auto
     source = "wallpaper"; # builtin | wallpaper | community
-    builtin = "Noctalia"; # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
+    builtin = "Rosé Pine"; # Ayu | Catppuccin | Dracula | Eldritch | Gruvbox |
     # Kanagawa | Noctalia | Nord | Rosé Pine | Tokyo-Night
-    community_palette = "Noctalia"; # fetched from api.noctalia.dev, cached locally
-    wallpaper_scheme = "m3-fruit-salad"; # m3-tonal-spot | m3-content | m3-fruit-salad |
+    community_palette = "Oxocarbon"; # fetched from api.noctalia.dev, cached locally
+    wallpaper_scheme = "m3-content"; # m3-tonal-spot | m3-content | m3-fruit-salad |
     # m3-rainbow | m3-monochrome | vibrant | faithful |
     # dysfunctional | muted
-    pure_black_dark = false; # anchor dark surfaces to true black (OLED); applies to
+    pure_black_dark = true; # anchor dark surfaces to true black (OLED); applies to
     # every palette source, not just wallpaper-generated ones
 
     templates = {
       enable_builtin_templates = true;
       enable_community_templates = true;
       builtin_ids = [
+        "btop"
         "gtk3"
         "gtk4"
-        "qt"
         "hyprland"
+        "qt"
+        "scroll"
+        "starship"
         "wezterm"
-        "btop"
       ]; # opt-in; list ids with: noctalia theme --list-templates
       community_ids = [
-        "zed"
-        "yazi"
-        "papirus-icons"
         "antigravity"
         "claude-code"
         "codex"
@@ -41,9 +40,11 @@
         "steam"
         "obs"
         "siyuan"
+        "papirus-icons"
         "bat"
         "fzf"
         "glow"
+        "yazi"
       ]; # fetched from api.noctalia.dev/templates, cached locally
     };
 

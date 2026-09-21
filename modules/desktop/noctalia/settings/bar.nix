@@ -9,7 +9,7 @@
       capsule_fill = "surface_variant";
       capsule_group = [ ];
       capsule_opacity = 0.90;
-      capsule_padding = 6.0;
+      capsule_padding = 9.0;
       capsule_radius = 12.0;
       capsule_thickness = 0.75;
       center = [
@@ -32,14 +32,14 @@
         "control-center"
         "session"
       ];
-      font_family = "JetBrains Mono";
-      font_scale = 1.1499999761581421;
+      font_family = "CaskaydiaCove NF";
+      font_scale = 1.0;
       font_weight = 300;
       hover_highlight = true;
       layer = "top";
-      margin_edge = 15;
+      margin_edge = 6;
       margin_ends = 12;
-      margin_opposite_edge = 10;
+      margin_opposite_edge = 0;
       padding = 21;
       panel_overlap = 1;
       position = "top";
@@ -49,7 +49,7 @@
       radius_top_left = 29;
       radius_top_right = 29;
       reserve_space = true;
-      scale = 1.2000000476837158;
+      scale = 1.2;
       shadow = true;
       show_on_workspace_switch = true;
       smart_auto_hide = false;

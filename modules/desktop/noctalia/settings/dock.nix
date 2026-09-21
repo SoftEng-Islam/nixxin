@@ -1,41 +1,43 @@
 {
   dock = {
-    enabled = false; # set true to activate
-    position = "bottom"; # top | bottom | left | right
-    icon_size = 52;
-    main_axis_padding = 20;
-    cross_axis_padding = 12;
-    item_spacing = 10;
-    background_opacity = 0.8;
-    radius = 24;
-    radius_top_left = 24;
-    radius_top_right = 24;
-    radius_bottom_left = 24;
-    radius_bottom_right = 24;
-    margin_ends = 12;
-    margin_edge = 12;
-    shadow = true;
-    show_running = true;
-    auto_hide = false;
     # smart_auto_hide   = false;       # show when the active workspace is empty; hide when it has windows
-    reserve_space = true;
-    layer = "top"; # top | overlay
-    active_scale = 1.05;
-    inactive_scale = 0.9;
+    active_monitor_only = true;
+    active_opacity = 1.0;
+    active_scale = 1.3000000193715096;
+    auto_hide = false;
+    background_opacity = 0.63999998569488525;
+    border_width = 6.0;
+    cross_axis_padding = 15;
+    enabled = true;
+    icon_size = 41;
+    inactive_opacity = 0.75;
+    inactive_scale = 0.90000000000000002;
+    item_spacing = 10;
+    launcher_icon = "apps";
+    launcher_position = "start";
+    layer = "top";
     magnification = true;
     magnification_scale = 1.55;
-    active_opacity = 1.0;
-    inactive_opacity = 0.75;
+    main_axis_padding = 28;
+    margin_edge = 12;
+    margin_ends = 12;
+    position = "bottom";
+    radius = 80;
+    radius_bottom_left = 80;
+    radius_bottom_right = 80;
+    radius_top_left = 80;
+    radius_top_right = 80;
+    reserve_space = true;
+    shadow = true;
     show_dots = true;
     show_instance_count = true;
-    launcher_position = "start"; # none | start | end
-    launcher_icon = "apps"; # Tabler glyph name
-    active_monitor_only = false;
+    show_running = true;
     pinned = [
-      "firefox"
-      "kitty"
       "code"
-      "nautilus"
+      "blender"
+      "zen"
+      "Waydroid"
+      "org.gnome.Nautilus"
     ]; # e.g. ["firefox", "code", "kitty"]
   };
 }
