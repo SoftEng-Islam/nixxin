@@ -13,7 +13,8 @@
     ./KeePassXC.nix
     ./keyring.nix
     ./noctalia
-    ./openrgb.nix
+    ./mdbook.nix
+    # ./openrgb.nix
     ./polkit.nix
     ./qt_gtk.nix
     ./quickShell.nix

@@ -341,6 +341,7 @@ self: {
   modules.desktop.dconf.icons.nameInDark = self.common.icons.nameInDark;
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
   modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
+  modules.desktop.openrgb.enable = false;
 
   # [ desktop ] [ Hyprland ]
   modules.desktop.hyprland.genColorsPath = "/home/${self.user.username}/.cache/hypr/colors.conf";

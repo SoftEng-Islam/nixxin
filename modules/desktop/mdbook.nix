@@ -1,5 +1,9 @@
-{pkgs, ...}: {
-  home.packages = [
-    pkgs.mdbook
+{
+  pkgs,
+  ...
+}:
+{
+  environment.systemPackages = with pkgs; [
+    mdbook
   ];
 }

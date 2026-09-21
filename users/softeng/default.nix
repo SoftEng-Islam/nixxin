@@ -102,7 +102,7 @@ self: {
   modules.data_transferring.enable = true;
   modules.desktop.enable = true;
   modules.development.enable = true;
-  modules.emails.enable = true;
+  modules.emails.enable = false;
   modules.env.enable = true;
   modules.fonts.enable = true;
   modules.gaming.enable = true;
@@ -259,6 +259,7 @@ self: {
   modules.desktop.dconf.icons.nameInDark = self.common.icons.nameInDark;
   # "small" or "small-plus" or "medium" or "large" or "extra-large"
   modules.desktop.dconf.icons.icon_view_size = "extra-large"; # Set icons size for nautilus.
+  modules.desktop.openrgb.enable = false;
 
   # [ desktop ] [ Hyprland ]
   modules.desktop.hyprland.genColorsPath = "/home/${self.user.username}/.cache/hypr/colors.conf";
@@ -308,7 +309,6 @@ self: {
   modules.desktop.hyprland.hyprpaper.enable = true;
   modules.desktop.xwayland.enable = true; # keep enabled
   modules.desktop.keyring.enable = true; # keep enabled
-  # modules.desktop.polkit.enable = true; # keep enabled
 
   # [ desktop ] [file_manager]
   modules.desktop.file_manager.default = "nautilus"; # [dolphin, nautilus, nemo, spacedrive, thunar]
@@ -356,8 +356,8 @@ self: {
   };
 
   # [gaming]
-  modules.gaming.steam.enable = true;
-  modules.gaming.zeroad.enable = true; # Free game of ancient warfare
+  modules.gaming.steam.enable = false;
+  modules.gaming.zeroad.enable = false; # Free game of ancient warfare
   modules.gaming.chess.enable = true;
 
   # [ Graphics ]
