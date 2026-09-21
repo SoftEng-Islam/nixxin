@@ -142,6 +142,7 @@ in
             streetsidesoftware.code-spell-checker
             tauri-apps.tauri-vscode
             yzhang.markdown-all-in-one
+            mermaidchart.vscode-mermaid-chart
 
             ## Theming & UI ##
             # dracula-theme.theme-dracula # Dracula theme
