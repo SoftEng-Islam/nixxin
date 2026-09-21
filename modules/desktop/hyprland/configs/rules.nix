@@ -28,6 +28,12 @@
         match.class = "mpv$";
         idle_inhibit = "focus";
       }
+      {
+        match = {
+          class = "^(obsidian)$";
+        };
+        rounding = 0;
+      }
     ];
   };
 }
