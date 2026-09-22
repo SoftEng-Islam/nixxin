@@ -37,11 +37,26 @@ in
       Restart = "always";
       RestartSec = "5";
       StateDirectory = "cloudflare-warp";
+      ReadWritePaths = [ "/etc/resolv.conf" ];
       AmbientCapabilities = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
       CapabilityBoundingSet = "CAP_NET_ADMIN CAP_NET_BIND_SERVICE CAP_NET_RAW";
       ProtectHome = true;
-      LogNamespace = "warp";
-      LogFilterPatterns = [ "~DEBUG" ];
+      StandardOutput = "null";
+      StandardError = "null";
+
+      # Hardening
+      LockPersonality = true;
+      PrivateMounts = true;
+      PrivateTmp = true;
+      ProtectControlGroups = true;
+      ProtectHostname = true;
+      ProtectKernelLogs = true;
+      ProtectKernelModules = true;
+      ProtectKernelTunables = true;
+      ProtectProc = "invisible";
+      ProtectSystem = "full";
+      RestrictNamespaces = true;
+      RestrictRealtime = true;
     };
   };
 
