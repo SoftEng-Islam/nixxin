@@ -7,10 +7,10 @@
         match = {
           namespace = "^noctalia-(bar-.+|notification|dock|panel|attached-panel|osd)$";
         };
-        no_anim = true;
+        no_anim = false;
         ignore_alpha = 0.5;
         blur = true;
-        blur_popups = true;
+        blur_popups = false;
       }
     ];
     windows_rule = [
