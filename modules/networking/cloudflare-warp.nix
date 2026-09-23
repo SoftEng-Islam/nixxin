@@ -26,7 +26,7 @@ in
   };
   systemd.packages = [ pkgs.cloudflare-warp ];
   systemd.targets.multi-user.wants = [ "warp-svc.service" ]; # causes warp-svc to be started automatically
-
+  services.cloudflare-warp.udpPort = 2408;
   # systemd.services.warp-svc = {
   #   description = "Cloudflare WARP daemon";
   #   wantedBy = [ "multi-user.target" ];
