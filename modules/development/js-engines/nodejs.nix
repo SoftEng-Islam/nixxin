@@ -22,7 +22,8 @@
   };
 
   environment.sessionVariables = {
-    PATH = "\${PATH}:${settings.HOME}/.local/share/pnpm";
+    # PATH = "\${PATH}:${settings.HOME}/.local/share/pnpm";
+    PATH = [ "/home/softeng/.local/share/pnpm" ];
   };
 
   environment.systemPackages = with pkgs; [
