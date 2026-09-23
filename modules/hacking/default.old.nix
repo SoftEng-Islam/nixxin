@@ -2,22 +2,19 @@
   settings,
   lib,
   pkgs,
+  pkgs-older,
   ...
 }:
-
 let
   inherit (lib) mkIf;
-
   hashcat_r = pkgs.writeShellScriptBin "hashcat" ''
     export HSA_OVERRIDE_GFX_VERSION=9.0.0
-
-    export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
-
+    export LD_LIBRARY_PATH="${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib:$LD_LIBRARY_PATH"
     exec ${pkgs.hashcat}/bin/hashcat "$@"
   '';
 in
 {
-  config = mkIf settings.modules.hacking.enable {
+  config = mkIf (settings.modules.hacking.enable) {
     environment.systemPackages = with pkgs; [
       hashcat_r
       hashcat-utils
