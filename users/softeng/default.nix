@@ -391,7 +391,7 @@ self: {
   modules.media.clapper = false; # media player
   modules.media.celluloid = false; # media player
   modules.media.jellyfin = false; # media player
-  modules.media.kdenlive = false; # video Editor
+  modules.media.kdenlive = true; # video Editor
   modules.media.shotcut = false; # video Editor
   modules.media.music = true; # Music Player
 
