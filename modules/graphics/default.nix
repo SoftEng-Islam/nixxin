@@ -180,8 +180,8 @@ in
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
         mesa.opencl
+
         rocmPackages.clr.icd
-        clinfo
         rocmPackages.rocminfo
         rocmPackages.rocm-device-libs
         rocmPackages.rocm-runtime
