@@ -179,7 +179,7 @@ in
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
-        mesa
+        mesa.opencl
         rocmPackages.clr.icd
 
         # Video acceleration
@@ -196,5 +196,8 @@ in
 
     # ========== System Packages ==========
     environment.systemPackages = graphicsTools ++ lib.flatten _graphics;
+
+    # Map the NixOS runtime OpenCL drivers to the standard FHS path for hardcoded apps
+    environment.etc."OpenCL/vendors".source = "/run/opengl-driver/etc/OpenCL/vendors";
   };
 }
