@@ -180,6 +180,7 @@ in
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
         unstable.mesa.opencl
+        rocmPackages.clr.icd
 
         # Video acceleration
         # libvdpau-va-gl
