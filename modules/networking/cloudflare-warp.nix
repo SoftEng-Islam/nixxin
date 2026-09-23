@@ -32,7 +32,11 @@ in
     wantedBy = [ "multi-user.target" ];
     after = [ "network-online.target" ];
     wants = [ "network-online.target" ];
+    environment = {
+      RUST_LOG = "error";
+    };
     serviceConfig = {
+      LogLevelMax = "notice";
       ExecStart = "${pkgs.cloudflare-warp}/bin/warp-svc";
       Restart = "always";
       RestartSec = "5";
