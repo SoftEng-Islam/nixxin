@@ -358,6 +358,16 @@ in
       libdrm
       libva
       vulkan-loader
+      # libvulkan.so
+      vulkan-validation-layers # validation layer runtime
+      pipewire
+      sqlite
+      mesa
+      mesa_i686
+      ocl-icd
+      opencl-headers
+      llvmPackages.openmp
+      rocmPackages.clr
     ];
   };
 

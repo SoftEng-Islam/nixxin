@@ -1,34 +1,11 @@
 {
   settings,
-  inputs,
   lib,
   pkgs,
   ...
 }:
 let
-  inherit (lib) optionals optional;
-  # 1. Custom Blender compiled with Vega (gfx900) HIP kernels
-  # blender-vega = pkgs.pkgsRocm.blender.overrideAttrs (old: {
-  #   # Force CMake to compile the gfx900 kernels alongside RDNA ones
-  #   cmakeFlags = (old.cmakeFlags or [ ]) ++ [
-  #     "-DCYCLES_HIP_BINARIES_ARCH=gfx900;gfx1010;gfx1030;gfx1100"
-  #   ];
-  # });
-
-  # 2. Wrapped Blender to preserve GUI icons (.desktop files) and inject ROCm
-  # blender-rocm = pkgs.symlinkJoin {
-  #   name = "blender-rocm";
-  #   paths = [ pkgs.pkgsRocm.blender ];
-  #   buildInputs = [ pkgs.makeWrapper ];
-  #   postBuild = ''
-  #     wrapProgram $out/bin/blender \
-  #       --set HSA_OVERRIDE_GFX_VERSION 9.0.0 \
-  #       --set CYCLES_HIP_FORCE_ENABLE 1 \
-  #       --prefix LD_LIBRARY_PATH : "${pkgs.rocmPackages.clr}/lib:/run/opengl-driver/lib"
-  #   '';
-  # };
-  # System and hardware configuration
-  system = pkgs.stdenv.hostPlatform.system;
+  inherit (lib) optional;
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;

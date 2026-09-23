@@ -1,6 +1,4 @@
 {
-  config,
-  inputs,
   lib,
   settings,
   pkgs,
@@ -8,20 +6,20 @@
 }:
 let
   # Libraries we want available from nixpkgs
-  libPath =
-    with pkgs;
-    pkgs.lib.makeLibraryPath [
-      vulkan-loader # libvulkan.so
-      vulkan-validation-layers # validation layer runtime
-      pipewire
-      sqlite
-      mesa
-      mesa_i686
-      ocl-icd
-      opencl-headers
-      llvmPackages.openmp
-      rocmPackages.clr
-    ];
+  # libPath =
+  #   with pkgs;
+  #   pkgs.lib.makeLibraryPath [
+  #     vulkan-loader # libvulkan.so
+  #     vulkan-validation-layers # validation layer runtime
+  #     pipewire
+  #     sqlite
+  #     mesa
+  #     mesa_i686
+  #     ocl-icd
+  #     opencl-headers
+  #     llvmPackages.openmp
+  #     rocmPackages.clr
+  #   ];
 in
 {
   imports = [
@@ -36,7 +34,7 @@ in
   environment = {
     # localBinInPath = false;
     variables = {
-      LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
+      # LD_LIBRARY_PATH = lib.mkForce "$LD_LIBRARY_PATH:${libPath}:/run/opengl-driver/lib";
 
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";
