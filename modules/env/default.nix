@@ -16,12 +16,6 @@
   environment = {
     # localBinInPath = false;
     variables = {
-      PATH = [ "/opt/rocm/bin" ];
-      # LD_LIBRARY_PATH = [
-      #   "/opt/rocm/lib"
-      #   "/run/opengl-driver/lib"
-      # ];
-      # ROCM_PATH = "/opt/rocm";
 
       XDG_CURRENT_DESKTOP = "Hyprland";
       XDG_SESSION_DESKTOP = "Hyprland";

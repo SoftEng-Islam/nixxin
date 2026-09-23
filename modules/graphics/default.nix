@@ -73,6 +73,13 @@ in
   config = lib.mkIf (settings.modules.graphics.enable or false) {
 
     environment.variables = {
+      PATH = [ "/opt/rocm/bin" ];
+      # LD_LIBRARY_PATH = [
+      #   "/opt/rocm/lib"
+      #   "/run/opengl-driver/lib"
+      # ];
+      # ROCM_PATH = "/opt/rocm";
+
       # Remove problematic variables that can cause issues with modern Hyprland
       WLR_RENDERER_ALLOW_SOFTWARE = "0";
       WLR_NO_HARDWARE_CURSORS = "1";
