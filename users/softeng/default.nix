@@ -22,7 +22,7 @@ self: {
   system.upgrade.enable = true;
   system.upgrade.allowReboot = true;
   system.upgrade.channel = "https://channels.nixos.org/nixos-unstable";
-  home.stateVersion = "25.05"; # ! Please read the comment before changing.
+  home.stateVersion = "25.05";
   home.backupFileExtension = null;
   home.manual.html = false;
   home.manual.json = false;
@@ -70,10 +70,11 @@ self: {
   common.mouse.scrollSpeed = 1.0;
   common.mouse.naturalScroll = false;
   common.mouse.doubleClick = 800;
+
   common.cpu.arch = "amd64"; # "amd64" or "aarch64"
   common.cpu.intel = false; # Set true if you have Intel CPU, and false if you have AMD CPU.
   common.cpu.amd = true; # Set true if you have AMD CPU, and false if you have Intel CPU.
-  common.cpu.zen = true; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
+  common.cpu.zen = false; # Set true if you have AMD Zen CPU, and false if you have non-Zen AMD CPU.
   common.cpu.ryzen = true; # Set true if you have AMD Ryzen CPU, and false if you have non-Ryzen AMD CPU
   common.cpu.ryzenMobile = false; # Set true if you have AMD Ryzen Mobile CPU, and false if you have non-Ryzen Mobile AMD CPU
   common.cpu.amdGPU = true; # Set true if you have AMD GPU, and false if you have non-AMD GPU.
@@ -390,8 +391,8 @@ self: {
   modules.media.clapper = false; # media player
   modules.media.celluloid = false; # media player
   modules.media.jellyfin = false; # media player
-  modules.media.kdenlive = false; # video Editor
-  modules.media.shotcut = false; # video Editor
+  modules.media.kdenlive = true; # video Editor
+  modules.media.shotcut = true; # video Editor
   modules.media.music = true; # Music Player
 
   # [Networking]
@@ -460,7 +461,7 @@ self: {
   modules.recording.sound.enable = true;
 
   # [ remote_desktop ]
-  modules.remote_desktop.rdp.enable = false;
+  modules.remote_desktop.rdp.enable = true;
   modules.remote_desktop.teamviewer.enable = true;
 
   # [resources_monitoring]

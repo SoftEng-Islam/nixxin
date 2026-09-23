@@ -1,6 +1,13 @@
-{ settings, lib, pkgs, ... }:
-let inherit (lib) mkIf;
-in mkIf (settings.modules.remote_desktop.rdp.enable) {
+{
+  settings,
+  lib,
+  pkgs,
+  ...
+}:
+let
+  inherit (lib) mkIf;
+in
+mkIf (settings.modules.remote_desktop.rdp.enable or false) {
   environment.systemPackages = with pkgs; [
     remmina # graphical
     freerdp # command-line
@@ -9,8 +16,14 @@ in mkIf (settings.modules.remote_desktop.rdp.enable) {
   networking.firewall.enable = true;
   # Only needed if this PC should *receive* RDP connections (rare)
   # networking.firewall.allowedTCPPorts = [ 3389 ];
-  networking.firewall.allowedTCPPorts = [ 139 445 ];
-  networking.firewall.allowedUDPPorts = [ 137 138 ];
+  networking.firewall.allowedTCPPorts = [
+    139
+    445
+  ];
+  networking.firewall.allowedUDPPorts = [
+    137
+    138
+  ];
   services.samba = {
     enable = false;
     openFirewall = true;
