@@ -111,7 +111,7 @@ in
           # patched mesa-libclc fork (karolherbst/mesa-libclc), which only
           # landed on nixos-unstable. Stable Vulkan/GL drivers stay on 26.05.
           "${pkgs.unstable.mesa.opencl}/etc/OpenCL/vendors"
-          "${rocmPackages.clr.icd}/etc/OpenCL/vendors" # <-- Added ROCm ICD
+          "${rocmPackages.clr.icd}/etc/OpenCL/vendors"
           "${pocl}/etc/OpenCL/vendors"
         ];
       }}";
@@ -137,16 +137,16 @@ in
       VAAPI_MPEG4_ENABLED = "true";
       LIBVA_DRIVER_NAME = "radeonsi";
 
-      # __GL_THREADED_OPTIMIZATIONS = "1";
-      # __GL_VRR_ALLOWED = "1";
-      # __GLX_VENDOR_LIBRARY_NAME = "mesa";
+      __GL_THREADED_OPTIMIZATIONS = "1";
+      __GL_VRR_ALLOWED = "0";
+      __GLX_VENDOR_LIBRARY_NAME = "mesa";
 
       GST_VAAPI_ALL_DRIVERS = "1";
       LIBGL_ALWAYS_SOFTWARE = "0";
       LIBGL_ALWAYS_INDIRECT = "0";
+
       GALLIUM_DRIVER = "radeonsi";
 
-      # Removed Kaveri GFX overrides completely. Vega 11 will auto-detect correctly.
       HSA_ENABLE_SDMA = "1";
 
       DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
@@ -164,7 +164,7 @@ in
       GPU_MAX_ALLOC_PERCENT = "100";
       GPU_SINGLE_ALLOC_PERCENT = "100";
       GPU_MAX_HEAP_SIZE = "100";
-      # GPU_USE_SYNC_OBJECTS = "1";
+      GPU_USE_SYNC_OBJECTS = "1";
 
       AMD_DEBUG = "sam";
       mesa_glthread = "true";
@@ -179,16 +179,15 @@ in
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
-        unstable.mesa.opencl
+        mesa
         rocmPackages.clr.icd
 
         # Video acceleration
-        # libvdpau-va-gl
-        # libva-vdpau-driver
+        libvdpau-va-gl
+        libva-vdpau-driver
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        mesa.opencl
         mesa
         libvdpau-va-gl
         libva-vdpau-driver
