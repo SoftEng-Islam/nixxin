@@ -1,4 +1,6 @@
 {
+  settings,
+  lib,
   pkgs,
   ...
 }:
@@ -19,7 +21,7 @@ let
     fi
   '';
 in
-{
+lib.mkIf (settings.modules.networking.cloudflare-warp.enable or false) {
   services.cloudflare-warp = {
     enable = true;
     openFirewall = true;
