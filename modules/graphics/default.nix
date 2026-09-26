@@ -165,7 +165,7 @@ in
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
-        pkgs.unstable.mesa
+        mesa
 
         rocmPackages.clr.icd
         rocmPackages.rocminfo
@@ -178,6 +178,7 @@ in
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
+        mesa
         libvdpau-va-gl
         libva-vdpau-driver
       ];
