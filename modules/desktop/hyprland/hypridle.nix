@@ -1,7 +1,7 @@
 { settings, ... }: {
   home-manager.users.${settings.user.username} = {
     services.hypridle = {
-      enable = true;
+      enable = false;
       settings = {
         general = {
           lock_cmd = "pidof qs || qs -c noctalia-shell ipc call lockScreen lock";
