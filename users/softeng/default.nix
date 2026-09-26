@@ -432,7 +432,7 @@ self: {
 
   # [ overclock ]
   modules.overclock.corectrl.enable = false;
-  modules.overclock.lactd.enable = true;
+  modules.overclock.lactd.enable = false;
 
   # [ Power ]
   modules.power.powerManagement.enable = true;
