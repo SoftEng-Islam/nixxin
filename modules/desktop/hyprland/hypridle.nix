@@ -1,16 +1,16 @@
 { settings, ... }: {
   home-manager.users.${settings.user.username} = {
     services.hypridle = {
-      enable = false;
+      enable = true;
       settings = {
         general = {
-          lock_cmd = "hyprlock";
+          lock_cmd = "pidof qs || qs -c noctalia-shell ipc call lockScreen lock";
           after_sleep_cmd = "hyprctl dispatch dpms on";
         };
         listener = [
           {
             timeout = 900;
-            on-timeout = "hyprlock";
+            on-timeout = "pidof qs || qs -c noctalia-shell ipc call lockScreen lock";
           }
           {
             timeout = 1200;
