@@ -573,6 +573,7 @@ self: {
     "amdgpu.audio=0" # Disable HDMI/DP audio if not using it
     "amdgpu.exp_hw_support=1"
     "amdgpu.gttsize=8192"
+    "amdgpu.gfxoff=0"
 
     # --- CPU PERFORMANCE (Ryzen 5 3400G - Zen+) ---
     # amd_pstate cannot load on this CPU: family 17h models 0x10-0x2F (this

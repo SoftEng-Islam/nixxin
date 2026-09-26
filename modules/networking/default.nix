@@ -130,8 +130,6 @@ in
   networking.wireless.scanOnLowSignal = false;
   networking.wireless.userControlled.enable = true;
 
-  systemd.services.systemd-resolved.enable = true;
-
   networking.networkmanager = {
     enable = true;
     logLevel = "OFF";
@@ -150,7 +148,7 @@ in
       # [main]
       main."plugins" = "keyfile";
       main."dhcp" = "internal";
-      main."dns" = "systemd-resolved";
+      main."dns" = "default";
       main."rc-manager" = "unmanaged";
 
       # [logging]

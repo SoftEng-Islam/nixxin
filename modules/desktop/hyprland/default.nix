@@ -14,6 +14,7 @@ in
   imports = [
     # hyprland Plugins
     ./plugins
+    ./hypridle.nix
   ];
 
   # Run XDG autostart, this is needed for a DE-less setup like Hyprland
