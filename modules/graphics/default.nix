@@ -154,6 +154,8 @@ in
       mesa_glthread = "true";
 
       RADV_FORCE_VARYING_COMPRESSION = "1";
+
+      WLR_SCENE_DISABLE_DIRECT_SCANOUT = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
@@ -163,7 +165,7 @@ in
 
       # Drivers and hardware extensions ONLY
       extraPackages = with pkgs; [
-        mesa.opencl
+        unstable.mesa
 
         rocmPackages.clr.icd
         rocmPackages.rocminfo
@@ -176,7 +178,7 @@ in
       ];
 
       extraPackages32 = with pkgs.pkgsi686Linux; [
-        mesa
+        unstable.mesa
         libvdpau-va-gl
         libva-vdpau-driver
       ];
