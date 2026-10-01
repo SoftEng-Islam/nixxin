@@ -7,22 +7,18 @@
       #  1 - on
       #  2 - fullscreen only
       #  3 - fullscreen with video or game content
-      vrr = 1; # type [0/1/2/3]
+      vrr = 3; # type [0/1/2/3]
 
       disable_hyprland_logo = true;
       disable_splash_rendering = true;
 
       mouse_move_focuses_monitor = true;
-      
-      # Fix apps opening on the wrong workspace (e.g. single-instance browsers or daemon-spawned apps)
-      initial_workspace_tracking = 0;
     };
 
     debug = {
-      damage_tracking = 2;
-      disable_logs = false;
-      enable_stdout_logs = true;
-      gl_debugging = true;
+      disable_logs = true;
+      enable_stdout_logs = false;
+      gl_debugging = false;
     };
 
     ecosystem = {
