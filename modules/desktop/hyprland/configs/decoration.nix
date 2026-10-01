@@ -27,11 +27,14 @@
         size = 4;
         passes = 2;
         new_optimizations = true;
-        ignore_opacity = true;
+
+        ignore_opacity = false;
+
         noise = 0.0117;
-        contrast = 1.3;
-        brightness = 1;
-        xray = true;
+        contrast = 1.1;
+        brightness = 1.0;
+
+        xray = false;
         popups = false;
       };
     };
