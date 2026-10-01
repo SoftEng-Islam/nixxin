@@ -4,7 +4,7 @@
       gaps_in = 11;
       gaps_out = 11;
       border_size = 4;
-      layout = "dwindle";
+      layout = "master"; # "master" or "dwindle";
       allow_tearing = true;
       resize_on_border = true;
       # Removed static col.active_border and col.inactive_border
