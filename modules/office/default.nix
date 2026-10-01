@@ -25,6 +25,8 @@ in
         gammastep
         gucharmap
         # anki-bin
+
+        foliate
       ]
       ++ lib.flatten _pkgs;
   };
