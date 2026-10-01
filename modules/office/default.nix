@@ -27,6 +27,7 @@ in
         # anki-bin
 
         foliate
+        cozy
       ]
       ++ lib.flatten _pkgs;
   };
