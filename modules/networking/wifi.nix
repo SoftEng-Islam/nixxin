@@ -19,14 +19,21 @@ let
       rev = "f48878a7a66b1281e6eab0cf2b55e7149510daf2";
       hash = "sha256-uothRY0G4FFKYDDhzoHTWnlLcuULBNWOz22Bps7yujw=";
     };
-    meta = old.meta // { broken = false; };
-    makeFlags = (old.makeFlags or [ ]) ++ kernel.commonMakeFlags ++ [
-      "USER_EXTRA_CFLAGS=-Wno-unknown-warning-option -Wno-error"
-    ];
+    meta = old.meta // {
+      broken = false;
+    };
+    makeFlags =
+      (old.makeFlags or [ ])
+      ++ kernel.commonMakeFlags
+      ++ [
+        "USER_EXTRA_CFLAGS=-Wno-unknown-warning-option -Wno-error"
+      ];
     postPatch = (old.postPatch or "") + ''
       substituteInPlace Makefile \
         --replace-quiet "-Wno-restrict" "" \
         --replace-quiet "-Wno-vla-larger-than" ""
+      substituteInPlace include/autoconf.h \
+        --replace-quiet "/* #define CONFIG_RTW_LED */" "#define CONFIG_RTW_LED"
     '';
   });
 in
@@ -48,15 +55,16 @@ lib.mkIf (settings.modules.networking.wifi or false) {
   # NetworkManager configuration
   # ===============================================
   networking.networkmanager = {
+    # Wireless configuration
+
     # Keep NetworkManager from interfering with wlan0 during testing tools (wifite, hcxdumptool).
     # Match both interface-name and permanent MAC so NM does not reclaim the interface
     # if its MAC address is randomized or changed by testing tools.
-    unmanaged = [
-      "interface-name:wlan0"
-      "mac:a8:42:a1:1c:e6:27"
-    ];
+    # unmanaged = [
+    #   "interface-name:wlan0"
+    #   "mac:a8:42:a1:1c:e6:27"
+    # ];
 
-    # Wireless configuration
     wifi = {
       # Disable WiFi power saving globally to avoid drops and packet loss
       powersave = false;
