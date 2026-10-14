@@ -60,10 +60,10 @@ lib.mkIf (settings.modules.networking.wifi or false) {
     # Keep NetworkManager from interfering with wlan0 during testing tools (wifite, hcxdumptool).
     # Match both interface-name and permanent MAC so NM does not reclaim the interface
     # if its MAC address is randomized or changed by testing tools.
-    # unmanaged = [
-    #   "interface-name:wlan0"
-    #   "mac:a8:42:a1:1c:e6:27"
-    # ];
+    unmanaged = [
+      "interface-name:wlan0"
+      "mac:a8:42:a1:1c:e6:27"
+    ];
 
     wifi = {
       # Disable WiFi power saving globally to avoid drops and packet loss
