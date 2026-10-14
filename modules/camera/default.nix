@@ -11,5 +11,8 @@ mkIf (settings.modules.camera.enable) {
   programs = {
     droidcam.enable = true; # camera
   };
-  environment.systemPackages = with pkgs; [ droidcam ];
+  environment.systemPackages = with pkgs; [
+    droidcam
+    guvcview
+  ];
 }
