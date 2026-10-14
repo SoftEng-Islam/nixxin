@@ -137,7 +137,7 @@ in
     # $ bat /etc/NetworkManager/NetworkManager.conf
     settings = {
       # [ifupdown]
-      ifupdown."managed" = "true";
+      ifupdown."managed" = "false";
 
       # [connection]
       connection = {
@@ -150,10 +150,6 @@ in
       main."dhcp" = "internal";
       main."dns" = "default";
       main."rc-manager" = "unmanaged";
-
-      # [logging]
-      # logging."audit" = "false"; # < default
-      # logging."level" = "OFF";
     };
 
     # wifi.macAddress = "CE:CD:2A:8C:8D:B3";
@@ -259,5 +255,6 @@ in
     # nettools # A set of tools for controlling the network subsystem in Linux
 
     iftop # network monitoring
+
   ];
 }
