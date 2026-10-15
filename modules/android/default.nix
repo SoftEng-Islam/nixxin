@@ -13,7 +13,10 @@ in
     ./scrcpy.nix
     ./waydroid.nix
   ];
-
+  services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
+  services.udev.extraRules = ''
+    SUBSYSTEM=="usb", ATTR{idVendor}=="04e8", MODE="0666", TAG+="uaccess"
+  '';
   config = mkIf (settings.modules.android.enable or false) {
     environment.systemPackages = with pkgs; [
       libusb1
@@ -35,7 +38,6 @@ in
 
       samloader-rs
     ];
-    services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
   };
   # Adds the current user to the ADB users group.
   # users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
