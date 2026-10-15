@@ -32,6 +32,8 @@ in
 
       heimdall
       heimdall-gui # optional GUI
+
+      samloader-rs
     ];
     services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
   };
