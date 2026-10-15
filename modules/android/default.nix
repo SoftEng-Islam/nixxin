@@ -31,8 +31,10 @@ in
       git-repo
 
       heimdall
+      heimdall-gui # optional GUI
     ];
   };
   # Adds the current user to the ADB users group.
   # users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
+  services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
 }
