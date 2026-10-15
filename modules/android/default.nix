@@ -33,8 +33,8 @@ in
       heimdall
       heimdall-gui # optional GUI
     ];
+    services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
   };
   # Adds the current user to the ADB users group.
   # users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
-  services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
 }
