@@ -13,16 +13,16 @@ in
   # It allows devices to advertise their services and discover services offered by other devices on the same local network.
   # avahi-daemon is typically used in home networks or small office networks where devices need to communicate with each other without manual configuration
   # or a central DNS server.
-  services.avahi = {
-    enable = false;
-    nssmdns4 = true;
-    publish = {
-      enable = true;
-      userServices = true;
-      addresses = true;
-      workstation = true;
-    };
-  };
+  # services.avahi = {
+  #   enable = false;
+  #   nssmdns4 = true;
+  #   publish = {
+  #     enable = true;
+  #     userServices = true;
+  #     addresses = true;
+  #     workstation = true;
+  #   };
+  # };
 
   #
   # Transmission
