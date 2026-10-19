@@ -12,8 +12,6 @@ mkIf (settings.modules.printing.enable or false) {
   services.printing = {
     enable = true;
     drivers = with pkgs; [
-      splix
-      samsung-unified-linux-driver
       samsung-unified-linux-driver_1_00_37
     ];
   };
