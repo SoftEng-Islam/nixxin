@@ -11,7 +11,11 @@ mkIf (settings.modules.printing.enable or false) {
   hardware.sane.enable = false;
   services.printing = {
     enable = true;
-    drivers = with pkgs; [ samsung-unified-linux-driver ];
+    drivers = with pkgs; [
+      splix
+      samsung-unified-linux-driver
+      samsung-unified-linux-driver_1_00_37
+    ];
   };
   # Optional: Enable mDNS for auto-discovering network/Wi-Fi printers (M2020W)
   services.avahi = {
