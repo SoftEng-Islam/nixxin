@@ -9,6 +9,16 @@ let
 in
 mkIf (settings.modules.printing.enable or false) {
   hardware.sane.enable = false;
+  hardware.printers = {
+    ensurePrinters = [
+      {
+        name = "Samsung_M2020";
+        deviceUri = "usb://Samsung/M2020%20Series?serial=0727B8GF8C00G3W";
+        model = "Samsung_M2020_Series.ppd.gz";
+      }
+    ];
+    ensureDefaultPrinter = "Samsung_M2020";
+  };
   services.printing = {
     enable = true;
     drivers = with pkgs; [
