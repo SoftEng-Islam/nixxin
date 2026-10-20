@@ -72,6 +72,16 @@ Add `wl-clipboard` to your system packages for clipboard synchronization:
 environment.systemPackages = with pkgs; [ wl-clipboard ];
 ```
 
+Waydroid's clipboard bridge handles text, not image data. To send images from
+the host, use the shared Pictures directory instead. In this configuration:
+
+```bash
+waydroid-share-image ~/Pictures/example.png
+```
+
+Start Waydroid with `waydroid-start-shared` first, then open
+`Pictures/Waydroid` from Android's Files or Gallery app.
+
 ### Linux Kernel 5.18+
 
 Linux 5.18 and later removed `ashmem` in favor of `memfd`. Tell Waydroid (1.2.1+) to use the new module by appending to `/var/lib/waydroid/waydroid_base.prop`:

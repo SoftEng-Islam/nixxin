@@ -128,8 +128,6 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
         # --- OTA Updates ---
         waydroid.system_ota=https://ota.waydro.id/system/lineage/waydroid_x86_64/GAPPS.json
         waydroid.vendor_ota=https://ota.waydro.id/vendor/waydroid_x86_64/MAINLINE.json
-        waydroid.tools_version=1.5.4
-
         # --- Rendering ---
         debug.egl.hw_msaa=0
         ro.hwui.disable_scissor_opt=true
@@ -242,6 +240,40 @@ lib.mkIf (settings.modules.android.waydroid.enable or false) {
             echo "(Google Services Framework not installed or not yet initialized)"
           fi
         fi
+      '';
+    })
+
+    # Waydroid's built-in clipboard bridge only carries text. Images should
+    # be placed in the shared Pictures mount instead.
+    (pkgs.writeShellApplication {
+      name = "waydroid-share-image";
+      runtimeInputs = with pkgs; [ coreutils ];
+      text = ''
+        if [ "$#" -eq 0 ]; then
+          echo "Usage: waydroid-share-image <image> [image ...]" >&2
+          exit 64
+        fi
+
+        target_dir="$HOME/Pictures/Waydroid"
+        mkdir -p "$target_dir"
+
+        for source in "$@"; do
+          if [ ! -f "$source" ]; then
+            echo "Skipping non-file: $source" >&2
+            continue
+          fi
+
+          destination="$target_dir/$(basename "$source")"
+          if [ -e "$destination" ]; then
+            echo "Already exists, not overwriting: $destination" >&2
+            continue
+          fi
+
+          cp -- "$source" "$destination"
+          echo "Shared: $destination"
+        done
+
+        echo "Open Files or Gallery in Waydroid at Pictures/Waydroid."
       '';
     })
 
