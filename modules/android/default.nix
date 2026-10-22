@@ -37,8 +37,6 @@ in
     heimdall-gui # optional GUI
 
     samloader-rs
-
-    odin
   ];
   # Adds the current user to the ADB users group.
   # users.users.${settings.user.username}.extraGroups = [ "adbusers" ];
