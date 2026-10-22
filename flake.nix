@@ -272,7 +272,7 @@
             # Inline module: local package set + global overlays.
             {
               imports = [
-                ./pkgs/default.nix
+                ./pkgs
               ];
 
               nixpkgs.overlays = [
