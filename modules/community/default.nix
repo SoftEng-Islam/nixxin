@@ -24,7 +24,7 @@ mkIf (settings.modules.community.enable or false) {
     with pkgs;
     lib.flatten _cummunity
     ++ [
-      zapzap # WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
-      caprine-bin # Elegant Facebook Messenger desktop app
+      # zapzap # WhatsApp desktop application written in Pyqt6 + PyQt6-WebEngine.
+      # caprine-bin # Elegant Facebook Messenger desktop app
     ];
 }
