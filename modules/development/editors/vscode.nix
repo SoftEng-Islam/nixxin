@@ -598,6 +598,7 @@ in
             "# Global AI Coding Instructions\n\nBefore making changes:\n\n1. Read and follow all rules inside the `.ai/` directory.\n2. Prioritize:\n\n- explicit user instructions\n- existing architecture\n- repository conventions\n- framework best practices\n\n1. Preserve existing behavior unless explicitly instructed otherwise.\n2. Avoid broad refactors and unrelated changes.\n3. Reuse existing utilities, composables, and components before creating new ones.\n4. Keep edits minimal, focused, and maintainable.\n5. Do not hallucinate APIs, files, directories, or behavior.\n6. Validate imports, types, and consistency before finishing changes.\n7. Avoid unnecessary dependencies and abstractions.\n8. Ask for clarification when requirements are ambiguous.\n9. Prefer pnpm for JavaScript and TypeScript package management.\n10. Avoid npm unless explicitly requested.\n11. Prefer existing project tooling and conventions.\n\nAlways read relevant files completely before editing.";
           "geminicodeassist.agentYoloMode" = true;
           "geminicodeassist.updateChannel" = "Default";
+          "editor.gotoLocation.multipleDefinitions" = "goto";
         };
       };
     };
