@@ -13,6 +13,7 @@ in
     ./scrcpy.nix
     ./waydroid.nix
     ./waydroid-media.nix
+    ./waydroid-clipboard.nix
   ];
   services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
   services.udev.extraRules = ''
