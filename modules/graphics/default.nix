@@ -15,7 +15,7 @@ let
     (optional _graphics_pkgs.figmaLinux figma-linux)
     (optional _graphics_pkgs.gimp gimp)
     (optional _graphics_pkgs.inkscape inkscape)
-    (optional _graphics_pkgs.lunacy lunacy)
+    (optional _graphics_pkgs.lunacy unstable.lunacy)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 
