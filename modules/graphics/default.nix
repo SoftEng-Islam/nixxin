@@ -6,17 +6,6 @@
 }:
 let
   inherit (lib) optional;
-  lunacy-x11 = pkgs.symlinkJoin {
-    name = "lunacy-x11";
-    paths = [ pkgs.unstable.lunacy ];
-    nativeBuildInputs = [ pkgs.makeWrapper ];
-
-    postBuild = ''
-      wrapProgram $out/bin/lunacy \
-        --unset WAYLAND_DISPLAY \
-        --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath (pkgs.unstable.lunacy.buildInputs or [ ])}"
-    '';
-  };
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -26,7 +15,7 @@ let
     (optional _graphics_pkgs.figmaLinux figma-linux)
     (optional _graphics_pkgs.gimp gimp)
     (optional _graphics_pkgs.inkscape inkscape)
-    (optional _graphics_pkgs.lunacy lunacy-x11)
+    (optional _graphics_pkgs.lunacy pkgs.unstable.lunacy)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 
