@@ -6,6 +6,18 @@
 }:
 let
   inherit (lib) optional;
+  # Lunacy 14.1 uses Avalonia's X11 backend. Keep that path explicit under
+  # Wayland by allowing the XWayland DISPLAY through while hiding the native
+  # Wayland socket from the application.
+  lunacy-x11 = pkgs.symlinkJoin {
+    name = "lunacy-x11";
+    paths = [ pkgs.unstable.lunacy ];
+    buildInputs = [ pkgs.makeWrapper ];
+    postBuild = ''
+      wrapProgram $out/bin/lunacy --unset WAYLAND_DISPLAY
+    '';
+  };
+
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
@@ -15,7 +27,7 @@ let
     (optional _graphics_pkgs.figmaLinux figma-linux)
     (optional _graphics_pkgs.gimp gimp)
     (optional _graphics_pkgs.inkscape inkscape)
-    (optional _graphics_pkgs.lunacy unstable.lunacy)
+    (optional _graphics_pkgs.lunacy lunacy-x11)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 
