@@ -6,18 +6,17 @@
 }:
 let
   inherit (lib) optional;
-  # Lunacy 14.1 uses Avalonia's X11 backend. Keep that path explicit under
-  # Wayland by allowing the XWayland DISPLAY through while hiding the native
-  # Wayland socket from the application.
   lunacy-x11 = pkgs.symlinkJoin {
     name = "lunacy-x11";
     paths = [ pkgs.unstable.lunacy ];
-    buildInputs = [ pkgs.makeWrapper ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
+
     postBuild = ''
-      wrapProgram $out/bin/lunacy --unset WAYLAND_DISPLAY
+      wrapProgram $out/bin/lunacy \
+        --unset WAYLAND_DISPLAY \
+        --prefix LD_LIBRARY_PATH : "${pkgs.lib.makeLibraryPath (pkgs.unstable.lunacy.buildInputs or [ ])}"
     '';
   };
-
 
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
