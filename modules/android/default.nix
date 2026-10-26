@@ -12,6 +12,7 @@ in
     ./android-studio.nix
     ./scrcpy.nix
     ./waydroid.nix
+    ./waydroid-media.nix
   ];
   services.udev.packages = [ pkgs.heimdall ]; # USB permissions for download mode
   services.udev.extraRules = ''
