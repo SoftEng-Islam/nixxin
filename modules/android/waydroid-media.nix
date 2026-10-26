@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ settings, pkgs, ... }:
 let
-  media = "~/.local/share/waydroid/data/media/0";
+  media = "/home/${settings.user.username}/.local/share/waydroid/data/media/0";
 
   watcher = pkgs.writeShellScript "waydroid-media-watch" ''
     mkdir -p "${media}/DCIM" "${media}/Pictures"

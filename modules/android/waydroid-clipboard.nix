@@ -1,6 +1,6 @@
-{ pkgs, ... }:
+{ settings, pkgs, ... }:
 let
-  dest = "$HOME/.local/share/waydroid/data/media/0/DCIM";
+  dest = "/home/${settings.user.username}/.local/share/waydroid/data/media/0/DCIM";
 
   clipSave = pkgs.writeShellApplication {
     name = "waydroid-clip-save";
