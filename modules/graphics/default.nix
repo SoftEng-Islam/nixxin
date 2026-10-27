@@ -31,7 +31,7 @@ let
             pkgs.gtk3
             pkgs.libdrm
             pkgs.mesa
-            pkgs.mesa.libgbm
+            pkgs.libgbm
             pkgs.libglvnd
             pkgs.libnotify
             pkgs.libpulseaudio
