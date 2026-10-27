@@ -6,7 +6,62 @@
 }:
 let
   inherit (lib) optional;
+  lunacy-x11 = pkgs.symlinkJoin {
+    name = "lunacy-x11";
+    paths = [ pkgs.unstable.lunacy ];
+    nativeBuildInputs = [ pkgs.makeWrapper ];
 
+    postBuild = ''
+      wrapProgram $out/bin/lunacy \
+        --unset WAYLAND_DISPLAY \
+        --set GDK_BACKEND x11 \
+        --set ELECTRON_OZONE_PLATFORM_HINT auto \
+        --prefix LD_LIBRARY_PATH : "${
+          pkgs.lib.makeLibraryPath [
+            pkgs.alsa-lib
+            pkgs.at-spi2-core
+            pkgs.cairo
+            pkgs.cups
+            pkgs.dbus
+            pkgs.expat
+            pkgs.fontconfig
+            pkgs.freetype
+            pkgs.gdk-pixbuf
+            pkgs.glib
+            pkgs.gtk3
+            pkgs.libdrm
+            pkgs.mesa
+            pkgs.mesa.libgbm
+            pkgs.libglvnd
+            pkgs.libnotify
+            pkgs.libpulseaudio
+            pkgs.libsecret
+            pkgs.libusb1
+            pkgs.libva
+            pkgs.libxkbcommon
+            pkgs.nspr
+            pkgs.nss
+            pkgs.pango
+            pkgs.stdenv.cc.cc.lib
+            pkgs.systemd
+            pkgs.vulkan-loader
+            pkgs.wayland
+            pkgs.xorg.libX11
+            pkgs.xorg.libXScrnSaver
+            pkgs.xorg.libXcomposite
+            pkgs.xorg.libXcursor
+            pkgs.xorg.libXdamage
+            pkgs.xorg.libXext
+            pkgs.xorg.libXfixes
+            pkgs.xorg.libXi
+            pkgs.xorg.libXrandr
+            pkgs.xorg.libXrender
+            pkgs.xorg.libXtst
+            pkgs.xorg.libxcb
+          ]
+        }"
+    '';
+  };
   # User-configurable graphics applications
   _graphics_pkgs = settings.modules.graphics;
   _graphics = with pkgs; [
@@ -15,7 +70,7 @@ let
     (optional _graphics_pkgs.figmaLinux figma-linux)
     (optional _graphics_pkgs.gimp gimp)
     (optional _graphics_pkgs.inkscape inkscape)
-    (optional _graphics_pkgs.lunacy pkgs.unstable.lunacy)
+    (optional _graphics_pkgs.lunacy lunacy-x11)
     (optional _graphics_pkgs.kolourpaint kolourpaint)
   ];
 
