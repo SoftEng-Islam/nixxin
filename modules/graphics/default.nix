@@ -118,6 +118,8 @@ let
     # vkdt                 (darktable fork, use darktable instead)
     # directx-headers      (dev-only)
     # openal               (audio, not graphics)
+
+    penpot-desktop
   ];
 
 in
