@@ -6,6 +6,15 @@
 }:
 let
   inherit (lib) optional;
+  penpot = pkgs.symlinkJoin {
+    name = "penpot-desktop-wrapped";
+    paths = [ pkgs.unstable.penpot-desktop ];
+    nativeBuildInputs = [ pkgs.makeBinaryWrapper ];
+    postBuild = ''
+      # Increases the size of the text in Penpot by 100%
+      wrapProgram $out/bin/penpot-desktop --set GDK_SCALE "2.0"
+    '';
+  };
   lunacy-x11 = pkgs.symlinkJoin {
     name = "lunacy-x11";
     paths = [ pkgs.unstable.lunacy ];
@@ -119,7 +128,7 @@ let
     # directx-headers      (dev-only)
     # openal               (audio, not graphics)
 
-    penpot-desktop
+    penpot
   ];
 
 in
