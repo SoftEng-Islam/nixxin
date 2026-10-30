@@ -5,6 +5,7 @@
 }:
 {
   imports = lib.optionals (settings.modules.desktop.enable or false) [
+    ./crafting-apps
     ./appimage.nix
     ./dconf.nix
     ./fileManager
