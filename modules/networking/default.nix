@@ -36,6 +36,12 @@ in
     enable = mkDefault (dnsResolver == "resolved");
     settings.Resolve = {
       DNSSEC = "allow-downgrade";
+      DNSOverTLS = "true";
+      DNS = [
+        "1.1.1.1#one.one.one.one"
+        "1.0.0.1#one.one.one.one"
+        "9.9.9.9#dns.quad9.net"
+      ];
       Domains = [ "~." ];
       FallbackDNS = [ "127.0.0.1:53" ];
     };
