@@ -21,6 +21,18 @@
         "type": "github"
       }
     },
+    "cadcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-K38e8sjD2YUSm/9T42j3bu1JiBABN3sCcr4nVfK19qE=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
+      }
+    },
     "chatgpt-desktop-app": {
       "inputs": {
         "nixpkgs": "nixpkgs"
@@ -37,6 +49,66 @@
         "owner": "poeck",
         "repo": "chatgpt-desktop-app-nix-flake",
         "type": "github"
+      }
+    },
+    "deckcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-hCp+xZeTQYHQlHyTg1xWE/TFhz5KNDMcWwsxwfvBEsw=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/deckcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/deckcraft/releases/latest"
+      }
+    },
+    "designcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-jTlBxwNub4hkhM4HrcJIbTYW7mGHkxc10SzHrsYU47g=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/designcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/designcraft/releases/latest"
+      }
+    },
+    "effectcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-rMyyhcNk+smv8s/CW5/pnlf6FagcvtIedUMI8LbOu+E=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/effectcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/effectcraft/releases/latest"
+      }
+    },
+    "figcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-vm0L5mCKqg4krOh2rtoF05b0B3inC2/2WRFFeLQFYiw=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/figcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/figcraft/releases/latest"
+      }
+    },
+    "filmcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-uvI2ZFO+md8A1I+U9d0ocSwg1EdEcK6yv1rTI4XUGgo=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/filmcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/filmcraft/releases/latest"
       }
     },
     "flake-compat": {
@@ -216,6 +288,18 @@
         "type": "github"
       }
     },
+    "gridcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-t+iQFFAl+Upa8HcnZd/mb2X9MM7WvBX62+a2iB5LB68=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/gridcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/gridcraft/releases/latest"
+      }
+    },
     "harfbuzz": {
       "flake": false,
       "locked": {
@@ -324,6 +408,18 @@
         "ref": "v1.6.44",
         "repo": "libpng",
         "type": "github"
+      }
+    },
+    "lightcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-1Jxgwu27aFngghydF5e0lU0bnH65ToM8eLhpDsxjTIY=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/lightcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/lightcraft/releases/latest"
       }
     },
     "nix-cachyos-kernel": {
@@ -659,6 +755,30 @@
         "type": "github"
       }
     },
+    "pdfcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-7Es83P3mdjdovPOk1mGA0pDYOftMU5E8xvEII1EEaYs=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/latest"
+      }
+    },
+    "photocraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-rXsdiDIVucbfqiA6FR1xQ+3OH1MhivVKaQIEx64tKuM=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/photocraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/photocraft/releases/latest"
+      }
+    },
     "pre-commit-hooks": {
       "inputs": {
         "flake-compat": "flake-compat_2",
@@ -719,12 +839,20 @@
     "root": {
       "inputs": {
         "antigravity-nix": "antigravity-nix",
+        "cadcraft-release": "cadcraft-release",
         "chatgpt-desktop-app": "chatgpt-desktop-app",
+        "deckcraft-release": "deckcraft-release",
+        "designcraft-release": "designcraft-release",
+        "effectcraft-release": "effectcraft-release",
+        "figcraft-release": "figcraft-release",
+        "filmcraft-release": "filmcraft-release",
         "flake-parts": "flake-parts",
         "flake-utils": "flake-utils_2",
+        "gridcraft-release": "gridcraft-release",
         "home-manager": "home-manager",
         "impermanence": "impermanence",
         "import-tree": "import-tree",
+        "lightcraft-release": "lightcraft-release",
         "nix-cachyos-kernel": "nix-cachyos-kernel",
         "nix-vscode-extensions": "nix-vscode-extensions",
         "nixpkgs": "nixpkgs_4",
@@ -737,14 +865,19 @@
         "noctalia-plugins": "noctalia-plugins",
         "noctalia-qs": "noctalia-qs",
         "nur": "nur",
+        "pdfcraft-release": "pdfcraft-release",
+        "photocraft-release": "photocraft-release",
         "pre-commit-hooks": "pre-commit-hooks",
         "quickshell": "quickshell",
         "quickshell-overview": "quickshell-overview",
         "sops-nix": "sops-nix",
+        "soundcraft-release": "soundcraft-release",
         "systems": "systems_4",
         "treefmt-nix": "treefmt-nix_2",
         "unstable": "unstable",
+        "vectorcraft-release": "vectorcraft-release",
         "wezterm": "wezterm",
+        "wordcraft-release": "wordcraft-release",
         "yazi-augment-command": "yazi-augment-command",
         "yazi-flexoki-dark": "yazi-flexoki-dark",
         "yazi-flexoki-light": "yazi-flexoki-light",
@@ -794,6 +927,18 @@
         "owner": "Mic92",
         "repo": "sops-nix",
         "type": "github"
+      }
+    },
+    "soundcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-nlP/La4FdFSIvwqaopK+LJdgPSgA59+3GyqCUOMSqCw=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/soundcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/soundcraft/releases/latest"
       }
     },
     "systems": {
@@ -943,6 +1088,18 @@
         "type": "github"
       }
     },
+    "vectorcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-djp+uvYEZahOGblguAi6Sqhfw9WeLDMnw5lu5Rlw8jU=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/latest"
+      }
+    },
     "wezterm": {
       "inputs": {
         "flake-utils": "flake-utils_3",
@@ -967,6 +1124,18 @@
         "owner": "wezterm",
         "repo": "wezterm",
         "type": "github"
+      }
+    },
+    "wordcraft-release": {
+      "flake": false,
+      "locked": {
+        "narHash": "sha256-J4eGULu0IIxik2oTfVkbgo3SwuzIu9AbP7jve4R8mb0=",
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/wordcraft/releases/latest"
+      },
+      "original": {
+        "type": "file",
+        "url": "https://api.github.com/repos/storytold/wordcraft/releases/latest"
       }
     },
     "yazi-augment-command": {
