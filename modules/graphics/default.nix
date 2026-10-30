@@ -6,6 +6,10 @@
 }:
 let
   inherit (lib) optional;
+  penpot-mcp = pkgs.writeShellScriptBin "penpot-mcp" ''
+    export PNPM_CONFIG_STRICT_DEP_BUILDS=false
+    exec ${pkgs.nodejs_22}/bin/npx -y @penpot/mcp@stable "$@"
+  '';
   penpot = pkgs.symlinkJoin {
     name = "penpot-desktop-wrapped";
     paths = [ pkgs.unstable.penpot-desktop ];
@@ -129,7 +133,8 @@ let
     # openal               (audio, not graphics)
 
     penpot
-    # unstable.akira-unstable
+    penpot-mcp
+    FigCraft
   ];
 
 in
