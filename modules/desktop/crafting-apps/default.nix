@@ -19,10 +19,6 @@ let
     "gridcraft"
   ] (name: builtins.fromJSON (builtins.readFile inputs."${name}-release"));
 
-  # Upstream's native Linux tarballs include the GUI, CLI/MCP tools, desktop
-  # entries, icons and MIME definitions. Release metadata is pinned in
-  # flake.lock; `nix flake update` refreshes versions and archive checksums.
-  # Catalog: https://getartcraft.com/apps
   runtimeLibraries = with pkgs; [
     libxkbcommon
     libx11
@@ -64,15 +60,11 @@ let
 
       src = pkgs.fetchurl {
         url = archive.browser_download_url;
-        hash = archive.digest; # "sha256:<hex>" is accepted as-is
+        hash = archive.digest;
       };
-
-      # Tarball may extract bin/ and share/ at top level instead of in a subdir
-      sourceRoot = ".";
 
       nativeBuildInputs = [ pkgs.autoPatchelfHook ];
       buildInputs = appLibraries ++ [ pkgs.stdenv.cc.cc.lib ];
-      # winit, wgpu and file dialogs load these with dlopen, not DT_NEEDED.
       runtimeDependencies = map lib.getLib appLibraries;
       dontBuild = true;
       dontStrip = true;
@@ -96,5 +88,9 @@ let
         mainProgram = name;
       };
     };
+
+  crafts = lib.mapAttrs mkCraft releases;
 in
-lib.mapAttrs mkCraft releases
+{
+  environment.systemPackages = lib.attrValues crafts;
+}
