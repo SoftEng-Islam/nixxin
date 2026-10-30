@@ -134,7 +134,6 @@ let
 
     penpot
     penpot-mcp
-    FigCraft
   ];
 
 in
