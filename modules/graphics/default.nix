@@ -129,6 +129,7 @@ let
     # openal               (audio, not graphics)
 
     penpot
+    unstable.akira-unstable
   ];
 
 in
