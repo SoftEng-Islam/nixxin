@@ -49,8 +49,8 @@ in
       with pkgs;
       [
         # vdhcoapp
-        stremio
-        stremio-linux-shell
+        # stremio
+        # stremio-linux-shell
       ]
       ++ lib.flatten _pkgs;
     # Download Managers & CLI Downloads Utility

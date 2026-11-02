@@ -16,15 +16,18 @@ in
     programs.vscode = {
       enable = true;
 
-      # use unstable VS Codium because of quick releases and tight version reqs by extensions
-      package = pkgs.vscode.override {
+      # nixos-26.05 ships an old VS Code (1.119); unstable tracks current stable (1.144),
+      # which includes many memory-leak fixes. Update with:
+      #   nix flake update unstable nix-vscode-extensions
+      package = pkgs.unstable.vscode.override {
         # if keyring does not work, try either "libsecret" or "gnome"
         commandLineArgs = "--password-store=gnome-libsecret";
       };
 
       profiles.default = {
-        enableExtensionUpdateCheck = true;
-        enableUpdateCheck = true;
+        # Extensions and the editor are pinned by Nix; in-app updates only fight it.
+        enableExtensionUpdateCheck = false;
+        enableUpdateCheck = false;
 
         keybindings = [
           {
@@ -76,16 +79,16 @@ in
             # bmewburn.vscode-intelephense-client # PHP language support
             # ms-vscode.cpptools-extension-pack # C/C++ extension pack
             llvm-vs-code-extensions.vscode-clangd # C/C++ language server (clangd)
-            be5invis.toml
+            # be5invis.toml  # disabled: duplicate of even-better-toml
             bradlc.vscode-tailwindcss # Tailwind CSS IntelliSense
-            brettm12345.nixfmt-vscode
+            # brettm12345.nixfmt-vscode  # disabled: duplicate formatter; nix-ide + nixd format already
             csstools.postcss
             graphql.vscode-graphql-syntax
             karunamurti.haml
             mads-hartmann.bash-ide-vscode
             meta.pyrefly
             ms-python.python # Python language support
-            ms-vscode.vscode-typescript-next
+            # ms-vscode.vscode-typescript-next  # disabled: TS nightly; remove unless needed
             redhat.vscode-yaml
             swellaby.rust-pack
             syler.sass-indented
@@ -93,10 +96,10 @@ in
             vue.volar
 
             ## APIs & Data ##
-            apollographql.vscode-apollo
+            # apollographql.vscode-apollo  # disabled: second GraphQL language server
             graphql.vscode-graphql
             graphql.vscode-graphql-execution
-            rangav.vscode-thunder-client
+            # rangav.vscode-thunder-client  # disabled: unused?
 
             ## Linters & Formatters ##
             davidanson.vscode-markdownlint # Markdown Linting
@@ -104,22 +107,22 @@ in
             esbenp.prettier-vscode # Prettier code formatter
             foxundermoon.shell-format
             ms-python.isort
-            timonwong.shellcheck
+            # timonwong.shellcheck  # disabled: bash-ide already runs shellcheck
 
             ## Testing & Debugging ##
             ms-python.debugpy
-            ms-vscode.js-debug-nightly
-            orta.vscode-jest
+            # ms-vscode.js-debug-nightly  # disabled: built-in js-debug is enough
+            # orta.vscode-jest  # disabled: overlaps vitest.explorer; re-enable if you use jest
             rogalmic.bash-debug
             vitest.explorer
 
             ## GIT & AI Tools ##
             # eamodio.gitlens # GitLens
             donjayamanne.githistory # Git History
-            github.codespaces # GitHub Codespaces
+            # github.codespaces # GitHub Codespaces  # disabled: unused?
             # github.copilot # GitHub Copilot
             github.vscode-github-actions # GitHub Actions
-            kingleo.deepseek-web
+            # kingleo.deepseek-web  # disabled: unused?
             # anthropic.claude-code
             # saoudrizwan.claude-dev
             # google.geminicodeassist
@@ -132,17 +135,17 @@ in
             christian-kohler.path-intellisense
             chrmarti.regex
             editorconfig.editorconfig
-            ionutvmi.path-autocomplete
+            # ionutvmi.path-autocomplete  # disabled: duplicate of path-intellisense
             mkhl.direnv # direnv support
             mohsen1.prettify-json
-            mukundan.python-docs
+            # mukundan.python-docs  # disabled: unused?
             naumovs.color-highlight
             oderwat.indent-rainbow # colorful indentation
-            rolandgreim.sharecode # Pastebin/Gist support
+            # rolandgreim.sharecode # Pastebin/Gist support  # disabled: unused?
             streetsidesoftware.code-spell-checker
             tauri-apps.tauri-vscode
             yzhang.markdown-all-in-one
-            mermaidchart.vscode-mermaid-chart
+            # mermaidchart.vscode-mermaid-chart  # disabled: unused?
 
             ## Theming & UI ##
             # dracula-theme.theme-dracula # Dracula theme
@@ -184,7 +187,7 @@ in
             "editor.defaultFormatter" = "DavidAnson.vscode-markdownlint";
           };
           "[nix]" = {
-            "editor.defaultFormatter" = "brettm12345.nixfmt-vscode";
+            "editor.defaultFormatter" = "jnoortheen.nix-ide";
             "editor.formatOnSave" = true;
             "editor.inlayHints.enabled" = "on";
             "editor.insertSpaces" = true;
@@ -300,7 +303,7 @@ in
           "debug.allowBreakpointsEverywhere" = true;
 
           "diffEditor.diffAlgorithm" = "advanced";
-          "diffEditor.experimental.showMoves" = true;
+          "diffEditor.experimental.showMoves" = false;
           "diffEditor.ignoreTrimWhitespace" = false;
           "direnv.restart.automatic" = true; # Automatically restart direnv if .envrc changes
           "editor.bracketPairColorization.enabled" = true;
@@ -377,7 +380,7 @@ in
           "editor.minimap.enabled" = false;
           "editor.mouseWheelZoom" = true;
           "editor.occurrencesHighlight" = "off";
-          "editor.renderWhitespace" = "all";
+          "editor.renderWhitespace" = "boundary";
           "editor.rulers" = [
             100
           ];
@@ -406,8 +409,8 @@ in
           "editor.wordWrapColumn" = 100;
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = true;
-          "extensions.autoCheckUpdates" = true;
-          "extensions.autoUpdate" = true;
+          "extensions.autoCheckUpdates" = false;
+          "extensions.autoUpdate" = false;
           "files.associations" = {
             "*.css" = "css";
             "appsettings*.json" = "jsonc";
@@ -421,15 +424,30 @@ in
             "**/.ammonite" = true;
             "**/.bloop" = true;
             "**/.metals" = true;
+            "**/node_modules/**" = true;
+            "**/.direnv/**" = true;
+            "**/.devenv/**" = true;
+            "**/.nuxt/**" = true;
+            "**/.output/**" = true;
+            "**/dist/**" = true;
+            "**/target/**" = true;
+            "**/result" = true;
+            "**/result-*" = true;
+            "**/.pnpm-store/**" = true;
           };
-          "git" = {
-            "autofetch" = true;
-            "confirmSync" = false;
+          "search.exclude" = {
+            "**/node_modules" = true;
+            "**/.direnv" = true;
+            "**/.devenv" = true;
+            "**/.nuxt" = true;
+            "**/.output" = true;
+            "**/dist" = true;
+            "**/result*" = true;
           };
           "git.allowForcePush" = true;
-          # Automatically run git fetch periodically
-          "git.autofetch" = "all";
-          "git.autofetchPeriod" = 120;
+          # Periodic fetch spawns git for every repo; off by default (use "all"/300+ if wanted)
+          "git.autofetch" = false;
+          "git.autofetchPeriod" = 300;
           "git.closeDiffOnOperation" = true;
           "git.confirmForcePush" = false;
           "git.confirmSync" = false;
@@ -486,12 +504,12 @@ in
           "ipynb.experimental.serialization" = false;
           "js/ts.format.semicolons" = "insert";
           "js/ts.inlayHints.enumMemberValues.enabled" = true;
-          "js/ts.inlayHints.functionLikeReturnTypes.enabled" = true;
+          "js/ts.inlayHints.functionLikeReturnTypes.enabled" = false;
           "js/ts.inlayHints.parameterNames.enabled" = "none";
           "js/ts.inlayHints.parameterNames.suppressWhenArgumentMatchesName" = true;
-          "js/ts.inlayHints.parameterTypes.enabled" = true;
-          "js/ts.inlayHints.propertyDeclarationTypes.enabled" = true;
-          "js/ts.inlayHints.variableTypes.enabled" = true;
+          "js/ts.inlayHints.parameterTypes.enabled" = false;
+          "js/ts.inlayHints.propertyDeclarationTypes.enabled" = false;
+          "js/ts.inlayHints.variableTypes.enabled" = false;
           "js/ts.inlayHints.variableTypes.suppressWhenTypeMatchesName" = true;
           "js/ts.updateImportsOnFileMove.enabled" = "always";
           "keyboard.dispatch" = "keyCode";
@@ -596,7 +614,7 @@ in
           "geminicodeassist.inlineSuggestions.enableAuto" = true;
           "geminicodeassist.rules" =
             "# Global AI Coding Instructions\n\nBefore making changes:\n\n1. Read and follow all rules inside the `.ai/` directory.\n2. Prioritize:\n\n- explicit user instructions\n- existing architecture\n- repository conventions\n- framework best practices\n\n1. Preserve existing behavior unless explicitly instructed otherwise.\n2. Avoid broad refactors and unrelated changes.\n3. Reuse existing utilities, composables, and components before creating new ones.\n4. Keep edits minimal, focused, and maintainable.\n5. Do not hallucinate APIs, files, directories, or behavior.\n6. Validate imports, types, and consistency before finishing changes.\n7. Avoid unnecessary dependencies and abstractions.\n8. Ask for clarification when requirements are ambiguous.\n9. Prefer pnpm for JavaScript and TypeScript package management.\n10. Avoid npm unless explicitly requested.\n11. Prefer existing project tooling and conventions.\n\nAlways read relevant files completely before editing.";
-          "geminicodeassist.agentYoloMode" = true;
+          "geminicodeassist.agentYoloMode" = false;
           "geminicodeassist.updateChannel" = "Default";
           "editor.gotoLocation.multipleDefinitions" = "goto";
         };
