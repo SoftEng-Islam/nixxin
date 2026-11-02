@@ -410,7 +410,7 @@ in
           "explorer.confirmDragAndDrop" = false;
           "explorer.confirmPasteNative" = true;
           "extensions.autoCheckUpdates" = false;
-          "extensions.autoUpdate" = false;
+          "extensions.autoUpdate" = "off";
           "files.associations" = {
             "*.css" = "css";
             "appsettings*.json" = "jsonc";
