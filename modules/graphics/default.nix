@@ -132,7 +132,8 @@ let
     # directx-headers      (dev-only)
     # openal               (audio, not graphics)
 
-    penpot
+    # penpot # disabled: unstable's penpot-desktop pins Electron 42, now EOL (blocks the build).
+    #         Re-enable once it moves to Electron 43+. Use Penpot in the browser meanwhile.
     penpot-mcp
   ];
 
