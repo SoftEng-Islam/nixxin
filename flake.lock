@@ -24,7 +24,7 @@
     "cadcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-K38e8sjD2YUSm/9T42j3bu1JiBABN3sCcr4nVfK19qE=",
+        "narHash": "sha256-RYsD90ENJGMbdG/SSaxKbYVWPVCUwa9qStCurnqNup0=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
       },
@@ -54,7 +54,7 @@
     "deckcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hCp+xZeTQYHQlHyTg1xWE/TFhz5KNDMcWwsxwfvBEsw=",
+        "narHash": "sha256-G9kzsTrgPT2yXmKf5++2ufkmlnGUE0+WN95BgLvYL0k=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/deckcraft/releases/latest"
       },
@@ -66,7 +66,7 @@
     "designcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-jTlBxwNub4hkhM4HrcJIbTYW7mGHkxc10SzHrsYU47g=",
+        "narHash": "sha256-pCHRnMpnOG4YqjKPO3G71SczHz853grUFFJBXlb0xpE=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/designcraft/releases/latest"
       },
@@ -78,7 +78,7 @@
     "effectcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-rMyyhcNk+smv8s/CW5/pnlf6FagcvtIedUMI8LbOu+E=",
+        "narHash": "sha256-OPk/2KJbBLfvSZB6HGXuMHQwx4PHBLEVIySs44cbzY8=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/effectcraft/releases/latest"
       },
@@ -90,7 +90,7 @@
     "figcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-vm0L5mCKqg4krOh2rtoF05b0B3inC2/2WRFFeLQFYiw=",
+        "narHash": "sha256-beu8KwqiWblM7vPtX1NfPUL0y1Uo7QLYfbl6fWsAu48=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/figcraft/releases/latest"
       },
@@ -102,7 +102,7 @@
     "filmcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-uvI2ZFO+md8A1I+U9d0ocSwg1EdEcK6yv1rTI4XUGgo=",
+        "narHash": "sha256-8W37xWcBelUZKl0X/Vpj6SxiUpBVcpy36lTHbcujpSE=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/filmcraft/releases/latest"
       },
@@ -291,7 +291,7 @@
     "gridcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-t+iQFFAl+Upa8HcnZd/mb2X9MM7WvBX62+a2iB5LB68=",
+        "narHash": "sha256-bVd7H7FjYB8aBPx6G2UP8d2Djfra6vzuaKLjRTCPwmI=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/gridcraft/releases/latest"
       },
@@ -413,7 +413,7 @@
     "lightcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-1Jxgwu27aFngghydF5e0lU0bnH65ToM8eLhpDsxjTIY=",
+        "narHash": "sha256-kjCOuuwBWBS4LjHUiJ7xgOt3SkHbPY9Jy0xUOSIMGx0=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/lightcraft/releases/latest"
       },
@@ -450,11 +450,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1787708809,
-        "narHash": "sha256-g8nkh08udC9gGpHnSb10+yjaw7Ie3bxCz2VmDy1XjRM=",
+        "lastModified": 1793596991,
+        "narHash": "sha256-l3pqEPQt3L2dPbr/4RXhO6lWSCcsOzx4Gfp6t1KJS+Q=",
         "owner": "nix-community",
         "repo": "nix-vscode-extensions",
-        "rev": "60132c95fbfebfc9db33217b4eca3b921ff98d38",
+        "rev": "20014e0e97ee61bed7c09c26bc83861f0d94d7d7",
         "type": "github"
       },
       "original": {
@@ -758,7 +758,7 @@
     "pdfcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-7Es83P3mdjdovPOk1mGA0pDYOftMU5E8xvEII1EEaYs=",
+        "narHash": "sha256-qmP8F06fDc9FtA0ngdrRKqiCqcu7RgxC7MfuBAlUV7s=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/pdfcraft/releases/latest"
       },
@@ -770,7 +770,7 @@
     "photocraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-rXsdiDIVucbfqiA6FR1xQ+3OH1MhivVKaQIEx64tKuM=",
+        "narHash": "sha256-3+cUqulcPtBEHOm4Ru9wvtKhg6tn8is6d5l/mKLJXSo=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/photocraft/releases/latest"
       },
@@ -932,7 +932,7 @@
     "soundcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-nlP/La4FdFSIvwqaopK+LJdgPSgA59+3GyqCUOMSqCw=",
+        "narHash": "sha256-Y6FJRiseiu22RtWy86nBuUBoAFedObhPEM4+cDg0/jQ=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/soundcraft/releases/latest"
       },
@@ -1074,11 +1074,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1789006805,
-        "narHash": "sha256-xB8mKMOx1IA9vTDNLmJZ6n4wCMq/cuWBBOzGCRnqxrU=",
+        "lastModified": 1793540411,
+        "narHash": "sha256-fiPJ88izTVucjeo2EQ3jk4aWmLg03I1D4vxnX2QjEgE=",
         "owner": "nixos",
         "repo": "nixpkgs",
-        "rev": "8ce4ef6cb6f871616146b9fe26d2a5ae594e94fe",
+        "rev": "0bb2eedc20e4739f29e8045034f2828ad7054f8f",
         "type": "github"
       },
       "original": {
@@ -1091,7 +1091,7 @@
     "vectorcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-djp+uvYEZahOGblguAi6Sqhfw9WeLDMnw5lu5Rlw8jU=",
+        "narHash": "sha256-aeZBChs7AIM+Gt2D26gDk9NNM/+nhgFqpFTGTSY0v18=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/vectorcraft/releases/latest"
       },
@@ -1129,7 +1129,7 @@
     "wordcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-J4eGULu0IIxik2oTfVkbgo3SwuzIu9AbP7jve4R8mb0=",
+        "narHash": "sha256-CTO36S52X3SzmoYkEh/+oIweyXs5kgUFycTC7dw8P7w=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/wordcraft/releases/latest"
       },

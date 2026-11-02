@@ -182,7 +182,6 @@ in
         "https://nixpkgs-unfree.cachix.org" # unfree-package cache
         "https://nixpkgs-python.cachix.org" # nixpkgs-python
         "https://nixpkgs-wayland.cachix.org" # nixpkgs-wayland
-        "https://attic.xuyh0120.win/lantian"
         "https://yazi.cachix.org"
         "https://noctalia.cachix.org"
       ];
@@ -194,7 +193,6 @@ in
         "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
         "nixpkgs-wayland.cachix.org-1:3lwxaILxMRkVhehr5StQprHdEo4IrE8sRho9R9HOLYA="
         "nixpkgs-python.cachix.org-1:hxjI7pFxTyuTHn2NkvWCrAUcNZLNS3ZAvfYNuYifcEU="
-        "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
         "yazi.cachix.org-1:Dcdz63NZKfvUCbDGngQDAZq6kOroIrFoyO064uvLh8k="
         "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       ];
