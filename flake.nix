@@ -370,6 +370,19 @@
                       fi
                     '';
                   });
+
+                  # TODO: Remove once nixpkgs PR #590137 ("devin-{cli,desktop}: bump") merges.
+                  # Upstream nixos-unstable still ships 3.12.59 whose download URL returns 404;
+                  # override with 3.14.30819 from that PR in the meantime.
+                  unstable = _prev.unstable.extend (_ufinal: _uprev: {
+                    devin-desktop = _uprev.devin-desktop.overrideAttrs (_old: {
+                      version = "3.14.30819";
+                      src = _prev.fetchurl {
+                        url = "https://windsurf-stable.codeiumdata.com/linux-x64/stable/c3f852dad740063cc1773032aefce24eb5acf833/Devin-linux-x64-3.14.30819.tar.gz";
+                        sha256 = "5be44ff7fb296ff400703da8c923d97973ab072f72a756d57af3c2922199b764";
+                      };
+                    });
+                  });
                 })
               ];
             }
