@@ -24,7 +24,7 @@
     "cadcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-9o7oz8RiroI+aqgqVPfilRryRJQ8XA4q4E+NK3m8qdE=",
+        "narHash": "sha256-We/sefZHeu6eiFwNMmbohjanxaL6xtkwxTJ6bVjMbbg=",
         "type": "file",
         "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
       },
