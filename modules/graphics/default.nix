@@ -172,17 +172,9 @@ in
         ];
       }}";
 
-      VK_KHR_PRESENT_WAIT_ENABLED = "1";
-      VK_PRESENT_MODE = "mailbox";
-      VK_LOADER_LAYERS_DISABLE = "VK_LAYER_LUNARG_api_dump:VK_LAYER_LUNARG_monitor";
-
-      # Force RADV instead of AMDVLK
-      AMD_VULKAN_ICD = "radv";
-
-      # Adjust rendering settings for OpenGL and graphics drivers.
-      LIBGL_DRI3_ENABLE = "1";
-      RADV_PERFTEST = "gpl,sam,local_bos";
-      RADV_EXPERIMENTAL = "video_decode,video_encode";
+      # Let Mesa select supported presentation and video-decode paths. These
+      # applications share the same driver stack, so forcing RADV experiments
+      # here can corrupt playback in both native players and browsers.
 
       # Rusticl OpenCL
       RUSTICL_ENABLE = "radeonsi";
@@ -201,8 +193,6 @@ in
       LIBGL_ALWAYS_SOFTWARE = "0";
       LIBGL_ALWAYS_INDIRECT = "0";
 
-      GALLIUM_DRIVER = "radeonsi";
-
       HSA_ENABLE_SDMA = "1";
 
       DISABLE_LAYER_AMD_SWITCHABLE_GRAPHICS_1 = "1";
@@ -214,20 +204,12 @@ in
       MESA_GLSL_CACHE_MAX_SIZE = "2G";
       MESA_SHADER_CACHE_DISABLE = "false";
       MESA_SHADER_CACHE_MAX_SIZE = "2G";
-      MESA_VK_WSI_DISPLAY = "wayland";
-      MESA_VK_WSI_LIST = "wayland";
-
       GPU_MAX_ALLOC_PERCENT = "100";
       GPU_SINGLE_ALLOC_PERCENT = "100";
       GPU_MAX_HEAP_SIZE = "100";
       GPU_USE_SYNC_OBJECTS = "1";
 
-      AMD_DEBUG = "sam";
       mesa_glthread = "true";
-
-      RADV_FORCE_VARYING_COMPRESSION = "1";
-
-      WLR_SCENE_DISABLE_DIRECT_SCANOUT = "1";
     };
 
     # ========== Hardware Graphics Configuration ==========
