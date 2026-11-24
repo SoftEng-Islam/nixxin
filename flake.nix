@@ -148,63 +148,59 @@
     zen-browser.url = "github:youwen5/zen-browser-flake";
     zen-browser.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Lock official release metadata; `nix flake update` refreshes the suite.
-    # The package builder selects each Linux archive and its published checksum.
-    # Single app: `nix flake update photocraft-release`.
-    # API counters can change metadata hashes without changing app versions.
-    # If several hashes drift, refresh all *-release inputs in one update command.
-    # Preserve inputs with `nix flake archive` for historical/cold rebuilds:
-    # GitHub's mutable endpoint cannot re-serve a previous JSON snapshot.
+    # Lock official, versioned release metadata. Do not use GitHub's mutable
+    # `/releases/latest` endpoint: its changing JSON invalidates a flake lock.
+    # To upgrade an app, change its tag here and run `nix flake lock --update-input`.
     photocraft-release = {
-      url = "file+https://api.github.com/repos/storytold/photocraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/photocraft/releases/tags/v0.23.1";
       flake = false;
     };
     vectorcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/vectorcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/vectorcraft/releases/tags/v0.24.1";
       flake = false;
     };
     filmcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/filmcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/filmcraft/releases/tags/v0.20.1";
       flake = false;
     };
     lightcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/lightcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/lightcraft/releases/tags/v0.21.1";
       flake = false;
     };
     effectcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/effectcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/effectcraft/releases/tags/v0.25.1";
       flake = false;
     };
     designcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/designcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/designcraft/releases/tags/v0.21.1";
       flake = false;
     };
     figcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/figcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/figcraft/releases/tags/v0.18.1";
       flake = false;
     };
     soundcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/soundcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/soundcraft/releases/tags/v0.20.1";
       flake = false;
     };
     wordcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/wordcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/wordcraft/releases/tags/v0.18.1";
       flake = false;
     };
     pdfcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/pdfcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/pdfcraft/releases/tags/v0.22.0";
       flake = false;
     };
     deckcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/deckcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/deckcraft/releases/tags/v0.18.1";
       flake = false;
     };
     cadcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/cadcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/cadcraft/releases/tags/v0.20.1";
       flake = false;
     };
     gridcraft-release = {
-      url = "file+https://api.github.com/repos/storytold/gridcraft/releases/latest";
+      url = "file+https://api.github.com/repos/storytold/gridcraft/releases/tags/v0.19.1";
       flake = false;
     };
 

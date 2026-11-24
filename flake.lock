@@ -24,13 +24,13 @@
     "cadcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-We/sefZHeu6eiFwNMmbohjanxaL6xtkwxTJ6bVjMbbg=",
+        "narHash": "sha256-ueGktdlliOcsRnbQluTTsrlZBAMtwggLIT22PN9URsY=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/cadcraft/releases/tags/v0.20.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/cadcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/cadcraft/releases/tags/v0.20.1"
       }
     },
     "chatgpt-desktop-app": {
@@ -54,61 +54,61 @@
     "deckcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-hscidMoQHIMiGrOQkJQA+4QTX9wxhufUpFmec5tEqTI=",
+        "narHash": "sha256-208XavvQ9CBSNTjiHRi1SAXKrWTBot+RIxIsBXWIf4I=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/deckcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/deckcraft/releases/tags/v0.18.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/deckcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/deckcraft/releases/tags/v0.18.1"
       }
     },
     "designcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-SOZ/w7A5Zvn3kmFcDYHPdNwGlp8MgzfYqo6bUVS243M=",
+        "narHash": "sha256-xerYC2MeFIBsYoGA/BOaJwBB1BYhMnvoPJyCc2dNYBw=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/designcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/designcraft/releases/tags/v0.21.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/designcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/designcraft/releases/tags/v0.21.1"
       }
     },
     "effectcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-GAugS0mPOmNu1dRW7yNmVmMwquDsvh+F6ojDHnLucuQ=",
+        "narHash": "sha256-VOS7Q8GEfnCByMqvhdet4fPe3oQ+DyzxfZqHgAT3JJE=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/effectcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/effectcraft/releases/tags/v0.25.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/effectcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/effectcraft/releases/tags/v0.25.1"
       }
     },
     "figcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-tPXvOhTNJ7FnaSpS+1i9tHXgSipCy+lqG/zWTXOqiLA=",
+        "narHash": "sha256-K/xaN1a0E6XSQuawDhk3CijuZW2fuVEHYO+SLGJwab8=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/figcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/figcraft/releases/tags/v0.18.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/figcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/figcraft/releases/tags/v0.18.1"
       }
     },
     "filmcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-GD2jZFh3jH1grcUXliCjbmGQHX9AJjBjxUHuY28GaFA=",
+        "narHash": "sha256-bHegoI8+BsGOpL5VyhWPLV7v3sO7aqmwjxJQHhyVExg=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/filmcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/filmcraft/releases/tags/v0.20.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/filmcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/filmcraft/releases/tags/v0.20.1"
       }
     },
     "flake-compat": {
@@ -291,13 +291,13 @@
     "gridcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-KX8UNtNnq7T+TkJo/7euS/dCPQKrbFur56ELBOgPRRI=",
+        "narHash": "sha256-mKeCYUZPalyZQqA/1CawO7rT33wSzrRHYmWtBq1FQxw=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/gridcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/gridcraft/releases/tags/v0.19.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/gridcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/gridcraft/releases/tags/v0.19.1"
       }
     },
     "harfbuzz": {
@@ -413,13 +413,13 @@
     "lightcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-I7DxWiMomW5A8WfAje1Je+M3QJsF1rKCnrRulj4Yx9c=",
+        "narHash": "sha256-H7tO9DlRvdM8fhCvQYAoV92GC9jlzODQ0z6JTfwQ7XY=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/lightcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/lightcraft/releases/tags/v0.21.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/lightcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/lightcraft/releases/tags/v0.21.1"
       }
     },
     "nix-cachyos-kernel": {
@@ -758,25 +758,25 @@
     "pdfcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-UrMT7ijvfY6/tI8yr/RSUIOCnGIwxyqOWyzv/VHWZfI=",
+        "narHash": "sha256-IQffBGgBWPovK6I8aJEOmHDNfQ80V9I75qLm7VxqDlY=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/tags/v0.22.0"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/pdfcraft/releases/tags/v0.22.0"
       }
     },
     "photocraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-cHlZAuS9qw8yS0ENoOK5AgpNVT0J9GWeQT0U3BLoFX0=",
+        "narHash": "sha256-z3VUQCswdLtDrMjwUVZBl/QX5UIJur95HmVCuEBUQF4=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/photocraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/photocraft/releases/tags/v0.23.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/photocraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/photocraft/releases/tags/v0.23.1"
       }
     },
     "pre-commit-hooks": {
@@ -932,13 +932,13 @@
     "soundcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-h3EtCIs5gVBviAI01nLMPe/bHzgBA0MB6U18o2bID88=",
+        "narHash": "sha256-whNRyJqW1gRqneDLpEvSoS6axOOybDp3Fd3Xxlbe1pE=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/soundcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/soundcraft/releases/tags/v0.20.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/soundcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/soundcraft/releases/tags/v0.20.1"
       }
     },
     "systems": {
@@ -1091,13 +1091,13 @@
     "vectorcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-h9e5pXPhE1vcDVYFcJRIVLp6XmR90lTurr0LgMjrAyA=",
+        "narHash": "sha256-Wj1+7bC7dkYrYJ5aZLwzoaRzHv1QkrOYJqhFgXiZbsc=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/tags/v0.24.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/vectorcraft/releases/tags/v0.24.1"
       }
     },
     "wezterm": {
@@ -1129,13 +1129,13 @@
     "wordcraft-release": {
       "flake": false,
       "locked": {
-        "narHash": "sha256-1YWYL8qmi3Aj6OmilMARC7cmPN6pplCS5GLStnyLc5Q=",
+        "narHash": "sha256-PkiIOY9a0/2OZyhtGnhXKNIcA7HgVcoszqicr7gnTbM=",
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/wordcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/wordcraft/releases/tags/v0.18.1"
       },
       "original": {
         "type": "file",
-        "url": "https://api.github.com/repos/storytold/wordcraft/releases/latest"
+        "url": "https://api.github.com/repos/storytold/wordcraft/releases/tags/v0.18.1"
       }
     },
     "yazi-augment-command": {
