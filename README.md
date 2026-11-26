@@ -16,6 +16,10 @@ A modular, feature-rich NixOS configuration that's easy to customize for differe
 
 [**🚀 Quick Start**](#-quick-start) • [**📚 Documentation**](#-documentation) • [**✨ Features**](#-features) • [**🏗️ Module Structure**](#️-module-structure) • [**🤝 Contributing**](#-contributing)
 
+## 📸 Screenshot
+
+![Screenshot](./screens/2026-09-12T020655.png)
+
 ## 🚀 Quick Start
 
 ### 🎮 **Try the Demo First!**
