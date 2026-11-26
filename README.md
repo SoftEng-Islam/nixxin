@@ -19,6 +19,7 @@ A modular, feature-rich NixOS configuration that's easy to customize for differe
 ## 📸 Screenshot
 
 ![Screenshot](./ScreenShot.png)
+![Screenshot](./screens/2026-11-27T002322.png)
 
 ## 🚀 Quick Start
 
@@ -196,14 +197,3 @@ This project is open source and available under the [MIT License](./LICENSE).
 
 **Note:** This configuration is designed to be a starting point. You may need to adjust hardware-specific settings based on your system.
 
-## 📸 Screenshot
-
-![Screenshot](./screens/2026-09-12T020655.png)
-![Screenshot](./screens/2026-09-12T020727.png)
-![Screenshot](./screens/2026-09-12T020743.png)
-![Screenshot](./screens/2026-09-12T020813.png)
-![Screenshot](./screens/2026-09-12T020823.png)
-![Screenshot](./screens/2026-09-12T020845.png)
-![Screenshot](./screens/2026-09-12T021044.png)
-![Screenshot](./screens/2026-09-12T021111.png)
-![Screenshot](./screens/2026-09-12T021238.png)
