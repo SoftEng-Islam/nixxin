@@ -18,7 +18,7 @@ A modular, feature-rich NixOS configuration that's easy to customize for differe
 
 ## 📸 Screenshot
 
-![Screenshot](./screens/2026-09-12T020655.png)
+![Screenshot](./ScreenShot.png)
 
 ## 🚀 Quick Start
 
